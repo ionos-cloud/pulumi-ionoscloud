@@ -1,3 +1,3 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/ionos-cloud/pulumi-ionoscloud/sdk
 
-go 1.17
+go 1.20
