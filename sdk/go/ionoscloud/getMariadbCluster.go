@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupMariadbCluster(ctx *pulumi.Context, args *LookupMariadbClusterArgs, opts ...pulumi.InvokeOption) (*LookupMariadbClusterResult, error) {
+func GetMariadbCluster(ctx *pulumi.Context, args *GetMariadbClusterArgs, opts ...pulumi.InvokeOption) (*GetMariadbClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupMariadbClusterResult
+	var rv GetMariadbClusterResult
 	err := ctx.Invoke("ionoscloud:index/getMariadbCluster:getMariadbCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,14 +22,14 @@ func LookupMariadbCluster(ctx *pulumi.Context, args *LookupMariadbClusterArgs, o
 }
 
 // A collection of arguments for invoking getMariadbCluster.
-type LookupMariadbClusterArgs struct {
+type GetMariadbClusterArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	Id          *string `pulumi:"id"`
 	Location    *string `pulumi:"location"`
 }
 
 // A collection of values returned by getMariadbCluster.
-type LookupMariadbClusterResult struct {
+type GetMariadbClusterResult struct {
 	Connections        []GetMariadbClusterConnection        `pulumi:"connections"`
 	Cores              int                                  `pulumi:"cores"`
 	DisplayName        *string                              `pulumi:"displayName"`
@@ -43,89 +43,89 @@ type LookupMariadbClusterResult struct {
 	StorageSize        int                                  `pulumi:"storageSize"`
 }
 
-func LookupMariadbClusterOutput(ctx *pulumi.Context, args LookupMariadbClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMariadbClusterResultOutput {
+func GetMariadbClusterOutput(ctx *pulumi.Context, args GetMariadbClusterOutputArgs, opts ...pulumi.InvokeOption) GetMariadbClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupMariadbClusterResult, error) {
-			args := v.(LookupMariadbClusterArgs)
-			r, err := LookupMariadbCluster(ctx, &args, opts...)
-			var s LookupMariadbClusterResult
+		ApplyT(func(v interface{}) (GetMariadbClusterResult, error) {
+			args := v.(GetMariadbClusterArgs)
+			r, err := GetMariadbCluster(ctx, &args, opts...)
+			var s GetMariadbClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupMariadbClusterResultOutput)
+		}).(GetMariadbClusterResultOutput)
 }
 
 // A collection of arguments for invoking getMariadbCluster.
-type LookupMariadbClusterOutputArgs struct {
+type GetMariadbClusterOutputArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
 	Location    pulumi.StringPtrInput `pulumi:"location"`
 }
 
-func (LookupMariadbClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMariadbClusterArgs)(nil)).Elem()
+func (GetMariadbClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariadbClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getMariadbCluster.
-type LookupMariadbClusterResultOutput struct{ *pulumi.OutputState }
+type GetMariadbClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupMariadbClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMariadbClusterResult)(nil)).Elem()
+func (GetMariadbClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariadbClusterResult)(nil)).Elem()
 }
 
-func (o LookupMariadbClusterResultOutput) ToLookupMariadbClusterResultOutput() LookupMariadbClusterResultOutput {
+func (o GetMariadbClusterResultOutput) ToGetMariadbClusterResultOutput() GetMariadbClusterResultOutput {
 	return o
 }
 
-func (o LookupMariadbClusterResultOutput) ToLookupMariadbClusterResultOutputWithContext(ctx context.Context) LookupMariadbClusterResultOutput {
+func (o GetMariadbClusterResultOutput) ToGetMariadbClusterResultOutputWithContext(ctx context.Context) GetMariadbClusterResultOutput {
 	return o
 }
 
-func (o LookupMariadbClusterResultOutput) Connections() GetMariadbClusterConnectionArrayOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) []GetMariadbClusterConnection { return v.Connections }).(GetMariadbClusterConnectionArrayOutput)
+func (o GetMariadbClusterResultOutput) Connections() GetMariadbClusterConnectionArrayOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) []GetMariadbClusterConnection { return v.Connections }).(GetMariadbClusterConnectionArrayOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) Cores() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) int { return v.Cores }).(pulumi.IntOutput)
+func (o GetMariadbClusterResultOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o GetMariadbClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) DnsName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
+func (o GetMariadbClusterResultOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetMariadbClusterResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) Instances() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) int { return v.Instances }).(pulumi.IntOutput)
+func (o GetMariadbClusterResultOutput) Instances() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) int { return v.Instances }).(pulumi.IntOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o GetMariadbClusterResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) MaintenanceWindows() GetMariadbClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) []GetMariadbClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMariadbClusterMaintenanceWindowArrayOutput)
+func (o GetMariadbClusterResultOutput) MaintenanceWindows() GetMariadbClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) []GetMariadbClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMariadbClusterMaintenanceWindowArrayOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) MariadbVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) string { return v.MariadbVersion }).(pulumi.StringOutput)
+func (o GetMariadbClusterResultOutput) MariadbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) string { return v.MariadbVersion }).(pulumi.StringOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) int { return v.Ram }).(pulumi.IntOutput)
+func (o GetMariadbClusterResultOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-func (o LookupMariadbClusterResultOutput) StorageSize() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMariadbClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
+func (o GetMariadbClusterResultOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariadbClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupMariadbClusterResultOutput{})
+	pulumi.RegisterOutputType(GetMariadbClusterResultOutput{})
 }

@@ -79,12 +79,6 @@ func NewMongoCluster(ctx *pulumi.Context,
 	if args.MongodbVersion == nil {
 		return nil, errors.New("invalid value for required argument 'MongodbVersion'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/mongoCluster:MongoCluster"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MongoCluster
 	err := ctx.RegisterResource("ionoscloud:dbaas/mongoCluster:MongoCluster", name, args, &resource, opts...)

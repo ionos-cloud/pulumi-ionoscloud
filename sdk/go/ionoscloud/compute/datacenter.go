@@ -82,12 +82,6 @@ func NewDatacenter(ctx *pulumi.Context,
 	if args.Location == nil {
 		return nil, errors.New("invalid value for required argument 'Location'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/datacenter:Datacenter"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Datacenter
 	err := ctx.RegisterResource("ionoscloud:compute/datacenter:Datacenter", name, args, &resource, opts...)

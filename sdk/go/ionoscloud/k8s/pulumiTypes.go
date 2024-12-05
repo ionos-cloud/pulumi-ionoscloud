@@ -13,145 +13,145 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type K8sClusterMaintenanceWindow struct {
+type ClusterMaintenanceWindow struct {
 	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
 	// [string] A clock time in the day when maintenance is allowed
 	Time string `pulumi:"time"`
 }
 
-// K8sClusterMaintenanceWindowInput is an input type that accepts K8sClusterMaintenanceWindowArgs and K8sClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `K8sClusterMaintenanceWindowInput` via:
+// ClusterMaintenanceWindowInput is an input type that accepts ClusterMaintenanceWindowArgs and ClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `ClusterMaintenanceWindowInput` via:
 //
-//	K8sClusterMaintenanceWindowArgs{...}
-type K8sClusterMaintenanceWindowInput interface {
+//	ClusterMaintenanceWindowArgs{...}
+type ClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
-	ToK8sClusterMaintenanceWindowOutput() K8sClusterMaintenanceWindowOutput
-	ToK8sClusterMaintenanceWindowOutputWithContext(context.Context) K8sClusterMaintenanceWindowOutput
+	ToClusterMaintenanceWindowOutput() ClusterMaintenanceWindowOutput
+	ToClusterMaintenanceWindowOutputWithContext(context.Context) ClusterMaintenanceWindowOutput
 }
 
-type K8sClusterMaintenanceWindowArgs struct {
+type ClusterMaintenanceWindowArgs struct {
 	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
 	// [string] A clock time in the day when maintenance is allowed
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
-func (K8sClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sClusterMaintenanceWindow)(nil)).Elem()
+func (ClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterMaintenanceWindow)(nil)).Elem()
 }
 
-func (i K8sClusterMaintenanceWindowArgs) ToK8sClusterMaintenanceWindowOutput() K8sClusterMaintenanceWindowOutput {
-	return i.ToK8sClusterMaintenanceWindowOutputWithContext(context.Background())
+func (i ClusterMaintenanceWindowArgs) ToClusterMaintenanceWindowOutput() ClusterMaintenanceWindowOutput {
+	return i.ToClusterMaintenanceWindowOutputWithContext(context.Background())
 }
 
-func (i K8sClusterMaintenanceWindowArgs) ToK8sClusterMaintenanceWindowOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sClusterMaintenanceWindowOutput)
+func (i ClusterMaintenanceWindowArgs) ToClusterMaintenanceWindowOutputWithContext(ctx context.Context) ClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenanceWindowOutput)
 }
 
-func (i K8sClusterMaintenanceWindowArgs) ToK8sClusterMaintenanceWindowPtrOutput() K8sClusterMaintenanceWindowPtrOutput {
-	return i.ToK8sClusterMaintenanceWindowPtrOutputWithContext(context.Background())
+func (i ClusterMaintenanceWindowArgs) ToClusterMaintenanceWindowPtrOutput() ClusterMaintenanceWindowPtrOutput {
+	return i.ToClusterMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (i K8sClusterMaintenanceWindowArgs) ToK8sClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sClusterMaintenanceWindowOutput).ToK8sClusterMaintenanceWindowPtrOutputWithContext(ctx)
+func (i ClusterMaintenanceWindowArgs) ToClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenanceWindowOutput).ToClusterMaintenanceWindowPtrOutputWithContext(ctx)
 }
 
-// K8sClusterMaintenanceWindowPtrInput is an input type that accepts K8sClusterMaintenanceWindowArgs, K8sClusterMaintenanceWindowPtr and K8sClusterMaintenanceWindowPtrOutput values.
-// You can construct a concrete instance of `K8sClusterMaintenanceWindowPtrInput` via:
+// ClusterMaintenanceWindowPtrInput is an input type that accepts ClusterMaintenanceWindowArgs, ClusterMaintenanceWindowPtr and ClusterMaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `ClusterMaintenanceWindowPtrInput` via:
 //
-//	        K8sClusterMaintenanceWindowArgs{...}
+//	        ClusterMaintenanceWindowArgs{...}
 //
 //	or:
 //
 //	        nil
-type K8sClusterMaintenanceWindowPtrInput interface {
+type ClusterMaintenanceWindowPtrInput interface {
 	pulumi.Input
 
-	ToK8sClusterMaintenanceWindowPtrOutput() K8sClusterMaintenanceWindowPtrOutput
-	ToK8sClusterMaintenanceWindowPtrOutputWithContext(context.Context) K8sClusterMaintenanceWindowPtrOutput
+	ToClusterMaintenanceWindowPtrOutput() ClusterMaintenanceWindowPtrOutput
+	ToClusterMaintenanceWindowPtrOutputWithContext(context.Context) ClusterMaintenanceWindowPtrOutput
 }
 
-type k8sClusterMaintenanceWindowPtrType K8sClusterMaintenanceWindowArgs
+type clusterMaintenanceWindowPtrType ClusterMaintenanceWindowArgs
 
-func K8sClusterMaintenanceWindowPtr(v *K8sClusterMaintenanceWindowArgs) K8sClusterMaintenanceWindowPtrInput {
-	return (*k8sClusterMaintenanceWindowPtrType)(v)
+func ClusterMaintenanceWindowPtr(v *ClusterMaintenanceWindowArgs) ClusterMaintenanceWindowPtrInput {
+	return (*clusterMaintenanceWindowPtrType)(v)
 }
 
-func (*k8sClusterMaintenanceWindowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sClusterMaintenanceWindow)(nil)).Elem()
+func (*clusterMaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterMaintenanceWindow)(nil)).Elem()
 }
 
-func (i *k8sClusterMaintenanceWindowPtrType) ToK8sClusterMaintenanceWindowPtrOutput() K8sClusterMaintenanceWindowPtrOutput {
-	return i.ToK8sClusterMaintenanceWindowPtrOutputWithContext(context.Background())
+func (i *clusterMaintenanceWindowPtrType) ToClusterMaintenanceWindowPtrOutput() ClusterMaintenanceWindowPtrOutput {
+	return i.ToClusterMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (i *k8sClusterMaintenanceWindowPtrType) ToK8sClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sClusterMaintenanceWindowPtrOutput)
+func (i *clusterMaintenanceWindowPtrType) ToClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterMaintenanceWindowPtrOutput)
 }
 
-type K8sClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+type ClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
 
-func (K8sClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sClusterMaintenanceWindow)(nil)).Elem()
+func (ClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterMaintenanceWindow)(nil)).Elem()
 }
 
-func (o K8sClusterMaintenanceWindowOutput) ToK8sClusterMaintenanceWindowOutput() K8sClusterMaintenanceWindowOutput {
+func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowOutput() ClusterMaintenanceWindowOutput {
 	return o
 }
 
-func (o K8sClusterMaintenanceWindowOutput) ToK8sClusterMaintenanceWindowOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowOutput {
+func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowOutputWithContext(ctx context.Context) ClusterMaintenanceWindowOutput {
 	return o
 }
 
-func (o K8sClusterMaintenanceWindowOutput) ToK8sClusterMaintenanceWindowPtrOutput() K8sClusterMaintenanceWindowPtrOutput {
-	return o.ToK8sClusterMaintenanceWindowPtrOutputWithContext(context.Background())
+func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowPtrOutput() ClusterMaintenanceWindowPtrOutput {
+	return o.ToClusterMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (o K8sClusterMaintenanceWindowOutput) ToK8sClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v K8sClusterMaintenanceWindow) *K8sClusterMaintenanceWindow {
+func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterMaintenanceWindow) *ClusterMaintenanceWindow {
 		return &v
-	}).(K8sClusterMaintenanceWindowPtrOutput)
+	}).(ClusterMaintenanceWindowPtrOutput)
 }
 
 // [string] Day of the week when maintenance is allowed
-func (o K8sClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+func (o ClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
 // [string] A clock time in the day when maintenance is allowed
-func (o K8sClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+func (o ClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
 
-type K8sClusterMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+type ClusterMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
 
-func (K8sClusterMaintenanceWindowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sClusterMaintenanceWindow)(nil)).Elem()
+func (ClusterMaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterMaintenanceWindow)(nil)).Elem()
 }
 
-func (o K8sClusterMaintenanceWindowPtrOutput) ToK8sClusterMaintenanceWindowPtrOutput() K8sClusterMaintenanceWindowPtrOutput {
+func (o ClusterMaintenanceWindowPtrOutput) ToClusterMaintenanceWindowPtrOutput() ClusterMaintenanceWindowPtrOutput {
 	return o
 }
 
-func (o K8sClusterMaintenanceWindowPtrOutput) ToK8sClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sClusterMaintenanceWindowPtrOutput {
+func (o ClusterMaintenanceWindowPtrOutput) ToClusterMaintenanceWindowPtrOutputWithContext(ctx context.Context) ClusterMaintenanceWindowPtrOutput {
 	return o
 }
 
-func (o K8sClusterMaintenanceWindowPtrOutput) Elem() K8sClusterMaintenanceWindowOutput {
-	return o.ApplyT(func(v *K8sClusterMaintenanceWindow) K8sClusterMaintenanceWindow {
+func (o ClusterMaintenanceWindowPtrOutput) Elem() ClusterMaintenanceWindowOutput {
+	return o.ApplyT(func(v *ClusterMaintenanceWindow) ClusterMaintenanceWindow {
 		if v != nil {
 			return *v
 		}
-		var ret K8sClusterMaintenanceWindow
+		var ret ClusterMaintenanceWindow
 		return ret
-	}).(K8sClusterMaintenanceWindowOutput)
+	}).(ClusterMaintenanceWindowOutput)
 }
 
 // [string] Day of the week when maintenance is allowed
-func (o K8sClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *K8sClusterMaintenanceWindow) *string {
+func (o ClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterMaintenanceWindow) *string {
 		if v == nil {
 			return nil
 		}
@@ -160,8 +160,8 @@ func (o K8sClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOut
 }
 
 // [string] A clock time in the day when maintenance is allowed
-func (o K8sClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *K8sClusterMaintenanceWindow) *string {
+func (o ClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterMaintenanceWindow) *string {
 		if v == nil {
 			return nil
 		}
@@ -169,242 +169,242 @@ func (o K8sClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type K8sClusterS3Bucket struct {
+type ClusterS3Bucket struct {
 	// [string] The name of the Kubernetes Cluster.
 	Name *string `pulumi:"name"`
 }
 
-// K8sClusterS3BucketInput is an input type that accepts K8sClusterS3BucketArgs and K8sClusterS3BucketOutput values.
-// You can construct a concrete instance of `K8sClusterS3BucketInput` via:
+// ClusterS3BucketInput is an input type that accepts ClusterS3BucketArgs and ClusterS3BucketOutput values.
+// You can construct a concrete instance of `ClusterS3BucketInput` via:
 //
-//	K8sClusterS3BucketArgs{...}
-type K8sClusterS3BucketInput interface {
+//	ClusterS3BucketArgs{...}
+type ClusterS3BucketInput interface {
 	pulumi.Input
 
-	ToK8sClusterS3BucketOutput() K8sClusterS3BucketOutput
-	ToK8sClusterS3BucketOutputWithContext(context.Context) K8sClusterS3BucketOutput
+	ToClusterS3BucketOutput() ClusterS3BucketOutput
+	ToClusterS3BucketOutputWithContext(context.Context) ClusterS3BucketOutput
 }
 
-type K8sClusterS3BucketArgs struct {
+type ClusterS3BucketArgs struct {
 	// [string] The name of the Kubernetes Cluster.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (K8sClusterS3BucketArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sClusterS3Bucket)(nil)).Elem()
+func (ClusterS3BucketArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterS3Bucket)(nil)).Elem()
 }
 
-func (i K8sClusterS3BucketArgs) ToK8sClusterS3BucketOutput() K8sClusterS3BucketOutput {
-	return i.ToK8sClusterS3BucketOutputWithContext(context.Background())
+func (i ClusterS3BucketArgs) ToClusterS3BucketOutput() ClusterS3BucketOutput {
+	return i.ToClusterS3BucketOutputWithContext(context.Background())
 }
 
-func (i K8sClusterS3BucketArgs) ToK8sClusterS3BucketOutputWithContext(ctx context.Context) K8sClusterS3BucketOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sClusterS3BucketOutput)
+func (i ClusterS3BucketArgs) ToClusterS3BucketOutputWithContext(ctx context.Context) ClusterS3BucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterS3BucketOutput)
 }
 
-// K8sClusterS3BucketArrayInput is an input type that accepts K8sClusterS3BucketArray and K8sClusterS3BucketArrayOutput values.
-// You can construct a concrete instance of `K8sClusterS3BucketArrayInput` via:
+// ClusterS3BucketArrayInput is an input type that accepts ClusterS3BucketArray and ClusterS3BucketArrayOutput values.
+// You can construct a concrete instance of `ClusterS3BucketArrayInput` via:
 //
-//	K8sClusterS3BucketArray{ K8sClusterS3BucketArgs{...} }
-type K8sClusterS3BucketArrayInput interface {
+//	ClusterS3BucketArray{ ClusterS3BucketArgs{...} }
+type ClusterS3BucketArrayInput interface {
 	pulumi.Input
 
-	ToK8sClusterS3BucketArrayOutput() K8sClusterS3BucketArrayOutput
-	ToK8sClusterS3BucketArrayOutputWithContext(context.Context) K8sClusterS3BucketArrayOutput
+	ToClusterS3BucketArrayOutput() ClusterS3BucketArrayOutput
+	ToClusterS3BucketArrayOutputWithContext(context.Context) ClusterS3BucketArrayOutput
 }
 
-type K8sClusterS3BucketArray []K8sClusterS3BucketInput
+type ClusterS3BucketArray []ClusterS3BucketInput
 
-func (K8sClusterS3BucketArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sClusterS3Bucket)(nil)).Elem()
+func (ClusterS3BucketArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterS3Bucket)(nil)).Elem()
 }
 
-func (i K8sClusterS3BucketArray) ToK8sClusterS3BucketArrayOutput() K8sClusterS3BucketArrayOutput {
-	return i.ToK8sClusterS3BucketArrayOutputWithContext(context.Background())
+func (i ClusterS3BucketArray) ToClusterS3BucketArrayOutput() ClusterS3BucketArrayOutput {
+	return i.ToClusterS3BucketArrayOutputWithContext(context.Background())
 }
 
-func (i K8sClusterS3BucketArray) ToK8sClusterS3BucketArrayOutputWithContext(ctx context.Context) K8sClusterS3BucketArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sClusterS3BucketArrayOutput)
+func (i ClusterS3BucketArray) ToClusterS3BucketArrayOutputWithContext(ctx context.Context) ClusterS3BucketArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterS3BucketArrayOutput)
 }
 
-type K8sClusterS3BucketOutput struct{ *pulumi.OutputState }
+type ClusterS3BucketOutput struct{ *pulumi.OutputState }
 
-func (K8sClusterS3BucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sClusterS3Bucket)(nil)).Elem()
+func (ClusterS3BucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterS3Bucket)(nil)).Elem()
 }
 
-func (o K8sClusterS3BucketOutput) ToK8sClusterS3BucketOutput() K8sClusterS3BucketOutput {
+func (o ClusterS3BucketOutput) ToClusterS3BucketOutput() ClusterS3BucketOutput {
 	return o
 }
 
-func (o K8sClusterS3BucketOutput) ToK8sClusterS3BucketOutputWithContext(ctx context.Context) K8sClusterS3BucketOutput {
+func (o ClusterS3BucketOutput) ToClusterS3BucketOutputWithContext(ctx context.Context) ClusterS3BucketOutput {
 	return o
 }
 
 // [string] The name of the Kubernetes Cluster.
-func (o K8sClusterS3BucketOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v K8sClusterS3Bucket) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o ClusterS3BucketOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterS3Bucket) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-type K8sClusterS3BucketArrayOutput struct{ *pulumi.OutputState }
+type ClusterS3BucketArrayOutput struct{ *pulumi.OutputState }
 
-func (K8sClusterS3BucketArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sClusterS3Bucket)(nil)).Elem()
+func (ClusterS3BucketArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterS3Bucket)(nil)).Elem()
 }
 
-func (o K8sClusterS3BucketArrayOutput) ToK8sClusterS3BucketArrayOutput() K8sClusterS3BucketArrayOutput {
+func (o ClusterS3BucketArrayOutput) ToClusterS3BucketArrayOutput() ClusterS3BucketArrayOutput {
 	return o
 }
 
-func (o K8sClusterS3BucketArrayOutput) ToK8sClusterS3BucketArrayOutputWithContext(ctx context.Context) K8sClusterS3BucketArrayOutput {
+func (o ClusterS3BucketArrayOutput) ToClusterS3BucketArrayOutputWithContext(ctx context.Context) ClusterS3BucketArrayOutput {
 	return o
 }
 
-func (o K8sClusterS3BucketArrayOutput) Index(i pulumi.IntInput) K8sClusterS3BucketOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) K8sClusterS3Bucket {
-		return vs[0].([]K8sClusterS3Bucket)[vs[1].(int)]
-	}).(K8sClusterS3BucketOutput)
+func (o ClusterS3BucketArrayOutput) Index(i pulumi.IntInput) ClusterS3BucketOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterS3Bucket {
+		return vs[0].([]ClusterS3Bucket)[vs[1].(int)]
+	}).(ClusterS3BucketOutput)
 }
 
-type K8sNodePoolAutoScaling struct {
+type NodePoolAutoScaling struct {
 	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 	MaxNodeCount int `pulumi:"maxNodeCount"`
 	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 	MinNodeCount int `pulumi:"minNodeCount"`
 }
 
-// K8sNodePoolAutoScalingInput is an input type that accepts K8sNodePoolAutoScalingArgs and K8sNodePoolAutoScalingOutput values.
-// You can construct a concrete instance of `K8sNodePoolAutoScalingInput` via:
+// NodePoolAutoScalingInput is an input type that accepts NodePoolAutoScalingArgs and NodePoolAutoScalingOutput values.
+// You can construct a concrete instance of `NodePoolAutoScalingInput` via:
 //
-//	K8sNodePoolAutoScalingArgs{...}
-type K8sNodePoolAutoScalingInput interface {
+//	NodePoolAutoScalingArgs{...}
+type NodePoolAutoScalingInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolAutoScalingOutput() K8sNodePoolAutoScalingOutput
-	ToK8sNodePoolAutoScalingOutputWithContext(context.Context) K8sNodePoolAutoScalingOutput
+	ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput
+	ToNodePoolAutoScalingOutputWithContext(context.Context) NodePoolAutoScalingOutput
 }
 
-type K8sNodePoolAutoScalingArgs struct {
+type NodePoolAutoScalingArgs struct {
 	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
 	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
 }
 
-func (K8sNodePoolAutoScalingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolAutoScaling)(nil)).Elem()
+func (NodePoolAutoScalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolAutoScaling)(nil)).Elem()
 }
 
-func (i K8sNodePoolAutoScalingArgs) ToK8sNodePoolAutoScalingOutput() K8sNodePoolAutoScalingOutput {
-	return i.ToK8sNodePoolAutoScalingOutputWithContext(context.Background())
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput {
+	return i.ToNodePoolAutoScalingOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolAutoScalingArgs) ToK8sNodePoolAutoScalingOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolAutoScalingOutput)
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingOutputWithContext(ctx context.Context) NodePoolAutoScalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingOutput)
 }
 
-func (i K8sNodePoolAutoScalingArgs) ToK8sNodePoolAutoScalingPtrOutput() K8sNodePoolAutoScalingPtrOutput {
-	return i.ToK8sNodePoolAutoScalingPtrOutputWithContext(context.Background())
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return i.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolAutoScalingArgs) ToK8sNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolAutoScalingOutput).ToK8sNodePoolAutoScalingPtrOutputWithContext(ctx)
+func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingOutput).ToNodePoolAutoScalingPtrOutputWithContext(ctx)
 }
 
-// K8sNodePoolAutoScalingPtrInput is an input type that accepts K8sNodePoolAutoScalingArgs, K8sNodePoolAutoScalingPtr and K8sNodePoolAutoScalingPtrOutput values.
-// You can construct a concrete instance of `K8sNodePoolAutoScalingPtrInput` via:
+// NodePoolAutoScalingPtrInput is an input type that accepts NodePoolAutoScalingArgs, NodePoolAutoScalingPtr and NodePoolAutoScalingPtrOutput values.
+// You can construct a concrete instance of `NodePoolAutoScalingPtrInput` via:
 //
-//	        K8sNodePoolAutoScalingArgs{...}
+//	        NodePoolAutoScalingArgs{...}
 //
 //	or:
 //
 //	        nil
-type K8sNodePoolAutoScalingPtrInput interface {
+type NodePoolAutoScalingPtrInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolAutoScalingPtrOutput() K8sNodePoolAutoScalingPtrOutput
-	ToK8sNodePoolAutoScalingPtrOutputWithContext(context.Context) K8sNodePoolAutoScalingPtrOutput
+	ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput
+	ToNodePoolAutoScalingPtrOutputWithContext(context.Context) NodePoolAutoScalingPtrOutput
 }
 
-type k8sNodePoolAutoScalingPtrType K8sNodePoolAutoScalingArgs
+type nodePoolAutoScalingPtrType NodePoolAutoScalingArgs
 
-func K8sNodePoolAutoScalingPtr(v *K8sNodePoolAutoScalingArgs) K8sNodePoolAutoScalingPtrInput {
-	return (*k8sNodePoolAutoScalingPtrType)(v)
+func NodePoolAutoScalingPtr(v *NodePoolAutoScalingArgs) NodePoolAutoScalingPtrInput {
+	return (*nodePoolAutoScalingPtrType)(v)
 }
 
-func (*k8sNodePoolAutoScalingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePoolAutoScaling)(nil)).Elem()
+func (*nodePoolAutoScalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolAutoScaling)(nil)).Elem()
 }
 
-func (i *k8sNodePoolAutoScalingPtrType) ToK8sNodePoolAutoScalingPtrOutput() K8sNodePoolAutoScalingPtrOutput {
-	return i.ToK8sNodePoolAutoScalingPtrOutputWithContext(context.Background())
+func (i *nodePoolAutoScalingPtrType) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return i.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
 }
 
-func (i *k8sNodePoolAutoScalingPtrType) ToK8sNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolAutoScalingPtrOutput)
+func (i *nodePoolAutoScalingPtrType) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolAutoScalingPtrOutput)
 }
 
-type K8sNodePoolAutoScalingOutput struct{ *pulumi.OutputState }
+type NodePoolAutoScalingOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolAutoScalingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolAutoScaling)(nil)).Elem()
+func (NodePoolAutoScalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolAutoScaling)(nil)).Elem()
 }
 
-func (o K8sNodePoolAutoScalingOutput) ToK8sNodePoolAutoScalingOutput() K8sNodePoolAutoScalingOutput {
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingOutput() NodePoolAutoScalingOutput {
 	return o
 }
 
-func (o K8sNodePoolAutoScalingOutput) ToK8sNodePoolAutoScalingOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingOutput {
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingOutputWithContext(ctx context.Context) NodePoolAutoScalingOutput {
 	return o
 }
 
-func (o K8sNodePoolAutoScalingOutput) ToK8sNodePoolAutoScalingPtrOutput() K8sNodePoolAutoScalingPtrOutput {
-	return o.ToK8sNodePoolAutoScalingPtrOutputWithContext(context.Background())
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
+	return o.ToNodePoolAutoScalingPtrOutputWithContext(context.Background())
 }
 
-func (o K8sNodePoolAutoScalingOutput) ToK8sNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v K8sNodePoolAutoScaling) *K8sNodePoolAutoScaling {
+func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolAutoScaling) *NodePoolAutoScaling {
 		return &v
-	}).(K8sNodePoolAutoScalingPtrOutput)
+	}).(NodePoolAutoScalingPtrOutput)
 }
 
 // [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-func (o K8sNodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v K8sNodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
+func (o NodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
 }
 
 // [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-func (o K8sNodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v K8sNodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
+func (o NodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
 }
 
-type K8sNodePoolAutoScalingPtrOutput struct{ *pulumi.OutputState }
+type NodePoolAutoScalingPtrOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolAutoScalingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePoolAutoScaling)(nil)).Elem()
+func (NodePoolAutoScalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolAutoScaling)(nil)).Elem()
 }
 
-func (o K8sNodePoolAutoScalingPtrOutput) ToK8sNodePoolAutoScalingPtrOutput() K8sNodePoolAutoScalingPtrOutput {
+func (o NodePoolAutoScalingPtrOutput) ToNodePoolAutoScalingPtrOutput() NodePoolAutoScalingPtrOutput {
 	return o
 }
 
-func (o K8sNodePoolAutoScalingPtrOutput) ToK8sNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) K8sNodePoolAutoScalingPtrOutput {
+func (o NodePoolAutoScalingPtrOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx context.Context) NodePoolAutoScalingPtrOutput {
 	return o
 }
 
-func (o K8sNodePoolAutoScalingPtrOutput) Elem() K8sNodePoolAutoScalingOutput {
-	return o.ApplyT(func(v *K8sNodePoolAutoScaling) K8sNodePoolAutoScaling {
+func (o NodePoolAutoScalingPtrOutput) Elem() NodePoolAutoScalingOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) NodePoolAutoScaling {
 		if v != nil {
 			return *v
 		}
-		var ret K8sNodePoolAutoScaling
+		var ret NodePoolAutoScaling
 		return ret
-	}).(K8sNodePoolAutoScalingOutput)
+	}).(NodePoolAutoScalingOutput)
 }
 
 // [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-func (o K8sNodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *K8sNodePoolAutoScaling) *int {
+func (o NodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
 			return nil
 		}
@@ -413,8 +413,8 @@ func (o K8sNodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
 }
 
 // [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-func (o K8sNodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *K8sNodePoolAutoScaling) *int {
+func (o NodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
 			return nil
 		}
@@ -422,366 +422,366 @@ func (o K8sNodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-type K8sNodePoolLan struct {
+type NodePoolLan struct {
 	// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
 	Dhcp *bool `pulumi:"dhcp"`
 	// [int] The LAN ID of an existing LAN at the related datacenter
 	Id int `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
-	Routes []K8sNodePoolLanRoute `pulumi:"routes"`
+	Routes []NodePoolLanRoute `pulumi:"routes"`
 }
 
-// K8sNodePoolLanInput is an input type that accepts K8sNodePoolLanArgs and K8sNodePoolLanOutput values.
-// You can construct a concrete instance of `K8sNodePoolLanInput` via:
+// NodePoolLanInput is an input type that accepts NodePoolLanArgs and NodePoolLanOutput values.
+// You can construct a concrete instance of `NodePoolLanInput` via:
 //
-//	K8sNodePoolLanArgs{...}
-type K8sNodePoolLanInput interface {
+//	NodePoolLanArgs{...}
+type NodePoolLanInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolLanOutput() K8sNodePoolLanOutput
-	ToK8sNodePoolLanOutputWithContext(context.Context) K8sNodePoolLanOutput
+	ToNodePoolLanOutput() NodePoolLanOutput
+	ToNodePoolLanOutputWithContext(context.Context) NodePoolLanOutput
 }
 
-type K8sNodePoolLanArgs struct {
+type NodePoolLanArgs struct {
 	// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
 	// [int] The LAN ID of an existing LAN at the related datacenter
 	Id pulumi.IntInput `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
-	Routes K8sNodePoolLanRouteArrayInput `pulumi:"routes"`
+	Routes NodePoolLanRouteArrayInput `pulumi:"routes"`
 }
 
-func (K8sNodePoolLanArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolLan)(nil)).Elem()
+func (NodePoolLanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolLan)(nil)).Elem()
 }
 
-func (i K8sNodePoolLanArgs) ToK8sNodePoolLanOutput() K8sNodePoolLanOutput {
-	return i.ToK8sNodePoolLanOutputWithContext(context.Background())
+func (i NodePoolLanArgs) ToNodePoolLanOutput() NodePoolLanOutput {
+	return i.ToNodePoolLanOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolLanArgs) ToK8sNodePoolLanOutputWithContext(ctx context.Context) K8sNodePoolLanOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolLanOutput)
+func (i NodePoolLanArgs) ToNodePoolLanOutputWithContext(ctx context.Context) NodePoolLanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolLanOutput)
 }
 
-// K8sNodePoolLanArrayInput is an input type that accepts K8sNodePoolLanArray and K8sNodePoolLanArrayOutput values.
-// You can construct a concrete instance of `K8sNodePoolLanArrayInput` via:
+// NodePoolLanArrayInput is an input type that accepts NodePoolLanArray and NodePoolLanArrayOutput values.
+// You can construct a concrete instance of `NodePoolLanArrayInput` via:
 //
-//	K8sNodePoolLanArray{ K8sNodePoolLanArgs{...} }
-type K8sNodePoolLanArrayInput interface {
+//	NodePoolLanArray{ NodePoolLanArgs{...} }
+type NodePoolLanArrayInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolLanArrayOutput() K8sNodePoolLanArrayOutput
-	ToK8sNodePoolLanArrayOutputWithContext(context.Context) K8sNodePoolLanArrayOutput
+	ToNodePoolLanArrayOutput() NodePoolLanArrayOutput
+	ToNodePoolLanArrayOutputWithContext(context.Context) NodePoolLanArrayOutput
 }
 
-type K8sNodePoolLanArray []K8sNodePoolLanInput
+type NodePoolLanArray []NodePoolLanInput
 
-func (K8sNodePoolLanArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sNodePoolLan)(nil)).Elem()
+func (NodePoolLanArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolLan)(nil)).Elem()
 }
 
-func (i K8sNodePoolLanArray) ToK8sNodePoolLanArrayOutput() K8sNodePoolLanArrayOutput {
-	return i.ToK8sNodePoolLanArrayOutputWithContext(context.Background())
+func (i NodePoolLanArray) ToNodePoolLanArrayOutput() NodePoolLanArrayOutput {
+	return i.ToNodePoolLanArrayOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolLanArray) ToK8sNodePoolLanArrayOutputWithContext(ctx context.Context) K8sNodePoolLanArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolLanArrayOutput)
+func (i NodePoolLanArray) ToNodePoolLanArrayOutputWithContext(ctx context.Context) NodePoolLanArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolLanArrayOutput)
 }
 
-type K8sNodePoolLanOutput struct{ *pulumi.OutputState }
+type NodePoolLanOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolLanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolLan)(nil)).Elem()
+func (NodePoolLanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolLan)(nil)).Elem()
 }
 
-func (o K8sNodePoolLanOutput) ToK8sNodePoolLanOutput() K8sNodePoolLanOutput {
+func (o NodePoolLanOutput) ToNodePoolLanOutput() NodePoolLanOutput {
 	return o
 }
 
-func (o K8sNodePoolLanOutput) ToK8sNodePoolLanOutputWithContext(ctx context.Context) K8sNodePoolLanOutput {
+func (o NodePoolLanOutput) ToNodePoolLanOutputWithContext(ctx context.Context) NodePoolLanOutput {
 	return o
 }
 
 // [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
-func (o K8sNodePoolLanOutput) Dhcp() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v K8sNodePoolLan) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
+func (o NodePoolLanOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolLan) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
 // [int] The LAN ID of an existing LAN at the related datacenter
-func (o K8sNodePoolLanOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v K8sNodePoolLan) int { return v.Id }).(pulumi.IntOutput)
+func (o NodePoolLanOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolLan) int { return v.Id }).(pulumi.IntOutput)
 }
 
 // An array of additional LANs attached to worker nodes
-func (o K8sNodePoolLanOutput) Routes() K8sNodePoolLanRouteArrayOutput {
-	return o.ApplyT(func(v K8sNodePoolLan) []K8sNodePoolLanRoute { return v.Routes }).(K8sNodePoolLanRouteArrayOutput)
+func (o NodePoolLanOutput) Routes() NodePoolLanRouteArrayOutput {
+	return o.ApplyT(func(v NodePoolLan) []NodePoolLanRoute { return v.Routes }).(NodePoolLanRouteArrayOutput)
 }
 
-type K8sNodePoolLanArrayOutput struct{ *pulumi.OutputState }
+type NodePoolLanArrayOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolLanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sNodePoolLan)(nil)).Elem()
+func (NodePoolLanArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolLan)(nil)).Elem()
 }
 
-func (o K8sNodePoolLanArrayOutput) ToK8sNodePoolLanArrayOutput() K8sNodePoolLanArrayOutput {
+func (o NodePoolLanArrayOutput) ToNodePoolLanArrayOutput() NodePoolLanArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolLanArrayOutput) ToK8sNodePoolLanArrayOutputWithContext(ctx context.Context) K8sNodePoolLanArrayOutput {
+func (o NodePoolLanArrayOutput) ToNodePoolLanArrayOutputWithContext(ctx context.Context) NodePoolLanArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolLanArrayOutput) Index(i pulumi.IntInput) K8sNodePoolLanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) K8sNodePoolLan {
-		return vs[0].([]K8sNodePoolLan)[vs[1].(int)]
-	}).(K8sNodePoolLanOutput)
+func (o NodePoolLanArrayOutput) Index(i pulumi.IntInput) NodePoolLanOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolLan {
+		return vs[0].([]NodePoolLan)[vs[1].(int)]
+	}).(NodePoolLanOutput)
 }
 
-type K8sNodePoolLanRoute struct {
+type NodePoolLanRoute struct {
 	// [string] IPv4 or IPv6 Gateway IP for the route
 	GatewayIp string `pulumi:"gatewayIp"`
 	// [string] IPv4 or IPv6 CIDR to be routed via the interface
 	Network string `pulumi:"network"`
 }
 
-// K8sNodePoolLanRouteInput is an input type that accepts K8sNodePoolLanRouteArgs and K8sNodePoolLanRouteOutput values.
-// You can construct a concrete instance of `K8sNodePoolLanRouteInput` via:
+// NodePoolLanRouteInput is an input type that accepts NodePoolLanRouteArgs and NodePoolLanRouteOutput values.
+// You can construct a concrete instance of `NodePoolLanRouteInput` via:
 //
-//	K8sNodePoolLanRouteArgs{...}
-type K8sNodePoolLanRouteInput interface {
+//	NodePoolLanRouteArgs{...}
+type NodePoolLanRouteInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolLanRouteOutput() K8sNodePoolLanRouteOutput
-	ToK8sNodePoolLanRouteOutputWithContext(context.Context) K8sNodePoolLanRouteOutput
+	ToNodePoolLanRouteOutput() NodePoolLanRouteOutput
+	ToNodePoolLanRouteOutputWithContext(context.Context) NodePoolLanRouteOutput
 }
 
-type K8sNodePoolLanRouteArgs struct {
+type NodePoolLanRouteArgs struct {
 	// [string] IPv4 or IPv6 Gateway IP for the route
 	GatewayIp pulumi.StringInput `pulumi:"gatewayIp"`
 	// [string] IPv4 or IPv6 CIDR to be routed via the interface
 	Network pulumi.StringInput `pulumi:"network"`
 }
 
-func (K8sNodePoolLanRouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolLanRoute)(nil)).Elem()
+func (NodePoolLanRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolLanRoute)(nil)).Elem()
 }
 
-func (i K8sNodePoolLanRouteArgs) ToK8sNodePoolLanRouteOutput() K8sNodePoolLanRouteOutput {
-	return i.ToK8sNodePoolLanRouteOutputWithContext(context.Background())
+func (i NodePoolLanRouteArgs) ToNodePoolLanRouteOutput() NodePoolLanRouteOutput {
+	return i.ToNodePoolLanRouteOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolLanRouteArgs) ToK8sNodePoolLanRouteOutputWithContext(ctx context.Context) K8sNodePoolLanRouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolLanRouteOutput)
+func (i NodePoolLanRouteArgs) ToNodePoolLanRouteOutputWithContext(ctx context.Context) NodePoolLanRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolLanRouteOutput)
 }
 
-// K8sNodePoolLanRouteArrayInput is an input type that accepts K8sNodePoolLanRouteArray and K8sNodePoolLanRouteArrayOutput values.
-// You can construct a concrete instance of `K8sNodePoolLanRouteArrayInput` via:
+// NodePoolLanRouteArrayInput is an input type that accepts NodePoolLanRouteArray and NodePoolLanRouteArrayOutput values.
+// You can construct a concrete instance of `NodePoolLanRouteArrayInput` via:
 //
-//	K8sNodePoolLanRouteArray{ K8sNodePoolLanRouteArgs{...} }
-type K8sNodePoolLanRouteArrayInput interface {
+//	NodePoolLanRouteArray{ NodePoolLanRouteArgs{...} }
+type NodePoolLanRouteArrayInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolLanRouteArrayOutput() K8sNodePoolLanRouteArrayOutput
-	ToK8sNodePoolLanRouteArrayOutputWithContext(context.Context) K8sNodePoolLanRouteArrayOutput
+	ToNodePoolLanRouteArrayOutput() NodePoolLanRouteArrayOutput
+	ToNodePoolLanRouteArrayOutputWithContext(context.Context) NodePoolLanRouteArrayOutput
 }
 
-type K8sNodePoolLanRouteArray []K8sNodePoolLanRouteInput
+type NodePoolLanRouteArray []NodePoolLanRouteInput
 
-func (K8sNodePoolLanRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sNodePoolLanRoute)(nil)).Elem()
+func (NodePoolLanRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolLanRoute)(nil)).Elem()
 }
 
-func (i K8sNodePoolLanRouteArray) ToK8sNodePoolLanRouteArrayOutput() K8sNodePoolLanRouteArrayOutput {
-	return i.ToK8sNodePoolLanRouteArrayOutputWithContext(context.Background())
+func (i NodePoolLanRouteArray) ToNodePoolLanRouteArrayOutput() NodePoolLanRouteArrayOutput {
+	return i.ToNodePoolLanRouteArrayOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolLanRouteArray) ToK8sNodePoolLanRouteArrayOutputWithContext(ctx context.Context) K8sNodePoolLanRouteArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolLanRouteArrayOutput)
+func (i NodePoolLanRouteArray) ToNodePoolLanRouteArrayOutputWithContext(ctx context.Context) NodePoolLanRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolLanRouteArrayOutput)
 }
 
-type K8sNodePoolLanRouteOutput struct{ *pulumi.OutputState }
+type NodePoolLanRouteOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolLanRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolLanRoute)(nil)).Elem()
+func (NodePoolLanRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolLanRoute)(nil)).Elem()
 }
 
-func (o K8sNodePoolLanRouteOutput) ToK8sNodePoolLanRouteOutput() K8sNodePoolLanRouteOutput {
+func (o NodePoolLanRouteOutput) ToNodePoolLanRouteOutput() NodePoolLanRouteOutput {
 	return o
 }
 
-func (o K8sNodePoolLanRouteOutput) ToK8sNodePoolLanRouteOutputWithContext(ctx context.Context) K8sNodePoolLanRouteOutput {
+func (o NodePoolLanRouteOutput) ToNodePoolLanRouteOutputWithContext(ctx context.Context) NodePoolLanRouteOutput {
 	return o
 }
 
 // [string] IPv4 or IPv6 Gateway IP for the route
-func (o K8sNodePoolLanRouteOutput) GatewayIp() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sNodePoolLanRoute) string { return v.GatewayIp }).(pulumi.StringOutput)
+func (o NodePoolLanRouteOutput) GatewayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolLanRoute) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
 // [string] IPv4 or IPv6 CIDR to be routed via the interface
-func (o K8sNodePoolLanRouteOutput) Network() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sNodePoolLanRoute) string { return v.Network }).(pulumi.StringOutput)
+func (o NodePoolLanRouteOutput) Network() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolLanRoute) string { return v.Network }).(pulumi.StringOutput)
 }
 
-type K8sNodePoolLanRouteArrayOutput struct{ *pulumi.OutputState }
+type NodePoolLanRouteArrayOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolLanRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]K8sNodePoolLanRoute)(nil)).Elem()
+func (NodePoolLanRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolLanRoute)(nil)).Elem()
 }
 
-func (o K8sNodePoolLanRouteArrayOutput) ToK8sNodePoolLanRouteArrayOutput() K8sNodePoolLanRouteArrayOutput {
+func (o NodePoolLanRouteArrayOutput) ToNodePoolLanRouteArrayOutput() NodePoolLanRouteArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolLanRouteArrayOutput) ToK8sNodePoolLanRouteArrayOutputWithContext(ctx context.Context) K8sNodePoolLanRouteArrayOutput {
+func (o NodePoolLanRouteArrayOutput) ToNodePoolLanRouteArrayOutputWithContext(ctx context.Context) NodePoolLanRouteArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolLanRouteArrayOutput) Index(i pulumi.IntInput) K8sNodePoolLanRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) K8sNodePoolLanRoute {
-		return vs[0].([]K8sNodePoolLanRoute)[vs[1].(int)]
-	}).(K8sNodePoolLanRouteOutput)
+func (o NodePoolLanRouteArrayOutput) Index(i pulumi.IntInput) NodePoolLanRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolLanRoute {
+		return vs[0].([]NodePoolLanRoute)[vs[1].(int)]
+	}).(NodePoolLanRouteOutput)
 }
 
-type K8sNodePoolMaintenanceWindow struct {
+type NodePoolMaintenanceWindow struct {
 	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
 	// [string] A clock time in the day when maintenance is allowed
 	Time string `pulumi:"time"`
 }
 
-// K8sNodePoolMaintenanceWindowInput is an input type that accepts K8sNodePoolMaintenanceWindowArgs and K8sNodePoolMaintenanceWindowOutput values.
-// You can construct a concrete instance of `K8sNodePoolMaintenanceWindowInput` via:
+// NodePoolMaintenanceWindowInput is an input type that accepts NodePoolMaintenanceWindowArgs and NodePoolMaintenanceWindowOutput values.
+// You can construct a concrete instance of `NodePoolMaintenanceWindowInput` via:
 //
-//	K8sNodePoolMaintenanceWindowArgs{...}
-type K8sNodePoolMaintenanceWindowInput interface {
+//	NodePoolMaintenanceWindowArgs{...}
+type NodePoolMaintenanceWindowInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolMaintenanceWindowOutput() K8sNodePoolMaintenanceWindowOutput
-	ToK8sNodePoolMaintenanceWindowOutputWithContext(context.Context) K8sNodePoolMaintenanceWindowOutput
+	ToNodePoolMaintenanceWindowOutput() NodePoolMaintenanceWindowOutput
+	ToNodePoolMaintenanceWindowOutputWithContext(context.Context) NodePoolMaintenanceWindowOutput
 }
 
-type K8sNodePoolMaintenanceWindowArgs struct {
+type NodePoolMaintenanceWindowArgs struct {
 	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
 	// [string] A clock time in the day when maintenance is allowed
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
-func (K8sNodePoolMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolMaintenanceWindow)(nil)).Elem()
+func (NodePoolMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolMaintenanceWindow)(nil)).Elem()
 }
 
-func (i K8sNodePoolMaintenanceWindowArgs) ToK8sNodePoolMaintenanceWindowOutput() K8sNodePoolMaintenanceWindowOutput {
-	return i.ToK8sNodePoolMaintenanceWindowOutputWithContext(context.Background())
+func (i NodePoolMaintenanceWindowArgs) ToNodePoolMaintenanceWindowOutput() NodePoolMaintenanceWindowOutput {
+	return i.ToNodePoolMaintenanceWindowOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolMaintenanceWindowArgs) ToK8sNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolMaintenanceWindowOutput)
+func (i NodePoolMaintenanceWindowArgs) ToNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolMaintenanceWindowOutput)
 }
 
-func (i K8sNodePoolMaintenanceWindowArgs) ToK8sNodePoolMaintenanceWindowPtrOutput() K8sNodePoolMaintenanceWindowPtrOutput {
-	return i.ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
+func (i NodePoolMaintenanceWindowArgs) ToNodePoolMaintenanceWindowPtrOutput() NodePoolMaintenanceWindowPtrOutput {
+	return i.ToNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolMaintenanceWindowArgs) ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolMaintenanceWindowOutput).ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(ctx)
+func (i NodePoolMaintenanceWindowArgs) ToNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolMaintenanceWindowOutput).ToNodePoolMaintenanceWindowPtrOutputWithContext(ctx)
 }
 
-// K8sNodePoolMaintenanceWindowPtrInput is an input type that accepts K8sNodePoolMaintenanceWindowArgs, K8sNodePoolMaintenanceWindowPtr and K8sNodePoolMaintenanceWindowPtrOutput values.
-// You can construct a concrete instance of `K8sNodePoolMaintenanceWindowPtrInput` via:
+// NodePoolMaintenanceWindowPtrInput is an input type that accepts NodePoolMaintenanceWindowArgs, NodePoolMaintenanceWindowPtr and NodePoolMaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `NodePoolMaintenanceWindowPtrInput` via:
 //
-//	        K8sNodePoolMaintenanceWindowArgs{...}
+//	        NodePoolMaintenanceWindowArgs{...}
 //
 //	or:
 //
 //	        nil
-type K8sNodePoolMaintenanceWindowPtrInput interface {
+type NodePoolMaintenanceWindowPtrInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolMaintenanceWindowPtrOutput() K8sNodePoolMaintenanceWindowPtrOutput
-	ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(context.Context) K8sNodePoolMaintenanceWindowPtrOutput
+	ToNodePoolMaintenanceWindowPtrOutput() NodePoolMaintenanceWindowPtrOutput
+	ToNodePoolMaintenanceWindowPtrOutputWithContext(context.Context) NodePoolMaintenanceWindowPtrOutput
 }
 
-type k8sNodePoolMaintenanceWindowPtrType K8sNodePoolMaintenanceWindowArgs
+type nodePoolMaintenanceWindowPtrType NodePoolMaintenanceWindowArgs
 
-func K8sNodePoolMaintenanceWindowPtr(v *K8sNodePoolMaintenanceWindowArgs) K8sNodePoolMaintenanceWindowPtrInput {
-	return (*k8sNodePoolMaintenanceWindowPtrType)(v)
+func NodePoolMaintenanceWindowPtr(v *NodePoolMaintenanceWindowArgs) NodePoolMaintenanceWindowPtrInput {
+	return (*nodePoolMaintenanceWindowPtrType)(v)
 }
 
-func (*k8sNodePoolMaintenanceWindowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePoolMaintenanceWindow)(nil)).Elem()
+func (*nodePoolMaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolMaintenanceWindow)(nil)).Elem()
 }
 
-func (i *k8sNodePoolMaintenanceWindowPtrType) ToK8sNodePoolMaintenanceWindowPtrOutput() K8sNodePoolMaintenanceWindowPtrOutput {
-	return i.ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
+func (i *nodePoolMaintenanceWindowPtrType) ToNodePoolMaintenanceWindowPtrOutput() NodePoolMaintenanceWindowPtrOutput {
+	return i.ToNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (i *k8sNodePoolMaintenanceWindowPtrType) ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolMaintenanceWindowPtrOutput)
+func (i *nodePoolMaintenanceWindowPtrType) ToNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolMaintenanceWindowPtrOutput)
 }
 
-type K8sNodePoolMaintenanceWindowOutput struct{ *pulumi.OutputState }
+type NodePoolMaintenanceWindowOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*K8sNodePoolMaintenanceWindow)(nil)).Elem()
+func (NodePoolMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolMaintenanceWindow)(nil)).Elem()
 }
 
-func (o K8sNodePoolMaintenanceWindowOutput) ToK8sNodePoolMaintenanceWindowOutput() K8sNodePoolMaintenanceWindowOutput {
+func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowOutput() NodePoolMaintenanceWindowOutput {
 	return o
 }
 
-func (o K8sNodePoolMaintenanceWindowOutput) ToK8sNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowOutput {
+func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowOutput {
 	return o
 }
 
-func (o K8sNodePoolMaintenanceWindowOutput) ToK8sNodePoolMaintenanceWindowPtrOutput() K8sNodePoolMaintenanceWindowPtrOutput {
-	return o.ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
+func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowPtrOutput() NodePoolMaintenanceWindowPtrOutput {
+	return o.ToNodePoolMaintenanceWindowPtrOutputWithContext(context.Background())
 }
 
-func (o K8sNodePoolMaintenanceWindowOutput) ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v K8sNodePoolMaintenanceWindow) *K8sNodePoolMaintenanceWindow {
+func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolMaintenanceWindow) *NodePoolMaintenanceWindow {
 		return &v
-	}).(K8sNodePoolMaintenanceWindowPtrOutput)
+	}).(NodePoolMaintenanceWindowPtrOutput)
 }
 
 // [string] Day of the week when maintenance is allowed
-func (o K8sNodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sNodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+func (o NodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
 // [string] A clock time in the day when maintenance is allowed
-func (o K8sNodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v K8sNodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+func (o NodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
 
-type K8sNodePoolMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+type NodePoolMaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolMaintenanceWindowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePoolMaintenanceWindow)(nil)).Elem()
+func (NodePoolMaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolMaintenanceWindow)(nil)).Elem()
 }
 
-func (o K8sNodePoolMaintenanceWindowPtrOutput) ToK8sNodePoolMaintenanceWindowPtrOutput() K8sNodePoolMaintenanceWindowPtrOutput {
+func (o NodePoolMaintenanceWindowPtrOutput) ToNodePoolMaintenanceWindowPtrOutput() NodePoolMaintenanceWindowPtrOutput {
 	return o
 }
 
-func (o K8sNodePoolMaintenanceWindowPtrOutput) ToK8sNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) K8sNodePoolMaintenanceWindowPtrOutput {
+func (o NodePoolMaintenanceWindowPtrOutput) ToNodePoolMaintenanceWindowPtrOutputWithContext(ctx context.Context) NodePoolMaintenanceWindowPtrOutput {
 	return o
 }
 
-func (o K8sNodePoolMaintenanceWindowPtrOutput) Elem() K8sNodePoolMaintenanceWindowOutput {
-	return o.ApplyT(func(v *K8sNodePoolMaintenanceWindow) K8sNodePoolMaintenanceWindow {
+func (o NodePoolMaintenanceWindowPtrOutput) Elem() NodePoolMaintenanceWindowOutput {
+	return o.ApplyT(func(v *NodePoolMaintenanceWindow) NodePoolMaintenanceWindow {
 		if v != nil {
 			return *v
 		}
-		var ret K8sNodePoolMaintenanceWindow
+		var ret NodePoolMaintenanceWindow
 		return ret
-	}).(K8sNodePoolMaintenanceWindowOutput)
+	}).(NodePoolMaintenanceWindowOutput)
 }
 
 // [string] Day of the week when maintenance is allowed
-func (o K8sNodePoolMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *K8sNodePoolMaintenanceWindow) *string {
+func (o NodePoolMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolMaintenanceWindow) *string {
 		if v == nil {
 			return nil
 		}
@@ -790,8 +790,8 @@ func (o K8sNodePoolMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOu
 }
 
 // [string] A clock time in the day when maintenance is allowed
-func (o K8sNodePoolMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *K8sNodePoolMaintenanceWindow) *string {
+func (o NodePoolMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolMaintenanceWindow) *string {
 		if v == nil {
 			return nil
 		}
@@ -800,28 +800,28 @@ func (o K8sNodePoolMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterMaintenanceWindowInput)(nil)).Elem(), K8sClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterMaintenanceWindowPtrInput)(nil)).Elem(), K8sClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterS3BucketInput)(nil)).Elem(), K8sClusterS3BucketArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterS3BucketArrayInput)(nil)).Elem(), K8sClusterS3BucketArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolAutoScalingInput)(nil)).Elem(), K8sNodePoolAutoScalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolAutoScalingPtrInput)(nil)).Elem(), K8sNodePoolAutoScalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolLanInput)(nil)).Elem(), K8sNodePoolLanArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolLanArrayInput)(nil)).Elem(), K8sNodePoolLanArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolLanRouteInput)(nil)).Elem(), K8sNodePoolLanRouteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolLanRouteArrayInput)(nil)).Elem(), K8sNodePoolLanRouteArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolMaintenanceWindowInput)(nil)).Elem(), K8sNodePoolMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolMaintenanceWindowPtrInput)(nil)).Elem(), K8sNodePoolMaintenanceWindowArgs{})
-	pulumi.RegisterOutputType(K8sClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(K8sClusterMaintenanceWindowPtrOutput{})
-	pulumi.RegisterOutputType(K8sClusterS3BucketOutput{})
-	pulumi.RegisterOutputType(K8sClusterS3BucketArrayOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolAutoScalingOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolAutoScalingPtrOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolLanOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolLanArrayOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolLanRouteOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolLanRouteArrayOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolMaintenanceWindowPtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowPtrInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterS3BucketInput)(nil)).Elem(), ClusterS3BucketArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterS3BucketArrayInput)(nil)).Elem(), ClusterS3BucketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingPtrInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolLanInput)(nil)).Elem(), NodePoolLanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolLanArrayInput)(nil)).Elem(), NodePoolLanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolLanRouteInput)(nil)).Elem(), NodePoolLanRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolLanRouteArrayInput)(nil)).Elem(), NodePoolLanRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowInput)(nil)).Elem(), NodePoolMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowPtrInput)(nil)).Elem(), NodePoolMaintenanceWindowArgs{})
+	pulumi.RegisterOutputType(ClusterMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(ClusterMaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(ClusterS3BucketOutput{})
+	pulumi.RegisterOutputType(ClusterS3BucketArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolAutoScalingOutput{})
+	pulumi.RegisterOutputType(NodePoolAutoScalingPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolLanOutput{})
+	pulumi.RegisterOutputType(NodePoolLanArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolLanRouteOutput{})
+	pulumi.RegisterOutputType(NodePoolLanRouteArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(NodePoolMaintenanceWindowPtrOutput{})
 }

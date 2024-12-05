@@ -37,12 +37,6 @@ func NewMongoUser(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/mongoUser:MongoUser"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
 	}

@@ -52,17 +52,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleK8sCluster, err := k8s.NewK8sCluster(ctx, "exampleK8sCluster", &k8s.K8sClusterArgs{
+//			exampleCluster, err := k8s.NewCluster(ctx, "exampleCluster", &k8s.ClusterArgs{
 //				K8sVersion: pulumi.String("1.28.6"),
-//				MaintenanceWindow: &k8s.K8sClusterMaintenanceWindowArgs{
+//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
 //				},
 //				ApiSubnetAllowLists: pulumi.StringArray{
 //					pulumi.String("1.2.3.4/32"),
 //				},
-//				S3Buckets: k8s.K8sClusterS3BucketArray{
-//					&k8s.K8sClusterS3BucketArgs{
+//				S3Buckets: k8s.ClusterS3BucketArray{
+//					&k8s.ClusterS3BucketArgs{
 //						Name: pulumi.String("globally_unique_s3_bucket_name"),
 //					},
 //				},
@@ -70,15 +70,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = k8s.NewK8sNodePool(ctx, "exampleK8sNodePool", &k8s.K8sNodePoolArgs{
+//			_, err = k8s.NewNodePool(ctx, "exampleNodePool", &k8s.NodePoolArgs{
 //				DatacenterId: exampleDatacenter.ID(),
-//				K8sClusterId: exampleK8sCluster.ID(),
-//				K8sVersion:   exampleK8sCluster.K8sVersion,
-//				MaintenanceWindow: &k8s.K8sNodePoolMaintenanceWindowArgs{
+//				K8sClusterId: exampleCluster.ID(),
+//				K8sVersion:   exampleCluster.K8sVersion,
+//				MaintenanceWindow: &k8s.NodePoolMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Monday"),
 //					Time:         pulumi.String("09:00:00Z"),
 //				},
-//				AutoScaling: &k8s.K8sNodePoolAutoScalingArgs{
+//				AutoScaling: &k8s.NodePoolAutoScalingArgs{
 //					MinNodeCount: pulumi.Int(1),
 //					MaxNodeCount: pulumi.Int(2),
 //				},
@@ -100,12 +100,12 @@ import (
 //						return ips[2], nil
 //					}).(pulumi.StringOutput),
 //				},
-//				Lans: k8s.K8sNodePoolLanArray{
-//					&k8s.K8sNodePoolLanArgs{
+//				Lans: k8s.NodePoolLanArray{
+//					&k8s.NodePoolLanArgs{
 //						Id:   exampleLan.ID(),
 //						Dhcp: pulumi.Bool(true),
-//						Routes: k8s.K8sNodePoolLanRouteArray{
-//							&k8s.K8sNodePoolLanRouteArgs{
+//						Routes: k8s.NodePoolLanRouteArray{
+//							&k8s.NodePoolLanRouteArgs{
 //								Network:   pulumi.String("1.2.3.5/24"),
 //								GatewayIp: pulumi.String("10.1.5.17"),
 //							},
@@ -137,7 +137,7 @@ import (
 // A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 //
 // ```sh
-// $ pulumi import ionoscloud:k8s/k8sNodePool:K8sNodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
 // ```
 //
 // # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
@@ -147,7 +147,7 @@ import (
 // terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
 //
 // ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
-type K8sNodePool struct {
+type NodePool struct {
 	pulumi.CustomResourceState
 
 	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
@@ -155,7 +155,7 @@ type K8sNodePool struct {
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
 	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-	AutoScaling K8sNodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
+	AutoScaling NodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
@@ -171,9 +171,9 @@ type K8sNodePool struct {
 	// [map] A key/value map of labels
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-	Lans K8sNodePoolLanArrayOutput `pulumi:"lans"`
+	Lans NodePoolLanArrayOutput `pulumi:"lans"`
 	// See the **maintenance_window** section in the example above
-	MaintenanceWindow K8sNodePoolMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	MaintenanceWindow NodePoolMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] - The desired number of nodes in the node pool
@@ -188,9 +188,9 @@ type K8sNodePool struct {
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
 }
 
-// NewK8sNodePool registers a new resource with the given unique name, arguments, and options.
-func NewK8sNodePool(ctx *pulumi.Context,
-	name string, args *K8sNodePoolArgs, opts ...pulumi.ResourceOption) (*K8sNodePool, error) {
+// NewNodePool registers a new resource with the given unique name, arguments, and options.
+func NewNodePool(ctx *pulumi.Context,
+	name string, args *NodePoolArgs, opts ...pulumi.ResourceOption) (*NodePool, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -225,41 +225,35 @@ func NewK8sNodePool(ctx *pulumi.Context,
 	if args.StorageType == nil {
 		return nil, errors.New("invalid value for required argument 'StorageType'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/k8sNodePool:K8sNodePool"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource K8sNodePool
-	err := ctx.RegisterResource("ionoscloud:k8s/k8sNodePool:K8sNodePool", name, args, &resource, opts...)
+	var resource NodePool
+	err := ctx.RegisterResource("ionoscloud:k8s/nodePool:NodePool", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetK8sNodePool gets an existing K8sNodePool resource's state with the given name, ID, and optional
+// GetNodePool gets an existing NodePool resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetK8sNodePool(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *K8sNodePoolState, opts ...pulumi.ResourceOption) (*K8sNodePool, error) {
-	var resource K8sNodePool
-	err := ctx.ReadResource("ionoscloud:k8s/k8sNodePool:K8sNodePool", name, id, state, &resource, opts...)
+func GetNodePool(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *NodePoolState, opts ...pulumi.ResourceOption) (*NodePool, error) {
+	var resource NodePool
+	err := ctx.ReadResource("ionoscloud:k8s/nodePool:NodePool", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering K8sNodePool resources.
-type k8sNodePoolState struct {
+// Input properties used for looking up and filtering NodePool resources.
+type nodePoolState struct {
 	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
 	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-	AutoScaling *K8sNodePoolAutoScaling `pulumi:"autoScaling"`
+	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
@@ -275,9 +269,9 @@ type k8sNodePoolState struct {
 	// [map] A key/value map of labels
 	Labels map[string]string `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-	Lans []K8sNodePoolLan `pulumi:"lans"`
+	Lans []NodePoolLan `pulumi:"lans"`
 	// See the **maintenance_window** section in the example above
-	MaintenanceWindow *K8sNodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
+	MaintenanceWindow *NodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
 	Name *string `pulumi:"name"`
 	// [int] - The desired number of nodes in the node pool
@@ -292,13 +286,13 @@ type k8sNodePoolState struct {
 	StorageType *string `pulumi:"storageType"`
 }
 
-type K8sNodePoolState struct {
+type NodePoolState struct {
 	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
 	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-	AutoScaling K8sNodePoolAutoScalingPtrInput
+	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringPtrInput
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
@@ -314,9 +308,9 @@ type K8sNodePoolState struct {
 	// [map] A key/value map of labels
 	Labels pulumi.StringMapInput
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-	Lans K8sNodePoolLanArrayInput
+	Lans NodePoolLanArrayInput
 	// See the **maintenance_window** section in the example above
-	MaintenanceWindow K8sNodePoolMaintenanceWindowPtrInput
+	MaintenanceWindow NodePoolMaintenanceWindowPtrInput
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
 	Name pulumi.StringPtrInput
 	// [int] - The desired number of nodes in the node pool
@@ -331,17 +325,17 @@ type K8sNodePoolState struct {
 	StorageType pulumi.StringPtrInput
 }
 
-func (K8sNodePoolState) ElementType() reflect.Type {
-	return reflect.TypeOf((*k8sNodePoolState)(nil)).Elem()
+func (NodePoolState) ElementType() reflect.Type {
+	return reflect.TypeOf((*nodePoolState)(nil)).Elem()
 }
 
-type k8sNodePoolArgs struct {
+type nodePoolArgs struct {
 	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
 	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-	AutoScaling *K8sNodePoolAutoScaling `pulumi:"autoScaling"`
+	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone string `pulumi:"availabilityZone"`
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
@@ -357,9 +351,9 @@ type k8sNodePoolArgs struct {
 	// [map] A key/value map of labels
 	Labels map[string]string `pulumi:"labels"`
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-	Lans []K8sNodePoolLan `pulumi:"lans"`
+	Lans []NodePoolLan `pulumi:"lans"`
 	// See the **maintenance_window** section in the example above
-	MaintenanceWindow *K8sNodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
+	MaintenanceWindow *NodePoolMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
 	Name *string `pulumi:"name"`
 	// [int] - The desired number of nodes in the node pool
@@ -374,14 +368,14 @@ type k8sNodePoolArgs struct {
 	StorageType string `pulumi:"storageType"`
 }
 
-// The set of arguments for constructing a K8sNodePool resource.
-type K8sNodePoolArgs struct {
+// The set of arguments for constructing a NodePool resource.
+type NodePoolArgs struct {
 	// When set to true, allows the update of immutable fields by destroying and re-creating the node pool
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
 	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-	AutoScaling K8sNodePoolAutoScalingPtrInput
+	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringInput
 	// [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
@@ -397,9 +391,9 @@ type K8sNodePoolArgs struct {
 	// [map] A key/value map of labels
 	Labels pulumi.StringMapInput
 	// [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-	Lans K8sNodePoolLanArrayInput
+	Lans NodePoolLanArrayInput
 	// See the **maintenance_window** section in the example above
-	MaintenanceWindow K8sNodePoolMaintenanceWindowPtrInput
+	MaintenanceWindow NodePoolMaintenanceWindowPtrInput
 	// [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
 	Name pulumi.StringPtrInput
 	// [int] - The desired number of nodes in the node pool
@@ -414,228 +408,228 @@ type K8sNodePoolArgs struct {
 	StorageType pulumi.StringInput
 }
 
-func (K8sNodePoolArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*k8sNodePoolArgs)(nil)).Elem()
+func (NodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*nodePoolArgs)(nil)).Elem()
 }
 
-type K8sNodePoolInput interface {
+type NodePoolInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolOutput() K8sNodePoolOutput
-	ToK8sNodePoolOutputWithContext(ctx context.Context) K8sNodePoolOutput
+	ToNodePoolOutput() NodePoolOutput
+	ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput
 }
 
-func (*K8sNodePool) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePool)(nil)).Elem()
+func (*NodePool) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePool)(nil)).Elem()
 }
 
-func (i *K8sNodePool) ToK8sNodePoolOutput() K8sNodePoolOutput {
-	return i.ToK8sNodePoolOutputWithContext(context.Background())
+func (i *NodePool) ToNodePoolOutput() NodePoolOutput {
+	return i.ToNodePoolOutputWithContext(context.Background())
 }
 
-func (i *K8sNodePool) ToK8sNodePoolOutputWithContext(ctx context.Context) K8sNodePoolOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolOutput)
+func (i *NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolOutput)
 }
 
-// K8sNodePoolArrayInput is an input type that accepts K8sNodePoolArray and K8sNodePoolArrayOutput values.
-// You can construct a concrete instance of `K8sNodePoolArrayInput` via:
+// NodePoolArrayInput is an input type that accepts NodePoolArray and NodePoolArrayOutput values.
+// You can construct a concrete instance of `NodePoolArrayInput` via:
 //
-//	K8sNodePoolArray{ K8sNodePoolArgs{...} }
-type K8sNodePoolArrayInput interface {
+//	NodePoolArray{ NodePoolArgs{...} }
+type NodePoolArrayInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolArrayOutput() K8sNodePoolArrayOutput
-	ToK8sNodePoolArrayOutputWithContext(context.Context) K8sNodePoolArrayOutput
+	ToNodePoolArrayOutput() NodePoolArrayOutput
+	ToNodePoolArrayOutputWithContext(context.Context) NodePoolArrayOutput
 }
 
-type K8sNodePoolArray []K8sNodePoolInput
+type NodePoolArray []NodePoolInput
 
-func (K8sNodePoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*K8sNodePool)(nil)).Elem()
+func (NodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*NodePool)(nil)).Elem()
 }
 
-func (i K8sNodePoolArray) ToK8sNodePoolArrayOutput() K8sNodePoolArrayOutput {
-	return i.ToK8sNodePoolArrayOutputWithContext(context.Background())
+func (i NodePoolArray) ToNodePoolArrayOutput() NodePoolArrayOutput {
+	return i.ToNodePoolArrayOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolArray) ToK8sNodePoolArrayOutputWithContext(ctx context.Context) K8sNodePoolArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolArrayOutput)
+func (i NodePoolArray) ToNodePoolArrayOutputWithContext(ctx context.Context) NodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolArrayOutput)
 }
 
-// K8sNodePoolMapInput is an input type that accepts K8sNodePoolMap and K8sNodePoolMapOutput values.
-// You can construct a concrete instance of `K8sNodePoolMapInput` via:
+// NodePoolMapInput is an input type that accepts NodePoolMap and NodePoolMapOutput values.
+// You can construct a concrete instance of `NodePoolMapInput` via:
 //
-//	K8sNodePoolMap{ "key": K8sNodePoolArgs{...} }
-type K8sNodePoolMapInput interface {
+//	NodePoolMap{ "key": NodePoolArgs{...} }
+type NodePoolMapInput interface {
 	pulumi.Input
 
-	ToK8sNodePoolMapOutput() K8sNodePoolMapOutput
-	ToK8sNodePoolMapOutputWithContext(context.Context) K8sNodePoolMapOutput
+	ToNodePoolMapOutput() NodePoolMapOutput
+	ToNodePoolMapOutputWithContext(context.Context) NodePoolMapOutput
 }
 
-type K8sNodePoolMap map[string]K8sNodePoolInput
+type NodePoolMap map[string]NodePoolInput
 
-func (K8sNodePoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*K8sNodePool)(nil)).Elem()
+func (NodePoolMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*NodePool)(nil)).Elem()
 }
 
-func (i K8sNodePoolMap) ToK8sNodePoolMapOutput() K8sNodePoolMapOutput {
-	return i.ToK8sNodePoolMapOutputWithContext(context.Background())
+func (i NodePoolMap) ToNodePoolMapOutput() NodePoolMapOutput {
+	return i.ToNodePoolMapOutputWithContext(context.Background())
 }
 
-func (i K8sNodePoolMap) ToK8sNodePoolMapOutputWithContext(ctx context.Context) K8sNodePoolMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(K8sNodePoolMapOutput)
+func (i NodePoolMap) ToNodePoolMapOutputWithContext(ctx context.Context) NodePoolMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolMapOutput)
 }
 
-type K8sNodePoolOutput struct{ *pulumi.OutputState }
+type NodePoolOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**K8sNodePool)(nil)).Elem()
+func (NodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePool)(nil)).Elem()
 }
 
-func (o K8sNodePoolOutput) ToK8sNodePoolOutput() K8sNodePoolOutput {
+func (o NodePoolOutput) ToNodePoolOutput() NodePoolOutput {
 	return o
 }
 
-func (o K8sNodePoolOutput) ToK8sNodePoolOutputWithContext(ctx context.Context) K8sNodePoolOutput {
+func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutput {
 	return o
 }
 
 // When set to true, allows the update of immutable fields by destroying and re-creating the node pool
-func (o K8sNodePoolOutput) AllowReplace() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
+func (o NodePoolOutput) AllowReplace() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.BoolPtrOutput { return v.AllowReplace }).(pulumi.BoolPtrOutput)
 }
 
 // [map] A key/value map of annotations
-func (o K8sNodePoolOutput) Annotations() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
+func (o NodePoolOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
 // [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
-func (o K8sNodePoolOutput) AutoScaling() K8sNodePoolAutoScalingPtrOutput {
-	return o.ApplyT(func(v *K8sNodePool) K8sNodePoolAutoScalingPtrOutput { return v.AutoScaling }).(K8sNodePoolAutoScalingPtrOutput)
+func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingPtrOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingPtrOutput { return v.AutoScaling }).(NodePoolAutoScalingPtrOutput)
 }
 
 // [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
-func (o K8sNodePoolOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
+func (o NodePoolOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
 // [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
-func (o K8sNodePoolOutput) CoresCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.IntOutput { return v.CoresCount }).(pulumi.IntOutput)
+func (o NodePoolOutput) CoresCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.CoresCount }).(pulumi.IntOutput)
 }
 
 // [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
-func (o K8sNodePoolOutput) CpuFamily() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.CpuFamily }).(pulumi.StringOutput)
+func (o NodePoolOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
 // [string] A Datacenter's UUID
-func (o K8sNodePoolOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
+func (o NodePoolOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // [string] A k8s cluster's UUID
-func (o K8sNodePoolOutput) K8sClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.K8sClusterId }).(pulumi.StringOutput)
+func (o NodePoolOutput) K8sClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.K8sClusterId }).(pulumi.StringOutput)
 }
 
 // [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
-func (o K8sNodePoolOutput) K8sVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.K8sVersion }).(pulumi.StringOutput)
+func (o NodePoolOutput) K8sVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.K8sVersion }).(pulumi.StringOutput)
 }
 
 // [map] A key/value map of labels
-func (o K8sNodePoolOutput) Labels() pulumi.StringMapOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
+func (o NodePoolOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-func (o K8sNodePoolOutput) Lans() K8sNodePoolLanArrayOutput {
-	return o.ApplyT(func(v *K8sNodePool) K8sNodePoolLanArrayOutput { return v.Lans }).(K8sNodePoolLanArrayOutput)
+func (o NodePoolOutput) Lans() NodePoolLanArrayOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolLanArrayOutput { return v.Lans }).(NodePoolLanArrayOutput)
 }
 
 // See the **maintenance_window** section in the example above
-func (o K8sNodePoolOutput) MaintenanceWindow() K8sNodePoolMaintenanceWindowOutput {
-	return o.ApplyT(func(v *K8sNodePool) K8sNodePoolMaintenanceWindowOutput { return v.MaintenanceWindow }).(K8sNodePoolMaintenanceWindowOutput)
+func (o NodePoolOutput) MaintenanceWindow() NodePoolMaintenanceWindowOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolMaintenanceWindowOutput { return v.MaintenanceWindow }).(NodePoolMaintenanceWindowOutput)
 }
 
 // [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
-func (o K8sNodePoolOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o NodePoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // [int] - The desired number of nodes in the node pool
-func (o K8sNodePoolOutput) NodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
+func (o NodePoolOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
 }
 
 // [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
-func (o K8sNodePoolOutput) PublicIps() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringArrayOutput { return v.PublicIps }).(pulumi.StringArrayOutput)
+func (o NodePoolOutput) PublicIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringArrayOutput { return v.PublicIps }).(pulumi.StringArrayOutput)
 }
 
 // [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
-func (o K8sNodePoolOutput) RamSize() pulumi.IntOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.IntOutput { return v.RamSize }).(pulumi.IntOutput)
+func (o NodePoolOutput) RamSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.RamSize }).(pulumi.IntOutput)
 }
 
 // [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
-func (o K8sNodePoolOutput) StorageSize() pulumi.IntOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
+func (o NodePoolOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }
 
 // [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
-func (o K8sNodePoolOutput) StorageType() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sNodePool) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
+func (o NodePoolOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }
 
-type K8sNodePoolArrayOutput struct{ *pulumi.OutputState }
+type NodePoolArrayOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*K8sNodePool)(nil)).Elem()
+func (NodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*NodePool)(nil)).Elem()
 }
 
-func (o K8sNodePoolArrayOutput) ToK8sNodePoolArrayOutput() K8sNodePoolArrayOutput {
+func (o NodePoolArrayOutput) ToNodePoolArrayOutput() NodePoolArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolArrayOutput) ToK8sNodePoolArrayOutputWithContext(ctx context.Context) K8sNodePoolArrayOutput {
+func (o NodePoolArrayOutput) ToNodePoolArrayOutputWithContext(ctx context.Context) NodePoolArrayOutput {
 	return o
 }
 
-func (o K8sNodePoolArrayOutput) Index(i pulumi.IntInput) K8sNodePoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *K8sNodePool {
-		return vs[0].([]*K8sNodePool)[vs[1].(int)]
-	}).(K8sNodePoolOutput)
+func (o NodePoolArrayOutput) Index(i pulumi.IntInput) NodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NodePool {
+		return vs[0].([]*NodePool)[vs[1].(int)]
+	}).(NodePoolOutput)
 }
 
-type K8sNodePoolMapOutput struct{ *pulumi.OutputState }
+type NodePoolMapOutput struct{ *pulumi.OutputState }
 
-func (K8sNodePoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*K8sNodePool)(nil)).Elem()
+func (NodePoolMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*NodePool)(nil)).Elem()
 }
 
-func (o K8sNodePoolMapOutput) ToK8sNodePoolMapOutput() K8sNodePoolMapOutput {
+func (o NodePoolMapOutput) ToNodePoolMapOutput() NodePoolMapOutput {
 	return o
 }
 
-func (o K8sNodePoolMapOutput) ToK8sNodePoolMapOutputWithContext(ctx context.Context) K8sNodePoolMapOutput {
+func (o NodePoolMapOutput) ToNodePoolMapOutputWithContext(ctx context.Context) NodePoolMapOutput {
 	return o
 }
 
-func (o K8sNodePoolMapOutput) MapIndex(k pulumi.StringInput) K8sNodePoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *K8sNodePool {
-		return vs[0].(map[string]*K8sNodePool)[vs[1].(string)]
-	}).(K8sNodePoolOutput)
+func (o NodePoolMapOutput) MapIndex(k pulumi.StringInput) NodePoolOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NodePool {
+		return vs[0].(map[string]*NodePool)[vs[1].(string)]
+	}).(NodePoolOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolInput)(nil)).Elem(), &K8sNodePool{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolArrayInput)(nil)).Elem(), K8sNodePoolArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*K8sNodePoolMapInput)(nil)).Elem(), K8sNodePoolMap{})
-	pulumi.RegisterOutputType(K8sNodePoolOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolArrayOutput{})
-	pulumi.RegisterOutputType(K8sNodePoolMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolInput)(nil)).Elem(), &NodePool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolArrayInput)(nil)).Elem(), NodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMapInput)(nil)).Elem(), NodePoolMap{})
+	pulumi.RegisterOutputType(NodePoolOutput{})
+	pulumi.RegisterOutputType(NodePoolArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolMapOutput{})
 }

@@ -106,12 +106,6 @@ func NewServer(ctx *pulumi.Context,
 	if args.Volume == nil {
 		return nil, errors.New("invalid value for required argument 'Volume'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/server:Server"),
-		},
-	})
-	opts = append(opts, aliases)
 	if args.ImagePassword != nil {
 		args.ImagePassword = pulumi.ToSecret(args.ImagePassword).(pulumi.StringPtrInput)
 	}

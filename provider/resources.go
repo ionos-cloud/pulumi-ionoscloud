@@ -144,7 +144,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config: map[string]*tfbridge.SchemaInfo{
+		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -241,10 +241,10 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
 			},
 			"ionoscloud_k8s_cluster": {
-				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "K8sCluster"),
+				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "Cluster"),
 			},
 			"ionoscloud_k8s_node_pool": {
-				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "K8sNodePool"),
+				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "NodePool"),
 			},
 		},
 	}

@@ -78,12 +78,6 @@ func NewIPBlock(ctx *pulumi.Context,
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/ipblock:Ipblock"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IPBlock
 	err := ctx.RegisterResource("ionoscloud:compute/iPBlock:IPBlock", name, args, &resource, opts...)

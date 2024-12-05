@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupBackupUnit(ctx, &ionoscloud.LookupBackupUnitArgs{
+//			_, err := ionoscloud.GetBackupUnit(ctx, &ionoscloud.GetBackupUnitArgs{
 //				Name: pulumi.StringRef("Backup Unit Example"),
 //			}, nil)
 //			if err != nil {
@@ -44,9 +44,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupBackupUnit(ctx *pulumi.Context, args *LookupBackupUnitArgs, opts ...pulumi.InvokeOption) (*LookupBackupUnitResult, error) {
+func GetBackupUnit(ctx *pulumi.Context, args *GetBackupUnitArgs, opts ...pulumi.InvokeOption) (*GetBackupUnitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupBackupUnitResult
+	var rv GetBackupUnitResult
 	err := ctx.Invoke("ionoscloud:index/getBackupUnit:getBackupUnit", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func LookupBackupUnit(ctx *pulumi.Context, args *LookupBackupUnitArgs, opts ...p
 }
 
 // A collection of arguments for invoking getBackupUnit.
-type LookupBackupUnitArgs struct {
+type GetBackupUnitArgs struct {
 	// ID of the backup unit you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -65,7 +65,7 @@ type LookupBackupUnitArgs struct {
 }
 
 // A collection of values returned by getBackupUnit.
-type LookupBackupUnitResult struct {
+type GetBackupUnitResult struct {
 	// The e-mail address you want assigned to the backup unit.
 	Email string `pulumi:"email"`
 	// The id of the Backup Unit.
@@ -76,21 +76,21 @@ type LookupBackupUnitResult struct {
 	Name *string `pulumi:"name"`
 }
 
-func LookupBackupUnitOutput(ctx *pulumi.Context, args LookupBackupUnitOutputArgs, opts ...pulumi.InvokeOption) LookupBackupUnitResultOutput {
+func GetBackupUnitOutput(ctx *pulumi.Context, args GetBackupUnitOutputArgs, opts ...pulumi.InvokeOption) GetBackupUnitResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupBackupUnitResult, error) {
-			args := v.(LookupBackupUnitArgs)
-			r, err := LookupBackupUnit(ctx, &args, opts...)
-			var s LookupBackupUnitResult
+		ApplyT(func(v interface{}) (GetBackupUnitResult, error) {
+			args := v.(GetBackupUnitArgs)
+			r, err := GetBackupUnit(ctx, &args, opts...)
+			var s GetBackupUnitResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupBackupUnitResultOutput)
+		}).(GetBackupUnitResultOutput)
 }
 
 // A collection of arguments for invoking getBackupUnit.
-type LookupBackupUnitOutputArgs struct {
+type GetBackupUnitOutputArgs struct {
 	// ID of the backup unit you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -99,45 +99,45 @@ type LookupBackupUnitOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupBackupUnitOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupBackupUnitArgs)(nil)).Elem()
+func (GetBackupUnitOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupUnitArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getBackupUnit.
-type LookupBackupUnitResultOutput struct{ *pulumi.OutputState }
+type GetBackupUnitResultOutput struct{ *pulumi.OutputState }
 
-func (LookupBackupUnitResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupBackupUnitResult)(nil)).Elem()
+func (GetBackupUnitResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackupUnitResult)(nil)).Elem()
 }
 
-func (o LookupBackupUnitResultOutput) ToLookupBackupUnitResultOutput() LookupBackupUnitResultOutput {
+func (o GetBackupUnitResultOutput) ToGetBackupUnitResultOutput() GetBackupUnitResultOutput {
 	return o
 }
 
-func (o LookupBackupUnitResultOutput) ToLookupBackupUnitResultOutputWithContext(ctx context.Context) LookupBackupUnitResultOutput {
+func (o GetBackupUnitResultOutput) ToGetBackupUnitResultOutputWithContext(ctx context.Context) GetBackupUnitResultOutput {
 	return o
 }
 
 // The e-mail address you want assigned to the backup unit.
-func (o LookupBackupUnitResultOutput) Email() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Email }).(pulumi.StringOutput)
+func (o GetBackupUnitResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupUnitResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
 // The id of the Backup Unit.
-func (o LookupBackupUnitResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetBackupUnitResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackupUnitResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The login associated with the backup unit. Derived from the contract number.
-func (o LookupBackupUnitResultOutput) Login() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Login }).(pulumi.StringOutput)
+func (o GetBackupUnitResultOutput) Login() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackupUnitResult) string { return v.Login }).(pulumi.StringOutput)
 }
 
 // The name of the Backup Unit.
-func (o LookupBackupUnitResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetBackupUnitResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBackupUnitResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupBackupUnitResultOutput{})
+	pulumi.RegisterOutputType(GetBackupUnitResultOutput{})
 }

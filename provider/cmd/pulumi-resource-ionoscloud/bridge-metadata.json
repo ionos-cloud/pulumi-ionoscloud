@@ -123,14 +123,7 @@
                 }
             },
             "ionoscloud_backup_unit": {
-                "current": "ionoscloud:compute/backupUnit:BackupUnit",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/backupUnit:BackupUnit",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
+                "current": "ionoscloud:compute/backupUnit:BackupUnit"
             },
             "ionoscloud_cdn_distribution": {
                 "current": "ionoscloud:index/cdnDistribution:CdnDistribution",
@@ -248,13 +241,6 @@
             },
             "ionoscloud_datacenter": {
                 "current": "ionoscloud:compute/datacenter:Datacenter",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/datacenter:Datacenter",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "cpu_architecture": {
                         "maxItemsOne": false
@@ -302,24 +288,10 @@
                 }
             },
             "ionoscloud_firewall": {
-                "current": "ionoscloud:compute/firewall:Firewall",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/firewall:Firewall",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
+                "current": "ionoscloud:compute/firewall:Firewall"
             },
             "ionoscloud_group": {
                 "current": "ionoscloud:compute/group:Group",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/group:Group",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "user_ids": {
                         "maxItemsOne": false
@@ -331,13 +303,6 @@
             },
             "ionoscloud_inmemorydb_replicaset": {
                 "current": "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "connections": {
                         "maxItemsOne": true
@@ -362,13 +327,6 @@
             },
             "ionoscloud_ipblock": {
                 "current": "ionoscloud:compute/iPBlock:IPBlock",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/ipblock:Ipblock",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "ip_consumers": {
                         "maxItemsOne": false
@@ -382,7 +340,7 @@
                 "current": "ionoscloud:index/ipfailover:Ipfailover"
             },
             "ionoscloud_k8s_cluster": {
-                "current": "ionoscloud:index/k8sCluster:K8sCluster",
+                "current": "ionoscloud:k8s/cluster:Cluster",
                 "fields": {
                     "api_subnet_allow_list": {
                         "maxItemsOne": false
@@ -399,7 +357,7 @@
                 }
             },
             "ionoscloud_k8s_node_pool": {
-                "current": "ionoscloud:index/k8sNodePool:K8sNodePool",
+                "current": "ionoscloud:k8s/nodePool:NodePool",
                 "fields": {
                     "auto_scaling": {
                         "maxItemsOne": true
@@ -445,13 +403,6 @@
             },
             "ionoscloud_lan": {
                 "current": "ionoscloud:compute/lan:Lan",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/lan:Lan",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "ip_failover": {
                         "maxItemsOne": false
@@ -483,13 +434,6 @@
             },
             "ionoscloud_mariadb_cluster": {
                 "current": "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/mariadbCluster:MariadbCluster",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "connections": {
                         "maxItemsOne": true
@@ -504,13 +448,6 @@
             },
             "ionoscloud_mongo_cluster": {
                 "current": "ionoscloud:dbaas/mongoCluster:MongoCluster",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/mongoCluster:MongoCluster",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "backup": {
                         "maxItemsOne": true
@@ -535,13 +472,6 @@
             },
             "ionoscloud_mongo_user": {
                 "current": "ionoscloud:dbaas/mongoUser:MongoUser",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/mongoUser:MongoUser",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -640,13 +570,6 @@
             },
             "ionoscloud_nic": {
                 "current": "ionoscloud:compute/nic:Nic",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/nic:Nic",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "flowlog": {
                         "maxItemsOne": true
@@ -661,13 +584,6 @@
             },
             "ionoscloud_pg_cluster": {
                 "current": "ionoscloud:dbaas/pSQLCluster:PSQLCluster",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/pgCluster:PgCluster",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "connection_pooler": {
                         "maxItemsOne": true
@@ -687,24 +603,10 @@
                 }
             },
             "ionoscloud_pg_database": {
-                "current": "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/pgDatabase:PgDatabase",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
+                "current": "ionoscloud:dbaas/pSQLDatabase:PSQLDatabase"
             },
             "ionoscloud_pg_user": {
-                "current": "ionoscloud:dbaas/pSQLUser:PSQLUser",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/pgUser:PgUser",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
+                "current": "ionoscloud:dbaas/pSQLUser:PSQLUser"
             },
             "ionoscloud_private_crossconnect": {
                 "current": "ionoscloud:index/privateCrossconnect:PrivateCrossconnect",
@@ -718,24 +620,10 @@
                 }
             },
             "ionoscloud_s3_key": {
-                "current": "ionoscloud:compute/s3Key:S3Key",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/s3Key:S3Key",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ]
+                "current": "ionoscloud:compute/s3Key:S3Key"
             },
             "ionoscloud_server": {
                 "current": "ionoscloud:compute/server:Server",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/server:Server",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "firewallrule_ids": {
                         "maxItemsOne": false
@@ -808,13 +696,6 @@
             },
             "ionoscloud_user": {
                 "current": "ionoscloud:compute/user:User",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/user:User",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "group_ids": {
                         "maxItemsOne": false
@@ -859,13 +740,6 @@
             },
             "ionoscloud_volume": {
                 "current": "ionoscloud:compute/volume:Volume",
-                "past": [
-                    {
-                        "name": "ionoscloud:index/volume:Volume",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
                 "fields": {
                     "ssh_key_path": {
                         "maxItemsOne": false
@@ -1976,98 +1850,5 @@
             }
         }
     },
-    "auto-settings": {
-        "resources": {
-            "ionoscloud_backup_unit": {
-                "aliases": [
-                    "ionoscloud:index/backupUnit:BackupUnit"
-                ]
-            },
-            "ionoscloud_datacenter": {
-                "aliases": [
-                    "ionoscloud:index/datacenter:Datacenter"
-                ]
-            },
-            "ionoscloud_firewall": {
-                "aliases": [
-                    "ionoscloud:index/firewall:Firewall"
-                ]
-            },
-            "ionoscloud_group": {
-                "aliases": [
-                    "ionoscloud:index/group:Group"
-                ]
-            },
-            "ionoscloud_inmemorydb_replicaset": {
-                "aliases": [
-                    "ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset"
-                ]
-            },
-            "ionoscloud_ipblock": {
-                "aliases": [
-                    "ionoscloud:index/ipblock:Ipblock"
-                ]
-            },
-            "ionoscloud_lan": {
-                "aliases": [
-                    "ionoscloud:index/lan:Lan"
-                ]
-            },
-            "ionoscloud_mariadb_cluster": {
-                "aliases": [
-                    "ionoscloud:index/mariadbCluster:MariadbCluster"
-                ]
-            },
-            "ionoscloud_mongo_cluster": {
-                "aliases": [
-                    "ionoscloud:index/mongoCluster:MongoCluster"
-                ]
-            },
-            "ionoscloud_mongo_user": {
-                "aliases": [
-                    "ionoscloud:index/mongoUser:MongoUser"
-                ]
-            },
-            "ionoscloud_nic": {
-                "aliases": [
-                    "ionoscloud:index/nic:Nic"
-                ]
-            },
-            "ionoscloud_pg_cluster": {
-                "aliases": [
-                    "ionoscloud:index/pgCluster:PgCluster"
-                ]
-            },
-            "ionoscloud_pg_database": {
-                "aliases": [
-                    "ionoscloud:index/pgDatabase:PgDatabase"
-                ]
-            },
-            "ionoscloud_pg_user": {
-                "aliases": [
-                    "ionoscloud:index/pgUser:PgUser"
-                ]
-            },
-            "ionoscloud_s3_key": {
-                "aliases": [
-                    "ionoscloud:index/s3Key:S3Key"
-                ]
-            },
-            "ionoscloud_server": {
-                "aliases": [
-                    "ionoscloud:index/server:Server"
-                ]
-            },
-            "ionoscloud_user": {
-                "aliases": [
-                    "ionoscloud:index/user:User"
-                ]
-            },
-            "ionoscloud_volume": {
-                "aliases": [
-                    "ionoscloud:index/volume:Volume"
-                ]
-            }
-        }
-    }
+    "auto-settings": {}
 }

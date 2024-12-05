@@ -35,12 +35,6 @@ func NewPSQLDatabase(ctx *pulumi.Context,
 	if args.Owner == nil {
 		return nil, errors.New("invalid value for required argument 'Owner'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/pgDatabase:PgDatabase"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PSQLDatabase
 	err := ctx.RegisterResource("ionoscloud:dbaas/pSQLDatabase:PSQLDatabase", name, args, &resource, opts...)

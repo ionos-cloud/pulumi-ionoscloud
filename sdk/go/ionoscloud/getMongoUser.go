@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pulumi.InvokeOption) (*LookupMongoUserResult, error) {
+func GetMongoUser(ctx *pulumi.Context, args *GetMongoUserArgs, opts ...pulumi.InvokeOption) (*GetMongoUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupMongoUserResult
+	var rv GetMongoUserResult
 	err := ctx.Invoke("ionoscloud:index/getMongoUser:getMongoUser", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,7 +22,7 @@ func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pul
 }
 
 // A collection of arguments for invoking getMongoUser.
-type LookupMongoUserArgs struct {
+type GetMongoUserArgs struct {
 	ClusterId string             `pulumi:"clusterId"`
 	Database  *string            `pulumi:"database"`
 	Id        *string            `pulumi:"id"`
@@ -31,7 +31,7 @@ type LookupMongoUserArgs struct {
 }
 
 // A collection of values returned by getMongoUser.
-type LookupMongoUserResult struct {
+type GetMongoUserResult struct {
 	ClusterId string             `pulumi:"clusterId"`
 	Database  string             `pulumi:"database"`
 	Id        *string            `pulumi:"id"`
@@ -39,21 +39,21 @@ type LookupMongoUserResult struct {
 	Username  string             `pulumi:"username"`
 }
 
-func LookupMongoUserOutput(ctx *pulumi.Context, args LookupMongoUserOutputArgs, opts ...pulumi.InvokeOption) LookupMongoUserResultOutput {
+func GetMongoUserOutput(ctx *pulumi.Context, args GetMongoUserOutputArgs, opts ...pulumi.InvokeOption) GetMongoUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupMongoUserResult, error) {
-			args := v.(LookupMongoUserArgs)
-			r, err := LookupMongoUser(ctx, &args, opts...)
-			var s LookupMongoUserResult
+		ApplyT(func(v interface{}) (GetMongoUserResult, error) {
+			args := v.(GetMongoUserArgs)
+			r, err := GetMongoUser(ctx, &args, opts...)
+			var s GetMongoUserResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupMongoUserResultOutput)
+		}).(GetMongoUserResultOutput)
 }
 
 // A collection of arguments for invoking getMongoUser.
-type LookupMongoUserOutputArgs struct {
+type GetMongoUserOutputArgs struct {
 	ClusterId pulumi.StringInput         `pulumi:"clusterId"`
 	Database  pulumi.StringPtrInput      `pulumi:"database"`
 	Id        pulumi.StringPtrInput      `pulumi:"id"`
@@ -61,45 +61,45 @@ type LookupMongoUserOutputArgs struct {
 	Username  pulumi.StringInput         `pulumi:"username"`
 }
 
-func (LookupMongoUserOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMongoUserArgs)(nil)).Elem()
+func (GetMongoUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoUserArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getMongoUser.
-type LookupMongoUserResultOutput struct{ *pulumi.OutputState }
+type GetMongoUserResultOutput struct{ *pulumi.OutputState }
 
-func (LookupMongoUserResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMongoUserResult)(nil)).Elem()
+func (GetMongoUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoUserResult)(nil)).Elem()
 }
 
-func (o LookupMongoUserResultOutput) ToLookupMongoUserResultOutput() LookupMongoUserResultOutput {
+func (o GetMongoUserResultOutput) ToGetMongoUserResultOutput() GetMongoUserResultOutput {
 	return o
 }
 
-func (o LookupMongoUserResultOutput) ToLookupMongoUserResultOutputWithContext(ctx context.Context) LookupMongoUserResultOutput {
+func (o GetMongoUserResultOutput) ToGetMongoUserResultOutputWithContext(ctx context.Context) GetMongoUserResultOutput {
 	return o
 }
 
-func (o LookupMongoUserResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetMongoUserResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoUserResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoUserResultOutput) Database() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Database }).(pulumi.StringOutput)
+func (o GetMongoUserResultOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoUserResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoUserResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetMongoUserResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMongoUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMongoUserResultOutput) Roles() GetMongoUserRoleArrayOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) []GetMongoUserRole { return v.Roles }).(GetMongoUserRoleArrayOutput)
+func (o GetMongoUserResultOutput) Roles() GetMongoUserRoleArrayOutput {
+	return o.ApplyT(func(v GetMongoUserResult) []GetMongoUserRole { return v.Roles }).(GetMongoUserRoleArrayOutput)
 }
 
-func (o LookupMongoUserResultOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Username }).(pulumi.StringOutput)
+func (o GetMongoUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoUserResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupMongoUserResultOutput{})
+	pulumi.RegisterOutputType(GetMongoUserResultOutput{})
 }

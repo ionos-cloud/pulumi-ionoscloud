@@ -72,12 +72,6 @@ func NewNic(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/nic:Nic"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Nic
 	err := ctx.RegisterResource("ionoscloud:compute/nic:Nic", name, args, &resource, opts...)

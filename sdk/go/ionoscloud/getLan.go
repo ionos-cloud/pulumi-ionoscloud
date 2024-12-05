@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupLan(ctx *pulumi.Context, args *LookupLanArgs, opts ...pulumi.InvokeOption) (*LookupLanResult, error) {
+func GetLan(ctx *pulumi.Context, args *GetLanArgs, opts ...pulumi.InvokeOption) (*GetLanResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupLanResult
+	var rv GetLanResult
 	err := ctx.Invoke("ionoscloud:index/getLan:getLan", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupLan(ctx *pulumi.Context, args *LookupLanArgs, opts ...pulumi.InvokeOp
 }
 
 // A collection of arguments for invoking getLan.
-type LookupLanArgs struct {
+type GetLanArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the lan you want to search for.
@@ -39,7 +39,7 @@ type LookupLanArgs struct {
 }
 
 // A collection of values returned by getLan.
-type LookupLanResult struct {
+type GetLanResult struct {
 	// The ID of lan's Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
 	// The id of the LAN.
@@ -55,21 +55,21 @@ type LookupLanResult struct {
 	Public bool `pulumi:"public"`
 }
 
-func LookupLanOutput(ctx *pulumi.Context, args LookupLanOutputArgs, opts ...pulumi.InvokeOption) LookupLanResultOutput {
+func GetLanOutput(ctx *pulumi.Context, args GetLanOutputArgs, opts ...pulumi.InvokeOption) GetLanResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLanResult, error) {
-			args := v.(LookupLanArgs)
-			r, err := LookupLan(ctx, &args, opts...)
-			var s LookupLanResult
+		ApplyT(func(v interface{}) (GetLanResult, error) {
+			args := v.(GetLanArgs)
+			r, err := GetLan(ctx, &args, opts...)
+			var s GetLanResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupLanResultOutput)
+		}).(GetLanResultOutput)
 }
 
 // A collection of arguments for invoking getLan.
-type LookupLanOutputArgs struct {
+type GetLanOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the lan you want to search for.
@@ -80,59 +80,59 @@ type LookupLanOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupLanOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLanArgs)(nil)).Elem()
+func (GetLanOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLanArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getLan.
-type LookupLanResultOutput struct{ *pulumi.OutputState }
+type GetLanResultOutput struct{ *pulumi.OutputState }
 
-func (LookupLanResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLanResult)(nil)).Elem()
+func (GetLanResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLanResult)(nil)).Elem()
 }
 
-func (o LookupLanResultOutput) ToLookupLanResultOutput() LookupLanResultOutput {
+func (o GetLanResultOutput) ToGetLanResultOutput() GetLanResultOutput {
 	return o
 }
 
-func (o LookupLanResultOutput) ToLookupLanResultOutputWithContext(ctx context.Context) LookupLanResultOutput {
+func (o GetLanResultOutput) ToGetLanResultOutputWithContext(ctx context.Context) GetLanResultOutput {
 	return o
 }
 
 // The ID of lan's Virtual Data Center.
-func (o LookupLanResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLanResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetLanResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLanResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // The id of the LAN.
-func (o LookupLanResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLanResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetLanResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLanResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // list of
-func (o LookupLanResultOutput) IpFailovers() GetLanIpFailoverArrayOutput {
-	return o.ApplyT(func(v LookupLanResult) []GetLanIpFailover { return v.IpFailovers }).(GetLanIpFailoverArrayOutput)
+func (o GetLanResultOutput) IpFailovers() GetLanIpFailoverArrayOutput {
+	return o.ApplyT(func(v GetLanResult) []GetLanIpFailover { return v.IpFailovers }).(GetLanIpFailoverArrayOutput)
 }
 
-func (o LookupLanResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
+func (o GetLanResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLanResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
 // The name of the LAN.
-func (o LookupLanResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLanResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetLanResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLanResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The unique id of a `PrivateCrossconnect` resource, in order.
-func (o LookupLanResultOutput) Pcc() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLanResult) string { return v.Pcc }).(pulumi.StringOutput)
+func (o GetLanResultOutput) Pcc() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLanResult) string { return v.Pcc }).(pulumi.StringOutput)
 }
 
 // Indicates if the LAN faces the public Internet (true) or not (false).
-func (o LookupLanResultOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupLanResult) bool { return v.Public }).(pulumi.BoolOutput)
+func (o GetLanResultOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLanResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupLanResultOutput{})
+	pulumi.RegisterOutputType(GetLanResultOutput{})
 }

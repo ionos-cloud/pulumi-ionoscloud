@@ -84,12 +84,6 @@ func NewS3Key(ctx *pulumi.Context,
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/s3Key:S3Key"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource S3Key
 	err := ctx.RegisterResource("ionoscloud:compute/s3Key:S3Key", name, args, &resource, opts...)

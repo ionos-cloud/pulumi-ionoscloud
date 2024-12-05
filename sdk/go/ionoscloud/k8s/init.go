@@ -21,10 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "ionoscloud:k8s/k8sCluster:K8sCluster":
-		r = &K8sCluster{}
-	case "ionoscloud:k8s/k8sNodePool:K8sNodePool":
-		r = &K8sNodePool{}
+	case "ionoscloud:k8s/cluster:Cluster":
+		r = &Cluster{}
+	case "ionoscloud:k8s/nodePool:NodePool":
+		r = &NodePool{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -40,12 +40,12 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"k8s/k8sCluster",
+		"k8s/cluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"k8s/k8sNodePool",
+		"k8s/nodePool",
 		&module{version},
 	)
 }

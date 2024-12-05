@@ -77,12 +77,6 @@ func NewInMemoryDBReplicaSet(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InMemoryDBReplicaSet
 	err := ctx.RegisterResource("ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet", name, args, &resource, opts...)

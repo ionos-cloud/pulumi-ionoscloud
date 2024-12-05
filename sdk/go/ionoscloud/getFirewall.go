@@ -17,9 +17,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulumi.InvokeOption) (*LookupFirewallResult, error) {
+func GetFirewall(ctx *pulumi.Context, args *GetFirewallArgs, opts ...pulumi.InvokeOption) (*GetFirewallResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupFirewallResult
+	var rv GetFirewallResult
 	err := ctx.Invoke("ionoscloud:index/getFirewall:getFirewall", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulum
 }
 
 // A collection of arguments for invoking getFirewall.
-type LookupFirewallArgs struct {
+type GetFirewallArgs struct {
 	// The Virtual Data Center ID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the firewall rule you want to search for.
@@ -44,7 +44,7 @@ type LookupFirewallArgs struct {
 }
 
 // A collection of values returned by getFirewall.
-type LookupFirewallResult struct {
+type GetFirewallResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
 	IcmpCode string `pulumi:"icmpCode"`
@@ -71,21 +71,21 @@ type LookupFirewallResult struct {
 	Type     string `pulumi:"type"`
 }
 
-func LookupFirewallOutput(ctx *pulumi.Context, args LookupFirewallOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallResultOutput {
+func GetFirewallOutput(ctx *pulumi.Context, args GetFirewallOutputArgs, opts ...pulumi.InvokeOption) GetFirewallResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFirewallResult, error) {
-			args := v.(LookupFirewallArgs)
-			r, err := LookupFirewall(ctx, &args, opts...)
-			var s LookupFirewallResult
+		ApplyT(func(v interface{}) (GetFirewallResult, error) {
+			args := v.(GetFirewallArgs)
+			r, err := GetFirewall(ctx, &args, opts...)
+			var s GetFirewallResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupFirewallResultOutput)
+		}).(GetFirewallResultOutput)
 }
 
 // A collection of arguments for invoking getFirewall.
-type LookupFirewallOutputArgs struct {
+type GetFirewallOutputArgs struct {
 	// The Virtual Data Center ID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the firewall rule you want to search for.
@@ -100,91 +100,91 @@ type LookupFirewallOutputArgs struct {
 	ServerId pulumi.StringInput `pulumi:"serverId"`
 }
 
-func (LookupFirewallOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupFirewallArgs)(nil)).Elem()
+func (GetFirewallOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getFirewall.
-type LookupFirewallResultOutput struct{ *pulumi.OutputState }
+type GetFirewallResultOutput struct{ *pulumi.OutputState }
 
-func (LookupFirewallResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupFirewallResult)(nil)).Elem()
+func (GetFirewallResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallResult)(nil)).Elem()
 }
 
-func (o LookupFirewallResultOutput) ToLookupFirewallResultOutput() LookupFirewallResultOutput {
+func (o GetFirewallResultOutput) ToGetFirewallResultOutput() GetFirewallResultOutput {
 	return o
 }
 
-func (o LookupFirewallResultOutput) ToLookupFirewallResultOutputWithContext(ctx context.Context) LookupFirewallResultOutput {
+func (o GetFirewallResultOutput) ToGetFirewallResultOutputWithContext(ctx context.Context) GetFirewallResultOutput {
 	return o
 }
 
-func (o LookupFirewallResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-func (o LookupFirewallResultOutput) IcmpCode() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.IcmpCode }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) IcmpCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.IcmpCode }).(pulumi.StringOutput)
 }
 
 // Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
-func (o LookupFirewallResultOutput) IcmpType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.IcmpType }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) IcmpType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.IcmpType }).(pulumi.StringOutput)
 }
 
 // The id of the firewall rule.
-func (o LookupFirewallResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetFirewallResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The name of the firewall rule.
-func (o LookupFirewallResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetFirewallResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupFirewallResultOutput) NicId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.NicId }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) NicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.NicId }).(pulumi.StringOutput)
 }
 
 // Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
-func (o LookupFirewallResultOutput) PortRangeEnd() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupFirewallResult) int { return v.PortRangeEnd }).(pulumi.IntOutput)
+func (o GetFirewallResultOutput) PortRangeEnd() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFirewallResult) int { return v.PortRangeEnd }).(pulumi.IntOutput)
 }
 
 // Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen.
-func (o LookupFirewallResultOutput) PortRangeStart() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupFirewallResult) int { return v.PortRangeStart }).(pulumi.IntOutput)
+func (o GetFirewallResultOutput) PortRangeStart() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFirewallResult) int { return v.PortRangeStart }).(pulumi.IntOutput)
 }
 
 // The protocol for the rule: TCP, UDP, ICMP, ANY. This property is immutable.
-func (o LookupFirewallResultOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.Protocol }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-func (o LookupFirewallResultOutput) ServerId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.ServerId }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
 // Only traffic originating from the respective IPv4 address is allowed.
-func (o LookupFirewallResultOutput) SourceIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.SourceIp }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
 // Only traffic originating from the respective MAC address is allowed.
-func (o LookupFirewallResultOutput) SourceMac() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.SourceMac }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) SourceMac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.SourceMac }).(pulumi.StringOutput)
 }
 
 // Only traffic directed to the respective IP address of the NIC is allowed.
-func (o LookupFirewallResultOutput) TargetIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.TargetIp }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) TargetIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.TargetIp }).(pulumi.StringOutput)
 }
 
-func (o LookupFirewallResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFirewallResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetFirewallResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupFirewallResultOutput{})
+	pulumi.RegisterOutputType(GetFirewallResultOutput{})
 }
