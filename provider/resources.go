@@ -164,7 +164,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: fmt.Sprintf("ionos-cloud_%s", mainPkg),
+			PackageName: fmt.Sprintf("%s", mainPkg),
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
