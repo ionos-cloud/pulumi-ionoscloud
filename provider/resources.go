@@ -144,7 +144,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -165,7 +165,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: fmt.Sprintf("ionos-cloud_%s", mainPkg),
+			PackageName: fmt.Sprintf("%s", mainPkg),
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
