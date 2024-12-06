@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupUser(ctx, &ionoscloud.LookupUserArgs{
+//			_, err := ionoscloud.GetUser(ctx, &ionoscloud.GetUserArgs{
 //				Email: pulumi.StringRef("example@email.com"),
 //			}, nil)
 //			if err != nil {
@@ -47,9 +47,9 @@ import (
 // ### By Email from Env Variables - Current User
 // data "compute.User" "example" {
 // }
-func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.InvokeOption) (*LookupUserResult, error) {
+func GetUser(ctx *pulumi.Context, args *GetUserArgs, opts ...pulumi.InvokeOption) (*GetUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupUserResult
+	var rv GetUserResult
 	err := ctx.Invoke("ionoscloud:index/getUser:getUser", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -58,7 +58,7 @@ func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.Invoke
 }
 
 // A collection of arguments for invoking getUser.
-type LookupUserArgs struct {
+type GetUserArgs struct {
 	// Email of an existing user that you want to search for.
 	Email *string `pulumi:"email"`
 	// ID of the user you want to search for.
@@ -68,7 +68,7 @@ type LookupUserArgs struct {
 }
 
 // A collection of values returned by getUser.
-type LookupUserResult struct {
+type GetUserResult struct {
 	// Indicates if the user is active
 	Active bool `pulumi:"active"`
 	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
@@ -91,21 +91,21 @@ type LookupUserResult struct {
 	SecAuthActive bool `pulumi:"secAuthActive"`
 }
 
-func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pulumi.InvokeOption) LookupUserResultOutput {
+func GetUserOutput(ctx *pulumi.Context, args GetUserOutputArgs, opts ...pulumi.InvokeOption) GetUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupUserResult, error) {
-			args := v.(LookupUserArgs)
-			r, err := LookupUser(ctx, &args, opts...)
-			var s LookupUserResult
+		ApplyT(func(v interface{}) (GetUserResult, error) {
+			args := v.(GetUserArgs)
+			r, err := GetUser(ctx, &args, opts...)
+			var s GetUserResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupUserResultOutput)
+		}).(GetUserResultOutput)
 }
 
 // A collection of arguments for invoking getUser.
-type LookupUserOutputArgs struct {
+type GetUserOutputArgs struct {
 	// Email of an existing user that you want to search for.
 	Email pulumi.StringPtrInput `pulumi:"email"`
 	// ID of the user you want to search for.
@@ -114,75 +114,75 @@ type LookupUserOutputArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
-func (LookupUserOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupUserArgs)(nil)).Elem()
+func (GetUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getUser.
-type LookupUserResultOutput struct{ *pulumi.OutputState }
+type GetUserResultOutput struct{ *pulumi.OutputState }
 
-func (LookupUserResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupUserResult)(nil)).Elem()
+func (GetUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserResult)(nil)).Elem()
 }
 
-func (o LookupUserResultOutput) ToLookupUserResultOutput() LookupUserResultOutput {
+func (o GetUserResultOutput) ToGetUserResultOutput() GetUserResultOutput {
 	return o
 }
 
-func (o LookupUserResultOutput) ToLookupUserResultOutputWithContext(ctx context.Context) LookupUserResultOutput {
+func (o GetUserResultOutput) ToGetUserResultOutputWithContext(ctx context.Context) GetUserResultOutput {
 	return o
 }
 
 // Indicates if the user is active
-func (o LookupUserResultOutput) Active() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupUserResult) bool { return v.Active }).(pulumi.BoolOutput)
+func (o GetUserResultOutput) Active() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUserResult) bool { return v.Active }).(pulumi.BoolOutput)
 }
 
 // Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
-func (o LookupUserResultOutput) Administrator() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupUserResult) bool { return v.Administrator }).(pulumi.BoolOutput)
+func (o GetUserResultOutput) Administrator() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUserResult) bool { return v.Administrator }).(pulumi.BoolOutput)
 }
 
 // The e-mail address for the user.
-func (o LookupUserResultOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
+func (o GetUserResultOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetUserResult) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
 // The first name for the user.
-func (o LookupUserResultOutput) FirstName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupUserResult) string { return v.FirstName }).(pulumi.StringOutput)
+func (o GetUserResultOutput) FirstName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
 // Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
-func (o LookupUserResultOutput) ForceSecAuth() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupUserResult) bool { return v.ForceSecAuth }).(pulumi.BoolOutput)
+func (o GetUserResultOutput) ForceSecAuth() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUserResult) bool { return v.ForceSecAuth }).(pulumi.BoolOutput)
 }
 
 // Shows the id and name of the groups that the user is a member of
-func (o LookupUserResultOutput) Groups() GetUserGroupArrayOutput {
-	return o.ApplyT(func(v LookupUserResult) []GetUserGroup { return v.Groups }).(GetUserGroupArrayOutput)
+func (o GetUserResultOutput) Groups() GetUserGroupArrayOutput {
+	return o.ApplyT(func(v GetUserResult) []GetUserGroup { return v.Groups }).(GetUserGroupArrayOutput)
 }
 
 // The id of the user.
-func (o LookupUserResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetUserResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The last name for the user.
-func (o LookupUserResultOutput) LastName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupUserResult) string { return v.LastName }).(pulumi.StringOutput)
+func (o GetUserResultOutput) LastName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserResult) string { return v.LastName }).(pulumi.StringOutput)
 }
 
 // Canonical (S3) id of the user for a given identity
-func (o LookupUserResultOutput) S3CanonicalUserId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupUserResult) string { return v.S3CanonicalUserId }).(pulumi.StringOutput)
+func (o GetUserResultOutput) S3CanonicalUserId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserResult) string { return v.S3CanonicalUserId }).(pulumi.StringOutput)
 }
 
 // Indicates if secure authentication is active for the user or not
-func (o LookupUserResultOutput) SecAuthActive() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupUserResult) bool { return v.SecAuthActive }).(pulumi.BoolOutput)
+func (o GetUserResultOutput) SecAuthActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUserResult) bool { return v.SecAuthActive }).(pulumi.BoolOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupUserResultOutput{})
+	pulumi.RegisterOutputType(GetUserResultOutput{})
 }

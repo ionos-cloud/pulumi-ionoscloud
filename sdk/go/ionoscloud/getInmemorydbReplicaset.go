@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupInmemorydbReplicaset(ctx *pulumi.Context, args *LookupInmemorydbReplicasetArgs, opts ...pulumi.InvokeOption) (*LookupInmemorydbReplicasetResult, error) {
+func GetInmemorydbReplicaset(ctx *pulumi.Context, args *GetInmemorydbReplicasetArgs, opts ...pulumi.InvokeOption) (*GetInmemorydbReplicasetResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupInmemorydbReplicasetResult
+	var rv GetInmemorydbReplicasetResult
 	err := ctx.Invoke("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,14 +22,14 @@ func LookupInmemorydbReplicaset(ctx *pulumi.Context, args *LookupInmemorydbRepli
 }
 
 // A collection of arguments for invoking getInmemorydbReplicaset.
-type LookupInmemorydbReplicasetArgs struct {
+type GetInmemorydbReplicasetArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	Id          *string `pulumi:"id"`
 	Location    string  `pulumi:"location"`
 }
 
 // A collection of values returned by getInmemorydbReplicaset.
-type LookupInmemorydbReplicasetResult struct {
+type GetInmemorydbReplicasetResult struct {
 	Connections        []GetInmemorydbReplicasetConnection        `pulumi:"connections"`
 	Credentials        []GetInmemorydbReplicasetCredential        `pulumi:"credentials"`
 	DisplayName        *string                                    `pulumi:"displayName"`
@@ -44,95 +44,95 @@ type LookupInmemorydbReplicasetResult struct {
 	Version            string                                     `pulumi:"version"`
 }
 
-func LookupInmemorydbReplicasetOutput(ctx *pulumi.Context, args LookupInmemorydbReplicasetOutputArgs, opts ...pulumi.InvokeOption) LookupInmemorydbReplicasetResultOutput {
+func GetInmemorydbReplicasetOutput(ctx *pulumi.Context, args GetInmemorydbReplicasetOutputArgs, opts ...pulumi.InvokeOption) GetInmemorydbReplicasetResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInmemorydbReplicasetResult, error) {
-			args := v.(LookupInmemorydbReplicasetArgs)
-			r, err := LookupInmemorydbReplicaset(ctx, &args, opts...)
-			var s LookupInmemorydbReplicasetResult
+		ApplyT(func(v interface{}) (GetInmemorydbReplicasetResult, error) {
+			args := v.(GetInmemorydbReplicasetArgs)
+			r, err := GetInmemorydbReplicaset(ctx, &args, opts...)
+			var s GetInmemorydbReplicasetResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupInmemorydbReplicasetResultOutput)
+		}).(GetInmemorydbReplicasetResultOutput)
 }
 
 // A collection of arguments for invoking getInmemorydbReplicaset.
-type LookupInmemorydbReplicasetOutputArgs struct {
+type GetInmemorydbReplicasetOutputArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
 	Location    pulumi.StringInput    `pulumi:"location"`
 }
 
-func (LookupInmemorydbReplicasetOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupInmemorydbReplicasetArgs)(nil)).Elem()
+func (GetInmemorydbReplicasetOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInmemorydbReplicasetArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getInmemorydbReplicaset.
-type LookupInmemorydbReplicasetResultOutput struct{ *pulumi.OutputState }
+type GetInmemorydbReplicasetResultOutput struct{ *pulumi.OutputState }
 
-func (LookupInmemorydbReplicasetResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupInmemorydbReplicasetResult)(nil)).Elem()
+func (GetInmemorydbReplicasetResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInmemorydbReplicasetResult)(nil)).Elem()
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) ToLookupInmemorydbReplicasetResultOutput() LookupInmemorydbReplicasetResultOutput {
+func (o GetInmemorydbReplicasetResultOutput) ToGetInmemorydbReplicasetResultOutput() GetInmemorydbReplicasetResultOutput {
 	return o
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) ToLookupInmemorydbReplicasetResultOutputWithContext(ctx context.Context) LookupInmemorydbReplicasetResultOutput {
+func (o GetInmemorydbReplicasetResultOutput) ToGetInmemorydbReplicasetResultOutputWithContext(ctx context.Context) GetInmemorydbReplicasetResultOutput {
 	return o
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Connections() GetInmemorydbReplicasetConnectionArrayOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) []GetInmemorydbReplicasetConnection { return v.Connections }).(GetInmemorydbReplicasetConnectionArrayOutput)
+func (o GetInmemorydbReplicasetResultOutput) Connections() GetInmemorydbReplicasetConnectionArrayOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) []GetInmemorydbReplicasetConnection { return v.Connections }).(GetInmemorydbReplicasetConnectionArrayOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Credentials() GetInmemorydbReplicasetCredentialArrayOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) []GetInmemorydbReplicasetCredential { return v.Credentials }).(GetInmemorydbReplicasetCredentialArrayOutput)
+func (o GetInmemorydbReplicasetResultOutput) Credentials() GetInmemorydbReplicasetCredentialArrayOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) []GetInmemorydbReplicasetCredential { return v.Credentials }).(GetInmemorydbReplicasetCredentialArrayOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o GetInmemorydbReplicasetResultOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) DnsName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) string { return v.DnsName }).(pulumi.StringOutput)
+func (o GetInmemorydbReplicasetResultOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) EvictionPolicy() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) string { return v.EvictionPolicy }).(pulumi.StringOutput)
+func (o GetInmemorydbReplicasetResultOutput) EvictionPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) string { return v.EvictionPolicy }).(pulumi.StringOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetInmemorydbReplicasetResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetInmemorydbReplicasetResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) MaintenanceWindows() GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) []GetInmemorydbReplicasetMaintenanceWindow {
+func (o GetInmemorydbReplicasetResultOutput) MaintenanceWindows() GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) []GetInmemorydbReplicasetMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetInmemorydbReplicasetMaintenanceWindowArrayOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) PersistenceMode() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) string { return v.PersistenceMode }).(pulumi.StringOutput)
+func (o GetInmemorydbReplicasetResultOutput) PersistenceMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) string { return v.PersistenceMode }).(pulumi.StringOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Replicas() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) int { return v.Replicas }).(pulumi.IntOutput)
+func (o GetInmemorydbReplicasetResultOutput) Replicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) int { return v.Replicas }).(pulumi.IntOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Resources() GetInmemorydbReplicasetResourceArrayOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) []GetInmemorydbReplicasetResource { return v.Resources }).(GetInmemorydbReplicasetResourceArrayOutput)
+func (o GetInmemorydbReplicasetResultOutput) Resources() GetInmemorydbReplicasetResourceArrayOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) []GetInmemorydbReplicasetResource { return v.Resources }).(GetInmemorydbReplicasetResourceArrayOutput)
 }
 
-func (o LookupInmemorydbReplicasetResultOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInmemorydbReplicasetResult) string { return v.Version }).(pulumi.StringOutput)
+func (o GetInmemorydbReplicasetResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbReplicasetResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupInmemorydbReplicasetResultOutput{})
+	pulumi.RegisterOutputType(GetInmemorydbReplicasetResultOutput{})
 }

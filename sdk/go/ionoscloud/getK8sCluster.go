@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupK8sCluster(ctx, &ionoscloud.LookupK8sClusterArgs{
+//			_, err := ionoscloud.GetK8sCluster(ctx, &ionoscloud.GetK8sClusterArgs{
 //				Name: pulumi.StringRef("K8s Cluster Example"),
 //			}, nil)
 //			if err != nil {
@@ -43,9 +43,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupK8sCluster(ctx *pulumi.Context, args *LookupK8sClusterArgs, opts ...pulumi.InvokeOption) (*LookupK8sClusterResult, error) {
+func GetK8sCluster(ctx *pulumi.Context, args *GetK8sClusterArgs, opts ...pulumi.InvokeOption) (*GetK8sClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupK8sClusterResult
+	var rv GetK8sClusterResult
 	err := ctx.Invoke("ionoscloud:index/getK8sCluster:getK8sCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func LookupK8sCluster(ctx *pulumi.Context, args *LookupK8sClusterArgs, opts ...p
 }
 
 // A collection of arguments for invoking getK8sCluster.
-type LookupK8sClusterArgs struct {
+type GetK8sClusterArgs struct {
 	// ID of the cluster you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -64,7 +64,7 @@ type LookupK8sClusterArgs struct {
 }
 
 // A collection of values returned by getK8sCluster.
-type LookupK8sClusterResult struct {
+type GetK8sClusterResult struct {
 	// access to the K8s API server is restricted to these CIDRs
 	ApiSubnetAllowLists []string `pulumi:"apiSubnetAllowLists"`
 	// A list of available versions for upgrading the cluster
@@ -136,21 +136,21 @@ type LookupK8sClusterResult struct {
 	ViableNodePoolVersions []string `pulumi:"viableNodePoolVersions"`
 }
 
-func LookupK8sClusterOutput(ctx *pulumi.Context, args LookupK8sClusterOutputArgs, opts ...pulumi.InvokeOption) LookupK8sClusterResultOutput {
+func GetK8sClusterOutput(ctx *pulumi.Context, args GetK8sClusterOutputArgs, opts ...pulumi.InvokeOption) GetK8sClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupK8sClusterResult, error) {
-			args := v.(LookupK8sClusterArgs)
-			r, err := LookupK8sCluster(ctx, &args, opts...)
-			var s LookupK8sClusterResult
+		ApplyT(func(v interface{}) (GetK8sClusterResult, error) {
+			args := v.(GetK8sClusterArgs)
+			r, err := GetK8sCluster(ctx, &args, opts...)
+			var s GetK8sClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupK8sClusterResultOutput)
+		}).(GetK8sClusterResultOutput)
 }
 
 // A collection of arguments for invoking getK8sCluster.
-type LookupK8sClusterOutputArgs struct {
+type GetK8sClusterOutputArgs struct {
 	// ID of the cluster you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -159,38 +159,38 @@ type LookupK8sClusterOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupK8sClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupK8sClusterArgs)(nil)).Elem()
+func (GetK8sClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetK8sClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getK8sCluster.
-type LookupK8sClusterResultOutput struct{ *pulumi.OutputState }
+type GetK8sClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupK8sClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupK8sClusterResult)(nil)).Elem()
+func (GetK8sClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetK8sClusterResult)(nil)).Elem()
 }
 
-func (o LookupK8sClusterResultOutput) ToLookupK8sClusterResultOutput() LookupK8sClusterResultOutput {
+func (o GetK8sClusterResultOutput) ToGetK8sClusterResultOutput() GetK8sClusterResultOutput {
 	return o
 }
 
-func (o LookupK8sClusterResultOutput) ToLookupK8sClusterResultOutputWithContext(ctx context.Context) LookupK8sClusterResultOutput {
+func (o GetK8sClusterResultOutput) ToGetK8sClusterResultOutputWithContext(ctx context.Context) GetK8sClusterResultOutput {
 	return o
 }
 
 // access to the K8s API server is restricted to these CIDRs
-func (o LookupK8sClusterResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
+func (o GetK8sClusterResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
 }
 
 // A list of available versions for upgrading the cluster
-func (o LookupK8sClusterResultOutput) AvailableUpgradeVersions() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []string { return v.AvailableUpgradeVersions }).(pulumi.StringArrayOutput)
+func (o GetK8sClusterResultOutput) AvailableUpgradeVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []string { return v.AvailableUpgradeVersions }).(pulumi.StringArrayOutput)
 }
 
 // base64 decoded cluster certificate authority data (provided as an attribute for direct use)
-func (o LookupK8sClusterResultOutput) CaCrt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.CaCrt }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) CaCrt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.CaCrt }).(pulumi.StringOutput)
 }
 
 // structured kubernetes config consisting of a list with 1 item with the following fields:
@@ -211,68 +211,68 @@ func (o LookupK8sClusterResultOutput) CaCrt() pulumi.StringOutput {
 // * name - user name
 // * user - map of
 // * token - user token used for authentication
-func (o LookupK8sClusterResultOutput) Configs() GetK8sClusterConfigArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []GetK8sClusterConfig { return v.Configs }).(GetK8sClusterConfigArrayOutput)
+func (o GetK8sClusterResultOutput) Configs() GetK8sClusterConfigArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []GetK8sClusterConfig { return v.Configs }).(GetK8sClusterConfigArrayOutput)
 }
 
 // id of the cluster
-func (o LookupK8sClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetK8sClusterResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Kubernetes version
-func (o LookupK8sClusterResultOutput) K8sVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.K8sVersion }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) K8sVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.K8sVersion }).(pulumi.StringOutput)
 }
 
 // Kubernetes configuration
-func (o LookupK8sClusterResultOutput) KubeConfig() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.KubeConfig }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) KubeConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.KubeConfig }).(pulumi.StringOutput)
 }
 
 // this attribute is mandatory if the cluster is private.
-func (o LookupK8sClusterResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-func (o LookupK8sClusterResultOutput) MaintenanceWindows() GetK8sClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []GetK8sClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetK8sClusterMaintenanceWindowArrayOutput)
+func (o GetK8sClusterResultOutput) MaintenanceWindows() GetK8sClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []GetK8sClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetK8sClusterMaintenanceWindowArrayOutput)
 }
 
 // name of the cluster
-func (o LookupK8sClusterResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetK8sClusterResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // the NAT gateway IP of the cluster if the cluster is private.
-func (o LookupK8sClusterResultOutput) NatGatewayIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.NatGatewayIp }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) NatGatewayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.NatGatewayIp }).(pulumi.StringOutput)
 }
 
 // list of the IDs of the node pools in this cluster
-func (o LookupK8sClusterResultOutput) NodePools() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []string { return v.NodePools }).(pulumi.StringArrayOutput)
+func (o GetK8sClusterResultOutput) NodePools() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []string { return v.NodePools }).(pulumi.StringArrayOutput)
 }
 
 // the node subnet of the cluster, if the cluster is private.
-func (o LookupK8sClusterResultOutput) NodeSubnet() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.NodeSubnet }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) NodeSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.NodeSubnet }).(pulumi.StringOutput)
 }
 
 // indicates if the cluster is public or private.
-func (o LookupK8sClusterResultOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) bool { return v.Public }).(pulumi.BoolOutput)
+func (o GetK8sClusterResultOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
 // list of IONOS Object Storage bucket configured for K8s usage
-func (o LookupK8sClusterResultOutput) S3Buckets() GetK8sClusterS3BucketArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []GetK8sClusterS3Bucket { return v.S3Buckets }).(GetK8sClusterS3BucketArrayOutput)
+func (o GetK8sClusterResultOutput) S3Buckets() GetK8sClusterS3BucketArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []GetK8sClusterS3Bucket { return v.S3Buckets }).(GetK8sClusterS3BucketArrayOutput)
 }
 
 // cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
-func (o LookupK8sClusterResultOutput) Server() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.Server }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
 // one of "AVAILABLE",
@@ -288,22 +288,22 @@ func (o LookupK8sClusterResultOutput) Server() pulumi.StringOutput {
 // "DESTROYING",
 // "FAILED_DESTROYING",
 // "TERMINATED"
-func (o LookupK8sClusterResultOutput) State() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.State }).(pulumi.StringOutput)
+func (o GetK8sClusterResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 // a convenience map to be search the token of a specific user
 // - key - is the user name
 // - value - is the token
-func (o LookupK8sClusterResultOutput) UserTokens() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
+func (o GetK8sClusterResultOutput) UserTokens() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
 }
 
 // A list of versions that may be used for node pools under this cluster
-func (o LookupK8sClusterResultOutput) ViableNodePoolVersions() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) []string { return v.ViableNodePoolVersions }).(pulumi.StringArrayOutput)
+func (o GetK8sClusterResultOutput) ViableNodePoolVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetK8sClusterResult) []string { return v.ViableNodePoolVersions }).(pulumi.StringArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupK8sClusterResultOutput{})
+	pulumi.RegisterOutputType(GetK8sClusterResultOutput{})
 }

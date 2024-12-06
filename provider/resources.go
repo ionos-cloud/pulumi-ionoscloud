@@ -40,6 +40,7 @@ const (
 	mainMod       = "index"   // the ionoscloud module
 	computeModule = "compute" // the ionoscloud module
 	dbaasModule   = "dbaas"   // the ionoscloud module
+	k8sModule     = "k8s"     // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -238,6 +239,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
+			},
+			"ionoscloud_k8s_cluster": {
+				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "Cluster"),
+			},
+			"ionoscloud_k8s_node_pool": {
+				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "NodePool"),
 			},
 		},
 	}

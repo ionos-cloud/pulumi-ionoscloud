@@ -167,12 +167,6 @@ func NewFirewall(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/firewall:Firewall"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Firewall
 	err := ctx.RegisterResource("ionoscloud:compute/firewall:Firewall", name, args, &resource, opts...)

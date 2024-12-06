@@ -87,12 +87,6 @@ func NewPSQLCluster(ctx *pulumi.Context,
 	if args.SynchronizationMode == nil {
 		return nil, errors.New("invalid value for required argument 'SynchronizationMode'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/pgCluster:PgCluster"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PSQLCluster
 	err := ctx.RegisterResource("ionoscloud:dbaas/pSQLCluster:PSQLCluster", name, args, &resource, opts...)

@@ -155,12 +155,6 @@ func NewGroup(ctx *pulumi.Context,
 		args = &GroupArgs{}
 	}
 
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/group:Group"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Group
 	err := ctx.RegisterResource("ionoscloud:compute/group:Group", name, args, &resource, opts...)

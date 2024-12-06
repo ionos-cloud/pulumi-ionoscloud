@@ -35,8 +35,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AutoCertificateProvider{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
-	case "ionoscloud:index/backupUnit:BackupUnit":
-		r = &BackupUnit{}
 	case "ionoscloud:index/cdnDistribution:CdnDistribution":
 		r = &CdnDistribution{}
 	case "ionoscloud:index/certificate:Certificate":
@@ -47,8 +45,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerRegistryToken{}
 	case "ionoscloud:index/cubeServer:CubeServer":
 		r = &CubeServer{}
-	case "ionoscloud:index/datacenter:Datacenter":
-		r = &Datacenter{}
 	case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
 		r = &DataplatformCluster{}
 	case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
@@ -57,36 +53,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsRecord{}
 	case "ionoscloud:index/dnsZone:DnsZone":
 		r = &DnsZone{}
-	case "ionoscloud:index/firewall:Firewall":
-		r = &Firewall{}
-	case "ionoscloud:index/group:Group":
-		r = &Group{}
-	case "ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset":
-		r = &InmemorydbReplicaset{}
-	case "ionoscloud:index/ipblock:Ipblock":
-		r = &Ipblock{}
 	case "ionoscloud:index/ipfailover:Ipfailover":
 		r = &Ipfailover{}
-	case "ionoscloud:index/k8sCluster:K8sCluster":
-		r = &K8sCluster{}
-	case "ionoscloud:index/k8sNodePool:K8sNodePool":
-		r = &K8sNodePool{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
 		r = &KafkaCluster{}
 	case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
 		r = &KafkaClusterTopic{}
-	case "ionoscloud:index/lan:Lan":
-		r = &Lan{}
 	case "ionoscloud:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
 	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
 		r = &LoggingPipeline{}
-	case "ionoscloud:index/mariadbCluster:MariadbCluster":
-		r = &MariadbCluster{}
-	case "ionoscloud:index/mongoCluster:MongoCluster":
-		r = &MongoCluster{}
-	case "ionoscloud:index/mongoUser:MongoUser":
-		r = &MongoUser{}
 	case "ionoscloud:index/natgateway:Natgateway":
 		r = &Natgateway{}
 	case "ionoscloud:index/natgatewayRule:NatgatewayRule":
@@ -99,20 +75,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NfsCluster{}
 	case "ionoscloud:index/nfsShare:NfsShare":
 		r = &NfsShare{}
-	case "ionoscloud:index/nic:Nic":
-		r = &Nic{}
-	case "ionoscloud:index/pgCluster:PgCluster":
-		r = &PgCluster{}
-	case "ionoscloud:index/pgDatabase:PgDatabase":
-		r = &PgDatabase{}
-	case "ionoscloud:index/pgUser:PgUser":
-		r = &PgUser{}
 	case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
 		r = &PrivateCrossconnect{}
-	case "ionoscloud:index/s3Key:S3Key":
-		r = &S3Key{}
-	case "ionoscloud:index/server:Server":
-		r = &Server{}
 	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
 		r = &ServerBootDeviceSelection{}
 	case "ionoscloud:index/share:Share":
@@ -121,12 +85,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Snapshot{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
-	case "ionoscloud:index/user:User":
-		r = &User{}
 	case "ionoscloud:index/vcpuServer:VcpuServer":
 		r = &VcpuServer{}
-	case "ionoscloud:index/volume:Volume":
-		r = &Volume{}
 	case "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway":
 		r = &VpnIpsecGateway{}
 	case "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel":
@@ -203,11 +163,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/backupUnit",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/cdnDistribution",
 		&module{version},
 	)
@@ -233,11 +188,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/datacenter",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/dataplatformCluster",
 		&module{version},
 	)
@@ -258,37 +208,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/firewall",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/group",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/inmemorydbReplicaset",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/ipblock",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/ipfailover",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/k8sCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/k8sNodePool",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -303,32 +223,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/lan",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/loadbalancer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/loggingPipeline",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/mariadbCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/mongoCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/mongoUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -363,37 +263,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/nic",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/pgCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/pgDatabase",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/pgUser",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/privateCrossconnect",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/s3Key",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/server",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -418,17 +288,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/user",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/vcpuServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/volume",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

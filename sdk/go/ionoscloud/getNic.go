@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupNic(ctx *pulumi.Context, args *LookupNicArgs, opts ...pulumi.InvokeOption) (*LookupNicResult, error) {
+func GetNic(ctx *pulumi.Context, args *GetNicArgs, opts ...pulumi.InvokeOption) (*GetNicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNicResult
+	var rv GetNicResult
 	err := ctx.Invoke("ionoscloud:index/getNic:getNic", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupNic(ctx *pulumi.Context, args *LookupNicArgs, opts ...pulumi.InvokeOp
 }
 
 // A collection of arguments for invoking getNic.
-type LookupNicArgs struct {
+type GetNicArgs struct {
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
 	// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
@@ -55,7 +55,7 @@ type LookupNicArgs struct {
 }
 
 // A collection of values returned by getNic.
-type LookupNicResult struct {
+type GetNicResult struct {
 	// The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
 	// The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
@@ -87,21 +87,21 @@ type LookupNicResult struct {
 	ServerId string `pulumi:"serverId"`
 }
 
-func LookupNicOutput(ctx *pulumi.Context, args LookupNicOutputArgs, opts ...pulumi.InvokeOption) LookupNicResultOutput {
+func GetNicOutput(ctx *pulumi.Context, args GetNicOutputArgs, opts ...pulumi.InvokeOption) GetNicResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNicResult, error) {
-			args := v.(LookupNicArgs)
-			r, err := LookupNic(ctx, &args, opts...)
-			var s LookupNicResult
+		ApplyT(func(v interface{}) (GetNicResult, error) {
+			args := v.(GetNicArgs)
+			r, err := GetNic(ctx, &args, opts...)
+			var s GetNicResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNicResultOutput)
+		}).(GetNicResultOutput)
 }
 
 // A collection of arguments for invoking getNic.
-type LookupNicOutputArgs struct {
+type GetNicOutputArgs struct {
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
@@ -128,102 +128,102 @@ type LookupNicOutputArgs struct {
 	ServerId pulumi.StringInput `pulumi:"serverId"`
 }
 
-func (LookupNicOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNicArgs)(nil)).Elem()
+func (GetNicOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNicArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNic.
-type LookupNicResultOutput struct{ *pulumi.OutputState }
+type GetNicResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNicResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNicResult)(nil)).Elem()
+func (GetNicResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNicResult)(nil)).Elem()
 }
 
-func (o LookupNicResultOutput) ToLookupNicResultOutput() LookupNicResultOutput {
+func (o GetNicResultOutput) ToGetNicResultOutput() GetNicResultOutput {
 	return o
 }
 
-func (o LookupNicResultOutput) ToLookupNicResultOutputWithContext(ctx context.Context) LookupNicResultOutput {
+func (o GetNicResultOutput) ToGetNicResultOutputWithContext(ctx context.Context) GetNicResultOutput {
 	return o
 }
 
 // The ID of a Virtual Data Center.
-func (o LookupNicResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNicResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetNicResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNicResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-func (o LookupNicResultOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNicResult) int { return v.DeviceNumber }).(pulumi.IntOutput)
+func (o GetNicResultOutput) DeviceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNicResult) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
 // Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-func (o LookupNicResultOutput) Dhcp() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
+func (o GetNicResultOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-func (o LookupNicResultOutput) Dhcpv6() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
+func (o GetNicResultOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
 }
 
 // If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-func (o LookupNicResultOutput) FirewallActive() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
+func (o GetNicResultOutput) FirewallActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
 }
 
 // The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-func (o LookupNicResultOutput) FirewallType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNicResult) string { return v.FirewallType }).(pulumi.StringOutput)
+func (o GetNicResultOutput) FirewallType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNicResult) string { return v.FirewallType }).(pulumi.StringOutput)
 }
 
 // Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-func (o LookupNicResultOutput) Flowlogs() GetNicFlowlogArrayOutput {
-	return o.ApplyT(func(v LookupNicResult) []GetNicFlowlog { return v.Flowlogs }).(GetNicFlowlogArrayOutput)
+func (o GetNicResultOutput) Flowlogs() GetNicFlowlogArrayOutput {
+	return o.ApplyT(func(v GetNicResult) []GetNicFlowlog { return v.Flowlogs }).(GetNicFlowlogArrayOutput)
 }
 
 // The id of the NIC.
-func (o LookupNicResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetNicResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-func (o LookupNicResultOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupNicResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
+func (o GetNicResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNicResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupNicResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNicResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
+func (o GetNicResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNicResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
-func (o LookupNicResultOutput) Ipv6Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupNicResult) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
+func (o GetNicResultOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNicResult) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
 }
 
 // The LAN ID the NIC will sit on.
-func (o LookupNicResultOutput) Lan() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *int { return v.Lan }).(pulumi.IntPtrOutput)
+func (o GetNicResultOutput) Lan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *int { return v.Lan }).(pulumi.IntPtrOutput)
 }
 
 // The MAC address of the NIC.
-func (o LookupNicResultOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNicResult) string { return v.Mac }).(pulumi.StringOutput)
+func (o GetNicResultOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNicResult) string { return v.Mac }).(pulumi.StringOutput)
 }
 
 // Specifies the name of the flow log.
-func (o LookupNicResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNicResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetNicResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNicResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The PCI slot number of the Nic.
-func (o LookupNicResultOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNicResult) int { return v.PciSlot }).(pulumi.IntOutput)
+func (o GetNicResultOutput) PciSlot() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNicResult) int { return v.PciSlot }).(pulumi.IntOutput)
 }
 
 // The ID of a server.
-func (o LookupNicResultOutput) ServerId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNicResult) string { return v.ServerId }).(pulumi.StringOutput)
+func (o GetNicResultOutput) ServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNicResult) string { return v.ServerId }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNicResultOutput{})
+	pulumi.RegisterOutputType(GetNicResultOutput{})
 }

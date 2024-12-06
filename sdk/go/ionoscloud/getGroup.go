@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupGroup(ctx, &ionoscloud.LookupGroupArgs{
+//			_, err := ionoscloud.GetGroup(ctx, &ionoscloud.GetGroupArgs{
 //				Name: pulumi.StringRef("Group Example"),
 //			}, nil)
 //			if err != nil {
@@ -43,9 +43,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
+func GetGroup(ctx *pulumi.Context, args *GetGroupArgs, opts ...pulumi.InvokeOption) (*GetGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupGroupResult
+	var rv GetGroupResult
 	err := ctx.Invoke("ionoscloud:index/getGroup:getGroup", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 }
 
 // A collection of arguments for invoking getGroup.
-type LookupGroupArgs struct {
+type GetGroupArgs struct {
 	// ID of the group you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -64,7 +64,7 @@ type LookupGroupArgs struct {
 }
 
 // A collection of values returned by getGroup.
-type LookupGroupResult struct {
+type GetGroupResult struct {
 	// The group will be allowed to access the activity log.
 	AccessActivityLog bool `pulumi:"accessActivityLog"`
 	// The group will be allowed to access and manage certificates.
@@ -99,21 +99,21 @@ type LookupGroupResult struct {
 	Users []GetGroupUser `pulumi:"users"`
 }
 
-func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...pulumi.InvokeOption) LookupGroupResultOutput {
+func GetGroupOutput(ctx *pulumi.Context, args GetGroupOutputArgs, opts ...pulumi.InvokeOption) GetGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupGroupResult, error) {
-			args := v.(LookupGroupArgs)
-			r, err := LookupGroup(ctx, &args, opts...)
-			var s LookupGroupResult
+		ApplyT(func(v interface{}) (GetGroupResult, error) {
+			args := v.(GetGroupArgs)
+			r, err := GetGroup(ctx, &args, opts...)
+			var s GetGroupResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupGroupResultOutput)
+		}).(GetGroupResultOutput)
 }
 
 // A collection of arguments for invoking getGroup.
-type LookupGroupOutputArgs struct {
+type GetGroupOutputArgs struct {
 	// ID of the group you want to search for.
 	//
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
@@ -122,105 +122,105 @@ type LookupGroupOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupGroupOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupGroupArgs)(nil)).Elem()
+func (GetGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getGroup.
-type LookupGroupResultOutput struct{ *pulumi.OutputState }
+type GetGroupResultOutput struct{ *pulumi.OutputState }
 
-func (LookupGroupResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupGroupResult)(nil)).Elem()
+func (GetGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupResult)(nil)).Elem()
 }
 
-func (o LookupGroupResultOutput) ToLookupGroupResultOutput() LookupGroupResultOutput {
+func (o GetGroupResultOutput) ToGetGroupResultOutput() GetGroupResultOutput {
 	return o
 }
 
-func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx context.Context) LookupGroupResultOutput {
+func (o GetGroupResultOutput) ToGetGroupResultOutputWithContext(ctx context.Context) GetGroupResultOutput {
 	return o
 }
 
 // The group will be allowed to access the activity log.
-func (o LookupGroupResultOutput) AccessActivityLog() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessActivityLog }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) AccessActivityLog() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.AccessActivityLog }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to access and manage certificates.
-func (o LookupGroupResultOutput) AccessAndManageCertificates() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageCertificates }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) AccessAndManageCertificates() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.AccessAndManageCertificates }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to access and manage monitoring.
-func (o LookupGroupResultOutput) AccessAndManageMonitoring() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.AccessAndManageMonitoring }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) AccessAndManageMonitoring() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.AccessAndManageMonitoring }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create backup unit privilege.
-func (o LookupGroupResultOutput) CreateBackupUnit() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateBackupUnit }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateBackupUnit() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateBackupUnit }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create virtual data centers.
-func (o LookupGroupResultOutput) CreateDatacenter() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateDatacenter }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateDatacenter() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateDatacenter }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create flow log.
-func (o LookupGroupResultOutput) CreateFlowLog() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateFlowLog }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateFlowLog() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateFlowLog }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create internet access privilege.
-func (o LookupGroupResultOutput) CreateInternetAccess() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateInternetAccess }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateInternetAccess() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateInternetAccess }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create kubernetes cluster privilege.
-func (o LookupGroupResultOutput) CreateK8sCluster() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateK8sCluster }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateK8sCluster() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateK8sCluster }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create Cross Connects privilege.
-func (o LookupGroupResultOutput) CreatePcc() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreatePcc }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreatePcc() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreatePcc }).(pulumi.BoolOutput)
 }
 
 // The group will be allowed to create snapshots.
-func (o LookupGroupResultOutput) CreateSnapshot() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.CreateSnapshot }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) CreateSnapshot() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.CreateSnapshot }).(pulumi.BoolOutput)
 }
 
 // The id of the group.
-func (o LookupGroupResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetGroupResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Privilege for a group to manage DBaaS related functionality.
-func (o LookupGroupResultOutput) ManageDbaas() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.ManageDbaas }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) ManageDbaas() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.ManageDbaas }).(pulumi.BoolOutput)
 }
 
 // A name for the group.
-func (o LookupGroupResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetGroupResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The group will be allowed to reserve IP addresses.
-func (o LookupGroupResultOutput) ReserveIp() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.ReserveIp }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) ReserveIp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.ReserveIp }).(pulumi.BoolOutput)
 }
 
 // The group will have S3 privilege.
-func (o LookupGroupResultOutput) S3Privilege() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupGroupResult) bool { return v.S3Privilege }).(pulumi.BoolOutput)
+func (o GetGroupResultOutput) S3Privilege() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupResult) bool { return v.S3Privilege }).(pulumi.BoolOutput)
 }
 
 // List of users in group.
-func (o LookupGroupResultOutput) Users() GetGroupUserArrayOutput {
-	return o.ApplyT(func(v LookupGroupResult) []GetGroupUser { return v.Users }).(GetGroupUserArrayOutput)
+func (o GetGroupResultOutput) Users() GetGroupUserArrayOutput {
+	return o.ApplyT(func(v GetGroupResult) []GetGroupUser { return v.Users }).(GetGroupUserArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupGroupResultOutput{})
+	pulumi.RegisterOutputType(GetGroupResultOutput{})
 }

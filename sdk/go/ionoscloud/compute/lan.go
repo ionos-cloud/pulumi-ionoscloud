@@ -136,12 +136,6 @@ func NewLan(ctx *pulumi.Context,
 	if args.DatacenterId == nil {
 		return nil, errors.New("invalid value for required argument 'DatacenterId'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/lan:Lan"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Lan
 	err := ctx.RegisterResource("ionoscloud:compute/lan:Lan", name, args, &resource, opts...)

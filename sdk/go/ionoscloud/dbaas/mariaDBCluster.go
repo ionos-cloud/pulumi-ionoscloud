@@ -70,12 +70,6 @@ func NewMariaDBCluster(ctx *pulumi.Context,
 	if args.StorageSize == nil {
 		return nil, errors.New("invalid value for required argument 'StorageSize'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("ionoscloud:index/mariadbCluster:MariadbCluster"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MariaDBCluster
 	err := ctx.RegisterResource("ionoscloud:dbaas/mariaDBCluster:MariaDBCluster", name, args, &resource, opts...)

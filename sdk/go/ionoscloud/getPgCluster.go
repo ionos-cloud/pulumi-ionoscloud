@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupPgCluster(ctx *pulumi.Context, args *LookupPgClusterArgs, opts ...pulumi.InvokeOption) (*LookupPgClusterResult, error) {
+func GetPgCluster(ctx *pulumi.Context, args *GetPgClusterArgs, opts ...pulumi.InvokeOption) (*GetPgClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupPgClusterResult
+	var rv GetPgClusterResult
 	err := ctx.Invoke("ionoscloud:index/getPgCluster:getPgCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,13 +22,13 @@ func LookupPgCluster(ctx *pulumi.Context, args *LookupPgClusterArgs, opts ...pul
 }
 
 // A collection of arguments for invoking getPgCluster.
-type LookupPgClusterArgs struct {
+type GetPgClusterArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	Id          *string `pulumi:"id"`
 }
 
 // A collection of values returned by getPgCluster.
-type LookupPgClusterResult struct {
+type GetPgClusterResult struct {
 	BackupLocation      string                          `pulumi:"backupLocation"`
 	ConnectionPoolers   []GetPgClusterConnectionPooler  `pulumi:"connectionPoolers"`
 	Connections         []GetPgClusterConnection        `pulumi:"connections"`
@@ -47,108 +47,108 @@ type LookupPgClusterResult struct {
 	SynchronizationMode string                          `pulumi:"synchronizationMode"`
 }
 
-func LookupPgClusterOutput(ctx *pulumi.Context, args LookupPgClusterOutputArgs, opts ...pulumi.InvokeOption) LookupPgClusterResultOutput {
+func GetPgClusterOutput(ctx *pulumi.Context, args GetPgClusterOutputArgs, opts ...pulumi.InvokeOption) GetPgClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPgClusterResult, error) {
-			args := v.(LookupPgClusterArgs)
-			r, err := LookupPgCluster(ctx, &args, opts...)
-			var s LookupPgClusterResult
+		ApplyT(func(v interface{}) (GetPgClusterResult, error) {
+			args := v.(GetPgClusterArgs)
+			r, err := GetPgCluster(ctx, &args, opts...)
+			var s GetPgClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupPgClusterResultOutput)
+		}).(GetPgClusterResultOutput)
 }
 
 // A collection of arguments for invoking getPgCluster.
-type LookupPgClusterOutputArgs struct {
+type GetPgClusterOutputArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
 }
 
-func (LookupPgClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgClusterArgs)(nil)).Elem()
+func (GetPgClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getPgCluster.
-type LookupPgClusterResultOutput struct{ *pulumi.OutputState }
+type GetPgClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupPgClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgClusterResult)(nil)).Elem()
+func (GetPgClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgClusterResult)(nil)).Elem()
 }
 
-func (o LookupPgClusterResultOutput) ToLookupPgClusterResultOutput() LookupPgClusterResultOutput {
+func (o GetPgClusterResultOutput) ToGetPgClusterResultOutput() GetPgClusterResultOutput {
 	return o
 }
 
-func (o LookupPgClusterResultOutput) ToLookupPgClusterResultOutputWithContext(ctx context.Context) LookupPgClusterResultOutput {
+func (o GetPgClusterResultOutput) ToGetPgClusterResultOutputWithContext(ctx context.Context) GetPgClusterResultOutput {
 	return o
 }
 
-func (o LookupPgClusterResultOutput) BackupLocation() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.BackupLocation }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) BackupLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.BackupLocation }).(pulumi.StringOutput)
 }
 
-func (o LookupPgClusterResultOutput) ConnectionPoolers() GetPgClusterConnectionPoolerArrayOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) []GetPgClusterConnectionPooler { return v.ConnectionPoolers }).(GetPgClusterConnectionPoolerArrayOutput)
+func (o GetPgClusterResultOutput) ConnectionPoolers() GetPgClusterConnectionPoolerArrayOutput {
+	return o.ApplyT(func(v GetPgClusterResult) []GetPgClusterConnectionPooler { return v.ConnectionPoolers }).(GetPgClusterConnectionPoolerArrayOutput)
 }
 
-func (o LookupPgClusterResultOutput) Connections() GetPgClusterConnectionArrayOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) []GetPgClusterConnection { return v.Connections }).(GetPgClusterConnectionArrayOutput)
+func (o GetPgClusterResultOutput) Connections() GetPgClusterConnectionArrayOutput {
+	return o.ApplyT(func(v GetPgClusterResult) []GetPgClusterConnection { return v.Connections }).(GetPgClusterConnectionArrayOutput)
 }
 
-func (o LookupPgClusterResultOutput) Cores() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) int { return v.Cores }).(pulumi.IntOutput)
+func (o GetPgClusterResultOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPgClusterResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-func (o LookupPgClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o GetPgClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPgClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupPgClusterResultOutput) DnsName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
-func (o LookupPgClusterResultOutput) FromBackups() GetPgClusterFromBackupArrayOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) []GetPgClusterFromBackup { return v.FromBackups }).(GetPgClusterFromBackupArrayOutput)
+func (o GetPgClusterResultOutput) FromBackups() GetPgClusterFromBackupArrayOutput {
+	return o.ApplyT(func(v GetPgClusterResult) []GetPgClusterFromBackup { return v.FromBackups }).(GetPgClusterFromBackupArrayOutput)
 }
 
-func (o LookupPgClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetPgClusterResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPgClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupPgClusterResultOutput) Instances() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) int { return v.Instances }).(pulumi.IntOutput)
+func (o GetPgClusterResultOutput) Instances() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPgClusterResult) int { return v.Instances }).(pulumi.IntOutput)
 }
 
-func (o LookupPgClusterResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupPgClusterResultOutput) MaintenanceWindows() GetPgClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) []GetPgClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetPgClusterMaintenanceWindowArrayOutput)
+func (o GetPgClusterResultOutput) MaintenanceWindows() GetPgClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetPgClusterResult) []GetPgClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetPgClusterMaintenanceWindowArrayOutput)
 }
 
-func (o LookupPgClusterResultOutput) PostgresVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.PostgresVersion }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) PostgresVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.PostgresVersion }).(pulumi.StringOutput)
 }
 
-func (o LookupPgClusterResultOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) int { return v.Ram }).(pulumi.IntOutput)
+func (o GetPgClusterResultOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPgClusterResult) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-func (o LookupPgClusterResultOutput) StorageSize() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
+func (o GetPgClusterResultOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPgClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-func (o LookupPgClusterResultOutput) StorageType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.StorageType }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.StorageType }).(pulumi.StringOutput)
 }
 
-func (o LookupPgClusterResultOutput) SynchronizationMode() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgClusterResult) string { return v.SynchronizationMode }).(pulumi.StringOutput)
+func (o GetPgClusterResultOutput) SynchronizationMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgClusterResult) string { return v.SynchronizationMode }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupPgClusterResultOutput{})
+	pulumi.RegisterOutputType(GetPgClusterResultOutput{})
 }

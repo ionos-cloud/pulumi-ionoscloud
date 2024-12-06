@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
+func GetVolume(ctx *pulumi.Context, args *GetVolumeArgs, opts ...pulumi.InvokeOption) (*GetVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupVolumeResult
+	var rv GetVolumeResult
 	err := ctx.Invoke("ionoscloud:index/getVolume:getVolume", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.In
 }
 
 // A collection of arguments for invoking getVolume.
-type LookupVolumeArgs struct {
+type GetVolumeArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the volume you want to search for.
 	//
@@ -38,7 +38,7 @@ type LookupVolumeArgs struct {
 }
 
 // A collection of values returned by getVolume.
-type LookupVolumeResult struct {
+type GetVolumeResult struct {
 	// The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
 	AvailabilityZone string `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -82,21 +82,21 @@ type LookupVolumeResult struct {
 	UserData string `pulumi:"userData"`
 }
 
-func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupVolumeResultOutput {
+func GetVolumeOutput(ctx *pulumi.Context, args GetVolumeOutputArgs, opts ...pulumi.InvokeOption) GetVolumeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVolumeResult, error) {
-			args := v.(LookupVolumeArgs)
-			r, err := LookupVolume(ctx, &args, opts...)
-			var s LookupVolumeResult
+		ApplyT(func(v interface{}) (GetVolumeResult, error) {
+			args := v.(GetVolumeArgs)
+			r, err := GetVolume(ctx, &args, opts...)
+			var s GetVolumeResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupVolumeResultOutput)
+		}).(GetVolumeResultOutput)
 }
 
 // A collection of arguments for invoking getVolume.
-type LookupVolumeOutputArgs struct {
+type GetVolumeOutputArgs struct {
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the volume you want to search for.
 	//
@@ -106,129 +106,129 @@ type LookupVolumeOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupVolumeOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVolumeArgs)(nil)).Elem()
+func (GetVolumeOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumeArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getVolume.
-type LookupVolumeResultOutput struct{ *pulumi.OutputState }
+type GetVolumeResultOutput struct{ *pulumi.OutputState }
 
-func (LookupVolumeResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVolumeResult)(nil)).Elem()
+func (GetVolumeResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumeResult)(nil)).Elem()
 }
 
-func (o LookupVolumeResultOutput) ToLookupVolumeResultOutput() LookupVolumeResultOutput {
+func (o GetVolumeResultOutput) ToGetVolumeResultOutput() GetVolumeResultOutput {
 	return o
 }
 
-func (o LookupVolumeResultOutput) ToLookupVolumeResultOutputWithContext(ctx context.Context) LookupVolumeResultOutput {
+func (o GetVolumeResultOutput) ToGetVolumeResultOutputWithContext(ctx context.Context) GetVolumeResultOutput {
 	return o
 }
 
 // The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
-func (o LookupVolumeResultOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
 // The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-func (o LookupVolumeResultOutput) BackupUnitId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.BackupUnitId }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) BackupUnitId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.BackupUnitId }).(pulumi.StringOutput)
 }
 
 // The UUID of the attached server.
-func (o LookupVolumeResultOutput) BootServer() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.BootServer }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) BootServer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.BootServer }).(pulumi.StringOutput)
 }
 
 // The bus type of the volume: VIRTIO or IDE.
-func (o LookupVolumeResultOutput) Bus() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.Bus }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) Bus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.Bus }).(pulumi.StringOutput)
 }
 
 // Is capable of CPU hot plug (no reboot required)
-func (o LookupVolumeResultOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) CpuHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
-func (o LookupVolumeResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // The LUN ID of the storage volume. Null for volumes not mounted to any VM
-func (o LookupVolumeResultOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupVolumeResult) int { return v.DeviceNumber }).(pulumi.IntOutput)
+func (o GetVolumeResultOutput) DeviceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVolumeResult) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
 // Is capable of Virt-IO drive hot plug (no reboot required)
-func (o LookupVolumeResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-func (o LookupVolumeResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
 // The volume type: HDD or SSD.
-func (o LookupVolumeResultOutput) DiskType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.DiskType }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
 // The id of the volume.
-func (o LookupVolumeResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetVolumeResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumeResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The image or snapshot UUID.
-func (o LookupVolumeResultOutput) Image() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.Image }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) Image() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.Image }).(pulumi.StringOutput)
 }
 
 // Required if `sshkeyPath` is not provided.
-func (o LookupVolumeResultOutput) ImagePassword() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.ImagePassword }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) ImagePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.ImagePassword }).(pulumi.StringOutput)
 }
 
 // The type of the licence.
-func (o LookupVolumeResultOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.LicenceType }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) LicenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
 // The name of the volume.
-func (o LookupVolumeResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetVolumeResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Is capable of nic hot plug (no reboot required)
-func (o LookupVolumeResultOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) NicHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of nic hot unplug (no reboot required)
-func (o LookupVolumeResultOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) NicHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
 // Is capable of memory hot plug (no reboot required)
-func (o LookupVolumeResultOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupVolumeResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
+func (o GetVolumeResultOutput) RamHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVolumeResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
 // The size of the volume in GB.
-func (o LookupVolumeResultOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupVolumeResult) int { return v.Size }).(pulumi.IntOutput)
+func (o GetVolumeResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVolumeResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
 // The associated public SSH key.
-func (o LookupVolumeResultOutput) Sshkey() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.Sshkey }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) Sshkey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.Sshkey }).(pulumi.StringOutput)
 }
 
 // The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-func (o LookupVolumeResultOutput) UserData() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVolumeResult) string { return v.UserData }).(pulumi.StringOutput)
+func (o GetVolumeResultOutput) UserData() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumeResult) string { return v.UserData }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupVolumeResultOutput{})
+	pulumi.RegisterOutputType(GetVolumeResultOutput{})
 }

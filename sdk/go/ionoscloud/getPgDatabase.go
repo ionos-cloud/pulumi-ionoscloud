@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupPgDatabase(ctx *pulumi.Context, args *LookupPgDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupPgDatabaseResult, error) {
+func GetPgDatabase(ctx *pulumi.Context, args *GetPgDatabaseArgs, opts ...pulumi.InvokeOption) (*GetPgDatabaseResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupPgDatabaseResult
+	var rv GetPgDatabaseResult
 	err := ctx.Invoke("ionoscloud:index/getPgDatabase:getPgDatabase", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,73 +22,73 @@ func LookupPgDatabase(ctx *pulumi.Context, args *LookupPgDatabaseArgs, opts ...p
 }
 
 // A collection of arguments for invoking getPgDatabase.
-type LookupPgDatabaseArgs struct {
+type GetPgDatabaseArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	Name      string `pulumi:"name"`
 }
 
 // A collection of values returned by getPgDatabase.
-type LookupPgDatabaseResult struct {
+type GetPgDatabaseResult struct {
 	ClusterId string `pulumi:"clusterId"`
 	Id        string `pulumi:"id"`
 	Name      string `pulumi:"name"`
 	Owner     string `pulumi:"owner"`
 }
 
-func LookupPgDatabaseOutput(ctx *pulumi.Context, args LookupPgDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupPgDatabaseResultOutput {
+func GetPgDatabaseOutput(ctx *pulumi.Context, args GetPgDatabaseOutputArgs, opts ...pulumi.InvokeOption) GetPgDatabaseResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPgDatabaseResult, error) {
-			args := v.(LookupPgDatabaseArgs)
-			r, err := LookupPgDatabase(ctx, &args, opts...)
-			var s LookupPgDatabaseResult
+		ApplyT(func(v interface{}) (GetPgDatabaseResult, error) {
+			args := v.(GetPgDatabaseArgs)
+			r, err := GetPgDatabase(ctx, &args, opts...)
+			var s GetPgDatabaseResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupPgDatabaseResultOutput)
+		}).(GetPgDatabaseResultOutput)
 }
 
 // A collection of arguments for invoking getPgDatabase.
-type LookupPgDatabaseOutputArgs struct {
+type GetPgDatabaseOutputArgs struct {
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	Name      pulumi.StringInput `pulumi:"name"`
 }
 
-func (LookupPgDatabaseOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgDatabaseArgs)(nil)).Elem()
+func (GetPgDatabaseOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgDatabaseArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getPgDatabase.
-type LookupPgDatabaseResultOutput struct{ *pulumi.OutputState }
+type GetPgDatabaseResultOutput struct{ *pulumi.OutputState }
 
-func (LookupPgDatabaseResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgDatabaseResult)(nil)).Elem()
+func (GetPgDatabaseResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgDatabaseResult)(nil)).Elem()
 }
 
-func (o LookupPgDatabaseResultOutput) ToLookupPgDatabaseResultOutput() LookupPgDatabaseResultOutput {
+func (o GetPgDatabaseResultOutput) ToGetPgDatabaseResultOutput() GetPgDatabaseResultOutput {
 	return o
 }
 
-func (o LookupPgDatabaseResultOutput) ToLookupPgDatabaseResultOutputWithContext(ctx context.Context) LookupPgDatabaseResultOutput {
+func (o GetPgDatabaseResultOutput) ToGetPgDatabaseResultOutputWithContext(ctx context.Context) GetPgDatabaseResultOutput {
 	return o
 }
 
-func (o LookupPgDatabaseResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgDatabaseResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetPgDatabaseResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgDatabaseResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-func (o LookupPgDatabaseResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetPgDatabaseResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgDatabaseResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupPgDatabaseResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgDatabaseResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetPgDatabaseResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgDatabaseResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupPgDatabaseResultOutput) Owner() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgDatabaseResult) string { return v.Owner }).(pulumi.StringOutput)
+func (o GetPgDatabaseResultOutput) Owner() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgDatabaseResult) string { return v.Owner }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupPgDatabaseResultOutput{})
+	pulumi.RegisterOutputType(GetPgDatabaseResultOutput{})
 }

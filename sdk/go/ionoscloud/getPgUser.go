@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupPgUser(ctx *pulumi.Context, args *LookupPgUserArgs, opts ...pulumi.InvokeOption) (*LookupPgUserResult, error) {
+func GetPgUser(ctx *pulumi.Context, args *GetPgUserArgs, opts ...pulumi.InvokeOption) (*GetPgUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupPgUserResult
+	var rv GetPgUserResult
 	err := ctx.Invoke("ionoscloud:index/getPgUser:getPgUser", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,73 +22,73 @@ func LookupPgUser(ctx *pulumi.Context, args *LookupPgUserArgs, opts ...pulumi.In
 }
 
 // A collection of arguments for invoking getPgUser.
-type LookupPgUserArgs struct {
+type GetPgUserArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	Username  string `pulumi:"username"`
 }
 
 // A collection of values returned by getPgUser.
-type LookupPgUserResult struct {
+type GetPgUserResult struct {
 	ClusterId    string `pulumi:"clusterId"`
 	Id           string `pulumi:"id"`
 	IsSystemUser bool   `pulumi:"isSystemUser"`
 	Username     string `pulumi:"username"`
 }
 
-func LookupPgUserOutput(ctx *pulumi.Context, args LookupPgUserOutputArgs, opts ...pulumi.InvokeOption) LookupPgUserResultOutput {
+func GetPgUserOutput(ctx *pulumi.Context, args GetPgUserOutputArgs, opts ...pulumi.InvokeOption) GetPgUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPgUserResult, error) {
-			args := v.(LookupPgUserArgs)
-			r, err := LookupPgUser(ctx, &args, opts...)
-			var s LookupPgUserResult
+		ApplyT(func(v interface{}) (GetPgUserResult, error) {
+			args := v.(GetPgUserArgs)
+			r, err := GetPgUser(ctx, &args, opts...)
+			var s GetPgUserResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupPgUserResultOutput)
+		}).(GetPgUserResultOutput)
 }
 
 // A collection of arguments for invoking getPgUser.
-type LookupPgUserOutputArgs struct {
+type GetPgUserOutputArgs struct {
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	Username  pulumi.StringInput `pulumi:"username"`
 }
 
-func (LookupPgUserOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgUserArgs)(nil)).Elem()
+func (GetPgUserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgUserArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getPgUser.
-type LookupPgUserResultOutput struct{ *pulumi.OutputState }
+type GetPgUserResultOutput struct{ *pulumi.OutputState }
 
-func (LookupPgUserResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPgUserResult)(nil)).Elem()
+func (GetPgUserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPgUserResult)(nil)).Elem()
 }
 
-func (o LookupPgUserResultOutput) ToLookupPgUserResultOutput() LookupPgUserResultOutput {
+func (o GetPgUserResultOutput) ToGetPgUserResultOutput() GetPgUserResultOutput {
 	return o
 }
 
-func (o LookupPgUserResultOutput) ToLookupPgUserResultOutputWithContext(ctx context.Context) LookupPgUserResultOutput {
+func (o GetPgUserResultOutput) ToGetPgUserResultOutputWithContext(ctx context.Context) GetPgUserResultOutput {
 	return o
 }
 
-func (o LookupPgUserResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgUserResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetPgUserResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgUserResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-func (o LookupPgUserResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgUserResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetPgUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupPgUserResultOutput) IsSystemUser() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupPgUserResult) bool { return v.IsSystemUser }).(pulumi.BoolOutput)
+func (o GetPgUserResultOutput) IsSystemUser() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPgUserResult) bool { return v.IsSystemUser }).(pulumi.BoolOutput)
 }
 
-func (o LookupPgUserResultOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPgUserResult) string { return v.Username }).(pulumi.StringOutput)
+func (o GetPgUserResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPgUserResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupPgUserResultOutput{})
+	pulumi.RegisterOutputType(GetPgUserResultOutput{})
 }

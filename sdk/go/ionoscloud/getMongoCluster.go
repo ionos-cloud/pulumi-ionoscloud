@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupMongoCluster(ctx *pulumi.Context, args *LookupMongoClusterArgs, opts ...pulumi.InvokeOption) (*LookupMongoClusterResult, error) {
+func GetMongoCluster(ctx *pulumi.Context, args *GetMongoClusterArgs, opts ...pulumi.InvokeOption) (*GetMongoClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupMongoClusterResult
+	var rv GetMongoClusterResult
 	err := ctx.Invoke("ionoscloud:index/getMongoCluster:getMongoCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,13 +22,13 @@ func LookupMongoCluster(ctx *pulumi.Context, args *LookupMongoClusterArgs, opts 
 }
 
 // A collection of arguments for invoking getMongoCluster.
-type LookupMongoClusterArgs struct {
+type GetMongoClusterArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	Id          *string `pulumi:"id"`
 }
 
 // A collection of values returned by getMongoCluster.
-type LookupMongoClusterResult struct {
+type GetMongoClusterResult struct {
 	Backups            []GetMongoClusterBackup            `pulumi:"backups"`
 	BiConnectors       []GetMongoClusterBiConnector       `pulumi:"biConnectors"`
 	ConnectionString   string                             `pulumi:"connectionString"`
@@ -49,116 +49,116 @@ type LookupMongoClusterResult struct {
 	Type               string                             `pulumi:"type"`
 }
 
-func LookupMongoClusterOutput(ctx *pulumi.Context, args LookupMongoClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMongoClusterResultOutput {
+func GetMongoClusterOutput(ctx *pulumi.Context, args GetMongoClusterOutputArgs, opts ...pulumi.InvokeOption) GetMongoClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupMongoClusterResult, error) {
-			args := v.(LookupMongoClusterArgs)
-			r, err := LookupMongoCluster(ctx, &args, opts...)
-			var s LookupMongoClusterResult
+		ApplyT(func(v interface{}) (GetMongoClusterResult, error) {
+			args := v.(GetMongoClusterArgs)
+			r, err := GetMongoCluster(ctx, &args, opts...)
+			var s GetMongoClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupMongoClusterResultOutput)
+		}).(GetMongoClusterResultOutput)
 }
 
 // A collection of arguments for invoking getMongoCluster.
-type LookupMongoClusterOutputArgs struct {
+type GetMongoClusterOutputArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	Id          pulumi.StringPtrInput `pulumi:"id"`
 }
 
-func (LookupMongoClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMongoClusterArgs)(nil)).Elem()
+func (GetMongoClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getMongoCluster.
-type LookupMongoClusterResultOutput struct{ *pulumi.OutputState }
+type GetMongoClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupMongoClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupMongoClusterResult)(nil)).Elem()
+func (GetMongoClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterResult)(nil)).Elem()
 }
 
-func (o LookupMongoClusterResultOutput) ToLookupMongoClusterResultOutput() LookupMongoClusterResultOutput {
+func (o GetMongoClusterResultOutput) ToGetMongoClusterResultOutput() GetMongoClusterResultOutput {
 	return o
 }
 
-func (o LookupMongoClusterResultOutput) ToLookupMongoClusterResultOutputWithContext(ctx context.Context) LookupMongoClusterResultOutput {
+func (o GetMongoClusterResultOutput) ToGetMongoClusterResultOutputWithContext(ctx context.Context) GetMongoClusterResultOutput {
 	return o
 }
 
-func (o LookupMongoClusterResultOutput) Backups() GetMongoClusterBackupArrayOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) []GetMongoClusterBackup { return v.Backups }).(GetMongoClusterBackupArrayOutput)
+func (o GetMongoClusterResultOutput) Backups() GetMongoClusterBackupArrayOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) []GetMongoClusterBackup { return v.Backups }).(GetMongoClusterBackupArrayOutput)
 }
 
-func (o LookupMongoClusterResultOutput) BiConnectors() GetMongoClusterBiConnectorArrayOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) []GetMongoClusterBiConnector { return v.BiConnectors }).(GetMongoClusterBiConnectorArrayOutput)
+func (o GetMongoClusterResultOutput) BiConnectors() GetMongoClusterBiConnectorArrayOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) []GetMongoClusterBiConnector { return v.BiConnectors }).(GetMongoClusterBiConnectorArrayOutput)
 }
 
-func (o LookupMongoClusterResultOutput) ConnectionString() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.ConnectionString }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) ConnectionString() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.ConnectionString }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Connections() GetMongoClusterConnectionArrayOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) []GetMongoClusterConnection { return v.Connections }).(GetMongoClusterConnectionArrayOutput)
+func (o GetMongoClusterResultOutput) Connections() GetMongoClusterConnectionArrayOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) []GetMongoClusterConnection { return v.Connections }).(GetMongoClusterConnectionArrayOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Cores() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) int { return v.Cores }).(pulumi.IntOutput)
+func (o GetMongoClusterResultOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-func (o LookupMongoClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o GetMongoClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Edition() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.Edition }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) Edition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.Edition }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetMongoClusterResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Instances() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) int { return v.Instances }).(pulumi.IntOutput)
+func (o GetMongoClusterResultOutput) Instances() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) int { return v.Instances }).(pulumi.IntOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) MaintenanceWindows() GetMongoClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) []GetMongoClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMongoClusterMaintenanceWindowArrayOutput)
+func (o GetMongoClusterResultOutput) MaintenanceWindows() GetMongoClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) []GetMongoClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMongoClusterMaintenanceWindowArrayOutput)
 }
 
-func (o LookupMongoClusterResultOutput) MongodbVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.MongodbVersion }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) MongodbVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.MongodbVersion }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) int { return v.Ram }).(pulumi.IntOutput)
+func (o GetMongoClusterResultOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Shards() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) int { return v.Shards }).(pulumi.IntOutput)
+func (o GetMongoClusterResultOutput) Shards() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) int { return v.Shards }).(pulumi.IntOutput)
 }
 
-func (o LookupMongoClusterResultOutput) StorageSize() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
+func (o GetMongoClusterResultOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-func (o LookupMongoClusterResultOutput) StorageType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.StorageType }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.StorageType }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) TemplateId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.TemplateId }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) TemplateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.TemplateId }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoClusterResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongoClusterResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetMongoClusterResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupMongoClusterResultOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterResultOutput{})
 }
