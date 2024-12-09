@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -129,7 +128,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // **Note:** Set `createBeforeDestroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
 //
 // ## Import

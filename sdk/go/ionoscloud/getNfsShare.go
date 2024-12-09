@@ -69,14 +69,20 @@ type LookupNfsShareResult struct {
 
 func LookupNfsShareOutput(ctx *pulumi.Context, args LookupNfsShareOutputArgs, opts ...pulumi.InvokeOption) LookupNfsShareResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNfsShareResult, error) {
+		ApplyT(func(v interface{}) (LookupNfsShareResultOutput, error) {
 			args := v.(LookupNfsShareArgs)
-			r, err := LookupNfsShare(ctx, &args, opts...)
-			var s LookupNfsShareResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupNfsShareResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getNfsShare:getNfsShare", args, &rv, "", opts...)
+			if err != nil {
+				return LookupNfsShareResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupNfsShareResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupNfsShareResultOutput), nil
+			}
+			return output, nil
 		}).(LookupNfsShareResultOutput)
 }
 

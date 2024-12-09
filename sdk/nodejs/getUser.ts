@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Email
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     email: "example@email.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Email from Env Variables - Current User
  * data "ionoscloud.compute.User" "example" {
@@ -31,7 +29,6 @@ import * as utilities from "./utilities";
  */
 export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getUser:getUser", {
         "email": args.email,
@@ -108,7 +105,6 @@ export interface GetUserResult {
  * ## Example Usage
  *
  * ### By Email
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -117,14 +113,18 @@ export interface GetUserResult {
  *     email: "example@email.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Email from Env Variables - Current User
  * data "ionoscloud.compute.User" "example" {
  * }
  */
 export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply((a: any) => getUser(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getUser:getUser", {
+        "email": args.email,
+        "id": args.id,
+    }, opts);
 }
 
 /**

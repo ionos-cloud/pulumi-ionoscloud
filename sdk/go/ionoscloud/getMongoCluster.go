@@ -51,14 +51,20 @@ type GetMongoClusterResult struct {
 
 func GetMongoClusterOutput(ctx *pulumi.Context, args GetMongoClusterOutputArgs, opts ...pulumi.InvokeOption) GetMongoClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMongoClusterResult, error) {
+		ApplyT(func(v interface{}) (GetMongoClusterResultOutput, error) {
 			args := v.(GetMongoClusterArgs)
-			r, err := GetMongoCluster(ctx, &args, opts...)
-			var s GetMongoClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetMongoClusterResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getMongoCluster:getMongoCluster", args, &rv, "", opts...)
+			if err != nil {
+				return GetMongoClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetMongoClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetMongoClusterResultOutput), nil
+			}
+			return output, nil
 		}).(GetMongoClusterResultOutput)
 }
 

@@ -56,14 +56,20 @@ type LookupVpnIpsecTunnelResult struct {
 
 func LookupVpnIpsecTunnelOutput(ctx *pulumi.Context, args LookupVpnIpsecTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupVpnIpsecTunnelResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpnIpsecTunnelResult, error) {
+		ApplyT(func(v interface{}) (LookupVpnIpsecTunnelResultOutput, error) {
 			args := v.(LookupVpnIpsecTunnelArgs)
-			r, err := LookupVpnIpsecTunnel(ctx, &args, opts...)
-			var s LookupVpnIpsecTunnelResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVpnIpsecTunnelResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getVpnIpsecTunnel:getVpnIpsecTunnel", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVpnIpsecTunnelResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVpnIpsecTunnelResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVpnIpsecTunnelResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVpnIpsecTunnelResultOutput)
 }
 

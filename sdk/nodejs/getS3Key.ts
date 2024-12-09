@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
 export function getS3Key(args: GetS3KeyArgs, opts?: pulumi.InvokeOptions): Promise<GetS3KeyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getS3Key:getS3Key", {
         "active": args.active,
@@ -66,7 +65,12 @@ export interface GetS3KeyResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
 export function getS3KeyOutput(args: GetS3KeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetS3KeyResult> {
-    return pulumi.output(args).apply((a: any) => getS3Key(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getS3Key:getS3Key", {
+        "active": args.active,
+        "id": args.id,
+        "userId": args.userId,
+    }, opts);
 }
 
 /**

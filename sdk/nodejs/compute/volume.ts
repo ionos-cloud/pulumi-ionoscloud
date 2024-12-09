@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -104,7 +103,6 @@ import * as utilities from "../utilities";
  *     licenceType: "OTHER",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -329,8 +327,6 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["sshkey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/volume:Volume" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Volume.__pulumiType, name, resourceInputs, opts);
     }
 }

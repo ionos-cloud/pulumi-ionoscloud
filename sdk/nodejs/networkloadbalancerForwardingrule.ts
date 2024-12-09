@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ### 
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -57,7 +56,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -104,7 +102,7 @@ export class NetworkloadbalancerForwardingrule extends pulumi.CustomResource {
      */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     public readonly healthCheck!: pulumi.Output<outputs.NetworkloadbalancerForwardingruleHealthCheck>;
     /**
@@ -202,7 +200,7 @@ export interface NetworkloadbalancerForwardingruleState {
      */
     datacenterId?: pulumi.Input<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     healthCheck?: pulumi.Input<inputs.NetworkloadbalancerForwardingruleHealthCheck>;
     /**
@@ -241,7 +239,7 @@ export interface NetworkloadbalancerForwardingruleArgs {
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
+     * Health check attributes for Network Load Balancer forwarding rule.
      */
     healthCheck?: pulumi.Input<inputs.NetworkloadbalancerForwardingruleHealthCheck>;
     /**

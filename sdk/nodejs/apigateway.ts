@@ -11,14 +11,12 @@ import * as utilities from "./utilities";
  *
  * ## Usage example
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.Apigateway("example", {metrics: true});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -75,7 +73,7 @@ export class Apigateway extends pulumi.CustomResource {
      */
     public readonly metrics!: pulumi.Output<boolean | undefined>;
     /**
-     * [string] The domain name. Externally reachable.
+     * [string] The name of the API Gateway.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -131,7 +129,7 @@ export interface ApigatewayState {
      */
     metrics?: pulumi.Input<boolean>;
     /**
-     * [string] The domain name. Externally reachable.
+     * [string] The name of the API Gateway.
      */
     name?: pulumi.Input<string>;
     /**
@@ -157,7 +155,7 @@ export interface ApigatewayArgs {
      */
     metrics?: pulumi.Input<boolean>;
     /**
-     * [string] The domain name. Externally reachable.
+     * [string] The name of the API Gateway.
      */
     name?: pulumi.Input<string>;
 }

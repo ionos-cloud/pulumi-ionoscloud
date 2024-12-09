@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * This resource also allows switching between a `volume` and a `ionoscloud.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  *
  * ### Select an external volume
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -55,10 +54,8 @@ import * as utilities from "./utilities";
  *     bootDeviceId: exampleVolume.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Select an inline volume again
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -99,10 +96,8 @@ import * as utilities from "./utilities";
  *     imagePassword: random_password.server_image_password.result,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Select a CDROM image
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -148,10 +143,8 @@ import * as utilities from "./utilities";
  *     imagePassword: random_password.server_image_password.result,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Perform a network boot
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -197,7 +190,6 @@ import * as utilities from "./utilities";
  *     type: "CDROM",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ServerBootDeviceSelection extends pulumi.CustomResource {
     /**

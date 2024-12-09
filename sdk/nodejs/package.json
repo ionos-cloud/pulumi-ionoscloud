@@ -23,7 +23,6 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "ionoscloud",
-        "server": "github://api.github.com/ionos-cloud"
+        "name": "ionoscloud"
     }
 }

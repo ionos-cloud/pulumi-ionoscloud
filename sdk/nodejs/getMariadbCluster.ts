@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 export function getMariadbCluster(args?: GetMariadbClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMariadbClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getMariadbCluster:getMariadbCluster", {
         "displayName": args.displayName,
@@ -43,7 +42,13 @@ export interface GetMariadbClusterResult {
     readonly storageSize: number;
 }
 export function getMariadbClusterOutput(args?: GetMariadbClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMariadbClusterResult> {
-    return pulumi.output(args).apply((a: any) => getMariadbCluster(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getMariadbCluster:getMariadbCluster", {
+        "displayName": args.displayName,
+        "id": args.id,
+        "location": args.location,
+    }, opts);
 }
 
 /**

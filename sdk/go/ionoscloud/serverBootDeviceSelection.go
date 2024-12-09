@@ -21,7 +21,6 @@ import (
 // This resource also allows switching between a `volume` and a `getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 //
 // ### Select an external volume
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -84,10 +83,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Select an inline volume again
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -152,10 +149,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Select a CDROM image
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -228,10 +223,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Perform a network boot
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -303,7 +296,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ServerBootDeviceSelection struct {
 	pulumi.CustomResourceState
 

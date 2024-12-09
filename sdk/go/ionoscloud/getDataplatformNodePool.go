@@ -77,14 +77,20 @@ type LookupDataplatformNodePoolResult struct {
 
 func LookupDataplatformNodePoolOutput(ctx *pulumi.Context, args LookupDataplatformNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupDataplatformNodePoolResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDataplatformNodePoolResult, error) {
+		ApplyT(func(v interface{}) (LookupDataplatformNodePoolResultOutput, error) {
 			args := v.(LookupDataplatformNodePoolArgs)
-			r, err := LookupDataplatformNodePool(ctx, &args, opts...)
-			var s LookupDataplatformNodePoolResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDataplatformNodePoolResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDataplatformNodePool:getDataplatformNodePool", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDataplatformNodePoolResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDataplatformNodePoolResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDataplatformNodePoolResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDataplatformNodePoolResultOutput)
 }
 

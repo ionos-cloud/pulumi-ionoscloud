@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
 export function getShare(args: GetShareArgs, opts?: pulumi.InvokeOptions): Promise<GetShareResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getShare:getShare", {
         "editPrivilege": args.editPrivilege,
@@ -83,7 +82,14 @@ export interface GetShareResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
 export function getShareOutput(args: GetShareOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetShareResult> {
-    return pulumi.output(args).apply((a: any) => getShare(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getShare:getShare", {
+        "editPrivilege": args.editPrivilege,
+        "groupId": args.groupId,
+        "id": args.id,
+        "resourceId": args.resourceId,
+        "sharePrivilege": args.sharePrivilege,
+    }, opts);
 }
 
 /**

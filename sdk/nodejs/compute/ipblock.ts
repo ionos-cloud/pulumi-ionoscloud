@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -21,7 +20,6 @@ import * as utilities from "../utilities";
  *     size: 1,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -113,8 +111,6 @@ export class IPBlock extends pulumi.CustomResource {
             resourceInputs["ips"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/ipblock:Ipblock" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(IPBlock.__pulumiType, name, resourceInputs, opts);
     }
 }

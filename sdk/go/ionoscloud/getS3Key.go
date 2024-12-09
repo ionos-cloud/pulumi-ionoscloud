@@ -49,14 +49,20 @@ type GetS3KeyResult struct {
 
 func GetS3KeyOutput(ctx *pulumi.Context, args GetS3KeyOutputArgs, opts ...pulumi.InvokeOption) GetS3KeyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetS3KeyResult, error) {
+		ApplyT(func(v interface{}) (GetS3KeyResultOutput, error) {
 			args := v.(GetS3KeyArgs)
-			r, err := GetS3Key(ctx, &args, opts...)
-			var s GetS3KeyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetS3KeyResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getS3Key:getS3Key", args, &rv, "", opts...)
+			if err != nil {
+				return GetS3KeyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetS3KeyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetS3KeyResultOutput), nil
+			}
+			return output, nil
 		}).(GetS3KeyResultOutput)
 }
 

@@ -16,7 +16,6 @@ import (
 // ## Example Usage
 //
 // ### Retrieve list of Managed Dataplatform API versions
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.GetDataplatformVersions(ctx, nil, nil)
+//			_, err := ionoscloud.GetDataplatformVersions(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -38,7 +37,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDataplatformVersions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetDataplatformVersionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDataplatformVersionsResult
@@ -58,13 +56,19 @@ type GetDataplatformVersionsResult struct {
 }
 
 func GetDataplatformVersionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDataplatformVersionsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetDataplatformVersionsResult, error) {
-		r, err := GetDataplatformVersions(ctx, opts...)
-		var s GetDataplatformVersionsResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetDataplatformVersionsResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetDataplatformVersionsResult
+		secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", nil, &rv, "", opts...)
+		if err != nil {
+			return GetDataplatformVersionsResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetDataplatformVersionsResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetDataplatformVersionsResultOutput), nil
+		}
+		return output, nil
 	}).(GetDataplatformVersionsResultOutput)
 }
 

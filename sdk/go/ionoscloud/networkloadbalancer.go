@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Example configuring Flowlog
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -115,7 +112,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
 // `name` will. Deleting a flowlog will also force nic re-creation.
@@ -144,9 +140,7 @@ type Networkloadbalancer struct {
 	ListenerLan pulumi.IntOutput `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrOutput `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+	// [string] A name of that Network Load Balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] Id of the balanced private target LAN. (outbound)
 	TargetLan pulumi.IntOutput `pulumi:"targetLan"`
@@ -205,9 +199,7 @@ type networkloadbalancerState struct {
 	ListenerLan *int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+	// [string] A name of that Network Load Balancer.
 	Name *string `pulumi:"name"`
 	// [int] Id of the balanced private target LAN. (outbound)
 	TargetLan *int `pulumi:"targetLan"`
@@ -228,9 +220,7 @@ type NetworkloadbalancerState struct {
 	ListenerLan pulumi.IntPtrInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+	// [string] A name of that Network Load Balancer.
 	Name pulumi.StringPtrInput
 	// [int] Id of the balanced private target LAN. (outbound)
 	TargetLan pulumi.IntPtrInput
@@ -255,9 +245,7 @@ type networkloadbalancerArgs struct {
 	ListenerLan int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+	// [string] A name of that Network Load Balancer.
 	Name *string `pulumi:"name"`
 	// [int] Id of the balanced private target LAN. (outbound)
 	TargetLan int `pulumi:"targetLan"`
@@ -279,9 +267,7 @@ type NetworkloadbalancerArgs struct {
 	ListenerLan pulumi.IntInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+	// [string] A name of that Network Load Balancer.
 	Name pulumi.StringPtrInput
 	// [int] Id of the balanced private target LAN. (outbound)
 	TargetLan pulumi.IntInput
@@ -409,9 +395,7 @@ func (o NetworkloadbalancerOutput) LoggingFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Networkloadbalancer) pulumi.StringPtrOutput { return v.LoggingFormat }).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+// [string] A name of that Network Load Balancer.
 func (o NetworkloadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Networkloadbalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

@@ -49,14 +49,20 @@ type GetPgClusterResult struct {
 
 func GetPgClusterOutput(ctx *pulumi.Context, args GetPgClusterOutputArgs, opts ...pulumi.InvokeOption) GetPgClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPgClusterResult, error) {
+		ApplyT(func(v interface{}) (GetPgClusterResultOutput, error) {
 			args := v.(GetPgClusterArgs)
-			r, err := GetPgCluster(ctx, &args, opts...)
-			var s GetPgClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPgClusterResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getPgCluster:getPgCluster", args, &rv, "", opts...)
+			if err != nil {
+				return GetPgClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPgClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPgClusterResultOutput), nil
+			}
+			return output, nil
 		}).(GetPgClusterResultOutput)
 }
 

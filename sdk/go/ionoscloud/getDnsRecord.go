@@ -18,9 +18,9 @@ import (
 // > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
 //
 // ## Example Usage
-func LookupDnsRecord(ctx *pulumi.Context, args *LookupDnsRecordArgs, opts ...pulumi.InvokeOption) (*LookupDnsRecordResult, error) {
+func GetDnsRecord(ctx *pulumi.Context, args *GetDnsRecordArgs, opts ...pulumi.InvokeOption) (*GetDnsRecordResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDnsRecordResult
+	var rv GetDnsRecordResult
 	err := ctx.Invoke("ionoscloud:index/getDnsRecord:getDnsRecord", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func LookupDnsRecord(ctx *pulumi.Context, args *LookupDnsRecordArgs, opts ...pul
 }
 
 // A collection of arguments for invoking getDnsRecord.
-type LookupDnsRecordArgs struct {
+type GetDnsRecordArgs struct {
 	// [string] The ID of the DNS Record you want to search for.
 	Id *string `pulumi:"id"`
 	// [string] The name of the DNS Record you want to search for.
@@ -43,7 +43,7 @@ type LookupDnsRecordArgs struct {
 }
 
 // A collection of values returned by getDnsRecord.
-type LookupDnsRecordResult struct {
+type GetDnsRecordResult struct {
 	// The content of the DNS Record.
 	Content string `pulumi:"content"`
 	// Indicates if the DNS Record is active or not.
@@ -63,21 +63,27 @@ type LookupDnsRecordResult struct {
 	ZoneId string `pulumi:"zoneId"`
 }
 
-func LookupDnsRecordOutput(ctx *pulumi.Context, args LookupDnsRecordOutputArgs, opts ...pulumi.InvokeOption) LookupDnsRecordResultOutput {
+func GetDnsRecordOutput(ctx *pulumi.Context, args GetDnsRecordOutputArgs, opts ...pulumi.InvokeOption) GetDnsRecordResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDnsRecordResult, error) {
-			args := v.(LookupDnsRecordArgs)
-			r, err := LookupDnsRecord(ctx, &args, opts...)
-			var s LookupDnsRecordResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (GetDnsRecordResultOutput, error) {
+			args := v.(GetDnsRecordArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDnsRecordResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDnsRecord:getDnsRecord", args, &rv, "", opts...)
+			if err != nil {
+				return GetDnsRecordResultOutput{}, err
 			}
-			return s, err
-		}).(LookupDnsRecordResultOutput)
+
+			output := pulumi.ToOutput(rv).(GetDnsRecordResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDnsRecordResultOutput), nil
+			}
+			return output, nil
+		}).(GetDnsRecordResultOutput)
 }
 
 // A collection of arguments for invoking getDnsRecord.
-type LookupDnsRecordOutputArgs struct {
+type GetDnsRecordOutputArgs struct {
 	// [string] The ID of the DNS Record you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The name of the DNS Record you want to search for.
@@ -90,72 +96,72 @@ type LookupDnsRecordOutputArgs struct {
 	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 }
 
-func (LookupDnsRecordOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDnsRecordArgs)(nil)).Elem()
+func (GetDnsRecordOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsRecordArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getDnsRecord.
-type LookupDnsRecordResultOutput struct{ *pulumi.OutputState }
+type GetDnsRecordResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDnsRecordResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDnsRecordResult)(nil)).Elem()
+func (GetDnsRecordResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsRecordResult)(nil)).Elem()
 }
 
-func (o LookupDnsRecordResultOutput) ToLookupDnsRecordResultOutput() LookupDnsRecordResultOutput {
+func (o GetDnsRecordResultOutput) ToGetDnsRecordResultOutput() GetDnsRecordResultOutput {
 	return o
 }
 
-func (o LookupDnsRecordResultOutput) ToLookupDnsRecordResultOutputWithContext(ctx context.Context) LookupDnsRecordResultOutput {
+func (o GetDnsRecordResultOutput) ToGetDnsRecordResultOutputWithContext(ctx context.Context) GetDnsRecordResultOutput {
 	return o
 }
 
 // The content of the DNS Record.
-func (o LookupDnsRecordResultOutput) Content() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) string { return v.Content }).(pulumi.StringOutput)
+func (o GetDnsRecordResultOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) string { return v.Content }).(pulumi.StringOutput)
 }
 
 // Indicates if the DNS Record is active or not.
-func (o LookupDnsRecordResultOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o GetDnsRecordResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-func (o LookupDnsRecordResultOutput) Fqdn() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) string { return v.Fqdn }).(pulumi.StringOutput)
+func (o GetDnsRecordResultOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) string { return v.Fqdn }).(pulumi.StringOutput)
 }
 
 // The UUID of the DNS Record.
-func (o LookupDnsRecordResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetDnsRecordResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The name of the DNS Record.
-func (o LookupDnsRecordResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetDnsRecordResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDnsRecordResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetDnsRecordResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // The priority for the DNS Record.
-func (o LookupDnsRecordResultOutput) Priority() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) int { return v.Priority }).(pulumi.IntOutput)
+func (o GetDnsRecordResultOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
 // The time to live of the DNS Record.
-func (o LookupDnsRecordResultOutput) Ttl() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) int { return v.Ttl }).(pulumi.IntOutput)
+func (o GetDnsRecordResultOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
 // The type of the DNS Record.
-func (o LookupDnsRecordResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetDnsRecordResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o LookupDnsRecordResultOutput) ZoneId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDnsRecordResult) string { return v.ZoneId }).(pulumi.StringOutput)
+func (o GetDnsRecordResultOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsRecordResult) string { return v.ZoneId }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDnsRecordResultOutput{})
+	pulumi.RegisterOutputType(GetDnsRecordResultOutput{})
 }

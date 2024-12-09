@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -21,11 +20,9 @@ import * as utilities from "./utilities";
  *     name: "test_ds",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAutoscalingGroup(args?: GetAutoscalingGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoscalingGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup", {
         "id": args.id,
@@ -87,7 +84,6 @@ export interface GetAutoscalingGroupResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -96,10 +92,14 @@ export interface GetAutoscalingGroupResult {
  *     name: "test_ds",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAutoscalingGroupOutput(args?: GetAutoscalingGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAutoscalingGroupResult> {
-    return pulumi.output(args).apply((a: any) => getAutoscalingGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup", {
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

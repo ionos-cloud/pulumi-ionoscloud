@@ -98,7 +98,7 @@ export interface ApplicationLoadbalancerForwardingruleHttpRule {
      */
     targetGroup?: string;
     /**
-     * [string] Type of the Http Rule condition.
+     * [string] Type of the Http Rule.
      */
     type: string;
 }
@@ -170,7 +170,7 @@ export interface AutoscalingGroupPolicy {
 
 export interface AutoscalingGroupPolicyScaleInAction {
     /**
-     * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+     * [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
      */
     amount: number;
     /**
@@ -235,11 +235,11 @@ export interface AutoscalingGroupReplicaConfiguration {
 
 export interface AutoscalingGroupReplicaConfigurationNic {
     /**
-     * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+     * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
      */
     dhcp?: boolean;
     /**
-     * [bool] Firewall active flag.
+     * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
      */
     firewallActive?: boolean;
     /**
@@ -247,81 +247,81 @@ export interface AutoscalingGroupReplicaConfigurationNic {
      */
     firewallRules?: outputs.AutoscalingGroupReplicaConfigurationNicFirewallRule[];
     /**
-     * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+     * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
      */
     firewallType?: string;
     /**
-     * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+     * List of all flow logs for the specified NIC.
      */
     flowLogs?: outputs.AutoscalingGroupReplicaConfigurationNicFlowLog[];
     /**
-     * [int] Lan ID for this replica Nic.
+     * Lan ID for this replica Nic.
      */
     lan: number;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     name: string;
     /**
-     * [list] In order to link VM to ALB, target group must be provided
+     * In order to link VM to ALB, target group must be provided.
      */
     targetGroup?: outputs.AutoscalingGroupReplicaConfigurationNicTargetGroup;
 }
 
 export interface AutoscalingGroupReplicaConfigurationNicFirewallRule {
     /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+     * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
      */
     icmpCode?: number;
     /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+     * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
      */
     icmpType?: number;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     name?: string;
     /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+     * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
      */
     portRangeEnd?: number;
     /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+     * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
      */
     portRangeStart?: number;
     /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
      */
     protocol: string;
     /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+     * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
      */
     sourceIp?: string;
     /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+     * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
      */
     sourceMac?: string;
     /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+     * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
      */
     targetIp?: string;
     /**
-     * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+     * The firewall rule type. If not specified, the default value 'INGRESS' is used.
      */
     type: string;
 }
 
 export interface AutoscalingGroupReplicaConfigurationNicFlowLog {
     /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
      */
     action: string;
     /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+     * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
      */
     bucket: string;
     /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
      */
     direction: string;
     /**
@@ -329,22 +329,22 @@ export interface AutoscalingGroupReplicaConfigurationNicFlowLog {
      */
     id: string;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     name: string;
 }
 
 export interface AutoscalingGroupReplicaConfigurationNicTargetGroup {
     /**
-     * [int] The port of the target group.
+     * The port for the target group.
      */
     port: number;
     /**
-     * [string] The ID of the target group.
+     * The ID of the target group.
      */
     targetGroupId: string;
     /**
-     * [int] The weight of the target group.
+     * The weight for the target group.
      */
     weight: number;
 }
@@ -596,13 +596,6 @@ export interface CubeServerVolume {
      * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
      */
     userData: string;
-}
-
-export interface DatacenterCpuArchitecture {
-    cpuFamily: string;
-    maxCores: number;
-    maxRam: number;
-    vendor: string;
 }
 
 export interface DataplatformClusterLan {
@@ -3220,158 +3213,10 @@ export interface GetVpnWireguardPeerEndpoint {
     port: number;
 }
 
-export interface GroupUser {
-    administrator: boolean;
-    email: string;
-    firstName: string;
-    forceSecAuth: boolean;
-    id: string;
-    lastName: string;
-    password: string;
-}
-
-export interface InmemorydbReplicasetConnections {
-    /**
-     * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your instance to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your instance to.
-     */
-    lanId: string;
-}
-
-export interface InmemorydbReplicasetCredentials {
-    /**
-     * The hashed password for a InMemoryDB user.
-     */
-    hashedPassword?: outputs.InmemorydbReplicasetCredentialsHashedPassword;
-    /**
-     * The password for a InMemoryDB user.
-     */
-    plainTextPassword?: string;
-    /**
-     * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
-     */
-    username: string;
-}
-
-export interface InmemorydbReplicasetCredentialsHashedPassword {
-    algorithm: string;
-    hash: string;
-}
-
-export interface InmemorydbReplicasetMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface InmemorydbReplicasetResources {
-    /**
-     * The number of CPU cores per instance.
-     */
-    cores: number;
-    /**
-     * The amount of memory per instance in gigabytes (GB).
-     */
-    ram: number;
-    /**
-     * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
-     */
-    storage: number;
-}
-
-export interface IpblockIpConsumer {
-    datacenterId: string;
-    datacenterName: string;
-    ip: string;
-    k8sClusterUuid: string;
-    k8sNodepoolUuid: string;
-    mac: string;
-    nicId: string;
-    serverId: string;
-    serverName: string;
-}
-
-export interface K8sClusterMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
-export interface K8sClusterS3Bucket {
-    /**
-     * [string] The name of the Kubernetes Cluster.
-     */
-    name?: string;
-}
-
-export interface K8sNodePoolAutoScaling {
-    /**
-     * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-     */
-    maxNodeCount: number;
-    /**
-     * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-     */
-    minNodeCount: number;
-}
-
-export interface K8sNodePoolLan {
-    /**
-     * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
-     */
-    dhcp?: boolean;
-    /**
-     * [int] The LAN ID of an existing LAN at the related datacenter
-     */
-    id: number;
-    /**
-     * An array of additional LANs attached to worker nodes
-     */
-    routes?: outputs.K8sNodePoolLanRoute[];
-}
-
-export interface K8sNodePoolLanRoute {
-    /**
-     * [string] IPv4 or IPv6 Gateway IP for the route
-     */
-    gatewayIp: string;
-    /**
-     * [string] IPv4 or IPv6 CIDR to be routed via the interface
-     */
-    network: string;
-}
-
-export interface K8sNodePoolMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
 export interface KafkaClusterConnections {
     /**
-     * [list] IP address and port of cluster brokers.
+     * [list] IP addresses and subnet of cluster brokers. **Note** the following
+     * unavailable IP range: 10.224.0.0/11
      */
     brokerAddresses: string[];
     /**
@@ -3382,11 +3227,6 @@ export interface KafkaClusterConnections {
      * [string] The numeric LAN ID to connect your instance to.
      */
     lanId: string;
-}
-
-export interface LanIpFailover {
-    ip: string;
-    nicUuid: string;
 }
 
 export interface LoggingPipelineLog {
@@ -3421,101 +3261,6 @@ export interface LoggingPipelineLogDestination {
      * [string] The internal output stream to send logs to.
      */
     type: string;
-}
-
-export interface MariadbClusterConnections {
-    /**
-     * The IP and subnet for your cluster.
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface MariadbClusterCredentials {
-    /**
-     * The password for a MariaDB user.
-     */
-    password: string;
-    /**
-     * The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
-     */
-    username: string;
-}
-
-export interface MariadbClusterMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface MongoClusterBackup {
-    /**
-     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-     */
-    location?: string;
-    /**
-     * Number of hours in the past for which a point-in-time snapshot can be created.
-     */
-    pointInTimeWindowHours?: number;
-    /**
-     * Number of hours between snapshots.
-     */
-    snapshotIntervalHours?: number;
-}
-
-export interface MongoClusterBiConnector {
-    /**
-     * Enable or disable the BiConnector.
-     */
-    enabled?: boolean;
-    /**
-     * The host where this new BI Connector is installed.
-     */
-    host: string;
-    /**
-     * Port number used when connecting to this new BI Connector.
-     */
-    port: string;
-}
-
-export interface MongoClusterConnections {
-    /**
-     * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
-     */
-    cidrLists: string[];
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface MongoClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
-export interface MongoUserRole {
-    database?: string;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role?: string;
 }
 
 export interface NatgatewayLan {
@@ -3670,91 +3415,17 @@ export interface NfsShareClientGroupNfs {
     squash?: string;
 }
 
-export interface NicFlowlog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-     */
-    action: string;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * The resource name.
-     */
-    name: string;
-}
-
-export interface PgClusterConnectionPooler {
-    enabled: boolean;
-    /**
-     * Represents different modes of connection pooling for the connection pooler
-     */
-    poolMode: string;
-}
-
-export interface PgClusterConnections {
-    /**
-     * The IP and subnet for the database.
-     *           Note the following unavailable IP ranges:
-     *           10.233.64.0/18
-     *           10.233.0.0/18
-     *           10.233.114.0/24
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface PgClusterCredentials {
-    password: string;
-    /**
-     * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
-     */
-    username: string;
-}
-
-export interface PgClusterFromBackup {
-    /**
-     * The unique ID of the backup you want to restore.
-     */
-    backupId: string;
-    /**
-     * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-     */
-    recoveryTargetTime?: string;
-}
-
-export interface PgClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
      */
     id: string;
     /**
-     * The location of the cross-connected datacenter
+     * The physical location of the connectable datacenter
      */
     location: string;
     /**
-     * The name of the connectable datacenter
+     * [string] The name of the cross-connection.
      */
     name: string;
 }
@@ -3780,105 +3451,6 @@ export interface PrivateCrossconnectPeer {
      * The location of the cross-connected datacenter
      */
     location: string;
-}
-
-export interface ServerLabel {
-    key: string;
-    value: string;
-}
-
-export interface ServerNic {
-    deviceNumber: number;
-    dhcp?: boolean;
-    /**
-     * Indicates whether this NIC receives an IPv6 address through DHCP.
-     */
-    dhcpv6?: boolean;
-    firewallActive?: boolean;
-    firewallType: string;
-    /**
-     * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
-     */
-    firewalls?: outputs.ServerNicFirewall[];
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips: string[];
-    /**
-     * IPv6 CIDR block assigned to the NIC.
-     */
-    ipv6CidrBlock: string;
-    /**
-     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
-     */
-    ipv6Ips: string[];
-    lan: number;
-    mac: string;
-    name?: string;
-    pciSlot: number;
-}
-
-export interface ServerNicFirewall {
-    icmpCode?: string;
-    icmpType?: string;
-    id: string;
-    name?: string;
-    portRangeEnd?: number;
-    portRangeStart?: number;
-    protocol: string;
-    sourceIp?: string;
-    sourceMac?: string;
-    targetIp?: string;
-    type: string;
-}
-
-export interface ServerVolume {
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    bus: string;
-    cpuHotPlug: boolean;
-    deviceNumber: number;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    diskType: string;
-    /**
-     * @deprecated Please use imagePassword under server level
-     */
-    imagePassword?: string;
-    licenceType: string;
-    name?: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    pciSlot: number;
-    ramHotPlug: boolean;
-    /**
-     * The size of the volume in GB.
-     */
-    size: number;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeyPath under server level
-     */
-    sshKeyPaths?: string[];
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeys under server level
-     */
-    sshKeys: string[];
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData: string;
 }
 
 export interface TargetGroupHealthCheck {
@@ -4557,6 +4129,75 @@ export namespace dbaas {
 
     export interface PSQLClusterMaintenanceWindow {
         dayOfTheWeek: string;
+        time: string;
+    }
+
+}
+
+export namespace k8s {
+    export interface ClusterMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
+        time: string;
+    }
+
+    export interface ClusterS3Bucket {
+        /**
+         * [string] The name of the Kubernetes Cluster.
+         */
+        name?: string;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: number;
+        /**
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: number;
+    }
+
+    export interface NodePoolLan {
+        /**
+         * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+         */
+        dhcp?: boolean;
+        /**
+         * [int] The LAN ID of an existing LAN at the related datacenter
+         */
+        id: number;
+        /**
+         * An array of additional LANs attached to worker nodes
+         */
+        routes?: outputs.k8s.NodePoolLanRoute[];
+    }
+
+    export interface NodePoolLanRoute {
+        /**
+         * [string] IPv4 or IPv6 Gateway IP for the route
+         */
+        gatewayIp: string;
+        /**
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface
+         */
+        network: string;
+    }
+
+    export interface NodePoolMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
         time: string;
     }
 

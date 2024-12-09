@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,10 +23,8 @@ import * as utilities from "./utilities";
  *     name: "container-registry-example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -37,11 +34,9 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainerRegistry(args?: GetContainerRegistryArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerRegistryResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getContainerRegistry:getContainerRegistry", {
         "id": args.id,
@@ -105,7 +100,6 @@ export interface GetContainerRegistryResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -114,10 +108,8 @@ export interface GetContainerRegistryResult {
  *     name: "container-registry-example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -127,10 +119,16 @@ export interface GetContainerRegistryResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainerRegistryOutput(args?: GetContainerRegistryOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerRegistryResult> {
-    return pulumi.output(args).apply((a: any) => getContainerRegistry(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getContainerRegistry:getContainerRegistry", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

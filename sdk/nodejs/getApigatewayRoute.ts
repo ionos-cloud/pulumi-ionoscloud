@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getApigatewayRoute(args: GetApigatewayRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetApigatewayRouteResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", {
         "gatewayId": args.gatewayId,
@@ -85,7 +84,13 @@ export interface GetApigatewayRouteResult {
  * ## Example Usage
  */
 export function getApigatewayRouteOutput(args: GetApigatewayRouteOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApigatewayRouteResult> {
-    return pulumi.output(args).apply((a: any) => getApigatewayRoute(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", {
+        "gatewayId": args.gatewayId,
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

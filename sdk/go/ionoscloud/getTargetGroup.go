@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,10 +42,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupTargetGroup(ctx *pulumi.Context, args *LookupTargetGroupArgs, opts ...pulumi.InvokeOption) (*LookupTargetGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTargetGroupResult
@@ -117,14 +113,20 @@ type LookupTargetGroupResult struct {
 
 func LookupTargetGroupOutput(ctx *pulumi.Context, args LookupTargetGroupOutputArgs, opts ...pulumi.InvokeOption) LookupTargetGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTargetGroupResult, error) {
+		ApplyT(func(v interface{}) (LookupTargetGroupResultOutput, error) {
 			args := v.(LookupTargetGroupArgs)
-			r, err := LookupTargetGroup(ctx, &args, opts...)
-			var s LookupTargetGroupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTargetGroupResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getTargetGroup:getTargetGroup", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTargetGroupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTargetGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTargetGroupResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTargetGroupResultOutput)
 }
 

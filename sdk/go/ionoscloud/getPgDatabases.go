@@ -38,14 +38,20 @@ type GetPgDatabasesResult struct {
 
 func GetPgDatabasesOutput(ctx *pulumi.Context, args GetPgDatabasesOutputArgs, opts ...pulumi.InvokeOption) GetPgDatabasesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPgDatabasesResult, error) {
+		ApplyT(func(v interface{}) (GetPgDatabasesResultOutput, error) {
 			args := v.(GetPgDatabasesArgs)
-			r, err := GetPgDatabases(ctx, &args, opts...)
-			var s GetPgDatabasesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPgDatabasesResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getPgDatabases:getPgDatabases", args, &rv, "", opts...)
+			if err != nil {
+				return GetPgDatabasesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPgDatabasesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPgDatabasesResultOutput), nil
+			}
+			return output, nil
 		}).(GetPgDatabasesResultOutput)
 }
 

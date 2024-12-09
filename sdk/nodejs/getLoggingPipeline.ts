@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -25,11 +24,9 @@ import * as utilities from "./utilities";
  *     name: "pipeline_name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLoggingPipeline(args?: GetLoggingPipelineArgs, opts?: pulumi.InvokeOptions): Promise<GetLoggingPipelineResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", {
         "id": args.id,
@@ -89,7 +86,6 @@ export interface GetLoggingPipelineResult {
  * ## Example Usage
  *
  * ### By name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -99,10 +95,15 @@ export interface GetLoggingPipelineResult {
  *     name: "pipeline_name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLoggingPipelineOutput(args?: GetLoggingPipelineOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoggingPipelineResult> {
-    return pulumi.output(args).apply((a: any) => getLoggingPipeline(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+    }, opts);
 }
 
 /**

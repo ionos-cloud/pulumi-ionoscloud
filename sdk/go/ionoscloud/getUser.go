@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Email
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Email from Env Variables - Current User
 // data "compute.User" "example" {
@@ -93,14 +91,20 @@ type GetUserResult struct {
 
 func GetUserOutput(ctx *pulumi.Context, args GetUserOutputArgs, opts ...pulumi.InvokeOption) GetUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetUserResult, error) {
+		ApplyT(func(v interface{}) (GetUserResultOutput, error) {
 			args := v.(GetUserArgs)
-			r, err := GetUser(ctx, &args, opts...)
-			var s GetUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetUserResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getUser:getUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetUserResultOutput)
 }
 

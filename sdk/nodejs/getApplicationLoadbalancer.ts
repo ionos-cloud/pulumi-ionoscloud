@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -25,10 +24,8 @@ import * as utilities from "./utilities";
  *     name: "ALB name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -39,10 +36,8 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getApplicationLoadbalancer(args: GetApplicationLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetApplicationLoadbalancerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", {
         "datacenterId": args.datacenterId,
@@ -125,7 +120,6 @@ export interface GetApplicationLoadbalancerResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -135,10 +129,8 @@ export interface GetApplicationLoadbalancerResult {
  *     name: "ALB name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -149,10 +141,15 @@ export interface GetApplicationLoadbalancerResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getApplicationLoadbalancerOutput(args: GetApplicationLoadbalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApplicationLoadbalancerResult> {
-    return pulumi.output(args).apply((a: any) => getApplicationLoadbalancer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 export function getMariadbBackups(args?: GetMariadbBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetMariadbBackupsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getMariadbBackups:getMariadbBackups", {
         "backupId": args.backupId,
@@ -40,7 +39,13 @@ export interface GetMariadbBackupsResult {
     readonly location?: string;
 }
 export function getMariadbBackupsOutput(args?: GetMariadbBackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMariadbBackupsResult> {
-    return pulumi.output(args).apply((a: any) => getMariadbBackups(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getMariadbBackups:getMariadbBackups", {
+        "backupId": args.backupId,
+        "clusterId": args.clusterId,
+        "location": args.location,
+    }, opts);
 }
 
 /**

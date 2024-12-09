@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
  */
 export function getAutoscalingGroupServers(args: GetAutoscalingGroupServersArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoscalingGroupServersResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", {
         "groupId": args.groupId,
@@ -50,7 +49,10 @@ export interface GetAutoscalingGroupServersResult {
  * The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
  */
 export function getAutoscalingGroupServersOutput(args: GetAutoscalingGroupServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAutoscalingGroupServersResult> {
-    return pulumi.output(args).apply((a: any) => getAutoscalingGroupServers(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", {
+        "groupId": args.groupId,
+    }, opts);
 }
 
 /**

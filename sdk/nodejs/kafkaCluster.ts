@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -39,7 +38,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -23,7 +23,6 @@ import (
 // Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
 // this data source is called.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupApigateway(ctx *pulumi.Context, args *LookupApigatewayArgs, opts ...pulumi.InvokeOption) (*LookupApigatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApigatewayResult
@@ -86,14 +84,20 @@ type LookupApigatewayResult struct {
 
 func LookupApigatewayOutput(ctx *pulumi.Context, args LookupApigatewayOutputArgs, opts ...pulumi.InvokeOption) LookupApigatewayResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApigatewayResult, error) {
+		ApplyT(func(v interface{}) (LookupApigatewayResultOutput, error) {
 			args := v.(LookupApigatewayArgs)
-			r, err := LookupApigateway(ctx, &args, opts...)
-			var s LookupApigatewayResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupApigatewayResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getApigateway:getApigateway", args, &rv, "", opts...)
+			if err != nil {
+				return LookupApigatewayResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupApigatewayResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupApigatewayResultOutput), nil
+			}
+			return output, nil
 		}).(LookupApigatewayResultOutput)
 }
 

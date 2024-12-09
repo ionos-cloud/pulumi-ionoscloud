@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetLocation(ctx *pulumi.Context, args *GetLocationArgs, opts ...pulumi.InvokeOption) (*GetLocationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLocationResult
@@ -75,14 +73,20 @@ type GetLocationResult struct {
 
 func GetLocationOutput(ctx *pulumi.Context, args GetLocationOutputArgs, opts ...pulumi.InvokeOption) GetLocationResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetLocationResult, error) {
+		ApplyT(func(v interface{}) (GetLocationResultOutput, error) {
 			args := v.(GetLocationArgs)
-			r, err := GetLocation(ctx, &args, opts...)
-			var s GetLocationResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetLocationResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getLocation:getLocation", args, &rv, "", opts...)
+			if err != nil {
+				return GetLocationResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetLocationResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetLocationResultOutput), nil
+			}
+			return output, nil
 		}).(GetLocationResultOutput)
 }
 

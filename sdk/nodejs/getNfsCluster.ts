@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
  */
 export function getNfsCluster(args: GetNfsClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetNfsClusterResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNfsCluster:getNfsCluster", {
         "id": args.id,
@@ -76,7 +75,13 @@ export interface GetNfsClusterResult {
  * Returns information about clusters of Network File Storage (NFS) on IonosCloud.
  */
 export function getNfsClusterOutput(args: GetNfsClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNfsClusterResult> {
-    return pulumi.output(args).apply((a: any) => getNfsCluster(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNfsCluster:getNfsCluster", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

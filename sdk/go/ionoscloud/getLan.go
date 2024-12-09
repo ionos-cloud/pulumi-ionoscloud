@@ -57,14 +57,20 @@ type GetLanResult struct {
 
 func GetLanOutput(ctx *pulumi.Context, args GetLanOutputArgs, opts ...pulumi.InvokeOption) GetLanResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetLanResult, error) {
+		ApplyT(func(v interface{}) (GetLanResultOutput, error) {
 			args := v.(GetLanArgs)
-			r, err := GetLan(ctx, &args, opts...)
-			var s GetLanResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetLanResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getLan:getLan", args, &rv, "", opts...)
+			if err != nil {
+				return GetLanResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetLanResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetLanResultOutput), nil
+			}
+			return output, nil
 		}).(GetLanResultOutput)
 }
 

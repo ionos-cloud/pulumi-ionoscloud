@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -22,10 +21,8 @@ import * as utilities from "./utilities";
  * });
  * export const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpnWireguardGateway(args: GetVpnWireguardGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpnWireguardGatewayResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", {
         "description": args.description,
@@ -99,7 +96,6 @@ export interface GetVpnWireguardGatewayResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -110,10 +106,15 @@ export interface GetVpnWireguardGatewayResult {
  * });
  * export const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getVpnWireguardGatewayOutput(args: GetVpnWireguardGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpnWireguardGatewayResult> {
-    return pulumi.output(args).apply((a: any) => getVpnWireguardGateway(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", {
+        "description": args.description,
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+    }, opts);
 }
 
 /**

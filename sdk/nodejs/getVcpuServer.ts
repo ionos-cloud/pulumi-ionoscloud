@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getVcpuServer(args: GetVcpuServerArgs, opts?: pulumi.InvokeOptions): Promise<GetVcpuServerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getVcpuServer:getVcpuServer", {
         "datacenterId": args.datacenterId,
@@ -112,7 +111,12 @@ export interface GetVcpuServerResult {
  * ## Example Usage
  */
 export function getVcpuServerOutput(args: GetVcpuServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVcpuServerResult> {
-    return pulumi.output(args).apply((a: any) => getVcpuServer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getVcpuServer:getVcpuServer", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

@@ -18,7 +18,6 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
 	ContractNumber pulumi.StringPtrOutput `pulumi:"contractNumber"`
 	// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
@@ -53,7 +52,6 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
 	ContractNumber *string `pulumi:"contractNumber"`
 	// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 	Endpoint *string `pulumi:"endpoint"`
@@ -75,7 +73,6 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
 	ContractNumber pulumi.StringPtrInput
 	// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 	Endpoint pulumi.StringPtrInput
@@ -132,7 +129,6 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
 func (o ProviderOutput) ContractNumber() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ContractNumber }).(pulumi.StringPtrOutput)
 }

@@ -74,14 +74,20 @@ type LookupVcpuServerResult struct {
 
 func LookupVcpuServerOutput(ctx *pulumi.Context, args LookupVcpuServerOutputArgs, opts ...pulumi.InvokeOption) LookupVcpuServerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVcpuServerResult, error) {
+		ApplyT(func(v interface{}) (LookupVcpuServerResultOutput, error) {
 			args := v.(LookupVcpuServerArgs)
-			r, err := LookupVcpuServer(ctx, &args, opts...)
-			var s LookupVcpuServerResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupVcpuServerResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getVcpuServer:getVcpuServer", args, &rv, "", opts...)
+			if err != nil {
+				return LookupVcpuServerResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupVcpuServerResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupVcpuServerResultOutput), nil
+			}
+			return output, nil
 		}).(LookupVcpuServerResultOutput)
 }
 

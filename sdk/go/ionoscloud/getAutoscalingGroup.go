@@ -16,7 +16,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupAutoscalingGroup(ctx *pulumi.Context, args *LookupAutoscalingGroupArgs, opts ...pulumi.InvokeOption) (*LookupAutoscalingGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAutoscalingGroupResult
@@ -82,14 +80,20 @@ type LookupAutoscalingGroupResult struct {
 
 func LookupAutoscalingGroupOutput(ctx *pulumi.Context, args LookupAutoscalingGroupOutputArgs, opts ...pulumi.InvokeOption) LookupAutoscalingGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAutoscalingGroupResult, error) {
+		ApplyT(func(v interface{}) (LookupAutoscalingGroupResultOutput, error) {
 			args := v.(LookupAutoscalingGroupArgs)
-			r, err := LookupAutoscalingGroup(ctx, &args, opts...)
-			var s LookupAutoscalingGroupResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAutoscalingGroupResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAutoscalingGroupResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAutoscalingGroupResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAutoscalingGroupResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAutoscalingGroupResultOutput)
 }
 

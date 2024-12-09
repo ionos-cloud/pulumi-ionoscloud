@@ -490,7 +490,7 @@ type ApplicationLoadbalancerForwardingruleHttpRule struct {
 	StatusCode *int `pulumi:"statusCode"`
 	// [string] The UUID of the target group; mandatory for FORWARD action.
 	TargetGroup *string `pulumi:"targetGroup"`
-	// [string] Type of the Http Rule condition.
+	// [string] Type of the Http Rule.
 	Type string `pulumi:"type"`
 }
 
@@ -522,7 +522,7 @@ type ApplicationLoadbalancerForwardingruleHttpRuleArgs struct {
 	StatusCode pulumi.IntPtrInput `pulumi:"statusCode"`
 	// [string] The UUID of the target group; mandatory for FORWARD action.
 	TargetGroup pulumi.StringPtrInput `pulumi:"targetGroup"`
-	// [string] Type of the Http Rule condition.
+	// [string] Type of the Http Rule.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -619,7 +619,7 @@ func (o ApplicationLoadbalancerForwardingruleHttpRuleOutput) TargetGroup() pulum
 	return o.ApplyT(func(v ApplicationLoadbalancerForwardingruleHttpRule) *string { return v.TargetGroup }).(pulumi.StringPtrOutput)
 }
 
-// [string] Type of the Http Rule condition.
+// [string] Type of the Http Rule.
 func (o ApplicationLoadbalancerForwardingruleHttpRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ApplicationLoadbalancerForwardingruleHttpRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -1185,7 +1185,7 @@ func (o AutoscalingGroupPolicyPtrOutput) Unit() pulumi.StringPtrOutput {
 }
 
 type AutoscalingGroupPolicyScaleInAction struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 	Amount int `pulumi:"amount"`
 	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
 	AmountType string `pulumi:"amountType"`
@@ -1209,7 +1209,7 @@ type AutoscalingGroupPolicyScaleInActionInput interface {
 }
 
 type AutoscalingGroupPolicyScaleInActionArgs struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 	Amount pulumi.IntInput `pulumi:"amount"`
 	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
 	AmountType pulumi.StringInput `pulumi:"amountType"`
@@ -1298,7 +1298,7 @@ func (o AutoscalingGroupPolicyScaleInActionOutput) ToAutoscalingGroupPolicyScale
 	}).(AutoscalingGroupPolicyScaleInActionPtrOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 func (o AutoscalingGroupPolicyScaleInActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) int { return v.Amount }).(pulumi.IntOutput)
 }
@@ -1347,7 +1347,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) Elem() AutoscalingGroupPol
 	}).(AutoscalingGroupPolicyScaleInActionOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) Amount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *int {
 		if v == nil {
@@ -1807,21 +1807,21 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Volumes() AutoscalingGrou
 }
 
 type AutoscalingGroupReplicaConfigurationNic struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp *bool `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive *bool `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules []AutoscalingGroupReplicaConfigurationNicFirewallRule `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType *string `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs []AutoscalingGroupReplicaConfigurationNicFlowLog `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan int `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name string `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup *AutoscalingGroupReplicaConfigurationNicTargetGroup `pulumi:"targetGroup"`
 }
 
@@ -1837,21 +1837,21 @@ type AutoscalingGroupReplicaConfigurationNicInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicArgs struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive pulumi.BoolPtrInput `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType pulumi.StringPtrInput `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs AutoscalingGroupReplicaConfigurationNicFlowLogArrayInput `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan pulumi.IntInput `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringInput `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup AutoscalingGroupReplicaConfigurationNicTargetGroupPtrInput `pulumi:"targetGroup"`
 }
 
@@ -1906,12 +1906,12 @@ func (o AutoscalingGroupReplicaConfigurationNicOutput) ToAutoscalingGroupReplica
 	return o
 }
 
-// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-// [bool] Firewall active flag.
+// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallActive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
 }
@@ -1923,29 +1923,29 @@ func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallRules() Autoscali
 	}).(AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayOutput)
 }
 
-// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
 }
 
-// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+// List of all flow logs for the specified NIC.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FlowLogs() AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) []AutoscalingGroupReplicaConfigurationNicFlowLog {
 		return v.FlowLogs
 	}).(AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput)
 }
 
-// [int] Lan ID for this replica Nic.
+// Lan ID for this replica Nic.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// [list] In order to link VM to ALB, target group must be provided
+// In order to link VM to ALB, target group must be provided.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) TargetGroup() AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *AutoscalingGroupReplicaConfigurationNicTargetGroup {
 		return v.TargetGroup
@@ -1973,25 +1973,25 @@ func (o AutoscalingGroupReplicaConfigurationNicArrayOutput) Index(i pulumi.IntIn
 }
 
 type AutoscalingGroupReplicaConfigurationNicFirewallRule struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode *int `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType *int `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd *int `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart *int `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol string `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp *string `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac *string `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp *string `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type *string `pulumi:"type"`
 }
 
@@ -2007,25 +2007,25 @@ type AutoscalingGroupReplicaConfigurationNicFirewallRuleInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode pulumi.IntPtrInput `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType pulumi.IntPtrInput `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd pulumi.IntPtrInput `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart pulumi.IntPtrInput `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac pulumi.StringPtrInput `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp pulumi.StringPtrInput `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -2080,52 +2080,52 @@ func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) ToAutoscaling
 	return o
 }
 
-// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) IcmpCode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpCode }).(pulumi.IntPtrOutput)
 }
 
-// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) IcmpType() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpType }).(pulumi.IntPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeEnd() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
 }
 
-// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeStart() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeStart }).(pulumi.IntPtrOutput)
 }
 
-// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) SourceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) SourceMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.SourceMac }).(pulumi.StringPtrOutput)
 }
 
-// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) TargetIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -2151,15 +2151,15 @@ func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayOutput) Index(i 
 }
 
 type AutoscalingGroupReplicaConfigurationNicFlowLog struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action string `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket string `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction string `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id *string `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name string `pulumi:"name"`
 }
 
@@ -2175,15 +2175,15 @@ type AutoscalingGroupReplicaConfigurationNicFlowLogInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicFlowLogArgs struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action pulumi.StringInput `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2238,17 +2238,17 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) ToAutoscalingGroup
 	return o
 }
 
-// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -2258,7 +2258,7 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Id() pulumi.String
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2284,11 +2284,11 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput) Index(i pulum
 }
 
 type AutoscalingGroupReplicaConfigurationNicTargetGroup struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port int `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId string `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight int `pulumi:"weight"`
 }
 
@@ -2304,11 +2304,11 @@ type AutoscalingGroupReplicaConfigurationNicTargetGroupInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicTargetGroupArgs struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port pulumi.IntInput `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -2389,17 +2389,17 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) ToAutoscalingG
 	}).(AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) TargetGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) string { return v.TargetGroupId }).(pulumi.StringOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -2428,7 +2428,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Elem() Auto
 	}).(AutoscalingGroupReplicaConfigurationNicTargetGroupOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -2438,7 +2438,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *string {
 		if v == nil {
@@ -2448,7 +2448,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroup
 	}).(pulumi.StringPtrOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -5137,7 +5137,8 @@ func (o DataplatformNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInpu
 }
 
 type KafkaClusterConnections struct {
-	// [list] IP address and port of cluster brokers.
+	// [list] IP addresses and subnet of cluster brokers. **Note** the following
+	// unavailable IP range: 10.224.0.0/11
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// [string] The datacenter to connect your instance to.
 	DatacenterId string `pulumi:"datacenterId"`
@@ -5157,7 +5158,8 @@ type KafkaClusterConnectionsInput interface {
 }
 
 type KafkaClusterConnectionsArgs struct {
-	// [list] IP address and port of cluster brokers.
+	// [list] IP addresses and subnet of cluster brokers. **Note** the following
+	// unavailable IP range: 10.224.0.0/11
 	BrokerAddresses pulumi.StringArrayInput `pulumi:"brokerAddresses"`
 	// [string] The datacenter to connect your instance to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
@@ -5242,7 +5244,8 @@ func (o KafkaClusterConnectionsOutput) ToKafkaClusterConnectionsPtrOutputWithCon
 	}).(KafkaClusterConnectionsPtrOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// [list] IP addresses and subnet of cluster brokers. **Note** the following
+// unavailable IP range: 10.224.0.0/11
 func (o KafkaClusterConnectionsOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KafkaClusterConnections) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
@@ -5281,7 +5284,8 @@ func (o KafkaClusterConnectionsPtrOutput) Elem() KafkaClusterConnectionsOutput {
 	}).(KafkaClusterConnectionsOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// [list] IP addresses and subnet of cluster brokers. **Note** the following
+// unavailable IP range: 10.224.0.0/11
 func (o KafkaClusterConnectionsPtrOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KafkaClusterConnections) []string {
 		if v == nil {
@@ -7113,9 +7117,9 @@ func (o NfsShareClientGroupNfsPtrOutput) Squash() pulumi.StringPtrOutput {
 type PrivateCrossconnectConnectableDatacenter struct {
 	// The UUID of the connectable datacenter
 	Id *string `pulumi:"id"`
-	// The location of the cross-connected datacenter
+	// The physical location of the connectable datacenter
 	Location *string `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
 }
 
@@ -7133,9 +7137,9 @@ type PrivateCrossconnectConnectableDatacenterInput interface {
 type PrivateCrossconnectConnectableDatacenterArgs struct {
 	// The UUID of the connectable datacenter
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the cross-connected datacenter
+	// The physical location of the connectable datacenter
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -7195,12 +7199,12 @@ func (o PrivateCrossconnectConnectableDatacenterOutput) Id() pulumi.StringPtrOut
 	return o.ApplyT(func(v PrivateCrossconnectConnectableDatacenter) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The location of the cross-connected datacenter
+// The physical location of the connectable datacenter
 func (o PrivateCrossconnectConnectableDatacenterOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateCrossconnectConnectableDatacenter) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// The name of the connectable datacenter
+// [string] The name of the cross-connection.
 func (o PrivateCrossconnectConnectableDatacenterOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateCrossconnectConnectableDatacenter) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

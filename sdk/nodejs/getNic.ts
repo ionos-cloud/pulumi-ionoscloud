@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getNic(args: GetNicArgs, opts?: pulumi.InvokeOptions): Promise<GetNicResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNic:getNic", {
         "datacenterId": args.datacenterId,
@@ -148,7 +147,21 @@ export interface GetNicResult {
  * ## Example Usage
  */
 export function getNicOutput(args: GetNicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNicResult> {
-    return pulumi.output(args).apply((a: any) => getNic(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNic:getNic", {
+        "datacenterId": args.datacenterId,
+        "dhcp": args.dhcp,
+        "dhcpv6": args.dhcpv6,
+        "firewallActive": args.firewallActive,
+        "firewallType": args.firewallType,
+        "id": args.id,
+        "ips": args.ips,
+        "ipv6CidrBlock": args.ipv6CidrBlock,
+        "ipv6Ips": args.ipv6Ips,
+        "lan": args.lan,
+        "name": args.name,
+        "serverId": args.serverId,
+    }, opts);
 }
 
 /**

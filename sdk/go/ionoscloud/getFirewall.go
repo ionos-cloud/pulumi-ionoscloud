@@ -73,14 +73,20 @@ type GetFirewallResult struct {
 
 func GetFirewallOutput(ctx *pulumi.Context, args GetFirewallOutputArgs, opts ...pulumi.InvokeOption) GetFirewallResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetFirewallResult, error) {
+		ApplyT(func(v interface{}) (GetFirewallResultOutput, error) {
 			args := v.(GetFirewallArgs)
-			r, err := GetFirewall(ctx, &args, opts...)
-			var s GetFirewallResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetFirewallResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getFirewall:getFirewall", args, &rv, "", opts...)
+			if err != nil {
+				return GetFirewallResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetFirewallResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetFirewallResultOutput), nil
+			}
+			return output, nil
 		}).(GetFirewallResultOutput)
 }
 

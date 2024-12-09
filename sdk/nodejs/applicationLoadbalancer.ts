@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -39,7 +38,6 @@ import * as utilities from "./utilities";
  *     loggingFormat: "%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -106,9 +104,7 @@ export class ApplicationLoadbalancer extends pulumi.CustomResource {
      */
     public readonly loggingFormat!: pulumi.Output<string | undefined>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+     * [string] The name of the Application Load Balancer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -197,9 +193,7 @@ export interface ApplicationLoadbalancerState {
      */
     loggingFormat?: pulumi.Input<string>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+     * [string] The name of the Application Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**
@@ -241,9 +235,7 @@ export interface ApplicationLoadbalancerArgs {
      */
     loggingFormat?: pulumi.Input<string>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+     * [string] The name of the Application Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**

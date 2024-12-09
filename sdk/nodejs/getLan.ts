@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getLan(args: GetLanArgs, opts?: pulumi.InvokeOptions): Promise<GetLanResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getLan:getLan", {
         "datacenterId": args.datacenterId,
@@ -81,7 +80,12 @@ export interface GetLanResult {
  * ## Example Usage
  */
 export function getLanOutput(args: GetLanOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLanResult> {
-    return pulumi.output(args).apply((a: any) => getLan(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getLan:getLan", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

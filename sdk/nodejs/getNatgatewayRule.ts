@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getNatgatewayRule(args: GetNatgatewayRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetNatgatewayRuleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNatgatewayRule:getNatgatewayRule", {
         "datacenterId": args.datacenterId,
@@ -95,7 +94,13 @@ export interface GetNatgatewayRuleResult {
  * ## Example Usage
  */
 export function getNatgatewayRuleOutput(args: GetNatgatewayRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNatgatewayRuleResult> {
-    return pulumi.output(args).apply((a: any) => getNatgatewayRule(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNatgatewayRule:getNatgatewayRule", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "natgatewayId": args.natgatewayId,
+    }, opts);
 }
 
 /**

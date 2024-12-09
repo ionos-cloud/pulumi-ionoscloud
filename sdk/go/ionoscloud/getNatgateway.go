@@ -53,14 +53,20 @@ type LookupNatgatewayResult struct {
 
 func LookupNatgatewayOutput(ctx *pulumi.Context, args LookupNatgatewayOutputArgs, opts ...pulumi.InvokeOption) LookupNatgatewayResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNatgatewayResult, error) {
+		ApplyT(func(v interface{}) (LookupNatgatewayResultOutput, error) {
 			args := v.(LookupNatgatewayArgs)
-			r, err := LookupNatgateway(ctx, &args, opts...)
-			var s LookupNatgatewayResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupNatgatewayResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getNatgateway:getNatgateway", args, &rv, "", opts...)
+			if err != nil {
+				return LookupNatgatewayResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupNatgatewayResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupNatgatewayResultOutput), nil
+			}
+			return output, nil
 		}).(LookupNatgatewayResultOutput)
 }
 

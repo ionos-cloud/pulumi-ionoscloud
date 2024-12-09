@@ -41,14 +41,20 @@ type GetMongoTemplateResult struct {
 
 func GetMongoTemplateOutput(ctx *pulumi.Context, args GetMongoTemplateOutputArgs, opts ...pulumi.InvokeOption) GetMongoTemplateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMongoTemplateResult, error) {
+		ApplyT(func(v interface{}) (GetMongoTemplateResultOutput, error) {
 			args := v.(GetMongoTemplateArgs)
-			r, err := GetMongoTemplate(ctx, &args, opts...)
-			var s GetMongoTemplateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetMongoTemplateResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getMongoTemplate:getMongoTemplate", args, &rv, "", opts...)
+			if err != nil {
+				return GetMongoTemplateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetMongoTemplateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetMongoTemplateResultOutput), nil
+			}
+			return output, nil
 		}).(GetMongoTemplateResultOutput)
 }
 

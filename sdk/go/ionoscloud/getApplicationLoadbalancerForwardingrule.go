@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,10 +44,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,7 +72,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupApplicationLoadbalancerForwardingrule(ctx *pulumi.Context, args *LookupApplicationLoadbalancerForwardingruleArgs, opts ...pulumi.InvokeOption) (*LookupApplicationLoadbalancerForwardingruleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApplicationLoadbalancerForwardingruleResult
@@ -127,14 +123,20 @@ type LookupApplicationLoadbalancerForwardingruleResult struct {
 
 func LookupApplicationLoadbalancerForwardingruleOutput(ctx *pulumi.Context, args LookupApplicationLoadbalancerForwardingruleOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationLoadbalancerForwardingruleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerForwardingruleResult, error) {
+		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerForwardingruleResultOutput, error) {
 			args := v.(LookupApplicationLoadbalancerForwardingruleArgs)
-			r, err := LookupApplicationLoadbalancerForwardingrule(ctx, &args, opts...)
-			var s LookupApplicationLoadbalancerForwardingruleResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupApplicationLoadbalancerForwardingruleResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getApplicationLoadbalancerForwardingrule:getApplicationLoadbalancerForwardingrule", args, &rv, "", opts...)
+			if err != nil {
+				return LookupApplicationLoadbalancerForwardingruleResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupApplicationLoadbalancerForwardingruleResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupApplicationLoadbalancerForwardingruleResultOutput), nil
+			}
+			return output, nil
 		}).(LookupApplicationLoadbalancerForwardingruleResultOutput)
 }
 

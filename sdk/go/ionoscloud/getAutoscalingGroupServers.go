@@ -42,14 +42,20 @@ type GetAutoscalingGroupServersResult struct {
 
 func GetAutoscalingGroupServersOutput(ctx *pulumi.Context, args GetAutoscalingGroupServersOutputArgs, opts ...pulumi.InvokeOption) GetAutoscalingGroupServersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAutoscalingGroupServersResult, error) {
+		ApplyT(func(v interface{}) (GetAutoscalingGroupServersResultOutput, error) {
 			args := v.(GetAutoscalingGroupServersArgs)
-			r, err := GetAutoscalingGroupServers(ctx, &args, opts...)
-			var s GetAutoscalingGroupServersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAutoscalingGroupServersResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", args, &rv, "", opts...)
+			if err != nil {
+				return GetAutoscalingGroupServersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAutoscalingGroupServersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAutoscalingGroupServersResultOutput), nil
+			}
+			return output, nil
 		}).(GetAutoscalingGroupServersResultOutput)
 }
 

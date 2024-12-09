@@ -19,7 +19,6 @@ import (
 //
 // ### By Name
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,11 +42,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,7 +69,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupDataplatformCluster(ctx *pulumi.Context, args *LookupDataplatformClusterArgs, opts ...pulumi.InvokeOption) (*LookupDataplatformClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDataplatformClusterResult
@@ -143,14 +139,20 @@ type LookupDataplatformClusterResult struct {
 
 func LookupDataplatformClusterOutput(ctx *pulumi.Context, args LookupDataplatformClusterOutputArgs, opts ...pulumi.InvokeOption) LookupDataplatformClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDataplatformClusterResult, error) {
+		ApplyT(func(v interface{}) (LookupDataplatformClusterResultOutput, error) {
 			args := v.(LookupDataplatformClusterArgs)
-			r, err := LookupDataplatformCluster(ctx, &args, opts...)
-			var s LookupDataplatformClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupDataplatformClusterResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", args, &rv, "", opts...)
+			if err != nil {
+				return LookupDataplatformClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupDataplatformClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupDataplatformClusterResultOutput), nil
+			}
+			return output, nil
 		}).(LookupDataplatformClusterResultOutput)
 }
 

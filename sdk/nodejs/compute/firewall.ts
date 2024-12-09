@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -67,7 +66,6 @@ import * as utilities from "../utilities";
  *     type: "INGRESS",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -213,8 +211,6 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/firewall:Firewall" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Firewall.__pulumiType, name, resourceInputs, opts);
     }
 }

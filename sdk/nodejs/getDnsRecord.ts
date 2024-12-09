@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getDnsRecord(args: GetDnsRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsRecordResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDnsRecord:getDnsRecord", {
         "id": args.id,
@@ -94,7 +93,13 @@ export interface GetDnsRecordResult {
  * ## Example Usage
  */
 export function getDnsRecordOutput(args: GetDnsRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsRecordResult> {
-    return pulumi.output(args).apply((a: any) => getDnsRecord(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDnsRecord:getDnsRecord", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+        "zoneId": args.zoneId,
+    }, opts);
 }
 
 /**

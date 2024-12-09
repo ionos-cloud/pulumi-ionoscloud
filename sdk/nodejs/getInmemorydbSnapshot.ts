@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getInmemorydbSnapshot(args: GetInmemorydbSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInmemorydbSnapshotResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot", {
         "id": args.id,
@@ -32,7 +31,11 @@ export interface GetInmemorydbSnapshotResult {
     readonly metadatas: outputs.GetInmemorydbSnapshotMetadata[];
 }
 export function getInmemorydbSnapshotOutput(args: GetInmemorydbSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInmemorydbSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getInmemorydbSnapshot(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot", {
+        "id": args.id,
+        "location": args.location,
+    }, opts);
 }
 
 /**

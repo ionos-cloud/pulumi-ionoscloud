@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getVpnIpsecTunnel(args: GetVpnIpsecTunnelArgs, opts?: pulumi.InvokeOptions): Promise<GetVpnIpsecTunnelResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getVpnIpsecTunnel:getVpnIpsecTunnel", {
         "gatewayId": args.gatewayId,
@@ -72,7 +71,13 @@ export interface GetVpnIpsecTunnelResult {
  * ## Example Usage
  */
 export function getVpnIpsecTunnelOutput(args: GetVpnIpsecTunnelOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpnIpsecTunnelResult> {
-    return pulumi.output(args).apply((a: any) => getVpnIpsecTunnel(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getVpnIpsecTunnel:getVpnIpsecTunnel", {
+        "gatewayId": args.gatewayId,
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+    }, opts);
 }
 
 /**

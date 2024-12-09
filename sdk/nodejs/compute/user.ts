@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -55,7 +54,6 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -185,8 +183,6 @@ export class User extends pulumi.CustomResource {
             resourceInputs["secAuthActive"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/user:User" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(User.__pulumiType, name, resourceInputs, opts);

@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,10 +43,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +70,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupContainerRegistryToken(ctx *pulumi.Context, args *LookupContainerRegistryTokenArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistryTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerRegistryTokenResult
@@ -113,14 +109,20 @@ type LookupContainerRegistryTokenResult struct {
 
 func LookupContainerRegistryTokenOutput(ctx *pulumi.Context, args LookupContainerRegistryTokenOutputArgs, opts ...pulumi.InvokeOption) LookupContainerRegistryTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupContainerRegistryTokenResult, error) {
+		ApplyT(func(v interface{}) (LookupContainerRegistryTokenResultOutput, error) {
 			args := v.(LookupContainerRegistryTokenArgs)
-			r, err := LookupContainerRegistryToken(ctx, &args, opts...)
-			var s LookupContainerRegistryTokenResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupContainerRegistryTokenResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args, &rv, "", opts...)
+			if err != nil {
+				return LookupContainerRegistryTokenResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupContainerRegistryTokenResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupContainerRegistryTokenResultOutput), nil
+			}
+			return output, nil
 		}).(LookupContainerRegistryTokenResultOutput)
 }
 

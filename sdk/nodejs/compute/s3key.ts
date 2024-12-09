@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -27,7 +26,6 @@ import * as utilities from "../utilities";
  *     active: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -106,8 +104,6 @@ export class S3Key extends pulumi.CustomResource {
             resourceInputs["secretKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/s3Key:S3Key" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(S3Key.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,10 +42,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Location
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name & Location
 func GetIpblock(ctx *pulumi.Context, args *GetIpblockArgs, opts ...pulumi.InvokeOption) (*GetIpblockResult, error) {
@@ -115,14 +111,20 @@ type GetIpblockResult struct {
 
 func GetIpblockOutput(ctx *pulumi.Context, args GetIpblockOutputArgs, opts ...pulumi.InvokeOption) GetIpblockResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetIpblockResult, error) {
+		ApplyT(func(v interface{}) (GetIpblockResultOutput, error) {
 			args := v.(GetIpblockArgs)
-			r, err := GetIpblock(ctx, &args, opts...)
-			var s GetIpblockResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetIpblockResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getIpblock:getIpblock", args, &rv, "", opts...)
+			if err != nil {
+				return GetIpblockResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetIpblockResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetIpblockResultOutput), nil
+			}
+			return output, nil
 		}).(GetIpblockResultOutput)
 }
 

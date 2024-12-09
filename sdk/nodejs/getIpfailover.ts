@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  */
 export function getIpfailover(args: GetIpfailoverArgs, opts?: pulumi.InvokeOptions): Promise<GetIpfailoverResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getIpfailover:getIpfailover", {
         "datacenterId": args.datacenterId,
@@ -65,7 +64,12 @@ export interface GetIpfailoverResult {
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  */
 export function getIpfailoverOutput(args: GetIpfailoverOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpfailoverResult> {
-    return pulumi.output(args).apply((a: any) => getIpfailover(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getIpfailover:getIpfailover", {
+        "datacenterId": args.datacenterId,
+        "ip": args.ip,
+        "lanId": args.lanId,
+    }, opts);
 }
 
 /**

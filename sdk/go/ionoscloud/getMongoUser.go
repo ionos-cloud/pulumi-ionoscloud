@@ -41,14 +41,20 @@ type GetMongoUserResult struct {
 
 func GetMongoUserOutput(ctx *pulumi.Context, args GetMongoUserOutputArgs, opts ...pulumi.InvokeOption) GetMongoUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMongoUserResult, error) {
+		ApplyT(func(v interface{}) (GetMongoUserResultOutput, error) {
 			args := v.(GetMongoUserArgs)
-			r, err := GetMongoUser(ctx, &args, opts...)
-			var s GetMongoUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetMongoUserResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getMongoUser:getMongoUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetMongoUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetMongoUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetMongoUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetMongoUserResultOutput)
 }
 

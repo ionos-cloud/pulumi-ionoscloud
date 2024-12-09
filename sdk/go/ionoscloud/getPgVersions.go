@@ -36,14 +36,20 @@ type GetPgVersionsResult struct {
 
 func GetPgVersionsOutput(ctx *pulumi.Context, args GetPgVersionsOutputArgs, opts ...pulumi.InvokeOption) GetPgVersionsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPgVersionsResult, error) {
+		ApplyT(func(v interface{}) (GetPgVersionsResultOutput, error) {
 			args := v.(GetPgVersionsArgs)
-			r, err := GetPgVersions(ctx, &args, opts...)
-			var s GetPgVersionsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetPgVersionsResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getPgVersions:getPgVersions", args, &rv, "", opts...)
+			if err != nil {
+				return GetPgVersionsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetPgVersionsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetPgVersionsResultOutput), nil
+			}
+			return output, nil
 		}).(GetPgVersionsResultOutput)
 }
 

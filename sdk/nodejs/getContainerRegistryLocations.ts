@@ -9,17 +9,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.getContainerRegistryLocations({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainerRegistryLocations(opts?: pulumi.InvokeOptions): Promise<GetContainerRegistryLocationsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", {
     }, opts);
@@ -43,15 +40,15 @@ export interface GetContainerRegistryLocationsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.getContainerRegistryLocations({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getContainerRegistryLocationsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerRegistryLocationsResult> {
-    return pulumi.output(getContainerRegistryLocations(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", {
+    }, opts);
 }

@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  *
  * To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -37,7 +36,6 @@ import * as utilities from "./utilities";
  *     pcc: crossConnectTestResource.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -87,7 +85,7 @@ export class PrivateCrossconnect extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The name of the connectable datacenter
+     * [string] The name of the cross-connection.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -138,7 +136,7 @@ export interface PrivateCrossconnectState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The name of the connectable datacenter
+     * [string] The name of the cross-connection.
      */
     name?: pulumi.Input<string>;
     /**
@@ -161,7 +159,7 @@ export interface PrivateCrossconnectArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The name of the connectable datacenter
+     * [string] The name of the cross-connection.
      */
     name?: pulumi.Input<string>;
     /**

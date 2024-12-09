@@ -53,14 +53,20 @@ type LookupNfsClusterResult struct {
 
 func LookupNfsClusterOutput(ctx *pulumi.Context, args LookupNfsClusterOutputArgs, opts ...pulumi.InvokeOption) LookupNfsClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNfsClusterResult, error) {
+		ApplyT(func(v interface{}) (LookupNfsClusterResultOutput, error) {
 			args := v.(LookupNfsClusterArgs)
-			r, err := LookupNfsCluster(ctx, &args, opts...)
-			var s LookupNfsClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupNfsClusterResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getNfsCluster:getNfsCluster", args, &rv, "", opts...)
+			if err != nil {
+				return LookupNfsClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupNfsClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupNfsClusterResultOutput), nil
+			}
+			return output, nil
 		}).(LookupNfsClusterResultOutput)
 }
 

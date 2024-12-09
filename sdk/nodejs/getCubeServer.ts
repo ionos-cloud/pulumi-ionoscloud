@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getCubeServer(args: GetCubeServerArgs, opts?: pulumi.InvokeOptions): Promise<GetCubeServerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getCubeServer:getCubeServer", {
         "datacenterId": args.datacenterId,
@@ -104,7 +103,13 @@ export interface GetCubeServerResult {
  * ## Example Usage
  */
 export function getCubeServerOutput(args: GetCubeServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCubeServerResult> {
-    return pulumi.output(args).apply((a: any) => getCubeServer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getCubeServer:getCubeServer", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "templateUuid": args.templateUuid,
+    }, opts);
 }
 
 /**

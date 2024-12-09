@@ -71,14 +71,20 @@ type LookupCubeServerResult struct {
 
 func LookupCubeServerOutput(ctx *pulumi.Context, args LookupCubeServerOutputArgs, opts ...pulumi.InvokeOption) LookupCubeServerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCubeServerResult, error) {
+		ApplyT(func(v interface{}) (LookupCubeServerResultOutput, error) {
 			args := v.(LookupCubeServerArgs)
-			r, err := LookupCubeServer(ctx, &args, opts...)
-			var s LookupCubeServerResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupCubeServerResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getCubeServer:getCubeServer", args, &rv, "", opts...)
+			if err != nil {
+				return LookupCubeServerResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupCubeServerResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupCubeServerResultOutput), nil
+			}
+			return output, nil
 		}).(LookupCubeServerResultOutput)
 }
 

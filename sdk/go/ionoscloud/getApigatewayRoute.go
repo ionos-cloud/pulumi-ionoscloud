@@ -59,14 +59,20 @@ type LookupApigatewayRouteResult struct {
 
 func LookupApigatewayRouteOutput(ctx *pulumi.Context, args LookupApigatewayRouteOutputArgs, opts ...pulumi.InvokeOption) LookupApigatewayRouteResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApigatewayRouteResult, error) {
+		ApplyT(func(v interface{}) (LookupApigatewayRouteResultOutput, error) {
 			args := v.(LookupApigatewayRouteArgs)
-			r, err := LookupApigatewayRoute(ctx, &args, opts...)
-			var s LookupApigatewayRouteResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupApigatewayRouteResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", args, &rv, "", opts...)
+			if err != nil {
+				return LookupApigatewayRouteResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupApigatewayRouteResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupApigatewayRouteResultOutput), nil
+			}
+			return output, nil
 		}).(LookupApigatewayRouteResultOutput)
 }
 

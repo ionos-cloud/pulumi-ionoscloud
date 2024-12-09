@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name & Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -25,11 +24,9 @@ import * as utilities from "./utilities";
  *     name: "Datacenter Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDatacenter(args?: GetDatacenterArgs, opts?: pulumi.InvokeOptions): Promise<GetDatacenterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDatacenter:getDatacenter", {
         "id": args.id,
@@ -105,7 +102,6 @@ export interface GetDatacenterResult {
  * ## Example Usage
  *
  * ### By Name & Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -115,10 +111,15 @@ export interface GetDatacenterResult {
  *     name: "Datacenter Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDatacenterOutput(args?: GetDatacenterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacenterResult> {
-    return pulumi.output(args).apply((a: any) => getDatacenter(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDatacenter:getDatacenter", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+    }, opts);
 }
 
 /**

@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getVolume(args: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getVolume:getVolume", {
         "datacenterId": args.datacenterId,
@@ -132,7 +131,12 @@ export interface GetVolumeResult {
  * ## Example Usage
  */
 export function getVolumeOutput(args: GetVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVolumeResult> {
-    return pulumi.output(args).apply((a: any) => getVolume(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getVolume:getVolume", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

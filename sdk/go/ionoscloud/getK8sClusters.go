@@ -37,14 +37,20 @@ type GetK8sClustersResult struct {
 
 func GetK8sClustersOutput(ctx *pulumi.Context, args GetK8sClustersOutputArgs, opts ...pulumi.InvokeOption) GetK8sClustersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetK8sClustersResult, error) {
+		ApplyT(func(v interface{}) (GetK8sClustersResultOutput, error) {
 			args := v.(GetK8sClustersArgs)
-			r, err := GetK8sClusters(ctx, &args, opts...)
-			var s GetK8sClustersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetK8sClustersResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getK8sClusters:getK8sClusters", args, &rv, "", opts...)
+			if err != nil {
+				return GetK8sClustersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetK8sClustersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetK8sClustersResultOutput), nil
+			}
+			return output, nil
 		}).(GetK8sClustersResultOutput)
 }
 

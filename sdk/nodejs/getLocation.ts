@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -23,11 +22,9 @@ import * as utilities from "./utilities";
  *     name: "karlsruhe",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLocation(args?: GetLocationArgs, opts?: pulumi.InvokeOptions): Promise<GetLocationResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getLocation:getLocation", {
         "feature": args.feature,
@@ -75,7 +72,6 @@ export interface GetLocationResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -85,10 +81,14 @@ export interface GetLocationResult {
  *     name: "karlsruhe",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getLocationOutput(args?: GetLocationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLocationResult> {
-    return pulumi.output(args).apply((a: any) => getLocation(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getLocation:getLocation", {
+        "feature": args.feature,
+        "name": args.name,
+    }, opts);
 }
 
 /**

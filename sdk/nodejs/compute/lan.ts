@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -28,11 +27,9 @@ import * as utilities from "../utilities";
  *     pcc: examplePrivateCrossconnect.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### With IPv6 Enabled
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -48,7 +45,6 @@ import * as utilities from "../utilities";
  *     ipv6CidrBlock: "AUTO",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Important Notes
  *
@@ -148,8 +144,6 @@ export class Lan extends pulumi.CustomResource {
             resourceInputs["public"] = args ? args.public : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/lan:Lan" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Lan.__pulumiType, name, resourceInputs, opts);
     }
 }

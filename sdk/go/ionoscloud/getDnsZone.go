@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### By name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupDnsZone(ctx, &ionoscloud.LookupDnsZoneArgs{
+//			_, err := ionoscloud.GetDnsZone(ctx, &ionoscloud.GetDnsZoneArgs{
 //				Name: pulumi.StringRef("example.com"),
 //			}, nil)
 //			if err != nil {
@@ -44,10 +43,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By name with partial match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,7 +57,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupDnsZone(ctx, &ionoscloud.LookupDnsZoneArgs{
+//			_, err := ionoscloud.GetDnsZone(ctx, &ionoscloud.GetDnsZoneArgs{
 //				Name:         pulumi.StringRef("example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -72,10 +69,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
-func LookupDnsZone(ctx *pulumi.Context, args *LookupDnsZoneArgs, opts ...pulumi.InvokeOption) (*LookupDnsZoneResult, error) {
+func GetDnsZone(ctx *pulumi.Context, args *GetDnsZoneArgs, opts ...pulumi.InvokeOption) (*GetDnsZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDnsZoneResult
+	var rv GetDnsZoneResult
 	err := ctx.Invoke("ionoscloud:index/getDnsZone:getDnsZone", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -84,7 +80,7 @@ func LookupDnsZone(ctx *pulumi.Context, args *LookupDnsZoneArgs, opts ...pulumi.
 }
 
 // A collection of arguments for invoking getDnsZone.
-type LookupDnsZoneArgs struct {
+type GetDnsZoneArgs struct {
 	// [string] The ID of the DNS Zone you want to search for.
 	Id *string `pulumi:"id"`
 	// [string] The name of the DNS Zone you want to search for.
@@ -96,7 +92,7 @@ type LookupDnsZoneArgs struct {
 }
 
 // A collection of values returned by getDnsZone.
-type LookupDnsZoneResult struct {
+type GetDnsZoneResult struct {
 	// The description of the DNS Zone.
 	Description string `pulumi:"description"`
 	// Indicates if the DNS Zone is activated or not.
@@ -110,21 +106,27 @@ type LookupDnsZoneResult struct {
 	PartialMatch *bool    `pulumi:"partialMatch"`
 }
 
-func LookupDnsZoneOutput(ctx *pulumi.Context, args LookupDnsZoneOutputArgs, opts ...pulumi.InvokeOption) LookupDnsZoneResultOutput {
+func GetDnsZoneOutput(ctx *pulumi.Context, args GetDnsZoneOutputArgs, opts ...pulumi.InvokeOption) GetDnsZoneResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDnsZoneResult, error) {
-			args := v.(LookupDnsZoneArgs)
-			r, err := LookupDnsZone(ctx, &args, opts...)
-			var s LookupDnsZoneResult
-			if r != nil {
-				s = *r
+		ApplyT(func(v interface{}) (GetDnsZoneResultOutput, error) {
+			args := v.(GetDnsZoneArgs)
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDnsZoneResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDnsZone:getDnsZone", args, &rv, "", opts...)
+			if err != nil {
+				return GetDnsZoneResultOutput{}, err
 			}
-			return s, err
-		}).(LookupDnsZoneResultOutput)
+
+			output := pulumi.ToOutput(rv).(GetDnsZoneResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDnsZoneResultOutput), nil
+			}
+			return output, nil
+		}).(GetDnsZoneResultOutput)
 }
 
 // A collection of arguments for invoking getDnsZone.
-type LookupDnsZoneOutputArgs struct {
+type GetDnsZoneOutputArgs struct {
 	// [string] The ID of the DNS Zone you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The name of the DNS Zone you want to search for.
@@ -135,54 +137,54 @@ type LookupDnsZoneOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupDnsZoneOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDnsZoneArgs)(nil)).Elem()
+func (GetDnsZoneOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZoneArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getDnsZone.
-type LookupDnsZoneResultOutput struct{ *pulumi.OutputState }
+type GetDnsZoneResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDnsZoneResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDnsZoneResult)(nil)).Elem()
+func (GetDnsZoneResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDnsZoneResult)(nil)).Elem()
 }
 
-func (o LookupDnsZoneResultOutput) ToLookupDnsZoneResultOutput() LookupDnsZoneResultOutput {
+func (o GetDnsZoneResultOutput) ToGetDnsZoneResultOutput() GetDnsZoneResultOutput {
 	return o
 }
 
-func (o LookupDnsZoneResultOutput) ToLookupDnsZoneResultOutputWithContext(ctx context.Context) LookupDnsZoneResultOutput {
+func (o GetDnsZoneResultOutput) ToGetDnsZoneResultOutputWithContext(ctx context.Context) GetDnsZoneResultOutput {
 	return o
 }
 
 // The description of the DNS Zone.
-func (o LookupDnsZoneResultOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) string { return v.Description }).(pulumi.StringOutput)
+func (o GetDnsZoneResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Indicates if the DNS Zone is activated or not.
-func (o LookupDnsZoneResultOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+func (o GetDnsZoneResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
 // The UUID of the DNS Zone.
-func (o LookupDnsZoneResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetDnsZoneResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The name of the DNS Zone.
-func (o LookupDnsZoneResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetDnsZoneResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // A list of available name servers.
-func (o LookupDnsZoneResultOutput) Nameservers() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) []string { return v.Nameservers }).(pulumi.StringArrayOutput)
+func (o GetDnsZoneResultOutput) Nameservers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) []string { return v.Nameservers }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupDnsZoneResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupDnsZoneResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetDnsZoneResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDnsZoneResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDnsZoneResultOutput{})
+	pulumi.RegisterOutputType(GetDnsZoneResultOutput{})
 }

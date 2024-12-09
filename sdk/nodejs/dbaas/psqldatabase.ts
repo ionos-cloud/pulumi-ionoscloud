@@ -71,8 +71,6 @@ export class PSQLDatabase extends pulumi.CustomResource {
             resourceInputs["owner"] = args ? args.owner : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/pgDatabase:PgDatabase" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(PSQLDatabase.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getKafkaCluster(args: GetKafkaClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKafkaClusterResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getKafkaCluster:getKafkaCluster", {
         "id": args.id,
@@ -84,7 +83,13 @@ export interface GetKafkaClusterResult {
  * ## Example Usage
  */
 export function getKafkaClusterOutput(args: GetKafkaClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKafkaClusterResult> {
-    return pulumi.output(args).apply((a: any) => getKafkaCluster(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getKafkaCluster:getKafkaCluster", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

@@ -36,14 +36,20 @@ type GetInmemorydbSnapshotResult struct {
 
 func GetInmemorydbSnapshotOutput(ctx *pulumi.Context, args GetInmemorydbSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetInmemorydbSnapshotResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetInmemorydbSnapshotResult, error) {
+		ApplyT(func(v interface{}) (GetInmemorydbSnapshotResultOutput, error) {
 			args := v.(GetInmemorydbSnapshotArgs)
-			r, err := GetInmemorydbSnapshot(ctx, &args, opts...)
-			var s GetInmemorydbSnapshotResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetInmemorydbSnapshotResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot", args, &rv, "", opts...)
+			if err != nil {
+				return GetInmemorydbSnapshotResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetInmemorydbSnapshotResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetInmemorydbSnapshotResultOutput), nil
+			}
+			return output, nil
 		}).(GetInmemorydbSnapshotResultOutput)
 }
 

@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,10 +23,8 @@ import * as utilities from "./utilities";
  *     name: "Target Group Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -37,11 +34,9 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTargetGroup(args?: GetTargetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetTargetGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getTargetGroup:getTargetGroup", {
         "id": args.id,
@@ -117,7 +112,6 @@ export interface GetTargetGroupResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -126,10 +120,8 @@ export interface GetTargetGroupResult {
  *     name: "Target Group Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -139,10 +131,15 @@ export interface GetTargetGroupResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTargetGroupOutput(args?: GetTargetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTargetGroupResult> {
-    return pulumi.output(args).apply((a: any) => getTargetGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getTargetGroup:getTargetGroup", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

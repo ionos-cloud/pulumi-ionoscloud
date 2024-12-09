@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Usage example
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -64,7 +63,6 @@ import * as utilities from "./utilities";
  *     peerNetworkCidrs: ["1.2.3.4/32"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

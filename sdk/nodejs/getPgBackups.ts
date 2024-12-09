@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getPgBackups(args: GetPgBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetPgBackupsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPgBackups:getPgBackups", {
         "clusterId": args.clusterId,
@@ -33,7 +32,10 @@ export interface GetPgBackupsResult {
     readonly id: string;
 }
 export function getPgBackupsOutput(args: GetPgBackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPgBackupsResult> {
-    return pulumi.output(args).apply((a: any) => getPgBackups(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPgBackups:getPgBackups", {
+        "clusterId": args.clusterId,
+    }, opts);
 }
 
 /**

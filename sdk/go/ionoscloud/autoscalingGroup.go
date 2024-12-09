@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -150,7 +149,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type AutoscalingGroup struct {
 	pulumi.CustomResourceState
 
@@ -162,7 +160,7 @@ type AutoscalingGroup struct {
 	MaxReplicaCount pulumi.IntOutput `pulumi:"maxReplicaCount"`
 	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
 	MinReplicaCount pulumi.IntOutput `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policy AutoscalingGroupPolicyOutput `pulumi:"policy"`
@@ -223,7 +221,7 @@ type autoscalingGroupState struct {
 	MaxReplicaCount *int `pulumi:"maxReplicaCount"`
 	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
 	MinReplicaCount *int `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
 	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policy *AutoscalingGroupPolicy `pulumi:"policy"`
@@ -240,7 +238,7 @@ type AutoscalingGroupState struct {
 	MaxReplicaCount pulumi.IntPtrInput
 	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
 	MinReplicaCount pulumi.IntPtrInput
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput
 	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policy AutoscalingGroupPolicyPtrInput
@@ -259,7 +257,7 @@ type autoscalingGroupArgs struct {
 	MaxReplicaCount int `pulumi:"maxReplicaCount"`
 	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
 	MinReplicaCount int `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
 	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policy AutoscalingGroupPolicy `pulumi:"policy"`
@@ -275,7 +273,7 @@ type AutoscalingGroupArgs struct {
 	MaxReplicaCount pulumi.IntInput
 	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
 	MinReplicaCount pulumi.IntInput
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput
 	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 	Policy AutoscalingGroupPolicyInput
@@ -390,7 +388,7 @@ func (o AutoscalingGroupOutput) MinReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.IntOutput { return v.MinReplicaCount }).(pulumi.IntOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o AutoscalingGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

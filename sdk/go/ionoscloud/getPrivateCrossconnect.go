@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupPrivateCrossconnect(ctx *pulumi.Context, args *LookupPrivateCrossconnectArgs, opts ...pulumi.InvokeOption) (*LookupPrivateCrossconnectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateCrossconnectResult
@@ -81,14 +79,20 @@ type LookupPrivateCrossconnectResult struct {
 
 func LookupPrivateCrossconnectOutput(ctx *pulumi.Context, args LookupPrivateCrossconnectOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateCrossconnectResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPrivateCrossconnectResult, error) {
+		ApplyT(func(v interface{}) (LookupPrivateCrossconnectResultOutput, error) {
 			args := v.(LookupPrivateCrossconnectArgs)
-			r, err := LookupPrivateCrossconnect(ctx, &args, opts...)
-			var s LookupPrivateCrossconnectResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupPrivateCrossconnectResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", args, &rv, "", opts...)
+			if err != nil {
+				return LookupPrivateCrossconnectResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupPrivateCrossconnectResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupPrivateCrossconnectResultOutput), nil
+			}
+			return output, nil
 		}).(LookupPrivateCrossconnectResultOutput)
 }
 

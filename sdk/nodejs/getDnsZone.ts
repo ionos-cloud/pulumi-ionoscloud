@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -23,10 +22,8 @@ import * as utilities from "./utilities";
  *     name: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By name with partial match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -36,11 +33,9 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDnsZone(args?: GetDnsZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsZoneResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDnsZone:getDnsZone", {
         "id": args.id,
@@ -105,7 +100,6 @@ export interface GetDnsZoneResult {
  * ## Example Usage
  *
  * ### By name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -114,10 +108,8 @@ export interface GetDnsZoneResult {
  *     name: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By name with partial match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -127,10 +119,15 @@ export interface GetDnsZoneResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDnsZoneOutput(args?: GetDnsZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsZoneResult> {
-    return pulumi.output(args).apply((a: any) => getDnsZone(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDnsZone:getDnsZone", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

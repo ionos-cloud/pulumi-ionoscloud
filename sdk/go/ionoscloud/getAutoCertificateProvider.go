@@ -40,14 +40,20 @@ type LookupAutoCertificateProviderResult struct {
 
 func LookupAutoCertificateProviderOutput(ctx *pulumi.Context, args LookupAutoCertificateProviderOutputArgs, opts ...pulumi.InvokeOption) LookupAutoCertificateProviderResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAutoCertificateProviderResult, error) {
+		ApplyT(func(v interface{}) (LookupAutoCertificateProviderResultOutput, error) {
 			args := v.(LookupAutoCertificateProviderArgs)
-			r, err := LookupAutoCertificateProvider(ctx, &args, opts...)
-			var s LookupAutoCertificateProviderResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAutoCertificateProviderResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getAutoCertificateProvider:getAutoCertificateProvider", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAutoCertificateProviderResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAutoCertificateProviderResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAutoCertificateProviderResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAutoCertificateProviderResultOutput)
 }
 

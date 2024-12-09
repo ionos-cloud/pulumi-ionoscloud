@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -22,12 +21,10 @@ import * as utilities from "./utilities";
  *     type: "CDROM",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
  *
  * ### Additional Examples
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -37,13 +34,11 @@ import * as utilities from "./utilities";
  *     location: "de/txl",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
  *
  * ### Additional Examples
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -55,12 +50,10 @@ import * as utilities from "./utilities";
  *     type: "HDD",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
  */
 export function getImage(args?: GetImageArgs, opts?: pulumi.InvokeOptions): Promise<GetImageResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getImage:getImage", {
         "cloudInit": args.cloudInit,
@@ -203,7 +196,6 @@ export interface GetImageResult {
  * When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -215,12 +207,10 @@ export interface GetImageResult {
  *     type: "CDROM",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
  *
  * ### Additional Examples
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -230,13 +220,11 @@ export interface GetImageResult {
  *     location: "de/txl",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
  *
  * ### Additional Examples
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -248,11 +236,20 @@ export interface GetImageResult {
  *     type: "HDD",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
  */
 export function getImageOutput(args?: GetImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetImageResult> {
-    return pulumi.output(args).apply((a: any) => getImage(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getImage:getImage", {
+        "cloudInit": args.cloudInit,
+        "description": args.description,
+        "imageAlias": args.imageAlias,
+        "location": args.location,
+        "name": args.name,
+        "type": args.type,
+        "version": args.version,
+    }, opts);
 }
 
 /**

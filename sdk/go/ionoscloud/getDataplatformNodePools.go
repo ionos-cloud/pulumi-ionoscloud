@@ -48,14 +48,20 @@ type GetDataplatformNodePoolsResult struct {
 
 func GetDataplatformNodePoolsOutput(ctx *pulumi.Context, args GetDataplatformNodePoolsOutputArgs, opts ...pulumi.InvokeOption) GetDataplatformNodePoolsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDataplatformNodePoolsResult, error) {
+		ApplyT(func(v interface{}) (GetDataplatformNodePoolsResultOutput, error) {
 			args := v.(GetDataplatformNodePoolsArgs)
-			r, err := GetDataplatformNodePools(ctx, &args, opts...)
-			var s GetDataplatformNodePoolsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDataplatformNodePoolsResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args, &rv, "", opts...)
+			if err != nil {
+				return GetDataplatformNodePoolsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDataplatformNodePoolsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDataplatformNodePoolsResultOutput), nil
+			}
+			return output, nil
 		}).(GetDataplatformNodePoolsResultOutput)
 }
 

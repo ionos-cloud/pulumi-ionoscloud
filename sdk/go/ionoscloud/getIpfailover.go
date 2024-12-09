@@ -49,14 +49,20 @@ type LookupIpfailoverResult struct {
 
 func LookupIpfailoverOutput(ctx *pulumi.Context, args LookupIpfailoverOutputArgs, opts ...pulumi.InvokeOption) LookupIpfailoverResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIpfailoverResult, error) {
+		ApplyT(func(v interface{}) (LookupIpfailoverResultOutput, error) {
 			args := v.(LookupIpfailoverArgs)
-			r, err := LookupIpfailover(ctx, &args, opts...)
-			var s LookupIpfailoverResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupIpfailoverResult
+			secret, err := ctx.InvokePackageRaw("ionoscloud:index/getIpfailover:getIpfailover", args, &rv, "", opts...)
+			if err != nil {
+				return LookupIpfailoverResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupIpfailoverResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupIpfailoverResultOutput), nil
+			}
+			return output, nil
 		}).(LookupIpfailoverResultOutput)
 }
 

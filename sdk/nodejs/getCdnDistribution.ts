@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Domain
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,10 +23,8 @@ import * as utilities from "./utilities";
  *     domain: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Domain with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -37,11 +34,9 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCdnDistribution(args?: GetCdnDistributionArgs, opts?: pulumi.InvokeOptions): Promise<GetCdnDistributionResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getCdnDistribution:getCdnDistribution", {
         "domain": args.domain,
@@ -110,7 +105,6 @@ export interface GetCdnDistributionResult {
  * ## Example Usage
  *
  * ### By Domain
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -119,10 +113,8 @@ export interface GetCdnDistributionResult {
  *     domain: "example.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Domain with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -132,10 +124,15 @@ export interface GetCdnDistributionResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getCdnDistributionOutput(args?: GetCdnDistributionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCdnDistributionResult> {
-    return pulumi.output(args).apply((a: any) => getCdnDistribution(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getCdnDistribution:getCdnDistribution", {
+        "domain": args.domain,
+        "id": args.id,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

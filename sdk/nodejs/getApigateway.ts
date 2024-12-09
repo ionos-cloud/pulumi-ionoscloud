@@ -19,7 +19,6 @@ import * as utilities from "./utilities";
  * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
  * this data source is called.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -28,11 +27,9 @@ import * as utilities from "./utilities";
  *     name: "example-apigateway",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getApigateway(args?: GetApigatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetApigatewayResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getApigateway:getApigateway", {
         "id": args.id,
@@ -99,7 +96,6 @@ export interface GetApigatewayResult {
  * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
  * this data source is called.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -108,10 +104,15 @@ export interface GetApigatewayResult {
  *     name: "example-apigateway",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getApigatewayOutput(args?: GetApigatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApigatewayResult> {
-    return pulumi.output(args).apply((a: any) => getApigateway(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getApigateway:getApigateway", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

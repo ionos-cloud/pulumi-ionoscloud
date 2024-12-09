@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,10 +23,8 @@ import * as utilities from "./utilities";
  *     name: "Network Load Balancer Name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkloadbalancer(args: GetNetworkloadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkloadbalancerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", {
         "datacenterId": args.datacenterId,
@@ -103,7 +100,6 @@ export interface GetNetworkloadbalancerResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -113,10 +109,14 @@ export interface GetNetworkloadbalancerResult {
  *     name: "Network Load Balancer Name",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkloadbalancerOutput(args: GetNetworkloadbalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkloadbalancerResult> {
-    return pulumi.output(args).apply((a: any) => getNetworkloadbalancer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**
