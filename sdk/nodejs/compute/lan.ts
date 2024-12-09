@@ -148,8 +148,6 @@ export class Lan extends pulumi.CustomResource {
             resourceInputs["public"] = args ? args.public : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/lan:Lan" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Lan.__pulumiType, name, resourceInputs, opts);
     }
 }

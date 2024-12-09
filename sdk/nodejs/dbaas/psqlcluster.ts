@@ -179,8 +179,6 @@ export class PSQLCluster extends pulumi.CustomResource {
             resourceInputs["dnsName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/pgCluster:PgCluster" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(PSQLCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

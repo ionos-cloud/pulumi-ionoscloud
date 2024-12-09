@@ -74,8 +74,6 @@ export class PSQLUser extends pulumi.CustomResource {
             resourceInputs["isSystemUser"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/pgUser:PgUser" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(PSQLUser.__pulumiType, name, resourceInputs, opts);

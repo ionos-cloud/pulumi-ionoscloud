@@ -40,11 +40,6 @@ export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
 export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
 utilities.lazyLoad(exports, ["AutoscalingGroup"], () => require("./autoscalingGroup"));
 
-export { BackupUnitArgs, BackupUnitState } from "./backupUnit";
-export type BackupUnit = import("./backupUnit").BackupUnit;
-export const BackupUnit: typeof import("./backupUnit").BackupUnit = null as any;
-utilities.lazyLoad(exports, ["BackupUnit"], () => require("./backupUnit"));
-
 export { CdnDistributionArgs, CdnDistributionState } from "./cdnDistribution";
 export type CdnDistribution = import("./cdnDistribution").CdnDistribution;
 export const CdnDistribution: typeof import("./cdnDistribution").CdnDistribution = null as any;
@@ -70,11 +65,6 @@ export type CubeServer = import("./cubeServer").CubeServer;
 export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
 utilities.lazyLoad(exports, ["CubeServer"], () => require("./cubeServer"));
 
-export { DatacenterArgs, DatacenterState } from "./datacenter";
-export type Datacenter = import("./datacenter").Datacenter;
-export const Datacenter: typeof import("./datacenter").Datacenter = null as any;
-utilities.lazyLoad(exports, ["Datacenter"], () => require("./datacenter"));
-
 export { DataplatformClusterArgs, DataplatformClusterState } from "./dataplatformCluster";
 export type DataplatformCluster = import("./dataplatformCluster").DataplatformCluster;
 export const DataplatformCluster: typeof import("./dataplatformCluster").DataplatformCluster = null as any;
@@ -94,11 +84,6 @@ export { DnsZoneArgs, DnsZoneState } from "./dnsZone";
 export type DnsZone = import("./dnsZone").DnsZone;
 export const DnsZone: typeof import("./dnsZone").DnsZone = null as any;
 utilities.lazyLoad(exports, ["DnsZone"], () => require("./dnsZone"));
-
-export { FirewallArgs, FirewallState } from "./firewall";
-export type Firewall = import("./firewall").Firewall;
-export const Firewall: typeof import("./firewall").Firewall = null as any;
-utilities.lazyLoad(exports, ["Firewall"], () => require("./firewall"));
 
 export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
 export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
@@ -460,35 +445,10 @@ export const getVpnWireguardPeer: typeof import("./getVpnWireguardPeer").getVpnW
 export const getVpnWireguardPeerOutput: typeof import("./getVpnWireguardPeer").getVpnWireguardPeerOutput = null as any;
 utilities.lazyLoad(exports, ["getVpnWireguardPeer","getVpnWireguardPeerOutput"], () => require("./getVpnWireguardPeer"));
 
-export { GroupArgs, GroupState } from "./group";
-export type Group = import("./group").Group;
-export const Group: typeof import("./group").Group = null as any;
-utilities.lazyLoad(exports, ["Group"], () => require("./group"));
-
-export { InmemorydbReplicasetArgs, InmemorydbReplicasetState } from "./inmemorydbReplicaset";
-export type InmemorydbReplicaset = import("./inmemorydbReplicaset").InmemorydbReplicaset;
-export const InmemorydbReplicaset: typeof import("./inmemorydbReplicaset").InmemorydbReplicaset = null as any;
-utilities.lazyLoad(exports, ["InmemorydbReplicaset"], () => require("./inmemorydbReplicaset"));
-
-export { IpblockArgs, IpblockState } from "./ipblock";
-export type Ipblock = import("./ipblock").Ipblock;
-export const Ipblock: typeof import("./ipblock").Ipblock = null as any;
-utilities.lazyLoad(exports, ["Ipblock"], () => require("./ipblock"));
-
 export { IpfailoverArgs, IpfailoverState } from "./ipfailover";
 export type Ipfailover = import("./ipfailover").Ipfailover;
 export const Ipfailover: typeof import("./ipfailover").Ipfailover = null as any;
 utilities.lazyLoad(exports, ["Ipfailover"], () => require("./ipfailover"));
-
-export { K8sClusterArgs, K8sClusterState } from "./k8sCluster";
-export type K8sCluster = import("./k8sCluster").K8sCluster;
-export const K8sCluster: typeof import("./k8sCluster").K8sCluster = null as any;
-utilities.lazyLoad(exports, ["K8sCluster"], () => require("./k8sCluster"));
-
-export { K8sNodePoolArgs, K8sNodePoolState } from "./k8sNodePool";
-export type K8sNodePool = import("./k8sNodePool").K8sNodePool;
-export const K8sNodePool: typeof import("./k8sNodePool").K8sNodePool = null as any;
-utilities.lazyLoad(exports, ["K8sNodePool"], () => require("./k8sNodePool"));
 
 export { KafkaClusterArgs, KafkaClusterState } from "./kafkaCluster";
 export type KafkaCluster = import("./kafkaCluster").KafkaCluster;
@@ -500,11 +460,6 @@ export type KafkaClusterTopic = import("./kafkaClusterTopic").KafkaClusterTopic;
 export const KafkaClusterTopic: typeof import("./kafkaClusterTopic").KafkaClusterTopic = null as any;
 utilities.lazyLoad(exports, ["KafkaClusterTopic"], () => require("./kafkaClusterTopic"));
 
-export { LanArgs, LanState } from "./lan";
-export type Lan = import("./lan").Lan;
-export const Lan: typeof import("./lan").Lan = null as any;
-utilities.lazyLoad(exports, ["Lan"], () => require("./lan"));
-
 export { LoadbalancerArgs, LoadbalancerState } from "./loadbalancer";
 export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
@@ -514,21 +469,6 @@ export { LoggingPipelineArgs, LoggingPipelineState } from "./loggingPipeline";
 export type LoggingPipeline = import("./loggingPipeline").LoggingPipeline;
 export const LoggingPipeline: typeof import("./loggingPipeline").LoggingPipeline = null as any;
 utilities.lazyLoad(exports, ["LoggingPipeline"], () => require("./loggingPipeline"));
-
-export { MariadbClusterArgs, MariadbClusterState } from "./mariadbCluster";
-export type MariadbCluster = import("./mariadbCluster").MariadbCluster;
-export const MariadbCluster: typeof import("./mariadbCluster").MariadbCluster = null as any;
-utilities.lazyLoad(exports, ["MariadbCluster"], () => require("./mariadbCluster"));
-
-export { MongoClusterArgs, MongoClusterState } from "./mongoCluster";
-export type MongoCluster = import("./mongoCluster").MongoCluster;
-export const MongoCluster: typeof import("./mongoCluster").MongoCluster = null as any;
-utilities.lazyLoad(exports, ["MongoCluster"], () => require("./mongoCluster"));
-
-export { MongoUserArgs, MongoUserState } from "./mongoUser";
-export type MongoUser = import("./mongoUser").MongoUser;
-export const MongoUser: typeof import("./mongoUser").MongoUser = null as any;
-utilities.lazyLoad(exports, ["MongoUser"], () => require("./mongoUser"));
 
 export { NatgatewayArgs, NatgatewayState } from "./natgateway";
 export type Natgateway = import("./natgateway").Natgateway;
@@ -560,26 +500,6 @@ export type NfsShare = import("./nfsShare").NfsShare;
 export const NfsShare: typeof import("./nfsShare").NfsShare = null as any;
 utilities.lazyLoad(exports, ["NfsShare"], () => require("./nfsShare"));
 
-export { NicArgs, NicState } from "./nic";
-export type Nic = import("./nic").Nic;
-export const Nic: typeof import("./nic").Nic = null as any;
-utilities.lazyLoad(exports, ["Nic"], () => require("./nic"));
-
-export { PgClusterArgs, PgClusterState } from "./pgCluster";
-export type PgCluster = import("./pgCluster").PgCluster;
-export const PgCluster: typeof import("./pgCluster").PgCluster = null as any;
-utilities.lazyLoad(exports, ["PgCluster"], () => require("./pgCluster"));
-
-export { PgDatabaseArgs, PgDatabaseState } from "./pgDatabase";
-export type PgDatabase = import("./pgDatabase").PgDatabase;
-export const PgDatabase: typeof import("./pgDatabase").PgDatabase = null as any;
-utilities.lazyLoad(exports, ["PgDatabase"], () => require("./pgDatabase"));
-
-export { PgUserArgs, PgUserState } from "./pgUser";
-export type PgUser = import("./pgUser").PgUser;
-export const PgUser: typeof import("./pgUser").PgUser = null as any;
-utilities.lazyLoad(exports, ["PgUser"], () => require("./pgUser"));
-
 export { PrivateCrossconnectArgs, PrivateCrossconnectState } from "./privateCrossconnect";
 export type PrivateCrossconnect = import("./privateCrossconnect").PrivateCrossconnect;
 export const PrivateCrossconnect: typeof import("./privateCrossconnect").PrivateCrossconnect = null as any;
@@ -589,16 +509,6 @@ export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-
-export { S3KeyArgs, S3KeyState } from "./s3key";
-export type S3Key = import("./s3key").S3Key;
-export const S3Key: typeof import("./s3key").S3Key = null as any;
-utilities.lazyLoad(exports, ["S3Key"], () => require("./s3key"));
-
-export { ServerArgs, ServerState } from "./server";
-export type Server = import("./server").Server;
-export const Server: typeof import("./server").Server = null as any;
-utilities.lazyLoad(exports, ["Server"], () => require("./server"));
 
 export { ServerBootDeviceSelectionArgs, ServerBootDeviceSelectionState } from "./serverBootDeviceSelection";
 export type ServerBootDeviceSelection = import("./serverBootDeviceSelection").ServerBootDeviceSelection;
@@ -620,20 +530,10 @@ export type TargetGroup = import("./targetGroup").TargetGroup;
 export const TargetGroup: typeof import("./targetGroup").TargetGroup = null as any;
 utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
 
-export { UserArgs, UserState } from "./user";
-export type User = import("./user").User;
-export const User: typeof import("./user").User = null as any;
-utilities.lazyLoad(exports, ["User"], () => require("./user"));
-
 export { VcpuServerArgs, VcpuServerState } from "./vcpuServer";
 export type VcpuServer = import("./vcpuServer").VcpuServer;
 export const VcpuServer: typeof import("./vcpuServer").VcpuServer = null as any;
 utilities.lazyLoad(exports, ["VcpuServer"], () => require("./vcpuServer"));
-
-export { VolumeArgs, VolumeState } from "./volume";
-export type Volume = import("./volume").Volume;
-export const Volume: typeof import("./volume").Volume = null as any;
-utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
 
 export { VpnIpsecGatewayArgs, VpnIpsecGatewayState } from "./vpnIpsecGateway";
 export type VpnIpsecGateway = import("./vpnIpsecGateway").VpnIpsecGateway;
@@ -660,12 +560,14 @@ utilities.lazyLoad(exports, ["VpnWireguardPeer"], () => require("./vpnWireguardP
 import * as compute from "./compute";
 import * as config from "./config";
 import * as dbaas from "./dbaas";
+import * as k8s from "./k8s";
 import * as types from "./types";
 
 export {
     compute,
     config,
     dbaas,
+    k8s,
     types,
 };
 
@@ -687,8 +589,6 @@ const _module = {
                 return new AutoCertificateProvider(name, <any>undefined, { urn })
             case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
                 return new AutoscalingGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/backupUnit:BackupUnit":
-                return new BackupUnit(name, <any>undefined, { urn })
             case "ionoscloud:index/cdnDistribution:CdnDistribution":
                 return new CdnDistribution(name, <any>undefined, { urn })
             case "ionoscloud:index/certificate:Certificate":
@@ -699,8 +599,6 @@ const _module = {
                 return new ContainerRegistryToken(name, <any>undefined, { urn })
             case "ionoscloud:index/cubeServer:CubeServer":
                 return new CubeServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/datacenter:Datacenter":
-                return new Datacenter(name, <any>undefined, { urn })
             case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
                 return new DataplatformCluster(name, <any>undefined, { urn })
             case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
@@ -709,36 +607,16 @@ const _module = {
                 return new DnsRecord(name, <any>undefined, { urn })
             case "ionoscloud:index/dnsZone:DnsZone":
                 return new DnsZone(name, <any>undefined, { urn })
-            case "ionoscloud:index/firewall:Firewall":
-                return new Firewall(name, <any>undefined, { urn })
-            case "ionoscloud:index/group:Group":
-                return new Group(name, <any>undefined, { urn })
-            case "ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset":
-                return new InmemorydbReplicaset(name, <any>undefined, { urn })
-            case "ionoscloud:index/ipblock:Ipblock":
-                return new Ipblock(name, <any>undefined, { urn })
             case "ionoscloud:index/ipfailover:Ipfailover":
                 return new Ipfailover(name, <any>undefined, { urn })
-            case "ionoscloud:index/k8sCluster:K8sCluster":
-                return new K8sCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/k8sNodePool:K8sNodePool":
-                return new K8sNodePool(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaCluster:KafkaCluster":
                 return new KafkaCluster(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
                 return new KafkaClusterTopic(name, <any>undefined, { urn })
-            case "ionoscloud:index/lan:Lan":
-                return new Lan(name, <any>undefined, { urn })
             case "ionoscloud:index/loadbalancer:Loadbalancer":
                 return new Loadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/loggingPipeline:LoggingPipeline":
                 return new LoggingPipeline(name, <any>undefined, { urn })
-            case "ionoscloud:index/mariadbCluster:MariadbCluster":
-                return new MariadbCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/mongoCluster:MongoCluster":
-                return new MongoCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/mongoUser:MongoUser":
-                return new MongoUser(name, <any>undefined, { urn })
             case "ionoscloud:index/natgateway:Natgateway":
                 return new Natgateway(name, <any>undefined, { urn })
             case "ionoscloud:index/natgatewayRule:NatgatewayRule":
@@ -751,20 +629,8 @@ const _module = {
                 return new NfsCluster(name, <any>undefined, { urn })
             case "ionoscloud:index/nfsShare:NfsShare":
                 return new NfsShare(name, <any>undefined, { urn })
-            case "ionoscloud:index/nic:Nic":
-                return new Nic(name, <any>undefined, { urn })
-            case "ionoscloud:index/pgCluster:PgCluster":
-                return new PgCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/pgDatabase:PgDatabase":
-                return new PgDatabase(name, <any>undefined, { urn })
-            case "ionoscloud:index/pgUser:PgUser":
-                return new PgUser(name, <any>undefined, { urn })
             case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
                 return new PrivateCrossconnect(name, <any>undefined, { urn })
-            case "ionoscloud:index/s3Key:S3Key":
-                return new S3Key(name, <any>undefined, { urn })
-            case "ionoscloud:index/server:Server":
-                return new Server(name, <any>undefined, { urn })
             case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
                 return new ServerBootDeviceSelection(name, <any>undefined, { urn })
             case "ionoscloud:index/share:Share":
@@ -773,12 +639,8 @@ const _module = {
                 return new Snapshot(name, <any>undefined, { urn })
             case "ionoscloud:index/targetGroup:TargetGroup":
                 return new TargetGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/user:User":
-                return new User(name, <any>undefined, { urn })
             case "ionoscloud:index/vcpuServer:VcpuServer":
                 return new VcpuServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/volume:Volume":
-                return new Volume(name, <any>undefined, { urn })
             case "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway":
                 return new VpnIpsecGateway(name, <any>undefined, { urn })
             case "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel":
@@ -799,52 +661,32 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalanc
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvider", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/backupUnit", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cdnDistribution", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistry", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistryToken", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/datacenter", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformNodePool", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsRecord", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsZone", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/firewall", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/group", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/inmemorydbReplicaset", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/ipblock", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/ipfailover", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/k8sCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/k8sNodePool", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/lan", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loggingPipeline", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/mariadbCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/mongoCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/mongoUser", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/natgateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/natgatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancerForwardingrule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/nfsCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/nfsShare", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/nic", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/pgCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/pgDatabase", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/pgUser", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/privateCrossconnect", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/s3Key", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/server", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/serverBootDeviceSelection", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/share", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/snapshot", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/user", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/vcpuServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/volume", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnIpsecGateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnIpsecTunnel", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnWireguardGateway", _module)

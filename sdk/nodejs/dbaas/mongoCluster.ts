@@ -175,8 +175,6 @@ export class MongoCluster extends pulumi.CustomResource {
             resourceInputs["connectionString"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/mongoCluster:MongoCluster" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MongoCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

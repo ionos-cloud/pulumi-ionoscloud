@@ -153,8 +153,6 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
             resourceInputs["dnsName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/inmemorydbReplicaset:InmemorydbReplicaset" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(InMemoryDBReplicaSet.__pulumiType, name, resourceInputs, opts);
     }
 }

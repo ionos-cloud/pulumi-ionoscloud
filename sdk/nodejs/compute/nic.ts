@@ -162,8 +162,6 @@ export class Nic extends pulumi.CustomResource {
             resourceInputs["pciSlot"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/nic:Nic" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Nic.__pulumiType, name, resourceInputs, opts);
     }
 }

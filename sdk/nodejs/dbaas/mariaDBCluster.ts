@@ -142,8 +142,6 @@ export class MariaDBCluster extends pulumi.CustomResource {
             resourceInputs["dnsName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/mariadbCluster:MariadbCluster" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(MariaDBCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

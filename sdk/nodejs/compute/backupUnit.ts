@@ -91,8 +91,6 @@ export class BackupUnit extends pulumi.CustomResource {
             resourceInputs["login"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/backupUnit:BackupUnit" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(BackupUnit.__pulumiType, name, resourceInputs, opts);
