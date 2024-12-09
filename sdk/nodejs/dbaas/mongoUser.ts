@@ -73,8 +73,6 @@ export class MongoUser extends pulumi.CustomResource {
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/mongoUser:MongoUser" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(MongoUser.__pulumiType, name, resourceInputs, opts);

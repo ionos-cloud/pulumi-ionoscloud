@@ -227,8 +227,6 @@ export class Group extends pulumi.CustomResource {
             resourceInputs["users"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/group:Group" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Group.__pulumiType, name, resourceInputs, opts);
     }
 }

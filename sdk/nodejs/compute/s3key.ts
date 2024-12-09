@@ -106,8 +106,6 @@ export class S3Key extends pulumi.CustomResource {
             resourceInputs["secretKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/s3Key:S3Key" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(S3Key.__pulumiType, name, resourceInputs, opts);
     }
 }

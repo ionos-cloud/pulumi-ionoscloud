@@ -233,8 +233,6 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["primaryNic"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/server:Server" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         const secretOpts = { additionalSecretOutputs: ["imagePassword"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Server.__pulumiType, name, resourceInputs, opts);

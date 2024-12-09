@@ -113,8 +113,6 @@ export class IPBlock extends pulumi.CustomResource {
             resourceInputs["ips"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/ipblock:Ipblock" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(IPBlock.__pulumiType, name, resourceInputs, opts);
     }
 }

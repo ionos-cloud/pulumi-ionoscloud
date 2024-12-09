@@ -598,13 +598,6 @@ export interface CubeServerVolume {
     userData: string;
 }
 
-export interface DatacenterCpuArchitecture {
-    cpuFamily: string;
-    maxCores: number;
-    maxRam: number;
-    vendor: string;
-}
-
 export interface DataplatformClusterLan {
     /**
      * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
@@ -3220,155 +3213,6 @@ export interface GetVpnWireguardPeerEndpoint {
     port: number;
 }
 
-export interface GroupUser {
-    administrator: boolean;
-    email: string;
-    firstName: string;
-    forceSecAuth: boolean;
-    id: string;
-    lastName: string;
-    password: string;
-}
-
-export interface InmemorydbReplicasetConnections {
-    /**
-     * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your instance to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your instance to.
-     */
-    lanId: string;
-}
-
-export interface InmemorydbReplicasetCredentials {
-    /**
-     * The hashed password for a InMemoryDB user.
-     */
-    hashedPassword?: outputs.InmemorydbReplicasetCredentialsHashedPassword;
-    /**
-     * The password for a InMemoryDB user.
-     */
-    plainTextPassword?: string;
-    /**
-     * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
-     */
-    username: string;
-}
-
-export interface InmemorydbReplicasetCredentialsHashedPassword {
-    algorithm: string;
-    hash: string;
-}
-
-export interface InmemorydbReplicasetMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface InmemorydbReplicasetResources {
-    /**
-     * The number of CPU cores per instance.
-     */
-    cores: number;
-    /**
-     * The amount of memory per instance in gigabytes (GB).
-     */
-    ram: number;
-    /**
-     * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
-     */
-    storage: number;
-}
-
-export interface IpblockIpConsumer {
-    datacenterId: string;
-    datacenterName: string;
-    ip: string;
-    k8sClusterUuid: string;
-    k8sNodepoolUuid: string;
-    mac: string;
-    nicId: string;
-    serverId: string;
-    serverName: string;
-}
-
-export interface K8sClusterMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
-export interface K8sClusterS3Bucket {
-    /**
-     * [string] The name of the Kubernetes Cluster.
-     */
-    name?: string;
-}
-
-export interface K8sNodePoolAutoScaling {
-    /**
-     * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-     */
-    maxNodeCount: number;
-    /**
-     * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-     */
-    minNodeCount: number;
-}
-
-export interface K8sNodePoolLan {
-    /**
-     * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
-     */
-    dhcp?: boolean;
-    /**
-     * [int] The LAN ID of an existing LAN at the related datacenter
-     */
-    id: number;
-    /**
-     * An array of additional LANs attached to worker nodes
-     */
-    routes?: outputs.K8sNodePoolLanRoute[];
-}
-
-export interface K8sNodePoolLanRoute {
-    /**
-     * [string] IPv4 or IPv6 Gateway IP for the route
-     */
-    gatewayIp: string;
-    /**
-     * [string] IPv4 or IPv6 CIDR to be routed via the interface
-     */
-    network: string;
-}
-
-export interface K8sNodePoolMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
 export interface KafkaClusterConnections {
     /**
      * [list] IP address and port of cluster brokers.
@@ -3382,11 +3226,6 @@ export interface KafkaClusterConnections {
      * [string] The numeric LAN ID to connect your instance to.
      */
     lanId: string;
-}
-
-export interface LanIpFailover {
-    ip: string;
-    nicUuid: string;
 }
 
 export interface LoggingPipelineLog {
@@ -3421,101 +3260,6 @@ export interface LoggingPipelineLogDestination {
      * [string] The internal output stream to send logs to.
      */
     type: string;
-}
-
-export interface MariadbClusterConnections {
-    /**
-     * The IP and subnet for your cluster.
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface MariadbClusterCredentials {
-    /**
-     * The password for a MariaDB user.
-     */
-    password: string;
-    /**
-     * The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
-     */
-    username: string;
-}
-
-export interface MariadbClusterMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface MongoClusterBackup {
-    /**
-     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-     */
-    location?: string;
-    /**
-     * Number of hours in the past for which a point-in-time snapshot can be created.
-     */
-    pointInTimeWindowHours?: number;
-    /**
-     * Number of hours between snapshots.
-     */
-    snapshotIntervalHours?: number;
-}
-
-export interface MongoClusterBiConnector {
-    /**
-     * Enable or disable the BiConnector.
-     */
-    enabled?: boolean;
-    /**
-     * The host where this new BI Connector is installed.
-     */
-    host: string;
-    /**
-     * Port number used when connecting to this new BI Connector.
-     */
-    port: string;
-}
-
-export interface MongoClusterConnections {
-    /**
-     * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
-     */
-    cidrLists: string[];
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface MongoClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
-export interface MongoUserRole {
-    database?: string;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role?: string;
 }
 
 export interface NatgatewayLan {
@@ -3670,80 +3414,6 @@ export interface NfsShareClientGroupNfs {
     squash?: string;
 }
 
-export interface NicFlowlog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-     */
-    action: string;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * The resource name.
-     */
-    name: string;
-}
-
-export interface PgClusterConnectionPooler {
-    enabled: boolean;
-    /**
-     * Represents different modes of connection pooling for the connection pooler
-     */
-    poolMode: string;
-}
-
-export interface PgClusterConnections {
-    /**
-     * The IP and subnet for the database.
-     *           Note the following unavailable IP ranges:
-     *           10.233.64.0/18
-     *           10.233.0.0/18
-     *           10.233.114.0/24
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface PgClusterCredentials {
-    password: string;
-    /**
-     * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
-     */
-    username: string;
-}
-
-export interface PgClusterFromBackup {
-    /**
-     * The unique ID of the backup you want to restore.
-     */
-    backupId: string;
-    /**
-     * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-     */
-    recoveryTargetTime?: string;
-}
-
-export interface PgClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
@@ -3780,105 +3450,6 @@ export interface PrivateCrossconnectPeer {
      * The location of the cross-connected datacenter
      */
     location: string;
-}
-
-export interface ServerLabel {
-    key: string;
-    value: string;
-}
-
-export interface ServerNic {
-    deviceNumber: number;
-    dhcp?: boolean;
-    /**
-     * Indicates whether this NIC receives an IPv6 address through DHCP.
-     */
-    dhcpv6?: boolean;
-    firewallActive?: boolean;
-    firewallType: string;
-    /**
-     * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
-     */
-    firewalls?: outputs.ServerNicFirewall[];
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips: string[];
-    /**
-     * IPv6 CIDR block assigned to the NIC.
-     */
-    ipv6CidrBlock: string;
-    /**
-     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
-     */
-    ipv6Ips: string[];
-    lan: number;
-    mac: string;
-    name?: string;
-    pciSlot: number;
-}
-
-export interface ServerNicFirewall {
-    icmpCode?: string;
-    icmpType?: string;
-    id: string;
-    name?: string;
-    portRangeEnd?: number;
-    portRangeStart?: number;
-    protocol: string;
-    sourceIp?: string;
-    sourceMac?: string;
-    targetIp?: string;
-    type: string;
-}
-
-export interface ServerVolume {
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    bus: string;
-    cpuHotPlug: boolean;
-    deviceNumber: number;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    diskType: string;
-    /**
-     * @deprecated Please use imagePassword under server level
-     */
-    imagePassword?: string;
-    licenceType: string;
-    name?: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    pciSlot: number;
-    ramHotPlug: boolean;
-    /**
-     * The size of the volume in GB.
-     */
-    size: number;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeyPath under server level
-     */
-    sshKeyPaths?: string[];
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeys under server level
-     */
-    sshKeys: string[];
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData: string;
 }
 
 export interface TargetGroupHealthCheck {
@@ -4557,6 +4128,75 @@ export namespace dbaas {
 
     export interface PSQLClusterMaintenanceWindow {
         dayOfTheWeek: string;
+        time: string;
+    }
+
+}
+
+export namespace k8s {
+    export interface ClusterMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
+        time: string;
+    }
+
+    export interface ClusterS3Bucket {
+        /**
+         * [string] The name of the Kubernetes Cluster.
+         */
+        name?: string;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: number;
+        /**
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: number;
+    }
+
+    export interface NodePoolLan {
+        /**
+         * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+         */
+        dhcp?: boolean;
+        /**
+         * [int] The LAN ID of an existing LAN at the related datacenter
+         */
+        id: number;
+        /**
+         * An array of additional LANs attached to worker nodes
+         */
+        routes?: outputs.k8s.NodePoolLanRoute[];
+    }
+
+    export interface NodePoolLanRoute {
+        /**
+         * [string] IPv4 or IPv6 Gateway IP for the route
+         */
+        gatewayIp: string;
+        /**
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface
+         */
+        network: string;
+    }
+
+    export interface NodePoolMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
         time: string;
     }
 

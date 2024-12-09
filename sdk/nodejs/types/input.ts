@@ -598,13 +598,6 @@ export interface CubeServerVolume {
     userData?: pulumi.Input<string>;
 }
 
-export interface DatacenterCpuArchitecture {
-    cpuFamily?: pulumi.Input<string>;
-    maxCores?: pulumi.Input<number>;
-    maxRam?: pulumi.Input<number>;
-    vendor?: pulumi.Input<string>;
-}
-
 export interface DataplatformClusterLan {
     /**
      * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
@@ -765,155 +758,6 @@ export interface GetServersFilterArgs {
     value: pulumi.Input<string>;
 }
 
-export interface GroupUser {
-    administrator?: pulumi.Input<boolean>;
-    email?: pulumi.Input<string>;
-    firstName?: pulumi.Input<string>;
-    forceSecAuth?: pulumi.Input<boolean>;
-    id?: pulumi.Input<string>;
-    lastName?: pulumi.Input<string>;
-    password?: pulumi.Input<string>;
-}
-
-export interface InmemorydbReplicasetConnections {
-    /**
-     * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-     */
-    cidr: pulumi.Input<string>;
-    /**
-     * The datacenter to connect your instance to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The numeric LAN ID to connect your instance to.
-     */
-    lanId: pulumi.Input<string>;
-}
-
-export interface InmemorydbReplicasetCredentials {
-    /**
-     * The hashed password for a InMemoryDB user.
-     */
-    hashedPassword?: pulumi.Input<inputs.InmemorydbReplicasetCredentialsHashedPassword>;
-    /**
-     * The password for a InMemoryDB user.
-     */
-    plainTextPassword?: pulumi.Input<string>;
-    /**
-     * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
-     */
-    username: pulumi.Input<string>;
-}
-
-export interface InmemorydbReplicasetCredentialsHashedPassword {
-    algorithm: pulumi.Input<string>;
-    hash: pulumi.Input<string>;
-}
-
-export interface InmemorydbReplicasetMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface InmemorydbReplicasetResources {
-    /**
-     * The number of CPU cores per instance.
-     */
-    cores: pulumi.Input<number>;
-    /**
-     * The amount of memory per instance in gigabytes (GB).
-     */
-    ram: pulumi.Input<number>;
-    /**
-     * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
-     */
-    storage?: pulumi.Input<number>;
-}
-
-export interface IpblockIpConsumer {
-    datacenterId?: pulumi.Input<string>;
-    datacenterName?: pulumi.Input<string>;
-    ip?: pulumi.Input<string>;
-    k8sClusterUuid?: pulumi.Input<string>;
-    k8sNodepoolUuid?: pulumi.Input<string>;
-    mac?: pulumi.Input<string>;
-    nicId?: pulumi.Input<string>;
-    serverId?: pulumi.Input<string>;
-    serverName?: pulumi.Input<string>;
-}
-
-export interface K8sClusterMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface K8sClusterS3Bucket {
-    /**
-     * [string] The name of the Kubernetes Cluster.
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface K8sNodePoolAutoScaling {
-    /**
-     * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-     */
-    maxNodeCount: pulumi.Input<number>;
-    /**
-     * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
-     */
-    minNodeCount: pulumi.Input<number>;
-}
-
-export interface K8sNodePoolLan {
-    /**
-     * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
-     */
-    dhcp?: pulumi.Input<boolean>;
-    /**
-     * [int] The LAN ID of an existing LAN at the related datacenter
-     */
-    id: pulumi.Input<number>;
-    /**
-     * An array of additional LANs attached to worker nodes
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.K8sNodePoolLanRoute>[]>;
-}
-
-export interface K8sNodePoolLanRoute {
-    /**
-     * [string] IPv4 or IPv6 Gateway IP for the route
-     */
-    gatewayIp: pulumi.Input<string>;
-    /**
-     * [string] IPv4 or IPv6 CIDR to be routed via the interface
-     */
-    network: pulumi.Input<string>;
-}
-
-export interface K8sNodePoolMaintenanceWindow {
-    /**
-     * [string] Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * [string] A clock time in the day when maintenance is allowed
-     */
-    time: pulumi.Input<string>;
-}
-
 export interface KafkaClusterConnections {
     /**
      * [list] IP address and port of cluster brokers.
@@ -927,11 +771,6 @@ export interface KafkaClusterConnections {
      * [string] The numeric LAN ID to connect your instance to.
      */
     lanId: pulumi.Input<string>;
-}
-
-export interface LanIpFailover {
-    ip?: pulumi.Input<string>;
-    nicUuid?: pulumi.Input<string>;
 }
 
 export interface LoggingPipelineLog {
@@ -966,101 +805,6 @@ export interface LoggingPipelineLogDestination {
      * [string] The internal output stream to send logs to.
      */
     type?: pulumi.Input<string>;
-}
-
-export interface MariadbClusterConnections {
-    /**
-     * The IP and subnet for your cluster.
-     */
-    cidr: pulumi.Input<string>;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The numeric LAN ID to connect your cluster to.
-     */
-    lanId: pulumi.Input<string>;
-}
-
-export interface MariadbClusterCredentials {
-    /**
-     * The password for a MariaDB user.
-     */
-    password: pulumi.Input<string>;
-    /**
-     * The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
-     */
-    username: pulumi.Input<string>;
-}
-
-export interface MariadbClusterMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface MongoClusterBackup {
-    /**
-     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-     */
-    location?: pulumi.Input<string>;
-    /**
-     * Number of hours in the past for which a point-in-time snapshot can be created.
-     */
-    pointInTimeWindowHours?: pulumi.Input<number>;
-    /**
-     * Number of hours between snapshots.
-     */
-    snapshotIntervalHours?: pulumi.Input<number>;
-}
-
-export interface MongoClusterBiConnector {
-    /**
-     * Enable or disable the BiConnector.
-     */
-    enabled?: pulumi.Input<boolean>;
-    /**
-     * The host where this new BI Connector is installed.
-     */
-    host?: pulumi.Input<string>;
-    /**
-     * Port number used when connecting to this new BI Connector.
-     */
-    port?: pulumi.Input<string>;
-}
-
-export interface MongoClusterConnections {
-    /**
-     * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
-     */
-    cidrLists: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: pulumi.Input<string>;
-}
-
-export interface MongoClusterMaintenanceWindow {
-    dayOfTheWeek: pulumi.Input<string>;
-    time: pulumi.Input<string>;
-}
-
-export interface MongoUserRole {
-    database?: pulumi.Input<string>;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role?: pulumi.Input<string>;
 }
 
 export interface NatgatewayLan {
@@ -1215,80 +959,6 @@ export interface NfsShareClientGroupNfs {
     squash?: pulumi.Input<string>;
 }
 
-export interface NicFlowlog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-     */
-    action: pulumi.Input<string>;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-     */
-    bucket: pulumi.Input<string>;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-     */
-    direction: pulumi.Input<string>;
-    /**
-     * The resource's unique identifier.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * The resource name.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface PgClusterConnectionPooler {
-    enabled: pulumi.Input<boolean>;
-    /**
-     * Represents different modes of connection pooling for the connection pooler
-     */
-    poolMode: pulumi.Input<string>;
-}
-
-export interface PgClusterConnections {
-    /**
-     * The IP and subnet for the database.
-     *           Note the following unavailable IP ranges:
-     *           10.233.64.0/18
-     *           10.233.0.0/18
-     *           10.233.114.0/24
-     */
-    cidr: pulumi.Input<string>;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: pulumi.Input<string>;
-}
-
-export interface PgClusterCredentials {
-    password: pulumi.Input<string>;
-    /**
-     * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
-     */
-    username: pulumi.Input<string>;
-}
-
-export interface PgClusterFromBackup {
-    /**
-     * The unique ID of the backup you want to restore.
-     */
-    backupId: pulumi.Input<string>;
-    /**
-     * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-     */
-    recoveryTargetTime?: pulumi.Input<string>;
-}
-
-export interface PgClusterMaintenanceWindow {
-    dayOfTheWeek: pulumi.Input<string>;
-    time: pulumi.Input<string>;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
@@ -1325,105 +995,6 @@ export interface PrivateCrossconnectPeer {
      * The location of the cross-connected datacenter
      */
     location?: pulumi.Input<string>;
-}
-
-export interface ServerLabel {
-    key: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface ServerNic {
-    deviceNumber?: pulumi.Input<number>;
-    dhcp?: pulumi.Input<boolean>;
-    /**
-     * Indicates whether this NIC receives an IPv6 address through DHCP.
-     */
-    dhcpv6?: pulumi.Input<boolean>;
-    firewallActive?: pulumi.Input<boolean>;
-    firewallType?: pulumi.Input<string>;
-    /**
-     * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
-     */
-    firewalls?: pulumi.Input<pulumi.Input<inputs.ServerNicFirewall>[]>;
-    id?: pulumi.Input<string>;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * IPv6 CIDR block assigned to the NIC.
-     */
-    ipv6CidrBlock?: pulumi.Input<string>;
-    /**
-     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
-     */
-    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    lan: pulumi.Input<number>;
-    mac?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    pciSlot?: pulumi.Input<number>;
-}
-
-export interface ServerNicFirewall {
-    icmpCode?: pulumi.Input<string>;
-    icmpType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    portRangeEnd?: pulumi.Input<number>;
-    portRangeStart?: pulumi.Input<number>;
-    protocol: pulumi.Input<string>;
-    sourceIp?: pulumi.Input<string>;
-    sourceMac?: pulumi.Input<string>;
-    targetIp?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
-}
-
-export interface ServerVolume {
-    availabilityZone?: pulumi.Input<string>;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId?: pulumi.Input<string>;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer?: pulumi.Input<string>;
-    bus?: pulumi.Input<string>;
-    cpuHotPlug?: pulumi.Input<boolean>;
-    deviceNumber?: pulumi.Input<number>;
-    discVirtioHotPlug?: pulumi.Input<boolean>;
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
-    diskType: pulumi.Input<string>;
-    /**
-     * @deprecated Please use imagePassword under server level
-     */
-    imagePassword?: pulumi.Input<string>;
-    licenceType?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    nicHotPlug?: pulumi.Input<boolean>;
-    nicHotUnplug?: pulumi.Input<boolean>;
-    pciSlot?: pulumi.Input<number>;
-    ramHotPlug?: pulumi.Input<boolean>;
-    /**
-     * The size of the volume in GB.
-     */
-    size?: pulumi.Input<number>;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeyPath under server level
-     */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
-     *
-     * @deprecated Please use sshKeys under server level
-     */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData?: pulumi.Input<string>;
 }
 
 export interface TargetGroupHealthCheck {
@@ -2100,6 +1671,74 @@ export namespace dbaas {
 
     export interface PSQLClusterMaintenanceWindow {
         dayOfTheWeek: pulumi.Input<string>;
+        time: pulumi.Input<string>;
+    }
+}
+
+export namespace k8s {
+    export interface ClusterMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface ClusterS3Bucket {
+        /**
+         * [string] The name of the Kubernetes Cluster.
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolAutoScaling {
+        /**
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         */
+        maxNodeCount: pulumi.Input<number>;
+        /**
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         */
+        minNodeCount: pulumi.Input<number>;
+    }
+
+    export interface NodePoolLan {
+        /**
+         * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+         */
+        dhcp?: pulumi.Input<boolean>;
+        /**
+         * [int] The LAN ID of an existing LAN at the related datacenter
+         */
+        id: pulumi.Input<number>;
+        /**
+         * An array of additional LANs attached to worker nodes
+         */
+        routes?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLanRoute>[]>;
+    }
+
+    export interface NodePoolLanRoute {
+        /**
+         * [string] IPv4 or IPv6 Gateway IP for the route
+         */
+        gatewayIp: pulumi.Input<string>;
+        /**
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface
+         */
+        network: pulumi.Input<string>;
+    }
+
+    export interface NodePoolMaintenanceWindow {
+        /**
+         * [string] Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] A clock time in the day when maintenance is allowed
+         */
         time: pulumi.Input<string>;
     }
 }

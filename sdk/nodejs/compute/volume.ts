@@ -329,8 +329,6 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["sshkey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "ionoscloud:index/volume:Volume" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(Volume.__pulumiType, name, resourceInputs, opts);
     }
 }
