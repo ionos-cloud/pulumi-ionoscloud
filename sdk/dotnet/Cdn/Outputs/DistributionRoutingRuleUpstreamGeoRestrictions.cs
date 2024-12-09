@@ -7,11 +7,11 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Cdn.Outputs
 {
 
     [OutputType]
-    public sealed class CdnDistributionRoutingRuleUpstreamGeoRestrictions
+    public sealed class DistributionRoutingRuleUpstreamGeoRestrictions
     {
         /// <summary>
         /// [string] List of allowed countries
@@ -23,7 +23,7 @@ namespace Pulumi.Ionoscloud.Outputs
         public readonly ImmutableArray<string> BlockLists;
 
         [OutputConstructor]
-        private CdnDistributionRoutingRuleUpstreamGeoRestrictions(
+        private DistributionRoutingRuleUpstreamGeoRestrictions(
             ImmutableArray<string> allowLists,
 
             ImmutableArray<string> blockLists)

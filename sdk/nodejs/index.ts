@@ -40,11 +40,6 @@ export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
 export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
 utilities.lazyLoad(exports, ["AutoscalingGroup"], () => require("./autoscalingGroup"));
 
-export { CdnDistributionArgs, CdnDistributionState } from "./cdnDistribution";
-export type CdnDistribution = import("./cdnDistribution").CdnDistribution;
-export const CdnDistribution: typeof import("./cdnDistribution").CdnDistribution = null as any;
-utilities.lazyLoad(exports, ["CdnDistribution"], () => require("./cdnDistribution"));
-
 export { CertificateArgs, CertificateState } from "./certificate";
 export type Certificate = import("./certificate").Certificate;
 export const Certificate: typeof import("./certificate").Certificate = null as any;
@@ -557,6 +552,7 @@ utilities.lazyLoad(exports, ["VpnWireguardPeer"], () => require("./vpnWireguardP
 
 
 // Export sub-modules:
+import * as cdn from "./cdn";
 import * as compute from "./compute";
 import * as config from "./config";
 import * as dbaas from "./dbaas";
@@ -564,6 +560,7 @@ import * as k8s from "./k8s";
 import * as types from "./types";
 
 export {
+    cdn,
     compute,
     config,
     dbaas,
@@ -589,8 +586,6 @@ const _module = {
                 return new AutoCertificateProvider(name, <any>undefined, { urn })
             case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
                 return new AutoscalingGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/cdnDistribution:CdnDistribution":
-                return new CdnDistribution(name, <any>undefined, { urn })
             case "ionoscloud:index/certificate:Certificate":
                 return new Certificate(name, <any>undefined, { urn })
             case "ionoscloud:index/containerRegistry:ContainerRegistry":
@@ -661,7 +656,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalanc
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvider", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/cdnDistribution", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistry", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistryToken", _module)

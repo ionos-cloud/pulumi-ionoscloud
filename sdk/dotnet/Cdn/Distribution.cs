@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Cdn
 {
     /// <summary>
     /// Manages a **CDN Distribution** on IonosCloud.
@@ -32,24 +32,24 @@ namespace Pulumi.Ionoscloud
     ///         PrivateKey = File.ReadAllText("path_to_private_key"),
     ///     });
     /// 
-    ///     var example = new Ionoscloud.CdnDistribution("example", new()
+    ///     var example = new Ionoscloud.Cdn.Distribution("example", new()
     ///     {
     ///         Domain = "example.com",
     ///         CertificateId = cert.Id,
     ///         RoutingRules = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs
+    ///             new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleArgs
     ///             {
     ///                 Scheme = "https",
     ///                 Prefix = "/api",
-    ///                 Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs
+    ///                 Upstream = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamArgs
     ///                 {
     ///                     Host = "server.example.com",
     ///                     Caching = true,
     ///                     Waf = true,
     ///                     SniMode = "distribution",
     ///                     RateLimitClass = "R500",
-    ///                     GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs
+    ///                     GeoRestrictions = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs
     ///                     {
     ///                         AllowLists = new[]
     ///                         {
@@ -59,18 +59,18 @@ namespace Pulumi.Ionoscloud
     ///                     },
     ///                 },
     ///             },
-    ///             new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs
+    ///             new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleArgs
     ///             {
     ///                 Scheme = "http/https",
     ///                 Prefix = "/api2",
-    ///                 Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs
+    ///                 Upstream = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamArgs
     ///                 {
     ///                     Host = "server2.example.com",
     ///                     Caching = false,
     ///                     Waf = false,
     ///                     SniMode = "origin",
     ///                     RateLimitClass = "R10",
-    ///                     GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs
+    ///                     GeoRestrictions = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs
     ///                     {
     ///                         BlockLists = new[]
     ///                         {
@@ -92,11 +92,11 @@ namespace Pulumi.Ionoscloud
     /// Resource Distribution can be imported using the `resource id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}
+    /// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/cdnDistribution:CdnDistribution")]
-    public partial class CdnDistribution : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:cdn/distribution:Distribution")]
+    public partial class Distribution : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
@@ -132,23 +132,23 @@ namespace Pulumi.Ionoscloud
         /// [list] The routing rules for the distribution.
         /// </summary>
         [Output("routingRules")]
-        public Output<ImmutableArray<Outputs.CdnDistributionRoutingRule>> RoutingRules { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.DistributionRoutingRule>> RoutingRules { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a CdnDistribution resource with the given unique name, arguments, and options.
+        /// Create a Distribution resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CdnDistribution(string name, CdnDistributionArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/cdnDistribution:CdnDistribution", name, args ?? new CdnDistributionArgs(), MakeResourceOptions(options, ""))
+        public Distribution(string name, DistributionArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:cdn/distribution:Distribution", name, args ?? new DistributionArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private CdnDistribution(string name, Input<string> id, CdnDistributionState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/cdnDistribution:CdnDistribution", name, state, MakeResourceOptions(options, id))
+        private Distribution(string name, Input<string> id, DistributionState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:cdn/distribution:Distribution", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -164,7 +164,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing CdnDistribution resource's state with the given name, ID, and optional extra
+        /// Get an existing Distribution resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -172,13 +172,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static CdnDistribution Get(string name, Input<string> id, CdnDistributionState? state = null, CustomResourceOptions? options = null)
+        public static Distribution Get(string name, Input<string> id, DistributionState? state = null, CustomResourceOptions? options = null)
         {
-            return new CdnDistribution(name, id, state, options);
+            return new Distribution(name, id, state, options);
         }
     }
 
-    public sealed class CdnDistributionArgs : global::Pulumi.ResourceArgs
+    public sealed class DistributionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
@@ -193,24 +193,24 @@ namespace Pulumi.Ionoscloud
         public Input<string> Domain { get; set; } = null!;
 
         [Input("routingRules", required: true)]
-        private InputList<Inputs.CdnDistributionRoutingRuleArgs>? _routingRules;
+        private InputList<Inputs.DistributionRoutingRuleArgs>? _routingRules;
 
         /// <summary>
         /// [list] The routing rules for the distribution.
         /// </summary>
-        public InputList<Inputs.CdnDistributionRoutingRuleArgs> RoutingRules
+        public InputList<Inputs.DistributionRoutingRuleArgs> RoutingRules
         {
-            get => _routingRules ?? (_routingRules = new InputList<Inputs.CdnDistributionRoutingRuleArgs>());
+            get => _routingRules ?? (_routingRules = new InputList<Inputs.DistributionRoutingRuleArgs>());
             set => _routingRules = value;
         }
 
-        public CdnDistributionArgs()
+        public DistributionArgs()
         {
         }
-        public static new CdnDistributionArgs Empty => new CdnDistributionArgs();
+        public static new DistributionArgs Empty => new DistributionArgs();
     }
 
-    public sealed class CdnDistributionState : global::Pulumi.ResourceArgs
+    public sealed class DistributionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
@@ -243,20 +243,20 @@ namespace Pulumi.Ionoscloud
         public Input<string>? ResourceUrn { get; set; }
 
         [Input("routingRules")]
-        private InputList<Inputs.CdnDistributionRoutingRuleGetArgs>? _routingRules;
+        private InputList<Inputs.DistributionRoutingRuleGetArgs>? _routingRules;
 
         /// <summary>
         /// [list] The routing rules for the distribution.
         /// </summary>
-        public InputList<Inputs.CdnDistributionRoutingRuleGetArgs> RoutingRules
+        public InputList<Inputs.DistributionRoutingRuleGetArgs> RoutingRules
         {
-            get => _routingRules ?? (_routingRules = new InputList<Inputs.CdnDistributionRoutingRuleGetArgs>());
+            get => _routingRules ?? (_routingRules = new InputList<Inputs.DistributionRoutingRuleGetArgs>());
             set => _routingRules = value;
         }
 
-        public CdnDistributionState()
+        public DistributionState()
         {
         }
-        public static new CdnDistributionState Empty => new CdnDistributionState();
+        public static new DistributionState Empty => new DistributionState();
     }
 }

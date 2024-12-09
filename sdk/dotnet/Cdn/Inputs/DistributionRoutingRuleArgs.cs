@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Cdn.Inputs
 {
 
-    public sealed class CdnDistributionRoutingRuleGetArgs : global::Pulumi.ResourceArgs
+    public sealed class DistributionRoutingRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The prefix of the routing rule.
@@ -28,11 +28,11 @@ namespace Pulumi.Ionoscloud.Inputs
         /// [map] - A map of properties for the rule
         /// </summary>
         [Input("upstream", required: true)]
-        public Input<Inputs.CdnDistributionRoutingRuleUpstreamGetArgs> Upstream { get; set; } = null!;
+        public Input<Inputs.DistributionRoutingRuleUpstreamArgs> Upstream { get; set; } = null!;
 
-        public CdnDistributionRoutingRuleGetArgs()
+        public DistributionRoutingRuleArgs()
         {
         }
-        public static new CdnDistributionRoutingRuleGetArgs Empty => new CdnDistributionRoutingRuleGetArgs();
+        public static new DistributionRoutingRuleArgs Empty => new DistributionRoutingRuleArgs();
     }
 }

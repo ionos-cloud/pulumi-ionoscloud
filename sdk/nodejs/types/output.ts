@@ -397,59 +397,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData: string;
 }
 
-export interface CdnDistributionRoutingRule {
-    /**
-     * [string] The prefix of the routing rule.
-     */
-    prefix: string;
-    /**
-     * [string] The scheme of the routing rule.
-     */
-    scheme: string;
-    /**
-     * [map] - A map of properties for the rule
-     */
-    upstream: outputs.CdnDistributionRoutingRuleUpstream;
-}
-
-export interface CdnDistributionRoutingRuleUpstream {
-    /**
-     * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-     */
-    caching: boolean;
-    /**
-     * [map] - A map of geo_restrictions
-     */
-    geoRestrictions?: outputs.CdnDistributionRoutingRuleUpstreamGeoRestrictions;
-    /**
-     * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-     */
-    host: string;
-    /**
-     * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
-     */
-    rateLimitClass: string;
-    /**
-     * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-     */
-    sniMode: string;
-    /**
-     * [bool] Enable or disable WAF to protect the upstream host.
-     */
-    waf: boolean;
-}
-
-export interface CdnDistributionRoutingRuleUpstreamGeoRestrictions {
-    /**
-     * [string] List of allowed countries
-     */
-    allowLists?: string[];
-    /**
-     * [string] List of blocked countries
-     */
-    blockLists?: string[];
-}
-
 export interface ContainerRegistryFeatures {
     /**
      * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
@@ -3722,6 +3669,62 @@ export interface VpnWireguardPeerEndpoint {
      * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
      */
     port?: number;
+}
+
+export namespace cdn {
+    export interface DistributionRoutingRule {
+        /**
+         * [string] The prefix of the routing rule.
+         */
+        prefix: string;
+        /**
+         * [string] The scheme of the routing rule.
+         */
+        scheme: string;
+        /**
+         * [map] - A map of properties for the rule
+         */
+        upstream: outputs.cdn.DistributionRoutingRuleUpstream;
+    }
+
+    export interface DistributionRoutingRuleUpstream {
+        /**
+         * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+         */
+        caching: boolean;
+        /**
+         * [map] - A map of geo_restrictions
+         */
+        geoRestrictions?: outputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions;
+        /**
+         * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+         */
+        host: string;
+        /**
+         * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+         */
+        rateLimitClass: string;
+        /**
+         * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+         */
+        sniMode: string;
+        /**
+         * [bool] Enable or disable WAF to protect the upstream host.
+         */
+        waf: boolean;
+    }
+
+    export interface DistributionRoutingRuleUpstreamGeoRestrictions {
+        /**
+         * [string] List of allowed countries
+         */
+        allowLists?: string[];
+        /**
+         * [string] List of blocked countries
+         */
+        blockLists?: string[];
+    }
+
 }
 
 export namespace compute {

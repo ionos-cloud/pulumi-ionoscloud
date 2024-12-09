@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Cdn.Inputs
 {
 
-    public sealed class CdnDistributionRoutingRuleUpstreamGeoRestrictionsGetArgs : global::Pulumi.ResourceArgs
+    public sealed class DistributionRoutingRuleUpstreamGeoRestrictionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowLists")]
         private InputList<string>? _allowLists;
@@ -36,9 +36,9 @@ namespace Pulumi.Ionoscloud.Inputs
             set => _blockLists = value;
         }
 
-        public CdnDistributionRoutingRuleUpstreamGeoRestrictionsGetArgs()
+        public DistributionRoutingRuleUpstreamGeoRestrictionsArgs()
         {
         }
-        public static new CdnDistributionRoutingRuleUpstreamGeoRestrictionsGetArgs Empty => new CdnDistributionRoutingRuleUpstreamGeoRestrictionsGetArgs();
+        public static new DistributionRoutingRuleUpstreamGeoRestrictionsArgs Empty => new DistributionRoutingRuleUpstreamGeoRestrictionsArgs();
     }
 }
