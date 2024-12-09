@@ -277,10 +277,10 @@
                 }
             },
             "ionoscloud_dns_record": {
-                "current": "ionoscloud:index/dnsRecord:DnsRecord"
+                "current": "ionoscloud:dns/record:Record"
             },
             "ionoscloud_dns_zone": {
-                "current": "ionoscloud:index/dnsZone:DnsZone",
+                "current": "ionoscloud:dns/zone:Zone",
                 "fields": {
                     "nameservers": {
                         "maxItemsOne": false

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **DNS Record**.
@@ -16,11 +16,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.DnsZone("example", {
+ * const example = new ionoscloud.dns.Zone("example", {
  *     description: "description",
  *     enabled: false,
  * });
- * const recordexample = new ionoscloud.DnsRecord("recordexample", {
+ * const recordexample = new ionoscloud.dns.Record("recordexample", {
  *     zoneId: example.id,
  *     type: "CNAME",
  *     content: "1.2.3.4",
@@ -44,12 +44,12 @@ import * as utilities from "./utilities";
  * The resource can be imported using the `zone_id` and the `record_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/dnsRecord:DnsRecord example {zone_id}/{record_id}
+ * $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
  * ```
  */
-export class DnsRecord extends pulumi.CustomResource {
+export class Record extends pulumi.CustomResource {
     /**
-     * Get an existing DnsRecord resource's state with the given name, ID, and optional extra
+     * Get an existing Record resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -57,22 +57,22 @@ export class DnsRecord extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DnsRecordState, opts?: pulumi.CustomResourceOptions): DnsRecord {
-        return new DnsRecord(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RecordState, opts?: pulumi.CustomResourceOptions): Record {
+        return new Record(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/dnsRecord:DnsRecord';
+    public static readonly __pulumiType = 'ionoscloud:dns/record:Record';
 
     /**
-     * Returns true if the given object is an instance of DnsRecord.  This is designed to work even
+     * Returns true if the given object is an instance of Record.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DnsRecord {
+    public static isInstance(obj: any): obj is Record {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DnsRecord.__pulumiType;
+        return obj['__pulumiType'] === Record.__pulumiType;
     }
 
     /**
@@ -109,18 +109,18 @@ export class DnsRecord extends pulumi.CustomResource {
     public readonly zoneId!: pulumi.Output<string>;
 
     /**
-     * Create a DnsRecord resource with the given unique name, arguments, and options.
+     * Create a Record resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DnsRecordArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DnsRecordArgs | DnsRecordState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RecordArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RecordArgs | RecordState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DnsRecordState | undefined;
+            const state = argsOrState as RecordState | undefined;
             resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
@@ -130,7 +130,7 @@ export class DnsRecord extends pulumi.CustomResource {
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
         } else {
-            const args = argsOrState as DnsRecordArgs | undefined;
+            const args = argsOrState as RecordArgs | undefined;
             if ((!args || args.content === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'content'");
             }
@@ -150,14 +150,14 @@ export class DnsRecord extends pulumi.CustomResource {
             resourceInputs["fqdn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DnsRecord.__pulumiType, name, resourceInputs, opts);
+        super(Record.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DnsRecord resources.
+ * Input properties used for looking up and filtering Record resources.
  */
-export interface DnsRecordState {
+export interface RecordState {
     /**
      * [string] The content of the DNS Record.
      */
@@ -193,9 +193,9 @@ export interface DnsRecordState {
 }
 
 /**
- * The set of arguments for constructing a DnsRecord resource.
+ * The set of arguments for constructing a Record resource.
  */
-export interface DnsRecordArgs {
+export interface RecordArgs {
     /**
      * [string] The content of the DNS Record.
      */
