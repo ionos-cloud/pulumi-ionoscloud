@@ -4,6 +4,7 @@
 
 import copy
 import warnings
+<<<<<<< HEAD
 import sys
 import pulumi
 import pulumi.runtime
@@ -12,6 +13,11 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
+=======
+import pulumi
+import pulumi.runtime
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+>>>>>>> main
 from . import _utilities
 
 __all__ = ['DnsZoneArgs', 'DnsZone']
@@ -144,12 +150,16 @@ class _DnsZoneState:
         pulumi.set(self, "nameservers", value)
 
 
+<<<<<<< HEAD
 warnings.warn("""ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""", DeprecationWarning)
 
 
 class DnsZone(pulumi.CustomResource):
     warnings.warn("""ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""", DeprecationWarning)
 
+=======
+class DnsZone(pulumi.CustomResource):
+>>>>>>> main
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -165,14 +175,26 @@ class DnsZone(pulumi.CustomResource):
 
         ## Example Usage
 
+<<<<<<< HEAD
+=======
+        <!--Start PulumiCodeChooser -->
+>>>>>>> main
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
+<<<<<<< HEAD
         example = ionoscloud.dns.Zone("example",
             description="description",
             enabled=False)
         ```
+=======
+        example = ionoscloud.DnsZone("example",
+            description="description",
+            enabled=False)
+        ```
+        <!--End PulumiCodeChooser -->
+>>>>>>> main
 
         ## Import
 
@@ -209,14 +231,26 @@ class DnsZone(pulumi.CustomResource):
 
         ## Example Usage
 
+<<<<<<< HEAD
+=======
+        <!--Start PulumiCodeChooser -->
+>>>>>>> main
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
+<<<<<<< HEAD
         example = ionoscloud.dns.Zone("example",
             description="description",
             enabled=False)
         ```
+=======
+        example = ionoscloud.DnsZone("example",
+            description="description",
+            enabled=False)
+        ```
+        <!--End PulumiCodeChooser -->
+>>>>>>> main
 
         ## Import
 
@@ -253,7 +287,10 @@ class DnsZone(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+<<<<<<< HEAD
         pulumi.log.warn("""DnsZone is deprecated: ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""")
+=======
+>>>>>>> main
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -4,6 +4,7 @@
 
 import copy
 import warnings
+<<<<<<< HEAD
 import sys
 import pulumi
 import pulumi.runtime
@@ -12,6 +13,11 @@ if sys.version_info >= (3, 11):
     from typing import NotRequired, TypedDict, TypeAlias
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
+=======
+import pulumi
+import pulumi.runtime
+from typing import Any, Mapping, Optional, Sequence, Union, overload
+>>>>>>> main
 from . import _utilities
 
 __all__ = ['DnsRecordArgs', 'DnsRecord']
@@ -269,12 +275,16 @@ class _DnsRecordState:
         pulumi.set(self, "zone_id", value)
 
 
+<<<<<<< HEAD
 warnings.warn("""ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""", DeprecationWarning)
 
 
 class DnsRecord(pulumi.CustomResource):
     warnings.warn("""ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""", DeprecationWarning)
 
+=======
+class DnsRecord(pulumi.CustomResource):
+>>>>>>> main
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -294,14 +304,25 @@ class DnsRecord(pulumi.CustomResource):
 
         ## Example Usage
 
+<<<<<<< HEAD
+=======
+        <!--Start PulumiCodeChooser -->
+>>>>>>> main
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
+<<<<<<< HEAD
         example = ionoscloud.dns.Zone("example",
             description="description",
             enabled=False)
         recordexample = ionoscloud.dns.Record("recordexample",
+=======
+        example = ionoscloud.DnsZone("example",
+            description="description",
+            enabled=False)
+        recordexample = ionoscloud.DnsRecord("recordexample",
+>>>>>>> main
             zone_id=example.id,
             type="CNAME",
             content="1.2.3.4",
@@ -309,6 +330,10 @@ class DnsRecord(pulumi.CustomResource):
             priority=1024,
             enabled=False)
         ```
+<<<<<<< HEAD
+=======
+        <!--End PulumiCodeChooser -->
+>>>>>>> main
 
         ## Import
 
@@ -349,14 +374,25 @@ class DnsRecord(pulumi.CustomResource):
 
         ## Example Usage
 
+<<<<<<< HEAD
+=======
+        <!--Start PulumiCodeChooser -->
+>>>>>>> main
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
+<<<<<<< HEAD
         example = ionoscloud.dns.Zone("example",
             description="description",
             enabled=False)
         recordexample = ionoscloud.dns.Record("recordexample",
+=======
+        example = ionoscloud.DnsZone("example",
+            description="description",
+            enabled=False)
+        recordexample = ionoscloud.DnsRecord("recordexample",
+>>>>>>> main
             zone_id=example.id,
             type="CNAME",
             content="1.2.3.4",
@@ -364,6 +400,10 @@ class DnsRecord(pulumi.CustomResource):
             priority=1024,
             enabled=False)
         ```
+<<<<<<< HEAD
+=======
+        <!--End PulumiCodeChooser -->
+>>>>>>> main
 
         ## Import
 
@@ -404,7 +444,10 @@ class DnsRecord(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+<<<<<<< HEAD
         pulumi.log.warn("""DnsRecord is deprecated: ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""")
+=======
+>>>>>>> main
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
