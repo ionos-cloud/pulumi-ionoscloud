@@ -535,26 +535,6 @@ export type VcpuServer = import("./vcpuServer").VcpuServer;
 export const VcpuServer: typeof import("./vcpuServer").VcpuServer = null as any;
 utilities.lazyLoad(exports, ["VcpuServer"], () => require("./vcpuServer"));
 
-export { VpnIpsecGatewayArgs, VpnIpsecGatewayState } from "./vpnIpsecGateway";
-export type VpnIpsecGateway = import("./vpnIpsecGateway").VpnIpsecGateway;
-export const VpnIpsecGateway: typeof import("./vpnIpsecGateway").VpnIpsecGateway = null as any;
-utilities.lazyLoad(exports, ["VpnIpsecGateway"], () => require("./vpnIpsecGateway"));
-
-export { VpnIpsecTunnelArgs, VpnIpsecTunnelState } from "./vpnIpsecTunnel";
-export type VpnIpsecTunnel = import("./vpnIpsecTunnel").VpnIpsecTunnel;
-export const VpnIpsecTunnel: typeof import("./vpnIpsecTunnel").VpnIpsecTunnel = null as any;
-utilities.lazyLoad(exports, ["VpnIpsecTunnel"], () => require("./vpnIpsecTunnel"));
-
-export { VpnWireguardGatewayArgs, VpnWireguardGatewayState } from "./vpnWireguardGateway";
-export type VpnWireguardGateway = import("./vpnWireguardGateway").VpnWireguardGateway;
-export const VpnWireguardGateway: typeof import("./vpnWireguardGateway").VpnWireguardGateway = null as any;
-utilities.lazyLoad(exports, ["VpnWireguardGateway"], () => require("./vpnWireguardGateway"));
-
-export { VpnWireguardPeerArgs, VpnWireguardPeerState } from "./vpnWireguardPeer";
-export type VpnWireguardPeer = import("./vpnWireguardPeer").VpnWireguardPeer;
-export const VpnWireguardPeer: typeof import("./vpnWireguardPeer").VpnWireguardPeer = null as any;
-utilities.lazyLoad(exports, ["VpnWireguardPeer"], () => require("./vpnWireguardPeer"));
-
 
 // Export sub-modules:
 import * as compute from "./compute";
@@ -562,6 +542,7 @@ import * as config from "./config";
 import * as dbaas from "./dbaas";
 import * as k8s from "./k8s";
 import * as types from "./types";
+import * as vpn from "./vpn";
 
 export {
     compute,
@@ -569,6 +550,7 @@ export {
     dbaas,
     k8s,
     types,
+    vpn,
 };
 
 const _module = {
@@ -641,14 +623,6 @@ const _module = {
                 return new TargetGroup(name, <any>undefined, { urn })
             case "ionoscloud:index/vcpuServer:VcpuServer":
                 return new VcpuServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway":
-                return new VpnIpsecGateway(name, <any>undefined, { urn })
-            case "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel":
-                return new VpnIpsecTunnel(name, <any>undefined, { urn })
-            case "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway":
-                return new VpnWireguardGateway(name, <any>undefined, { urn })
-            case "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer":
-                return new VpnWireguardPeer(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -687,10 +661,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/share", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/snapshot", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/vcpuServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnIpsecGateway", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnIpsecTunnel", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnWireguardGateway", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/vpnWireguardPeer", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

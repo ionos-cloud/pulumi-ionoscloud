@@ -750,7 +750,7 @@
                 }
             },
             "ionoscloud_vpn_ipsec_gateway": {
-                "current": "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway",
+                "current": "ionoscloud:vpn/ipsecGateway:IpsecGateway",
                 "fields": {
                     "connections": {
                         "maxItemsOne": false
@@ -758,7 +758,7 @@
                 }
             },
             "ionoscloud_vpn_ipsec_tunnel": {
-                "current": "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel",
+                "current": "ionoscloud:vpn/ipsecTunnel:IpsecTunnel",
                 "fields": {
                     "auth": {
                         "maxItemsOne": true
@@ -778,7 +778,7 @@
                 }
             },
             "ionoscloud_vpn_wireguard_gateway": {
-                "current": "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway",
+                "current": "ionoscloud:vpn/wireguardGateway:WireguardGateway",
                 "fields": {
                     "connections": {
                         "maxItemsOne": false
@@ -786,7 +786,7 @@
                 }
             },
             "ionoscloud_vpn_wireguard_peer": {
-                "current": "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer",
+                "current": "ionoscloud:vpn/wireguardPeer:WireguardPeer",
                 "fields": {
                     "allowed_ips": {
                         "maxItemsOne": false

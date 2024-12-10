@@ -87,14 +87,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TargetGroup{}
 	case "ionoscloud:index/vcpuServer:VcpuServer":
 		r = &VcpuServer{}
-	case "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway":
-		r = &VpnIpsecGateway{}
-	case "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel":
-		r = &VpnIpsecTunnel{}
-	case "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway":
-		r = &VpnWireguardGateway{}
-	case "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer":
-		r = &VpnWireguardPeer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -289,26 +281,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/vcpuServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnIpsecGateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnIpsecTunnel",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnWireguardGateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnWireguardPeer",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

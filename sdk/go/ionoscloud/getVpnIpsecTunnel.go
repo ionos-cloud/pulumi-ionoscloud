@@ -17,9 +17,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupVpnIpsecTunnel(ctx *pulumi.Context, args *LookupVpnIpsecTunnelArgs, opts ...pulumi.InvokeOption) (*LookupVpnIpsecTunnelResult, error) {
+func GetVpnIpsecTunnel(ctx *pulumi.Context, args *GetVpnIpsecTunnelArgs, opts ...pulumi.InvokeOption) (*GetVpnIpsecTunnelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupVpnIpsecTunnelResult
+	var rv GetVpnIpsecTunnelResult
 	err := ctx.Invoke("ionoscloud:index/getVpnIpsecTunnel:getVpnIpsecTunnel", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func LookupVpnIpsecTunnel(ctx *pulumi.Context, args *LookupVpnIpsecTunnelArgs, o
 }
 
 // A collection of arguments for invoking getVpnIpsecTunnel.
-type LookupVpnIpsecTunnelArgs struct {
+type GetVpnIpsecTunnelArgs struct {
 	// The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId string `pulumi:"gatewayId"`
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
@@ -40,7 +40,7 @@ type LookupVpnIpsecTunnelArgs struct {
 }
 
 // A collection of values returned by getVpnIpsecTunnel.
-type LookupVpnIpsecTunnelResult struct {
+type GetVpnIpsecTunnelResult struct {
 	Auths             []GetVpnIpsecTunnelAuth `pulumi:"auths"`
 	CloudNetworkCidrs []string                `pulumi:"cloudNetworkCidrs"`
 	Description       string                  `pulumi:"description"`
@@ -54,21 +54,21 @@ type LookupVpnIpsecTunnelResult struct {
 	RemoteHost        string                  `pulumi:"remoteHost"`
 }
 
-func LookupVpnIpsecTunnelOutput(ctx *pulumi.Context, args LookupVpnIpsecTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupVpnIpsecTunnelResultOutput {
+func GetVpnIpsecTunnelOutput(ctx *pulumi.Context, args GetVpnIpsecTunnelOutputArgs, opts ...pulumi.InvokeOption) GetVpnIpsecTunnelResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpnIpsecTunnelResult, error) {
-			args := v.(LookupVpnIpsecTunnelArgs)
-			r, err := LookupVpnIpsecTunnel(ctx, &args, opts...)
-			var s LookupVpnIpsecTunnelResult
+		ApplyT(func(v interface{}) (GetVpnIpsecTunnelResult, error) {
+			args := v.(GetVpnIpsecTunnelArgs)
+			r, err := GetVpnIpsecTunnel(ctx, &args, opts...)
+			var s GetVpnIpsecTunnelResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupVpnIpsecTunnelResultOutput)
+		}).(GetVpnIpsecTunnelResultOutput)
 }
 
 // A collection of arguments for invoking getVpnIpsecTunnel.
-type LookupVpnIpsecTunnelOutputArgs struct {
+type GetVpnIpsecTunnelOutputArgs struct {
 	// The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
 	// ID of an existing IPSec Gateway Tunnel that you want to search for.
@@ -79,69 +79,69 @@ type LookupVpnIpsecTunnelOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupVpnIpsecTunnelOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpnIpsecTunnelArgs)(nil)).Elem()
+func (GetVpnIpsecTunnelOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpnIpsecTunnelArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getVpnIpsecTunnel.
-type LookupVpnIpsecTunnelResultOutput struct{ *pulumi.OutputState }
+type GetVpnIpsecTunnelResultOutput struct{ *pulumi.OutputState }
 
-func (LookupVpnIpsecTunnelResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpnIpsecTunnelResult)(nil)).Elem()
+func (GetVpnIpsecTunnelResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpnIpsecTunnelResult)(nil)).Elem()
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) ToLookupVpnIpsecTunnelResultOutput() LookupVpnIpsecTunnelResultOutput {
+func (o GetVpnIpsecTunnelResultOutput) ToGetVpnIpsecTunnelResultOutput() GetVpnIpsecTunnelResultOutput {
 	return o
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) ToLookupVpnIpsecTunnelResultOutputWithContext(ctx context.Context) LookupVpnIpsecTunnelResultOutput {
+func (o GetVpnIpsecTunnelResultOutput) ToGetVpnIpsecTunnelResultOutputWithContext(ctx context.Context) GetVpnIpsecTunnelResultOutput {
 	return o
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Auths() GetVpnIpsecTunnelAuthArrayOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) []GetVpnIpsecTunnelAuth { return v.Auths }).(GetVpnIpsecTunnelAuthArrayOutput)
+func (o GetVpnIpsecTunnelResultOutput) Auths() GetVpnIpsecTunnelAuthArrayOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) []GetVpnIpsecTunnelAuth { return v.Auths }).(GetVpnIpsecTunnelAuthArrayOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) CloudNetworkCidrs() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) []string { return v.CloudNetworkCidrs }).(pulumi.StringArrayOutput)
+func (o GetVpnIpsecTunnelResultOutput) CloudNetworkCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) []string { return v.CloudNetworkCidrs }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.Description }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Esps() GetVpnIpsecTunnelEspArrayOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) []GetVpnIpsecTunnelEsp { return v.Esps }).(GetVpnIpsecTunnelEspArrayOutput)
+func (o GetVpnIpsecTunnelResultOutput) Esps() GetVpnIpsecTunnelEspArrayOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) []GetVpnIpsecTunnelEsp { return v.Esps }).(GetVpnIpsecTunnelEspArrayOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) GatewayId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.GatewayId }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) GatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.GatewayId }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Ikes() GetVpnIpsecTunnelIkeArrayOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) []GetVpnIpsecTunnelIke { return v.Ikes }).(GetVpnIpsecTunnelIkeArrayOutput)
+func (o GetVpnIpsecTunnelResultOutput) Ikes() GetVpnIpsecTunnelIkeArrayOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) []GetVpnIpsecTunnelIke { return v.Ikes }).(GetVpnIpsecTunnelIkeArrayOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) PeerNetworkCidrs() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) []string { return v.PeerNetworkCidrs }).(pulumi.StringArrayOutput)
+func (o GetVpnIpsecTunnelResultOutput) PeerNetworkCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) []string { return v.PeerNetworkCidrs }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupVpnIpsecTunnelResultOutput) RemoteHost() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnIpsecTunnelResult) string { return v.RemoteHost }).(pulumi.StringOutput)
+func (o GetVpnIpsecTunnelResultOutput) RemoteHost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnIpsecTunnelResult) string { return v.RemoteHost }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupVpnIpsecTunnelResultOutput{})
+	pulumi.RegisterOutputType(GetVpnIpsecTunnelResultOutput{})
 }

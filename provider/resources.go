@@ -41,6 +41,7 @@ const (
 	computeModule = "compute" // the ionoscloud module
 	dbaasModule   = "dbaas"   // the ionoscloud module
 	k8sModule     = "k8s"     // the ionoscloud module
+	vpnModule     = "vpn"     // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -144,7 +145,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config: map[string]*tfbridge.SchemaInfo{
+		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -245,6 +246,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_k8s_node_pool": {
 				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "NodePool"),
+			},
+			"ionoscloud_vpn_ipsec_gateway": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "IpsecGateway"),
+			},
+			"ionoscloud_vpn_ipsec_tunnel": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "IpsecTunnel"),
+			},
+			"ionoscloud_vpn_wireguard_gateway": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "WireguardGateway"),
+			},
+			"ionoscloud_vpn_wireguard_peer": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "WireguardPeer"),
 			},
 		},
 	}
