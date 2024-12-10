@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages an **Container Registry** on IonosCloud.
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.ContainerRegistry("example", {
+ * const example = new ionoscloud.creg.Registry("example", {
  *     apiSubnetAllowLists: ["1.2.3.4/32"],
  *     garbageCollectionSchedule: {
  *         days: [
@@ -35,12 +35,12 @@ import * as utilities from "./utilities";
  * Resource Container Registry can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/containerRegistry:ContainerRegistry mycr {container_registry uuid}
+ * $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
  * ```
  */
-export class ContainerRegistry extends pulumi.CustomResource {
+export class Registry extends pulumi.CustomResource {
     /**
-     * Get an existing ContainerRegistry resource's state with the given name, ID, and optional extra
+     * Get an existing Registry resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -48,22 +48,22 @@ export class ContainerRegistry extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerRegistryState, opts?: pulumi.CustomResourceOptions): ContainerRegistry {
-        return new ContainerRegistry(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegistryState, opts?: pulumi.CustomResourceOptions): Registry {
+        return new Registry(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/containerRegistry:ContainerRegistry';
+    public static readonly __pulumiType = 'ionoscloud:creg/registry:Registry';
 
     /**
-     * Returns true if the given object is an instance of ContainerRegistry.  This is designed to work even
+     * Returns true if the given object is an instance of Registry.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ContainerRegistry {
+    public static isInstance(obj: any): obj is Registry {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ContainerRegistry.__pulumiType;
+        return obj['__pulumiType'] === Registry.__pulumiType;
     }
 
     /**
@@ -73,11 +73,11 @@ export class ContainerRegistry extends pulumi.CustomResource {
     /**
      * [Map]
      */
-    public readonly features!: pulumi.Output<outputs.ContainerRegistryFeatures>;
+    public readonly features!: pulumi.Output<outputs.creg.RegistryFeatures>;
     /**
      * [Map]
      */
-    public readonly garbageCollectionSchedule!: pulumi.Output<outputs.ContainerRegistryGarbageCollectionSchedule>;
+    public readonly garbageCollectionSchedule!: pulumi.Output<outputs.creg.RegistryGarbageCollectionSchedule>;
     public /*out*/ readonly hostname!: pulumi.Output<string>;
     /**
      * [string] Immutable, update forces re-creation of the resource.
@@ -87,21 +87,21 @@ export class ContainerRegistry extends pulumi.CustomResource {
      * The name of the container registry. Immutable, update forces re-creation of the resource.
      */
     public readonly name!: pulumi.Output<string>;
-    public /*out*/ readonly storageUsages!: pulumi.Output<outputs.ContainerRegistryStorageUsage[]>;
+    public /*out*/ readonly storageUsages!: pulumi.Output<outputs.creg.RegistryStorageUsage[]>;
 
     /**
-     * Create a ContainerRegistry resource with the given unique name, arguments, and options.
+     * Create a Registry resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ContainerRegistryArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ContainerRegistryArgs | ContainerRegistryState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RegistryArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RegistryArgs | RegistryState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ContainerRegistryState | undefined;
+            const state = argsOrState as RegistryState | undefined;
             resourceInputs["apiSubnetAllowLists"] = state ? state.apiSubnetAllowLists : undefined;
             resourceInputs["features"] = state ? state.features : undefined;
             resourceInputs["garbageCollectionSchedule"] = state ? state.garbageCollectionSchedule : undefined;
@@ -110,7 +110,7 @@ export class ContainerRegistry extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["storageUsages"] = state ? state.storageUsages : undefined;
         } else {
-            const args = argsOrState as ContainerRegistryArgs | undefined;
+            const args = argsOrState as RegistryArgs | undefined;
             if ((!args || args.location === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'location'");
             }
@@ -123,14 +123,14 @@ export class ContainerRegistry extends pulumi.CustomResource {
             resourceInputs["storageUsages"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ContainerRegistry.__pulumiType, name, resourceInputs, opts);
+        super(Registry.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering ContainerRegistry resources.
+ * Input properties used for looking up and filtering Registry resources.
  */
-export interface ContainerRegistryState {
+export interface RegistryState {
     /**
      * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
@@ -138,11 +138,11 @@ export interface ContainerRegistryState {
     /**
      * [Map]
      */
-    features?: pulumi.Input<inputs.ContainerRegistryFeatures>;
+    features?: pulumi.Input<inputs.creg.RegistryFeatures>;
     /**
      * [Map]
      */
-    garbageCollectionSchedule?: pulumi.Input<inputs.ContainerRegistryGarbageCollectionSchedule>;
+    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
     hostname?: pulumi.Input<string>;
     /**
      * [string] Immutable, update forces re-creation of the resource.
@@ -152,13 +152,13 @@ export interface ContainerRegistryState {
      * The name of the container registry. Immutable, update forces re-creation of the resource.
      */
     name?: pulumi.Input<string>;
-    storageUsages?: pulumi.Input<pulumi.Input<inputs.ContainerRegistryStorageUsage>[]>;
+    storageUsages?: pulumi.Input<pulumi.Input<inputs.creg.RegistryStorageUsage>[]>;
 }
 
 /**
- * The set of arguments for constructing a ContainerRegistry resource.
+ * The set of arguments for constructing a Registry resource.
  */
-export interface ContainerRegistryArgs {
+export interface RegistryArgs {
     /**
      * [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
      */
@@ -166,11 +166,11 @@ export interface ContainerRegistryArgs {
     /**
      * [Map]
      */
-    features?: pulumi.Input<inputs.ContainerRegistryFeatures>;
+    features?: pulumi.Input<inputs.creg.RegistryFeatures>;
     /**
      * [Map]
      */
-    garbageCollectionSchedule?: pulumi.Input<inputs.ContainerRegistryGarbageCollectionSchedule>;
+    garbageCollectionSchedule?: pulumi.Input<inputs.creg.RegistryGarbageCollectionSchedule>;
     /**
      * [string] Immutable, update forces re-creation of the resource.
      */

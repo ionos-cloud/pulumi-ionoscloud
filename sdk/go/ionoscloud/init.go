@@ -39,10 +39,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CdnDistribution{}
 	case "ionoscloud:index/certificate:Certificate":
 		r = &Certificate{}
-	case "ionoscloud:index/containerRegistry:ContainerRegistry":
-		r = &ContainerRegistry{}
-	case "ionoscloud:index/containerRegistryToken:ContainerRegistryToken":
-		r = &ContainerRegistryToken{}
 	case "ionoscloud:index/cubeServer:CubeServer":
 		r = &CubeServer{}
 	case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
@@ -169,16 +165,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/certificate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/containerRegistry",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/containerRegistryToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

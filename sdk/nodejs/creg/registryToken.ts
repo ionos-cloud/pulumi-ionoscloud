@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages an **Container Registry Token** on IonosCloud.
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleContainerRegistry = new ionoscloud.ContainerRegistry("exampleContainerRegistry", {
+ * const exampleRegistry = new ionoscloud.creg.Registry("exampleRegistry", {
  *     garbageCollectionSchedule: {
  *         days: [
  *             "Monday",
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     },
  *     location: "de/fra",
  * });
- * const exampleContainerRegistryToken = new ionoscloud.ContainerRegistryToken("exampleContainerRegistryToken", {
+ * const exampleRegistryToken = new ionoscloud.creg.RegistryToken("exampleRegistryToken", {
  *     expiryDate: "2023-01-13 16:27:42Z",
  *     scopes: [{
  *         actions: ["push"],
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *         type: "repository",
  *     }],
  *     status: "enabled",
- *     registryId: exampleContainerRegistry.id,
+ *     registryId: exampleRegistry.id,
  *     savePasswordToFile: "pass.txt",
  * });
  * ```
@@ -45,12 +45,12 @@ import * as utilities from "./utilities";
  * Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/containerRegistryToken:ContainerRegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+ * $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
  * ```
  */
-export class ContainerRegistryToken extends pulumi.CustomResource {
+export class RegistryToken extends pulumi.CustomResource {
     /**
-     * Get an existing ContainerRegistryToken resource's state with the given name, ID, and optional extra
+     * Get an existing RegistryToken resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -58,25 +58,25 @@ export class ContainerRegistryToken extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerRegistryTokenState, opts?: pulumi.CustomResourceOptions): ContainerRegistryToken {
-        return new ContainerRegistryToken(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegistryTokenState, opts?: pulumi.CustomResourceOptions): RegistryToken {
+        return new RegistryToken(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/containerRegistryToken:ContainerRegistryToken';
+    public static readonly __pulumiType = 'ionoscloud:creg/registryToken:RegistryToken';
 
     /**
-     * Returns true if the given object is an instance of ContainerRegistryToken.  This is designed to work even
+     * Returns true if the given object is an instance of RegistryToken.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ContainerRegistryToken {
+    public static isInstance(obj: any): obj is RegistryToken {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ContainerRegistryToken.__pulumiType;
+        return obj['__pulumiType'] === RegistryToken.__pulumiType;
     }
 
-    public /*out*/ readonly credentials!: pulumi.Output<outputs.ContainerRegistryTokenCredential[]>;
+    public /*out*/ readonly credentials!: pulumi.Output<outputs.creg.RegistryTokenCredential[]>;
     public readonly expiryDate!: pulumi.Output<string | undefined>;
     /**
      * [string]
@@ -93,25 +93,25 @@ export class ContainerRegistryToken extends pulumi.CustomResource {
     /**
      * [map]
      */
-    public readonly scopes!: pulumi.Output<outputs.ContainerRegistryTokenScope[]>;
+    public readonly scopes!: pulumi.Output<outputs.creg.RegistryTokenScope[]>;
     /**
      * [string] Must have on of the values: `enabled`, `disabled`
      */
     public readonly status!: pulumi.Output<string>;
 
     /**
-     * Create a ContainerRegistryToken resource with the given unique name, arguments, and options.
+     * Create a RegistryToken resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ContainerRegistryTokenArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ContainerRegistryTokenArgs | ContainerRegistryTokenState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: RegistryTokenArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: RegistryTokenArgs | RegistryTokenState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ContainerRegistryTokenState | undefined;
+            const state = argsOrState as RegistryTokenState | undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["expiryDate"] = state ? state.expiryDate : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -120,7 +120,7 @@ export class ContainerRegistryToken extends pulumi.CustomResource {
             resourceInputs["scopes"] = state ? state.scopes : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
-            const args = argsOrState as ContainerRegistryTokenArgs | undefined;
+            const args = argsOrState as RegistryTokenArgs | undefined;
             if ((!args || args.registryId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'registryId'");
             }
@@ -133,15 +133,15 @@ export class ContainerRegistryToken extends pulumi.CustomResource {
             resourceInputs["credentials"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ContainerRegistryToken.__pulumiType, name, resourceInputs, opts);
+        super(RegistryToken.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering ContainerRegistryToken resources.
+ * Input properties used for looking up and filtering RegistryToken resources.
  */
-export interface ContainerRegistryTokenState {
-    credentials?: pulumi.Input<pulumi.Input<inputs.ContainerRegistryTokenCredential>[]>;
+export interface RegistryTokenState {
+    credentials?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenCredential>[]>;
     expiryDate?: pulumi.Input<string>;
     /**
      * [string]
@@ -158,7 +158,7 @@ export interface ContainerRegistryTokenState {
     /**
      * [map]
      */
-    scopes?: pulumi.Input<pulumi.Input<inputs.ContainerRegistryTokenScope>[]>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenScope>[]>;
     /**
      * [string] Must have on of the values: `enabled`, `disabled`
      */
@@ -166,9 +166,9 @@ export interface ContainerRegistryTokenState {
 }
 
 /**
- * The set of arguments for constructing a ContainerRegistryToken resource.
+ * The set of arguments for constructing a RegistryToken resource.
  */
-export interface ContainerRegistryTokenArgs {
+export interface RegistryTokenArgs {
     expiryDate?: pulumi.Input<string>;
     /**
      * [string]
@@ -185,7 +185,7 @@ export interface ContainerRegistryTokenArgs {
     /**
      * [map]
      */
-    scopes?: pulumi.Input<pulumi.Input<inputs.ContainerRegistryTokenScope>[]>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenScope>[]>;
     /**
      * [string] Must have on of the values: `enabled`, `disabled`
      */

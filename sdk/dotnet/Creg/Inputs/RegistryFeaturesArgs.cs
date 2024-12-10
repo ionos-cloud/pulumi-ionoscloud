@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    public sealed class ContainerRegistryFeaturesGetArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryFeaturesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
@@ -20,9 +20,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("vulnerabilityScanning")]
         public Input<bool>? VulnerabilityScanning { get; set; }
 
-        public ContainerRegistryFeaturesGetArgs()
+        public RegistryFeaturesArgs()
         {
         }
-        public static new ContainerRegistryFeaturesGetArgs Empty => new ContainerRegistryFeaturesGetArgs();
+        public static new RegistryFeaturesArgs Empty => new RegistryFeaturesArgs();
     }
 }

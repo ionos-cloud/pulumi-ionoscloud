@@ -7,11 +7,11 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Creg.Outputs
 {
 
     [OutputType]
-    public sealed class ContainerRegistryTokenScope
+    public sealed class RegistryTokenScope
     {
         /// <summary>
         /// [string] Example: ["pull", "push", "delete"]
@@ -27,7 +27,7 @@ namespace Pulumi.Ionoscloud.Outputs
         public readonly string Type;
 
         [OutputConstructor]
-        private ContainerRegistryTokenScope(
+        private RegistryTokenScope(
             ImmutableArray<string> actions,
 
             string name,
