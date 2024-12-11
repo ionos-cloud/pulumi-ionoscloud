@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  *     location: "de/txl",
  *     description: "Datacenter for testing Dataplatform Cluster",
  * });
- * const exampleDataplatformCluster = new ionoscloud.DataplatformCluster("exampleDataplatformCluster", {
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("exampleCluster", {
  *     datacenterId: exampleDatacenter.id,
  *     maintenanceWindows: [{
  *         dayOfTheWeek: "Sunday",
@@ -26,8 +26,8 @@ import * as utilities from "./utilities";
  *     }],
  *     version: "23.7",
  * });
- * const exampleDataplatformNodePool = new ionoscloud.DataplatformNodePool("exampleDataplatformNodePool", {
- *     clusterId: exampleDataplatformCluster.id,
+ * const exampleNodePool = new ionoscloud.dsaas.NodePool("exampleNodePool", {
+ *     clusterId: exampleCluster.id,
  *     nodeCount: 1,
  *     cpuFamily: "INTEL_SKYLAKE",
  *     coresCount: 1,
@@ -56,12 +56,12 @@ import * as utilities from "./utilities";
  * A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/dataplatformNodePool:DataplatformNodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
+ * $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
  * ```
  */
-export class DataplatformNodePool extends pulumi.CustomResource {
+export class NodePool extends pulumi.CustomResource {
     /**
-     * Get an existing DataplatformNodePool resource's state with the given name, ID, and optional extra
+     * Get an existing NodePool resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -69,22 +69,22 @@ export class DataplatformNodePool extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DataplatformNodePoolState, opts?: pulumi.CustomResourceOptions): DataplatformNodePool {
-        return new DataplatformNodePool(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NodePoolState, opts?: pulumi.CustomResourceOptions): NodePool {
+        return new NodePool(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/dataplatformNodePool:DataplatformNodePool';
+    public static readonly __pulumiType = 'ionoscloud:dsaas/nodePool:NodePool';
 
     /**
-     * Returns true if the given object is an instance of DataplatformNodePool.  This is designed to work even
+     * Returns true if the given object is an instance of NodePool.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DataplatformNodePool {
+    public static isInstance(obj: any): obj is NodePool {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DataplatformNodePool.__pulumiType;
+        return obj['__pulumiType'] === NodePool.__pulumiType;
     }
 
     /**
@@ -118,7 +118,7 @@ export class DataplatformNodePool extends pulumi.CustomResource {
     /**
      * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
-    public readonly maintenanceWindows!: pulumi.Output<outputs.DataplatformNodePoolMaintenanceWindow[]>;
+    public readonly maintenanceWindows!: pulumi.Output<outputs.dsaas.NodePoolMaintenanceWindow[]>;
     /**
      * [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */
@@ -145,18 +145,18 @@ export class DataplatformNodePool extends pulumi.CustomResource {
     public /*out*/ readonly version!: pulumi.Output<string>;
 
     /**
-     * Create a DataplatformNodePool resource with the given unique name, arguments, and options.
+     * Create a NodePool resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DataplatformNodePoolArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DataplatformNodePoolArgs | DataplatformNodePoolState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: NodePoolArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: NodePoolArgs | NodePoolState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DataplatformNodePoolState | undefined;
+            const state = argsOrState as NodePoolState | undefined;
             resourceInputs["annotations"] = state ? state.annotations : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
@@ -172,7 +172,7 @@ export class DataplatformNodePool extends pulumi.CustomResource {
             resourceInputs["storageType"] = state ? state.storageType : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
-            const args = argsOrState as DataplatformNodePoolArgs | undefined;
+            const args = argsOrState as NodePoolArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
@@ -195,14 +195,14 @@ export class DataplatformNodePool extends pulumi.CustomResource {
             resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DataplatformNodePool.__pulumiType, name, resourceInputs, opts);
+        super(NodePool.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DataplatformNodePool resources.
+ * Input properties used for looking up and filtering NodePool resources.
  */
-export interface DataplatformNodePoolState {
+export interface NodePoolState {
     /**
      * [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
      */
@@ -234,7 +234,7 @@ export interface DataplatformNodePoolState {
     /**
      * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
-    maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.DataplatformNodePoolMaintenanceWindow>[]>;
+    maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.NodePoolMaintenanceWindow>[]>;
     /**
      * [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */
@@ -262,9 +262,9 @@ export interface DataplatformNodePoolState {
 }
 
 /**
- * The set of arguments for constructing a DataplatformNodePool resource.
+ * The set of arguments for constructing a NodePool resource.
  */
-export interface DataplatformNodePoolArgs {
+export interface NodePoolArgs {
     /**
      * [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
      */
@@ -292,7 +292,7 @@ export interface DataplatformNodePoolArgs {
     /**
      * [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
      */
-    maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.DataplatformNodePoolMaintenanceWindow>[]>;
+    maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.dsaas.NodePoolMaintenanceWindow>[]>;
     /**
      * [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
      */

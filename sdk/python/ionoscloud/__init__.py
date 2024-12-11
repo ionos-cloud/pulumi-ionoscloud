@@ -17,8 +17,6 @@ from .certificate import *
 from .container_registry import *
 from .container_registry_token import *
 from .cube_server import *
-from .dataplatform_cluster import *
-from .dataplatform_node_pool import *
 from .dns_record import *
 from .dns_zone import *
 from .get_apigateway import *
@@ -126,12 +124,15 @@ if typing.TYPE_CHECKING:
     config = __config
     import ionoscloud.dbaas as __dbaas
     dbaas = __dbaas
+    import ionoscloud.dsaas as __dsaas
+    dsaas = __dsaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
 else:
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
+    dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
 
 _utilities.register(
@@ -283,6 +284,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dsaas/cluster",
+  "fqn": "ionoscloud.dsaas",
+  "classes": {
+   "ionoscloud:dsaas/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dsaas/nodePool",
+  "fqn": "ionoscloud.dsaas",
+  "classes": {
+   "ionoscloud:dsaas/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "index/apigateway",
   "fqn": "ionoscloud",
   "classes": {
@@ -375,22 +392,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/cubeServer:CubeServer": "CubeServer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dataplatformCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dataplatformCluster:DataplatformCluster": "DataplatformCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dataplatformNodePool",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dataplatformNodePool:DataplatformNodePool": "DataplatformNodePool"
   }
  },
  {

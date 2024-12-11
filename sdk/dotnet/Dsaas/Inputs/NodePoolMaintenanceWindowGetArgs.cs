@@ -7,29 +7,26 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Dsaas.Inputs
 {
 
-    [OutputType]
-    public sealed class DataplatformNodePoolMaintenanceWindow
+    public sealed class NodePoolMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
         /// </summary>
-        public readonly string DayOfTheWeek;
+        [Input("dayOfTheWeek", required: true)]
+        public Input<string> DayOfTheWeek { get; set; } = null!;
+
         /// <summary>
         /// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         /// </summary>
-        public readonly string Time;
+        [Input("time", required: true)]
+        public Input<string> Time { get; set; } = null!;
 
-        [OutputConstructor]
-        private DataplatformNodePoolMaintenanceWindow(
-            string dayOfTheWeek,
-
-            string time)
+        public NodePoolMaintenanceWindowGetArgs()
         {
-            DayOfTheWeek = dayOfTheWeek;
-            Time = time;
         }
+        public static new NodePoolMaintenanceWindowGetArgs Empty => new NodePoolMaintenanceWindowGetArgs();
     }
 }

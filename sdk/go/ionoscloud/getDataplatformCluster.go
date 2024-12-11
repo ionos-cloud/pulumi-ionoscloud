@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupDataplatformCluster(ctx, &ionoscloud.LookupDataplatformClusterArgs{
+//			_, err := ionoscloud.GetDataplatformCluster(ctx, &ionoscloud.GetDataplatformClusterArgs{
 //				Name: pulumi.StringRef("Dataplatform_Cluster_Example"),
 //			}, nil)
 //			if err != nil {
@@ -60,7 +60,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupDataplatformCluster(ctx, &ionoscloud.LookupDataplatformClusterArgs{
+//			_, err := ionoscloud.GetDataplatformCluster(ctx, &ionoscloud.GetDataplatformClusterArgs{
 //				Name:         pulumi.StringRef("_Example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -73,9 +73,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupDataplatformCluster(ctx *pulumi.Context, args *LookupDataplatformClusterArgs, opts ...pulumi.InvokeOption) (*LookupDataplatformClusterResult, error) {
+func GetDataplatformCluster(ctx *pulumi.Context, args *GetDataplatformClusterArgs, opts ...pulumi.InvokeOption) (*GetDataplatformClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDataplatformClusterResult
+	var rv GetDataplatformClusterResult
 	err := ctx.Invoke("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -84,7 +84,7 @@ func LookupDataplatformCluster(ctx *pulumi.Context, args *LookupDataplatformClus
 }
 
 // A collection of arguments for invoking getDataplatformCluster.
-type LookupDataplatformClusterArgs struct {
+type GetDataplatformClusterArgs struct {
 	// ID of the cluster you want to search for.
 	Id *string `pulumi:"id"`
 	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
@@ -96,7 +96,7 @@ type LookupDataplatformClusterArgs struct {
 }
 
 // A collection of values returned by getDataplatformCluster.
-type LookupDataplatformClusterResult struct {
+type GetDataplatformClusterResult struct {
 	// base64 decoded cluster certificate authority data (provided as an attribute for direct use)
 	CaCrt string `pulumi:"caCrt"`
 	// structured kubernetes config consisting of a list with 1 item with the following fields:
@@ -141,21 +141,21 @@ type LookupDataplatformClusterResult struct {
 	Version string `pulumi:"version"`
 }
 
-func LookupDataplatformClusterOutput(ctx *pulumi.Context, args LookupDataplatformClusterOutputArgs, opts ...pulumi.InvokeOption) LookupDataplatformClusterResultOutput {
+func GetDataplatformClusterOutput(ctx *pulumi.Context, args GetDataplatformClusterOutputArgs, opts ...pulumi.InvokeOption) GetDataplatformClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDataplatformClusterResult, error) {
-			args := v.(LookupDataplatformClusterArgs)
-			r, err := LookupDataplatformCluster(ctx, &args, opts...)
-			var s LookupDataplatformClusterResult
+		ApplyT(func(v interface{}) (GetDataplatformClusterResult, error) {
+			args := v.(GetDataplatformClusterArgs)
+			r, err := GetDataplatformCluster(ctx, &args, opts...)
+			var s GetDataplatformClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupDataplatformClusterResultOutput)
+		}).(GetDataplatformClusterResultOutput)
 }
 
 // A collection of arguments for invoking getDataplatformCluster.
-type LookupDataplatformClusterOutputArgs struct {
+type GetDataplatformClusterOutputArgs struct {
 	// ID of the cluster you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
@@ -166,28 +166,28 @@ type LookupDataplatformClusterOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupDataplatformClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDataplatformClusterArgs)(nil)).Elem()
+func (GetDataplatformClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataplatformClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getDataplatformCluster.
-type LookupDataplatformClusterResultOutput struct{ *pulumi.OutputState }
+type GetDataplatformClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDataplatformClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDataplatformClusterResult)(nil)).Elem()
+func (GetDataplatformClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataplatformClusterResult)(nil)).Elem()
 }
 
-func (o LookupDataplatformClusterResultOutput) ToLookupDataplatformClusterResultOutput() LookupDataplatformClusterResultOutput {
+func (o GetDataplatformClusterResultOutput) ToGetDataplatformClusterResultOutput() GetDataplatformClusterResultOutput {
 	return o
 }
 
-func (o LookupDataplatformClusterResultOutput) ToLookupDataplatformClusterResultOutputWithContext(ctx context.Context) LookupDataplatformClusterResultOutput {
+func (o GetDataplatformClusterResultOutput) ToGetDataplatformClusterResultOutputWithContext(ctx context.Context) GetDataplatformClusterResultOutput {
 	return o
 }
 
 // base64 decoded cluster certificate authority data (provided as an attribute for direct use)
-func (o LookupDataplatformClusterResultOutput) CaCrt() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) string { return v.CaCrt }).(pulumi.StringOutput)
+func (o GetDataplatformClusterResultOutput) CaCrt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) string { return v.CaCrt }).(pulumi.StringOutput)
 }
 
 // structured kubernetes config consisting of a list with 1 item with the following fields:
@@ -208,63 +208,63 @@ func (o LookupDataplatformClusterResultOutput) CaCrt() pulumi.StringOutput {
 // * name - user name
 // * user - map of
 // * token - user token used for authentication
-func (o LookupDataplatformClusterResultOutput) Configs() GetDataplatformClusterConfigArrayOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) []GetDataplatformClusterConfig { return v.Configs }).(GetDataplatformClusterConfigArrayOutput)
+func (o GetDataplatformClusterResultOutput) Configs() GetDataplatformClusterConfigArrayOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) []GetDataplatformClusterConfig { return v.Configs }).(GetDataplatformClusterConfigArrayOutput)
 }
 
 // The UUID of the virtual data center (VDC) in which the cluster is provisioned.
-func (o LookupDataplatformClusterResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetDataplatformClusterResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // The UUID of the cluster.
-func (o LookupDataplatformClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetDataplatformClusterResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Kubernetes configuration
-func (o LookupDataplatformClusterResultOutput) KubeConfig() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) string { return v.KubeConfig }).(pulumi.StringOutput)
+func (o GetDataplatformClusterResultOutput) KubeConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) string { return v.KubeConfig }).(pulumi.StringOutput)
 }
 
 // A list of LANs you want this node pool to be part of
-func (o LookupDataplatformClusterResultOutput) Lans() GetDataplatformClusterLanArrayOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) []GetDataplatformClusterLan { return v.Lans }).(GetDataplatformClusterLanArrayOutput)
+func (o GetDataplatformClusterResultOutput) Lans() GetDataplatformClusterLanArrayOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) []GetDataplatformClusterLan { return v.Lans }).(GetDataplatformClusterLanArrayOutput)
 }
 
 // Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-func (o LookupDataplatformClusterResultOutput) MaintenanceWindows() GetDataplatformClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) []GetDataplatformClusterMaintenanceWindow {
+func (o GetDataplatformClusterResultOutput) MaintenanceWindows() GetDataplatformClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) []GetDataplatformClusterMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetDataplatformClusterMaintenanceWindowArrayOutput)
 }
 
 // The name of your cluster.
-func (o LookupDataplatformClusterResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetDataplatformClusterResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDataplatformClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetDataplatformClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
-func (o LookupDataplatformClusterResultOutput) Server() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) string { return v.Server }).(pulumi.StringOutput)
+func (o GetDataplatformClusterResultOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
 // a convenience map to be search the token of a specific user
 // * key - is the user name
 // * value - is the token
-func (o LookupDataplatformClusterResultOutput) UserTokens() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
+func (o GetDataplatformClusterResultOutput) UserTokens() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
 }
 
 // The version of the Data Platform.
-func (o LookupDataplatformClusterResultOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformClusterResult) string { return v.Version }).(pulumi.StringOutput)
+func (o GetDataplatformClusterResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformClusterResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDataplatformClusterResultOutput{})
+	pulumi.RegisterOutputType(GetDataplatformClusterResultOutput{})
 }

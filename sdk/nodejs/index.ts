@@ -65,16 +65,6 @@ export type CubeServer = import("./cubeServer").CubeServer;
 export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
 utilities.lazyLoad(exports, ["CubeServer"], () => require("./cubeServer"));
 
-export { DataplatformClusterArgs, DataplatformClusterState } from "./dataplatformCluster";
-export type DataplatformCluster = import("./dataplatformCluster").DataplatformCluster;
-export const DataplatformCluster: typeof import("./dataplatformCluster").DataplatformCluster = null as any;
-utilities.lazyLoad(exports, ["DataplatformCluster"], () => require("./dataplatformCluster"));
-
-export { DataplatformNodePoolArgs, DataplatformNodePoolState } from "./dataplatformNodePool";
-export type DataplatformNodePool = import("./dataplatformNodePool").DataplatformNodePool;
-export const DataplatformNodePool: typeof import("./dataplatformNodePool").DataplatformNodePool = null as any;
-utilities.lazyLoad(exports, ["DataplatformNodePool"], () => require("./dataplatformNodePool"));
-
 export { DnsRecordArgs, DnsRecordState } from "./dnsRecord";
 export type DnsRecord = import("./dnsRecord").DnsRecord;
 export const DnsRecord: typeof import("./dnsRecord").DnsRecord = null as any;
@@ -560,6 +550,7 @@ utilities.lazyLoad(exports, ["VpnWireguardPeer"], () => require("./vpnWireguardP
 import * as compute from "./compute";
 import * as config from "./config";
 import * as dbaas from "./dbaas";
+import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
 import * as types from "./types";
 
@@ -567,6 +558,7 @@ export {
     compute,
     config,
     dbaas,
+    dsaas,
     k8s,
     types,
 };
@@ -599,10 +591,6 @@ const _module = {
                 return new ContainerRegistryToken(name, <any>undefined, { urn })
             case "ionoscloud:index/cubeServer:CubeServer":
                 return new CubeServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
-                return new DataplatformCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
-                return new DataplatformNodePool(name, <any>undefined, { urn })
             case "ionoscloud:index/dnsRecord:DnsRecord":
                 return new DnsRecord(name, <any>undefined, { urn })
             case "ionoscloud:index/dnsZone:DnsZone":
@@ -666,8 +654,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistry", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistryToken", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformNodePool", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsRecord", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dnsZone", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/ipfailover", _module)

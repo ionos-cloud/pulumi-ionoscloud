@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search and make sure that your resources have unique names.
 //
 // ## Example Usage
-func LookupDataplatformNodePool(ctx *pulumi.Context, args *LookupDataplatformNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupDataplatformNodePoolResult, error) {
+func GetDataplatformNodePool(ctx *pulumi.Context, args *GetDataplatformNodePoolArgs, opts ...pulumi.InvokeOption) (*GetDataplatformNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDataplatformNodePoolResult
+	var rv GetDataplatformNodePoolResult
 	err := ctx.Invoke("ionoscloud:index/getDataplatformNodePool:getDataplatformNodePool", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupDataplatformNodePool(ctx *pulumi.Context, args *LookupDataplatformNod
 }
 
 // A collection of arguments for invoking getDataplatformNodePool.
-type LookupDataplatformNodePoolArgs struct {
+type GetDataplatformNodePoolArgs struct {
 	// ID of the cluster the searched node pool is part of.
 	ClusterId string `pulumi:"clusterId"`
 	// ID of the node pool you want to search for.
@@ -41,7 +41,7 @@ type LookupDataplatformNodePoolArgs struct {
 }
 
 // A collection of values returned by getDataplatformNodePool.
-type LookupDataplatformNodePoolResult struct {
+type GetDataplatformNodePoolResult struct {
 	// Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations map[string]string `pulumi:"annotations"`
 	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
@@ -75,21 +75,21 @@ type LookupDataplatformNodePoolResult struct {
 	Version string `pulumi:"version"`
 }
 
-func LookupDataplatformNodePoolOutput(ctx *pulumi.Context, args LookupDataplatformNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupDataplatformNodePoolResultOutput {
+func GetDataplatformNodePoolOutput(ctx *pulumi.Context, args GetDataplatformNodePoolOutputArgs, opts ...pulumi.InvokeOption) GetDataplatformNodePoolResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDataplatformNodePoolResult, error) {
-			args := v.(LookupDataplatformNodePoolArgs)
-			r, err := LookupDataplatformNodePool(ctx, &args, opts...)
-			var s LookupDataplatformNodePoolResult
+		ApplyT(func(v interface{}) (GetDataplatformNodePoolResult, error) {
+			args := v.(GetDataplatformNodePoolArgs)
+			r, err := GetDataplatformNodePool(ctx, &args, opts...)
+			var s GetDataplatformNodePoolResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupDataplatformNodePoolResultOutput)
+		}).(GetDataplatformNodePoolResultOutput)
 }
 
 // A collection of arguments for invoking getDataplatformNodePool.
-type LookupDataplatformNodePoolOutputArgs struct {
+type GetDataplatformNodePoolOutputArgs struct {
 	// ID of the cluster the searched node pool is part of.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	// ID of the node pool you want to search for.
@@ -102,106 +102,106 @@ type LookupDataplatformNodePoolOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupDataplatformNodePoolOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDataplatformNodePoolArgs)(nil)).Elem()
+func (GetDataplatformNodePoolOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataplatformNodePoolArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getDataplatformNodePool.
-type LookupDataplatformNodePoolResultOutput struct{ *pulumi.OutputState }
+type GetDataplatformNodePoolResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDataplatformNodePoolResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDataplatformNodePoolResult)(nil)).Elem()
+func (GetDataplatformNodePoolResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataplatformNodePoolResult)(nil)).Elem()
 }
 
-func (o LookupDataplatformNodePoolResultOutput) ToLookupDataplatformNodePoolResultOutput() LookupDataplatformNodePoolResultOutput {
+func (o GetDataplatformNodePoolResultOutput) ToGetDataplatformNodePoolResultOutput() GetDataplatformNodePoolResultOutput {
 	return o
 }
 
-func (o LookupDataplatformNodePoolResultOutput) ToLookupDataplatformNodePoolResultOutputWithContext(ctx context.Context) LookupDataplatformNodePoolResultOutput {
+func (o GetDataplatformNodePoolResultOutput) ToGetDataplatformNodePoolResultOutputWithContext(ctx context.Context) GetDataplatformNodePoolResultOutput {
 	return o
 }
 
 // Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-func (o LookupDataplatformNodePoolResultOutput) Annotations() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+func (o GetDataplatformNodePoolResultOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
 // The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
-func (o LookupDataplatformNodePoolResultOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
 // ID of the cluster the searched node pool is part of.
-func (o LookupDataplatformNodePoolResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // The number of CPU cores per node.
-func (o LookupDataplatformNodePoolResultOutput) CoresCount() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) int { return v.CoresCount }).(pulumi.IntOutput)
+func (o GetDataplatformNodePoolResultOutput) CoresCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) int { return v.CoresCount }).(pulumi.IntOutput)
 }
 
 // A CPU family.
-func (o LookupDataplatformNodePoolResultOutput) CpuFamily() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.CpuFamily }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
 // The UUID of the virtual data center (VDC) the cluster is provisioned.
-func (o LookupDataplatformNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // ID of your node pool.
-func (o LookupDataplatformNodePoolResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetDataplatformNodePoolResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-func (o LookupDataplatformNodePoolResultOutput) Labels() pulumi.StringMapOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+func (o GetDataplatformNodePoolResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-func (o LookupDataplatformNodePoolResultOutput) MaintenanceWindows() GetDataplatformNodePoolMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) []GetDataplatformNodePoolMaintenanceWindow {
+func (o GetDataplatformNodePoolResultOutput) MaintenanceWindows() GetDataplatformNodePoolMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) []GetDataplatformNodePoolMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetDataplatformNodePoolMaintenanceWindowArrayOutput)
 }
 
 // The name of your node pool
-func (o LookupDataplatformNodePoolResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetDataplatformNodePoolResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The number of nodes that make up the node pool.
-func (o LookupDataplatformNodePoolResultOutput) NodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) int { return v.NodeCount }).(pulumi.IntOutput)
+func (o GetDataplatformNodePoolResultOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) int { return v.NodeCount }).(pulumi.IntOutput)
 }
 
-func (o LookupDataplatformNodePoolResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetDataplatformNodePoolResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // The RAM size for one node in MB.
-func (o LookupDataplatformNodePoolResultOutput) RamSize() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) int { return v.RamSize }).(pulumi.IntOutput)
+func (o GetDataplatformNodePoolResultOutput) RamSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) int { return v.RamSize }).(pulumi.IntOutput)
 }
 
 // The size of the volume in GB.
-func (o LookupDataplatformNodePoolResultOutput) StorageSize() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) int { return v.StorageSize }).(pulumi.IntOutput)
+func (o GetDataplatformNodePoolResultOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
 // The type of hardware for the volume.
-func (o LookupDataplatformNodePoolResultOutput) StorageType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.StorageType }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.StorageType }).(pulumi.StringOutput)
 }
 
 // The version of the Data Platform.
-func (o LookupDataplatformNodePoolResultOutput) Version() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDataplatformNodePoolResult) string { return v.Version }).(pulumi.StringOutput)
+func (o GetDataplatformNodePoolResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataplatformNodePoolResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDataplatformNodePoolResultOutput{})
+	pulumi.RegisterOutputType(GetDataplatformNodePoolResultOutput{})
 }

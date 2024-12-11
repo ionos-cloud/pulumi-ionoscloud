@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Dsaas.Inputs
 {
 
-    public sealed class DataplatformClusterLanRouteGetArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterLanRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] IPv4 or IPv6 gateway IP for the route.
@@ -24,9 +24,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
-        public DataplatformClusterLanRouteGetArgs()
+        public ClusterLanRouteArgs()
         {
         }
-        public static new DataplatformClusterLanRouteGetArgs Empty => new DataplatformClusterLanRouteGetArgs();
+        public static new ClusterLanRouteArgs Empty => new ClusterLanRouteArgs();
     }
 }
