@@ -25,6 +25,7 @@ import (
 //	"os"
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -77,7 +78,7 @@ import (
 //				return err
 //			}
 //			// optionally you can add a certificate to the application load balancer
-//			cert, err := ionoscloud.NewCertificate(ctx, "cert", &ionoscloud.CertificateArgs{
+//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
 //				Certificate:      readFileOrPanic("path_to_cert"),
 //				CertificateChain: readFileOrPanic("path_to_cert_chain"),
 //				PrivateKey:       readFileOrPanic("path_to_private_key"),

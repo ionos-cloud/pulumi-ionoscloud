@@ -126,17 +126,6 @@ export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
     value?: pulumi.Input<string>;
 }
 
-export interface AutoCertificateProviderExternalAccountBinding {
-    /**
-     * The key ID of the external account binding
-     */
-    keyId: pulumi.Input<string>;
-    /**
-     * The secret of the external account binding
-     */
-    keySecret: pulumi.Input<string>;
-}
-
 export interface AutoscalingGroupPolicy {
     /**
      * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -1268,6 +1257,19 @@ export interface VpnWireguardPeerEndpoint {
      */
     port?: pulumi.Input<number>;
 }
+export namespace cert {
+    export interface AutoCertificateProviderExternalAccountBinding {
+        /**
+         * The key ID of the external account binding
+         */
+        keyId: pulumi.Input<string>;
+        /**
+         * The secret of the external account binding
+         */
+        keySecret: pulumi.Input<string>;
+    }
+}
+
 export namespace compute {
     export interface DatacenterCpuArchitecture {
         /**

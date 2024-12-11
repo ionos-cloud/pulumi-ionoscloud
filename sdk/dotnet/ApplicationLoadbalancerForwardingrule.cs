@@ -59,7 +59,7 @@ namespace Pulumi.Ionoscloud
     ///     });
     /// 
     ///     //optionally you can add a certificate to the application load balancer
-    ///     var cert = new Ionoscloud.Certificate("cert", new()
+    ///     var cert = new Ionoscloud.Cert.Certificate("cert", new()
     ///     {
     ///         Certificate = File.ReadAllText("path_to_cert"),
     ///         CertificateChain = File.ReadAllText("path_to_cert_chain"),

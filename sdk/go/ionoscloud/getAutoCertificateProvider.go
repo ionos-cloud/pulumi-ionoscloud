@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupAutoCertificateProvider(ctx *pulumi.Context, args *LookupAutoCertificateProviderArgs, opts ...pulumi.InvokeOption) (*LookupAutoCertificateProviderResult, error) {
+func GetAutoCertificateProvider(ctx *pulumi.Context, args *GetAutoCertificateProviderArgs, opts ...pulumi.InvokeOption) (*GetAutoCertificateProviderResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupAutoCertificateProviderResult
+	var rv GetAutoCertificateProviderResult
 	err := ctx.Invoke("ionoscloud:index/getAutoCertificateProvider:getAutoCertificateProvider", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,14 +22,14 @@ func LookupAutoCertificateProvider(ctx *pulumi.Context, args *LookupAutoCertific
 }
 
 // A collection of arguments for invoking getAutoCertificateProvider.
-type LookupAutoCertificateProviderArgs struct {
+type GetAutoCertificateProviderArgs struct {
 	Id       *string `pulumi:"id"`
 	Location string  `pulumi:"location"`
 	Name     *string `pulumi:"name"`
 }
 
 // A collection of values returned by getAutoCertificateProvider.
-type LookupAutoCertificateProviderResult struct {
+type GetAutoCertificateProviderResult struct {
 	Email                   string                                             `pulumi:"email"`
 	ExternalAccountBindings []GetAutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBindings"`
 	Id                      *string                                            `pulumi:"id"`
@@ -38,71 +38,71 @@ type LookupAutoCertificateProviderResult struct {
 	Server                  string                                             `pulumi:"server"`
 }
 
-func LookupAutoCertificateProviderOutput(ctx *pulumi.Context, args LookupAutoCertificateProviderOutputArgs, opts ...pulumi.InvokeOption) LookupAutoCertificateProviderResultOutput {
+func GetAutoCertificateProviderOutput(ctx *pulumi.Context, args GetAutoCertificateProviderOutputArgs, opts ...pulumi.InvokeOption) GetAutoCertificateProviderResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAutoCertificateProviderResult, error) {
-			args := v.(LookupAutoCertificateProviderArgs)
-			r, err := LookupAutoCertificateProvider(ctx, &args, opts...)
-			var s LookupAutoCertificateProviderResult
+		ApplyT(func(v interface{}) (GetAutoCertificateProviderResult, error) {
+			args := v.(GetAutoCertificateProviderArgs)
+			r, err := GetAutoCertificateProvider(ctx, &args, opts...)
+			var s GetAutoCertificateProviderResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupAutoCertificateProviderResultOutput)
+		}).(GetAutoCertificateProviderResultOutput)
 }
 
 // A collection of arguments for invoking getAutoCertificateProvider.
-type LookupAutoCertificateProviderOutputArgs struct {
+type GetAutoCertificateProviderOutputArgs struct {
 	Id       pulumi.StringPtrInput `pulumi:"id"`
 	Location pulumi.StringInput    `pulumi:"location"`
 	Name     pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupAutoCertificateProviderOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupAutoCertificateProviderArgs)(nil)).Elem()
+func (GetAutoCertificateProviderOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoCertificateProviderArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getAutoCertificateProvider.
-type LookupAutoCertificateProviderResultOutput struct{ *pulumi.OutputState }
+type GetAutoCertificateProviderResultOutput struct{ *pulumi.OutputState }
 
-func (LookupAutoCertificateProviderResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupAutoCertificateProviderResult)(nil)).Elem()
+func (GetAutoCertificateProviderResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoCertificateProviderResult)(nil)).Elem()
 }
 
-func (o LookupAutoCertificateProviderResultOutput) ToLookupAutoCertificateProviderResultOutput() LookupAutoCertificateProviderResultOutput {
+func (o GetAutoCertificateProviderResultOutput) ToGetAutoCertificateProviderResultOutput() GetAutoCertificateProviderResultOutput {
 	return o
 }
 
-func (o LookupAutoCertificateProviderResultOutput) ToLookupAutoCertificateProviderResultOutputWithContext(ctx context.Context) LookupAutoCertificateProviderResultOutput {
+func (o GetAutoCertificateProviderResultOutput) ToGetAutoCertificateProviderResultOutputWithContext(ctx context.Context) GetAutoCertificateProviderResultOutput {
 	return o
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Email() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Email }).(pulumi.StringOutput)
+func (o GetAutoCertificateProviderResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) ExternalAccountBindings() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) []GetAutoCertificateProviderExternalAccountBinding {
+func (o GetAutoCertificateProviderResultOutput) ExternalAccountBindings() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) []GetAutoCertificateProviderExternalAccountBinding {
 		return v.ExternalAccountBindings
 	}).(GetAutoCertificateProviderExternalAccountBindingArrayOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetAutoCertificateProviderResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetAutoCertificateProviderResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetAutoCertificateProviderResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Server() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Server }).(pulumi.StringOutput)
+func (o GetAutoCertificateProviderResultOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupAutoCertificateProviderResultOutput{})
+	pulumi.RegisterOutputType(GetAutoCertificateProviderResultOutput{})
 }

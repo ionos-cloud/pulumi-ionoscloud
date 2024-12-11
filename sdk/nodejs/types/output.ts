@@ -126,17 +126,6 @@ export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
     value?: string;
 }
 
-export interface AutoCertificateProviderExternalAccountBinding {
-    /**
-     * The key ID of the external account binding
-     */
-    keyId: string;
-    /**
-     * The secret of the external account binding
-     */
-    keySecret: string;
-}
-
 export interface AutoscalingGroupPolicy {
     /**
      * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -3722,6 +3711,20 @@ export interface VpnWireguardPeerEndpoint {
      * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
      */
     port?: number;
+}
+
+export namespace cert {
+    export interface AutoCertificateProviderExternalAccountBinding {
+        /**
+         * The key ID of the external account binding
+         */
+        keyId: string;
+        /**
+         * The secret of the external account binding
+         */
+        keySecret: string;
+    }
+
 }
 
 export namespace compute {

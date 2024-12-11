@@ -90,6 +90,26 @@
         }
     },
     "types": {
+        "ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding": {
+            "properties": {
+                "keyId": {
+                    "type": "string",
+                    "description": "The key ID of the external account binding\n",
+                    "willReplaceOnChanges": true
+                },
+                "keySecret": {
+                    "type": "string",
+                    "description": "The secret of the external account binding\n",
+                    "secret": true,
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "keyId",
+                "keySecret"
+            ]
+        },
         "ionoscloud:compute/DatacenterCpuArchitecture:DatacenterCpuArchitecture": {
             "properties": {
                 "cpuFamily": {
@@ -1048,26 +1068,6 @@
             "type": "object",
             "required": [
                 "type"
-            ]
-        },
-        "ionoscloud:index/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding": {
-            "properties": {
-                "keyId": {
-                    "type": "string",
-                    "description": "The key ID of the external account binding\n",
-                    "willReplaceOnChanges": true
-                },
-                "keySecret": {
-                    "type": "string",
-                    "description": "The secret of the external account binding\n",
-                    "secret": true,
-                    "willReplaceOnChanges": true
-                }
-            },
-            "type": "object",
-            "required": [
-                "keyId",
-                "keySecret"
             ]
         },
         "ionoscloud:index/AutoscalingGroupPolicy:AutoscalingGroupPolicy": {
@@ -7923,6 +7923,291 @@
         }
     },
     "resources": {
+        "ionoscloud:cert/autoCertificate:AutoCertificate": {
+            "properties": {
+                "commonName": {
+                    "type": "string",
+                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n"
+                },
+                "keyAlgorithm": {
+                    "type": "string",
+                    "description": "The key algorithm used to generate the certificate\n"
+                },
+                "lastIssuedCertificateId": {
+                    "type": "string",
+                    "description": "The ID of the last certificate that was issued\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the auto-certificate\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A certificate name used for management purposes\n"
+                },
+                "providerId": {
+                    "type": "string",
+                    "description": "The certificate provider used to issue the certificates\n"
+                },
+                "subjectAlternativeNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n"
+                }
+            },
+            "required": [
+                "commonName",
+                "keyAlgorithm",
+                "lastIssuedCertificateId",
+                "location",
+                "name",
+                "providerId"
+            ],
+            "inputProperties": {
+                "commonName": {
+                    "type": "string",
+                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
+                    "willReplaceOnChanges": true
+                },
+                "keyAlgorithm": {
+                    "type": "string",
+                    "description": "The key algorithm used to generate the certificate\n",
+                    "willReplaceOnChanges": true
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the auto-certificate\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A certificate name used for management purposes\n"
+                },
+                "providerId": {
+                    "type": "string",
+                    "description": "The certificate provider used to issue the certificates\n",
+                    "willReplaceOnChanges": true
+                },
+                "subjectAlternativeNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "commonName",
+                "keyAlgorithm",
+                "location",
+                "providerId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AutoCertificate resources.\n",
+                "properties": {
+                    "commonName": {
+                        "type": "string",
+                        "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "keyAlgorithm": {
+                        "type": "string",
+                        "description": "The key algorithm used to generate the certificate\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "lastIssuedCertificateId": {
+                        "type": "string",
+                        "description": "The ID of the last certificate that was issued\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The location of the auto-certificate\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A certificate name used for management purposes\n"
+                    },
+                    "providerId": {
+                        "type": "string",
+                        "description": "The certificate provider used to issue the certificates\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "subjectAlternativeNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email address of the certificate requester\n"
+                },
+                "externalAccountBinding": {
+                    "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the certificate provider\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the certificate provider\n"
+                },
+                "server": {
+                    "type": "string",
+                    "description": "The URL of the certificate provider\n"
+                }
+            },
+            "required": [
+                "email",
+                "location",
+                "name",
+                "server"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email address of the certificate requester\n",
+                    "willReplaceOnChanges": true
+                },
+                "externalAccountBinding": {
+                    "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
+                    "willReplaceOnChanges": true
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the certificate provider\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the certificate provider\n"
+                },
+                "server": {
+                    "type": "string",
+                    "description": "The URL of the certificate provider\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "email",
+                "location",
+                "server"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AutoCertificateProvider resources.\n",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the certificate requester\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "externalAccountBinding": {
+                        "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
+                        "willReplaceOnChanges": true
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The location of the certificate provider\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the certificate provider\n"
+                    },
+                    "server": {
+                        "type": "string",
+                        "description": "The URL of the certificate provider\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:cert/certificate:Certificate": {
+            "properties": {
+                "certificate": {
+                    "type": "string",
+                    "description": "The certificate body in PEM format. This attribute is immutable.\n"
+                },
+                "certificateChain": {
+                    "type": "string",
+                    "description": "The certificate chain. This attribute is immutable.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The certificate name\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key blob. This attribute is immutable.\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "certificate",
+                "name",
+                "privateKey"
+            ],
+            "inputProperties": {
+                "certificate": {
+                    "type": "string",
+                    "description": "The certificate body in PEM format. This attribute is immutable.\n"
+                },
+                "certificateChain": {
+                    "type": "string",
+                    "description": "The certificate chain. This attribute is immutable.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The certificate name\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "The private key blob. This attribute is immutable.\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "certificate",
+                "privateKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Certificate resources.\n",
+                "properties": {
+                    "certificate": {
+                        "type": "string",
+                        "description": "The certificate body in PEM format. This attribute is immutable.\n"
+                    },
+                    "certificateChain": {
+                        "type": "string",
+                        "description": "The certificate chain. This attribute is immutable.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The certificate name\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "The private key blob. This attribute is immutable.\n",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:compute/backupUnit:BackupUnit": {
             "description": "\n\n## Import\n\nA Backup Unit resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}\n```\n\nThis can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.\n\n",
             "properties": {
@@ -11226,7 +11511,7 @@
             }
         },
         "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule": {
-            "description": "Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"us/las\",\n    description: \"datacenter description\",\n    secAuthProtection: false,\n});\nconst example1 = new ionoscloud.compute.Lan(\"example1\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": true,\n});\nconst example2 = new ionoscloud.compute.Lan(\"example2\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": true,\n});\nconst exampleApplicationLoadbalancer = new ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", {\n    datacenterId: exampleDatacenter.id,\n    listenerLan: example1.id,\n    ips: [\"10.12.118.224\"],\n    targetLan: example2.id,\n    lbPrivateIps: [\"10.13.72.225/24\"],\n});\n//optionally you can add a certificate to the application load balancer\nconst cert = new ionoscloud.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst exampleApplicationLoadbalancerForwardingrule = new ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", {\n    datacenterId: exampleDatacenter.id,\n    applicationLoadbalancerId: exampleApplicationLoadbalancer.id,\n    protocol: \"HTTP\",\n    listenerIp: \"10.12.118.224\",\n    listenerPort: 8080,\n    clientTimeout: 1000,\n    httpRules: [\n        {\n            name: \"http_rule\",\n            type: \"REDIRECT\",\n            dropQuery: true,\n            location: \"www.ionos.com\",\n            statusCode: 301,\n            conditions: [{\n                type: \"HEADER\",\n                condition: \"EQUALS\",\n                negate: true,\n                key: \"key\",\n                value: \"10.12.120.224/24\",\n            }],\n        },\n        {\n            name: \"http_rule_2\",\n            type: \"STATIC\",\n            dropQuery: false,\n            statusCode: 303,\n            responseMessage: \"Response\",\n            contentType: \"text/plain\",\n            conditions: [{\n                type: \"QUERY\",\n                condition: \"MATCHES\",\n                negate: false,\n                key: \"key\",\n                value: \"10.12.120.224/24\",\n            }],\n        },\n    ],\n    serverCertificates: [cert.id],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"us/las\",\n    description=\"datacenter description\",\n    sec_auth_protection=False)\nexample1 = ionoscloud.compute.Lan(\"example1\",\n    datacenter_id=example_datacenter.id,\n    public=True)\nexample2 = ionoscloud.compute.Lan(\"example2\",\n    datacenter_id=example_datacenter.id,\n    public=True)\nexample_application_loadbalancer = ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\",\n    datacenter_id=example_datacenter.id,\n    listener_lan=example1.id,\n    ips=[\"10.12.118.224\"],\n    target_lan=example2.id,\n    lb_private_ips=[\"10.13.72.225/24\"])\n#optionally you can add a certificate to the application load balancer\ncert = ionoscloud.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample_application_loadbalancer_forwardingrule = ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\",\n    datacenter_id=example_datacenter.id,\n    application_loadbalancer_id=example_application_loadbalancer.id,\n    protocol=\"HTTP\",\n    listener_ip=\"10.12.118.224\",\n    listener_port=8080,\n    client_timeout=1000,\n    http_rules=[\n        ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(\n            name=\"http_rule\",\n            type=\"REDIRECT\",\n            drop_query=True,\n            location=\"www.ionos.com\",\n            status_code=301,\n            conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(\n                type=\"HEADER\",\n                condition=\"EQUALS\",\n                negate=True,\n                key=\"key\",\n                value=\"10.12.120.224/24\",\n            )],\n        ),\n        ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(\n            name=\"http_rule_2\",\n            type=\"STATIC\",\n            drop_query=False,\n            status_code=303,\n            response_message=\"Response\",\n            content_type=\"text/plain\",\n            conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(\n                type=\"QUERY\",\n                condition=\"MATCHES\",\n                negate=False,\n                key=\"key\",\n                value=\"10.12.120.224/24\",\n            )],\n        ),\n    ],\n    server_certificates=[cert.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"us/las\",\n        Description = \"datacenter description\",\n        SecAuthProtection = false,\n    });\n\n    var example1 = new Ionoscloud.Compute.Lan(\"example1\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = true,\n    });\n\n    var example2 = new Ionoscloud.Compute.Lan(\"example2\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = true,\n    });\n\n    var exampleApplicationLoadbalancer = new Ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        ListenerLan = example1.Id,\n        Ips = new[]\n        {\n            \"10.12.118.224\",\n        },\n        TargetLan = example2.Id,\n        LbPrivateIps = new[]\n        {\n            \"10.13.72.225/24\",\n        },\n    });\n\n    //optionally you can add a certificate to the application load balancer\n    var cert = new Ionoscloud.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var exampleApplicationLoadbalancerForwardingrule = new Ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        ApplicationLoadbalancerId = exampleApplicationLoadbalancer.Id,\n        Protocol = \"HTTP\",\n        ListenerIp = \"10.12.118.224\",\n        ListenerPort = 8080,\n        ClientTimeout = 1000,\n        HttpRules = new[]\n        {\n            new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs\n            {\n                Name = \"http_rule\",\n                Type = \"REDIRECT\",\n                DropQuery = true,\n                Location = \"www.ionos.com\",\n                StatusCode = 301,\n                Conditions = new[]\n                {\n                    new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs\n                    {\n                        Type = \"HEADER\",\n                        Condition = \"EQUALS\",\n                        Negate = true,\n                        Key = \"key\",\n                        Value = \"10.12.120.224/24\",\n                    },\n                },\n            },\n            new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs\n            {\n                Name = \"http_rule_2\",\n                Type = \"STATIC\",\n                DropQuery = false,\n                StatusCode = 303,\n                ResponseMessage = \"Response\",\n                ContentType = \"text/plain\",\n                Conditions = new[]\n                {\n                    new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs\n                    {\n                        Type = \"QUERY\",\n                        Condition = \"MATCHES\",\n                        Negate = false,\n                        Key = \"key\",\n                        Value = \"10.12.120.224/24\",\n                    },\n                },\n            },\n        },\n        ServerCertificates = new[]\n        {\n            cert.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"us/las\"),\n\t\t\tDescription:       pulumi.String(\"datacenter description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample1, err := compute.NewLan(ctx, \"example1\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample2, err := compute.NewLan(ctx, \"example2\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleApplicationLoadbalancer, err := ionoscloud.NewApplicationLoadbalancer(ctx, \"exampleApplicationLoadbalancer\", \u0026ionoscloud.ApplicationLoadbalancerArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tListenerLan:  example1.ID(),\n\t\t\tIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.12.118.224\"),\n\t\t\t},\n\t\t\tTargetLan: example2.ID(),\n\t\t\tLbPrivateIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.13.72.225/24\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// optionally you can add a certificate to the application load balancer\n\t\tcert, err := ionoscloud.NewCertificate(ctx, \"cert\", \u0026ionoscloud.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewApplicationLoadbalancerForwardingrule(ctx, \"exampleApplicationLoadbalancerForwardingrule\", \u0026ionoscloud.ApplicationLoadbalancerForwardingruleArgs{\n\t\t\tDatacenterId:              exampleDatacenter.ID(),\n\t\t\tApplicationLoadbalancerId: exampleApplicationLoadbalancer.ID(),\n\t\t\tProtocol:                  pulumi.String(\"HTTP\"),\n\t\t\tListenerIp:                pulumi.String(\"10.12.118.224\"),\n\t\t\tListenerPort:              pulumi.Int(8080),\n\t\t\tClientTimeout:             pulumi.Int(1000),\n\t\t\tHttpRules: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArray{\n\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs{\n\t\t\t\t\tName:       pulumi.String(\"http_rule\"),\n\t\t\t\t\tType:       pulumi.String(\"REDIRECT\"),\n\t\t\t\t\tDropQuery:  pulumi.Bool(true),\n\t\t\t\t\tLocation:   pulumi.String(\"www.ionos.com\"),\n\t\t\t\t\tStatusCode: pulumi.Int(301),\n\t\t\t\t\tConditions: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArray{\n\t\t\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{\n\t\t\t\t\t\t\tType:      pulumi.String(\"HEADER\"),\n\t\t\t\t\t\t\tCondition: pulumi.String(\"EQUALS\"),\n\t\t\t\t\t\t\tNegate:    pulumi.Bool(true),\n\t\t\t\t\t\t\tKey:       pulumi.String(\"key\"),\n\t\t\t\t\t\t\tValue:     pulumi.String(\"10.12.120.224/24\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs{\n\t\t\t\t\tName:            pulumi.String(\"http_rule_2\"),\n\t\t\t\t\tType:            pulumi.String(\"STATIC\"),\n\t\t\t\t\tDropQuery:       pulumi.Bool(false),\n\t\t\t\t\tStatusCode:      pulumi.Int(303),\n\t\t\t\t\tResponseMessage: pulumi.String(\"Response\"),\n\t\t\t\t\tContentType:     pulumi.String(\"text/plain\"),\n\t\t\t\t\tConditions: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArray{\n\t\t\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{\n\t\t\t\t\t\t\tType:      pulumi.String(\"QUERY\"),\n\t\t\t\t\t\t\tCondition: pulumi.String(\"MATCHES\"),\n\t\t\t\t\t\t\tNegate:    pulumi.Bool(false),\n\t\t\t\t\t\t\tKey:       pulumi.String(\"key\"),\n\t\t\t\t\t\t\tValue:     pulumi.String(\"10.12.120.224/24\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tServerCertificates: pulumi.StringArray{\n\t\t\t\tcert.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancer;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerArgs;\nimport com.pulumi.ionoscloud.Certificate;\nimport com.pulumi.ionoscloud.CertificateArgs;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerForwardingrule;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerForwardingruleArgs;\nimport com.pulumi.ionoscloud.inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"us/las\")\n            .description(\"datacenter description\")\n            .secAuthProtection(false)\n            .build());\n\n        var example1 = new Lan(\"example1\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(true)\n            .build());\n\n        var example2 = new Lan(\"example2\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(true)\n            .build());\n\n        var exampleApplicationLoadbalancer = new ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", ApplicationLoadbalancerArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .listenerLan(example1.id())\n            .ips(\"10.12.118.224\")\n            .targetLan(example2.id())\n            .lbPrivateIps(\"10.13.72.225/24\")\n            .build());\n\n        //optionally you can add a certificate to the application load balancer\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var exampleApplicationLoadbalancerForwardingrule = new ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", ApplicationLoadbalancerForwardingruleArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .applicationLoadbalancerId(exampleApplicationLoadbalancer.id())\n            .protocol(\"HTTP\")\n            .listenerIp(\"10.12.118.224\")\n            .listenerPort(8080)\n            .clientTimeout(1000)\n            .httpRules(            \n                ApplicationLoadbalancerForwardingruleHttpRuleArgs.builder()\n                    .name(\"http_rule\")\n                    .type(\"REDIRECT\")\n                    .dropQuery(true)\n                    .location(\"www.ionos.com\")\n                    .statusCode(301)\n                    .conditions(ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs.builder()\n                        .type(\"HEADER\")\n                        .condition(\"EQUALS\")\n                        .negate(true)\n                        .key(\"key\")\n                        .value(\"10.12.120.224/24\")\n                        .build())\n                    .build(),\n                ApplicationLoadbalancerForwardingruleHttpRuleArgs.builder()\n                    .name(\"http_rule_2\")\n                    .type(\"STATIC\")\n                    .dropQuery(false)\n                    .statusCode(303)\n                    .responseMessage(\"Response\")\n                    .contentType(\"text/plain\")\n                    .conditions(ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs.builder()\n                        .type(\"QUERY\")\n                        .condition(\"MATCHES\")\n                        .negate(false)\n                        .key(\"key\")\n                        .value(\"10.12.120.224/24\")\n                        .build())\n                    .build())\n            .serverCertificates(cert.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: us/las\n      description: datacenter description\n      secAuthProtection: false\n  example1:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: true\n  example2:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: true\n  exampleApplicationLoadbalancer:\n    type: ionoscloud:ApplicationLoadbalancer\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      listenerLan: ${example1.id}\n      ips:\n        - 10.12.118.224\n      targetLan: ${example2.id}\n      lbPrivateIps:\n        - 10.13.72.225/24\n  exampleApplicationLoadbalancerForwardingrule:\n    type: ionoscloud:ApplicationLoadbalancerForwardingrule\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      applicationLoadbalancerId: ${exampleApplicationLoadbalancer.id}\n      protocol: HTTP\n      listenerIp: 10.12.118.224\n      listenerPort: 8080\n      clientTimeout: 1000\n      httpRules:\n        - name: http_rule\n          type: REDIRECT\n          dropQuery: true\n          location: www.ionos.com\n          statusCode: 301\n          conditions:\n            - type: HEADER\n              condition: EQUALS\n              negate: true\n              key: key\n              value: 10.12.120.224/24\n        - name: http_rule_2\n          type: STATIC\n          dropQuery: false\n          statusCode: 303\n          responseMessage: Response\n          contentType: text/plain\n          conditions:\n            - type: QUERY\n              condition: MATCHES\n              negate: false\n              key: key\n              value: 10.12.120.224/24\n      serverCertificates:\n        - ${cert.id}\n  #optionally you can add a certificate to the application load balancer\n  cert:\n    type: ionoscloud:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}\n```\n\n",
+            "description": "Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"us/las\",\n    description: \"datacenter description\",\n    secAuthProtection: false,\n});\nconst example1 = new ionoscloud.compute.Lan(\"example1\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": true,\n});\nconst example2 = new ionoscloud.compute.Lan(\"example2\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": true,\n});\nconst exampleApplicationLoadbalancer = new ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", {\n    datacenterId: exampleDatacenter.id,\n    listenerLan: example1.id,\n    ips: [\"10.12.118.224\"],\n    targetLan: example2.id,\n    lbPrivateIps: [\"10.13.72.225/24\"],\n});\n//optionally you can add a certificate to the application load balancer\nconst cert = new ionoscloud.cert.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst exampleApplicationLoadbalancerForwardingrule = new ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", {\n    datacenterId: exampleDatacenter.id,\n    applicationLoadbalancerId: exampleApplicationLoadbalancer.id,\n    protocol: \"HTTP\",\n    listenerIp: \"10.12.118.224\",\n    listenerPort: 8080,\n    clientTimeout: 1000,\n    httpRules: [\n        {\n            name: \"http_rule\",\n            type: \"REDIRECT\",\n            dropQuery: true,\n            location: \"www.ionos.com\",\n            statusCode: 301,\n            conditions: [{\n                type: \"HEADER\",\n                condition: \"EQUALS\",\n                negate: true,\n                key: \"key\",\n                value: \"10.12.120.224/24\",\n            }],\n        },\n        {\n            name: \"http_rule_2\",\n            type: \"STATIC\",\n            dropQuery: false,\n            statusCode: 303,\n            responseMessage: \"Response\",\n            contentType: \"text/plain\",\n            conditions: [{\n                type: \"QUERY\",\n                condition: \"MATCHES\",\n                negate: false,\n                key: \"key\",\n                value: \"10.12.120.224/24\",\n            }],\n        },\n    ],\n    serverCertificates: [cert.id],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"us/las\",\n    description=\"datacenter description\",\n    sec_auth_protection=False)\nexample1 = ionoscloud.compute.Lan(\"example1\",\n    datacenter_id=example_datacenter.id,\n    public=True)\nexample2 = ionoscloud.compute.Lan(\"example2\",\n    datacenter_id=example_datacenter.id,\n    public=True)\nexample_application_loadbalancer = ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\",\n    datacenter_id=example_datacenter.id,\n    listener_lan=example1.id,\n    ips=[\"10.12.118.224\"],\n    target_lan=example2.id,\n    lb_private_ips=[\"10.13.72.225/24\"])\n#optionally you can add a certificate to the application load balancer\ncert = ionoscloud.cert.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample_application_loadbalancer_forwardingrule = ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\",\n    datacenter_id=example_datacenter.id,\n    application_loadbalancer_id=example_application_loadbalancer.id,\n    protocol=\"HTTP\",\n    listener_ip=\"10.12.118.224\",\n    listener_port=8080,\n    client_timeout=1000,\n    http_rules=[\n        ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(\n            name=\"http_rule\",\n            type=\"REDIRECT\",\n            drop_query=True,\n            location=\"www.ionos.com\",\n            status_code=301,\n            conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(\n                type=\"HEADER\",\n                condition=\"EQUALS\",\n                negate=True,\n                key=\"key\",\n                value=\"10.12.120.224/24\",\n            )],\n        ),\n        ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(\n            name=\"http_rule_2\",\n            type=\"STATIC\",\n            drop_query=False,\n            status_code=303,\n            response_message=\"Response\",\n            content_type=\"text/plain\",\n            conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(\n                type=\"QUERY\",\n                condition=\"MATCHES\",\n                negate=False,\n                key=\"key\",\n                value=\"10.12.120.224/24\",\n            )],\n        ),\n    ],\n    server_certificates=[cert.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"us/las\",\n        Description = \"datacenter description\",\n        SecAuthProtection = false,\n    });\n\n    var example1 = new Ionoscloud.Compute.Lan(\"example1\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = true,\n    });\n\n    var example2 = new Ionoscloud.Compute.Lan(\"example2\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = true,\n    });\n\n    var exampleApplicationLoadbalancer = new Ionoscloud.ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        ListenerLan = example1.Id,\n        Ips = new[]\n        {\n            \"10.12.118.224\",\n        },\n        TargetLan = example2.Id,\n        LbPrivateIps = new[]\n        {\n            \"10.13.72.225/24\",\n        },\n    });\n\n    //optionally you can add a certificate to the application load balancer\n    var cert = new Ionoscloud.Cert.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var exampleApplicationLoadbalancerForwardingrule = new Ionoscloud.ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        ApplicationLoadbalancerId = exampleApplicationLoadbalancer.Id,\n        Protocol = \"HTTP\",\n        ListenerIp = \"10.12.118.224\",\n        ListenerPort = 8080,\n        ClientTimeout = 1000,\n        HttpRules = new[]\n        {\n            new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs\n            {\n                Name = \"http_rule\",\n                Type = \"REDIRECT\",\n                DropQuery = true,\n                Location = \"www.ionos.com\",\n                StatusCode = 301,\n                Conditions = new[]\n                {\n                    new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs\n                    {\n                        Type = \"HEADER\",\n                        Condition = \"EQUALS\",\n                        Negate = true,\n                        Key = \"key\",\n                        Value = \"10.12.120.224/24\",\n                    },\n                },\n            },\n            new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs\n            {\n                Name = \"http_rule_2\",\n                Type = \"STATIC\",\n                DropQuery = false,\n                StatusCode = 303,\n                ResponseMessage = \"Response\",\n                ContentType = \"text/plain\",\n                Conditions = new[]\n                {\n                    new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs\n                    {\n                        Type = \"QUERY\",\n                        Condition = \"MATCHES\",\n                        Negate = false,\n                        Key = \"key\",\n                        Value = \"10.12.120.224/24\",\n                    },\n                },\n            },\n        },\n        ServerCertificates = new[]\n        {\n            cert.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"us/las\"),\n\t\t\tDescription:       pulumi.String(\"datacenter description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample1, err := compute.NewLan(ctx, \"example1\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample2, err := compute.NewLan(ctx, \"example2\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleApplicationLoadbalancer, err := ionoscloud.NewApplicationLoadbalancer(ctx, \"exampleApplicationLoadbalancer\", \u0026ionoscloud.ApplicationLoadbalancerArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tListenerLan:  example1.ID(),\n\t\t\tIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.12.118.224\"),\n\t\t\t},\n\t\t\tTargetLan: example2.ID(),\n\t\t\tLbPrivateIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.13.72.225/24\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// optionally you can add a certificate to the application load balancer\n\t\tcert, err := cert.NewCertificate(ctx, \"cert\", \u0026cert.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewApplicationLoadbalancerForwardingrule(ctx, \"exampleApplicationLoadbalancerForwardingrule\", \u0026ionoscloud.ApplicationLoadbalancerForwardingruleArgs{\n\t\t\tDatacenterId:              exampleDatacenter.ID(),\n\t\t\tApplicationLoadbalancerId: exampleApplicationLoadbalancer.ID(),\n\t\t\tProtocol:                  pulumi.String(\"HTTP\"),\n\t\t\tListenerIp:                pulumi.String(\"10.12.118.224\"),\n\t\t\tListenerPort:              pulumi.Int(8080),\n\t\t\tClientTimeout:             pulumi.Int(1000),\n\t\t\tHttpRules: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArray{\n\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs{\n\t\t\t\t\tName:       pulumi.String(\"http_rule\"),\n\t\t\t\t\tType:       pulumi.String(\"REDIRECT\"),\n\t\t\t\t\tDropQuery:  pulumi.Bool(true),\n\t\t\t\t\tLocation:   pulumi.String(\"www.ionos.com\"),\n\t\t\t\t\tStatusCode: pulumi.Int(301),\n\t\t\t\t\tConditions: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArray{\n\t\t\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{\n\t\t\t\t\t\t\tType:      pulumi.String(\"HEADER\"),\n\t\t\t\t\t\t\tCondition: pulumi.String(\"EQUALS\"),\n\t\t\t\t\t\t\tNegate:    pulumi.Bool(true),\n\t\t\t\t\t\t\tKey:       pulumi.String(\"key\"),\n\t\t\t\t\t\t\tValue:     pulumi.String(\"10.12.120.224/24\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs{\n\t\t\t\t\tName:            pulumi.String(\"http_rule_2\"),\n\t\t\t\t\tType:            pulumi.String(\"STATIC\"),\n\t\t\t\t\tDropQuery:       pulumi.Bool(false),\n\t\t\t\t\tStatusCode:      pulumi.Int(303),\n\t\t\t\t\tResponseMessage: pulumi.String(\"Response\"),\n\t\t\t\t\tContentType:     pulumi.String(\"text/plain\"),\n\t\t\t\t\tConditions: ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArray{\n\t\t\t\t\t\t\u0026ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{\n\t\t\t\t\t\t\tType:      pulumi.String(\"QUERY\"),\n\t\t\t\t\t\t\tCondition: pulumi.String(\"MATCHES\"),\n\t\t\t\t\t\t\tNegate:    pulumi.Bool(false),\n\t\t\t\t\t\t\tKey:       pulumi.String(\"key\"),\n\t\t\t\t\t\t\tValue:     pulumi.String(\"10.12.120.224/24\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tServerCertificates: pulumi.StringArray{\n\t\t\t\tcert.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancer;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerArgs;\nimport com.pulumi.ionoscloud.cert.Certificate;\nimport com.pulumi.ionoscloud.cert.CertificateArgs;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerForwardingrule;\nimport com.pulumi.ionoscloud.ApplicationLoadbalancerForwardingruleArgs;\nimport com.pulumi.ionoscloud.inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"us/las\")\n            .description(\"datacenter description\")\n            .secAuthProtection(false)\n            .build());\n\n        var example1 = new Lan(\"example1\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(true)\n            .build());\n\n        var example2 = new Lan(\"example2\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(true)\n            .build());\n\n        var exampleApplicationLoadbalancer = new ApplicationLoadbalancer(\"exampleApplicationLoadbalancer\", ApplicationLoadbalancerArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .listenerLan(example1.id())\n            .ips(\"10.12.118.224\")\n            .targetLan(example2.id())\n            .lbPrivateIps(\"10.13.72.225/24\")\n            .build());\n\n        //optionally you can add a certificate to the application load balancer\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var exampleApplicationLoadbalancerForwardingrule = new ApplicationLoadbalancerForwardingrule(\"exampleApplicationLoadbalancerForwardingrule\", ApplicationLoadbalancerForwardingruleArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .applicationLoadbalancerId(exampleApplicationLoadbalancer.id())\n            .protocol(\"HTTP\")\n            .listenerIp(\"10.12.118.224\")\n            .listenerPort(8080)\n            .clientTimeout(1000)\n            .httpRules(            \n                ApplicationLoadbalancerForwardingruleHttpRuleArgs.builder()\n                    .name(\"http_rule\")\n                    .type(\"REDIRECT\")\n                    .dropQuery(true)\n                    .location(\"www.ionos.com\")\n                    .statusCode(301)\n                    .conditions(ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs.builder()\n                        .type(\"HEADER\")\n                        .condition(\"EQUALS\")\n                        .negate(true)\n                        .key(\"key\")\n                        .value(\"10.12.120.224/24\")\n                        .build())\n                    .build(),\n                ApplicationLoadbalancerForwardingruleHttpRuleArgs.builder()\n                    .name(\"http_rule_2\")\n                    .type(\"STATIC\")\n                    .dropQuery(false)\n                    .statusCode(303)\n                    .responseMessage(\"Response\")\n                    .contentType(\"text/plain\")\n                    .conditions(ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs.builder()\n                        .type(\"QUERY\")\n                        .condition(\"MATCHES\")\n                        .negate(false)\n                        .key(\"key\")\n                        .value(\"10.12.120.224/24\")\n                        .build())\n                    .build())\n            .serverCertificates(cert.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: us/las\n      description: datacenter description\n      secAuthProtection: false\n  example1:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: true\n  example2:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: true\n  exampleApplicationLoadbalancer:\n    type: ionoscloud:ApplicationLoadbalancer\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      listenerLan: ${example1.id}\n      ips:\n        - 10.12.118.224\n      targetLan: ${example2.id}\n      lbPrivateIps:\n        - 10.13.72.225/24\n  exampleApplicationLoadbalancerForwardingrule:\n    type: ionoscloud:ApplicationLoadbalancerForwardingrule\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      applicationLoadbalancerId: ${exampleApplicationLoadbalancer.id}\n      protocol: HTTP\n      listenerIp: 10.12.118.224\n      listenerPort: 8080\n      clientTimeout: 1000\n      httpRules:\n        - name: http_rule\n          type: REDIRECT\n          dropQuery: true\n          location: www.ionos.com\n          statusCode: 301\n          conditions:\n            - type: HEADER\n              condition: EQUALS\n              negate: true\n              key: key\n              value: 10.12.120.224/24\n        - name: http_rule_2\n          type: STATIC\n          dropQuery: false\n          statusCode: 303\n          responseMessage: Response\n          contentType: text/plain\n          conditions:\n            - type: QUERY\n              condition: MATCHES\n              negate: false\n              key: key\n              value: 10.12.120.224/24\n      serverCertificates:\n        - ${cert.id}\n  #optionally you can add a certificate to the application load balancer\n  cert:\n    type: ionoscloud:cert:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}\n```\n\n",
             "properties": {
                 "applicationLoadbalancerId": {
                     "type": "string",
@@ -11384,219 +11669,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/autoCertificate:AutoCertificate": {
-            "properties": {
-                "commonName": {
-                    "type": "string",
-                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n"
-                },
-                "keyAlgorithm": {
-                    "type": "string",
-                    "description": "The key algorithm used to generate the certificate\n"
-                },
-                "lastIssuedCertificateId": {
-                    "type": "string",
-                    "description": "The ID of the last certificate that was issued\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the auto-certificate\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "A certificate name used for management purposes\n"
-                },
-                "providerId": {
-                    "type": "string",
-                    "description": "The certificate provider used to issue the certificates\n"
-                },
-                "subjectAlternativeNames": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n"
-                }
-            },
-            "required": [
-                "commonName",
-                "keyAlgorithm",
-                "lastIssuedCertificateId",
-                "location",
-                "name",
-                "providerId"
-            ],
-            "inputProperties": {
-                "commonName": {
-                    "type": "string",
-                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
-                    "willReplaceOnChanges": true
-                },
-                "keyAlgorithm": {
-                    "type": "string",
-                    "description": "The key algorithm used to generate the certificate\n",
-                    "willReplaceOnChanges": true
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the auto-certificate\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "A certificate name used for management purposes\n"
-                },
-                "providerId": {
-                    "type": "string",
-                    "description": "The certificate provider used to issue the certificates\n",
-                    "willReplaceOnChanges": true
-                },
-                "subjectAlternativeNames": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "commonName",
-                "keyAlgorithm",
-                "location",
-                "providerId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AutoCertificate resources.\n",
-                "properties": {
-                    "commonName": {
-                        "type": "string",
-                        "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "keyAlgorithm": {
-                        "type": "string",
-                        "description": "The key algorithm used to generate the certificate\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "lastIssuedCertificateId": {
-                        "type": "string",
-                        "description": "The ID of the last certificate that was issued\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "The location of the auto-certificate\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "A certificate name used for management purposes\n"
-                    },
-                    "providerId": {
-                        "type": "string",
-                        "description": "The certificate provider used to issue the certificates\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "subjectAlternativeNames": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider": {
-            "properties": {
-                "email": {
-                    "type": "string",
-                    "description": "The email address of the certificate requester\n"
-                },
-                "externalAccountBinding": {
-                    "$ref": "#/types/ionoscloud:index/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the certificate provider\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the certificate provider\n"
-                },
-                "server": {
-                    "type": "string",
-                    "description": "The URL of the certificate provider\n"
-                }
-            },
-            "required": [
-                "email",
-                "location",
-                "name",
-                "server"
-            ],
-            "inputProperties": {
-                "email": {
-                    "type": "string",
-                    "description": "The email address of the certificate requester\n",
-                    "willReplaceOnChanges": true
-                },
-                "externalAccountBinding": {
-                    "$ref": "#/types/ionoscloud:index/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
-                    "willReplaceOnChanges": true
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the certificate provider\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the certificate provider\n"
-                },
-                "server": {
-                    "type": "string",
-                    "description": "The URL of the certificate provider\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "email",
-                "location",
-                "server"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering AutoCertificateProvider resources.\n",
-                "properties": {
-                    "email": {
-                        "type": "string",
-                        "description": "The email address of the certificate requester\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "externalAccountBinding": {
-                        "$ref": "#/types/ionoscloud:index/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
-                        "willReplaceOnChanges": true
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "The location of the certificate provider\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The name of the certificate provider\n"
-                    },
-                    "server": {
-                        "type": "string",
-                        "description": "The URL of the certificate provider\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:index/autoscalingGroup:AutoscalingGroup": {
             "description": "Manages an Autoscaling Group on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\nimport * as random from \"@pulumi/random\";\n\nconst datacenterExample = new ionoscloud.compute.Datacenter(\"datacenterExample\", {location: \"de/fra\"});\nconst lanExample1 = new ionoscloud.compute.Lan(\"lanExample1\", {\n    datacenterId: datacenterExample.id,\n    \"public\": false,\n});\nconst lanExample2 = new ionoscloud.compute.Lan(\"lanExample2\", {\n    datacenterId: datacenterExample.id,\n    \"public\": false,\n});\nconst autoscalingTargetGroup = new ionoscloud.TargetGroup(\"autoscalingTargetGroup\", {\n    algorithm: \"ROUND_ROBIN\",\n    protocol: \"HTTP\",\n});\nconst serverImagePassword = new random.RandomPassword(\"serverImagePassword\", {\n    length: 16,\n    special: false,\n});\nconst autoscalingGroupExample = new ionoscloud.AutoscalingGroup(\"autoscalingGroupExample\", {\n    datacenterId: datacenterExample.id,\n    maxReplicaCount: 2,\n    minReplicaCount: 1,\n    policy: {\n        metric: \"INSTANCE_CPU_UTILIZATION_AVERAGE\",\n        range: \"PT24H\",\n        scaleInAction: {\n            amount: 1,\n            amountType: \"ABSOLUTE\",\n            terminationPolicyType: \"OLDEST_SERVER_FIRST\",\n            cooldownPeriod: \"PT5M\",\n            deleteVolumes: true,\n        },\n        scaleInThreshold: 33,\n        scaleOutAction: {\n            amount: 1,\n            amountType: \"ABSOLUTE\",\n            cooldownPeriod: \"PT5M\",\n        },\n        scaleOutThreshold: 77,\n        unit: \"PER_HOUR\",\n    },\n    replicaConfiguration: {\n        availabilityZone: \"AUTO\",\n        cores: 2,\n        cpuFamily: \"INTEL_SKYLAKE\",\n        ram: 2048,\n        nics: [\n            {\n                lan: lanExample1.id,\n                name: \"nic_example_1\",\n                dhcp: true,\n            },\n            {\n                lan: lanExample2.id,\n                name: \"nic_example_2\",\n                dhcp: true,\n                firewallActive: true,\n                firewallType: \"INGRESS\",\n                firewallRules: [{\n                    name: \"rule_1\",\n                    protocol: \"TCP\",\n                    portRangeStart: 1,\n                    portRangeEnd: 1000,\n                    type: \"INGRESS\",\n                }],\n                flowLogs: [{\n                    name: \"flow_log_1\",\n                    bucket: \"test-de-bucket\",\n                    action: \"ALL\",\n                    direction: \"BIDIRECTIONAL\",\n                }],\n                targetGroup: {\n                    targetGroupId: autoscalingTargetGroup.id,\n                    port: 80,\n                    weight: 50,\n                },\n            },\n        ],\n        volumes: [{\n            imageAlias: \"ubuntu:latest\",\n            name: \"volume_example\",\n            size: 10,\n            type: \"HDD\",\n            userData: \"ZWNobyAiSGVsbG8sIFdvcmxkIgo=\",\n            imagePassword: serverImagePassword.result,\n            bootOrder: \"AUTO\",\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\nimport pulumi_random as random\n\ndatacenter_example = ionoscloud.compute.Datacenter(\"datacenterExample\", location=\"de/fra\")\nlan_example1 = ionoscloud.compute.Lan(\"lanExample1\",\n    datacenter_id=datacenter_example.id,\n    public=False)\nlan_example2 = ionoscloud.compute.Lan(\"lanExample2\",\n    datacenter_id=datacenter_example.id,\n    public=False)\nautoscaling_target_group = ionoscloud.TargetGroup(\"autoscalingTargetGroup\",\n    algorithm=\"ROUND_ROBIN\",\n    protocol=\"HTTP\")\nserver_image_password = random.RandomPassword(\"serverImagePassword\",\n    length=16,\n    special=False)\nautoscaling_group_example = ionoscloud.AutoscalingGroup(\"autoscalingGroupExample\",\n    datacenter_id=datacenter_example.id,\n    max_replica_count=2,\n    min_replica_count=1,\n    policy=ionoscloud.AutoscalingGroupPolicyArgs(\n        metric=\"INSTANCE_CPU_UTILIZATION_AVERAGE\",\n        range=\"PT24H\",\n        scale_in_action=ionoscloud.AutoscalingGroupPolicyScaleInActionArgs(\n            amount=1,\n            amount_type=\"ABSOLUTE\",\n            termination_policy_type=\"OLDEST_SERVER_FIRST\",\n            cooldown_period=\"PT5M\",\n            delete_volumes=True,\n        ),\n        scale_in_threshold=33,\n        scale_out_action=ionoscloud.AutoscalingGroupPolicyScaleOutActionArgs(\n            amount=1,\n            amount_type=\"ABSOLUTE\",\n            cooldown_period=\"PT5M\",\n        ),\n        scale_out_threshold=77,\n        unit=\"PER_HOUR\",\n    ),\n    replica_configuration=ionoscloud.AutoscalingGroupReplicaConfigurationArgs(\n        availability_zone=\"AUTO\",\n        cores=2,\n        cpu_family=\"INTEL_SKYLAKE\",\n        ram=2048,\n        nics=[\n            ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(\n                lan=lan_example1.id,\n                name=\"nic_example_1\",\n                dhcp=True,\n            ),\n            ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(\n                lan=lan_example2.id,\n                name=\"nic_example_2\",\n                dhcp=True,\n                firewall_active=True,\n                firewall_type=\"INGRESS\",\n                firewall_rules=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs(\n                    name=\"rule_1\",\n                    protocol=\"TCP\",\n                    port_range_start=1,\n                    port_range_end=1000,\n                    type=\"INGRESS\",\n                )],\n                flow_logs=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArgs(\n                    name=\"flow_log_1\",\n                    bucket=\"test-de-bucket\",\n                    action=\"ALL\",\n                    direction=\"BIDIRECTIONAL\",\n                )],\n                target_group=ionoscloud.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs(\n                    target_group_id=autoscaling_target_group.id,\n                    port=80,\n                    weight=50,\n                ),\n            ),\n        ],\n        volumes=[ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArgs(\n            image_alias=\"ubuntu:latest\",\n            name=\"volume_example\",\n            size=10,\n            type=\"HDD\",\n            user_data=\"ZWNobyAiSGVsbG8sIFdvcmxkIgo=\",\n            image_password=server_image_password.result,\n            boot_order=\"AUTO\",\n        )],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\nusing Random = Pulumi.Random;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var datacenterExample = new Ionoscloud.Compute.Datacenter(\"datacenterExample\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var lanExample1 = new Ionoscloud.Compute.Lan(\"lanExample1\", new()\n    {\n        DatacenterId = datacenterExample.Id,\n        Public = false,\n    });\n\n    var lanExample2 = new Ionoscloud.Compute.Lan(\"lanExample2\", new()\n    {\n        DatacenterId = datacenterExample.Id,\n        Public = false,\n    });\n\n    var autoscalingTargetGroup = new Ionoscloud.TargetGroup(\"autoscalingTargetGroup\", new()\n    {\n        Algorithm = \"ROUND_ROBIN\",\n        Protocol = \"HTTP\",\n    });\n\n    var serverImagePassword = new Random.RandomPassword(\"serverImagePassword\", new()\n    {\n        Length = 16,\n        Special = false,\n    });\n\n    var autoscalingGroupExample = new Ionoscloud.AutoscalingGroup(\"autoscalingGroupExample\", new()\n    {\n        DatacenterId = datacenterExample.Id,\n        MaxReplicaCount = 2,\n        MinReplicaCount = 1,\n        Policy = new Ionoscloud.Inputs.AutoscalingGroupPolicyArgs\n        {\n            Metric = \"INSTANCE_CPU_UTILIZATION_AVERAGE\",\n            Range = \"PT24H\",\n            ScaleInAction = new Ionoscloud.Inputs.AutoscalingGroupPolicyScaleInActionArgs\n            {\n                Amount = 1,\n                AmountType = \"ABSOLUTE\",\n                TerminationPolicyType = \"OLDEST_SERVER_FIRST\",\n                CooldownPeriod = \"PT5M\",\n                DeleteVolumes = true,\n            },\n            ScaleInThreshold = 33,\n            ScaleOutAction = new Ionoscloud.Inputs.AutoscalingGroupPolicyScaleOutActionArgs\n            {\n                Amount = 1,\n                AmountType = \"ABSOLUTE\",\n                CooldownPeriod = \"PT5M\",\n            },\n            ScaleOutThreshold = 77,\n            Unit = \"PER_HOUR\",\n        },\n        ReplicaConfiguration = new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationArgs\n        {\n            AvailabilityZone = \"AUTO\",\n            Cores = 2,\n            CpuFamily = \"INTEL_SKYLAKE\",\n            Ram = 2048,\n            Nics = new[]\n            {\n                new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationNicArgs\n                {\n                    Lan = lanExample1.Id,\n                    Name = \"nic_example_1\",\n                    Dhcp = true,\n                },\n                new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationNicArgs\n                {\n                    Lan = lanExample2.Id,\n                    Name = \"nic_example_2\",\n                    Dhcp = true,\n                    FirewallActive = true,\n                    FirewallType = \"INGRESS\",\n                    FirewallRules = new[]\n                    {\n                        new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs\n                        {\n                            Name = \"rule_1\",\n                            Protocol = \"TCP\",\n                            PortRangeStart = 1,\n                            PortRangeEnd = 1000,\n                            Type = \"INGRESS\",\n                        },\n                    },\n                    FlowLogs = new[]\n                    {\n                        new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationNicFlowLogArgs\n                        {\n                            Name = \"flow_log_1\",\n                            Bucket = \"test-de-bucket\",\n                            Action = \"ALL\",\n                            Direction = \"BIDIRECTIONAL\",\n                        },\n                    },\n                    TargetGroup = new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs\n                    {\n                        TargetGroupId = autoscalingTargetGroup.Id,\n                        Port = 80,\n                        Weight = 50,\n                    },\n                },\n            },\n            Volumes = new[]\n            {\n                new Ionoscloud.Inputs.AutoscalingGroupReplicaConfigurationVolumeArgs\n                {\n                    ImageAlias = \"ubuntu:latest\",\n                    Name = \"volume_example\",\n                    Size = 10,\n                    Type = \"HDD\",\n                    UserData = \"ZWNobyAiSGVsbG8sIFdvcmxkIgo=\",\n                    ImagePassword = serverImagePassword.Result,\n                    BootOrder = \"AUTO\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi-random/sdk/v4/go/random\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdatacenterExample, err := compute.NewDatacenter(ctx, \"datacenterExample\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlanExample1, err := compute.NewLan(ctx, \"lanExample1\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlanExample2, err := compute.NewLan(ctx, \"lanExample2\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tautoscalingTargetGroup, err := ionoscloud.NewTargetGroup(ctx, \"autoscalingTargetGroup\", \u0026ionoscloud.TargetGroupArgs{\n\t\t\tAlgorithm: pulumi.String(\"ROUND_ROBIN\"),\n\t\t\tProtocol:  pulumi.String(\"HTTP\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tserverImagePassword, err := random.NewRandomPassword(ctx, \"serverImagePassword\", \u0026random.RandomPasswordArgs{\n\t\t\tLength:  pulumi.Int(16),\n\t\t\tSpecial: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewAutoscalingGroup(ctx, \"autoscalingGroupExample\", \u0026ionoscloud.AutoscalingGroupArgs{\n\t\t\tDatacenterId:    datacenterExample.ID(),\n\t\t\tMaxReplicaCount: pulumi.Int(2),\n\t\t\tMinReplicaCount: pulumi.Int(1),\n\t\t\tPolicy: \u0026ionoscloud.AutoscalingGroupPolicyArgs{\n\t\t\t\tMetric: pulumi.String(\"INSTANCE_CPU_UTILIZATION_AVERAGE\"),\n\t\t\t\tRange:  pulumi.String(\"PT24H\"),\n\t\t\t\tScaleInAction: \u0026ionoscloud.AutoscalingGroupPolicyScaleInActionArgs{\n\t\t\t\t\tAmount:                pulumi.Int(1),\n\t\t\t\t\tAmountType:            pulumi.String(\"ABSOLUTE\"),\n\t\t\t\t\tTerminationPolicyType: pulumi.String(\"OLDEST_SERVER_FIRST\"),\n\t\t\t\t\tCooldownPeriod:        pulumi.String(\"PT5M\"),\n\t\t\t\t\tDeleteVolumes:         pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t\tScaleInThreshold: pulumi.Int(33),\n\t\t\t\tScaleOutAction: \u0026ionoscloud.AutoscalingGroupPolicyScaleOutActionArgs{\n\t\t\t\t\tAmount:         pulumi.Int(1),\n\t\t\t\t\tAmountType:     pulumi.String(\"ABSOLUTE\"),\n\t\t\t\t\tCooldownPeriod: pulumi.String(\"PT5M\"),\n\t\t\t\t},\n\t\t\t\tScaleOutThreshold: pulumi.Int(77),\n\t\t\t\tUnit:              pulumi.String(\"PER_HOUR\"),\n\t\t\t},\n\t\t\tReplicaConfiguration: \u0026ionoscloud.AutoscalingGroupReplicaConfigurationArgs{\n\t\t\t\tAvailabilityZone: pulumi.String(\"AUTO\"),\n\t\t\t\tCores:            pulumi.Int(2),\n\t\t\t\tCpuFamily:        pulumi.String(\"INTEL_SKYLAKE\"),\n\t\t\t\tRam:              pulumi.Int(2048),\n\t\t\t\tNics: ionoscloud.AutoscalingGroupReplicaConfigurationNicArray{\n\t\t\t\t\t\u0026ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs{\n\t\t\t\t\t\tLan:  lanExample1.ID(),\n\t\t\t\t\t\tName: pulumi.String(\"nic_example_1\"),\n\t\t\t\t\t\tDhcp: pulumi.Bool(true),\n\t\t\t\t\t},\n\t\t\t\t\t\u0026ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs{\n\t\t\t\t\t\tLan:            lanExample2.ID(),\n\t\t\t\t\t\tName:           pulumi.String(\"nic_example_2\"),\n\t\t\t\t\t\tDhcp:           pulumi.Bool(true),\n\t\t\t\t\t\tFirewallActive: pulumi.Bool(true),\n\t\t\t\t\t\tFirewallType:   pulumi.String(\"INGRESS\"),\n\t\t\t\t\t\tFirewallRules: ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArray{\n\t\t\t\t\t\t\t\u0026ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs{\n\t\t\t\t\t\t\t\tName:           pulumi.String(\"rule_1\"),\n\t\t\t\t\t\t\t\tProtocol:       pulumi.String(\"TCP\"),\n\t\t\t\t\t\t\t\tPortRangeStart: pulumi.Int(1),\n\t\t\t\t\t\t\t\tPortRangeEnd:   pulumi.Int(1000),\n\t\t\t\t\t\t\t\tType:           pulumi.String(\"INGRESS\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\tFlowLogs: ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArray{\n\t\t\t\t\t\t\t\u0026ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArgs{\n\t\t\t\t\t\t\t\tName:      pulumi.String(\"flow_log_1\"),\n\t\t\t\t\t\t\t\tBucket:    pulumi.String(\"test-de-bucket\"),\n\t\t\t\t\t\t\t\tAction:    pulumi.String(\"ALL\"),\n\t\t\t\t\t\t\t\tDirection: pulumi.String(\"BIDIRECTIONAL\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\tTargetGroup: \u0026ionoscloud.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs{\n\t\t\t\t\t\t\tTargetGroupId: autoscalingTargetGroup.ID(),\n\t\t\t\t\t\t\tPort:          pulumi.Int(80),\n\t\t\t\t\t\t\tWeight:        pulumi.Int(50),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tVolumes: ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArray{\n\t\t\t\t\t\u0026ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArgs{\n\t\t\t\t\t\tImageAlias:    pulumi.String(\"ubuntu:latest\"),\n\t\t\t\t\t\tName:          pulumi.String(\"volume_example\"),\n\t\t\t\t\t\tSize:          pulumi.Int(10),\n\t\t\t\t\t\tType:          pulumi.String(\"HDD\"),\n\t\t\t\t\t\tUserData:      pulumi.String(\"ZWNobyAiSGVsbG8sIFdvcmxkIgo=\"),\n\t\t\t\t\t\tImagePassword: serverImagePassword.Result,\n\t\t\t\t\t\tBootOrder:     pulumi.String(\"AUTO\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.TargetGroup;\nimport com.pulumi.ionoscloud.TargetGroupArgs;\nimport com.pulumi.random.RandomPassword;\nimport com.pulumi.random.RandomPasswordArgs;\nimport com.pulumi.ionoscloud.AutoscalingGroup;\nimport com.pulumi.ionoscloud.AutoscalingGroupArgs;\nimport com.pulumi.ionoscloud.inputs.AutoscalingGroupPolicyArgs;\nimport com.pulumi.ionoscloud.inputs.AutoscalingGroupPolicyScaleInActionArgs;\nimport com.pulumi.ionoscloud.inputs.AutoscalingGroupPolicyScaleOutActionArgs;\nimport com.pulumi.ionoscloud.inputs.AutoscalingGroupReplicaConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var datacenterExample = new Datacenter(\"datacenterExample\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var lanExample1 = new Lan(\"lanExample1\", LanArgs.builder()        \n            .datacenterId(datacenterExample.id())\n            .public_(false)\n            .build());\n\n        var lanExample2 = new Lan(\"lanExample2\", LanArgs.builder()        \n            .datacenterId(datacenterExample.id())\n            .public_(false)\n            .build());\n\n        var autoscalingTargetGroup = new TargetGroup(\"autoscalingTargetGroup\", TargetGroupArgs.builder()        \n            .algorithm(\"ROUND_ROBIN\")\n            .protocol(\"HTTP\")\n            .build());\n\n        var serverImagePassword = new RandomPassword(\"serverImagePassword\", RandomPasswordArgs.builder()        \n            .length(16)\n            .special(false)\n            .build());\n\n        var autoscalingGroupExample = new AutoscalingGroup(\"autoscalingGroupExample\", AutoscalingGroupArgs.builder()        \n            .datacenterId(datacenterExample.id())\n            .maxReplicaCount(2)\n            .minReplicaCount(1)\n            .policy(AutoscalingGroupPolicyArgs.builder()\n                .metric(\"INSTANCE_CPU_UTILIZATION_AVERAGE\")\n                .range(\"PT24H\")\n                .scaleInAction(AutoscalingGroupPolicyScaleInActionArgs.builder()\n                    .amount(1)\n                    .amountType(\"ABSOLUTE\")\n                    .terminationPolicyType(\"OLDEST_SERVER_FIRST\")\n                    .cooldownPeriod(\"PT5M\")\n                    .deleteVolumes(true)\n                    .build())\n                .scaleInThreshold(33)\n                .scaleOutAction(AutoscalingGroupPolicyScaleOutActionArgs.builder()\n                    .amount(1)\n                    .amountType(\"ABSOLUTE\")\n                    .cooldownPeriod(\"PT5M\")\n                    .build())\n                .scaleOutThreshold(77)\n                .unit(\"PER_HOUR\")\n                .build())\n            .replicaConfiguration(AutoscalingGroupReplicaConfigurationArgs.builder()\n                .availabilityZone(\"AUTO\")\n                .cores(\"2\")\n                .cpuFamily(\"INTEL_SKYLAKE\")\n                .ram(2048)\n                .nics(                \n                    AutoscalingGroupReplicaConfigurationNicArgs.builder()\n                        .lan(lanExample1.id())\n                        .name(\"nic_example_1\")\n                        .dhcp(true)\n                        .build(),\n                    AutoscalingGroupReplicaConfigurationNicArgs.builder()\n                        .lan(lanExample2.id())\n                        .name(\"nic_example_2\")\n                        .dhcp(true)\n                        .firewallActive(true)\n                        .firewallType(\"INGRESS\")\n                        .firewallRules(AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs.builder()\n                            .name(\"rule_1\")\n                            .protocol(\"TCP\")\n                            .portRangeStart(1)\n                            .portRangeEnd(1000)\n                            .type(\"INGRESS\")\n                            .build())\n                        .flowLogs(AutoscalingGroupReplicaConfigurationNicFlowLogArgs.builder()\n                            .name(\"flow_log_1\")\n                            .bucket(\"test-de-bucket\")\n                            .action(\"ALL\")\n                            .direction(\"BIDIRECTIONAL\")\n                            .build())\n                        .targetGroup(AutoscalingGroupReplicaConfigurationNicTargetGroupArgs.builder()\n                            .targetGroupId(autoscalingTargetGroup.id())\n                            .port(80)\n                            .weight(50)\n                            .build())\n                        .build())\n                .volumes(AutoscalingGroupReplicaConfigurationVolumeArgs.builder()\n                    .imageAlias(\"ubuntu:latest\")\n                    .name(\"volume_example\")\n                    .size(10)\n                    .type(\"HDD\")\n                    .userData(\"ZWNobyAiSGVsbG8sIFdvcmxkIgo=\")\n                    .imagePassword(serverImagePassword.result())\n                    .bootOrder(\"AUTO\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  datacenterExample:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  lanExample1:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${datacenterExample.id}\n      public: false\n  lanExample2:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${datacenterExample.id}\n      public: false\n  autoscalingTargetGroup:\n    type: ionoscloud:TargetGroup\n    properties:\n      algorithm: ROUND_ROBIN\n      protocol: HTTP\n  autoscalingGroupExample:\n    type: ionoscloud:AutoscalingGroup\n    properties:\n      datacenterId: ${datacenterExample.id}\n      maxReplicaCount: 2\n      minReplicaCount: 1\n      policy:\n        metric: INSTANCE_CPU_UTILIZATION_AVERAGE\n        range: PT24H\n        scaleInAction:\n          amount: 1\n          amountType: ABSOLUTE\n          terminationPolicyType: OLDEST_SERVER_FIRST\n          cooldownPeriod: PT5M\n          deleteVolumes: true\n        scaleInThreshold: 33\n        scaleOutAction:\n          amount: 1\n          amountType: ABSOLUTE\n          cooldownPeriod: PT5M\n        scaleOutThreshold: 77\n        unit: PER_HOUR\n      replicaConfiguration:\n        availabilityZone: AUTO\n        cores: '2'\n        cpuFamily: INTEL_SKYLAKE\n        ram: 2048\n        nics:\n          - lan: ${lanExample1.id}\n            name: nic_example_1\n            dhcp: true\n          - lan: ${lanExample2.id}\n            name: nic_example_2\n            dhcp: true\n            firewallActive: true\n            firewallType: INGRESS\n            firewallRules:\n              - name: rule_1\n                protocol: TCP\n                portRangeStart: 1\n                portRangeEnd: 1000\n                type: INGRESS\n            flowLogs:\n              - name: flow_log_1\n                bucket: test-de-bucket\n                action: ALL\n                direction: BIDIRECTIONAL\n            targetGroup:\n              targetGroupId: ${autoscalingTargetGroup.id}\n              port: 80\n              weight: 50\n        volumes:\n          - imageAlias: ubuntu:latest\n            name: volume_example\n            size: 10\n            type: HDD\n            userData: ZWNobyAiSGVsbG8sIFdvcmxkIgo=\n            imagePassword: ${serverImagePassword.result}\n            bootOrder: AUTO\n  serverImagePassword:\n    type: random:RandomPassword\n    properties:\n      length: 16\n      special: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -11707,7 +11779,7 @@
             }
         },
         "ionoscloud:index/cdnDistribution:CdnDistribution": {
-            "description": "Manages a **CDN Distribution** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n//optionally you can add a certificate to the distribution\nconst cert = new ionoscloud.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst example = new ionoscloud.CdnDistribution(\"example\", {\n    domain: \"example.com\",\n    certificateId: cert.id,\n    routingRules: [\n        {\n            scheme: \"https\",\n            prefix: \"/api\",\n            upstream: {\n                host: \"server.example.com\",\n                caching: true,\n                waf: true,\n                sniMode: \"distribution\",\n                rateLimitClass: \"R500\",\n                geoRestrictions: {\n                    allowLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n        {\n            scheme: \"http/https\",\n            prefix: \"/api2\",\n            upstream: {\n                host: \"server2.example.com\",\n                caching: false,\n                waf: false,\n                sniMode: \"origin\",\n                rateLimitClass: \"R10\",\n                geoRestrictions: {\n                    blockLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n#optionally you can add a certificate to the distribution\ncert = ionoscloud.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample = ionoscloud.CdnDistribution(\"example\",\n    domain=\"example.com\",\n    certificate_id=cert.id,\n    routing_rules=[\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"https\",\n            prefix=\"/api\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server.example.com\",\n                caching=True,\n                waf=True,\n                sni_mode=\"distribution\",\n                rate_limit_class=\"R500\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    allow_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"http/https\",\n            prefix=\"/api2\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server2.example.com\",\n                caching=False,\n                waf=False,\n                sni_mode=\"origin\",\n                rate_limit_class=\"R10\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    block_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    //optionally you can add a certificate to the distribution\n    var cert = new Ionoscloud.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var example = new Ionoscloud.CdnDistribution(\"example\", new()\n    {\n        Domain = \"example.com\",\n        CertificateId = cert.Id,\n        RoutingRules = new[]\n        {\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"https\",\n                Prefix = \"/api\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server.example.com\",\n                    Caching = true,\n                    Waf = true,\n                    SniMode = \"distribution\",\n                    RateLimitClass = \"R500\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        AllowLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"http/https\",\n                Prefix = \"/api2\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server2.example.com\",\n                    Caching = false,\n                    Waf = false,\n                    SniMode = \"origin\",\n                    RateLimitClass = \"R10\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        BlockLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// optionally you can add a certificate to the distribution\n\t\tcert, err := ionoscloud.NewCertificate(ctx, \"cert\", \u0026ionoscloud.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewCdnDistribution(ctx, \"example\", \u0026ionoscloud.CdnDistributionArgs{\n\t\t\tDomain:        pulumi.String(\"example.com\"),\n\t\t\tCertificateId: cert.ID(),\n\t\t\tRoutingRules: ionoscloud.CdnDistributionRoutingRuleArray{\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(true),\n\t\t\t\t\t\tWaf:            pulumi.Bool(true),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"distribution\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R500\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tAllowLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"http/https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api2\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server2.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(false),\n\t\t\t\t\t\tWaf:            pulumi.Bool(false),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"origin\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R10\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tBlockLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Certificate;\nimport com.pulumi.ionoscloud.CertificateArgs;\nimport com.pulumi.ionoscloud.CdnDistribution;\nimport com.pulumi.ionoscloud.CdnDistributionArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        //optionally you can add a certificate to the distribution\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var example = new CdnDistribution(\"example\", CdnDistributionArgs.builder()        \n            .domain(\"example.com\")\n            .certificateId(cert.id())\n            .routingRules(            \n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"https\")\n                    .prefix(\"/api\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server.example.com\")\n                        .caching(true)\n                        .waf(true)\n                        .sniMode(\"distribution\")\n                        .rateLimitClass(\"R500\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .allowLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build(),\n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"http/https\")\n                    .prefix(\"/api2\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server2.example.com\")\n                        .caching(false)\n                        .waf(false)\n                        .sniMode(\"origin\")\n                        .rateLimitClass(\"R10\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .blockLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:CdnDistribution\n    properties:\n      domain: example.com\n      certificateId: ${cert.id}\n      routingRules:\n        - scheme: https\n          prefix: /api\n          upstream:\n            host: server.example.com\n            caching: true\n            waf: true\n            sniMode: distribution\n            rateLimitClass: R500\n            geoRestrictions:\n              allowLists:\n                - CN\n                - RU\n        - scheme: http/https\n          prefix: /api2\n          upstream:\n            host: server2.example.com\n            caching: false\n            waf: false\n            sniMode: origin\n            rateLimitClass: R10\n            geoRestrictions:\n              blockLists:\n                - CN\n                - RU\n  #optionally you can add a certificate to the distribution\n  cert:\n    type: ionoscloud:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Distribution can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}\n```\n\n",
+            "description": "Manages a **CDN Distribution** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n//optionally you can add a certificate to the distribution\nconst cert = new ionoscloud.cert.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst example = new ionoscloud.CdnDistribution(\"example\", {\n    domain: \"example.com\",\n    certificateId: cert.id,\n    routingRules: [\n        {\n            scheme: \"https\",\n            prefix: \"/api\",\n            upstream: {\n                host: \"server.example.com\",\n                caching: true,\n                waf: true,\n                sniMode: \"distribution\",\n                rateLimitClass: \"R500\",\n                geoRestrictions: {\n                    allowLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n        {\n            scheme: \"http/https\",\n            prefix: \"/api2\",\n            upstream: {\n                host: \"server2.example.com\",\n                caching: false,\n                waf: false,\n                sniMode: \"origin\",\n                rateLimitClass: \"R10\",\n                geoRestrictions: {\n                    blockLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n#optionally you can add a certificate to the distribution\ncert = ionoscloud.cert.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample = ionoscloud.CdnDistribution(\"example\",\n    domain=\"example.com\",\n    certificate_id=cert.id,\n    routing_rules=[\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"https\",\n            prefix=\"/api\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server.example.com\",\n                caching=True,\n                waf=True,\n                sni_mode=\"distribution\",\n                rate_limit_class=\"R500\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    allow_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"http/https\",\n            prefix=\"/api2\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server2.example.com\",\n                caching=False,\n                waf=False,\n                sni_mode=\"origin\",\n                rate_limit_class=\"R10\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    block_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    //optionally you can add a certificate to the distribution\n    var cert = new Ionoscloud.Cert.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var example = new Ionoscloud.CdnDistribution(\"example\", new()\n    {\n        Domain = \"example.com\",\n        CertificateId = cert.Id,\n        RoutingRules = new[]\n        {\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"https\",\n                Prefix = \"/api\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server.example.com\",\n                    Caching = true,\n                    Waf = true,\n                    SniMode = \"distribution\",\n                    RateLimitClass = \"R500\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        AllowLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"http/https\",\n                Prefix = \"/api2\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server2.example.com\",\n                    Caching = false,\n                    Waf = false,\n                    SniMode = \"origin\",\n                    RateLimitClass = \"R10\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        BlockLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// optionally you can add a certificate to the distribution\n\t\tcert, err := cert.NewCertificate(ctx, \"cert\", \u0026cert.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewCdnDistribution(ctx, \"example\", \u0026ionoscloud.CdnDistributionArgs{\n\t\t\tDomain:        pulumi.String(\"example.com\"),\n\t\t\tCertificateId: cert.ID(),\n\t\t\tRoutingRules: ionoscloud.CdnDistributionRoutingRuleArray{\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(true),\n\t\t\t\t\t\tWaf:            pulumi.Bool(true),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"distribution\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R500\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tAllowLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"http/https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api2\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server2.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(false),\n\t\t\t\t\t\tWaf:            pulumi.Bool(false),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"origin\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R10\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tBlockLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.cert.Certificate;\nimport com.pulumi.ionoscloud.cert.CertificateArgs;\nimport com.pulumi.ionoscloud.CdnDistribution;\nimport com.pulumi.ionoscloud.CdnDistributionArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        //optionally you can add a certificate to the distribution\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var example = new CdnDistribution(\"example\", CdnDistributionArgs.builder()        \n            .domain(\"example.com\")\n            .certificateId(cert.id())\n            .routingRules(            \n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"https\")\n                    .prefix(\"/api\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server.example.com\")\n                        .caching(true)\n                        .waf(true)\n                        .sniMode(\"distribution\")\n                        .rateLimitClass(\"R500\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .allowLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build(),\n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"http/https\")\n                    .prefix(\"/api2\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server2.example.com\")\n                        .caching(false)\n                        .waf(false)\n                        .sniMode(\"origin\")\n                        .rateLimitClass(\"R10\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .blockLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:CdnDistribution\n    properties:\n      domain: example.com\n      certificateId: ${cert.id}\n      routingRules:\n        - scheme: https\n          prefix: /api\n          upstream:\n            host: server.example.com\n            caching: true\n            waf: true\n            sniMode: distribution\n            rateLimitClass: R500\n            geoRestrictions:\n              allowLists:\n                - CN\n                - RU\n        - scheme: http/https\n          prefix: /api2\n          upstream:\n            host: server2.example.com\n            caching: false\n            waf: false\n            sniMode: origin\n            rateLimitClass: R10\n            geoRestrictions:\n              blockLists:\n                - CN\n                - RU\n  #optionally you can add a certificate to the distribution\n  cert:\n    type: ionoscloud:cert:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Distribution can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}\n```\n\n",
             "properties": {
                 "certificateId": {
                     "type": "string",
@@ -11794,78 +11866,6 @@
                             "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRule:CdnDistributionRoutingRule"
                         },
                         "description": "[list] The routing rules for the distribution.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/certificate:Certificate": {
-            "properties": {
-                "certificate": {
-                    "type": "string",
-                    "description": "The certificate body in PEM format. This attribute is immutable.\n"
-                },
-                "certificateChain": {
-                    "type": "string",
-                    "description": "The certificate chain. This attribute is immutable.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The certificate name\n"
-                },
-                "privateKey": {
-                    "type": "string",
-                    "description": "The private key blob. This attribute is immutable.\n",
-                    "secret": true
-                }
-            },
-            "required": [
-                "certificate",
-                "name",
-                "privateKey"
-            ],
-            "inputProperties": {
-                "certificate": {
-                    "type": "string",
-                    "description": "The certificate body in PEM format. This attribute is immutable.\n"
-                },
-                "certificateChain": {
-                    "type": "string",
-                    "description": "The certificate chain. This attribute is immutable.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The certificate name\n"
-                },
-                "privateKey": {
-                    "type": "string",
-                    "description": "The private key blob. This attribute is immutable.\n",
-                    "secret": true
-                }
-            },
-            "requiredInputs": [
-                "certificate",
-                "privateKey"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering Certificate resources.\n",
-                "properties": {
-                    "certificate": {
-                        "type": "string",
-                        "description": "The certificate body in PEM format. This attribute is immutable.\n"
-                    },
-                    "certificateChain": {
-                        "type": "string",
-                        "description": "The certificate chain. This attribute is immutable.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The certificate name\n"
-                    },
-                    "privateKey": {
-                        "type": "string",
-                        "description": "The private key blob. This attribute is immutable.\n",
-                        "secret": true
                     }
                 },
                 "type": "object"

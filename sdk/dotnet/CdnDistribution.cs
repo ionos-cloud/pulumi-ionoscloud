@@ -25,7 +25,7 @@ namespace Pulumi.Ionoscloud
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     //optionally you can add a certificate to the distribution
-    ///     var cert = new Ionoscloud.Certificate("cert", new()
+    ///     var cert = new Ionoscloud.Cert.Certificate("cert", new()
     ///     {
     ///         Certificate = File.ReadAllText("path_to_cert"),
     ///         CertificateChain = File.ReadAllText("path_to_cert_chain"),
