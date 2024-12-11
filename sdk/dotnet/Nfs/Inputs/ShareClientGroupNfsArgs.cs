@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Nfs.Inputs
 {
 
-    public sealed class NfsShareClientGroupNfsArgs : global::Pulumi.ResourceArgs
+    public sealed class ShareClientGroupNfsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The squash mode for the export. The squash mode can be:
@@ -18,9 +18,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("squash")]
         public Input<string>? Squash { get; set; }
 
-        public NfsShareClientGroupNfsArgs()
+        public ShareClientGroupNfsArgs()
         {
         }
-        public static new NfsShareClientGroupNfsArgs Empty => new NfsShareClientGroupNfsArgs();
+        public static new ShareClientGroupNfsArgs Empty => new ShareClientGroupNfsArgs();
     }
 }

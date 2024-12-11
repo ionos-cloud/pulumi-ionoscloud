@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Nfs.Inputs
 {
 
-    public sealed class NfsClusterConnectionsArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterConnectionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the datacenter where the Network File Storage cluster is located.
@@ -30,9 +30,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("lan", required: true)]
         public Input<string> Lan { get; set; } = null!;
 
-        public NfsClusterConnectionsArgs()
+        public ClusterConnectionsGetArgs()
         {
         }
-        public static new NfsClusterConnectionsArgs Empty => new NfsClusterConnectionsArgs();
+        public static new ClusterConnectionsGetArgs Empty => new ClusterConnectionsGetArgs();
     }
 }

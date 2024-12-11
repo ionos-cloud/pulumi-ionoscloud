@@ -102,8 +102,6 @@ from .natgateway import *
 from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
-from .nfs_cluster import *
-from .nfs_share import *
 from .private_crossconnect import *
 from .provider import *
 from .server_boot_device_selection import *
@@ -128,11 +126,14 @@ if typing.TYPE_CHECKING:
     dbaas = __dbaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.nfs as __nfs
+    nfs = __nfs
 else:
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    nfs = _utilities.lazy_import('ionoscloud.nfs')
 
 _utilities.register(
     resource_modules="""
@@ -483,22 +484,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/nfsCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsCluster:NfsCluster": "NfsCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/nfsShare",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsShare:NfsShare": "NfsShare"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/privateCrossconnect",
   "fqn": "ionoscloud",
   "classes": {
@@ -591,6 +576,22 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/cluster",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/share",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/share:Share": "Share"
   }
  }
 ]

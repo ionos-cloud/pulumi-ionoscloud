@@ -537,7 +537,7 @@
                 }
             },
             "ionoscloud_nfs_cluster": {
-                "current": "ionoscloud:index/nfsCluster:NfsCluster",
+                "current": "ionoscloud:nfs/cluster:Cluster",
                 "fields": {
                     "connections": {
                         "maxItemsOne": true
@@ -548,7 +548,7 @@
                 }
             },
             "ionoscloud_nfs_share": {
-                "current": "ionoscloud:index/nfsShare:NfsShare",
+                "current": "ionoscloud:nfs/share:Share",
                 "fields": {
                     "client_groups": {
                         "maxItemsOne": false,

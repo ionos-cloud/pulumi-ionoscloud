@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     datacenterId: nfsDc.id,
  *     "public": false,
  * });
- * const exampleNfsCluster = new ionoscloud.NfsCluster("exampleNfsCluster", {
+ * const exampleCluster = new ionoscloud.nfs.Cluster("exampleCluster", {
  *     location: "de/txl",
  *     size: 2,
  *     nfs: {
@@ -38,9 +38,9 @@ import * as utilities from "./utilities";
  *         lan: nfsLan.id,
  *     },
  * });
- * const exampleNfsShare = new ionoscloud.NfsShare("exampleNfsShare", {
+ * const exampleShare = new ionoscloud.nfs.Share("exampleShare", {
  *     location: "de/txl",
- *     clusterId: exampleNfsCluster.id,
+ *     clusterId: exampleCluster.id,
  *     quota: 512,
  *     gid: 512,
  *     uid: 512,
@@ -61,12 +61,12 @@ import * as utilities from "./utilities";
  * A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/nfsShare:NfsShare name location:cluster_id:resource_id
+ * $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
  * ```
  */
-export class NfsShare extends pulumi.CustomResource {
+export class Share extends pulumi.CustomResource {
     /**
-     * Get an existing NfsShare resource's state with the given name, ID, and optional extra
+     * Get an existing Share resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -74,28 +74,28 @@ export class NfsShare extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NfsShareState, opts?: pulumi.CustomResourceOptions): NfsShare {
-        return new NfsShare(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ShareState, opts?: pulumi.CustomResourceOptions): Share {
+        return new Share(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/nfsShare:NfsShare';
+    public static readonly __pulumiType = 'ionoscloud:nfs/share:Share';
 
     /**
-     * Returns true if the given object is an instance of NfsShare.  This is designed to work even
+     * Returns true if the given object is an instance of Share.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is NfsShare {
+    public static isInstance(obj: any): obj is Share {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === NfsShare.__pulumiType;
+        return obj['__pulumiType'] === Share.__pulumiType;
     }
 
     /**
      * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
      */
-    public readonly clientGroups!: pulumi.Output<outputs.NfsShareClientGroup[]>;
+    public readonly clientGroups!: pulumi.Output<outputs.nfs.ShareClientGroup[]>;
     /**
      * The ID of the Network File Storage Cluster.
      */
@@ -126,18 +126,18 @@ export class NfsShare extends pulumi.CustomResource {
     public readonly uid!: pulumi.Output<number | undefined>;
 
     /**
-     * Create a NfsShare resource with the given unique name, arguments, and options.
+     * Create a Share resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: NfsShareArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: NfsShareArgs | NfsShareState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: ShareArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: ShareArgs | ShareState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as NfsShareState | undefined;
+            const state = argsOrState as ShareState | undefined;
             resourceInputs["clientGroups"] = state ? state.clientGroups : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["gid"] = state ? state.gid : undefined;
@@ -147,7 +147,7 @@ export class NfsShare extends pulumi.CustomResource {
             resourceInputs["quota"] = state ? state.quota : undefined;
             resourceInputs["uid"] = state ? state.uid : undefined;
         } else {
-            const args = argsOrState as NfsShareArgs | undefined;
+            const args = argsOrState as ShareArgs | undefined;
             if ((!args || args.clientGroups === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientGroups'");
             }
@@ -167,18 +167,18 @@ export class NfsShare extends pulumi.CustomResource {
             resourceInputs["nfsPath"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(NfsShare.__pulumiType, name, resourceInputs, opts);
+        super(Share.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering NfsShare resources.
+ * Input properties used for looking up and filtering Share resources.
  */
-export interface NfsShareState {
+export interface ShareState {
     /**
      * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
      */
-    clientGroups?: pulumi.Input<pulumi.Input<inputs.NfsShareClientGroup>[]>;
+    clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[]>;
     /**
      * The ID of the Network File Storage Cluster.
      */
@@ -210,13 +210,13 @@ export interface NfsShareState {
 }
 
 /**
- * The set of arguments for constructing a NfsShare resource.
+ * The set of arguments for constructing a Share resource.
  */
-export interface NfsShareArgs {
+export interface ShareArgs {
     /**
      * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
      */
-    clientGroups: pulumi.Input<pulumi.Input<inputs.NfsShareClientGroup>[]>;
+    clientGroups: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[]>;
     /**
      * The ID of the Network File Storage Cluster.
      */

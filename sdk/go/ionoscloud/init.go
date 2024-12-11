@@ -71,10 +71,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
 		r = &NetworkloadbalancerForwardingrule{}
-	case "ionoscloud:index/nfsCluster:NfsCluster":
-		r = &NfsCluster{}
-	case "ionoscloud:index/nfsShare:NfsShare":
-		r = &NfsShare{}
 	case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
 		r = &PrivateCrossconnect{}
 	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
@@ -249,16 +245,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/networkloadbalancerForwardingrule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/nfsCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/nfsShare",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

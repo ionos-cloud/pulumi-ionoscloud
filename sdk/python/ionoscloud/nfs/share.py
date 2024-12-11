@@ -7,16 +7,16 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['NfsShareArgs', 'NfsShare']
+__all__ = ['ShareArgs', 'Share']
 
 @pulumi.input_type
-class NfsShareArgs:
+class ShareArgs:
     def __init__(__self__, *,
-                 client_groups: pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]],
+                 client_groups: pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]],
                  cluster_id: pulumi.Input[str],
                  location: pulumi.Input[str],
                  gid: Optional[pulumi.Input[int]] = None,
@@ -24,14 +24,13 @@ class NfsShareArgs:
                  quota: Optional[pulumi.Input[int]] = None,
                  uid: Optional[pulumi.Input[int]] = None):
         """
-        The set of arguments for constructing a NfsShare resource.
-        :param pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
+        The set of arguments for constructing a Share resource.
+        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] name: The directory being exported
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-               quota can be disabled using `0`.
+        :param pulumi.Input[str] name: The directory being exported.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         pulumi.set(__self__, "client_groups", client_groups)
@@ -48,14 +47,14 @@ class NfsShareArgs:
 
     @property
     @pulumi.getter(name="clientGroups")
-    def client_groups(self) -> pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]]:
+    def client_groups(self) -> pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster.
+        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         """
         return pulumi.get(self, "client_groups")
 
     @client_groups.setter
-    def client_groups(self, value: pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]]):
+    def client_groups(self, value: pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]):
         pulumi.set(self, "client_groups", value)
 
     @property
@@ -74,7 +73,7 @@ class NfsShareArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        The location of the Network File Storage Cluster.
         """
         return pulumi.get(self, "location")
 
@@ -98,7 +97,7 @@ class NfsShareArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory being exported
+        The directory being exported.
         """
         return pulumi.get(self, "name")
 
@@ -110,8 +109,7 @@ class NfsShareArgs:
     @pulumi.getter
     def quota(self) -> Optional[pulumi.Input[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-        quota can be disabled using `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         """
         return pulumi.get(self, "quota")
 
@@ -133,9 +131,9 @@ class NfsShareArgs:
 
 
 @pulumi.input_type
-class _NfsShareState:
+class _ShareState:
     def __init__(__self__, *,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -144,15 +142,14 @@ class _NfsShareState:
                  quota: Optional[pulumi.Input[int]] = None,
                  uid: Optional[pulumi.Input[int]] = None):
         """
-        Input properties used for looking up and filtering NfsShare resources.
-        :param pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
+        Input properties used for looking up and filtering Share resources.
+        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
-        :param pulumi.Input[str] name: The directory being exported
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-               quota can be disabled using `0`.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         if client_groups is not None:
@@ -174,14 +171,14 @@ class _NfsShareState:
 
     @property
     @pulumi.getter(name="clientGroups")
-    def client_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]]]:
+    def client_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster.
+        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         """
         return pulumi.get(self, "client_groups")
 
     @client_groups.setter
-    def client_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NfsShareClientGroupArgs']]]]):
+    def client_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]]):
         pulumi.set(self, "client_groups", value)
 
     @property
@@ -212,7 +209,7 @@ class _NfsShareState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        The location of the Network File Storage Cluster.
         """
         return pulumi.get(self, "location")
 
@@ -224,7 +221,7 @@ class _NfsShareState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory being exported
+        The directory being exported.
         """
         return pulumi.get(self, "name")
 
@@ -248,8 +245,7 @@ class _NfsShareState:
     @pulumi.getter
     def quota(self) -> Optional[pulumi.Input[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-        quota can be disabled using `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         """
         return pulumi.get(self, "quota")
 
@@ -270,17 +266,12 @@ class _NfsShareState:
         pulumi.set(self, "uid", value)
 
 
-warnings.warn("""ionoscloud.index/nfsshare.NfsShare has been deprecated in favor of ionoscloud.nfs/share.Share""", DeprecationWarning)
-
-
-class NfsShare(pulumi.CustomResource):
-    warnings.warn("""ionoscloud.index/nfsshare.NfsShare has been deprecated in favor of ionoscloud.nfs/share.Share""", DeprecationWarning)
-
+class Share(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NfsShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -289,33 +280,136 @@ class NfsShare(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a NfsShare resource with the given unique name, props, and options.
+        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+            location="de/txl",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+            datacenter_id=nfs_dc.id,
+            public=False)
+        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
+            location="de/txl",
+            size=2,
+            nfs=ionoscloud.nfs.ClusterNfsArgs(
+                min_version="4.2",
+            ),
+            connections=ionoscloud.nfs.ClusterConnectionsArgs(
+                datacenter_id=nfs_dc.id,
+                ip_address="192.168.100.10/24",
+                lan=nfs_lan.id,
+            ))
+        example_share = ionoscloud.nfs.Share("exampleShare",
+            location="de/txl",
+            cluster_id=example_cluster.id,
+            quota=512,
+            gid=512,
+            uid=512,
+            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
+                description="Client Group 1",
+                ip_networks=["10.234.50.0/24"],
+                hosts=["10.234.62.123"],
+                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
+                    squash="all-anonymous",
+                ),
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
+
+        ```sh
+        $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NfsShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
-        :param pulumi.Input[str] name: The directory being exported
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-               quota can be disabled using `0`.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] name: The directory being exported.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: NfsShareArgs,
+                 args: ShareArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a NfsShare resource with the given unique name, props, and options.
+        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+            location="de/txl",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+            datacenter_id=nfs_dc.id,
+            public=False)
+        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
+            location="de/txl",
+            size=2,
+            nfs=ionoscloud.nfs.ClusterNfsArgs(
+                min_version="4.2",
+            ),
+            connections=ionoscloud.nfs.ClusterConnectionsArgs(
+                datacenter_id=nfs_dc.id,
+                ip_address="192.168.100.10/24",
+                lan=nfs_lan.id,
+            ))
+        example_share = ionoscloud.nfs.Share("exampleShare",
+            location="de/txl",
+            cluster_id=example_cluster.id,
+            quota=512,
+            gid=512,
+            uid=512,
+            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
+                description="Client Group 1",
+                ip_networks=["10.234.50.0/24"],
+                hosts=["10.234.62.123"],
+                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
+                    squash="all-anonymous",
+                ),
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
+
+        ```sh
+        $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
+        ```
+
         :param str resource_name: The name of the resource.
-        :param NfsShareArgs args: The arguments to use to populate this resource's properties.
+        :param ShareArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(NfsShareArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(ShareArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -324,7 +418,7 @@ class NfsShare(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NfsShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -332,14 +426,13 @@ class NfsShare(pulumi.CustomResource):
                  quota: Optional[pulumi.Input[int]] = None,
                  uid: Optional[pulumi.Input[int]] = None,
                  __props__=None):
-        pulumi.log.warn("""NfsShare is deprecated: ionoscloud.index/nfsshare.NfsShare has been deprecated in favor of ionoscloud.nfs/share.Share""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = NfsShareArgs.__new__(NfsShareArgs)
+            __props__ = ShareArgs.__new__(ShareArgs)
 
             if client_groups is None and not opts.urn:
                 raise TypeError("Missing required property 'client_groups'")
@@ -355,8 +448,8 @@ class NfsShare(pulumi.CustomResource):
             __props__.__dict__["quota"] = quota
             __props__.__dict__["uid"] = uid
             __props__.__dict__["nfs_path"] = None
-        super(NfsShare, __self__).__init__(
-            'ionoscloud:index/nfsShare:NfsShare',
+        super(Share, __self__).__init__(
+            'ionoscloud:nfs/share:Share',
             resource_name,
             __props__,
             opts)
@@ -365,34 +458,33 @@ class NfsShare(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NfsShareClientGroupArgs']]]]] = None,
+            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             gid: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nfs_path: Optional[pulumi.Input[str]] = None,
             quota: Optional[pulumi.Input[int]] = None,
-            uid: Optional[pulumi.Input[int]] = None) -> 'NfsShare':
+            uid: Optional[pulumi.Input[int]] = None) -> 'Share':
         """
-        Get an existing NfsShare resource's state with the given name, id, and optional extra
+        Get an existing Share resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NfsShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
-        :param pulumi.Input[str] name: The directory being exported
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] name: The directory being exported.
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-               quota can be disabled using `0`.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _NfsShareState.__new__(_NfsShareState)
+        __props__ = _ShareState.__new__(_ShareState)
 
         __props__.__dict__["client_groups"] = client_groups
         __props__.__dict__["cluster_id"] = cluster_id
@@ -402,13 +494,13 @@ class NfsShare(pulumi.CustomResource):
         __props__.__dict__["nfs_path"] = nfs_path
         __props__.__dict__["quota"] = quota
         __props__.__dict__["uid"] = uid
-        return NfsShare(resource_name, opts=opts, __props__=__props__)
+        return Share(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="clientGroups")
-    def client_groups(self) -> pulumi.Output[Sequence['outputs.NfsShareClientGroup']]:
+    def client_groups(self) -> pulumi.Output[Sequence['outputs.ShareClientGroup']]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster.
+        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         """
         return pulumi.get(self, "client_groups")
 
@@ -432,7 +524,7 @@ class NfsShare(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        The location of the Network File Storage Cluster.
         """
         return pulumi.get(self, "location")
 
@@ -440,7 +532,7 @@ class NfsShare(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The directory being exported
+        The directory being exported.
         """
         return pulumi.get(self, "name")
 
@@ -456,8 +548,7 @@ class NfsShare(pulumi.CustomResource):
     @pulumi.getter
     def quota(self) -> pulumi.Output[Optional[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
-        quota can be disabled using `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
         """
         return pulumi.get(self, "quota")
 

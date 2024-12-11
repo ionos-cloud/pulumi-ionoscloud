@@ -490,16 +490,6 @@ export type NetworkloadbalancerForwardingrule = import("./networkloadbalancerFor
 export const NetworkloadbalancerForwardingrule: typeof import("./networkloadbalancerForwardingrule").NetworkloadbalancerForwardingrule = null as any;
 utilities.lazyLoad(exports, ["NetworkloadbalancerForwardingrule"], () => require("./networkloadbalancerForwardingrule"));
 
-export { NfsClusterArgs, NfsClusterState } from "./nfsCluster";
-export type NfsCluster = import("./nfsCluster").NfsCluster;
-export const NfsCluster: typeof import("./nfsCluster").NfsCluster = null as any;
-utilities.lazyLoad(exports, ["NfsCluster"], () => require("./nfsCluster"));
-
-export { NfsShareArgs, NfsShareState } from "./nfsShare";
-export type NfsShare = import("./nfsShare").NfsShare;
-export const NfsShare: typeof import("./nfsShare").NfsShare = null as any;
-utilities.lazyLoad(exports, ["NfsShare"], () => require("./nfsShare"));
-
 export { PrivateCrossconnectArgs, PrivateCrossconnectState } from "./privateCrossconnect";
 export type PrivateCrossconnect = import("./privateCrossconnect").PrivateCrossconnect;
 export const PrivateCrossconnect: typeof import("./privateCrossconnect").PrivateCrossconnect = null as any;
@@ -561,6 +551,7 @@ import * as compute from "./compute";
 import * as config from "./config";
 import * as dbaas from "./dbaas";
 import * as k8s from "./k8s";
+import * as nfs from "./nfs";
 import * as types from "./types";
 
 export {
@@ -568,6 +559,7 @@ export {
     config,
     dbaas,
     k8s,
+    nfs,
     types,
 };
 
@@ -625,10 +617,6 @@ const _module = {
                 return new Networkloadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
                 return new NetworkloadbalancerForwardingrule(name, <any>undefined, { urn })
-            case "ionoscloud:index/nfsCluster:NfsCluster":
-                return new NfsCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/nfsShare:NfsShare":
-                return new NfsShare(name, <any>undefined, { urn })
             case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
                 return new PrivateCrossconnect(name, <any>undefined, { urn })
             case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
@@ -679,8 +667,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/natgateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/natgatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancerForwardingrule", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/nfsCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/nfsShare", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/privateCrossconnect", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/serverBootDeviceSelection", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/share", _module)

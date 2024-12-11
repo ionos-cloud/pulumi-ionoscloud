@@ -2201,77 +2201,6 @@
                 }
             }
         },
-        "ionoscloud:index/NfsClusterConnections:NfsClusterConnections": {
-            "properties": {
-                "datacenterId": {
-                    "type": "string",
-                    "description": "The ID of the datacenter where the Network File Storage cluster is located.\n"
-                },
-                "ipAddress": {
-                    "type": "string",
-                    "description": "The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.\n"
-                },
-                "lan": {
-                    "type": "string",
-                    "description": "The Private LAN to which the Network File Storage cluster must be connected.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "datacenterId",
-                "ipAddress",
-                "lan"
-            ]
-        },
-        "ionoscloud:index/NfsClusterNfs:NfsClusterNfs": {
-            "properties": {
-                "minVersion": {
-                    "type": "string",
-                    "description": "The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ionoscloud:index/NfsShareClientGroup:NfsShareClientGroup": {
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "Optional description for the clients groups.\n"
-                },
-                "hosts": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.\n"
-                },
-                "ipNetworks": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.\n"
-                },
-                "nfs": {
-                    "$ref": "#/types/ionoscloud:index/NfsShareClientGroupNfs:NfsShareClientGroupNfs",
-                    "description": "NFS specific configurations. Each configuration includes:\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "hosts",
-                "ipNetworks"
-            ]
-        },
-        "ionoscloud:index/NfsShareClientGroupNfs:NfsShareClientGroupNfs": {
-            "properties": {
-                "squash": {
-                    "type": "string",
-                    "description": "The squash mode for the export. The squash mode can be:\n"
-                }
-            },
-            "type": "object"
-        },
         "ionoscloud:index/PrivateCrossconnectConnectableDatacenter:PrivateCrossconnectConnectableDatacenter": {
             "properties": {
                 "id": {
@@ -7841,6 +7770,77 @@
                 "dayOfTheWeek",
                 "time"
             ]
+        },
+        "ionoscloud:nfs/ClusterConnections:ClusterConnections": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "The ID of the datacenter where the Network File Storage cluster is located.\n"
+                },
+                "ipAddress": {
+                    "type": "string",
+                    "description": "The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.\n"
+                },
+                "lan": {
+                    "type": "string",
+                    "description": "The Private LAN to which the Network File Storage cluster must be connected.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "ipAddress",
+                "lan"
+            ]
+        },
+        "ionoscloud:nfs/ClusterNfs:ClusterNfs": {
+            "properties": {
+                "minVersion": {
+                    "type": "string",
+                    "description": "The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:nfs/ShareClientGroup:ShareClientGroup": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Optional description for the clients groups.\n"
+                },
+                "hosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.\n"
+                },
+                "ipNetworks": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.\n"
+                },
+                "nfs": {
+                    "$ref": "#/types/ionoscloud:nfs/ShareClientGroupNfs:ShareClientGroupNfs",
+                    "description": "NFS specific configurations. Each configuration includes:\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "hosts",
+                "ipNetworks"
+            ]
+        },
+        "ionoscloud:nfs/ShareClientGroupNfs:ShareClientGroupNfs": {
+            "properties": {
+                "squash": {
+                    "type": "string",
+                    "description": "The squash mode for the export. The squash mode can be:\n"
+                }
+            },
+            "type": "object"
         }
     },
     "provider": {
@@ -13881,219 +13881,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/nfsCluster:NfsCluster": {
-            "description": "Create clusters of Network File Storage (NFS) on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfsDc\", {\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfsLan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n});\nconst example = new ionoscloud.NfsCluster(\"example\", {\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"192.168.100.10/24\",\n        lan: nfsLan.id,\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfsDc\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfsLan\",\n    datacenter_id=nfs_dc.id,\n    public=False)\nexample = ionoscloud.NfsCluster(\"example\",\n    location=\"de/txl\",\n    size=2,\n    nfs=ionoscloud.NfsClusterNfsArgs(\n        min_version=\"4.2\",\n    ),\n    connections=ionoscloud.NfsClusterConnectionsArgs(\n        datacenter_id=nfs_dc.id,\n        ip_address=\"192.168.100.10/24\",\n        lan=nfs_lan.id,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfsDc\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfsLan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n    });\n\n    var example = new Ionoscloud.NfsCluster(\"example\", new()\n    {\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Inputs.NfsClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Inputs.NfsClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"192.168.100.10/24\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfsDc\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfsLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewNfsCluster(ctx, \"example\", \u0026ionoscloud.NfsClusterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026ionoscloud.NfsClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026ionoscloud.NfsClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.NfsCluster;\nimport com.pulumi.ionoscloud.NfsClusterArgs;\nimport com.pulumi.ionoscloud.inputs.NfsClusterNfsArgs;\nimport com.pulumi.ionoscloud.inputs.NfsClusterConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()        \n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .build());\n\n        var example = new NfsCluster(\"example\", NfsClusterArgs.builder()        \n            .location(\"de/txl\")\n            .size(2)\n            .nfs(NfsClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(NfsClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"192.168.100.10/24\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n  example:\n    type: ionoscloud:NfsCluster\n    properties:\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: 192.168.100.10/24\n        lan: ${nfsLan.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Network File Storage Cluster resource can be imported using its `location` and `resource id`:\n\n```sh\n$ pulumi import ionoscloud:index/nfsCluster:NfsCluster name {location}:{uuid}\n```\n\n",
-            "properties": {
-                "connections": {
-                    "$ref": "#/types/ionoscloud:index/NfsClusterConnections:NfsClusterConnections",
-                    "description": "The network connections for the Network File Storage Cluster.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the Network File Storage cluster.\n"
-                },
-                "nfs": {
-                    "$ref": "#/types/ionoscloud:index/NfsClusterNfs:NfsClusterNfs"
-                },
-                "size": {
-                    "type": "integer",
-                    "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
-                }
-            },
-            "required": [
-                "connections",
-                "location",
-                "name",
-                "size"
-            ],
-            "inputProperties": {
-                "connections": {
-                    "$ref": "#/types/ionoscloud:index/NfsClusterConnections:NfsClusterConnections",
-                    "description": "The network connections for the Network File Storage Cluster.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the Network File Storage cluster.\n"
-                },
-                "nfs": {
-                    "$ref": "#/types/ionoscloud:index/NfsClusterNfs:NfsClusterNfs"
-                },
-                "size": {
-                    "type": "integer",
-                    "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
-                }
-            },
-            "requiredInputs": [
-                "connections",
-                "location",
-                "size"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering NfsCluster resources.\n",
-                "properties": {
-                    "connections": {
-                        "$ref": "#/types/ionoscloud:index/NfsClusterConnections:NfsClusterConnections",
-                        "description": "The network connections for the Network File Storage Cluster.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The name of the Network File Storage cluster.\n"
-                    },
-                    "nfs": {
-                        "$ref": "#/types/ionoscloud:index/NfsClusterNfs:NfsClusterNfs"
-                    },
-                    "size": {
-                        "type": "integer",
-                        "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/nfsShare:NfsShare": {
-            "description": "Creates and manages Network File Storage (NFS) Share objects on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfsDc\", {\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfsLan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n});\nconst exampleNfsCluster = new ionoscloud.NfsCluster(\"exampleNfsCluster\", {\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"192.168.100.10/24\",\n        lan: nfsLan.id,\n    },\n});\nconst exampleNfsShare = new ionoscloud.NfsShare(\"exampleNfsShare\", {\n    location: \"de/txl\",\n    clusterId: exampleNfsCluster.id,\n    quota: 512,\n    gid: 512,\n    uid: 512,\n    clientGroups: [{\n        description: \"Client Group 1\",\n        ipNetworks: [\"10.234.50.0/24\"],\n        hosts: [\"10.234.62.123\"],\n        nfs: {\n            squash: \"all-anonymous\",\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfsDc\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfsLan\",\n    datacenter_id=nfs_dc.id,\n    public=False)\nexample_nfs_cluster = ionoscloud.NfsCluster(\"exampleNfsCluster\",\n    location=\"de/txl\",\n    size=2,\n    nfs=ionoscloud.NfsClusterNfsArgs(\n        min_version=\"4.2\",\n    ),\n    connections=ionoscloud.NfsClusterConnectionsArgs(\n        datacenter_id=nfs_dc.id,\n        ip_address=\"192.168.100.10/24\",\n        lan=nfs_lan.id,\n    ))\nexample_nfs_share = ionoscloud.NfsShare(\"exampleNfsShare\",\n    location=\"de/txl\",\n    cluster_id=example_nfs_cluster.id,\n    quota=512,\n    gid=512,\n    uid=512,\n    client_groups=[ionoscloud.NfsShareClientGroupArgs(\n        description=\"Client Group 1\",\n        ip_networks=[\"10.234.50.0/24\"],\n        hosts=[\"10.234.62.123\"],\n        nfs=ionoscloud.NfsShareClientGroupNfsArgs(\n            squash=\"all-anonymous\",\n        ),\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfsDc\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfsLan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n    });\n\n    var exampleNfsCluster = new Ionoscloud.NfsCluster(\"exampleNfsCluster\", new()\n    {\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Inputs.NfsClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Inputs.NfsClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"192.168.100.10/24\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n    var exampleNfsShare = new Ionoscloud.NfsShare(\"exampleNfsShare\", new()\n    {\n        Location = \"de/txl\",\n        ClusterId = exampleNfsCluster.Id,\n        Quota = 512,\n        Gid = 512,\n        Uid = 512,\n        ClientGroups = new[]\n        {\n            new Ionoscloud.Inputs.NfsShareClientGroupArgs\n            {\n                Description = \"Client Group 1\",\n                IpNetworks = new[]\n                {\n                    \"10.234.50.0/24\",\n                },\n                Hosts = new[]\n                {\n                    \"10.234.62.123\",\n                },\n                Nfs = new Ionoscloud.Inputs.NfsShareClientGroupNfsArgs\n                {\n                    Squash = \"all-anonymous\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfsDc\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfsLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleNfsCluster, err := ionoscloud.NewNfsCluster(ctx, \"exampleNfsCluster\", \u0026ionoscloud.NfsClusterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026ionoscloud.NfsClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026ionoscloud.NfsClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewNfsShare(ctx, \"exampleNfsShare\", \u0026ionoscloud.NfsShareArgs{\n\t\t\tLocation:  pulumi.String(\"de/txl\"),\n\t\t\tClusterId: exampleNfsCluster.ID(),\n\t\t\tQuota:     pulumi.Int(512),\n\t\t\tGid:       pulumi.Int(512),\n\t\t\tUid:       pulumi.Int(512),\n\t\t\tClientGroups: ionoscloud.NfsShareClientGroupArray{\n\t\t\t\t\u0026ionoscloud.NfsShareClientGroupArgs{\n\t\t\t\t\tDescription: pulumi.String(\"Client Group 1\"),\n\t\t\t\t\tIpNetworks: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.234.50.0/24\"),\n\t\t\t\t\t},\n\t\t\t\t\tHosts: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.234.62.123\"),\n\t\t\t\t\t},\n\t\t\t\t\tNfs: \u0026ionoscloud.NfsShareClientGroupNfsArgs{\n\t\t\t\t\t\tSquash: pulumi.String(\"all-anonymous\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.NfsCluster;\nimport com.pulumi.ionoscloud.NfsClusterArgs;\nimport com.pulumi.ionoscloud.inputs.NfsClusterNfsArgs;\nimport com.pulumi.ionoscloud.inputs.NfsClusterConnectionsArgs;\nimport com.pulumi.ionoscloud.NfsShare;\nimport com.pulumi.ionoscloud.NfsShareArgs;\nimport com.pulumi.ionoscloud.inputs.NfsShareClientGroupArgs;\nimport com.pulumi.ionoscloud.inputs.NfsShareClientGroupNfsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()        \n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .build());\n\n        var exampleNfsCluster = new NfsCluster(\"exampleNfsCluster\", NfsClusterArgs.builder()        \n            .location(\"de/txl\")\n            .size(2)\n            .nfs(NfsClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(NfsClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"192.168.100.10/24\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n        var exampleNfsShare = new NfsShare(\"exampleNfsShare\", NfsShareArgs.builder()        \n            .location(\"de/txl\")\n            .clusterId(exampleNfsCluster.id())\n            .quota(512)\n            .gid(512)\n            .uid(512)\n            .clientGroups(NfsShareClientGroupArgs.builder()\n                .description(\"Client Group 1\")\n                .ipNetworks(\"10.234.50.0/24\")\n                .hosts(\"10.234.62.123\")\n                .nfs(NfsShareClientGroupNfsArgs.builder()\n                    .squash(\"all-anonymous\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n  exampleNfsCluster:\n    type: ionoscloud:NfsCluster\n    properties:\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: 192.168.100.10/24\n        lan: ${nfsLan.id}\n  exampleNfsShare:\n    type: ionoscloud:NfsShare\n    properties:\n      location: de/txl\n      clusterId: ${exampleNfsCluster.id}\n      quota: 512\n      gid: 512\n      uid: 512\n      clientGroups:\n        - description: Client Group 1\n          ipNetworks:\n            - 10.234.50.0/24\n          hosts:\n            - 10.234.62.123\n          nfs:\n            squash: all-anonymous\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:\n\n```sh\n$ pulumi import ionoscloud:index/nfsShare:NfsShare name location:cluster_id:resource_id\n```\n\n",
-            "properties": {
-                "clientGroups": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/NfsShareClientGroup:NfsShareClientGroup"
-                    },
-                    "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
-                },
-                "clusterId": {
-                    "type": "string",
-                    "description": "The ID of the Network File Storage Cluster.\n"
-                },
-                "gid": {
-                    "type": "integer",
-                    "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the Network File Storage Cluster.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The directory being exported.\n"
-                },
-                "nfsPath": {
-                    "type": "string",
-                    "description": "Path to the NFS export. The NFS path is the path to the directory being exported.\n"
-                },
-                "quota": {
-                    "type": "integer",
-                    "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
-                },
-                "uid": {
-                    "type": "integer",
-                    "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                }
-            },
-            "required": [
-                "clientGroups",
-                "clusterId",
-                "location",
-                "name",
-                "nfsPath"
-            ],
-            "inputProperties": {
-                "clientGroups": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/NfsShareClientGroup:NfsShareClientGroup"
-                    },
-                    "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
-                },
-                "clusterId": {
-                    "type": "string",
-                    "description": "The ID of the Network File Storage Cluster.\n",
-                    "willReplaceOnChanges": true
-                },
-                "gid": {
-                    "type": "integer",
-                    "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "The location of the Network File Storage Cluster.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The directory being exported.\n"
-                },
-                "quota": {
-                    "type": "integer",
-                    "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
-                },
-                "uid": {
-                    "type": "integer",
-                    "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                }
-            },
-            "requiredInputs": [
-                "clientGroups",
-                "clusterId",
-                "location"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering NfsShare resources.\n",
-                "properties": {
-                    "clientGroups": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/NfsShareClientGroup:NfsShareClientGroup"
-                        },
-                        "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
-                    },
-                    "clusterId": {
-                        "type": "string",
-                        "description": "The ID of the Network File Storage Cluster.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "gid": {
-                        "type": "integer",
-                        "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "The location of the Network File Storage Cluster.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The directory being exported.\n"
-                    },
-                    "nfsPath": {
-                        "type": "string",
-                        "description": "Path to the NFS export. The NFS path is the path to the directory being exported.\n"
-                    },
-                    "quota": {
-                        "type": "integer",
-                        "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
-                    },
-                    "uid": {
-                        "type": "integer",
-                        "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:index/privateCrossconnect:PrivateCrossconnect": {
             "description": "Manages a **Cross Connect** on IonosCloud.\nCross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN. \nThe VDCs to be connected need to belong to the same IONOS Cloud contract and location. \nYou can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.\n\nThe IP addresses of the NICs used for the Cross Connect connection may not be used in more than one NIC and they need to belong to the same IP range.\n\n## Example Usage\n\nTo connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst crossConnectTestResource = new ionoscloud.PrivateCrossconnect(\"crossConnectTestResource\", {description: \"CrossConnectTestResource\"});\nconst dc1 = new ionoscloud.compute.Datacenter(\"dc1\", {location: \"de/txl\"});\nconst dc2 = new ionoscloud.compute.Datacenter(\"dc2\", {location: \"de/txl\"});\nconst dc1lan = new ionoscloud.compute.Lan(\"dc1lan\", {\n    datacenterId: dc1.id,\n    \"public\": false,\n    pcc: crossConnectTestResource.id,\n});\nconst dc2lan = new ionoscloud.compute.Lan(\"dc2lan\", {\n    datacenterId: dc2.id,\n    \"public\": false,\n    pcc: crossConnectTestResource.id,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\ncross_connect_test_resource = ionoscloud.PrivateCrossconnect(\"crossConnectTestResource\", description=\"CrossConnectTestResource\")\ndc1 = ionoscloud.compute.Datacenter(\"dc1\", location=\"de/txl\")\ndc2 = ionoscloud.compute.Datacenter(\"dc2\", location=\"de/txl\")\ndc1lan = ionoscloud.compute.Lan(\"dc1lan\",\n    datacenter_id=dc1.id,\n    public=False,\n    pcc=cross_connect_test_resource.id)\ndc2lan = ionoscloud.compute.Lan(\"dc2lan\",\n    datacenter_id=dc2.id,\n    public=False,\n    pcc=cross_connect_test_resource.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var crossConnectTestResource = new Ionoscloud.PrivateCrossconnect(\"crossConnectTestResource\", new()\n    {\n        Description = \"CrossConnectTestResource\",\n    });\n\n    var dc1 = new Ionoscloud.Compute.Datacenter(\"dc1\", new()\n    {\n        Location = \"de/txl\",\n    });\n\n    var dc2 = new Ionoscloud.Compute.Datacenter(\"dc2\", new()\n    {\n        Location = \"de/txl\",\n    });\n\n    var dc1lan = new Ionoscloud.Compute.Lan(\"dc1lan\", new()\n    {\n        DatacenterId = dc1.Id,\n        Public = false,\n        Pcc = crossConnectTestResource.Id,\n    });\n\n    var dc2lan = new Ionoscloud.Compute.Lan(\"dc2lan\", new()\n    {\n        DatacenterId = dc2.Id,\n        Public = false,\n        Pcc = crossConnectTestResource.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcrossConnectTestResource, err := ionoscloud.NewPrivateCrossconnect(ctx, \"crossConnectTestResource\", \u0026ionoscloud.PrivateCrossconnectArgs{\n\t\t\tDescription: pulumi.String(\"CrossConnectTestResource\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdc1, err := compute.NewDatacenter(ctx, \"dc1\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdc2, err := compute.NewDatacenter(ctx, \"dc2\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = compute.NewLan(ctx, \"dc1lan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: dc1.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tPcc:          crossConnectTestResource.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = compute.NewLan(ctx, \"dc2lan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: dc2.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tPcc:          crossConnectTestResource.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.PrivateCrossconnect;\nimport com.pulumi.ionoscloud.PrivateCrossconnectArgs;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var crossConnectTestResource = new PrivateCrossconnect(\"crossConnectTestResource\", PrivateCrossconnectArgs.builder()        \n            .description(\"CrossConnectTestResource\")\n            .build());\n\n        var dc1 = new Datacenter(\"dc1\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .build());\n\n        var dc2 = new Datacenter(\"dc2\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .build());\n\n        var dc1lan = new Lan(\"dc1lan\", LanArgs.builder()        \n            .datacenterId(dc1.id())\n            .public_(false)\n            .pcc(crossConnectTestResource.id())\n            .build());\n\n        var dc2lan = new Lan(\"dc2lan\", LanArgs.builder()        \n            .datacenterId(dc2.id())\n            .public_(false)\n            .pcc(crossConnectTestResource.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  crossConnectTestResource:\n    type: ionoscloud:PrivateCrossconnect\n    properties:\n      description: CrossConnectTestResource\n  dc1:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n  dc2:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n  dc1lan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${dc1.id}\n      public: false\n      pcc: ${crossConnectTestResource.id}\n  dc2lan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${dc2.id}\n      public: false\n      pcc: ${crossConnectTestResource.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Cross Connect resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/privateCrossconnect:PrivateCrossconnect demo {ionoscloud_private_crossconnect_uuid}\n```\n\nThis can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.\n\n",
             "properties": {
@@ -16052,6 +15839,219 @@
                         "type": "string",
                         "description": "[string] - The desired storage type - SSD/HDD. *This attribute is immutable*.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:nfs/cluster:Cluster": {
+            "description": "Create clusters of Network File Storage (NFS) on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfsDc\", {\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfsLan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n});\nconst example = new ionoscloud.nfs.Cluster(\"example\", {\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"192.168.100.10/24\",\n        lan: nfsLan.id,\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfsDc\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfsLan\",\n    datacenter_id=nfs_dc.id,\n    public=False)\nexample = ionoscloud.nfs.Cluster(\"example\",\n    location=\"de/txl\",\n    size=2,\n    nfs=ionoscloud.nfs.ClusterNfsArgs(\n        min_version=\"4.2\",\n    ),\n    connections=ionoscloud.nfs.ClusterConnectionsArgs(\n        datacenter_id=nfs_dc.id,\n        ip_address=\"192.168.100.10/24\",\n        lan=nfs_lan.id,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfsDc\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfsLan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n    });\n\n    var example = new Ionoscloud.Nfs.Cluster(\"example\", new()\n    {\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"192.168.100.10/24\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfsDc\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfsLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nfs.NewCluster(ctx, \"example\", \u0026nfs.ClusterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026nfs.ClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026nfs.ClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.nfs.Cluster;\nimport com.pulumi.ionoscloud.nfs.ClusterArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()        \n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .build());\n\n        var example = new Cluster(\"example\", ClusterArgs.builder()        \n            .location(\"de/txl\")\n            .size(2)\n            .nfs(ClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(ClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"192.168.100.10/24\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n  example:\n    type: ionoscloud:nfs:Cluster\n    properties:\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: 192.168.100.10/24\n        lan: ${nfsLan.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Network File Storage Cluster resource can be imported using its `location` and `resource id`:\n\n```sh\n$ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}\n```\n\n",
+            "properties": {
+                "connections": {
+                    "$ref": "#/types/ionoscloud:nfs/ClusterConnections:ClusterConnections",
+                    "description": "The network connections for the Network File Storage Cluster.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Network File Storage cluster.\n"
+                },
+                "nfs": {
+                    "$ref": "#/types/ionoscloud:nfs/ClusterNfs:ClusterNfs"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
+                }
+            },
+            "required": [
+                "connections",
+                "location",
+                "name",
+                "size"
+            ],
+            "inputProperties": {
+                "connections": {
+                    "$ref": "#/types/ionoscloud:nfs/ClusterConnections:ClusterConnections",
+                    "description": "The network connections for the Network File Storage Cluster.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Network File Storage cluster.\n"
+                },
+                "nfs": {
+                    "$ref": "#/types/ionoscloud:nfs/ClusterNfs:ClusterNfs"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
+                }
+            },
+            "requiredInputs": [
+                "connections",
+                "location",
+                "size"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Cluster resources.\n",
+                "properties": {
+                    "connections": {
+                        "$ref": "#/types/ionoscloud:nfs/ClusterConnections:ClusterConnections",
+                        "description": "The network connections for the Network File Storage Cluster.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The location where the Network File Storage cluster is located.\n- `de/fra` - Frankfurt\n- `de/txl` - Berlin\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Network File Storage cluster.\n"
+                    },
+                    "nfs": {
+                        "$ref": "#/types/ionoscloud:nfs/ClusterNfs:ClusterNfs"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:nfs/share:Share": {
+            "description": "Creates and manages Network File Storage (NFS) Share objects on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst nfsDc = new ionoscloud.compute.Datacenter(\"nfsDc\", {\n    location: \"de/txl\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst nfsLan = new ionoscloud.compute.Lan(\"nfsLan\", {\n    datacenterId: nfsDc.id,\n    \"public\": false,\n});\nconst exampleCluster = new ionoscloud.nfs.Cluster(\"exampleCluster\", {\n    location: \"de/txl\",\n    size: 2,\n    nfs: {\n        minVersion: \"4.2\",\n    },\n    connections: {\n        datacenterId: nfsDc.id,\n        ipAddress: \"192.168.100.10/24\",\n        lan: nfsLan.id,\n    },\n});\nconst exampleShare = new ionoscloud.nfs.Share(\"exampleShare\", {\n    location: \"de/txl\",\n    clusterId: exampleCluster.id,\n    quota: 512,\n    gid: 512,\n    uid: 512,\n    clientGroups: [{\n        description: \"Client Group 1\",\n        ipNetworks: [\"10.234.50.0/24\"],\n        hosts: [\"10.234.62.123\"],\n        nfs: {\n            squash: \"all-anonymous\",\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\nnfs_dc = ionoscloud.compute.Datacenter(\"nfsDc\",\n    location=\"de/txl\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nnfs_lan = ionoscloud.compute.Lan(\"nfsLan\",\n    datacenter_id=nfs_dc.id,\n    public=False)\nexample_cluster = ionoscloud.nfs.Cluster(\"exampleCluster\",\n    location=\"de/txl\",\n    size=2,\n    nfs=ionoscloud.nfs.ClusterNfsArgs(\n        min_version=\"4.2\",\n    ),\n    connections=ionoscloud.nfs.ClusterConnectionsArgs(\n        datacenter_id=nfs_dc.id,\n        ip_address=\"192.168.100.10/24\",\n        lan=nfs_lan.id,\n    ))\nexample_share = ionoscloud.nfs.Share(\"exampleShare\",\n    location=\"de/txl\",\n    cluster_id=example_cluster.id,\n    quota=512,\n    gid=512,\n    uid=512,\n    client_groups=[ionoscloud.nfs.ShareClientGroupArgs(\n        description=\"Client Group 1\",\n        ip_networks=[\"10.234.50.0/24\"],\n        hosts=[\"10.234.62.123\"],\n        nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(\n            squash=\"all-anonymous\",\n        ),\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var nfsDc = new Ionoscloud.Compute.Datacenter(\"nfsDc\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var nfsLan = new Ionoscloud.Compute.Lan(\"nfsLan\", new()\n    {\n        DatacenterId = nfsDc.Id,\n        Public = false,\n    });\n\n    var exampleCluster = new Ionoscloud.Nfs.Cluster(\"exampleCluster\", new()\n    {\n        Location = \"de/txl\",\n        Size = 2,\n        Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs\n        {\n            MinVersion = \"4.2\",\n        },\n        Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs\n        {\n            DatacenterId = nfsDc.Id,\n            IpAddress = \"192.168.100.10/24\",\n            Lan = nfsLan.Id,\n        },\n    });\n\n    var exampleShare = new Ionoscloud.Nfs.Share(\"exampleShare\", new()\n    {\n        Location = \"de/txl\",\n        ClusterId = exampleCluster.Id,\n        Quota = 512,\n        Gid = 512,\n        Uid = 512,\n        ClientGroups = new[]\n        {\n            new Ionoscloud.Nfs.Inputs.ShareClientGroupArgs\n            {\n                Description = \"Client Group 1\",\n                IpNetworks = new[]\n                {\n                    \"10.234.50.0/24\",\n                },\n                Hosts = new[]\n                {\n                    \"10.234.62.123\",\n                },\n                Nfs = new Ionoscloud.Nfs.Inputs.ShareClientGroupNfsArgs\n                {\n                    Squash = \"all-anonymous\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\tnfsDc, err := compute.NewDatacenter(ctx, \"nfsDc\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"de/txl\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnfsLan, err := compute.NewLan(ctx, \"nfsLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleCluster, err := nfs.NewCluster(ctx, \"exampleCluster\", \u0026nfs.ClusterArgs{\n\t\t\tLocation: pulumi.String(\"de/txl\"),\n\t\t\tSize:     pulumi.Int(2),\n\t\t\tNfs: \u0026nfs.ClusterNfsArgs{\n\t\t\t\tMinVersion: pulumi.String(\"4.2\"),\n\t\t\t},\n\t\t\tConnections: \u0026nfs.ClusterConnectionsArgs{\n\t\t\t\tDatacenterId: nfsDc.ID(),\n\t\t\t\tIpAddress:    pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\tLan:          nfsLan.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nfs.NewShare(ctx, \"exampleShare\", \u0026nfs.ShareArgs{\n\t\t\tLocation:  pulumi.String(\"de/txl\"),\n\t\t\tClusterId: exampleCluster.ID(),\n\t\t\tQuota:     pulumi.Int(512),\n\t\t\tGid:       pulumi.Int(512),\n\t\t\tUid:       pulumi.Int(512),\n\t\t\tClientGroups: nfs.ShareClientGroupArray{\n\t\t\t\t\u0026nfs.ShareClientGroupArgs{\n\t\t\t\t\tDescription: pulumi.String(\"Client Group 1\"),\n\t\t\t\t\tIpNetworks: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.234.50.0/24\"),\n\t\t\t\t\t},\n\t\t\t\t\tHosts: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"10.234.62.123\"),\n\t\t\t\t\t},\n\t\t\t\t\tNfs: \u0026nfs.ShareClientGroupNfsArgs{\n\t\t\t\t\t\tSquash: pulumi.String(\"all-anonymous\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.nfs.Cluster;\nimport com.pulumi.ionoscloud.nfs.ClusterArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterNfsArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ClusterConnectionsArgs;\nimport com.pulumi.ionoscloud.nfs.Share;\nimport com.pulumi.ionoscloud.nfs.ShareArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ShareClientGroupArgs;\nimport com.pulumi.ionoscloud.nfs.inputs.ShareClientGroupNfsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var nfsDc = new Datacenter(\"nfsDc\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var nfsLan = new Lan(\"nfsLan\", LanArgs.builder()        \n            .datacenterId(nfsDc.id())\n            .public_(false)\n            .build());\n\n        var exampleCluster = new Cluster(\"exampleCluster\", ClusterArgs.builder()        \n            .location(\"de/txl\")\n            .size(2)\n            .nfs(ClusterNfsArgs.builder()\n                .minVersion(\"4.2\")\n                .build())\n            .connections(ClusterConnectionsArgs.builder()\n                .datacenterId(nfsDc.id())\n                .ipAddress(\"192.168.100.10/24\")\n                .lan(nfsLan.id())\n                .build())\n            .build());\n\n        var exampleShare = new Share(\"exampleShare\", ShareArgs.builder()        \n            .location(\"de/txl\")\n            .clusterId(exampleCluster.id())\n            .quota(512)\n            .gid(512)\n            .uid(512)\n            .clientGroups(ShareClientGroupArgs.builder()\n                .description(\"Client Group 1\")\n                .ipNetworks(\"10.234.50.0/24\")\n                .hosts(\"10.234.62.123\")\n                .nfs(ShareClientGroupNfsArgs.builder()\n                    .squash(\"all-anonymous\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  nfsDc:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter Description\n      secAuthProtection: false\n  nfsLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${nfsDc.id}\n      public: false\n  exampleCluster:\n    type: ionoscloud:nfs:Cluster\n    properties:\n      location: de/txl\n      size: 2\n      nfs:\n        minVersion: '4.2'\n      connections:\n        datacenterId: ${nfsDc.id}\n        ipAddress: 192.168.100.10/24\n        lan: ${nfsLan.id}\n  exampleShare:\n    type: ionoscloud:nfs:Share\n    properties:\n      location: de/txl\n      clusterId: ${exampleCluster.id}\n      quota: 512\n      gid: 512\n      uid: 512\n      clientGroups:\n        - description: Client Group 1\n          ipNetworks:\n            - 10.234.50.0/24\n          hosts:\n            - 10.234.62.123\n          nfs:\n            squash: all-anonymous\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:\n\n```sh\n$ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id\n```\n\n",
+            "properties": {
+                "clientGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:nfs/ShareClientGroup:ShareClientGroup"
+                    },
+                    "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Network File Storage Cluster.\n"
+                },
+                "gid": {
+                    "type": "integer",
+                    "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the Network File Storage Cluster.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The directory being exported.\n"
+                },
+                "nfsPath": {
+                    "type": "string",
+                    "description": "Path to the NFS export. The NFS path is the path to the directory being exported.\n"
+                },
+                "quota": {
+                    "type": "integer",
+                    "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
+                },
+                "uid": {
+                    "type": "integer",
+                    "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
+                }
+            },
+            "required": [
+                "clientGroups",
+                "clusterId",
+                "location",
+                "name",
+                "nfsPath"
+            ],
+            "inputProperties": {
+                "clientGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:nfs/ShareClientGroup:ShareClientGroup"
+                    },
+                    "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Network File Storage Cluster.\n",
+                    "willReplaceOnChanges": true
+                },
+                "gid": {
+                    "type": "integer",
+                    "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The location of the Network File Storage Cluster.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The directory being exported.\n"
+                },
+                "quota": {
+                    "type": "integer",
+                    "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
+                },
+                "uid": {
+                    "type": "integer",
+                    "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
+                }
+            },
+            "requiredInputs": [
+                "clientGroups",
+                "clusterId",
+                "location"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Share resources.\n",
+                "properties": {
+                    "clientGroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:nfs/ShareClientGroup:ShareClientGroup"
+                        },
+                        "description": "The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the Network File Storage Cluster.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "gid": {
+                        "type": "integer",
+                        "description": "The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "The location of the Network File Storage Cluster.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The directory being exported.\n"
+                    },
+                    "nfsPath": {
+                        "type": "string",
+                        "description": "Path to the NFS export. The NFS path is the path to the directory being exported.\n"
+                    },
+                    "quota": {
+                        "type": "integer",
+                        "description": "The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.\n"
+                    },
+                    "uid": {
+                        "type": "integer",
+                        "description": "The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.\n"
                     }
                 },
                 "type": "object"

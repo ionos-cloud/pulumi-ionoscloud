@@ -12,9 +12,9 @@ import (
 )
 
 // Returns information about clusters of Network File Storage (NFS) on IonosCloud.
-func LookupNfsCluster(ctx *pulumi.Context, args *LookupNfsClusterArgs, opts ...pulumi.InvokeOption) (*LookupNfsClusterResult, error) {
+func GetNfsCluster(ctx *pulumi.Context, args *GetNfsClusterArgs, opts ...pulumi.InvokeOption) (*GetNfsClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNfsClusterResult
+	var rv GetNfsClusterResult
 	err := ctx.Invoke("ionoscloud:index/getNfsCluster:getNfsCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func LookupNfsCluster(ctx *pulumi.Context, args *LookupNfsClusterArgs, opts ...p
 }
 
 // A collection of arguments for invoking getNfsCluster.
-type LookupNfsClusterArgs struct {
+type GetNfsClusterArgs struct {
 	// ID of the Network File Storage cluster.
 	Id *string `pulumi:"id"`
 	// The location where the Network File Storage cluster is located.
@@ -35,7 +35,7 @@ type LookupNfsClusterArgs struct {
 }
 
 // A collection of values returned by getNfsCluster.
-type LookupNfsClusterResult struct {
+type GetNfsClusterResult struct {
 	// A list of connections for the Network File Storage cluster. You can specify only one connection. Each connection supports the following:
 	Connections []GetNfsClusterConnection `pulumi:"connections"`
 	// The ID of the Network File Storage cluster.
@@ -51,21 +51,21 @@ type LookupNfsClusterResult struct {
 	Size int `pulumi:"size"`
 }
 
-func LookupNfsClusterOutput(ctx *pulumi.Context, args LookupNfsClusterOutputArgs, opts ...pulumi.InvokeOption) LookupNfsClusterResultOutput {
+func GetNfsClusterOutput(ctx *pulumi.Context, args GetNfsClusterOutputArgs, opts ...pulumi.InvokeOption) GetNfsClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNfsClusterResult, error) {
-			args := v.(LookupNfsClusterArgs)
-			r, err := LookupNfsCluster(ctx, &args, opts...)
-			var s LookupNfsClusterResult
+		ApplyT(func(v interface{}) (GetNfsClusterResult, error) {
+			args := v.(GetNfsClusterArgs)
+			r, err := GetNfsCluster(ctx, &args, opts...)
+			var s GetNfsClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNfsClusterResultOutput)
+		}).(GetNfsClusterResultOutput)
 }
 
 // A collection of arguments for invoking getNfsCluster.
-type LookupNfsClusterOutputArgs struct {
+type GetNfsClusterOutputArgs struct {
 	// ID of the Network File Storage cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The location where the Network File Storage cluster is located.
@@ -76,59 +76,59 @@ type LookupNfsClusterOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupNfsClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNfsClusterArgs)(nil)).Elem()
+func (GetNfsClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNfsClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNfsCluster.
-type LookupNfsClusterResultOutput struct{ *pulumi.OutputState }
+type GetNfsClusterResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNfsClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNfsClusterResult)(nil)).Elem()
+func (GetNfsClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNfsClusterResult)(nil)).Elem()
 }
 
-func (o LookupNfsClusterResultOutput) ToLookupNfsClusterResultOutput() LookupNfsClusterResultOutput {
+func (o GetNfsClusterResultOutput) ToGetNfsClusterResultOutput() GetNfsClusterResultOutput {
 	return o
 }
 
-func (o LookupNfsClusterResultOutput) ToLookupNfsClusterResultOutputWithContext(ctx context.Context) LookupNfsClusterResultOutput {
+func (o GetNfsClusterResultOutput) ToGetNfsClusterResultOutputWithContext(ctx context.Context) GetNfsClusterResultOutput {
 	return o
 }
 
 // A list of connections for the Network File Storage cluster. You can specify only one connection. Each connection supports the following:
-func (o LookupNfsClusterResultOutput) Connections() GetNfsClusterConnectionArrayOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) []GetNfsClusterConnection { return v.Connections }).(GetNfsClusterConnectionArrayOutput)
+func (o GetNfsClusterResultOutput) Connections() GetNfsClusterConnectionArrayOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) []GetNfsClusterConnection { return v.Connections }).(GetNfsClusterConnectionArrayOutput)
 }
 
 // The ID of the Network File Storage cluster.
-func (o LookupNfsClusterResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetNfsClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The location where the Network File Storage cluster is located.
-func (o LookupNfsClusterResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetNfsClusterResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // The name of the Network File Storage cluster.
-func (o LookupNfsClusterResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetNfsClusterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The NFS configuration for the Network File Storage cluster. Each NFS configuration supports the following:
-func (o LookupNfsClusterResultOutput) Nfs() GetNfsClusterNfArrayOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) []GetNfsClusterNf { return v.Nfs }).(GetNfsClusterNfArrayOutput)
+func (o GetNfsClusterResultOutput) Nfs() GetNfsClusterNfArrayOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) []GetNfsClusterNf { return v.Nfs }).(GetNfsClusterNfArrayOutput)
 }
 
-func (o LookupNfsClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetNfsClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
-func (o LookupNfsClusterResultOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNfsClusterResult) int { return v.Size }).(pulumi.IntOutput)
+func (o GetNfsClusterResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNfsClusterResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNfsClusterResultOutput{})
+	pulumi.RegisterOutputType(GetNfsClusterResultOutput{})
 }
