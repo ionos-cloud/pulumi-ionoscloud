@@ -12,9 +12,9 @@ import (
 )
 
 // Returns information about shares of Network File Storage (NFS) on IonosCloud.
-func LookupNfsShare(ctx *pulumi.Context, args *LookupNfsShareArgs, opts ...pulumi.InvokeOption) (*LookupNfsShareResult, error) {
+func GetNfsShare(ctx *pulumi.Context, args *GetNfsShareArgs, opts ...pulumi.InvokeOption) (*GetNfsShareResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNfsShareResult
+	var rv GetNfsShareResult
 	err := ctx.Invoke("ionoscloud:index/getNfsShare:getNfsShare", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -23,7 +23,7 @@ func LookupNfsShare(ctx *pulumi.Context, args *LookupNfsShareArgs, opts ...pulum
 }
 
 // A collection of arguments for invoking getNfsShare.
-type LookupNfsShareArgs struct {
+type GetNfsShareArgs struct {
 	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups []GetNfsShareClientGroup `pulumi:"clientGroups"`
 	// The ID of the Network File Storage cluster.
@@ -45,7 +45,7 @@ type LookupNfsShareArgs struct {
 }
 
 // A collection of values returned by getNfsShare.
-type LookupNfsShareResult struct {
+type GetNfsShareResult struct {
 	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups []GetNfsShareClientGroup `pulumi:"clientGroups"`
 	// The ID of the Network File Storage cluster.
@@ -67,21 +67,21 @@ type LookupNfsShareResult struct {
 	Uid int `pulumi:"uid"`
 }
 
-func LookupNfsShareOutput(ctx *pulumi.Context, args LookupNfsShareOutputArgs, opts ...pulumi.InvokeOption) LookupNfsShareResultOutput {
+func GetNfsShareOutput(ctx *pulumi.Context, args GetNfsShareOutputArgs, opts ...pulumi.InvokeOption) GetNfsShareResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNfsShareResult, error) {
-			args := v.(LookupNfsShareArgs)
-			r, err := LookupNfsShare(ctx, &args, opts...)
-			var s LookupNfsShareResult
+		ApplyT(func(v interface{}) (GetNfsShareResult, error) {
+			args := v.(GetNfsShareArgs)
+			r, err := GetNfsShare(ctx, &args, opts...)
+			var s GetNfsShareResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNfsShareResultOutput)
+		}).(GetNfsShareResultOutput)
 }
 
 // A collection of arguments for invoking getNfsShare.
-type LookupNfsShareOutputArgs struct {
+type GetNfsShareOutputArgs struct {
 	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups GetNfsShareClientGroupArrayInput `pulumi:"clientGroups"`
 	// The ID of the Network File Storage cluster.
@@ -102,74 +102,74 @@ type LookupNfsShareOutputArgs struct {
 	Uid pulumi.IntPtrInput `pulumi:"uid"`
 }
 
-func (LookupNfsShareOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNfsShareArgs)(nil)).Elem()
+func (GetNfsShareOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNfsShareArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNfsShare.
-type LookupNfsShareResultOutput struct{ *pulumi.OutputState }
+type GetNfsShareResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNfsShareResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNfsShareResult)(nil)).Elem()
+func (GetNfsShareResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNfsShareResult)(nil)).Elem()
 }
 
-func (o LookupNfsShareResultOutput) ToLookupNfsShareResultOutput() LookupNfsShareResultOutput {
+func (o GetNfsShareResultOutput) ToGetNfsShareResultOutput() GetNfsShareResultOutput {
 	return o
 }
 
-func (o LookupNfsShareResultOutput) ToLookupNfsShareResultOutputWithContext(ctx context.Context) LookupNfsShareResultOutput {
+func (o GetNfsShareResultOutput) ToGetNfsShareResultOutputWithContext(ctx context.Context) GetNfsShareResultOutput {
 	return o
 }
 
 // The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
-func (o LookupNfsShareResultOutput) ClientGroups() GetNfsShareClientGroupArrayOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) []GetNfsShareClientGroup { return v.ClientGroups }).(GetNfsShareClientGroupArrayOutput)
+func (o GetNfsShareResultOutput) ClientGroups() GetNfsShareClientGroupArrayOutput {
+	return o.ApplyT(func(v GetNfsShareResult) []GetNfsShareClientGroup { return v.ClientGroups }).(GetNfsShareClientGroupArrayOutput)
 }
 
 // The ID of the Network File Storage cluster.
-func (o LookupNfsShareResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetNfsShareResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsShareResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-func (o LookupNfsShareResultOutput) Gid() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) int { return v.Gid }).(pulumi.IntOutput)
+func (o GetNfsShareResultOutput) Gid() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNfsShareResult) int { return v.Gid }).(pulumi.IntOutput)
 }
 
 // The ID of the Network File Storage share.
-func (o LookupNfsShareResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetNfsShareResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsShareResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The location where the Network File Storage share is located.
-func (o LookupNfsShareResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetNfsShareResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsShareResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // The name of the Network File Storage share.
-func (o LookupNfsShareResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetNfsShareResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsShareResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Path to the NFS export. The NFS path is the path to the directory being exported.
-func (o LookupNfsShareResultOutput) NfsPath() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) string { return v.NfsPath }).(pulumi.StringOutput)
+func (o GetNfsShareResultOutput) NfsPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNfsShareResult) string { return v.NfsPath }).(pulumi.StringOutput)
 }
 
-func (o LookupNfsShareResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetNfsShareResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNfsShareResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
-func (o LookupNfsShareResultOutput) Quota() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) int { return v.Quota }).(pulumi.IntOutput)
+func (o GetNfsShareResultOutput) Quota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNfsShareResult) int { return v.Quota }).(pulumi.IntOutput)
 }
 
 // The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-func (o LookupNfsShareResultOutput) Uid() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNfsShareResult) int { return v.Uid }).(pulumi.IntOutput)
+func (o GetNfsShareResultOutput) Uid() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNfsShareResult) int { return v.Uid }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNfsShareResultOutput{})
+	pulumi.RegisterOutputType(GetNfsShareResultOutput{})
 }

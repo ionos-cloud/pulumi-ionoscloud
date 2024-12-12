@@ -35,20 +35,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AutoCertificateProvider{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
-	case "ionoscloud:index/cdnDistribution:CdnDistribution":
-		r = &CdnDistribution{}
 	case "ionoscloud:index/certificate:Certificate":
 		r = &Certificate{}
-	case "ionoscloud:index/containerRegistry:ContainerRegistry":
-		r = &ContainerRegistry{}
-	case "ionoscloud:index/containerRegistryToken:ContainerRegistryToken":
-		r = &ContainerRegistryToken{}
 	case "ionoscloud:index/cubeServer:CubeServer":
 		r = &CubeServer{}
-	case "ionoscloud:index/dnsRecord:DnsRecord":
-		r = &DnsRecord{}
-	case "ionoscloud:index/dnsZone:DnsZone":
-		r = &DnsZone{}
 	case "ionoscloud:index/ipfailover:Ipfailover":
 		r = &Ipfailover{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -67,10 +57,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
 		r = &NetworkloadbalancerForwardingrule{}
-	case "ionoscloud:index/nfsCluster:NfsCluster":
-		r = &NfsCluster{}
-	case "ionoscloud:index/nfsShare:NfsShare":
-		r = &NfsShare{}
 	case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
 		r = &PrivateCrossconnect{}
 	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
@@ -83,14 +69,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TargetGroup{}
 	case "ionoscloud:index/vcpuServer:VcpuServer":
 		r = &VcpuServer{}
-	case "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway":
-		r = &VpnIpsecGateway{}
-	case "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel":
-		r = &VpnIpsecTunnel{}
-	case "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway":
-		r = &VpnWireguardGateway{}
-	case "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer":
-		r = &VpnWireguardPeer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -159,37 +137,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/cdnDistribution",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/certificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/containerRegistry",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/containerRegistryToken",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/cubeServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsRecord",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsZone",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -239,16 +192,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/nfsCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/nfsShare",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/privateCrossconnect",
 		&module{version},
 	)
@@ -275,26 +218,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/vcpuServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnIpsecGateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnIpsecTunnel",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnWireguardGateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vpnWireguardPeer",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

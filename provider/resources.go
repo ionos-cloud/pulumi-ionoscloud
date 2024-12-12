@@ -42,6 +42,11 @@ const (
 	dbaasModule   = "dbaas"   // the ionoscloud module
 	k8sModule     = "k8s"     // the ionoscloud module
 	dsaasModule   = "dsaas"   // the ionoscloud module
+	nfsModule     = "nfs"     // the ionoscloud module
+	vpnModule     = "vpn"     // the ionoscloud module
+	cdnModule     = "cdn"     // the ionoscloud module
+	dnsModule     = "dns"     // the ionoscloud module
+	cregModule    = "creg"    // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -252,6 +257,39 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_dataplatform_node_pool": {
 				Tok: tfbridge.MakeResource(mainPkg, dsaasModule, "NodePool"),
+			},
+			"ionoscloud_nfs_cluster": {
+				Tok: tfbridge.MakeResource(mainPkg, nfsModule, "Cluster"),
+			},
+			"ionoscloud_nfs_share": {
+				Tok: tfbridge.MakeResource(mainPkg, nfsModule, "Share"),
+			},
+			"ionoscloud_vpn_ipsec_gateway": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "IpsecGateway"),
+			},
+			"ionoscloud_vpn_ipsec_tunnel": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "IpsecTunnel"),
+			},
+			"ionoscloud_vpn_wireguard_gateway": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "WireguardGateway"),
+			},
+			"ionoscloud_vpn_wireguard_peer": {
+				Tok: tfbridge.MakeResource(mainPkg, vpnModule, "WireguardPeer"),
+			},
+			"ionoscloud_cdn_distribution": {
+				Tok: tfbridge.MakeResource(mainPkg, cdnModule, "Distribution"),
+			},
+			"ionoscloud_dns_zone": {
+				Tok: tfbridge.MakeResource(mainPkg, dnsModule, "Zone"),
+			},
+			"ionoscloud_dns_record": {
+				Tok: tfbridge.MakeResource(mainPkg, dnsModule, "Record"),
+			},
+			"ionoscloud_container_registry": {
+				Tok: tfbridge.MakeResource(mainPkg, cregModule, "Registry"),
+			},
+			"ionoscloud_container_registry_token": {
+				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
 			},
 		},
 	}

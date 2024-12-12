@@ -397,104 +397,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData?: pulumi.Input<string>;
 }
 
-export interface CdnDistributionRoutingRule {
-    /**
-     * [string] The prefix of the routing rule.
-     */
-    prefix: pulumi.Input<string>;
-    /**
-     * [string] The scheme of the routing rule.
-     */
-    scheme: pulumi.Input<string>;
-    /**
-     * [map] - A map of properties for the rule
-     */
-    upstream: pulumi.Input<inputs.CdnDistributionRoutingRuleUpstream>;
-}
-
-export interface CdnDistributionRoutingRuleUpstream {
-    /**
-     * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-     */
-    caching: pulumi.Input<boolean>;
-    /**
-     * [map] - A map of geo_restrictions
-     */
-    geoRestrictions?: pulumi.Input<inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictions>;
-    /**
-     * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-     */
-    host: pulumi.Input<string>;
-    /**
-     * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
-     */
-    rateLimitClass: pulumi.Input<string>;
-    /**
-     * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-     */
-    sniMode: pulumi.Input<string>;
-    /**
-     * [bool] Enable or disable WAF to protect the upstream host.
-     */
-    waf: pulumi.Input<boolean>;
-}
-
-export interface CdnDistributionRoutingRuleUpstreamGeoRestrictions {
-    /**
-     * [string] List of allowed countries
-     */
-    allowLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] List of blocked countries
-     */
-    blockLists?: pulumi.Input<pulumi.Input<string>[]>;
-}
-
-export interface ContainerRegistryFeatures {
-    /**
-     * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-     *
-     * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
-     */
-    vulnerabilityScanning?: pulumi.Input<boolean>;
-}
-
-export interface ContainerRegistryGarbageCollectionSchedule {
-    /**
-     * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-     */
-    days: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryStorageUsage {
-    bytes?: pulumi.Input<number>;
-    updatedAt?: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenCredential {
-    password: pulumi.Input<string>;
-    username: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenScope {
-    /**
-     * [string] Example: ["pull", "push", "delete"]
-     */
-    actions: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [string]
-     */
-    type: pulumi.Input<string>;
-}
-
 export interface CubeServerNic {
     deviceNumber?: pulumi.Input<number>;
     dhcp?: pulumi.Input<boolean>;
@@ -863,54 +765,6 @@ export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
     maintenance?: pulumi.Input<boolean>;
 }
 
-export interface NfsClusterConnections {
-    /**
-     * The ID of the datacenter where the Network File Storage cluster is located.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-     */
-    ipAddress: pulumi.Input<string>;
-    /**
-     * The Private LAN to which the Network File Storage cluster must be connected.
-     */
-    lan: pulumi.Input<string>;
-}
-
-export interface NfsClusterNfs {
-    /**
-     * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
-     */
-    minVersion?: pulumi.Input<string>;
-}
-
-export interface NfsShareClientGroup {
-    /**
-     * Optional description for the clients groups.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * NFS specific configurations. Each configuration includes:
-     */
-    nfs?: pulumi.Input<inputs.NfsShareClientGroupNfs>;
-}
-
-export interface NfsShareClientGroupNfs {
-    /**
-     * The squash mode for the export. The squash mode can be:
-     */
-    squash?: pulumi.Input<string>;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
@@ -1106,120 +960,61 @@ export interface VcpuServerVolume {
      */
     userData?: pulumi.Input<string>;
 }
+export namespace cdn {
+    export interface DistributionRoutingRule {
+        /**
+         * [string] The prefix of the routing rule.
+         */
+        prefix: pulumi.Input<string>;
+        /**
+         * [string] The scheme of the routing rule.
+         */
+        scheme: pulumi.Input<string>;
+        /**
+         * [map] - A map of properties for the rule
+         */
+        upstream: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstream>;
+    }
 
-export interface VpnIpsecGatewayConnection {
-    /**
-     * [string] The datacenter to connect your VPN Gateway to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway. Note: this should be the subnet already assigned to the LAN
-     */
-    ipv4Cidr: pulumi.Input<string>;
-    /**
-     * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-     * Gateway. **Note**: this should be the subnet already assigned to the LAN
-     */
-    ipv6Cidr?: pulumi.Input<string>;
-    /**
-     * [string] The numeric LAN ID to connect your VPN Gateway to.
-     */
-    lanId: pulumi.Input<string>;
+    export interface DistributionRoutingRuleUpstream {
+        /**
+         * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+         */
+        caching: pulumi.Input<boolean>;
+        /**
+         * [map] - A map of geo_restrictions
+         */
+        geoRestrictions?: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions>;
+        /**
+         * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+         */
+        rateLimitClass: pulumi.Input<string>;
+        /**
+         * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+         */
+        sniMode: pulumi.Input<string>;
+        /**
+         * [bool] Enable or disable WAF to protect the upstream host.
+         */
+        waf: pulumi.Input<boolean>;
+    }
+
+    export interface DistributionRoutingRuleUpstreamGeoRestrictions {
+        /**
+         * [string] List of allowed countries
+         */
+        allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string] List of blocked countries
+         */
+        blockLists?: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
-export interface VpnIpsecTunnelAuth {
-    /**
-     * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
-     * Default value: `PSK`.
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
-     * PSK.
-     */
-    pskKey?: pulumi.Input<string>;
-}
-
-export interface VpnIpsecTunnelEsp {
-    /**
-     * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
-     * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
-     * Default value: `16-MODP4096`.
-     */
-    diffieHellmanGroup?: pulumi.Input<string>;
-    /**
-     * [string] The encryption algorithm to use for IPSec Encryption. Possible
-     * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
-     * `AES256-CCM-12`. Default value: `AES256`.
-     */
-    encryptionAlgorithm?: pulumi.Input<string>;
-    /**
-     * [string] The integrity algorithm to use for IPSec Encryption. Possible
-     * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
-     */
-    integrityAlgorithm?: pulumi.Input<string>;
-    /**
-     * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
-     * Default value: `86400`.
-     */
-    lifetime?: pulumi.Input<number>;
-}
-
-export interface VpnIpsecTunnelIke {
-    /**
-     * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
-     * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
-     * Default value: `16-MODP4096`.
-     */
-    diffieHellmanGroup?: pulumi.Input<string>;
-    /**
-     * [string] The encryption algorithm to use for IPSec Encryption. Possible
-     * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
-     * `AES256-CCM-12`. Default value: `AES256`.
-     */
-    encryptionAlgorithm?: pulumi.Input<string>;
-    /**
-     * [string] The integrity algorithm to use for IPSec Encryption. Possible
-     * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
-     */
-    integrityAlgorithm?: pulumi.Input<string>;
-    /**
-     * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
-     * Default value: `86400`.
-     */
-    lifetime?: pulumi.Input<number>;
-}
-
-export interface VpnWireguardGatewayConnection {
-    /**
-     * [String] The ID of the datacenter where the WireGuard Gateway is located.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway connection.
-     */
-    ipv4Cidr?: pulumi.Input<string>;
-    /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway connection.
-     */
-    ipv6Cidr?: pulumi.Input<string>;
-    /**
-     * [String] The ID of the LAN where the WireGuard Gateway is connected.
-     */
-    lanId: pulumi.Input<string>;
-}
-
-export interface VpnWireguardPeerEndpoint {
-    /**
-     * [string] The hostname or IPV4 address that the WireGuard Server will connect to.
-     */
-    host: pulumi.Input<string>;
-    /**
-     * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
-     */
-    port?: pulumi.Input<number>;
-}
 export namespace compute {
     export interface DatacenterCpuArchitecture {
         /**
@@ -1415,6 +1210,53 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
         userData?: pulumi.Input<string>;
+    }
+}
+
+export namespace creg {
+    export interface RegistryFeatures {
+        /**
+         * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+         *
+         * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
+         */
+        vulnerabilityScanning?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistryGarbageCollectionSchedule {
+        /**
+         * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+         */
+        days: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface RegistryStorageUsage {
+        bytes?: pulumi.Input<number>;
+        updatedAt?: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenCredential {
+        password: pulumi.Input<string>;
+        username: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenScope {
+        /**
+         * [string] Example: ["pull", "push", "delete"]
+         */
+        actions: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [string]
+         */
+        type: pulumi.Input<string>;
     }
 }
 
@@ -1742,5 +1584,171 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: pulumi.Input<string>;
+    }
+}
+
+export namespace nfs {
+    export interface ClusterConnections {
+        /**
+         * The ID of the datacenter where the Network File Storage cluster is located.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+         */
+        ipAddress: pulumi.Input<string>;
+        /**
+         * The Private LAN to which the Network File Storage cluster must be connected.
+         */
+        lan: pulumi.Input<string>;
+    }
+
+    export interface ClusterNfs {
+        /**
+         * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+         */
+        minVersion?: pulumi.Input<string>;
+    }
+
+    export interface ShareClientGroup {
+        /**
+         * Optional description for the clients groups.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * NFS specific configurations. Each configuration includes:
+         */
+        nfs?: pulumi.Input<inputs.nfs.ShareClientGroupNfs>;
+    }
+
+    export interface ShareClientGroupNfs {
+        /**
+         * The squash mode for the export. The squash mode can be:
+         */
+        squash?: pulumi.Input<string>;
+    }
+}
+
+export namespace vpn {
+    export interface IpsecGatewayConnection {
+        /**
+         * [string] The datacenter to connect your VPN Gateway to.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         */
+        ipv4Cidr: pulumi.Input<string>;
+        /**
+         * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+         * Gateway. **Note**: this should be the subnet already assigned to the LAN
+         */
+        ipv6Cidr?: pulumi.Input<string>;
+        /**
+         * [string] The numeric LAN ID to connect your VPN Gateway to.
+         */
+        lanId: pulumi.Input<string>;
+    }
+
+    export interface IpsecTunnelAuth {
+        /**
+         * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+         * Default value: `PSK`.
+         */
+        method?: pulumi.Input<string>;
+        /**
+         * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+         * PSK.
+         */
+        pskKey?: pulumi.Input<string>;
+    }
+
+    export interface IpsecTunnelEsp {
+        /**
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
+         */
+        diffieHellmanGroup?: pulumi.Input<string>;
+        /**
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
+         */
+        encryptionAlgorithm?: pulumi.Input<string>;
+        /**
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+         */
+        integrityAlgorithm?: pulumi.Input<string>;
+        /**
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
+         */
+        lifetime?: pulumi.Input<number>;
+    }
+
+    export interface IpsecTunnelIke {
+        /**
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
+         */
+        diffieHellmanGroup?: pulumi.Input<string>;
+        /**
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
+         */
+        encryptionAlgorithm?: pulumi.Input<string>;
+        /**
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+         */
+        integrityAlgorithm?: pulumi.Input<string>;
+        /**
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
+         */
+        lifetime?: pulumi.Input<number>;
+    }
+
+    export interface WireguardGatewayConnection {
+        /**
+         * [String] The ID of the datacenter where the WireGuard Gateway is located.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         */
+        ipv4Cidr?: pulumi.Input<string>;
+        /**
+         * [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         */
+        ipv6Cidr?: pulumi.Input<string>;
+        /**
+         * [String] The ID of the LAN where the WireGuard Gateway is connected.
+         */
+        lanId: pulumi.Input<string>;
+    }
+
+    export interface WireguardPeerEndpoint {
+        /**
+         * [string] The hostname or IPV4 address that the WireGuard Server will connect to.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+         */
+        port?: pulumi.Input<number>;
     }
 }
