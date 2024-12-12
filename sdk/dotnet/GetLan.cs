@@ -111,7 +111,7 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order.
+        /// The unique id of a `ionoscloud.compute.Crossconnect` resource, in order.
         /// </summary>
         public readonly string Pcc;
         /// <summary>

@@ -30,7 +30,7 @@ namespace Pulumi.Ionoscloud.Compute
     ///         SecAuthProtection = false,
     ///     });
     /// 
-    ///     var examplePrivateCrossconnect = new Ionoscloud.PrivateCrossconnect("examplePrivateCrossconnect", new()
+    ///     var exampleCrossconnect = new Ionoscloud.Compute.Crossconnect("exampleCrossconnect", new()
     ///     {
     ///         Description = "Cross Connect Description",
     ///     });
@@ -39,7 +39,7 @@ namespace Pulumi.Ionoscloud.Compute
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         Public = false,
-    ///         Pcc = examplePrivateCrossconnect.Id,
+    ///         Pcc = exampleCrossconnect.Id,
     ///     });
     /// 
     /// });
@@ -116,7 +116,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         /// </summary>
         [Output("pcc")]
         public Output<string?> Pcc { get; private set; } = null!;
@@ -204,7 +204,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         /// </summary>
         [Input("pcc")]
         public Input<string>? Pcc { get; set; }
@@ -254,7 +254,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         /// </summary>
         [Input("pcc")]
         public Input<string>? Pcc { get; set; }
