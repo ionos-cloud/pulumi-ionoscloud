@@ -397,51 +397,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData: string;
 }
 
-export interface ContainerRegistryFeatures {
-    /**
-     * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-     *
-     * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
-     */
-    vulnerabilityScanning: boolean;
-}
-
-export interface ContainerRegistryGarbageCollectionSchedule {
-    /**
-     * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-     */
-    days: string[];
-    /**
-     * [string]
-     */
-    time: string;
-}
-
-export interface ContainerRegistryStorageUsage {
-    bytes: number;
-    updatedAt: string;
-}
-
-export interface ContainerRegistryTokenCredential {
-    password: string;
-    username: string;
-}
-
-export interface ContainerRegistryTokenScope {
-    /**
-     * [string] Example: ["pull", "push", "delete"]
-     */
-    actions: string[];
-    /**
-     * [string]
-     */
-    name: string;
-    /**
-     * [string]
-     */
-    type: string;
-}
-
 export interface CubeServerNic {
     deviceNumber: number;
     dhcp?: boolean;
@@ -3922,6 +3877,54 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
         userData: string;
+    }
+
+}
+
+export namespace creg {
+    export interface RegistryFeatures {
+        /**
+         * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+         *
+         * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
+         */
+        vulnerabilityScanning: boolean;
+    }
+
+    export interface RegistryGarbageCollectionSchedule {
+        /**
+         * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+         */
+        days: string[];
+        /**
+         * [string]
+         */
+        time: string;
+    }
+
+    export interface RegistryStorageUsage {
+        bytes: number;
+        updatedAt: string;
+    }
+
+    export interface RegistryTokenCredential {
+        password: string;
+        username: string;
+    }
+
+    export interface RegistryTokenScope {
+        /**
+         * [string] Example: ["pull", "push", "delete"]
+         */
+        actions: string[];
+        /**
+         * [string]
+         */
+        name: string;
+        /**
+         * [string]
+         */
+        type: string;
     }
 
 }

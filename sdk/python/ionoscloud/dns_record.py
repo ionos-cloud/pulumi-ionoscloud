@@ -23,13 +23,6 @@ class DnsRecordArgs:
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a DnsRecord resource.
-        :param pulumi.Input[str] content: [string] The content of the DNS Record.
-        :param pulumi.Input[str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        :param pulumi.Input[str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Record.
-        :param pulumi.Input[int] priority: [int] The priority for the DNS Record.
-        :param pulumi.Input[int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
         """
         pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "type", type)
@@ -46,9 +39,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
-        """
-        [string] The content of the DNS Record.
-        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -58,9 +48,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
-        """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -70,9 +57,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Input[str]:
-        """
-        [string] The DNS Zone ID in which the DNS Record will be created.
-        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -82,9 +66,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -94,9 +75,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the DNS Record.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,9 +84,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] The priority for the DNS Record.
-        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -118,9 +93,6 @@ class DnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Time to live for the DNS Record. Default is `3600`.
-        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -141,14 +113,7 @@ class _DnsRecordState:
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsRecord resources.
-        :param pulumi.Input[str] content: [string] The content of the DNS Record.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name
-        :param pulumi.Input[str] name: [string] The name of the DNS Record.
-        :param pulumi.Input[int] priority: [int] The priority for the DNS Record.
-        :param pulumi.Input[int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        :param pulumi.Input[str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
@@ -170,9 +135,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The content of the DNS Record.
-        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -182,9 +144,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -206,9 +165,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the DNS Record.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -218,9 +174,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] The priority for the DNS Record.
-        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -230,9 +183,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Time to live for the DNS Record. Default is `3600`.
-        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -242,9 +192,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -254,9 +201,6 @@ class _DnsRecordState:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The DNS Zone ID in which the DNS Record will be created.
-        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -264,7 +208,12 @@ class _DnsRecordState:
         pulumi.set(self, "zone_id", value)
 
 
+warnings.warn("""ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""", DeprecationWarning)
+
+
 class DnsRecord(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -278,55 +227,9 @@ class DnsRecord(pulumi.CustomResource):
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a **DNS Record**.
-
-        > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.DnsZone("example",
-            description="description",
-            enabled=False)
-        recordexample = ionoscloud.DnsRecord("recordexample",
-            zone_id=example.id,
-            type="CNAME",
-            content="1.2.3.4",
-            ttl=2000,
-            priority=1024,
-            enabled=False)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
-
-        hcl
-
-        resource "ionoscloud_dns_record" "example" {
-
-        }
-
-        The resource can be imported using the `zone_id` and the `record_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dnsRecord:DnsRecord example {zone_id}/{record_id}
-        ```
-
+        Create a DnsRecord resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] content: [string] The content of the DNS Record.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Record.
-        :param pulumi.Input[int] priority: [int] The priority for the DNS Record.
-        :param pulumi.Input[int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        :param pulumi.Input[str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         ...
     @overload
@@ -335,46 +238,7 @@ class DnsRecord(pulumi.CustomResource):
                  args: DnsRecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DNS Record**.
-
-        > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.DnsZone("example",
-            description="description",
-            enabled=False)
-        recordexample = ionoscloud.DnsRecord("recordexample",
-            zone_id=example.id,
-            type="CNAME",
-            content="1.2.3.4",
-            ttl=2000,
-            priority=1024,
-            enabled=False)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
-
-        hcl
-
-        resource "ionoscloud_dns_record" "example" {
-
-        }
-
-        The resource can be imported using the `zone_id` and the `record_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dnsRecord:DnsRecord example {zone_id}/{record_id}
-        ```
-
+        Create a DnsRecord resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DnsRecordArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -398,6 +262,7 @@ class DnsRecord(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DnsRecord is deprecated: ionoscloud.index/dnsrecord.DnsRecord has been deprecated in favor of ionoscloud.dns/record.Record""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -445,14 +310,7 @@ class DnsRecord(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] content: [string] The content of the DNS Record.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Record is active or not. Default is `true`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name
-        :param pulumi.Input[str] name: [string] The name of the DNS Record.
-        :param pulumi.Input[int] priority: [int] The priority for the DNS Record.
-        :param pulumi.Input[int] ttl: [int] Time to live for the DNS Record. Default is `3600`.
-        :param pulumi.Input[str] type: [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        :param pulumi.Input[str] zone_id: [string] The DNS Zone ID in which the DNS Record will be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -471,17 +329,11 @@ class DnsRecord(pulumi.CustomResource):
     @property
     @pulumi.getter
     def content(self) -> pulumi.Output[str]:
-        """
-        [string] The content of the DNS Record.
-        """
         return pulumi.get(self, "content")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[bool]:
-        """
-        [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @property
@@ -495,40 +347,25 @@ class DnsRecord(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string] The name of the DNS Record.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[Optional[int]]:
-        """
-        [int] The priority for the DNS Record.
-        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def ttl(self) -> pulumi.Output[int]:
-        """
-        [int] Time to live for the DNS Record. Default is `3600`.
-        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
-        """
-        [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Output[str]:
-        """
-        [string] The DNS Zone ID in which the DNS Record will be created.
-        """
         return pulumi.get(self, "zone_id")
 
