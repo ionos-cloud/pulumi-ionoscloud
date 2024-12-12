@@ -86,7 +86,7 @@ class GetLanResult:
     @pulumi.getter
     def pcc(self) -> str:
         """
-        The unique id of a `PrivateCrossconnect` resource, in order.
+        The unique id of a `compute.Crossconnect` resource, in order.
         """
         return pulumi.get(self, "pcc")
 

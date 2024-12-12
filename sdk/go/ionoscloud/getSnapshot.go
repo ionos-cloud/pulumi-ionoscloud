@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupSnapshot(ctx, &ionoscloud.LookupSnapshotArgs{
+//			_, err := ionoscloud.GetSnapshot(ctx, &ionoscloud.GetSnapshotArgs{
 //				Location: pulumi.StringRef("us/las"),
 //				Name:     pulumi.StringRef("Snapshot Example"),
 //				Size:     pulumi.IntRef(2),
@@ -44,9 +44,9 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 // Note: The size argument is in GB
-func LookupSnapshot(ctx *pulumi.Context, args *LookupSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupSnapshotResult, error) {
+func GetSnapshot(ctx *pulumi.Context, args *GetSnapshotArgs, opts ...pulumi.InvokeOption) (*GetSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupSnapshotResult
+	var rv GetSnapshotResult
 	err := ctx.Invoke("ionoscloud:index/getSnapshot:getSnapshot", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func LookupSnapshot(ctx *pulumi.Context, args *LookupSnapshotArgs, opts ...pulum
 }
 
 // A collection of arguments for invoking getSnapshot.
-type LookupSnapshotArgs struct {
+type GetSnapshotArgs struct {
 	// UUID of an existing snapshot that you want to search for.
 	Id *string `pulumi:"id"`
 	// Existing snapshot's location.
@@ -72,7 +72,7 @@ type LookupSnapshotArgs struct {
 }
 
 // A collection of values returned by getSnapshot.
-type LookupSnapshotResult struct {
+type GetSnapshotResult struct {
 	// Is capable of CPU hot plug (no reboot required)
 	CpuHotPlug bool `pulumi:"cpuHotPlug"`
 	// Is capable of CPU hot unplug (no reboot required)
@@ -109,21 +109,21 @@ type LookupSnapshotResult struct {
 	Size int `pulumi:"size"`
 }
 
-func LookupSnapshotOutput(ctx *pulumi.Context, args LookupSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupSnapshotResultOutput {
+func GetSnapshotOutput(ctx *pulumi.Context, args GetSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetSnapshotResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSnapshotResult, error) {
-			args := v.(LookupSnapshotArgs)
-			r, err := LookupSnapshot(ctx, &args, opts...)
-			var s LookupSnapshotResult
+		ApplyT(func(v interface{}) (GetSnapshotResult, error) {
+			args := v.(GetSnapshotArgs)
+			r, err := GetSnapshot(ctx, &args, opts...)
+			var s GetSnapshotResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupSnapshotResultOutput)
+		}).(GetSnapshotResultOutput)
 }
 
 // A collection of arguments for invoking getSnapshot.
-type LookupSnapshotOutputArgs struct {
+type GetSnapshotOutputArgs struct {
 	// UUID of an existing snapshot that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Existing snapshot's location.
@@ -139,110 +139,110 @@ type LookupSnapshotOutputArgs struct {
 	Size pulumi.IntPtrInput `pulumi:"size"`
 }
 
-func (LookupSnapshotOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupSnapshotArgs)(nil)).Elem()
+func (GetSnapshotOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getSnapshot.
-type LookupSnapshotResultOutput struct{ *pulumi.OutputState }
+type GetSnapshotResultOutput struct{ *pulumi.OutputState }
 
-func (LookupSnapshotResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupSnapshotResult)(nil)).Elem()
+func (GetSnapshotResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotResult)(nil)).Elem()
 }
 
-func (o LookupSnapshotResultOutput) ToLookupSnapshotResultOutput() LookupSnapshotResultOutput {
+func (o GetSnapshotResultOutput) ToGetSnapshotResultOutput() GetSnapshotResultOutput {
 	return o
 }
 
-func (o LookupSnapshotResultOutput) ToLookupSnapshotResultOutputWithContext(ctx context.Context) LookupSnapshotResultOutput {
+func (o GetSnapshotResultOutput) ToGetSnapshotResultOutputWithContext(ctx context.Context) GetSnapshotResultOutput {
 	return o
 }
 
 // Is capable of CPU hot plug (no reboot required)
-func (o LookupSnapshotResultOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) CpuHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of CPU hot unplug (no reboot required)
-func (o LookupSnapshotResultOutput) CpuHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) CpuHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
 // Human readable description
-func (o LookupSnapshotResultOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Description }).(pulumi.StringOutput)
+func (o GetSnapshotResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Is capable of SCSI drive hot plug (no reboot required)
-func (o LookupSnapshotResultOutput) DiscScsiHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) DiscScsiHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-func (o LookupSnapshotResultOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
 // Is capable of Virt-IO drive hot plug (no reboot required)
-func (o LookupSnapshotResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-func (o LookupSnapshotResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
 // UUID of the snapshot
-func (o LookupSnapshotResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetSnapshotResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSnapshotResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // OS type of this Snapshot
-func (o LookupSnapshotResultOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) string { return v.LicenceType }).(pulumi.StringOutput)
+func (o GetSnapshotResultOutput) LicenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotResult) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
 // Location of that image/snapshot
-func (o LookupSnapshotResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetSnapshotResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // The name of the snapshot.
-func (o LookupSnapshotResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetSnapshotResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Is capable of nic hot plug (no reboot required)
-func (o LookupSnapshotResultOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) NicHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of nic hot unplug (no reboot required)
-func (o LookupSnapshotResultOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) NicHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
 // Is capable of memory hot plug (no reboot required)
-func (o LookupSnapshotResultOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) RamHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
 // Is capable of memory hot unplug (no reboot required)
-func (o LookupSnapshotResultOutput) RamHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) RamHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
 
 // Boolean value representing if the snapshot requires extra protection e.g. two factor protection
-func (o LookupSnapshotResultOutput) SecAuthProtection() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) bool { return v.SecAuthProtection }).(pulumi.BoolOutput)
+func (o GetSnapshotResultOutput) SecAuthProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSnapshotResult) bool { return v.SecAuthProtection }).(pulumi.BoolOutput)
 }
 
 // The size of the image in GB
-func (o LookupSnapshotResultOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) int { return v.Size }).(pulumi.IntOutput)
+func (o GetSnapshotResultOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSnapshotResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupSnapshotResultOutput{})
+	pulumi.RegisterOutputType(GetSnapshotResultOutput{})
 }

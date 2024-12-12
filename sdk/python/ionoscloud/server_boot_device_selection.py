@@ -19,10 +19,10 @@ class ServerBootDeviceSelectionArgs:
                  boot_device_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServerBootDeviceSelection resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
-        :param pulumi.Input[str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-               ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+        :param pulumi.Input[str] datacenter_id: ID of the Datacenter that holds the server for which the boot volume is selected
+        :param pulumi.Input[str] server_id: ID of the Server for which the boot device will be selected.
+        :param pulumi.Input[str] boot_device_id: ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+               will boot from PXE
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "server_id", server_id)
@@ -33,7 +33,7 @@ class ServerBootDeviceSelectionArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        [string] The ID of a Virtual Data Center.
+        ID of the Datacenter that holds the server for which the boot volume is selected
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -45,7 +45,7 @@ class ServerBootDeviceSelectionArgs:
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[str]:
         """
-        [string] The ID of a server.
+        ID of the Server for which the boot device will be selected.
         """
         return pulumi.get(self, "server_id")
 
@@ -57,8 +57,8 @@ class ServerBootDeviceSelectionArgs:
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-        ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+        ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+        will boot from PXE
         """
         return pulumi.get(self, "boot_device_id")
 
@@ -76,11 +76,11 @@ class _ServerBootDeviceSelectionState:
                  server_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServerBootDeviceSelection resources.
-        :param pulumi.Input[str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-               ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] boot_device_id: ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+               will boot from PXE
+        :param pulumi.Input[str] datacenter_id: ID of the Datacenter that holds the server for which the boot volume is selected
         :param pulumi.Input[str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[str] server_id: ID of the Server for which the boot device will be selected.
         """
         if boot_device_id is not None:
             pulumi.set(__self__, "boot_device_id", boot_device_id)
@@ -95,8 +95,8 @@ class _ServerBootDeviceSelectionState:
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-        ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+        ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+        will boot from PXE
         """
         return pulumi.get(self, "boot_device_id")
 
@@ -108,7 +108,7 @@ class _ServerBootDeviceSelectionState:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of a Virtual Data Center.
+        ID of the Datacenter that holds the server for which the boot volume is selected
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -132,7 +132,7 @@ class _ServerBootDeviceSelectionState:
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of a server.
+        ID of the Server for which the boot device will be selected.
         """
         return pulumi.get(self, "server_id")
 
@@ -141,7 +141,12 @@ class _ServerBootDeviceSelectionState:
         pulumi.set(self, "server_id", value)
 
 
+warnings.warn("""ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""", DeprecationWarning)
+
+
 class ServerBootDeviceSelection(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -151,192 +156,13 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages the selection of a boot device for IonosCloud Servers.
-
-        ## Example Usage
-
-        The boot device of a `compute.Server`, `VcpuServer` or `CubeServer` can be selected with this resource.
-        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
-        This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
-
-        ### Select an external volume
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.id,
-            boot_device_id=example_volume.id)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Select an inline volume again
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.id,
-            boot_device_id=example_server.inline_volume_ids[0])
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Select a CDROM image
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
-            location="de/txl",
-            type="CDROM")
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.inline_volume_ids[0],
-            boot_device_id=example_image.id)
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Perform a network boot
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline volume",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.inline_volume_ids[0])
-        # boot_device_id = data.ionoscloud_image.example.id   VM will boot in the PXE shell when boot_device_id is omitted
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
-            location="de/txl",
-            type="CDROM")
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a ServerBootDeviceSelection resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-               ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[str] boot_device_id: ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+               will boot from PXE
+        :param pulumi.Input[str] datacenter_id: ID of the Datacenter that holds the server for which the boot volume is selected
+        :param pulumi.Input[str] server_id: ID of the Server for which the boot device will be selected.
         """
         ...
     @overload
@@ -345,186 +171,7 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
                  args: ServerBootDeviceSelectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the selection of a boot device for IonosCloud Servers.
-
-        ## Example Usage
-
-        The boot device of a `compute.Server`, `VcpuServer` or `CubeServer` can be selected with this resource.
-        Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
-        This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
-
-        ### Select an external volume
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.id,
-            boot_device_id=example_volume.id)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Select an inline volume again
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.id,
-            boot_device_id=example_server.inline_volume_ids[0])
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Select a CDROM image
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
-            location="de/txl",
-            type="CDROM")
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.inline_volume_ids[0],
-            boot_device_id=example_image.id)
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ### Perform a network boot
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-
-        example_server = ionoscloud.compute.Server("exampleServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            cores=2,
-            ram=2048,
-            image_password=random_password["server_image_password"]["result"],
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline volume",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_server_boot_device_selection = ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            server_id=example_server.inline_volume_ids[0])
-        # boot_device_id = data.ionoscloud_image.example.id   VM will boot in the PXE shell when boot_device_id is omitted
-        example_volume = ionoscloud.compute.Volume("exampleVolume",
-            server_id=example_server.id,
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            size=10,
-            disk_type="HDD",
-            availability_zone="AUTO",
-            image_name="debian:latest",
-            image_password=random_password["server_image_password"]["result"])
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
-            location="de/txl",
-            type="CDROM")
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a ServerBootDeviceSelection resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ServerBootDeviceSelectionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -544,6 +191,7 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ServerBootDeviceSelection is deprecated: ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -581,11 +229,11 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-               ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] boot_device_id: ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+               will boot from PXE
+        :param pulumi.Input[str] datacenter_id: ID of the Datacenter that holds the server for which the boot volume is selected
         :param pulumi.Input[str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[str] server_id: ID of the Server for which the boot device will be selected.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -601,8 +249,8 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-        ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+        ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+        will boot from PXE
         """
         return pulumi.get(self, "boot_device_id")
 
@@ -610,7 +258,7 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
         """
-        [string] The ID of a Virtual Data Center.
+        ID of the Datacenter that holds the server for which the boot volume is selected
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -626,7 +274,7 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[str]:
         """
-        [string] The ID of a server.
+        ID of the Server for which the boot device will be selected.
         """
         return pulumi.get(self, "server_id")
 

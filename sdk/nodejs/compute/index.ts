@@ -10,6 +10,21 @@ export type BackupUnit = import("./backupUnit").BackupUnit;
 export const BackupUnit: typeof import("./backupUnit").BackupUnit = null as any;
 utilities.lazyLoad(exports, ["BackupUnit"], () => require("./backupUnit"));
 
+export { BootDeviceSelectionArgs, BootDeviceSelectionState } from "./bootDeviceSelection";
+export type BootDeviceSelection = import("./bootDeviceSelection").BootDeviceSelection;
+export const BootDeviceSelection: typeof import("./bootDeviceSelection").BootDeviceSelection = null as any;
+utilities.lazyLoad(exports, ["BootDeviceSelection"], () => require("./bootDeviceSelection"));
+
+export { CrossconnectArgs, CrossconnectState } from "./crossconnect";
+export type Crossconnect = import("./crossconnect").Crossconnect;
+export const Crossconnect: typeof import("./crossconnect").Crossconnect = null as any;
+utilities.lazyLoad(exports, ["Crossconnect"], () => require("./crossconnect"));
+
+export { CubeServerArgs, CubeServerState } from "./cubeServer";
+export type CubeServer = import("./cubeServer").CubeServer;
+export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
+utilities.lazyLoad(exports, ["CubeServer"], () => require("./cubeServer"));
+
 export { DatacenterArgs, DatacenterState } from "./datacenter";
 export type Datacenter = import("./datacenter").Datacenter;
 export const Datacenter: typeof import("./datacenter").Datacenter = null as any;
@@ -30,10 +45,25 @@ export type IPBlock = import("./ipblock").IPBlock;
 export const IPBlock: typeof import("./ipblock").IPBlock = null as any;
 utilities.lazyLoad(exports, ["IPBlock"], () => require("./ipblock"));
 
+export { IPFailoverArgs, IPFailoverState } from "./ipfailover";
+export type IPFailover = import("./ipfailover").IPFailover;
+export const IPFailover: typeof import("./ipfailover").IPFailover = null as any;
+utilities.lazyLoad(exports, ["IPFailover"], () => require("./ipfailover"));
+
 export { LanArgs, LanState } from "./lan";
 export type Lan = import("./lan").Lan;
 export const Lan: typeof import("./lan").Lan = null as any;
 utilities.lazyLoad(exports, ["Lan"], () => require("./lan"));
+
+export { NatGatewayArgs, NatGatewayState } from "./natGateway";
+export type NatGateway = import("./natGateway").NatGateway;
+export const NatGateway: typeof import("./natGateway").NatGateway = null as any;
+utilities.lazyLoad(exports, ["NatGateway"], () => require("./natGateway"));
+
+export { NatGatewayRuleArgs, NatGatewayRuleState } from "./natGatewayRule";
+export type NatGatewayRule = import("./natGatewayRule").NatGatewayRule;
+export const NatGatewayRule: typeof import("./natGatewayRule").NatGatewayRule = null as any;
+utilities.lazyLoad(exports, ["NatGatewayRule"], () => require("./natGatewayRule"));
 
 export { NicArgs, NicState } from "./nic";
 export type Nic = import("./nic").Nic;
@@ -50,10 +80,25 @@ export type Server = import("./server").Server;
 export const Server: typeof import("./server").Server = null as any;
 utilities.lazyLoad(exports, ["Server"], () => require("./server"));
 
+export { ShareArgs, ShareState } from "./share";
+export type Share = import("./share").Share;
+export const Share: typeof import("./share").Share = null as any;
+utilities.lazyLoad(exports, ["Share"], () => require("./share"));
+
+export { SnapshotArgs, SnapshotState } from "./snapshot";
+export type Snapshot = import("./snapshot").Snapshot;
+export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
+utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
+
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
 utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
+export { VCPUServerArgs, VCPUServerState } from "./vcpuserver";
+export type VCPUServer = import("./vcpuserver").VCPUServer;
+export const VCPUServer: typeof import("./vcpuserver").VCPUServer = null as any;
+utilities.lazyLoad(exports, ["VCPUServer"], () => require("./vcpuserver"));
 
 export { VolumeArgs, VolumeState } from "./volume";
 export type Volume = import("./volume").Volume;
@@ -67,6 +112,12 @@ const _module = {
         switch (type) {
             case "ionoscloud:compute/backupUnit:BackupUnit":
                 return new BackupUnit(name, <any>undefined, { urn })
+            case "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection":
+                return new BootDeviceSelection(name, <any>undefined, { urn })
+            case "ionoscloud:compute/crossconnect:Crossconnect":
+                return new Crossconnect(name, <any>undefined, { urn })
+            case "ionoscloud:compute/cubeServer:CubeServer":
+                return new CubeServer(name, <any>undefined, { urn })
             case "ionoscloud:compute/datacenter:Datacenter":
                 return new Datacenter(name, <any>undefined, { urn })
             case "ionoscloud:compute/firewall:Firewall":
@@ -75,16 +126,28 @@ const _module = {
                 return new Group(name, <any>undefined, { urn })
             case "ionoscloud:compute/iPBlock:IPBlock":
                 return new IPBlock(name, <any>undefined, { urn })
+            case "ionoscloud:compute/iPFailover:IPFailover":
+                return new IPFailover(name, <any>undefined, { urn })
             case "ionoscloud:compute/lan:Lan":
                 return new Lan(name, <any>undefined, { urn })
+            case "ionoscloud:compute/natGateway:NatGateway":
+                return new NatGateway(name, <any>undefined, { urn })
+            case "ionoscloud:compute/natGatewayRule:NatGatewayRule":
+                return new NatGatewayRule(name, <any>undefined, { urn })
             case "ionoscloud:compute/nic:Nic":
                 return new Nic(name, <any>undefined, { urn })
             case "ionoscloud:compute/s3Key:S3Key":
                 return new S3Key(name, <any>undefined, { urn })
             case "ionoscloud:compute/server:Server":
                 return new Server(name, <any>undefined, { urn })
+            case "ionoscloud:compute/share:Share":
+                return new Share(name, <any>undefined, { urn })
+            case "ionoscloud:compute/snapshot:Snapshot":
+                return new Snapshot(name, <any>undefined, { urn })
             case "ionoscloud:compute/user:User":
                 return new User(name, <any>undefined, { urn })
+            case "ionoscloud:compute/vCPUServer:VCPUServer":
+                return new VCPUServer(name, <any>undefined, { urn })
             case "ionoscloud:compute/volume:Volume":
                 return new Volume(name, <any>undefined, { urn })
             default:
@@ -93,13 +156,22 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/backupUnit", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/bootDeviceSelection", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/crossconnect", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/cubeServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/datacenter", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/firewall", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/group", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPBlock", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPFailover", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/lan", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/natGateway", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/natGatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/nic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/s3Key", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/server", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/share", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/snapshot", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/user", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/vCPUServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/volume", _module)

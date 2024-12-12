@@ -199,6 +199,12 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_server": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Server"),
 			},
+			"ionoscloud_vcpu_server": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "VCPUServer"),
+			},
+			"ionoscloud_cube_server": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "CubeServer"),
+			},
 			"ionoscloud_lan": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Lan"),
 			},
@@ -220,11 +226,32 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_ipblock": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "IPBlock"),
 			},
+			"ionoscloud_share": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Share"),
+			},
+			"ionoscloud_ipfailover": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "IPFailover"),
+			},
+			"ionoscloud_private_crossconnect": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Crossconnect"),
+			},
 			"ionoscloud_s3_key": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "S3Key"),
 			},
 			"ionoscloud_backup_unit": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "BackupUnit"),
+			},
+			"ionoscloud_snapshot": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Snapshot"),
+			},
+			"ionoscloud_server_boot_device_selection": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "BootDeviceSelection"),
+			},
+			"ionoscloud_natgateway": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGateway"),
+			},
+			"ionoscloud_natgateway_rule": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGatewayRule"),
 			},
 			"ionoscloud_pg_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),

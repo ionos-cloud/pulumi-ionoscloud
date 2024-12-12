@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupVcpuServer(ctx *pulumi.Context, args *LookupVcpuServerArgs, opts ...pulumi.InvokeOption) (*LookupVcpuServerResult, error) {
+func GetVcpuServer(ctx *pulumi.Context, args *GetVcpuServerArgs, opts ...pulumi.InvokeOption) (*GetVcpuServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupVcpuServerResult
+	var rv GetVcpuServerResult
 	err := ctx.Invoke("ionoscloud:index/getVcpuServer:getVcpuServer", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupVcpuServer(ctx *pulumi.Context, args *LookupVcpuServerArgs, opts ...p
 }
 
 // A collection of arguments for invoking getVcpuServer.
-type LookupVcpuServerArgs struct {
+type GetVcpuServerArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the server you want to search for.
@@ -39,7 +39,7 @@ type LookupVcpuServerArgs struct {
 }
 
 // A collection of values returned by getVcpuServer.
-type LookupVcpuServerResult struct {
+type GetVcpuServerResult struct {
 	// The availability zone in which the volume should exist
 	AvailabilityZone string `pulumi:"availabilityZone"`
 	BootCdrom        string `pulumi:"bootCdrom"`
@@ -72,21 +72,21 @@ type LookupVcpuServerResult struct {
 	Volumes []GetVcpuServerVolume `pulumi:"volumes"`
 }
 
-func LookupVcpuServerOutput(ctx *pulumi.Context, args LookupVcpuServerOutputArgs, opts ...pulumi.InvokeOption) LookupVcpuServerResultOutput {
+func GetVcpuServerOutput(ctx *pulumi.Context, args GetVcpuServerOutputArgs, opts ...pulumi.InvokeOption) GetVcpuServerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVcpuServerResult, error) {
-			args := v.(LookupVcpuServerArgs)
-			r, err := LookupVcpuServer(ctx, &args, opts...)
-			var s LookupVcpuServerResult
+		ApplyT(func(v interface{}) (GetVcpuServerResult, error) {
+			args := v.(GetVcpuServerArgs)
+			r, err := GetVcpuServer(ctx, &args, opts...)
+			var s GetVcpuServerResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupVcpuServerResultOutput)
+		}).(GetVcpuServerResultOutput)
 }
 
 // A collection of arguments for invoking getVcpuServer.
-type LookupVcpuServerOutputArgs struct {
+type GetVcpuServerOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the server you want to search for.
@@ -97,106 +97,106 @@ type LookupVcpuServerOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupVcpuServerOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVcpuServerArgs)(nil)).Elem()
+func (GetVcpuServerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVcpuServerArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getVcpuServer.
-type LookupVcpuServerResultOutput struct{ *pulumi.OutputState }
+type GetVcpuServerResultOutput struct{ *pulumi.OutputState }
 
-func (LookupVcpuServerResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVcpuServerResult)(nil)).Elem()
+func (GetVcpuServerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVcpuServerResult)(nil)).Elem()
 }
 
-func (o LookupVcpuServerResultOutput) ToLookupVcpuServerResultOutput() LookupVcpuServerResultOutput {
+func (o GetVcpuServerResultOutput) ToGetVcpuServerResultOutput() GetVcpuServerResultOutput {
 	return o
 }
 
-func (o LookupVcpuServerResultOutput) ToLookupVcpuServerResultOutputWithContext(ctx context.Context) LookupVcpuServerResultOutput {
+func (o GetVcpuServerResultOutput) ToGetVcpuServerResultOutputWithContext(ctx context.Context) GetVcpuServerResultOutput {
 	return o
 }
 
 // The availability zone in which the volume should exist
-func (o LookupVcpuServerResultOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
-func (o LookupVcpuServerResultOutput) BootCdrom() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.BootCdrom }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) BootCdrom() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.BootCdrom }).(pulumi.StringOutput)
 }
 
-func (o LookupVcpuServerResultOutput) BootImage() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.BootImage }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) BootImage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.BootImage }).(pulumi.StringOutput)
 }
 
-func (o LookupVcpuServerResultOutput) BootVolume() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.BootVolume }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) BootVolume() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.BootVolume }).(pulumi.StringOutput)
 }
 
 // list of
-func (o LookupVcpuServerResultOutput) Cdroms() GetVcpuServerCdromArrayOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) []GetVcpuServerCdrom { return v.Cdroms }).(GetVcpuServerCdromArrayOutput)
+func (o GetVcpuServerResultOutput) Cdroms() GetVcpuServerCdromArrayOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) []GetVcpuServerCdrom { return v.Cdroms }).(GetVcpuServerCdromArrayOutput)
 }
 
 // The total number of cores for the server
-func (o LookupVcpuServerResultOutput) Cores() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) int { return v.Cores }).(pulumi.IntOutput)
+func (o GetVcpuServerResultOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
 // CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
-func (o LookupVcpuServerResultOutput) CpuFamily() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.CpuFamily }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
 // The id of the datacenter
-func (o LookupVcpuServerResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // The Id of the label
-func (o LookupVcpuServerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetVcpuServerResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // list of
-func (o LookupVcpuServerResultOutput) Labels() GetVcpuServerLabelArrayOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) []GetVcpuServerLabel { return v.Labels }).(GetVcpuServerLabelArrayOutput)
+func (o GetVcpuServerResultOutput) Labels() GetVcpuServerLabelArrayOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) []GetVcpuServerLabel { return v.Labels }).(GetVcpuServerLabelArrayOutput)
 }
 
 // Name of the firewall rule
-func (o LookupVcpuServerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetVcpuServerResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // list of
-func (o LookupVcpuServerResultOutput) Nics() GetVcpuServerNicArrayOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) []GetVcpuServerNic { return v.Nics }).(GetVcpuServerNicArrayOutput)
+func (o GetVcpuServerResultOutput) Nics() GetVcpuServerNicArrayOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) []GetVcpuServerNic { return v.Nics }).(GetVcpuServerNicArrayOutput)
 }
 
 // The amount of memory for the server in MB
-func (o LookupVcpuServerResultOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) int { return v.Ram }).(pulumi.IntOutput)
+func (o GetVcpuServerResultOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-func (o LookupVcpuServerResultOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.Token }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.Token }).(pulumi.StringOutput)
 }
 
 // The type of firewall rule
-func (o LookupVcpuServerResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 // Status of the virtual Machine
-func (o LookupVcpuServerResultOutput) VmState() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) string { return v.VmState }).(pulumi.StringOutput)
+func (o GetVcpuServerResultOutput) VmState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) string { return v.VmState }).(pulumi.StringOutput)
 }
 
 // list of
-func (o LookupVcpuServerResultOutput) Volumes() GetVcpuServerVolumeArrayOutput {
-	return o.ApplyT(func(v LookupVcpuServerResult) []GetVcpuServerVolume { return v.Volumes }).(GetVcpuServerVolumeArrayOutput)
+func (o GetVcpuServerResultOutput) Volumes() GetVcpuServerVolumeArrayOutput {
+	return o.ApplyT(func(v GetVcpuServerResult) []GetVcpuServerVolume { return v.Volumes }).(GetVcpuServerVolumeArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupVcpuServerResultOutput{})
+	pulumi.RegisterOutputType(GetVcpuServerResultOutput{})
 }

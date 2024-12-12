@@ -13,6 +13,1323 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type CrossconnectConnectableDatacenter struct {
+	// The UUID of the connectable datacenter
+	Id *string `pulumi:"id"`
+	// The location of the cross-connected datacenter
+	Location *string `pulumi:"location"`
+	// The name of the connectable datacenter
+	Name *string `pulumi:"name"`
+}
+
+// CrossconnectConnectableDatacenterInput is an input type that accepts CrossconnectConnectableDatacenterArgs and CrossconnectConnectableDatacenterOutput values.
+// You can construct a concrete instance of `CrossconnectConnectableDatacenterInput` via:
+//
+//	CrossconnectConnectableDatacenterArgs{...}
+type CrossconnectConnectableDatacenterInput interface {
+	pulumi.Input
+
+	ToCrossconnectConnectableDatacenterOutput() CrossconnectConnectableDatacenterOutput
+	ToCrossconnectConnectableDatacenterOutputWithContext(context.Context) CrossconnectConnectableDatacenterOutput
+}
+
+type CrossconnectConnectableDatacenterArgs struct {
+	// The UUID of the connectable datacenter
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The location of the cross-connected datacenter
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// The name of the connectable datacenter
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (CrossconnectConnectableDatacenterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CrossconnectConnectableDatacenter)(nil)).Elem()
+}
+
+func (i CrossconnectConnectableDatacenterArgs) ToCrossconnectConnectableDatacenterOutput() CrossconnectConnectableDatacenterOutput {
+	return i.ToCrossconnectConnectableDatacenterOutputWithContext(context.Background())
+}
+
+func (i CrossconnectConnectableDatacenterArgs) ToCrossconnectConnectableDatacenterOutputWithContext(ctx context.Context) CrossconnectConnectableDatacenterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CrossconnectConnectableDatacenterOutput)
+}
+
+// CrossconnectConnectableDatacenterArrayInput is an input type that accepts CrossconnectConnectableDatacenterArray and CrossconnectConnectableDatacenterArrayOutput values.
+// You can construct a concrete instance of `CrossconnectConnectableDatacenterArrayInput` via:
+//
+//	CrossconnectConnectableDatacenterArray{ CrossconnectConnectableDatacenterArgs{...} }
+type CrossconnectConnectableDatacenterArrayInput interface {
+	pulumi.Input
+
+	ToCrossconnectConnectableDatacenterArrayOutput() CrossconnectConnectableDatacenterArrayOutput
+	ToCrossconnectConnectableDatacenterArrayOutputWithContext(context.Context) CrossconnectConnectableDatacenterArrayOutput
+}
+
+type CrossconnectConnectableDatacenterArray []CrossconnectConnectableDatacenterInput
+
+func (CrossconnectConnectableDatacenterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CrossconnectConnectableDatacenter)(nil)).Elem()
+}
+
+func (i CrossconnectConnectableDatacenterArray) ToCrossconnectConnectableDatacenterArrayOutput() CrossconnectConnectableDatacenterArrayOutput {
+	return i.ToCrossconnectConnectableDatacenterArrayOutputWithContext(context.Background())
+}
+
+func (i CrossconnectConnectableDatacenterArray) ToCrossconnectConnectableDatacenterArrayOutputWithContext(ctx context.Context) CrossconnectConnectableDatacenterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CrossconnectConnectableDatacenterArrayOutput)
+}
+
+type CrossconnectConnectableDatacenterOutput struct{ *pulumi.OutputState }
+
+func (CrossconnectConnectableDatacenterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CrossconnectConnectableDatacenter)(nil)).Elem()
+}
+
+func (o CrossconnectConnectableDatacenterOutput) ToCrossconnectConnectableDatacenterOutput() CrossconnectConnectableDatacenterOutput {
+	return o
+}
+
+func (o CrossconnectConnectableDatacenterOutput) ToCrossconnectConnectableDatacenterOutputWithContext(ctx context.Context) CrossconnectConnectableDatacenterOutput {
+	return o
+}
+
+// The UUID of the connectable datacenter
+func (o CrossconnectConnectableDatacenterOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The location of the cross-connected datacenter
+func (o CrossconnectConnectableDatacenterOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// The name of the connectable datacenter
+func (o CrossconnectConnectableDatacenterOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type CrossconnectConnectableDatacenterArrayOutput struct{ *pulumi.OutputState }
+
+func (CrossconnectConnectableDatacenterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CrossconnectConnectableDatacenter)(nil)).Elem()
+}
+
+func (o CrossconnectConnectableDatacenterArrayOutput) ToCrossconnectConnectableDatacenterArrayOutput() CrossconnectConnectableDatacenterArrayOutput {
+	return o
+}
+
+func (o CrossconnectConnectableDatacenterArrayOutput) ToCrossconnectConnectableDatacenterArrayOutputWithContext(ctx context.Context) CrossconnectConnectableDatacenterArrayOutput {
+	return o
+}
+
+func (o CrossconnectConnectableDatacenterArrayOutput) Index(i pulumi.IntInput) CrossconnectConnectableDatacenterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CrossconnectConnectableDatacenter {
+		return vs[0].([]CrossconnectConnectableDatacenter)[vs[1].(int)]
+	}).(CrossconnectConnectableDatacenterOutput)
+}
+
+type CrossconnectPeer struct {
+	// The id of the cross-connected datacenter
+	DatacenterId *string `pulumi:"datacenterId"`
+	// The name of the cross-connected datacenter
+	DatacenterName *string `pulumi:"datacenterName"`
+	// The id of the cross-connected LAN
+	LanId *string `pulumi:"lanId"`
+	// The name of the cross-connected LAN
+	LanName *string `pulumi:"lanName"`
+	// The location of the cross-connected datacenter
+	Location *string `pulumi:"location"`
+}
+
+// CrossconnectPeerInput is an input type that accepts CrossconnectPeerArgs and CrossconnectPeerOutput values.
+// You can construct a concrete instance of `CrossconnectPeerInput` via:
+//
+//	CrossconnectPeerArgs{...}
+type CrossconnectPeerInput interface {
+	pulumi.Input
+
+	ToCrossconnectPeerOutput() CrossconnectPeerOutput
+	ToCrossconnectPeerOutputWithContext(context.Context) CrossconnectPeerOutput
+}
+
+type CrossconnectPeerArgs struct {
+	// The id of the cross-connected datacenter
+	DatacenterId pulumi.StringPtrInput `pulumi:"datacenterId"`
+	// The name of the cross-connected datacenter
+	DatacenterName pulumi.StringPtrInput `pulumi:"datacenterName"`
+	// The id of the cross-connected LAN
+	LanId pulumi.StringPtrInput `pulumi:"lanId"`
+	// The name of the cross-connected LAN
+	LanName pulumi.StringPtrInput `pulumi:"lanName"`
+	// The location of the cross-connected datacenter
+	Location pulumi.StringPtrInput `pulumi:"location"`
+}
+
+func (CrossconnectPeerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CrossconnectPeer)(nil)).Elem()
+}
+
+func (i CrossconnectPeerArgs) ToCrossconnectPeerOutput() CrossconnectPeerOutput {
+	return i.ToCrossconnectPeerOutputWithContext(context.Background())
+}
+
+func (i CrossconnectPeerArgs) ToCrossconnectPeerOutputWithContext(ctx context.Context) CrossconnectPeerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CrossconnectPeerOutput)
+}
+
+// CrossconnectPeerArrayInput is an input type that accepts CrossconnectPeerArray and CrossconnectPeerArrayOutput values.
+// You can construct a concrete instance of `CrossconnectPeerArrayInput` via:
+//
+//	CrossconnectPeerArray{ CrossconnectPeerArgs{...} }
+type CrossconnectPeerArrayInput interface {
+	pulumi.Input
+
+	ToCrossconnectPeerArrayOutput() CrossconnectPeerArrayOutput
+	ToCrossconnectPeerArrayOutputWithContext(context.Context) CrossconnectPeerArrayOutput
+}
+
+type CrossconnectPeerArray []CrossconnectPeerInput
+
+func (CrossconnectPeerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CrossconnectPeer)(nil)).Elem()
+}
+
+func (i CrossconnectPeerArray) ToCrossconnectPeerArrayOutput() CrossconnectPeerArrayOutput {
+	return i.ToCrossconnectPeerArrayOutputWithContext(context.Background())
+}
+
+func (i CrossconnectPeerArray) ToCrossconnectPeerArrayOutputWithContext(ctx context.Context) CrossconnectPeerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CrossconnectPeerArrayOutput)
+}
+
+type CrossconnectPeerOutput struct{ *pulumi.OutputState }
+
+func (CrossconnectPeerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CrossconnectPeer)(nil)).Elem()
+}
+
+func (o CrossconnectPeerOutput) ToCrossconnectPeerOutput() CrossconnectPeerOutput {
+	return o
+}
+
+func (o CrossconnectPeerOutput) ToCrossconnectPeerOutputWithContext(ctx context.Context) CrossconnectPeerOutput {
+	return o
+}
+
+// The id of the cross-connected datacenter
+func (o CrossconnectPeerOutput) DatacenterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectPeer) *string { return v.DatacenterId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the cross-connected datacenter
+func (o CrossconnectPeerOutput) DatacenterName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectPeer) *string { return v.DatacenterName }).(pulumi.StringPtrOutput)
+}
+
+// The id of the cross-connected LAN
+func (o CrossconnectPeerOutput) LanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectPeer) *string { return v.LanId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the cross-connected LAN
+func (o CrossconnectPeerOutput) LanName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectPeer) *string { return v.LanName }).(pulumi.StringPtrOutput)
+}
+
+// The location of the cross-connected datacenter
+func (o CrossconnectPeerOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CrossconnectPeer) *string { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+type CrossconnectPeerArrayOutput struct{ *pulumi.OutputState }
+
+func (CrossconnectPeerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CrossconnectPeer)(nil)).Elem()
+}
+
+func (o CrossconnectPeerArrayOutput) ToCrossconnectPeerArrayOutput() CrossconnectPeerArrayOutput {
+	return o
+}
+
+func (o CrossconnectPeerArrayOutput) ToCrossconnectPeerArrayOutputWithContext(ctx context.Context) CrossconnectPeerArrayOutput {
+	return o
+}
+
+func (o CrossconnectPeerArrayOutput) Index(i pulumi.IntInput) CrossconnectPeerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CrossconnectPeer {
+		return vs[0].([]CrossconnectPeer)[vs[1].(int)]
+	}).(CrossconnectPeerOutput)
+}
+
+type CubeServerNic struct {
+	DeviceNumber *int  `pulumi:"deviceNumber"`
+	Dhcp         *bool `pulumi:"dhcp"`
+	// Indicates whether this NIC receives an IPv6 address through DHCP.
+	Dhcpv6         *bool                  `pulumi:"dhcpv6"`
+	Firewall       *CubeServerNicFirewall `pulumi:"firewall"`
+	FirewallActive *bool                  `pulumi:"firewallActive"`
+	FirewallType   *string                `pulumi:"firewallType"`
+	Ips            []string               `pulumi:"ips"`
+	// IPv6 CIDR block assigned to the NIC.
+	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
+	// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+	Ipv6Ips []string `pulumi:"ipv6Ips"`
+	Lan     int      `pulumi:"lan"`
+	Mac     *string  `pulumi:"mac"`
+	// [string] The name of the server.
+	Name    *string `pulumi:"name"`
+	PciSlot *int    `pulumi:"pciSlot"`
+}
+
+// CubeServerNicInput is an input type that accepts CubeServerNicArgs and CubeServerNicOutput values.
+// You can construct a concrete instance of `CubeServerNicInput` via:
+//
+//	CubeServerNicArgs{...}
+type CubeServerNicInput interface {
+	pulumi.Input
+
+	ToCubeServerNicOutput() CubeServerNicOutput
+	ToCubeServerNicOutputWithContext(context.Context) CubeServerNicOutput
+}
+
+type CubeServerNicArgs struct {
+	DeviceNumber pulumi.IntPtrInput  `pulumi:"deviceNumber"`
+	Dhcp         pulumi.BoolPtrInput `pulumi:"dhcp"`
+	// Indicates whether this NIC receives an IPv6 address through DHCP.
+	Dhcpv6         pulumi.BoolPtrInput           `pulumi:"dhcpv6"`
+	Firewall       CubeServerNicFirewallPtrInput `pulumi:"firewall"`
+	FirewallActive pulumi.BoolPtrInput           `pulumi:"firewallActive"`
+	FirewallType   pulumi.StringPtrInput         `pulumi:"firewallType"`
+	Ips            pulumi.StringArrayInput       `pulumi:"ips"`
+	// IPv6 CIDR block assigned to the NIC.
+	Ipv6CidrBlock pulumi.StringPtrInput `pulumi:"ipv6CidrBlock"`
+	// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+	Ipv6Ips pulumi.StringArrayInput `pulumi:"ipv6Ips"`
+	Lan     pulumi.IntInput         `pulumi:"lan"`
+	Mac     pulumi.StringPtrInput   `pulumi:"mac"`
+	// [string] The name of the server.
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
+}
+
+func (CubeServerNicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerNic)(nil)).Elem()
+}
+
+func (i CubeServerNicArgs) ToCubeServerNicOutput() CubeServerNicOutput {
+	return i.ToCubeServerNicOutputWithContext(context.Background())
+}
+
+func (i CubeServerNicArgs) ToCubeServerNicOutputWithContext(ctx context.Context) CubeServerNicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicOutput)
+}
+
+func (i CubeServerNicArgs) ToCubeServerNicPtrOutput() CubeServerNicPtrOutput {
+	return i.ToCubeServerNicPtrOutputWithContext(context.Background())
+}
+
+func (i CubeServerNicArgs) ToCubeServerNicPtrOutputWithContext(ctx context.Context) CubeServerNicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicOutput).ToCubeServerNicPtrOutputWithContext(ctx)
+}
+
+// CubeServerNicPtrInput is an input type that accepts CubeServerNicArgs, CubeServerNicPtr and CubeServerNicPtrOutput values.
+// You can construct a concrete instance of `CubeServerNicPtrInput` via:
+//
+//	        CubeServerNicArgs{...}
+//
+//	or:
+//
+//	        nil
+type CubeServerNicPtrInput interface {
+	pulumi.Input
+
+	ToCubeServerNicPtrOutput() CubeServerNicPtrOutput
+	ToCubeServerNicPtrOutputWithContext(context.Context) CubeServerNicPtrOutput
+}
+
+type cubeServerNicPtrType CubeServerNicArgs
+
+func CubeServerNicPtr(v *CubeServerNicArgs) CubeServerNicPtrInput {
+	return (*cubeServerNicPtrType)(v)
+}
+
+func (*cubeServerNicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerNic)(nil)).Elem()
+}
+
+func (i *cubeServerNicPtrType) ToCubeServerNicPtrOutput() CubeServerNicPtrOutput {
+	return i.ToCubeServerNicPtrOutputWithContext(context.Background())
+}
+
+func (i *cubeServerNicPtrType) ToCubeServerNicPtrOutputWithContext(ctx context.Context) CubeServerNicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicPtrOutput)
+}
+
+type CubeServerNicOutput struct{ *pulumi.OutputState }
+
+func (CubeServerNicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerNic)(nil)).Elem()
+}
+
+func (o CubeServerNicOutput) ToCubeServerNicOutput() CubeServerNicOutput {
+	return o
+}
+
+func (o CubeServerNicOutput) ToCubeServerNicOutputWithContext(ctx context.Context) CubeServerNicOutput {
+	return o
+}
+
+func (o CubeServerNicOutput) ToCubeServerNicPtrOutput() CubeServerNicPtrOutput {
+	return o.ToCubeServerNicPtrOutputWithContext(context.Background())
+}
+
+func (o CubeServerNicOutput) ToCubeServerNicPtrOutputWithContext(ctx context.Context) CubeServerNicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CubeServerNic) *CubeServerNic {
+		return &v
+	}).(CubeServerNicPtrOutput)
+}
+
+func (o CubeServerNicOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *int { return v.DeviceNumber }).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this NIC receives an IPv6 address through DHCP.
+func (o CubeServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerNicOutput) Firewall() CubeServerNicFirewallPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *CubeServerNicFirewall { return v.Firewall }).(CubeServerNicFirewallPtrOutput)
+}
+
+func (o CubeServerNicOutput) FirewallActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerNicOutput) FirewallType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CubeServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+// IPv6 CIDR block assigned to the NIC.
+func (o CubeServerNicOutput) Ipv6CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *string { return v.Ipv6CidrBlock }).(pulumi.StringPtrOutput)
+}
+
+// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+func (o CubeServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CubeServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
+}
+
+func (o CubeServerNicOutput) Lan() pulumi.IntOutput {
+	return o.ApplyT(func(v CubeServerNic) int { return v.Lan }).(pulumi.IntOutput)
+}
+
+func (o CubeServerNicOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerNicOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerNic) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+type CubeServerNicPtrOutput struct{ *pulumi.OutputState }
+
+func (CubeServerNicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerNic)(nil)).Elem()
+}
+
+func (o CubeServerNicPtrOutput) ToCubeServerNicPtrOutput() CubeServerNicPtrOutput {
+	return o
+}
+
+func (o CubeServerNicPtrOutput) ToCubeServerNicPtrOutputWithContext(ctx context.Context) CubeServerNicPtrOutput {
+	return o
+}
+
+func (o CubeServerNicPtrOutput) Elem() CubeServerNicOutput {
+	return o.ApplyT(func(v *CubeServerNic) CubeServerNic {
+		if v != nil {
+			return *v
+		}
+		var ret CubeServerNic
+		return ret
+	}).(CubeServerNicOutput)
+}
+
+func (o CubeServerNicPtrOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeviceNumber
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this NIC receives an IPv6 address through DHCP.
+func (o CubeServerNicPtrOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcpv6
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) Firewall() CubeServerNicFirewallPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *CubeServerNicFirewall {
+		if v == nil {
+			return nil
+		}
+		return v.Firewall
+	}).(CubeServerNicFirewallPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) FirewallActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FirewallActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) FirewallType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FirewallType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CubeServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Ips
+	}).(pulumi.StringArrayOutput)
+}
+
+// IPv6 CIDR block assigned to the NIC.
+func (o CubeServerNicPtrOutput) Ipv6CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ipv6CidrBlock
+	}).(pulumi.StringPtrOutput)
+}
+
+// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+func (o CubeServerNicPtrOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CubeServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Ipv6Ips
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o CubeServerNicPtrOutput) Lan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Lan
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mac
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerNicPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PciSlot
+	}).(pulumi.IntPtrOutput)
+}
+
+type CubeServerNicFirewall struct {
+	IcmpCode *string `pulumi:"icmpCode"`
+	IcmpType *string `pulumi:"icmpType"`
+	// [string] The name of the server.
+	Name           *string `pulumi:"name"`
+	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
+	PortRangeStart *int    `pulumi:"portRangeStart"`
+	Protocol       string  `pulumi:"protocol"`
+	SourceIp       *string `pulumi:"sourceIp"`
+	SourceMac      *string `pulumi:"sourceMac"`
+	TargetIp       *string `pulumi:"targetIp"`
+	Type           *string `pulumi:"type"`
+}
+
+// CubeServerNicFirewallInput is an input type that accepts CubeServerNicFirewallArgs and CubeServerNicFirewallOutput values.
+// You can construct a concrete instance of `CubeServerNicFirewallInput` via:
+//
+//	CubeServerNicFirewallArgs{...}
+type CubeServerNicFirewallInput interface {
+	pulumi.Input
+
+	ToCubeServerNicFirewallOutput() CubeServerNicFirewallOutput
+	ToCubeServerNicFirewallOutputWithContext(context.Context) CubeServerNicFirewallOutput
+}
+
+type CubeServerNicFirewallArgs struct {
+	IcmpCode pulumi.StringPtrInput `pulumi:"icmpCode"`
+	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
+	// [string] The name of the server.
+	Name           pulumi.StringPtrInput `pulumi:"name"`
+	PortRangeEnd   pulumi.IntPtrInput    `pulumi:"portRangeEnd"`
+	PortRangeStart pulumi.IntPtrInput    `pulumi:"portRangeStart"`
+	Protocol       pulumi.StringInput    `pulumi:"protocol"`
+	SourceIp       pulumi.StringPtrInput `pulumi:"sourceIp"`
+	SourceMac      pulumi.StringPtrInput `pulumi:"sourceMac"`
+	TargetIp       pulumi.StringPtrInput `pulumi:"targetIp"`
+	Type           pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (CubeServerNicFirewallArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerNicFirewall)(nil)).Elem()
+}
+
+func (i CubeServerNicFirewallArgs) ToCubeServerNicFirewallOutput() CubeServerNicFirewallOutput {
+	return i.ToCubeServerNicFirewallOutputWithContext(context.Background())
+}
+
+func (i CubeServerNicFirewallArgs) ToCubeServerNicFirewallOutputWithContext(ctx context.Context) CubeServerNicFirewallOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicFirewallOutput)
+}
+
+func (i CubeServerNicFirewallArgs) ToCubeServerNicFirewallPtrOutput() CubeServerNicFirewallPtrOutput {
+	return i.ToCubeServerNicFirewallPtrOutputWithContext(context.Background())
+}
+
+func (i CubeServerNicFirewallArgs) ToCubeServerNicFirewallPtrOutputWithContext(ctx context.Context) CubeServerNicFirewallPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicFirewallOutput).ToCubeServerNicFirewallPtrOutputWithContext(ctx)
+}
+
+// CubeServerNicFirewallPtrInput is an input type that accepts CubeServerNicFirewallArgs, CubeServerNicFirewallPtr and CubeServerNicFirewallPtrOutput values.
+// You can construct a concrete instance of `CubeServerNicFirewallPtrInput` via:
+//
+//	        CubeServerNicFirewallArgs{...}
+//
+//	or:
+//
+//	        nil
+type CubeServerNicFirewallPtrInput interface {
+	pulumi.Input
+
+	ToCubeServerNicFirewallPtrOutput() CubeServerNicFirewallPtrOutput
+	ToCubeServerNicFirewallPtrOutputWithContext(context.Context) CubeServerNicFirewallPtrOutput
+}
+
+type cubeServerNicFirewallPtrType CubeServerNicFirewallArgs
+
+func CubeServerNicFirewallPtr(v *CubeServerNicFirewallArgs) CubeServerNicFirewallPtrInput {
+	return (*cubeServerNicFirewallPtrType)(v)
+}
+
+func (*cubeServerNicFirewallPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerNicFirewall)(nil)).Elem()
+}
+
+func (i *cubeServerNicFirewallPtrType) ToCubeServerNicFirewallPtrOutput() CubeServerNicFirewallPtrOutput {
+	return i.ToCubeServerNicFirewallPtrOutputWithContext(context.Background())
+}
+
+func (i *cubeServerNicFirewallPtrType) ToCubeServerNicFirewallPtrOutputWithContext(ctx context.Context) CubeServerNicFirewallPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerNicFirewallPtrOutput)
+}
+
+type CubeServerNicFirewallOutput struct{ *pulumi.OutputState }
+
+func (CubeServerNicFirewallOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerNicFirewall)(nil)).Elem()
+}
+
+func (o CubeServerNicFirewallOutput) ToCubeServerNicFirewallOutput() CubeServerNicFirewallOutput {
+	return o
+}
+
+func (o CubeServerNicFirewallOutput) ToCubeServerNicFirewallOutputWithContext(ctx context.Context) CubeServerNicFirewallOutput {
+	return o
+}
+
+func (o CubeServerNicFirewallOutput) ToCubeServerNicFirewallPtrOutput() CubeServerNicFirewallPtrOutput {
+	return o.ToCubeServerNicFirewallPtrOutputWithContext(context.Background())
+}
+
+func (o CubeServerNicFirewallOutput) ToCubeServerNicFirewallPtrOutputWithContext(ctx context.Context) CubeServerNicFirewallPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CubeServerNicFirewall) *CubeServerNicFirewall {
+		return &v
+	}).(CubeServerNicFirewallPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) IcmpCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.IcmpCode }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) IcmpType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.IcmpType }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerNicFirewallOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) PortRangeEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *int { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) PortRangeStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *int { return v.PortRangeStart }).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o CubeServerNicFirewallOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) SourceMac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.SourceMac }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) TargetIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type CubeServerNicFirewallPtrOutput struct{ *pulumi.OutputState }
+
+func (CubeServerNicFirewallPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerNicFirewall)(nil)).Elem()
+}
+
+func (o CubeServerNicFirewallPtrOutput) ToCubeServerNicFirewallPtrOutput() CubeServerNicFirewallPtrOutput {
+	return o
+}
+
+func (o CubeServerNicFirewallPtrOutput) ToCubeServerNicFirewallPtrOutputWithContext(ctx context.Context) CubeServerNicFirewallPtrOutput {
+	return o
+}
+
+func (o CubeServerNicFirewallPtrOutput) Elem() CubeServerNicFirewallOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) CubeServerNicFirewall {
+		if v != nil {
+			return *v
+		}
+		var ret CubeServerNicFirewall
+		return ret
+	}).(CubeServerNicFirewallOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) IcmpCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IcmpCode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) IcmpType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IcmpType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerNicFirewallPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) PortRangeEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PortRangeEnd
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) PortRangeStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PortRangeStart
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceIp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) SourceMac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceMac
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) TargetIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TargetIp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerNicFirewallPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type CubeServerVolume struct {
+	// [string] The availability zone in which the server should exist. This property is immutable.
+	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+	BackupUnitId *string `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          *string `pulumi:"bootServer"`
+	Bus                 *string `pulumi:"bus"`
+	CpuHotPlug          *bool   `pulumi:"cpuHotPlug"`
+	DeviceNumber        *int    `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
+	DiskType            string  `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	//
+	// > **⚠ WARNING**
+	// >
+	// > For creating a **CUBE** server, you can not set `volume.size` argument.
+	//
+	// Deprecated: Please use imagePassword under server level
+	ImagePassword *string `pulumi:"imagePassword"`
+	// [string] Sets the OS type of the server.
+	LicenceType *string `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         *string `pulumi:"name"`
+	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
+	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
+	PciSlot      *int    `pulumi:"pciSlot"`
+	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
+	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	//
+	// Deprecated: Please use sshKeyPath under server level
+	SshKeyPaths []string `pulumi:"sshKeyPaths"`
+	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+	UserData *string `pulumi:"userData"`
+}
+
+// CubeServerVolumeInput is an input type that accepts CubeServerVolumeArgs and CubeServerVolumeOutput values.
+// You can construct a concrete instance of `CubeServerVolumeInput` via:
+//
+//	CubeServerVolumeArgs{...}
+type CubeServerVolumeInput interface {
+	pulumi.Input
+
+	ToCubeServerVolumeOutput() CubeServerVolumeOutput
+	ToCubeServerVolumeOutputWithContext(context.Context) CubeServerVolumeOutput
+}
+
+type CubeServerVolumeArgs struct {
+	// [string] The availability zone in which the server should exist. This property is immutable.
+	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          pulumi.StringPtrInput `pulumi:"bootServer"`
+	Bus                 pulumi.StringPtrInput `pulumi:"bus"`
+	CpuHotPlug          pulumi.BoolPtrInput   `pulumi:"cpuHotPlug"`
+	DeviceNumber        pulumi.IntPtrInput    `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   pulumi.BoolPtrInput   `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
+	DiskType            pulumi.StringInput    `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	//
+	// > **⚠ WARNING**
+	// >
+	// > For creating a **CUBE** server, you can not set `volume.size` argument.
+	//
+	// Deprecated: Please use imagePassword under server level
+	ImagePassword pulumi.StringPtrInput `pulumi:"imagePassword"`
+	// [string] Sets the OS type of the server.
+	LicenceType pulumi.StringPtrInput `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	NicHotPlug   pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
+	NicHotUnplug pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
+	PciSlot      pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	//
+	// Deprecated: Please use sshKeyPath under server level
+	SshKeyPaths pulumi.StringArrayInput `pulumi:"sshKeyPaths"`
+	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+	UserData pulumi.StringPtrInput `pulumi:"userData"`
+}
+
+func (CubeServerVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerVolume)(nil)).Elem()
+}
+
+func (i CubeServerVolumeArgs) ToCubeServerVolumeOutput() CubeServerVolumeOutput {
+	return i.ToCubeServerVolumeOutputWithContext(context.Background())
+}
+
+func (i CubeServerVolumeArgs) ToCubeServerVolumeOutputWithContext(ctx context.Context) CubeServerVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerVolumeOutput)
+}
+
+func (i CubeServerVolumeArgs) ToCubeServerVolumePtrOutput() CubeServerVolumePtrOutput {
+	return i.ToCubeServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (i CubeServerVolumeArgs) ToCubeServerVolumePtrOutputWithContext(ctx context.Context) CubeServerVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerVolumeOutput).ToCubeServerVolumePtrOutputWithContext(ctx)
+}
+
+// CubeServerVolumePtrInput is an input type that accepts CubeServerVolumeArgs, CubeServerVolumePtr and CubeServerVolumePtrOutput values.
+// You can construct a concrete instance of `CubeServerVolumePtrInput` via:
+//
+//	        CubeServerVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type CubeServerVolumePtrInput interface {
+	pulumi.Input
+
+	ToCubeServerVolumePtrOutput() CubeServerVolumePtrOutput
+	ToCubeServerVolumePtrOutputWithContext(context.Context) CubeServerVolumePtrOutput
+}
+
+type cubeServerVolumePtrType CubeServerVolumeArgs
+
+func CubeServerVolumePtr(v *CubeServerVolumeArgs) CubeServerVolumePtrInput {
+	return (*cubeServerVolumePtrType)(v)
+}
+
+func (*cubeServerVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerVolume)(nil)).Elem()
+}
+
+func (i *cubeServerVolumePtrType) ToCubeServerVolumePtrOutput() CubeServerVolumePtrOutput {
+	return i.ToCubeServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *cubeServerVolumePtrType) ToCubeServerVolumePtrOutputWithContext(ctx context.Context) CubeServerVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CubeServerVolumePtrOutput)
+}
+
+type CubeServerVolumeOutput struct{ *pulumi.OutputState }
+
+func (CubeServerVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CubeServerVolume)(nil)).Elem()
+}
+
+func (o CubeServerVolumeOutput) ToCubeServerVolumeOutput() CubeServerVolumeOutput {
+	return o
+}
+
+func (o CubeServerVolumeOutput) ToCubeServerVolumeOutputWithContext(ctx context.Context) CubeServerVolumeOutput {
+	return o
+}
+
+func (o CubeServerVolumeOutput) ToCubeServerVolumePtrOutput() CubeServerVolumePtrOutput {
+	return o.ToCubeServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (o CubeServerVolumeOutput) ToCubeServerVolumePtrOutputWithContext(ctx context.Context) CubeServerVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CubeServerVolume) *CubeServerVolume {
+		return &v
+	}).(CubeServerVolumePtrOutput)
+}
+
+// [string] The availability zone in which the server should exist. This property is immutable.
+func (o CubeServerVolumeOutput) AvailabilityZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
+}
+
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+func (o CubeServerVolumeOutput) BackupUnitId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.BackupUnitId }).(pulumi.StringPtrOutput)
+}
+
+// The UUID of the attached server.
+func (o CubeServerVolumeOutput) BootServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.BootServer }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) Bus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.Bus }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) CpuHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.CpuHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *int { return v.DeviceNumber }).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.DiscVirtioHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v CubeServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
+}
+
+// [string] Required if `sshKeyPath` is not provided.
+//
+// > **⚠ WARNING**
+// >
+// > Image_name under volume level is deprecated, please use imageName under server level
+//
+// > **⚠ WARNING**
+// >
+// > For creating a **CUBE** server, you can not set `volume.size` argument.
+//
+// Deprecated: Please use imagePassword under server level
+func (o CubeServerVolumeOutput) ImagePassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.ImagePassword }).(pulumi.StringPtrOutput)
+}
+
+// [string] Sets the OS type of the server.
+func (o CubeServerVolumeOutput) LicenceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.LicenceType }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerVolumeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) NicHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.NicHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) NicHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.NicHotUnplug }).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerVolumeOutput) RamHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *bool { return v.RamHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+//
+// Deprecated: Please use sshKeyPath under server level
+func (o CubeServerVolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CubeServerVolume) []string { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
+}
+
+// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+func (o CubeServerVolumeOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CubeServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
+}
+
+type CubeServerVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (CubeServerVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CubeServerVolume)(nil)).Elem()
+}
+
+func (o CubeServerVolumePtrOutput) ToCubeServerVolumePtrOutput() CubeServerVolumePtrOutput {
+	return o
+}
+
+func (o CubeServerVolumePtrOutput) ToCubeServerVolumePtrOutputWithContext(ctx context.Context) CubeServerVolumePtrOutput {
+	return o
+}
+
+func (o CubeServerVolumePtrOutput) Elem() CubeServerVolumeOutput {
+	return o.ApplyT(func(v *CubeServerVolume) CubeServerVolume {
+		if v != nil {
+			return *v
+		}
+		var ret CubeServerVolume
+		return ret
+	}).(CubeServerVolumeOutput)
+}
+
+// [string] The availability zone in which the server should exist. This property is immutable.
+func (o CubeServerVolumePtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvailabilityZone
+	}).(pulumi.StringPtrOutput)
+}
+
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+func (o CubeServerVolumePtrOutput) BackupUnitId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackupUnitId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The UUID of the attached server.
+func (o CubeServerVolumePtrOutput) BootServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BootServer
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) Bus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bus
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) CpuHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CpuHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeviceNumber
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) DiscVirtioHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DiscVirtioHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) DiscVirtioHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DiscVirtioHotUnplug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DiskType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Required if `sshKeyPath` is not provided.
+//
+// > **⚠ WARNING**
+// >
+// > Image_name under volume level is deprecated, please use imageName under server level
+//
+// > **⚠ WARNING**
+// >
+// > For creating a **CUBE** server, you can not set `volume.size` argument.
+//
+// Deprecated: Please use imagePassword under server level
+func (o CubeServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ImagePassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Sets the OS type of the server.
+func (o CubeServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LicenceType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o CubeServerVolumePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) NicHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NicHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) NicHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NicHotUnplug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PciSlot
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o CubeServerVolumePtrOutput) RamHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RamHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+//
+// Deprecated: Please use sshKeyPath under server level
+func (o CubeServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CubeServerVolume) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SshKeyPaths
+	}).(pulumi.StringArrayOutput)
+}
+
+// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+func (o CubeServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CubeServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserData
+	}).(pulumi.StringPtrOutput)
+}
+
 type DatacenterCpuArchitecture struct {
 	// A valid CPU family name
 	CpuFamily *string `pulumi:"cpuFamily"`
@@ -507,6 +1824,268 @@ func (o LanIpFailoverArrayOutput) Index(i pulumi.IntInput) LanIpFailoverOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LanIpFailover {
 		return vs[0].([]LanIpFailover)[vs[1].(int)]
 	}).(LanIpFailoverOutput)
+}
+
+type NatGatewayLan struct {
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+	GatewayIps []string `pulumi:"gatewayIps"`
+	// [int] Id for the LAN connected to the NAT gateway.
+	Id int `pulumi:"id"`
+}
+
+// NatGatewayLanInput is an input type that accepts NatGatewayLanArgs and NatGatewayLanOutput values.
+// You can construct a concrete instance of `NatGatewayLanInput` via:
+//
+//	NatGatewayLanArgs{...}
+type NatGatewayLanInput interface {
+	pulumi.Input
+
+	ToNatGatewayLanOutput() NatGatewayLanOutput
+	ToNatGatewayLanOutputWithContext(context.Context) NatGatewayLanOutput
+}
+
+type NatGatewayLanArgs struct {
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+	GatewayIps pulumi.StringArrayInput `pulumi:"gatewayIps"`
+	// [int] Id for the LAN connected to the NAT gateway.
+	Id pulumi.IntInput `pulumi:"id"`
+}
+
+func (NatGatewayLanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayLan)(nil)).Elem()
+}
+
+func (i NatGatewayLanArgs) ToNatGatewayLanOutput() NatGatewayLanOutput {
+	return i.ToNatGatewayLanOutputWithContext(context.Background())
+}
+
+func (i NatGatewayLanArgs) ToNatGatewayLanOutputWithContext(ctx context.Context) NatGatewayLanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayLanOutput)
+}
+
+// NatGatewayLanArrayInput is an input type that accepts NatGatewayLanArray and NatGatewayLanArrayOutput values.
+// You can construct a concrete instance of `NatGatewayLanArrayInput` via:
+//
+//	NatGatewayLanArray{ NatGatewayLanArgs{...} }
+type NatGatewayLanArrayInput interface {
+	pulumi.Input
+
+	ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput
+	ToNatGatewayLanArrayOutputWithContext(context.Context) NatGatewayLanArrayOutput
+}
+
+type NatGatewayLanArray []NatGatewayLanInput
+
+func (NatGatewayLanArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NatGatewayLan)(nil)).Elem()
+}
+
+func (i NatGatewayLanArray) ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput {
+	return i.ToNatGatewayLanArrayOutputWithContext(context.Background())
+}
+
+func (i NatGatewayLanArray) ToNatGatewayLanArrayOutputWithContext(ctx context.Context) NatGatewayLanArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayLanArrayOutput)
+}
+
+type NatGatewayLanOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayLanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayLan)(nil)).Elem()
+}
+
+func (o NatGatewayLanOutput) ToNatGatewayLanOutput() NatGatewayLanOutput {
+	return o
+}
+
+func (o NatGatewayLanOutput) ToNatGatewayLanOutputWithContext(ctx context.Context) NatGatewayLanOutput {
+	return o
+}
+
+// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+func (o NatGatewayLanOutput) GatewayIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NatGatewayLan) []string { return v.GatewayIps }).(pulumi.StringArrayOutput)
+}
+
+// [int] Id for the LAN connected to the NAT gateway.
+func (o NatGatewayLanOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v NatGatewayLan) int { return v.Id }).(pulumi.IntOutput)
+}
+
+type NatGatewayLanArrayOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayLanArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NatGatewayLan)(nil)).Elem()
+}
+
+func (o NatGatewayLanArrayOutput) ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput {
+	return o
+}
+
+func (o NatGatewayLanArrayOutput) ToNatGatewayLanArrayOutputWithContext(ctx context.Context) NatGatewayLanArrayOutput {
+	return o
+}
+
+func (o NatGatewayLanArrayOutput) Index(i pulumi.IntInput) NatGatewayLanOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NatGatewayLan {
+		return vs[0].([]NatGatewayLan)[vs[1].(int)]
+	}).(NatGatewayLanOutput)
+}
+
+type NatGatewayRuleTargetPortRange struct {
+	// [int] Target port range end associated with the NAT gateway rule.
+	End *int `pulumi:"end"`
+	// [int] Target port range start associated with the NAT gateway rule.
+	Start *int `pulumi:"start"`
+}
+
+// NatGatewayRuleTargetPortRangeInput is an input type that accepts NatGatewayRuleTargetPortRangeArgs and NatGatewayRuleTargetPortRangeOutput values.
+// You can construct a concrete instance of `NatGatewayRuleTargetPortRangeInput` via:
+//
+//	NatGatewayRuleTargetPortRangeArgs{...}
+type NatGatewayRuleTargetPortRangeInput interface {
+	pulumi.Input
+
+	ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput
+	ToNatGatewayRuleTargetPortRangeOutputWithContext(context.Context) NatGatewayRuleTargetPortRangeOutput
+}
+
+type NatGatewayRuleTargetPortRangeArgs struct {
+	// [int] Target port range end associated with the NAT gateway rule.
+	End pulumi.IntPtrInput `pulumi:"end"`
+	// [int] Target port range start associated with the NAT gateway rule.
+	Start pulumi.IntPtrInput `pulumi:"start"`
+}
+
+func (NatGatewayRuleTargetPortRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput {
+	return i.ToNatGatewayRuleTargetPortRangeOutputWithContext(context.Background())
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangeOutput)
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return i.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangeOutput).ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx)
+}
+
+// NatGatewayRuleTargetPortRangePtrInput is an input type that accepts NatGatewayRuleTargetPortRangeArgs, NatGatewayRuleTargetPortRangePtr and NatGatewayRuleTargetPortRangePtrOutput values.
+// You can construct a concrete instance of `NatGatewayRuleTargetPortRangePtrInput` via:
+//
+//	        NatGatewayRuleTargetPortRangeArgs{...}
+//
+//	or:
+//
+//	        nil
+type NatGatewayRuleTargetPortRangePtrInput interface {
+	pulumi.Input
+
+	ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput
+	ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Context) NatGatewayRuleTargetPortRangePtrOutput
+}
+
+type natGatewayRuleTargetPortRangePtrType NatGatewayRuleTargetPortRangeArgs
+
+func NatGatewayRuleTargetPortRangePtr(v *NatGatewayRuleTargetPortRangeArgs) NatGatewayRuleTargetPortRangePtrInput {
+	return (*natGatewayRuleTargetPortRangePtrType)(v)
+}
+
+func (*natGatewayRuleTargetPortRangePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (i *natGatewayRuleTargetPortRangePtrType) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return i.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (i *natGatewayRuleTargetPortRangePtrType) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangePtrOutput)
+}
+
+type NatGatewayRuleTargetPortRangeOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayRuleTargetPortRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangeOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return o.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NatGatewayRuleTargetPortRange) *NatGatewayRuleTargetPortRange {
+		return &v
+	}).(NatGatewayRuleTargetPortRangePtrOutput)
+}
+
+// [int] Target port range end associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangeOutput) End() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.End }).(pulumi.IntPtrOutput)
+}
+
+// [int] Target port range start associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangeOutput) Start() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.Start }).(pulumi.IntPtrOutput)
+}
+
+type NatGatewayRuleTargetPortRangePtrOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayRuleTargetPortRangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) Elem() NatGatewayRuleTargetPortRangeOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) NatGatewayRuleTargetPortRange {
+		if v != nil {
+			return *v
+		}
+		var ret NatGatewayRuleTargetPortRange
+		return ret
+	}).(NatGatewayRuleTargetPortRangeOutput)
+}
+
+// [int] Target port range end associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangePtrOutput) End() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
+		if v == nil {
+			return nil
+		}
+		return v.End
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] Target port range start associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangePtrOutput) Start() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Start
+	}).(pulumi.IntPtrOutput)
 }
 
 type NicFlowlog struct {
@@ -1830,7 +3409,1015 @@ func (o ServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type VCPUServerLabel struct {
+	Key   string `pulumi:"key"`
+	Value string `pulumi:"value"`
+}
+
+// VCPUServerLabelInput is an input type that accepts VCPUServerLabelArgs and VCPUServerLabelOutput values.
+// You can construct a concrete instance of `VCPUServerLabelInput` via:
+//
+//	VCPUServerLabelArgs{...}
+type VCPUServerLabelInput interface {
+	pulumi.Input
+
+	ToVCPUServerLabelOutput() VCPUServerLabelOutput
+	ToVCPUServerLabelOutputWithContext(context.Context) VCPUServerLabelOutput
+}
+
+type VCPUServerLabelArgs struct {
+	Key   pulumi.StringInput `pulumi:"key"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VCPUServerLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerLabel)(nil)).Elem()
+}
+
+func (i VCPUServerLabelArgs) ToVCPUServerLabelOutput() VCPUServerLabelOutput {
+	return i.ToVCPUServerLabelOutputWithContext(context.Background())
+}
+
+func (i VCPUServerLabelArgs) ToVCPUServerLabelOutputWithContext(ctx context.Context) VCPUServerLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerLabelOutput)
+}
+
+// VCPUServerLabelArrayInput is an input type that accepts VCPUServerLabelArray and VCPUServerLabelArrayOutput values.
+// You can construct a concrete instance of `VCPUServerLabelArrayInput` via:
+//
+//	VCPUServerLabelArray{ VCPUServerLabelArgs{...} }
+type VCPUServerLabelArrayInput interface {
+	pulumi.Input
+
+	ToVCPUServerLabelArrayOutput() VCPUServerLabelArrayOutput
+	ToVCPUServerLabelArrayOutputWithContext(context.Context) VCPUServerLabelArrayOutput
+}
+
+type VCPUServerLabelArray []VCPUServerLabelInput
+
+func (VCPUServerLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VCPUServerLabel)(nil)).Elem()
+}
+
+func (i VCPUServerLabelArray) ToVCPUServerLabelArrayOutput() VCPUServerLabelArrayOutput {
+	return i.ToVCPUServerLabelArrayOutputWithContext(context.Background())
+}
+
+func (i VCPUServerLabelArray) ToVCPUServerLabelArrayOutputWithContext(ctx context.Context) VCPUServerLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerLabelArrayOutput)
+}
+
+type VCPUServerLabelOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerLabel)(nil)).Elem()
+}
+
+func (o VCPUServerLabelOutput) ToVCPUServerLabelOutput() VCPUServerLabelOutput {
+	return o
+}
+
+func (o VCPUServerLabelOutput) ToVCPUServerLabelOutputWithContext(ctx context.Context) VCPUServerLabelOutput {
+	return o
+}
+
+func (o VCPUServerLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VCPUServerLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o VCPUServerLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VCPUServerLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VCPUServerLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VCPUServerLabel)(nil)).Elem()
+}
+
+func (o VCPUServerLabelArrayOutput) ToVCPUServerLabelArrayOutput() VCPUServerLabelArrayOutput {
+	return o
+}
+
+func (o VCPUServerLabelArrayOutput) ToVCPUServerLabelArrayOutputWithContext(ctx context.Context) VCPUServerLabelArrayOutput {
+	return o
+}
+
+func (o VCPUServerLabelArrayOutput) Index(i pulumi.IntInput) VCPUServerLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VCPUServerLabel {
+		return vs[0].([]VCPUServerLabel)[vs[1].(int)]
+	}).(VCPUServerLabelOutput)
+}
+
+type VCPUServerNic struct {
+	DeviceNumber   *int    `pulumi:"deviceNumber"`
+	Dhcp           *bool   `pulumi:"dhcp"`
+	Dhcpv6         *bool   `pulumi:"dhcpv6"`
+	FirewallActive *bool   `pulumi:"firewallActive"`
+	FirewallType   *string `pulumi:"firewallType"`
+	// Allows to define firewall rules inline in the server. See the Firewall section.
+	Firewalls []VCPUServerNicFirewall `pulumi:"firewalls"`
+	Id        *string                 `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+	Ips           []string `pulumi:"ips"`
+	Ipv6CidrBlock *string  `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       []string `pulumi:"ipv6Ips"`
+	Lan           int      `pulumi:"lan"`
+	Mac           *string  `pulumi:"mac"`
+	// [string] The name of the server.
+	Name    *string `pulumi:"name"`
+	PciSlot *int    `pulumi:"pciSlot"`
+}
+
+// VCPUServerNicInput is an input type that accepts VCPUServerNicArgs and VCPUServerNicOutput values.
+// You can construct a concrete instance of `VCPUServerNicInput` via:
+//
+//	VCPUServerNicArgs{...}
+type VCPUServerNicInput interface {
+	pulumi.Input
+
+	ToVCPUServerNicOutput() VCPUServerNicOutput
+	ToVCPUServerNicOutputWithContext(context.Context) VCPUServerNicOutput
+}
+
+type VCPUServerNicArgs struct {
+	DeviceNumber   pulumi.IntPtrInput    `pulumi:"deviceNumber"`
+	Dhcp           pulumi.BoolPtrInput   `pulumi:"dhcp"`
+	Dhcpv6         pulumi.BoolPtrInput   `pulumi:"dhcpv6"`
+	FirewallActive pulumi.BoolPtrInput   `pulumi:"firewallActive"`
+	FirewallType   pulumi.StringPtrInput `pulumi:"firewallType"`
+	// Allows to define firewall rules inline in the server. See the Firewall section.
+	Firewalls VCPUServerNicFirewallArrayInput `pulumi:"firewalls"`
+	Id        pulumi.StringPtrInput           `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+	Ips           pulumi.StringArrayInput `pulumi:"ips"`
+	Ipv6CidrBlock pulumi.StringPtrInput   `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
+	Lan           pulumi.IntInput         `pulumi:"lan"`
+	Mac           pulumi.StringPtrInput   `pulumi:"mac"`
+	// [string] The name of the server.
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
+}
+
+func (VCPUServerNicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerNic)(nil)).Elem()
+}
+
+func (i VCPUServerNicArgs) ToVCPUServerNicOutput() VCPUServerNicOutput {
+	return i.ToVCPUServerNicOutputWithContext(context.Background())
+}
+
+func (i VCPUServerNicArgs) ToVCPUServerNicOutputWithContext(ctx context.Context) VCPUServerNicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerNicOutput)
+}
+
+func (i VCPUServerNicArgs) ToVCPUServerNicPtrOutput() VCPUServerNicPtrOutput {
+	return i.ToVCPUServerNicPtrOutputWithContext(context.Background())
+}
+
+func (i VCPUServerNicArgs) ToVCPUServerNicPtrOutputWithContext(ctx context.Context) VCPUServerNicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerNicOutput).ToVCPUServerNicPtrOutputWithContext(ctx)
+}
+
+// VCPUServerNicPtrInput is an input type that accepts VCPUServerNicArgs, VCPUServerNicPtr and VCPUServerNicPtrOutput values.
+// You can construct a concrete instance of `VCPUServerNicPtrInput` via:
+//
+//	        VCPUServerNicArgs{...}
+//
+//	or:
+//
+//	        nil
+type VCPUServerNicPtrInput interface {
+	pulumi.Input
+
+	ToVCPUServerNicPtrOutput() VCPUServerNicPtrOutput
+	ToVCPUServerNicPtrOutputWithContext(context.Context) VCPUServerNicPtrOutput
+}
+
+type vcpuserverNicPtrType VCPUServerNicArgs
+
+func VCPUServerNicPtr(v *VCPUServerNicArgs) VCPUServerNicPtrInput {
+	return (*vcpuserverNicPtrType)(v)
+}
+
+func (*vcpuserverNicPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VCPUServerNic)(nil)).Elem()
+}
+
+func (i *vcpuserverNicPtrType) ToVCPUServerNicPtrOutput() VCPUServerNicPtrOutput {
+	return i.ToVCPUServerNicPtrOutputWithContext(context.Background())
+}
+
+func (i *vcpuserverNicPtrType) ToVCPUServerNicPtrOutputWithContext(ctx context.Context) VCPUServerNicPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerNicPtrOutput)
+}
+
+type VCPUServerNicOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerNicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerNic)(nil)).Elem()
+}
+
+func (o VCPUServerNicOutput) ToVCPUServerNicOutput() VCPUServerNicOutput {
+	return o
+}
+
+func (o VCPUServerNicOutput) ToVCPUServerNicOutputWithContext(ctx context.Context) VCPUServerNicOutput {
+	return o
+}
+
+func (o VCPUServerNicOutput) ToVCPUServerNicPtrOutput() VCPUServerNicPtrOutput {
+	return o.ToVCPUServerNicPtrOutputWithContext(context.Background())
+}
+
+func (o VCPUServerNicOutput) ToVCPUServerNicPtrOutputWithContext(ctx context.Context) VCPUServerNicPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VCPUServerNic) *VCPUServerNic {
+		return &v
+	}).(VCPUServerNicPtrOutput)
+}
+
+func (o VCPUServerNicOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *int { return v.DeviceNumber }).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerNicOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicOutput) FirewallActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicOutput) FirewallType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
+}
+
+// Allows to define firewall rules inline in the server. See the Firewall section.
+func (o VCPUServerNicOutput) Firewalls() VCPUServerNicFirewallArrayOutput {
+	return o.ApplyT(func(v VCPUServerNic) []VCPUServerNicFirewall { return v.Firewalls }).(VCPUServerNicFirewallArrayOutput)
+}
+
+func (o VCPUServerNicOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+func (o VCPUServerNicOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v VCPUServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+func (o VCPUServerNicOutput) Ipv6CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *string { return v.Ipv6CidrBlock }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v VCPUServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
+}
+
+func (o VCPUServerNicOutput) Lan() pulumi.IntOutput {
+	return o.ApplyT(func(v VCPUServerNic) int { return v.Lan }).(pulumi.IntOutput)
+}
+
+func (o VCPUServerNicOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o VCPUServerNicOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerNic) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+type VCPUServerNicPtrOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerNicPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VCPUServerNic)(nil)).Elem()
+}
+
+func (o VCPUServerNicPtrOutput) ToVCPUServerNicPtrOutput() VCPUServerNicPtrOutput {
+	return o
+}
+
+func (o VCPUServerNicPtrOutput) ToVCPUServerNicPtrOutputWithContext(ctx context.Context) VCPUServerNicPtrOutput {
+	return o
+}
+
+func (o VCPUServerNicPtrOutput) Elem() VCPUServerNicOutput {
+	return o.ApplyT(func(v *VCPUServerNic) VCPUServerNic {
+		if v != nil {
+			return *v
+		}
+		var ret VCPUServerNic
+		return ret
+	}).(VCPUServerNicOutput)
+}
+
+func (o VCPUServerNicPtrOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeviceNumber
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Dhcp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcp
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Dhcpv6
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) FirewallActive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FirewallActive
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) FirewallType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FirewallType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Allows to define firewall rules inline in the server. See the Firewall section.
+func (o VCPUServerNicPtrOutput) Firewalls() VCPUServerNicFirewallArrayOutput {
+	return o.ApplyT(func(v *VCPUServerNic) []VCPUServerNicFirewall {
+		if v == nil {
+			return nil
+		}
+		return v.Firewalls
+	}).(VCPUServerNicFirewallArrayOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+func (o VCPUServerNicPtrOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VCPUServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Ips
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Ipv6CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ipv6CidrBlock
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VCPUServerNic) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Ipv6Ips
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Lan() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Lan
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mac
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o VCPUServerNicPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerNic) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PciSlot
+	}).(pulumi.IntPtrOutput)
+}
+
+type VCPUServerNicFirewall struct {
+	IcmpCode *string `pulumi:"icmpCode"`
+	IcmpType *string `pulumi:"icmpType"`
+	Id       *string `pulumi:"id"`
+	// [string] The name of the server.
+	Name           *string `pulumi:"name"`
+	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
+	PortRangeStart *int    `pulumi:"portRangeStart"`
+	Protocol       string  `pulumi:"protocol"`
+	SourceIp       *string `pulumi:"sourceIp"`
+	SourceMac      *string `pulumi:"sourceMac"`
+	TargetIp       *string `pulumi:"targetIp"`
+	Type           *string `pulumi:"type"`
+}
+
+// VCPUServerNicFirewallInput is an input type that accepts VCPUServerNicFirewallArgs and VCPUServerNicFirewallOutput values.
+// You can construct a concrete instance of `VCPUServerNicFirewallInput` via:
+//
+//	VCPUServerNicFirewallArgs{...}
+type VCPUServerNicFirewallInput interface {
+	pulumi.Input
+
+	ToVCPUServerNicFirewallOutput() VCPUServerNicFirewallOutput
+	ToVCPUServerNicFirewallOutputWithContext(context.Context) VCPUServerNicFirewallOutput
+}
+
+type VCPUServerNicFirewallArgs struct {
+	IcmpCode pulumi.StringPtrInput `pulumi:"icmpCode"`
+	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The name of the server.
+	Name           pulumi.StringPtrInput `pulumi:"name"`
+	PortRangeEnd   pulumi.IntPtrInput    `pulumi:"portRangeEnd"`
+	PortRangeStart pulumi.IntPtrInput    `pulumi:"portRangeStart"`
+	Protocol       pulumi.StringInput    `pulumi:"protocol"`
+	SourceIp       pulumi.StringPtrInput `pulumi:"sourceIp"`
+	SourceMac      pulumi.StringPtrInput `pulumi:"sourceMac"`
+	TargetIp       pulumi.StringPtrInput `pulumi:"targetIp"`
+	Type           pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (VCPUServerNicFirewallArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerNicFirewall)(nil)).Elem()
+}
+
+func (i VCPUServerNicFirewallArgs) ToVCPUServerNicFirewallOutput() VCPUServerNicFirewallOutput {
+	return i.ToVCPUServerNicFirewallOutputWithContext(context.Background())
+}
+
+func (i VCPUServerNicFirewallArgs) ToVCPUServerNicFirewallOutputWithContext(ctx context.Context) VCPUServerNicFirewallOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerNicFirewallOutput)
+}
+
+// VCPUServerNicFirewallArrayInput is an input type that accepts VCPUServerNicFirewallArray and VCPUServerNicFirewallArrayOutput values.
+// You can construct a concrete instance of `VCPUServerNicFirewallArrayInput` via:
+//
+//	VCPUServerNicFirewallArray{ VCPUServerNicFirewallArgs{...} }
+type VCPUServerNicFirewallArrayInput interface {
+	pulumi.Input
+
+	ToVCPUServerNicFirewallArrayOutput() VCPUServerNicFirewallArrayOutput
+	ToVCPUServerNicFirewallArrayOutputWithContext(context.Context) VCPUServerNicFirewallArrayOutput
+}
+
+type VCPUServerNicFirewallArray []VCPUServerNicFirewallInput
+
+func (VCPUServerNicFirewallArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VCPUServerNicFirewall)(nil)).Elem()
+}
+
+func (i VCPUServerNicFirewallArray) ToVCPUServerNicFirewallArrayOutput() VCPUServerNicFirewallArrayOutput {
+	return i.ToVCPUServerNicFirewallArrayOutputWithContext(context.Background())
+}
+
+func (i VCPUServerNicFirewallArray) ToVCPUServerNicFirewallArrayOutputWithContext(ctx context.Context) VCPUServerNicFirewallArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerNicFirewallArrayOutput)
+}
+
+type VCPUServerNicFirewallOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerNicFirewallOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerNicFirewall)(nil)).Elem()
+}
+
+func (o VCPUServerNicFirewallOutput) ToVCPUServerNicFirewallOutput() VCPUServerNicFirewallOutput {
+	return o
+}
+
+func (o VCPUServerNicFirewallOutput) ToVCPUServerNicFirewallOutputWithContext(ctx context.Context) VCPUServerNicFirewallOutput {
+	return o
+}
+
+func (o VCPUServerNicFirewallOutput) IcmpCode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.IcmpCode }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) IcmpType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.IcmpType }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o VCPUServerNicFirewallOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) PortRangeEnd() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *int { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) PortRangeStart() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *int { return v.PortRangeStart }).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) SourceMac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.SourceMac }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) TargetIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerNicFirewallOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type VCPUServerNicFirewallArrayOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerNicFirewallArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VCPUServerNicFirewall)(nil)).Elem()
+}
+
+func (o VCPUServerNicFirewallArrayOutput) ToVCPUServerNicFirewallArrayOutput() VCPUServerNicFirewallArrayOutput {
+	return o
+}
+
+func (o VCPUServerNicFirewallArrayOutput) ToVCPUServerNicFirewallArrayOutputWithContext(ctx context.Context) VCPUServerNicFirewallArrayOutput {
+	return o
+}
+
+func (o VCPUServerNicFirewallArrayOutput) Index(i pulumi.IntInput) VCPUServerNicFirewallOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VCPUServerNicFirewall {
+		return vs[0].([]VCPUServerNicFirewall)[vs[1].(int)]
+	}).(VCPUServerNicFirewallOutput)
+}
+
+type VCPUServerVolume struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+	AvailabilityZone *string `pulumi:"availabilityZone"`
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+	BackupUnitId *string `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          *string `pulumi:"bootServer"`
+	Bus                 *string `pulumi:"bus"`
+	CpuHotPlug          *bool   `pulumi:"cpuHotPlug"`
+	DeviceNumber        *int    `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
+	DiskType            string  `pulumi:"diskType"`
+	// [string] Sets the OS type of the server.
+	LicenceType *string `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         *string `pulumi:"name"`
+	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
+	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
+	PciSlot      *int    `pulumi:"pciSlot"`
+	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
+	// The size of the volume in GB.
+	Size *int `pulumi:"size"`
+	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+	UserData *string `pulumi:"userData"`
+}
+
+// VCPUServerVolumeInput is an input type that accepts VCPUServerVolumeArgs and VCPUServerVolumeOutput values.
+// You can construct a concrete instance of `VCPUServerVolumeInput` via:
+//
+//	VCPUServerVolumeArgs{...}
+type VCPUServerVolumeInput interface {
+	pulumi.Input
+
+	ToVCPUServerVolumeOutput() VCPUServerVolumeOutput
+	ToVCPUServerVolumeOutputWithContext(context.Context) VCPUServerVolumeOutput
+}
+
+type VCPUServerVolumeArgs struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          pulumi.StringPtrInput `pulumi:"bootServer"`
+	Bus                 pulumi.StringPtrInput `pulumi:"bus"`
+	CpuHotPlug          pulumi.BoolPtrInput   `pulumi:"cpuHotPlug"`
+	DeviceNumber        pulumi.IntPtrInput    `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   pulumi.BoolPtrInput   `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
+	DiskType            pulumi.StringInput    `pulumi:"diskType"`
+	// [string] Sets the OS type of the server.
+	LicenceType pulumi.StringPtrInput `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	NicHotPlug   pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
+	NicHotUnplug pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
+	PciSlot      pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// The size of the volume in GB.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+	UserData pulumi.StringPtrInput `pulumi:"userData"`
+}
+
+func (VCPUServerVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerVolume)(nil)).Elem()
+}
+
+func (i VCPUServerVolumeArgs) ToVCPUServerVolumeOutput() VCPUServerVolumeOutput {
+	return i.ToVCPUServerVolumeOutputWithContext(context.Background())
+}
+
+func (i VCPUServerVolumeArgs) ToVCPUServerVolumeOutputWithContext(ctx context.Context) VCPUServerVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerVolumeOutput)
+}
+
+func (i VCPUServerVolumeArgs) ToVCPUServerVolumePtrOutput() VCPUServerVolumePtrOutput {
+	return i.ToVCPUServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (i VCPUServerVolumeArgs) ToVCPUServerVolumePtrOutputWithContext(ctx context.Context) VCPUServerVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerVolumeOutput).ToVCPUServerVolumePtrOutputWithContext(ctx)
+}
+
+// VCPUServerVolumePtrInput is an input type that accepts VCPUServerVolumeArgs, VCPUServerVolumePtr and VCPUServerVolumePtrOutput values.
+// You can construct a concrete instance of `VCPUServerVolumePtrInput` via:
+//
+//	        VCPUServerVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type VCPUServerVolumePtrInput interface {
+	pulumi.Input
+
+	ToVCPUServerVolumePtrOutput() VCPUServerVolumePtrOutput
+	ToVCPUServerVolumePtrOutputWithContext(context.Context) VCPUServerVolumePtrOutput
+}
+
+type vcpuserverVolumePtrType VCPUServerVolumeArgs
+
+func VCPUServerVolumePtr(v *VCPUServerVolumeArgs) VCPUServerVolumePtrInput {
+	return (*vcpuserverVolumePtrType)(v)
+}
+
+func (*vcpuserverVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VCPUServerVolume)(nil)).Elem()
+}
+
+func (i *vcpuserverVolumePtrType) ToVCPUServerVolumePtrOutput() VCPUServerVolumePtrOutput {
+	return i.ToVCPUServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *vcpuserverVolumePtrType) ToVCPUServerVolumePtrOutputWithContext(ctx context.Context) VCPUServerVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VCPUServerVolumePtrOutput)
+}
+
+type VCPUServerVolumeOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VCPUServerVolume)(nil)).Elem()
+}
+
+func (o VCPUServerVolumeOutput) ToVCPUServerVolumeOutput() VCPUServerVolumeOutput {
+	return o
+}
+
+func (o VCPUServerVolumeOutput) ToVCPUServerVolumeOutputWithContext(ctx context.Context) VCPUServerVolumeOutput {
+	return o
+}
+
+func (o VCPUServerVolumeOutput) ToVCPUServerVolumePtrOutput() VCPUServerVolumePtrOutput {
+	return o.ToVCPUServerVolumePtrOutputWithContext(context.Background())
+}
+
+func (o VCPUServerVolumeOutput) ToVCPUServerVolumePtrOutputWithContext(ctx context.Context) VCPUServerVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VCPUServerVolume) *VCPUServerVolume {
+		return &v
+	}).(VCPUServerVolumePtrOutput)
+}
+
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+func (o VCPUServerVolumeOutput) AvailabilityZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
+}
+
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+func (o VCPUServerVolumeOutput) BackupUnitId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.BackupUnitId }).(pulumi.StringPtrOutput)
+}
+
+// The UUID of the attached server.
+func (o VCPUServerVolumeOutput) BootServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.BootServer }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) Bus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.Bus }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) CpuHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.CpuHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *int { return v.DeviceNumber }).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.DiscVirtioHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v VCPUServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
+}
+
+// [string] Sets the OS type of the server.
+func (o VCPUServerVolumeOutput) LicenceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.LicenceType }).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o VCPUServerVolumeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) NicHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.NicHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) NicHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.NicHotUnplug }).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *int { return v.PciSlot }).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerVolumeOutput) RamHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *bool { return v.RamHotPlug }).(pulumi.BoolPtrOutput)
+}
+
+// The size of the volume in GB.
+func (o VCPUServerVolumeOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+func (o VCPUServerVolumeOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VCPUServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
+}
+
+type VCPUServerVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (VCPUServerVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VCPUServerVolume)(nil)).Elem()
+}
+
+func (o VCPUServerVolumePtrOutput) ToVCPUServerVolumePtrOutput() VCPUServerVolumePtrOutput {
+	return o
+}
+
+func (o VCPUServerVolumePtrOutput) ToVCPUServerVolumePtrOutputWithContext(ctx context.Context) VCPUServerVolumePtrOutput {
+	return o
+}
+
+func (o VCPUServerVolumePtrOutput) Elem() VCPUServerVolumeOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) VCPUServerVolume {
+		if v != nil {
+			return *v
+		}
+		var ret VCPUServerVolume
+		return ret
+	}).(VCPUServerVolumeOutput)
+}
+
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+func (o VCPUServerVolumePtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AvailabilityZone
+	}).(pulumi.StringPtrOutput)
+}
+
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+func (o VCPUServerVolumePtrOutput) BackupUnitId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackupUnitId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The UUID of the attached server.
+func (o VCPUServerVolumePtrOutput) BootServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BootServer
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) Bus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Bus
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) CpuHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CpuHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) DeviceNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.DeviceNumber
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) DiscVirtioHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DiscVirtioHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) DiscVirtioHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DiscVirtioHotUnplug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DiskType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Sets the OS type of the server.
+func (o VCPUServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LicenceType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The name of the server.
+func (o VCPUServerVolumePtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) NicHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NicHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) NicHotUnplug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.NicHotUnplug
+	}).(pulumi.BoolPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) PciSlot() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PciSlot
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VCPUServerVolumePtrOutput) RamHotPlug() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.RamHotPlug
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The size of the volume in GB.
+func (o VCPUServerVolumePtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+func (o VCPUServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VCPUServerVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UserData
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CrossconnectConnectableDatacenterInput)(nil)).Elem(), CrossconnectConnectableDatacenterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CrossconnectConnectableDatacenterArrayInput)(nil)).Elem(), CrossconnectConnectableDatacenterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CrossconnectPeerInput)(nil)).Elem(), CrossconnectPeerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CrossconnectPeerArrayInput)(nil)).Elem(), CrossconnectPeerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerNicInput)(nil)).Elem(), CubeServerNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerNicPtrInput)(nil)).Elem(), CubeServerNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerNicFirewallInput)(nil)).Elem(), CubeServerNicFirewallArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerNicFirewallPtrInput)(nil)).Elem(), CubeServerNicFirewallArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerVolumeInput)(nil)).Elem(), CubeServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerVolumePtrInput)(nil)).Elem(), CubeServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterCpuArchitectureInput)(nil)).Elem(), DatacenterCpuArchitectureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterCpuArchitectureArrayInput)(nil)).Elem(), DatacenterCpuArchitectureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupUserInput)(nil)).Elem(), GroupUserArgs{})
@@ -1839,6 +4426,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IPBlockIpConsumerArrayInput)(nil)).Elem(), IPBlockIpConsumerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LanIpFailoverInput)(nil)).Elem(), LanIpFailoverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LanIpFailoverArrayInput)(nil)).Elem(), LanIpFailoverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayLanInput)(nil)).Elem(), NatGatewayLanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayLanArrayInput)(nil)).Elem(), NatGatewayLanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayRuleTargetPortRangeInput)(nil)).Elem(), NatGatewayRuleTargetPortRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayRuleTargetPortRangePtrInput)(nil)).Elem(), NatGatewayRuleTargetPortRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NicFlowlogInput)(nil)).Elem(), NicFlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NicFlowlogPtrInput)(nil)).Elem(), NicFlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerLabelInput)(nil)).Elem(), ServerLabelArgs{})
@@ -1849,6 +4440,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerNicFirewallArrayInput)(nil)).Elem(), ServerNicFirewallArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerVolumeInput)(nil)).Elem(), ServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerVolumePtrInput)(nil)).Elem(), ServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerLabelInput)(nil)).Elem(), VCPUServerLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerLabelArrayInput)(nil)).Elem(), VCPUServerLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerNicInput)(nil)).Elem(), VCPUServerNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerNicPtrInput)(nil)).Elem(), VCPUServerNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerNicFirewallInput)(nil)).Elem(), VCPUServerNicFirewallArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerNicFirewallArrayInput)(nil)).Elem(), VCPUServerNicFirewallArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerVolumeInput)(nil)).Elem(), VCPUServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerVolumePtrInput)(nil)).Elem(), VCPUServerVolumeArgs{})
+	pulumi.RegisterOutputType(CrossconnectConnectableDatacenterOutput{})
+	pulumi.RegisterOutputType(CrossconnectConnectableDatacenterArrayOutput{})
+	pulumi.RegisterOutputType(CrossconnectPeerOutput{})
+	pulumi.RegisterOutputType(CrossconnectPeerArrayOutput{})
+	pulumi.RegisterOutputType(CubeServerNicOutput{})
+	pulumi.RegisterOutputType(CubeServerNicPtrOutput{})
+	pulumi.RegisterOutputType(CubeServerNicFirewallOutput{})
+	pulumi.RegisterOutputType(CubeServerNicFirewallPtrOutput{})
+	pulumi.RegisterOutputType(CubeServerVolumeOutput{})
+	pulumi.RegisterOutputType(CubeServerVolumePtrOutput{})
 	pulumi.RegisterOutputType(DatacenterCpuArchitectureOutput{})
 	pulumi.RegisterOutputType(DatacenterCpuArchitectureArrayOutput{})
 	pulumi.RegisterOutputType(GroupUserOutput{})
@@ -1857,6 +4466,10 @@ func init() {
 	pulumi.RegisterOutputType(IPBlockIpConsumerArrayOutput{})
 	pulumi.RegisterOutputType(LanIpFailoverOutput{})
 	pulumi.RegisterOutputType(LanIpFailoverArrayOutput{})
+	pulumi.RegisterOutputType(NatGatewayLanOutput{})
+	pulumi.RegisterOutputType(NatGatewayLanArrayOutput{})
+	pulumi.RegisterOutputType(NatGatewayRuleTargetPortRangeOutput{})
+	pulumi.RegisterOutputType(NatGatewayRuleTargetPortRangePtrOutput{})
 	pulumi.RegisterOutputType(NicFlowlogOutput{})
 	pulumi.RegisterOutputType(NicFlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ServerLabelOutput{})
@@ -1867,4 +4480,12 @@ func init() {
 	pulumi.RegisterOutputType(ServerNicFirewallArrayOutput{})
 	pulumi.RegisterOutputType(ServerVolumeOutput{})
 	pulumi.RegisterOutputType(ServerVolumePtrOutput{})
+	pulumi.RegisterOutputType(VCPUServerLabelOutput{})
+	pulumi.RegisterOutputType(VCPUServerLabelArrayOutput{})
+	pulumi.RegisterOutputType(VCPUServerNicOutput{})
+	pulumi.RegisterOutputType(VCPUServerNicPtrOutput{})
+	pulumi.RegisterOutputType(VCPUServerNicFirewallOutput{})
+	pulumi.RegisterOutputType(VCPUServerNicFirewallArrayOutput{})
+	pulumi.RegisterOutputType(VCPUServerVolumeOutput{})
+	pulumi.RegisterOutputType(VCPUServerVolumePtrOutput{})
 }

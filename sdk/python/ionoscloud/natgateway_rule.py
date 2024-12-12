@@ -27,15 +27,18 @@ class NatgatewayRuleArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a NatgatewayRule resource.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[str] natgateway_id: [string] Nat Gateway's UUID.
-        :param pulumi.Input[str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
-        :param pulumi.Input[str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input[str] name: [string] Name of the NAT gateway rule.
-        :param pulumi.Input[str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-        :param pulumi.Input['NatgatewayRuleTargetPortRangeArgs'] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
-        :param pulumi.Input[str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-        :param pulumi.Input[str] type: [string] Type of the NAT gateway rule.
+        :param pulumi.Input[str] public_ip: Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+               Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        :param pulumi.Input[str] source_subnet: Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+               on the packets source IP address.
+        :param pulumi.Input[str] name: Name of the NAT gateway rule
+        :param pulumi.Input[str] protocol: Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+               set.
+        :param pulumi.Input['NatgatewayRuleTargetPortRangeArgs'] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+               based on destination port. If none is provided, rule will match any port
+        :param pulumi.Input[str] target_subnet: Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+               applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        :param pulumi.Input[str] type: Type of the NAT gateway rule.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "natgateway_id", natgateway_id)
@@ -55,9 +58,6 @@ class NatgatewayRuleArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -67,9 +67,6 @@ class NatgatewayRuleArgs:
     @property
     @pulumi.getter(name="natgatewayId")
     def natgateway_id(self) -> pulumi.Input[str]:
-        """
-        [string] Nat Gateway's UUID.
-        """
         return pulumi.get(self, "natgateway_id")
 
     @natgateway_id.setter
@@ -80,7 +77,8 @@ class NatgatewayRuleArgs:
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Input[str]:
         """
-        [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        Should be one of the customer reserved IP address already configured on the NAT gateway resource
         """
         return pulumi.get(self, "public_ip")
 
@@ -92,7 +90,8 @@ class NatgatewayRuleArgs:
     @pulumi.getter(name="sourceSubnet")
     def source_subnet(self) -> pulumi.Input[str]:
         """
-        [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        on the packets source IP address.
         """
         return pulumi.get(self, "source_subnet")
 
@@ -104,7 +103,7 @@ class NatgatewayRuleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the NAT gateway rule.
+        Name of the NAT gateway rule
         """
         return pulumi.get(self, "name")
 
@@ -116,7 +115,8 @@ class NatgatewayRuleArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        set.
         """
         return pulumi.get(self, "protocol")
 
@@ -128,7 +128,8 @@ class NatgatewayRuleArgs:
     @pulumi.getter(name="targetPortRange")
     def target_port_range(self) -> Optional[pulumi.Input['NatgatewayRuleTargetPortRangeArgs']]:
         """
-        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        based on destination port. If none is provided, rule will match any port
         """
         return pulumi.get(self, "target_port_range")
 
@@ -140,7 +141,8 @@ class NatgatewayRuleArgs:
     @pulumi.getter(name="targetSubnet")
     def target_subnet(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        applies to based on the packets destination IP address. If none is provided, rule will match any address.
         """
         return pulumi.get(self, "target_subnet")
 
@@ -152,7 +154,7 @@ class NatgatewayRuleArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Type of the NAT gateway rule.
+        Type of the NAT gateway rule.
         """
         return pulumi.get(self, "type")
 
@@ -175,15 +177,18 @@ class _NatgatewayRuleState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NatgatewayRule resources.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[str] name: [string] Name of the NAT gateway rule.
-        :param pulumi.Input[str] natgateway_id: [string] Nat Gateway's UUID.
-        :param pulumi.Input[str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-        :param pulumi.Input[str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
-        :param pulumi.Input[str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input['NatgatewayRuleTargetPortRangeArgs'] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
-        :param pulumi.Input[str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-        :param pulumi.Input[str] type: [string] Type of the NAT gateway rule.
+        :param pulumi.Input[str] name: Name of the NAT gateway rule
+        :param pulumi.Input[str] protocol: Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+               set.
+        :param pulumi.Input[str] public_ip: Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+               Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        :param pulumi.Input[str] source_subnet: Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+               on the packets source IP address.
+        :param pulumi.Input['NatgatewayRuleTargetPortRangeArgs'] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+               based on destination port. If none is provided, rule will match any port
+        :param pulumi.Input[str] target_subnet: Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+               applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        :param pulumi.Input[str] type: Type of the NAT gateway rule.
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -207,9 +212,6 @@ class _NatgatewayRuleState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -220,7 +222,7 @@ class _NatgatewayRuleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the NAT gateway rule.
+        Name of the NAT gateway rule
         """
         return pulumi.get(self, "name")
 
@@ -231,9 +233,6 @@ class _NatgatewayRuleState:
     @property
     @pulumi.getter(name="natgatewayId")
     def natgateway_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Nat Gateway's UUID.
-        """
         return pulumi.get(self, "natgateway_id")
 
     @natgateway_id.setter
@@ -244,7 +243,8 @@ class _NatgatewayRuleState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        set.
         """
         return pulumi.get(self, "protocol")
 
@@ -256,7 +256,8 @@ class _NatgatewayRuleState:
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        Should be one of the customer reserved IP address already configured on the NAT gateway resource
         """
         return pulumi.get(self, "public_ip")
 
@@ -268,7 +269,8 @@ class _NatgatewayRuleState:
     @pulumi.getter(name="sourceSubnet")
     def source_subnet(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        on the packets source IP address.
         """
         return pulumi.get(self, "source_subnet")
 
@@ -280,7 +282,8 @@ class _NatgatewayRuleState:
     @pulumi.getter(name="targetPortRange")
     def target_port_range(self) -> Optional[pulumi.Input['NatgatewayRuleTargetPortRangeArgs']]:
         """
-        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        based on destination port. If none is provided, rule will match any port
         """
         return pulumi.get(self, "target_port_range")
 
@@ -292,7 +295,8 @@ class _NatgatewayRuleState:
     @pulumi.getter(name="targetSubnet")
     def target_subnet(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        applies to based on the packets destination IP address. If none is provided, rule will match any address.
         """
         return pulumi.get(self, "target_subnet")
 
@@ -304,7 +308,7 @@ class _NatgatewayRuleState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Type of the NAT gateway rule.
+        Type of the NAT gateway rule.
         """
         return pulumi.get(self, "type")
 
@@ -313,7 +317,12 @@ class _NatgatewayRuleState:
         pulumi.set(self, "type", value)
 
 
+warnings.warn("""ionoscloud.index/natgatewayrule.NatgatewayRule has been deprecated in favor of ionoscloud.compute/natgatewayrule.NatGatewayRule""", DeprecationWarning)
+
+
 class NatgatewayRule(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/natgatewayrule.NatgatewayRule has been deprecated in favor of ionoscloud.compute/natgatewayrule.NatGatewayRule""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -329,69 +338,21 @@ class NatgatewayRule(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a **Nat Gateway Rule** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location="us/las",
-            size=2)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_natgateway = ionoscloud.Natgateway("exampleNatgateway",
-            datacenter_id=example_datacenter.id,
-            public_ips=[
-                example_ip_block.ips[0],
-                example_ip_block.ips[1],
-            ],
-            lans=[ionoscloud.NatgatewayLanArgs(
-                id=example_lan.id,
-                gateway_ips=["10.11.2.5"],
-            )])
-        example_natgateway_rule = ionoscloud.NatgatewayRule("exampleNatgatewayRule",
-            datacenter_id=example_datacenter.id,
-            natgateway_id=example_natgateway.id,
-            type="SNAT",
-            protocol="TCP",
-            source_subnet="10.0.1.0/24",
-            public_ip=example_ip_block.ips[0],
-            target_subnet="10.0.1.0/24",
-            target_port_range=ionoscloud.NatgatewayRuleTargetPortRangeArgs(
-                start=500,
-                end=1000,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Nat Gateway Rule resource can be imported using its `resource id`, the `datacenter id` and the `natgateway id , e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/natgatewayRule:NatgatewayRule my_natgateway_rule {datacenter uuid}/{nat gateway uuid}/{nat gateway rule uuid}
-        ```
-
+        Create a NatgatewayRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[str] name: [string] Name of the NAT gateway rule.
-        :param pulumi.Input[str] natgateway_id: [string] Nat Gateway's UUID.
-        :param pulumi.Input[str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-        :param pulumi.Input[str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
-        :param pulumi.Input[str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input[pulumi.InputType['NatgatewayRuleTargetPortRangeArgs']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
-        :param pulumi.Input[str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-        :param pulumi.Input[str] type: [string] Type of the NAT gateway rule.
+        :param pulumi.Input[str] name: Name of the NAT gateway rule
+        :param pulumi.Input[str] protocol: Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+               set.
+        :param pulumi.Input[str] public_ip: Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+               Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        :param pulumi.Input[str] source_subnet: Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+               on the packets source IP address.
+        :param pulumi.Input[pulumi.InputType['NatgatewayRuleTargetPortRangeArgs']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+               based on destination port. If none is provided, rule will match any port
+        :param pulumi.Input[str] target_subnet: Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+               applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        :param pulumi.Input[str] type: Type of the NAT gateway rule.
         """
         ...
     @overload
@@ -400,58 +361,7 @@ class NatgatewayRule(pulumi.CustomResource):
                  args: NatgatewayRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Nat Gateway Rule** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location="us/las",
-            size=2)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        example_natgateway = ionoscloud.Natgateway("exampleNatgateway",
-            datacenter_id=example_datacenter.id,
-            public_ips=[
-                example_ip_block.ips[0],
-                example_ip_block.ips[1],
-            ],
-            lans=[ionoscloud.NatgatewayLanArgs(
-                id=example_lan.id,
-                gateway_ips=["10.11.2.5"],
-            )])
-        example_natgateway_rule = ionoscloud.NatgatewayRule("exampleNatgatewayRule",
-            datacenter_id=example_datacenter.id,
-            natgateway_id=example_natgateway.id,
-            type="SNAT",
-            protocol="TCP",
-            source_subnet="10.0.1.0/24",
-            public_ip=example_ip_block.ips[0],
-            target_subnet="10.0.1.0/24",
-            target_port_range=ionoscloud.NatgatewayRuleTargetPortRangeArgs(
-                start=500,
-                end=1000,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Nat Gateway Rule resource can be imported using its `resource id`, the `datacenter id` and the `natgateway id , e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/natgatewayRule:NatgatewayRule my_natgateway_rule {datacenter uuid}/{nat gateway uuid}/{nat gateway rule uuid}
-        ```
-
+        Create a NatgatewayRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param NatgatewayRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -477,6 +387,7 @@ class NatgatewayRule(pulumi.CustomResource):
                  target_subnet: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""NatgatewayRule is deprecated: ionoscloud.index/natgatewayrule.NatgatewayRule has been deprecated in favor of ionoscloud.compute/natgatewayrule.NatGatewayRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -528,15 +439,18 @@ class NatgatewayRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[str] name: [string] Name of the NAT gateway rule.
-        :param pulumi.Input[str] natgateway_id: [string] Nat Gateway's UUID.
-        :param pulumi.Input[str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-        :param pulumi.Input[str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
-        :param pulumi.Input[str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input[pulumi.InputType['NatgatewayRuleTargetPortRangeArgs']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
-        :param pulumi.Input[str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-        :param pulumi.Input[str] type: [string] Type of the NAT gateway rule.
+        :param pulumi.Input[str] name: Name of the NAT gateway rule
+        :param pulumi.Input[str] protocol: Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+               set.
+        :param pulumi.Input[str] public_ip: Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+               Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        :param pulumi.Input[str] source_subnet: Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+               on the packets source IP address.
+        :param pulumi.Input[pulumi.InputType['NatgatewayRuleTargetPortRangeArgs']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+               based on destination port. If none is provided, rule will match any port
+        :param pulumi.Input[str] target_subnet: Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+               applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        :param pulumi.Input[str] type: Type of the NAT gateway rule.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -556,32 +470,27 @@ class NatgatewayRule(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Name of the NAT gateway rule.
+        Name of the NAT gateway rule
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="natgatewayId")
     def natgateway_id(self) -> pulumi.Output[str]:
-        """
-        [string] Nat Gateway's UUID.
-        """
         return pulumi.get(self, "natgateway_id")
 
     @property
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        set.
         """
         return pulumi.get(self, "protocol")
 
@@ -589,7 +498,8 @@ class NatgatewayRule(pulumi.CustomResource):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Output[str]:
         """
-        [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        Should be one of the customer reserved IP address already configured on the NAT gateway resource
         """
         return pulumi.get(self, "public_ip")
 
@@ -597,7 +507,8 @@ class NatgatewayRule(pulumi.CustomResource):
     @pulumi.getter(name="sourceSubnet")
     def source_subnet(self) -> pulumi.Output[str]:
         """
-        [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        on the packets source IP address.
         """
         return pulumi.get(self, "source_subnet")
 
@@ -605,7 +516,8 @@ class NatgatewayRule(pulumi.CustomResource):
     @pulumi.getter(name="targetPortRange")
     def target_port_range(self) -> pulumi.Output['outputs.NatgatewayRuleTargetPortRange']:
         """
-        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        based on destination port. If none is provided, rule will match any port
         """
         return pulumi.get(self, "target_port_range")
 
@@ -613,7 +525,8 @@ class NatgatewayRule(pulumi.CustomResource):
     @pulumi.getter(name="targetSubnet")
     def target_subnet(self) -> pulumi.Output[str]:
         """
-        [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        applies to based on the packets destination IP address. If none is provided, rule will match any address.
         """
         return pulumi.get(self, "target_subnet")
 
@@ -621,7 +534,7 @@ class NatgatewayRule(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        [string] Type of the NAT gateway rule.
+        Type of the NAT gateway rule.
         """
         return pulumi.get(self, "type")
 

@@ -11,16 +11,687 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'CrossconnectConnectableDatacenter',
+    'CrossconnectPeer',
+    'CubeServerNic',
+    'CubeServerNicFirewall',
+    'CubeServerVolume',
     'DatacenterCpuArchitecture',
     'GroupUser',
     'IPBlockIpConsumer',
     'LanIpFailover',
+    'NatGatewayLan',
+    'NatGatewayRuleTargetPortRange',
     'NicFlowlog',
     'ServerLabel',
     'ServerNic',
     'ServerNicFirewall',
     'ServerVolume',
+    'VCPUServerLabel',
+    'VCPUServerNic',
+    'VCPUServerNicFirewall',
+    'VCPUServerVolume',
 ]
+
+@pulumi.output_type
+class CrossconnectConnectableDatacenter(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 location: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param str id: The UUID of the connectable datacenter
+        :param str location: The location of the cross-connected datacenter
+        :param str name: The name of the connectable datacenter
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The UUID of the connectable datacenter
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[str]:
+        """
+        The location of the cross-connected datacenter
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the connectable datacenter
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class CrossconnectPeer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datacenterId":
+            suggest = "datacenter_id"
+        elif key == "datacenterName":
+            suggest = "datacenter_name"
+        elif key == "lanId":
+            suggest = "lan_id"
+        elif key == "lanName":
+            suggest = "lan_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CrossconnectPeer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CrossconnectPeer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CrossconnectPeer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datacenter_id: Optional[str] = None,
+                 datacenter_name: Optional[str] = None,
+                 lan_id: Optional[str] = None,
+                 lan_name: Optional[str] = None,
+                 location: Optional[str] = None):
+        """
+        :param str datacenter_id: The id of the cross-connected datacenter
+        :param str datacenter_name: The name of the cross-connected datacenter
+        :param str lan_id: The id of the cross-connected LAN
+        :param str lan_name: The name of the cross-connected LAN
+        :param str location: The location of the cross-connected datacenter
+        """
+        if datacenter_id is not None:
+            pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if datacenter_name is not None:
+            pulumi.set(__self__, "datacenter_name", datacenter_name)
+        if lan_id is not None:
+            pulumi.set(__self__, "lan_id", lan_id)
+        if lan_name is not None:
+            pulumi.set(__self__, "lan_name", lan_name)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> Optional[str]:
+        """
+        The id of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="datacenterName")
+    def datacenter_name(self) -> Optional[str]:
+        """
+        The name of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_name")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> Optional[str]:
+        """
+        The id of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_id")
+
+    @property
+    @pulumi.getter(name="lanName")
+    def lan_name(self) -> Optional[str]:
+        """
+        The name of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_name")
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[str]:
+        """
+        The location of the cross-connected datacenter
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class CubeServerNic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "firewallActive":
+            suggest = "firewall_active"
+        elif key == "firewallType":
+            suggest = "firewall_type"
+        elif key == "ipv6CidrBlock":
+            suggest = "ipv6_cidr_block"
+        elif key == "ipv6Ips":
+            suggest = "ipv6_ips"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CubeServerNic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CubeServerNic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CubeServerNic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 lan: int,
+                 device_number: Optional[int] = None,
+                 dhcp: Optional[bool] = None,
+                 dhcpv6: Optional[bool] = None,
+                 firewall: Optional['outputs.CubeServerNicFirewall'] = None,
+                 firewall_active: Optional[bool] = None,
+                 firewall_type: Optional[str] = None,
+                 ips: Optional[Sequence[str]] = None,
+                 ipv6_cidr_block: Optional[str] = None,
+                 ipv6_ips: Optional[Sequence[str]] = None,
+                 mac: Optional[str] = None,
+                 name: Optional[str] = None,
+                 pci_slot: Optional[int] = None):
+        """
+        :param bool dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param str ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param Sequence[str] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        :param str name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "lan", lan)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+        if firewall is not None:
+            pulumi.set(__self__, "firewall", firewall)
+        if firewall_active is not None:
+            pulumi.set(__self__, "firewall_active", firewall_active)
+        if firewall_type is not None:
+            pulumi.set(__self__, "firewall_type", firewall_type)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_ips is not None:
+            pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[int]:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
+        return pulumi.get(self, "dhcpv6")
+
+    @property
+    @pulumi.getter
+    def firewall(self) -> Optional['outputs.CubeServerNicFirewall']:
+        return pulumi.get(self, "firewall")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> Optional[bool]:
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> Optional[str]:
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[str]:
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Optional[Sequence[str]]:
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[str]:
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[int]:
+        return pulumi.get(self, "pci_slot")
+
+
+@pulumi.output_type
+class CubeServerNicFirewall(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "icmpCode":
+            suggest = "icmp_code"
+        elif key == "icmpType":
+            suggest = "icmp_type"
+        elif key == "portRangeEnd":
+            suggest = "port_range_end"
+        elif key == "portRangeStart":
+            suggest = "port_range_start"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+        elif key == "sourceMac":
+            suggest = "source_mac"
+        elif key == "targetIp":
+            suggest = "target_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CubeServerNicFirewall. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CubeServerNicFirewall.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CubeServerNicFirewall.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 protocol: str,
+                 icmp_code: Optional[str] = None,
+                 icmp_type: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port_range_end: Optional[int] = None,
+                 port_range_start: Optional[int] = None,
+                 source_ip: Optional[str] = None,
+                 source_mac: Optional[str] = None,
+                 target_ip: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port_range_end is not None:
+            pulumi.set(__self__, "port_range_end", port_range_end)
+        if port_range_start is not None:
+            pulumi.set(__self__, "port_range_start", port_range_start)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+        if source_mac is not None:
+            pulumi.set(__self__, "source_mac", source_mac)
+        if target_ip is not None:
+            pulumi.set(__self__, "target_ip", target_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> Optional[str]:
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[str]:
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> Optional[int]:
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> Optional[int]:
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> Optional[str]:
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> Optional[str]:
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class CubeServerVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskType":
+            suggest = "disk_type"
+        elif key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "backupUnitId":
+            suggest = "backup_unit_id"
+        elif key == "bootServer":
+            suggest = "boot_server"
+        elif key == "cpuHotPlug":
+            suggest = "cpu_hot_plug"
+        elif key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "discVirtioHotPlug":
+            suggest = "disc_virtio_hot_plug"
+        elif key == "discVirtioHotUnplug":
+            suggest = "disc_virtio_hot_unplug"
+        elif key == "imagePassword":
+            suggest = "image_password"
+        elif key == "licenceType":
+            suggest = "licence_type"
+        elif key == "nicHotPlug":
+            suggest = "nic_hot_plug"
+        elif key == "nicHotUnplug":
+            suggest = "nic_hot_unplug"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+        elif key == "ramHotPlug":
+            suggest = "ram_hot_plug"
+        elif key == "sshKeyPaths":
+            suggest = "ssh_key_paths"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CubeServerVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CubeServerVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CubeServerVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_type: str,
+                 availability_zone: Optional[str] = None,
+                 backup_unit_id: Optional[str] = None,
+                 boot_server: Optional[str] = None,
+                 bus: Optional[str] = None,
+                 cpu_hot_plug: Optional[bool] = None,
+                 device_number: Optional[int] = None,
+                 disc_virtio_hot_plug: Optional[bool] = None,
+                 disc_virtio_hot_unplug: Optional[bool] = None,
+                 image_password: Optional[str] = None,
+                 licence_type: Optional[str] = None,
+                 name: Optional[str] = None,
+                 nic_hot_plug: Optional[bool] = None,
+                 nic_hot_unplug: Optional[bool] = None,
+                 pci_slot: Optional[int] = None,
+                 ram_hot_plug: Optional[bool] = None,
+                 ssh_key_paths: Optional[Sequence[str]] = None,
+                 user_data: Optional[str] = None):
+        """
+        :param str availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
+        :param str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param str boot_server: The UUID of the attached server.
+        :param str image_password: [string] Required if `ssh_key_path` is not provided.
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               
+               
+               > **⚠ WARNING**
+               >
+               > For creating a **CUBE** server, you can not set `volume.size` argument.
+               >
+        :param str licence_type: [string] Sets the OS type of the server.
+        :param str name: [string] The name of the server.
+        :param Sequence[str] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param str user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        pulumi.set(__self__, "disk_type", disk_type)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if backup_unit_id is not None:
+            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        if boot_server is not None:
+            pulumi.set(__self__, "boot_server", boot_server)
+        if bus is not None:
+            pulumi.set(__self__, "bus", bus)
+        if cpu_hot_plug is not None:
+            pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if disc_virtio_hot_plug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        if disc_virtio_hot_unplug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if image_password is not None:
+            pulumi.set(__self__, "image_password", image_password)
+        if licence_type is not None:
+            pulumi.set(__self__, "licence_type", licence_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nic_hot_plug is not None:
+            pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        if nic_hot_unplug is not None:
+            pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if ram_hot_plug is not None:
+            pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if ssh_key_paths is not None:
+            pulumi.set(__self__, "ssh_key_paths", ssh_key_paths)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> str:
+        return pulumi.get(self, "disk_type")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[str]:
+        """
+        [string] The availability zone in which the server should exist. This property is immutable.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> Optional[str]:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> Optional[str]:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> Optional[str]:
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[int]:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> Optional[bool]:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> Optional[str]:
+        """
+        [string] Required if `ssh_key_path` is not provided.
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+
+
+        > **⚠ WARNING**
+        >
+        > For creating a **CUBE** server, you can not set `volume.size` argument.
+        >
+        """
+        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
+        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
+
+        return pulumi.get(self, "image_password")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> Optional[str]:
+        """
+        [string] Sets the OS type of the server.
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> Optional[bool]:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[int]:
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="sshKeyPaths")
+    def ssh_key_paths(self) -> Optional[Sequence[str]]:
+        """
+        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        """
+        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
+        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
+
+        return pulumi.get(self, "ssh_key_paths")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
 
 @pulumi.output_type
 class DatacenterCpuArchitecture(dict):
@@ -322,6 +993,84 @@ class LanIpFailover(dict):
     @pulumi.getter(name="nicUuid")
     def nic_uuid(self) -> Optional[str]:
         return pulumi.get(self, "nic_uuid")
+
+
+@pulumi.output_type
+class NatGatewayLan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gatewayIps":
+            suggest = "gateway_ips"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NatGatewayLan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NatGatewayLan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NatGatewayLan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: int,
+                 gateway_ips: Optional[Sequence[str]] = None):
+        """
+        :param int id: [int] Id for the LAN connected to the NAT gateway.
+        :param Sequence[str] gateway_ips: [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+        """
+        pulumi.set(__self__, "id", id)
+        if gateway_ips is not None:
+            pulumi.set(__self__, "gateway_ips", gateway_ips)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        [int] Id for the LAN connected to the NAT gateway.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="gatewayIps")
+    def gateway_ips(self) -> Optional[Sequence[str]]:
+        """
+        [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+        """
+        return pulumi.get(self, "gateway_ips")
+
+
+@pulumi.output_type
+class NatGatewayRuleTargetPortRange(dict):
+    def __init__(__self__, *,
+                 end: Optional[int] = None,
+                 start: Optional[int] = None):
+        """
+        :param int end: [int] Target port range end associated with the NAT gateway rule.
+        :param int start: [int] Target port range start associated with the NAT gateway rule.
+        """
+        if end is not None:
+            pulumi.set(__self__, "end", end)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
+
+    @property
+    @pulumi.getter
+    def end(self) -> Optional[int]:
+        """
+        [int] Target port range end associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "end")
+
+    @property
+    @pulumi.getter
+    def start(self) -> Optional[int]:
+        """
+        [int] Target port range start associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "start")
 
 
 @pulumi.output_type
@@ -974,6 +1723,522 @@ class ServerVolume(dict):
         pulumi.log.warn("""ssh_keys is deprecated: Please use ssh_keys under server level""")
 
         return pulumi.get(self, "ssh_keys")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class VCPUServerLabel(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VCPUServerNic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "firewallActive":
+            suggest = "firewall_active"
+        elif key == "firewallType":
+            suggest = "firewall_type"
+        elif key == "ipv6CidrBlock":
+            suggest = "ipv6_cidr_block"
+        elif key == "ipv6Ips":
+            suggest = "ipv6_ips"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VCPUServerNic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VCPUServerNic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VCPUServerNic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 lan: int,
+                 device_number: Optional[int] = None,
+                 dhcp: Optional[bool] = None,
+                 dhcpv6: Optional[bool] = None,
+                 firewall_active: Optional[bool] = None,
+                 firewall_type: Optional[str] = None,
+                 firewalls: Optional[Sequence['outputs.VCPUServerNicFirewall']] = None,
+                 id: Optional[str] = None,
+                 ips: Optional[Sequence[str]] = None,
+                 ipv6_cidr_block: Optional[str] = None,
+                 ipv6_ips: Optional[Sequence[str]] = None,
+                 mac: Optional[str] = None,
+                 name: Optional[str] = None,
+                 pci_slot: Optional[int] = None):
+        """
+        :param Sequence['VCPUServerNicFirewallArgs'] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
+        :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        :param str name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "lan", lan)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+        if firewall_active is not None:
+            pulumi.set(__self__, "firewall_active", firewall_active)
+        if firewall_type is not None:
+            pulumi.set(__self__, "firewall_type", firewall_type)
+        if firewalls is not None:
+            pulumi.set(__self__, "firewalls", firewalls)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_ips is not None:
+            pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[int]:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcpv6")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> Optional[bool]:
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> Optional[str]:
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def firewalls(self) -> Optional[Sequence['outputs.VCPUServerNicFirewall']]:
+        """
+        Allows to define firewall rules inline in the server. See the Firewall section.
+        """
+        return pulumi.get(self, "firewalls")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[str]]:
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[str]:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[str]:
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[int]:
+        return pulumi.get(self, "pci_slot")
+
+
+@pulumi.output_type
+class VCPUServerNicFirewall(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "icmpCode":
+            suggest = "icmp_code"
+        elif key == "icmpType":
+            suggest = "icmp_type"
+        elif key == "portRangeEnd":
+            suggest = "port_range_end"
+        elif key == "portRangeStart":
+            suggest = "port_range_start"
+        elif key == "sourceIp":
+            suggest = "source_ip"
+        elif key == "sourceMac":
+            suggest = "source_mac"
+        elif key == "targetIp":
+            suggest = "target_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VCPUServerNicFirewall. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VCPUServerNicFirewall.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VCPUServerNicFirewall.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 protocol: str,
+                 icmp_code: Optional[str] = None,
+                 icmp_type: Optional[str] = None,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port_range_end: Optional[int] = None,
+                 port_range_start: Optional[int] = None,
+                 source_ip: Optional[str] = None,
+                 source_mac: Optional[str] = None,
+                 target_ip: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port_range_end is not None:
+            pulumi.set(__self__, "port_range_end", port_range_end)
+        if port_range_start is not None:
+            pulumi.set(__self__, "port_range_start", port_range_start)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+        if source_mac is not None:
+            pulumi.set(__self__, "source_mac", source_mac)
+        if target_ip is not None:
+            pulumi.set(__self__, "target_ip", target_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> Optional[str]:
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[str]:
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> Optional[int]:
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> Optional[int]:
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[str]:
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> Optional[str]:
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> Optional[str]:
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class VCPUServerVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskType":
+            suggest = "disk_type"
+        elif key == "availabilityZone":
+            suggest = "availability_zone"
+        elif key == "backupUnitId":
+            suggest = "backup_unit_id"
+        elif key == "bootServer":
+            suggest = "boot_server"
+        elif key == "cpuHotPlug":
+            suggest = "cpu_hot_plug"
+        elif key == "deviceNumber":
+            suggest = "device_number"
+        elif key == "discVirtioHotPlug":
+            suggest = "disc_virtio_hot_plug"
+        elif key == "discVirtioHotUnplug":
+            suggest = "disc_virtio_hot_unplug"
+        elif key == "licenceType":
+            suggest = "licence_type"
+        elif key == "nicHotPlug":
+            suggest = "nic_hot_plug"
+        elif key == "nicHotUnplug":
+            suggest = "nic_hot_unplug"
+        elif key == "pciSlot":
+            suggest = "pci_slot"
+        elif key == "ramHotPlug":
+            suggest = "ram_hot_plug"
+        elif key == "userData":
+            suggest = "user_data"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VCPUServerVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VCPUServerVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VCPUServerVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_type: str,
+                 availability_zone: Optional[str] = None,
+                 backup_unit_id: Optional[str] = None,
+                 boot_server: Optional[str] = None,
+                 bus: Optional[str] = None,
+                 cpu_hot_plug: Optional[bool] = None,
+                 device_number: Optional[int] = None,
+                 disc_virtio_hot_plug: Optional[bool] = None,
+                 disc_virtio_hot_unplug: Optional[bool] = None,
+                 licence_type: Optional[str] = None,
+                 name: Optional[str] = None,
+                 nic_hot_plug: Optional[bool] = None,
+                 nic_hot_unplug: Optional[bool] = None,
+                 pci_slot: Optional[int] = None,
+                 ram_hot_plug: Optional[bool] = None,
+                 size: Optional[int] = None,
+                 user_data: Optional[str] = None):
+        """
+        :param str availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param str backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param str boot_server: The UUID of the attached server.
+        :param str licence_type: [string] Sets the OS type of the server.
+        :param str name: [string] The name of the server.
+        :param int size: The size of the volume in GB.
+        :param str user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        pulumi.set(__self__, "disk_type", disk_type)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if backup_unit_id is not None:
+            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        if boot_server is not None:
+            pulumi.set(__self__, "boot_server", boot_server)
+        if bus is not None:
+            pulumi.set(__self__, "bus", bus)
+        if cpu_hot_plug is not None:
+            pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if disc_virtio_hot_plug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        if disc_virtio_hot_unplug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if licence_type is not None:
+            pulumi.set(__self__, "licence_type", licence_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nic_hot_plug is not None:
+            pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        if nic_hot_unplug is not None:
+            pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if ram_hot_plug is not None:
+            pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> str:
+        return pulumi.get(self, "disk_type")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[str]:
+        """
+        [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> Optional[str]:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> Optional[str]:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> Optional[str]:
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[int]:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> Optional[bool]:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> Optional[str]:
+        """
+        [string] Sets the OS type of the server.
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> Optional[bool]:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[int]:
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> Optional[bool]:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[int]:
+        """
+        The size of the volume in GB.
+        """
+        return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="userData")

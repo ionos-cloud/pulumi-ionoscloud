@@ -6,15 +6,24 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .backup_unit import *
+from .boot_device_selection import *
+from .crossconnect import *
+from .cube_server import *
 from .datacenter import *
 from .firewall import *
 from .group import *
 from .ip_block import *
+from .ip_failover import *
 from .lan import *
+from .nat_gateway import *
+from .nat_gateway_rule import *
 from .nic import *
 from .s3_key import *
 from .server import *
+from .share import *
+from .snapshot import *
 from .user import *
+from .vcpu_server import *
 from .volume import *
 from ._inputs import *
 from . import outputs

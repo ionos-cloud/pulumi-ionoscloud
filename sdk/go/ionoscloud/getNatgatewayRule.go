@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupNatgatewayRule(ctx *pulumi.Context, args *LookupNatgatewayRuleArgs, opts ...pulumi.InvokeOption) (*LookupNatgatewayRuleResult, error) {
+func GetNatgatewayRule(ctx *pulumi.Context, args *GetNatgatewayRuleArgs, opts ...pulumi.InvokeOption) (*GetNatgatewayRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNatgatewayRuleResult
+	var rv GetNatgatewayRuleResult
 	err := ctx.Invoke("ionoscloud:index/getNatgatewayRule:getNatgatewayRule", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupNatgatewayRule(ctx *pulumi.Context, args *LookupNatgatewayRuleArgs, o
 }
 
 // A collection of arguments for invoking getNatgatewayRule.
-type LookupNatgatewayRuleArgs struct {
+type GetNatgatewayRuleArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the NAT gateway rule you want to search for.
@@ -41,7 +41,7 @@ type LookupNatgatewayRuleArgs struct {
 }
 
 // A collection of values returned by getNatgatewayRule.
-type LookupNatgatewayRuleResult struct {
+type GetNatgatewayRuleResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Id of the NAT gateway rule
 	Id *string `pulumi:"id"`
@@ -62,21 +62,21 @@ type LookupNatgatewayRuleResult struct {
 	Type string `pulumi:"type"`
 }
 
-func LookupNatgatewayRuleOutput(ctx *pulumi.Context, args LookupNatgatewayRuleOutputArgs, opts ...pulumi.InvokeOption) LookupNatgatewayRuleResultOutput {
+func GetNatgatewayRuleOutput(ctx *pulumi.Context, args GetNatgatewayRuleOutputArgs, opts ...pulumi.InvokeOption) GetNatgatewayRuleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNatgatewayRuleResult, error) {
-			args := v.(LookupNatgatewayRuleArgs)
-			r, err := LookupNatgatewayRule(ctx, &args, opts...)
-			var s LookupNatgatewayRuleResult
+		ApplyT(func(v interface{}) (GetNatgatewayRuleResult, error) {
+			args := v.(GetNatgatewayRuleArgs)
+			r, err := GetNatgatewayRule(ctx, &args, opts...)
+			var s GetNatgatewayRuleResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNatgatewayRuleResultOutput)
+		}).(GetNatgatewayRuleResultOutput)
 }
 
 // A collection of arguments for invoking getNatgatewayRule.
-type LookupNatgatewayRuleOutputArgs struct {
+type GetNatgatewayRuleOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the NAT gateway rule you want to search for.
@@ -89,73 +89,73 @@ type LookupNatgatewayRuleOutputArgs struct {
 	NatgatewayId pulumi.StringInput `pulumi:"natgatewayId"`
 }
 
-func (LookupNatgatewayRuleOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNatgatewayRuleArgs)(nil)).Elem()
+func (GetNatgatewayRuleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNatgatewayRuleArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNatgatewayRule.
-type LookupNatgatewayRuleResultOutput struct{ *pulumi.OutputState }
+type GetNatgatewayRuleResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNatgatewayRuleResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNatgatewayRuleResult)(nil)).Elem()
+func (GetNatgatewayRuleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNatgatewayRuleResult)(nil)).Elem()
 }
 
-func (o LookupNatgatewayRuleResultOutput) ToLookupNatgatewayRuleResultOutput() LookupNatgatewayRuleResultOutput {
+func (o GetNatgatewayRuleResultOutput) ToGetNatgatewayRuleResultOutput() GetNatgatewayRuleResultOutput {
 	return o
 }
 
-func (o LookupNatgatewayRuleResultOutput) ToLookupNatgatewayRuleResultOutputWithContext(ctx context.Context) LookupNatgatewayRuleResultOutput {
+func (o GetNatgatewayRuleResultOutput) ToGetNatgatewayRuleResultOutputWithContext(ctx context.Context) GetNatgatewayRuleResultOutput {
 	return o
 }
 
-func (o LookupNatgatewayRuleResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Id of the NAT gateway rule
-func (o LookupNatgatewayRuleResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetNatgatewayRuleResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Name of the NAT gateway rule
-func (o LookupNatgatewayRuleResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetNatgatewayRuleResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupNatgatewayRuleResultOutput) NatgatewayId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.NatgatewayId }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) NatgatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.NatgatewayId }).(pulumi.StringOutput)
 }
 
 // Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-func (o LookupNatgatewayRuleResultOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
 // Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource
-func (o LookupNatgatewayRuleResultOutput) PublicIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.PublicIp }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) PublicIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
 // Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-func (o LookupNatgatewayRuleResultOutput) SourceSubnet() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.SourceSubnet }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) SourceSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.SourceSubnet }).(pulumi.StringOutput)
 }
 
 // Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port
-func (o LookupNatgatewayRuleResultOutput) TargetPortRanges() GetNatgatewayRuleTargetPortRangeArrayOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) []GetNatgatewayRuleTargetPortRange { return v.TargetPortRanges }).(GetNatgatewayRuleTargetPortRangeArrayOutput)
+func (o GetNatgatewayRuleResultOutput) TargetPortRanges() GetNatgatewayRuleTargetPortRangeArrayOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) []GetNatgatewayRuleTargetPortRange { return v.TargetPortRanges }).(GetNatgatewayRuleTargetPortRangeArrayOutput)
 }
 
 // Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-func (o LookupNatgatewayRuleResultOutput) TargetSubnet() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.TargetSubnet }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) TargetSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.TargetSubnet }).(pulumi.StringOutput)
 }
 
 // ype of the NAT gateway rule.
-func (o LookupNatgatewayRuleResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayRuleResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetNatgatewayRuleResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayRuleResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNatgatewayRuleResultOutput{})
+	pulumi.RegisterOutputType(GetNatgatewayRuleResultOutput{})
 }

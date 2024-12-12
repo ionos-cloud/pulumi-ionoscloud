@@ -21,11 +21,11 @@ import * as utilities from "../utilities";
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const examplePrivateCrossconnect = new ionoscloud.PrivateCrossconnect("examplePrivateCrossconnect", {description: "Cross Connect Description"});
+ * const exampleCrossconnect = new ionoscloud.compute.Crossconnect("exampleCrossconnect", {description: "Cross Connect Description"});
  * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
  *     datacenterId: exampleDatacenter.id,
  *     "public": false,
- *     pcc: examplePrivateCrossconnect.id,
+ *     pcc: exampleCrossconnect.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -108,7 +108,7 @@ export class Lan extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      */
     public readonly pcc!: pulumi.Output<string | undefined>;
     /**
@@ -173,7 +173,7 @@ export interface LanState {
      */
     name?: pulumi.Input<string>;
     /**
-     * [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      */
     pcc?: pulumi.Input<string>;
     /**
@@ -203,7 +203,7 @@ export interface LanArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * [String] The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+     * [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
      */
     pcc?: pulumi.Input<string>;
     /**

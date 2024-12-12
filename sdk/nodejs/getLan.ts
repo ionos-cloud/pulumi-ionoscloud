@@ -65,7 +65,7 @@ export interface GetLanResult {
      */
     readonly name?: string;
     /**
-     * The unique id of a `ionoscloud.PrivateCrossconnect` resource, in order.
+     * The unique id of a `ionoscloud.compute.Crossconnect` resource, in order.
      */
     readonly pcc: string;
     /**

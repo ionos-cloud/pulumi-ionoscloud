@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupPrivateCrossconnect(ctx, &ionoscloud.LookupPrivateCrossconnectArgs{
+//			_, err := ionoscloud.GetPrivateCrossconnect(ctx, &ionoscloud.GetPrivateCrossconnectArgs{
 //				Name: pulumi.StringRef("Cross Connect Example"),
 //			}, nil)
 //			if err != nil {
@@ -43,9 +43,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupPrivateCrossconnect(ctx *pulumi.Context, args *LookupPrivateCrossconnectArgs, opts ...pulumi.InvokeOption) (*LookupPrivateCrossconnectResult, error) {
+func GetPrivateCrossconnect(ctx *pulumi.Context, args *GetPrivateCrossconnectArgs, opts ...pulumi.InvokeOption) (*GetPrivateCrossconnectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupPrivateCrossconnectResult
+	var rv GetPrivateCrossconnectResult
 	err := ctx.Invoke("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func LookupPrivateCrossconnect(ctx *pulumi.Context, args *LookupPrivateCrossconn
 }
 
 // A collection of arguments for invoking getPrivateCrossconnect.
-type LookupPrivateCrossconnectArgs struct {
+type GetPrivateCrossconnectArgs struct {
 	// Description of cross connect
 	Description *string `pulumi:"description"`
 	// ID of the cross connect you want to search for.
@@ -66,7 +66,7 @@ type LookupPrivateCrossconnectArgs struct {
 }
 
 // A collection of values returned by getPrivateCrossconnect.
-type LookupPrivateCrossconnectResult struct {
+type GetPrivateCrossconnectResult struct {
 	// Lists datacenters that can be joined to this cross connect
 	ConnectableDatacenters []GetPrivateCrossconnectConnectableDatacenter `pulumi:"connectableDatacenters"`
 	// Description of cross connect
@@ -79,21 +79,21 @@ type LookupPrivateCrossconnectResult struct {
 	Peers []GetPrivateCrossconnectPeer `pulumi:"peers"`
 }
 
-func LookupPrivateCrossconnectOutput(ctx *pulumi.Context, args LookupPrivateCrossconnectOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateCrossconnectResultOutput {
+func GetPrivateCrossconnectOutput(ctx *pulumi.Context, args GetPrivateCrossconnectOutputArgs, opts ...pulumi.InvokeOption) GetPrivateCrossconnectResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupPrivateCrossconnectResult, error) {
-			args := v.(LookupPrivateCrossconnectArgs)
-			r, err := LookupPrivateCrossconnect(ctx, &args, opts...)
-			var s LookupPrivateCrossconnectResult
+		ApplyT(func(v interface{}) (GetPrivateCrossconnectResult, error) {
+			args := v.(GetPrivateCrossconnectArgs)
+			r, err := GetPrivateCrossconnect(ctx, &args, opts...)
+			var s GetPrivateCrossconnectResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupPrivateCrossconnectResultOutput)
+		}).(GetPrivateCrossconnectResultOutput)
 }
 
 // A collection of arguments for invoking getPrivateCrossconnect.
-type LookupPrivateCrossconnectOutputArgs struct {
+type GetPrivateCrossconnectOutputArgs struct {
 	// Description of cross connect
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// ID of the cross connect you want to search for.
@@ -104,52 +104,52 @@ type LookupPrivateCrossconnectOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupPrivateCrossconnectOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPrivateCrossconnectArgs)(nil)).Elem()
+func (GetPrivateCrossconnectOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateCrossconnectArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getPrivateCrossconnect.
-type LookupPrivateCrossconnectResultOutput struct{ *pulumi.OutputState }
+type GetPrivateCrossconnectResultOutput struct{ *pulumi.OutputState }
 
-func (LookupPrivateCrossconnectResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupPrivateCrossconnectResult)(nil)).Elem()
+func (GetPrivateCrossconnectResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateCrossconnectResult)(nil)).Elem()
 }
 
-func (o LookupPrivateCrossconnectResultOutput) ToLookupPrivateCrossconnectResultOutput() LookupPrivateCrossconnectResultOutput {
+func (o GetPrivateCrossconnectResultOutput) ToGetPrivateCrossconnectResultOutput() GetPrivateCrossconnectResultOutput {
 	return o
 }
 
-func (o LookupPrivateCrossconnectResultOutput) ToLookupPrivateCrossconnectResultOutputWithContext(ctx context.Context) LookupPrivateCrossconnectResultOutput {
+func (o GetPrivateCrossconnectResultOutput) ToGetPrivateCrossconnectResultOutputWithContext(ctx context.Context) GetPrivateCrossconnectResultOutput {
 	return o
 }
 
 // Lists datacenters that can be joined to this cross connect
-func (o LookupPrivateCrossconnectResultOutput) ConnectableDatacenters() GetPrivateCrossconnectConnectableDatacenterArrayOutput {
-	return o.ApplyT(func(v LookupPrivateCrossconnectResult) []GetPrivateCrossconnectConnectableDatacenter {
+func (o GetPrivateCrossconnectResultOutput) ConnectableDatacenters() GetPrivateCrossconnectConnectableDatacenterArrayOutput {
+	return o.ApplyT(func(v GetPrivateCrossconnectResult) []GetPrivateCrossconnectConnectableDatacenter {
 		return v.ConnectableDatacenters
 	}).(GetPrivateCrossconnectConnectableDatacenterArrayOutput)
 }
 
 // Description of cross connect
-func (o LookupPrivateCrossconnectResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPrivateCrossconnectResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o GetPrivateCrossconnectResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateCrossconnectResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The UUID of the connectable datacenter
-func (o LookupPrivateCrossconnectResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPrivateCrossconnectResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetPrivateCrossconnectResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateCrossconnectResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // The name of the connectable datacenter
-func (o LookupPrivateCrossconnectResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupPrivateCrossconnectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetPrivateCrossconnectResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPrivateCrossconnectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Lists LAN's joined to this cross connect
-func (o LookupPrivateCrossconnectResultOutput) Peers() GetPrivateCrossconnectPeerArrayOutput {
-	return o.ApplyT(func(v LookupPrivateCrossconnectResult) []GetPrivateCrossconnectPeer { return v.Peers }).(GetPrivateCrossconnectPeerArrayOutput)
+func (o GetPrivateCrossconnectResultOutput) Peers() GetPrivateCrossconnectPeerArrayOutput {
+	return o.ApplyT(func(v GetPrivateCrossconnectResult) []GetPrivateCrossconnectPeer { return v.Peers }).(GetPrivateCrossconnectPeerArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupPrivateCrossconnectResultOutput{})
+	pulumi.RegisterOutputType(GetPrivateCrossconnectResultOutput{})
 }

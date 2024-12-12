@@ -386,109 +386,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData?: pulumi.Input<string>;
 }
 
-export interface CubeServerNic {
-    deviceNumber?: pulumi.Input<number>;
-    dhcp?: pulumi.Input<boolean>;
-    /**
-     * Indicates whether this NIC receives an IPv6 address through DHCP.
-     */
-    dhcpv6?: pulumi.Input<boolean>;
-    firewall?: pulumi.Input<inputs.CubeServerNicFirewall>;
-    firewallActive?: pulumi.Input<boolean>;
-    firewallType?: pulumi.Input<string>;
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * IPv6 CIDR block assigned to the NIC.
-     */
-    ipv6CidrBlock?: pulumi.Input<string>;
-    /**
-     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
-     */
-    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    lan: pulumi.Input<number>;
-    mac?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    pciSlot?: pulumi.Input<number>;
-}
-
-export interface CubeServerNicFirewall {
-    icmpCode?: pulumi.Input<string>;
-    icmpType?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    portRangeEnd?: pulumi.Input<number>;
-    portRangeStart?: pulumi.Input<number>;
-    protocol: pulumi.Input<string>;
-    sourceIp?: pulumi.Input<string>;
-    sourceMac?: pulumi.Input<string>;
-    targetIp?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
-}
-
-export interface CubeServerVolume {
-    /**
-     * [string] The availability zone in which the server should exist. This property is immutable.
-     */
-    availabilityZone?: pulumi.Input<string>;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId?: pulumi.Input<string>;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer?: pulumi.Input<string>;
-    bus?: pulumi.Input<string>;
-    cpuHotPlug?: pulumi.Input<boolean>;
-    deviceNumber?: pulumi.Input<number>;
-    discVirtioHotPlug?: pulumi.Input<boolean>;
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
-    diskType: pulumi.Input<string>;
-    /**
-     * [string] Required if `sshKeyPath` is not provided.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > For creating a **CUBE** server, you can not set `volume.size` argument.
-     * >
-     *
-     * @deprecated Please use imagePassword under server level
-     */
-    imagePassword?: pulumi.Input<string>;
-    /**
-     * [string] Sets the OS type of the server.
-     */
-    licenceType?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    nicHotPlug?: pulumi.Input<boolean>;
-    nicHotUnplug?: pulumi.Input<boolean>;
-    pciSlot?: pulumi.Input<number>;
-    ramHotPlug?: pulumi.Input<boolean>;
-    /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
-     *
-     * @deprecated Please use sshKeyPath under server level
-     */
-    sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData?: pulumi.Input<string>;
-}
-
 export interface GetIpblockIpConsumer {
     datacenterId?: string;
     datacenterName?: string;
@@ -650,28 +547,6 @@ export interface LoggingPipelineLogDestination {
     type?: pulumi.Input<string>;
 }
 
-export interface NatgatewayLan {
-    /**
-     * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
-     */
-    gatewayIps?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [int] Id for the LAN connected to the NAT gateway.
-     */
-    id: pulumi.Input<number>;
-}
-
-export interface NatgatewayRuleTargetPortRange {
-    /**
-     * [int] Target port range end associated with the NAT gateway rule.
-     */
-    end?: pulumi.Input<number>;
-    /**
-     * [int] Target port range start associated with the NAT gateway rule.
-     */
-    start?: pulumi.Input<number>;
-}
-
 export interface NetworkloadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -754,44 +629,6 @@ export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
     maintenance?: pulumi.Input<boolean>;
 }
 
-export interface PrivateCrossconnectConnectableDatacenter {
-    /**
-     * The UUID of the connectable datacenter
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * The location of the cross-connected datacenter
-     */
-    location?: pulumi.Input<string>;
-    /**
-     * The name of the connectable datacenter
-     */
-    name?: pulumi.Input<string>;
-}
-
-export interface PrivateCrossconnectPeer {
-    /**
-     * The id of the cross-connected datacenter
-     */
-    datacenterId?: pulumi.Input<string>;
-    /**
-     * The name of the cross-connected datacenter
-     */
-    datacenterName?: pulumi.Input<string>;
-    /**
-     * The id of the cross-connected LAN
-     */
-    lanId?: pulumi.Input<string>;
-    /**
-     * The name of the cross-connected LAN
-     */
-    lanName?: pulumi.Input<string>;
-    /**
-     * The location of the cross-connected datacenter
-     */
-    location?: pulumi.Input<string>;
-}
-
 export interface TargetGroupHealthCheck {
     /**
      * [int] The interval in milliseconds between consecutive health checks; default is 2000.
@@ -859,95 +696,6 @@ export interface TargetGroupTarget {
      * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: pulumi.Input<number>;
-}
-
-export interface VcpuServerLabel {
-    key: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface VcpuServerNic {
-    deviceNumber?: pulumi.Input<number>;
-    dhcp?: pulumi.Input<boolean>;
-    dhcpv6?: pulumi.Input<boolean>;
-    firewallActive?: pulumi.Input<boolean>;
-    firewallType?: pulumi.Input<string>;
-    /**
-     * Allows to define firewall rules inline in the server. See the Firewall section.
-     */
-    firewalls?: pulumi.Input<pulumi.Input<inputs.VcpuServerNicFirewall>[]>;
-    id?: pulumi.Input<string>;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips?: pulumi.Input<pulumi.Input<string>[]>;
-    ipv6CidrBlock?: pulumi.Input<string>;
-    ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    lan: pulumi.Input<number>;
-    mac?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    pciSlot?: pulumi.Input<number>;
-}
-
-export interface VcpuServerNicFirewall {
-    icmpCode?: pulumi.Input<string>;
-    icmpType?: pulumi.Input<string>;
-    id?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    portRangeEnd?: pulumi.Input<number>;
-    portRangeStart?: pulumi.Input<number>;
-    protocol: pulumi.Input<string>;
-    sourceIp?: pulumi.Input<string>;
-    sourceMac?: pulumi.Input<string>;
-    targetIp?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
-}
-
-export interface VcpuServerVolume {
-    /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-     */
-    availabilityZone?: pulumi.Input<string>;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId?: pulumi.Input<string>;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer?: pulumi.Input<string>;
-    bus?: pulumi.Input<string>;
-    cpuHotPlug?: pulumi.Input<boolean>;
-    deviceNumber?: pulumi.Input<number>;
-    discVirtioHotPlug?: pulumi.Input<boolean>;
-    discVirtioHotUnplug?: pulumi.Input<boolean>;
-    diskType: pulumi.Input<string>;
-    /**
-     * [string] Sets the OS type of the server.
-     */
-    licenceType?: pulumi.Input<string>;
-    /**
-     * [string] The name of the server.
-     */
-    name?: pulumi.Input<string>;
-    nicHotPlug?: pulumi.Input<boolean>;
-    nicHotUnplug?: pulumi.Input<boolean>;
-    pciSlot?: pulumi.Input<number>;
-    ramHotPlug?: pulumi.Input<boolean>;
-    /**
-     * The size of the volume in GB.
-     */
-    size?: pulumi.Input<number>;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData?: pulumi.Input<string>;
 }
 export namespace cdn {
     export interface DistributionRoutingRule {
@@ -1018,6 +766,147 @@ export namespace cert {
 }
 
 export namespace compute {
+    export interface CrossconnectConnectableDatacenter {
+        /**
+         * The UUID of the connectable datacenter
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The location of the cross-connected datacenter
+         */
+        location?: pulumi.Input<string>;
+        /**
+         * The name of the connectable datacenter
+         */
+        name?: pulumi.Input<string>;
+    }
+
+    export interface CrossconnectPeer {
+        /**
+         * The id of the cross-connected datacenter
+         */
+        datacenterId?: pulumi.Input<string>;
+        /**
+         * The name of the cross-connected datacenter
+         */
+        datacenterName?: pulumi.Input<string>;
+        /**
+         * The id of the cross-connected LAN
+         */
+        lanId?: pulumi.Input<string>;
+        /**
+         * The name of the cross-connected LAN
+         */
+        lanName?: pulumi.Input<string>;
+        /**
+         * The location of the cross-connected datacenter
+         */
+        location?: pulumi.Input<string>;
+    }
+
+    export interface CubeServerNic {
+        deviceNumber?: pulumi.Input<number>;
+        dhcp?: pulumi.Input<boolean>;
+        /**
+         * Indicates whether this NIC receives an IPv6 address through DHCP.
+         */
+        dhcpv6?: pulumi.Input<boolean>;
+        firewall?: pulumi.Input<inputs.compute.CubeServerNicFirewall>;
+        firewallActive?: pulumi.Input<boolean>;
+        firewallType?: pulumi.Input<string>;
+        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * IPv6 CIDR block assigned to the NIC.
+         */
+        ipv6CidrBlock?: pulumi.Input<string>;
+        /**
+         * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         */
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        lan: pulumi.Input<number>;
+        mac?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        pciSlot?: pulumi.Input<number>;
+    }
+
+    export interface CubeServerNicFirewall {
+        icmpCode?: pulumi.Input<string>;
+        icmpType?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        portRangeEnd?: pulumi.Input<number>;
+        portRangeStart?: pulumi.Input<number>;
+        protocol: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string>;
+        sourceMac?: pulumi.Input<string>;
+        targetIp?: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+    }
+
+    export interface CubeServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. This property is immutable.
+         */
+        availabilityZone?: pulumi.Input<string>;
+        /**
+         * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+         */
+        backupUnitId?: pulumi.Input<string>;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer?: pulumi.Input<string>;
+        bus?: pulumi.Input<string>;
+        cpuHotPlug?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number>;
+        discVirtioHotPlug?: pulumi.Input<boolean>;
+        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        diskType: pulumi.Input<string>;
+        /**
+         * [string] Required if `sshKeyPath` is not provided.
+         *
+         * > **⚠ WARNING**
+         * >
+         * > Image_name under volume level is deprecated, please use imageName under server level
+         *
+         *
+         * > **⚠ WARNING**
+         * >
+         * > For creating a **CUBE** server, you can not set `volume.size` argument.
+         * >
+         *
+         * @deprecated Please use imagePassword under server level
+         */
+        imagePassword?: pulumi.Input<string>;
+        /**
+         * [string] Sets the OS type of the server.
+         */
+        licenceType?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        nicHotPlug?: pulumi.Input<boolean>;
+        nicHotUnplug?: pulumi.Input<boolean>;
+        pciSlot?: pulumi.Input<number>;
+        ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+         *
+         * @deprecated Please use sshKeyPath under server level
+         */
+        sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+         */
+        userData?: pulumi.Input<string>;
+    }
+
     export interface DatacenterCpuArchitecture {
         /**
          * A valid CPU family name
@@ -1062,6 +951,28 @@ export namespace compute {
     export interface LanIpFailover {
         ip?: pulumi.Input<string>;
         nicUuid?: pulumi.Input<string>;
+    }
+
+    export interface NatGatewayLan {
+        /**
+         * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+         */
+        gatewayIps?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [int] Id for the LAN connected to the NAT gateway.
+         */
+        id: pulumi.Input<number>;
+    }
+
+    export interface NatGatewayRuleTargetPortRange {
+        /**
+         * [int] Target port range end associated with the NAT gateway rule.
+         */
+        end?: pulumi.Input<number>;
+        /**
+         * [int] Target port range start associated with the NAT gateway rule.
+         */
+        start?: pulumi.Input<number>;
     }
 
     export interface NicFlowlog {
@@ -1208,6 +1119,95 @@ export namespace compute {
          * @deprecated Please use sshKeys under server level
          */
         sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+         */
+        userData?: pulumi.Input<string>;
+    }
+
+    export interface VCPUServerLabel {
+        key: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
+    export interface VCPUServerNic {
+        deviceNumber?: pulumi.Input<number>;
+        dhcp?: pulumi.Input<boolean>;
+        dhcpv6?: pulumi.Input<boolean>;
+        firewallActive?: pulumi.Input<boolean>;
+        firewallType?: pulumi.Input<string>;
+        /**
+         * Allows to define firewall rules inline in the server. See the Firewall section.
+         */
+        firewalls?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerNicFirewall>[]>;
+        id?: pulumi.Input<string>;
+        /**
+         * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         */
+        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        ipv6CidrBlock?: pulumi.Input<string>;
+        ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
+        lan: pulumi.Input<number>;
+        mac?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        pciSlot?: pulumi.Input<number>;
+    }
+
+    export interface VCPUServerNicFirewall {
+        icmpCode?: pulumi.Input<string>;
+        icmpType?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        portRangeEnd?: pulumi.Input<number>;
+        portRangeStart?: pulumi.Input<number>;
+        protocol: pulumi.Input<string>;
+        sourceIp?: pulumi.Input<string>;
+        sourceMac?: pulumi.Input<string>;
+        targetIp?: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+    }
+
+    export interface VCPUServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+         */
+        availabilityZone?: pulumi.Input<string>;
+        /**
+         * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+         */
+        backupUnitId?: pulumi.Input<string>;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer?: pulumi.Input<string>;
+        bus?: pulumi.Input<string>;
+        cpuHotPlug?: pulumi.Input<boolean>;
+        deviceNumber?: pulumi.Input<number>;
+        discVirtioHotPlug?: pulumi.Input<boolean>;
+        discVirtioHotUnplug?: pulumi.Input<boolean>;
+        diskType: pulumi.Input<string>;
+        /**
+         * [string] Sets the OS type of the server.
+         */
+        licenceType?: pulumi.Input<string>;
+        /**
+         * [string] The name of the server.
+         */
+        name?: pulumi.Input<string>;
+        nicHotPlug?: pulumi.Input<boolean>;
+        nicHotUnplug?: pulumi.Input<boolean>;
+        pciSlot?: pulumi.Input<number>;
+        ramHotPlug?: pulumi.Input<boolean>;
+        /**
+         * The size of the volume in GB.
+         */
+        size?: pulumi.Input<number>;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
