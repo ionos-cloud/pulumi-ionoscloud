@@ -14,9 +14,9 @@ import (
 // The **IP Failover data source** can be used to search for and return an existing IP Failover object.
 // You need to provide the datacenterId and the id of the lan to get the ip failover object for the provided datacenter.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-func LookupIpfailover(ctx *pulumi.Context, args *LookupIpfailoverArgs, opts ...pulumi.InvokeOption) (*LookupIpfailoverResult, error) {
+func GetIpfailover(ctx *pulumi.Context, args *GetIpfailoverArgs, opts ...pulumi.InvokeOption) (*GetIpfailoverResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupIpfailoverResult
+	var rv GetIpfailoverResult
 	err := ctx.Invoke("ionoscloud:index/getIpfailover:getIpfailover", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -25,7 +25,7 @@ func LookupIpfailover(ctx *pulumi.Context, args *LookupIpfailoverArgs, opts ...p
 }
 
 // A collection of arguments for invoking getIpfailover.
-type LookupIpfailoverArgs struct {
+type GetIpfailoverArgs struct {
 	// The ID of the datacenter containing the ip failover datasource
 	DatacenterId string `pulumi:"datacenterId"`
 	// The reserved IP address to be used in the IP failover group.
@@ -35,7 +35,7 @@ type LookupIpfailoverArgs struct {
 }
 
 // A collection of values returned by getIpfailover.
-type LookupIpfailoverResult struct {
+type GetIpfailoverResult struct {
 	// The ID of a Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
 	Id           string `pulumi:"id"`
@@ -47,21 +47,21 @@ type LookupIpfailoverResult struct {
 	Nicuuid string `pulumi:"nicuuid"`
 }
 
-func LookupIpfailoverOutput(ctx *pulumi.Context, args LookupIpfailoverOutputArgs, opts ...pulumi.InvokeOption) LookupIpfailoverResultOutput {
+func GetIpfailoverOutput(ctx *pulumi.Context, args GetIpfailoverOutputArgs, opts ...pulumi.InvokeOption) GetIpfailoverResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupIpfailoverResult, error) {
-			args := v.(LookupIpfailoverArgs)
-			r, err := LookupIpfailover(ctx, &args, opts...)
-			var s LookupIpfailoverResult
+		ApplyT(func(v interface{}) (GetIpfailoverResult, error) {
+			args := v.(GetIpfailoverArgs)
+			r, err := GetIpfailover(ctx, &args, opts...)
+			var s GetIpfailoverResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupIpfailoverResultOutput)
+		}).(GetIpfailoverResultOutput)
 }
 
 // A collection of arguments for invoking getIpfailover.
-type LookupIpfailoverOutputArgs struct {
+type GetIpfailoverOutputArgs struct {
 	// The ID of the datacenter containing the ip failover datasource
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// The reserved IP address to be used in the IP failover group.
@@ -70,49 +70,49 @@ type LookupIpfailoverOutputArgs struct {
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
-func (LookupIpfailoverOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupIpfailoverArgs)(nil)).Elem()
+func (GetIpfailoverOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpfailoverArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getIpfailover.
-type LookupIpfailoverResultOutput struct{ *pulumi.OutputState }
+type GetIpfailoverResultOutput struct{ *pulumi.OutputState }
 
-func (LookupIpfailoverResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupIpfailoverResult)(nil)).Elem()
+func (GetIpfailoverResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpfailoverResult)(nil)).Elem()
 }
 
-func (o LookupIpfailoverResultOutput) ToLookupIpfailoverResultOutput() LookupIpfailoverResultOutput {
+func (o GetIpfailoverResultOutput) ToGetIpfailoverResultOutput() GetIpfailoverResultOutput {
 	return o
 }
 
-func (o LookupIpfailoverResultOutput) ToLookupIpfailoverResultOutputWithContext(ctx context.Context) LookupIpfailoverResultOutput {
+func (o GetIpfailoverResultOutput) ToGetIpfailoverResultOutputWithContext(ctx context.Context) GetIpfailoverResultOutput {
 	return o
 }
 
 // The ID of a Data Center.
-func (o LookupIpfailoverResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpfailoverResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetIpfailoverResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpfailoverResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-func (o LookupIpfailoverResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpfailoverResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetIpfailoverResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpfailoverResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The reserved IP address to be used in the IP failover group.
-func (o LookupIpfailoverResultOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpfailoverResult) string { return v.Ip }).(pulumi.StringOutput)
+func (o GetIpfailoverResultOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpfailoverResult) string { return v.Ip }).(pulumi.StringOutput)
 }
 
 // The ID of a LAN.
-func (o LookupIpfailoverResultOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpfailoverResult) string { return v.LanId }).(pulumi.StringOutput)
+func (o GetIpfailoverResultOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpfailoverResult) string { return v.LanId }).(pulumi.StringOutput)
 }
 
 // The ID of a NIC.
-func (o LookupIpfailoverResultOutput) Nicuuid() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpfailoverResult) string { return v.Nicuuid }).(pulumi.StringOutput)
+func (o GetIpfailoverResultOutput) Nicuuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpfailoverResult) string { return v.Nicuuid }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupIpfailoverResultOutput{})
+	pulumi.RegisterOutputType(GetIpfailoverResultOutput{})
 }

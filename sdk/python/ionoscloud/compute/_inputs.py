@@ -10,6 +10,11 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'CrossconnectConnectableDatacenterArgs',
+    'CrossconnectPeerArgs',
+    'CubeServerNicArgs',
+    'CubeServerNicFirewallArgs',
+    'CubeServerVolumeArgs',
     'DatacenterCpuArchitectureArgs',
     'GroupUserArgs',
     'IPBlockIpConsumerArgs',
@@ -19,7 +24,747 @@ __all__ = [
     'ServerNicArgs',
     'ServerNicFirewallArgs',
     'ServerVolumeArgs',
+    'VCPUServerLabelArgs',
+    'VCPUServerNicArgs',
+    'VCPUServerNicFirewallArgs',
+    'VCPUServerVolumeArgs',
 ]
+
+@pulumi.input_type
+class CrossconnectConnectableDatacenterArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The UUID of the connectable datacenter
+        :param pulumi.Input[str] location: The location of the cross-connected datacenter
+        :param pulumi.Input[str] name: The name of the connectable datacenter
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID of the connectable datacenter
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The location of the cross-connected datacenter
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the connectable datacenter
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class CrossconnectPeerArgs:
+    def __init__(__self__, *,
+                 datacenter_id: Optional[pulumi.Input[str]] = None,
+                 datacenter_name: Optional[pulumi.Input[str]] = None,
+                 lan_id: Optional[pulumi.Input[str]] = None,
+                 lan_name: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] datacenter_id: The id of the cross-connected datacenter
+        :param pulumi.Input[str] datacenter_name: The name of the cross-connected datacenter
+        :param pulumi.Input[str] lan_id: The id of the cross-connected LAN
+        :param pulumi.Input[str] lan_name: The name of the cross-connected LAN
+        :param pulumi.Input[str] location: The location of the cross-connected datacenter
+        """
+        if datacenter_id is not None:
+            pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if datacenter_name is not None:
+            pulumi.set(__self__, "datacenter_name", datacenter_name)
+        if lan_id is not None:
+            pulumi.set(__self__, "lan_id", lan_id)
+        if lan_name is not None:
+            pulumi.set(__self__, "lan_name", lan_name)
+        if location is not None:
+            pulumi.set(__self__, "location", location)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @datacenter_id.setter
+    def datacenter_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "datacenter_id", value)
+
+    @property
+    @pulumi.getter(name="datacenterName")
+    def datacenter_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_name")
+
+    @datacenter_name.setter
+    def datacenter_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "datacenter_name", value)
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_id")
+
+    @lan_id.setter
+    def lan_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lan_id", value)
+
+    @property
+    @pulumi.getter(name="lanName")
+    def lan_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_name")
+
+    @lan_name.setter
+    def lan_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lan_name", value)
+
+    @property
+    @pulumi.getter
+    def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        The location of the cross-connected datacenter
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location", value)
+
+
+@pulumi.input_type
+class CubeServerNicArgs:
+    def __init__(__self__, *,
+                 lan: pulumi.Input[int],
+                 device_number: Optional[pulumi.Input[int]] = None,
+                 dhcp: Optional[pulumi.Input[bool]] = None,
+                 dhcpv6: Optional[pulumi.Input[bool]] = None,
+                 firewall: Optional[pulumi.Input['CubeServerNicFirewallArgs']] = None,
+                 firewall_active: Optional[pulumi.Input[bool]] = None,
+                 firewall_type: Optional[pulumi.Input[str]] = None,
+                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
+                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pci_slot: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        :param pulumi.Input[str] name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "lan", lan)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+        if firewall is not None:
+            pulumi.set(__self__, "firewall", firewall)
+        if firewall_active is not None:
+            pulumi.set(__self__, "firewall_active", firewall_active)
+        if firewall_type is not None:
+            pulumi.set(__self__, "firewall_type", firewall_type)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_ips is not None:
+            pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+
+    @property
+    @pulumi.getter
+    def lan(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "lan")
+
+    @lan.setter
+    def lan(self, value: pulumi.Input[int]):
+        pulumi.set(self, "lan", value)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "device_number")
+
+    @device_number.setter
+    def device_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_number", value)
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "dhcp")
+
+    @dhcp.setter
+    def dhcp(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dhcp", value)
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
+        return pulumi.get(self, "dhcpv6")
+
+    @dhcpv6.setter
+    def dhcpv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dhcpv6", value)
+
+    @property
+    @pulumi.getter
+    def firewall(self) -> Optional[pulumi.Input['CubeServerNicFirewallArgs']]:
+        return pulumi.get(self, "firewall")
+
+    @firewall.setter
+    def firewall(self, value: Optional[pulumi.Input['CubeServerNicFirewallArgs']]):
+        pulumi.set(self, "firewall", value)
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "firewall_active")
+
+    @firewall_active.setter
+    def firewall_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "firewall_active", value)
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "firewall_type")
+
+    @firewall_type.setter
+    def firewall_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firewall_type", value)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "ips")
+
+    @ips.setter
+    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ips", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
+        return pulumi.get(self, "ipv6_ips")
+
+    @ipv6_ips.setter
+    def ipv6_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_ips", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pci_slot")
+
+    @pci_slot.setter
+    def pci_slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pci_slot", value)
+
+
+@pulumi.input_type
+class CubeServerNicFirewallArgs:
+    def __init__(__self__, *,
+                 protocol: pulumi.Input[str],
+                 icmp_code: Optional[pulumi.Input[str]] = None,
+                 icmp_type: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port_range_end: Optional[pulumi.Input[int]] = None,
+                 port_range_start: Optional[pulumi.Input[int]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
+                 source_mac: Optional[pulumi.Input[str]] = None,
+                 target_ip: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port_range_end is not None:
+            pulumi.set(__self__, "port_range_end", port_range_end)
+        if port_range_start is not None:
+            pulumi.set(__self__, "port_range_start", port_range_start)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+        if source_mac is not None:
+            pulumi.set(__self__, "source_mac", source_mac)
+        if target_ip is not None:
+            pulumi.set(__self__, "target_ip", target_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: pulumi.Input[str]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icmp_code")
+
+    @icmp_code.setter
+    def icmp_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icmp_code", value)
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icmp_type")
+
+    @icmp_type.setter
+    def icmp_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icmp_type", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "port_range_end")
+
+    @port_range_end.setter
+    def port_range_end(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port_range_end", value)
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "port_range_start")
+
+    @port_range_start.setter
+    def port_range_start(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port_range_start", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_mac")
+
+    @source_mac.setter
+    def source_mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_mac", value)
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "target_ip")
+
+    @target_ip.setter
+    def target_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_ip", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class CubeServerVolumeArgs:
+    def __init__(__self__, *,
+                 disk_type: pulumi.Input[str],
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 backup_unit_id: Optional[pulumi.Input[str]] = None,
+                 boot_server: Optional[pulumi.Input[str]] = None,
+                 bus: Optional[pulumi.Input[str]] = None,
+                 cpu_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 device_number: Optional[pulumi.Input[int]] = None,
+                 disc_virtio_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 disc_virtio_hot_unplug: Optional[pulumi.Input[bool]] = None,
+                 image_password: Optional[pulumi.Input[str]] = None,
+                 licence_type: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 nic_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 nic_hot_unplug: Optional[pulumi.Input[bool]] = None,
+                 pci_slot: Optional[pulumi.Input[int]] = None,
+                 ram_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_data: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
+        :param pulumi.Input[str] backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] boot_server: The UUID of the attached server.
+        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
+               
+               > **⚠ WARNING**
+               >
+               > Image_name under volume level is deprecated, please use image_name under server level
+               
+               
+               > **⚠ WARNING**
+               >
+               > For creating a **CUBE** server, you can not set `volume.size` argument.
+               >
+        :param pulumi.Input[str] licence_type: [string] Sets the OS type of the server.
+        :param pulumi.Input[str] name: [string] The name of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        :param pulumi.Input[str] user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        pulumi.set(__self__, "disk_type", disk_type)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if backup_unit_id is not None:
+            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        if boot_server is not None:
+            pulumi.set(__self__, "boot_server", boot_server)
+        if bus is not None:
+            pulumi.set(__self__, "bus", bus)
+        if cpu_hot_plug is not None:
+            pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if disc_virtio_hot_plug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        if disc_virtio_hot_unplug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if image_password is not None:
+            warnings.warn("""Please use image_password under server level""", DeprecationWarning)
+            pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
+        if image_password is not None:
+            pulumi.set(__self__, "image_password", image_password)
+        if licence_type is not None:
+            pulumi.set(__self__, "licence_type", licence_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nic_hot_plug is not None:
+            pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        if nic_hot_unplug is not None:
+            pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if ram_hot_plug is not None:
+            pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if ssh_key_paths is not None:
+            warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
+            pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
+        if ssh_key_paths is not None:
+            pulumi.set(__self__, "ssh_key_paths", ssh_key_paths)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "disk_type")
+
+    @disk_type.setter
+    def disk_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type", value)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The availability zone in which the server should exist. This property is immutable.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "availability_zone", value)
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @backup_unit_id.setter
+    def backup_unit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_unit_id", value)
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @boot_server.setter
+    def boot_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "boot_server", value)
+
+    @property
+    @pulumi.getter
+    def bus(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bus")
+
+    @bus.setter
+    def bus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bus", value)
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @cpu_hot_plug.setter
+    def cpu_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cpu_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "device_number")
+
+    @device_number.setter
+    def device_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_number", value)
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @disc_virtio_hot_plug.setter
+    def disc_virtio_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disc_virtio_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @disc_virtio_hot_unplug.setter
+    def disc_virtio_hot_unplug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disc_virtio_hot_unplug", value)
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Required if `ssh_key_path` is not provided.
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+
+
+        > **⚠ WARNING**
+        >
+        > For creating a **CUBE** server, you can not set `volume.size` argument.
+        >
+        """
+        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
+        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
+
+        return pulumi.get(self, "image_password")
+
+    @image_password.setter
+    def image_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_password", value)
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Sets the OS type of the server.
+        """
+        return pulumi.get(self, "licence_type")
+
+    @licence_type.setter
+    def licence_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "licence_type", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @nic_hot_plug.setter
+    def nic_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nic_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @nic_hot_unplug.setter
+    def nic_hot_unplug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nic_hot_unplug", value)
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pci_slot")
+
+    @pci_slot.setter
+    def pci_slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pci_slot", value)
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @ram_hot_plug.setter
+    def ram_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ram_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="sshKeyPaths")
+    def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        """
+        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
+        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
+
+        return pulumi.get(self, "ssh_key_paths")
+
+    @ssh_key_paths.setter
+    def ssh_key_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ssh_key_paths", value)
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_data", value)
+
 
 @pulumi.input_type
 class DatacenterCpuArchitectureArgs:
@@ -1081,6 +1826,599 @@ class ServerVolumeArgs:
     @ssh_keys.setter
     def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ssh_keys", value)
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_data", value)
+
+
+@pulumi.input_type
+class VCPUServerLabelArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class VCPUServerNicArgs:
+    def __init__(__self__, *,
+                 lan: pulumi.Input[int],
+                 device_number: Optional[pulumi.Input[int]] = None,
+                 dhcp: Optional[pulumi.Input[bool]] = None,
+                 dhcpv6: Optional[pulumi.Input[bool]] = None,
+                 firewall_active: Optional[pulumi.Input[bool]] = None,
+                 firewall_type: Optional[pulumi.Input[str]] = None,
+                 firewalls: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgs']]]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
+                 ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 mac: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 pci_slot: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgs']]] firewalls: Allows to define firewall rules inline in the server. See the Firewall section.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        :param pulumi.Input[str] name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "lan", lan)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if dhcp is not None:
+            pulumi.set(__self__, "dhcp", dhcp)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+        if firewall_active is not None:
+            pulumi.set(__self__, "firewall_active", firewall_active)
+        if firewall_type is not None:
+            pulumi.set(__self__, "firewall_type", firewall_type)
+        if firewalls is not None:
+            pulumi.set(__self__, "firewalls", firewalls)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if ipv6_ips is not None:
+            pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+
+    @property
+    @pulumi.getter
+    def lan(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "lan")
+
+    @lan.setter
+    def lan(self, value: pulumi.Input[int]):
+        pulumi.set(self, "lan", value)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "device_number")
+
+    @device_number.setter
+    def device_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_number", value)
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "dhcp")
+
+    @dhcp.setter
+    def dhcp(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dhcp", value)
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "dhcpv6")
+
+    @dhcpv6.setter
+    def dhcpv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "dhcpv6", value)
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "firewall_active")
+
+    @firewall_active.setter
+    def firewall_active(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "firewall_active", value)
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "firewall_type")
+
+    @firewall_type.setter
+    def firewall_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firewall_type", value)
+
+    @property
+    @pulumi.getter
+    def firewalls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgs']]]]:
+        """
+        Allows to define firewall rules inline in the server. See the Firewall section.
+        """
+        return pulumi.get(self, "firewalls")
+
+    @firewalls.setter
+    def firewalls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgs']]]]):
+        pulumi.set(self, "firewalls", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
+        return pulumi.get(self, "ips")
+
+    @ips.setter
+    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ips", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @ipv6_ips.setter
+    def ipv6_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_ips", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pci_slot")
+
+    @pci_slot.setter
+    def pci_slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pci_slot", value)
+
+
+@pulumi.input_type
+class VCPUServerNicFirewallArgs:
+    def __init__(__self__, *,
+                 protocol: pulumi.Input[str],
+                 icmp_code: Optional[pulumi.Input[str]] = None,
+                 icmp_type: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port_range_end: Optional[pulumi.Input[int]] = None,
+                 port_range_start: Optional[pulumi.Input[int]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
+                 source_mac: Optional[pulumi.Input[str]] = None,
+                 target_ip: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: [string] The name of the server.
+        """
+        pulumi.set(__self__, "protocol", protocol)
+        if icmp_code is not None:
+            pulumi.set(__self__, "icmp_code", icmp_code)
+        if icmp_type is not None:
+            pulumi.set(__self__, "icmp_type", icmp_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port_range_end is not None:
+            pulumi.set(__self__, "port_range_end", port_range_end)
+        if port_range_start is not None:
+            pulumi.set(__self__, "port_range_start", port_range_start)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
+        if source_mac is not None:
+            pulumi.set(__self__, "source_mac", source_mac)
+        if target_ip is not None:
+            pulumi.set(__self__, "target_ip", target_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: pulumi.Input[str]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icmp_code")
+
+    @icmp_code.setter
+    def icmp_code(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icmp_code", value)
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "icmp_type")
+
+    @icmp_type.setter
+    def icmp_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icmp_type", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "port_range_end")
+
+    @port_range_end.setter
+    def port_range_end(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port_range_end", value)
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "port_range_start")
+
+    @port_range_start.setter
+    def port_range_start(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port_range_start", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_mac")
+
+    @source_mac.setter
+    def source_mac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_mac", value)
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "target_ip")
+
+    @target_ip.setter
+    def target_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_ip", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class VCPUServerVolumeArgs:
+    def __init__(__self__, *,
+                 disk_type: pulumi.Input[str],
+                 availability_zone: Optional[pulumi.Input[str]] = None,
+                 backup_unit_id: Optional[pulumi.Input[str]] = None,
+                 boot_server: Optional[pulumi.Input[str]] = None,
+                 bus: Optional[pulumi.Input[str]] = None,
+                 cpu_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 device_number: Optional[pulumi.Input[int]] = None,
+                 disc_virtio_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 disc_virtio_hot_unplug: Optional[pulumi.Input[bool]] = None,
+                 licence_type: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 nic_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 nic_hot_unplug: Optional[pulumi.Input[bool]] = None,
+                 pci_slot: Optional[pulumi.Input[int]] = None,
+                 ram_hot_plug: Optional[pulumi.Input[bool]] = None,
+                 size: Optional[pulumi.Input[int]] = None,
+                 user_data: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        :param pulumi.Input[str] backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] boot_server: The UUID of the attached server.
+        :param pulumi.Input[str] licence_type: [string] Sets the OS type of the server.
+        :param pulumi.Input[str] name: [string] The name of the server.
+        :param pulumi.Input[int] size: The size of the volume in GB.
+        :param pulumi.Input[str] user_data: The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        pulumi.set(__self__, "disk_type", disk_type)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if backup_unit_id is not None:
+            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        if boot_server is not None:
+            pulumi.set(__self__, "boot_server", boot_server)
+        if bus is not None:
+            pulumi.set(__self__, "bus", bus)
+        if cpu_hot_plug is not None:
+            pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        if device_number is not None:
+            pulumi.set(__self__, "device_number", device_number)
+        if disc_virtio_hot_plug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        if disc_virtio_hot_unplug is not None:
+            pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        if licence_type is not None:
+            pulumi.set(__self__, "licence_type", licence_type)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if nic_hot_plug is not None:
+            pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        if nic_hot_unplug is not None:
+            pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        if pci_slot is not None:
+            pulumi.set(__self__, "pci_slot", pci_slot)
+        if ram_hot_plug is not None:
+            pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "disk_type")
+
+    @disk_type.setter
+    def disk_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type", value)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "availability_zone", value)
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @backup_unit_id.setter
+    def backup_unit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "backup_unit_id", value)
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @boot_server.setter
+    def boot_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "boot_server", value)
+
+    @property
+    @pulumi.getter
+    def bus(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "bus")
+
+    @bus.setter
+    def bus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bus", value)
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @cpu_hot_plug.setter
+    def cpu_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cpu_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "device_number")
+
+    @device_number.setter
+    def device_number(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_number", value)
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @disc_virtio_hot_plug.setter
+    def disc_virtio_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disc_virtio_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @disc_virtio_hot_unplug.setter
+    def disc_virtio_hot_unplug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disc_virtio_hot_unplug", value)
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Sets the OS type of the server.
+        """
+        return pulumi.get(self, "licence_type")
+
+    @licence_type.setter
+    def licence_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "licence_type", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the server.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @nic_hot_plug.setter
+    def nic_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nic_hot_plug", value)
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @nic_hot_unplug.setter
+    def nic_hot_unplug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "nic_hot_unplug", value)
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "pci_slot")
+
+    @pci_slot.setter
+    def pci_slot(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pci_slot", value)
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @ram_hot_plug.setter
+    def ram_hot_plug(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ram_hot_plug", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of the volume in GB.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter(name="userData")

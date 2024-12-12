@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **Cube Server** on IonosCloud.
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     length: 16,
  *     special: false,
  * });
- * const exampleCubeServer = new ionoscloud.CubeServer("exampleCubeServer", {
+ * const exampleCubeServer = new ionoscloud.compute.CubeServer("exampleCubeServer", {
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     templateUuid: exampleTemplate.then(exampleTemplate => exampleTemplate.id),
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
+ * $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
  * ```
  */
 export class CubeServer extends pulumi.CustomResource {
@@ -77,7 +77,7 @@ export class CubeServer extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/cubeServer:CubeServer';
+    public static readonly __pulumiType = 'ionoscloud:compute/cubeServer:CubeServer';
 
     /**
      * Returns true if the given object is an instance of CubeServer.  This is designed to work even
@@ -145,7 +145,7 @@ export class CubeServer extends pulumi.CustomResource {
     /**
      * See the Nic section.
      */
-    public readonly nic!: pulumi.Output<outputs.CubeServerNic>;
+    public readonly nic!: pulumi.Output<outputs.compute.CubeServerNic>;
     /**
      * The associated IP address.
      */
@@ -169,7 +169,7 @@ export class CubeServer extends pulumi.CustomResource {
     /**
      * See the Volume section.
      */
-    public readonly volume!: pulumi.Output<outputs.CubeServerVolume>;
+    public readonly volume!: pulumi.Output<outputs.compute.CubeServerVolume>;
 
     /**
      * Create a CubeServer resource with the given unique name, arguments, and options.
@@ -299,7 +299,7 @@ export interface CubeServerState {
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.CubeServerNic>;
+    nic?: pulumi.Input<inputs.compute.CubeServerNic>;
     /**
      * The associated IP address.
      */
@@ -323,7 +323,7 @@ export interface CubeServerState {
     /**
      * See the Volume section.
      */
-    volume?: pulumi.Input<inputs.CubeServerVolume>;
+    volume?: pulumi.Input<inputs.compute.CubeServerVolume>;
 }
 
 /**
@@ -373,7 +373,7 @@ export interface CubeServerArgs {
     /**
      * See the Nic section.
      */
-    nic: pulumi.Input<inputs.CubeServerNic>;
+    nic: pulumi.Input<inputs.compute.CubeServerNic>;
     /**
      * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
      */
@@ -389,5 +389,5 @@ export interface CubeServerArgs {
     /**
      * See the Volume section.
      */
-    volume: pulumi.Input<inputs.CubeServerVolume>;
+    volume: pulumi.Input<inputs.compute.CubeServerVolume>;
 }

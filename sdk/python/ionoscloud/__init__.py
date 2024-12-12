@@ -13,7 +13,6 @@ from .auto_certificate import *
 from .auto_certificate_provider import *
 from .autoscaling_group import *
 from .certificate import *
-from .cube_server import *
 from .get_apigateway import *
 from .get_apigateway_route import *
 from .get_application_loadbalancer import *
@@ -86,7 +85,6 @@ from .get_vpn_ipsec_gateway import *
 from .get_vpn_ipsec_tunnel import *
 from .get_vpn_wireguard_gateway import *
 from .get_vpn_wireguard_peer import *
-from .ipfailover import *
 from .kafka_cluster import *
 from .kafka_cluster_topic import *
 from .loadbalancer import *
@@ -95,13 +93,9 @@ from .natgateway import *
 from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
-from .private_crossconnect import *
 from .provider import *
 from .server_boot_device_selection import *
-from .share import *
-from .snapshot import *
 from .target_group import *
-from .vcpu_server import *
 from ._inputs import *
 from . import outputs
 
@@ -160,6 +154,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "compute/crossconnect",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/crossconnect:Crossconnect": "Crossconnect"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/cubeServer",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/cubeServer:CubeServer": "CubeServer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "compute/datacenter",
   "fqn": "ionoscloud.compute",
   "classes": {
@@ -188,6 +198,14 @@ _utilities.register(
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/iPBlock:IPBlock": "IPBlock"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/iPFailover",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/iPFailover:IPFailover": "IPFailover"
   }
  },
  {
@@ -224,10 +242,34 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "compute/share",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/share:Share": "Share"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/snapshot",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "compute/user",
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/user:User": "User"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/vCPUServer",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/vCPUServer:VCPUServer": "VCPUServer"
   }
  },
  {
@@ -408,22 +450,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/cubeServer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/cubeServer:CubeServer": "CubeServer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/ipfailover",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/ipfailover:Ipfailover": "Ipfailover"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/kafkaCluster",
   "fqn": "ionoscloud",
   "classes": {
@@ -488,14 +514,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/privateCrossconnect",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/privateCrossconnect:PrivateCrossconnect": "PrivateCrossconnect"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/serverBootDeviceSelection",
   "fqn": "ionoscloud",
   "classes": {
@@ -504,34 +522,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/share",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/share:Share": "Share"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/snapshot",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/snapshot:Snapshot": "Snapshot"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/targetGroup",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/targetGroup:TargetGroup": "TargetGroup"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vcpuServer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vcpuServer:VcpuServer": "VcpuServer"
   }
  },
  {

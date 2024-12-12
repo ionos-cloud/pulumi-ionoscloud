@@ -150,7 +150,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -198,6 +198,12 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_server": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Server"),
 			},
+			"ionoscloud_vcpu_server": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "VCPUServer"),
+			},
+			"ionoscloud_cube_server": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "CubeServer"),
+			},
 			"ionoscloud_lan": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Lan"),
 			},
@@ -219,11 +225,23 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_ipblock": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "IPBlock"),
 			},
+			"ionoscloud_share": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Share"),
+			},
+			"ionoscloud_ipfailover": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "IPFailover"),
+			},
+			"ionoscloud_private_crossconnect": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Crossconnect"),
+			},
 			"ionoscloud_s3_key": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "S3Key"),
 			},
 			"ionoscloud_backup_unit": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "BackupUnit"),
+			},
+			"ionoscloud_snapshot": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Snapshot"),
 			},
 			"ionoscloud_pg_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),

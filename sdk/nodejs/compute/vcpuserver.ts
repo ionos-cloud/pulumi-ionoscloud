@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * ## Import
@@ -12,18 +12,18 @@ import * as utilities from "./utilities";
  * Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/vcpuServer:VcpuServer myserver {datacenter uuid}/{server uuid}
+ * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}
  * ```
  *
  * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
  *
  * ```sh
- * $ pulumi import ionoscloud:index/vcpuServer:VcpuServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
+ * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
  * ```
  */
-export class VcpuServer extends pulumi.CustomResource {
+export class VCPUServer extends pulumi.CustomResource {
     /**
-     * Get an existing VcpuServer resource's state with the given name, ID, and optional extra
+     * Get an existing VCPUServer resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -31,22 +31,22 @@ export class VcpuServer extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VcpuServerState, opts?: pulumi.CustomResourceOptions): VcpuServer {
-        return new VcpuServer(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VCPUServerState, opts?: pulumi.CustomResourceOptions): VCPUServer {
+        return new VCPUServer(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/vcpuServer:VcpuServer';
+    public static readonly __pulumiType = 'ionoscloud:compute/vCPUServer:VCPUServer';
 
     /**
-     * Returns true if the given object is an instance of VcpuServer.  This is designed to work even
+     * Returns true if the given object is an instance of VCPUServer.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is VcpuServer {
+    public static isInstance(obj: any): obj is VCPUServer {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === VcpuServer.__pulumiType;
+        return obj['__pulumiType'] === VCPUServer.__pulumiType;
     }
 
     /**
@@ -103,7 +103,7 @@ export class VcpuServer extends pulumi.CustomResource {
     /**
      * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
      */
-    public readonly labels!: pulumi.Output<outputs.VcpuServerLabel[] | undefined>;
+    public readonly labels!: pulumi.Output<outputs.compute.VCPUServerLabel[] | undefined>;
     /**
      * [string] The name of the server.
      */
@@ -111,7 +111,7 @@ export class VcpuServer extends pulumi.CustomResource {
     /**
      * See the Nic section.
      */
-    public readonly nic!: pulumi.Output<outputs.VcpuServerNic | undefined>;
+    public readonly nic!: pulumi.Output<outputs.compute.VCPUServerNic | undefined>;
     /**
      * The associated IP address.
      */
@@ -136,21 +136,21 @@ export class VcpuServer extends pulumi.CustomResource {
     /**
      * See the Volume section.
      */
-    public readonly volume!: pulumi.Output<outputs.VcpuServerVolume>;
+    public readonly volume!: pulumi.Output<outputs.compute.VCPUServerVolume>;
 
     /**
-     * Create a VcpuServer resource with the given unique name, arguments, and options.
+     * Create a VCPUServer resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: VcpuServerArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: VcpuServerArgs | VcpuServerState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: VCPUServerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: VCPUServerArgs | VCPUServerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as VcpuServerState | undefined;
+            const state = argsOrState as VCPUServerState | undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = state ? state.bootCdrom : undefined;
             resourceInputs["bootImage"] = state ? state.bootImage : undefined;
@@ -174,7 +174,7 @@ export class VcpuServer extends pulumi.CustomResource {
             resourceInputs["vmState"] = state ? state.vmState : undefined;
             resourceInputs["volume"] = state ? state.volume : undefined;
         } else {
-            const args = argsOrState as VcpuServerArgs | undefined;
+            const args = argsOrState as VCPUServerArgs | undefined;
             if ((!args || args.cores === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cores'");
             }
@@ -213,14 +213,14 @@ export class VcpuServer extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["imagePassword"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(VcpuServer.__pulumiType, name, resourceInputs, opts);
+        super(VCPUServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering VcpuServer resources.
+ * Input properties used for looking up and filtering VCPUServer resources.
  */
-export interface VcpuServerState {
+export interface VCPUServerState {
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
@@ -275,7 +275,7 @@ export interface VcpuServerState {
     /**
      * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.VcpuServerLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
     /**
      * [string] The name of the server.
      */
@@ -283,7 +283,7 @@ export interface VcpuServerState {
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.VcpuServerNic>;
+    nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
     /**
      * The associated IP address.
      */
@@ -308,13 +308,13 @@ export interface VcpuServerState {
     /**
      * See the Volume section.
      */
-    volume?: pulumi.Input<inputs.VcpuServerVolume>;
+    volume?: pulumi.Input<inputs.compute.VCPUServerVolume>;
 }
 
 /**
- * The set of arguments for constructing a VcpuServer resource.
+ * The set of arguments for constructing a VCPUServer resource.
  */
-export interface VcpuServerArgs {
+export interface VCPUServerArgs {
     /**
      * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
      */
@@ -352,7 +352,7 @@ export interface VcpuServerArgs {
     /**
      * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.VcpuServerLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
     /**
      * [string] The name of the server.
      */
@@ -360,7 +360,7 @@ export interface VcpuServerArgs {
     /**
      * See the Nic section.
      */
-    nic?: pulumi.Input<inputs.VcpuServerNic>;
+    nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
     /**
      * [integer] The amount of memory for the server in MB.
      */
@@ -376,5 +376,5 @@ export interface VcpuServerArgs {
     /**
      * See the Volume section.
      */
-    volume: pulumi.Input<inputs.VcpuServerVolume>;
+    volume: pulumi.Input<inputs.compute.VCPUServerVolume>;
 }

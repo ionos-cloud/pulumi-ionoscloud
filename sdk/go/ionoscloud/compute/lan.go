@@ -22,7 +22,6 @@ import (
 //
 // import (
 //
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -38,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			examplePrivateCrossconnect, err := ionoscloud.NewPrivateCrossconnect(ctx, "examplePrivateCrossconnect", &ionoscloud.PrivateCrossconnectArgs{
+//			exampleCrossconnect, err := compute.NewCrossconnect(ctx, "exampleCrossconnect", &compute.CrossconnectArgs{
 //				Description: pulumi.String("Cross Connect Description"),
 //			})
 //			if err != nil {
@@ -47,7 +46,7 @@ import (
 //			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
 //				DatacenterId: exampleDatacenter.ID(),
 //				Public:       pulumi.Bool(false),
-//				Pcc:          examplePrivateCrossconnect.ID(),
+//				Pcc:          exampleCrossconnect.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -120,7 +119,7 @@ type Lan struct {
 	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
 	// [string] The name of the LAN.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 	Pcc pulumi.StringPtrOutput `pulumi:"pcc"`
 	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 	Public pulumi.BoolPtrOutput `pulumi:"public"`
@@ -167,7 +166,7 @@ type lanState struct {
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
-	// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 	Pcc *string `pulumi:"pcc"`
 	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 	Public *bool `pulumi:"public"`
@@ -182,7 +181,7 @@ type LanState struct {
 	Ipv6CidrBlock pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
-	// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 	Pcc pulumi.StringPtrInput
 	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 	Public pulumi.BoolPtrInput
@@ -201,7 +200,7 @@ type lanArgs struct {
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
-	// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 	Pcc *string `pulumi:"pcc"`
 	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 	Public *bool `pulumi:"public"`
@@ -217,7 +216,7 @@ type LanArgs struct {
 	Ipv6CidrBlock pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
-	// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 	Pcc pulumi.StringPtrInput
 	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 	Public pulumi.BoolPtrInput
@@ -330,7 +329,7 @@ func (o LanOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 func (o LanOutput) Pcc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringPtrOutput { return v.Pcc }).(pulumi.StringPtrOutput)
 }

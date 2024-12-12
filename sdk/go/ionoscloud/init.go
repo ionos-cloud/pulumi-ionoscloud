@@ -37,10 +37,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AutoscalingGroup{}
 	case "ionoscloud:index/certificate:Certificate":
 		r = &Certificate{}
-	case "ionoscloud:index/cubeServer:CubeServer":
-		r = &CubeServer{}
-	case "ionoscloud:index/ipfailover:Ipfailover":
-		r = &Ipfailover{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
 		r = &KafkaCluster{}
 	case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
@@ -57,18 +53,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
 		r = &NetworkloadbalancerForwardingrule{}
-	case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
-		r = &PrivateCrossconnect{}
 	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
 		r = &ServerBootDeviceSelection{}
-	case "ionoscloud:index/share:Share":
-		r = &Share{}
-	case "ionoscloud:index/snapshot:Snapshot":
-		r = &Snapshot{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
-	case "ionoscloud:index/vcpuServer:VcpuServer":
-		r = &VcpuServer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -142,16 +130,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/cubeServer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/ipfailover",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/kafkaCluster",
 		&module{version},
 	)
@@ -192,32 +170,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/privateCrossconnect",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/serverBootDeviceSelection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/share",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/snapshot",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/targetGroup",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/vcpuServer",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

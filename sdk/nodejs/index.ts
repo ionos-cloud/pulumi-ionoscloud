@@ -45,11 +45,6 @@ export type Certificate = import("./certificate").Certificate;
 export const Certificate: typeof import("./certificate").Certificate = null as any;
 utilities.lazyLoad(exports, ["Certificate"], () => require("./certificate"));
 
-export { CubeServerArgs, CubeServerState } from "./cubeServer";
-export type CubeServer = import("./cubeServer").CubeServer;
-export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
-utilities.lazyLoad(exports, ["CubeServer"], () => require("./cubeServer"));
-
 export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
 export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
 export const getApigatewayOutput: typeof import("./getApigateway").getApigatewayOutput = null as any;
@@ -410,11 +405,6 @@ export const getVpnWireguardPeer: typeof import("./getVpnWireguardPeer").getVpnW
 export const getVpnWireguardPeerOutput: typeof import("./getVpnWireguardPeer").getVpnWireguardPeerOutput = null as any;
 utilities.lazyLoad(exports, ["getVpnWireguardPeer","getVpnWireguardPeerOutput"], () => require("./getVpnWireguardPeer"));
 
-export { IpfailoverArgs, IpfailoverState } from "./ipfailover";
-export type Ipfailover = import("./ipfailover").Ipfailover;
-export const Ipfailover: typeof import("./ipfailover").Ipfailover = null as any;
-utilities.lazyLoad(exports, ["Ipfailover"], () => require("./ipfailover"));
-
 export { KafkaClusterArgs, KafkaClusterState } from "./kafkaCluster";
 export type KafkaCluster = import("./kafkaCluster").KafkaCluster;
 export const KafkaCluster: typeof import("./kafkaCluster").KafkaCluster = null as any;
@@ -455,11 +445,6 @@ export type NetworkloadbalancerForwardingrule = import("./networkloadbalancerFor
 export const NetworkloadbalancerForwardingrule: typeof import("./networkloadbalancerForwardingrule").NetworkloadbalancerForwardingrule = null as any;
 utilities.lazyLoad(exports, ["NetworkloadbalancerForwardingrule"], () => require("./networkloadbalancerForwardingrule"));
 
-export { PrivateCrossconnectArgs, PrivateCrossconnectState } from "./privateCrossconnect";
-export type PrivateCrossconnect = import("./privateCrossconnect").PrivateCrossconnect;
-export const PrivateCrossconnect: typeof import("./privateCrossconnect").PrivateCrossconnect = null as any;
-utilities.lazyLoad(exports, ["PrivateCrossconnect"], () => require("./privateCrossconnect"));
-
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -470,25 +455,10 @@ export type ServerBootDeviceSelection = import("./serverBootDeviceSelection").Se
 export const ServerBootDeviceSelection: typeof import("./serverBootDeviceSelection").ServerBootDeviceSelection = null as any;
 utilities.lazyLoad(exports, ["ServerBootDeviceSelection"], () => require("./serverBootDeviceSelection"));
 
-export { ShareArgs, ShareState } from "./share";
-export type Share = import("./share").Share;
-export const Share: typeof import("./share").Share = null as any;
-utilities.lazyLoad(exports, ["Share"], () => require("./share"));
-
-export { SnapshotArgs, SnapshotState } from "./snapshot";
-export type Snapshot = import("./snapshot").Snapshot;
-export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
-utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
-
 export { TargetGroupArgs, TargetGroupState } from "./targetGroup";
 export type TargetGroup = import("./targetGroup").TargetGroup;
 export const TargetGroup: typeof import("./targetGroup").TargetGroup = null as any;
 utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
-
-export { VcpuServerArgs, VcpuServerState } from "./vcpuServer";
-export type VcpuServer = import("./vcpuServer").VcpuServer;
-export const VcpuServer: typeof import("./vcpuServer").VcpuServer = null as any;
-utilities.lazyLoad(exports, ["VcpuServer"], () => require("./vcpuServer"));
 
 
 // Export sub-modules:
@@ -538,10 +508,6 @@ const _module = {
                 return new AutoscalingGroup(name, <any>undefined, { urn })
             case "ionoscloud:index/certificate:Certificate":
                 return new Certificate(name, <any>undefined, { urn })
-            case "ionoscloud:index/cubeServer:CubeServer":
-                return new CubeServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/ipfailover:Ipfailover":
-                return new Ipfailover(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaCluster:KafkaCluster":
                 return new KafkaCluster(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
@@ -558,18 +524,10 @@ const _module = {
                 return new Networkloadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
                 return new NetworkloadbalancerForwardingrule(name, <any>undefined, { urn })
-            case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
-                return new PrivateCrossconnect(name, <any>undefined, { urn })
             case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
                 return new ServerBootDeviceSelection(name, <any>undefined, { urn })
-            case "ionoscloud:index/share:Share":
-                return new Share(name, <any>undefined, { urn })
-            case "ionoscloud:index/snapshot:Snapshot":
-                return new Snapshot(name, <any>undefined, { urn })
             case "ionoscloud:index/targetGroup:TargetGroup":
                 return new TargetGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/vcpuServer:VcpuServer":
-                return new VcpuServer(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -583,8 +541,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificate", _mo
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvider", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/ipfailover", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
@@ -593,12 +549,8 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/natgateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/natgatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancerForwardingrule", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/privateCrossconnect", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/serverBootDeviceSelection", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/share", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/snapshot", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/vcpuServer", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

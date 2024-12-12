@@ -49,7 +49,7 @@ type GetLanResult struct {
 	Ipv6CidrBlock string             `pulumi:"ipv6CidrBlock"`
 	// The name of the LAN.
 	Name *string `pulumi:"name"`
-	// The unique id of a `PrivateCrossconnect` resource, in order.
+	// The unique id of a `compute.Crossconnect` resource, in order.
 	Pcc string `pulumi:"pcc"`
 	// Indicates if the LAN faces the public Internet (true) or not (false).
 	Public bool `pulumi:"public"`
@@ -123,7 +123,7 @@ func (o GetLanResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLanResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The unique id of a `PrivateCrossconnect` resource, in order.
+// The unique id of a `compute.Crossconnect` resource, in order.
 func (o GetLanResultOutput) Pcc() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLanResult) string { return v.Pcc }).(pulumi.StringOutput)
 }

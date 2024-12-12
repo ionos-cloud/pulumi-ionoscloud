@@ -203,7 +203,7 @@
                 }
             },
             "ionoscloud_cube_server": {
-                "current": "ionoscloud:index/cubeServer:CubeServer",
+                "current": "ionoscloud:compute/cubeServer:CubeServer",
                 "fields": {
                     "inline_volume_ids": {
                         "maxItemsOne": false
@@ -337,7 +337,7 @@
                 }
             },
             "ionoscloud_ipfailover": {
-                "current": "ionoscloud:index/ipfailover:Ipfailover"
+                "current": "ionoscloud:compute/iPFailover:IPFailover"
             },
             "ionoscloud_k8s_cluster": {
                 "current": "ionoscloud:k8s/cluster:Cluster",
@@ -609,7 +609,7 @@
                 "current": "ionoscloud:dbaas/pSQLUser:PSQLUser"
             },
             "ionoscloud_private_crossconnect": {
-                "current": "ionoscloud:index/privateCrossconnect:PrivateCrossconnect",
+                "current": "ionoscloud:compute/crossconnect:Crossconnect",
                 "fields": {
                     "connectable_datacenters": {
                         "maxItemsOne": false
@@ -675,10 +675,10 @@
                 "current": "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection"
             },
             "ionoscloud_share": {
-                "current": "ionoscloud:index/share:Share"
+                "current": "ionoscloud:compute/share:Share"
             },
             "ionoscloud_snapshot": {
-                "current": "ionoscloud:index/snapshot:Snapshot"
+                "current": "ionoscloud:compute/snapshot:Snapshot"
             },
             "ionoscloud_target_group": {
                 "current": "ionoscloud:index/targetGroup:TargetGroup",
@@ -703,7 +703,7 @@
                 }
             },
             "ionoscloud_vcpu_server": {
-                "current": "ionoscloud:index/vcpuServer:VcpuServer",
+                "current": "ionoscloud:compute/vCPUServer:VCPUServer",
                 "fields": {
                     "firewallrule_ids": {
                         "maxItemsOne": false

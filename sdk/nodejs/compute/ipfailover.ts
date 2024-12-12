@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages **IP Failover** groups on IonosCloud.
@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  *         ips: [exampleIPBlock.ips[0]],
  *     },
  * });
- * const exampleIpfailover = new ionoscloud.Ipfailover("exampleIpfailover", {
+ * const exampleIPFailover = new ionoscloud.compute.IPFailover("exampleIPFailover", {
  *     datacenterId: exampleDatacenter.id,
  *     lanId: exampleLan.id,
  *     ip: exampleIPBlock.ips[0],
@@ -80,12 +80,12 @@ import * as utilities from "./utilities";
  * Resource IpFailover can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/ipfailover:Ipfailover myipfailover {datacenter uuid}/{lan uuid}
+ * $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
  * ```
  */
-export class Ipfailover extends pulumi.CustomResource {
+export class IPFailover extends pulumi.CustomResource {
     /**
-     * Get an existing Ipfailover resource's state with the given name, ID, and optional extra
+     * Get an existing IPFailover resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -93,22 +93,22 @@ export class Ipfailover extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IpfailoverState, opts?: pulumi.CustomResourceOptions): Ipfailover {
-        return new Ipfailover(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IPFailoverState, opts?: pulumi.CustomResourceOptions): IPFailover {
+        return new IPFailover(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/ipfailover:Ipfailover';
+    public static readonly __pulumiType = 'ionoscloud:compute/iPFailover:IPFailover';
 
     /**
-     * Returns true if the given object is an instance of Ipfailover.  This is designed to work even
+     * Returns true if the given object is an instance of IPFailover.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Ipfailover {
+    public static isInstance(obj: any): obj is IPFailover {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Ipfailover.__pulumiType;
+        return obj['__pulumiType'] === IPFailover.__pulumiType;
     }
 
     /**
@@ -129,24 +129,24 @@ export class Ipfailover extends pulumi.CustomResource {
     public readonly nicuuid!: pulumi.Output<string>;
 
     /**
-     * Create a Ipfailover resource with the given unique name, arguments, and options.
+     * Create a IPFailover resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: IpfailoverArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: IpfailoverArgs | IpfailoverState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: IPFailoverArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: IPFailoverArgs | IPFailoverState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as IpfailoverState | undefined;
+            const state = argsOrState as IPFailoverState | undefined;
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["lanId"] = state ? state.lanId : undefined;
             resourceInputs["nicuuid"] = state ? state.nicuuid : undefined;
         } else {
-            const args = argsOrState as IpfailoverArgs | undefined;
+            const args = argsOrState as IPFailoverArgs | undefined;
             if ((!args || args.datacenterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datacenterId'");
             }
@@ -165,14 +165,14 @@ export class Ipfailover extends pulumi.CustomResource {
             resourceInputs["nicuuid"] = args ? args.nicuuid : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Ipfailover.__pulumiType, name, resourceInputs, opts);
+        super(IPFailover.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Ipfailover resources.
+ * Input properties used for looking up and filtering IPFailover resources.
  */
-export interface IpfailoverState {
+export interface IPFailoverState {
     /**
      * [string] The ID of a Virtual Data Center.
      */
@@ -192,9 +192,9 @@ export interface IpfailoverState {
 }
 
 /**
- * The set of arguments for constructing a Ipfailover resource.
+ * The set of arguments for constructing a IPFailover resource.
  */
-export interface IpfailoverArgs {
+export interface IPFailoverArgs {
     /**
      * [string] The ID of a Virtual Data Center.
      */

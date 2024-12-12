@@ -28,7 +28,7 @@ class LanArgs:
         :param pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
-        :param pulumi.Input[str] pcc: [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -95,7 +95,7 @@ class LanArgs:
     @pulumi.getter
     def pcc(self) -> Optional[pulumi.Input[str]]:
         """
-        [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         """
         return pulumi.get(self, "pcc")
 
@@ -131,7 +131,7 @@ class _LanState:
         :param pulumi.Input[Sequence[pulumi.Input['LanIpFailoverArgs']]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
-        :param pulumi.Input[str] pcc: [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         if datacenter_id is not None:
@@ -199,7 +199,7 @@ class _LanState:
     @pulumi.getter
     def pcc(self) -> Optional[pulumi.Input[str]]:
         """
-        [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         """
         return pulumi.get(self, "pcc")
 
@@ -246,11 +246,11 @@ class Lan(pulumi.CustomResource):
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_private_crossconnect = ionoscloud.PrivateCrossconnect("examplePrivateCrossconnect", description="Cross Connect Description")
+        example_crossconnect = ionoscloud.compute.Crossconnect("exampleCrossconnect", description="Cross Connect Description")
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
             public=False,
-            pcc=example_private_crossconnect.id)
+            pcc=example_crossconnect.id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -291,7 +291,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LanIpFailoverArgs']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
-        :param pulumi.Input[str] pcc: [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         ...
@@ -314,11 +314,11 @@ class Lan(pulumi.CustomResource):
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_private_crossconnect = ionoscloud.PrivateCrossconnect("examplePrivateCrossconnect", description="Cross Connect Description")
+        example_crossconnect = ionoscloud.compute.Crossconnect("exampleCrossconnect", description="Cross Connect Description")
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
             public=False,
-            pcc=example_private_crossconnect.id)
+            pcc=example_crossconnect.id)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -418,7 +418,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LanIpFailoverArgs']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[str] name: [string] The name of the LAN.
-        :param pulumi.Input[str] pcc: [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        :param pulumi.Input[str] pcc: [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         :param pulumi.Input[bool] public: [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -469,7 +469,7 @@ class Lan(pulumi.CustomResource):
     @pulumi.getter
     def pcc(self) -> pulumi.Output[Optional[str]]:
         """
-        [String] The unique id of a `PrivateCrossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+        [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
         """
         return pulumi.get(self, "pcc")
 

@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages **Shares** and list shares permissions granted to the group members for each shared resource.
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     createInternetAccess: true,
  *     createK8sCluster: true,
  * });
- * const exampleShare = new ionoscloud.Share("exampleShare", {
+ * const exampleShare = new ionoscloud.compute.Share("exampleShare", {
  *     groupId: exampleGroup.id,
  *     resourceId: exampleDatacenter.id,
  *     editPrivilege: true,
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  * Resource Share can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/share:Share myshare {group uuid}/{resource uuid}
+ * $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
  * ```
  */
 export class Share extends pulumi.CustomResource {
@@ -62,7 +62,7 @@ export class Share extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/share:Share';
+    public static readonly __pulumiType = 'ionoscloud:compute/share:Share';
 
     /**
      * Returns true if the given object is an instance of Share.  This is designed to work even
@@ -93,7 +93,7 @@ export class Share extends pulumi.CustomResource {
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-     * attributes inside the `ionoscloud.Share` resource to enforce the sequential creation of the shares.
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
     public readonly sharePrivilege!: pulumi.Output<boolean | undefined>;
 
@@ -154,7 +154,7 @@ export interface ShareState {
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-     * attributes inside the `ionoscloud.Share` resource to enforce the sequential creation of the shares.
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
     sharePrivilege?: pulumi.Input<boolean>;
 }
@@ -181,7 +181,7 @@ export interface ShareArgs {
      * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
      * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
      * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-     * attributes inside the `ionoscloud.Share` resource to enforce the sequential creation of the shares.
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
      */
     sharePrivilege?: pulumi.Input<boolean>;
 }

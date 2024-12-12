@@ -16,7 +16,7 @@ import (
 //
 // ## Example Usage
 //
-// The boot device of a `compute.Server`, `VcpuServer` or `CubeServer` can be selected with this resource.
+// The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
 // Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
 // This resource also allows switching between a `volume` and a `getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 //

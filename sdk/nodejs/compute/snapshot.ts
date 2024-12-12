@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages **Snapshots** on IonosCloud.
@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *         availabilityZone: "ZONE_1",
  *     },
  * });
- * const testSnapshot = new ionoscloud.Snapshot("testSnapshot", {
+ * const testSnapshot = new ionoscloud.compute.Snapshot("testSnapshot", {
  *     datacenterId: exampleDatacenter.id,
  *     volumeId: exampleServer.bootVolume,
  * });
@@ -63,7 +63,7 @@ import * as utilities from "./utilities";
  * Resource Snapshot can be imported using the `snapshot id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/snapshot:Snapshot mysnapshot {snapshot uuid}
+ * $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
  * ```
  */
 export class Snapshot extends pulumi.CustomResource {
@@ -81,7 +81,7 @@ export class Snapshot extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/snapshot:Snapshot';
+    public static readonly __pulumiType = 'ionoscloud:compute/snapshot:Snapshot';
 
     /**
      * Returns true if the given object is an instance of Snapshot.  This is designed to work even

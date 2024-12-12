@@ -397,109 +397,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData: string;
 }
 
-export interface CubeServerNic {
-    deviceNumber: number;
-    dhcp?: boolean;
-    /**
-     * Indicates whether this NIC receives an IPv6 address through DHCP.
-     */
-    dhcpv6?: boolean;
-    firewall?: outputs.CubeServerNicFirewall;
-    firewallActive?: boolean;
-    firewallType: string;
-    ips: string[];
-    /**
-     * IPv6 CIDR block assigned to the NIC.
-     */
-    ipv6CidrBlock: string;
-    /**
-     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
-     */
-    ipv6Ips: string[];
-    lan: number;
-    mac: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    pciSlot: number;
-}
-
-export interface CubeServerNicFirewall {
-    icmpCode?: string;
-    icmpType?: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    portRangeEnd?: number;
-    portRangeStart?: number;
-    protocol: string;
-    sourceIp?: string;
-    sourceMac?: string;
-    targetIp?: string;
-    type: string;
-}
-
-export interface CubeServerVolume {
-    /**
-     * [string] The availability zone in which the server should exist. This property is immutable.
-     */
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    bus: string;
-    cpuHotPlug: boolean;
-    deviceNumber: number;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    diskType: string;
-    /**
-     * [string] Required if `sshKeyPath` is not provided.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > For creating a **CUBE** server, you can not set `volume.size` argument.
-     * >
-     *
-     * @deprecated Please use imagePassword under server level
-     */
-    imagePassword?: string;
-    /**
-     * [string] Sets the OS type of the server.
-     */
-    licenceType: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    pciSlot: number;
-    ramHotPlug: boolean;
-    /**
-     * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
-     *
-     * @deprecated Please use sshKeyPath under server level
-     */
-    sshKeyPaths: string[];
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData: string;
-}
-
 export interface GetApigatewayCustomDomain {
     /**
      * The ID of the certificate to use for the distribution.
@@ -3220,44 +3117,6 @@ export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
     maintenance: boolean;
 }
 
-export interface PrivateCrossconnectConnectableDatacenter {
-    /**
-     * The UUID of the connectable datacenter
-     */
-    id: string;
-    /**
-     * The location of the cross-connected datacenter
-     */
-    location: string;
-    /**
-     * The name of the connectable datacenter
-     */
-    name: string;
-}
-
-export interface PrivateCrossconnectPeer {
-    /**
-     * The id of the cross-connected datacenter
-     */
-    datacenterId: string;
-    /**
-     * The name of the cross-connected datacenter
-     */
-    datacenterName: string;
-    /**
-     * The id of the cross-connected LAN
-     */
-    lanId: string;
-    /**
-     * The name of the cross-connected LAN
-     */
-    lanName: string;
-    /**
-     * The location of the cross-connected datacenter
-     */
-    location: string;
-}
-
 export interface TargetGroupHealthCheck {
     /**
      * [int] The interval in milliseconds between consecutive health checks; default is 2000.
@@ -3327,95 +3186,6 @@ export interface TargetGroupTarget {
     weight: number;
 }
 
-export interface VcpuServerLabel {
-    key: string;
-    value: string;
-}
-
-export interface VcpuServerNic {
-    deviceNumber: number;
-    dhcp?: boolean;
-    dhcpv6?: boolean;
-    firewallActive?: boolean;
-    firewallType: string;
-    /**
-     * Allows to define firewall rules inline in the server. See the Firewall section.
-     */
-    firewalls?: outputs.VcpuServerNicFirewall[];
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-     */
-    ips: string[];
-    ipv6CidrBlock: string;
-    ipv6Ips: string[];
-    lan: number;
-    mac: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    pciSlot: number;
-}
-
-export interface VcpuServerNicFirewall {
-    icmpCode?: string;
-    icmpType?: string;
-    id: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    portRangeEnd?: number;
-    portRangeStart?: number;
-    protocol: string;
-    sourceIp?: string;
-    sourceMac?: string;
-    targetIp?: string;
-    type: string;
-}
-
-export interface VcpuServerVolume {
-    /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-     */
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    bus: string;
-    cpuHotPlug: boolean;
-    deviceNumber: number;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    diskType: string;
-    /**
-     * [string] Sets the OS type of the server.
-     */
-    licenceType: string;
-    /**
-     * [string] The name of the server.
-     */
-    name?: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    pciSlot: number;
-    ramHotPlug: boolean;
-    /**
-     * The size of the volume in GB.
-     */
-    size: number;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
-     */
-    userData: string;
-}
-
 export namespace cdn {
     export interface DistributionRoutingRule {
         /**
@@ -3473,6 +3243,147 @@ export namespace cdn {
 }
 
 export namespace compute {
+    export interface CrossconnectConnectableDatacenter {
+        /**
+         * The UUID of the connectable datacenter
+         */
+        id: string;
+        /**
+         * The location of the cross-connected datacenter
+         */
+        location: string;
+        /**
+         * The name of the connectable datacenter
+         */
+        name: string;
+    }
+
+    export interface CrossconnectPeer {
+        /**
+         * The id of the cross-connected datacenter
+         */
+        datacenterId: string;
+        /**
+         * The name of the cross-connected datacenter
+         */
+        datacenterName: string;
+        /**
+         * The id of the cross-connected LAN
+         */
+        lanId: string;
+        /**
+         * The name of the cross-connected LAN
+         */
+        lanName: string;
+        /**
+         * The location of the cross-connected datacenter
+         */
+        location: string;
+    }
+
+    export interface CubeServerNic {
+        deviceNumber: number;
+        dhcp?: boolean;
+        /**
+         * Indicates whether this NIC receives an IPv6 address through DHCP.
+         */
+        dhcpv6?: boolean;
+        firewall?: outputs.compute.CubeServerNicFirewall;
+        firewallActive?: boolean;
+        firewallType: string;
+        ips: string[];
+        /**
+         * IPv6 CIDR block assigned to the NIC.
+         */
+        ipv6CidrBlock: string;
+        /**
+         * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+         */
+        ipv6Ips: string[];
+        lan: number;
+        mac: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        pciSlot: number;
+    }
+
+    export interface CubeServerNicFirewall {
+        icmpCode?: string;
+        icmpType?: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        portRangeEnd?: number;
+        portRangeStart?: number;
+        protocol: string;
+        sourceIp?: string;
+        sourceMac?: string;
+        targetIp?: string;
+        type: string;
+    }
+
+    export interface CubeServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. This property is immutable.
+         */
+        availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+         */
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        bus: string;
+        cpuHotPlug: boolean;
+        deviceNumber: number;
+        discVirtioHotPlug: boolean;
+        discVirtioHotUnplug: boolean;
+        diskType: string;
+        /**
+         * [string] Required if `sshKeyPath` is not provided.
+         *
+         * > **⚠ WARNING**
+         * >
+         * > Image_name under volume level is deprecated, please use imageName under server level
+         *
+         *
+         * > **⚠ WARNING**
+         * >
+         * > For creating a **CUBE** server, you can not set `volume.size` argument.
+         * >
+         *
+         * @deprecated Please use imagePassword under server level
+         */
+        imagePassword?: string;
+        /**
+         * [string] Sets the OS type of the server.
+         */
+        licenceType: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        nicHotPlug: boolean;
+        nicHotUnplug: boolean;
+        pciSlot: number;
+        ramHotPlug: boolean;
+        /**
+         * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+         *
+         * @deprecated Please use sshKeyPath under server level
+         */
+        sshKeyPaths: string[];
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+         */
+        userData: string;
+    }
+
     export interface DatacenterCpuArchitecture {
         /**
          * A valid CPU family name
@@ -3663,6 +3574,95 @@ export namespace compute {
          * @deprecated Please use sshKeys under server level
          */
         sshKeys: string[];
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+         */
+        userData: string;
+    }
+
+    export interface VCPUServerLabel {
+        key: string;
+        value: string;
+    }
+
+    export interface VCPUServerNic {
+        deviceNumber: number;
+        dhcp?: boolean;
+        dhcpv6?: boolean;
+        firewallActive?: boolean;
+        firewallType: string;
+        /**
+         * Allows to define firewall rules inline in the server. See the Firewall section.
+         */
+        firewalls?: outputs.compute.VCPUServerNicFirewall[];
+        id: string;
+        /**
+         * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+         */
+        ips: string[];
+        ipv6CidrBlock: string;
+        ipv6Ips: string[];
+        lan: number;
+        mac: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        pciSlot: number;
+    }
+
+    export interface VCPUServerNicFirewall {
+        icmpCode?: string;
+        icmpType?: string;
+        id: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        portRangeEnd?: number;
+        portRangeStart?: number;
+        protocol: string;
+        sourceIp?: string;
+        sourceMac?: string;
+        targetIp?: string;
+        type: string;
+    }
+
+    export interface VCPUServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+         */
+        availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+         */
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        bus: string;
+        cpuHotPlug: boolean;
+        deviceNumber: number;
+        discVirtioHotPlug: boolean;
+        discVirtioHotUnplug: boolean;
+        diskType: string;
+        /**
+         * [string] Sets the OS type of the server.
+         */
+        licenceType: string;
+        /**
+         * [string] The name of the server.
+         */
+        name?: string;
+        nicHotPlug: boolean;
+        nicHotUnplug: boolean;
+        pciSlot: number;
+        ramHotPlug: boolean;
+        /**
+         * The size of the volume in GB.
+         */
+        size: number;
         /**
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */

@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "ionoscloud:compute/backupUnit:BackupUnit":
 		r = &BackupUnit{}
+	case "ionoscloud:compute/crossconnect:Crossconnect":
+		r = &Crossconnect{}
+	case "ionoscloud:compute/cubeServer:CubeServer":
+		r = &CubeServer{}
 	case "ionoscloud:compute/datacenter:Datacenter":
 		r = &Datacenter{}
 	case "ionoscloud:compute/firewall:Firewall":
@@ -31,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Group{}
 	case "ionoscloud:compute/iPBlock:IPBlock":
 		r = &IPBlock{}
+	case "ionoscloud:compute/iPFailover:IPFailover":
+		r = &IPFailover{}
 	case "ionoscloud:compute/lan:Lan":
 		r = &Lan{}
 	case "ionoscloud:compute/nic:Nic":
@@ -39,8 +45,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &S3Key{}
 	case "ionoscloud:compute/server:Server":
 		r = &Server{}
+	case "ionoscloud:compute/share:Share":
+		r = &Share{}
+	case "ionoscloud:compute/snapshot:Snapshot":
+		r = &Snapshot{}
 	case "ionoscloud:compute/user:User":
 		r = &User{}
+	case "ionoscloud:compute/vCPUServer:VCPUServer":
+		r = &VCPUServer{}
 	case "ionoscloud:compute/volume:Volume":
 		r = &Volume{}
 	default:
@@ -59,6 +71,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/backupUnit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/crossconnect",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/cubeServer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -83,6 +105,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
+		"compute/iPFailover",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
 		"compute/lan",
 		&module{version},
 	)
@@ -103,7 +130,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
+		"compute/share",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
 		"compute/user",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/vCPUServer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
