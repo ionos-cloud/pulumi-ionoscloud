@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **DNS Zone**.
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const example = new ionoscloud.DnsZone("example", {
+ * const example = new ionoscloud.dns.Zone("example", {
  *     description: "description",
  *     enabled: false,
  * });
@@ -36,12 +36,12 @@ import * as utilities from "./utilities";
  * The resource can be imported using the `zone_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/dnsZone:DnsZone example {zone_id}
+ * $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
  * ```
  */
-export class DnsZone extends pulumi.CustomResource {
+export class Zone extends pulumi.CustomResource {
     /**
-     * Get an existing DnsZone resource's state with the given name, ID, and optional extra
+     * Get an existing Zone resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -49,22 +49,22 @@ export class DnsZone extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DnsZoneState, opts?: pulumi.CustomResourceOptions): DnsZone {
-        return new DnsZone(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ZoneState, opts?: pulumi.CustomResourceOptions): Zone {
+        return new Zone(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/dnsZone:DnsZone';
+    public static readonly __pulumiType = 'ionoscloud:dns/zone:Zone';
 
     /**
-     * Returns true if the given object is an instance of DnsZone.  This is designed to work even
+     * Returns true if the given object is an instance of Zone.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DnsZone {
+    public static isInstance(obj: any): obj is Zone {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DnsZone.__pulumiType;
+        return obj['__pulumiType'] === Zone.__pulumiType;
     }
 
     /**
@@ -85,38 +85,38 @@ export class DnsZone extends pulumi.CustomResource {
     public /*out*/ readonly nameservers!: pulumi.Output<string[]>;
 
     /**
-     * Create a DnsZone resource with the given unique name, arguments, and options.
+     * Create a Zone resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: DnsZoneArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DnsZoneArgs | DnsZoneState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args?: ZoneArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: ZoneArgs | ZoneState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DnsZoneState | undefined;
+            const state = argsOrState as ZoneState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nameservers"] = state ? state.nameservers : undefined;
         } else {
-            const args = argsOrState as DnsZoneArgs | undefined;
+            const args = argsOrState as ZoneArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nameservers"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DnsZone.__pulumiType, name, resourceInputs, opts);
+        super(Zone.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DnsZone resources.
+ * Input properties used for looking up and filtering Zone resources.
  */
-export interface DnsZoneState {
+export interface ZoneState {
     /**
      * [string] The description for the DNS Zone.
      */
@@ -136,9 +136,9 @@ export interface DnsZoneState {
 }
 
 /**
- * The set of arguments for constructing a DnsZone resource.
+ * The set of arguments for constructing a Zone resource.
  */
-export interface DnsZoneArgs {
+export interface ZoneArgs {
     /**
      * [string] The description for the DNS Zone.
      */

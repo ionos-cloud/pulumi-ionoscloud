@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Dns
 {
     /// <summary>
     /// Manages a **DNS Zone**.
@@ -25,7 +25,7 @@ namespace Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.DnsZone("example", new()
+    ///     var example = new Ionoscloud.Dns.Zone("example", new()
     ///     {
     ///         Description = "description",
     ///         Enabled = false,
@@ -48,11 +48,11 @@ namespace Pulumi.Ionoscloud
     /// The resource can be imported using the `zone_id`, for example:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/dnsZone:DnsZone example {zone_id}
+    /// $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/dnsZone:DnsZone")]
-    public partial class DnsZone : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:dns/zone:Zone")]
+    public partial class Zone : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [string] The description for the DNS Zone.
@@ -80,19 +80,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a DnsZone resource with the given unique name, arguments, and options.
+        /// Create a Zone resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DnsZone(string name, DnsZoneArgs? args = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dnsZone:DnsZone", name, args ?? new DnsZoneArgs(), MakeResourceOptions(options, ""))
+        public Zone(string name, ZoneArgs? args = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:dns/zone:Zone", name, args ?? new ZoneArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DnsZone(string name, Input<string> id, DnsZoneState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dnsZone:DnsZone", name, state, MakeResourceOptions(options, id))
+        private Zone(string name, Input<string> id, ZoneState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:dns/zone:Zone", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -108,7 +108,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing DnsZone resource's state with the given name, ID, and optional extra
+        /// Get an existing Zone resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -116,13 +116,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DnsZone Get(string name, Input<string> id, DnsZoneState? state = null, CustomResourceOptions? options = null)
+        public static Zone Get(string name, Input<string> id, ZoneState? state = null, CustomResourceOptions? options = null)
         {
-            return new DnsZone(name, id, state, options);
+            return new Zone(name, id, state, options);
         }
     }
 
-    public sealed class DnsZoneArgs : global::Pulumi.ResourceArgs
+    public sealed class ZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The description for the DNS Zone.
@@ -142,13 +142,13 @@ namespace Pulumi.Ionoscloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public DnsZoneArgs()
+        public ZoneArgs()
         {
         }
-        public static new DnsZoneArgs Empty => new DnsZoneArgs();
+        public static new ZoneArgs Empty => new ZoneArgs();
     }
 
-    public sealed class DnsZoneState : global::Pulumi.ResourceArgs
+    public sealed class ZoneState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The description for the DNS Zone.
@@ -180,9 +180,9 @@ namespace Pulumi.Ionoscloud
             set => _nameservers = value;
         }
 
-        public DnsZoneState()
+        public ZoneState()
         {
         }
-        public static new DnsZoneState Empty => new DnsZoneState();
+        public static new ZoneState Empty => new ZoneState();
     }
 }

@@ -45,10 +45,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DataplatformCluster{}
 	case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
 		r = &DataplatformNodePool{}
-	case "ionoscloud:index/dnsRecord:DnsRecord":
-		r = &DnsRecord{}
-	case "ionoscloud:index/dnsZone:DnsZone":
-		r = &DnsZone{}
 	case "ionoscloud:index/ipfailover:Ipfailover":
 		r = &Ipfailover{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -180,16 +176,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/dataplatformNodePool",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsRecord",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsZone",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

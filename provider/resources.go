@@ -41,6 +41,7 @@ const (
 	computeModule = "compute" // the ionoscloud module
 	dbaasModule   = "dbaas"   // the ionoscloud module
 	k8sModule     = "k8s"     // the ionoscloud module
+	dnsModule     = "dns"     // the ionoscloud module
 	cregModule    = "creg"    // the ionoscloud module
 )
 
@@ -246,6 +247,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_k8s_node_pool": {
 				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "NodePool"),
+			},
+			"ionoscloud_dns_zone": {
+				Tok: tfbridge.MakeResource(mainPkg, dnsModule, "Zone"),
+			},
+			"ionoscloud_dns_record": {
+				Tok: tfbridge.MakeResource(mainPkg, dnsModule, "Record"),
 			},
 			"ionoscloud_container_registry": {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "Registry"),

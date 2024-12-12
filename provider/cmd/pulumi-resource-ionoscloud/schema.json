@@ -11081,6 +11081,193 @@
                 "type": "object"
             }
         },
+        "ionoscloud:dns/record:Record": {
+            "description": "Manages a **DNS Record**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.dns.Zone(\"example\", {\n    description: \"description\",\n    enabled: false,\n});\nconst recordexample = new ionoscloud.dns.Record(\"recordexample\", {\n    zoneId: example.id,\n    type: \"CNAME\",\n    content: \"1.2.3.4\",\n    ttl: 2000,\n    priority: 1024,\n    enabled: false,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.dns.Zone(\"example\",\n    description=\"description\",\n    enabled=False)\nrecordexample = ionoscloud.dns.Record(\"recordexample\",\n    zone_id=example.id,\n    type=\"CNAME\",\n    content=\"1.2.3.4\",\n    ttl=2000,\n    priority=1024,\n    enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Dns.Zone(\"example\", new()\n    {\n        Description = \"description\",\n        Enabled = false,\n    });\n\n    var recordexample = new Ionoscloud.Dns.Record(\"recordexample\", new()\n    {\n        ZoneId = example.Id,\n        Type = \"CNAME\",\n        Content = \"1.2.3.4\",\n        Ttl = 2000,\n        Priority = 1024,\n        Enabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := dns.NewZone(ctx, \"example\", \u0026dns.ZoneArgs{\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tEnabled:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dns.NewRecord(ctx, \"recordexample\", \u0026dns.RecordArgs{\n\t\t\tZoneId:   example.ID(),\n\t\t\tType:     pulumi.String(\"CNAME\"),\n\t\t\tContent:  pulumi.String(\"1.2.3.4\"),\n\t\t\tTtl:      pulumi.Int(2000),\n\t\t\tPriority: pulumi.Int(1024),\n\t\t\tEnabled:  pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dns.Zone;\nimport com.pulumi.ionoscloud.dns.ZoneArgs;\nimport com.pulumi.ionoscloud.dns.Record;\nimport com.pulumi.ionoscloud.dns.RecordArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Zone(\"example\", ZoneArgs.builder()        \n            .description(\"description\")\n            .enabled(false)\n            .build());\n\n        var recordexample = new Record(\"recordexample\", RecordArgs.builder()        \n            .zoneId(example.id())\n            .type(\"CNAME\")\n            .content(\"1.2.3.4\")\n            .ttl(2000)\n            .priority(1024)\n            .enabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:dns:Zone\n    properties:\n      description: description\n      enabled: false\n  recordexample:\n    type: ionoscloud:dns:Record\n    properties:\n      zoneId: ${example.id}\n      type: CNAME\n      content: 1.2.3.4\n      ttl: 2000\n      priority: 1024\n      enabled: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a DNS Record, you can define an empty DNS Record resource in the plan:\n\nhcl\n\nresource \"ionoscloud_dns_record\" \"example\" {\n\n}\n\nThe resource can be imported using the `zone_id` and the `record_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}\n```\n\n",
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "[string] The content of the DNS Record.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
+                },
+                "fqdn": {
+                    "type": "string",
+                    "description": "Fully qualified domain name\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the DNS Record.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "[int] The priority for the DNS Record.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
+                }
+            },
+            "required": [
+                "content",
+                "enabled",
+                "fqdn",
+                "name",
+                "ttl",
+                "type",
+                "zoneId"
+            ],
+            "inputProperties": {
+                "content": {
+                    "type": "string",
+                    "description": "[string] The content of the DNS Record.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the DNS Record.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "[int] The priority for the DNS Record.\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
+                }
+            },
+            "requiredInputs": [
+                "content",
+                "type",
+                "zoneId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Record resources.\n",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "[string] The content of the DNS Record.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
+                    },
+                    "fqdn": {
+                        "type": "string",
+                        "description": "Fully qualified domain name\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the DNS Record.\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "[int] The priority for the DNS Record.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
+                    },
+                    "zoneId": {
+                        "type": "string",
+                        "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:dns/zone:Zone": {
+            "description": "Manages a **DNS Zone**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.dns.Zone(\"example\", {\n    description: \"description\",\n    enabled: false,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.dns.Zone(\"example\",\n    description=\"description\",\n    enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Dns.Zone(\"example\", new()\n    {\n        Description = \"description\",\n        Enabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dns.NewZone(ctx, \"example\", \u0026dns.ZoneArgs{\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tEnabled:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dns.Zone;\nimport com.pulumi.ionoscloud.dns.ZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Zone(\"example\", ZoneArgs.builder()        \n            .description(\"description\")\n            .enabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:dns:Zone\n    properties:\n      description: description\n      enabled: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:\n\nhcl\n\nresource \"ionoscloud_dns_zone\" \"example\" {\n\n}\n\nThe resource can be imported using the `zone_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:dns/zone:Zone example {zone_id}\n```\n\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "[string] The description for the DNS Zone.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the DNS Zone.\n"
+                },
+                "nameservers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of available name servers.\n"
+                }
+            },
+            "required": [
+                "enabled",
+                "name",
+                "nameservers"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "[string] The description for the DNS Zone.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the DNS Zone.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Zone resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "[string] The description for the DNS Zone.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the DNS Zone.\n"
+                    },
+                    "nameservers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of available name servers.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:index/apigateway:Apigateway": {
             "description": "An API gateway consists of the generic rules and configurations.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.Apigateway(\"example\", {metrics: true});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.Apigateway(\"example\", metrics=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Apigateway(\"example\", new()\n    {\n        Metrics = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewApigateway(ctx, \"example\", \u0026ionoscloud.ApigatewayArgs{\n\t\t\tMetrics: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Apigateway;\nimport com.pulumi.ionoscloud.ApigatewayArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Apigateway(\"example\", ApigatewayArgs.builder()        \n            .metrics(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:Apigateway\n    properties:\n      metrics: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import an API Gateway, you can define an empty API Gateway resource in the plan:\n\nresource \"ionoscloud_apigateway\" \"example\" {\n\n}\n\nThe resource can be imported using the `gateway_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}\n```\n\n",
             "properties": {
@@ -12672,193 +12859,6 @@
                     "version": {
                         "type": "string",
                         "description": "The version of the Data Platform.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/dnsRecord:DnsRecord": {
-            "description": "Manages a **DNS Record**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.DnsZone(\"example\", {\n    description: \"description\",\n    enabled: false,\n});\nconst recordexample = new ionoscloud.DnsRecord(\"recordexample\", {\n    zoneId: example.id,\n    type: \"CNAME\",\n    content: \"1.2.3.4\",\n    ttl: 2000,\n    priority: 1024,\n    enabled: false,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.DnsZone(\"example\",\n    description=\"description\",\n    enabled=False)\nrecordexample = ionoscloud.DnsRecord(\"recordexample\",\n    zone_id=example.id,\n    type=\"CNAME\",\n    content=\"1.2.3.4\",\n    ttl=2000,\n    priority=1024,\n    enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.DnsZone(\"example\", new()\n    {\n        Description = \"description\",\n        Enabled = false,\n    });\n\n    var recordexample = new Ionoscloud.DnsRecord(\"recordexample\", new()\n    {\n        ZoneId = example.Id,\n        Type = \"CNAME\",\n        Content = \"1.2.3.4\",\n        Ttl = 2000,\n        Priority = 1024,\n        Enabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := ionoscloud.NewDnsZone(ctx, \"example\", \u0026ionoscloud.DnsZoneArgs{\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tEnabled:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewDnsRecord(ctx, \"recordexample\", \u0026ionoscloud.DnsRecordArgs{\n\t\t\tZoneId:   example.ID(),\n\t\t\tType:     pulumi.String(\"CNAME\"),\n\t\t\tContent:  pulumi.String(\"1.2.3.4\"),\n\t\t\tTtl:      pulumi.Int(2000),\n\t\t\tPriority: pulumi.Int(1024),\n\t\t\tEnabled:  pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.DnsZone;\nimport com.pulumi.ionoscloud.DnsZoneArgs;\nimport com.pulumi.ionoscloud.DnsRecord;\nimport com.pulumi.ionoscloud.DnsRecordArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DnsZone(\"example\", DnsZoneArgs.builder()        \n            .description(\"description\")\n            .enabled(false)\n            .build());\n\n        var recordexample = new DnsRecord(\"recordexample\", DnsRecordArgs.builder()        \n            .zoneId(example.id())\n            .type(\"CNAME\")\n            .content(\"1.2.3.4\")\n            .ttl(2000)\n            .priority(1024)\n            .enabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:DnsZone\n    properties:\n      description: description\n      enabled: false\n  recordexample:\n    type: ionoscloud:DnsRecord\n    properties:\n      zoneId: ${example.id}\n      type: CNAME\n      content: 1.2.3.4\n      ttl: 2000\n      priority: 1024\n      enabled: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a DNS Record, you can define an empty DNS Record resource in the plan:\n\nhcl\n\nresource \"ionoscloud_dns_record\" \"example\" {\n\n}\n\nThe resource can be imported using the `zone_id` and the `record_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/dnsRecord:DnsRecord example {zone_id}/{record_id}\n```\n\n",
-            "properties": {
-                "content": {
-                    "type": "string",
-                    "description": "[string] The content of the DNS Record.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
-                },
-                "fqdn": {
-                    "type": "string",
-                    "description": "Fully qualified domain name\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the DNS Record.\n"
-                },
-                "priority": {
-                    "type": "integer",
-                    "description": "[int] The priority for the DNS Record.\n"
-                },
-                "ttl": {
-                    "type": "integer",
-                    "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
-                },
-                "zoneId": {
-                    "type": "string",
-                    "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
-                }
-            },
-            "required": [
-                "content",
-                "enabled",
-                "fqdn",
-                "name",
-                "ttl",
-                "type",
-                "zoneId"
-            ],
-            "inputProperties": {
-                "content": {
-                    "type": "string",
-                    "description": "[string] The content of the DNS Record.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the DNS Record.\n"
-                },
-                "priority": {
-                    "type": "integer",
-                    "description": "[int] The priority for the DNS Record.\n"
-                },
-                "ttl": {
-                    "type": "integer",
-                    "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
-                },
-                "zoneId": {
-                    "type": "string",
-                    "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
-                }
-            },
-            "requiredInputs": [
-                "content",
-                "type",
-                "zoneId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering DnsRecord resources.\n",
-                "properties": {
-                    "content": {
-                        "type": "string",
-                        "description": "[string] The content of the DNS Record.\n"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "description": "[bool] Indicates if the DNS Record is active or not. Default is `true`.\n"
-                    },
-                    "fqdn": {
-                        "type": "string",
-                        "description": "Fully qualified domain name\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the DNS Record.\n"
-                    },
-                    "priority": {
-                        "type": "integer",
-                        "description": "[int] The priority for the DNS Record.\n"
-                    },
-                    "ttl": {
-                        "type": "integer",
-                        "description": "[int] Time to live for the DNS Record. Default is `3600`.\n"
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "[string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).\n"
-                    },
-                    "zoneId": {
-                        "type": "string",
-                        "description": "[string] The DNS Zone ID in which the DNS Record will be created.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/dnsZone:DnsZone": {
-            "description": "Manages a **DNS Zone**.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.DnsZone(\"example\", {\n    description: \"description\",\n    enabled: false,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.DnsZone(\"example\",\n    description=\"description\",\n    enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.DnsZone(\"example\", new()\n    {\n        Description = \"description\",\n        Enabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewDnsZone(ctx, \"example\", \u0026ionoscloud.DnsZoneArgs{\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tEnabled:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.DnsZone;\nimport com.pulumi.ionoscloud.DnsZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DnsZone(\"example\", DnsZoneArgs.builder()        \n            .description(\"description\")\n            .enabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:DnsZone\n    properties:\n      description: description\n      enabled: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:\n\nhcl\n\nresource \"ionoscloud_dns_zone\" \"example\" {\n\n}\n\nThe resource can be imported using the `zone_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/dnsZone:DnsZone example {zone_id}\n```\n\n",
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "[string] The description for the DNS Zone.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the DNS Zone.\n"
-                },
-                "nameservers": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of available name servers.\n"
-                }
-            },
-            "required": [
-                "enabled",
-                "name",
-                "nameservers"
-            ],
-            "inputProperties": {
-                "description": {
-                    "type": "string",
-                    "description": "[string] The description for the DNS Zone.\n"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the DNS Zone.\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering DnsZone resources.\n",
-                "properties": {
-                    "description": {
-                        "type": "string",
-                        "description": "[string] The description for the DNS Zone.\n"
-                    },
-                    "enabled": {
-                        "type": "boolean",
-                        "description": "[bool] Indicates if the DNS Zone is active or not. Default is `true`.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the DNS Zone.\n"
-                    },
-                    "nameservers": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "A list of available name servers.\n"
                     }
                 },
                 "type": "object"
@@ -17532,7 +17532,7 @@
             }
         },
         "ionoscloud:index/getDnsZone:getDnsZone": {
-            "description": "The **DNS Zone** can be used to search for and return an existing DNS Zone.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDnsZone({\n    name: \"example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dns_zone(name=\"example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDnsZone.Invoke(new()\n    {\n        Name = \"example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupDnsZone(ctx, \u0026ionoscloud.LookupDnsZoneArgs{\n\t\t\tName: pulumi.StringRef(\"example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDnsZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDnsZone(GetDnsZoneArgs.builder()\n            .name(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDnsZone\n      Arguments:\n        name: example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By name with partial match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDnsZone({\n    name: \"example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dns_zone(name=\"example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDnsZone.Invoke(new()\n    {\n        Name = \"example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupDnsZone(ctx, \u0026ionoscloud.LookupDnsZoneArgs{\n\t\t\tName:         pulumi.StringRef(\"example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDnsZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDnsZone(GetDnsZoneArgs.builder()\n            .name(\"example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDnsZone\n      Arguments:\n        name: example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The **DNS Zone** can be used to search for and return an existing DNS Zone.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDnsZone({\n    name: \"example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dns_zone(name=\"example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDnsZone.Invoke(new()\n    {\n        Name = \"example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetDnsZone(ctx, \u0026ionoscloud.GetDnsZoneArgs{\n\t\t\tName: pulumi.StringRef(\"example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDnsZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDnsZone(GetDnsZoneArgs.builder()\n            .name(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDnsZone\n      Arguments:\n        name: example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By name with partial match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDnsZone({\n    name: \"example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dns_zone(name=\"example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDnsZone.Invoke(new()\n    {\n        Name = \"example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetDnsZone(ctx, \u0026ionoscloud.GetDnsZoneArgs{\n\t\t\tName:         pulumi.StringRef(\"example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDnsZoneArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDnsZone(GetDnsZoneArgs.builder()\n            .name(\"example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDnsZone\n      Arguments:\n        name: example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getDnsZone.\n",
                 "properties": {

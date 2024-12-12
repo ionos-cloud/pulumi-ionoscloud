@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Dns
 {
     /// <summary>
     /// Manages a **DNS Record**.
@@ -25,13 +25,13 @@ namespace Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.DnsZone("example", new()
+    ///     var example = new Ionoscloud.Dns.Zone("example", new()
     ///     {
     ///         Description = "description",
     ///         Enabled = false,
     ///     });
     /// 
-    ///     var recordexample = new Ionoscloud.DnsRecord("recordexample", new()
+    ///     var recordexample = new Ionoscloud.Dns.Record("recordexample", new()
     ///     {
     ///         ZoneId = example.Id,
     ///         Type = "CNAME",
@@ -58,11 +58,11 @@ namespace Pulumi.Ionoscloud
     /// The resource can be imported using the `zone_id` and the `record_id`, for example:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/dnsRecord:DnsRecord example {zone_id}/{record_id}
+    /// $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/dnsRecord:DnsRecord")]
-    public partial class DnsRecord : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:dns/record:Record")]
+    public partial class Record : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [string] The content of the DNS Record.
@@ -114,19 +114,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a DnsRecord resource with the given unique name, arguments, and options.
+        /// Create a Record resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DnsRecord(string name, DnsRecordArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dnsRecord:DnsRecord", name, args ?? new DnsRecordArgs(), MakeResourceOptions(options, ""))
+        public Record(string name, RecordArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:dns/record:Record", name, args ?? new RecordArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DnsRecord(string name, Input<string> id, DnsRecordState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dnsRecord:DnsRecord", name, state, MakeResourceOptions(options, id))
+        private Record(string name, Input<string> id, RecordState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:dns/record:Record", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -142,7 +142,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing DnsRecord resource's state with the given name, ID, and optional extra
+        /// Get an existing Record resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -150,13 +150,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DnsRecord Get(string name, Input<string> id, DnsRecordState? state = null, CustomResourceOptions? options = null)
+        public static Record Get(string name, Input<string> id, RecordState? state = null, CustomResourceOptions? options = null)
         {
-            return new DnsRecord(name, id, state, options);
+            return new Record(name, id, state, options);
         }
     }
 
-    public sealed class DnsRecordArgs : global::Pulumi.ResourceArgs
+    public sealed class RecordArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The content of the DNS Record.
@@ -200,13 +200,13 @@ namespace Pulumi.Ionoscloud
         [Input("zoneId", required: true)]
         public Input<string> ZoneId { get; set; } = null!;
 
-        public DnsRecordArgs()
+        public RecordArgs()
         {
         }
-        public static new DnsRecordArgs Empty => new DnsRecordArgs();
+        public static new RecordArgs Empty => new RecordArgs();
     }
 
-    public sealed class DnsRecordState : global::Pulumi.ResourceArgs
+    public sealed class RecordState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The content of the DNS Record.
@@ -256,9 +256,9 @@ namespace Pulumi.Ionoscloud
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
 
-        public DnsRecordState()
+        public RecordState()
         {
         }
-        public static new DnsRecordState Empty => new DnsRecordState();
+        public static new RecordState Empty => new RecordState();
     }
 }
