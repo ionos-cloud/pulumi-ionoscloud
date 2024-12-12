@@ -425,16 +425,6 @@ export type LoggingPipeline = import("./loggingPipeline").LoggingPipeline;
 export const LoggingPipeline: typeof import("./loggingPipeline").LoggingPipeline = null as any;
 utilities.lazyLoad(exports, ["LoggingPipeline"], () => require("./loggingPipeline"));
 
-export { NatgatewayArgs, NatgatewayState } from "./natgateway";
-export type Natgateway = import("./natgateway").Natgateway;
-export const Natgateway: typeof import("./natgateway").Natgateway = null as any;
-utilities.lazyLoad(exports, ["Natgateway"], () => require("./natgateway"));
-
-export { NatgatewayRuleArgs, NatgatewayRuleState } from "./natgatewayRule";
-export type NatgatewayRule = import("./natgatewayRule").NatgatewayRule;
-export const NatgatewayRule: typeof import("./natgatewayRule").NatgatewayRule = null as any;
-utilities.lazyLoad(exports, ["NatgatewayRule"], () => require("./natgatewayRule"));
-
 export { NetworkloadbalancerArgs, NetworkloadbalancerState } from "./networkloadbalancer";
 export type Networkloadbalancer = import("./networkloadbalancer").Networkloadbalancer;
 export const Networkloadbalancer: typeof import("./networkloadbalancer").Networkloadbalancer = null as any;
@@ -449,11 +439,6 @@ export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-
-export { ServerBootDeviceSelectionArgs, ServerBootDeviceSelectionState } from "./serverBootDeviceSelection";
-export type ServerBootDeviceSelection = import("./serverBootDeviceSelection").ServerBootDeviceSelection;
-export const ServerBootDeviceSelection: typeof import("./serverBootDeviceSelection").ServerBootDeviceSelection = null as any;
-utilities.lazyLoad(exports, ["ServerBootDeviceSelection"], () => require("./serverBootDeviceSelection"));
 
 export { TargetGroupArgs, TargetGroupState } from "./targetGroup";
 export type TargetGroup = import("./targetGroup").TargetGroup;
@@ -516,16 +501,10 @@ const _module = {
                 return new Loadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/loggingPipeline:LoggingPipeline":
                 return new LoggingPipeline(name, <any>undefined, { urn })
-            case "ionoscloud:index/natgateway:Natgateway":
-                return new Natgateway(name, <any>undefined, { urn })
-            case "ionoscloud:index/natgatewayRule:NatgatewayRule":
-                return new NatgatewayRule(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
                 return new Networkloadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
                 return new NetworkloadbalancerForwardingrule(name, <any>undefined, { urn })
-            case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
-                return new ServerBootDeviceSelection(name, <any>undefined, { urn })
             case "ionoscloud:index/targetGroup:TargetGroup":
                 return new TargetGroup(name, <any>undefined, { urn })
             default:
@@ -545,11 +524,8 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _modul
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loggingPipeline", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/natgateway", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/natgatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancerForwardingrule", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/serverBootDeviceSelection", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),

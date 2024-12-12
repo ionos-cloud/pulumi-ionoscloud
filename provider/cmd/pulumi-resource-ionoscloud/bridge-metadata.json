@@ -479,7 +479,7 @@
                 }
             },
             "ionoscloud_natgateway": {
-                "current": "ionoscloud:index/natgateway:Natgateway",
+                "current": "ionoscloud:compute/natGateway:NatGateway",
                 "fields": {
                     "lans": {
                         "maxItemsOne": false,
@@ -497,7 +497,7 @@
                 }
             },
             "ionoscloud_natgateway_rule": {
-                "current": "ionoscloud:index/natgatewayRule:NatgatewayRule",
+                "current": "ionoscloud:compute/natGatewayRule:NatGatewayRule",
                 "fields": {
                     "target_port_range": {
                         "maxItemsOne": true
@@ -672,7 +672,7 @@
                 }
             },
             "ionoscloud_server_boot_device_selection": {
-                "current": "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection"
+                "current": "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection"
             },
             "ionoscloud_share": {
                 "current": "ionoscloud:compute/share:Share"

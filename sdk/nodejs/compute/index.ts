@@ -10,6 +10,11 @@ export type BackupUnit = import("./backupUnit").BackupUnit;
 export const BackupUnit: typeof import("./backupUnit").BackupUnit = null as any;
 utilities.lazyLoad(exports, ["BackupUnit"], () => require("./backupUnit"));
 
+export { BootDeviceSelectionArgs, BootDeviceSelectionState } from "./bootDeviceSelection";
+export type BootDeviceSelection = import("./bootDeviceSelection").BootDeviceSelection;
+export const BootDeviceSelection: typeof import("./bootDeviceSelection").BootDeviceSelection = null as any;
+utilities.lazyLoad(exports, ["BootDeviceSelection"], () => require("./bootDeviceSelection"));
+
 export { CrossconnectArgs, CrossconnectState } from "./crossconnect";
 export type Crossconnect = import("./crossconnect").Crossconnect;
 export const Crossconnect: typeof import("./crossconnect").Crossconnect = null as any;
@@ -49,6 +54,16 @@ export { LanArgs, LanState } from "./lan";
 export type Lan = import("./lan").Lan;
 export const Lan: typeof import("./lan").Lan = null as any;
 utilities.lazyLoad(exports, ["Lan"], () => require("./lan"));
+
+export { NatGatewayArgs, NatGatewayState } from "./natGateway";
+export type NatGateway = import("./natGateway").NatGateway;
+export const NatGateway: typeof import("./natGateway").NatGateway = null as any;
+utilities.lazyLoad(exports, ["NatGateway"], () => require("./natGateway"));
+
+export { NatGatewayRuleArgs, NatGatewayRuleState } from "./natGatewayRule";
+export type NatGatewayRule = import("./natGatewayRule").NatGatewayRule;
+export const NatGatewayRule: typeof import("./natGatewayRule").NatGatewayRule = null as any;
+utilities.lazyLoad(exports, ["NatGatewayRule"], () => require("./natGatewayRule"));
 
 export { NicArgs, NicState } from "./nic";
 export type Nic = import("./nic").Nic;
@@ -97,6 +112,8 @@ const _module = {
         switch (type) {
             case "ionoscloud:compute/backupUnit:BackupUnit":
                 return new BackupUnit(name, <any>undefined, { urn })
+            case "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection":
+                return new BootDeviceSelection(name, <any>undefined, { urn })
             case "ionoscloud:compute/crossconnect:Crossconnect":
                 return new Crossconnect(name, <any>undefined, { urn })
             case "ionoscloud:compute/cubeServer:CubeServer":
@@ -113,6 +130,10 @@ const _module = {
                 return new IPFailover(name, <any>undefined, { urn })
             case "ionoscloud:compute/lan:Lan":
                 return new Lan(name, <any>undefined, { urn })
+            case "ionoscloud:compute/natGateway:NatGateway":
+                return new NatGateway(name, <any>undefined, { urn })
+            case "ionoscloud:compute/natGatewayRule:NatGatewayRule":
+                return new NatGatewayRule(name, <any>undefined, { urn })
             case "ionoscloud:compute/nic:Nic":
                 return new Nic(name, <any>undefined, { urn })
             case "ionoscloud:compute/s3Key:S3Key":
@@ -135,6 +156,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/backupUnit", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/bootDeviceSelection", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/crossconnect", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/cubeServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/datacenter", _module)
@@ -143,6 +165,8 @@ pulumi.runtime.registerResourceModule("ionoscloud", "compute/group", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPBlock", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/iPFailover", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/lan", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/natGateway", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/natGatewayRule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/nic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/s3Key", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/server", _module)

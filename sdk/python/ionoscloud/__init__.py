@@ -89,12 +89,9 @@ from .kafka_cluster import *
 from .kafka_cluster_topic import *
 from .loadbalancer import *
 from .logging_pipeline import *
-from .natgateway import *
-from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
 from .provider import *
-from .server_boot_device_selection import *
 from .target_group import *
 from ._inputs import *
 from . import outputs
@@ -150,6 +147,14 @@ _utilities.register(
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/backupUnit:BackupUnit": "BackupUnit"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/bootDeviceSelection",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection": "BootDeviceSelection"
   }
  },
  {
@@ -214,6 +219,22 @@ _utilities.register(
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/lan:Lan": "Lan"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/natGateway",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/natGateway:NatGateway": "NatGateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "compute/natGatewayRule",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/natGatewayRule:NatGatewayRule": "NatGatewayRule"
   }
  },
  {
@@ -482,22 +503,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/natgateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/natgateway:Natgateway": "Natgateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/natgatewayRule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/natgatewayRule:NatgatewayRule": "NatgatewayRule"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/networkloadbalancer",
   "fqn": "ionoscloud",
   "classes": {
@@ -510,14 +515,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule": "NetworkloadbalancerForwardingrule"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/serverBootDeviceSelection",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection": "ServerBootDeviceSelection"
   }
  },
  {

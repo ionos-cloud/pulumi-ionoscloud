@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **Nat Gateway** on IonosCloud.
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
  * });
- * const exampleNatgateway = new ionoscloud.Natgateway("exampleNatgateway", {
+ * const exampleNatGateway = new ionoscloud.compute.NatGateway("exampleNatGateway", {
  *     datacenterId: exampleDatacenter.id,
  *     publicIps: [
  *         exampleIPBlock.ips[0],
@@ -48,12 +48,12 @@ import * as utilities from "./utilities";
  * A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/natgateway:Natgateway my_natgateway {datacenter uuid}/{nat gateway uuid}
+ * $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
  * ```
  */
-export class Natgateway extends pulumi.CustomResource {
+export class NatGateway extends pulumi.CustomResource {
     /**
-     * Get an existing Natgateway resource's state with the given name, ID, and optional extra
+     * Get an existing NatGateway resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -61,22 +61,22 @@ export class Natgateway extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NatgatewayState, opts?: pulumi.CustomResourceOptions): Natgateway {
-        return new Natgateway(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NatGatewayState, opts?: pulumi.CustomResourceOptions): NatGateway {
+        return new NatGateway(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/natgateway:Natgateway';
+    public static readonly __pulumiType = 'ionoscloud:compute/natGateway:NatGateway';
 
     /**
-     * Returns true if the given object is an instance of Natgateway.  This is designed to work even
+     * Returns true if the given object is an instance of NatGateway.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is Natgateway {
+    public static isInstance(obj: any): obj is NatGateway {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Natgateway.__pulumiType;
+        return obj['__pulumiType'] === NatGateway.__pulumiType;
     }
 
     /**
@@ -86,7 +86,7 @@ export class Natgateway extends pulumi.CustomResource {
     /**
      * [list] A list of Local Area Networks the node pool should be part of.
      */
-    public readonly lans!: pulumi.Output<outputs.NatgatewayLan[]>;
+    public readonly lans!: pulumi.Output<outputs.compute.NatGatewayLan[]>;
     /**
      * [string] Name of the NAT gateway.
      */
@@ -97,24 +97,24 @@ export class Natgateway extends pulumi.CustomResource {
     public readonly publicIps!: pulumi.Output<string[]>;
 
     /**
-     * Create a Natgateway resource with the given unique name, arguments, and options.
+     * Create a NatGateway resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: NatgatewayArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: NatgatewayArgs | NatgatewayState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: NatGatewayArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: NatGatewayArgs | NatGatewayState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as NatgatewayState | undefined;
+            const state = argsOrState as NatGatewayState | undefined;
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["lans"] = state ? state.lans : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["publicIps"] = state ? state.publicIps : undefined;
         } else {
-            const args = argsOrState as NatgatewayArgs | undefined;
+            const args = argsOrState as NatGatewayArgs | undefined;
             if ((!args || args.datacenterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datacenterId'");
             }
@@ -130,14 +130,14 @@ export class Natgateway extends pulumi.CustomResource {
             resourceInputs["publicIps"] = args ? args.publicIps : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(Natgateway.__pulumiType, name, resourceInputs, opts);
+        super(NatGateway.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering Natgateway resources.
+ * Input properties used for looking up and filtering NatGateway resources.
  */
-export interface NatgatewayState {
+export interface NatGatewayState {
     /**
      * [string] A Datacenter's UUID.
      */
@@ -145,7 +145,7 @@ export interface NatgatewayState {
     /**
      * [list] A list of Local Area Networks the node pool should be part of.
      */
-    lans?: pulumi.Input<pulumi.Input<inputs.NatgatewayLan>[]>;
+    lans?: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
     /**
      * [string] Name of the NAT gateway.
      */
@@ -157,9 +157,9 @@ export interface NatgatewayState {
 }
 
 /**
- * The set of arguments for constructing a Natgateway resource.
+ * The set of arguments for constructing a NatGateway resource.
  */
-export interface NatgatewayArgs {
+export interface NatGatewayArgs {
     /**
      * [string] A Datacenter's UUID.
      */
@@ -167,7 +167,7 @@ export interface NatgatewayArgs {
     /**
      * [list] A list of Local Area Networks the node pool should be part of.
      */
-    lans: pulumi.Input<pulumi.Input<inputs.NatgatewayLan>[]>;
+    lans: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
     /**
      * [string] Name of the NAT gateway.
      */

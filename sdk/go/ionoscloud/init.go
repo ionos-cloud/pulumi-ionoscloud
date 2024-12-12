@@ -45,16 +45,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Loadbalancer{}
 	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
 		r = &LoggingPipeline{}
-	case "ionoscloud:index/natgateway:Natgateway":
-		r = &Natgateway{}
-	case "ionoscloud:index/natgatewayRule:NatgatewayRule":
-		r = &NatgatewayRule{}
 	case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
 		r = &NetworkloadbalancerForwardingrule{}
-	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
-		r = &ServerBootDeviceSelection{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
 	default:
@@ -150,27 +144,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/natgateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/natgatewayRule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/networkloadbalancer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/networkloadbalancerForwardingrule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/serverBootDeviceSelection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

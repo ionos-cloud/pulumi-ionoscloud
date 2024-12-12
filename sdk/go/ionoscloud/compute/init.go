@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "ionoscloud:compute/backupUnit:BackupUnit":
 		r = &BackupUnit{}
+	case "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection":
+		r = &BootDeviceSelection{}
 	case "ionoscloud:compute/crossconnect:Crossconnect":
 		r = &Crossconnect{}
 	case "ionoscloud:compute/cubeServer:CubeServer":
@@ -39,6 +41,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IPFailover{}
 	case "ionoscloud:compute/lan:Lan":
 		r = &Lan{}
+	case "ionoscloud:compute/natGateway:NatGateway":
+		r = &NatGateway{}
+	case "ionoscloud:compute/natGatewayRule:NatGatewayRule":
+		r = &NatGatewayRule{}
 	case "ionoscloud:compute/nic:Nic":
 		r = &Nic{}
 	case "ionoscloud:compute/s3Key:S3Key":
@@ -71,6 +77,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/backupUnit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/bootDeviceSelection",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -111,6 +122,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/lan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/natGateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/natGatewayRule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

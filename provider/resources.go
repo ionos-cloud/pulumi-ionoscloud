@@ -150,7 +150,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config: map[string]*tfbridge.SchemaInfo{
+		Config:       map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -242,6 +242,15 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_snapshot": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Snapshot"),
+			},
+			"ionoscloud_server_boot_device_selection": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "BootDeviceSelection"),
+			},
+			"ionoscloud_natgateway": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGateway"),
+			},
+			"ionoscloud_natgateway_rule": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGatewayRule"),
 			},
 			"ionoscloud_pg_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),

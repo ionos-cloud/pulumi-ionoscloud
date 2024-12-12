@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 /**
  * Manages the selection of a boot device for IonosCloud Servers.
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  *     imageName: "debian:latest",
  *     imagePassword: random_password.server_image_password.result,
  * });
- * const exampleServerBootDeviceSelection = new ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection", {
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
  *     datacenterId: ionoscloud_datacenter.example.id,
  *     serverId: exampleServer.id,
  *     bootDeviceId: exampleVolume.id,
@@ -84,7 +84,7 @@ import * as utilities from "./utilities";
  *         firewallActive: true,
  *     },
  * });
- * const exampleServerBootDeviceSelection = new ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection", {
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
  *     datacenterId: ionoscloud_datacenter.example.id,
  *     serverId: exampleServer.id,
  *     bootDeviceId: exampleServer.inlineVolumeIds[0],
@@ -133,7 +133,7 @@ import * as utilities from "./utilities";
  *     location: "de/txl",
  *     type: "CDROM",
  * });
- * const exampleServerBootDeviceSelection = new ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection", {
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
  *     datacenterId: ionoscloud_datacenter.example.id,
  *     serverId: exampleServer.inlineVolumeIds[0],
  *     bootDeviceId: exampleImage.then(exampleImage => exampleImage.id),
@@ -177,7 +177,7 @@ import * as utilities from "./utilities";
  *         firewallActive: true,
  *     },
  * });
- * const exampleServerBootDeviceSelection = new ionoscloud.ServerBootDeviceSelection("exampleServerBootDeviceSelection", {
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
  *     datacenterId: ionoscloud_datacenter.example.id,
  *     serverId: exampleServer.inlineVolumeIds[0],
  * });
@@ -199,9 +199,9 @@ import * as utilities from "./utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  */
-export class ServerBootDeviceSelection extends pulumi.CustomResource {
+export class BootDeviceSelection extends pulumi.CustomResource {
     /**
-     * Get an existing ServerBootDeviceSelection resource's state with the given name, ID, and optional extra
+     * Get an existing BootDeviceSelection resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -209,22 +209,22 @@ export class ServerBootDeviceSelection extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServerBootDeviceSelectionState, opts?: pulumi.CustomResourceOptions): ServerBootDeviceSelection {
-        return new ServerBootDeviceSelection(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BootDeviceSelectionState, opts?: pulumi.CustomResourceOptions): BootDeviceSelection {
+        return new BootDeviceSelection(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection';
+    public static readonly __pulumiType = 'ionoscloud:compute/bootDeviceSelection:BootDeviceSelection';
 
     /**
-     * Returns true if the given object is an instance of ServerBootDeviceSelection.  This is designed to work even
+     * Returns true if the given object is an instance of BootDeviceSelection.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is ServerBootDeviceSelection {
+    public static isInstance(obj: any): obj is BootDeviceSelection {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === ServerBootDeviceSelection.__pulumiType;
+        return obj['__pulumiType'] === BootDeviceSelection.__pulumiType;
     }
 
     /**
@@ -246,24 +246,24 @@ export class ServerBootDeviceSelection extends pulumi.CustomResource {
     public readonly serverId!: pulumi.Output<string>;
 
     /**
-     * Create a ServerBootDeviceSelection resource with the given unique name, arguments, and options.
+     * Create a BootDeviceSelection resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ServerBootDeviceSelectionArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: ServerBootDeviceSelectionArgs | ServerBootDeviceSelectionState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: BootDeviceSelectionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: BootDeviceSelectionArgs | BootDeviceSelectionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as ServerBootDeviceSelectionState | undefined;
+            const state = argsOrState as BootDeviceSelectionState | undefined;
             resourceInputs["bootDeviceId"] = state ? state.bootDeviceId : undefined;
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["defaultBootVolumeId"] = state ? state.defaultBootVolumeId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
         } else {
-            const args = argsOrState as ServerBootDeviceSelectionArgs | undefined;
+            const args = argsOrState as BootDeviceSelectionArgs | undefined;
             if ((!args || args.datacenterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'datacenterId'");
             }
@@ -276,14 +276,14 @@ export class ServerBootDeviceSelection extends pulumi.CustomResource {
             resourceInputs["defaultBootVolumeId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(ServerBootDeviceSelection.__pulumiType, name, resourceInputs, opts);
+        super(BootDeviceSelection.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering ServerBootDeviceSelection resources.
+ * Input properties used for looking up and filtering BootDeviceSelection resources.
  */
-export interface ServerBootDeviceSelectionState {
+export interface BootDeviceSelectionState {
     /**
      * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
      * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
@@ -304,9 +304,9 @@ export interface ServerBootDeviceSelectionState {
 }
 
 /**
- * The set of arguments for constructing a ServerBootDeviceSelection resource.
+ * The set of arguments for constructing a BootDeviceSelection resource.
  */
-export interface ServerBootDeviceSelectionArgs {
+export interface BootDeviceSelectionArgs {
     /**
      * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
      * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).

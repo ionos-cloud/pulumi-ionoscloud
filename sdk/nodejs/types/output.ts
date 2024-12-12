@@ -3013,28 +3013,6 @@ export interface LoggingPipelineLogDestination {
     type: string;
 }
 
-export interface NatgatewayLan {
-    /**
-     * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
-     */
-    gatewayIps: string[];
-    /**
-     * [int] Id for the LAN connected to the NAT gateway.
-     */
-    id: number;
-}
-
-export interface NatgatewayRuleTargetPortRange {
-    /**
-     * [int] Target port range end associated with the NAT gateway rule.
-     */
-    end: number;
-    /**
-     * [int] Target port range start associated with the NAT gateway rule.
-     */
-    start: number;
-}
-
 export interface NetworkloadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -3428,6 +3406,28 @@ export namespace compute {
     export interface LanIpFailover {
         ip: string;
         nicUuid: string;
+    }
+
+    export interface NatGatewayLan {
+        /**
+         * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+         */
+        gatewayIps: string[];
+        /**
+         * [int] Id for the LAN connected to the NAT gateway.
+         */
+        id: number;
+    }
+
+    export interface NatGatewayRuleTargetPortRange {
+        /**
+         * [int] Target port range end associated with the NAT gateway rule.
+         */
+        end: number;
+        /**
+         * [int] Target port range start associated with the NAT gateway rule.
+         */
+        start: number;
     }
 
     export interface NicFlowlog {

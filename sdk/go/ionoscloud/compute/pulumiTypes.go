@@ -1826,6 +1826,268 @@ func (o LanIpFailoverArrayOutput) Index(i pulumi.IntInput) LanIpFailoverOutput {
 	}).(LanIpFailoverOutput)
 }
 
+type NatGatewayLan struct {
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+	GatewayIps []string `pulumi:"gatewayIps"`
+	// [int] Id for the LAN connected to the NAT gateway.
+	Id int `pulumi:"id"`
+}
+
+// NatGatewayLanInput is an input type that accepts NatGatewayLanArgs and NatGatewayLanOutput values.
+// You can construct a concrete instance of `NatGatewayLanInput` via:
+//
+//	NatGatewayLanArgs{...}
+type NatGatewayLanInput interface {
+	pulumi.Input
+
+	ToNatGatewayLanOutput() NatGatewayLanOutput
+	ToNatGatewayLanOutputWithContext(context.Context) NatGatewayLanOutput
+}
+
+type NatGatewayLanArgs struct {
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+	GatewayIps pulumi.StringArrayInput `pulumi:"gatewayIps"`
+	// [int] Id for the LAN connected to the NAT gateway.
+	Id pulumi.IntInput `pulumi:"id"`
+}
+
+func (NatGatewayLanArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayLan)(nil)).Elem()
+}
+
+func (i NatGatewayLanArgs) ToNatGatewayLanOutput() NatGatewayLanOutput {
+	return i.ToNatGatewayLanOutputWithContext(context.Background())
+}
+
+func (i NatGatewayLanArgs) ToNatGatewayLanOutputWithContext(ctx context.Context) NatGatewayLanOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayLanOutput)
+}
+
+// NatGatewayLanArrayInput is an input type that accepts NatGatewayLanArray and NatGatewayLanArrayOutput values.
+// You can construct a concrete instance of `NatGatewayLanArrayInput` via:
+//
+//	NatGatewayLanArray{ NatGatewayLanArgs{...} }
+type NatGatewayLanArrayInput interface {
+	pulumi.Input
+
+	ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput
+	ToNatGatewayLanArrayOutputWithContext(context.Context) NatGatewayLanArrayOutput
+}
+
+type NatGatewayLanArray []NatGatewayLanInput
+
+func (NatGatewayLanArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NatGatewayLan)(nil)).Elem()
+}
+
+func (i NatGatewayLanArray) ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput {
+	return i.ToNatGatewayLanArrayOutputWithContext(context.Background())
+}
+
+func (i NatGatewayLanArray) ToNatGatewayLanArrayOutputWithContext(ctx context.Context) NatGatewayLanArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayLanArrayOutput)
+}
+
+type NatGatewayLanOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayLanOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayLan)(nil)).Elem()
+}
+
+func (o NatGatewayLanOutput) ToNatGatewayLanOutput() NatGatewayLanOutput {
+	return o
+}
+
+func (o NatGatewayLanOutput) ToNatGatewayLanOutputWithContext(ctx context.Context) NatGatewayLanOutput {
+	return o
+}
+
+// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+func (o NatGatewayLanOutput) GatewayIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NatGatewayLan) []string { return v.GatewayIps }).(pulumi.StringArrayOutput)
+}
+
+// [int] Id for the LAN connected to the NAT gateway.
+func (o NatGatewayLanOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v NatGatewayLan) int { return v.Id }).(pulumi.IntOutput)
+}
+
+type NatGatewayLanArrayOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayLanArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NatGatewayLan)(nil)).Elem()
+}
+
+func (o NatGatewayLanArrayOutput) ToNatGatewayLanArrayOutput() NatGatewayLanArrayOutput {
+	return o
+}
+
+func (o NatGatewayLanArrayOutput) ToNatGatewayLanArrayOutputWithContext(ctx context.Context) NatGatewayLanArrayOutput {
+	return o
+}
+
+func (o NatGatewayLanArrayOutput) Index(i pulumi.IntInput) NatGatewayLanOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NatGatewayLan {
+		return vs[0].([]NatGatewayLan)[vs[1].(int)]
+	}).(NatGatewayLanOutput)
+}
+
+type NatGatewayRuleTargetPortRange struct {
+	// [int] Target port range end associated with the NAT gateway rule.
+	End *int `pulumi:"end"`
+	// [int] Target port range start associated with the NAT gateway rule.
+	Start *int `pulumi:"start"`
+}
+
+// NatGatewayRuleTargetPortRangeInput is an input type that accepts NatGatewayRuleTargetPortRangeArgs and NatGatewayRuleTargetPortRangeOutput values.
+// You can construct a concrete instance of `NatGatewayRuleTargetPortRangeInput` via:
+//
+//	NatGatewayRuleTargetPortRangeArgs{...}
+type NatGatewayRuleTargetPortRangeInput interface {
+	pulumi.Input
+
+	ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput
+	ToNatGatewayRuleTargetPortRangeOutputWithContext(context.Context) NatGatewayRuleTargetPortRangeOutput
+}
+
+type NatGatewayRuleTargetPortRangeArgs struct {
+	// [int] Target port range end associated with the NAT gateway rule.
+	End pulumi.IntPtrInput `pulumi:"end"`
+	// [int] Target port range start associated with the NAT gateway rule.
+	Start pulumi.IntPtrInput `pulumi:"start"`
+}
+
+func (NatGatewayRuleTargetPortRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput {
+	return i.ToNatGatewayRuleTargetPortRangeOutputWithContext(context.Background())
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangeOutput)
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return i.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (i NatGatewayRuleTargetPortRangeArgs) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangeOutput).ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx)
+}
+
+// NatGatewayRuleTargetPortRangePtrInput is an input type that accepts NatGatewayRuleTargetPortRangeArgs, NatGatewayRuleTargetPortRangePtr and NatGatewayRuleTargetPortRangePtrOutput values.
+// You can construct a concrete instance of `NatGatewayRuleTargetPortRangePtrInput` via:
+//
+//	        NatGatewayRuleTargetPortRangeArgs{...}
+//
+//	or:
+//
+//	        nil
+type NatGatewayRuleTargetPortRangePtrInput interface {
+	pulumi.Input
+
+	ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput
+	ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Context) NatGatewayRuleTargetPortRangePtrOutput
+}
+
+type natGatewayRuleTargetPortRangePtrType NatGatewayRuleTargetPortRangeArgs
+
+func NatGatewayRuleTargetPortRangePtr(v *NatGatewayRuleTargetPortRangeArgs) NatGatewayRuleTargetPortRangePtrInput {
+	return (*natGatewayRuleTargetPortRangePtrType)(v)
+}
+
+func (*natGatewayRuleTargetPortRangePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (i *natGatewayRuleTargetPortRangePtrType) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return i.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (i *natGatewayRuleTargetPortRangePtrType) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NatGatewayRuleTargetPortRangePtrOutput)
+}
+
+type NatGatewayRuleTargetPortRangeOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayRuleTargetPortRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangeOutput() NatGatewayRuleTargetPortRangeOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangeOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return o.ToNatGatewayRuleTargetPortRangePtrOutputWithContext(context.Background())
+}
+
+func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NatGatewayRuleTargetPortRange) *NatGatewayRuleTargetPortRange {
+		return &v
+	}).(NatGatewayRuleTargetPortRangePtrOutput)
+}
+
+// [int] Target port range end associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangeOutput) End() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.End }).(pulumi.IntPtrOutput)
+}
+
+// [int] Target port range start associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangeOutput) Start() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.Start }).(pulumi.IntPtrOutput)
+}
+
+type NatGatewayRuleTargetPortRangePtrOutput struct{ *pulumi.OutputState }
+
+func (NatGatewayRuleTargetPortRangePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NatGatewayRuleTargetPortRange)(nil)).Elem()
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) ToNatGatewayRuleTargetPortRangePtrOutput() NatGatewayRuleTargetPortRangePtrOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) ToNatGatewayRuleTargetPortRangePtrOutputWithContext(ctx context.Context) NatGatewayRuleTargetPortRangePtrOutput {
+	return o
+}
+
+func (o NatGatewayRuleTargetPortRangePtrOutput) Elem() NatGatewayRuleTargetPortRangeOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) NatGatewayRuleTargetPortRange {
+		if v != nil {
+			return *v
+		}
+		var ret NatGatewayRuleTargetPortRange
+		return ret
+	}).(NatGatewayRuleTargetPortRangeOutput)
+}
+
+// [int] Target port range end associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangePtrOutput) End() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
+		if v == nil {
+			return nil
+		}
+		return v.End
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] Target port range start associated with the NAT gateway rule.
+func (o NatGatewayRuleTargetPortRangePtrOutput) Start() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Start
+	}).(pulumi.IntPtrOutput)
+}
+
 type NicFlowlog struct {
 	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
 	Action string `pulumi:"action"`
@@ -4164,6 +4426,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IPBlockIpConsumerArrayInput)(nil)).Elem(), IPBlockIpConsumerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LanIpFailoverInput)(nil)).Elem(), LanIpFailoverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LanIpFailoverArrayInput)(nil)).Elem(), LanIpFailoverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayLanInput)(nil)).Elem(), NatGatewayLanArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayLanArrayInput)(nil)).Elem(), NatGatewayLanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayRuleTargetPortRangeInput)(nil)).Elem(), NatGatewayRuleTargetPortRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NatGatewayRuleTargetPortRangePtrInput)(nil)).Elem(), NatGatewayRuleTargetPortRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NicFlowlogInput)(nil)).Elem(), NicFlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NicFlowlogPtrInput)(nil)).Elem(), NicFlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerLabelInput)(nil)).Elem(), ServerLabelArgs{})
@@ -4200,6 +4466,10 @@ func init() {
 	pulumi.RegisterOutputType(IPBlockIpConsumerArrayOutput{})
 	pulumi.RegisterOutputType(LanIpFailoverOutput{})
 	pulumi.RegisterOutputType(LanIpFailoverArrayOutput{})
+	pulumi.RegisterOutputType(NatGatewayLanOutput{})
+	pulumi.RegisterOutputType(NatGatewayLanArrayOutput{})
+	pulumi.RegisterOutputType(NatGatewayRuleTargetPortRangeOutput{})
+	pulumi.RegisterOutputType(NatGatewayRuleTargetPortRangePtrOutput{})
 	pulumi.RegisterOutputType(NicFlowlogOutput{})
 	pulumi.RegisterOutputType(NicFlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ServerLabelOutput{})

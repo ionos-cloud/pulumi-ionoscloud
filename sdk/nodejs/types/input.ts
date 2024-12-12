@@ -558,28 +558,6 @@ export interface LoggingPipelineLogDestination {
     type?: pulumi.Input<string>;
 }
 
-export interface NatgatewayLan {
-    /**
-     * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
-     */
-    gatewayIps?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [int] Id for the LAN connected to the NAT gateway.
-     */
-    id: pulumi.Input<number>;
-}
-
-export interface NatgatewayRuleTargetPortRange {
-    /**
-     * [int] Target port range end associated with the NAT gateway rule.
-     */
-    end?: pulumi.Input<number>;
-    /**
-     * [int] Target port range start associated with the NAT gateway rule.
-     */
-    start?: pulumi.Input<number>;
-}
-
 export interface NetworkloadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -971,6 +949,28 @@ export namespace compute {
     export interface LanIpFailover {
         ip?: pulumi.Input<string>;
         nicUuid?: pulumi.Input<string>;
+    }
+
+    export interface NatGatewayLan {
+        /**
+         * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+         */
+        gatewayIps?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [int] Id for the LAN connected to the NAT gateway.
+         */
+        id: pulumi.Input<number>;
+    }
+
+    export interface NatGatewayRuleTargetPortRange {
+        /**
+         * [int] Target port range end associated with the NAT gateway rule.
+         */
+        end?: pulumi.Input<number>;
+        /**
+         * [int] Target port range start associated with the NAT gateway rule.
+         */
+        start?: pulumi.Input<number>;
     }
 
     export interface NicFlowlog {

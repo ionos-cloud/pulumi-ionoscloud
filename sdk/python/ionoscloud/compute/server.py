@@ -40,7 +40,7 @@ class ServerArgs:
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input['ServerVolumeArgs'] volume: See the Volume section.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
         :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
@@ -140,7 +140,7 @@ class ServerArgs:
     @pulumi.getter(name="bootCdrom")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
-        ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
         warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
         pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
@@ -365,7 +365,7 @@ class _ServerState:
         """
         Input properties used for looking up and filtering Server resources.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] boot_volume: The associated boot volume.
         :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
@@ -472,7 +472,7 @@ class _ServerState:
     @pulumi.getter(name="bootCdrom")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
-        ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
         warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
         pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
@@ -806,7 +806,7 @@ class Server(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
         :param pulumi.Input[str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
@@ -961,7 +961,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] boot_volume: The associated boot volume.
         :param pulumi.Input[int] cores: (Computed)[integer] Number of server CPU cores.
@@ -1039,7 +1039,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="bootCdrom")
     def boot_cdrom(self) -> pulumi.Output[str]:
         """
-        ***DEPRECATED*** Please refer to ServerBootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
         warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
         pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")

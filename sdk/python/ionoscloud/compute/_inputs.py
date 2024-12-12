@@ -19,6 +19,8 @@ __all__ = [
     'GroupUserArgs',
     'IPBlockIpConsumerArgs',
     'LanIpFailoverArgs',
+    'NatGatewayLanArgs',
+    'NatGatewayRuleTargetPortRangeArgs',
     'NicFlowlogArgs',
     'ServerLabelArgs',
     'ServerNicArgs',
@@ -1066,6 +1068,83 @@ class LanIpFailoverArgs:
     @nic_uuid.setter
     def nic_uuid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nic_uuid", value)
+
+
+@pulumi.input_type
+class NatGatewayLanArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[int],
+                 gateway_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[int] id: [int] Id for the LAN connected to the NAT gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] gateway_ips: [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+        """
+        pulumi.set(__self__, "id", id)
+        if gateway_ips is not None:
+            pulumi.set(__self__, "gateway_ips", gateway_ips)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[int]:
+        """
+        [int] Id for the LAN connected to the NAT gateway.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[int]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="gatewayIps")
+    def gateway_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+        """
+        return pulumi.get(self, "gateway_ips")
+
+    @gateway_ips.setter
+    def gateway_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "gateway_ips", value)
+
+
+@pulumi.input_type
+class NatGatewayRuleTargetPortRangeArgs:
+    def __init__(__self__, *,
+                 end: Optional[pulumi.Input[int]] = None,
+                 start: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] end: [int] Target port range end associated with the NAT gateway rule.
+        :param pulumi.Input[int] start: [int] Target port range start associated with the NAT gateway rule.
+        """
+        if end is not None:
+            pulumi.set(__self__, "end", end)
+        if start is not None:
+            pulumi.set(__self__, "start", start)
+
+    @property
+    @pulumi.getter
+    def end(self) -> Optional[pulumi.Input[int]]:
+        """
+        [int] Target port range end associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "end")
+
+    @end.setter
+    def end(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end", value)
+
+    @property
+    @pulumi.getter
+    def start(self) -> Optional[pulumi.Input[int]]:
+        """
+        [int] Target port range start associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "start")
+
+    @start.setter
+    def start(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start", value)
 
 
 @pulumi.input_type

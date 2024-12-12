@@ -29,8 +29,6 @@ __all__ = [
     'KafkaClusterConnections',
     'LoggingPipelineLog',
     'LoggingPipelineLogDestination',
-    'NatgatewayLan',
-    'NatgatewayRuleTargetPortRange',
     'NetworkloadbalancerFlowlog',
     'NetworkloadbalancerForwardingruleHealthCheck',
     'NetworkloadbalancerForwardingruleTarget',
@@ -1685,84 +1683,6 @@ class LoggingPipelineLogDestination(dict):
         [string] The internal output stream to send logs to.
         """
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class NatgatewayLan(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "gatewayIps":
-            suggest = "gateway_ips"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in NatgatewayLan. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        NatgatewayLan.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        NatgatewayLan.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 id: int,
-                 gateway_ips: Optional[Sequence[str]] = None):
-        """
-        :param int id: [int] Id for the LAN connected to the NAT gateway.
-        :param Sequence[str] gateway_ips: [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
-        """
-        pulumi.set(__self__, "id", id)
-        if gateway_ips is not None:
-            pulumi.set(__self__, "gateway_ips", gateway_ips)
-
-    @property
-    @pulumi.getter
-    def id(self) -> int:
-        """
-        [int] Id for the LAN connected to the NAT gateway.
-        """
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="gatewayIps")
-    def gateway_ips(self) -> Optional[Sequence[str]]:
-        """
-        [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
-        """
-        return pulumi.get(self, "gateway_ips")
-
-
-@pulumi.output_type
-class NatgatewayRuleTargetPortRange(dict):
-    def __init__(__self__, *,
-                 end: Optional[int] = None,
-                 start: Optional[int] = None):
-        """
-        :param int end: [int] Target port range end associated with the NAT gateway rule.
-        :param int start: [int] Target port range start associated with the NAT gateway rule.
-        """
-        if end is not None:
-            pulumi.set(__self__, "end", end)
-        if start is not None:
-            pulumi.set(__self__, "start", start)
-
-    @property
-    @pulumi.getter
-    def end(self) -> Optional[int]:
-        """
-        [int] Target port range end associated with the NAT gateway rule.
-        """
-        return pulumi.get(self, "end")
-
-    @property
-    @pulumi.getter
-    def start(self) -> Optional[int]:
-        """
-        [int] Target port range start associated with the NAT gateway rule.
-        """
-        return pulumi.get(self, "start")
 
 
 @pulumi.output_type

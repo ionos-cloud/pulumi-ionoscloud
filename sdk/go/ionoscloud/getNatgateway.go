@@ -16,9 +16,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupNatgateway(ctx *pulumi.Context, args *LookupNatgatewayArgs, opts ...pulumi.InvokeOption) (*LookupNatgatewayResult, error) {
+func GetNatgateway(ctx *pulumi.Context, args *GetNatgatewayArgs, opts ...pulumi.InvokeOption) (*GetNatgatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNatgatewayResult
+	var rv GetNatgatewayResult
 	err := ctx.Invoke("ionoscloud:index/getNatgateway:getNatgateway", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,7 @@ func LookupNatgateway(ctx *pulumi.Context, args *LookupNatgatewayArgs, opts ...p
 }
 
 // A collection of arguments for invoking getNatgateway.
-type LookupNatgatewayArgs struct {
+type GetNatgatewayArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the network load balancer forwarding rule you want to search for.
@@ -39,7 +39,7 @@ type LookupNatgatewayArgs struct {
 }
 
 // A collection of values returned by getNatgateway.
-type LookupNatgatewayResult struct {
+type GetNatgatewayResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Id for the LAN connected to the NAT gateway
 	Id *string `pulumi:"id"`
@@ -51,21 +51,21 @@ type LookupNatgatewayResult struct {
 	PublicIps []string `pulumi:"publicIps"`
 }
 
-func LookupNatgatewayOutput(ctx *pulumi.Context, args LookupNatgatewayOutputArgs, opts ...pulumi.InvokeOption) LookupNatgatewayResultOutput {
+func GetNatgatewayOutput(ctx *pulumi.Context, args GetNatgatewayOutputArgs, opts ...pulumi.InvokeOption) GetNatgatewayResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNatgatewayResult, error) {
-			args := v.(LookupNatgatewayArgs)
-			r, err := LookupNatgateway(ctx, &args, opts...)
-			var s LookupNatgatewayResult
+		ApplyT(func(v interface{}) (GetNatgatewayResult, error) {
+			args := v.(GetNatgatewayArgs)
+			r, err := GetNatgateway(ctx, &args, opts...)
+			var s GetNatgatewayResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNatgatewayResultOutput)
+		}).(GetNatgatewayResultOutput)
 }
 
 // A collection of arguments for invoking getNatgateway.
-type LookupNatgatewayOutputArgs struct {
+type GetNatgatewayOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the network load balancer forwarding rule you want to search for.
@@ -76,49 +76,49 @@ type LookupNatgatewayOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupNatgatewayOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNatgatewayArgs)(nil)).Elem()
+func (GetNatgatewayOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNatgatewayArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNatgateway.
-type LookupNatgatewayResultOutput struct{ *pulumi.OutputState }
+type GetNatgatewayResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNatgatewayResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNatgatewayResult)(nil)).Elem()
+func (GetNatgatewayResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNatgatewayResult)(nil)).Elem()
 }
 
-func (o LookupNatgatewayResultOutput) ToLookupNatgatewayResultOutput() LookupNatgatewayResultOutput {
+func (o GetNatgatewayResultOutput) ToGetNatgatewayResultOutput() GetNatgatewayResultOutput {
 	return o
 }
 
-func (o LookupNatgatewayResultOutput) ToLookupNatgatewayResultOutputWithContext(ctx context.Context) LookupNatgatewayResultOutput {
+func (o GetNatgatewayResultOutput) ToGetNatgatewayResultOutputWithContext(ctx context.Context) GetNatgatewayResultOutput {
 	return o
 }
 
-func (o LookupNatgatewayResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNatgatewayResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetNatgatewayResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNatgatewayResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Id for the LAN connected to the NAT gateway
-func (o LookupNatgatewayResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatgatewayResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetNatgatewayResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNatgatewayResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
-func (o LookupNatgatewayResultOutput) Lans() GetNatgatewayLanArrayOutput {
-	return o.ApplyT(func(v LookupNatgatewayResult) []GetNatgatewayLan { return v.Lans }).(GetNatgatewayLanArrayOutput)
+func (o GetNatgatewayResultOutput) Lans() GetNatgatewayLanArrayOutput {
+	return o.ApplyT(func(v GetNatgatewayResult) []GetNatgatewayLan { return v.Lans }).(GetNatgatewayLanArrayOutput)
 }
 
 // Name of that natgateway
-func (o LookupNatgatewayResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNatgatewayResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetNatgatewayResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNatgatewayResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
-func (o LookupNatgatewayResultOutput) PublicIps() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupNatgatewayResult) []string { return v.PublicIps }).(pulumi.StringArrayOutput)
+func (o GetNatgatewayResultOutput) PublicIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNatgatewayResult) []string { return v.PublicIps }).(pulumi.StringArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNatgatewayResultOutput{})
+	pulumi.RegisterOutputType(GetNatgatewayResultOutput{})
 }
