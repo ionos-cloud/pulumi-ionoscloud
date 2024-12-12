@@ -813,54 +813,6 @@ export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
     maintenance?: pulumi.Input<boolean>;
 }
 
-export interface NfsClusterConnections {
-    /**
-     * The ID of the datacenter where the Network File Storage cluster is located.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-     */
-    ipAddress: pulumi.Input<string>;
-    /**
-     * The Private LAN to which the Network File Storage cluster must be connected.
-     */
-    lan: pulumi.Input<string>;
-}
-
-export interface NfsClusterNfs {
-    /**
-     * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
-     */
-    minVersion?: pulumi.Input<string>;
-}
-
-export interface NfsShareClientGroup {
-    /**
-     * Optional description for the clients groups.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * NFS specific configurations. Each configuration includes:
-     */
-    nfs?: pulumi.Input<inputs.NfsShareClientGroupNfs>;
-}
-
-export interface NfsShareClientGroupNfs {
-    /**
-     * The squash mode for the export. The squash mode can be:
-     */
-    squash?: pulumi.Input<string>;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
@@ -1630,6 +1582,56 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: pulumi.Input<string>;
+    }
+}
+
+export namespace nfs {
+    export interface ClusterConnections {
+        /**
+         * The ID of the datacenter where the Network File Storage cluster is located.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+         */
+        ipAddress: pulumi.Input<string>;
+        /**
+         * The Private LAN to which the Network File Storage cluster must be connected.
+         */
+        lan: pulumi.Input<string>;
+    }
+
+    export interface ClusterNfs {
+        /**
+         * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+         */
+        minVersion?: pulumi.Input<string>;
+    }
+
+    export interface ShareClientGroup {
+        /**
+         * Optional description for the clients groups.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * NFS specific configurations. Each configuration includes:
+         */
+        nfs?: pulumi.Input<inputs.nfs.ShareClientGroupNfs>;
+    }
+
+    export interface ShareClientGroupNfs {
+        /**
+         * The squash mode for the export. The squash mode can be:
+         */
+        squash?: pulumi.Input<string>;
     }
 }
 

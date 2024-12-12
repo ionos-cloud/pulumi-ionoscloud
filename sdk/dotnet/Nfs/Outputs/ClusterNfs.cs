@@ -7,21 +7,21 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Nfs.Outputs
 {
 
     [OutputType]
-    public sealed class NfsShareClientGroupNfs
+    public sealed class ClusterNfs
     {
         /// <summary>
-        /// The squash mode for the export. The squash mode can be:
+        /// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         /// </summary>
-        public readonly string? Squash;
+        public readonly string? MinVersion;
 
         [OutputConstructor]
-        private NfsShareClientGroupNfs(string? squash)
+        private ClusterNfs(string? minVersion)
         {
-            Squash = squash;
+            MinVersion = minVersion;
         }
     }
 }

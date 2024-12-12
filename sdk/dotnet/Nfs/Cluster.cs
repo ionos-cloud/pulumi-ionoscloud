@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Nfs
 {
     /// <summary>
     /// Create clusters of Network File Storage (NFS) on IonosCloud.
@@ -37,15 +37,15 @@ namespace Pulumi.Ionoscloud
     ///         Public = false,
     ///     });
     /// 
-    ///     var example = new Ionoscloud.NfsCluster("example", new()
+    ///     var example = new Ionoscloud.Nfs.Cluster("example", new()
     ///     {
     ///         Location = "de/txl",
     ///         Size = 2,
-    ///         Nfs = new Ionoscloud.Inputs.NfsClusterNfsArgs
+    ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
     ///         {
     ///             MinVersion = "4.2",
     ///         },
-    ///         Connections = new Ionoscloud.Inputs.NfsClusterConnectionsArgs
+    ///         Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs
     ///         {
     ///             DatacenterId = nfsDc.Id,
     ///             IpAddress = "192.168.100.10/24",
@@ -62,17 +62,17 @@ namespace Pulumi.Ionoscloud
     /// A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/nfsCluster:NfsCluster name {location}:{uuid}
+    /// $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/nfsCluster:NfsCluster")]
-    public partial class NfsCluster : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:nfs/cluster:Cluster")]
+    public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The network connections for the Network File Storage Cluster.
         /// </summary>
         [Output("connections")]
-        public Output<Outputs.NfsClusterConnections> Connections { get; private set; } = null!;
+        public Output<Outputs.ClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
         /// The location where the Network File Storage cluster is located.
@@ -89,7 +89,7 @@ namespace Pulumi.Ionoscloud
         public Output<string> Name { get; private set; } = null!;
 
         [Output("nfs")]
-        public Output<Outputs.NfsClusterNfs?> Nfs { get; private set; } = null!;
+        public Output<Outputs.ClusterNfs?> Nfs { get; private set; } = null!;
 
         /// <summary>
         /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
@@ -99,19 +99,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a NfsCluster resource with the given unique name, arguments, and options.
+        /// Create a Cluster resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public NfsCluster(string name, NfsClusterArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/nfsCluster:NfsCluster", name, args ?? new NfsClusterArgs(), MakeResourceOptions(options, ""))
+        public Cluster(string name, ClusterArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:nfs/cluster:Cluster", name, args ?? new ClusterArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private NfsCluster(string name, Input<string> id, NfsClusterState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/nfsCluster:NfsCluster", name, state, MakeResourceOptions(options, id))
+        private Cluster(string name, Input<string> id, ClusterState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:nfs/cluster:Cluster", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -127,7 +127,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing NfsCluster resource's state with the given name, ID, and optional extra
+        /// Get an existing Cluster resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -135,19 +135,19 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static NfsCluster Get(string name, Input<string> id, NfsClusterState? state = null, CustomResourceOptions? options = null)
+        public static Cluster Get(string name, Input<string> id, ClusterState? state = null, CustomResourceOptions? options = null)
         {
-            return new NfsCluster(name, id, state, options);
+            return new Cluster(name, id, state, options);
         }
     }
 
-    public sealed class NfsClusterArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The network connections for the Network File Storage Cluster.
         /// </summary>
         [Input("connections", required: true)]
-        public Input<Inputs.NfsClusterConnectionsArgs> Connections { get; set; } = null!;
+        public Input<Inputs.ClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
         /// The location where the Network File Storage cluster is located.
@@ -164,7 +164,7 @@ namespace Pulumi.Ionoscloud
         public Input<string>? Name { get; set; }
 
         [Input("nfs")]
-        public Input<Inputs.NfsClusterNfsArgs>? Nfs { get; set; }
+        public Input<Inputs.ClusterNfsArgs>? Nfs { get; set; }
 
         /// <summary>
         /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
@@ -172,19 +172,19 @@ namespace Pulumi.Ionoscloud
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
-        public NfsClusterArgs()
+        public ClusterArgs()
         {
         }
-        public static new NfsClusterArgs Empty => new NfsClusterArgs();
+        public static new ClusterArgs Empty => new ClusterArgs();
     }
 
-    public sealed class NfsClusterState : global::Pulumi.ResourceArgs
+    public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The network connections for the Network File Storage Cluster.
         /// </summary>
         [Input("connections")]
-        public Input<Inputs.NfsClusterConnectionsGetArgs>? Connections { get; set; }
+        public Input<Inputs.ClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
         /// The location where the Network File Storage cluster is located.
@@ -201,7 +201,7 @@ namespace Pulumi.Ionoscloud
         public Input<string>? Name { get; set; }
 
         [Input("nfs")]
-        public Input<Inputs.NfsClusterNfsGetArgs>? Nfs { get; set; }
+        public Input<Inputs.ClusterNfsGetArgs>? Nfs { get; set; }
 
         /// <summary>
         /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
@@ -209,9 +209,9 @@ namespace Pulumi.Ionoscloud
         [Input("size")]
         public Input<int>? Size { get; set; }
 
-        public NfsClusterState()
+        public ClusterState()
         {
         }
-        public static new NfsClusterState Empty => new NfsClusterState();
+        public static new ClusterState Empty => new ClusterState();
     }
 }

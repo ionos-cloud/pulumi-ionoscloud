@@ -7,36 +7,32 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Nfs.Inputs
 {
 
-    [OutputType]
-    public sealed class NfsClusterConnections
+    public sealed class ClusterConnectionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the datacenter where the Network File Storage cluster is located.
         /// </summary>
-        public readonly string DatacenterId;
+        [Input("datacenterId", required: true)]
+        public Input<string> DatacenterId { get; set; } = null!;
+
         /// <summary>
         /// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
         /// </summary>
-        public readonly string IpAddress;
+        [Input("ipAddress", required: true)]
+        public Input<string> IpAddress { get; set; } = null!;
+
         /// <summary>
         /// The Private LAN to which the Network File Storage cluster must be connected.
         /// </summary>
-        public readonly string Lan;
+        [Input("lan", required: true)]
+        public Input<string> Lan { get; set; } = null!;
 
-        [OutputConstructor]
-        private NfsClusterConnections(
-            string datacenterId,
-
-            string ipAddress,
-
-            string lan)
+        public ClusterConnectionsArgs()
         {
-            DatacenterId = datacenterId;
-            IpAddress = ipAddress;
-            Lan = lan;
         }
+        public static new ClusterConnectionsArgs Empty => new ClusterConnectionsArgs();
     }
 }

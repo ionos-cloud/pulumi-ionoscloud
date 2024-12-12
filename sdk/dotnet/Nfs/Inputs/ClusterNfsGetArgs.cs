@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Nfs.Inputs
 {
 
-    public sealed class NfsClusterNfsGetArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterNfsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
@@ -18,9 +18,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("minVersion")]
         public Input<string>? MinVersion { get; set; }
 
-        public NfsClusterNfsGetArgs()
+        public ClusterNfsGetArgs()
         {
         }
-        public static new NfsClusterNfsGetArgs Empty => new NfsClusterNfsGetArgs();
+        public static new ClusterNfsGetArgs Empty => new ClusterNfsGetArgs();
     }
 }

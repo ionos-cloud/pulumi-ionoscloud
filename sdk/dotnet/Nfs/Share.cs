@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Nfs
 {
     /// <summary>
     /// Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
@@ -37,15 +37,15 @@ namespace Pulumi.Ionoscloud
     ///         Public = false,
     ///     });
     /// 
-    ///     var exampleNfsCluster = new Ionoscloud.NfsCluster("exampleNfsCluster", new()
+    ///     var exampleCluster = new Ionoscloud.Nfs.Cluster("exampleCluster", new()
     ///     {
     ///         Location = "de/txl",
     ///         Size = 2,
-    ///         Nfs = new Ionoscloud.Inputs.NfsClusterNfsArgs
+    ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
     ///         {
     ///             MinVersion = "4.2",
     ///         },
-    ///         Connections = new Ionoscloud.Inputs.NfsClusterConnectionsArgs
+    ///         Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs
     ///         {
     ///             DatacenterId = nfsDc.Id,
     ///             IpAddress = "192.168.100.10/24",
@@ -53,16 +53,16 @@ namespace Pulumi.Ionoscloud
     ///         },
     ///     });
     /// 
-    ///     var exampleNfsShare = new Ionoscloud.NfsShare("exampleNfsShare", new()
+    ///     var exampleShare = new Ionoscloud.Nfs.Share("exampleShare", new()
     ///     {
     ///         Location = "de/txl",
-    ///         ClusterId = exampleNfsCluster.Id,
+    ///         ClusterId = exampleCluster.Id,
     ///         Quota = 512,
     ///         Gid = 512,
     ///         Uid = 512,
     ///         ClientGroups = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.NfsShareClientGroupArgs
+    ///             new Ionoscloud.Nfs.Inputs.ShareClientGroupArgs
     ///             {
     ///                 Description = "Client Group 1",
     ///                 IpNetworks = new[]
@@ -73,7 +73,7 @@ namespace Pulumi.Ionoscloud
     ///                 {
     ///                     "10.234.62.123",
     ///                 },
-    ///                 Nfs = new Ionoscloud.Inputs.NfsShareClientGroupNfsArgs
+    ///                 Nfs = new Ionoscloud.Nfs.Inputs.ShareClientGroupNfsArgs
     ///                 {
     ///                     Squash = "all-anonymous",
     ///                 },
@@ -90,17 +90,17 @@ namespace Pulumi.Ionoscloud
     /// A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/nfsShare:NfsShare name location:cluster_id:resource_id
+    /// $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/nfsShare:NfsShare")]
-    public partial class NfsShare : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:nfs/share:Share")]
+    public partial class Share : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         /// </summary>
         [Output("clientGroups")]
-        public Output<ImmutableArray<Outputs.NfsShareClientGroup>> ClientGroups { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.ShareClientGroup>> ClientGroups { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the Network File Storage Cluster.
@@ -146,19 +146,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a NfsShare resource with the given unique name, arguments, and options.
+        /// Create a Share resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public NfsShare(string name, NfsShareArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/nfsShare:NfsShare", name, args ?? new NfsShareArgs(), MakeResourceOptions(options, ""))
+        public Share(string name, ShareArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:nfs/share:Share", name, args ?? new ShareArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private NfsShare(string name, Input<string> id, NfsShareState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/nfsShare:NfsShare", name, state, MakeResourceOptions(options, id))
+        private Share(string name, Input<string> id, ShareState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:nfs/share:Share", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -174,7 +174,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing NfsShare resource's state with the given name, ID, and optional extra
+        /// Get an existing Share resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -182,23 +182,23 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static NfsShare Get(string name, Input<string> id, NfsShareState? state = null, CustomResourceOptions? options = null)
+        public static Share Get(string name, Input<string> id, ShareState? state = null, CustomResourceOptions? options = null)
         {
-            return new NfsShare(name, id, state, options);
+            return new Share(name, id, state, options);
         }
     }
 
-    public sealed class NfsShareArgs : global::Pulumi.ResourceArgs
+    public sealed class ShareArgs : global::Pulumi.ResourceArgs
     {
         [Input("clientGroups", required: true)]
-        private InputList<Inputs.NfsShareClientGroupArgs>? _clientGroups;
+        private InputList<Inputs.ShareClientGroupArgs>? _clientGroups;
 
         /// <summary>
         /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         /// </summary>
-        public InputList<Inputs.NfsShareClientGroupArgs> ClientGroups
+        public InputList<Inputs.ShareClientGroupArgs> ClientGroups
         {
-            get => _clientGroups ?? (_clientGroups = new InputList<Inputs.NfsShareClientGroupArgs>());
+            get => _clientGroups ?? (_clientGroups = new InputList<Inputs.ShareClientGroupArgs>());
             set => _clientGroups = value;
         }
 
@@ -238,23 +238,23 @@ namespace Pulumi.Ionoscloud
         [Input("uid")]
         public Input<int>? Uid { get; set; }
 
-        public NfsShareArgs()
+        public ShareArgs()
         {
         }
-        public static new NfsShareArgs Empty => new NfsShareArgs();
+        public static new ShareArgs Empty => new ShareArgs();
     }
 
-    public sealed class NfsShareState : global::Pulumi.ResourceArgs
+    public sealed class ShareState : global::Pulumi.ResourceArgs
     {
         [Input("clientGroups")]
-        private InputList<Inputs.NfsShareClientGroupGetArgs>? _clientGroups;
+        private InputList<Inputs.ShareClientGroupGetArgs>? _clientGroups;
 
         /// <summary>
         /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         /// </summary>
-        public InputList<Inputs.NfsShareClientGroupGetArgs> ClientGroups
+        public InputList<Inputs.ShareClientGroupGetArgs> ClientGroups
         {
-            get => _clientGroups ?? (_clientGroups = new InputList<Inputs.NfsShareClientGroupGetArgs>());
+            get => _clientGroups ?? (_clientGroups = new InputList<Inputs.ShareClientGroupGetArgs>());
             set => _clientGroups = value;
         }
 
@@ -300,9 +300,9 @@ namespace Pulumi.Ionoscloud
         [Input("uid")]
         public Input<int>? Uid { get; set; }
 
-        public NfsShareState()
+        public ShareState()
         {
         }
-        public static new NfsShareState Empty => new NfsShareState();
+        public static new ShareState Empty => new ShareState();
     }
 }

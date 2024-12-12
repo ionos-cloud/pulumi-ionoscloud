@@ -97,8 +97,6 @@ from .natgateway import *
 from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
-from .nfs_cluster import *
-from .nfs_share import *
 from .private_crossconnect import *
 from .provider import *
 from .server_boot_device_selection import *
@@ -125,6 +123,8 @@ if typing.TYPE_CHECKING:
     dns = __dns
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.nfs as __nfs
+    nfs = __nfs
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
@@ -135,6 +135,7 @@ else:
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
     dns = _utilities.lazy_import('ionoscloud.dns')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    nfs = _utilities.lazy_import('ionoscloud.nfs')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
@@ -486,22 +487,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/nfsCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsCluster:NfsCluster": "NfsCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/nfsShare",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsShare:NfsShare": "NfsShare"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/privateCrossconnect",
   "fqn": "ionoscloud",
   "classes": {
@@ -562,6 +547,22 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/cluster",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/share",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/share:Share": "Share"
   }
  },
  {

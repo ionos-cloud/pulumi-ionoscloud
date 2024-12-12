@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Create clusters of Network File Storage (NFS) on IonosCloud.
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     datacenterId: nfsDc.id,
  *     "public": false,
  * });
- * const example = new ionoscloud.NfsCluster("example", {
+ * const example = new ionoscloud.nfs.Cluster("example", {
  *     location: "de/txl",
  *     size: 2,
  *     nfs: {
@@ -46,12 +46,12 @@ import * as utilities from "./utilities";
  * A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/nfsCluster:NfsCluster name {location}:{uuid}
+ * $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
  * ```
  */
-export class NfsCluster extends pulumi.CustomResource {
+export class Cluster extends pulumi.CustomResource {
     /**
-     * Get an existing NfsCluster resource's state with the given name, ID, and optional extra
+     * Get an existing Cluster resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -59,28 +59,28 @@ export class NfsCluster extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NfsClusterState, opts?: pulumi.CustomResourceOptions): NfsCluster {
-        return new NfsCluster(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterState, opts?: pulumi.CustomResourceOptions): Cluster {
+        return new Cluster(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/nfsCluster:NfsCluster';
+    public static readonly __pulumiType = 'ionoscloud:nfs/cluster:Cluster';
 
     /**
-     * Returns true if the given object is an instance of NfsCluster.  This is designed to work even
+     * Returns true if the given object is an instance of Cluster.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is NfsCluster {
+    public static isInstance(obj: any): obj is Cluster {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === NfsCluster.__pulumiType;
+        return obj['__pulumiType'] === Cluster.__pulumiType;
     }
 
     /**
      * The network connections for the Network File Storage Cluster.
      */
-    public readonly connections!: pulumi.Output<outputs.NfsClusterConnections>;
+    public readonly connections!: pulumi.Output<outputs.nfs.ClusterConnections>;
     /**
      * The location where the Network File Storage cluster is located.
      * - `de/fra` - Frankfurt
@@ -91,32 +91,32 @@ export class NfsCluster extends pulumi.CustomResource {
      * The name of the Network File Storage cluster.
      */
     public readonly name!: pulumi.Output<string>;
-    public readonly nfs!: pulumi.Output<outputs.NfsClusterNfs | undefined>;
+    public readonly nfs!: pulumi.Output<outputs.nfs.ClusterNfs | undefined>;
     /**
      * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
     public readonly size!: pulumi.Output<number>;
 
     /**
-     * Create a NfsCluster resource with the given unique name, arguments, and options.
+     * Create a Cluster resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: NfsClusterArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: NfsClusterArgs | NfsClusterState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: ClusterArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: ClusterArgs | ClusterState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as NfsClusterState | undefined;
+            const state = argsOrState as ClusterState | undefined;
             resourceInputs["connections"] = state ? state.connections : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nfs"] = state ? state.nfs : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
         } else {
-            const args = argsOrState as NfsClusterArgs | undefined;
+            const args = argsOrState as ClusterArgs | undefined;
             if ((!args || args.connections === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'connections'");
             }
@@ -133,18 +133,18 @@ export class NfsCluster extends pulumi.CustomResource {
             resourceInputs["size"] = args ? args.size : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(NfsCluster.__pulumiType, name, resourceInputs, opts);
+        super(Cluster.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering NfsCluster resources.
+ * Input properties used for looking up and filtering Cluster resources.
  */
-export interface NfsClusterState {
+export interface ClusterState {
     /**
      * The network connections for the Network File Storage Cluster.
      */
-    connections?: pulumi.Input<inputs.NfsClusterConnections>;
+    connections?: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
      * The location where the Network File Storage cluster is located.
      * - `de/fra` - Frankfurt
@@ -155,7 +155,7 @@ export interface NfsClusterState {
      * The name of the Network File Storage cluster.
      */
     name?: pulumi.Input<string>;
-    nfs?: pulumi.Input<inputs.NfsClusterNfs>;
+    nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
     /**
      * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */
@@ -163,13 +163,13 @@ export interface NfsClusterState {
 }
 
 /**
- * The set of arguments for constructing a NfsCluster resource.
+ * The set of arguments for constructing a Cluster resource.
  */
-export interface NfsClusterArgs {
+export interface ClusterArgs {
     /**
      * The network connections for the Network File Storage Cluster.
      */
-    connections: pulumi.Input<inputs.NfsClusterConnections>;
+    connections: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
      * The location where the Network File Storage cluster is located.
      * - `de/fra` - Frankfurt
@@ -180,7 +180,7 @@ export interface NfsClusterArgs {
      * The name of the Network File Storage cluster.
      */
     name?: pulumi.Input<string>;
-    nfs?: pulumi.Input<inputs.NfsClusterNfs>;
+    nfs?: pulumi.Input<inputs.nfs.ClusterNfs>;
     /**
      * The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
      */

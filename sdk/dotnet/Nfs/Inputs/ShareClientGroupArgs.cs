@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Nfs.Inputs
 {
 
-    public sealed class NfsShareClientGroupArgs : global::Pulumi.ResourceArgs
+    public sealed class ShareClientGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Optional description for the clients groups.
@@ -46,11 +46,11 @@ namespace Pulumi.Ionoscloud.Inputs
         /// NFS specific configurations. Each configuration includes:
         /// </summary>
         [Input("nfs")]
-        public Input<Inputs.NfsShareClientGroupNfsArgs>? Nfs { get; set; }
+        public Input<Inputs.ShareClientGroupNfsArgs>? Nfs { get; set; }
 
-        public NfsShareClientGroupArgs()
+        public ShareClientGroupArgs()
         {
         }
-        public static new NfsShareClientGroupArgs Empty => new NfsShareClientGroupArgs();
+        public static new ShareClientGroupArgs Empty => new ShareClientGroupArgs();
     }
 }

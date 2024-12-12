@@ -3268,54 +3268,6 @@ export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
     maintenance: boolean;
 }
 
-export interface NfsClusterConnections {
-    /**
-     * The ID of the datacenter where the Network File Storage cluster is located.
-     */
-    datacenterId: string;
-    /**
-     * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-     */
-    ipAddress: string;
-    /**
-     * The Private LAN to which the Network File Storage cluster must be connected.
-     */
-    lan: string;
-}
-
-export interface NfsClusterNfs {
-    /**
-     * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
-     */
-    minVersion?: string;
-}
-
-export interface NfsShareClientGroup {
-    /**
-     * Optional description for the clients groups.
-     */
-    description?: string;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts: string[];
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks: string[];
-    /**
-     * NFS specific configurations. Each configuration includes:
-     */
-    nfs?: outputs.NfsShareClientGroupNfs;
-}
-
-export interface NfsShareClientGroupNfs {
-    /**
-     * The squash mode for the export. The squash mode can be:
-     */
-    squash?: string;
-}
-
 export interface PrivateCrossconnectConnectableDatacenter {
     /**
      * The UUID of the connectable datacenter
@@ -4090,6 +4042,57 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+}
+
+export namespace nfs {
+    export interface ClusterConnections {
+        /**
+         * The ID of the datacenter where the Network File Storage cluster is located.
+         */
+        datacenterId: string;
+        /**
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+         */
+        ipAddress: string;
+        /**
+         * The Private LAN to which the Network File Storage cluster must be connected.
+         */
+        lan: string;
+    }
+
+    export interface ClusterNfs {
+        /**
+         * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+         */
+        minVersion?: string;
+    }
+
+    export interface ShareClientGroup {
+        /**
+         * Optional description for the clients groups.
+         */
+        description?: string;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts: string[];
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks: string[];
+        /**
+         * NFS specific configurations. Each configuration includes:
+         */
+        nfs?: outputs.nfs.ShareClientGroupNfs;
+    }
+
+    export interface ShareClientGroupNfs {
+        /**
+         * The squash mode for the export. The squash mode can be:
+         */
+        squash?: string;
     }
 
 }

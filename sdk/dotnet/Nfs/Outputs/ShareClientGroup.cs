@@ -7,11 +7,11 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Nfs.Outputs
 {
 
     [OutputType]
-    public sealed class NfsShareClientGroup
+    public sealed class ShareClientGroup
     {
         /// <summary>
         /// Optional description for the clients groups.
@@ -28,17 +28,17 @@ namespace Pulumi.Ionoscloud.Outputs
         /// <summary>
         /// NFS specific configurations. Each configuration includes:
         /// </summary>
-        public readonly Outputs.NfsShareClientGroupNfs? Nfs;
+        public readonly Outputs.ShareClientGroupNfs? Nfs;
 
         [OutputConstructor]
-        private NfsShareClientGroup(
+        private ShareClientGroup(
             string? description,
 
             ImmutableArray<string> hosts,
 
             ImmutableArray<string> ipNetworks,
 
-            Outputs.NfsShareClientGroupNfs? nfs)
+            Outputs.ShareClientGroupNfs? nfs)
         {
             Description = description;
             Hosts = hosts;
