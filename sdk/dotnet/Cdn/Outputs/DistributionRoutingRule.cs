@@ -7,11 +7,11 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Cdn.Outputs
 {
 
     [OutputType]
-    public sealed class CdnDistributionRoutingRule
+    public sealed class DistributionRoutingRule
     {
         /// <summary>
         /// [string] The prefix of the routing rule.
@@ -24,15 +24,15 @@ namespace Pulumi.Ionoscloud.Outputs
         /// <summary>
         /// [map] - A map of properties for the rule
         /// </summary>
-        public readonly Outputs.CdnDistributionRoutingRuleUpstream Upstream;
+        public readonly Outputs.DistributionRoutingRuleUpstream Upstream;
 
         [OutputConstructor]
-        private CdnDistributionRoutingRule(
+        private DistributionRoutingRule(
             string prefix,
 
             string scheme,
 
-            Outputs.CdnDistributionRoutingRuleUpstream upstream)
+            Outputs.DistributionRoutingRuleUpstream upstream)
         {
             Prefix = prefix;
             Scheme = scheme;

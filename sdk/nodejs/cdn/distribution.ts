@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages a **CDN Distribution** on IonosCloud.
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
  *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
  * });
- * const example = new ionoscloud.CdnDistribution("example", {
+ * const example = new ionoscloud.cdn.Distribution("example", {
  *     domain: "example.com",
  *     certificateId: cert.id,
  *     routingRules: [
@@ -71,12 +71,12 @@ import * as utilities from "./utilities";
  * Resource Distribution can be imported using the `resource id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}
+ * $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
  * ```
  */
-export class CdnDistribution extends pulumi.CustomResource {
+export class Distribution extends pulumi.CustomResource {
     /**
-     * Get an existing CdnDistribution resource's state with the given name, ID, and optional extra
+     * Get an existing Distribution resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -84,22 +84,22 @@ export class CdnDistribution extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CdnDistributionState, opts?: pulumi.CustomResourceOptions): CdnDistribution {
-        return new CdnDistribution(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DistributionState, opts?: pulumi.CustomResourceOptions): Distribution {
+        return new Distribution(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/cdnDistribution:CdnDistribution';
+    public static readonly __pulumiType = 'ionoscloud:cdn/distribution:Distribution';
 
     /**
-     * Returns true if the given object is an instance of CdnDistribution.  This is designed to work even
+     * Returns true if the given object is an instance of Distribution.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is CdnDistribution {
+    public static isInstance(obj: any): obj is Distribution {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === CdnDistribution.__pulumiType;
+        return obj['__pulumiType'] === Distribution.__pulumiType;
     }
 
     /**
@@ -125,21 +125,21 @@ export class CdnDistribution extends pulumi.CustomResource {
     /**
      * [list] The routing rules for the distribution.
      */
-    public readonly routingRules!: pulumi.Output<outputs.CdnDistributionRoutingRule[]>;
+    public readonly routingRules!: pulumi.Output<outputs.cdn.DistributionRoutingRule[]>;
 
     /**
-     * Create a CdnDistribution resource with the given unique name, arguments, and options.
+     * Create a Distribution resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: CdnDistributionArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: CdnDistributionArgs | CdnDistributionState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DistributionArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DistributionArgs | DistributionState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as CdnDistributionState | undefined;
+            const state = argsOrState as DistributionState | undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["publicEndpointV4"] = state ? state.publicEndpointV4 : undefined;
@@ -147,7 +147,7 @@ export class CdnDistribution extends pulumi.CustomResource {
             resourceInputs["resourceUrn"] = state ? state.resourceUrn : undefined;
             resourceInputs["routingRules"] = state ? state.routingRules : undefined;
         } else {
-            const args = argsOrState as CdnDistributionArgs | undefined;
+            const args = argsOrState as DistributionArgs | undefined;
             if ((!args || args.domain === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
@@ -162,14 +162,14 @@ export class CdnDistribution extends pulumi.CustomResource {
             resourceInputs["resourceUrn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(CdnDistribution.__pulumiType, name, resourceInputs, opts);
+        super(Distribution.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering CdnDistribution resources.
+ * Input properties used for looking up and filtering Distribution resources.
  */
-export interface CdnDistributionState {
+export interface DistributionState {
     /**
      * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
      */
@@ -193,13 +193,13 @@ export interface CdnDistributionState {
     /**
      * [list] The routing rules for the distribution.
      */
-    routingRules?: pulumi.Input<pulumi.Input<inputs.CdnDistributionRoutingRule>[]>;
+    routingRules?: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[]>;
 }
 
 /**
- * The set of arguments for constructing a CdnDistribution resource.
+ * The set of arguments for constructing a Distribution resource.
  */
-export interface CdnDistributionArgs {
+export interface DistributionArgs {
     /**
      * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
      */
@@ -211,5 +211,5 @@ export interface CdnDistributionArgs {
     /**
      * [list] The routing rules for the distribution.
      */
-    routingRules: pulumi.Input<pulumi.Input<inputs.CdnDistributionRoutingRule>[]>;
+    routingRules: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[]>;
 }

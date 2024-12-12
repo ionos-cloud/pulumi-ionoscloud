@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Cdn.Inputs
 {
 
-    public sealed class CdnDistributionRoutingRuleUpstreamArgs : global::Pulumi.ResourceArgs
+    public sealed class DistributionRoutingRuleUpstreamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
@@ -22,7 +22,7 @@ namespace Pulumi.Ionoscloud.Inputs
         /// [map] - A map of geo_restrictions
         /// </summary>
         [Input("geoRestrictions")]
-        public Input<Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs>? GeoRestrictions { get; set; }
+        public Input<Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs>? GeoRestrictions { get; set; }
 
         /// <summary>
         /// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
@@ -48,9 +48,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("waf", required: true)]
         public Input<bool> Waf { get; set; } = null!;
 
-        public CdnDistributionRoutingRuleUpstreamArgs()
+        public DistributionRoutingRuleUpstreamArgs()
         {
         }
-        public static new CdnDistributionRoutingRuleUpstreamArgs Empty => new CdnDistributionRoutingRuleUpstreamArgs();
+        public static new DistributionRoutingRuleUpstreamArgs Empty => new DistributionRoutingRuleUpstreamArgs();
     }
 }

@@ -7,50 +7,57 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Cdn.Outputs
 {
 
-    public sealed class CdnDistributionRoutingRuleUpstreamGetArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class DistributionRoutingRuleUpstream
     {
         /// <summary>
         /// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
         /// </summary>
-        [Input("caching", required: true)]
-        public Input<bool> Caching { get; set; } = null!;
-
+        public readonly bool Caching;
         /// <summary>
         /// [map] - A map of geo_restrictions
         /// </summary>
-        [Input("geoRestrictions")]
-        public Input<Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsGetArgs>? GeoRestrictions { get; set; }
-
+        public readonly Outputs.DistributionRoutingRuleUpstreamGeoRestrictions? GeoRestrictions;
         /// <summary>
         /// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
         /// </summary>
-        [Input("host", required: true)]
-        public Input<string> Host { get; set; } = null!;
-
+        public readonly string Host;
         /// <summary>
         /// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
         /// </summary>
-        [Input("rateLimitClass", required: true)]
-        public Input<string> RateLimitClass { get; set; } = null!;
-
+        public readonly string RateLimitClass;
         /// <summary>
         /// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
         /// </summary>
-        [Input("sniMode", required: true)]
-        public Input<string> SniMode { get; set; } = null!;
-
+        public readonly string SniMode;
         /// <summary>
         /// [bool] Enable or disable WAF to protect the upstream host.
         /// </summary>
-        [Input("waf", required: true)]
-        public Input<bool> Waf { get; set; } = null!;
+        public readonly bool Waf;
 
-        public CdnDistributionRoutingRuleUpstreamGetArgs()
+        [OutputConstructor]
+        private DistributionRoutingRuleUpstream(
+            bool caching,
+
+            Outputs.DistributionRoutingRuleUpstreamGeoRestrictions? geoRestrictions,
+
+            string host,
+
+            string rateLimitClass,
+
+            string sniMode,
+
+            bool waf)
         {
+            Caching = caching;
+            GeoRestrictions = geoRestrictions;
+            Host = host;
+            RateLimitClass = rateLimitClass;
+            SniMode = sniMode;
+            Waf = waf;
         }
-        public static new CdnDistributionRoutingRuleUpstreamGetArgs Empty => new CdnDistributionRoutingRuleUpstreamGetArgs();
     }
 }

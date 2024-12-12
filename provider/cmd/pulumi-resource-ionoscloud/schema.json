@@ -90,6 +90,83 @@
         }
     },
     "types": {
+        "ionoscloud:cdn/DistributionRoutingRule:DistributionRoutingRule": {
+            "properties": {
+                "prefix": {
+                    "type": "string",
+                    "description": "[string] The prefix of the routing rule.\n"
+                },
+                "scheme": {
+                    "type": "string",
+                    "description": "[string] The scheme of the routing rule.\n"
+                },
+                "upstream": {
+                    "$ref": "#/types/ionoscloud:cdn/DistributionRoutingRuleUpstream:DistributionRoutingRuleUpstream",
+                    "description": "[map] - A map of properties for the rule\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "prefix",
+                "scheme",
+                "upstream"
+            ]
+        },
+        "ionoscloud:cdn/DistributionRoutingRuleUpstream:DistributionRoutingRuleUpstream": {
+            "properties": {
+                "caching": {
+                    "type": "boolean",
+                    "description": "[bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.\n"
+                },
+                "geoRestrictions": {
+                    "$ref": "#/types/ionoscloud:cdn/DistributionRoutingRuleUpstreamGeoRestrictions:DistributionRoutingRuleUpstreamGeoRestrictions",
+                    "description": "[map] - A map of geo_restrictions\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "[string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.\n"
+                },
+                "rateLimitClass": {
+                    "type": "string",
+                    "description": "[string] Rate limit class that will be applied to limit the number of incoming requests per IP.\n"
+                },
+                "sniMode": {
+                    "type": "string",
+                    "description": "[string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.\n"
+                },
+                "waf": {
+                    "type": "boolean",
+                    "description": "[bool] Enable or disable WAF to protect the upstream host.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "caching",
+                "host",
+                "rateLimitClass",
+                "sniMode",
+                "waf"
+            ]
+        },
+        "ionoscloud:cdn/DistributionRoutingRuleUpstreamGeoRestrictions:DistributionRoutingRuleUpstreamGeoRestrictions": {
+            "properties": {
+                "allowLists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[string] List of allowed countries\n"
+                },
+                "blockLists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[string] List of blocked countries\n"
+                }
+            },
+            "type": "object"
+        },
         "ionoscloud:compute/DatacenterCpuArchitecture:DatacenterCpuArchitecture": {
             "properties": {
                 "cpuFamily": {
@@ -1554,83 +1631,6 @@
                     ]
                 }
             }
-        },
-        "ionoscloud:index/CdnDistributionRoutingRule:CdnDistributionRoutingRule": {
-            "properties": {
-                "prefix": {
-                    "type": "string",
-                    "description": "[string] The prefix of the routing rule.\n"
-                },
-                "scheme": {
-                    "type": "string",
-                    "description": "[string] The scheme of the routing rule.\n"
-                },
-                "upstream": {
-                    "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRuleUpstream:CdnDistributionRoutingRuleUpstream",
-                    "description": "[map] - A map of properties for the rule\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "prefix",
-                "scheme",
-                "upstream"
-            ]
-        },
-        "ionoscloud:index/CdnDistributionRoutingRuleUpstream:CdnDistributionRoutingRuleUpstream": {
-            "properties": {
-                "caching": {
-                    "type": "boolean",
-                    "description": "[bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.\n"
-                },
-                "geoRestrictions": {
-                    "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRuleUpstreamGeoRestrictions:CdnDistributionRoutingRuleUpstreamGeoRestrictions",
-                    "description": "[map] - A map of geo_restrictions\n"
-                },
-                "host": {
-                    "type": "string",
-                    "description": "[string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.\n"
-                },
-                "rateLimitClass": {
-                    "type": "string",
-                    "description": "[string] Rate limit class that will be applied to limit the number of incoming requests per IP.\n"
-                },
-                "sniMode": {
-                    "type": "string",
-                    "description": "[string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.\n"
-                },
-                "waf": {
-                    "type": "boolean",
-                    "description": "[bool] Enable or disable WAF to protect the upstream host.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "caching",
-                "host",
-                "rateLimitClass",
-                "sniMode",
-                "waf"
-            ]
-        },
-        "ionoscloud:index/CdnDistributionRoutingRuleUpstreamGeoRestrictions:CdnDistributionRoutingRuleUpstreamGeoRestrictions": {
-            "properties": {
-                "allowLists": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[string] List of allowed countries\n"
-                },
-                "blockLists": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[string] List of blocked countries\n"
-                }
-            },
-            "type": "object"
         },
         "ionoscloud:index/CubeServerNic:CubeServerNic": {
             "properties": {
@@ -7923,6 +7923,99 @@
         }
     },
     "resources": {
+        "ionoscloud:cdn/distribution:Distribution": {
+            "description": "Manages a **CDN Distribution** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n//optionally you can add a certificate to the distribution\nconst cert = new ionoscloud.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst example = new ionoscloud.cdn.Distribution(\"example\", {\n    domain: \"example.com\",\n    certificateId: cert.id,\n    routingRules: [\n        {\n            scheme: \"https\",\n            prefix: \"/api\",\n            upstream: {\n                host: \"server.example.com\",\n                caching: true,\n                waf: true,\n                sniMode: \"distribution\",\n                rateLimitClass: \"R500\",\n                geoRestrictions: {\n                    allowLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n        {\n            scheme: \"http/https\",\n            prefix: \"/api2\",\n            upstream: {\n                host: \"server2.example.com\",\n                caching: false,\n                waf: false,\n                sniMode: \"origin\",\n                rateLimitClass: \"R10\",\n                geoRestrictions: {\n                    blockLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n#optionally you can add a certificate to the distribution\ncert = ionoscloud.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample = ionoscloud.cdn.Distribution(\"example\",\n    domain=\"example.com\",\n    certificate_id=cert.id,\n    routing_rules=[\n        ionoscloud.cdn.DistributionRoutingRuleArgs(\n            scheme=\"https\",\n            prefix=\"/api\",\n            upstream=ionoscloud.cdn.DistributionRoutingRuleUpstreamArgs(\n                host=\"server.example.com\",\n                caching=True,\n                waf=True,\n                sni_mode=\"distribution\",\n                rate_limit_class=\"R500\",\n                geo_restrictions=ionoscloud.cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    allow_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n        ionoscloud.cdn.DistributionRoutingRuleArgs(\n            scheme=\"http/https\",\n            prefix=\"/api2\",\n            upstream=ionoscloud.cdn.DistributionRoutingRuleUpstreamArgs(\n                host=\"server2.example.com\",\n                caching=False,\n                waf=False,\n                sni_mode=\"origin\",\n                rate_limit_class=\"R10\",\n                geo_restrictions=ionoscloud.cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    block_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    //optionally you can add a certificate to the distribution\n    var cert = new Ionoscloud.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var example = new Ionoscloud.Cdn.Distribution(\"example\", new()\n    {\n        Domain = \"example.com\",\n        CertificateId = cert.Id,\n        RoutingRules = new[]\n        {\n            new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleArgs\n            {\n                Scheme = \"https\",\n                Prefix = \"/api\",\n                Upstream = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server.example.com\",\n                    Caching = true,\n                    Waf = true,\n                    SniMode = \"distribution\",\n                    RateLimitClass = \"R500\",\n                    GeoRestrictions = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        AllowLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n            new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleArgs\n            {\n                Scheme = \"http/https\",\n                Prefix = \"/api2\",\n                Upstream = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server2.example.com\",\n                    Caching = false,\n                    Waf = false,\n                    SniMode = \"origin\",\n                    RateLimitClass = \"R10\",\n                    GeoRestrictions = new Ionoscloud.Cdn.Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        BlockLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// optionally you can add a certificate to the distribution\n\t\tcert, err := ionoscloud.NewCertificate(ctx, \"cert\", \u0026ionoscloud.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cdn.NewDistribution(ctx, \"example\", \u0026cdn.DistributionArgs{\n\t\t\tDomain:        pulumi.String(\"example.com\"),\n\t\t\tCertificateId: cert.ID(),\n\t\t\tRoutingRules: cdn.DistributionRoutingRuleArray{\n\t\t\t\t\u0026cdn.DistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api\"),\n\t\t\t\t\tUpstream: \u0026cdn.DistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(true),\n\t\t\t\t\t\tWaf:            pulumi.Bool(true),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"distribution\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R500\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tAllowLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026cdn.DistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"http/https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api2\"),\n\t\t\t\t\tUpstream: \u0026cdn.DistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server2.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(false),\n\t\t\t\t\t\tWaf:            pulumi.Bool(false),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"origin\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R10\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tBlockLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Certificate;\nimport com.pulumi.ionoscloud.CertificateArgs;\nimport com.pulumi.ionoscloud.cdn.Distribution;\nimport com.pulumi.ionoscloud.cdn.DistributionArgs;\nimport com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleArgs;\nimport com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleUpstreamArgs;\nimport com.pulumi.ionoscloud.cdn.inputs.DistributionRoutingRuleUpstreamGeoRestrictionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        //optionally you can add a certificate to the distribution\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var example = new Distribution(\"example\", DistributionArgs.builder()        \n            .domain(\"example.com\")\n            .certificateId(cert.id())\n            .routingRules(            \n                DistributionRoutingRuleArgs.builder()\n                    .scheme(\"https\")\n                    .prefix(\"/api\")\n                    .upstream(DistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server.example.com\")\n                        .caching(true)\n                        .waf(true)\n                        .sniMode(\"distribution\")\n                        .rateLimitClass(\"R500\")\n                        .geoRestrictions(DistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .allowLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build(),\n                DistributionRoutingRuleArgs.builder()\n                    .scheme(\"http/https\")\n                    .prefix(\"/api2\")\n                    .upstream(DistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server2.example.com\")\n                        .caching(false)\n                        .waf(false)\n                        .sniMode(\"origin\")\n                        .rateLimitClass(\"R10\")\n                        .geoRestrictions(DistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .blockLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:cdn:Distribution\n    properties:\n      domain: example.com\n      certificateId: ${cert.id}\n      routingRules:\n        - scheme: https\n          prefix: /api\n          upstream:\n            host: server.example.com\n            caching: true\n            waf: true\n            sniMode: distribution\n            rateLimitClass: R500\n            geoRestrictions:\n              allowLists:\n                - CN\n                - RU\n        - scheme: http/https\n          prefix: /api2\n          upstream:\n            host: server2.example.com\n            caching: false\n            waf: false\n            sniMode: origin\n            rateLimitClass: R10\n            geoRestrictions:\n              blockLists:\n                - CN\n                - RU\n  #optionally you can add a certificate to the distribution\n  cert:\n    type: ionoscloud:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Distribution can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}\n```\n\n",
+            "properties": {
+                "certificateId": {
+                    "type": "string",
+                    "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "[string] The domain of the distribution.\n"
+                },
+                "publicEndpointV4": {
+                    "type": "string",
+                    "description": "IP of the distribution, it has to be included on the domain DNS Zone as A record.\n"
+                },
+                "publicEndpointV6": {
+                    "type": "string",
+                    "description": "IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.\n"
+                },
+                "resourceUrn": {
+                    "type": "string",
+                    "description": "Unique resource indentifier.\n"
+                },
+                "routingRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:cdn/DistributionRoutingRule:DistributionRoutingRule"
+                    },
+                    "description": "[list] The routing rules for the distribution.\n"
+                }
+            },
+            "required": [
+                "domain",
+                "publicEndpointV4",
+                "publicEndpointV6",
+                "resourceUrn",
+                "routingRules"
+            ],
+            "inputProperties": {
+                "certificateId": {
+                    "type": "string",
+                    "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "[string] The domain of the distribution.\n"
+                },
+                "routingRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:cdn/DistributionRoutingRule:DistributionRoutingRule"
+                    },
+                    "description": "[list] The routing rules for the distribution.\n"
+                }
+            },
+            "requiredInputs": [
+                "domain",
+                "routingRules"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Distribution resources.\n",
+                "properties": {
+                    "certificateId": {
+                        "type": "string",
+                        "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "[string] The domain of the distribution.\n"
+                    },
+                    "publicEndpointV4": {
+                        "type": "string",
+                        "description": "IP of the distribution, it has to be included on the domain DNS Zone as A record.\n"
+                    },
+                    "publicEndpointV6": {
+                        "type": "string",
+                        "description": "IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.\n"
+                    },
+                    "resourceUrn": {
+                        "type": "string",
+                        "description": "Unique resource indentifier.\n"
+                    },
+                    "routingRules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:cdn/DistributionRoutingRule:DistributionRoutingRule"
+                        },
+                        "description": "[list] The routing rules for the distribution.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:compute/backupUnit:BackupUnit": {
             "description": "\n\n## Import\n\nA Backup Unit resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}\n```\n\nThis can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.\n\n",
             "properties": {
@@ -12115,99 +12208,6 @@
                     "replicaConfiguration": {
                         "$ref": "#/types/ionoscloud:index/AutoscalingGroupReplicaConfiguration:AutoscalingGroupReplicaConfiguration",
                         "description": "[List]\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/cdnDistribution:CdnDistribution": {
-            "description": "Manages a **CDN Distribution** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n//optionally you can add a certificate to the distribution\nconst cert = new ionoscloud.Certificate(\"cert\", {\n    certificate: fs.readFileSync(\"path_to_cert\", \"utf8\"),\n    certificateChain: fs.readFileSync(\"path_to_cert_chain\", \"utf8\"),\n    privateKey: fs.readFileSync(\"path_to_private_key\", \"utf8\"),\n});\nconst example = new ionoscloud.CdnDistribution(\"example\", {\n    domain: \"example.com\",\n    certificateId: cert.id,\n    routingRules: [\n        {\n            scheme: \"https\",\n            prefix: \"/api\",\n            upstream: {\n                host: \"server.example.com\",\n                caching: true,\n                waf: true,\n                sniMode: \"distribution\",\n                rateLimitClass: \"R500\",\n                geoRestrictions: {\n                    allowLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n        {\n            scheme: \"http/https\",\n            prefix: \"/api2\",\n            upstream: {\n                host: \"server2.example.com\",\n                caching: false,\n                waf: false,\n                sniMode: \"origin\",\n                rateLimitClass: \"R10\",\n                geoRestrictions: {\n                    blockLists: [\n                        \"CN\",\n                        \"RU\",\n                    ],\n                },\n            },\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n#optionally you can add a certificate to the distribution\ncert = ionoscloud.Certificate(\"cert\",\n    certificate=(lambda path: open(path).read())(\"path_to_cert\"),\n    certificate_chain=(lambda path: open(path).read())(\"path_to_cert_chain\"),\n    private_key=(lambda path: open(path).read())(\"path_to_private_key\"))\nexample = ionoscloud.CdnDistribution(\"example\",\n    domain=\"example.com\",\n    certificate_id=cert.id,\n    routing_rules=[\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"https\",\n            prefix=\"/api\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server.example.com\",\n                caching=True,\n                waf=True,\n                sni_mode=\"distribution\",\n                rate_limit_class=\"R500\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    allow_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n        ionoscloud.CdnDistributionRoutingRuleArgs(\n            scheme=\"http/https\",\n            prefix=\"/api2\",\n            upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(\n                host=\"server2.example.com\",\n                caching=False,\n                waf=False,\n                sni_mode=\"origin\",\n                rate_limit_class=\"R10\",\n                geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(\n                    block_lists=[\n                        \"CN\",\n                        \"RU\",\n                    ],\n                ),\n            ),\n        ),\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    //optionally you can add a certificate to the distribution\n    var cert = new Ionoscloud.Certificate(\"cert\", new()\n    {\n        Certificate = File.ReadAllText(\"path_to_cert\"),\n        CertificateChain = File.ReadAllText(\"path_to_cert_chain\"),\n        PrivateKey = File.ReadAllText(\"path_to_private_key\"),\n    });\n\n    var example = new Ionoscloud.CdnDistribution(\"example\", new()\n    {\n        Domain = \"example.com\",\n        CertificateId = cert.Id,\n        RoutingRules = new[]\n        {\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"https\",\n                Prefix = \"/api\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server.example.com\",\n                    Caching = true,\n                    Waf = true,\n                    SniMode = \"distribution\",\n                    RateLimitClass = \"R500\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        AllowLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n            new Ionoscloud.Inputs.CdnDistributionRoutingRuleArgs\n            {\n                Scheme = \"http/https\",\n                Prefix = \"/api2\",\n                Upstream = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamArgs\n                {\n                    Host = \"server2.example.com\",\n                    Caching = false,\n                    Waf = false,\n                    SniMode = \"origin\",\n                    RateLimitClass = \"R10\",\n                    GeoRestrictions = new Ionoscloud.Inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs\n                    {\n                        BlockLists = new[]\n                        {\n                            \"CN\",\n                            \"RU\",\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// optionally you can add a certificate to the distribution\n\t\tcert, err := ionoscloud.NewCertificate(ctx, \"cert\", \u0026ionoscloud.CertificateArgs{\n\t\t\tCertificate:      readFileOrPanic(\"path_to_cert\"),\n\t\t\tCertificateChain: readFileOrPanic(\"path_to_cert_chain\"),\n\t\t\tPrivateKey:       readFileOrPanic(\"path_to_private_key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewCdnDistribution(ctx, \"example\", \u0026ionoscloud.CdnDistributionArgs{\n\t\t\tDomain:        pulumi.String(\"example.com\"),\n\t\t\tCertificateId: cert.ID(),\n\t\t\tRoutingRules: ionoscloud.CdnDistributionRoutingRuleArray{\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(true),\n\t\t\t\t\t\tWaf:            pulumi.Bool(true),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"distribution\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R500\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tAllowLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026ionoscloud.CdnDistributionRoutingRuleArgs{\n\t\t\t\t\tScheme: pulumi.String(\"http/https\"),\n\t\t\t\t\tPrefix: pulumi.String(\"/api2\"),\n\t\t\t\t\tUpstream: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamArgs{\n\t\t\t\t\t\tHost:           pulumi.String(\"server2.example.com\"),\n\t\t\t\t\t\tCaching:        pulumi.Bool(false),\n\t\t\t\t\t\tWaf:            pulumi.Bool(false),\n\t\t\t\t\t\tSniMode:        pulumi.String(\"origin\"),\n\t\t\t\t\t\tRateLimitClass: pulumi.String(\"R10\"),\n\t\t\t\t\t\tGeoRestrictions: \u0026ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs{\n\t\t\t\t\t\t\tBlockLists: pulumi.StringArray{\n\t\t\t\t\t\t\t\tpulumi.String(\"CN\"),\n\t\t\t\t\t\t\t\tpulumi.String(\"RU\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Certificate;\nimport com.pulumi.ionoscloud.CertificateArgs;\nimport com.pulumi.ionoscloud.CdnDistribution;\nimport com.pulumi.ionoscloud.CdnDistributionArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamArgs;\nimport com.pulumi.ionoscloud.inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        //optionally you can add a certificate to the distribution\n        var cert = new Certificate(\"cert\", CertificateArgs.builder()        \n            .certificate(Files.readString(Paths.get(\"path_to_cert\")))\n            .certificateChain(Files.readString(Paths.get(\"path_to_cert_chain\")))\n            .privateKey(Files.readString(Paths.get(\"path_to_private_key\")))\n            .build());\n\n        var example = new CdnDistribution(\"example\", CdnDistributionArgs.builder()        \n            .domain(\"example.com\")\n            .certificateId(cert.id())\n            .routingRules(            \n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"https\")\n                    .prefix(\"/api\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server.example.com\")\n                        .caching(true)\n                        .waf(true)\n                        .sniMode(\"distribution\")\n                        .rateLimitClass(\"R500\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .allowLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build(),\n                CdnDistributionRoutingRuleArgs.builder()\n                    .scheme(\"http/https\")\n                    .prefix(\"/api2\")\n                    .upstream(CdnDistributionRoutingRuleUpstreamArgs.builder()\n                        .host(\"server2.example.com\")\n                        .caching(false)\n                        .waf(false)\n                        .sniMode(\"origin\")\n                        .rateLimitClass(\"R10\")\n                        .geoRestrictions(CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs.builder()\n                            .blockLists(                            \n                                \"CN\",\n                                \"RU\")\n                            .build())\n                        .build())\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:CdnDistribution\n    properties:\n      domain: example.com\n      certificateId: ${cert.id}\n      routingRules:\n        - scheme: https\n          prefix: /api\n          upstream:\n            host: server.example.com\n            caching: true\n            waf: true\n            sniMode: distribution\n            rateLimitClass: R500\n            geoRestrictions:\n              allowLists:\n                - CN\n                - RU\n        - scheme: http/https\n          prefix: /api2\n          upstream:\n            host: server2.example.com\n            caching: false\n            waf: false\n            sniMode: origin\n            rateLimitClass: R10\n            geoRestrictions:\n              blockLists:\n                - CN\n                - RU\n  #optionally you can add a certificate to the distribution\n  cert:\n    type: ionoscloud:Certificate\n    properties:\n      certificate:\n        fn::readFile: path_to_cert\n      certificateChain:\n        fn::readFile: path_to_cert_chain\n      privateKey:\n        fn::readFile: path_to_private_key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Distribution can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}\n```\n\n",
-            "properties": {
-                "certificateId": {
-                    "type": "string",
-                    "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
-                },
-                "domain": {
-                    "type": "string",
-                    "description": "[string] The domain of the distribution.\n"
-                },
-                "publicEndpointV4": {
-                    "type": "string",
-                    "description": "IP of the distribution, it has to be included on the domain DNS Zone as A record.\n"
-                },
-                "publicEndpointV6": {
-                    "type": "string",
-                    "description": "IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.\n"
-                },
-                "resourceUrn": {
-                    "type": "string",
-                    "description": "Unique resource indentifier.\n"
-                },
-                "routingRules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRule:CdnDistributionRoutingRule"
-                    },
-                    "description": "[list] The routing rules for the distribution.\n"
-                }
-            },
-            "required": [
-                "domain",
-                "publicEndpointV4",
-                "publicEndpointV6",
-                "resourceUrn",
-                "routingRules"
-            ],
-            "inputProperties": {
-                "certificateId": {
-                    "type": "string",
-                    "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
-                },
-                "domain": {
-                    "type": "string",
-                    "description": "[string] The domain of the distribution.\n"
-                },
-                "routingRules": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRule:CdnDistributionRoutingRule"
-                    },
-                    "description": "[list] The routing rules for the distribution.\n"
-                }
-            },
-            "requiredInputs": [
-                "domain",
-                "routingRules"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering CdnDistribution resources.\n",
-                "properties": {
-                    "certificateId": {
-                        "type": "string",
-                        "description": "[string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.\n"
-                    },
-                    "domain": {
-                        "type": "string",
-                        "description": "[string] The domain of the distribution.\n"
-                    },
-                    "publicEndpointV4": {
-                        "type": "string",
-                        "description": "IP of the distribution, it has to be included on the domain DNS Zone as A record.\n"
-                    },
-                    "publicEndpointV6": {
-                        "type": "string",
-                        "description": "IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.\n"
-                    },
-                    "resourceUrn": {
-                        "type": "string",
-                        "description": "Unique resource indentifier.\n"
-                    },
-                    "routingRules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/CdnDistributionRoutingRule:CdnDistributionRoutingRule"
-                        },
-                        "description": "[list] The routing rules for the distribution.\n"
                     }
                 },
                 "type": "object"
@@ -16668,7 +16668,7 @@
             }
         },
         "ionoscloud:index/getCdnDistribution:getCdnDistribution": {
-            "description": "The Distribution data source can be used to search for and return an existing Distributions.\nYou can provide a string for the domain parameter which will be compared with provisioned Distributions.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique domains.\n\n## Example Usage\n\n### By Domain\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getCdnDistribution({\n    domain: \"example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_cdn_distribution(domain=\"example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetCdnDistribution.Invoke(new()\n    {\n        Domain = \"example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupCdnDistribution(ctx, \u0026ionoscloud.LookupCdnDistributionArgs{\n\t\t\tDomain: pulumi.StringRef(\"example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetCdnDistributionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getCdnDistribution(GetCdnDistributionArgs.builder()\n            .domain(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getCdnDistribution\n      Arguments:\n        domain: example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Domain with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getCdnDistribution({\n    domain: \"example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_cdn_distribution(domain=\"example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetCdnDistribution.Invoke(new()\n    {\n        Domain = \"example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupCdnDistribution(ctx, \u0026ionoscloud.LookupCdnDistributionArgs{\n\t\t\tDomain:       pulumi.StringRef(\"example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetCdnDistributionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getCdnDistribution(GetCdnDistributionArgs.builder()\n            .domain(\"example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getCdnDistribution\n      Arguments:\n        domain: example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The Distribution data source can be used to search for and return an existing Distributions.\nYou can provide a string for the domain parameter which will be compared with provisioned Distributions.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique domains.\n\n## Example Usage\n\n### By Domain\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getCdnDistribution({\n    domain: \"example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_cdn_distribution(domain=\"example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetCdnDistribution.Invoke(new()\n    {\n        Domain = \"example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetCdnDistribution(ctx, \u0026ionoscloud.GetCdnDistributionArgs{\n\t\t\tDomain: pulumi.StringRef(\"example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetCdnDistributionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getCdnDistribution(GetCdnDistributionArgs.builder()\n            .domain(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getCdnDistribution\n      Arguments:\n        domain: example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Domain with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getCdnDistribution({\n    domain: \"example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_cdn_distribution(domain=\"example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetCdnDistribution.Invoke(new()\n    {\n        Domain = \"example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetCdnDistribution(ctx, \u0026ionoscloud.GetCdnDistributionArgs{\n\t\t\tDomain:       pulumi.StringRef(\"example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetCdnDistributionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getCdnDistribution(GetCdnDistributionArgs.builder()\n            .domain(\"example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getCdnDistribution\n      Arguments:\n        domain: example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getCdnDistribution.\n",
                 "properties": {

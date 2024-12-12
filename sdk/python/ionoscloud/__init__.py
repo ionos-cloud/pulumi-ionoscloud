@@ -12,7 +12,6 @@ from .application_loadbalancer_forwardingrule import *
 from .auto_certificate import *
 from .auto_certificate_provider import *
 from .autoscaling_group import *
-from .cdn_distribution import *
 from .certificate import *
 from .cube_server import *
 from .dataplatform_cluster import *
@@ -116,6 +115,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.cdn as __cdn
+    cdn = __cdn
     import ionoscloud.compute as __compute
     compute = __compute
     import ionoscloud.config as __config
@@ -129,6 +130,7 @@ if typing.TYPE_CHECKING:
     import ionoscloud.k8s as __k8s
     k8s = __k8s
 else:
+    cdn = _utilities.lazy_import('ionoscloud.cdn')
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
     creg = _utilities.lazy_import('ionoscloud.creg')
@@ -139,6 +141,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "cdn/distribution",
+  "fqn": "ionoscloud.cdn",
+  "classes": {
+   "ionoscloud:cdn/distribution:Distribution": "Distribution"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "compute/backupUnit",
@@ -369,14 +379,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/autoscalingGroup:AutoscalingGroup": "AutoscalingGroup"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/cdnDistribution",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/cdnDistribution:CdnDistribution": "CdnDistribution"
   }
  },
  {

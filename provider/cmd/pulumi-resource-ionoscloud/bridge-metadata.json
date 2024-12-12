@@ -126,7 +126,7 @@
                 "current": "ionoscloud:compute/backupUnit:BackupUnit"
             },
             "ionoscloud_cdn_distribution": {
-                "current": "ionoscloud:index/cdnDistribution:CdnDistribution",
+                "current": "ionoscloud:cdn/distribution:Distribution",
                 "fields": {
                     "routing_rules": {
                         "maxItemsOne": false,

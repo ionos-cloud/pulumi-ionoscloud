@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupCdnDistribution(ctx, &ionoscloud.LookupCdnDistributionArgs{
+//			_, err := ionoscloud.GetCdnDistribution(ctx, &ionoscloud.GetCdnDistributionArgs{
 //				Domain: pulumi.StringRef("example.com"),
 //			}, nil)
 //			if err != nil {
@@ -59,7 +59,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupCdnDistribution(ctx, &ionoscloud.LookupCdnDistributionArgs{
+//			_, err := ionoscloud.GetCdnDistribution(ctx, &ionoscloud.GetCdnDistributionArgs{
 //				Domain:       pulumi.StringRef("example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -72,9 +72,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupCdnDistribution(ctx *pulumi.Context, args *LookupCdnDistributionArgs, opts ...pulumi.InvokeOption) (*LookupCdnDistributionResult, error) {
+func GetCdnDistribution(ctx *pulumi.Context, args *GetCdnDistributionArgs, opts ...pulumi.InvokeOption) (*GetCdnDistributionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupCdnDistributionResult
+	var rv GetCdnDistributionResult
 	err := ctx.Invoke("ionoscloud:index/getCdnDistribution:getCdnDistribution", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func LookupCdnDistribution(ctx *pulumi.Context, args *LookupCdnDistributionArgs,
 }
 
 // A collection of arguments for invoking getCdnDistribution.
-type LookupCdnDistributionArgs struct {
+type GetCdnDistributionArgs struct {
 	// Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partialMatch` parameter is not set to true.
 	Domain *string `pulumi:"domain"`
 	// ID of the distribution you want to search for.
@@ -95,7 +95,7 @@ type LookupCdnDistributionArgs struct {
 }
 
 // A collection of values returned by getCdnDistribution.
-type LookupCdnDistributionResult struct {
+type GetCdnDistributionResult struct {
 	// The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
 	CertificateId string `pulumi:"certificateId"`
 	// The domain of the distribution.
@@ -112,21 +112,21 @@ type LookupCdnDistributionResult struct {
 	RoutingRules []GetCdnDistributionRoutingRule `pulumi:"routingRules"`
 }
 
-func LookupCdnDistributionOutput(ctx *pulumi.Context, args LookupCdnDistributionOutputArgs, opts ...pulumi.InvokeOption) LookupCdnDistributionResultOutput {
+func GetCdnDistributionOutput(ctx *pulumi.Context, args GetCdnDistributionOutputArgs, opts ...pulumi.InvokeOption) GetCdnDistributionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCdnDistributionResult, error) {
-			args := v.(LookupCdnDistributionArgs)
-			r, err := LookupCdnDistribution(ctx, &args, opts...)
-			var s LookupCdnDistributionResult
+		ApplyT(func(v interface{}) (GetCdnDistributionResult, error) {
+			args := v.(GetCdnDistributionArgs)
+			r, err := GetCdnDistribution(ctx, &args, opts...)
+			var s GetCdnDistributionResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupCdnDistributionResultOutput)
+		}).(GetCdnDistributionResultOutput)
 }
 
 // A collection of arguments for invoking getCdnDistribution.
-type LookupCdnDistributionOutputArgs struct {
+type GetCdnDistributionOutputArgs struct {
 	// Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partialMatch` parameter is not set to true.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
 	// ID of the distribution you want to search for.
@@ -137,63 +137,63 @@ type LookupCdnDistributionOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupCdnDistributionOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCdnDistributionArgs)(nil)).Elem()
+func (GetCdnDistributionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnDistributionArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getCdnDistribution.
-type LookupCdnDistributionResultOutput struct{ *pulumi.OutputState }
+type GetCdnDistributionResultOutput struct{ *pulumi.OutputState }
 
-func (LookupCdnDistributionResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCdnDistributionResult)(nil)).Elem()
+func (GetCdnDistributionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnDistributionResult)(nil)).Elem()
 }
 
-func (o LookupCdnDistributionResultOutput) ToLookupCdnDistributionResultOutput() LookupCdnDistributionResultOutput {
+func (o GetCdnDistributionResultOutput) ToGetCdnDistributionResultOutput() GetCdnDistributionResultOutput {
 	return o
 }
 
-func (o LookupCdnDistributionResultOutput) ToLookupCdnDistributionResultOutputWithContext(ctx context.Context) LookupCdnDistributionResultOutput {
+func (o GetCdnDistributionResultOutput) ToGetCdnDistributionResultOutputWithContext(ctx context.Context) GetCdnDistributionResultOutput {
 	return o
 }
 
 // The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
-func (o LookupCdnDistributionResultOutput) CertificateId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) string { return v.CertificateId }).(pulumi.StringOutput)
+func (o GetCdnDistributionResultOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) string { return v.CertificateId }).(pulumi.StringOutput)
 }
 
 // The domain of the distribution.
-func (o LookupCdnDistributionResultOutput) Domain() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
+func (o GetCdnDistributionResultOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupCdnDistributionResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetCdnDistributionResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupCdnDistributionResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetCdnDistributionResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // IP of the distribution, it has to be included on the domain DNS Zone as A record.
-func (o LookupCdnDistributionResultOutput) PublicEndpointV4() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) string { return v.PublicEndpointV4 }).(pulumi.StringOutput)
+func (o GetCdnDistributionResultOutput) PublicEndpointV4() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) string { return v.PublicEndpointV4 }).(pulumi.StringOutput)
 }
 
 // IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
-func (o LookupCdnDistributionResultOutput) PublicEndpointV6() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) string { return v.PublicEndpointV6 }).(pulumi.StringOutput)
+func (o GetCdnDistributionResultOutput) PublicEndpointV6() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) string { return v.PublicEndpointV6 }).(pulumi.StringOutput)
 }
 
 // Unique resource identifier.
-func (o LookupCdnDistributionResultOutput) ResourceUrn() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) string { return v.ResourceUrn }).(pulumi.StringOutput)
+func (o GetCdnDistributionResultOutput) ResourceUrn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) string { return v.ResourceUrn }).(pulumi.StringOutput)
 }
 
 // The routing rules for the distribution.
-func (o LookupCdnDistributionResultOutput) RoutingRules() GetCdnDistributionRoutingRuleArrayOutput {
-	return o.ApplyT(func(v LookupCdnDistributionResult) []GetCdnDistributionRoutingRule { return v.RoutingRules }).(GetCdnDistributionRoutingRuleArrayOutput)
+func (o GetCdnDistributionResultOutput) RoutingRules() GetCdnDistributionRoutingRuleArrayOutput {
+	return o.ApplyT(func(v GetCdnDistributionResult) []GetCdnDistributionRoutingRule { return v.RoutingRules }).(GetCdnDistributionRoutingRuleArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupCdnDistributionResultOutput{})
+	pulumi.RegisterOutputType(GetCdnDistributionResultOutput{})
 }
