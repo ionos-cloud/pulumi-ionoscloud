@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Creg
 {
     /// <summary>
     /// Manages an **Container Registry Token** on IonosCloud.
@@ -23,9 +23,9 @@ namespace Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleContainerRegistry = new Ionoscloud.ContainerRegistry("exampleContainerRegistry", new()
+    ///     var exampleRegistry = new Ionoscloud.Creg.Registry("exampleRegistry", new()
     ///     {
-    ///         GarbageCollectionSchedule = new Ionoscloud.Inputs.ContainerRegistryGarbageCollectionScheduleArgs
+    ///         GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs
     ///         {
     ///             Days = new[]
     ///             {
@@ -37,12 +37,12 @@ namespace Pulumi.Ionoscloud
     ///         Location = "de/fra",
     ///     });
     /// 
-    ///     var exampleContainerRegistryToken = new Ionoscloud.ContainerRegistryToken("exampleContainerRegistryToken", new()
+    ///     var exampleRegistryToken = new Ionoscloud.Creg.RegistryToken("exampleRegistryToken", new()
     ///     {
     ///         ExpiryDate = "2023-01-13 16:27:42Z",
     ///         Scopes = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.ContainerRegistryTokenScopeArgs
+    ///             new Ionoscloud.Creg.Inputs.RegistryTokenScopeArgs
     ///             {
     ///                 Actions = new[]
     ///                 {
@@ -53,7 +53,7 @@ namespace Pulumi.Ionoscloud
     ///             },
     ///         },
     ///         Status = "enabled",
-    ///         RegistryId = exampleContainerRegistry.Id,
+    ///         RegistryId = exampleRegistry.Id,
     ///         SavePasswordToFile = "pass.txt",
     ///     });
     /// 
@@ -66,14 +66,14 @@ namespace Pulumi.Ionoscloud
     /// Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/containerRegistryToken:ContainerRegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+    /// $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/containerRegistryToken:ContainerRegistryToken")]
-    public partial class ContainerRegistryToken : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:creg/registryToken:RegistryToken")]
+    public partial class RegistryToken : global::Pulumi.CustomResource
     {
         [Output("credentials")]
-        public Output<ImmutableArray<Outputs.ContainerRegistryTokenCredential>> Credentials { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.RegistryTokenCredential>> Credentials { get; private set; } = null!;
 
         [Output("expiryDate")]
         public Output<string?> ExpiryDate { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Ionoscloud
         /// [map]
         /// </summary>
         [Output("scopes")]
-        public Output<ImmutableArray<Outputs.ContainerRegistryTokenScope>> Scopes { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.RegistryTokenScope>> Scopes { get; private set; } = null!;
 
         /// <summary>
         /// [string] Must have on of the values: `enabled`, `disabled`
@@ -110,19 +110,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a ContainerRegistryToken resource with the given unique name, arguments, and options.
+        /// Create a RegistryToken resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ContainerRegistryToken(string name, ContainerRegistryTokenArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/containerRegistryToken:ContainerRegistryToken", name, args ?? new ContainerRegistryTokenArgs(), MakeResourceOptions(options, ""))
+        public RegistryToken(string name, RegistryTokenArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:creg/registryToken:RegistryToken", name, args ?? new RegistryTokenArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ContainerRegistryToken(string name, Input<string> id, ContainerRegistryTokenState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/containerRegistryToken:ContainerRegistryToken", name, state, MakeResourceOptions(options, id))
+        private RegistryToken(string name, Input<string> id, RegistryTokenState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:creg/registryToken:RegistryToken", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -138,7 +138,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing ContainerRegistryToken resource's state with the given name, ID, and optional extra
+        /// Get an existing RegistryToken resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -146,13 +146,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ContainerRegistryToken Get(string name, Input<string> id, ContainerRegistryTokenState? state = null, CustomResourceOptions? options = null)
+        public static RegistryToken Get(string name, Input<string> id, RegistryTokenState? state = null, CustomResourceOptions? options = null)
         {
-            return new ContainerRegistryToken(name, id, state, options);
+            return new RegistryToken(name, id, state, options);
         }
     }
 
-    public sealed class ContainerRegistryTokenArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryTokenArgs : global::Pulumi.ResourceArgs
     {
         [Input("expiryDate")]
         public Input<string>? ExpiryDate { get; set; }
@@ -176,14 +176,14 @@ namespace Pulumi.Ionoscloud
         public Input<string>? SavePasswordToFile { get; set; }
 
         [Input("scopes")]
-        private InputList<Inputs.ContainerRegistryTokenScopeArgs>? _scopes;
+        private InputList<Inputs.RegistryTokenScopeArgs>? _scopes;
 
         /// <summary>
         /// [map]
         /// </summary>
-        public InputList<Inputs.ContainerRegistryTokenScopeArgs> Scopes
+        public InputList<Inputs.RegistryTokenScopeArgs> Scopes
         {
-            get => _scopes ?? (_scopes = new InputList<Inputs.ContainerRegistryTokenScopeArgs>());
+            get => _scopes ?? (_scopes = new InputList<Inputs.RegistryTokenScopeArgs>());
             set => _scopes = value;
         }
 
@@ -193,19 +193,19 @@ namespace Pulumi.Ionoscloud
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        public ContainerRegistryTokenArgs()
+        public RegistryTokenArgs()
         {
         }
-        public static new ContainerRegistryTokenArgs Empty => new ContainerRegistryTokenArgs();
+        public static new RegistryTokenArgs Empty => new RegistryTokenArgs();
     }
 
-    public sealed class ContainerRegistryTokenState : global::Pulumi.ResourceArgs
+    public sealed class RegistryTokenState : global::Pulumi.ResourceArgs
     {
         [Input("credentials")]
-        private InputList<Inputs.ContainerRegistryTokenCredentialGetArgs>? _credentials;
-        public InputList<Inputs.ContainerRegistryTokenCredentialGetArgs> Credentials
+        private InputList<Inputs.RegistryTokenCredentialGetArgs>? _credentials;
+        public InputList<Inputs.RegistryTokenCredentialGetArgs> Credentials
         {
-            get => _credentials ?? (_credentials = new InputList<Inputs.ContainerRegistryTokenCredentialGetArgs>());
+            get => _credentials ?? (_credentials = new InputList<Inputs.RegistryTokenCredentialGetArgs>());
             set => _credentials = value;
         }
 
@@ -231,14 +231,14 @@ namespace Pulumi.Ionoscloud
         public Input<string>? SavePasswordToFile { get; set; }
 
         [Input("scopes")]
-        private InputList<Inputs.ContainerRegistryTokenScopeGetArgs>? _scopes;
+        private InputList<Inputs.RegistryTokenScopeGetArgs>? _scopes;
 
         /// <summary>
         /// [map]
         /// </summary>
-        public InputList<Inputs.ContainerRegistryTokenScopeGetArgs> Scopes
+        public InputList<Inputs.RegistryTokenScopeGetArgs> Scopes
         {
-            get => _scopes ?? (_scopes = new InputList<Inputs.ContainerRegistryTokenScopeGetArgs>());
+            get => _scopes ?? (_scopes = new InputList<Inputs.RegistryTokenScopeGetArgs>());
             set => _scopes = value;
         }
 
@@ -248,9 +248,9 @@ namespace Pulumi.Ionoscloud
         [Input("status")]
         public Input<string>? Status { get; set; }
 
-        public ContainerRegistryTokenState()
+        public RegistryTokenState()
         {
         }
-        public static new ContainerRegistryTokenState Empty => new ContainerRegistryTokenState();
+        public static new RegistryTokenState Empty => new RegistryTokenState();
     }
 }

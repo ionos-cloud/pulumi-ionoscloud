@@ -7,23 +7,22 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    [OutputType]
-    public sealed class ContainerRegistryFeatures
+    public sealed class RegistryFeaturesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
         /// 
         /// &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
         /// </summary>
-        public readonly bool? VulnerabilityScanning;
+        [Input("vulnerabilityScanning")]
+        public Input<bool>? VulnerabilityScanning { get; set; }
 
-        [OutputConstructor]
-        private ContainerRegistryFeatures(bool? vulnerabilityScanning)
+        public RegistryFeaturesGetArgs()
         {
-            VulnerabilityScanning = vulnerabilityScanning;
         }
+        public static new RegistryFeaturesGetArgs Empty => new RegistryFeaturesGetArgs();
     }
 }

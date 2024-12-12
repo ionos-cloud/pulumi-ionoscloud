@@ -7,11 +7,11 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Creg.Outputs
 {
 
     [OutputType]
-    public sealed class ContainerRegistryGarbageCollectionSchedule
+    public sealed class RegistryGarbageCollectionSchedule
     {
         /// <summary>
         /// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
@@ -23,7 +23,7 @@ namespace Pulumi.Ionoscloud.Outputs
         public readonly string Time;
 
         [OutputConstructor]
-        private ContainerRegistryGarbageCollectionSchedule(
+        private RegistryGarbageCollectionSchedule(
             ImmutableArray<string> days,
 
             string time)
