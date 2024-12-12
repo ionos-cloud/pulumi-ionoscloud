@@ -106,10 +106,6 @@ from .share import *
 from .snapshot import *
 from .target_group import *
 from .vcpu_server import *
-from .vpn_ipsec_gateway import *
-from .vpn_ipsec_tunnel import *
-from .vpn_wireguard_gateway import *
-from .vpn_wireguard_peer import *
 from ._inputs import *
 from . import outputs
 
@@ -129,6 +125,8 @@ if typing.TYPE_CHECKING:
     dns = __dns
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.vpn as __vpn
+    vpn = __vpn
 else:
     cdn = _utilities.lazy_import('ionoscloud.cdn')
     compute = _utilities.lazy_import('ionoscloud.compute')
@@ -137,6 +135,7 @@ else:
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
     dns = _utilities.lazy_import('ionoscloud.dns')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
     resource_modules="""
@@ -551,38 +550,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/vpnIpsecGateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway": "VpnIpsecGateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnIpsecTunnel",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel": "VpnIpsecTunnel"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnWireguardGateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway": "VpnWireguardGateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnWireguardPeer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer": "VpnWireguardPeer"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "ionoscloud.k8s",
   "classes": {
@@ -595,6 +562,38 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/ipsecGateway",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/ipsecGateway:IpsecGateway": "IpsecGateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/ipsecTunnel",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/ipsecTunnel:IpsecTunnel": "IpsecTunnel"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/wireguardGateway",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/wireguardGateway:WireguardGateway": "WireguardGateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/wireguardPeer",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/wireguardPeer:WireguardPeer": "WireguardPeer"
   }
  }
 ]

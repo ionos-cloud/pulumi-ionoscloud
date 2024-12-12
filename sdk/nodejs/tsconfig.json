@@ -152,9 +152,10 @@
         "types/output.ts",
         "utilities.ts",
         "vcpuServer.ts",
-        "vpnIpsecGateway.ts",
-        "vpnIpsecTunnel.ts",
-        "vpnWireguardGateway.ts",
-        "vpnWireguardPeer.ts"
+        "vpn/index.ts",
+        "vpn/ipsecGateway.ts",
+        "vpn/ipsecTunnel.ts",
+        "vpn/wireguardGateway.ts",
+        "vpn/wireguardPeer.ts"
     ]
 }

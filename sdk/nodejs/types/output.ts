@@ -3512,120 +3512,6 @@ export interface VcpuServerVolume {
     userData: string;
 }
 
-export interface VpnIpsecGatewayConnection {
-    /**
-     * [string] The datacenter to connect your VPN Gateway to.
-     */
-    datacenterId: string;
-    /**
-     * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway. Note: this should be the subnet already assigned to the LAN
-     */
-    ipv4Cidr: string;
-    /**
-     * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
-     * Gateway. **Note**: this should be the subnet already assigned to the LAN
-     */
-    ipv6Cidr?: string;
-    /**
-     * [string] The numeric LAN ID to connect your VPN Gateway to.
-     */
-    lanId: string;
-}
-
-export interface VpnIpsecTunnelAuth {
-    /**
-     * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
-     * Default value: `PSK`.
-     */
-    method?: string;
-    /**
-     * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
-     * PSK.
-     */
-    pskKey?: string;
-}
-
-export interface VpnIpsecTunnelEsp {
-    /**
-     * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
-     * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
-     * Default value: `16-MODP4096`.
-     */
-    diffieHellmanGroup?: string;
-    /**
-     * [string] The encryption algorithm to use for IPSec Encryption. Possible
-     * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
-     * `AES256-CCM-12`. Default value: `AES256`.
-     */
-    encryptionAlgorithm?: string;
-    /**
-     * [string] The integrity algorithm to use for IPSec Encryption. Possible
-     * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
-     */
-    integrityAlgorithm?: string;
-    /**
-     * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
-     * Default value: `86400`.
-     */
-    lifetime?: number;
-}
-
-export interface VpnIpsecTunnelIke {
-    /**
-     * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
-     * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
-     * Default value: `16-MODP4096`.
-     */
-    diffieHellmanGroup?: string;
-    /**
-     * [string] The encryption algorithm to use for IPSec Encryption. Possible
-     * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
-     * `AES256-CCM-12`. Default value: `AES256`.
-     */
-    encryptionAlgorithm?: string;
-    /**
-     * [string] The integrity algorithm to use for IPSec Encryption. Possible
-     * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
-     */
-    integrityAlgorithm?: string;
-    /**
-     * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
-     * Default value: `86400`.
-     */
-    lifetime?: number;
-}
-
-export interface VpnWireguardGatewayConnection {
-    /**
-     * [String] The ID of the datacenter where the WireGuard Gateway is located.
-     */
-    datacenterId: string;
-    /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway connection.
-     */
-    ipv4Cidr?: string;
-    /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway connection.
-     */
-    ipv6Cidr?: string;
-    /**
-     * [String] The ID of the LAN where the WireGuard Gateway is connected.
-     */
-    lanId: string;
-}
-
-export interface VpnWireguardPeerEndpoint {
-    /**
-     * [string] The hostname or IPV4 address that the WireGuard Server will connect to.
-     */
-    host: string;
-    /**
-     * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
-     */
-    port?: number;
-}
-
 export namespace cdn {
     export interface DistributionRoutingRule {
         /**
@@ -4204,6 +4090,123 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+}
+
+export namespace vpn {
+    export interface IpsecGatewayConnection {
+        /**
+         * [string] The datacenter to connect your VPN Gateway to.
+         */
+        datacenterId: string;
+        /**
+         * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         */
+        ipv4Cidr: string;
+        /**
+         * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+         * Gateway. **Note**: this should be the subnet already assigned to the LAN
+         */
+        ipv6Cidr?: string;
+        /**
+         * [string] The numeric LAN ID to connect your VPN Gateway to.
+         */
+        lanId: string;
+    }
+
+    export interface IpsecTunnelAuth {
+        /**
+         * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+         * Default value: `PSK`.
+         */
+        method?: string;
+        /**
+         * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+         * PSK.
+         */
+        pskKey?: string;
+    }
+
+    export interface IpsecTunnelEsp {
+        /**
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
+         */
+        diffieHellmanGroup?: string;
+        /**
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
+         */
+        encryptionAlgorithm?: string;
+        /**
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+         */
+        integrityAlgorithm?: string;
+        /**
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
+         */
+        lifetime?: number;
+    }
+
+    export interface IpsecTunnelIke {
+        /**
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
+         */
+        diffieHellmanGroup?: string;
+        /**
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
+         */
+        encryptionAlgorithm?: string;
+        /**
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+         */
+        integrityAlgorithm?: string;
+        /**
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
+         */
+        lifetime?: number;
+    }
+
+    export interface WireguardGatewayConnection {
+        /**
+         * [String] The ID of the datacenter where the WireGuard Gateway is located.
+         */
+        datacenterId: string;
+        /**
+         * [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         */
+        ipv4Cidr?: string;
+        /**
+         * [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         */
+        ipv6Cidr?: string;
+        /**
+         * [String] The ID of the LAN where the WireGuard Gateway is connected.
+         */
+        lanId: string;
+    }
+
+    export interface WireguardPeerEndpoint {
+        /**
+         * [string] The hostname or IPV4 address that the WireGuard Server will connect to.
+         */
+        host: string;
+        /**
+         * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+         */
+        port?: number;
     }
 
 }

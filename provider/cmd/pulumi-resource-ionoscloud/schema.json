@@ -2682,129 +2682,6 @@
                 }
             }
         },
-        "ionoscloud:index/VpnIpsecGatewayConnection:VpnIpsecGatewayConnection": {
-            "properties": {
-                "datacenterId": {
-                    "type": "string",
-                    "description": "[string] The datacenter to connect your VPN Gateway to.\n"
-                },
-                "ipv4Cidr": {
-                    "type": "string",
-                    "description": "[string] Describes the private ipv4 subnet in your LAN that should be accessible by the\nVPN Gateway. Note: this should be the subnet already assigned to the LAN\n"
-                },
-                "ipv6Cidr": {
-                    "type": "string",
-                    "description": "[string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN\nGateway. **Note**: this should be the subnet already assigned to the LAN\n"
-                },
-                "lanId": {
-                    "type": "string",
-                    "description": "[string] The numeric LAN ID to connect your VPN Gateway to.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "datacenterId",
-                "ipv4Cidr",
-                "lanId"
-            ]
-        },
-        "ionoscloud:index/VpnIpsecTunnelAuth:VpnIpsecTunnelAuth": {
-            "properties": {
-                "method": {
-                    "type": "string",
-                    "description": "[string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.\nDefault value: `PSK`.\n"
-                },
-                "pskKey": {
-                    "type": "string",
-                    "description": "[string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is\nPSK.\n",
-                    "secret": true
-                }
-            },
-            "type": "object"
-        },
-        "ionoscloud:index/VpnIpsecTunnelEsp:VpnIpsecTunnelEsp": {
-            "properties": {
-                "diffieHellmanGroup": {
-                    "type": "string",
-                    "description": "[string] The Diffie-Hellman Group to use for IPSec Encryption. Possible\nvalues: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.\nDefault value: `16-MODP4096`.\n"
-                },
-                "encryptionAlgorithm": {
-                    "type": "string",
-                    "description": "[string] The encryption algorithm to use for IPSec Encryption. Possible\nvalues: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,\n`AES256-CCM-12`. Default value: `AES256`.\n"
-                },
-                "integrityAlgorithm": {
-                    "type": "string",
-                    "description": "[string] The integrity algorithm to use for IPSec Encryption. Possible\nvalues: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.\n"
-                },
-                "lifetime": {
-                    "type": "integer",
-                    "description": "[string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.\nDefault value: `86400`.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ionoscloud:index/VpnIpsecTunnelIke:VpnIpsecTunnelIke": {
-            "properties": {
-                "diffieHellmanGroup": {
-                    "type": "string",
-                    "description": "[string] The Diffie-Hellman Group to use for IPSec Encryption. Possible\nvalues: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.\nDefault value: `16-MODP4096`.\n"
-                },
-                "encryptionAlgorithm": {
-                    "type": "string",
-                    "description": "[string] The encryption algorithm to use for IPSec Encryption. Possible\nvalues: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,\n`AES256-CCM-12`. Default value: `AES256`.\n"
-                },
-                "integrityAlgorithm": {
-                    "type": "string",
-                    "description": "[string] The integrity algorithm to use for IPSec Encryption. Possible\nvalues: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.\n"
-                },
-                "lifetime": {
-                    "type": "integer",
-                    "description": "[string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.\nDefault value: `86400`.\n"
-                }
-            },
-            "type": "object"
-        },
-        "ionoscloud:index/VpnWireguardGatewayConnection:VpnWireguardGatewayConnection": {
-            "properties": {
-                "datacenterId": {
-                    "type": "string",
-                    "description": "[String] The ID of the datacenter where the WireGuard Gateway is located.\n"
-                },
-                "ipv4Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway connection.\n"
-                },
-                "ipv6Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway connection.\n"
-                },
-                "lanId": {
-                    "type": "string",
-                    "description": "[String] The ID of the LAN where the WireGuard Gateway is connected.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "datacenterId",
-                "lanId"
-            ]
-        },
-        "ionoscloud:index/VpnWireguardPeerEndpoint:VpnWireguardPeerEndpoint": {
-            "properties": {
-                "host": {
-                    "type": "string",
-                    "description": "[string] The hostname or IPV4 address that the WireGuard Server will connect to.\n"
-                },
-                "port": {
-                    "type": "integer",
-                    "description": "[int] The port that the WireGuard Server will connect to. Defaults to `51820`.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "host"
-            ]
-        },
         "ionoscloud:index/getApigatewayCustomDomain:getApigatewayCustomDomain": {
             "properties": {
                 "certificateId": {
@@ -7840,6 +7717,129 @@
             "required": [
                 "dayOfTheWeek",
                 "time"
+            ]
+        },
+        "ionoscloud:vpn/IpsecGatewayConnection:IpsecGatewayConnection": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "[string] The datacenter to connect your VPN Gateway to.\n"
+                },
+                "ipv4Cidr": {
+                    "type": "string",
+                    "description": "[string] Describes the private ipv4 subnet in your LAN that should be accessible by the\nVPN Gateway. Note: this should be the subnet already assigned to the LAN\n"
+                },
+                "ipv6Cidr": {
+                    "type": "string",
+                    "description": "[string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN\nGateway. **Note**: this should be the subnet already assigned to the LAN\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "[string] The numeric LAN ID to connect your VPN Gateway to.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "ipv4Cidr",
+                "lanId"
+            ]
+        },
+        "ionoscloud:vpn/IpsecTunnelAuth:IpsecTunnelAuth": {
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "description": "[string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.\nDefault value: `PSK`.\n"
+                },
+                "pskKey": {
+                    "type": "string",
+                    "description": "[string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is\nPSK.\n",
+                    "secret": true
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:vpn/IpsecTunnelEsp:IpsecTunnelEsp": {
+            "properties": {
+                "diffieHellmanGroup": {
+                    "type": "string",
+                    "description": "[string] The Diffie-Hellman Group to use for IPSec Encryption. Possible\nvalues: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.\nDefault value: `16-MODP4096`.\n"
+                },
+                "encryptionAlgorithm": {
+                    "type": "string",
+                    "description": "[string] The encryption algorithm to use for IPSec Encryption. Possible\nvalues: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,\n`AES256-CCM-12`. Default value: `AES256`.\n"
+                },
+                "integrityAlgorithm": {
+                    "type": "string",
+                    "description": "[string] The integrity algorithm to use for IPSec Encryption. Possible\nvalues: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.\n"
+                },
+                "lifetime": {
+                    "type": "integer",
+                    "description": "[string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.\nDefault value: `86400`.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:vpn/IpsecTunnelIke:IpsecTunnelIke": {
+            "properties": {
+                "diffieHellmanGroup": {
+                    "type": "string",
+                    "description": "[string] The Diffie-Hellman Group to use for IPSec Encryption. Possible\nvalues: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.\nDefault value: `16-MODP4096`.\n"
+                },
+                "encryptionAlgorithm": {
+                    "type": "string",
+                    "description": "[string] The encryption algorithm to use for IPSec Encryption. Possible\nvalues: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,\n`AES256-CCM-12`. Default value: `AES256`.\n"
+                },
+                "integrityAlgorithm": {
+                    "type": "string",
+                    "description": "[string] The integrity algorithm to use for IPSec Encryption. Possible\nvalues: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.\n"
+                },
+                "lifetime": {
+                    "type": "integer",
+                    "description": "[string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.\nDefault value: `86400`.\n"
+                }
+            },
+            "type": "object"
+        },
+        "ionoscloud:vpn/WireguardGatewayConnection:WireguardGatewayConnection": {
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "[String] The ID of the datacenter where the WireGuard Gateway is located.\n"
+                },
+                "ipv4Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway connection.\n"
+                },
+                "ipv6Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway connection.\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "[String] The ID of the LAN where the WireGuard Gateway is connected.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "datacenterId",
+                "lanId"
+            ]
+        },
+        "ionoscloud:vpn/WireguardPeerEndpoint:WireguardPeerEndpoint": {
+            "properties": {
+                "host": {
+                    "type": "string",
+                    "description": "[string] The hostname or IPV4 address that the WireGuard Server will connect to.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "[int] The port that the WireGuard Server will connect to. Defaults to `51820`.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "host"
             ]
         }
     },
@@ -14989,589 +14989,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway": {
-            "description": "An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud\ninfrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your\nnetwork resources.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst testDatacenter = new ionoscloud.compute.Datacenter(\"testDatacenter\", {location: \"de/fra\"});\nconst testLan = new ionoscloud.compute.Lan(\"testLan\", {\n    \"public\": false,\n    datacenterId: testDatacenter.id,\n});\nconst testIpblock = new ionoscloud.compute.IPBlock(\"testIpblock\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst example = new ionoscloud.VpnIpsecGateway(\"example\", {\n    location: \"de/fra\",\n    gatewayIp: testIpblock.ips[0],\n    version: \"IKEv2\",\n    description: \"This gateway connects site A to VDC X.\",\n    connections: [{\n        datacenterId: testDatacenter.id,\n        lanId: testLan.id,\n        ipv4Cidr: \"192.168.100.10/24\",\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\ntest_datacenter = ionoscloud.compute.Datacenter(\"testDatacenter\", location=\"de/fra\")\ntest_lan = ionoscloud.compute.Lan(\"testLan\",\n    public=False,\n    datacenter_id=test_datacenter.id)\ntest_ipblock = ionoscloud.compute.IPBlock(\"testIpblock\",\n    location=\"de/fra\",\n    size=1)\nexample = ionoscloud.VpnIpsecGateway(\"example\",\n    location=\"de/fra\",\n    gateway_ip=test_ipblock.ips[0],\n    version=\"IKEv2\",\n    description=\"This gateway connects site A to VDC X.\",\n    connections=[ionoscloud.VpnIpsecGatewayConnectionArgs(\n        datacenter_id=test_datacenter.id,\n        lan_id=test_lan.id,\n        ipv4_cidr=\"192.168.100.10/24\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var testDatacenter = new Ionoscloud.Compute.Datacenter(\"testDatacenter\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var testLan = new Ionoscloud.Compute.Lan(\"testLan\", new()\n    {\n        Public = false,\n        DatacenterId = testDatacenter.Id,\n    });\n\n    var testIpblock = new Ionoscloud.Compute.IPBlock(\"testIpblock\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var example = new Ionoscloud.VpnIpsecGateway(\"example\", new()\n    {\n        Location = \"de/fra\",\n        GatewayIp = testIpblock.Ips.Apply(ips =\u003e ips[0]),\n        Version = \"IKEv2\",\n        Description = \"This gateway connects site A to VDC X.\",\n        Connections = new[]\n        {\n            new Ionoscloud.Inputs.VpnIpsecGatewayConnectionArgs\n            {\n                DatacenterId = testDatacenter.Id,\n                LanId = testLan.Id,\n                Ipv4Cidr = \"192.168.100.10/24\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\ttestDatacenter, err := compute.NewDatacenter(ctx, \"testDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLan, err := compute.NewLan(ctx, \"testLan\", \u0026compute.LanArgs{\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestIpblock, err := compute.NewIPBlock(ctx, \"testIpblock\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewVpnIpsecGateway(ctx, \"example\", \u0026ionoscloud.VpnIpsecGatewayArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tGatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tVersion:     pulumi.String(\"IKEv2\"),\n\t\t\tDescription: pulumi.String(\"This gateway connects site A to VDC X.\"),\n\t\t\tConnections: ionoscloud.VpnIpsecGatewayConnectionArray{\n\t\t\t\t\u0026ionoscloud.VpnIpsecGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t\t\t\tLanId:        testLan.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.VpnIpsecGateway;\nimport com.pulumi.ionoscloud.VpnIpsecGatewayArgs;\nimport com.pulumi.ionoscloud.inputs.VpnIpsecGatewayConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var testDatacenter = new Datacenter(\"testDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var testLan = new Lan(\"testLan\", LanArgs.builder()        \n            .public_(false)\n            .datacenterId(testDatacenter.id())\n            .build());\n\n        var testIpblock = new IPBlock(\"testIpblock\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var example = new VpnIpsecGateway(\"example\", VpnIpsecGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayIp(testIpblock.ips().applyValue(ips -\u003e ips[0]))\n            .version(\"IKEv2\")\n            .description(\"This gateway connects site A to VDC X.\")\n            .connections(VpnIpsecGatewayConnectionArgs.builder()\n                .datacenterId(testDatacenter.id())\n                .lanId(testLan.id())\n                .ipv4Cidr(\"192.168.100.10/24\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  testDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  testLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      public: false\n      datacenterId: ${testDatacenter.id}\n  testIpblock:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  example:\n    type: ionoscloud:VpnIpsecGateway\n    properties:\n      location: de/fra\n      gatewayIp: ${testIpblock.ips[0]}\n      version: IKEv2\n      description: This gateway connects site A to VDC X.\n      connections:\n        - datacenterId: ${testDatacenter.id}\n          lanId: ${testLan.id}\n          ipv4Cidr: 192.168.100.10/24\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `location` and `gateway_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway example {location}:{gateway_id}\n```\n\n",
-            "properties": {
-                "connections": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecGatewayConnection:VpnIpsecGatewayConnection"
-                    },
-                    "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] The human-readable description of the IPSec Gateway.\n"
-                },
-                "gatewayIp": {
-                    "type": "string",
-                    "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the IPSec Gateway.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
-                }
-            },
-            "required": [
-                "connections",
-                "gatewayIp",
-                "location",
-                "name"
-            ],
-            "inputProperties": {
-                "connections": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecGatewayConnection:VpnIpsecGatewayConnection"
-                    },
-                    "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] The human-readable description of the IPSec Gateway.\n"
-                },
-                "gatewayIp": {
-                    "type": "string",
-                    "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the IPSec Gateway.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
-                }
-            },
-            "requiredInputs": [
-                "connections",
-                "gatewayIp",
-                "location"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering VpnIpsecGateway resources.\n",
-                "properties": {
-                    "connections": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/VpnIpsecGatewayConnection:VpnIpsecGatewayConnection"
-                        },
-                        "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "[string] The human-readable description of the IPSec Gateway.\n"
-                    },
-                    "gatewayIp": {
-                        "type": "string",
-                        "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the IPSec Gateway.\n"
-                    },
-                    "version": {
-                        "type": "string",
-                        "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel": {
-            "description": "An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the\nIONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure\nconnections between your network resources.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst testDatacenter = new ionoscloud.compute.Datacenter(\"testDatacenter\", {location: \"de/fra\"});\nconst testLan = new ionoscloud.compute.Lan(\"testLan\", {\n    \"public\": false,\n    datacenterId: testDatacenter.id,\n});\nconst testIpblock = new ionoscloud.compute.IPBlock(\"testIpblock\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst exampleVpnIpsecGateway = new ionoscloud.VpnIpsecGateway(\"exampleVpnIpsecGateway\", {\n    location: \"de/fra\",\n    gatewayIp: testIpblock.ips[0],\n    version: \"IKEv2\",\n    description: \"This gateway connects site A to VDC X.\",\n    connections: [{\n        datacenterId: testDatacenter.id,\n        lanId: testLan.id,\n        ipv4Cidr: \"192.168.100.10/24\",\n    }],\n});\nconst exampleVpnIpsecTunnel = new ionoscloud.VpnIpsecTunnel(\"exampleVpnIpsecTunnel\", {\n    location: \"de/fra\",\n    gatewayId: exampleVpnIpsecGateway.id,\n    remoteHost: \"vpn.mycompany.com\",\n    description: \"Allows local subnet X to connect to virtual network Y.\",\n    auth: {\n        method: \"PSK\",\n        pskKey: \"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n    },\n    ike: {\n        diffieHellmanGroup: \"16-MODP4096\",\n        encryptionAlgorithm: \"AES256\",\n        integrityAlgorithm: \"SHA256\",\n        lifetime: 86400,\n    },\n    esps: [{\n        diffieHellmanGroup: \"16-MODP4096\",\n        encryptionAlgorithm: \"AES256\",\n        integrityAlgorithm: \"SHA256\",\n        lifetime: 3600,\n    }],\n    cloudNetworkCidrs: [\"0.0.0.0/0\"],\n    peerNetworkCidrs: [\"1.2.3.4/32\"],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\ntest_datacenter = ionoscloud.compute.Datacenter(\"testDatacenter\", location=\"de/fra\")\ntest_lan = ionoscloud.compute.Lan(\"testLan\",\n    public=False,\n    datacenter_id=test_datacenter.id)\ntest_ipblock = ionoscloud.compute.IPBlock(\"testIpblock\",\n    location=\"de/fra\",\n    size=1)\nexample_vpn_ipsec_gateway = ionoscloud.VpnIpsecGateway(\"exampleVpnIpsecGateway\",\n    location=\"de/fra\",\n    gateway_ip=test_ipblock.ips[0],\n    version=\"IKEv2\",\n    description=\"This gateway connects site A to VDC X.\",\n    connections=[ionoscloud.VpnIpsecGatewayConnectionArgs(\n        datacenter_id=test_datacenter.id,\n        lan_id=test_lan.id,\n        ipv4_cidr=\"192.168.100.10/24\",\n    )])\nexample_vpn_ipsec_tunnel = ionoscloud.VpnIpsecTunnel(\"exampleVpnIpsecTunnel\",\n    location=\"de/fra\",\n    gateway_id=example_vpn_ipsec_gateway.id,\n    remote_host=\"vpn.mycompany.com\",\n    description=\"Allows local subnet X to connect to virtual network Y.\",\n    auth=ionoscloud.VpnIpsecTunnelAuthArgs(\n        method=\"PSK\",\n        psk_key=\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n    ),\n    ike=ionoscloud.VpnIpsecTunnelIkeArgs(\n        diffie_hellman_group=\"16-MODP4096\",\n        encryption_algorithm=\"AES256\",\n        integrity_algorithm=\"SHA256\",\n        lifetime=86400,\n    ),\n    esps=[ionoscloud.VpnIpsecTunnelEspArgs(\n        diffie_hellman_group=\"16-MODP4096\",\n        encryption_algorithm=\"AES256\",\n        integrity_algorithm=\"SHA256\",\n        lifetime=3600,\n    )],\n    cloud_network_cidrs=[\"0.0.0.0/0\"],\n    peer_network_cidrs=[\"1.2.3.4/32\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var testDatacenter = new Ionoscloud.Compute.Datacenter(\"testDatacenter\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var testLan = new Ionoscloud.Compute.Lan(\"testLan\", new()\n    {\n        Public = false,\n        DatacenterId = testDatacenter.Id,\n    });\n\n    var testIpblock = new Ionoscloud.Compute.IPBlock(\"testIpblock\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var exampleVpnIpsecGateway = new Ionoscloud.VpnIpsecGateway(\"exampleVpnIpsecGateway\", new()\n    {\n        Location = \"de/fra\",\n        GatewayIp = testIpblock.Ips.Apply(ips =\u003e ips[0]),\n        Version = \"IKEv2\",\n        Description = \"This gateway connects site A to VDC X.\",\n        Connections = new[]\n        {\n            new Ionoscloud.Inputs.VpnIpsecGatewayConnectionArgs\n            {\n                DatacenterId = testDatacenter.Id,\n                LanId = testLan.Id,\n                Ipv4Cidr = \"192.168.100.10/24\",\n            },\n        },\n    });\n\n    var exampleVpnIpsecTunnel = new Ionoscloud.VpnIpsecTunnel(\"exampleVpnIpsecTunnel\", new()\n    {\n        Location = \"de/fra\",\n        GatewayId = exampleVpnIpsecGateway.Id,\n        RemoteHost = \"vpn.mycompany.com\",\n        Description = \"Allows local subnet X to connect to virtual network Y.\",\n        Auth = new Ionoscloud.Inputs.VpnIpsecTunnelAuthArgs\n        {\n            Method = \"PSK\",\n            PskKey = \"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n        },\n        Ike = new Ionoscloud.Inputs.VpnIpsecTunnelIkeArgs\n        {\n            DiffieHellmanGroup = \"16-MODP4096\",\n            EncryptionAlgorithm = \"AES256\",\n            IntegrityAlgorithm = \"SHA256\",\n            Lifetime = 86400,\n        },\n        Esps = new[]\n        {\n            new Ionoscloud.Inputs.VpnIpsecTunnelEspArgs\n            {\n                DiffieHellmanGroup = \"16-MODP4096\",\n                EncryptionAlgorithm = \"AES256\",\n                IntegrityAlgorithm = \"SHA256\",\n                Lifetime = 3600,\n            },\n        },\n        CloudNetworkCidrs = new[]\n        {\n            \"0.0.0.0/0\",\n        },\n        PeerNetworkCidrs = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\ttestDatacenter, err := compute.NewDatacenter(ctx, \"testDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLan, err := compute.NewLan(ctx, \"testLan\", \u0026compute.LanArgs{\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestIpblock, err := compute.NewIPBlock(ctx, \"testIpblock\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleVpnIpsecGateway, err := ionoscloud.NewVpnIpsecGateway(ctx, \"exampleVpnIpsecGateway\", \u0026ionoscloud.VpnIpsecGatewayArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tGatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tVersion:     pulumi.String(\"IKEv2\"),\n\t\t\tDescription: pulumi.String(\"This gateway connects site A to VDC X.\"),\n\t\t\tConnections: ionoscloud.VpnIpsecGatewayConnectionArray{\n\t\t\t\t\u0026ionoscloud.VpnIpsecGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t\t\t\tLanId:        testLan.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewVpnIpsecTunnel(ctx, \"exampleVpnIpsecTunnel\", \u0026ionoscloud.VpnIpsecTunnelArgs{\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tGatewayId:   exampleVpnIpsecGateway.ID(),\n\t\t\tRemoteHost:  pulumi.String(\"vpn.mycompany.com\"),\n\t\t\tDescription: pulumi.String(\"Allows local subnet X to connect to virtual network Y.\"),\n\t\t\tAuth: \u0026ionoscloud.VpnIpsecTunnelAuthArgs{\n\t\t\t\tMethod: pulumi.String(\"PSK\"),\n\t\t\t\tPskKey: pulumi.String(\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\"),\n\t\t\t},\n\t\t\tIke: \u0026ionoscloud.VpnIpsecTunnelIkeArgs{\n\t\t\t\tDiffieHellmanGroup:  pulumi.String(\"16-MODP4096\"),\n\t\t\t\tEncryptionAlgorithm: pulumi.String(\"AES256\"),\n\t\t\t\tIntegrityAlgorithm:  pulumi.String(\"SHA256\"),\n\t\t\t\tLifetime:            pulumi.Int(86400),\n\t\t\t},\n\t\t\tEsps: ionoscloud.VpnIpsecTunnelEspArray{\n\t\t\t\t\u0026ionoscloud.VpnIpsecTunnelEspArgs{\n\t\t\t\t\tDiffieHellmanGroup:  pulumi.String(\"16-MODP4096\"),\n\t\t\t\t\tEncryptionAlgorithm: pulumi.String(\"AES256\"),\n\t\t\t\t\tIntegrityAlgorithm:  pulumi.String(\"SHA256\"),\n\t\t\t\t\tLifetime:            pulumi.Int(3600),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCloudNetworkCidrs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"0.0.0.0/0\"),\n\t\t\t},\n\t\t\tPeerNetworkCidrs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.VpnIpsecGateway;\nimport com.pulumi.ionoscloud.VpnIpsecGatewayArgs;\nimport com.pulumi.ionoscloud.inputs.VpnIpsecGatewayConnectionArgs;\nimport com.pulumi.ionoscloud.VpnIpsecTunnel;\nimport com.pulumi.ionoscloud.VpnIpsecTunnelArgs;\nimport com.pulumi.ionoscloud.inputs.VpnIpsecTunnelAuthArgs;\nimport com.pulumi.ionoscloud.inputs.VpnIpsecTunnelIkeArgs;\nimport com.pulumi.ionoscloud.inputs.VpnIpsecTunnelEspArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var testDatacenter = new Datacenter(\"testDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var testLan = new Lan(\"testLan\", LanArgs.builder()        \n            .public_(false)\n            .datacenterId(testDatacenter.id())\n            .build());\n\n        var testIpblock = new IPBlock(\"testIpblock\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var exampleVpnIpsecGateway = new VpnIpsecGateway(\"exampleVpnIpsecGateway\", VpnIpsecGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayIp(testIpblock.ips().applyValue(ips -\u003e ips[0]))\n            .version(\"IKEv2\")\n            .description(\"This gateway connects site A to VDC X.\")\n            .connections(VpnIpsecGatewayConnectionArgs.builder()\n                .datacenterId(testDatacenter.id())\n                .lanId(testLan.id())\n                .ipv4Cidr(\"192.168.100.10/24\")\n                .build())\n            .build());\n\n        var exampleVpnIpsecTunnel = new VpnIpsecTunnel(\"exampleVpnIpsecTunnel\", VpnIpsecTunnelArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayId(exampleVpnIpsecGateway.id())\n            .remoteHost(\"vpn.mycompany.com\")\n            .description(\"Allows local subnet X to connect to virtual network Y.\")\n            .auth(VpnIpsecTunnelAuthArgs.builder()\n                .method(\"PSK\")\n                .pskKey(\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\")\n                .build())\n            .ike(VpnIpsecTunnelIkeArgs.builder()\n                .diffieHellmanGroup(\"16-MODP4096\")\n                .encryptionAlgorithm(\"AES256\")\n                .integrityAlgorithm(\"SHA256\")\n                .lifetime(86400)\n                .build())\n            .esps(VpnIpsecTunnelEspArgs.builder()\n                .diffieHellmanGroup(\"16-MODP4096\")\n                .encryptionAlgorithm(\"AES256\")\n                .integrityAlgorithm(\"SHA256\")\n                .lifetime(3600)\n                .build())\n            .cloudNetworkCidrs(\"0.0.0.0/0\")\n            .peerNetworkCidrs(\"1.2.3.4/32\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  testDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  testLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      public: false\n      datacenterId: ${testDatacenter.id}\n  testIpblock:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  exampleVpnIpsecGateway:\n    type: ionoscloud:VpnIpsecGateway\n    properties:\n      location: de/fra\n      gatewayIp: ${testIpblock.ips[0]}\n      version: IKEv2\n      description: This gateway connects site A to VDC X.\n      connections:\n        - datacenterId: ${testDatacenter.id}\n          lanId: ${testLan.id}\n          ipv4Cidr: 192.168.100.10/24\n  exampleVpnIpsecTunnel:\n    type: ionoscloud:VpnIpsecTunnel\n    properties:\n      location: de/fra\n      gatewayId: ${exampleVpnIpsecGateway.id}\n      remoteHost: vpn.mycompany.com\n      description: Allows local subnet X to connect to virtual network Y.\n      auth:\n        method: PSK\n        pskKey: X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\n      ike:\n        diffieHellmanGroup: 16-MODP4096\n        encryptionAlgorithm: AES256\n        integrityAlgorithm: SHA256\n        lifetime: 86400\n      esps:\n        - diffieHellmanGroup: 16-MODP4096\n          encryptionAlgorithm: AES256\n          integrityAlgorithm: SHA256\n          lifetime: 3600\n      cloudNetworkCidrs:\n        - 0.0.0.0/0\n      peerNetworkCidrs:\n        - 1.2.3.4/32\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel example {location}:{gateway_id}:{tunnel_id}\n```\n\n",
-            "properties": {
-                "auth": {
-                    "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelAuth:VpnIpsecTunnelAuth",
-                    "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
-                },
-                "cloudNetworkCidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
-                },
-                "esps": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelEsp:VpnIpsecTunnelEsp"
-                    },
-                    "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
-                },
-                "gatewayId": {
-                    "type": "string",
-                    "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
-                },
-                "ike": {
-                    "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelIke:VpnIpsecTunnelIke",
-                    "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the IPSec Gateway Tunnel.\n"
-                },
-                "peerNetworkCidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
-                },
-                "remoteHost": {
-                    "type": "string",
-                    "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
-                }
-            },
-            "required": [
-                "auth",
-                "cloudNetworkCidrs",
-                "esps",
-                "gatewayId",
-                "ike",
-                "location",
-                "name",
-                "peerNetworkCidrs",
-                "remoteHost"
-            ],
-            "inputProperties": {
-                "auth": {
-                    "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelAuth:VpnIpsecTunnelAuth",
-                    "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
-                },
-                "cloudNetworkCidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
-                },
-                "esps": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelEsp:VpnIpsecTunnelEsp"
-                    },
-                    "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
-                },
-                "gatewayId": {
-                    "type": "string",
-                    "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
-                },
-                "ike": {
-                    "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelIke:VpnIpsecTunnelIke",
-                    "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the IPSec Gateway Tunnel.\n"
-                },
-                "peerNetworkCidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
-                },
-                "remoteHost": {
-                    "type": "string",
-                    "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
-                }
-            },
-            "requiredInputs": [
-                "auth",
-                "cloudNetworkCidrs",
-                "esps",
-                "gatewayId",
-                "ike",
-                "location",
-                "peerNetworkCidrs",
-                "remoteHost"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering VpnIpsecTunnel resources.\n",
-                "properties": {
-                    "auth": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelAuth:VpnIpsecTunnelAuth",
-                        "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
-                    },
-                    "cloudNetworkCidrs": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
-                    },
-                    "esps": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelEsp:VpnIpsecTunnelEsp"
-                        },
-                        "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
-                    },
-                    "gatewayId": {
-                        "type": "string",
-                        "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
-                    },
-                    "ike": {
-                        "$ref": "#/types/ionoscloud:index/VpnIpsecTunnelIke:VpnIpsecTunnelIke",
-                        "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the IPSec Gateway Tunnel.\n"
-                    },
-                    "peerNetworkCidrs": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
-                    },
-                    "remoteHost": {
-                        "type": "string",
-                        "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway": {
-            "description": "## Overview\n\nThe `ionoscloud.VpnWireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure. \nThis resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst datacenterExample = new ionoscloud.compute.Datacenter(\"datacenterExample\", {location: \"de/fra\"});\nconst ipblockExample = new ionoscloud.compute.IPBlock(\"ipblockExample\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst lanExample = new ionoscloud.compute.Lan(\"lanExample\", {datacenterId: datacenterExample.id});\nconst gateway = new ionoscloud.VpnWireguardGateway(\"gateway\", {\n    location: \"de/fra\",\n    description: \"description\",\n    privateKey: \"private\",\n    gatewayIp: ipblockExample.ips[0],\n    interfaceIpv4Cidr: \"192.168.1.100/24\",\n    connections: [{\n        datacenterId: datacenterExample.id,\n        lanId: lanExample.id,\n        ipv4Cidr: \"192.168.1.108/24\",\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\ndatacenter_example = ionoscloud.compute.Datacenter(\"datacenterExample\", location=\"de/fra\")\nipblock_example = ionoscloud.compute.IPBlock(\"ipblockExample\",\n    location=\"de/fra\",\n    size=1)\nlan_example = ionoscloud.compute.Lan(\"lanExample\", datacenter_id=datacenter_example.id)\ngateway = ionoscloud.VpnWireguardGateway(\"gateway\",\n    location=\"de/fra\",\n    description=\"description\",\n    private_key=\"private\",\n    gateway_ip=ipblock_example.ips[0],\n    interface_ipv4_cidr=\"192.168.1.100/24\",\n    connections=[ionoscloud.VpnWireguardGatewayConnectionArgs(\n        datacenter_id=datacenter_example.id,\n        lan_id=lan_example.id,\n        ipv4_cidr=\"192.168.1.108/24\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var datacenterExample = new Ionoscloud.Compute.Datacenter(\"datacenterExample\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var ipblockExample = new Ionoscloud.Compute.IPBlock(\"ipblockExample\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var lanExample = new Ionoscloud.Compute.Lan(\"lanExample\", new()\n    {\n        DatacenterId = datacenterExample.Id,\n    });\n\n    var gateway = new Ionoscloud.VpnWireguardGateway(\"gateway\", new()\n    {\n        Location = \"de/fra\",\n        Description = \"description\",\n        PrivateKey = \"private\",\n        GatewayIp = ipblockExample.Ips.Apply(ips =\u003e ips[0]),\n        InterfaceIpv4Cidr = \"192.168.1.100/24\",\n        Connections = new[]\n        {\n            new Ionoscloud.Inputs.VpnWireguardGatewayConnectionArgs\n            {\n                DatacenterId = datacenterExample.Id,\n                LanId = lanExample.Id,\n                Ipv4Cidr = \"192.168.1.108/24\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdatacenterExample, err := compute.NewDatacenter(ctx, \"datacenterExample\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tipblockExample, err := compute.NewIPBlock(ctx, \"ipblockExample\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlanExample, err := compute.NewLan(ctx, \"lanExample\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewVpnWireguardGateway(ctx, \"gateway\", \u0026ionoscloud.VpnWireguardGatewayArgs{\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tPrivateKey:  pulumi.String(\"private\"),\n\t\t\tGatewayIp: ipblockExample.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tInterfaceIpv4Cidr: pulumi.String(\"192.168.1.100/24\"),\n\t\t\tConnections: ionoscloud.VpnWireguardGatewayConnectionArray{\n\t\t\t\t\u0026ionoscloud.VpnWireguardGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t\t\t\tLanId:        lanExample.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.1.108/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.VpnWireguardGateway;\nimport com.pulumi.ionoscloud.VpnWireguardGatewayArgs;\nimport com.pulumi.ionoscloud.inputs.VpnWireguardGatewayConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var datacenterExample = new Datacenter(\"datacenterExample\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var ipblockExample = new IPBlock(\"ipblockExample\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var lanExample = new Lan(\"lanExample\", LanArgs.builder()        \n            .datacenterId(datacenterExample.id())\n            .build());\n\n        var gateway = new VpnWireguardGateway(\"gateway\", VpnWireguardGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .description(\"description\")\n            .privateKey(\"private\")\n            .gatewayIp(ipblockExample.ips().applyValue(ips -\u003e ips[0]))\n            .interfaceIpv4Cidr(\"192.168.1.100/24\")\n            .connections(VpnWireguardGatewayConnectionArgs.builder()\n                .datacenterId(datacenterExample.id())\n                .lanId(lanExample.id())\n                .ipv4Cidr(\"192.168.1.108/24\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  datacenterExample:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  ipblockExample:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  lanExample:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${datacenterExample.id}\n  gateway:\n    type: ionoscloud:VpnWireguardGateway\n    properties:\n      location: de/fra\n      description: description\n      privateKey: private\n      gatewayIp: ${ipblockExample.ips[0]}\n      interfaceIpv4Cidr: 192.168.1.100/24\n      connections:\n        - datacenterId: ${datacenterExample.id}\n          lanId: ${lanExample.id}\n          ipv4Cidr: 192.168.1.108/24\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nWireGuard Gateways can be imported using their ID:\n\n```sh\n$ pulumi import ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway example_gateway location:id\n```\n\n",
-            "properties": {
-                "connections": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnWireguardGatewayConnection:VpnWireguardGatewayConnection"
-                    },
-                    "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[String] A description of the WireGuard Gateway.\n"
-                },
-                "gatewayIp": {
-                    "type": "string",
-                    "description": "[String] The IP address of the WireGuard Gateway.\n"
-                },
-                "interfaceIpv4Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
-                },
-                "interfaceIpv6Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
-                },
-                "listenPort": {
-                    "type": "integer"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[String] The location of the WireGuard Gateway.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[String] The name of the WireGuard Gateway.\n"
-                },
-                "privateKey": {
-                    "type": "string",
-                    "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
-                    "secret": true
-                },
-                "publicKey": {
-                    "type": "string",
-                    "description": "(Computed)[String] The public key for the WireGuard Gateway.\n"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "(Computed)[String] The current status of the WireGuard Gateway.\n"
-                }
-            },
-            "required": [
-                "connections",
-                "gatewayIp",
-                "location",
-                "name",
-                "privateKey",
-                "publicKey",
-                "status"
-            ],
-            "inputProperties": {
-                "connections": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/VpnWireguardGatewayConnection:VpnWireguardGatewayConnection"
-                    },
-                    "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[String] A description of the WireGuard Gateway.\n"
-                },
-                "gatewayIp": {
-                    "type": "string",
-                    "description": "[String] The IP address of the WireGuard Gateway.\n"
-                },
-                "interfaceIpv4Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
-                },
-                "interfaceIpv6Cidr": {
-                    "type": "string",
-                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
-                },
-                "listenPort": {
-                    "type": "integer"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[String] The location of the WireGuard Gateway.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[String] The name of the WireGuard Gateway.\n"
-                },
-                "privateKey": {
-                    "type": "string",
-                    "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
-                    "secret": true
-                }
-            },
-            "requiredInputs": [
-                "connections",
-                "gatewayIp",
-                "location",
-                "privateKey"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering VpnWireguardGateway resources.\n",
-                "properties": {
-                    "connections": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/VpnWireguardGatewayConnection:VpnWireguardGatewayConnection"
-                        },
-                        "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "[String] A description of the WireGuard Gateway.\n"
-                    },
-                    "gatewayIp": {
-                        "type": "string",
-                        "description": "[String] The IP address of the WireGuard Gateway.\n"
-                    },
-                    "interfaceIpv4Cidr": {
-                        "type": "string",
-                        "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
-                    },
-                    "interfaceIpv6Cidr": {
-                        "type": "string",
-                        "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
-                    },
-                    "listenPort": {
-                        "type": "integer"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[String] The location of the WireGuard Gateway.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[String] The name of the WireGuard Gateway.\n"
-                    },
-                    "privateKey": {
-                        "type": "string",
-                        "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
-                        "secret": true
-                    },
-                    "publicKey": {
-                        "type": "string",
-                        "description": "(Computed)[String] The public key for the WireGuard Gateway.\n"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "(Computed)[String] The current status of the WireGuard Gateway.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer": {
-            "description": "This page provides an overview of the `ionoscloud.VpnWireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure. \nThis resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.VpnWireguardPeer(\"example\", {\n    allowedIps: [\n        \"10.0.0.0/8\",\n        \"192.168.1.0/24\",\n    ],\n    description: \"An example WireGuard peer\",\n    endpoint: {\n        host: \"1.2.3.4\",\n        port: 51820,\n    },\n    gatewayId: \"your gateway id here\",\n    location: \"de/fra\",\n    publicKey: \"examplePublicKey==\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.VpnWireguardPeer(\"example\",\n    allowed_ips=[\n        \"10.0.0.0/8\",\n        \"192.168.1.0/24\",\n    ],\n    description=\"An example WireGuard peer\",\n    endpoint=ionoscloud.VpnWireguardPeerEndpointArgs(\n        host=\"1.2.3.4\",\n        port=51820,\n    ),\n    gateway_id=\"your gateway id here\",\n    location=\"de/fra\",\n    public_key=\"examplePublicKey==\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.VpnWireguardPeer(\"example\", new()\n    {\n        AllowedIps = new[]\n        {\n            \"10.0.0.0/8\",\n            \"192.168.1.0/24\",\n        },\n        Description = \"An example WireGuard peer\",\n        Endpoint = new Ionoscloud.Inputs.VpnWireguardPeerEndpointArgs\n        {\n            Host = \"1.2.3.4\",\n            Port = 51820,\n        },\n        GatewayId = \"your gateway id here\",\n        Location = \"de/fra\",\n        PublicKey = \"examplePublicKey==\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewVpnWireguardPeer(ctx, \"example\", \u0026ionoscloud.VpnWireguardPeerArgs{\n\t\t\tAllowedIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.0.0/8\"),\n\t\t\t\tpulumi.String(\"192.168.1.0/24\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"An example WireGuard peer\"),\n\t\t\tEndpoint: \u0026ionoscloud.VpnWireguardPeerEndpointArgs{\n\t\t\t\tHost: pulumi.String(\"1.2.3.4\"),\n\t\t\t\tPort: pulumi.Int(51820),\n\t\t\t},\n\t\t\tGatewayId: pulumi.String(\"your gateway id here\"),\n\t\t\tLocation:  pulumi.String(\"de/fra\"),\n\t\t\tPublicKey: pulumi.String(\"examplePublicKey==\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.VpnWireguardPeer;\nimport com.pulumi.ionoscloud.VpnWireguardPeerArgs;\nimport com.pulumi.ionoscloud.inputs.VpnWireguardPeerEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new VpnWireguardPeer(\"example\", VpnWireguardPeerArgs.builder()        \n            .allowedIps(            \n                \"10.0.0.0/8\",\n                \"192.168.1.0/24\")\n            .description(\"An example WireGuard peer\")\n            .endpoint(VpnWireguardPeerEndpointArgs.builder()\n                .host(\"1.2.3.4\")\n                .port(51820)\n                .build())\n            .gatewayId(\"your gateway id here\")\n            .location(\"de/fra\")\n            .publicKey(\"examplePublicKey==\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:VpnWireguardPeer\n    properties:\n      allowedIps:\n        - 10.0.0.0/8\n        - 192.168.1.0/24\n      description: An example WireGuard peer\n      endpoint:\n        host: 1.2.3.4\n        port: 51820\n      gatewayId: your gateway id here\n      location: de/fra\n      publicKey: examplePublicKey==\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nWireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,\n\n```sh\n$ pulumi import ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer example \u003cgateway_id\u003e:\u003cpeer_id\u003e\n```\n\n",
-            "properties": {
-                "allowedIps": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] A description of the WireGuard Gateway.\n"
-                },
-                "endpoint": {
-                    "$ref": "#/types/ionoscloud:index/VpnWireguardPeerEndpoint:VpnWireguardPeerEndpoint",
-                    "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
-                },
-                "gatewayId": {
-                    "type": "string",
-                    "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the WireGuard Gateway.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The human-readable name of the WireGuard Gateway.\n"
-                },
-                "publicKey": {
-                    "type": "string",
-                    "description": "[string] The public key for the WireGuard Gateway.\n"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "The current status of the WireGuard Gateway Peer.\n"
-                }
-            },
-            "required": [
-                "allowedIps",
-                "gatewayId",
-                "location",
-                "name",
-                "publicKey",
-                "status"
-            ],
-            "inputProperties": {
-                "allowedIps": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "[string] A description of the WireGuard Gateway.\n"
-                },
-                "endpoint": {
-                    "$ref": "#/types/ionoscloud:index/VpnWireguardPeerEndpoint:VpnWireguardPeerEndpoint",
-                    "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
-                },
-                "gatewayId": {
-                    "type": "string",
-                    "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the WireGuard Gateway.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The human-readable name of the WireGuard Gateway.\n"
-                },
-                "publicKey": {
-                    "type": "string",
-                    "description": "[string] The public key for the WireGuard Gateway.\n"
-                }
-            },
-            "requiredInputs": [
-                "allowedIps",
-                "gatewayId",
-                "location",
-                "publicKey"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering VpnWireguardPeer resources.\n",
-                "properties": {
-                    "allowedIps": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "[string] A description of the WireGuard Gateway.\n"
-                    },
-                    "endpoint": {
-                        "$ref": "#/types/ionoscloud:index/VpnWireguardPeerEndpoint:VpnWireguardPeerEndpoint",
-                        "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
-                    },
-                    "gatewayId": {
-                        "type": "string",
-                        "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] The location of the WireGuard Gateway.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The human-readable name of the WireGuard Gateway.\n"
-                    },
-                    "publicKey": {
-                        "type": "string",
-                        "description": "[string] The public key for the WireGuard Gateway.\n"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "The current status of the WireGuard Gateway Peer.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:k8s/cluster:Cluster": {
             "description": "Manages a **Managed Kubernetes Cluster** on IonosCloud.\n\n## Example Usage\n\n### Public cluster\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.k8s.Cluster(\"example\", {\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    k8sVersion: \"1.28.6\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00Z\",\n    },\n    s3Buckets: [{\n        name: \"globally_unique_bucket_name\",\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.k8s.Cluster(\"example\",\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    k8s_version=\"1.28.6\",\n    maintenance_window=ionoscloud.k8s.ClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00Z\",\n    ),\n    s3_buckets=[ionoscloud.k8s.ClusterS3BucketArgs(\n        name=\"globally_unique_bucket_name\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.K8s.Cluster(\"example\", new()\n    {\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        K8sVersion = \"1.28.6\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00Z\",\n        },\n        S3Buckets = new[]\n        {\n            new Ionoscloud.K8s.Inputs.ClusterS3BucketArgs\n            {\n                Name = \"globally_unique_bucket_name\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := k8s.NewCluster(ctx, \"example\", \u0026k8s.ClusterArgs{\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tK8sVersion: pulumi.String(\"1.28.6\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00Z\"),\n\t\t\t},\n\t\t\tS3Buckets: k8s.ClusterS3BucketArray{\n\t\t\t\t\u0026k8s.ClusterS3BucketArgs{\n\t\t\t\t\tName: pulumi.String(\"globally_unique_bucket_name\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.k8s.Cluster;\nimport com.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Cluster(\"example\", ClusterArgs.builder()        \n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .k8sVersion(\"1.28.6\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00Z\")\n                .build())\n            .s3Buckets(ClusterS3BucketArgs.builder()\n                .name(\"globally_unique_bucket_name\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:k8s:Cluster\n    properties:\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      k8sVersion: 1.28.6\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00Z\n      s3Buckets:\n        - name: globally_unique_bucket_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Private Cluster\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst testdatacenter = new ionoscloud.compute.Datacenter(\"testdatacenter\", {\n    location: \"de/fra\",\n    description: \"Test datacenter\",\n});\nconst k8sip = new ionoscloud.compute.IPBlock(\"k8sip\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst example = new ionoscloud.k8s.Cluster(\"example\", {\n    k8sVersion: \"1.28.6\",\n    maintenanceWindow: {\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00Z\",\n    },\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    s3Buckets: [{\n        name: \"globally_unique_bucket_name\",\n    }],\n    location: \"de/fra\",\n    natGatewayIp: k8sip.ips[0],\n    nodeSubnet: \"192.168.0.0/16\",\n    \"public\": false,\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\ntestdatacenter = ionoscloud.compute.Datacenter(\"testdatacenter\",\n    location=\"de/fra\",\n    description=\"Test datacenter\")\nk8sip = ionoscloud.compute.IPBlock(\"k8sip\",\n    location=\"de/fra\",\n    size=1)\nexample = ionoscloud.k8s.Cluster(\"example\",\n    k8s_version=\"1.28.6\",\n    maintenance_window=ionoscloud.k8s.ClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00Z\",\n    ),\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    s3_buckets=[ionoscloud.k8s.ClusterS3BucketArgs(\n        name=\"globally_unique_bucket_name\",\n    )],\n    location=\"de/fra\",\n    nat_gateway_ip=k8sip.ips[0],\n    node_subnet=\"192.168.0.0/16\",\n    public=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var testdatacenter = new Ionoscloud.Compute.Datacenter(\"testdatacenter\", new()\n    {\n        Location = \"de/fra\",\n        Description = \"Test datacenter\",\n    });\n\n    var k8sip = new Ionoscloud.Compute.IPBlock(\"k8sip\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var example = new Ionoscloud.K8s.Cluster(\"example\", new()\n    {\n        K8sVersion = \"1.28.6\",\n        MaintenanceWindow = new Ionoscloud.K8s.Inputs.ClusterMaintenanceWindowArgs\n        {\n            DayOfTheWeek = \"Sunday\",\n            Time = \"09:00:00Z\",\n        },\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        S3Buckets = new[]\n        {\n            new Ionoscloud.K8s.Inputs.ClusterS3BucketArgs\n            {\n                Name = \"globally_unique_bucket_name\",\n            },\n        },\n        Location = \"de/fra\",\n        NatGatewayIp = k8sip.Ips.Apply(ips =\u003e ips[0]),\n        NodeSubnet = \"192.168.0.0/16\",\n        Public = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := compute.NewDatacenter(ctx, \"testdatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tDescription: pulumi.String(\"Test datacenter\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tk8sip, err := compute.NewIPBlock(ctx, \"k8sip\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = k8s.NewCluster(ctx, \"example\", \u0026k8s.ClusterArgs{\n\t\t\tK8sVersion: pulumi.String(\"1.28.6\"),\n\t\t\tMaintenanceWindow: \u0026k8s.ClusterMaintenanceWindowArgs{\n\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\tTime:         pulumi.String(\"09:00:00Z\"),\n\t\t\t},\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tS3Buckets: k8s.ClusterS3BucketArray{\n\t\t\t\t\u0026k8s.ClusterS3BucketArgs{\n\t\t\t\t\tName: pulumi.String(\"globally_unique_bucket_name\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tNatGatewayIp: k8sip.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tNodeSubnet: pulumi.String(\"192.168.0.0/16\"),\n\t\t\tPublic:     pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.k8s.Cluster;\nimport com.pulumi.ionoscloud.k8s.ClusterArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.k8s.inputs.ClusterS3BucketArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var testdatacenter = new Datacenter(\"testdatacenter\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .description(\"Test datacenter\")\n            .build());\n\n        var k8sip = new IPBlock(\"k8sip\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var example = new Cluster(\"example\", ClusterArgs.builder()        \n            .k8sVersion(\"1.28.6\")\n            .maintenanceWindow(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00Z\")\n                .build())\n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .s3Buckets(ClusterS3BucketArgs.builder()\n                .name(\"globally_unique_bucket_name\")\n                .build())\n            .location(\"de/fra\")\n            .natGatewayIp(k8sip.ips().applyValue(ips -\u003e ips[0]))\n            .nodeSubnet(\"192.168.0.0/16\")\n            .public_(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  testdatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n      description: Test datacenter\n  k8sip:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  example:\n    type: ionoscloud:k8s:Cluster\n    properties:\n      k8sVersion: 1.28.6\n      maintenanceWindow:\n        dayOfTheWeek: Sunday\n        time: 09:00:00Z\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      s3Buckets:\n        - name: globally_unique_bucket_name\n      location: de/fra\n      natGatewayIp: ${k8sip.ips[0]}\n      nodeSubnet: 192.168.0.0/16\n      public: false\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Kubernetes Cluster resource can be imported using its `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:k8s/cluster:Cluster demo {k8s_cluster uuid}\n```\n\nThis can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.\n\n⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent\n\nterraform from doing a downgrade, as downgrading `k8s_version` is not supported._**\n\n",
             "properties": {
@@ -16052,6 +15469,589 @@
                         "type": "string",
                         "description": "[string] - The desired storage type - SSD/HDD. *This attribute is immutable*.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:vpn/ipsecGateway:IpsecGateway": {
+            "description": "An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud\ninfrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your\nnetwork resources.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst testDatacenter = new ionoscloud.compute.Datacenter(\"testDatacenter\", {location: \"de/fra\"});\nconst testLan = new ionoscloud.compute.Lan(\"testLan\", {\n    \"public\": false,\n    datacenterId: testDatacenter.id,\n});\nconst testIpblock = new ionoscloud.compute.IPBlock(\"testIpblock\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst example = new ionoscloud.vpn.IpsecGateway(\"example\", {\n    location: \"de/fra\",\n    gatewayIp: testIpblock.ips[0],\n    version: \"IKEv2\",\n    description: \"This gateway connects site A to VDC X.\",\n    connections: [{\n        datacenterId: testDatacenter.id,\n        lanId: testLan.id,\n        ipv4Cidr: \"192.168.100.10/24\",\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\ntest_datacenter = ionoscloud.compute.Datacenter(\"testDatacenter\", location=\"de/fra\")\ntest_lan = ionoscloud.compute.Lan(\"testLan\",\n    public=False,\n    datacenter_id=test_datacenter.id)\ntest_ipblock = ionoscloud.compute.IPBlock(\"testIpblock\",\n    location=\"de/fra\",\n    size=1)\nexample = ionoscloud.vpn.IpsecGateway(\"example\",\n    location=\"de/fra\",\n    gateway_ip=test_ipblock.ips[0],\n    version=\"IKEv2\",\n    description=\"This gateway connects site A to VDC X.\",\n    connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(\n        datacenter_id=test_datacenter.id,\n        lan_id=test_lan.id,\n        ipv4_cidr=\"192.168.100.10/24\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var testDatacenter = new Ionoscloud.Compute.Datacenter(\"testDatacenter\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var testLan = new Ionoscloud.Compute.Lan(\"testLan\", new()\n    {\n        Public = false,\n        DatacenterId = testDatacenter.Id,\n    });\n\n    var testIpblock = new Ionoscloud.Compute.IPBlock(\"testIpblock\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var example = new Ionoscloud.Vpn.IpsecGateway(\"example\", new()\n    {\n        Location = \"de/fra\",\n        GatewayIp = testIpblock.Ips.Apply(ips =\u003e ips[0]),\n        Version = \"IKEv2\",\n        Description = \"This gateway connects site A to VDC X.\",\n        Connections = new[]\n        {\n            new Ionoscloud.Vpn.Inputs.IpsecGatewayConnectionArgs\n            {\n                DatacenterId = testDatacenter.Id,\n                LanId = testLan.Id,\n                Ipv4Cidr = \"192.168.100.10/24\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\ttestDatacenter, err := compute.NewDatacenter(ctx, \"testDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLan, err := compute.NewLan(ctx, \"testLan\", \u0026compute.LanArgs{\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestIpblock, err := compute.NewIPBlock(ctx, \"testIpblock\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vpn.NewIpsecGateway(ctx, \"example\", \u0026vpn.IpsecGatewayArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tGatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tVersion:     pulumi.String(\"IKEv2\"),\n\t\t\tDescription: pulumi.String(\"This gateway connects site A to VDC X.\"),\n\t\t\tConnections: vpn.IpsecGatewayConnectionArray{\n\t\t\t\t\u0026vpn.IpsecGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t\t\t\tLanId:        testLan.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.vpn.IpsecGateway;\nimport com.pulumi.ionoscloud.vpn.IpsecGatewayArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var testDatacenter = new Datacenter(\"testDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var testLan = new Lan(\"testLan\", LanArgs.builder()        \n            .public_(false)\n            .datacenterId(testDatacenter.id())\n            .build());\n\n        var testIpblock = new IPBlock(\"testIpblock\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var example = new IpsecGateway(\"example\", IpsecGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayIp(testIpblock.ips().applyValue(ips -\u003e ips[0]))\n            .version(\"IKEv2\")\n            .description(\"This gateway connects site A to VDC X.\")\n            .connections(IpsecGatewayConnectionArgs.builder()\n                .datacenterId(testDatacenter.id())\n                .lanId(testLan.id())\n                .ipv4Cidr(\"192.168.100.10/24\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  testDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  testLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      public: false\n      datacenterId: ${testDatacenter.id}\n  testIpblock:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  example:\n    type: ionoscloud:vpn:IpsecGateway\n    properties:\n      location: de/fra\n      gatewayIp: ${testIpblock.ips[0]}\n      version: IKEv2\n      description: This gateway connects site A to VDC X.\n      connections:\n        - datacenterId: ${testDatacenter.id}\n          lanId: ${testLan.id}\n          ipv4Cidr: 192.168.100.10/24\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `location` and `gateway_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}\n```\n\n",
+            "properties": {
+                "connections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecGatewayConnection:IpsecGatewayConnection"
+                    },
+                    "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] The human-readable description of the IPSec Gateway.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the IPSec Gateway.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
+                }
+            },
+            "required": [
+                "connections",
+                "gatewayIp",
+                "location",
+                "name"
+            ],
+            "inputProperties": {
+                "connections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecGatewayConnection:IpsecGatewayConnection"
+                    },
+                    "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] The human-readable description of the IPSec Gateway.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the IPSec Gateway.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
+                }
+            },
+            "requiredInputs": [
+                "connections",
+                "gatewayIp",
+                "location"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IpsecGateway resources.\n",
+                "properties": {
+                    "connections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:vpn/IpsecGatewayConnection:IpsecGatewayConnection"
+                        },
+                        "description": "[list] The network connection for your gateway. **Note**: all connections must belong to the\nsame datacenter. Minimum items: 1. Maximum items: 10.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "[string] The human-readable description of the IPSec Gateway.\n"
+                    },
+                    "gatewayIp": {
+                        "type": "string",
+                        "description": "[string] Public IP address to be assigned to the gateway. Note: This must be an IP address in\nthe same datacenter as the connections.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the IPSec Gateway.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "[string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible\nvalues: `IKEv2`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:vpn/ipsecTunnel:IpsecTunnel": {
+            "description": "An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the\nIONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure\nconnections between your network resources.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\n// Basic example\nconst testDatacenter = new ionoscloud.compute.Datacenter(\"testDatacenter\", {location: \"de/fra\"});\nconst testLan = new ionoscloud.compute.Lan(\"testLan\", {\n    \"public\": false,\n    datacenterId: testDatacenter.id,\n});\nconst testIpblock = new ionoscloud.compute.IPBlock(\"testIpblock\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst exampleIpsecGateway = new ionoscloud.vpn.IpsecGateway(\"exampleIpsecGateway\", {\n    location: \"de/fra\",\n    gatewayIp: testIpblock.ips[0],\n    version: \"IKEv2\",\n    description: \"This gateway connects site A to VDC X.\",\n    connections: [{\n        datacenterId: testDatacenter.id,\n        lanId: testLan.id,\n        ipv4Cidr: \"192.168.100.10/24\",\n    }],\n});\nconst exampleIpsecTunnel = new ionoscloud.vpn.IpsecTunnel(\"exampleIpsecTunnel\", {\n    location: \"de/fra\",\n    gatewayId: exampleIpsecGateway.id,\n    remoteHost: \"vpn.mycompany.com\",\n    description: \"Allows local subnet X to connect to virtual network Y.\",\n    auth: {\n        method: \"PSK\",\n        pskKey: \"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n    },\n    ike: {\n        diffieHellmanGroup: \"16-MODP4096\",\n        encryptionAlgorithm: \"AES256\",\n        integrityAlgorithm: \"SHA256\",\n        lifetime: 86400,\n    },\n    esps: [{\n        diffieHellmanGroup: \"16-MODP4096\",\n        encryptionAlgorithm: \"AES256\",\n        integrityAlgorithm: \"SHA256\",\n        lifetime: 3600,\n    }],\n    cloudNetworkCidrs: [\"0.0.0.0/0\"],\n    peerNetworkCidrs: [\"1.2.3.4/32\"],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\n# Basic example\ntest_datacenter = ionoscloud.compute.Datacenter(\"testDatacenter\", location=\"de/fra\")\ntest_lan = ionoscloud.compute.Lan(\"testLan\",\n    public=False,\n    datacenter_id=test_datacenter.id)\ntest_ipblock = ionoscloud.compute.IPBlock(\"testIpblock\",\n    location=\"de/fra\",\n    size=1)\nexample_ipsec_gateway = ionoscloud.vpn.IpsecGateway(\"exampleIpsecGateway\",\n    location=\"de/fra\",\n    gateway_ip=test_ipblock.ips[0],\n    version=\"IKEv2\",\n    description=\"This gateway connects site A to VDC X.\",\n    connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(\n        datacenter_id=test_datacenter.id,\n        lan_id=test_lan.id,\n        ipv4_cidr=\"192.168.100.10/24\",\n    )])\nexample_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel(\"exampleIpsecTunnel\",\n    location=\"de/fra\",\n    gateway_id=example_ipsec_gateway.id,\n    remote_host=\"vpn.mycompany.com\",\n    description=\"Allows local subnet X to connect to virtual network Y.\",\n    auth=ionoscloud.vpn.IpsecTunnelAuthArgs(\n        method=\"PSK\",\n        psk_key=\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n    ),\n    ike=ionoscloud.vpn.IpsecTunnelIkeArgs(\n        diffie_hellman_group=\"16-MODP4096\",\n        encryption_algorithm=\"AES256\",\n        integrity_algorithm=\"SHA256\",\n        lifetime=86400,\n    ),\n    esps=[ionoscloud.vpn.IpsecTunnelEspArgs(\n        diffie_hellman_group=\"16-MODP4096\",\n        encryption_algorithm=\"AES256\",\n        integrity_algorithm=\"SHA256\",\n        lifetime=3600,\n    )],\n    cloud_network_cidrs=[\"0.0.0.0/0\"],\n    peer_network_cidrs=[\"1.2.3.4/32\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Basic example\n    var testDatacenter = new Ionoscloud.Compute.Datacenter(\"testDatacenter\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var testLan = new Ionoscloud.Compute.Lan(\"testLan\", new()\n    {\n        Public = false,\n        DatacenterId = testDatacenter.Id,\n    });\n\n    var testIpblock = new Ionoscloud.Compute.IPBlock(\"testIpblock\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var exampleIpsecGateway = new Ionoscloud.Vpn.IpsecGateway(\"exampleIpsecGateway\", new()\n    {\n        Location = \"de/fra\",\n        GatewayIp = testIpblock.Ips.Apply(ips =\u003e ips[0]),\n        Version = \"IKEv2\",\n        Description = \"This gateway connects site A to VDC X.\",\n        Connections = new[]\n        {\n            new Ionoscloud.Vpn.Inputs.IpsecGatewayConnectionArgs\n            {\n                DatacenterId = testDatacenter.Id,\n                LanId = testLan.Id,\n                Ipv4Cidr = \"192.168.100.10/24\",\n            },\n        },\n    });\n\n    var exampleIpsecTunnel = new Ionoscloud.Vpn.IpsecTunnel(\"exampleIpsecTunnel\", new()\n    {\n        Location = \"de/fra\",\n        GatewayId = exampleIpsecGateway.Id,\n        RemoteHost = \"vpn.mycompany.com\",\n        Description = \"Allows local subnet X to connect to virtual network Y.\",\n        Auth = new Ionoscloud.Vpn.Inputs.IpsecTunnelAuthArgs\n        {\n            Method = \"PSK\",\n            PskKey = \"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\",\n        },\n        Ike = new Ionoscloud.Vpn.Inputs.IpsecTunnelIkeArgs\n        {\n            DiffieHellmanGroup = \"16-MODP4096\",\n            EncryptionAlgorithm = \"AES256\",\n            IntegrityAlgorithm = \"SHA256\",\n            Lifetime = 86400,\n        },\n        Esps = new[]\n        {\n            new Ionoscloud.Vpn.Inputs.IpsecTunnelEspArgs\n            {\n                DiffieHellmanGroup = \"16-MODP4096\",\n                EncryptionAlgorithm = \"AES256\",\n                IntegrityAlgorithm = \"SHA256\",\n                Lifetime = 3600,\n            },\n        },\n        CloudNetworkCidrs = new[]\n        {\n            \"0.0.0.0/0\",\n        },\n        PeerNetworkCidrs = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Basic example\n\t\ttestDatacenter, err := compute.NewDatacenter(ctx, \"testDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestLan, err := compute.NewLan(ctx, \"testLan\", \u0026compute.LanArgs{\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttestIpblock, err := compute.NewIPBlock(ctx, \"testIpblock\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleIpsecGateway, err := vpn.NewIpsecGateway(ctx, \"exampleIpsecGateway\", \u0026vpn.IpsecGatewayArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tGatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tVersion:     pulumi.String(\"IKEv2\"),\n\t\t\tDescription: pulumi.String(\"This gateway connects site A to VDC X.\"),\n\t\t\tConnections: vpn.IpsecGatewayConnectionArray{\n\t\t\t\t\u0026vpn.IpsecGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: testDatacenter.ID(),\n\t\t\t\t\tLanId:        testLan.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.100.10/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vpn.NewIpsecTunnel(ctx, \"exampleIpsecTunnel\", \u0026vpn.IpsecTunnelArgs{\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tGatewayId:   exampleIpsecGateway.ID(),\n\t\t\tRemoteHost:  pulumi.String(\"vpn.mycompany.com\"),\n\t\t\tDescription: pulumi.String(\"Allows local subnet X to connect to virtual network Y.\"),\n\t\t\tAuth: \u0026vpn.IpsecTunnelAuthArgs{\n\t\t\t\tMethod: pulumi.String(\"PSK\"),\n\t\t\t\tPskKey: pulumi.String(\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\"),\n\t\t\t},\n\t\t\tIke: \u0026vpn.IpsecTunnelIkeArgs{\n\t\t\t\tDiffieHellmanGroup:  pulumi.String(\"16-MODP4096\"),\n\t\t\t\tEncryptionAlgorithm: pulumi.String(\"AES256\"),\n\t\t\t\tIntegrityAlgorithm:  pulumi.String(\"SHA256\"),\n\t\t\t\tLifetime:            pulumi.Int(86400),\n\t\t\t},\n\t\t\tEsps: vpn.IpsecTunnelEspArray{\n\t\t\t\t\u0026vpn.IpsecTunnelEspArgs{\n\t\t\t\t\tDiffieHellmanGroup:  pulumi.String(\"16-MODP4096\"),\n\t\t\t\t\tEncryptionAlgorithm: pulumi.String(\"AES256\"),\n\t\t\t\t\tIntegrityAlgorithm:  pulumi.String(\"SHA256\"),\n\t\t\t\t\tLifetime:            pulumi.Int(3600),\n\t\t\t\t},\n\t\t\t},\n\t\t\tCloudNetworkCidrs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"0.0.0.0/0\"),\n\t\t\t},\n\t\t\tPeerNetworkCidrs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.vpn.IpsecGateway;\nimport com.pulumi.ionoscloud.vpn.IpsecGatewayArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.IpsecGatewayConnectionArgs;\nimport com.pulumi.ionoscloud.vpn.IpsecTunnel;\nimport com.pulumi.ionoscloud.vpn.IpsecTunnelArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelAuthArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelIkeArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.IpsecTunnelEspArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Basic example\n        var testDatacenter = new Datacenter(\"testDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var testLan = new Lan(\"testLan\", LanArgs.builder()        \n            .public_(false)\n            .datacenterId(testDatacenter.id())\n            .build());\n\n        var testIpblock = new IPBlock(\"testIpblock\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var exampleIpsecGateway = new IpsecGateway(\"exampleIpsecGateway\", IpsecGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayIp(testIpblock.ips().applyValue(ips -\u003e ips[0]))\n            .version(\"IKEv2\")\n            .description(\"This gateway connects site A to VDC X.\")\n            .connections(IpsecGatewayConnectionArgs.builder()\n                .datacenterId(testDatacenter.id())\n                .lanId(testLan.id())\n                .ipv4Cidr(\"192.168.100.10/24\")\n                .build())\n            .build());\n\n        var exampleIpsecTunnel = new IpsecTunnel(\"exampleIpsecTunnel\", IpsecTunnelArgs.builder()        \n            .location(\"de/fra\")\n            .gatewayId(exampleIpsecGateway.id())\n            .remoteHost(\"vpn.mycompany.com\")\n            .description(\"Allows local subnet X to connect to virtual network Y.\")\n            .auth(IpsecTunnelAuthArgs.builder()\n                .method(\"PSK\")\n                .pskKey(\"X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\")\n                .build())\n            .ike(IpsecTunnelIkeArgs.builder()\n                .diffieHellmanGroup(\"16-MODP4096\")\n                .encryptionAlgorithm(\"AES256\")\n                .integrityAlgorithm(\"SHA256\")\n                .lifetime(86400)\n                .build())\n            .esps(IpsecTunnelEspArgs.builder()\n                .diffieHellmanGroup(\"16-MODP4096\")\n                .encryptionAlgorithm(\"AES256\")\n                .integrityAlgorithm(\"SHA256\")\n                .lifetime(3600)\n                .build())\n            .cloudNetworkCidrs(\"0.0.0.0/0\")\n            .peerNetworkCidrs(\"1.2.3.4/32\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Basic example\n  testDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  testLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      public: false\n      datacenterId: ${testDatacenter.id}\n  testIpblock:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  exampleIpsecGateway:\n    type: ionoscloud:vpn:IpsecGateway\n    properties:\n      location: de/fra\n      gatewayIp: ${testIpblock.ips[0]}\n      version: IKEv2\n      description: This gateway connects site A to VDC X.\n      connections:\n        - datacenterId: ${testDatacenter.id}\n          lanId: ${testLan.id}\n          ipv4Cidr: 192.168.100.10/24\n  exampleIpsecTunnel:\n    type: ionoscloud:vpn:IpsecTunnel\n    properties:\n      location: de/fra\n      gatewayId: ${exampleIpsecGateway.id}\n      remoteHost: vpn.mycompany.com\n      description: Allows local subnet X to connect to virtual network Y.\n      auth:\n        method: PSK\n        pskKey: X2wosbaw74M8hQGbK3jCCaEusR6CCFRa\n      ike:\n        diffieHellmanGroup: 16-MODP4096\n        encryptionAlgorithm: AES256\n        integrityAlgorithm: SHA256\n        lifetime: 86400\n      esps:\n        - diffieHellmanGroup: 16-MODP4096\n          encryptionAlgorithm: AES256\n          integrityAlgorithm: SHA256\n          lifetime: 3600\n      cloudNetworkCidrs:\n        - 0.0.0.0/0\n      peerNetworkCidrs:\n        - 1.2.3.4/32\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}\n```\n\n",
+            "properties": {
+                "auth": {
+                    "$ref": "#/types/ionoscloud:vpn/IpsecTunnelAuth:IpsecTunnelAuth",
+                    "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
+                },
+                "cloudNetworkCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
+                },
+                "esps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecTunnelEsp:IpsecTunnelEsp"
+                    },
+                    "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
+                },
+                "gatewayId": {
+                    "type": "string",
+                    "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
+                },
+                "ike": {
+                    "$ref": "#/types/ionoscloud:vpn/IpsecTunnelIke:IpsecTunnelIke",
+                    "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the IPSec Gateway Tunnel.\n"
+                },
+                "peerNetworkCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
+                },
+                "remoteHost": {
+                    "type": "string",
+                    "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
+                }
+            },
+            "required": [
+                "auth",
+                "cloudNetworkCidrs",
+                "esps",
+                "gatewayId",
+                "ike",
+                "location",
+                "name",
+                "peerNetworkCidrs",
+                "remoteHost"
+            ],
+            "inputProperties": {
+                "auth": {
+                    "$ref": "#/types/ionoscloud:vpn/IpsecTunnelAuth:IpsecTunnelAuth",
+                    "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
+                },
+                "cloudNetworkCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
+                },
+                "esps": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecTunnelEsp:IpsecTunnelEsp"
+                    },
+                    "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
+                },
+                "gatewayId": {
+                    "type": "string",
+                    "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
+                },
+                "ike": {
+                    "$ref": "#/types/ionoscloud:vpn/IpsecTunnelIke:IpsecTunnelIke",
+                    "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the IPSec Gateway Tunnel.\n"
+                },
+                "peerNetworkCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
+                },
+                "remoteHost": {
+                    "type": "string",
+                    "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
+                }
+            },
+            "requiredInputs": [
+                "auth",
+                "cloudNetworkCidrs",
+                "esps",
+                "gatewayId",
+                "ike",
+                "location",
+                "peerNetworkCidrs",
+                "remoteHost"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IpsecTunnel resources.\n",
+                "properties": {
+                    "auth": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecTunnelAuth:IpsecTunnelAuth",
+                        "description": "[string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum\nitems: 1.\n"
+                    },
+                    "cloudNetworkCidrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "[list] The network CIDRs on the \"Left\" side that are allowed to connect to the IPSec\ntunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1.\nMaximum items: 20.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "[string] The human-readable description of your IPSec Gateway Tunnel.\n"
+                    },
+                    "esps": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:vpn/IpsecTunnelEsp:IpsecTunnelEsp"
+                        },
+                        "description": "[list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.\n"
+                    },
+                    "gatewayId": {
+                        "type": "string",
+                        "description": "[string] The ID of the IPSec Gateway that the tunnel belongs to.\n"
+                    },
+                    "ike": {
+                        "$ref": "#/types/ionoscloud:vpn/IpsecTunnelIke:IpsecTunnelIke",
+                        "description": "[list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,\ngb/lhr, us/ewr, us/las, us/mci, fr/par\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the IPSec Gateway Tunnel.\n"
+                    },
+                    "peerNetworkCidrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "[list] The network CIDRs on the \"Right\" side that are allowed to connect to the IPSec\ntunnel. Specify \"0.0.0.0/0\" or \"::/0\" for all addresses. Minimum items: 1. Maximum items: 20.\n"
+                    },
+                    "remoteHost": {
+                        "type": "string",
+                        "description": "[string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:vpn/wireguardGateway:WireguardGateway": {
+            "description": "## Overview\n\nThe `ionoscloud.vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure. \nThis resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst datacenterExample = new ionoscloud.compute.Datacenter(\"datacenterExample\", {location: \"de/fra\"});\nconst ipblockExample = new ionoscloud.compute.IPBlock(\"ipblockExample\", {\n    location: \"de/fra\",\n    size: 1,\n});\nconst lanExample = new ionoscloud.compute.Lan(\"lanExample\", {datacenterId: datacenterExample.id});\nconst gateway = new ionoscloud.vpn.WireguardGateway(\"gateway\", {\n    location: \"de/fra\",\n    description: \"description\",\n    privateKey: \"private\",\n    gatewayIp: ipblockExample.ips[0],\n    interfaceIpv4Cidr: \"192.168.1.100/24\",\n    connections: [{\n        datacenterId: datacenterExample.id,\n        lanId: lanExample.id,\n        ipv4Cidr: \"192.168.1.108/24\",\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\ndatacenter_example = ionoscloud.compute.Datacenter(\"datacenterExample\", location=\"de/fra\")\nipblock_example = ionoscloud.compute.IPBlock(\"ipblockExample\",\n    location=\"de/fra\",\n    size=1)\nlan_example = ionoscloud.compute.Lan(\"lanExample\", datacenter_id=datacenter_example.id)\ngateway = ionoscloud.vpn.WireguardGateway(\"gateway\",\n    location=\"de/fra\",\n    description=\"description\",\n    private_key=\"private\",\n    gateway_ip=ipblock_example.ips[0],\n    interface_ipv4_cidr=\"192.168.1.100/24\",\n    connections=[ionoscloud.vpn.WireguardGatewayConnectionArgs(\n        datacenter_id=datacenter_example.id,\n        lan_id=lan_example.id,\n        ipv4_cidr=\"192.168.1.108/24\",\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var datacenterExample = new Ionoscloud.Compute.Datacenter(\"datacenterExample\", new()\n    {\n        Location = \"de/fra\",\n    });\n\n    var ipblockExample = new Ionoscloud.Compute.IPBlock(\"ipblockExample\", new()\n    {\n        Location = \"de/fra\",\n        Size = 1,\n    });\n\n    var lanExample = new Ionoscloud.Compute.Lan(\"lanExample\", new()\n    {\n        DatacenterId = datacenterExample.Id,\n    });\n\n    var gateway = new Ionoscloud.Vpn.WireguardGateway(\"gateway\", new()\n    {\n        Location = \"de/fra\",\n        Description = \"description\",\n        PrivateKey = \"private\",\n        GatewayIp = ipblockExample.Ips.Apply(ips =\u003e ips[0]),\n        InterfaceIpv4Cidr = \"192.168.1.100/24\",\n        Connections = new[]\n        {\n            new Ionoscloud.Vpn.Inputs.WireguardGatewayConnectionArgs\n            {\n                DatacenterId = datacenterExample.Id,\n                LanId = lanExample.Id,\n                Ipv4Cidr = \"192.168.1.108/24\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdatacenterExample, err := compute.NewDatacenter(ctx, \"datacenterExample\", \u0026compute.DatacenterArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tipblockExample, err := compute.NewIPBlock(ctx, \"ipblockExample\", \u0026compute.IPBlockArgs{\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tSize:     pulumi.Int(1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlanExample, err := compute.NewLan(ctx, \"lanExample\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vpn.NewWireguardGateway(ctx, \"gateway\", \u0026vpn.WireguardGatewayArgs{\n\t\t\tLocation:    pulumi.String(\"de/fra\"),\n\t\t\tDescription: pulumi.String(\"description\"),\n\t\t\tPrivateKey:  pulumi.String(\"private\"),\n\t\t\tGatewayIp: ipblockExample.Ips.ApplyT(func(ips []string) (string, error) {\n\t\t\t\treturn ips[0], nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tInterfaceIpv4Cidr: pulumi.String(\"192.168.1.100/24\"),\n\t\t\tConnections: vpn.WireguardGatewayConnectionArray{\n\t\t\t\t\u0026vpn.WireguardGatewayConnectionArgs{\n\t\t\t\t\tDatacenterId: datacenterExample.ID(),\n\t\t\t\t\tLanId:        lanExample.ID(),\n\t\t\t\t\tIpv4Cidr:     pulumi.String(\"192.168.1.108/24\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.IPBlock;\nimport com.pulumi.ionoscloud.compute.IPBlockArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.vpn.WireguardGateway;\nimport com.pulumi.ionoscloud.vpn.WireguardGatewayArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.WireguardGatewayConnectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var datacenterExample = new Datacenter(\"datacenterExample\", DatacenterArgs.builder()        \n            .location(\"de/fra\")\n            .build());\n\n        var ipblockExample = new IPBlock(\"ipblockExample\", IPBlockArgs.builder()        \n            .location(\"de/fra\")\n            .size(1)\n            .build());\n\n        var lanExample = new Lan(\"lanExample\", LanArgs.builder()        \n            .datacenterId(datacenterExample.id())\n            .build());\n\n        var gateway = new WireguardGateway(\"gateway\", WireguardGatewayArgs.builder()        \n            .location(\"de/fra\")\n            .description(\"description\")\n            .privateKey(\"private\")\n            .gatewayIp(ipblockExample.ips().applyValue(ips -\u003e ips[0]))\n            .interfaceIpv4Cidr(\"192.168.1.100/24\")\n            .connections(WireguardGatewayConnectionArgs.builder()\n                .datacenterId(datacenterExample.id())\n                .lanId(lanExample.id())\n                .ipv4Cidr(\"192.168.1.108/24\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  datacenterExample:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/fra\n  ipblockExample:\n    type: ionoscloud:compute:IPBlock\n    properties:\n      location: de/fra\n      size: 1\n  lanExample:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${datacenterExample.id}\n  gateway:\n    type: ionoscloud:vpn:WireguardGateway\n    properties:\n      location: de/fra\n      description: description\n      privateKey: private\n      gatewayIp: ${ipblockExample.ips[0]}\n      interfaceIpv4Cidr: 192.168.1.100/24\n      connections:\n        - datacenterId: ${datacenterExample.id}\n          lanId: ${lanExample.id}\n          ipv4Cidr: 192.168.1.108/24\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nWireGuard Gateways can be imported using their ID:\n\n```sh\n$ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id\n```\n\n",
+            "properties": {
+                "connections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/WireguardGatewayConnection:WireguardGatewayConnection"
+                    },
+                    "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[String] A description of the WireGuard Gateway.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "[String] The IP address of the WireGuard Gateway.\n"
+                },
+                "interfaceIpv4Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
+                },
+                "interfaceIpv6Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
+                },
+                "listenPort": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[String] The location of the WireGuard Gateway.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[String] The name of the WireGuard Gateway.\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
+                    "secret": true
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "(Computed)[String] The public key for the WireGuard Gateway.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "(Computed)[String] The current status of the WireGuard Gateway.\n"
+                }
+            },
+            "required": [
+                "connections",
+                "gatewayIp",
+                "location",
+                "name",
+                "privateKey",
+                "publicKey",
+                "status"
+            ],
+            "inputProperties": {
+                "connections": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:vpn/WireguardGatewayConnection:WireguardGatewayConnection"
+                    },
+                    "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[String] A description of the WireGuard Gateway.\n"
+                },
+                "gatewayIp": {
+                    "type": "string",
+                    "description": "[String] The IP address of the WireGuard Gateway.\n"
+                },
+                "interfaceIpv4Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
+                },
+                "interfaceIpv6Cidr": {
+                    "type": "string",
+                    "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
+                },
+                "listenPort": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[String] The location of the WireGuard Gateway.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[String] The name of the WireGuard Gateway.\n"
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
+                    "secret": true
+                }
+            },
+            "requiredInputs": [
+                "connections",
+                "gatewayIp",
+                "location",
+                "privateKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering WireguardGateway resources.\n",
+                "properties": {
+                    "connections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:vpn/WireguardGatewayConnection:WireguardGatewayConnection"
+                        },
+                        "description": "[Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "[String] A description of the WireGuard Gateway.\n"
+                    },
+                    "gatewayIp": {
+                        "type": "string",
+                        "description": "[String] The IP address of the WireGuard Gateway.\n"
+                    },
+                    "interfaceIpv4Cidr": {
+                        "type": "string",
+                        "description": "[String] The IPv4 CIDR for the WireGuard Gateway interface.\n"
+                    },
+                    "interfaceIpv6Cidr": {
+                        "type": "string",
+                        "description": "[String] The IPv6 CIDR for the WireGuard Gateway interface.\n"
+                    },
+                    "listenPort": {
+                        "type": "integer"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[String] The location of the WireGuard Gateway.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[String] The name of the WireGuard Gateway.\n"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "description": "[String] The private key for the WireGuard Gateway. To be created with the wg utility.\n",
+                        "secret": true
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "(Computed)[String] The public key for the WireGuard Gateway.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "(Computed)[String] The current status of the WireGuard Gateway.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:vpn/wireguardPeer:WireguardPeer": {
+            "description": "This page provides an overview of the `ionoscloud.vpn.WireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure. \nThis resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.vpn.WireguardPeer(\"example\", {\n    allowedIps: [\n        \"10.0.0.0/8\",\n        \"192.168.1.0/24\",\n    ],\n    description: \"An example WireGuard peer\",\n    endpoint: {\n        host: \"1.2.3.4\",\n        port: 51820,\n    },\n    gatewayId: \"your gateway id here\",\n    location: \"de/fra\",\n    publicKey: \"examplePublicKey==\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.vpn.WireguardPeer(\"example\",\n    allowed_ips=[\n        \"10.0.0.0/8\",\n        \"192.168.1.0/24\",\n    ],\n    description=\"An example WireGuard peer\",\n    endpoint=ionoscloud.vpn.WireguardPeerEndpointArgs(\n        host=\"1.2.3.4\",\n        port=51820,\n    ),\n    gateway_id=\"your gateway id here\",\n    location=\"de/fra\",\n    public_key=\"examplePublicKey==\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Vpn.WireguardPeer(\"example\", new()\n    {\n        AllowedIps = new[]\n        {\n            \"10.0.0.0/8\",\n            \"192.168.1.0/24\",\n        },\n        Description = \"An example WireGuard peer\",\n        Endpoint = new Ionoscloud.Vpn.Inputs.WireguardPeerEndpointArgs\n        {\n            Host = \"1.2.3.4\",\n            Port = 51820,\n        },\n        GatewayId = \"your gateway id here\",\n        Location = \"de/fra\",\n        PublicKey = \"examplePublicKey==\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vpn.NewWireguardPeer(ctx, \"example\", \u0026vpn.WireguardPeerArgs{\n\t\t\tAllowedIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.0.0/8\"),\n\t\t\t\tpulumi.String(\"192.168.1.0/24\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"An example WireGuard peer\"),\n\t\t\tEndpoint: \u0026vpn.WireguardPeerEndpointArgs{\n\t\t\t\tHost: pulumi.String(\"1.2.3.4\"),\n\t\t\t\tPort: pulumi.Int(51820),\n\t\t\t},\n\t\t\tGatewayId: pulumi.String(\"your gateway id here\"),\n\t\t\tLocation:  pulumi.String(\"de/fra\"),\n\t\t\tPublicKey: pulumi.String(\"examplePublicKey==\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.vpn.WireguardPeer;\nimport com.pulumi.ionoscloud.vpn.WireguardPeerArgs;\nimport com.pulumi.ionoscloud.vpn.inputs.WireguardPeerEndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new WireguardPeer(\"example\", WireguardPeerArgs.builder()        \n            .allowedIps(            \n                \"10.0.0.0/8\",\n                \"192.168.1.0/24\")\n            .description(\"An example WireGuard peer\")\n            .endpoint(WireguardPeerEndpointArgs.builder()\n                .host(\"1.2.3.4\")\n                .port(51820)\n                .build())\n            .gatewayId(\"your gateway id here\")\n            .location(\"de/fra\")\n            .publicKey(\"examplePublicKey==\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:vpn:WireguardPeer\n    properties:\n      allowedIps:\n        - 10.0.0.0/8\n        - 192.168.1.0/24\n      description: An example WireGuard peer\n      endpoint:\n        host: 1.2.3.4\n        port: 51820\n      gatewayId: your gateway id here\n      location: de/fra\n      publicKey: examplePublicKey==\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nWireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,\n\n```sh\n$ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example \u003cgateway_id\u003e:\u003cpeer_id\u003e\n```\n\n",
+            "properties": {
+                "allowedIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] A description of the WireGuard Gateway.\n"
+                },
+                "endpoint": {
+                    "$ref": "#/types/ionoscloud:vpn/WireguardPeerEndpoint:WireguardPeerEndpoint",
+                    "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
+                },
+                "gatewayId": {
+                    "type": "string",
+                    "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the WireGuard Gateway.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The human-readable name of the WireGuard Gateway.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "[string] The public key for the WireGuard Gateway.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The current status of the WireGuard Gateway Peer.\n"
+                }
+            },
+            "required": [
+                "allowedIps",
+                "gatewayId",
+                "location",
+                "name",
+                "publicKey",
+                "status"
+            ],
+            "inputProperties": {
+                "allowedIps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "[string] A description of the WireGuard Gateway.\n"
+                },
+                "endpoint": {
+                    "$ref": "#/types/ionoscloud:vpn/WireguardPeerEndpoint:WireguardPeerEndpoint",
+                    "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
+                },
+                "gatewayId": {
+                    "type": "string",
+                    "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the WireGuard Gateway.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The human-readable name of the WireGuard Gateway.\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "[string] The public key for the WireGuard Gateway.\n"
+                }
+            },
+            "requiredInputs": [
+                "allowedIps",
+                "gatewayId",
+                "location",
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering WireguardPeer resources.\n",
+                "properties": {
+                    "allowedIps": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "[list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "[string] A description of the WireGuard Gateway.\n"
+                    },
+                    "endpoint": {
+                        "$ref": "#/types/ionoscloud:vpn/WireguardPeerEndpoint:WireguardPeerEndpoint",
+                        "description": "[block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:\n"
+                    },
+                    "gatewayId": {
+                        "type": "string",
+                        "description": "[string] The ID of the WireGuard Gateway that the Peer will connect to.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the WireGuard Gateway.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The human-readable name of the WireGuard Gateway.\n"
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "[string] The public key for the WireGuard Gateway.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The current status of the WireGuard Gateway Peer.\n"
                     }
                 },
                 "type": "object"
@@ -21370,7 +21370,7 @@
             }
         },
         "ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway": {
-            "description": "The `ionoscloud.VpnWireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getVpnWireguardGateway({\n    location: \"de/fra\",\n    name: \"example-gateway\",\n});\nexport const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_vpn_wireguard_gateway(location=\"de/fra\",\n    name=\"example-gateway\")\npulumi.export(\"vpnWireguardGatewayPublicKey\", data[\"vpn_wireguard_gateway\"][\"example\"][\"public_key\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetVpnWireguardGateway.Invoke(new()\n    {\n        Location = \"de/fra\",\n        Name = \"example-gateway\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"vpnWireguardGatewayPublicKey\"] = data.Vpn_wireguard_gateway.Example.Public_key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupVpnWireguardGateway(ctx, \u0026ionoscloud.LookupVpnWireguardGatewayArgs{\n\t\t\tLocation: \"de/fra\",\n\t\t\tName:     pulumi.StringRef(\"example-gateway\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"vpnWireguardGatewayPublicKey\", data.Vpn_wireguard_gateway.Example.Public_key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetVpnWireguardGatewayArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getVpnWireguardGateway(GetVpnWireguardGatewayArgs.builder()\n            .location(\"de/fra\")\n            .name(\"example-gateway\")\n            .build());\n\n        ctx.export(\"vpnWireguardGatewayPublicKey\", data.vpn_wireguard_gateway().example().public_key());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getVpnWireguardGateway\n      Arguments:\n        location: de/fra\n        name: example-gateway\noutputs:\n  vpnWireguardGatewayPublicKey: ${data.vpn_wireguard_gateway.example.public_key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getVpnWireguardGateway({\n    location: \"de/fra\",\n    name: \"example-gateway\",\n});\nexport const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_vpn_wireguard_gateway(location=\"de/fra\",\n    name=\"example-gateway\")\npulumi.export(\"vpnWireguardGatewayPublicKey\", data[\"vpn_wireguard_gateway\"][\"example\"][\"public_key\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetVpnWireguardGateway.Invoke(new()\n    {\n        Location = \"de/fra\",\n        Name = \"example-gateway\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"vpnWireguardGatewayPublicKey\"] = data.Vpn_wireguard_gateway.Example.Public_key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetVpnWireguardGateway(ctx, \u0026ionoscloud.GetVpnWireguardGatewayArgs{\n\t\t\tLocation: \"de/fra\",\n\t\t\tName:     pulumi.StringRef(\"example-gateway\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"vpnWireguardGatewayPublicKey\", data.Vpn_wireguard_gateway.Example.Public_key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetVpnWireguardGatewayArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getVpnWireguardGateway(GetVpnWireguardGatewayArgs.builder()\n            .location(\"de/fra\")\n            .name(\"example-gateway\")\n            .build());\n\n        ctx.export(\"vpnWireguardGatewayPublicKey\", data.vpn_wireguard_gateway().example().public_key());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getVpnWireguardGateway\n      Arguments:\n        location: de/fra\n        name: example-gateway\noutputs:\n  vpnWireguardGatewayPublicKey: ${data.vpn_wireguard_gateway.example.public_key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getVpnWireguardGateway.\n",
                 "properties": {
@@ -21459,7 +21459,7 @@
             }
         },
         "ionoscloud:index/getVpnWireguardPeer:getVpnWireguardPeer": {
-            "description": "The `ionoscloud.VpnWireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getVpnWireguardPeer({\n    location: \"de/fra\",\n    gatewayId: \"example-gateway\",\n    name: \"example-peer\",\n});\nexport const vpnWireguardPeerPublicKey = data.vpn_wireguard_peer.example.public_key;\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_vpn_wireguard_peer(location=\"de/fra\",\n    gateway_id=\"example-gateway\",\n    name=\"example-peer\")\npulumi.export(\"vpnWireguardPeerPublicKey\", data[\"vpn_wireguard_peer\"][\"example\"][\"public_key\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetVpnWireguardPeer.Invoke(new()\n    {\n        Location = \"de/fra\",\n        GatewayId = \"example-gateway\",\n        Name = \"example-peer\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"vpnWireguardPeerPublicKey\"] = data.Vpn_wireguard_peer.Example.Public_key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupVpnWireguardPeer(ctx, \u0026ionoscloud.LookupVpnWireguardPeerArgs{\n\t\t\tLocation:  \"de/fra\",\n\t\t\tGatewayId: \"example-gateway\",\n\t\t\tName:      pulumi.StringRef(\"example-peer\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"vpnWireguardPeerPublicKey\", data.Vpn_wireguard_peer.Example.Public_key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetVpnWireguardPeerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getVpnWireguardPeer(GetVpnWireguardPeerArgs.builder()\n            .location(\"de/fra\")\n            .gatewayId(\"example-gateway\")\n            .name(\"example-peer\")\n            .build());\n\n        ctx.export(\"vpnWireguardPeerPublicKey\", data.vpn_wireguard_peer().example().public_key());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getVpnWireguardPeer\n      Arguments:\n        location: de/fra\n        gatewayId: example-gateway\n        name: example-peer\noutputs:\n  vpnWireguardPeerPublicKey: ${data.vpn_wireguard_peer.example.public_key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getVpnWireguardPeer({\n    location: \"de/fra\",\n    gatewayId: \"example-gateway\",\n    name: \"example-peer\",\n});\nexport const vpnWireguardPeerPublicKey = data.vpn_wireguard_peer.example.public_key;\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_vpn_wireguard_peer(location=\"de/fra\",\n    gateway_id=\"example-gateway\",\n    name=\"example-peer\")\npulumi.export(\"vpnWireguardPeerPublicKey\", data[\"vpn_wireguard_peer\"][\"example\"][\"public_key\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetVpnWireguardPeer.Invoke(new()\n    {\n        Location = \"de/fra\",\n        GatewayId = \"example-gateway\",\n        Name = \"example-peer\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"vpnWireguardPeerPublicKey\"] = data.Vpn_wireguard_peer.Example.Public_key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetVpnWireguardPeer(ctx, \u0026ionoscloud.GetVpnWireguardPeerArgs{\n\t\t\tLocation:  \"de/fra\",\n\t\t\tGatewayId: \"example-gateway\",\n\t\t\tName:      pulumi.StringRef(\"example-peer\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"vpnWireguardPeerPublicKey\", data.Vpn_wireguard_peer.Example.Public_key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetVpnWireguardPeerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getVpnWireguardPeer(GetVpnWireguardPeerArgs.builder()\n            .location(\"de/fra\")\n            .gatewayId(\"example-gateway\")\n            .name(\"example-peer\")\n            .build());\n\n        ctx.export(\"vpnWireguardPeerPublicKey\", data.vpn_wireguard_peer().example().public_key());\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getVpnWireguardPeer\n      Arguments:\n        location: de/fra\n        gatewayId: example-gateway\n        name: example-peer\noutputs:\n  vpnWireguardPeerPublicKey: ${data.vpn_wireguard_peer.example.public_key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getVpnWireguardPeer.\n",
                 "properties": {
