@@ -25,25 +25,10 @@ export type ApplicationLoadbalancerForwardingrule = import("./applicationLoadbal
 export const ApplicationLoadbalancerForwardingrule: typeof import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule = null as any;
 utilities.lazyLoad(exports, ["ApplicationLoadbalancerForwardingrule"], () => require("./applicationLoadbalancerForwardingrule"));
 
-export { AutoCertificateArgs, AutoCertificateState } from "./autoCertificate";
-export type AutoCertificate = import("./autoCertificate").AutoCertificate;
-export const AutoCertificate: typeof import("./autoCertificate").AutoCertificate = null as any;
-utilities.lazyLoad(exports, ["AutoCertificate"], () => require("./autoCertificate"));
-
-export { AutoCertificateProviderArgs, AutoCertificateProviderState } from "./autoCertificateProvider";
-export type AutoCertificateProvider = import("./autoCertificateProvider").AutoCertificateProvider;
-export const AutoCertificateProvider: typeof import("./autoCertificateProvider").AutoCertificateProvider = null as any;
-utilities.lazyLoad(exports, ["AutoCertificateProvider"], () => require("./autoCertificateProvider"));
-
 export { AutoscalingGroupArgs, AutoscalingGroupState } from "./autoscalingGroup";
 export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
 export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
 utilities.lazyLoad(exports, ["AutoscalingGroup"], () => require("./autoscalingGroup"));
-
-export { CertificateArgs, CertificateState } from "./certificate";
-export type Certificate = import("./certificate").Certificate;
-export const Certificate: typeof import("./certificate").Certificate = null as any;
-utilities.lazyLoad(exports, ["Certificate"], () => require("./certificate"));
 
 export { CubeServerArgs, CubeServerState } from "./cubeServer";
 export type CubeServer = import("./cubeServer").CubeServer;
@@ -493,6 +478,7 @@ utilities.lazyLoad(exports, ["VcpuServer"], () => require("./vcpuServer"));
 
 // Export sub-modules:
 import * as cdn from "./cdn";
+import * as cert from "./cert";
 import * as compute from "./compute";
 import * as config from "./config";
 import * as creg from "./creg";
@@ -506,6 +492,7 @@ import * as vpn from "./vpn";
 
 export {
     cdn,
+    cert,
     compute,
     config,
     creg,
@@ -530,14 +517,8 @@ const _module = {
                 return new ApplicationLoadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
                 return new ApplicationLoadbalancerForwardingrule(name, <any>undefined, { urn })
-            case "ionoscloud:index/autoCertificate:AutoCertificate":
-                return new AutoCertificate(name, <any>undefined, { urn })
-            case "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider":
-                return new AutoCertificateProvider(name, <any>undefined, { urn })
             case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
                 return new AutoscalingGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/certificate:Certificate":
-                return new Certificate(name, <any>undefined, { urn })
             case "ionoscloud:index/cubeServer:CubeServer":
                 return new CubeServer(name, <any>undefined, { urn })
             case "ionoscloud:index/ipfailover:Ipfailover":
@@ -579,10 +560,7 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/apigateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/apigatewayRoute", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancerForwardingrule", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificate", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvider", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/ipfailover", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)

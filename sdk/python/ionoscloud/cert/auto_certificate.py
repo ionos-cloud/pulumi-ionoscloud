@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 
 __all__ = ['AutoCertificateArgs', 'AutoCertificate']
 
@@ -235,12 +235,7 @@ class _AutoCertificateState:
         pulumi.set(self, "subject_alternative_names", value)
 
 
-warnings.warn("""ionoscloud.index/autocertificate.AutoCertificate has been deprecated in favor of ionoscloud.cert/autocertificate.AutoCertificate""", DeprecationWarning)
-
-
 class AutoCertificate(pulumi.CustomResource):
-    warnings.warn("""ionoscloud.index/autocertificate.AutoCertificate has been deprecated in favor of ionoscloud.cert/autocertificate.AutoCertificate""", DeprecationWarning)
-
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -294,7 +289,6 @@ class AutoCertificate(pulumi.CustomResource):
                  provider_id: Optional[pulumi.Input[str]] = None,
                  subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
-        pulumi.log.warn("""AutoCertificate is deprecated: ionoscloud.index/autocertificate.AutoCertificate has been deprecated in favor of ionoscloud.cert/autocertificate.AutoCertificate""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -319,7 +313,7 @@ class AutoCertificate(pulumi.CustomResource):
             __props__.__dict__["subject_alternative_names"] = subject_alternative_names
             __props__.__dict__["last_issued_certificate_id"] = None
         super(AutoCertificate, __self__).__init__(
-            'ionoscloud:index/autoCertificate:AutoCertificate',
+            'ionoscloud:cert/autoCertificate:AutoCertificate',
             resource_name,
             __props__,
             opts)

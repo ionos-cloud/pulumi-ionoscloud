@@ -29,14 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApplicationLoadbalancer{}
 	case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
 		r = &ApplicationLoadbalancerForwardingrule{}
-	case "ionoscloud:index/autoCertificate:AutoCertificate":
-		r = &AutoCertificate{}
-	case "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider":
-		r = &AutoCertificateProvider{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
-	case "ionoscloud:index/certificate:Certificate":
-		r = &Certificate{}
 	case "ionoscloud:index/cubeServer:CubeServer":
 		r = &CubeServer{}
 	case "ionoscloud:index/ipfailover:Ipfailover":
@@ -122,22 +116,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/autoCertificate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/autoCertificateProvider",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/autoscalingGroup",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/certificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

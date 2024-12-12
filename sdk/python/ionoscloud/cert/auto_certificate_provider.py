@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 from . import outputs
 from ._inputs import *
 
@@ -178,12 +178,7 @@ class _AutoCertificateProviderState:
         pulumi.set(self, "server", value)
 
 
-warnings.warn("""ionoscloud.index/autocertificateprovider.AutoCertificateProvider has been deprecated in favor of ionoscloud.cert/autocertificateprovider.AutoCertificateProvider""", DeprecationWarning)
-
-
 class AutoCertificateProvider(pulumi.CustomResource):
-    warnings.warn("""ionoscloud.index/autocertificateprovider.AutoCertificateProvider has been deprecated in favor of ionoscloud.cert/autocertificateprovider.AutoCertificateProvider""", DeprecationWarning)
-
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -232,7 +227,6 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        pulumi.log.warn("""AutoCertificateProvider is deprecated: ionoscloud.index/autocertificateprovider.AutoCertificateProvider has been deprecated in favor of ionoscloud.cert/autocertificateprovider.AutoCertificateProvider""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -253,7 +247,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
                 raise TypeError("Missing required property 'server'")
             __props__.__dict__["server"] = server
         super(AutoCertificateProvider, __self__).__init__(
-            'ionoscloud:index/autoCertificateProvider:AutoCertificateProvider',
+            'ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider',
             resource_name,
             __props__,
             opts)

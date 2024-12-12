@@ -354,7 +354,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
             target_lan=example2.id,
             lb_private_ips=["10.13.72.225/24"])
         #optionally you can add a certificate to the application load balancer
-        cert = ionoscloud.Certificate("cert",
+        cert = ionoscloud.cert.Certificate("cert",
             certificate=(lambda path: open(path).read())("path_to_cert"),
             certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
             private_key=(lambda path: open(path).read())("path_to_private_key"))
@@ -453,7 +453,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
             target_lan=example2.id,
             lb_private_ips=["10.13.72.225/24"])
         #optionally you can add a certificate to the application load balancer
-        cert = ionoscloud.Certificate("cert",
+        cert = ionoscloud.cert.Certificate("cert",
             certificate=(lambda path: open(path).read())("path_to_cert"),
             certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
             private_key=(lambda path: open(path).read())("path_to_private_key"))

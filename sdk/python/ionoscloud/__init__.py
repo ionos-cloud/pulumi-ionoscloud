@@ -9,10 +9,7 @@ from .apigateway import *
 from .apigateway_route import *
 from .application_loadbalancer import *
 from .application_loadbalancer_forwardingrule import *
-from .auto_certificate import *
-from .auto_certificate_provider import *
 from .autoscaling_group import *
-from .certificate import *
 from .cube_server import *
 from .get_apigateway import *
 from .get_apigateway_route import *
@@ -109,6 +106,8 @@ from . import outputs
 if typing.TYPE_CHECKING:
     import ionoscloud.cdn as __cdn
     cdn = __cdn
+    import ionoscloud.cert as __cert
+    cert = __cert
     import ionoscloud.compute as __compute
     compute = __compute
     import ionoscloud.config as __config
@@ -129,6 +128,7 @@ if typing.TYPE_CHECKING:
     vpn = __vpn
 else:
     cdn = _utilities.lazy_import('ionoscloud.cdn')
+    cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
     creg = _utilities.lazy_import('ionoscloud.creg')
@@ -148,6 +148,30 @@ _utilities.register(
   "fqn": "ionoscloud.cdn",
   "classes": {
    "ionoscloud:cdn/distribution:Distribution": "Distribution"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "cert/autoCertificate",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/autoCertificate:AutoCertificate": "AutoCertificate"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "cert/autoCertificateProvider",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider": "AutoCertificateProvider"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "cert/certificate",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/certificate:Certificate": "Certificate"
   }
  },
  {
@@ -376,34 +400,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/autoCertificate",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/autoCertificate:AutoCertificate": "AutoCertificate"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/autoCertificateProvider",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider": "AutoCertificateProvider"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/autoscalingGroup",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/autoscalingGroup:AutoscalingGroup": "AutoscalingGroup"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/certificate",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/certificate:Certificate": "Certificate"
   }
  },
  {

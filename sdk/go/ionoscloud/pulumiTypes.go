@@ -777,162 +777,6 @@ func (o ApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput) Index
 	}).(ApplicationLoadbalancerForwardingruleHttpRuleConditionOutput)
 }
 
-type AutoCertificateProviderExternalAccountBinding struct {
-	// The key ID of the external account binding
-	KeyId string `pulumi:"keyId"`
-	// The secret of the external account binding
-	KeySecret string `pulumi:"keySecret"`
-}
-
-// AutoCertificateProviderExternalAccountBindingInput is an input type that accepts AutoCertificateProviderExternalAccountBindingArgs and AutoCertificateProviderExternalAccountBindingOutput values.
-// You can construct a concrete instance of `AutoCertificateProviderExternalAccountBindingInput` via:
-//
-//	AutoCertificateProviderExternalAccountBindingArgs{...}
-type AutoCertificateProviderExternalAccountBindingInput interface {
-	pulumi.Input
-
-	ToAutoCertificateProviderExternalAccountBindingOutput() AutoCertificateProviderExternalAccountBindingOutput
-	ToAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Context) AutoCertificateProviderExternalAccountBindingOutput
-}
-
-type AutoCertificateProviderExternalAccountBindingArgs struct {
-	// The key ID of the external account binding
-	KeyId pulumi.StringInput `pulumi:"keyId"`
-	// The secret of the external account binding
-	KeySecret pulumi.StringInput `pulumi:"keySecret"`
-}
-
-func (AutoCertificateProviderExternalAccountBindingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (i AutoCertificateProviderExternalAccountBindingArgs) ToAutoCertificateProviderExternalAccountBindingOutput() AutoCertificateProviderExternalAccountBindingOutput {
-	return i.ToAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Background())
-}
-
-func (i AutoCertificateProviderExternalAccountBindingArgs) ToAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoCertificateProviderExternalAccountBindingOutput)
-}
-
-func (i AutoCertificateProviderExternalAccountBindingArgs) ToAutoCertificateProviderExternalAccountBindingPtrOutput() AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return i.ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(context.Background())
-}
-
-func (i AutoCertificateProviderExternalAccountBindingArgs) ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoCertificateProviderExternalAccountBindingOutput).ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(ctx)
-}
-
-// AutoCertificateProviderExternalAccountBindingPtrInput is an input type that accepts AutoCertificateProviderExternalAccountBindingArgs, AutoCertificateProviderExternalAccountBindingPtr and AutoCertificateProviderExternalAccountBindingPtrOutput values.
-// You can construct a concrete instance of `AutoCertificateProviderExternalAccountBindingPtrInput` via:
-//
-//	        AutoCertificateProviderExternalAccountBindingArgs{...}
-//
-//	or:
-//
-//	        nil
-type AutoCertificateProviderExternalAccountBindingPtrInput interface {
-	pulumi.Input
-
-	ToAutoCertificateProviderExternalAccountBindingPtrOutput() AutoCertificateProviderExternalAccountBindingPtrOutput
-	ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(context.Context) AutoCertificateProviderExternalAccountBindingPtrOutput
-}
-
-type autoCertificateProviderExternalAccountBindingPtrType AutoCertificateProviderExternalAccountBindingArgs
-
-func AutoCertificateProviderExternalAccountBindingPtr(v *AutoCertificateProviderExternalAccountBindingArgs) AutoCertificateProviderExternalAccountBindingPtrInput {
-	return (*autoCertificateProviderExternalAccountBindingPtrType)(v)
-}
-
-func (*autoCertificateProviderExternalAccountBindingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (i *autoCertificateProviderExternalAccountBindingPtrType) ToAutoCertificateProviderExternalAccountBindingPtrOutput() AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return i.ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(context.Background())
-}
-
-func (i *autoCertificateProviderExternalAccountBindingPtrType) ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AutoCertificateProviderExternalAccountBindingPtrOutput)
-}
-
-type AutoCertificateProviderExternalAccountBindingOutput struct{ *pulumi.OutputState }
-
-func (AutoCertificateProviderExternalAccountBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (o AutoCertificateProviderExternalAccountBindingOutput) ToAutoCertificateProviderExternalAccountBindingOutput() AutoCertificateProviderExternalAccountBindingOutput {
-	return o
-}
-
-func (o AutoCertificateProviderExternalAccountBindingOutput) ToAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingOutput {
-	return o
-}
-
-func (o AutoCertificateProviderExternalAccountBindingOutput) ToAutoCertificateProviderExternalAccountBindingPtrOutput() AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return o.ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(context.Background())
-}
-
-func (o AutoCertificateProviderExternalAccountBindingOutput) ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoCertificateProviderExternalAccountBinding) *AutoCertificateProviderExternalAccountBinding {
-		return &v
-	}).(AutoCertificateProviderExternalAccountBindingPtrOutput)
-}
-
-// The key ID of the external account binding
-func (o AutoCertificateProviderExternalAccountBindingOutput) KeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v AutoCertificateProviderExternalAccountBinding) string { return v.KeyId }).(pulumi.StringOutput)
-}
-
-// The secret of the external account binding
-func (o AutoCertificateProviderExternalAccountBindingOutput) KeySecret() pulumi.StringOutput {
-	return o.ApplyT(func(v AutoCertificateProviderExternalAccountBinding) string { return v.KeySecret }).(pulumi.StringOutput)
-}
-
-type AutoCertificateProviderExternalAccountBindingPtrOutput struct{ *pulumi.OutputState }
-
-func (AutoCertificateProviderExternalAccountBindingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (o AutoCertificateProviderExternalAccountBindingPtrOutput) ToAutoCertificateProviderExternalAccountBindingPtrOutput() AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return o
-}
-
-func (o AutoCertificateProviderExternalAccountBindingPtrOutput) ToAutoCertificateProviderExternalAccountBindingPtrOutputWithContext(ctx context.Context) AutoCertificateProviderExternalAccountBindingPtrOutput {
-	return o
-}
-
-func (o AutoCertificateProviderExternalAccountBindingPtrOutput) Elem() AutoCertificateProviderExternalAccountBindingOutput {
-	return o.ApplyT(func(v *AutoCertificateProviderExternalAccountBinding) AutoCertificateProviderExternalAccountBinding {
-		if v != nil {
-			return *v
-		}
-		var ret AutoCertificateProviderExternalAccountBinding
-		return ret
-	}).(AutoCertificateProviderExternalAccountBindingOutput)
-}
-
-// The key ID of the external account binding
-func (o AutoCertificateProviderExternalAccountBindingPtrOutput) KeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AutoCertificateProviderExternalAccountBinding) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.KeyId
-	}).(pulumi.StringPtrOutput)
-}
-
-// The secret of the external account binding
-func (o AutoCertificateProviderExternalAccountBindingPtrOutput) KeySecret() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AutoCertificateProviderExternalAccountBinding) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.KeySecret
-	}).(pulumi.StringPtrOutput)
-}
-
 type AutoscalingGroupPolicy struct {
 	// [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
 	Metric string `pulumi:"metric"`
@@ -23780,8 +23624,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationLoadbalancerForwardingruleHttpRuleArrayInput)(nil)).Elem(), ApplicationLoadbalancerForwardingruleHttpRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationLoadbalancerForwardingruleHttpRuleConditionInput)(nil)).Elem(), ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput)(nil)).Elem(), ApplicationLoadbalancerForwardingruleHttpRuleConditionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AutoCertificateProviderExternalAccountBindingInput)(nil)).Elem(), AutoCertificateProviderExternalAccountBindingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AutoCertificateProviderExternalAccountBindingPtrInput)(nil)).Elem(), AutoCertificateProviderExternalAccountBindingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingGroupPolicyInput)(nil)).Elem(), AutoscalingGroupPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingGroupPolicyPtrInput)(nil)).Elem(), AutoscalingGroupPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingGroupPolicyScaleInActionInput)(nil)).Elem(), AutoscalingGroupPolicyScaleInActionArgs{})
@@ -24106,8 +23948,6 @@ func init() {
 	pulumi.RegisterOutputType(ApplicationLoadbalancerForwardingruleHttpRuleArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationLoadbalancerForwardingruleHttpRuleConditionOutput{})
 	pulumi.RegisterOutputType(ApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput{})
-	pulumi.RegisterOutputType(AutoCertificateProviderExternalAccountBindingOutput{})
-	pulumi.RegisterOutputType(AutoCertificateProviderExternalAccountBindingPtrOutput{})
 	pulumi.RegisterOutputType(AutoscalingGroupPolicyOutput{})
 	pulumi.RegisterOutputType(AutoscalingGroupPolicyPtrOutput{})
 	pulumi.RegisterOutputType(AutoscalingGroupPolicyScaleInActionOutput{})

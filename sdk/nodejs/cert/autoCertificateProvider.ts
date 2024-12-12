@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 export class AutoCertificateProvider extends pulumi.CustomResource {
     /**
@@ -21,7 +21,7 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/autoCertificateProvider:AutoCertificateProvider';
+    public static readonly __pulumiType = 'ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider';
 
     /**
      * Returns true if the given object is an instance of AutoCertificateProvider.  This is designed to work even
@@ -38,7 +38,7 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
      * The email address of the certificate requester
      */
     public readonly email!: pulumi.Output<string>;
-    public readonly externalAccountBinding!: pulumi.Output<outputs.AutoCertificateProviderExternalAccountBinding | undefined>;
+    public readonly externalAccountBinding!: pulumi.Output<outputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
      * The location of the certificate provider
      */
@@ -100,7 +100,7 @@ export interface AutoCertificateProviderState {
      * The email address of the certificate requester
      */
     email?: pulumi.Input<string>;
-    externalAccountBinding?: pulumi.Input<inputs.AutoCertificateProviderExternalAccountBinding>;
+    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
      * The location of the certificate provider
      */
@@ -123,7 +123,7 @@ export interface AutoCertificateProviderArgs {
      * The email address of the certificate requester
      */
     email: pulumi.Input<string>;
-    externalAccountBinding?: pulumi.Input<inputs.AutoCertificateProviderExternalAccountBinding>;
+    externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding>;
     /**
      * The location of the certificate provider
      */

@@ -186,7 +186,74 @@ class CdnDistribution(pulumi.CustomResource):
                  routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CdnDistributionRoutingRuleArgs']]]]] = None,
                  __props__=None):
         """
+<<<<<<< HEAD
+        Manages a **CDN Distribution** on IonosCloud.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        example = ionoscloud.CdnDistribution("example",
+            domain="example.com",
+            certificate_id=cert.id,
+            routing_rules=[
+                ionoscloud.CdnDistributionRoutingRuleArgs(
+                    scheme="https",
+                    prefix="/api",
+                    upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(
+                        host="server.example.com",
+                        caching=True,
+                        waf=True,
+                        sni_mode="distribution",
+                        rate_limit_class="R500",
+                        geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(
+                            allow_lists=[
+                                "CN",
+                                "RU",
+                            ],
+                        ),
+                    ),
+                ),
+                ionoscloud.CdnDistributionRoutingRuleArgs(
+                    scheme="http/https",
+                    prefix="/api2",
+                    upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(
+                        host="server2.example.com",
+                        caching=False,
+                        waf=False,
+                        sni_mode="origin",
+                        rate_limit_class="R10",
+                        geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(
+                            block_lists=[
+                                "CN",
+                                "RU",
+                            ],
+                        ),
+                    ),
+                ),
+            ])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Resource Distribution can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}
+        ```
+
+=======
         Create a CdnDistribution resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate_id: The ID of the certificate to use for the distribution.
@@ -200,7 +267,74 @@ class CdnDistribution(pulumi.CustomResource):
                  args: CdnDistributionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+<<<<<<< HEAD
+        Manages a **CDN Distribution** on IonosCloud.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        example = ionoscloud.CdnDistribution("example",
+            domain="example.com",
+            certificate_id=cert.id,
+            routing_rules=[
+                ionoscloud.CdnDistributionRoutingRuleArgs(
+                    scheme="https",
+                    prefix="/api",
+                    upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(
+                        host="server.example.com",
+                        caching=True,
+                        waf=True,
+                        sni_mode="distribution",
+                        rate_limit_class="R500",
+                        geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(
+                            allow_lists=[
+                                "CN",
+                                "RU",
+                            ],
+                        ),
+                    ),
+                ),
+                ionoscloud.CdnDistributionRoutingRuleArgs(
+                    scheme="http/https",
+                    prefix="/api2",
+                    upstream=ionoscloud.CdnDistributionRoutingRuleUpstreamArgs(
+                        host="server2.example.com",
+                        caching=False,
+                        waf=False,
+                        sni_mode="origin",
+                        rate_limit_class="R10",
+                        geo_restrictions=ionoscloud.CdnDistributionRoutingRuleUpstreamGeoRestrictionsArgs(
+                            block_lists=[
+                                "CN",
+                                "RU",
+                            ],
+                        ),
+                    ),
+                ),
+            ])
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Resource Distribution can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:index/cdnDistribution:CdnDistribution myDistribution {distribution uuid}
+        ```
+
+=======
         Create a CdnDistribution resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param CdnDistributionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

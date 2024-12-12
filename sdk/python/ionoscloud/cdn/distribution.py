@@ -191,7 +191,7 @@ class Distribution(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         #optionally you can add a certificate to the distribution
-        cert = ionoscloud.Certificate("cert",
+        cert = ionoscloud.cert.Certificate("cert",
             certificate=(lambda path: open(path).read())("path_to_cert"),
             certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
             private_key=(lambda path: open(path).read())("path_to_private_key"))
@@ -268,7 +268,7 @@ class Distribution(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         #optionally you can add a certificate to the distribution
-        cert = ionoscloud.Certificate("cert",
+        cert = ionoscloud.cert.Certificate("cert",
             certificate=(lambda path: open(path).read())("path_to_cert"),
             certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
             private_key=(lambda path: open(path).read())("path_to_private_key"))

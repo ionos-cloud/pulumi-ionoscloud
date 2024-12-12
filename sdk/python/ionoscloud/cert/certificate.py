@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities
+from .. import _utilities
 
 __all__ = ['CertificateArgs', 'Certificate']
 
@@ -153,12 +153,7 @@ class _CertificateState:
         pulumi.set(self, "private_key", value)
 
 
-warnings.warn("""ionoscloud.index/certificate.Certificate has been deprecated in favor of ionoscloud.cert/certificate.Certificate""", DeprecationWarning)
-
-
 class Certificate(pulumi.CustomResource):
-    warnings.warn("""ionoscloud.index/certificate.Certificate has been deprecated in favor of ionoscloud.cert/certificate.Certificate""", DeprecationWarning)
-
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -205,7 +200,6 @@ class Certificate(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        pulumi.log.warn("""Certificate is deprecated: ionoscloud.index/certificate.Certificate has been deprecated in favor of ionoscloud.cert/certificate.Certificate""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -225,7 +219,7 @@ class Certificate(pulumi.CustomResource):
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Certificate, __self__).__init__(
-            'ionoscloud:index/certificate:Certificate',
+            'ionoscloud:cert/certificate:Certificate',
             resource_name,
             __props__,
             opts)

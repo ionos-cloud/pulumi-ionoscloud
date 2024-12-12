@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Cert
 {
-    [IonoscloudResourceType("ionoscloud:index/autoCertificateProvider:AutoCertificateProvider")]
+    [IonoscloudResourceType("ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider")]
     public partial class AutoCertificateProvider : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -48,12 +48,12 @@ namespace Pulumi.Ionoscloud
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AutoCertificateProvider(string name, AutoCertificateProviderArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/autoCertificateProvider:AutoCertificateProvider", name, args ?? new AutoCertificateProviderArgs(), MakeResourceOptions(options, ""))
+            : base("ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider", name, args ?? new AutoCertificateProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private AutoCertificateProvider(string name, Input<string> id, AutoCertificateProviderState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/autoCertificateProvider:AutoCertificateProvider", name, state, MakeResourceOptions(options, id))
+            : base("ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider", name, state, MakeResourceOptions(options, id))
         {
         }
 

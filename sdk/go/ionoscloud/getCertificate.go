@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupCertificate(ctx *pulumi.Context, args *LookupCertificateArgs, opts ...pulumi.InvokeOption) (*LookupCertificateResult, error) {
+func GetCertificate(ctx *pulumi.Context, args *GetCertificateArgs, opts ...pulumi.InvokeOption) (*GetCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupCertificateResult
+	var rv GetCertificateResult
 	err := ctx.Invoke("ionoscloud:index/getCertificate:getCertificate", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,7 +22,7 @@ func LookupCertificate(ctx *pulumi.Context, args *LookupCertificateArgs, opts ..
 }
 
 // A collection of arguments for invoking getCertificate.
-type LookupCertificateArgs struct {
+type GetCertificateArgs struct {
 	Certificate      *string `pulumi:"certificate"`
 	CertificateChain *string `pulumi:"certificateChain"`
 	Id               *string `pulumi:"id"`
@@ -30,69 +30,69 @@ type LookupCertificateArgs struct {
 }
 
 // A collection of values returned by getCertificate.
-type LookupCertificateResult struct {
+type GetCertificateResult struct {
 	Certificate      string  `pulumi:"certificate"`
 	CertificateChain string  `pulumi:"certificateChain"`
 	Id               *string `pulumi:"id"`
 	Name             *string `pulumi:"name"`
 }
 
-func LookupCertificateOutput(ctx *pulumi.Context, args LookupCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupCertificateResultOutput {
+func GetCertificateOutput(ctx *pulumi.Context, args GetCertificateOutputArgs, opts ...pulumi.InvokeOption) GetCertificateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupCertificateResult, error) {
-			args := v.(LookupCertificateArgs)
-			r, err := LookupCertificate(ctx, &args, opts...)
-			var s LookupCertificateResult
+		ApplyT(func(v interface{}) (GetCertificateResult, error) {
+			args := v.(GetCertificateArgs)
+			r, err := GetCertificate(ctx, &args, opts...)
+			var s GetCertificateResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupCertificateResultOutput)
+		}).(GetCertificateResultOutput)
 }
 
 // A collection of arguments for invoking getCertificate.
-type LookupCertificateOutputArgs struct {
+type GetCertificateOutputArgs struct {
 	Certificate      pulumi.StringPtrInput `pulumi:"certificate"`
 	CertificateChain pulumi.StringPtrInput `pulumi:"certificateChain"`
 	Id               pulumi.StringPtrInput `pulumi:"id"`
 	Name             pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupCertificateOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCertificateArgs)(nil)).Elem()
+func (GetCertificateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificateArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getCertificate.
-type LookupCertificateResultOutput struct{ *pulumi.OutputState }
+type GetCertificateResultOutput struct{ *pulumi.OutputState }
 
-func (LookupCertificateResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupCertificateResult)(nil)).Elem()
+func (GetCertificateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCertificateResult)(nil)).Elem()
 }
 
-func (o LookupCertificateResultOutput) ToLookupCertificateResultOutput() LookupCertificateResultOutput {
+func (o GetCertificateResultOutput) ToGetCertificateResultOutput() GetCertificateResultOutput {
 	return o
 }
 
-func (o LookupCertificateResultOutput) ToLookupCertificateResultOutputWithContext(ctx context.Context) LookupCertificateResultOutput {
+func (o GetCertificateResultOutput) ToGetCertificateResultOutputWithContext(ctx context.Context) GetCertificateResultOutput {
 	return o
 }
 
-func (o LookupCertificateResultOutput) Certificate() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCertificateResult) string { return v.Certificate }).(pulumi.StringOutput)
+func (o GetCertificateResultOutput) Certificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificateResult) string { return v.Certificate }).(pulumi.StringOutput)
 }
 
-func (o LookupCertificateResultOutput) CertificateChain() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCertificateResult) string { return v.CertificateChain }).(pulumi.StringOutput)
+func (o GetCertificateResultOutput) CertificateChain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCertificateResult) string { return v.CertificateChain }).(pulumi.StringOutput)
 }
 
-func (o LookupCertificateResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCertificateResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetCertificateResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCertificateResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupCertificateResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCertificateResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetCertificateResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCertificateResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupCertificateResultOutput{})
+	pulumi.RegisterOutputType(GetCertificateResultOutput{})
 }

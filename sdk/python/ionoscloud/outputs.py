@@ -16,7 +16,6 @@ __all__ = [
     'ApplicationLoadbalancerFlowlog',
     'ApplicationLoadbalancerForwardingruleHttpRule',
     'ApplicationLoadbalancerForwardingruleHttpRuleCondition',
-    'AutoCertificateProviderExternalAccountBinding',
     'AutoscalingGroupPolicy',
     'AutoscalingGroupPolicyScaleInAction',
     'AutoscalingGroupPolicyScaleOutAction',
@@ -558,54 +557,6 @@ class ApplicationLoadbalancerForwardingruleHttpRuleCondition(dict):
         [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         """
         return pulumi.get(self, "value")
-
-
-@pulumi.output_type
-class AutoCertificateProviderExternalAccountBinding(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "keyId":
-            suggest = "key_id"
-        elif key == "keySecret":
-            suggest = "key_secret"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AutoCertificateProviderExternalAccountBinding. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        AutoCertificateProviderExternalAccountBinding.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        AutoCertificateProviderExternalAccountBinding.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 key_id: str,
-                 key_secret: str):
-        """
-        :param str key_id: The key ID of the external account binding
-        :param str key_secret: The secret of the external account binding
-        """
-        pulumi.set(__self__, "key_id", key_id)
-        pulumi.set(__self__, "key_secret", key_secret)
-
-    @property
-    @pulumi.getter(name="keyId")
-    def key_id(self) -> str:
-        """
-        The key ID of the external account binding
-        """
-        return pulumi.get(self, "key_id")
-
-    @property
-    @pulumi.getter(name="keySecret")
-    def key_secret(self) -> str:
-        """
-        The secret of the external account binding
-        """
-        return pulumi.get(self, "key_secret")
 
 
 @pulumi.output_type
