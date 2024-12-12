@@ -1049,6 +1049,80 @@
                 "time"
             ]
         },
+        "ionoscloud:dsaas/ClusterLan:ClusterLan": {
+            "properties": {
+                "dhcp": {
+                    "type": "boolean",
+                    "description": "[bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.\n"
+                },
+                "lanId": {
+                    "type": "string",
+                    "description": "[string] The LAN ID of an existing LAN at the related data center.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/ClusterLanRoute:ClusterLanRoute"
+                    },
+                    "description": "[list] An array of additional LANs attached to worker nodes.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "lanId"
+            ]
+        },
+        "ionoscloud:dsaas/ClusterLanRoute:ClusterLanRoute": {
+            "properties": {
+                "gateway": {
+                    "type": "string",
+                    "description": "[string] IPv4 or IPv6 gateway IP for the route.\n"
+                },
+                "network": {
+                    "type": "string",
+                    "description": "[string] IPv4 or IPv6 CIDR to be routed via the interface.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "gateway",
+                "network"
+            ]
+        },
+        "ionoscloud:dsaas/ClusterMaintenanceWindow:ClusterMaintenanceWindow": {
+            "properties": {
+                "dayOfTheWeek": {
+                    "type": "string",
+                    "description": "[string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "[string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the \"HH:MM:SS 24-hour format with leading 0\" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dayOfTheWeek",
+                "time"
+            ]
+        },
+        "ionoscloud:dsaas/NodePoolMaintenanceWindow:NodePoolMaintenanceWindow": {
+            "properties": {
+                "dayOfTheWeek": {
+                    "type": "string",
+                    "description": "[string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "[string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the \"HH:MM:SS 24-hour format with leading 0\" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dayOfTheWeek",
+                "time"
+            ]
+        },
         "ionoscloud:index/ApigatewayCustomDomain:ApigatewayCustomDomain": {
             "properties": {
                 "certificateId": {
@@ -1846,80 +1920,6 @@
                     ]
                 }
             }
-        },
-        "ionoscloud:index/DataplatformClusterLan:DataplatformClusterLan": {
-            "properties": {
-                "dhcp": {
-                    "type": "boolean",
-                    "description": "[bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.\n"
-                },
-                "lanId": {
-                    "type": "string",
-                    "description": "[string] The LAN ID of an existing LAN at the related data center.\n"
-                },
-                "routes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformClusterLanRoute:DataplatformClusterLanRoute"
-                    },
-                    "description": "[list] An array of additional LANs attached to worker nodes.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "lanId"
-            ]
-        },
-        "ionoscloud:index/DataplatformClusterLanRoute:DataplatformClusterLanRoute": {
-            "properties": {
-                "gateway": {
-                    "type": "string",
-                    "description": "[string] IPv4 or IPv6 gateway IP for the route.\n"
-                },
-                "network": {
-                    "type": "string",
-                    "description": "[string] IPv4 or IPv6 CIDR to be routed via the interface.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "gateway",
-                "network"
-            ]
-        },
-        "ionoscloud:index/DataplatformClusterMaintenanceWindow:DataplatformClusterMaintenanceWindow": {
-            "properties": {
-                "dayOfTheWeek": {
-                    "type": "string",
-                    "description": "[string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.\n"
-                },
-                "time": {
-                    "type": "string",
-                    "description": "[string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the \"HH:MM:SS 24-hour format with leading 0\" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "dayOfTheWeek",
-                "time"
-            ]
-        },
-        "ionoscloud:index/DataplatformNodePoolMaintenanceWindow:DataplatformNodePoolMaintenanceWindow": {
-            "properties": {
-                "dayOfTheWeek": {
-                    "type": "string",
-                    "description": "[string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.\n"
-                },
-                "time": {
-                    "type": "string",
-                    "description": "[string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the \"HH:MM:SS 24-hour format with leading 0\" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "dayOfTheWeek",
-                "time"
-            ]
         },
         "ionoscloud:index/KafkaClusterConnections:KafkaClusterConnections": {
             "properties": {
@@ -11361,6 +11361,340 @@
                 "type": "object"
             }
         },
+        "ionoscloud:dsaas/cluster:Cluster": {
+            "description": "Manages a **Dataplatform Cluster**.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"de/txl\",\n    description: \"Datacenter for testing Dataplatform Cluster\",\n});\nconst exampleLan = new ionoscloud.compute.Lan(\"exampleLan\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": false,\n});\nconst exampleCluster = new ionoscloud.dsaas.Cluster(\"exampleCluster\", {\n    datacenterId: exampleDatacenter.id,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    }],\n    version: \"23.11\",\n    lans: [{\n        lanId: exampleLan.id,\n        dhcp: false,\n        routes: [{\n            network: \"182.168.42.1/24\",\n            gateway: \"192.168.42.1\",\n        }],\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing Dataplatform Cluster\")\nexample_lan = ionoscloud.compute.Lan(\"exampleLan\",\n    datacenter_id=example_datacenter.id,\n    public=False)\nexample_cluster = ionoscloud.dsaas.Cluster(\"exampleCluster\",\n    datacenter_id=example_datacenter.id,\n    maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00\",\n    )],\n    version=\"23.11\",\n    lans=[ionoscloud.dsaas.ClusterLanArgs(\n        lan_id=example_lan.id,\n        dhcp=False,\n        routes=[ionoscloud.dsaas.ClusterLanRouteArgs(\n            network=\"182.168.42.1/24\",\n            gateway=\"192.168.42.1\",\n        )],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing Dataplatform Cluster\",\n    });\n\n    var exampleLan = new Ionoscloud.Compute.Lan(\"exampleLan\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = false,\n    });\n\n    var exampleCluster = new Ionoscloud.Dsaas.Cluster(\"exampleCluster\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Dsaas.Inputs.ClusterMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Sunday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Version = \"23.11\",\n        Lans = new[]\n        {\n            new Ionoscloud.Dsaas.Inputs.ClusterLanArgs\n            {\n                LanId = exampleLan.Id,\n                Dhcp = false,\n                Routes = new[]\n                {\n                    new Ionoscloud.Dsaas.Inputs.ClusterLanRouteArgs\n                    {\n                        Network = \"182.168.42.1/24\",\n                        Gateway = \"192.168.42.1\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing Dataplatform Cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleLan, err := compute.NewLan(ctx, \"exampleLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dsaas.NewCluster(ctx, \"exampleCluster\", \u0026dsaas.ClusterArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tMaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{\n\t\t\t\t\u0026dsaas.ClusterMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tVersion: pulumi.String(\"23.11\"),\n\t\t\tLans: dsaas.ClusterLanArray{\n\t\t\t\t\u0026dsaas.ClusterLanArgs{\n\t\t\t\t\tLanId: exampleLan.ID(),\n\t\t\t\t\tDhcp:  pulumi.Bool(false),\n\t\t\t\t\tRoutes: dsaas.ClusterLanRouteArray{\n\t\t\t\t\t\t\u0026dsaas.ClusterLanRouteArgs{\n\t\t\t\t\t\t\tNetwork: pulumi.String(\"182.168.42.1/24\"),\n\t\t\t\t\t\t\tGateway: pulumi.String(\"192.168.42.1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.dsaas.Cluster;\nimport com.pulumi.ionoscloud.dsaas.ClusterArgs;\nimport com.pulumi.ionoscloud.dsaas.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.dsaas.inputs.ClusterLanArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter for testing Dataplatform Cluster\")\n            .build());\n\n        var exampleLan = new Lan(\"exampleLan\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(false)\n            .build());\n\n        var exampleCluster = new Cluster(\"exampleCluster\", ClusterArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .maintenanceWindows(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .version(\"23.11\")\n            .lans(ClusterLanArgs.builder()\n                .lanId(exampleLan.id())\n                .dhcp(false)\n                .routes(ClusterLanRouteArgs.builder()\n                    .network(\"182.168.42.1/24\")\n                    .gateway(\"192.168.42.1\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter for testing Dataplatform Cluster\n  exampleLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: false\n  exampleCluster:\n    type: ionoscloud:dsaas:Cluster\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      maintenanceWindows:\n        - dayOfTheWeek: Sunday\n          time: 09:00:00\n      version: '23.11'\n      lans:\n        - lanId: ${exampleLan.id}\n          dhcp: false\n          routes:\n            - network: 182.168.42.1/24\n              gateway: 192.168.42.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Dataplatform Cluster can be imported using the `cluster_id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}\n```\n\n",
+            "properties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n"
+                },
+                "lans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/ClusterLan:ClusterLan"
+                    },
+                    "description": "[list] A list of LANs you want this node pool to be part of.\n"
+                },
+                "maintenanceWindows": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/ClusterMaintenanceWindow:ClusterMaintenanceWindow"
+                    },
+                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[int] The version of the Data Platform.\n"
+                }
+            },
+            "required": [
+                "datacenterId",
+                "maintenanceWindows",
+                "name",
+                "version"
+            ],
+            "inputProperties": {
+                "datacenterId": {
+                    "type": "string",
+                    "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n",
+                    "willReplaceOnChanges": true
+                },
+                "lans": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/ClusterLan:ClusterLan"
+                    },
+                    "description": "[list] A list of LANs you want this node pool to be part of.\n"
+                },
+                "maintenanceWindows": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/ClusterMaintenanceWindow:ClusterMaintenanceWindow"
+                    },
+                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "[int] The version of the Data Platform.\n"
+                }
+            },
+            "requiredInputs": [
+                "datacenterId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Cluster resources.\n",
+                "properties": {
+                    "datacenterId": {
+                        "type": "string",
+                        "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "lans": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dsaas/ClusterLan:ClusterLan"
+                        },
+                        "description": "[list] A list of LANs you want this node pool to be part of.\n"
+                    },
+                    "maintenanceWindows": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dsaas/ClusterMaintenanceWindow:ClusterMaintenanceWindow"
+                        },
+                        "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "[int] The version of the Data Platform.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:dsaas/nodePool:NodePool": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"de/txl\",\n    description: \"Datacenter for testing Dataplatform Cluster\",\n});\nconst exampleCluster = new ionoscloud.dsaas.Cluster(\"exampleCluster\", {\n    datacenterId: exampleDatacenter.id,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    }],\n    version: \"23.7\",\n});\nconst exampleNodePool = new ionoscloud.dsaas.NodePool(\"exampleNodePool\", {\n    clusterId: exampleCluster.id,\n    nodeCount: 1,\n    cpuFamily: \"INTEL_SKYLAKE\",\n    coresCount: 1,\n    ramSize: 2048,\n    availabilityZone: \"AUTO\",\n    storageType: \"HDD\",\n    storageSize: 10,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Monday\",\n        time: \"09:00:00\",\n    }],\n    labels: {\n        foo: \"bar\",\n        color: \"green\",\n    },\n    annotations: {\n        ann1: \"value1\",\n        ann2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing Dataplatform Cluster\")\nexample_cluster = ionoscloud.dsaas.Cluster(\"exampleCluster\",\n    datacenter_id=example_datacenter.id,\n    maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00\",\n    )],\n    version=\"23.7\")\nexample_node_pool = ionoscloud.dsaas.NodePool(\"exampleNodePool\",\n    cluster_id=example_cluster.id,\n    node_count=1,\n    cpu_family=\"INTEL_SKYLAKE\",\n    cores_count=1,\n    ram_size=2048,\n    availability_zone=\"AUTO\",\n    storage_type=\"HDD\",\n    storage_size=10,\n    maintenance_windows=[ionoscloud.dsaas.NodePoolMaintenanceWindowArgs(\n        day_of_the_week=\"Monday\",\n        time=\"09:00:00\",\n    )],\n    labels={\n        \"foo\": \"bar\",\n        \"color\": \"green\",\n    },\n    annotations={\n        \"ann1\": \"value1\",\n        \"ann2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing Dataplatform Cluster\",\n    });\n\n    var exampleCluster = new Ionoscloud.Dsaas.Cluster(\"exampleCluster\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Dsaas.Inputs.ClusterMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Sunday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Version = \"23.7\",\n    });\n\n    var exampleNodePool = new Ionoscloud.Dsaas.NodePool(\"exampleNodePool\", new()\n    {\n        ClusterId = exampleCluster.Id,\n        NodeCount = 1,\n        CpuFamily = \"INTEL_SKYLAKE\",\n        CoresCount = 1,\n        RamSize = 2048,\n        AvailabilityZone = \"AUTO\",\n        StorageType = \"HDD\",\n        StorageSize = 10,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Dsaas.Inputs.NodePoolMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Monday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Labels = \n        {\n            { \"foo\", \"bar\" },\n            { \"color\", \"green\" },\n        },\n        Annotations = \n        {\n            { \"ann1\", \"value1\" },\n            { \"ann2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing Dataplatform Cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleCluster, err := dsaas.NewCluster(ctx, \"exampleCluster\", \u0026dsaas.ClusterArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tMaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{\n\t\t\t\t\u0026dsaas.ClusterMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tVersion: pulumi.String(\"23.7\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = dsaas.NewNodePool(ctx, \"exampleNodePool\", \u0026dsaas.NodePoolArgs{\n\t\t\tClusterId:        exampleCluster.ID(),\n\t\t\tNodeCount:        pulumi.Int(1),\n\t\t\tCpuFamily:        pulumi.String(\"INTEL_SKYLAKE\"),\n\t\t\tCoresCount:       pulumi.Int(1),\n\t\t\tRamSize:          pulumi.Int(2048),\n\t\t\tAvailabilityZone: pulumi.String(\"AUTO\"),\n\t\t\tStorageType:      pulumi.String(\"HDD\"),\n\t\t\tStorageSize:      pulumi.Int(10),\n\t\t\tMaintenanceWindows: dsaas.NodePoolMaintenanceWindowArray{\n\t\t\t\t\u0026dsaas.NodePoolMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Monday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"foo\":   pulumi.String(\"bar\"),\n\t\t\t\t\"color\": pulumi.String(\"green\"),\n\t\t\t},\n\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\"ann1\": pulumi.String(\"value1\"),\n\t\t\t\t\"ann2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.dsaas.Cluster;\nimport com.pulumi.ionoscloud.dsaas.ClusterArgs;\nimport com.pulumi.ionoscloud.dsaas.inputs.ClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.dsaas.NodePool;\nimport com.pulumi.ionoscloud.dsaas.NodePoolArgs;\nimport com.pulumi.ionoscloud.dsaas.inputs.NodePoolMaintenanceWindowArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter for testing Dataplatform Cluster\")\n            .build());\n\n        var exampleCluster = new Cluster(\"exampleCluster\", ClusterArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .maintenanceWindows(ClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .version(\"23.7\")\n            .build());\n\n        var exampleNodePool = new NodePool(\"exampleNodePool\", NodePoolArgs.builder()        \n            .clusterId(exampleCluster.id())\n            .nodeCount(1)\n            .cpuFamily(\"INTEL_SKYLAKE\")\n            .coresCount(1)\n            .ramSize(2048)\n            .availabilityZone(\"AUTO\")\n            .storageType(\"HDD\")\n            .storageSize(10)\n            .maintenanceWindows(NodePoolMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Monday\")\n                .time(\"09:00:00\")\n                .build())\n            .labels(Map.ofEntries(\n                Map.entry(\"foo\", \"bar\"),\n                Map.entry(\"color\", \"green\")\n            ))\n            .annotations(Map.ofEntries(\n                Map.entry(\"ann1\", \"value1\"),\n                Map.entry(\"ann2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter for testing Dataplatform Cluster\n  exampleCluster:\n    type: ionoscloud:dsaas:Cluster\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      maintenanceWindows:\n        - dayOfTheWeek: Sunday\n          time: 09:00:00\n      version: '23.7'\n  exampleNodePool:\n    type: ionoscloud:dsaas:NodePool\n    properties:\n      clusterId: ${exampleCluster.id}\n      nodeCount: 1\n      cpuFamily: INTEL_SKYLAKE\n      coresCount: 1\n      ramSize: 2048\n      availabilityZone: AUTO\n      storageType: HDD\n      storageSize: 10\n      maintenanceWindows:\n        - dayOfTheWeek: Monday\n          time: 09:00:00\n      labels:\n        foo: bar\n        color: green\n      annotations:\n        ann1: value1\n        ann2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:\n\n```sh\n$ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}\n```\n\n",
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
+                },
+                "availabilityZone": {
+                    "type": "string",
+                    "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "[string] The UUID of an existing Dataplatform cluster.\n"
+                },
+                "coresCount": {
+                    "type": "integer",
+                    "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n"
+                },
+                "cpuFamily": {
+                    "type": "string",
+                    "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n"
+                },
+                "datacenterId": {
+                    "type": "string",
+                    "description": "The UUID of the virtual data center (VDC) in which the nodepool is provisioned\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
+                },
+                "maintenanceWindows": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/NodePoolMaintenanceWindow:NodePoolMaintenanceWindow"
+                    },
+                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
+                },
+                "nodeCount": {
+                    "type": "integer",
+                    "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
+                },
+                "ramSize": {
+                    "type": "integer",
+                    "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n"
+                },
+                "storageSize": {
+                    "type": "integer",
+                    "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n"
+                },
+                "storageType": {
+                    "type": "string",
+                    "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the Data Platform.\n"
+                }
+            },
+            "required": [
+                "availabilityZone",
+                "clusterId",
+                "coresCount",
+                "cpuFamily",
+                "datacenterId",
+                "maintenanceWindows",
+                "name",
+                "nodeCount",
+                "ramSize",
+                "storageSize",
+                "storageType",
+                "version"
+            ],
+            "inputProperties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
+                },
+                "availabilityZone": {
+                    "type": "string",
+                    "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "[string] The UUID of an existing Dataplatform cluster.\n"
+                },
+                "coresCount": {
+                    "type": "integer",
+                    "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "cpuFamily": {
+                    "type": "string",
+                    "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
+                },
+                "maintenanceWindows": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:dsaas/NodePoolMaintenanceWindow:NodePoolMaintenanceWindow"
+                    },
+                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n",
+                    "willReplaceOnChanges": true
+                },
+                "nodeCount": {
+                    "type": "integer",
+                    "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
+                },
+                "ramSize": {
+                    "type": "integer",
+                    "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "storageSize": {
+                    "type": "integer",
+                    "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "storageType": {
+                    "type": "string",
+                    "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "nodeCount"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering NodePool resources.\n",
+                "properties": {
+                    "annotations": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
+                    },
+                    "availabilityZone": {
+                        "type": "string",
+                        "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "[string] The UUID of an existing Dataplatform cluster.\n"
+                    },
+                    "coresCount": {
+                        "type": "integer",
+                        "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "cpuFamily": {
+                        "type": "string",
+                        "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "datacenterId": {
+                        "type": "string",
+                        "description": "The UUID of the virtual data center (VDC) in which the nodepool is provisioned\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
+                    },
+                    "maintenanceWindows": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:dsaas/NodePoolMaintenanceWindow:NodePoolMaintenanceWindow"
+                        },
+                        "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "nodeCount": {
+                        "type": "integer",
+                        "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
+                    },
+                    "ramSize": {
+                        "type": "integer",
+                        "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "storageSize": {
+                        "type": "integer",
+                        "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "storageType": {
+                        "type": "string",
+                        "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "version": {
+                        "type": "string",
+                        "description": "The version of the Data Platform.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:index/apigateway:Apigateway": {
             "description": "An API gateway consists of the generic rules and configurations.\n\n## Usage example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.Apigateway(\"example\", {metrics: true});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.Apigateway(\"example\", metrics=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Apigateway(\"example\", new()\n    {\n        Metrics = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewApigateway(ctx, \"example\", \u0026ionoscloud.ApigatewayArgs{\n\t\t\tMetrics: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Apigateway;\nimport com.pulumi.ionoscloud.ApigatewayArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Apigateway(\"example\", ApigatewayArgs.builder()        \n            .metrics(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:Apigateway\n    properties:\n      metrics: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIn order to import an API Gateway, you can define an empty API Gateway resource in the plan:\n\nresource \"ionoscloud_apigateway\" \"example\" {\n\n}\n\nThe resource can be imported using the `gateway_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}\n```\n\n",
             "properties": {
@@ -12525,340 +12859,6 @@
                     "volume": {
                         "$ref": "#/types/ionoscloud:index/CubeServerVolume:CubeServerVolume",
                         "description": "See the Volume section.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/dataplatformCluster:DataplatformCluster": {
-            "description": "Manages a **Dataplatform Cluster**.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"de/txl\",\n    description: \"Datacenter for testing Dataplatform Cluster\",\n});\nconst exampleLan = new ionoscloud.compute.Lan(\"exampleLan\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": false,\n});\nconst exampleDataplatformCluster = new ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\", {\n    datacenterId: exampleDatacenter.id,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    }],\n    version: \"23.11\",\n    lans: [{\n        lanId: exampleLan.id,\n        dhcp: false,\n        routes: [{\n            network: \"182.168.42.1/24\",\n            gateway: \"192.168.42.1\",\n        }],\n    }],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing Dataplatform Cluster\")\nexample_lan = ionoscloud.compute.Lan(\"exampleLan\",\n    datacenter_id=example_datacenter.id,\n    public=False)\nexample_dataplatform_cluster = ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\",\n    datacenter_id=example_datacenter.id,\n    maintenance_windows=[ionoscloud.DataplatformClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00\",\n    )],\n    version=\"23.11\",\n    lans=[ionoscloud.DataplatformClusterLanArgs(\n        lan_id=example_lan.id,\n        dhcp=False,\n        routes=[ionoscloud.DataplatformClusterLanRouteArgs(\n            network=\"182.168.42.1/24\",\n            gateway=\"192.168.42.1\",\n        )],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing Dataplatform Cluster\",\n    });\n\n    var exampleLan = new Ionoscloud.Compute.Lan(\"exampleLan\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = false,\n    });\n\n    var exampleDataplatformCluster = new Ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Inputs.DataplatformClusterMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Sunday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Version = \"23.11\",\n        Lans = new[]\n        {\n            new Ionoscloud.Inputs.DataplatformClusterLanArgs\n            {\n                LanId = exampleLan.Id,\n                Dhcp = false,\n                Routes = new[]\n                {\n                    new Ionoscloud.Inputs.DataplatformClusterLanRouteArgs\n                    {\n                        Network = \"182.168.42.1/24\",\n                        Gateway = \"192.168.42.1\",\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing Dataplatform Cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleLan, err := compute.NewLan(ctx, \"exampleLan\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewDataplatformCluster(ctx, \"exampleDataplatformCluster\", \u0026ionoscloud.DataplatformClusterArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tMaintenanceWindows: ionoscloud.DataplatformClusterMaintenanceWindowArray{\n\t\t\t\t\u0026ionoscloud.DataplatformClusterMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tVersion: pulumi.String(\"23.11\"),\n\t\t\tLans: ionoscloud.DataplatformClusterLanArray{\n\t\t\t\t\u0026ionoscloud.DataplatformClusterLanArgs{\n\t\t\t\t\tLanId: exampleLan.ID(),\n\t\t\t\t\tDhcp:  pulumi.Bool(false),\n\t\t\t\t\tRoutes: ionoscloud.DataplatformClusterLanRouteArray{\n\t\t\t\t\t\t\u0026ionoscloud.DataplatformClusterLanRouteArgs{\n\t\t\t\t\t\t\tNetwork: pulumi.String(\"182.168.42.1/24\"),\n\t\t\t\t\t\t\tGateway: pulumi.String(\"192.168.42.1\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.DataplatformCluster;\nimport com.pulumi.ionoscloud.DataplatformClusterArgs;\nimport com.pulumi.ionoscloud.inputs.DataplatformClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.inputs.DataplatformClusterLanArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter for testing Dataplatform Cluster\")\n            .build());\n\n        var exampleLan = new Lan(\"exampleLan\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(false)\n            .build());\n\n        var exampleDataplatformCluster = new DataplatformCluster(\"exampleDataplatformCluster\", DataplatformClusterArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .maintenanceWindows(DataplatformClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .version(\"23.11\")\n            .lans(DataplatformClusterLanArgs.builder()\n                .lanId(exampleLan.id())\n                .dhcp(false)\n                .routes(DataplatformClusterLanRouteArgs.builder()\n                    .network(\"182.168.42.1/24\")\n                    .gateway(\"192.168.42.1\")\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter for testing Dataplatform Cluster\n  exampleLan:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: false\n  exampleDataplatformCluster:\n    type: ionoscloud:DataplatformCluster\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      maintenanceWindows:\n        - dayOfTheWeek: Sunday\n          time: 09:00:00\n      version: '23.11'\n      lans:\n        - lanId: ${exampleLan.id}\n          dhcp: false\n          routes:\n            - network: 182.168.42.1/24\n              gateway: 192.168.42.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Dataplatform Cluster can be imported using the `cluster_id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/dataplatformCluster:DataplatformCluster mycluser {cluster uuid}\n```\n\n",
-            "properties": {
-                "datacenterId": {
-                    "type": "string",
-                    "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n"
-                },
-                "lans": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformClusterLan:DataplatformClusterLan"
-                    },
-                    "description": "[list] A list of LANs you want this node pool to be part of.\n"
-                },
-                "maintenanceWindows": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformClusterMaintenanceWindow:DataplatformClusterMaintenanceWindow"
-                    },
-                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "[int] The version of the Data Platform.\n"
-                }
-            },
-            "required": [
-                "datacenterId",
-                "maintenanceWindows",
-                "name",
-                "version"
-            ],
-            "inputProperties": {
-                "datacenterId": {
-                    "type": "string",
-                    "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n",
-                    "willReplaceOnChanges": true
-                },
-                "lans": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformClusterLan:DataplatformClusterLan"
-                    },
-                    "description": "[list] A list of LANs you want this node pool to be part of.\n"
-                },
-                "maintenanceWindows": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformClusterMaintenanceWindow:DataplatformClusterMaintenanceWindow"
-                    },
-                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "[int] The version of the Data Platform.\n"
-                }
-            },
-            "requiredInputs": [
-                "datacenterId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering DataplatformCluster resources.\n",
-                "properties": {
-                    "datacenterId": {
-                        "type": "string",
-                        "description": "[string] The UUID of the virtual data center (VDC) the cluster is provisioned.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "lans": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/DataplatformClusterLan:DataplatformClusterLan"
-                        },
-                        "description": "[list] A list of LANs you want this node pool to be part of.\n"
-                    },
-                    "maintenanceWindows": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/DataplatformClusterMaintenanceWindow:DataplatformClusterMaintenanceWindow"
-                        },
-                        "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
-                    },
-                    "version": {
-                        "type": "string",
-                        "description": "[int] The version of the Data Platform.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/dataplatformNodePool:DataplatformNodePool": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"de/txl\",\n    description: \"Datacenter for testing Dataplatform Cluster\",\n});\nconst exampleDataplatformCluster = new ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\", {\n    datacenterId: exampleDatacenter.id,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Sunday\",\n        time: \"09:00:00\",\n    }],\n    version: \"23.7\",\n});\nconst exampleDataplatformNodePool = new ionoscloud.DataplatformNodePool(\"exampleDataplatformNodePool\", {\n    clusterId: exampleDataplatformCluster.id,\n    nodeCount: 1,\n    cpuFamily: \"INTEL_SKYLAKE\",\n    coresCount: 1,\n    ramSize: 2048,\n    availabilityZone: \"AUTO\",\n    storageType: \"HDD\",\n    storageSize: 10,\n    maintenanceWindows: [{\n        dayOfTheWeek: \"Monday\",\n        time: \"09:00:00\",\n    }],\n    labels: {\n        foo: \"bar\",\n        color: \"green\",\n    },\n    annotations: {\n        ann1: \"value1\",\n        ann2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"de/txl\",\n    description=\"Datacenter for testing Dataplatform Cluster\")\nexample_dataplatform_cluster = ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\",\n    datacenter_id=example_datacenter.id,\n    maintenance_windows=[ionoscloud.DataplatformClusterMaintenanceWindowArgs(\n        day_of_the_week=\"Sunday\",\n        time=\"09:00:00\",\n    )],\n    version=\"23.7\")\nexample_dataplatform_node_pool = ionoscloud.DataplatformNodePool(\"exampleDataplatformNodePool\",\n    cluster_id=example_dataplatform_cluster.id,\n    node_count=1,\n    cpu_family=\"INTEL_SKYLAKE\",\n    cores_count=1,\n    ram_size=2048,\n    availability_zone=\"AUTO\",\n    storage_type=\"HDD\",\n    storage_size=10,\n    maintenance_windows=[ionoscloud.DataplatformNodePoolMaintenanceWindowArgs(\n        day_of_the_week=\"Monday\",\n        time=\"09:00:00\",\n    )],\n    labels={\n        \"foo\": \"bar\",\n        \"color\": \"green\",\n    },\n    annotations={\n        \"ann1\": \"value1\",\n        \"ann2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"de/txl\",\n        Description = \"Datacenter for testing Dataplatform Cluster\",\n    });\n\n    var exampleDataplatformCluster = new Ionoscloud.DataplatformCluster(\"exampleDataplatformCluster\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Inputs.DataplatformClusterMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Sunday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Version = \"23.7\",\n    });\n\n    var exampleDataplatformNodePool = new Ionoscloud.DataplatformNodePool(\"exampleDataplatformNodePool\", new()\n    {\n        ClusterId = exampleDataplatformCluster.Id,\n        NodeCount = 1,\n        CpuFamily = \"INTEL_SKYLAKE\",\n        CoresCount = 1,\n        RamSize = 2048,\n        AvailabilityZone = \"AUTO\",\n        StorageType = \"HDD\",\n        StorageSize = 10,\n        MaintenanceWindows = new[]\n        {\n            new Ionoscloud.Inputs.DataplatformNodePoolMaintenanceWindowArgs\n            {\n                DayOfTheWeek = \"Monday\",\n                Time = \"09:00:00\",\n            },\n        },\n        Labels = \n        {\n            { \"foo\", \"bar\" },\n            { \"color\", \"green\" },\n        },\n        Annotations = \n        {\n            { \"ann1\", \"value1\" },\n            { \"ann2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:    pulumi.String(\"de/txl\"),\n\t\t\tDescription: pulumi.String(\"Datacenter for testing Dataplatform Cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleDataplatformCluster, err := ionoscloud.NewDataplatformCluster(ctx, \"exampleDataplatformCluster\", \u0026ionoscloud.DataplatformClusterArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tMaintenanceWindows: ionoscloud.DataplatformClusterMaintenanceWindowArray{\n\t\t\t\t\u0026ionoscloud.DataplatformClusterMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Sunday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tVersion: pulumi.String(\"23.7\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewDataplatformNodePool(ctx, \"exampleDataplatformNodePool\", \u0026ionoscloud.DataplatformNodePoolArgs{\n\t\t\tClusterId:        exampleDataplatformCluster.ID(),\n\t\t\tNodeCount:        pulumi.Int(1),\n\t\t\tCpuFamily:        pulumi.String(\"INTEL_SKYLAKE\"),\n\t\t\tCoresCount:       pulumi.Int(1),\n\t\t\tRamSize:          pulumi.Int(2048),\n\t\t\tAvailabilityZone: pulumi.String(\"AUTO\"),\n\t\t\tStorageType:      pulumi.String(\"HDD\"),\n\t\t\tStorageSize:      pulumi.Int(10),\n\t\t\tMaintenanceWindows: ionoscloud.DataplatformNodePoolMaintenanceWindowArray{\n\t\t\t\t\u0026ionoscloud.DataplatformNodePoolMaintenanceWindowArgs{\n\t\t\t\t\tDayOfTheWeek: pulumi.String(\"Monday\"),\n\t\t\t\t\tTime:         pulumi.String(\"09:00:00\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"foo\":   pulumi.String(\"bar\"),\n\t\t\t\t\"color\": pulumi.String(\"green\"),\n\t\t\t},\n\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\"ann1\": pulumi.String(\"value1\"),\n\t\t\t\t\"ann2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.DataplatformCluster;\nimport com.pulumi.ionoscloud.DataplatformClusterArgs;\nimport com.pulumi.ionoscloud.inputs.DataplatformClusterMaintenanceWindowArgs;\nimport com.pulumi.ionoscloud.DataplatformNodePool;\nimport com.pulumi.ionoscloud.DataplatformNodePoolArgs;\nimport com.pulumi.ionoscloud.inputs.DataplatformNodePoolMaintenanceWindowArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"de/txl\")\n            .description(\"Datacenter for testing Dataplatform Cluster\")\n            .build());\n\n        var exampleDataplatformCluster = new DataplatformCluster(\"exampleDataplatformCluster\", DataplatformClusterArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .maintenanceWindows(DataplatformClusterMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Sunday\")\n                .time(\"09:00:00\")\n                .build())\n            .version(\"23.7\")\n            .build());\n\n        var exampleDataplatformNodePool = new DataplatformNodePool(\"exampleDataplatformNodePool\", DataplatformNodePoolArgs.builder()        \n            .clusterId(exampleDataplatformCluster.id())\n            .nodeCount(1)\n            .cpuFamily(\"INTEL_SKYLAKE\")\n            .coresCount(1)\n            .ramSize(2048)\n            .availabilityZone(\"AUTO\")\n            .storageType(\"HDD\")\n            .storageSize(10)\n            .maintenanceWindows(DataplatformNodePoolMaintenanceWindowArgs.builder()\n                .dayOfTheWeek(\"Monday\")\n                .time(\"09:00:00\")\n                .build())\n            .labels(Map.ofEntries(\n                Map.entry(\"foo\", \"bar\"),\n                Map.entry(\"color\", \"green\")\n            ))\n            .annotations(Map.ofEntries(\n                Map.entry(\"ann1\", \"value1\"),\n                Map.entry(\"ann2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: de/txl\n      description: Datacenter for testing Dataplatform Cluster\n  exampleDataplatformCluster:\n    type: ionoscloud:DataplatformCluster\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      maintenanceWindows:\n        - dayOfTheWeek: Sunday\n          time: 09:00:00\n      version: '23.7'\n  exampleDataplatformNodePool:\n    type: ionoscloud:DataplatformNodePool\n    properties:\n      clusterId: ${exampleDataplatformCluster.id}\n      nodeCount: 1\n      cpuFamily: INTEL_SKYLAKE\n      coresCount: 1\n      ramSize: 2048\n      availabilityZone: AUTO\n      storageType: HDD\n      storageSize: 10\n      maintenanceWindows:\n        - dayOfTheWeek: Monday\n          time: 09:00:00\n      labels:\n        foo: bar\n        color: green\n      annotations:\n        ann1: value1\n        ann2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nA Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:\n\n```sh\n$ pulumi import ionoscloud:index/dataplatformNodePool:DataplatformNodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}\n```\n\n",
-            "properties": {
-                "annotations": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
-                },
-                "availabilityZone": {
-                    "type": "string",
-                    "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n"
-                },
-                "clusterId": {
-                    "type": "string",
-                    "description": "[string] The UUID of an existing Dataplatform cluster.\n"
-                },
-                "coresCount": {
-                    "type": "integer",
-                    "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n"
-                },
-                "cpuFamily": {
-                    "type": "string",
-                    "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n"
-                },
-                "datacenterId": {
-                    "type": "string",
-                    "description": "The UUID of the virtual data center (VDC) in which the nodepool is provisioned\n"
-                },
-                "labels": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
-                },
-                "maintenanceWindows": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformNodePoolMaintenanceWindow:DataplatformNodePoolMaintenanceWindow"
-                    },
-                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n"
-                },
-                "nodeCount": {
-                    "type": "integer",
-                    "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
-                },
-                "ramSize": {
-                    "type": "integer",
-                    "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n"
-                },
-                "storageSize": {
-                    "type": "integer",
-                    "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n"
-                },
-                "storageType": {
-                    "type": "string",
-                    "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n"
-                },
-                "version": {
-                    "type": "string",
-                    "description": "The version of the Data Platform.\n"
-                }
-            },
-            "required": [
-                "availabilityZone",
-                "clusterId",
-                "coresCount",
-                "cpuFamily",
-                "datacenterId",
-                "maintenanceWindows",
-                "name",
-                "nodeCount",
-                "ramSize",
-                "storageSize",
-                "storageType",
-                "version"
-            ],
-            "inputProperties": {
-                "annotations": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
-                },
-                "availabilityZone": {
-                    "type": "string",
-                    "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "clusterId": {
-                    "type": "string",
-                    "description": "[string] The UUID of an existing Dataplatform cluster.\n"
-                },
-                "coresCount": {
-                    "type": "integer",
-                    "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "cpuFamily": {
-                    "type": "string",
-                    "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "labels": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
-                },
-                "maintenanceWindows": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/DataplatformNodePoolMaintenanceWindow:DataplatformNodePoolMaintenanceWindow"
-                    },
-                    "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n",
-                    "willReplaceOnChanges": true
-                },
-                "nodeCount": {
-                    "type": "integer",
-                    "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
-                },
-                "ramSize": {
-                    "type": "integer",
-                    "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "storageSize": {
-                    "type": "integer",
-                    "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "storageType": {
-                    "type": "string",
-                    "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "clusterId",
-                "nodeCount"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering DataplatformNodePool resources.\n",
-                "properties": {
-                    "annotations": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "[map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).\n"
-                    },
-                    "availabilityZone": {
-                        "type": "string",
-                        "description": "[string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "clusterId": {
-                        "type": "string",
-                        "description": "[string] The UUID of an existing Dataplatform cluster.\n"
-                    },
-                    "coresCount": {
-                        "type": "integer",
-                        "description": "[int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "cpuFamily": {
-                        "type": "string",
-                        "description": "[string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "datacenterId": {
-                        "type": "string",
-                        "description": "The UUID of the virtual data center (VDC) in which the nodepool is provisioned\n"
-                    },
-                    "labels": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        },
-                        "description": "[map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).\n"
-                    },
-                    "maintenanceWindows": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/DataplatformNodePoolMaintenanceWindow:DataplatformNodePoolMaintenanceWindow"
-                        },
-                        "description": "[string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "nodeCount": {
-                        "type": "integer",
-                        "description": "[int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.\n"
-                    },
-                    "ramSize": {
-                        "type": "integer",
-                        "description": "[int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "storageSize": {
-                        "type": "integer",
-                        "description": "[int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "storageType": {
-                        "type": "string",
-                        "description": "[int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "version": {
-                        "type": "string",
-                        "description": "The version of the Data Platform.\n"
                     }
                 },
                 "type": "object"
@@ -17150,7 +17150,7 @@
             }
         },
         "ionoscloud:index/getDataplatformCluster:getDataplatformCluster": {
-            "description": "The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDataplatformCluster({\n    name: \"Dataplatform_Cluster_Example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dataplatform_cluster(name=\"Dataplatform_Cluster_Example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDataplatformCluster.Invoke(new()\n    {\n        Name = \"Dataplatform_Cluster_Example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupDataplatformCluster(ctx, \u0026ionoscloud.LookupDataplatformClusterArgs{\n\t\t\tName: pulumi.StringRef(\"Dataplatform_Cluster_Example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDataplatformClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDataplatformCluster(GetDataplatformClusterArgs.builder()\n            .name(\"Dataplatform_Cluster_Example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDataplatformCluster\n      Arguments:\n        name: Dataplatform_Cluster_Example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDataplatformCluster({\n    name: \"_Example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dataplatform_cluster(name=\"_Example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDataplatformCluster.Invoke(new()\n    {\n        Name = \"_Example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupDataplatformCluster(ctx, \u0026ionoscloud.LookupDataplatformClusterArgs{\n\t\t\tName:         pulumi.StringRef(\"_Example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDataplatformClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDataplatformCluster(GetDataplatformClusterArgs.builder()\n            .name(\"_Example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDataplatformCluster\n      Arguments:\n        name: _Example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n",
+            "description": "The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDataplatformCluster({\n    name: \"Dataplatform_Cluster_Example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dataplatform_cluster(name=\"Dataplatform_Cluster_Example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDataplatformCluster.Invoke(new()\n    {\n        Name = \"Dataplatform_Cluster_Example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetDataplatformCluster(ctx, \u0026ionoscloud.GetDataplatformClusterArgs{\n\t\t\tName: pulumi.StringRef(\"Dataplatform_Cluster_Example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDataplatformClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDataplatformCluster(GetDataplatformClusterArgs.builder()\n            .name(\"Dataplatform_Cluster_Example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDataplatformCluster\n      Arguments:\n        name: Dataplatform_Cluster_Example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getDataplatformCluster({\n    name: \"_Example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_dataplatform_cluster(name=\"_Example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetDataplatformCluster.Invoke(new()\n    {\n        Name = \"_Example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetDataplatformCluster(ctx, \u0026ionoscloud.GetDataplatformClusterArgs{\n\t\t\tName:         pulumi.StringRef(\"_Example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetDataplatformClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getDataplatformCluster(GetDataplatformClusterArgs.builder()\n            .name(\"_Example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getDataplatformCluster\n      Arguments:\n        name: _Example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getDataplatformCluster.\n",
                 "properties": {

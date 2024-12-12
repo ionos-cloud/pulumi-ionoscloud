@@ -500,54 +500,6 @@ export interface CubeServerVolume {
     userData?: pulumi.Input<string>;
 }
 
-export interface DataplatformClusterLan {
-    /**
-     * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-     */
-    dhcp?: pulumi.Input<boolean>;
-    /**
-     * [string] The LAN ID of an existing LAN at the related data center.
-     */
-    lanId: pulumi.Input<string>;
-    /**
-     * [list] An array of additional LANs attached to worker nodes.
-     */
-    routes?: pulumi.Input<pulumi.Input<inputs.DataplatformClusterLanRoute>[]>;
-}
-
-export interface DataplatformClusterLanRoute {
-    /**
-     * [string] IPv4 or IPv6 gateway IP for the route.
-     */
-    gateway: pulumi.Input<string>;
-    /**
-     * [string] IPv4 or IPv6 CIDR to be routed via the interface.
-     */
-    network: pulumi.Input<string>;
-}
-
-export interface DataplatformClusterMaintenanceWindow {
-    /**
-     * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface DataplatformNodePoolMaintenanceWindow {
-    /**
-     * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-     */
-    dayOfTheWeek: pulumi.Input<string>;
-    /**
-     * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
-     */
-    time: pulumi.Input<string>;
-}
-
 export interface GetIpblockIpConsumer {
     datacenterId?: string;
     datacenterName?: string;
@@ -1513,6 +1465,56 @@ export namespace dbaas {
 
     export interface PSQLClusterMaintenanceWindow {
         dayOfTheWeek: pulumi.Input<string>;
+        time: pulumi.Input<string>;
+    }
+}
+
+export namespace dsaas {
+    export interface ClusterLan {
+        /**
+         * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
+         */
+        dhcp?: pulumi.Input<boolean>;
+        /**
+         * [string] The LAN ID of an existing LAN at the related data center.
+         */
+        lanId: pulumi.Input<string>;
+        /**
+         * [list] An array of additional LANs attached to worker nodes.
+         */
+        routes?: pulumi.Input<pulumi.Input<inputs.dsaas.ClusterLanRoute>[]>;
+    }
+
+    export interface ClusterLanRoute {
+        /**
+         * [string] IPv4 or IPv6 gateway IP for the route.
+         */
+        gateway: pulumi.Input<string>;
+        /**
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface.
+         */
+        network: pulumi.Input<string>;
+    }
+
+    export interface ClusterMaintenanceWindow {
+        /**
+         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface NodePoolMaintenanceWindow {
+        /**
+         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+         */
         time: pulumi.Input<string>;
     }
 }

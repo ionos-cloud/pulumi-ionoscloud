@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Dsaas.Inputs
 {
 
-    public sealed class DataplatformClusterLanGetArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterLanArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
@@ -25,20 +25,20 @@ namespace Pulumi.Ionoscloud.Inputs
         public Input<string> LanId { get; set; } = null!;
 
         [Input("routes")]
-        private InputList<Inputs.DataplatformClusterLanRouteGetArgs>? _routes;
+        private InputList<Inputs.ClusterLanRouteArgs>? _routes;
 
         /// <summary>
         /// [list] An array of additional LANs attached to worker nodes.
         /// </summary>
-        public InputList<Inputs.DataplatformClusterLanRouteGetArgs> Routes
+        public InputList<Inputs.ClusterLanRouteArgs> Routes
         {
-            get => _routes ?? (_routes = new InputList<Inputs.DataplatformClusterLanRouteGetArgs>());
+            get => _routes ?? (_routes = new InputList<Inputs.ClusterLanRouteArgs>());
             set => _routes = value;
         }
 
-        public DataplatformClusterLanGetArgs()
+        public ClusterLanArgs()
         {
         }
-        public static new DataplatformClusterLanGetArgs Empty => new DataplatformClusterLanGetArgs();
+        public static new ClusterLanArgs Empty => new ClusterLanArgs();
     }
 }

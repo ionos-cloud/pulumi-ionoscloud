@@ -50,16 +50,6 @@ export type CubeServer = import("./cubeServer").CubeServer;
 export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
 utilities.lazyLoad(exports, ["CubeServer"], () => require("./cubeServer"));
 
-export { DataplatformClusterArgs, DataplatformClusterState } from "./dataplatformCluster";
-export type DataplatformCluster = import("./dataplatformCluster").DataplatformCluster;
-export const DataplatformCluster: typeof import("./dataplatformCluster").DataplatformCluster = null as any;
-utilities.lazyLoad(exports, ["DataplatformCluster"], () => require("./dataplatformCluster"));
-
-export { DataplatformNodePoolArgs, DataplatformNodePoolState } from "./dataplatformNodePool";
-export type DataplatformNodePool = import("./dataplatformNodePool").DataplatformNodePool;
-export const DataplatformNodePool: typeof import("./dataplatformNodePool").DataplatformNodePool = null as any;
-utilities.lazyLoad(exports, ["DataplatformNodePool"], () => require("./dataplatformNodePool"));
-
 export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
 export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
 export const getApigatewayOutput: typeof import("./getApigateway").getApigatewayOutput = null as any;
@@ -508,6 +498,7 @@ import * as config from "./config";
 import * as creg from "./creg";
 import * as dbaas from "./dbaas";
 import * as dns from "./dns";
+import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
 import * as nfs from "./nfs";
 import * as types from "./types";
@@ -520,6 +511,7 @@ export {
     creg,
     dbaas,
     dns,
+    dsaas,
     k8s,
     nfs,
     types,
@@ -548,10 +540,6 @@ const _module = {
                 return new Certificate(name, <any>undefined, { urn })
             case "ionoscloud:index/cubeServer:CubeServer":
                 return new CubeServer(name, <any>undefined, { urn })
-            case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
-                return new DataplatformCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
-                return new DataplatformNodePool(name, <any>undefined, { urn })
             case "ionoscloud:index/ipfailover:Ipfailover":
                 return new Ipfailover(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -596,8 +584,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvid
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformNodePool", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/ipfailover", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)

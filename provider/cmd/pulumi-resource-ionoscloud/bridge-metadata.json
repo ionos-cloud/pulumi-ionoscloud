@@ -251,7 +251,7 @@
                 }
             },
             "ionoscloud_dataplatform_cluster": {
-                "current": "ionoscloud:index/dataplatformCluster:DataplatformCluster",
+                "current": "ionoscloud:dsaas/cluster:Cluster",
                 "fields": {
                     "lans": {
                         "maxItemsOne": false,
@@ -269,7 +269,7 @@
                 }
             },
             "ionoscloud_dataplatform_node_pool": {
-                "current": "ionoscloud:index/dataplatformNodePool:DataplatformNodePool",
+                "current": "ionoscloud:dsaas/nodePool:NodePool",
                 "fields": {
                     "maintenance_window": {
                         "maxItemsOne": false

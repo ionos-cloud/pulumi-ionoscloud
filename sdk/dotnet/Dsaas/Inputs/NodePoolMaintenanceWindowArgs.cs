@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Dsaas.Inputs
 {
 
-    public sealed class DataplatformClusterMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
+    public sealed class NodePoolMaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
@@ -24,9 +24,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;
 
-        public DataplatformClusterMaintenanceWindowGetArgs()
+        public NodePoolMaintenanceWindowArgs()
         {
         }
-        public static new DataplatformClusterMaintenanceWindowGetArgs Empty => new DataplatformClusterMaintenanceWindowGetArgs();
+        public static new NodePoolMaintenanceWindowArgs Empty => new NodePoolMaintenanceWindowArgs();
     }
 }

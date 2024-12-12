@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Dsaas
 {
     /// <summary>
     /// ## Example Usage
@@ -27,12 +27,12 @@ namespace Pulumi.Ionoscloud
     ///         Description = "Datacenter for testing Dataplatform Cluster",
     ///     });
     /// 
-    ///     var exampleDataplatformCluster = new Ionoscloud.DataplatformCluster("exampleDataplatformCluster", new()
+    ///     var exampleCluster = new Ionoscloud.Dsaas.Cluster("exampleCluster", new()
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         MaintenanceWindows = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.DataplatformClusterMaintenanceWindowArgs
+    ///             new Ionoscloud.Dsaas.Inputs.ClusterMaintenanceWindowArgs
     ///             {
     ///                 DayOfTheWeek = "Sunday",
     ///                 Time = "09:00:00",
@@ -41,9 +41,9 @@ namespace Pulumi.Ionoscloud
     ///         Version = "23.7",
     ///     });
     /// 
-    ///     var exampleDataplatformNodePool = new Ionoscloud.DataplatformNodePool("exampleDataplatformNodePool", new()
+    ///     var exampleNodePool = new Ionoscloud.Dsaas.NodePool("exampleNodePool", new()
     ///     {
-    ///         ClusterId = exampleDataplatformCluster.Id,
+    ///         ClusterId = exampleCluster.Id,
     ///         NodeCount = 1,
     ///         CpuFamily = "INTEL_SKYLAKE",
     ///         CoresCount = 1,
@@ -53,7 +53,7 @@ namespace Pulumi.Ionoscloud
     ///         StorageSize = 10,
     ///         MaintenanceWindows = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.DataplatformNodePoolMaintenanceWindowArgs
+    ///             new Ionoscloud.Dsaas.Inputs.NodePoolMaintenanceWindowArgs
     ///             {
     ///                 DayOfTheWeek = "Monday",
     ///                 Time = "09:00:00",
@@ -80,11 +80,11 @@ namespace Pulumi.Ionoscloud
     /// A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/dataplatformNodePool:DataplatformNodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
+    /// $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/dataplatformNodePool:DataplatformNodePool")]
-    public partial class DataplatformNodePool : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:dsaas/nodePool:NodePool")]
+    public partial class NodePool : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
@@ -132,7 +132,7 @@ namespace Pulumi.Ionoscloud
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
         [Output("maintenanceWindows")]
-        public Output<ImmutableArray<Outputs.DataplatformNodePoolMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.NodePoolMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
@@ -172,19 +172,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a DataplatformNodePool resource with the given unique name, arguments, and options.
+        /// Create a NodePool resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DataplatformNodePool(string name, DataplatformNodePoolArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dataplatformNodePool:DataplatformNodePool", name, args ?? new DataplatformNodePoolArgs(), MakeResourceOptions(options, ""))
+        public NodePool(string name, NodePoolArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:dsaas/nodePool:NodePool", name, args ?? new NodePoolArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DataplatformNodePool(string name, Input<string> id, DataplatformNodePoolState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dataplatformNodePool:DataplatformNodePool", name, state, MakeResourceOptions(options, id))
+        private NodePool(string name, Input<string> id, NodePoolState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:dsaas/nodePool:NodePool", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -200,7 +200,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing DataplatformNodePool resource's state with the given name, ID, and optional extra
+        /// Get an existing NodePool resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -208,13 +208,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DataplatformNodePool Get(string name, Input<string> id, DataplatformNodePoolState? state = null, CustomResourceOptions? options = null)
+        public static NodePool Get(string name, Input<string> id, NodePoolState? state = null, CustomResourceOptions? options = null)
         {
-            return new DataplatformNodePool(name, id, state, options);
+            return new NodePool(name, id, state, options);
         }
     }
 
-    public sealed class DataplatformNodePoolArgs : global::Pulumi.ResourceArgs
+    public sealed class NodePoolArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -265,14 +265,14 @@ namespace Pulumi.Ionoscloud
         }
 
         [Input("maintenanceWindows")]
-        private InputList<Inputs.DataplatformNodePoolMaintenanceWindowArgs>? _maintenanceWindows;
+        private InputList<Inputs.NodePoolMaintenanceWindowArgs>? _maintenanceWindows;
 
         /// <summary>
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
-        public InputList<Inputs.DataplatformNodePoolMaintenanceWindowArgs> MaintenanceWindows
+        public InputList<Inputs.NodePoolMaintenanceWindowArgs> MaintenanceWindows
         {
-            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.DataplatformNodePoolMaintenanceWindowArgs>());
+            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.NodePoolMaintenanceWindowArgs>());
             set => _maintenanceWindows = value;
         }
 
@@ -306,13 +306,13 @@ namespace Pulumi.Ionoscloud
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
 
-        public DataplatformNodePoolArgs()
+        public NodePoolArgs()
         {
         }
-        public static new DataplatformNodePoolArgs Empty => new DataplatformNodePoolArgs();
+        public static new NodePoolArgs Empty => new NodePoolArgs();
     }
 
-    public sealed class DataplatformNodePoolState : global::Pulumi.ResourceArgs
+    public sealed class NodePoolState : global::Pulumi.ResourceArgs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
@@ -369,14 +369,14 @@ namespace Pulumi.Ionoscloud
         }
 
         [Input("maintenanceWindows")]
-        private InputList<Inputs.DataplatformNodePoolMaintenanceWindowGetArgs>? _maintenanceWindows;
+        private InputList<Inputs.NodePoolMaintenanceWindowGetArgs>? _maintenanceWindows;
 
         /// <summary>
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
-        public InputList<Inputs.DataplatformNodePoolMaintenanceWindowGetArgs> MaintenanceWindows
+        public InputList<Inputs.NodePoolMaintenanceWindowGetArgs> MaintenanceWindows
         {
-            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.DataplatformNodePoolMaintenanceWindowGetArgs>());
+            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.NodePoolMaintenanceWindowGetArgs>());
             set => _maintenanceWindows = value;
         }
 
@@ -416,9 +416,9 @@ namespace Pulumi.Ionoscloud
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public DataplatformNodePoolState()
+        public NodePoolState()
         {
         }
-        public static new DataplatformNodePoolState Empty => new DataplatformNodePoolState();
+        public static new NodePoolState Empty => new NodePoolState();
     }
 }

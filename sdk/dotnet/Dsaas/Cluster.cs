@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Dsaas
 {
     /// <summary>
     /// Manages a **Dataplatform Cluster**.
@@ -35,12 +35,12 @@ namespace Pulumi.Ionoscloud
     ///         Public = false,
     ///     });
     /// 
-    ///     var exampleDataplatformCluster = new Ionoscloud.DataplatformCluster("exampleDataplatformCluster", new()
+    ///     var exampleCluster = new Ionoscloud.Dsaas.Cluster("exampleCluster", new()
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         MaintenanceWindows = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.DataplatformClusterMaintenanceWindowArgs
+    ///             new Ionoscloud.Dsaas.Inputs.ClusterMaintenanceWindowArgs
     ///             {
     ///                 DayOfTheWeek = "Sunday",
     ///                 Time = "09:00:00",
@@ -49,13 +49,13 @@ namespace Pulumi.Ionoscloud
     ///         Version = "23.11",
     ///         Lans = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.DataplatformClusterLanArgs
+    ///             new Ionoscloud.Dsaas.Inputs.ClusterLanArgs
     ///             {
     ///                 LanId = exampleLan.Id,
     ///                 Dhcp = false,
     ///                 Routes = new[]
     ///                 {
-    ///                     new Ionoscloud.Inputs.DataplatformClusterLanRouteArgs
+    ///                     new Ionoscloud.Dsaas.Inputs.ClusterLanRouteArgs
     ///                     {
     ///                         Network = "182.168.42.1/24",
     ///                         Gateway = "192.168.42.1",
@@ -74,11 +74,11 @@ namespace Pulumi.Ionoscloud
     /// Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/dataplatformCluster:DataplatformCluster mycluser {cluster uuid}
+    /// $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/dataplatformCluster:DataplatformCluster")]
-    public partial class DataplatformCluster : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:dsaas/cluster:Cluster")]
+    public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
@@ -90,13 +90,13 @@ namespace Pulumi.Ionoscloud
         /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
         [Output("lans")]
-        public Output<ImmutableArray<Outputs.DataplatformClusterLan>> Lans { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.ClusterLan>> Lans { get; private set; } = null!;
 
         /// <summary>
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
         [Output("maintenanceWindows")]
-        public Output<ImmutableArray<Outputs.DataplatformClusterMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.ClusterMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
@@ -112,19 +112,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a DataplatformCluster resource with the given unique name, arguments, and options.
+        /// Create a Cluster resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DataplatformCluster(string name, DataplatformClusterArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dataplatformCluster:DataplatformCluster", name, args ?? new DataplatformClusterArgs(), MakeResourceOptions(options, ""))
+        public Cluster(string name, ClusterArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:dsaas/cluster:Cluster", name, args ?? new ClusterArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DataplatformCluster(string name, Input<string> id, DataplatformClusterState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/dataplatformCluster:DataplatformCluster", name, state, MakeResourceOptions(options, id))
+        private Cluster(string name, Input<string> id, ClusterState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:dsaas/cluster:Cluster", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -140,7 +140,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing DataplatformCluster resource's state with the given name, ID, and optional extra
+        /// Get an existing Cluster resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -148,13 +148,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DataplatformCluster Get(string name, Input<string> id, DataplatformClusterState? state = null, CustomResourceOptions? options = null)
+        public static Cluster Get(string name, Input<string> id, ClusterState? state = null, CustomResourceOptions? options = null)
         {
-            return new DataplatformCluster(name, id, state, options);
+            return new Cluster(name, id, state, options);
         }
     }
 
-    public sealed class DataplatformClusterArgs : global::Pulumi.ResourceArgs
+    public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
@@ -163,26 +163,26 @@ namespace Pulumi.Ionoscloud
         public Input<string> DatacenterId { get; set; } = null!;
 
         [Input("lans")]
-        private InputList<Inputs.DataplatformClusterLanArgs>? _lans;
+        private InputList<Inputs.ClusterLanArgs>? _lans;
 
         /// <summary>
         /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
-        public InputList<Inputs.DataplatformClusterLanArgs> Lans
+        public InputList<Inputs.ClusterLanArgs> Lans
         {
-            get => _lans ?? (_lans = new InputList<Inputs.DataplatformClusterLanArgs>());
+            get => _lans ?? (_lans = new InputList<Inputs.ClusterLanArgs>());
             set => _lans = value;
         }
 
         [Input("maintenanceWindows")]
-        private InputList<Inputs.DataplatformClusterMaintenanceWindowArgs>? _maintenanceWindows;
+        private InputList<Inputs.ClusterMaintenanceWindowArgs>? _maintenanceWindows;
 
         /// <summary>
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
-        public InputList<Inputs.DataplatformClusterMaintenanceWindowArgs> MaintenanceWindows
+        public InputList<Inputs.ClusterMaintenanceWindowArgs> MaintenanceWindows
         {
-            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.DataplatformClusterMaintenanceWindowArgs>());
+            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.ClusterMaintenanceWindowArgs>());
             set => _maintenanceWindows = value;
         }
 
@@ -198,13 +198,13 @@ namespace Pulumi.Ionoscloud
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public DataplatformClusterArgs()
+        public ClusterArgs()
         {
         }
-        public static new DataplatformClusterArgs Empty => new DataplatformClusterArgs();
+        public static new ClusterArgs Empty => new ClusterArgs();
     }
 
-    public sealed class DataplatformClusterState : global::Pulumi.ResourceArgs
+    public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
@@ -213,26 +213,26 @@ namespace Pulumi.Ionoscloud
         public Input<string>? DatacenterId { get; set; }
 
         [Input("lans")]
-        private InputList<Inputs.DataplatformClusterLanGetArgs>? _lans;
+        private InputList<Inputs.ClusterLanGetArgs>? _lans;
 
         /// <summary>
         /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
-        public InputList<Inputs.DataplatformClusterLanGetArgs> Lans
+        public InputList<Inputs.ClusterLanGetArgs> Lans
         {
-            get => _lans ?? (_lans = new InputList<Inputs.DataplatformClusterLanGetArgs>());
+            get => _lans ?? (_lans = new InputList<Inputs.ClusterLanGetArgs>());
             set => _lans = value;
         }
 
         [Input("maintenanceWindows")]
-        private InputList<Inputs.DataplatformClusterMaintenanceWindowGetArgs>? _maintenanceWindows;
+        private InputList<Inputs.ClusterMaintenanceWindowGetArgs>? _maintenanceWindows;
 
         /// <summary>
         /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
-        public InputList<Inputs.DataplatformClusterMaintenanceWindowGetArgs> MaintenanceWindows
+        public InputList<Inputs.ClusterMaintenanceWindowGetArgs> MaintenanceWindows
         {
-            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.DataplatformClusterMaintenanceWindowGetArgs>());
+            get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.ClusterMaintenanceWindowGetArgs>());
             set => _maintenanceWindows = value;
         }
 
@@ -248,9 +248,9 @@ namespace Pulumi.Ionoscloud
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public DataplatformClusterState()
+        public ClusterState()
         {
         }
-        public static new DataplatformClusterState Empty => new DataplatformClusterState();
+        public static new ClusterState Empty => new ClusterState();
     }
 }
