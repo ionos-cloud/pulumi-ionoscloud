@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    public sealed class ContainerRegistryTokenScopeGetArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryTokenScopeGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("actions", required: true)]
         private InputList<string>? _actions;
@@ -36,9 +36,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        public ContainerRegistryTokenScopeGetArgs()
+        public RegistryTokenScopeGetArgs()
         {
         }
-        public static new ContainerRegistryTokenScopeGetArgs Empty => new ContainerRegistryTokenScopeGetArgs();
+        public static new RegistryTokenScopeGetArgs Empty => new RegistryTokenScopeGetArgs();
     }
 }

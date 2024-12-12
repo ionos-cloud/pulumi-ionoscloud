@@ -50,16 +50,6 @@ export type Certificate = import("./certificate").Certificate;
 export const Certificate: typeof import("./certificate").Certificate = null as any;
 utilities.lazyLoad(exports, ["Certificate"], () => require("./certificate"));
 
-export { ContainerRegistryArgs, ContainerRegistryState } from "./containerRegistry";
-export type ContainerRegistry = import("./containerRegistry").ContainerRegistry;
-export const ContainerRegistry: typeof import("./containerRegistry").ContainerRegistry = null as any;
-utilities.lazyLoad(exports, ["ContainerRegistry"], () => require("./containerRegistry"));
-
-export { ContainerRegistryTokenArgs, ContainerRegistryTokenState } from "./containerRegistryToken";
-export type ContainerRegistryToken = import("./containerRegistryToken").ContainerRegistryToken;
-export const ContainerRegistryToken: typeof import("./containerRegistryToken").ContainerRegistryToken = null as any;
-utilities.lazyLoad(exports, ["ContainerRegistryToken"], () => require("./containerRegistryToken"));
-
 export { CubeServerArgs, CubeServerState } from "./cubeServer";
 export type CubeServer = import("./cubeServer").CubeServer;
 export const CubeServer: typeof import("./cubeServer").CubeServer = null as any;
@@ -549,6 +539,7 @@ utilities.lazyLoad(exports, ["VpnWireguardPeer"], () => require("./vpnWireguardP
 // Export sub-modules:
 import * as compute from "./compute";
 import * as config from "./config";
+import * as creg from "./creg";
 import * as dbaas from "./dbaas";
 import * as dns from "./dns";
 import * as k8s from "./k8s";
@@ -557,6 +548,7 @@ import * as types from "./types";
 export {
     compute,
     config,
+    creg,
     dbaas,
     dns,
     k8s,
@@ -585,10 +577,6 @@ const _module = {
                 return new CdnDistribution(name, <any>undefined, { urn })
             case "ionoscloud:index/certificate:Certificate":
                 return new Certificate(name, <any>undefined, { urn })
-            case "ionoscloud:index/containerRegistry:ContainerRegistry":
-                return new ContainerRegistry(name, <any>undefined, { urn })
-            case "ionoscloud:index/containerRegistryToken:ContainerRegistryToken":
-                return new ContainerRegistryToken(name, <any>undefined, { urn })
             case "ionoscloud:index/cubeServer:CubeServer":
                 return new CubeServer(name, <any>undefined, { urn })
             case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
@@ -651,8 +639,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/autoCertificateProvid
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cdnDistribution", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/certificate", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistry", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/containerRegistryToken", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/cubeServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/dataplatformNodePool", _module)

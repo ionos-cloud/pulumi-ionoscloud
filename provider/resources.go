@@ -42,7 +42,7 @@ const (
 	dbaasModule   = "dbaas"   // the ionoscloud module
 	k8sModule     = "k8s"     // the ionoscloud module
 	dnsModule     = "dns"     // the ionoscloud module
-
+	cregModule    = "creg"    // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -253,6 +253,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_dns_record": {
 				Tok: tfbridge.MakeResource(mainPkg, dnsModule, "Record"),
+			},
+			"ionoscloud_container_registry": {
+				Tok: tfbridge.MakeResource(mainPkg, cregModule, "Registry"),
+			},
+			"ionoscloud_container_registry_token": {
+				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
 			},
 		},
 	}

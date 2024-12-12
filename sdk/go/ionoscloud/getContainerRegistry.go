@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupContainerRegistry(ctx, &ionoscloud.LookupContainerRegistryArgs{
+//			_, err := ionoscloud.GetContainerRegistry(ctx, &ionoscloud.GetContainerRegistryArgs{
 //				Name: pulumi.StringRef("container-registry-example"),
 //			}, nil)
 //			if err != nil {
@@ -59,7 +59,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupContainerRegistry(ctx, &ionoscloud.LookupContainerRegistryArgs{
+//			_, err := ionoscloud.GetContainerRegistry(ctx, &ionoscloud.GetContainerRegistryArgs{
 //				Name:         pulumi.StringRef("-example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)
@@ -72,9 +72,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupContainerRegistry(ctx *pulumi.Context, args *LookupContainerRegistryArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistryResult, error) {
+func GetContainerRegistry(ctx *pulumi.Context, args *GetContainerRegistryArgs, opts ...pulumi.InvokeOption) (*GetContainerRegistryResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupContainerRegistryResult
+	var rv GetContainerRegistryResult
 	err := ctx.Invoke("ionoscloud:index/getContainerRegistry:getContainerRegistry", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func LookupContainerRegistry(ctx *pulumi.Context, args *LookupContainerRegistryA
 }
 
 // A collection of arguments for invoking getContainerRegistry.
-type LookupContainerRegistryArgs struct {
+type GetContainerRegistryArgs struct {
 	// ID of the container registry you want to search for.
 	Id       *string `pulumi:"id"`
 	Location *string `pulumi:"location"`
@@ -96,7 +96,7 @@ type LookupContainerRegistryArgs struct {
 }
 
 // A collection of values returned by getContainerRegistry.
-type LookupContainerRegistryResult struct {
+type GetContainerRegistryResult struct {
 	// The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
 	ApiSubnetAllowLists        []string                                        `pulumi:"apiSubnetAllowLists"`
 	Features                   []GetContainerRegistryFeature                   `pulumi:"features"`
@@ -112,21 +112,21 @@ type LookupContainerRegistryResult struct {
 	StorageUsages []GetContainerRegistryStorageUsage `pulumi:"storageUsages"`
 }
 
-func LookupContainerRegistryOutput(ctx *pulumi.Context, args LookupContainerRegistryOutputArgs, opts ...pulumi.InvokeOption) LookupContainerRegistryResultOutput {
+func GetContainerRegistryOutput(ctx *pulumi.Context, args GetContainerRegistryOutputArgs, opts ...pulumi.InvokeOption) GetContainerRegistryResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupContainerRegistryResult, error) {
-			args := v.(LookupContainerRegistryArgs)
-			r, err := LookupContainerRegistry(ctx, &args, opts...)
-			var s LookupContainerRegistryResult
+		ApplyT(func(v interface{}) (GetContainerRegistryResult, error) {
+			args := v.(GetContainerRegistryArgs)
+			r, err := GetContainerRegistry(ctx, &args, opts...)
+			var s GetContainerRegistryResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupContainerRegistryResultOutput)
+		}).(GetContainerRegistryResultOutput)
 }
 
 // A collection of arguments for invoking getContainerRegistry.
-type LookupContainerRegistryOutputArgs struct {
+type GetContainerRegistryOutputArgs struct {
 	// ID of the container registry you want to search for.
 	Id       pulumi.StringPtrInput `pulumi:"id"`
 	Location pulumi.StringPtrInput `pulumi:"location"`
@@ -138,72 +138,72 @@ type LookupContainerRegistryOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupContainerRegistryOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupContainerRegistryArgs)(nil)).Elem()
+func (GetContainerRegistryOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerRegistryArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getContainerRegistry.
-type LookupContainerRegistryResultOutput struct{ *pulumi.OutputState }
+type GetContainerRegistryResultOutput struct{ *pulumi.OutputState }
 
-func (LookupContainerRegistryResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupContainerRegistryResult)(nil)).Elem()
+func (GetContainerRegistryResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerRegistryResult)(nil)).Elem()
 }
 
-func (o LookupContainerRegistryResultOutput) ToLookupContainerRegistryResultOutput() LookupContainerRegistryResultOutput {
+func (o GetContainerRegistryResultOutput) ToGetContainerRegistryResultOutput() GetContainerRegistryResultOutput {
 	return o
 }
 
-func (o LookupContainerRegistryResultOutput) ToLookupContainerRegistryResultOutputWithContext(ctx context.Context) LookupContainerRegistryResultOutput {
+func (o GetContainerRegistryResultOutput) ToGetContainerRegistryResultOutputWithContext(ctx context.Context) GetContainerRegistryResultOutput {
 	return o
 }
 
 // The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-func (o LookupContainerRegistryResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
+func (o GetContainerRegistryResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) Features() GetContainerRegistryFeatureArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) []GetContainerRegistryFeature { return v.Features }).(GetContainerRegistryFeatureArrayOutput)
+func (o GetContainerRegistryResultOutput) Features() GetContainerRegistryFeatureArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) []GetContainerRegistryFeature { return v.Features }).(GetContainerRegistryFeatureArrayOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) GarbageCollectionSchedules() GetContainerRegistryGarbageCollectionScheduleArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) []GetContainerRegistryGarbageCollectionSchedule {
+func (o GetContainerRegistryResultOutput) GarbageCollectionSchedules() GetContainerRegistryGarbageCollectionScheduleArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) []GetContainerRegistryGarbageCollectionSchedule {
 		return v.GarbageCollectionSchedules
 	}).(GetContainerRegistryGarbageCollectionScheduleArrayOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) string { return v.Hostname }).(pulumi.StringOutput)
+func (o GetContainerRegistryResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
 // Id of the container registry.
-func (o LookupContainerRegistryResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetContainerRegistryResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o GetContainerRegistryResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) MaintenanceWindows() GetContainerRegistryMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) []GetContainerRegistryMaintenanceWindow {
+func (o GetContainerRegistryResultOutput) MaintenanceWindows() GetContainerRegistryMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) []GetContainerRegistryMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetContainerRegistryMaintenanceWindowArrayOutput)
 }
 
 // The name of the container registry.
-func (o LookupContainerRegistryResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetContainerRegistryResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetContainerRegistryResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-func (o LookupContainerRegistryResultOutput) StorageUsages() GetContainerRegistryStorageUsageArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryResult) []GetContainerRegistryStorageUsage { return v.StorageUsages }).(GetContainerRegistryStorageUsageArrayOutput)
+func (o GetContainerRegistryResultOutput) StorageUsages() GetContainerRegistryStorageUsageArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryResult) []GetContainerRegistryStorageUsage { return v.StorageUsages }).(GetContainerRegistryStorageUsageArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupContainerRegistryResultOutput{})
+	pulumi.RegisterOutputType(GetContainerRegistryResultOutput{})
 }

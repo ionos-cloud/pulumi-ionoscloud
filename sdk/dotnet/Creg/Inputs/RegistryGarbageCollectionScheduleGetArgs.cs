@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    public sealed class ContainerRegistryGarbageCollectionScheduleArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryGarbageCollectionScheduleGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("days", required: true)]
         private InputList<string>? _days;
@@ -30,9 +30,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;
 
-        public ContainerRegistryGarbageCollectionScheduleArgs()
+        public RegistryGarbageCollectionScheduleGetArgs()
         {
         }
-        public static new ContainerRegistryGarbageCollectionScheduleArgs Empty => new ContainerRegistryGarbageCollectionScheduleArgs();
+        public static new RegistryGarbageCollectionScheduleGetArgs Empty => new RegistryGarbageCollectionScheduleGetArgs();
     }
 }

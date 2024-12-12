@@ -14,8 +14,6 @@ from .auto_certificate_provider import *
 from .autoscaling_group import *
 from .cdn_distribution import *
 from .certificate import *
-from .container_registry import *
-from .container_registry_token import *
 from .cube_server import *
 from .dataplatform_cluster import *
 from .dataplatform_node_pool import *
@@ -122,6 +120,8 @@ if typing.TYPE_CHECKING:
     compute = __compute
     import ionoscloud.config as __config
     config = __config
+    import ionoscloud.creg as __creg
+    creg = __creg
     import ionoscloud.dbaas as __dbaas
     dbaas = __dbaas
     import ionoscloud.dns as __dns
@@ -131,6 +131,7 @@ if typing.TYPE_CHECKING:
 else:
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
+    creg = _utilities.lazy_import('ionoscloud.creg')
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
     dns = _utilities.lazy_import('ionoscloud.dns')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
@@ -224,6 +225,22 @@ _utilities.register(
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/volume:Volume": "Volume"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "creg/registry",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registry:Registry": "Registry"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "creg/registryToken",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registryToken:RegistryToken": "RegistryToken"
   }
  },
  {
@@ -368,22 +385,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/certificate:Certificate": "Certificate"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistry",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistry:ContainerRegistry": "ContainerRegistry"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistryToken",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistryToken:ContainerRegistryToken": "ContainerRegistryToken"
   }
  },
  {

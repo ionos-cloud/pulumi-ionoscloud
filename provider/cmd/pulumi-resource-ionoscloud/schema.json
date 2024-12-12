@@ -528,6 +528,101 @@
                 }
             }
         },
+        "ionoscloud:creg/RegistryFeatures:RegistryFeatures": {
+            "properties": {
+                "vulnerabilityScanning": {
+                    "type": "boolean",
+                    "description": "[bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.\n\n\u003e **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "vulnerabilityScanning"
+                    ]
+                }
+            }
+        },
+        "ionoscloud:creg/RegistryGarbageCollectionSchedule:RegistryGarbageCollectionSchedule": {
+            "properties": {
+                "days": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`\n"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "[string]\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "days",
+                "time"
+            ]
+        },
+        "ionoscloud:creg/RegistryStorageUsage:RegistryStorageUsage": {
+            "properties": {
+                "bytes": {
+                    "type": "integer"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "bytes",
+                        "updatedAt"
+                    ]
+                }
+            }
+        },
+        "ionoscloud:creg/RegistryTokenCredential:RegistryTokenCredential": {
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "password",
+                "username"
+            ]
+        },
+        "ionoscloud:creg/RegistryTokenScope:RegistryTokenScope": {
+            "properties": {
+                "actions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[string] Example: [\"pull\", \"push\", \"delete\"]\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string]\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "[string]\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "actions",
+                "name",
+                "type"
+            ]
+        },
         "ionoscloud:dbaas/InMemoryDBReplicaSetConnections:InMemoryDBReplicaSetConnections": {
             "properties": {
                 "cidr": {
@@ -1536,101 +1631,6 @@
                 }
             },
             "type": "object"
-        },
-        "ionoscloud:index/ContainerRegistryFeatures:ContainerRegistryFeatures": {
-            "properties": {
-                "vulnerabilityScanning": {
-                    "type": "boolean",
-                    "description": "[bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.\n\n\u003e **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "vulnerabilityScanning"
-                    ]
-                }
-            }
-        },
-        "ionoscloud:index/ContainerRegistryGarbageCollectionSchedule:ContainerRegistryGarbageCollectionSchedule": {
-            "properties": {
-                "days": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`\n"
-                },
-                "time": {
-                    "type": "string",
-                    "description": "[string]\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "days",
-                "time"
-            ]
-        },
-        "ionoscloud:index/ContainerRegistryStorageUsage:ContainerRegistryStorageUsage": {
-            "properties": {
-                "bytes": {
-                    "type": "integer"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "bytes",
-                        "updatedAt"
-                    ]
-                }
-            }
-        },
-        "ionoscloud:index/ContainerRegistryTokenCredential:ContainerRegistryTokenCredential": {
-            "properties": {
-                "password": {
-                    "type": "string"
-                },
-                "username": {
-                    "type": "string"
-                }
-            },
-            "type": "object",
-            "required": [
-                "password",
-                "username"
-            ]
-        },
-        "ionoscloud:index/ContainerRegistryTokenScope:ContainerRegistryTokenScope": {
-            "properties": {
-                "actions": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[string] Example: [\"pull\", \"push\", \"delete\"]\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string]\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "[string]\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "actions",
-                "name",
-                "type"
-            ]
         },
         "ionoscloud:index/CubeServerNic:CubeServerNic": {
             "properties": {
@@ -9848,6 +9848,233 @@
                 "type": "object"
             }
         },
+        "ionoscloud:creg/registry:Registry": {
+            "description": "Manages an **Container Registry** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.creg.Registry(\"example\", {\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    garbageCollectionSchedule: {\n        days: [\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time: \"05:19:00+00:00\",\n    },\n    location: \"de/fra\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.creg.Registry(\"example\",\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    garbage_collection_schedule=ionoscloud.creg.RegistryGarbageCollectionScheduleArgs(\n        days=[\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time=\"05:19:00+00:00\",\n    ),\n    location=\"de/fra\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Creg.Registry(\"example\", new()\n    {\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs\n        {\n            Days = new[]\n            {\n                \"Monday\",\n                \"Tuesday\",\n            },\n            Time = \"05:19:00+00:00\",\n        },\n        Location = \"de/fra\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := creg.NewRegistry(ctx, \"example\", \u0026creg.RegistryArgs{\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tGarbageCollectionSchedule: \u0026creg.RegistryGarbageCollectionScheduleArgs{\n\t\t\t\tDays: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"Monday\"),\n\t\t\t\t\tpulumi.String(\"Tuesday\"),\n\t\t\t\t},\n\t\t\t\tTime: pulumi.String(\"05:19:00+00:00\"),\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.creg.Registry;\nimport com.pulumi.ionoscloud.creg.RegistryArgs;\nimport com.pulumi.ionoscloud.creg.inputs.RegistryGarbageCollectionScheduleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Registry(\"example\", RegistryArgs.builder()        \n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .garbageCollectionSchedule(RegistryGarbageCollectionScheduleArgs.builder()\n                .days(                \n                    \"Monday\",\n                    \"Tuesday\")\n                .time(\"05:19:00+00:00\")\n                .build())\n            .location(\"de/fra\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:creg:Registry\n    properties:\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      garbageCollectionSchedule:\n        days:\n          - Monday\n          - Tuesday\n        time: 05:19:00+00:00\n      location: de/fra\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Container Registry can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}\n```\n\n",
+            "properties": {
+                "apiSubnetAllowLists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
+                },
+                "features": {
+                    "$ref": "#/types/ionoscloud:creg/RegistryFeatures:RegistryFeatures",
+                    "description": "[Map]\n"
+                },
+                "garbageCollectionSchedule": {
+                    "$ref": "#/types/ionoscloud:creg/RegistryGarbageCollectionSchedule:RegistryGarbageCollectionSchedule",
+                    "description": "[Map]\n"
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] Immutable, update forces re-creation of the resource.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n"
+                },
+                "storageUsages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryStorageUsage:RegistryStorageUsage"
+                    }
+                }
+            },
+            "required": [
+                "features",
+                "garbageCollectionSchedule",
+                "hostname",
+                "location",
+                "name",
+                "storageUsages"
+            ],
+            "inputProperties": {
+                "apiSubnetAllowLists": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
+                },
+                "features": {
+                    "$ref": "#/types/ionoscloud:creg/RegistryFeatures:RegistryFeatures",
+                    "description": "[Map]\n"
+                },
+                "garbageCollectionSchedule": {
+                    "$ref": "#/types/ionoscloud:creg/RegistryGarbageCollectionSchedule:RegistryGarbageCollectionSchedule",
+                    "description": "[Map]\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] Immutable, update forces re-creation of the resource.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "location"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Registry resources.\n",
+                "properties": {
+                    "apiSubnetAllowLists": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
+                    },
+                    "features": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryFeatures:RegistryFeatures",
+                        "description": "[Map]\n"
+                    },
+                    "garbageCollectionSchedule": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryGarbageCollectionSchedule:RegistryGarbageCollectionSchedule",
+                        "description": "[Map]\n"
+                    },
+                    "hostname": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] Immutable, update forces re-creation of the resource.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "storageUsages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:creg/RegistryStorageUsage:RegistryStorageUsage"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:creg/registryToken:RegistryToken": {
+            "description": "Manages an **Container Registry Token** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleRegistry = new ionoscloud.creg.Registry(\"exampleRegistry\", {\n    garbageCollectionSchedule: {\n        days: [\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time: \"05:19:00+00:00\",\n    },\n    location: \"de/fra\",\n});\nconst exampleRegistryToken = new ionoscloud.creg.RegistryToken(\"exampleRegistryToken\", {\n    expiryDate: \"2023-01-13 16:27:42Z\",\n    scopes: [{\n        actions: [\"push\"],\n        name: \"Scope1\",\n        type: \"repository\",\n    }],\n    status: \"enabled\",\n    registryId: exampleRegistry.id,\n    savePasswordToFile: \"pass.txt\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_registry = ionoscloud.creg.Registry(\"exampleRegistry\",\n    garbage_collection_schedule=ionoscloud.creg.RegistryGarbageCollectionScheduleArgs(\n        days=[\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time=\"05:19:00+00:00\",\n    ),\n    location=\"de/fra\")\nexample_registry_token = ionoscloud.creg.RegistryToken(\"exampleRegistryToken\",\n    expiry_date=\"2023-01-13 16:27:42Z\",\n    scopes=[ionoscloud.creg.RegistryTokenScopeArgs(\n        actions=[\"push\"],\n        name=\"Scope1\",\n        type=\"repository\",\n    )],\n    status=\"enabled\",\n    registry_id=example_registry.id,\n    save_password_to_file=\"pass.txt\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleRegistry = new Ionoscloud.Creg.Registry(\"exampleRegistry\", new()\n    {\n        GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs\n        {\n            Days = new[]\n            {\n                \"Monday\",\n                \"Tuesday\",\n            },\n            Time = \"05:19:00+00:00\",\n        },\n        Location = \"de/fra\",\n    });\n\n    var exampleRegistryToken = new Ionoscloud.Creg.RegistryToken(\"exampleRegistryToken\", new()\n    {\n        ExpiryDate = \"2023-01-13 16:27:42Z\",\n        Scopes = new[]\n        {\n            new Ionoscloud.Creg.Inputs.RegistryTokenScopeArgs\n            {\n                Actions = new[]\n                {\n                    \"push\",\n                },\n                Name = \"Scope1\",\n                Type = \"repository\",\n            },\n        },\n        Status = \"enabled\",\n        RegistryId = exampleRegistry.Id,\n        SavePasswordToFile = \"pass.txt\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleRegistry, err := creg.NewRegistry(ctx, \"exampleRegistry\", \u0026creg.RegistryArgs{\n\t\t\tGarbageCollectionSchedule: \u0026creg.RegistryGarbageCollectionScheduleArgs{\n\t\t\t\tDays: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"Monday\"),\n\t\t\t\t\tpulumi.String(\"Tuesday\"),\n\t\t\t\t},\n\t\t\t\tTime: pulumi.String(\"05:19:00+00:00\"),\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = creg.NewRegistryToken(ctx, \"exampleRegistryToken\", \u0026creg.RegistryTokenArgs{\n\t\t\tExpiryDate: pulumi.String(\"2023-01-13 16:27:42Z\"),\n\t\t\tScopes: creg.RegistryTokenScopeArray{\n\t\t\t\t\u0026creg.RegistryTokenScopeArgs{\n\t\t\t\t\tActions: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"push\"),\n\t\t\t\t\t},\n\t\t\t\t\tName: pulumi.String(\"Scope1\"),\n\t\t\t\t\tType: pulumi.String(\"repository\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tStatus:             pulumi.String(\"enabled\"),\n\t\t\tRegistryId:         exampleRegistry.ID(),\n\t\t\tSavePasswordToFile: pulumi.String(\"pass.txt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.creg.Registry;\nimport com.pulumi.ionoscloud.creg.RegistryArgs;\nimport com.pulumi.ionoscloud.creg.inputs.RegistryGarbageCollectionScheduleArgs;\nimport com.pulumi.ionoscloud.creg.RegistryToken;\nimport com.pulumi.ionoscloud.creg.RegistryTokenArgs;\nimport com.pulumi.ionoscloud.creg.inputs.RegistryTokenScopeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleRegistry = new Registry(\"exampleRegistry\", RegistryArgs.builder()        \n            .garbageCollectionSchedule(RegistryGarbageCollectionScheduleArgs.builder()\n                .days(                \n                    \"Monday\",\n                    \"Tuesday\")\n                .time(\"05:19:00+00:00\")\n                .build())\n            .location(\"de/fra\")\n            .build());\n\n        var exampleRegistryToken = new RegistryToken(\"exampleRegistryToken\", RegistryTokenArgs.builder()        \n            .expiryDate(\"2023-01-13 16:27:42Z\")\n            .scopes(RegistryTokenScopeArgs.builder()\n                .actions(\"push\")\n                .name(\"Scope1\")\n                .type(\"repository\")\n                .build())\n            .status(\"enabled\")\n            .registryId(exampleRegistry.id())\n            .savePasswordToFile(\"pass.txt\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleRegistry:\n    type: ionoscloud:creg:Registry\n    properties:\n      garbageCollectionSchedule:\n        days:\n          - Monday\n          - Tuesday\n        time: 05:19:00+00:00\n      location: de/fra\n  exampleRegistryToken:\n    type: ionoscloud:creg:RegistryToken\n    properties:\n      expiryDate: 2023-01-13 16:27:42Z\n      scopes:\n        - actions:\n            - push\n          name: Scope1\n          type: repository\n      status: enabled\n      registryId: ${exampleRegistry.id}\n      savePasswordToFile: pass.txt\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}\n```\n\n",
+            "properties": {
+                "credentials": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryTokenCredential:RegistryTokenCredential"
+                    }
+                },
+                "expiryDate": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string]\n"
+                },
+                "registryId": {
+                    "type": "string"
+                },
+                "savePasswordToFile": {
+                    "type": "string",
+                    "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryTokenScope:RegistryTokenScope"
+                    },
+                    "description": "[map]\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
+                }
+            },
+            "required": [
+                "credentials",
+                "name",
+                "registryId",
+                "scopes",
+                "status"
+            ],
+            "inputProperties": {
+                "expiryDate": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string]\n",
+                    "willReplaceOnChanges": true
+                },
+                "registryId": {
+                    "type": "string"
+                },
+                "savePasswordToFile": {
+                    "type": "string",
+                    "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:creg/RegistryTokenScope:RegistryTokenScope"
+                    },
+                    "description": "[map]\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
+                }
+            },
+            "requiredInputs": [
+                "registryId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RegistryToken resources.\n",
+                "properties": {
+                    "credentials": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:creg/RegistryTokenCredential:RegistryTokenCredential"
+                        }
+                    },
+                    "expiryDate": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string]\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "registryId": {
+                        "type": "string"
+                    },
+                    "savePasswordToFile": {
+                        "type": "string",
+                        "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:creg/RegistryTokenScope:RegistryTokenScope"
+                        },
+                        "description": "[map]\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet": {
             "properties": {
                 "connections": {
@@ -12053,233 +12280,6 @@
                         "type": "string",
                         "description": "The private key blob. This attribute is immutable.\n",
                         "secret": true
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/containerRegistry:ContainerRegistry": {
-            "description": "Manages an **Container Registry** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.ContainerRegistry(\"example\", {\n    apiSubnetAllowLists: [\"1.2.3.4/32\"],\n    garbageCollectionSchedule: {\n        days: [\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time: \"05:19:00+00:00\",\n    },\n    location: \"de/fra\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.ContainerRegistry(\"example\",\n    api_subnet_allow_lists=[\"1.2.3.4/32\"],\n    garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(\n        days=[\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time=\"05:19:00+00:00\",\n    ),\n    location=\"de/fra\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.ContainerRegistry(\"example\", new()\n    {\n        ApiSubnetAllowLists = new[]\n        {\n            \"1.2.3.4/32\",\n        },\n        GarbageCollectionSchedule = new Ionoscloud.Inputs.ContainerRegistryGarbageCollectionScheduleArgs\n        {\n            Days = new[]\n            {\n                \"Monday\",\n                \"Tuesday\",\n            },\n            Time = \"05:19:00+00:00\",\n        },\n        Location = \"de/fra\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewContainerRegistry(ctx, \"example\", \u0026ionoscloud.ContainerRegistryArgs{\n\t\t\tApiSubnetAllowLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.2.3.4/32\"),\n\t\t\t},\n\t\t\tGarbageCollectionSchedule: \u0026ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs{\n\t\t\t\tDays: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"Monday\"),\n\t\t\t\t\tpulumi.String(\"Tuesday\"),\n\t\t\t\t},\n\t\t\t\tTime: pulumi.String(\"05:19:00+00:00\"),\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.ContainerRegistry;\nimport com.pulumi.ionoscloud.ContainerRegistryArgs;\nimport com.pulumi.ionoscloud.inputs.ContainerRegistryGarbageCollectionScheduleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new ContainerRegistry(\"example\", ContainerRegistryArgs.builder()        \n            .apiSubnetAllowLists(\"1.2.3.4/32\")\n            .garbageCollectionSchedule(ContainerRegistryGarbageCollectionScheduleArgs.builder()\n                .days(                \n                    \"Monday\",\n                    \"Tuesday\")\n                .time(\"05:19:00+00:00\")\n                .build())\n            .location(\"de/fra\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:ContainerRegistry\n    properties:\n      apiSubnetAllowLists:\n        - 1.2.3.4/32\n      garbageCollectionSchedule:\n        days:\n          - Monday\n          - Tuesday\n        time: 05:19:00+00:00\n      location: de/fra\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Container Registry can be imported using the `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/containerRegistry:ContainerRegistry mycr {container_registry uuid}\n```\n\n",
-            "properties": {
-                "apiSubnetAllowLists": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
-                },
-                "features": {
-                    "$ref": "#/types/ionoscloud:index/ContainerRegistryFeatures:ContainerRegistryFeatures",
-                    "description": "[Map]\n"
-                },
-                "garbageCollectionSchedule": {
-                    "$ref": "#/types/ionoscloud:index/ContainerRegistryGarbageCollectionSchedule:ContainerRegistryGarbageCollectionSchedule",
-                    "description": "[Map]\n"
-                },
-                "hostname": {
-                    "type": "string"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] Immutable, update forces re-creation of the resource.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n"
-                },
-                "storageUsages": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryStorageUsage:ContainerRegistryStorageUsage"
-                    }
-                }
-            },
-            "required": [
-                "features",
-                "garbageCollectionSchedule",
-                "hostname",
-                "location",
-                "name",
-                "storageUsages"
-            ],
-            "inputProperties": {
-                "apiSubnetAllowLists": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
-                },
-                "features": {
-                    "$ref": "#/types/ionoscloud:index/ContainerRegistryFeatures:ContainerRegistryFeatures",
-                    "description": "[Map]\n"
-                },
-                "garbageCollectionSchedule": {
-                    "$ref": "#/types/ionoscloud:index/ContainerRegistryGarbageCollectionSchedule:ContainerRegistryGarbageCollectionSchedule",
-                    "description": "[Map]\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] Immutable, update forces re-creation of the resource.\n",
-                    "willReplaceOnChanges": true
-                },
-                "name": {
-                    "type": "string",
-                    "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "location"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ContainerRegistry resources.\n",
-                "properties": {
-                    "apiSubnetAllowLists": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "[list] The subnet CIDRs that are allowed to connect to the registry.  Specify \"a.b.c.d/32\" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.\n"
-                    },
-                    "features": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryFeatures:ContainerRegistryFeatures",
-                        "description": "[Map]\n"
-                    },
-                    "garbageCollectionSchedule": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryGarbageCollectionSchedule:ContainerRegistryGarbageCollectionSchedule",
-                        "description": "[Map]\n"
-                    },
-                    "hostname": {
-                        "type": "string"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] Immutable, update forces re-creation of the resource.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "The name of the container registry. Immutable, update forces re-creation of the resource.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "storageUsages": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/ContainerRegistryStorageUsage:ContainerRegistryStorageUsage"
-                        }
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ionoscloud:index/containerRegistryToken:ContainerRegistryToken": {
-            "description": "Manages an **Container Registry Token** on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleContainerRegistry = new ionoscloud.ContainerRegistry(\"exampleContainerRegistry\", {\n    garbageCollectionSchedule: {\n        days: [\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time: \"05:19:00+00:00\",\n    },\n    location: \"de/fra\",\n});\nconst exampleContainerRegistryToken = new ionoscloud.ContainerRegistryToken(\"exampleContainerRegistryToken\", {\n    expiryDate: \"2023-01-13 16:27:42Z\",\n    scopes: [{\n        actions: [\"push\"],\n        name: \"Scope1\",\n        type: \"repository\",\n    }],\n    status: \"enabled\",\n    registryId: exampleContainerRegistry.id,\n    savePasswordToFile: \"pass.txt\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_container_registry = ionoscloud.ContainerRegistry(\"exampleContainerRegistry\",\n    garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(\n        days=[\n            \"Monday\",\n            \"Tuesday\",\n        ],\n        time=\"05:19:00+00:00\",\n    ),\n    location=\"de/fra\")\nexample_container_registry_token = ionoscloud.ContainerRegistryToken(\"exampleContainerRegistryToken\",\n    expiry_date=\"2023-01-13 16:27:42Z\",\n    scopes=[ionoscloud.ContainerRegistryTokenScopeArgs(\n        actions=[\"push\"],\n        name=\"Scope1\",\n        type=\"repository\",\n    )],\n    status=\"enabled\",\n    registry_id=example_container_registry.id,\n    save_password_to_file=\"pass.txt\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleContainerRegistry = new Ionoscloud.ContainerRegistry(\"exampleContainerRegistry\", new()\n    {\n        GarbageCollectionSchedule = new Ionoscloud.Inputs.ContainerRegistryGarbageCollectionScheduleArgs\n        {\n            Days = new[]\n            {\n                \"Monday\",\n                \"Tuesday\",\n            },\n            Time = \"05:19:00+00:00\",\n        },\n        Location = \"de/fra\",\n    });\n\n    var exampleContainerRegistryToken = new Ionoscloud.ContainerRegistryToken(\"exampleContainerRegistryToken\", new()\n    {\n        ExpiryDate = \"2023-01-13 16:27:42Z\",\n        Scopes = new[]\n        {\n            new Ionoscloud.Inputs.ContainerRegistryTokenScopeArgs\n            {\n                Actions = new[]\n                {\n                    \"push\",\n                },\n                Name = \"Scope1\",\n                Type = \"repository\",\n            },\n        },\n        Status = \"enabled\",\n        RegistryId = exampleContainerRegistry.Id,\n        SavePasswordToFile = \"pass.txt\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleContainerRegistry, err := ionoscloud.NewContainerRegistry(ctx, \"exampleContainerRegistry\", \u0026ionoscloud.ContainerRegistryArgs{\n\t\t\tGarbageCollectionSchedule: \u0026ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs{\n\t\t\t\tDays: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"Monday\"),\n\t\t\t\t\tpulumi.String(\"Tuesday\"),\n\t\t\t\t},\n\t\t\t\tTime: pulumi.String(\"05:19:00+00:00\"),\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewContainerRegistryToken(ctx, \"exampleContainerRegistryToken\", \u0026ionoscloud.ContainerRegistryTokenArgs{\n\t\t\tExpiryDate: pulumi.String(\"2023-01-13 16:27:42Z\"),\n\t\t\tScopes: ionoscloud.ContainerRegistryTokenScopeArray{\n\t\t\t\t\u0026ionoscloud.ContainerRegistryTokenScopeArgs{\n\t\t\t\t\tActions: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"push\"),\n\t\t\t\t\t},\n\t\t\t\t\tName: pulumi.String(\"Scope1\"),\n\t\t\t\t\tType: pulumi.String(\"repository\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tStatus:             pulumi.String(\"enabled\"),\n\t\t\tRegistryId:         exampleContainerRegistry.ID(),\n\t\t\tSavePasswordToFile: pulumi.String(\"pass.txt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.ContainerRegistry;\nimport com.pulumi.ionoscloud.ContainerRegistryArgs;\nimport com.pulumi.ionoscloud.inputs.ContainerRegistryGarbageCollectionScheduleArgs;\nimport com.pulumi.ionoscloud.ContainerRegistryToken;\nimport com.pulumi.ionoscloud.ContainerRegistryTokenArgs;\nimport com.pulumi.ionoscloud.inputs.ContainerRegistryTokenScopeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleContainerRegistry = new ContainerRegistry(\"exampleContainerRegistry\", ContainerRegistryArgs.builder()        \n            .garbageCollectionSchedule(ContainerRegistryGarbageCollectionScheduleArgs.builder()\n                .days(                \n                    \"Monday\",\n                    \"Tuesday\")\n                .time(\"05:19:00+00:00\")\n                .build())\n            .location(\"de/fra\")\n            .build());\n\n        var exampleContainerRegistryToken = new ContainerRegistryToken(\"exampleContainerRegistryToken\", ContainerRegistryTokenArgs.builder()        \n            .expiryDate(\"2023-01-13 16:27:42Z\")\n            .scopes(ContainerRegistryTokenScopeArgs.builder()\n                .actions(\"push\")\n                .name(\"Scope1\")\n                .type(\"repository\")\n                .build())\n            .status(\"enabled\")\n            .registryId(exampleContainerRegistry.id())\n            .savePasswordToFile(\"pass.txt\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleContainerRegistry:\n    type: ionoscloud:ContainerRegistry\n    properties:\n      garbageCollectionSchedule:\n        days:\n          - Monday\n          - Tuesday\n        time: 05:19:00+00:00\n      location: de/fra\n  exampleContainerRegistryToken:\n    type: ionoscloud:ContainerRegistryToken\n    properties:\n      expiryDate: 2023-01-13 16:27:42Z\n      scopes:\n        - actions:\n            - push\n          name: Scope1\n          type: repository\n      status: enabled\n      registryId: ${exampleContainerRegistry.id}\n      savePasswordToFile: pass.txt\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nResource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.\n\n```sh\n$ pulumi import ionoscloud:index/containerRegistryToken:ContainerRegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}\n```\n\n",
-            "properties": {
-                "credentials": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryTokenCredential:ContainerRegistryTokenCredential"
-                    }
-                },
-                "expiryDate": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string]\n"
-                },
-                "registryId": {
-                    "type": "string"
-                },
-                "savePasswordToFile": {
-                    "type": "string",
-                    "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryTokenScope:ContainerRegistryTokenScope"
-                    },
-                    "description": "[map]\n"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
-                }
-            },
-            "required": [
-                "credentials",
-                "name",
-                "registryId",
-                "scopes",
-                "status"
-            ],
-            "inputProperties": {
-                "expiryDate": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string]\n",
-                    "willReplaceOnChanges": true
-                },
-                "registryId": {
-                    "type": "string"
-                },
-                "savePasswordToFile": {
-                    "type": "string",
-                    "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/ContainerRegistryTokenScope:ContainerRegistryTokenScope"
-                    },
-                    "description": "[map]\n"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
-                }
-            },
-            "requiredInputs": [
-                "registryId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering ContainerRegistryToken resources.\n",
-                "properties": {
-                    "credentials": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/ContainerRegistryTokenCredential:ContainerRegistryTokenCredential"
-                        }
-                    },
-                    "expiryDate": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string]\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "registryId": {
-                        "type": "string"
-                    },
-                    "savePasswordToFile": {
-                        "type": "string",
-                        "description": "[string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path\n\n\u003e **⚠ WARNING** `save_password_to_file` must be used with caution.\n\u003e It will save the password(token) returned on create to a file. This is the only way to get the token.\n"
-                    },
-                    "scopes": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/ContainerRegistryTokenScope:ContainerRegistryTokenScope"
-                        },
-                        "description": "[map]\n"
-                    },
-                    "status": {
-                        "type": "string",
-                        "description": "[string] Must have on of the values: `enabled`, `disabled`\n"
                     }
                 },
                 "type": "object"
@@ -16777,7 +16777,7 @@
             }
         },
         "ionoscloud:index/getContainerRegistry:getContainerRegistry": {
-            "description": "The **Container Registry data source** can be used to search for and return an existing Container Registry.\nYou can provide a string for the name parameter which will be compared with provisioned Container Registry.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistry({\n    name: \"container-registry-example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry(name=\"container-registry-example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistry.Invoke(new()\n    {\n        Name = \"container-registry-example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupContainerRegistry(ctx, \u0026ionoscloud.LookupContainerRegistryArgs{\n\t\t\tName: pulumi.StringRef(\"container-registry-example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistry(GetContainerRegistryArgs.builder()\n            .name(\"container-registry-example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistry\n      Arguments:\n        name: container-registry-example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistry({\n    name: \"-example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry(name=\"-example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistry.Invoke(new()\n    {\n        Name = \"-example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupContainerRegistry(ctx, \u0026ionoscloud.LookupContainerRegistryArgs{\n\t\t\tName:         pulumi.StringRef(\"-example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistry(GetContainerRegistryArgs.builder()\n            .name(\"-example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistry\n      Arguments:\n        name: -example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The **Container Registry data source** can be used to search for and return an existing Container Registry.\nYou can provide a string for the name parameter which will be compared with provisioned Container Registry.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistry({\n    name: \"container-registry-example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry(name=\"container-registry-example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistry.Invoke(new()\n    {\n        Name = \"container-registry-example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetContainerRegistry(ctx, \u0026ionoscloud.GetContainerRegistryArgs{\n\t\t\tName: pulumi.StringRef(\"container-registry-example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistry(GetContainerRegistryArgs.builder()\n            .name(\"container-registry-example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistry\n      Arguments:\n        name: container-registry-example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistry({\n    name: \"-example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry(name=\"-example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistry.Invoke(new()\n    {\n        Name = \"-example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetContainerRegistry(ctx, \u0026ionoscloud.GetContainerRegistryArgs{\n\t\t\tName:         pulumi.StringRef(\"-example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistry(GetContainerRegistryArgs.builder()\n            .name(\"-example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistry\n      Arguments:\n        name: -example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getContainerRegistry.\n",
                 "properties": {
@@ -16887,7 +16887,7 @@
             }
         },
         "ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken": {
-            "description": "The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.\nYou can provide a string for the name parameter which will be compared with provisioned Container Registry Token.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistryToken({\n    registryId: ionoscloud_container_registry.example.id,\n    name: \"container-registry-token-example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry[\"example\"][\"id\"],\n    name=\"container-registry-token-example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()\n    {\n        RegistryId = ionoscloud_container_registry.Example.Id,\n        Name = \"container-registry-token-example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupContainerRegistryToken(ctx, \u0026ionoscloud.LookupContainerRegistryTokenArgs{\n\t\t\tRegistryId: ionoscloud_container_registry.Example.Id,\n\t\t\tName:       pulumi.StringRef(\"container-registry-token-example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistryToken(GetContainerRegistryTokenArgs.builder()\n            .registryId(ionoscloud_container_registry.example().id())\n            .name(\"container-registry-token-example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistryToken\n      Arguments:\n        registryId: ${ionoscloud_container_registry.example.id}\n        name: container-registry-token-example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistryToken({\n    registryId: ionoscloud_container_registry.example.id,\n    name: \"-example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry[\"example\"][\"id\"],\n    name=\"-example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()\n    {\n        RegistryId = ionoscloud_container_registry.Example.Id,\n        Name = \"-example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupContainerRegistryToken(ctx, \u0026ionoscloud.LookupContainerRegistryTokenArgs{\n\t\t\tRegistryId:   ionoscloud_container_registry.Example.Id,\n\t\t\tName:         pulumi.StringRef(\"-example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistryToken(GetContainerRegistryTokenArgs.builder()\n            .registryId(ionoscloud_container_registry.example().id())\n            .name(\"-example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistryToken\n      Arguments:\n        registryId: ${ionoscloud_container_registry.example.id}\n        name: -example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.\nYou can provide a string for the name parameter which will be compared with provisioned Container Registry Token.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search and make sure that your resources have unique names.\n\n## Example Usage\n\n### By Name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistryToken({\n    registryId: ionoscloud_container_registry.example.id,\n    name: \"container-registry-token-example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry[\"example\"][\"id\"],\n    name=\"container-registry-token-example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()\n    {\n        RegistryId = ionoscloud_container_registry.Example.Id,\n        Name = \"container-registry-token-example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetContainerRegistryToken(ctx, \u0026ionoscloud.GetContainerRegistryTokenArgs{\n\t\t\tRegistryId: ionoscloud_container_registry.Example.Id,\n\t\t\tName:       pulumi.StringRef(\"container-registry-token-example\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistryToken(GetContainerRegistryTokenArgs.builder()\n            .registryId(ionoscloud_container_registry.example().id())\n            .name(\"container-registry-token-example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistryToken\n      Arguments:\n        registryId: ${ionoscloud_container_registry.example.id}\n        name: container-registry-token-example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### By Name with Partial Match\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getContainerRegistryToken({\n    registryId: ionoscloud_container_registry.example.id,\n    name: \"-example\",\n    partialMatch: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry[\"example\"][\"id\"],\n    name=\"-example\",\n    partial_match=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()\n    {\n        RegistryId = ionoscloud_container_registry.Example.Id,\n        Name = \"-example\",\n        PartialMatch = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetContainerRegistryToken(ctx, \u0026ionoscloud.GetContainerRegistryTokenArgs{\n\t\t\tRegistryId:   ionoscloud_container_registry.Example.Id,\n\t\t\tName:         pulumi.StringRef(\"-example\"),\n\t\t\tPartialMatch: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetContainerRegistryTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getContainerRegistryToken(GetContainerRegistryTokenArgs.builder()\n            .registryId(ionoscloud_container_registry.example().id())\n            .name(\"-example\")\n            .partialMatch(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getContainerRegistryToken\n      Arguments:\n        registryId: ${ionoscloud_container_registry.example.id}\n        name: -example\n        partialMatch: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getContainerRegistryToken.\n",
                 "properties": {

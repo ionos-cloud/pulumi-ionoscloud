@@ -7,23 +7,23 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Creg.Outputs
 {
 
     [OutputType]
-    public sealed class ContainerRegistryTokenCredential
+    public sealed class RegistryStorageUsage
     {
-        public readonly string Password;
-        public readonly string Username;
+        public readonly int? Bytes;
+        public readonly string? UpdatedAt;
 
         [OutputConstructor]
-        private ContainerRegistryTokenCredential(
-            string password,
+        private RegistryStorageUsage(
+            int? bytes,
 
-            string username)
+            string? updatedAt)
         {
-            Password = password;
-            Username = username;
+            Bytes = bytes;
+            UpdatedAt = updatedAt;
         }
     }
 }

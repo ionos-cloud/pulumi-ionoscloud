@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    public sealed class ContainerRegistryStorageUsageGetArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryStorageUsageGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("bytes")]
         public Input<int>? Bytes { get; set; }
@@ -18,9 +18,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
-        public ContainerRegistryStorageUsageGetArgs()
+        public RegistryStorageUsageGetArgs()
         {
         }
-        public static new ContainerRegistryStorageUsageGetArgs Empty => new ContainerRegistryStorageUsageGetArgs();
+        public static new RegistryStorageUsageGetArgs Empty => new RegistryStorageUsageGetArgs();
     }
 }

@@ -450,51 +450,6 @@ export interface CdnDistributionRoutingRuleUpstreamGeoRestrictions {
     blockLists?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface ContainerRegistryFeatures {
-    /**
-     * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-     *
-     * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
-     */
-    vulnerabilityScanning?: pulumi.Input<boolean>;
-}
-
-export interface ContainerRegistryGarbageCollectionSchedule {
-    /**
-     * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-     */
-    days: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryStorageUsage {
-    bytes?: pulumi.Input<number>;
-    updatedAt?: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenCredential {
-    password: pulumi.Input<string>;
-    username: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenScope {
-    /**
-     * [string] Example: ["pull", "push", "delete"]
-     */
-    actions: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [string]
-     */
-    type: pulumi.Input<string>;
-}
-
 export interface CubeServerNic {
     deviceNumber?: pulumi.Input<number>;
     dhcp?: pulumi.Input<boolean>;
@@ -1463,6 +1418,53 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
         userData?: pulumi.Input<string>;
+    }
+}
+
+export namespace creg {
+    export interface RegistryFeatures {
+        /**
+         * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+         *
+         * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
+         */
+        vulnerabilityScanning?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistryGarbageCollectionSchedule {
+        /**
+         * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+         */
+        days: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface RegistryStorageUsage {
+        bytes?: pulumi.Input<number>;
+        updatedAt?: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenCredential {
+        password: pulumi.Input<string>;
+        username: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenScope {
+        /**
+         * [string] Example: ["pull", "push", "delete"]
+         */
+        actions: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [string]
+         */
+        type: pulumi.Input<string>;
     }
 }
 

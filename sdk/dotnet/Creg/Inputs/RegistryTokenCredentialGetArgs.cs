@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Creg.Inputs
 {
 
-    public sealed class ContainerRegistryTokenCredentialArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryTokenCredentialGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
@@ -18,9 +18,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
-        public ContainerRegistryTokenCredentialArgs()
+        public RegistryTokenCredentialGetArgs()
         {
         }
-        public static new ContainerRegistryTokenCredentialArgs Empty => new ContainerRegistryTokenCredentialArgs();
+        public static new RegistryTokenCredentialGetArgs Empty => new RegistryTokenCredentialGetArgs();
     }
 }

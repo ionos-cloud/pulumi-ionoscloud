@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Creg
 {
     /// <summary>
     /// Manages an **Container Registry** on IonosCloud.
@@ -23,13 +23,13 @@ namespace Pulumi.Ionoscloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Ionoscloud.ContainerRegistry("example", new()
+    ///     var example = new Ionoscloud.Creg.Registry("example", new()
     ///     {
     ///         ApiSubnetAllowLists = new[]
     ///         {
     ///             "1.2.3.4/32",
     ///         },
-    ///         GarbageCollectionSchedule = new Ionoscloud.Inputs.ContainerRegistryGarbageCollectionScheduleArgs
+    ///         GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs
     ///         {
     ///             Days = new[]
     ///             {
@@ -50,11 +50,11 @@ namespace Pulumi.Ionoscloud
     /// Resource Container Registry can be imported using the `resource id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/containerRegistry:ContainerRegistry mycr {container_registry uuid}
+    /// $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/containerRegistry:ContainerRegistry")]
-    public partial class ContainerRegistry : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:creg/registry:Registry")]
+    public partial class Registry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
@@ -66,13 +66,13 @@ namespace Pulumi.Ionoscloud
         /// [Map]
         /// </summary>
         [Output("features")]
-        public Output<Outputs.ContainerRegistryFeatures> Features { get; private set; } = null!;
+        public Output<Outputs.RegistryFeatures> Features { get; private set; } = null!;
 
         /// <summary>
         /// [Map]
         /// </summary>
         [Output("garbageCollectionSchedule")]
-        public Output<Outputs.ContainerRegistryGarbageCollectionSchedule> GarbageCollectionSchedule { get; private set; } = null!;
+        public Output<Outputs.RegistryGarbageCollectionSchedule> GarbageCollectionSchedule { get; private set; } = null!;
 
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
@@ -90,23 +90,23 @@ namespace Pulumi.Ionoscloud
         public Output<string> Name { get; private set; } = null!;
 
         [Output("storageUsages")]
-        public Output<ImmutableArray<Outputs.ContainerRegistryStorageUsage>> StorageUsages { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.RegistryStorageUsage>> StorageUsages { get; private set; } = null!;
 
 
         /// <summary>
-        /// Create a ContainerRegistry resource with the given unique name, arguments, and options.
+        /// Create a Registry resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ContainerRegistry(string name, ContainerRegistryArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/containerRegistry:ContainerRegistry", name, args ?? new ContainerRegistryArgs(), MakeResourceOptions(options, ""))
+        public Registry(string name, RegistryArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:creg/registry:Registry", name, args ?? new RegistryArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private ContainerRegistry(string name, Input<string> id, ContainerRegistryState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/containerRegistry:ContainerRegistry", name, state, MakeResourceOptions(options, id))
+        private Registry(string name, Input<string> id, RegistryState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:creg/registry:Registry", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -122,7 +122,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing ContainerRegistry resource's state with the given name, ID, and optional extra
+        /// Get an existing Registry resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -130,13 +130,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static ContainerRegistry Get(string name, Input<string> id, ContainerRegistryState? state = null, CustomResourceOptions? options = null)
+        public static Registry Get(string name, Input<string> id, RegistryState? state = null, CustomResourceOptions? options = null)
         {
-            return new ContainerRegistry(name, id, state, options);
+            return new Registry(name, id, state, options);
         }
     }
 
-    public sealed class ContainerRegistryArgs : global::Pulumi.ResourceArgs
+    public sealed class RegistryArgs : global::Pulumi.ResourceArgs
     {
         [Input("apiSubnetAllowLists")]
         private InputList<string>? _apiSubnetAllowLists;
@@ -154,13 +154,13 @@ namespace Pulumi.Ionoscloud
         /// [Map]
         /// </summary>
         [Input("features")]
-        public Input<Inputs.ContainerRegistryFeaturesArgs>? Features { get; set; }
+        public Input<Inputs.RegistryFeaturesArgs>? Features { get; set; }
 
         /// <summary>
         /// [Map]
         /// </summary>
         [Input("garbageCollectionSchedule")]
-        public Input<Inputs.ContainerRegistryGarbageCollectionScheduleArgs>? GarbageCollectionSchedule { get; set; }
+        public Input<Inputs.RegistryGarbageCollectionScheduleArgs>? GarbageCollectionSchedule { get; set; }
 
         /// <summary>
         /// [string] Immutable, update forces re-creation of the resource.
@@ -174,13 +174,13 @@ namespace Pulumi.Ionoscloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public ContainerRegistryArgs()
+        public RegistryArgs()
         {
         }
-        public static new ContainerRegistryArgs Empty => new ContainerRegistryArgs();
+        public static new RegistryArgs Empty => new RegistryArgs();
     }
 
-    public sealed class ContainerRegistryState : global::Pulumi.ResourceArgs
+    public sealed class RegistryState : global::Pulumi.ResourceArgs
     {
         [Input("apiSubnetAllowLists")]
         private InputList<string>? _apiSubnetAllowLists;
@@ -198,13 +198,13 @@ namespace Pulumi.Ionoscloud
         /// [Map]
         /// </summary>
         [Input("features")]
-        public Input<Inputs.ContainerRegistryFeaturesGetArgs>? Features { get; set; }
+        public Input<Inputs.RegistryFeaturesGetArgs>? Features { get; set; }
 
         /// <summary>
         /// [Map]
         /// </summary>
         [Input("garbageCollectionSchedule")]
-        public Input<Inputs.ContainerRegistryGarbageCollectionScheduleGetArgs>? GarbageCollectionSchedule { get; set; }
+        public Input<Inputs.RegistryGarbageCollectionScheduleGetArgs>? GarbageCollectionSchedule { get; set; }
 
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
@@ -222,16 +222,16 @@ namespace Pulumi.Ionoscloud
         public Input<string>? Name { get; set; }
 
         [Input("storageUsages")]
-        private InputList<Inputs.ContainerRegistryStorageUsageGetArgs>? _storageUsages;
-        public InputList<Inputs.ContainerRegistryStorageUsageGetArgs> StorageUsages
+        private InputList<Inputs.RegistryStorageUsageGetArgs>? _storageUsages;
+        public InputList<Inputs.RegistryStorageUsageGetArgs> StorageUsages
         {
-            get => _storageUsages ?? (_storageUsages = new InputList<Inputs.ContainerRegistryStorageUsageGetArgs>());
+            get => _storageUsages ?? (_storageUsages = new InputList<Inputs.RegistryStorageUsageGetArgs>());
             set => _storageUsages = value;
         }
 
-        public ContainerRegistryState()
+        public RegistryState()
         {
         }
-        public static new ContainerRegistryState Empty => new ContainerRegistryState();
+        public static new RegistryState Empty => new RegistryState();
     }
 }
