@@ -126,7 +126,7 @@
                 "current": "ionoscloud:compute/backupUnit:BackupUnit"
             },
             "ionoscloud_cdn_distribution": {
-                "current": "ionoscloud:index/cdnDistribution:CdnDistribution",
+                "current": "ionoscloud:cdn/distribution:Distribution",
                 "fields": {
                     "routing_rules": {
                         "maxItemsOne": false,
@@ -161,7 +161,7 @@
                 "current": "ionoscloud:index/certificate:Certificate"
             },
             "ionoscloud_container_registry": {
-                "current": "ionoscloud:index/containerRegistry:ContainerRegistry",
+                "current": "ionoscloud:creg/registry:Registry",
                 "fields": {
                     "api_subnet_allow_list": {
                         "maxItemsOne": false
@@ -185,7 +185,7 @@
                 }
             },
             "ionoscloud_container_registry_token": {
-                "current": "ionoscloud:index/containerRegistryToken:ContainerRegistryToken",
+                "current": "ionoscloud:creg/registryToken:RegistryToken",
                 "fields": {
                     "credentials": {
                         "maxItemsOne": false
@@ -277,10 +277,10 @@
                 }
             },
             "ionoscloud_dns_record": {
-                "current": "ionoscloud:index/dnsRecord:DnsRecord"
+                "current": "ionoscloud:dns/record:Record"
             },
             "ionoscloud_dns_zone": {
-                "current": "ionoscloud:index/dnsZone:DnsZone",
+                "current": "ionoscloud:dns/zone:Zone",
                 "fields": {
                     "nameservers": {
                         "maxItemsOne": false
@@ -750,7 +750,7 @@
                 }
             },
             "ionoscloud_vpn_ipsec_gateway": {
-                "current": "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway",
+                "current": "ionoscloud:vpn/ipsecGateway:IpsecGateway",
                 "fields": {
                     "connections": {
                         "maxItemsOne": false
@@ -758,7 +758,7 @@
                 }
             },
             "ionoscloud_vpn_ipsec_tunnel": {
-                "current": "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel",
+                "current": "ionoscloud:vpn/ipsecTunnel:IpsecTunnel",
                 "fields": {
                     "auth": {
                         "maxItemsOne": true
@@ -778,7 +778,7 @@
                 }
             },
             "ionoscloud_vpn_wireguard_gateway": {
-                "current": "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway",
+                "current": "ionoscloud:vpn/wireguardGateway:WireguardGateway",
                 "fields": {
                     "connections": {
                         "maxItemsOne": false
@@ -786,7 +786,7 @@
                 }
             },
             "ionoscloud_vpn_wireguard_peer": {
-                "current": "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer",
+                "current": "ionoscloud:vpn/wireguardPeer:WireguardPeer",
                 "fields": {
                     "allowed_ips": {
                         "maxItemsOne": false
