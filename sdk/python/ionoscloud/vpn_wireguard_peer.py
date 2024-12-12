@@ -25,13 +25,13 @@ class VpnWireguardPeerArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnWireguardPeer resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
-        :param pulumi.Input[str] public_key: [string] The public key for the WireGuard Gateway.
-        :param pulumi.Input[str] description: [string] A description of the WireGuard Gateway.
-        :param pulumi.Input['VpnWireguardPeerEndpointArgs'] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
-        :param pulumi.Input[str] name: [string] The human-readable name of the WireGuard Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        :param pulumi.Input[str] gateway_id: The ID of the WireGuard Peer that the peer will connect to.
+        :param pulumi.Input[str] location: The location of the WireGuard Peer. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] public_key: WireGuard public key of the connecting peer
+        :param pulumi.Input[str] description: Human readable description of the WireGuard Gateway Peer.
+        :param pulumi.Input['VpnWireguardPeerEndpointArgs'] endpoint: Endpoint configuration for the WireGuard Peer.
+        :param pulumi.Input[str] name: The human readable name of your WireGuard Gateway Peer.
         """
         pulumi.set(__self__, "allowed_ips", allowed_ips)
         pulumi.set(__self__, "gateway_id", gateway_id)
@@ -48,7 +48,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter(name="allowedIps")
     def allowed_ips(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         """
         return pulumi.get(self, "allowed_ips")
 
@@ -60,7 +60,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Input[str]:
         """
-        [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        The ID of the WireGuard Peer that the peer will connect to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -72,7 +72,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        [string] The location of the WireGuard Gateway.
+        The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -84,7 +84,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Input[str]:
         """
-        [string] The public key for the WireGuard Gateway.
+        WireGuard public key of the connecting peer
         """
         return pulumi.get(self, "public_key")
 
@@ -96,7 +96,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A description of the WireGuard Gateway.
+        Human readable description of the WireGuard Gateway Peer.
         """
         return pulumi.get(self, "description")
 
@@ -108,7 +108,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input['VpnWireguardPeerEndpointArgs']]:
         """
-        [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        Endpoint configuration for the WireGuard Peer.
         """
         return pulumi.get(self, "endpoint")
 
@@ -120,7 +120,7 @@ class VpnWireguardPeerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable name of the WireGuard Gateway.
+        The human readable name of your WireGuard Gateway Peer.
         """
         return pulumi.get(self, "name")
 
@@ -142,14 +142,14 @@ class _VpnWireguardPeerState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpnWireguardPeer resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
-        :param pulumi.Input[str] description: [string] A description of the WireGuard Gateway.
-        :param pulumi.Input['VpnWireguardPeerEndpointArgs'] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
-        :param pulumi.Input[str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
-        :param pulumi.Input[str] name: [string] The human-readable name of the WireGuard Gateway.
-        :param pulumi.Input[str] public_key: [string] The public key for the WireGuard Gateway.
-        :param pulumi.Input[str] status: The current status of the WireGuard Gateway Peer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        :param pulumi.Input[str] description: Human readable description of the WireGuard Gateway Peer.
+        :param pulumi.Input['VpnWireguardPeerEndpointArgs'] endpoint: Endpoint configuration for the WireGuard Peer.
+        :param pulumi.Input[str] gateway_id: The ID of the WireGuard Peer that the peer will connect to.
+        :param pulumi.Input[str] location: The location of the WireGuard Peer. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your WireGuard Gateway Peer.
+        :param pulumi.Input[str] public_key: WireGuard public key of the connecting peer
+        :param pulumi.Input[str] status: The status of the WireGuard Gateway
         """
         if allowed_ips is not None:
             pulumi.set(__self__, "allowed_ips", allowed_ips)
@@ -172,7 +172,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter(name="allowedIps")
     def allowed_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         """
         return pulumi.get(self, "allowed_ips")
 
@@ -184,7 +184,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A description of the WireGuard Gateway.
+        Human readable description of the WireGuard Gateway Peer.
         """
         return pulumi.get(self, "description")
 
@@ -196,7 +196,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter
     def endpoint(self) -> Optional[pulumi.Input['VpnWireguardPeerEndpointArgs']]:
         """
-        [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        Endpoint configuration for the WireGuard Peer.
         """
         return pulumi.get(self, "endpoint")
 
@@ -208,7 +208,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        The ID of the WireGuard Peer that the peer will connect to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -220,7 +220,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the WireGuard Gateway.
+        The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -232,7 +232,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable name of the WireGuard Gateway.
+        The human readable name of your WireGuard Gateway Peer.
         """
         return pulumi.get(self, "name")
 
@@ -244,7 +244,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The public key for the WireGuard Gateway.
+        WireGuard public key of the connecting peer
         """
         return pulumi.get(self, "public_key")
 
@@ -256,7 +256,7 @@ class _VpnWireguardPeerState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The current status of the WireGuard Gateway Peer.
+        The status of the WireGuard Gateway
         """
         return pulumi.get(self, "status")
 
@@ -265,7 +265,12 @@ class _VpnWireguardPeerState:
         pulumi.set(self, "status", value)
 
 
+warnings.warn("""ionoscloud.index/vpnwireguardpeer.VpnWireguardPeer has been deprecated in favor of ionoscloud.vpn/wireguardpeer.WireguardPeer""", DeprecationWarning)
+
+
 class VpnWireguardPeer(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/vpnwireguardpeer.VpnWireguardPeer has been deprecated in favor of ionoscloud.vpn/wireguardpeer.WireguardPeer""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -279,49 +284,16 @@ class VpnWireguardPeer(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        This page provides an overview of the `VpnWireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
-        This resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.VpnWireguardPeer("example",
-            allowed_ips=[
-                "10.0.0.0/8",
-                "192.168.1.0/24",
-            ],
-            description="An example WireGuard peer",
-            endpoint=ionoscloud.VpnWireguardPeerEndpointArgs(
-                host="1.2.3.4",
-                port=51820,
-            ),
-            gateway_id="your gateway id here",
-            location="de/fra",
-            public_key="examplePublicKey==")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
-
-        ```sh
-        $ pulumi import ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer example <gateway_id>:<peer_id>
-        ```
-
+        Create a VpnWireguardPeer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
-        :param pulumi.Input[str] description: [string] A description of the WireGuard Gateway.
-        :param pulumi.Input[pulumi.InputType['VpnWireguardPeerEndpointArgs']] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
-        :param pulumi.Input[str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
-        :param pulumi.Input[str] name: [string] The human-readable name of the WireGuard Gateway.
-        :param pulumi.Input[str] public_key: [string] The public key for the WireGuard Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        :param pulumi.Input[str] description: Human readable description of the WireGuard Gateway Peer.
+        :param pulumi.Input[pulumi.InputType['VpnWireguardPeerEndpointArgs']] endpoint: Endpoint configuration for the WireGuard Peer.
+        :param pulumi.Input[str] gateway_id: The ID of the WireGuard Peer that the peer will connect to.
+        :param pulumi.Input[str] location: The location of the WireGuard Peer. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your WireGuard Gateway Peer.
+        :param pulumi.Input[str] public_key: WireGuard public key of the connecting peer
         """
         ...
     @overload
@@ -330,40 +302,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
                  args: VpnWireguardPeerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This page provides an overview of the `VpnWireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
-        This resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.VpnWireguardPeer("example",
-            allowed_ips=[
-                "10.0.0.0/8",
-                "192.168.1.0/24",
-            ],
-            description="An example WireGuard peer",
-            endpoint=ionoscloud.VpnWireguardPeerEndpointArgs(
-                host="1.2.3.4",
-                port=51820,
-            ),
-            gateway_id="your gateway id here",
-            location="de/fra",
-            public_key="examplePublicKey==")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
-
-        ```sh
-        $ pulumi import ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer example <gateway_id>:<peer_id>
-        ```
-
+        Create a VpnWireguardPeer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param VpnWireguardPeerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -387,6 +326,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpnWireguardPeer is deprecated: ionoscloud.index/vpnwireguardpeer.VpnWireguardPeer has been deprecated in favor of ionoscloud.vpn/wireguardpeer.WireguardPeer""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -436,14 +376,14 @@ class VpnWireguardPeer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
-        :param pulumi.Input[str] description: [string] A description of the WireGuard Gateway.
-        :param pulumi.Input[pulumi.InputType['VpnWireguardPeerEndpointArgs']] endpoint: [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
-        :param pulumi.Input[str] gateway_id: [string] The ID of the WireGuard Gateway that the Peer will connect to.
-        :param pulumi.Input[str] location: [string] The location of the WireGuard Gateway.
-        :param pulumi.Input[str] name: [string] The human-readable name of the WireGuard Gateway.
-        :param pulumi.Input[str] public_key: [string] The public key for the WireGuard Gateway.
-        :param pulumi.Input[str] status: The current status of the WireGuard Gateway Peer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_ips: The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        :param pulumi.Input[str] description: Human readable description of the WireGuard Gateway Peer.
+        :param pulumi.Input[pulumi.InputType['VpnWireguardPeerEndpointArgs']] endpoint: Endpoint configuration for the WireGuard Peer.
+        :param pulumi.Input[str] gateway_id: The ID of the WireGuard Peer that the peer will connect to.
+        :param pulumi.Input[str] location: The location of the WireGuard Peer. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your WireGuard Gateway Peer.
+        :param pulumi.Input[str] public_key: WireGuard public key of the connecting peer
+        :param pulumi.Input[str] status: The status of the WireGuard Gateway
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -463,7 +403,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter(name="allowedIps")
     def allowed_ips(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         """
         return pulumi.get(self, "allowed_ips")
 
@@ -471,7 +411,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] A description of the WireGuard Gateway.
+        Human readable description of the WireGuard Gateway Peer.
         """
         return pulumi.get(self, "description")
 
@@ -479,7 +419,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[Optional['outputs.VpnWireguardPeerEndpoint']]:
         """
-        [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        Endpoint configuration for the WireGuard Peer.
         """
         return pulumi.get(self, "endpoint")
 
@@ -487,7 +427,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Output[str]:
         """
-        [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        The ID of the WireGuard Peer that the peer will connect to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -495,7 +435,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        [string] The location of the WireGuard Gateway.
+        The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -503,7 +443,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The human-readable name of the WireGuard Gateway.
+        The human readable name of your WireGuard Gateway Peer.
         """
         return pulumi.get(self, "name")
 
@@ -511,7 +451,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
         """
-        [string] The public key for the WireGuard Gateway.
+        WireGuard public key of the connecting peer
         """
         return pulumi.get(self, "public_key")
 
@@ -519,7 +459,7 @@ class VpnWireguardPeer(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The current status of the WireGuard Gateway Peer.
+        The status of the WireGuard Gateway
         """
         return pulumi.get(self, "status")
 

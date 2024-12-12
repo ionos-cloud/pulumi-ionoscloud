@@ -23,11 +23,8 @@ class ContainerRegistryArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerRegistry resource.
-        :param pulumi.Input[str] location: [string] Immutable, update forces re-creation of the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input['ContainerRegistryFeaturesArgs'] features: [Map]
-        :param pulumi.Input['ContainerRegistryGarbageCollectionScheduleArgs'] garbage_collection_schedule: [Map]
-        :param pulumi.Input[str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+               __Note__: If this list is empty or not set, there are no restrictions.
         """
         pulumi.set(__self__, "location", location)
         if api_subnet_allow_lists is not None:
@@ -42,9 +39,6 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
-        """
-        [string] Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -55,7 +49,8 @@ class ContainerRegistryArgs:
     @pulumi.getter(name="apiSubnetAllowLists")
     def api_subnet_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+        The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+        __Note__: If this list is empty or not set, there are no restrictions.
         """
         return pulumi.get(self, "api_subnet_allow_lists")
 
@@ -66,9 +61,6 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter
     def features(self) -> Optional[pulumi.Input['ContainerRegistryFeaturesArgs']]:
-        """
-        [Map]
-        """
         return pulumi.get(self, "features")
 
     @features.setter
@@ -78,9 +70,6 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter(name="garbageCollectionSchedule")
     def garbage_collection_schedule(self) -> Optional[pulumi.Input['ContainerRegistryGarbageCollectionScheduleArgs']]:
-        """
-        [Map]
-        """
         return pulumi.get(self, "garbage_collection_schedule")
 
     @garbage_collection_schedule.setter
@@ -90,9 +79,6 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the container registry. Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -112,11 +98,8 @@ class _ContainerRegistryState:
                  storage_usages: Optional[pulumi.Input[Sequence[pulumi.Input['ContainerRegistryStorageUsageArgs']]]] = None):
         """
         Input properties used for looking up and filtering ContainerRegistry resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input['ContainerRegistryFeaturesArgs'] features: [Map]
-        :param pulumi.Input['ContainerRegistryGarbageCollectionScheduleArgs'] garbage_collection_schedule: [Map]
-        :param pulumi.Input[str] location: [string] Immutable, update forces re-creation of the resource.
-        :param pulumi.Input[str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+               __Note__: If this list is empty or not set, there are no restrictions.
         """
         if api_subnet_allow_lists is not None:
             pulumi.set(__self__, "api_subnet_allow_lists", api_subnet_allow_lists)
@@ -137,7 +120,8 @@ class _ContainerRegistryState:
     @pulumi.getter(name="apiSubnetAllowLists")
     def api_subnet_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+        The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+        __Note__: If this list is empty or not set, there are no restrictions.
         """
         return pulumi.get(self, "api_subnet_allow_lists")
 
@@ -148,9 +132,6 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def features(self) -> Optional[pulumi.Input['ContainerRegistryFeaturesArgs']]:
-        """
-        [Map]
-        """
         return pulumi.get(self, "features")
 
     @features.setter
@@ -160,9 +141,6 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter(name="garbageCollectionSchedule")
     def garbage_collection_schedule(self) -> Optional[pulumi.Input['ContainerRegistryGarbageCollectionScheduleArgs']]:
-        """
-        [Map]
-        """
         return pulumi.get(self, "garbage_collection_schedule")
 
     @garbage_collection_schedule.setter
@@ -181,9 +159,6 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -193,9 +168,6 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the container registry. Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -212,7 +184,12 @@ class _ContainerRegistryState:
         pulumi.set(self, "storage_usages", value)
 
 
+warnings.warn("""ionoscloud.index/containerregistry.ContainerRegistry has been deprecated in favor of ionoscloud.creg/registry.Registry""", DeprecationWarning)
+
+
 class ContainerRegistry(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/containerregistry.ContainerRegistry has been deprecated in favor of ionoscloud.creg/registry.Registry""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -224,43 +201,11 @@ class ContainerRegistry(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages an **Container Registry** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.ContainerRegistry("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
-            garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(
-                days=[
-                    "Monday",
-                    "Tuesday",
-                ],
-                time="05:19:00+00:00",
-            ),
-            location="de/fra")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Container Registry can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/containerRegistry:ContainerRegistry mycr {container_registry uuid}
-        ```
-
+        Create a ContainerRegistry resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input[pulumi.InputType['ContainerRegistryFeaturesArgs']] features: [Map]
-        :param pulumi.Input[pulumi.InputType['ContainerRegistryGarbageCollectionScheduleArgs']] garbage_collection_schedule: [Map]
-        :param pulumi.Input[str] location: [string] Immutable, update forces re-creation of the resource.
-        :param pulumi.Input[str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+               __Note__: If this list is empty or not set, there are no restrictions.
         """
         ...
     @overload
@@ -269,36 +214,7 @@ class ContainerRegistry(pulumi.CustomResource):
                  args: ContainerRegistryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Container Registry** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.ContainerRegistry("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
-            garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(
-                days=[
-                    "Monday",
-                    "Tuesday",
-                ],
-                time="05:19:00+00:00",
-            ),
-            location="de/fra")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Container Registry can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/containerRegistry:ContainerRegistry mycr {container_registry uuid}
-        ```
-
+        Create a ContainerRegistry resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ContainerRegistryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,6 +236,7 @@ class ContainerRegistry(pulumi.CustomResource):
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerRegistry is deprecated: ionoscloud.index/containerregistry.ContainerRegistry has been deprecated in favor of ionoscloud.creg/registry.Registry""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -361,11 +278,8 @@ class ContainerRegistry(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input[pulumi.InputType['ContainerRegistryFeaturesArgs']] features: [Map]
-        :param pulumi.Input[pulumi.InputType['ContainerRegistryGarbageCollectionScheduleArgs']] garbage_collection_schedule: [Map]
-        :param pulumi.Input[str] location: [string] Immutable, update forces re-creation of the resource.
-        :param pulumi.Input[str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] api_subnet_allow_lists: The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+               __Note__: If this list is empty or not set, there are no restrictions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -384,24 +298,19 @@ class ContainerRegistry(pulumi.CustomResource):
     @pulumi.getter(name="apiSubnetAllowLists")
     def api_subnet_allow_lists(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+        The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
+        __Note__: If this list is empty or not set, there are no restrictions.
         """
         return pulumi.get(self, "api_subnet_allow_lists")
 
     @property
     @pulumi.getter
     def features(self) -> pulumi.Output['outputs.ContainerRegistryFeatures']:
-        """
-        [Map]
-        """
         return pulumi.get(self, "features")
 
     @property
     @pulumi.getter(name="garbageCollectionSchedule")
     def garbage_collection_schedule(self) -> pulumi.Output['outputs.ContainerRegistryGarbageCollectionSchedule']:
-        """
-        [Map]
-        """
         return pulumi.get(self, "garbage_collection_schedule")
 
     @property
@@ -412,17 +321,11 @@ class ContainerRegistry(pulumi.CustomResource):
     @property
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
-        """
-        [string] Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        The name of the container registry. Immutable, update forces re-creation of the resource.
-        """
         return pulumi.get(self, "name")
 
     @property

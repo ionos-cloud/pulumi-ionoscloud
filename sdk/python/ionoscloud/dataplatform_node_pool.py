@@ -30,18 +30,22 @@ class DataplatformNodePoolArgs:
                  storage_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DataplatformNodePool resource.
-        :param pulumi.Input[str] cluster_id: [string] The UUID of an existing Dataplatform cluster.
-        :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-        :param pulumi.Input[str] availability_zone: [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
-        :param pulumi.Input[int] cores_count: [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
-        :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-        :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
-        :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
-        :param pulumi.Input[int] storage_size: [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
-        :param pulumi.Input[str] storage_type: [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        :param pulumi.Input[str] cluster_id: The UUID of an existing Dataplatform cluster.
+        :param pulumi.Input[int] node_count: The number of nodes that make up the node pool.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs attached to node pool resource as [Kubernetes
+               annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+        :param pulumi.Input[str] availability_zone: The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        :param pulumi.Input[int] cores_count: The number of CPU cores per node.
+        :param pulumi.Input[str] cpu_family: A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+               be retrieved from the datacenter resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs attached to the node pool resource as [Kubernetes
+               labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+        :param pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]] maintenance_windows: Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[str] name: The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+               character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        :param pulumi.Input[int] ram_size: The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        :param pulumi.Input[int] storage_size: The size of the volume in GB. The size must be greater than 10GB.
+        :param pulumi.Input[str] storage_type: The type of hardware for the volume.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "node_count", node_count)
@@ -70,7 +74,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
         """
-        [string] The UUID of an existing Dataplatform cluster.
+        The UUID of an existing Dataplatform cluster.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -82,7 +86,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> pulumi.Input[int]:
         """
-        [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+        The number of nodes that make up the node pool.
         """
         return pulumi.get(self, "node_count")
 
@@ -94,7 +98,8 @@ class DataplatformNodePoolArgs:
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+        Key-value pairs attached to node pool resource as [Kubernetes
+        annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
         """
         return pulumi.get(self, "annotations")
 
@@ -106,7 +111,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+        The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -118,7 +123,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+        The number of CPU cores per node.
         """
         return pulumi.get(self, "cores_count")
 
@@ -130,7 +135,8 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+        A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+        be retrieved from the datacenter resource.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -142,7 +148,8 @@ class DataplatformNodePoolArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+        Key-value pairs attached to the node pool resource as [Kubernetes
+        labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
         """
         return pulumi.get(self, "labels")
 
@@ -154,7 +161,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]]]:
         """
-        [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         """
         return pulumi.get(self, "maintenance_windows")
 
@@ -166,7 +173,8 @@ class DataplatformNodePoolArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+        character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         """
         return pulumi.get(self, "name")
 
@@ -178,7 +186,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+        The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
         """
         return pulumi.get(self, "ram_size")
 
@@ -190,7 +198,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+        The size of the volume in GB. The size must be greater than 10GB.
         """
         return pulumi.get(self, "storage_size")
 
@@ -202,7 +210,7 @@ class DataplatformNodePoolArgs:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> Optional[pulumi.Input[str]]:
         """
-        [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        The type of hardware for the volume.
         """
         return pulumi.get(self, "storage_type")
 
@@ -230,19 +238,23 @@ class _DataplatformNodePoolState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DataplatformNodePool resources.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-        :param pulumi.Input[str] availability_zone: [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
-        :param pulumi.Input[str] cluster_id: [string] The UUID of an existing Dataplatform cluster.
-        :param pulumi.Input[int] cores_count: [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
-        :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs attached to node pool resource as [Kubernetes
+               annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+        :param pulumi.Input[str] availability_zone: The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        :param pulumi.Input[str] cluster_id: The UUID of an existing Dataplatform cluster.
+        :param pulumi.Input[int] cores_count: The number of CPU cores per node.
+        :param pulumi.Input[str] cpu_family: A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+               be retrieved from the datacenter resource.
         :param pulumi.Input[str] datacenter_id: The UUID of the virtual data center (VDC) in which the nodepool is provisioned
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-        :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
-        :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
-        :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
-        :param pulumi.Input[int] storage_size: [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
-        :param pulumi.Input[str] storage_type: [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs attached to the node pool resource as [Kubernetes
+               labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+        :param pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]] maintenance_windows: Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[str] name: The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+               character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        :param pulumi.Input[int] node_count: The number of nodes that make up the node pool.
+        :param pulumi.Input[int] ram_size: The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        :param pulumi.Input[int] storage_size: The size of the volume in GB. The size must be greater than 10GB.
+        :param pulumi.Input[str] storage_type: The type of hardware for the volume.
         :param pulumi.Input[str] version: The version of the Data Platform.
         """
         if annotations is not None:
@@ -278,7 +290,8 @@ class _DataplatformNodePoolState:
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+        Key-value pairs attached to node pool resource as [Kubernetes
+        annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
         """
         return pulumi.get(self, "annotations")
 
@@ -290,7 +303,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+        The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -302,7 +315,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The UUID of an existing Dataplatform cluster.
+        The UUID of an existing Dataplatform cluster.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -314,7 +327,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+        The number of CPU cores per node.
         """
         return pulumi.get(self, "cores_count")
 
@@ -326,7 +339,8 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+        A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+        be retrieved from the datacenter resource.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -350,7 +364,8 @@ class _DataplatformNodePoolState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+        Key-value pairs attached to the node pool resource as [Kubernetes
+        labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
         """
         return pulumi.get(self, "labels")
 
@@ -362,7 +377,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataplatformNodePoolMaintenanceWindowArgs']]]]:
         """
-        [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         """
         return pulumi.get(self, "maintenance_windows")
 
@@ -374,7 +389,8 @@ class _DataplatformNodePoolState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+        character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         """
         return pulumi.get(self, "name")
 
@@ -386,7 +402,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+        The number of nodes that make up the node pool.
         """
         return pulumi.get(self, "node_count")
 
@@ -398,7 +414,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+        The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
         """
         return pulumi.get(self, "ram_size")
 
@@ -410,7 +426,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+        The size of the volume in GB. The size must be greater than 10GB.
         """
         return pulumi.get(self, "storage_size")
 
@@ -422,7 +438,7 @@ class _DataplatformNodePoolState:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> Optional[pulumi.Input[str]]:
         """
-        [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        The type of hardware for the volume.
         """
         return pulumi.get(self, "storage_type")
 
@@ -443,7 +459,12 @@ class _DataplatformNodePoolState:
         pulumi.set(self, "version", value)
 
 
+warnings.warn("""ionoscloud.index/dataplatformnodepool.DataplatformNodePool has been deprecated in favor of ionoscloud.dsaas/nodepool.NodePool""", DeprecationWarning)
+
+
 class DataplatformNodePool(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/dataplatformnodepool.DataplatformNodePool has been deprecated in favor of ionoscloud.dsaas/nodepool.NodePool""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -462,69 +483,25 @@ class DataplatformNodePool(pulumi.CustomResource):
                  storage_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="de/txl",
-            description="Datacenter for testing Dataplatform Cluster")
-        example_dataplatform_cluster = ionoscloud.DataplatformCluster("exampleDataplatformCluster",
-            datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.DataplatformClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
-            version="23.7")
-        example_dataplatform_node_pool = ionoscloud.DataplatformNodePool("exampleDataplatformNodePool",
-            cluster_id=example_dataplatform_cluster.id,
-            node_count=1,
-            cpu_family="INTEL_SKYLAKE",
-            cores_count=1,
-            ram_size=2048,
-            availability_zone="AUTO",
-            storage_type="HDD",
-            storage_size=10,
-            maintenance_windows=[ionoscloud.DataplatformNodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00",
-            )],
-            labels={
-                "foo": "bar",
-                "color": "green",
-            },
-            annotations={
-                "ann1": "value1",
-                "ann2": "value2",
-            })
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dataplatformNodePool:DataplatformNodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
-        ```
-
+        Create a DataplatformNodePool resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-        :param pulumi.Input[str] availability_zone: [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
-        :param pulumi.Input[str] cluster_id: [string] The UUID of an existing Dataplatform cluster.
-        :param pulumi.Input[int] cores_count: [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
-        :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataplatformNodePoolMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-        :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
-        :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
-        :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
-        :param pulumi.Input[int] storage_size: [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
-        :param pulumi.Input[str] storage_type: [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs attached to node pool resource as [Kubernetes
+               annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+        :param pulumi.Input[str] availability_zone: The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        :param pulumi.Input[str] cluster_id: The UUID of an existing Dataplatform cluster.
+        :param pulumi.Input[int] cores_count: The number of CPU cores per node.
+        :param pulumi.Input[str] cpu_family: A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+               be retrieved from the datacenter resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs attached to the node pool resource as [Kubernetes
+               labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataplatformNodePoolMaintenanceWindowArgs']]]] maintenance_windows: Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[str] name: The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+               character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        :param pulumi.Input[int] node_count: The number of nodes that make up the node pool.
+        :param pulumi.Input[int] ram_size: The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        :param pulumi.Input[int] storage_size: The size of the volume in GB. The size must be greater than 10GB.
+        :param pulumi.Input[str] storage_type: The type of hardware for the volume.
         """
         ...
     @overload
@@ -533,55 +510,7 @@ class DataplatformNodePool(pulumi.CustomResource):
                  args: DataplatformNodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="de/txl",
-            description="Datacenter for testing Dataplatform Cluster")
-        example_dataplatform_cluster = ionoscloud.DataplatformCluster("exampleDataplatformCluster",
-            datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.DataplatformClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
-            version="23.7")
-        example_dataplatform_node_pool = ionoscloud.DataplatformNodePool("exampleDataplatformNodePool",
-            cluster_id=example_dataplatform_cluster.id,
-            node_count=1,
-            cpu_family="INTEL_SKYLAKE",
-            cores_count=1,
-            ram_size=2048,
-            availability_zone="AUTO",
-            storage_type="HDD",
-            storage_size=10,
-            maintenance_windows=[ionoscloud.DataplatformNodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00",
-            )],
-            labels={
-                "foo": "bar",
-                "color": "green",
-            },
-            annotations={
-                "ann1": "value1",
-                "ann2": "value2",
-            })
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dataplatformNodePool:DataplatformNodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
-        ```
-
+        Create a DataplatformNodePool resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DataplatformNodePoolArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -610,6 +539,7 @@ class DataplatformNodePool(pulumi.CustomResource):
                  storage_size: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DataplatformNodePool is deprecated: ionoscloud.index/dataplatformnodepool.DataplatformNodePool has been deprecated in favor of ionoscloud.dsaas/nodepool.NodePool""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -667,19 +597,23 @@ class DataplatformNodePool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
-        :param pulumi.Input[str] availability_zone: [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
-        :param pulumi.Input[str] cluster_id: [string] The UUID of an existing Dataplatform cluster.
-        :param pulumi.Input[int] cores_count: [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
-        :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: Key-value pairs attached to node pool resource as [Kubernetes
+               annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
+        :param pulumi.Input[str] availability_zone: The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        :param pulumi.Input[str] cluster_id: The UUID of an existing Dataplatform cluster.
+        :param pulumi.Input[int] cores_count: The number of CPU cores per node.
+        :param pulumi.Input[str] cpu_family: A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+               be retrieved from the datacenter resource.
         :param pulumi.Input[str] datacenter_id: The UUID of the virtual data center (VDC) in which the nodepool is provisioned
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataplatformNodePoolMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-        :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
-        :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
-        :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
-        :param pulumi.Input[int] storage_size: [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
-        :param pulumi.Input[str] storage_type: [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Key-value pairs attached to the node pool resource as [Kubernetes
+               labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DataplatformNodePoolMaintenanceWindowArgs']]]] maintenance_windows: Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[str] name: The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+               character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        :param pulumi.Input[int] node_count: The number of nodes that make up the node pool.
+        :param pulumi.Input[int] ram_size: The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        :param pulumi.Input[int] storage_size: The size of the volume in GB. The size must be greater than 10GB.
+        :param pulumi.Input[str] storage_type: The type of hardware for the volume.
         :param pulumi.Input[str] version: The version of the Data Platform.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -706,7 +640,8 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter
     def annotations(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+        Key-value pairs attached to node pool resource as [Kubernetes
+        annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
         """
         return pulumi.get(self, "annotations")
 
@@ -714,7 +649,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> pulumi.Output[str]:
         """
-        [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+        The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -722,7 +657,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         """
-        [string] The UUID of an existing Dataplatform cluster.
+        The UUID of an existing Dataplatform cluster.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -730,7 +665,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> pulumi.Output[int]:
         """
-        [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+        The number of CPU cores per node.
         """
         return pulumi.get(self, "cores_count")
 
@@ -738,7 +673,8 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> pulumi.Output[str]:
         """
-        [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+        A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+        be retrieved from the datacenter resource.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -754,7 +690,8 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+        Key-value pairs attached to the node pool resource as [Kubernetes
+        labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
         """
         return pulumi.get(self, "labels")
 
@@ -762,7 +699,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> pulumi.Output[Sequence['outputs.DataplatformNodePoolMaintenanceWindow']]:
         """
-        [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         """
         return pulumi.get(self, "maintenance_windows")
 
@@ -770,7 +707,8 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+        character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         """
         return pulumi.get(self, "name")
 
@@ -778,7 +716,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> pulumi.Output[int]:
         """
-        [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+        The number of nodes that make up the node pool.
         """
         return pulumi.get(self, "node_count")
 
@@ -786,7 +724,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> pulumi.Output[int]:
         """
-        [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+        The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
         """
         return pulumi.get(self, "ram_size")
 
@@ -794,7 +732,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[int]:
         """
-        [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+        The size of the volume in GB. The size must be greater than 10GB.
         """
         return pulumi.get(self, "storage_size")
 
@@ -802,7 +740,7 @@ class DataplatformNodePool(pulumi.CustomResource):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> pulumi.Output[str]:
         """
-        [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+        The type of hardware for the volume.
         """
         return pulumi.get(self, "storage_type")
 

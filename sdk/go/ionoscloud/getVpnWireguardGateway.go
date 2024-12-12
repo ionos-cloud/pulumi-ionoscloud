@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The `VpnWireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+// The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 //
 // ## Example Usage
 //
@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupVpnWireguardGateway(ctx, &ionoscloud.LookupVpnWireguardGatewayArgs{
+//			_, err := ionoscloud.GetVpnWireguardGateway(ctx, &ionoscloud.GetVpnWireguardGatewayArgs{
 //				Location: "de/fra",
 //				Name:     pulumi.StringRef("example-gateway"),
 //			}, nil)
@@ -42,9 +42,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupVpnWireguardGateway(ctx *pulumi.Context, args *LookupVpnWireguardGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpnWireguardGatewayResult, error) {
+func GetVpnWireguardGateway(ctx *pulumi.Context, args *GetVpnWireguardGatewayArgs, opts ...pulumi.InvokeOption) (*GetVpnWireguardGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupVpnWireguardGatewayResult
+	var rv GetVpnWireguardGatewayResult
 	err := ctx.Invoke("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func LookupVpnWireguardGateway(ctx *pulumi.Context, args *LookupVpnWireguardGate
 }
 
 // A collection of arguments for invoking getVpnWireguardGateway.
-type LookupVpnWireguardGatewayArgs struct {
+type GetVpnWireguardGatewayArgs struct {
 	// The description of the WireGuard Gateway.
 	Description *string `pulumi:"description"`
 	// [String] The ID of the WireGuard Gateway.
@@ -65,7 +65,7 @@ type LookupVpnWireguardGatewayArgs struct {
 }
 
 // A collection of values returned by getVpnWireguardGateway.
-type LookupVpnWireguardGatewayResult struct {
+type GetVpnWireguardGatewayResult struct {
 	// A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
 	Connections []GetVpnWireguardGatewayConnection `pulumi:"connections"`
 	// The description of the WireGuard Gateway.
@@ -86,21 +86,21 @@ type LookupVpnWireguardGatewayResult struct {
 	Status string `pulumi:"status"`
 }
 
-func LookupVpnWireguardGatewayOutput(ctx *pulumi.Context, args LookupVpnWireguardGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupVpnWireguardGatewayResultOutput {
+func GetVpnWireguardGatewayOutput(ctx *pulumi.Context, args GetVpnWireguardGatewayOutputArgs, opts ...pulumi.InvokeOption) GetVpnWireguardGatewayResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupVpnWireguardGatewayResult, error) {
-			args := v.(LookupVpnWireguardGatewayArgs)
-			r, err := LookupVpnWireguardGateway(ctx, &args, opts...)
-			var s LookupVpnWireguardGatewayResult
+		ApplyT(func(v interface{}) (GetVpnWireguardGatewayResult, error) {
+			args := v.(GetVpnWireguardGatewayArgs)
+			r, err := GetVpnWireguardGateway(ctx, &args, opts...)
+			var s GetVpnWireguardGatewayResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupVpnWireguardGatewayResultOutput)
+		}).(GetVpnWireguardGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getVpnWireguardGateway.
-type LookupVpnWireguardGatewayOutputArgs struct {
+type GetVpnWireguardGatewayOutputArgs struct {
 	// The description of the WireGuard Gateway.
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// [String] The ID of the WireGuard Gateway.
@@ -111,76 +111,76 @@ type LookupVpnWireguardGatewayOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupVpnWireguardGatewayOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpnWireguardGatewayArgs)(nil)).Elem()
+func (GetVpnWireguardGatewayOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpnWireguardGatewayArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getVpnWireguardGateway.
-type LookupVpnWireguardGatewayResultOutput struct{ *pulumi.OutputState }
+type GetVpnWireguardGatewayResultOutput struct{ *pulumi.OutputState }
 
-func (LookupVpnWireguardGatewayResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupVpnWireguardGatewayResult)(nil)).Elem()
+func (GetVpnWireguardGatewayResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpnWireguardGatewayResult)(nil)).Elem()
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) ToLookupVpnWireguardGatewayResultOutput() LookupVpnWireguardGatewayResultOutput {
+func (o GetVpnWireguardGatewayResultOutput) ToGetVpnWireguardGatewayResultOutput() GetVpnWireguardGatewayResultOutput {
 	return o
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) ToLookupVpnWireguardGatewayResultOutputWithContext(ctx context.Context) LookupVpnWireguardGatewayResultOutput {
+func (o GetVpnWireguardGatewayResultOutput) ToGetVpnWireguardGatewayResultOutputWithContext(ctx context.Context) GetVpnWireguardGatewayResultOutput {
 	return o
 }
 
 // A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
-func (o LookupVpnWireguardGatewayResultOutput) Connections() GetVpnWireguardGatewayConnectionArrayOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) []GetVpnWireguardGatewayConnection { return v.Connections }).(GetVpnWireguardGatewayConnectionArrayOutput)
+func (o GetVpnWireguardGatewayResultOutput) Connections() GetVpnWireguardGatewayConnectionArrayOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) []GetVpnWireguardGatewayConnection { return v.Connections }).(GetVpnWireguardGatewayConnectionArrayOutput)
 }
 
 // The description of the WireGuard Gateway.
-func (o LookupVpnWireguardGatewayResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o GetVpnWireguardGatewayResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The IP address of the WireGuard Gateway.
-func (o LookupVpnWireguardGatewayResultOutput) GatewayIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.GatewayIp }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) GatewayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The IPv4 CIDR for the WireGuard Gateway interface.
-func (o LookupVpnWireguardGatewayResultOutput) InterfaceIpv4Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.InterfaceIpv4Cidr }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) InterfaceIpv4Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.InterfaceIpv4Cidr }).(pulumi.StringOutput)
 }
 
 // The IPv6 CIDR for the WireGuard Gateway interface.
-func (o LookupVpnWireguardGatewayResultOutput) InterfaceIpv6Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.InterfaceIpv6Cidr }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) InterfaceIpv6Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.InterfaceIpv6Cidr }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) ListenPort() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) int { return v.ListenPort }).(pulumi.IntOutput)
+func (o GetVpnWireguardGatewayResultOutput) ListenPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) int { return v.ListenPort }).(pulumi.IntOutput)
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupVpnWireguardGatewayResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The public key for the WireGuard Gateway.
-func (o LookupVpnWireguardGatewayResultOutput) PublicKey() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.PublicKey }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
 // The current status of the WireGuard Gateway.
-func (o LookupVpnWireguardGatewayResultOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpnWireguardGatewayResult) string { return v.Status }).(pulumi.StringOutput)
+func (o GetVpnWireguardGatewayResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpnWireguardGatewayResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupVpnWireguardGatewayResultOutput{})
+	pulumi.RegisterOutputType(GetVpnWireguardGatewayResultOutput{})
 }

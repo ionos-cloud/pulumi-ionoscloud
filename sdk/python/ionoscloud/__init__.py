@@ -10,14 +10,7 @@ from .apigateway_route import *
 from .application_loadbalancer import *
 from .application_loadbalancer_forwardingrule import *
 from .autoscaling_group import *
-from .cdn_distribution import *
-from .container_registry import *
-from .container_registry_token import *
 from .cube_server import *
-from .dataplatform_cluster import *
-from .dataplatform_node_pool import *
-from .dns_record import *
-from .dns_zone import *
 from .get_apigateway import *
 from .get_apigateway_route import *
 from .get_application_loadbalancer import *
@@ -99,8 +92,6 @@ from .natgateway import *
 from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
-from .nfs_cluster import *
-from .nfs_share import *
 from .private_crossconnect import *
 from .provider import *
 from .server_boot_device_selection import *
@@ -108,35 +99,57 @@ from .share import *
 from .snapshot import *
 from .target_group import *
 from .vcpu_server import *
-from .vpn_ipsec_gateway import *
-from .vpn_ipsec_tunnel import *
-from .vpn_wireguard_gateway import *
-from .vpn_wireguard_peer import *
 from ._inputs import *
 from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.cdn as __cdn
+    cdn = __cdn
     import ionoscloud.cert as __cert
     cert = __cert
     import ionoscloud.compute as __compute
     compute = __compute
     import ionoscloud.config as __config
     config = __config
+    import ionoscloud.creg as __creg
+    creg = __creg
     import ionoscloud.dbaas as __dbaas
     dbaas = __dbaas
+    import ionoscloud.dns as __dns
+    dns = __dns
+    import ionoscloud.dsaas as __dsaas
+    dsaas = __dsaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.nfs as __nfs
+    nfs = __nfs
+    import ionoscloud.vpn as __vpn
+    vpn = __vpn
 else:
+    cdn = _utilities.lazy_import('ionoscloud.cdn')
     cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
+    creg = _utilities.lazy_import('ionoscloud.creg')
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
+    dns = _utilities.lazy_import('ionoscloud.dns')
+    dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    nfs = _utilities.lazy_import('ionoscloud.nfs')
+    vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "cdn/distribution",
+  "fqn": "ionoscloud.cdn",
+  "classes": {
+   "ionoscloud:cdn/distribution:Distribution": "Distribution"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "cert/autoCertificate",
@@ -251,6 +264,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "creg/registry",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registry:Registry": "Registry"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "creg/registryToken",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registryToken:RegistryToken": "RegistryToken"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/inMemoryDBReplicaSet",
   "fqn": "ionoscloud.dbaas",
   "classes": {
@@ -307,6 +336,38 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dns/record",
+  "fqn": "ionoscloud.dns",
+  "classes": {
+   "ionoscloud:dns/record:Record": "Record"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dns/zone",
+  "fqn": "ionoscloud.dns",
+  "classes": {
+   "ionoscloud:dns/zone:Zone": "Zone"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dsaas/cluster",
+  "fqn": "ionoscloud.dsaas",
+  "classes": {
+   "ionoscloud:dsaas/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dsaas/nodePool",
+  "fqn": "ionoscloud.dsaas",
+  "classes": {
+   "ionoscloud:dsaas/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "index/apigateway",
   "fqn": "ionoscloud",
   "classes": {
@@ -347,66 +408,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/cdnDistribution",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/cdnDistribution:CdnDistribution": "CdnDistribution"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistry",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistry:ContainerRegistry": "ContainerRegistry"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistryToken",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistryToken:ContainerRegistryToken": "ContainerRegistryToken"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/cubeServer",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/cubeServer:CubeServer": "CubeServer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dataplatformCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dataplatformCluster:DataplatformCluster": "DataplatformCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dataplatformNodePool",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dataplatformNodePool:DataplatformNodePool": "DataplatformNodePool"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dnsRecord",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dnsRecord:DnsRecord": "DnsRecord"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dnsZone",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dnsZone:DnsZone": "DnsZone"
   }
  },
  {
@@ -483,22 +488,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/nfsCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsCluster:NfsCluster": "NfsCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/nfsShare",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/nfsShare:NfsShare": "NfsShare"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/privateCrossconnect",
   "fqn": "ionoscloud",
   "classes": {
@@ -547,38 +536,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/vpnIpsecGateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnIpsecGateway:VpnIpsecGateway": "VpnIpsecGateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnIpsecTunnel",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnIpsecTunnel:VpnIpsecTunnel": "VpnIpsecTunnel"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnWireguardGateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnWireguardGateway:VpnWireguardGateway": "VpnWireguardGateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/vpnWireguardPeer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/vpnWireguardPeer:VpnWireguardPeer": "VpnWireguardPeer"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "k8s/cluster",
   "fqn": "ionoscloud.k8s",
   "classes": {
@@ -591,6 +548,54 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/cluster",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nfs/share",
+  "fqn": "ionoscloud.nfs",
+  "classes": {
+   "ionoscloud:nfs/share:Share": "Share"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/ipsecGateway",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/ipsecGateway:IpsecGateway": "IpsecGateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/ipsecTunnel",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/ipsecTunnel:IpsecTunnel": "IpsecTunnel"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/wireguardGateway",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/wireguardGateway:WireguardGateway": "WireguardGateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "vpn/wireguardPeer",
+  "fqn": "ionoscloud.vpn",
+  "classes": {
+   "ionoscloud:vpn/wireguardPeer:WireguardPeer": "WireguardPeer"
   }
  }
 ]

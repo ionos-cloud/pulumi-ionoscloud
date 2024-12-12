@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupContainerRegistryToken(ctx, &ionoscloud.LookupContainerRegistryTokenArgs{
+//			_, err := ionoscloud.GetContainerRegistryToken(ctx, &ionoscloud.GetContainerRegistryTokenArgs{
 //				RegistryId: ionoscloud_container_registry.Example.Id,
 //				Name:       pulumi.StringRef("container-registry-token-example"),
 //			}, nil)
@@ -60,7 +60,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupContainerRegistryToken(ctx, &ionoscloud.LookupContainerRegistryTokenArgs{
+//			_, err := ionoscloud.GetContainerRegistryToken(ctx, &ionoscloud.GetContainerRegistryTokenArgs{
 //				RegistryId:   ionoscloud_container_registry.Example.Id,
 //				Name:         pulumi.StringRef("-example"),
 //				PartialMatch: pulumi.BoolRef(true),
@@ -74,9 +74,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupContainerRegistryToken(ctx *pulumi.Context, args *LookupContainerRegistryTokenArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistryTokenResult, error) {
+func GetContainerRegistryToken(ctx *pulumi.Context, args *GetContainerRegistryTokenArgs, opts ...pulumi.InvokeOption) (*GetContainerRegistryTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupContainerRegistryTokenResult
+	var rv GetContainerRegistryTokenResult
 	err := ctx.Invoke("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func LookupContainerRegistryToken(ctx *pulumi.Context, args *LookupContainerRegi
 }
 
 // A collection of arguments for invoking getContainerRegistryToken.
-type LookupContainerRegistryTokenArgs struct {
+type GetContainerRegistryTokenArgs struct {
 	// ID of the container registry token you want to search for.
 	Id *string `pulumi:"id"`
 	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
@@ -99,7 +99,7 @@ type LookupContainerRegistryTokenArgs struct {
 }
 
 // A collection of values returned by getContainerRegistryToken.
-type LookupContainerRegistryTokenResult struct {
+type GetContainerRegistryTokenResult struct {
 	Credentials []GetContainerRegistryTokenCredential `pulumi:"credentials"`
 	ExpiryDate  string                                `pulumi:"expiryDate"`
 	// Id of the container registry token.
@@ -111,21 +111,21 @@ type LookupContainerRegistryTokenResult struct {
 	Status       string                           `pulumi:"status"`
 }
 
-func LookupContainerRegistryTokenOutput(ctx *pulumi.Context, args LookupContainerRegistryTokenOutputArgs, opts ...pulumi.InvokeOption) LookupContainerRegistryTokenResultOutput {
+func GetContainerRegistryTokenOutput(ctx *pulumi.Context, args GetContainerRegistryTokenOutputArgs, opts ...pulumi.InvokeOption) GetContainerRegistryTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupContainerRegistryTokenResult, error) {
-			args := v.(LookupContainerRegistryTokenArgs)
-			r, err := LookupContainerRegistryToken(ctx, &args, opts...)
-			var s LookupContainerRegistryTokenResult
+		ApplyT(func(v interface{}) (GetContainerRegistryTokenResult, error) {
+			args := v.(GetContainerRegistryTokenArgs)
+			r, err := GetContainerRegistryToken(ctx, &args, opts...)
+			var s GetContainerRegistryTokenResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupContainerRegistryTokenResultOutput)
+		}).(GetContainerRegistryTokenResultOutput)
 }
 
 // A collection of arguments for invoking getContainerRegistryToken.
-type LookupContainerRegistryTokenOutputArgs struct {
+type GetContainerRegistryTokenOutputArgs struct {
 	// ID of the container registry token you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
@@ -138,58 +138,58 @@ type LookupContainerRegistryTokenOutputArgs struct {
 	RegistryId pulumi.StringInput `pulumi:"registryId"`
 }
 
-func (LookupContainerRegistryTokenOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupContainerRegistryTokenArgs)(nil)).Elem()
+func (GetContainerRegistryTokenOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerRegistryTokenArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getContainerRegistryToken.
-type LookupContainerRegistryTokenResultOutput struct{ *pulumi.OutputState }
+type GetContainerRegistryTokenResultOutput struct{ *pulumi.OutputState }
 
-func (LookupContainerRegistryTokenResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupContainerRegistryTokenResult)(nil)).Elem()
+func (GetContainerRegistryTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetContainerRegistryTokenResult)(nil)).Elem()
 }
 
-func (o LookupContainerRegistryTokenResultOutput) ToLookupContainerRegistryTokenResultOutput() LookupContainerRegistryTokenResultOutput {
+func (o GetContainerRegistryTokenResultOutput) ToGetContainerRegistryTokenResultOutput() GetContainerRegistryTokenResultOutput {
 	return o
 }
 
-func (o LookupContainerRegistryTokenResultOutput) ToLookupContainerRegistryTokenResultOutputWithContext(ctx context.Context) LookupContainerRegistryTokenResultOutput {
+func (o GetContainerRegistryTokenResultOutput) ToGetContainerRegistryTokenResultOutputWithContext(ctx context.Context) GetContainerRegistryTokenResultOutput {
 	return o
 }
 
-func (o LookupContainerRegistryTokenResultOutput) Credentials() GetContainerRegistryTokenCredentialArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) []GetContainerRegistryTokenCredential { return v.Credentials }).(GetContainerRegistryTokenCredentialArrayOutput)
+func (o GetContainerRegistryTokenResultOutput) Credentials() GetContainerRegistryTokenCredentialArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) []GetContainerRegistryTokenCredential { return v.Credentials }).(GetContainerRegistryTokenCredentialArrayOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) ExpiryDate() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) string { return v.ExpiryDate }).(pulumi.StringOutput)
+func (o GetContainerRegistryTokenResultOutput) ExpiryDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) string { return v.ExpiryDate }).(pulumi.StringOutput)
 }
 
 // Id of the container registry token.
-func (o LookupContainerRegistryTokenResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetContainerRegistryTokenResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetContainerRegistryTokenResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetContainerRegistryTokenResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) RegistryId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) string { return v.RegistryId }).(pulumi.StringOutput)
+func (o GetContainerRegistryTokenResultOutput) RegistryId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) string { return v.RegistryId }).(pulumi.StringOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) Scopes() GetContainerRegistryTokenScopeArrayOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) []GetContainerRegistryTokenScope { return v.Scopes }).(GetContainerRegistryTokenScopeArrayOutput)
+func (o GetContainerRegistryTokenResultOutput) Scopes() GetContainerRegistryTokenScopeArrayOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) []GetContainerRegistryTokenScope { return v.Scopes }).(GetContainerRegistryTokenScopeArrayOutput)
 }
 
-func (o LookupContainerRegistryTokenResultOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupContainerRegistryTokenResult) string { return v.Status }).(pulumi.StringOutput)
+func (o GetContainerRegistryTokenResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetContainerRegistryTokenResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupContainerRegistryTokenResultOutput{})
+	pulumi.RegisterOutputType(GetContainerRegistryTokenResultOutput{})
 }
