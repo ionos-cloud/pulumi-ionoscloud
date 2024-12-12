@@ -12,15 +12,10 @@ from .application_loadbalancer_forwardingrule import *
 from .auto_certificate import *
 from .auto_certificate_provider import *
 from .autoscaling_group import *
-from .cdn_distribution import *
 from .certificate import *
-from .container_registry import *
-from .container_registry_token import *
 from .cube_server import *
 from .dataplatform_cluster import *
 from .dataplatform_node_pool import *
-from .dns_record import *
-from .dns_zone import *
 from .get_apigateway import *
 from .get_apigateway_route import *
 from .get_application_loadbalancer import *
@@ -116,26 +111,43 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.cdn as __cdn
+    cdn = __cdn
     import ionoscloud.compute as __compute
     compute = __compute
     import ionoscloud.config as __config
     config = __config
+    import ionoscloud.creg as __creg
+    creg = __creg
     import ionoscloud.dbaas as __dbaas
     dbaas = __dbaas
+    import ionoscloud.dns as __dns
+    dns = __dns
     import ionoscloud.k8s as __k8s
     k8s = __k8s
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
+    cdn = _utilities.lazy_import('ionoscloud.cdn')
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
+    creg = _utilities.lazy_import('ionoscloud.creg')
     dbaas = _utilities.lazy_import('ionoscloud.dbaas')
+    dns = _utilities.lazy_import('ionoscloud.dns')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "cdn/distribution",
+  "fqn": "ionoscloud.cdn",
+  "classes": {
+   "ionoscloud:cdn/distribution:Distribution": "Distribution"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "compute/backupUnit",
@@ -226,6 +238,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "creg/registry",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registry:Registry": "Registry"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "creg/registryToken",
+  "fqn": "ionoscloud.creg",
+  "classes": {
+   "ionoscloud:creg/registryToken:RegistryToken": "RegistryToken"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/inMemoryDBReplicaSet",
   "fqn": "ionoscloud.dbaas",
   "classes": {
@@ -278,6 +306,22 @@ _utilities.register(
   "fqn": "ionoscloud.dbaas",
   "classes": {
    "ionoscloud:dbaas/pSQLUser:PSQLUser": "PSQLUser"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dns/record",
+  "fqn": "ionoscloud.dns",
+  "classes": {
+   "ionoscloud:dns/record:Record": "Record"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "dns/zone",
+  "fqn": "ionoscloud.dns",
+  "classes": {
+   "ionoscloud:dns/zone:Zone": "Zone"
   }
  },
  {
@@ -338,34 +382,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/cdnDistribution",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/cdnDistribution:CdnDistribution": "CdnDistribution"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/certificate",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/certificate:Certificate": "Certificate"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistry",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistry:ContainerRegistry": "ContainerRegistry"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/containerRegistryToken",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/containerRegistryToken:ContainerRegistryToken": "ContainerRegistryToken"
   }
  },
  {
@@ -390,22 +410,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/dataplatformNodePool:DataplatformNodePool": "DataplatformNodePool"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dnsRecord",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dnsRecord:DnsRecord": "DnsRecord"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/dnsZone",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/dnsZone:DnsZone": "DnsZone"
   }
  },
  {

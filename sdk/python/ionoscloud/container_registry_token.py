@@ -24,13 +24,8 @@ class ContainerRegistryTokenArgs:
                  status: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerRegistryToken resource.
-        :param pulumi.Input[str] name: [string]
-        :param pulumi.Input[str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-               
-               > **⚠ WARNING** `save_password_to_file` must be used with caution.
-               > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input['ContainerRegistryTokenScopeArgs']]] scopes: [map]
-        :param pulumi.Input[str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[str] save_password_to_file: Saves password to file. Only works on create. Takes as argument a file name, or a file path
+        :param pulumi.Input[str] status: Can be one of enabled, disabled
         """
         pulumi.set(__self__, "registry_id", registry_id)
         if expiry_date is not None:
@@ -65,9 +60,6 @@ class ContainerRegistryTokenArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string]
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -78,10 +70,7 @@ class ContainerRegistryTokenArgs:
     @pulumi.getter(name="savePasswordToFile")
     def save_password_to_file(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-
-        > **⚠ WARNING** `save_password_to_file` must be used with caution.
-        > It will save the password(token) returned on create to a file. This is the only way to get the token.
+        Saves password to file. Only works on create. Takes as argument a file name, or a file path
         """
         return pulumi.get(self, "save_password_to_file")
 
@@ -92,9 +81,6 @@ class ContainerRegistryTokenArgs:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerRegistryTokenScopeArgs']]]]:
-        """
-        [map]
-        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -105,7 +91,7 @@ class ContainerRegistryTokenArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        Can be one of enabled, disabled
         """
         return pulumi.get(self, "status")
 
@@ -126,13 +112,8 @@ class _ContainerRegistryTokenState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerRegistryToken resources.
-        :param pulumi.Input[str] name: [string]
-        :param pulumi.Input[str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-               
-               > **⚠ WARNING** `save_password_to_file` must be used with caution.
-               > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input['ContainerRegistryTokenScopeArgs']]] scopes: [map]
-        :param pulumi.Input[str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[str] save_password_to_file: Saves password to file. Only works on create. Takes as argument a file name, or a file path
+        :param pulumi.Input[str] status: Can be one of enabled, disabled
         """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -170,9 +151,6 @@ class _ContainerRegistryTokenState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string]
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -192,10 +170,7 @@ class _ContainerRegistryTokenState:
     @pulumi.getter(name="savePasswordToFile")
     def save_password_to_file(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-
-        > **⚠ WARNING** `save_password_to_file` must be used with caution.
-        > It will save the password(token) returned on create to a file. This is the only way to get the token.
+        Saves password to file. Only works on create. Takes as argument a file name, or a file path
         """
         return pulumi.get(self, "save_password_to_file")
 
@@ -206,9 +181,6 @@ class _ContainerRegistryTokenState:
     @property
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ContainerRegistryTokenScopeArgs']]]]:
-        """
-        [map]
-        """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
@@ -219,7 +191,7 @@ class _ContainerRegistryTokenState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        Can be one of enabled, disabled
         """
         return pulumi.get(self, "status")
 
@@ -228,7 +200,12 @@ class _ContainerRegistryTokenState:
         pulumi.set(self, "status", value)
 
 
+warnings.warn("""ionoscloud.index/containerregistrytoken.ContainerRegistryToken has been deprecated in favor of ionoscloud.creg/registrytoken.RegistryToken""", DeprecationWarning)
+
+
 class ContainerRegistryToken(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/containerregistrytoken.ContainerRegistryToken has been deprecated in favor of ionoscloud.creg/registrytoken.RegistryToken""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -241,54 +218,11 @@ class ContainerRegistryToken(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages an **Container Registry Token** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_container_registry = ionoscloud.ContainerRegistry("exampleContainerRegistry",
-            garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(
-                days=[
-                    "Monday",
-                    "Tuesday",
-                ],
-                time="05:19:00+00:00",
-            ),
-            location="de/fra")
-        example_container_registry_token = ionoscloud.ContainerRegistryToken("exampleContainerRegistryToken",
-            expiry_date="2023-01-13 16:27:42Z",
-            scopes=[ionoscloud.ContainerRegistryTokenScopeArgs(
-                actions=["push"],
-                name="Scope1",
-                type="repository",
-            )],
-            status="enabled",
-            registry_id=example_container_registry.id,
-            save_password_to_file="pass.txt")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/containerRegistryToken:ContainerRegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
-        ```
-
+        Create a ContainerRegistryToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: [string]
-        :param pulumi.Input[str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-               
-               > **⚠ WARNING** `save_password_to_file` must be used with caution.
-               > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContainerRegistryTokenScopeArgs']]]] scopes: [map]
-        :param pulumi.Input[str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[str] save_password_to_file: Saves password to file. Only works on create. Takes as argument a file name, or a file path
+        :param pulumi.Input[str] status: Can be one of enabled, disabled
         """
         ...
     @overload
@@ -297,45 +231,7 @@ class ContainerRegistryToken(pulumi.CustomResource):
                  args: ContainerRegistryTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **Container Registry Token** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_container_registry = ionoscloud.ContainerRegistry("exampleContainerRegistry",
-            garbage_collection_schedule=ionoscloud.ContainerRegistryGarbageCollectionScheduleArgs(
-                days=[
-                    "Monday",
-                    "Tuesday",
-                ],
-                time="05:19:00+00:00",
-            ),
-            location="de/fra")
-        example_container_registry_token = ionoscloud.ContainerRegistryToken("exampleContainerRegistryToken",
-            expiry_date="2023-01-13 16:27:42Z",
-            scopes=[ionoscloud.ContainerRegistryTokenScopeArgs(
-                actions=["push"],
-                name="Scope1",
-                type="repository",
-            )],
-            status="enabled",
-            registry_id=example_container_registry.id,
-            save_password_to_file="pass.txt")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/containerRegistryToken:ContainerRegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
-        ```
-
+        Create a ContainerRegistryToken resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ContainerRegistryTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -358,6 +254,7 @@ class ContainerRegistryToken(pulumi.CustomResource):
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContainerRegistryTokenScopeArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerRegistryToken is deprecated: ionoscloud.index/containerregistrytoken.ContainerRegistryToken has been deprecated in favor of ionoscloud.creg/registrytoken.RegistryToken""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -399,13 +296,8 @@ class ContainerRegistryToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: [string]
-        :param pulumi.Input[str] save_password_to_file: [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-               
-               > **⚠ WARNING** `save_password_to_file` must be used with caution.
-               > It will save the password(token) returned on create to a file. This is the only way to get the token.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ContainerRegistryTokenScopeArgs']]]] scopes: [map]
-        :param pulumi.Input[str] status: [string] Must have on of the values: `enabled`, `disabled`
+        :param pulumi.Input[str] save_password_to_file: Saves password to file. Only works on create. Takes as argument a file name, or a file path
+        :param pulumi.Input[str] status: Can be one of enabled, disabled
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -433,9 +325,6 @@ class ContainerRegistryToken(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string]
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -447,26 +336,20 @@ class ContainerRegistryToken(pulumi.CustomResource):
     @pulumi.getter(name="savePasswordToFile")
     def save_password_to_file(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-
-        > **⚠ WARNING** `save_password_to_file` must be used with caution.
-        > It will save the password(token) returned on create to a file. This is the only way to get the token.
+        Saves password to file. Only works on create. Takes as argument a file name, or a file path
         """
         return pulumi.get(self, "save_password_to_file")
 
     @property
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence['outputs.ContainerRegistryTokenScope']]:
-        """
-        [map]
-        """
         return pulumi.get(self, "scopes")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        [string] Must have on of the values: `enabled`, `disabled`
+        Can be one of enabled, disabled
         """
         return pulumi.get(self, "status")
 

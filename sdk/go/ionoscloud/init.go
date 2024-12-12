@@ -35,24 +35,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AutoCertificateProvider{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
-	case "ionoscloud:index/cdnDistribution:CdnDistribution":
-		r = &CdnDistribution{}
 	case "ionoscloud:index/certificate:Certificate":
 		r = &Certificate{}
-	case "ionoscloud:index/containerRegistry:ContainerRegistry":
-		r = &ContainerRegistry{}
-	case "ionoscloud:index/containerRegistryToken:ContainerRegistryToken":
-		r = &ContainerRegistryToken{}
 	case "ionoscloud:index/cubeServer:CubeServer":
 		r = &CubeServer{}
 	case "ionoscloud:index/dataplatformCluster:DataplatformCluster":
 		r = &DataplatformCluster{}
 	case "ionoscloud:index/dataplatformNodePool:DataplatformNodePool":
 		r = &DataplatformNodePool{}
-	case "ionoscloud:index/dnsRecord:DnsRecord":
-		r = &DnsRecord{}
-	case "ionoscloud:index/dnsZone:DnsZone":
-		r = &DnsZone{}
 	case "ionoscloud:index/ipfailover:Ipfailover":
 		r = &Ipfailover{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -155,22 +145,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/cdnDistribution",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/certificate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/containerRegistry",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/containerRegistryToken",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -186,16 +161,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/dataplatformNodePool",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsRecord",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/dnsZone",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

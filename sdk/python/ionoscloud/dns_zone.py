@@ -19,9 +19,6 @@ class DnsZoneArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DnsZone resource.
-        :param pulumi.Input[str] description: [string] The description for the DNS Zone.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Zone.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -33,9 +30,6 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The description for the DNS Zone.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -45,9 +39,6 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -57,9 +48,6 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the DNS Zone.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -76,9 +64,6 @@ class _DnsZoneState:
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering DnsZone resources.
-        :param pulumi.Input[str] description: [string] The description for the DNS Zone.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Zone.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: A list of available name servers.
         """
         if description is not None:
@@ -93,9 +78,6 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The description for the DNS Zone.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -105,9 +87,6 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -117,9 +96,6 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the DNS Zone.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -139,7 +115,12 @@ class _DnsZoneState:
         pulumi.set(self, "nameservers", value)
 
 
+warnings.warn("""ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""", DeprecationWarning)
+
+
 class DnsZone(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -149,44 +130,9 @@ class DnsZone(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a **DNS Zone**.
-
-        > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.DnsZone("example",
-            description="description",
-            enabled=False)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
-
-        hcl
-
-        resource "ionoscloud_dns_zone" "example" {
-
-        }
-
-        The resource can be imported using the `zone_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dnsZone:DnsZone example {zone_id}
-        ```
-
+        Create a DnsZone resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: [string] The description for the DNS Zone.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Zone.
         """
         ...
     @overload
@@ -195,39 +141,7 @@ class DnsZone(pulumi.CustomResource):
                  args: Optional[DnsZoneArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **DNS Zone**.
-
-        > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.DnsZone("example",
-            description="description",
-            enabled=False)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
-
-        hcl
-
-        resource "ionoscloud_dns_zone" "example" {
-
-        }
-
-        The resource can be imported using the `zone_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/dnsZone:DnsZone example {zone_id}
-        ```
-
+        Create a DnsZone resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DnsZoneArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -247,6 +161,7 @@ class DnsZone(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DnsZone is deprecated: ionoscloud.index/dnszone.DnsZone has been deprecated in favor of ionoscloud.dns/zone.Zone""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -280,9 +195,6 @@ class DnsZone(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: [string] The description for the DNS Zone.
-        :param pulumi.Input[bool] enabled: [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        :param pulumi.Input[str] name: [string] The name of the DNS Zone.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: A list of available name servers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -298,25 +210,16 @@ class DnsZone(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
-        """
-        [string] The description for the DNS Zone.
-        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[bool]:
-        """
-        [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string] The name of the DNS Zone.
-        """
         return pulumi.get(self, "name")
 
     @property

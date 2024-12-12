@@ -397,104 +397,6 @@ export interface AutoscalingGroupReplicaConfigurationVolume {
     userData?: pulumi.Input<string>;
 }
 
-export interface CdnDistributionRoutingRule {
-    /**
-     * [string] The prefix of the routing rule.
-     */
-    prefix: pulumi.Input<string>;
-    /**
-     * [string] The scheme of the routing rule.
-     */
-    scheme: pulumi.Input<string>;
-    /**
-     * [map] - A map of properties for the rule
-     */
-    upstream: pulumi.Input<inputs.CdnDistributionRoutingRuleUpstream>;
-}
-
-export interface CdnDistributionRoutingRuleUpstream {
-    /**
-     * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-     */
-    caching: pulumi.Input<boolean>;
-    /**
-     * [map] - A map of geo_restrictions
-     */
-    geoRestrictions?: pulumi.Input<inputs.CdnDistributionRoutingRuleUpstreamGeoRestrictions>;
-    /**
-     * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-     */
-    host: pulumi.Input<string>;
-    /**
-     * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
-     */
-    rateLimitClass: pulumi.Input<string>;
-    /**
-     * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-     */
-    sniMode: pulumi.Input<string>;
-    /**
-     * [bool] Enable or disable WAF to protect the upstream host.
-     */
-    waf: pulumi.Input<boolean>;
-}
-
-export interface CdnDistributionRoutingRuleUpstreamGeoRestrictions {
-    /**
-     * [string] List of allowed countries
-     */
-    allowLists?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] List of blocked countries
-     */
-    blockLists?: pulumi.Input<pulumi.Input<string>[]>;
-}
-
-export interface ContainerRegistryFeatures {
-    /**
-     * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-     *
-     * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
-     */
-    vulnerabilityScanning?: pulumi.Input<boolean>;
-}
-
-export interface ContainerRegistryGarbageCollectionSchedule {
-    /**
-     * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-     */
-    days: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    time: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryStorageUsage {
-    bytes?: pulumi.Input<number>;
-    updatedAt?: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenCredential {
-    password: pulumi.Input<string>;
-    username: pulumi.Input<string>;
-}
-
-export interface ContainerRegistryTokenScope {
-    /**
-     * [string] Example: ["pull", "push", "delete"]
-     */
-    actions: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string]
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [string]
-     */
-    type: pulumi.Input<string>;
-}
-
 export interface CubeServerNic {
     deviceNumber?: pulumi.Input<number>;
     dhcp?: pulumi.Input<boolean>;
@@ -1154,6 +1056,61 @@ export interface VcpuServerVolume {
      */
     userData?: pulumi.Input<string>;
 }
+export namespace cdn {
+    export interface DistributionRoutingRule {
+        /**
+         * [string] The prefix of the routing rule.
+         */
+        prefix: pulumi.Input<string>;
+        /**
+         * [string] The scheme of the routing rule.
+         */
+        scheme: pulumi.Input<string>;
+        /**
+         * [map] - A map of properties for the rule
+         */
+        upstream: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstream>;
+    }
+
+    export interface DistributionRoutingRuleUpstream {
+        /**
+         * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+         */
+        caching: pulumi.Input<boolean>;
+        /**
+         * [map] - A map of geo_restrictions
+         */
+        geoRestrictions?: pulumi.Input<inputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions>;
+        /**
+         * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+         */
+        rateLimitClass: pulumi.Input<string>;
+        /**
+         * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+         */
+        sniMode: pulumi.Input<string>;
+        /**
+         * [bool] Enable or disable WAF to protect the upstream host.
+         */
+        waf: pulumi.Input<boolean>;
+    }
+
+    export interface DistributionRoutingRuleUpstreamGeoRestrictions {
+        /**
+         * [string] List of allowed countries
+         */
+        allowLists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string] List of blocked countries
+         */
+        blockLists?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+}
+
 export namespace compute {
     export interface DatacenterCpuArchitecture {
         /**
@@ -1349,6 +1306,53 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
         userData?: pulumi.Input<string>;
+    }
+}
+
+export namespace creg {
+    export interface RegistryFeatures {
+        /**
+         * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+         *
+         * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
+         */
+        vulnerabilityScanning?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistryGarbageCollectionSchedule {
+        /**
+         * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+         */
+        days: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface RegistryStorageUsage {
+        bytes?: pulumi.Input<number>;
+        updatedAt?: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenCredential {
+        password: pulumi.Input<string>;
+        username: pulumi.Input<string>;
+    }
+
+    export interface RegistryTokenScope {
+        /**
+         * [string] Example: ["pull", "push", "delete"]
+         */
+        actions: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string]
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [string]
+         */
+        type: pulumi.Input<string>;
     }
 }
 
