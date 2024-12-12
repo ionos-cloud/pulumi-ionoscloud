@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     lbPrivateIps: ["10.13.72.225/24"],
  * });
  * //optionally you can add a certificate to the application load balancer
- * const cert = new ionoscloud.Certificate("cert", {
+ * const cert = new ionoscloud.cert.Certificate("cert", {
  *     certificate: fs.readFileSync("path_to_cert", "utf8"),
  *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
  *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),

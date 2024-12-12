@@ -2,7 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as utilities from "./utilities";
+import * as utilities from "../utilities";
 
 export class Certificate extends pulumi.CustomResource {
     /**
@@ -19,7 +19,7 @@ export class Certificate extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/certificate:Certificate';
+    public static readonly __pulumiType = 'ionoscloud:cert/certificate:Certificate';
 
     /**
      * Returns true if the given object is an instance of Certificate.  This is designed to work even

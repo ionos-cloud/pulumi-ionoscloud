@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Cert.Inputs
 {
 
     public sealed class AutoCertificateProviderExternalAccountBindingArgs : global::Pulumi.ResourceArgs

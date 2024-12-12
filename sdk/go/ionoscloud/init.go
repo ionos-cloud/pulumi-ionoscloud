@@ -29,14 +29,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApplicationLoadbalancer{}
 	case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
 		r = &ApplicationLoadbalancerForwardingrule{}
-	case "ionoscloud:index/autoCertificate:AutoCertificate":
-		r = &AutoCertificate{}
-	case "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider":
-		r = &AutoCertificateProvider{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
-	case "ionoscloud:index/certificate:Certificate":
-		r = &Certificate{}
+	case "ionoscloud:index/cubeServer:CubeServer":
+		r = &CubeServer{}
+	case "ionoscloud:index/ipfailover:Ipfailover":
+		r = &Ipfailover{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
 		r = &KafkaCluster{}
 	case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
@@ -45,12 +43,26 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Loadbalancer{}
 	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
 		r = &LoggingPipeline{}
+	case "ionoscloud:index/natgateway:Natgateway":
+		r = &Natgateway{}
+	case "ionoscloud:index/natgatewayRule:NatgatewayRule":
+		r = &NatgatewayRule{}
 	case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
 		r = &NetworkloadbalancerForwardingrule{}
+	case "ionoscloud:index/privateCrossconnect:PrivateCrossconnect":
+		r = &PrivateCrossconnect{}
+	case "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection":
+		r = &ServerBootDeviceSelection{}
+	case "ionoscloud:index/share:Share":
+		r = &Share{}
+	case "ionoscloud:index/snapshot:Snapshot":
+		r = &Snapshot{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
+	case "ionoscloud:index/vcpuServer:VcpuServer":
+		r = &VcpuServer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -104,22 +116,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/autoCertificate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/autoCertificateProvider",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/autoscalingGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/certificate",
+		"index/cubeServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/ipfailover",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -144,6 +151,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
+		"index/natgateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/natgatewayRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
 		"index/networkloadbalancer",
 		&module{version},
 	)
@@ -154,7 +171,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
+		"index/privateCrossconnect",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/serverBootDeviceSelection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/share",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
 		"index/targetGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"index/vcpuServer",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

@@ -9,10 +9,8 @@ from .apigateway import *
 from .apigateway_route import *
 from .application_loadbalancer import *
 from .application_loadbalancer_forwardingrule import *
-from .auto_certificate import *
-from .auto_certificate_provider import *
 from .autoscaling_group import *
-from .certificate import *
+from .cube_server import *
 from .get_apigateway import *
 from .get_apigateway_route import *
 from .get_application_loadbalancer import *
@@ -85,14 +83,22 @@ from .get_vpn_ipsec_gateway import *
 from .get_vpn_ipsec_tunnel import *
 from .get_vpn_wireguard_gateway import *
 from .get_vpn_wireguard_peer import *
+from .ipfailover import *
 from .kafka_cluster import *
 from .kafka_cluster_topic import *
 from .loadbalancer import *
 from .logging_pipeline import *
+from .natgateway import *
+from .natgateway_rule import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
+from .private_crossconnect import *
 from .provider import *
+from .server_boot_device_selection import *
+from .share import *
+from .snapshot import *
 from .target_group import *
+from .vcpu_server import *
 from ._inputs import *
 from . import outputs
 
@@ -100,6 +106,8 @@ from . import outputs
 if typing.TYPE_CHECKING:
     import ionoscloud.cdn as __cdn
     cdn = __cdn
+    import ionoscloud.cert as __cert
+    cert = __cert
     import ionoscloud.compute as __compute
     compute = __compute
     import ionoscloud.config as __config
@@ -120,6 +128,7 @@ if typing.TYPE_CHECKING:
     vpn = __vpn
 else:
     cdn = _utilities.lazy_import('ionoscloud.cdn')
+    cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
     config = _utilities.lazy_import('ionoscloud.config')
     creg = _utilities.lazy_import('ionoscloud.creg')
@@ -143,34 +152,34 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "cert/autoCertificate",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/autoCertificate:AutoCertificate": "AutoCertificate"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "cert/autoCertificateProvider",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider": "AutoCertificateProvider"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "cert/certificate",
+  "fqn": "ionoscloud.cert",
+  "classes": {
+   "ionoscloud:cert/certificate:Certificate": "Certificate"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "compute/backupUnit",
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/backupUnit:BackupUnit": "BackupUnit"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/bootDeviceSelection",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection": "BootDeviceSelection"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/crossconnect",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/crossconnect:Crossconnect": "Crossconnect"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/cubeServer",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/cubeServer:CubeServer": "CubeServer"
   }
  },
  {
@@ -207,34 +216,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "compute/iPFailover",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/iPFailover:IPFailover": "IPFailover"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "compute/lan",
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/lan:Lan": "Lan"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/natGateway",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/natGateway:NatGateway": "NatGateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/natGatewayRule",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/natGatewayRule:NatGatewayRule": "NatGatewayRule"
   }
  },
  {
@@ -263,34 +248,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "compute/share",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/share:Share": "Share"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/snapshot",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/snapshot:Snapshot": "Snapshot"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "compute/user",
   "fqn": "ionoscloud.compute",
   "classes": {
    "ionoscloud:compute/user:User": "User"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "compute/vCPUServer",
-  "fqn": "ionoscloud.compute",
-  "classes": {
-   "ionoscloud:compute/vCPUServer:VCPUServer": "VCPUServer"
   }
  },
  {
@@ -439,22 +400,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/autoCertificate",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/autoCertificate:AutoCertificate": "AutoCertificate"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/autoCertificateProvider",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/autoCertificateProvider:AutoCertificateProvider": "AutoCertificateProvider"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/autoscalingGroup",
   "fqn": "ionoscloud",
   "classes": {
@@ -463,10 +408,18 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/certificate",
+  "mod": "index/cubeServer",
   "fqn": "ionoscloud",
   "classes": {
-   "ionoscloud:index/certificate:Certificate": "Certificate"
+   "ionoscloud:index/cubeServer:CubeServer": "CubeServer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/ipfailover",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/ipfailover:Ipfailover": "Ipfailover"
   }
  },
  {
@@ -503,6 +456,22 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "index/natgateway",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/natgateway:Natgateway": "Natgateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/natgatewayRule",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/natgatewayRule:NatgatewayRule": "NatgatewayRule"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "index/networkloadbalancer",
   "fqn": "ionoscloud",
   "classes": {
@@ -519,10 +488,50 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "index/privateCrossconnect",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/privateCrossconnect:PrivateCrossconnect": "PrivateCrossconnect"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/serverBootDeviceSelection",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/serverBootDeviceSelection:ServerBootDeviceSelection": "ServerBootDeviceSelection"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/share",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/share:Share": "Share"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/snapshot",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "index/targetGroup",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/targetGroup:TargetGroup": "TargetGroup"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "index/vcpuServer",
+  "fqn": "ionoscloud",
+  "classes": {
+   "ionoscloud:index/vcpuServer:VcpuServer": "VcpuServer"
   }
  },
  {

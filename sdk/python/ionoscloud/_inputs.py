@@ -15,7 +15,6 @@ __all__ = [
     'ApplicationLoadbalancerFlowlogArgs',
     'ApplicationLoadbalancerForwardingruleHttpRuleArgs',
     'ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs',
-    'AutoCertificateProviderExternalAccountBindingArgs',
     'AutoscalingGroupPolicyArgs',
     'AutoscalingGroupPolicyScaleInActionArgs',
     'AutoscalingGroupPolicyScaleOutActionArgs',
@@ -487,43 +486,6 @@ class ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs:
     @value.setter
     def value(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "value", value)
-
-
-@pulumi.input_type
-class AutoCertificateProviderExternalAccountBindingArgs:
-    def __init__(__self__, *,
-                 key_id: pulumi.Input[str],
-                 key_secret: pulumi.Input[str]):
-        """
-        :param pulumi.Input[str] key_id: The key ID of the external account binding
-        :param pulumi.Input[str] key_secret: The secret of the external account binding
-        """
-        pulumi.set(__self__, "key_id", key_id)
-        pulumi.set(__self__, "key_secret", key_secret)
-
-    @property
-    @pulumi.getter(name="keyId")
-    def key_id(self) -> pulumi.Input[str]:
-        """
-        The key ID of the external account binding
-        """
-        return pulumi.get(self, "key_id")
-
-    @key_id.setter
-    def key_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "key_id", value)
-
-    @property
-    @pulumi.getter(name="keySecret")
-    def key_secret(self) -> pulumi.Input[str]:
-        """
-        The secret of the external account binding
-        """
-        return pulumi.get(self, "key_secret")
-
-    @key_secret.setter
-    def key_secret(self, value: pulumi.Input[str]):
-        pulumi.set(self, "key_secret", value)
 
 
 @pulumi.input_type
