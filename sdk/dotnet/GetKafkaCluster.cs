@@ -11,47 +11,25 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetKafkaCluster
     {
-        /// <summary>
-        /// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// </summary>
         public static Task<GetKafkaClusterResult> InvokeAsync(GetKafkaClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKafkaClusterResult>("ionoscloud:index/getKafkaCluster:getKafkaCluster", args ?? new GetKafkaClusterArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// </summary>
         public static Output<GetKafkaClusterResult> Invoke(GetKafkaClusterInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKafkaClusterResult>("ionoscloud:index/getKafkaCluster:getKafkaCluster", args ?? new GetKafkaClusterInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetKafkaClusterResult> Invoke(GetKafkaClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetKafkaClusterResult>("ionoscloud:index/getKafkaCluster:getKafkaCluster", args ?? new GetKafkaClusterInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetKafkaClusterArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of an existing Kafka Cluster that you want to search for.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
-        /// <summary>
-        /// Name of an existing Kafka Cluster that you want to search for.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -66,21 +44,12 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetKafkaClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of an existing Kafka Cluster that you want to search for.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
-        /// <summary>
-        /// Name of an existing Kafka Cluster that you want to search for.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -97,31 +66,13 @@ namespace Pulumi.Ionoscloud
     [OutputType]
     public sealed class GetKafkaClusterResult
     {
-        /// <summary>
-        /// IP address and port of cluster brokers.
-        /// </summary>
         public readonly ImmutableArray<string> BrokerAddresses;
-        /// <summary>
-        /// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKafkaClusterConnectionResult> Connections;
-        /// <summary>
-        /// UUID of the Kafka Cluster.
-        /// </summary>
         public readonly string Id;
         public readonly string Location;
-        /// <summary>
-        /// The name of the Kafka Cluster.
-        /// </summary>
         public readonly string Name;
         public readonly bool? PartialMatch;
-        /// <summary>
-        /// The size of the Kafka Cluster.
-        /// </summary>
         public readonly string Size;
-        /// <summary>
-        /// The version of the Kafka Cluster.
-        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

@@ -14,11 +14,10 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type DistributionRoutingRule struct {
-	// [string] The prefix of the routing rule.
+	// The prefix of the routing rule.
 	Prefix string `pulumi:"prefix"`
-	// [string] The scheme of the routing rule.
-	Scheme string `pulumi:"scheme"`
-	// [map] - A map of properties for the rule
+	// The scheme of the routing rule.
+	Scheme   string                          `pulumi:"scheme"`
 	Upstream DistributionRoutingRuleUpstream `pulumi:"upstream"`
 }
 
@@ -34,11 +33,10 @@ type DistributionRoutingRuleInput interface {
 }
 
 type DistributionRoutingRuleArgs struct {
-	// [string] The prefix of the routing rule.
+	// The prefix of the routing rule.
 	Prefix pulumi.StringInput `pulumi:"prefix"`
-	// [string] The scheme of the routing rule.
-	Scheme pulumi.StringInput `pulumi:"scheme"`
-	// [map] - A map of properties for the rule
+	// The scheme of the routing rule.
+	Scheme   pulumi.StringInput                   `pulumi:"scheme"`
 	Upstream DistributionRoutingRuleUpstreamInput `pulumi:"upstream"`
 }
 
@@ -93,17 +91,16 @@ func (o DistributionRoutingRuleOutput) ToDistributionRoutingRuleOutputWithContex
 	return o
 }
 
-// [string] The prefix of the routing rule.
+// The prefix of the routing rule.
 func (o DistributionRoutingRuleOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
-// [string] The scheme of the routing rule.
+// The scheme of the routing rule.
 func (o DistributionRoutingRuleOutput) Scheme() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) string { return v.Scheme }).(pulumi.StringOutput)
 }
 
-// [map] - A map of properties for the rule
 func (o DistributionRoutingRuleOutput) Upstream() DistributionRoutingRuleUpstreamOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) DistributionRoutingRuleUpstream { return v.Upstream }).(DistributionRoutingRuleUpstreamOutput)
 }
@@ -129,17 +126,16 @@ func (o DistributionRoutingRuleArrayOutput) Index(i pulumi.IntInput) Distributio
 }
 
 type DistributionRoutingRuleUpstream struct {
-	// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching bool `pulumi:"caching"`
-	// [map] - A map of geo_restrictions
+	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching         bool                                            `pulumi:"caching"`
 	GeoRestrictions *DistributionRoutingRuleUpstreamGeoRestrictions `pulumi:"geoRestrictions"`
-	// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host string `pulumi:"host"`
-	// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+	// Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass string `pulumi:"rateLimitClass"`
-	// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
 	SniMode string `pulumi:"sniMode"`
-	// [bool] Enable or disable WAF to protect the upstream host.
+	// Enable or disable WAF to protect the upstream host.
 	Waf bool `pulumi:"waf"`
 }
 
@@ -155,17 +151,16 @@ type DistributionRoutingRuleUpstreamInput interface {
 }
 
 type DistributionRoutingRuleUpstreamArgs struct {
-	// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching pulumi.BoolInput `pulumi:"caching"`
-	// [map] - A map of geo_restrictions
+	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching         pulumi.BoolInput                                       `pulumi:"caching"`
 	GeoRestrictions DistributionRoutingRuleUpstreamGeoRestrictionsPtrInput `pulumi:"geoRestrictions"`
-	// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host pulumi.StringInput `pulumi:"host"`
-	// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+	// Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass pulumi.StringInput `pulumi:"rateLimitClass"`
-	// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
 	SniMode pulumi.StringInput `pulumi:"sniMode"`
-	// [bool] Enable or disable WAF to protect the upstream host.
+	// Enable or disable WAF to protect the upstream host.
 	Waf pulumi.BoolInput `pulumi:"waf"`
 }
 
@@ -195,42 +190,39 @@ func (o DistributionRoutingRuleUpstreamOutput) ToDistributionRoutingRuleUpstream
 	return o
 }
 
-// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
 func (o DistributionRoutingRuleUpstreamOutput) Caching() pulumi.BoolOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) bool { return v.Caching }).(pulumi.BoolOutput)
 }
 
-// [map] - A map of geo_restrictions
 func (o DistributionRoutingRuleUpstreamOutput) GeoRestrictions() DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) *DistributionRoutingRuleUpstreamGeoRestrictions {
 		return v.GeoRestrictions
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput)
 }
 
-// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 func (o DistributionRoutingRuleUpstreamOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+// Rate limit class that will be applied to limit the number of incoming requests per IP.
 func (o DistributionRoutingRuleUpstreamOutput) RateLimitClass() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.RateLimitClass }).(pulumi.StringOutput)
 }
 
-// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
 func (o DistributionRoutingRuleUpstreamOutput) SniMode() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.SniMode }).(pulumi.StringOutput)
 }
 
-// [bool] Enable or disable WAF to protect the upstream host.
+// Enable or disable WAF to protect the upstream host.
 func (o DistributionRoutingRuleUpstreamOutput) Waf() pulumi.BoolOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) bool { return v.Waf }).(pulumi.BoolOutput)
 }
 
 type DistributionRoutingRuleUpstreamGeoRestrictions struct {
-	// [string] List of allowed countries
 	AllowLists []string `pulumi:"allowLists"`
-	// [string] List of blocked countries
 	BlockLists []string `pulumi:"blockLists"`
 }
 
@@ -246,9 +238,7 @@ type DistributionRoutingRuleUpstreamGeoRestrictionsInput interface {
 }
 
 type DistributionRoutingRuleUpstreamGeoRestrictionsArgs struct {
-	// [string] List of allowed countries
 	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
-	// [string] List of blocked countries
 	BlockLists pulumi.StringArrayInput `pulumi:"blockLists"`
 }
 
@@ -329,12 +319,10 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) ToDistributionRout
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput)
 }
 
-// [string] List of allowed countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstreamGeoRestrictions) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
 }
 
-// [string] List of blocked countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) BlockLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstreamGeoRestrictions) []string { return v.BlockLists }).(pulumi.StringArrayOutput)
 }
@@ -363,7 +351,6 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) Elem() Distribu
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsOutput)
 }
 
-// [string] List of allowed countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DistributionRoutingRuleUpstreamGeoRestrictions) []string {
 		if v == nil {
@@ -373,7 +360,6 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) AllowLists() pu
 	}).(pulumi.StringArrayOutput)
 }
 
-// [string] List of blocked countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) BlockLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DistributionRoutingRuleUpstreamGeoRestrictions) []string {
 		if v == nil {
@@ -383,15 +369,380 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) BlockLists() pu
 	}).(pulumi.StringArrayOutput)
 }
 
+type GetDistributionRoutingRule struct {
+	// The prefix of the routing rule.
+	Prefix string `pulumi:"prefix"`
+	// The scheme of the routing rule.
+	Scheme    string                               `pulumi:"scheme"`
+	Upstreams []GetDistributionRoutingRuleUpstream `pulumi:"upstreams"`
+}
+
+// GetDistributionRoutingRuleInput is an input type that accepts GetDistributionRoutingRuleArgs and GetDistributionRoutingRuleOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleInput` via:
+//
+//	GetDistributionRoutingRuleArgs{...}
+type GetDistributionRoutingRuleInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleOutput() GetDistributionRoutingRuleOutput
+	ToGetDistributionRoutingRuleOutputWithContext(context.Context) GetDistributionRoutingRuleOutput
+}
+
+type GetDistributionRoutingRuleArgs struct {
+	// The prefix of the routing rule.
+	Prefix pulumi.StringInput `pulumi:"prefix"`
+	// The scheme of the routing rule.
+	Scheme    pulumi.StringInput                           `pulumi:"scheme"`
+	Upstreams GetDistributionRoutingRuleUpstreamArrayInput `pulumi:"upstreams"`
+}
+
+func (GetDistributionRoutingRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRule)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleArgs) ToGetDistributionRoutingRuleOutput() GetDistributionRoutingRuleOutput {
+	return i.ToGetDistributionRoutingRuleOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleArgs) ToGetDistributionRoutingRuleOutputWithContext(ctx context.Context) GetDistributionRoutingRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleOutput)
+}
+
+// GetDistributionRoutingRuleArrayInput is an input type that accepts GetDistributionRoutingRuleArray and GetDistributionRoutingRuleArrayOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleArrayInput` via:
+//
+//	GetDistributionRoutingRuleArray{ GetDistributionRoutingRuleArgs{...} }
+type GetDistributionRoutingRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleArrayOutput() GetDistributionRoutingRuleArrayOutput
+	ToGetDistributionRoutingRuleArrayOutputWithContext(context.Context) GetDistributionRoutingRuleArrayOutput
+}
+
+type GetDistributionRoutingRuleArray []GetDistributionRoutingRuleInput
+
+func (GetDistributionRoutingRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRule)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleArray) ToGetDistributionRoutingRuleArrayOutput() GetDistributionRoutingRuleArrayOutput {
+	return i.ToGetDistributionRoutingRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleArray) ToGetDistributionRoutingRuleArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleArrayOutput)
+}
+
+type GetDistributionRoutingRuleOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRule)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleOutput) ToGetDistributionRoutingRuleOutput() GetDistributionRoutingRuleOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleOutput) ToGetDistributionRoutingRuleOutputWithContext(ctx context.Context) GetDistributionRoutingRuleOutput {
+	return o
+}
+
+// The prefix of the routing rule.
+func (o GetDistributionRoutingRuleOutput) Prefix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRule) string { return v.Prefix }).(pulumi.StringOutput)
+}
+
+// The scheme of the routing rule.
+func (o GetDistributionRoutingRuleOutput) Scheme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRule) string { return v.Scheme }).(pulumi.StringOutput)
+}
+
+func (o GetDistributionRoutingRuleOutput) Upstreams() GetDistributionRoutingRuleUpstreamArrayOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRule) []GetDistributionRoutingRuleUpstream { return v.Upstreams }).(GetDistributionRoutingRuleUpstreamArrayOutput)
+}
+
+type GetDistributionRoutingRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRule)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleArrayOutput) ToGetDistributionRoutingRuleArrayOutput() GetDistributionRoutingRuleArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleArrayOutput) ToGetDistributionRoutingRuleArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleArrayOutput) Index(i pulumi.IntInput) GetDistributionRoutingRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDistributionRoutingRule {
+		return vs[0].([]GetDistributionRoutingRule)[vs[1].(int)]
+	}).(GetDistributionRoutingRuleOutput)
+}
+
+type GetDistributionRoutingRuleUpstream struct {
+	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching         bool                                               `pulumi:"caching"`
+	GeoRestrictions []GetDistributionRoutingRuleUpstreamGeoRestriction `pulumi:"geoRestrictions"`
+	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	Host string `pulumi:"host"`
+	// Rate limit class that will be applied to limit the number of incoming requests per IP.
+	RateLimitClass string `pulumi:"rateLimitClass"`
+	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+	SniMode string `pulumi:"sniMode"`
+	// Enable or disable WAF to protect the upstream host.
+	Waf bool `pulumi:"waf"`
+}
+
+// GetDistributionRoutingRuleUpstreamInput is an input type that accepts GetDistributionRoutingRuleUpstreamArgs and GetDistributionRoutingRuleUpstreamOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleUpstreamInput` via:
+//
+//	GetDistributionRoutingRuleUpstreamArgs{...}
+type GetDistributionRoutingRuleUpstreamInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleUpstreamOutput() GetDistributionRoutingRuleUpstreamOutput
+	ToGetDistributionRoutingRuleUpstreamOutputWithContext(context.Context) GetDistributionRoutingRuleUpstreamOutput
+}
+
+type GetDistributionRoutingRuleUpstreamArgs struct {
+	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching         pulumi.BoolInput                                           `pulumi:"caching"`
+	GeoRestrictions GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput `pulumi:"geoRestrictions"`
+	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	Host pulumi.StringInput `pulumi:"host"`
+	// Rate limit class that will be applied to limit the number of incoming requests per IP.
+	RateLimitClass pulumi.StringInput `pulumi:"rateLimitClass"`
+	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+	SniMode pulumi.StringInput `pulumi:"sniMode"`
+	// Enable or disable WAF to protect the upstream host.
+	Waf pulumi.BoolInput `pulumi:"waf"`
+}
+
+func (GetDistributionRoutingRuleUpstreamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRuleUpstream)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleUpstreamArgs) ToGetDistributionRoutingRuleUpstreamOutput() GetDistributionRoutingRuleUpstreamOutput {
+	return i.ToGetDistributionRoutingRuleUpstreamOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleUpstreamArgs) ToGetDistributionRoutingRuleUpstreamOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleUpstreamOutput)
+}
+
+// GetDistributionRoutingRuleUpstreamArrayInput is an input type that accepts GetDistributionRoutingRuleUpstreamArray and GetDistributionRoutingRuleUpstreamArrayOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleUpstreamArrayInput` via:
+//
+//	GetDistributionRoutingRuleUpstreamArray{ GetDistributionRoutingRuleUpstreamArgs{...} }
+type GetDistributionRoutingRuleUpstreamArrayInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleUpstreamArrayOutput() GetDistributionRoutingRuleUpstreamArrayOutput
+	ToGetDistributionRoutingRuleUpstreamArrayOutputWithContext(context.Context) GetDistributionRoutingRuleUpstreamArrayOutput
+}
+
+type GetDistributionRoutingRuleUpstreamArray []GetDistributionRoutingRuleUpstreamInput
+
+func (GetDistributionRoutingRuleUpstreamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRuleUpstream)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleUpstreamArray) ToGetDistributionRoutingRuleUpstreamArrayOutput() GetDistributionRoutingRuleUpstreamArrayOutput {
+	return i.ToGetDistributionRoutingRuleUpstreamArrayOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleUpstreamArray) ToGetDistributionRoutingRuleUpstreamArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleUpstreamArrayOutput)
+}
+
+type GetDistributionRoutingRuleUpstreamOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleUpstreamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRuleUpstream)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleUpstreamOutput) ToGetDistributionRoutingRuleUpstreamOutput() GetDistributionRoutingRuleUpstreamOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamOutput) ToGetDistributionRoutingRuleUpstreamOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamOutput {
+	return o
+}
+
+// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+func (o GetDistributionRoutingRuleUpstreamOutput) Caching() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) bool { return v.Caching }).(pulumi.BoolOutput)
+}
+
+func (o GetDistributionRoutingRuleUpstreamOutput) GeoRestrictions() GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) []GetDistributionRoutingRuleUpstreamGeoRestriction {
+		return v.GeoRestrictions
+	}).(GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput)
+}
+
+// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+func (o GetDistributionRoutingRuleUpstreamOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Rate limit class that will be applied to limit the number of incoming requests per IP.
+func (o GetDistributionRoutingRuleUpstreamOutput) RateLimitClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) string { return v.RateLimitClass }).(pulumi.StringOutput)
+}
+
+// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+func (o GetDistributionRoutingRuleUpstreamOutput) SniMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) string { return v.SniMode }).(pulumi.StringOutput)
+}
+
+// Enable or disable WAF to protect the upstream host.
+func (o GetDistributionRoutingRuleUpstreamOutput) Waf() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) bool { return v.Waf }).(pulumi.BoolOutput)
+}
+
+type GetDistributionRoutingRuleUpstreamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleUpstreamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRuleUpstream)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleUpstreamArrayOutput) ToGetDistributionRoutingRuleUpstreamArrayOutput() GetDistributionRoutingRuleUpstreamArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamArrayOutput) ToGetDistributionRoutingRuleUpstreamArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamArrayOutput) Index(i pulumi.IntInput) GetDistributionRoutingRuleUpstreamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDistributionRoutingRuleUpstream {
+		return vs[0].([]GetDistributionRoutingRuleUpstream)[vs[1].(int)]
+	}).(GetDistributionRoutingRuleUpstreamOutput)
+}
+
+type GetDistributionRoutingRuleUpstreamGeoRestriction struct {
+	AllowLists []string `pulumi:"allowLists"`
+	BlockLists []string `pulumi:"blockLists"`
+}
+
+// GetDistributionRoutingRuleUpstreamGeoRestrictionInput is an input type that accepts GetDistributionRoutingRuleUpstreamGeoRestrictionArgs and GetDistributionRoutingRuleUpstreamGeoRestrictionOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleUpstreamGeoRestrictionInput` via:
+//
+//	GetDistributionRoutingRuleUpstreamGeoRestrictionArgs{...}
+type GetDistributionRoutingRuleUpstreamGeoRestrictionInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionOutput
+	ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionOutput
+}
+
+type GetDistributionRoutingRuleUpstreamGeoRestrictionArgs struct {
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	BlockLists pulumi.StringArrayInput `pulumi:"blockLists"`
+}
+
+func (GetDistributionRoutingRuleUpstreamGeoRestrictionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleUpstreamGeoRestrictionArgs) ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionOutput {
+	return i.ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleUpstreamGeoRestrictionArgs) ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleUpstreamGeoRestrictionOutput)
+}
+
+// GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput is an input type that accepts GetDistributionRoutingRuleUpstreamGeoRestrictionArray and GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput values.
+// You can construct a concrete instance of `GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput` via:
+//
+//	GetDistributionRoutingRuleUpstreamGeoRestrictionArray{ GetDistributionRoutingRuleUpstreamGeoRestrictionArgs{...} }
+type GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput interface {
+	pulumi.Input
+
+	ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput
+	ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput
+}
+
+type GetDistributionRoutingRuleUpstreamGeoRestrictionArray []GetDistributionRoutingRuleUpstreamGeoRestrictionInput
+
+func (GetDistributionRoutingRuleUpstreamGeoRestrictionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
+}
+
+func (i GetDistributionRoutingRuleUpstreamGeoRestrictionArray) ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
+	return i.ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDistributionRoutingRuleUpstreamGeoRestrictionArray) ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput)
+}
+
+type GetDistributionRoutingRuleUpstreamGeoRestrictionOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) ToGetDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) BlockLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.BlockLists }).(pulumi.StringArrayOutput)
+}
+
+type GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ToGetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(ctx context.Context) GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
+	return o
+}
+
+func (o GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) Index(i pulumi.IntInput) GetDistributionRoutingRuleUpstreamGeoRestrictionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDistributionRoutingRuleUpstreamGeoRestriction {
+		return vs[0].([]GetDistributionRoutingRuleUpstreamGeoRestriction)[vs[1].(int)]
+	}).(GetDistributionRoutingRuleUpstreamGeoRestrictionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DistributionRoutingRuleInput)(nil)).Elem(), DistributionRoutingRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DistributionRoutingRuleArrayInput)(nil)).Elem(), DistributionRoutingRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DistributionRoutingRuleUpstreamInput)(nil)).Elem(), DistributionRoutingRuleUpstreamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DistributionRoutingRuleUpstreamGeoRestrictionsInput)(nil)).Elem(), DistributionRoutingRuleUpstreamGeoRestrictionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DistributionRoutingRuleUpstreamGeoRestrictionsPtrInput)(nil)).Elem(), DistributionRoutingRuleUpstreamGeoRestrictionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleInput)(nil)).Elem(), GetDistributionRoutingRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleArrayInput)(nil)).Elem(), GetDistributionRoutingRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleUpstreamInput)(nil)).Elem(), GetDistributionRoutingRuleUpstreamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleUpstreamArrayInput)(nil)).Elem(), GetDistributionRoutingRuleUpstreamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleUpstreamGeoRestrictionInput)(nil)).Elem(), GetDistributionRoutingRuleUpstreamGeoRestrictionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput)(nil)).Elem(), GetDistributionRoutingRuleUpstreamGeoRestrictionArray{})
 	pulumi.RegisterOutputType(DistributionRoutingRuleOutput{})
 	pulumi.RegisterOutputType(DistributionRoutingRuleArrayOutput{})
 	pulumi.RegisterOutputType(DistributionRoutingRuleUpstreamOutput{})
 	pulumi.RegisterOutputType(DistributionRoutingRuleUpstreamGeoRestrictionsOutput{})
 	pulumi.RegisterOutputType(DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleUpstreamOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleUpstreamArrayOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleUpstreamGeoRestrictionOutput{})
+	pulumi.RegisterOutputType(GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput{})
 }

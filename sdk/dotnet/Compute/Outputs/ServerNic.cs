@@ -22,7 +22,7 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? FirewallActive;
         public readonly string? FirewallType;
         /// <summary>
-        /// Allows to define firewall rules inline in the server. See the Firewall section.
+        /// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
         /// </summary>
         public readonly ImmutableArray<Outputs.ServerNicFirewall> Firewalls;
         public readonly string? Id;
@@ -40,9 +40,6 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly ImmutableArray<string> Ipv6Ips;
         public readonly int Lan;
         public readonly string? Mac;
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         public readonly string? Name;
         public readonly int? PciSlot;
 

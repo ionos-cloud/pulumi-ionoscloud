@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class NodePoolMaintenanceWindow
     {
         /// <summary>
-        /// [string] Day of the week when maintenance is allowed
+        /// Day of the week when maintenance is allowed
         /// </summary>
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// [string] A clock time in the day when maintenance is allowed
+        /// A clock time in the day when maintenance is allowed
         /// </summary>
         public readonly string Time;
 

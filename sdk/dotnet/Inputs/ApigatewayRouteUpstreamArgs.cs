@@ -13,31 +13,31 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class ApigatewayRouteUpstreamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The host of the upstream.
+        /// The host of the upstream.
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// [string] The load balancer algorithm. Default value: `roundrobin`.
+        /// The load balancer algorithm.
         /// </summary>
         [Input("loadbalancer")]
         public Input<string>? Loadbalancer { get; set; }
 
         /// <summary>
-        /// [int] The port of the upstream. Default value: `80`.
+        /// The port of the upstream.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// [string] The target URL of the upstream. Default value: `http`.
+        /// The target URL of the upstream.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
 
         /// <summary>
-        /// [int] Weight with which to split traffic to the upstream. Default value: `100`.
+        /// Weight with which to split traffic to the upstream.
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }

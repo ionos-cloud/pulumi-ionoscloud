@@ -12,83 +12,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **Shares** and list shares permissions granted to the group members for each shared resource.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("Datacenter Description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleGroup, err := compute.NewGroup(ctx, "exampleGroup", &compute.GroupArgs{
-//				CreateDatacenter:     pulumi.Bool(true),
-//				CreateSnapshot:       pulumi.Bool(true),
-//				ReserveIp:            pulumi.Bool(true),
-//				AccessActivityLog:    pulumi.Bool(true),
-//				CreatePcc:            pulumi.Bool(true),
-//				S3Privilege:          pulumi.Bool(true),
-//				CreateBackupUnit:     pulumi.Bool(true),
-//				CreateInternetAccess: pulumi.Bool(true),
-//				CreateK8sCluster:     pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewShare(ctx, "exampleShare", &compute.ShareArgs{
-//				GroupId:        exampleGroup.ID(),
-//				ResourceId:     exampleDatacenter.ID(),
-//				EditPrivilege:  pulumi.Bool(true),
-//				SharePrivilege: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Resource Share can be imported using the `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
-// ```
 type Share struct {
 	pulumi.CustomResourceState
 
-	// [Boolean] The group has permission to edit privileges on this resource.
-	EditPrivilege pulumi.BoolPtrOutput `pulumi:"editPrivilege"`
-	// [string] The ID of the specific group containing the resource to update.
-	GroupId pulumi.StringOutput `pulumi:"groupId"`
-	// [string] The ID of the specific resource to update.
-	ResourceId pulumi.StringOutput `pulumi:"resourceId"`
-	// [Boolean] The group has permission to share this resource.
-	//
-	// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-	// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-	// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-	// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
+	EditPrivilege  pulumi.BoolPtrOutput `pulumi:"editPrivilege"`
+	GroupId        pulumi.StringOutput  `pulumi:"groupId"`
+	ResourceId     pulumi.StringOutput  `pulumi:"resourceId"`
 	SharePrivilege pulumi.BoolPtrOutput `pulumi:"sharePrivilege"`
 }
 
@@ -128,34 +57,16 @@ func GetShare(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Share resources.
 type shareState struct {
-	// [Boolean] The group has permission to edit privileges on this resource.
-	EditPrivilege *bool `pulumi:"editPrivilege"`
-	// [string] The ID of the specific group containing the resource to update.
-	GroupId *string `pulumi:"groupId"`
-	// [string] The ID of the specific resource to update.
-	ResourceId *string `pulumi:"resourceId"`
-	// [Boolean] The group has permission to share this resource.
-	//
-	// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-	// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-	// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-	// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
-	SharePrivilege *bool `pulumi:"sharePrivilege"`
+	EditPrivilege  *bool   `pulumi:"editPrivilege"`
+	GroupId        *string `pulumi:"groupId"`
+	ResourceId     *string `pulumi:"resourceId"`
+	SharePrivilege *bool   `pulumi:"sharePrivilege"`
 }
 
 type ShareState struct {
-	// [Boolean] The group has permission to edit privileges on this resource.
-	EditPrivilege pulumi.BoolPtrInput
-	// [string] The ID of the specific group containing the resource to update.
-	GroupId pulumi.StringPtrInput
-	// [string] The ID of the specific resource to update.
-	ResourceId pulumi.StringPtrInput
-	// [Boolean] The group has permission to share this resource.
-	//
-	// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-	// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-	// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-	// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
+	EditPrivilege  pulumi.BoolPtrInput
+	GroupId        pulumi.StringPtrInput
+	ResourceId     pulumi.StringPtrInput
 	SharePrivilege pulumi.BoolPtrInput
 }
 
@@ -164,35 +75,17 @@ func (ShareState) ElementType() reflect.Type {
 }
 
 type shareArgs struct {
-	// [Boolean] The group has permission to edit privileges on this resource.
-	EditPrivilege *bool `pulumi:"editPrivilege"`
-	// [string] The ID of the specific group containing the resource to update.
-	GroupId string `pulumi:"groupId"`
-	// [string] The ID of the specific resource to update.
-	ResourceId string `pulumi:"resourceId"`
-	// [Boolean] The group has permission to share this resource.
-	//
-	// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-	// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-	// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-	// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
-	SharePrivilege *bool `pulumi:"sharePrivilege"`
+	EditPrivilege  *bool  `pulumi:"editPrivilege"`
+	GroupId        string `pulumi:"groupId"`
+	ResourceId     string `pulumi:"resourceId"`
+	SharePrivilege *bool  `pulumi:"sharePrivilege"`
 }
 
 // The set of arguments for constructing a Share resource.
 type ShareArgs struct {
-	// [Boolean] The group has permission to edit privileges on this resource.
-	EditPrivilege pulumi.BoolPtrInput
-	// [string] The ID of the specific group containing the resource to update.
-	GroupId pulumi.StringInput
-	// [string] The ID of the specific resource to update.
-	ResourceId pulumi.StringInput
-	// [Boolean] The group has permission to share this resource.
-	//
-	// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-	// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-	// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-	// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
+	EditPrivilege  pulumi.BoolPtrInput
+	GroupId        pulumi.StringInput
+	ResourceId     pulumi.StringInput
 	SharePrivilege pulumi.BoolPtrInput
 }
 
@@ -283,27 +176,18 @@ func (o ShareOutput) ToShareOutputWithContext(ctx context.Context) ShareOutput {
 	return o
 }
 
-// [Boolean] The group has permission to edit privileges on this resource.
 func (o ShareOutput) EditPrivilege() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Share) pulumi.BoolPtrOutput { return v.EditPrivilege }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The ID of the specific group containing the resource to update.
 func (o ShareOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
 }
 
-// [string] The ID of the specific resource to update.
 func (o ShareOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.ResourceId }).(pulumi.StringOutput)
 }
 
-// [Boolean] The group has permission to share this resource.
-//
-// ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
-// to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
-// to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
-// attributes inside the `compute.Share` resource to enforce the sequential creation of the shares.
 func (o ShareOutput) SharePrivilege() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Share) pulumi.BoolPtrOutput { return v.SharePrivilege }).(pulumi.BoolPtrOutput)
 }

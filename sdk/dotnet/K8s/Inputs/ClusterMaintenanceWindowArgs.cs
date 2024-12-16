@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.K8s.Inputs
     public sealed class ClusterMaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] Day of the week when maintenance is allowed
+        /// Day of the week when maintenance is allowed
         /// </summary>
         [Input("dayOfTheWeek", required: true)]
         public Input<string> DayOfTheWeek { get; set; } = null!;
 
         /// <summary>
-        /// [string] A clock time in the day when maintenance is allowed
+        /// A clock time in the day when maintenance is allowed
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

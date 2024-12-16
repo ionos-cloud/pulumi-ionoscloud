@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.K8s.Inputs
     public sealed class NodePoolLanRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] IPv4 or IPv6 Gateway IP for the route
+        /// IPv4 or IPv6 Gateway IP for the route
         /// </summary>
         [Input("gatewayIp", required: true)]
         public Input<string> GatewayIp { get; set; } = null!;
 
         /// <summary>
-        /// [string] IPv4 or IPv6 CIDR to be routed via the interface
+        /// IPv4 or IPv6 CIDR to be routed via the interface
         /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;

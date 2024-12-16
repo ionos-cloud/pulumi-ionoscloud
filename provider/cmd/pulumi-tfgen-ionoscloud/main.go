@@ -22,5 +22,6 @@ import (
 
 func main() {
 	// Modify the path to point to the new provider
+	//version.Version = "1.0.0"
 	tfgen.Main("ionoscloud", version.Version, ionoscloud.Provider())
 }

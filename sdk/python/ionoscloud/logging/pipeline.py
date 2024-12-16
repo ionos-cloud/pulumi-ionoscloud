@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -146,7 +151,7 @@ class Pipeline(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLogArgs']]]]] = None,
+                 logs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -169,7 +174,7 @@ class Pipeline(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLogArgs']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
         ...
@@ -211,7 +216,7 @@ class Pipeline(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLogArgs']]]]] = None,
+                 logs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -240,7 +245,7 @@ class Pipeline(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             grafana_address: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
-            logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLogArgs']]]]] = None,
+            logs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
@@ -251,7 +256,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] grafana_address: [string] The address of the client's grafana instance.
         :param pulumi.Input[str] location: [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PipelineLogArgs']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[str] name: [string] The name of the Logging pipeline.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

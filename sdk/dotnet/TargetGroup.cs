@@ -9,86 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud
 {
-    /// <summary>
-    /// Manages a **Target Group** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.TargetGroup("example", new()
-    ///     {
-    ///         Algorithm = "ROUND_ROBIN",
-    ///         HealthCheck = new Ionoscloud.Inputs.TargetGroupHealthCheckArgs
-    ///         {
-    ///             CheckInterval = 50000,
-    ///             CheckTimeout = 5000,
-    ///             Retries = 2,
-    ///         },
-    ///         HttpHealthCheck = new Ionoscloud.Inputs.TargetGroupHttpHealthCheckArgs
-    ///         {
-    ///             MatchType = "STATUS_CODE",
-    ///             Method = "GET",
-    ///             Negate = true,
-    ///             Path = "/.",
-    ///             Regex = true,
-    ///             Response = "200",
-    ///         },
-    ///         Protocol = "HTTP",
-    ///         ProtocolVersion = "HTTP1",
-    ///         Targets = new[]
-    ///         {
-    ///             new Ionoscloud.Inputs.TargetGroupTargetArgs
-    ///             {
-    ///                 HealthCheckEnabled = true,
-    ///                 Ip = "22.231.2.2",
-    ///                 MaintenanceEnabled = false,
-    ///                 Port = 8080,
-    ///                 ProxyProtocol = "v2ssl",
-    ///                 Weight = 1,
-    ///             },
-    ///             new Ionoscloud.Inputs.TargetGroupTargetArgs
-    ///             {
-    ///                 HealthCheckEnabled = false,
-    ///                 Ip = "22.231.2.3",
-    ///                 MaintenanceEnabled = false,
-    ///                 Port = 8081,
-    ///                 ProxyProtocol = "v2",
-    ///                 Weight = 124,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Target Group can be imported using the `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:index/targetGroup:TargetGroup myTargetGroup {target group uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:index/targetGroup:TargetGroup")]
     public partial class TargetGroup : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [string] Balancing algorithm.
+        /// Balancing algorithm.
         /// </summary>
         [Output("algorithm")]
         public Output<string> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Target Group.
+        /// Health check attributes for Application Load Balancer forwarding rule
         /// </summary>
         [Output("healthCheck")]
         public Output<Outputs.TargetGroupHealthCheck> HealthCheck { get; private set; } = null!;
@@ -100,25 +31,25 @@ namespace Pulumi.Ionoscloud
         public Output<Outputs.TargetGroupHttpHealthCheck> HttpHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The name of the target group.
+        /// The name of the target group.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        /// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         /// </summary>
         [Output("protocolVersion")]
         public Output<string> ProtocolVersion { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Array of items in the collection
+        /// Array of items in the collection.
         /// </summary>
         [Output("targets")]
         public Output<ImmutableArray<Outputs.TargetGroupTarget>> Targets { get; private set; } = null!;
@@ -170,13 +101,13 @@ namespace Pulumi.Ionoscloud
     public sealed class TargetGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] Balancing algorithm.
+        /// Balancing algorithm.
         /// </summary>
         [Input("algorithm", required: true)]
         public Input<string> Algorithm { get; set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Target Group.
+        /// Health check attributes for Application Load Balancer forwarding rule
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.TargetGroupHealthCheckArgs>? HealthCheck { get; set; }
@@ -188,19 +119,19 @@ namespace Pulumi.Ionoscloud
         public Input<Inputs.TargetGroupHttpHealthCheckArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// [string] The name of the target group.
+        /// The name of the target group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
-        /// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        /// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         /// </summary>
         [Input("protocolVersion", required: true)]
         public Input<string> ProtocolVersion { get; set; } = null!;
@@ -209,7 +140,7 @@ namespace Pulumi.Ionoscloud
         private InputList<Inputs.TargetGroupTargetArgs>? _targets;
 
         /// <summary>
-        /// [list] Array of items in the collection
+        /// Array of items in the collection.
         /// </summary>
         public InputList<Inputs.TargetGroupTargetArgs> Targets
         {
@@ -226,13 +157,13 @@ namespace Pulumi.Ionoscloud
     public sealed class TargetGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] Balancing algorithm.
+        /// Balancing algorithm.
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
-        /// Health check attributes for Target Group.
+        /// Health check attributes for Application Load Balancer forwarding rule
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.TargetGroupHealthCheckGetArgs>? HealthCheck { get; set; }
@@ -244,19 +175,19 @@ namespace Pulumi.Ionoscloud
         public Input<Inputs.TargetGroupHttpHealthCheckGetArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// [string] The name of the target group.
+        /// The name of the target group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        /// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         /// </summary>
         [Input("protocolVersion")]
         public Input<string>? ProtocolVersion { get; set; }
@@ -265,7 +196,7 @@ namespace Pulumi.Ionoscloud
         private InputList<Inputs.TargetGroupTargetGetArgs>? _targets;
 
         /// <summary>
-        /// [list] Array of items in the collection
+        /// Array of items in the collection.
         /// </summary>
         public InputList<Inputs.TargetGroupTargetGetArgs> Targets
         {

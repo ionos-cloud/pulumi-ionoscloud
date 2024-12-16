@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.K8s.Inputs
     public sealed class NodePoolLanArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+        /// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
         /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         /// <summary>
-        /// [int] The LAN ID of an existing LAN at the related datacenter
+        /// The LAN ID of an existing LAN at the related datacenter
         /// </summary>
         [Input("id", required: true)]
         public Input<int> Id { get; set; } = null!;

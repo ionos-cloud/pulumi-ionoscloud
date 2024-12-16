@@ -38,9 +38,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly int Lan;
         /// <summary>
-        /// Name of an existing Autoscaling Group that you want to search for.
-        /// 
-        /// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        /// Name for this replica NIC.
         /// </summary>
         public readonly string Name;
         /// <summary>

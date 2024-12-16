@@ -4,68 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages **Snapshots** on IonosCloud.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const exampleImage = ionoscloud.getImage({
- *     type: "HDD",
- *     imageAlias: "ubuntu:latest",
- *     location: "us/las",
- * });
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": true,
- * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
- *     length: 16,
- *     special: false,
- * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     datacenterId: exampleDatacenter.id,
- *     cores: 1,
- *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
- *     imageName: exampleImage.then(exampleImage => exampleImage.id),
- *     imagePassword: serverImagePassword.result,
- *     type: "ENTERPRISE",
- *     volume: {
- *         name: "system",
- *         size: 5,
- *         diskType: "SSD Standard",
- *         userData: "foo",
- *         bus: "VIRTIO",
- *         availabilityZone: "ZONE_1",
- *     },
- * });
- * const testSnapshot = new ionoscloud.compute.Snapshot("testSnapshot", {
- *     datacenterId: exampleDatacenter.id,
- *     volumeId: exampleServer.bootVolume,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * Resource Snapshot can be imported using the `snapshot id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
- * ```
- */
 export class Snapshot extends pulumi.CustomResource {
     /**
      * Get an existing Snapshot resource's state with the given name, ID, and optional extra
@@ -94,40 +32,19 @@ export class Snapshot extends pulumi.CustomResource {
         return obj['__pulumiType'] === Snapshot.__pulumiType;
     }
 
-    /**
-     * (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-     */
     public readonly cpuHotPlug!: pulumi.Output<boolean>;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
     public /*out*/ readonly cpuHotUnplug!: pulumi.Output<boolean>;
-    /**
-     * [string] The ID of the Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * (Computed)[string] Human readable description
+     * Human readable description
      */
     public readonly description!: pulumi.Output<string>;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
     public /*out*/ readonly discScsiHotPlug!: pulumi.Output<boolean>;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-     */
     public /*out*/ readonly discScsiHotUnplug!: pulumi.Output<boolean>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-     */
     public readonly discVirtioHotPlug!: pulumi.Output<boolean>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-     */
     public readonly discVirtioHotUnplug!: pulumi.Output<boolean>;
     /**
-     * (Computed)[string] OS type of this Snapshot
+     * OS type of this Snapshot
      */
     public readonly licenceType!: pulumi.Output<string>;
     /**
@@ -135,24 +52,12 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly location!: pulumi.Output<string>;
     /**
-     * [string] The name of the snapshot.
+     * A name of that resource
      */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-     */
     public readonly nicHotPlug!: pulumi.Output<boolean>;
-    /**
-     * (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-     */
     public readonly nicHotUnplug!: pulumi.Output<boolean>;
-    /**
-     * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-     */
     public readonly ramHotPlug!: pulumi.Output<boolean>;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
     public /*out*/ readonly ramHotUnplug!: pulumi.Output<boolean>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
@@ -162,9 +67,6 @@ export class Snapshot extends pulumi.CustomResource {
      * The size of the image in GB
      */
     public /*out*/ readonly size!: pulumi.Output<number>;
-    /**
-     * [string] The ID of the specific volume to take the snapshot from.
-     */
     public readonly volumeId!: pulumi.Output<string>;
 
     /**
@@ -234,40 +136,19 @@ export class Snapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Snapshot resources.
  */
 export interface SnapshotState {
-    /**
-     * (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-     */
     cpuHotPlug?: pulumi.Input<boolean>;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
     cpuHotUnplug?: pulumi.Input<boolean>;
-    /**
-     * [string] The ID of the Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
     /**
-     * (Computed)[string] Human readable description
+     * Human readable description
      */
     description?: pulumi.Input<string>;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
     discScsiHotPlug?: pulumi.Input<boolean>;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-     */
     discScsiHotUnplug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-     */
     discVirtioHotPlug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-     */
     discVirtioHotUnplug?: pulumi.Input<boolean>;
     /**
-     * (Computed)[string] OS type of this Snapshot
+     * OS type of this Snapshot
      */
     licenceType?: pulumi.Input<string>;
     /**
@@ -275,24 +156,12 @@ export interface SnapshotState {
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] The name of the snapshot.
+     * A name of that resource
      */
     name?: pulumi.Input<string>;
-    /**
-     * (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-     */
     nicHotPlug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-     */
     nicHotUnplug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-     */
     ramHotPlug?: pulumi.Input<boolean>;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
     ramHotUnplug?: pulumi.Input<boolean>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
@@ -302,9 +171,6 @@ export interface SnapshotState {
      * The size of the image in GB
      */
     size?: pulumi.Input<number>;
-    /**
-     * [string] The ID of the specific volume to take the snapshot from.
-     */
     volumeId?: pulumi.Input<string>;
 }
 
@@ -312,52 +178,28 @@ export interface SnapshotState {
  * The set of arguments for constructing a Snapshot resource.
  */
 export interface SnapshotArgs {
-    /**
-     * (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-     */
     cpuHotPlug?: pulumi.Input<boolean>;
-    /**
-     * [string] The ID of the Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
     /**
-     * (Computed)[string] Human readable description
+     * Human readable description
      */
     description?: pulumi.Input<string>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-     */
     discVirtioHotPlug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-     */
     discVirtioHotUnplug?: pulumi.Input<boolean>;
     /**
-     * (Computed)[string] OS type of this Snapshot
+     * OS type of this Snapshot
      */
     licenceType?: pulumi.Input<string>;
     /**
-     * [string] The name of the snapshot.
+     * A name of that resource
      */
     name?: pulumi.Input<string>;
-    /**
-     * (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-     */
     nicHotPlug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-     */
     nicHotUnplug?: pulumi.Input<boolean>;
-    /**
-     * (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-     */
     ramHotPlug?: pulumi.Input<boolean>;
     /**
      * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
      */
     secAuthProtection?: pulumi.Input<boolean>;
-    /**
-     * [string] The ID of the specific volume to take the snapshot from.
-     */
     volumeId: pulumi.Input<string>;
 }

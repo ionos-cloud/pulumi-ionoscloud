@@ -7,5 +7,7 @@ import typing
 # Export this package's modules as members:
 from .balancer import *
 from .forwarding_rule import *
+from .get_balancer import *
+from .get_forwarding_rule import *
 from ._inputs import *
 from . import outputs

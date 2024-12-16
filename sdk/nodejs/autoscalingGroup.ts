@@ -6,108 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Manages an Autoscaling Group on IonosCloud.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenterExample", {location: "de/fra"});
- * const lanExample1 = new ionoscloud.compute.Lan("lanExample1", {
- *     datacenterId: datacenterExample.id,
- *     "public": false,
- * });
- * const lanExample2 = new ionoscloud.compute.Lan("lanExample2", {
- *     datacenterId: datacenterExample.id,
- *     "public": false,
- * });
- * const autoscalingTargetGroup = new ionoscloud.TargetGroup("autoscalingTargetGroup", {
- *     algorithm: "ROUND_ROBIN",
- *     protocol: "HTTP",
- * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
- *     length: 16,
- *     special: false,
- * });
- * const autoscalingGroupExample = new ionoscloud.AutoscalingGroup("autoscalingGroupExample", {
- *     datacenterId: datacenterExample.id,
- *     maxReplicaCount: 2,
- *     minReplicaCount: 1,
- *     policy: {
- *         metric: "INSTANCE_CPU_UTILIZATION_AVERAGE",
- *         range: "PT24H",
- *         scaleInAction: {
- *             amount: 1,
- *             amountType: "ABSOLUTE",
- *             terminationPolicyType: "OLDEST_SERVER_FIRST",
- *             cooldownPeriod: "PT5M",
- *             deleteVolumes: true,
- *         },
- *         scaleInThreshold: 33,
- *         scaleOutAction: {
- *             amount: 1,
- *             amountType: "ABSOLUTE",
- *             cooldownPeriod: "PT5M",
- *         },
- *         scaleOutThreshold: 77,
- *         unit: "PER_HOUR",
- *     },
- *     replicaConfiguration: {
- *         availabilityZone: "AUTO",
- *         cores: 2,
- *         cpuFamily: "INTEL_SKYLAKE",
- *         ram: 2048,
- *         nics: [
- *             {
- *                 lan: lanExample1.id,
- *                 name: "nic_example_1",
- *                 dhcp: true,
- *             },
- *             {
- *                 lan: lanExample2.id,
- *                 name: "nic_example_2",
- *                 dhcp: true,
- *                 firewallActive: true,
- *                 firewallType: "INGRESS",
- *                 firewallRules: [{
- *                     name: "rule_1",
- *                     protocol: "TCP",
- *                     portRangeStart: 1,
- *                     portRangeEnd: 1000,
- *                     type: "INGRESS",
- *                 }],
- *                 flowLogs: [{
- *                     name: "flow_log_1",
- *                     bucket: "test-de-bucket",
- *                     action: "ALL",
- *                     direction: "BIDIRECTIONAL",
- *                 }],
- *                 targetGroup: {
- *                     targetGroupId: autoscalingTargetGroup.id,
- *                     port: 80,
- *                     weight: 50,
- *                 },
- *             },
- *         ],
- *         volumes: [{
- *             imageAlias: "ubuntu:latest",
- *             name: "volume_example",
- *             size: 10,
- *             type: "HDD",
- *             userData: "ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
- *             imagePassword: serverImagePassword.result,
- *             bootOrder: "AUTO",
- *         }],
- *     },
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class AutoscalingGroup extends pulumi.CustomResource {
     /**
      * Get an existing AutoscalingGroup resource's state with the given name, ID, and optional extra
@@ -137,7 +35,7 @@ export class AutoscalingGroup extends pulumi.CustomResource {
     }
 
     /**
-     * [string] Unique identifier for the resource
+     * Unique identifier for the resource
      */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
@@ -145,24 +43,26 @@ export class AutoscalingGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly location!: pulumi.Output<string>;
     /**
-     * [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes.
      */
     public readonly maxReplicaCount!: pulumi.Output<number>;
     /**
-     * [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes
      */
     public readonly minReplicaCount!: pulumi.Output<number>;
     /**
-     * [string] Name for this replica volume.
+     * User-defined name for the Autoscaling Group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+     * Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+     * automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+     * separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+     * metric.
      */
     public readonly policy!: pulumi.Output<outputs.AutoscalingGroupPolicy>;
-    /**
-     * [List]
-     */
     public readonly replicaConfiguration!: pulumi.Output<outputs.AutoscalingGroupReplicaConfiguration>;
 
     /**
@@ -220,7 +120,7 @@ export class AutoscalingGroup extends pulumi.CustomResource {
  */
 export interface AutoscalingGroupState {
     /**
-     * [string] Unique identifier for the resource
+     * Unique identifier for the resource
      */
     datacenterId?: pulumi.Input<string>;
     /**
@@ -228,24 +128,26 @@ export interface AutoscalingGroupState {
      */
     location?: pulumi.Input<string>;
     /**
-     * [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes.
      */
     maxReplicaCount?: pulumi.Input<number>;
     /**
-     * [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes
      */
     minReplicaCount?: pulumi.Input<number>;
     /**
-     * [string] Name for this replica volume.
+     * User-defined name for the Autoscaling Group.
      */
     name?: pulumi.Input<string>;
     /**
-     * [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+     * Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+     * automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+     * separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+     * metric.
      */
     policy?: pulumi.Input<inputs.AutoscalingGroupPolicy>;
-    /**
-     * [List]
-     */
     replicaConfiguration?: pulumi.Input<inputs.AutoscalingGroupReplicaConfiguration>;
 }
 
@@ -254,27 +156,29 @@ export interface AutoscalingGroupState {
  */
 export interface AutoscalingGroupArgs {
     /**
-     * [string] Unique identifier for the resource
+     * Unique identifier for the resource
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes.
      */
     maxReplicaCount: pulumi.Input<number>;
     /**
-     * [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+     * The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+     * both automatic and manual changes
      */
     minReplicaCount: pulumi.Input<number>;
     /**
-     * [string] Name for this replica volume.
+     * User-defined name for the Autoscaling Group.
      */
     name?: pulumi.Input<string>;
     /**
-     * [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+     * Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+     * automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+     * separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+     * metric.
      */
     policy: pulumi.Input<inputs.AutoscalingGroupPolicy>;
-    /**
-     * [List]
-     */
     replicaConfiguration: pulumi.Input<inputs.AutoscalingGroupReplicaConfiguration>;
 }

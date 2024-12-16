@@ -9,95 +9,26 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a **Nat Gateway** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleIPBlock = new Ionoscloud.Compute.IPBlock("exampleIPBlock", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Size = 2,
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var exampleNatGateway = new Ionoscloud.Compute.NatGateway("exampleNatGateway", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         PublicIps = new[]
-    ///         {
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
-    ///         },
-    ///         Lans = new[]
-    ///         {
-    ///             new Ionoscloud.Compute.Inputs.NatGatewayLanArgs
-    ///             {
-    ///                 Id = exampleLan.Id,
-    ///                 GatewayIps = new[]
-    ///                 {
-    ///                     "10.11.2.5",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/natGateway:NatGateway")]
     public partial class NatGateway : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// [list] A list of Local Area Networks the node pool should be part of.
+        /// A list of Local Area Networks the node pool should be part of
         /// </summary>
         [Output("lans")]
         public Output<ImmutableArray<Outputs.NatGatewayLan>> Lans { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Name of the NAT gateway.
+        /// Name of the NAT gateway
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+        /// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
         /// </summary>
         [Output("publicIps")]
         public Output<ImmutableArray<string>> PublicIps { get; private set; } = null!;
@@ -148,9 +79,6 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NatGatewayArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
@@ -158,7 +86,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<Inputs.NatGatewayLanArgs>? _lans;
 
         /// <summary>
-        /// [list] A list of Local Area Networks the node pool should be part of.
+        /// A list of Local Area Networks the node pool should be part of
         /// </summary>
         public InputList<Inputs.NatGatewayLanArgs> Lans
         {
@@ -167,7 +95,7 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// [string] Name of the NAT gateway.
+        /// Name of the NAT gateway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -176,7 +104,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _publicIps;
 
         /// <summary>
-        /// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+        /// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
         /// </summary>
         public InputList<string> PublicIps
         {
@@ -192,9 +120,6 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NatGatewayState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
@@ -202,7 +127,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<Inputs.NatGatewayLanGetArgs>? _lans;
 
         /// <summary>
-        /// [list] A list of Local Area Networks the node pool should be part of.
+        /// A list of Local Area Networks the node pool should be part of
         /// </summary>
         public InputList<Inputs.NatGatewayLanGetArgs> Lans
         {
@@ -211,7 +136,7 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// [string] Name of the NAT gateway.
+        /// Name of the NAT gateway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -220,7 +145,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _publicIps;
 
         /// <summary>
-        /// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+        /// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
         /// </summary>
         public InputList<string> PublicIps
         {

@@ -13,31 +13,25 @@ namespace Pulumi.Ionoscloud.Vpn.Inputs
     public sealed class IpsecTunnelIkeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
-        /// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
-        /// Default value: `16-MODP4096`.
+        /// The Diffie-Hellman Group to use for IPSec Encryption.
         /// </summary>
         [Input("diffieHellmanGroup")]
         public Input<string>? DiffieHellmanGroup { get; set; }
 
         /// <summary>
-        /// [string] The encryption algorithm to use for IPSec Encryption. Possible
-        /// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
-        /// `AES256-CCM-12`. Default value: `AES256`.
+        /// The encryption algorithm to use for IPSec Encryption.
         /// </summary>
         [Input("encryptionAlgorithm")]
         public Input<string>? EncryptionAlgorithm { get; set; }
 
         /// <summary>
-        /// [string] The integrity algorithm to use for IPSec Encryption. Possible
-        /// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+        /// The integrity algorithm to use for IPSec Encryption.
         /// </summary>
         [Input("integrityAlgorithm")]
         public Input<string>? IntegrityAlgorithm { get; set; }
 
         /// <summary>
-        /// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
-        /// Default value: `86400`.
+        /// The phase lifetime in seconds.
         /// </summary>
         [Input("lifetime")]
         public Input<int>? Lifetime { get; set; }

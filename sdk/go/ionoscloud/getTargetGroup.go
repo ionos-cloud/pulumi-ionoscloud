@@ -11,67 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.
-// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancer Target Groups.
-// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-// When this happens, please refine your search and make sure that your resources have unique names.
-//
-// ## Example Usage
-//
-// ### By Name
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupTargetGroup(ctx, &ionoscloud.LookupTargetGroupArgs{
-//				Name: pulumi.StringRef("Target Group Example"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupTargetGroup(ctx, &ionoscloud.LookupTargetGroupArgs{
-//				Name:         pulumi.StringRef("Example"),
-//				PartialMatch: pulumi.BoolRef(true),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupTargetGroup(ctx *pulumi.Context, args *LookupTargetGroupArgs, opts ...pulumi.InvokeOption) (*LookupTargetGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTargetGroupResult
@@ -84,60 +23,38 @@ func LookupTargetGroup(ctx *pulumi.Context, args *LookupTargetGroupArgs, opts ..
 
 // A collection of arguments for invoking getTargetGroup.
 type LookupTargetGroupArgs struct {
-	// ID of the target group you want to search for.
-	Id *string `pulumi:"id"`
-	// Name of an existing target group that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name *string `pulumi:"name"`
-	// Whether partial matching is allowed or not when using name argument. Default value is false.
-	//
-	// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	PartialMatch *bool `pulumi:"partialMatch"`
+	Id           *string `pulumi:"id"`
+	Name         *string `pulumi:"name"`
+	PartialMatch *bool   `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getTargetGroup.
 type LookupTargetGroupResult struct {
-	// Balancing algorithm.
-	Algorithm string `pulumi:"algorithm"`
-	// Health check attributes for Target Group.
-	HealthChecks []GetTargetGroupHealthCheck `pulumi:"healthChecks"`
-	// Http health check attributes for Target Group
+	Algorithm        string                          `pulumi:"algorithm"`
+	HealthChecks     []GetTargetGroupHealthCheck     `pulumi:"healthChecks"`
 	HttpHealthChecks []GetTargetGroupHttpHealthCheck `pulumi:"httpHealthChecks"`
-	// The Id of that Target group
-	Id *string `pulumi:"id"`
-	// The name of that Target Group.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
-	// Balancing protocol.
-	Protocol string `pulumi:"protocol"`
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-	ProtocolVersion string `pulumi:"protocolVersion"`
-	// Array of items in the collection
-	Targets []GetTargetGroupTarget `pulumi:"targets"`
+	Id               *string                         `pulumi:"id"`
+	Name             *string                         `pulumi:"name"`
+	PartialMatch     *bool                           `pulumi:"partialMatch"`
+	Protocol         string                          `pulumi:"protocol"`
+	ProtocolVersion  string                          `pulumi:"protocolVersion"`
+	Targets          []GetTargetGroupTarget          `pulumi:"targets"`
 }
 
 func LookupTargetGroupOutput(ctx *pulumi.Context, args LookupTargetGroupOutputArgs, opts ...pulumi.InvokeOption) LookupTargetGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTargetGroupResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupTargetGroupResultOutput, error) {
 			args := v.(LookupTargetGroupArgs)
-			r, err := LookupTargetGroup(ctx, &args, opts...)
-			var s LookupTargetGroupResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getTargetGroup:getTargetGroup", args, LookupTargetGroupResultOutput{}, options).(LookupTargetGroupResultOutput), nil
 		}).(LookupTargetGroupResultOutput)
 }
 
 // A collection of arguments for invoking getTargetGroup.
 type LookupTargetGroupOutputArgs struct {
-	// ID of the target group you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Name of an existing target group that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Whether partial matching is allowed or not when using name argument. Default value is false.
-	//
-	// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
 
 func (LookupTargetGroupOutputArgs) ElementType() reflect.Type {
@@ -159,27 +76,22 @@ func (o LookupTargetGroupResultOutput) ToLookupTargetGroupResultOutputWithContex
 	return o
 }
 
-// Balancing algorithm.
 func (o LookupTargetGroupResultOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
-// Health check attributes for Target Group.
 func (o LookupTargetGroupResultOutput) HealthChecks() GetTargetGroupHealthCheckArrayOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) []GetTargetGroupHealthCheck { return v.HealthChecks }).(GetTargetGroupHealthCheckArrayOutput)
 }
 
-// Http health check attributes for Target Group
 func (o LookupTargetGroupResultOutput) HttpHealthChecks() GetTargetGroupHttpHealthCheckArrayOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) []GetTargetGroupHttpHealthCheck { return v.HttpHealthChecks }).(GetTargetGroupHttpHealthCheckArrayOutput)
 }
 
-// The Id of that Target group
 func (o LookupTargetGroupResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of that Target Group.
 func (o LookupTargetGroupResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -188,17 +100,14 @@ func (o LookupTargetGroupResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-// Balancing protocol.
 func (o LookupTargetGroupResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 func (o LookupTargetGroupResultOutput) ProtocolVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) string { return v.ProtocolVersion }).(pulumi.StringOutput)
 }
 
-// Array of items in the collection
 func (o LookupTargetGroupResultOutput) Targets() GetTargetGroupTargetArrayOutput {
 	return o.ApplyT(func(v LookupTargetGroupResult) []GetTargetGroupTarget { return v.Targets }).(GetTargetGroupTargetArrayOutput)
 }

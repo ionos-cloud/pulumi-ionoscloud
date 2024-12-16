@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,14 +32,13 @@ class ForwardingRuleArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ForwardingRule resource.
-        :param pulumi.Input[str] algorithm: [string] Algorithm for the balancing.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[str] listener_ip: [string] Listening IP. (inbound)
-        :param pulumi.Input[int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
-        :param pulumi.Input[str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: [Set] Array of items in that collection.
-        :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule target.
-        :param pulumi.Input[str] name: [string] A name of that Network Load Balancer forwarding rule.
+        :param pulumi.Input[str] algorithm: Algorithm for the balancing.
+        :param pulumi.Input[str] listener_ip: Listening IP. (inbound)
+        :param pulumi.Input[int] listener_port: Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[str] protocol: Protocol of the balancing.
+        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: Array of items in that collection
+        :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule
+        :param pulumi.Input[str] name: A name of that Network Load Balancer forwarding rule
         """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -52,7 +56,7 @@ class ForwardingRuleArgs:
     @pulumi.getter
     def algorithm(self) -> pulumi.Input[str]:
         """
-        [string] Algorithm for the balancing.
+        Algorithm for the balancing.
         """
         return pulumi.get(self, "algorithm")
 
@@ -63,9 +67,6 @@ class ForwardingRuleArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -76,7 +77,7 @@ class ForwardingRuleArgs:
     @pulumi.getter(name="listenerIp")
     def listener_ip(self) -> pulumi.Input[str]:
         """
-        [string] Listening IP. (inbound)
+        Listening IP. (inbound)
         """
         return pulumi.get(self, "listener_ip")
 
@@ -88,7 +89,7 @@ class ForwardingRuleArgs:
     @pulumi.getter(name="listenerPort")
     def listener_port(self) -> pulumi.Input[int]:
         """
-        [int] Listening port number. (inbound) (range: 1 to 65535)
+        Listening port number. (inbound) (range: 1 to 65535)
         """
         return pulumi.get(self, "listener_port")
 
@@ -109,7 +110,7 @@ class ForwardingRuleArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        [string] Protocol of the balancing.
+        Protocol of the balancing.
         """
         return pulumi.get(self, "protocol")
 
@@ -121,7 +122,7 @@ class ForwardingRuleArgs:
     @pulumi.getter
     def targets(self) -> pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]]:
         """
-        [Set] Array of items in that collection.
+        Array of items in that collection
         """
         return pulumi.get(self, "targets")
 
@@ -133,7 +134,7 @@ class ForwardingRuleArgs:
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> Optional[pulumi.Input['ForwardingRuleHealthCheckArgs']]:
         """
-        Health check attributes for Network Load Balancer forwarding rule target.
+        Health check attributes for Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -145,7 +146,7 @@ class ForwardingRuleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A name of that Network Load Balancer forwarding rule.
+        A name of that Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "name")
 
@@ -168,14 +169,13 @@ class _ForwardingRuleState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering ForwardingRule resources.
-        :param pulumi.Input[str] algorithm: [string] Algorithm for the balancing.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule target.
-        :param pulumi.Input[str] listener_ip: [string] Listening IP. (inbound)
-        :param pulumi.Input[int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
-        :param pulumi.Input[str] name: [string] A name of that Network Load Balancer forwarding rule.
-        :param pulumi.Input[str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: [Set] Array of items in that collection.
+        :param pulumi.Input[str] algorithm: Algorithm for the balancing.
+        :param pulumi.Input['ForwardingRuleHealthCheckArgs'] health_check: Health check attributes for Network Load Balancer forwarding rule
+        :param pulumi.Input[str] listener_ip: Listening IP. (inbound)
+        :param pulumi.Input[int] listener_port: Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer forwarding rule
+        :param pulumi.Input[str] protocol: Protocol of the balancing.
+        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]] targets: Array of items in that collection
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
@@ -200,7 +200,7 @@ class _ForwardingRuleState:
     @pulumi.getter
     def algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Algorithm for the balancing.
+        Algorithm for the balancing.
         """
         return pulumi.get(self, "algorithm")
 
@@ -211,9 +211,6 @@ class _ForwardingRuleState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -224,7 +221,7 @@ class _ForwardingRuleState:
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> Optional[pulumi.Input['ForwardingRuleHealthCheckArgs']]:
         """
-        Health check attributes for Network Load Balancer forwarding rule target.
+        Health check attributes for Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -236,7 +233,7 @@ class _ForwardingRuleState:
     @pulumi.getter(name="listenerIp")
     def listener_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Listening IP. (inbound)
+        Listening IP. (inbound)
         """
         return pulumi.get(self, "listener_ip")
 
@@ -248,7 +245,7 @@ class _ForwardingRuleState:
     @pulumi.getter(name="listenerPort")
     def listener_port(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] Listening port number. (inbound) (range: 1 to 65535)
+        Listening port number. (inbound) (range: 1 to 65535)
         """
         return pulumi.get(self, "listener_port")
 
@@ -260,7 +257,7 @@ class _ForwardingRuleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] A name of that Network Load Balancer forwarding rule.
+        A name of that Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "name")
 
@@ -281,7 +278,7 @@ class _ForwardingRuleState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Protocol of the balancing.
+        Protocol of the balancing.
         """
         return pulumi.get(self, "protocol")
 
@@ -293,7 +290,7 @@ class _ForwardingRuleState:
     @pulumi.getter
     def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleTargetArgs']]]]:
         """
-        [Set] Array of items in that collection.
+        Array of items in that collection
         """
         return pulumi.get(self, "targets")
 
@@ -309,80 +306,25 @@ class ForwardingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['ForwardingRuleHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
                  listener_ip: Optional[pulumi.Input[str]] = None,
                  listener_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  networkloadbalancer_id: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ForwardingRuleTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
-
-        ## Example Usage
-
-        ### 
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"])
-        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("exampleForwardingRule",
-            datacenter_id=example_datacenter.id,
-            networkloadbalancer_id=example_balancer.id,
-            algorithm="SOURCE_IP",
-            protocol="TCP",
-            listener_ip="10.12.118.224",
-            listener_port=8081,
-            targets=[ionoscloud.nlb.ForwardingRuleTargetArgs(
-                ip="22.231.2.2",
-                port=8080,
-                weight=123,
-                proxy_protocol="v1",
-                health_check=ionoscloud.nlb.ForwardingRuleTargetHealthCheckArgs(
-                    check=True,
-                    check_interval=1000,
-                ),
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
-        ```
-
+        Create a ForwardingRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: [string] Algorithm for the balancing.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[pulumi.InputType['ForwardingRuleHealthCheckArgs']] health_check: Health check attributes for Network Load Balancer forwarding rule target.
-        :param pulumi.Input[str] listener_ip: [string] Listening IP. (inbound)
-        :param pulumi.Input[int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
-        :param pulumi.Input[str] name: [string] A name of that Network Load Balancer forwarding rule.
-        :param pulumi.Input[str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ForwardingRuleTargetArgs']]]] targets: [Set] Array of items in that collection.
+        :param pulumi.Input[str] algorithm: Algorithm for the balancing.
+        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule
+        :param pulumi.Input[str] listener_ip: Listening IP. (inbound)
+        :param pulumi.Input[int] listener_port: Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer forwarding rule
+        :param pulumi.Input[str] protocol: Protocol of the balancing.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: Array of items in that collection
         """
         ...
     @overload
@@ -391,61 +333,7 @@ class ForwardingRule(pulumi.CustomResource):
                  args: ForwardingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
-
-        ## Example Usage
-
-        ### 
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"])
-        example_forwarding_rule = ionoscloud.nlb.ForwardingRule("exampleForwardingRule",
-            datacenter_id=example_datacenter.id,
-            networkloadbalancer_id=example_balancer.id,
-            algorithm="SOURCE_IP",
-            protocol="TCP",
-            listener_ip="10.12.118.224",
-            listener_port=8081,
-            targets=[ionoscloud.nlb.ForwardingRuleTargetArgs(
-                ip="22.231.2.2",
-                port=8080,
-                weight=123,
-                proxy_protocol="v1",
-                health_check=ionoscloud.nlb.ForwardingRuleTargetHealthCheckArgs(
-                    check=True,
-                    check_interval=1000,
-                ),
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
-        ```
-
+        Create a ForwardingRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ForwardingRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -463,13 +351,13 @@ class ForwardingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['ForwardingRuleHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
                  listener_ip: Optional[pulumi.Input[str]] = None,
                  listener_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  networkloadbalancer_id: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ForwardingRuleTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -514,13 +402,13 @@ class ForwardingRule(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: Optional[pulumi.Input[str]] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            health_check: Optional[pulumi.Input[pulumi.InputType['ForwardingRuleHealthCheckArgs']]] = None,
+            health_check: Optional[pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
             listener_ip: Optional[pulumi.Input[str]] = None,
             listener_port: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             networkloadbalancer_id: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
-            targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ForwardingRuleTargetArgs']]]]] = None) -> 'ForwardingRule':
+            targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None) -> 'ForwardingRule':
         """
         Get an existing ForwardingRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -528,14 +416,13 @@ class ForwardingRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: [string] Algorithm for the balancing.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[pulumi.InputType['ForwardingRuleHealthCheckArgs']] health_check: Health check attributes for Network Load Balancer forwarding rule target.
-        :param pulumi.Input[str] listener_ip: [string] Listening IP. (inbound)
-        :param pulumi.Input[int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
-        :param pulumi.Input[str] name: [string] A name of that Network Load Balancer forwarding rule.
-        :param pulumi.Input[str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ForwardingRuleTargetArgs']]]] targets: [Set] Array of items in that collection.
+        :param pulumi.Input[str] algorithm: Algorithm for the balancing.
+        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule
+        :param pulumi.Input[str] listener_ip: Listening IP. (inbound)
+        :param pulumi.Input[int] listener_port: Listening port number. (inbound) (range: 1 to 65535)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer forwarding rule
+        :param pulumi.Input[str] protocol: Protocol of the balancing.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: Array of items in that collection
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -556,23 +443,20 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[str]:
         """
-        [string] Algorithm for the balancing.
+        Algorithm for the balancing.
         """
         return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> pulumi.Output['outputs.ForwardingRuleHealthCheck']:
         """
-        Health check attributes for Network Load Balancer forwarding rule target.
+        Health check attributes for Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -580,7 +464,7 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter(name="listenerIp")
     def listener_ip(self) -> pulumi.Output[str]:
         """
-        [string] Listening IP. (inbound)
+        Listening IP. (inbound)
         """
         return pulumi.get(self, "listener_ip")
 
@@ -588,7 +472,7 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter(name="listenerPort")
     def listener_port(self) -> pulumi.Output[int]:
         """
-        [int] Listening port number. (inbound) (range: 1 to 65535)
+        Listening port number. (inbound) (range: 1 to 65535)
         """
         return pulumi.get(self, "listener_port")
 
@@ -596,7 +480,7 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] A name of that Network Load Balancer forwarding rule.
+        A name of that Network Load Balancer forwarding rule
         """
         return pulumi.get(self, "name")
 
@@ -609,7 +493,7 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        [string] Protocol of the balancing.
+        Protocol of the balancing.
         """
         return pulumi.get(self, "protocol")
 
@@ -617,7 +501,7 @@ class ForwardingRule(pulumi.CustomResource):
     @pulumi.getter
     def targets(self) -> pulumi.Output[Sequence['outputs.ForwardingRuleTarget']]:
         """
-        [Set] Array of items in that collection.
+        Array of items in that collection
         """
         return pulumi.get(self, "targets")
 

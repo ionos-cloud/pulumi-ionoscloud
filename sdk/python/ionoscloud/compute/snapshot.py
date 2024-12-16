@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['SnapshotArgs', 'Snapshot']
@@ -28,17 +33,9 @@ class SnapshotArgs:
                  sec_auth_protection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of the Virtual Data Center.
-        :param pulumi.Input[str] volume_id: [string] The ID of the specific volume to take the snapshot from.
-        :param pulumi.Input[bool] cpu_hot_plug: (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[str] description: (Computed)[string] Human readable description
-        :param pulumi.Input[bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        :param pulumi.Input[str] licence_type: (Computed)[string] OS type of this Snapshot
-        :param pulumi.Input[str] name: [string] The name of the snapshot.
-        :param pulumi.Input[bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+        :param pulumi.Input[str] description: Human readable description
+        :param pulumi.Input[str] licence_type: OS type of this Snapshot
+        :param pulumi.Input[str] name: A name of that resource
         :param pulumi.Input[bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -67,9 +64,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of the Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -79,9 +73,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of the specific volume to take the snapshot from.
-        """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
@@ -91,9 +82,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
@@ -104,7 +92,7 @@ class SnapshotArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed)[string] Human readable description
+        Human readable description
         """
         return pulumi.get(self, "description")
 
@@ -115,9 +103,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
@@ -127,9 +112,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
@@ -140,7 +122,7 @@ class SnapshotArgs:
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed)[string] OS type of this Snapshot
+        OS type of this Snapshot
         """
         return pulumi.get(self, "licence_type")
 
@@ -152,7 +134,7 @@ class SnapshotArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the snapshot.
+        A name of that resource
         """
         return pulumi.get(self, "name")
 
@@ -163,9 +145,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
@@ -175,9 +154,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
@@ -187,9 +163,6 @@ class SnapshotArgs:
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
@@ -232,24 +205,12 @@ class _SnapshotState:
                  volume_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
-        :param pulumi.Input[bool] cpu_hot_plug: (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
-        :param pulumi.Input[str] datacenter_id: [string] The ID of the Virtual Data Center.
-        :param pulumi.Input[str] description: (Computed)[string] Human readable description
-        :param pulumi.Input[bool] disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
-        :param pulumi.Input[bool] disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        :param pulumi.Input[bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        :param pulumi.Input[str] licence_type: (Computed)[string] OS type of this Snapshot
+        :param pulumi.Input[str] description: Human readable description
+        :param pulumi.Input[str] licence_type: OS type of this Snapshot
         :param pulumi.Input[str] location: Location of that image/snapshot
-        :param pulumi.Input[str] name: [string] The name of the snapshot.
-        :param pulumi.Input[bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param pulumi.Input[str] name: A name of that resource
         :param pulumi.Input[bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         :param pulumi.Input[int] size: The size of the image in GB
-        :param pulumi.Input[str] volume_id: [string] The ID of the specific volume to take the snapshot from.
         """
         if cpu_hot_plug is not None:
             pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
@@ -291,9 +252,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
@@ -303,9 +261,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="cpuHotUnplug")
     def cpu_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is capable of CPU hot unplug (no reboot required)
-        """
         return pulumi.get(self, "cpu_hot_unplug")
 
     @cpu_hot_unplug.setter
@@ -315,9 +270,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of the Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -328,7 +280,7 @@ class _SnapshotState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed)[string] Human readable description
+        Human readable description
         """
         return pulumi.get(self, "description")
 
@@ -339,9 +291,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="discScsiHotPlug")
     def disc_scsi_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is capable of SCSI drive hot plug (no reboot required)
-        """
         return pulumi.get(self, "disc_scsi_hot_plug")
 
     @disc_scsi_hot_plug.setter
@@ -351,9 +300,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="discScsiHotUnplug")
     def disc_scsi_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        """
         return pulumi.get(self, "disc_scsi_hot_unplug")
 
     @disc_scsi_hot_unplug.setter
@@ -363,9 +309,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
@@ -375,9 +318,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
@@ -388,7 +328,7 @@ class _SnapshotState:
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> Optional[pulumi.Input[str]]:
         """
-        (Computed)[string] OS type of this Snapshot
+        OS type of this Snapshot
         """
         return pulumi.get(self, "licence_type")
 
@@ -412,7 +352,7 @@ class _SnapshotState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the snapshot.
+        A name of that resource
         """
         return pulumi.get(self, "name")
 
@@ -423,9 +363,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
@@ -435,9 +372,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
@@ -447,9 +381,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
@@ -459,9 +390,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="ramHotUnplug")
     def ram_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is capable of memory hot unplug (no reboot required)
-        """
         return pulumi.get(self, "ram_hot_unplug")
 
     @ram_hot_unplug.setter
@@ -495,9 +423,6 @@ class _SnapshotState:
     @property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of the specific volume to take the snapshot from.
-        """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
@@ -524,75 +449,13 @@ class Snapshot(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages **Snapshots** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_image = ionoscloud.get_image(type="HDD",
-            image_alias="ubuntu:latest",
-            location="us/las")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name=example_image.id,
-            image_password=server_image_password.result,
-            type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ))
-        test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
-            datacenter_id=example_datacenter.id,
-            volume_id=example_server.boot_volume)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Snapshot can be imported using the `snapshot id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
-        ```
-
+        Create a Snapshot resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cpu_hot_plug: (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of the Virtual Data Center.
-        :param pulumi.Input[str] description: (Computed)[string] Human readable description
-        :param pulumi.Input[bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        :param pulumi.Input[str] licence_type: (Computed)[string] OS type of this Snapshot
-        :param pulumi.Input[str] name: [string] The name of the snapshot.
-        :param pulumi.Input[bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+        :param pulumi.Input[str] description: Human readable description
+        :param pulumi.Input[str] licence_type: OS type of this Snapshot
+        :param pulumi.Input[str] name: A name of that resource
         :param pulumi.Input[bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
-        :param pulumi.Input[str] volume_id: [string] The ID of the specific volume to take the snapshot from.
         """
         ...
     @overload
@@ -601,61 +464,7 @@ class Snapshot(pulumi.CustomResource):
                  args: SnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **Snapshots** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_image = ionoscloud.get_image(type="HDD",
-            image_alias="ubuntu:latest",
-            location="us/las")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name=example_image.id,
-            image_password=server_image_password.result,
-            type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ))
-        test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
-            datacenter_id=example_datacenter.id,
-            volume_id=example_server.boot_volume)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Snapshot can be imported using the `snapshot id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
-        ```
-
+        Create a Snapshot resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param SnapshotArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -749,24 +558,12 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cpu_hot_plug: (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
-        :param pulumi.Input[str] datacenter_id: [string] The ID of the Virtual Data Center.
-        :param pulumi.Input[str] description: (Computed)[string] Human readable description
-        :param pulumi.Input[bool] disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
-        :param pulumi.Input[bool] disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        :param pulumi.Input[bool] disc_virtio_hot_plug: (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] disc_virtio_hot_unplug: (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        :param pulumi.Input[str] licence_type: (Computed)[string] OS type of this Snapshot
+        :param pulumi.Input[str] description: Human readable description
+        :param pulumi.Input[str] licence_type: OS type of this Snapshot
         :param pulumi.Input[str] location: Location of that image/snapshot
-        :param pulumi.Input[str] name: [string] The name of the snapshot.
-        :param pulumi.Input[bool] nic_hot_plug: (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] nic_hot_unplug: (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_plug: (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-        :param pulumi.Input[bool] ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param pulumi.Input[str] name: A name of that resource
         :param pulumi.Input[bool] sec_auth_protection: Boolean value representing if the snapshot requires extra protection e.g. two factor protection
         :param pulumi.Input[int] size: The size of the image in GB
-        :param pulumi.Input[str] volume_id: [string] The ID of the specific volume to take the snapshot from.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -795,72 +592,51 @@ class Snapshot(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @property
     @pulumi.getter(name="cpuHotUnplug")
     def cpu_hot_unplug(self) -> pulumi.Output[bool]:
-        """
-        Is capable of CPU hot unplug (no reboot required)
-        """
         return pulumi.get(self, "cpu_hot_unplug")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of the Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
-        (Computed)[string] Human readable description
+        Human readable description
         """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="discScsiHotPlug")
     def disc_scsi_hot_plug(self) -> pulumi.Output[bool]:
-        """
-        Is capable of SCSI drive hot plug (no reboot required)
-        """
         return pulumi.get(self, "disc_scsi_hot_plug")
 
     @property
     @pulumi.getter(name="discScsiHotUnplug")
     def disc_scsi_hot_unplug(self) -> pulumi.Output[bool]:
-        """
-        Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        """
         return pulumi.get(self, "disc_scsi_hot_unplug")
 
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
-        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> pulumi.Output[str]:
         """
-        (Computed)[string] OS type of this Snapshot
+        OS type of this Snapshot
         """
         return pulumi.get(self, "licence_type")
 
@@ -876,40 +652,28 @@ class Snapshot(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The name of the snapshot.
+        A name of that resource
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_plug")
 
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> pulumi.Output[bool]:
-        """
-        (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
-        """
         return pulumi.get(self, "ram_hot_plug")
 
     @property
     @pulumi.getter(name="ramHotUnplug")
     def ram_hot_unplug(self) -> pulumi.Output[bool]:
-        """
-        Is capable of memory hot unplug (no reboot required)
-        """
         return pulumi.get(self, "ram_hot_unplug")
 
     @property
@@ -931,8 +695,5 @@ class Snapshot(pulumi.CustomResource):
     @property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of the specific volume to take the snapshot from.
-        """
         return pulumi.get(self, "volume_id")
 

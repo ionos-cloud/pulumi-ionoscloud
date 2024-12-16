@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.K8s.Inputs
     public sealed class ClusterS3BucketGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The name of the Kubernetes Cluster.
+        /// Name of the Object Storage bucket
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

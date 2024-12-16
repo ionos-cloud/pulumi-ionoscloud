@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
     public sealed class NatGatewayRuleTargetPortRangeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [int] Target port range end associated with the NAT gateway rule.
+        /// Target port range end associated with the NAT gateway rule.
         /// </summary>
         [Input("end")]
         public Input<int>? End { get; set; }
 
         /// <summary>
-        /// [int] Target port range start associated with the NAT gateway rule.
+        /// Target port range start associated with the NAT gateway rule.
         /// </summary>
         [Input("start")]
         public Input<int>? Start { get; set; }

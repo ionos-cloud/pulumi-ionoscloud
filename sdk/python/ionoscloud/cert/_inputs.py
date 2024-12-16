@@ -4,14 +4,35 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'AutoCertificateProviderExternalAccountBindingArgs',
+    'AutoCertificateProviderExternalAccountBindingArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AutoCertificateProviderExternalAccountBindingArgsDict(TypedDict):
+        key_id: pulumi.Input[str]
+        """
+        The key ID of the external account binding
+        """
+        key_secret: pulumi.Input[str]
+        """
+        The secret of the external account binding
+        """
+elif False:
+    AutoCertificateProviderExternalAccountBindingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AutoCertificateProviderExternalAccountBindingArgs:

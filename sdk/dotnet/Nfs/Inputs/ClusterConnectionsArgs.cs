@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Nfs.Inputs
     public sealed class ClusterConnectionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the datacenter where the Network File Storage cluster is located.
+        /// The datacenter to connect your instance to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+        /// The IP address and subnet for your instance.
         /// </summary>
         [Input("ipAddress", required: true)]
         public Input<string> IpAddress { get; set; } = null!;
 
         /// <summary>
-        /// The Private LAN to which the Network File Storage cluster must be connected.
+        /// The numeric LAN ID to connect your instance to.
         /// </summary>
         [Input("lan", required: true)]
         public Input<string> Lan { get; set; } = null!;

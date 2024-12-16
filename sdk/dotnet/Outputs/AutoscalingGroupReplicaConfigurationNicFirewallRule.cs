@@ -14,43 +14,43 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class AutoscalingGroupReplicaConfigurationNicFirewallRule
     {
         /// <summary>
-        /// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+        /// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
         /// </summary>
         public readonly int? IcmpCode;
         /// <summary>
-        /// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+        /// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
         /// </summary>
         public readonly int? IcmpType;
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// The name of the firewall rule.
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+        /// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
         /// </summary>
         public readonly int? PortRangeEnd;
         /// <summary>
-        /// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+        /// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
         /// </summary>
         public readonly int? PortRangeStart;
         /// <summary>
-        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        /// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
         /// </summary>
         public readonly string Protocol;
         /// <summary>
-        /// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+        /// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
         /// </summary>
         public readonly string? SourceIp;
         /// <summary>
-        /// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+        /// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
         /// </summary>
         public readonly string? SourceMac;
         /// <summary>
-        /// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+        /// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
         /// </summary>
         public readonly string? TargetIp;
         /// <summary>
-        /// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+        /// The firewall rule type. If not specified, the default value 'INGRESS' is used.
         /// </summary>
         public readonly string? Type;
 

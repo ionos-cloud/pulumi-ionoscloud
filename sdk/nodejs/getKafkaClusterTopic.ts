@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getKafkaClusterTopic(args: GetKafkaClusterTopicArgs, opts?: pulumi.InvokeOptions): Promise<GetKafkaClusterTopicResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", {
         "clusterId": args.clusterId,
@@ -41,8 +40,15 @@ export interface GetKafkaClusterTopicResult {
     readonly retentionTime: number;
     readonly segmentBytes: number;
 }
-export function getKafkaClusterTopicOutput(args: GetKafkaClusterTopicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKafkaClusterTopicResult> {
-    return pulumi.output(args).apply((a: any) => getKafkaClusterTopic(a, opts))
+export function getKafkaClusterTopicOutput(args: GetKafkaClusterTopicOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKafkaClusterTopicResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", {
+        "clusterId": args.clusterId,
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetRegistryArgs, GetRegistryResult, GetRegistryOutputArgs } from "./getRegistry";
+export const getRegistry: typeof import("./getRegistry").getRegistry = null as any;
+export const getRegistryOutput: typeof import("./getRegistry").getRegistryOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistry","getRegistryOutput"], () => require("./getRegistry"));
+
+export { GetRegistryTokenArgs, GetRegistryTokenResult, GetRegistryTokenOutputArgs } from "./getRegistryToken";
+export const getRegistryToken: typeof import("./getRegistryToken").getRegistryToken = null as any;
+export const getRegistryTokenOutput: typeof import("./getRegistryToken").getRegistryTokenOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryToken","getRegistryTokenOutput"], () => require("./getRegistryToken"));
+
 export { RegistryArgs, RegistryState } from "./registry";
 export type Registry = import("./registry").Registry;
 export const Registry: typeof import("./registry").Registry = null as any;

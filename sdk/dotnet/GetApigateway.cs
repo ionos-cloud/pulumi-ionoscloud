@@ -11,93 +11,25 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetApigateway
     {
-        /// <summary>
-        /// The **API Gateway data source** can be used to search for and return an existing API Gateway.
-        /// You can provide a string for the name parameter which will be compared with provisioned API Gateways.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// 
-        /// Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
-        /// this data source is called.
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetApigateway.Invoke(new()
-        ///     {
-        ///         Name = "example-apigateway",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetApigatewayResult> InvokeAsync(GetApigatewayArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApigatewayResult>("ionoscloud:index/getApigateway:getApigateway", args ?? new GetApigatewayArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **API Gateway data source** can be used to search for and return an existing API Gateway.
-        /// You can provide a string for the name parameter which will be compared with provisioned API Gateways.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// 
-        /// Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
-        /// this data source is called.
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetApigateway.Invoke(new()
-        ///     {
-        ///         Name = "example-apigateway",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetApigatewayResult> Invoke(GetApigatewayInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetApigatewayResult>("ionoscloud:index/getApigateway:getApigateway", args ?? new GetApigatewayInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetApigatewayResult> Invoke(GetApigatewayInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetApigatewayResult>("ionoscloud:index/getApigateway:getApigateway", args ?? new GetApigatewayInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetApigatewayArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of an existing API Gateway that you want to search for.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing API Gateway that you want to search for.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
@@ -109,21 +41,12 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetApigatewayInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of an existing API Gateway that you want to search for.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing API Gateway that you want to search for.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
@@ -138,26 +61,11 @@ namespace Pulumi.Ionoscloud
     public sealed class GetApigatewayResult
     {
         public readonly ImmutableArray<Outputs.GetApigatewayCustomDomainResult> CustomDomains;
-        /// <summary>
-        /// ID of the API Gateway.
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Shows whether the collection and reporting of logs for observability of this instance is enabled or disabled.
-        /// </summary>
         public readonly bool Logs;
-        /// <summary>
-        /// Shows whether the collection and reporting of metrics for observability of this instance is enabled or disabled.
-        /// </summary>
         public readonly bool Metrics;
-        /// <summary>
-        /// The domain name of the distribution.
-        /// </summary>
         public readonly string Name;
         public readonly bool? PartialMatch;
-        /// <summary>
-        /// The public endpoint of the API Gateway.
-        /// </summary>
         public readonly string PublicEndpoint;
 
         [OutputConstructor]

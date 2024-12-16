@@ -22,9 +22,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly int IcmpType;
         /// <summary>
-        /// Name of an existing Autoscaling Group that you want to search for.
-        /// 
-        /// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        /// The name of the firewall rule.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -52,7 +50,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly string TargetIp;
         /// <summary>
-        /// Type of resource
+        /// The firewall rule type. If not specified, the default value 'INGRESS' is used.
         /// </summary>
         public readonly string Type;
 

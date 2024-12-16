@@ -11,36 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
-//
-// ## Example Usage
-//
-// ### By Name
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupAutoscalingGroup(ctx, &ionoscloud.LookupAutoscalingGroupArgs{
-//				Name: pulumi.StringRef("test_ds"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupAutoscalingGroup(ctx *pulumi.Context, args *LookupAutoscalingGroupArgs, opts ...pulumi.InvokeOption) (*LookupAutoscalingGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAutoscalingGroupResult
@@ -53,53 +23,35 @@ func LookupAutoscalingGroup(ctx *pulumi.Context, args *LookupAutoscalingGroupArg
 
 // A collection of arguments for invoking getAutoscalingGroup.
 type LookupAutoscalingGroupArgs struct {
-	// Id of an existing Autoscaling Group that you want to search for.
-	Id *string `pulumi:"id"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getAutoscalingGroup.
 type LookupAutoscalingGroupResult struct {
-	DatacenterId string `pulumi:"datacenterId"`
-	// Unique identifier for the resource
-	Id *string `pulumi:"id"`
-	// Location of the datacenter. This location is the same as the one from the selected template.
-	Location string `pulumi:"location"`
-	// Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-	MaxReplicaCount int `pulumi:"maxReplicaCount"`
-	// Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-	MinReplicaCount int `pulumi:"minReplicaCount"`
-	// The name of the Autoscaling Group.
-	Name *string `pulumi:"name"`
-	// Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+	DatacenterId          string                                    `pulumi:"datacenterId"`
+	Id                    *string                                   `pulumi:"id"`
+	Location              string                                    `pulumi:"location"`
+	MaxReplicaCount       int                                       `pulumi:"maxReplicaCount"`
+	MinReplicaCount       int                                       `pulumi:"minReplicaCount"`
+	Name                  *string                                   `pulumi:"name"`
 	Policies              []GetAutoscalingGroupPolicy               `pulumi:"policies"`
 	ReplicaConfigurations []GetAutoscalingGroupReplicaConfiguration `pulumi:"replicaConfigurations"`
 	TargetReplicaCount    int                                       `pulumi:"targetReplicaCount"`
 }
 
 func LookupAutoscalingGroupOutput(ctx *pulumi.Context, args LookupAutoscalingGroupOutputArgs, opts ...pulumi.InvokeOption) LookupAutoscalingGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAutoscalingGroupResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupAutoscalingGroupResultOutput, error) {
 			args := v.(LookupAutoscalingGroupArgs)
-			r, err := LookupAutoscalingGroup(ctx, &args, opts...)
-			var s LookupAutoscalingGroupResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup", args, LookupAutoscalingGroupResultOutput{}, options).(LookupAutoscalingGroupResultOutput), nil
 		}).(LookupAutoscalingGroupResultOutput)
 }
 
 // A collection of arguments for invoking getAutoscalingGroup.
 type LookupAutoscalingGroupOutputArgs struct {
-	// Id of an existing Autoscaling Group that you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -126,32 +78,26 @@ func (o LookupAutoscalingGroupResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the resource
 func (o LookupAutoscalingGroupResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Location of the datacenter. This location is the same as the one from the selected template.
 func (o LookupAutoscalingGroupResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-// Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
 func (o LookupAutoscalingGroupResultOutput) MaxReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) int { return v.MaxReplicaCount }).(pulumi.IntOutput)
 }
 
-// Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
 func (o LookupAutoscalingGroupResultOutput) MinReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) int { return v.MinReplicaCount }).(pulumi.IntOutput)
 }
 
-// The name of the Autoscaling Group.
 func (o LookupAutoscalingGroupResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
 func (o LookupAutoscalingGroupResultOutput) Policies() GetAutoscalingGroupPolicyArrayOutput {
 	return o.ApplyT(func(v LookupAutoscalingGroupResult) []GetAutoscalingGroupPolicy { return v.Policies }).(GetAutoscalingGroupPolicyArrayOutput)
 }

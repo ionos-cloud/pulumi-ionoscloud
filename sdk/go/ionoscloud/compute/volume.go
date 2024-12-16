@@ -12,222 +12,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Volume** on IonosCloud.
-//
-// ## Example Usage
-//
-// A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleImage, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
-//				Type:       pulumi.StringRef("HDD"),
-//				CloudInit:  pulumi.StringRef("V1"),
-//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
-//				Location:   pulumi.StringRef("us/las"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("Datacenter Description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				Public:       pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
-//				Location: exampleDatacenter.Location,
-//				Size:     pulumi.Int(4),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String(exampleImage.Name),
-//				ImagePassword:    serverImagePassword.Result,
-//				Type:             pulumi.String("ENTERPRISE"),
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:             pulumi.String("system"),
-//					Size:             pulumi.Int(5),
-//					DiskType:         pulumi.String("SSD Standard"),
-//					UserData:         pulumi.String("foo"),
-//					Bus:              pulumi.String("VIRTIO"),
-//					AvailabilityZone: pulumi.String("ZONE_1"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:            exampleLan.ID(),
-//					Name:           pulumi.String("system"),
-//					Dhcp:           pulumi.Bool(true),
-//					FirewallActive: pulumi.Bool(true),
-//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
-//					Ips: pulumi.StringArray{
-//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//							return ips[0], nil
-//						}).(pulumi.StringOutput),
-//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//							return ips[1], nil
-//						}).(pulumi.StringOutput),
-//					},
-//					Firewalls: compute.ServerNicFirewallArray{
-//						&compute.ServerNicFirewallArgs{
-//							Protocol:       pulumi.String("TCP"),
-//							Name:           pulumi.String("SSH"),
-//							PortRangeStart: pulumi.Int(22),
-//							PortRangeEnd:   pulumi.Int(22),
-//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
-//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//								return ips[2], nil
-//							}).(pulumi.StringOutput),
-//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//								return ips[3], nil
-//							}).(pulumi.StringOutput),
-//							Type: pulumi.String("EGRESS"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			volumeImagePassword, err := random.NewRandomPassword(ctx, "volumeImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
-//				ServerId:         exampleServer.ID(),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				Size:             pulumi.Int(5),
-//				DiskType:         pulumi.String("SSD Standard"),
-//				Bus:              pulumi.String("VIRTIO"),
-//				ImageName:        pulumi.String(exampleImage.Name),
-//				ImagePassword:    volumeImagePassword.Result,
-//				UserData:         pulumi.String("foo"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewVolume(ctx, "exampleCompute/volumeVolume", &compute.VolumeArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
-//				ServerId:         exampleServer.ID(),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				Size:             pulumi.Int(5),
-//				DiskType:         pulumi.String("SSD Standard"),
-//				Bus:              pulumi.String("VIRTIO"),
-//				LicenceType:      pulumi.String("OTHER"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Resource Volume can be imported using the `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
-// ```
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-	BackupUnitId pulumi.StringOutput `pulumi:"backupUnitId"`
-	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
-	BootServer pulumi.StringOutput `pulumi:"bootServer"`
-	// [Boolean] The bus type of the volume: VIRTIO or IDE.
-	Bus pulumi.StringOutput `pulumi:"bus"`
-	// [string] Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolOutput `pulumi:"cpuHotPlug"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
-	DeviceNumber pulumi.IntOutput `pulumi:"deviceNumber"`
-	// [string] Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolOutput `pulumi:"discVirtioHotPlug"`
-	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-	DiscVirtioHotUnplug pulumi.BoolOutput `pulumi:"discVirtioHotUnplug"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
-	DiskType pulumi.StringOutput `pulumi:"diskType"`
-	// The image or snapshot UUID.
-	Image   pulumi.StringOutput `pulumi:"image"`
-	ImageId pulumi.StringOutput `pulumi:"imageId"`
-	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-	ImageName pulumi.StringPtrOutput `pulumi:"imageName"`
-	// [string] Required if `sshkeyPath` is not provided.
-	ImagePassword pulumi.StringPtrOutput `pulumi:"imagePassword"`
-	// [string] Required if `imageName` is not provided.
-	LicenceType pulumi.StringOutput `pulumi:"licenceType"`
-	// [string] The name of the volume.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolOutput `pulumi:"nicHotPlug"`
-	// [string] Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolOutput `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
-	PciSlot pulumi.IntOutput `pulumi:"pciSlot"`
-	// [string] Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolOutput `pulumi:"ramHotPlug"`
-	// [string] The ID of a server.
-	ServerId pulumi.StringOutput `pulumi:"serverId"`
-	// [integer] The size of the volume in GB.
-	Size pulumi.IntOutput `pulumi:"size"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeyPaths pulumi.StringArrayOutput `pulumi:"sshKeyPaths"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeys pulumi.StringArrayOutput `pulumi:"sshKeys"`
-	// The associated public SSH key.
-	Sshkey pulumi.StringOutput `pulumi:"sshkey"`
-	// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-	UserData pulumi.StringOutput `pulumi:"userData"`
+	BackupUnitId     pulumi.StringOutput `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          pulumi.StringOutput      `pulumi:"bootServer"`
+	Bus                 pulumi.StringOutput      `pulumi:"bus"`
+	CpuHotPlug          pulumi.BoolOutput        `pulumi:"cpuHotPlug"`
+	DatacenterId        pulumi.StringOutput      `pulumi:"datacenterId"`
+	DeviceNumber        pulumi.IntOutput         `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   pulumi.BoolOutput        `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug pulumi.BoolOutput        `pulumi:"discVirtioHotUnplug"`
+	DiskType            pulumi.StringOutput      `pulumi:"diskType"`
+	Image               pulumi.StringOutput      `pulumi:"image"`
+	ImageId             pulumi.StringOutput      `pulumi:"imageId"`
+	ImageName           pulumi.StringPtrOutput   `pulumi:"imageName"`
+	ImagePassword       pulumi.StringPtrOutput   `pulumi:"imagePassword"`
+	LicenceType         pulumi.StringOutput      `pulumi:"licenceType"`
+	Name                pulumi.StringOutput      `pulumi:"name"`
+	NicHotPlug          pulumi.BoolOutput        `pulumi:"nicHotPlug"`
+	NicHotUnplug        pulumi.BoolOutput        `pulumi:"nicHotUnplug"`
+	PciSlot             pulumi.IntOutput         `pulumi:"pciSlot"`
+	RamHotPlug          pulumi.BoolOutput        `pulumi:"ramHotPlug"`
+	ServerId            pulumi.StringOutput      `pulumi:"serverId"`
+	Size                pulumi.IntOutput         `pulumi:"size"`
+	SshKeyPaths         pulumi.StringArrayOutput `pulumi:"sshKeyPaths"`
+	SshKeys             pulumi.StringArrayOutput `pulumi:"sshKeys"`
+	Sshkey              pulumi.StringOutput      `pulumi:"sshkey"`
+	UserData            pulumi.StringOutput      `pulumi:"userData"`
 }
 
 // NewVolume registers a new resource with the given unique name, arguments, and options.
@@ -272,119 +86,63 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
 	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-	BackupUnitId *string `pulumi:"backupUnitId"`
-	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
-	BootServer *string `pulumi:"bootServer"`
-	// [Boolean] The bus type of the volume: VIRTIO or IDE.
-	Bus *string `pulumi:"bus"`
-	// [string] Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug *bool `pulumi:"cpuHotPlug"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId *string `pulumi:"datacenterId"`
-	// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
-	DeviceNumber *int `pulumi:"deviceNumber"`
-	// [string] Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug *bool `pulumi:"discVirtioHotPlug"`
-	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
-	DiskType *string `pulumi:"diskType"`
-	// The image or snapshot UUID.
-	Image   *string `pulumi:"image"`
-	ImageId *string `pulumi:"imageId"`
-	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-	ImageName *string `pulumi:"imageName"`
-	// [string] Required if `sshkeyPath` is not provided.
-	ImagePassword *string `pulumi:"imagePassword"`
-	// [string] Required if `imageName` is not provided.
-	LicenceType *string `pulumi:"licenceType"`
-	// [string] The name of the volume.
-	Name *string `pulumi:"name"`
-	// [string] Is capable of nic hot plug (no reboot required)
-	NicHotPlug *bool `pulumi:"nicHotPlug"`
-	// [string] Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug *bool `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
-	PciSlot *int `pulumi:"pciSlot"`
-	// [string] Is capable of memory hot plug (no reboot required)
-	RamHotPlug *bool `pulumi:"ramHotPlug"`
-	// [string] The ID of a server.
-	ServerId *string `pulumi:"serverId"`
-	// [integer] The size of the volume in GB.
-	Size *int `pulumi:"size"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeyPaths []string `pulumi:"sshKeyPaths"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeys []string `pulumi:"sshKeys"`
-	// The associated public SSH key.
-	Sshkey *string `pulumi:"sshkey"`
-	// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-	UserData *string `pulumi:"userData"`
+	BackupUnitId     *string `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          *string  `pulumi:"bootServer"`
+	Bus                 *string  `pulumi:"bus"`
+	CpuHotPlug          *bool    `pulumi:"cpuHotPlug"`
+	DatacenterId        *string  `pulumi:"datacenterId"`
+	DeviceNumber        *int     `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   *bool    `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug *bool    `pulumi:"discVirtioHotUnplug"`
+	DiskType            *string  `pulumi:"diskType"`
+	Image               *string  `pulumi:"image"`
+	ImageId             *string  `pulumi:"imageId"`
+	ImageName           *string  `pulumi:"imageName"`
+	ImagePassword       *string  `pulumi:"imagePassword"`
+	LicenceType         *string  `pulumi:"licenceType"`
+	Name                *string  `pulumi:"name"`
+	NicHotPlug          *bool    `pulumi:"nicHotPlug"`
+	NicHotUnplug        *bool    `pulumi:"nicHotUnplug"`
+	PciSlot             *int     `pulumi:"pciSlot"`
+	RamHotPlug          *bool    `pulumi:"ramHotPlug"`
+	ServerId            *string  `pulumi:"serverId"`
+	Size                *int     `pulumi:"size"`
+	SshKeyPaths         []string `pulumi:"sshKeyPaths"`
+	SshKeys             []string `pulumi:"sshKeys"`
+	Sshkey              *string  `pulumi:"sshkey"`
+	UserData            *string  `pulumi:"userData"`
 }
 
 type VolumeState struct {
-	// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
 	AvailabilityZone pulumi.StringPtrInput
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-	BackupUnitId pulumi.StringPtrInput
-	// [string] The UUID of the attached server.
-	// > **⚠ WARNING**
-	// >
-	// > sshKeyPath and sshKeys fields are immutable.
-	// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
-	BootServer pulumi.StringPtrInput
-	// [Boolean] The bus type of the volume: VIRTIO or IDE.
-	Bus pulumi.StringPtrInput
-	// [string] Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolPtrInput
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringPtrInput
-	// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
-	DeviceNumber pulumi.IntPtrInput
-	// [string] Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolPtrInput
-	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+	BackupUnitId     pulumi.StringPtrInput
+	// The UUID of the attached server.
+	BootServer          pulumi.StringPtrInput
+	Bus                 pulumi.StringPtrInput
+	CpuHotPlug          pulumi.BoolPtrInput
+	DatacenterId        pulumi.StringPtrInput
+	DeviceNumber        pulumi.IntPtrInput
+	DiscVirtioHotPlug   pulumi.BoolPtrInput
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
-	// [string] The volume type: HDD or SSD. This property is immutable.
-	DiskType pulumi.StringPtrInput
-	// The image or snapshot UUID.
-	Image   pulumi.StringPtrInput
-	ImageId pulumi.StringPtrInput
-	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-	ImageName pulumi.StringPtrInput
-	// [string] Required if `sshkeyPath` is not provided.
-	ImagePassword pulumi.StringPtrInput
-	// [string] Required if `imageName` is not provided.
-	LicenceType pulumi.StringPtrInput
-	// [string] The name of the volume.
-	Name pulumi.StringPtrInput
-	// [string] Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolPtrInput
-	// [string] Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolPtrInput
-	// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
-	PciSlot pulumi.IntPtrInput
-	// [string] Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolPtrInput
-	// [string] The ID of a server.
-	ServerId pulumi.StringPtrInput
-	// [integer] The size of the volume in GB.
-	Size pulumi.IntPtrInput
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeyPaths pulumi.StringArrayInput
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeys pulumi.StringArrayInput
-	// The associated public SSH key.
-	Sshkey pulumi.StringPtrInput
-	// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-	UserData pulumi.StringPtrInput
+	DiskType            pulumi.StringPtrInput
+	Image               pulumi.StringPtrInput
+	ImageId             pulumi.StringPtrInput
+	ImageName           pulumi.StringPtrInput
+	ImagePassword       pulumi.StringPtrInput
+	LicenceType         pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	NicHotPlug          pulumi.BoolPtrInput
+	NicHotUnplug        pulumi.BoolPtrInput
+	PciSlot             pulumi.IntPtrInput
+	RamHotPlug          pulumi.BoolPtrInput
+	ServerId            pulumi.StringPtrInput
+	Size                pulumi.IntPtrInput
+	SshKeyPaths         pulumi.StringArrayInput
+	SshKeys             pulumi.StringArrayInput
+	Sshkey              pulumi.StringPtrInput
+	UserData            pulumi.StringPtrInput
 }
 
 func (VolumeState) ElementType() reflect.Type {
@@ -392,66 +150,38 @@ func (VolumeState) ElementType() reflect.Type {
 }
 
 type volumeArgs struct {
-	// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
-	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-	BackupUnitId *string `pulumi:"backupUnitId"`
-	// [Boolean] The bus type of the volume: VIRTIO or IDE.
-	Bus *string `pulumi:"bus"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId string `pulumi:"datacenterId"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
-	DiskType string `pulumi:"diskType"`
-	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-	ImageName *string `pulumi:"imageName"`
-	// [string] Required if `sshkeyPath` is not provided.
-	ImagePassword *string `pulumi:"imagePassword"`
-	// [string] Required if `imageName` is not provided.
-	LicenceType *string `pulumi:"licenceType"`
-	// [string] The name of the volume.
-	Name *string `pulumi:"name"`
-	// [string] The ID of a server.
-	ServerId string `pulumi:"serverId"`
-	// [integer] The size of the volume in GB.
-	Size int `pulumi:"size"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeyPaths []string `pulumi:"sshKeyPaths"`
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeys []string `pulumi:"sshKeys"`
-	// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-	UserData *string `pulumi:"userData"`
+	AvailabilityZone *string  `pulumi:"availabilityZone"`
+	BackupUnitId     *string  `pulumi:"backupUnitId"`
+	Bus              *string  `pulumi:"bus"`
+	DatacenterId     string   `pulumi:"datacenterId"`
+	DiskType         string   `pulumi:"diskType"`
+	ImageName        *string  `pulumi:"imageName"`
+	ImagePassword    *string  `pulumi:"imagePassword"`
+	LicenceType      *string  `pulumi:"licenceType"`
+	Name             *string  `pulumi:"name"`
+	ServerId         string   `pulumi:"serverId"`
+	Size             int      `pulumi:"size"`
+	SshKeyPaths      []string `pulumi:"sshKeyPaths"`
+	SshKeys          []string `pulumi:"sshKeys"`
+	UserData         *string  `pulumi:"userData"`
 }
 
 // The set of arguments for constructing a Volume resource.
 type VolumeArgs struct {
-	// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
 	AvailabilityZone pulumi.StringPtrInput
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-	BackupUnitId pulumi.StringPtrInput
-	// [Boolean] The bus type of the volume: VIRTIO or IDE.
-	Bus pulumi.StringPtrInput
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringInput
-	// [string] The volume type: HDD or SSD. This property is immutable.
-	DiskType pulumi.StringInput
-	// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-	ImageName pulumi.StringPtrInput
-	// [string] Required if `sshkeyPath` is not provided.
-	ImagePassword pulumi.StringPtrInput
-	// [string] Required if `imageName` is not provided.
-	LicenceType pulumi.StringPtrInput
-	// [string] The name of the volume.
-	Name pulumi.StringPtrInput
-	// [string] The ID of a server.
-	ServerId pulumi.StringInput
-	// [integer] The size of the volume in GB.
-	Size pulumi.IntInput
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeyPaths pulumi.StringArrayInput
-	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
-	SshKeys pulumi.StringArrayInput
-	// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
-	UserData pulumi.StringPtrInput
+	BackupUnitId     pulumi.StringPtrInput
+	Bus              pulumi.StringPtrInput
+	DatacenterId     pulumi.StringInput
+	DiskType         pulumi.StringInput
+	ImageName        pulumi.StringPtrInput
+	ImagePassword    pulumi.StringPtrInput
+	LicenceType      pulumi.StringPtrInput
+	Name             pulumi.StringPtrInput
+	ServerId         pulumi.StringInput
+	Size             pulumi.IntInput
+	SshKeyPaths      pulumi.StringArrayInput
+	SshKeys          pulumi.StringArrayInput
+	UserData         pulumi.StringPtrInput
 }
 
 func (VolumeArgs) ElementType() reflect.Type {
@@ -541,61 +271,47 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
-// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
 func (o VolumeOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
-// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 func (o VolumeOutput) BackupUnitId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.BackupUnitId }).(pulumi.StringOutput)
 }
 
-// [string] The UUID of the attached server.
-// > **⚠ WARNING**
-// >
-// > sshKeyPath and sshKeys fields are immutable.
-// If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+// The UUID of the attached server.
 func (o VolumeOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.BootServer }).(pulumi.StringOutput)
 }
 
-// [Boolean] The bus type of the volume: VIRTIO or IDE.
 func (o VolumeOutput) Bus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Bus }).(pulumi.StringOutput)
 }
 
-// [string] Is capable of CPU hot plug (no reboot required)
 func (o VolumeOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
-// [string] The ID of a Virtual Data Center.
 func (o VolumeOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
 func (o VolumeOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
-// [string] Is capable of Virt-IO drive hot plug (no reboot required)
 func (o VolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
-// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 func (o VolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
-// [string] The volume type: HDD or SSD. This property is immutable.
 func (o VolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.DiskType }).(pulumi.StringOutput)
 }
 
-// The image or snapshot UUID.
 func (o VolumeOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Image }).(pulumi.StringOutput)
 }
@@ -604,72 +320,58 @@ func (o VolumeOutput) ImageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ImageId }).(pulumi.StringOutput)
 }
 
-// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
 func (o VolumeOutput) ImageName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ImageName }).(pulumi.StringPtrOutput)
 }
 
-// [string] Required if `sshkeyPath` is not provided.
 func (o VolumeOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ImagePassword }).(pulumi.StringPtrOutput)
 }
 
-// [string] Required if `imageName` is not provided.
 func (o VolumeOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.LicenceType }).(pulumi.StringOutput)
 }
 
-// [string] The name of the volume.
 func (o VolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] Is capable of nic hot plug (no reboot required)
 func (o VolumeOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
-// [string] Is capable of nic hot unplug (no reboot required)
 func (o VolumeOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
-// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
 func (o VolumeOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.PciSlot }).(pulumi.IntOutput)
 }
 
-// [string] Is capable of memory hot plug (no reboot required)
 func (o VolumeOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
-// [string] The ID of a server.
 func (o VolumeOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
-// [integer] The size of the volume in GB.
 func (o VolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
-// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
 func (o VolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringArrayOutput { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
 }
 
-// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. This property is immutable.
 func (o VolumeOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringArrayOutput { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
-// The associated public SSH key.
 func (o VolumeOutput) Sshkey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Sshkey }).(pulumi.StringOutput)
 }
 
-// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
 func (o VolumeOutput) UserData() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.UserData }).(pulumi.StringOutput)
 }

@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Inputs
         private InputList<string>? _brokerAddresses;
 
         /// <summary>
-        /// [list] IP address and port of cluster brokers.
+        /// The broker addresses of the Kafka Cluster. Can be empty, but must be present.
         /// </summary>
         public InputList<string> BrokerAddresses
         {
@@ -25,13 +25,13 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [string] The datacenter to connect your instance to.
+        /// The datacenter to connect your Kafka Cluster to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] The numeric LAN ID to connect your instance to.
+        /// The numeric LAN ID to connect your Kafka Cluster to.
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;

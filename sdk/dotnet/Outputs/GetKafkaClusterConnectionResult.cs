@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class GetKafkaClusterConnectionResult
     {
         /// <summary>
-        /// IP address and port of cluster brokers.
+        /// The broker addresses of the Kafka Cluster
         /// </summary>
         public readonly ImmutableArray<string> BrokerAddresses;
         /// <summary>
-        /// The datacenter that your instance is connected to.
+        /// The datacenter to connect your Kafka Cluster to.
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The numeric LAN ID your instance is connected to.
+        /// The numeric LAN ID to connect your Kafka Cluster to.
         /// </summary>
         public readonly string LanId;
 

@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class NodePoolLanRoute
     {
         /// <summary>
-        /// [string] IPv4 or IPv6 Gateway IP for the route
+        /// IPv4 or IPv6 Gateway IP for the route
         /// </summary>
         public readonly string GatewayIp;
         /// <summary>
-        /// [string] IPv4 or IPv6 CIDR to be routed via the interface
+        /// IPv4 or IPv6 CIDR to be routed via the interface
         /// </summary>
         public readonly string Network;
 

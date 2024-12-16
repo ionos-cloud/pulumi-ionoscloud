@@ -11,220 +11,24 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetServers
     {
-        /// <summary>
-        /// The **Servers data source** can be used to search for and return existing servers based on filters used.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "name",
-        ///                 Value = "server_name_to_look_here",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### By CPU Family
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "cpu_family",
-        ///                 Value = "INTEL_XEON",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// 
-        /// ### By Name and Cores
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "name",
-        ///                 Value = "test",
-        ///             },
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "cores",
-        ///                 Value = "1",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetServersResult> InvokeAsync(GetServersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **Servers data source** can be used to search for and return existing servers based on filters used.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "name",
-        ///                 Value = "server_name_to_look_here",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### By CPU Family
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "cpu_family",
-        ///                 Value = "INTEL_XEON",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// 
-        /// ### By Name and Cores
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetServers.Invoke(new()
-        ///     {
-        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
-        ///         Filters = new[]
-        ///         {
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "name",
-        ///                 Value = "test",
-        ///             },
-        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
-        ///             {
-        ///                 Name = "cores",
-        ///                 Value = "1",
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetServersResult> Invoke(GetServersInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetServersResult> Invoke(GetServersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetServersArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of an existing datacenter that the servers are a part of
-        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
         [Input("filters")]
         private List<Inputs.GetServersFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-        /// 
-        /// 
-        /// `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
-        /// 
-        /// **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
-        /// For example, it will find servers named `test`, `test1`, `testsomething`.
-        /// 
-        /// **NOTE:** You cannot search by `image_name` by providing an alias like `ubuntu`.
-        /// </summary>
         public List<Inputs.GetServersFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetServersFilterArgs>());
@@ -239,26 +43,11 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetServersInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Name of an existing datacenter that the servers are a part of
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         [Input("filters")]
         private InputList<Inputs.GetServersFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-        /// 
-        /// 
-        /// `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
-        /// 
-        /// **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
-        /// For example, it will find servers named `test`, `test1`, `testsomething`.
-        /// 
-        /// **NOTE:** You cannot search by `image_name` by providing an alias like `ubuntu`.
-        /// </summary>
         public InputList<Inputs.GetServersFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetServersFilterInputArgs>());
@@ -281,10 +70,6 @@ namespace Pulumi.Ionoscloud
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// list of servers that matches the filters provided.
-        /// For a full reference of all attributes returned, check out documentation
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetServersServerResult> Servers;
 
         [OutputConstructor]

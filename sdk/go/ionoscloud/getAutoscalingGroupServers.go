@@ -11,7 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
 func GetAutoscalingGroupServers(ctx *pulumi.Context, args *GetAutoscalingGroupServersArgs, opts ...pulumi.InvokeOption) (*GetAutoscalingGroupServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAutoscalingGroupServersResult
@@ -24,40 +23,28 @@ func GetAutoscalingGroupServers(ctx *pulumi.Context, args *GetAutoscalingGroupSe
 
 // A collection of arguments for invoking getAutoscalingGroupServers.
 type GetAutoscalingGroupServersArgs struct {
-	// The unique ID of the autoscaling group.
-	//
-	// `groupId` must be provided. If it is not provided, the datasource will return an error.
 	GroupId string `pulumi:"groupId"`
 }
 
 // A collection of values returned by getAutoscalingGroupServers.
 type GetAutoscalingGroupServersResult struct {
-	// Id of the autoscaling group.
 	GroupId string `pulumi:"groupId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// List of servers.
+	Id      string                             `pulumi:"id"`
 	Servers []GetAutoscalingGroupServersServer `pulumi:"servers"`
 }
 
 func GetAutoscalingGroupServersOutput(ctx *pulumi.Context, args GetAutoscalingGroupServersOutputArgs, opts ...pulumi.InvokeOption) GetAutoscalingGroupServersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAutoscalingGroupServersResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetAutoscalingGroupServersResultOutput, error) {
 			args := v.(GetAutoscalingGroupServersArgs)
-			r, err := GetAutoscalingGroupServers(ctx, &args, opts...)
-			var s GetAutoscalingGroupServersResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", args, GetAutoscalingGroupServersResultOutput{}, options).(GetAutoscalingGroupServersResultOutput), nil
 		}).(GetAutoscalingGroupServersResultOutput)
 }
 
 // A collection of arguments for invoking getAutoscalingGroupServers.
 type GetAutoscalingGroupServersOutputArgs struct {
-	// The unique ID of the autoscaling group.
-	//
-	// `groupId` must be provided. If it is not provided, the datasource will return an error.
 	GroupId pulumi.StringInput `pulumi:"groupId"`
 }
 
@@ -80,7 +67,6 @@ func (o GetAutoscalingGroupServersResultOutput) ToGetAutoscalingGroupServersResu
 	return o
 }
 
-// Id of the autoscaling group.
 func (o GetAutoscalingGroupServersResultOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupServersResult) string { return v.GroupId }).(pulumi.StringOutput)
 }
@@ -90,7 +76,6 @@ func (o GetAutoscalingGroupServersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupServersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of servers.
 func (o GetAutoscalingGroupServersResultOutput) Servers() GetAutoscalingGroupServersServerArrayOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupServersResult) []GetAutoscalingGroupServersServer { return v.Servers }).(GetAutoscalingGroupServersServerArrayOutput)
 }

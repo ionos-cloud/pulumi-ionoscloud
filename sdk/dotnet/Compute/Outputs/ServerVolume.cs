@@ -13,9 +13,6 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class ServerVolume
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        /// </summary>
         public readonly string? AvailabilityZone;
         /// <summary>
         /// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -31,17 +28,8 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? DiscVirtioHotPlug;
         public readonly bool? DiscVirtioHotUnplug;
         public readonly string DiskType;
-        /// <summary>
-        /// [string] Required if `ssh_key_path` is not provided.
-        /// </summary>
         public readonly string? ImagePassword;
-        /// <summary>
-        /// [string] Sets the OS type of the server.
-        /// </summary>
         public readonly string? LicenceType;
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         public readonly string? Name;
         public readonly bool? NicHotPlug;
         public readonly bool? NicHotUnplug;
@@ -52,11 +40,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
         /// </summary>
         public readonly ImmutableArray<string> SshKeyPaths;
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
         /// </summary>
         public readonly ImmutableArray<string> SshKeys;
         /// <summary>

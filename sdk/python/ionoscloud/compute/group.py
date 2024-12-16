@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -34,22 +39,14 @@ class GroupArgs:
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Group resource.
-        :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
-        :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
-        :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
-        :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
-        :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
-        :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
-        :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
-        :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
-        :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
-        :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
-        :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
-        :param pulumi.Input[str] name: [string] A name for the group.
-        :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
-        :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
-        :param pulumi.Input[str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: [list] A list of users to add to the group.
+        :param pulumi.Input[bool] access_and_manage_certificates: Privilege for a group to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_monitoring: Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+               alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+        :param pulumi.Input[bool] create_backup_unit: Create backup unit privilege.
+        :param pulumi.Input[bool] create_flow_log: Create Flow Logs privilege.
+        :param pulumi.Input[bool] create_internet_access: Create internet access privilege.
+        :param pulumi.Input[bool] create_k8s_cluster: Create Kubernetes cluster privilege.
+        :param pulumi.Input[bool] manage_dbaas: Privilege for a group to manage DBaaS related functionality
         """
         if access_activity_log is not None:
             pulumi.set(__self__, "access_activity_log", access_activity_log)
@@ -90,9 +87,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="accessActivityLog")
     def access_activity_log(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to access the activity log.
-        """
         return pulumi.get(self, "access_activity_log")
 
     @access_activity_log.setter
@@ -103,7 +97,7 @@ class GroupArgs:
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage certificates.
+        Privilege for a group to access and manage certificates.
         """
         return pulumi.get(self, "access_and_manage_certificates")
 
@@ -115,7 +109,8 @@ class GroupArgs:
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage monitoring.
+        Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         """
         return pulumi.get(self, "access_and_manage_monitoring")
 
@@ -127,7 +122,7 @@ class GroupArgs:
     @pulumi.getter(name="createBackupUnit")
     def create_backup_unit(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] The group will be allowed to create backup unit privilege.
+        Create backup unit privilege.
         """
         return pulumi.get(self, "create_backup_unit")
 
@@ -138,9 +133,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="createDatacenter")
     def create_datacenter(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create virtual data centers.
-        """
         return pulumi.get(self, "create_datacenter")
 
     @create_datacenter.setter
@@ -151,7 +143,7 @@ class GroupArgs:
     @pulumi.getter(name="createFlowLog")
     def create_flow_log(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to create flow log.
+        Create Flow Logs privilege.
         """
         return pulumi.get(self, "create_flow_log")
 
@@ -163,7 +155,7 @@ class GroupArgs:
     @pulumi.getter(name="createInternetAccess")
     def create_internet_access(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] The group will be allowed to create internet access privilege.
+        Create internet access privilege.
         """
         return pulumi.get(self, "create_internet_access")
 
@@ -175,7 +167,7 @@ class GroupArgs:
     @pulumi.getter(name="createK8sCluster")
     def create_k8s_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        Create Kubernetes cluster privilege.
         """
         return pulumi.get(self, "create_k8s_cluster")
 
@@ -186,9 +178,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create Cross Connects privilege.
-        """
         return pulumi.get(self, "create_pcc")
 
     @create_pcc.setter
@@ -198,9 +187,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="createSnapshot")
     def create_snapshot(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create snapshots.
-        """
         return pulumi.get(self, "create_snapshot")
 
     @create_snapshot.setter
@@ -211,7 +197,7 @@ class GroupArgs:
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        Privilege for a group to manage DBaaS related functionality
         """
         return pulumi.get(self, "manage_dbaas")
 
@@ -222,9 +208,6 @@ class GroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] A name for the group.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -234,9 +217,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="reserveIp")
     def reserve_ip(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to reserve IP addresses.
-        """
         return pulumi.get(self, "reserve_ip")
 
     @reserve_ip.setter
@@ -246,9 +226,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="s3Privilege")
     def s3_privilege(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will have S3 privilege.
-        """
         return pulumi.get(self, "s3_privilege")
 
     @s3_privilege.setter
@@ -257,13 +234,8 @@ class GroupArgs:
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -273,9 +245,6 @@ class GroupArgs:
     @property
     @pulumi.getter(name="userIds")
     def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        [list] A list of users to add to the group.
-        """
         return pulumi.get(self, "user_ids")
 
     @user_ids.setter
@@ -305,25 +274,14 @@ class _GroupState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering Group resources.
-        :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
-        :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
-        :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
-        :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
-        :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
-        :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
-        :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
-        :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
-        :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
-        :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
-        :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
-        :param pulumi.Input[str] name: [string] A name for the group.
-        :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
-        :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
-        :param pulumi.Input[str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: [list] A list of users to add to the group.
-        :param pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]] users: List of users - See the User section
-               
-               **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        :param pulumi.Input[bool] access_and_manage_certificates: Privilege for a group to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_monitoring: Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+               alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+        :param pulumi.Input[bool] create_backup_unit: Create backup unit privilege.
+        :param pulumi.Input[bool] create_flow_log: Create Flow Logs privilege.
+        :param pulumi.Input[bool] create_internet_access: Create internet access privilege.
+        :param pulumi.Input[bool] create_k8s_cluster: Create Kubernetes cluster privilege.
+        :param pulumi.Input[bool] manage_dbaas: Privilege for a group to manage DBaaS related functionality
         """
         if access_activity_log is not None:
             pulumi.set(__self__, "access_activity_log", access_activity_log)
@@ -366,9 +324,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="accessActivityLog")
     def access_activity_log(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to access the activity log.
-        """
         return pulumi.get(self, "access_activity_log")
 
     @access_activity_log.setter
@@ -379,7 +334,7 @@ class _GroupState:
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage certificates.
+        Privilege for a group to access and manage certificates.
         """
         return pulumi.get(self, "access_and_manage_certificates")
 
@@ -391,7 +346,8 @@ class _GroupState:
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage monitoring.
+        Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         """
         return pulumi.get(self, "access_and_manage_monitoring")
 
@@ -403,7 +359,7 @@ class _GroupState:
     @pulumi.getter(name="createBackupUnit")
     def create_backup_unit(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] The group will be allowed to create backup unit privilege.
+        Create backup unit privilege.
         """
         return pulumi.get(self, "create_backup_unit")
 
@@ -414,9 +370,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="createDatacenter")
     def create_datacenter(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create virtual data centers.
-        """
         return pulumi.get(self, "create_datacenter")
 
     @create_datacenter.setter
@@ -427,7 +380,7 @@ class _GroupState:
     @pulumi.getter(name="createFlowLog")
     def create_flow_log(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to create flow log.
+        Create Flow Logs privilege.
         """
         return pulumi.get(self, "create_flow_log")
 
@@ -439,7 +392,7 @@ class _GroupState:
     @pulumi.getter(name="createInternetAccess")
     def create_internet_access(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] The group will be allowed to create internet access privilege.
+        Create internet access privilege.
         """
         return pulumi.get(self, "create_internet_access")
 
@@ -451,7 +404,7 @@ class _GroupState:
     @pulumi.getter(name="createK8sCluster")
     def create_k8s_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        Create Kubernetes cluster privilege.
         """
         return pulumi.get(self, "create_k8s_cluster")
 
@@ -462,9 +415,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create Cross Connects privilege.
-        """
         return pulumi.get(self, "create_pcc")
 
     @create_pcc.setter
@@ -474,9 +424,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="createSnapshot")
     def create_snapshot(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to create snapshots.
-        """
         return pulumi.get(self, "create_snapshot")
 
     @create_snapshot.setter
@@ -487,7 +434,7 @@ class _GroupState:
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        Privilege for a group to manage DBaaS related functionality
         """
         return pulumi.get(self, "manage_dbaas")
 
@@ -498,9 +445,6 @@ class _GroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] A name for the group.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -510,9 +454,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="reserveIp")
     def reserve_ip(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will be allowed to reserve IP addresses.
-        """
         return pulumi.get(self, "reserve_ip")
 
     @reserve_ip.setter
@@ -522,9 +463,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="s3Privilege")
     def s3_privilege(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] The group will have S3 privilege.
-        """
         return pulumi.get(self, "s3_privilege")
 
     @s3_privilege.setter
@@ -533,13 +471,8 @@ class _GroupState:
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -549,9 +482,6 @@ class _GroupState:
     @property
     @pulumi.getter(name="userIds")
     def user_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        [list] A list of users to add to the group.
-        """
         return pulumi.get(self, "user_ids")
 
     @user_ids.setter
@@ -561,11 +491,6 @@ class _GroupState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GroupUserArgs']]]]:
-        """
-        List of users - See the User section
-
-        **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -596,87 +521,17 @@ class Group(pulumi.CustomResource):
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        user1_password = random.RandomPassword("user1Password",
-            length=16,
-            special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example1 = ionoscloud.compute.User("example1",
-            first_name="user1",
-            last_name="user1",
-            email="unique_email.com",
-            password=user1_password.result,
-            administrator=False,
-            force_sec_auth=False)
-        user2_password = random.RandomPassword("user2Password",
-            length=16,
-            special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example2 = ionoscloud.compute.User("example2",
-            first_name="user2",
-            last_name="user2",
-            email="unique_email.com",
-            password=user2_password.result,
-            administrator=False,
-            force_sec_auth=False)
-        example = ionoscloud.compute.Group("example",
-            create_datacenter=True,
-            create_snapshot=True,
-            reserve_ip=True,
-            access_activity_log=True,
-            create_pcc=True,
-            s3_privilege=True,
-            create_backup_unit=True,
-            create_internet_access=True,
-            create_k8s_cluster=True,
-            create_flow_log=True,
-            access_and_manage_monitoring=True,
-            access_and_manage_certificates=True,
-            manage_dbaas=True,
-            user_ids=[
-                example1.id,
-                example2.id,
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Group can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/group:Group mygroup {group uuid}
-        ```
-
-        > :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
-
+        Create a Group resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
-        :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
-        :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
-        :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
-        :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
-        :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
-        :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
-        :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
-        :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
-        :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
-        :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
-        :param pulumi.Input[str] name: [string] A name for the group.
-        :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
-        :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
-        :param pulumi.Input[str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: [list] A list of users to add to the group.
+        :param pulumi.Input[bool] access_and_manage_certificates: Privilege for a group to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_monitoring: Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+               alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+        :param pulumi.Input[bool] create_backup_unit: Create backup unit privilege.
+        :param pulumi.Input[bool] create_flow_log: Create Flow Logs privilege.
+        :param pulumi.Input[bool] create_internet_access: Create internet access privilege.
+        :param pulumi.Input[bool] create_k8s_cluster: Create Kubernetes cluster privilege.
+        :param pulumi.Input[bool] manage_dbaas: Privilege for a group to manage DBaaS related functionality
         """
         ...
     @overload
@@ -685,69 +540,7 @@ class Group(pulumi.CustomResource):
                  args: Optional[GroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **Groups** and **Group Privileges** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        user1_password = random.RandomPassword("user1Password",
-            length=16,
-            special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example1 = ionoscloud.compute.User("example1",
-            first_name="user1",
-            last_name="user1",
-            email="unique_email.com",
-            password=user1_password.result,
-            administrator=False,
-            force_sec_auth=False)
-        user2_password = random.RandomPassword("user2Password",
-            length=16,
-            special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example2 = ionoscloud.compute.User("example2",
-            first_name="user2",
-            last_name="user2",
-            email="unique_email.com",
-            password=user2_password.result,
-            administrator=False,
-            force_sec_auth=False)
-        example = ionoscloud.compute.Group("example",
-            create_datacenter=True,
-            create_snapshot=True,
-            reserve_ip=True,
-            access_activity_log=True,
-            create_pcc=True,
-            s3_privilege=True,
-            create_backup_unit=True,
-            create_internet_access=True,
-            create_k8s_cluster=True,
-            create_flow_log=True,
-            access_and_manage_monitoring=True,
-            access_and_manage_certificates=True,
-            manage_dbaas=True,
-            user_ids=[
-                example1.id,
-                example2.id,
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Group can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/group:Group mygroup {group uuid}
-        ```
-
-        > :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
-
+        Create a Group resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -831,7 +624,7 @@ class Group(pulumi.CustomResource):
             s3_privilege: Optional[pulumi.Input[bool]] = None,
             user_id: Optional[pulumi.Input[str]] = None,
             user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUserArgs']]]]] = None) -> 'Group':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -839,25 +632,14 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] access_activity_log: [Boolean] The group will be allowed to access the activity log.
-        :param pulumi.Input[bool] access_and_manage_certificates: [Boolean]  The group will be allowed to access and manage certificates.
-        :param pulumi.Input[bool] access_and_manage_monitoring: [Boolean]  The group will be allowed to access and manage monitoring.
-        :param pulumi.Input[bool] create_backup_unit: [Boolean] The group will be allowed to create backup unit privilege.
-        :param pulumi.Input[bool] create_datacenter: [Boolean] The group will be allowed to create virtual data centers.
-        :param pulumi.Input[bool] create_flow_log: [Boolean]  The group will be allowed to create flow log.
-        :param pulumi.Input[bool] create_internet_access: [Boolean] The group will be allowed to create internet access privilege.
-        :param pulumi.Input[bool] create_k8s_cluster: [Boolean]  The group will be allowed to create kubernetes cluster privilege.
-        :param pulumi.Input[bool] create_pcc: [Boolean] The group will be allowed to create Cross Connects privilege.
-        :param pulumi.Input[bool] create_snapshot: [Boolean] The group will be allowed to create snapshots.
-        :param pulumi.Input[bool] manage_dbaas: [Boolean]  Privilege for a group to manage DBaaS related functionality.
-        :param pulumi.Input[str] name: [string] A name for the group.
-        :param pulumi.Input[bool] reserve_ip: [Boolean] The group will be allowed to reserve IP addresses.
-        :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
-        :param pulumi.Input[str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: [list] A list of users to add to the group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUserArgs']]]] users: List of users - See the User section
-               
-               **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+        :param pulumi.Input[bool] access_and_manage_certificates: Privilege for a group to access and manage certificates.
+        :param pulumi.Input[bool] access_and_manage_monitoring: Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+               alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+        :param pulumi.Input[bool] create_backup_unit: Create backup unit privilege.
+        :param pulumi.Input[bool] create_flow_log: Create Flow Logs privilege.
+        :param pulumi.Input[bool] create_internet_access: Create internet access privilege.
+        :param pulumi.Input[bool] create_k8s_cluster: Create Kubernetes cluster privilege.
+        :param pulumi.Input[bool] manage_dbaas: Privilege for a group to manage DBaaS related functionality
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -885,16 +667,13 @@ class Group(pulumi.CustomResource):
     @property
     @pulumi.getter(name="accessActivityLog")
     def access_activity_log(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will be allowed to access the activity log.
-        """
         return pulumi.get(self, "access_activity_log")
 
     @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage certificates.
+        Privilege for a group to access and manage certificates.
         """
         return pulumi.get(self, "access_and_manage_certificates")
 
@@ -902,7 +681,8 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean]  The group will be allowed to access and manage monitoring.
+        Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         """
         return pulumi.get(self, "access_and_manage_monitoring")
 
@@ -910,23 +690,20 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="createBackupUnit")
     def create_backup_unit(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean] The group will be allowed to create backup unit privilege.
+        Create backup unit privilege.
         """
         return pulumi.get(self, "create_backup_unit")
 
     @property
     @pulumi.getter(name="createDatacenter")
     def create_datacenter(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will be allowed to create virtual data centers.
-        """
         return pulumi.get(self, "create_datacenter")
 
     @property
     @pulumi.getter(name="createFlowLog")
     def create_flow_log(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean]  The group will be allowed to create flow log.
+        Create Flow Logs privilege.
         """
         return pulumi.get(self, "create_flow_log")
 
@@ -934,7 +711,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="createInternetAccess")
     def create_internet_access(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean] The group will be allowed to create internet access privilege.
+        Create internet access privilege.
         """
         return pulumi.get(self, "create_internet_access")
 
@@ -942,84 +719,56 @@ class Group(pulumi.CustomResource):
     @pulumi.getter(name="createK8sCluster")
     def create_k8s_cluster(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        Create Kubernetes cluster privilege.
         """
         return pulumi.get(self, "create_k8s_cluster")
 
     @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will be allowed to create Cross Connects privilege.
-        """
         return pulumi.get(self, "create_pcc")
 
     @property
     @pulumi.getter(name="createSnapshot")
     def create_snapshot(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will be allowed to create snapshots.
-        """
         return pulumi.get(self, "create_snapshot")
 
     @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        Privilege for a group to manage DBaaS related functionality
         """
         return pulumi.get(self, "manage_dbaas")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string] A name for the group.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="reserveIp")
     def reserve_ip(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will be allowed to reserve IP addresses.
-        """
         return pulumi.get(self, "reserve_ip")
 
     @property
     @pulumi.getter(name="s3Privilege")
     def s3_privilege(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] The group will have S3 privilege.
-        """
         return pulumi.get(self, "s3_privilege")
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userIds")
     def user_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        [list] A list of users to add to the group.
-        """
         return pulumi.get(self, "user_ids")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Sequence['outputs.GroupUser']]:
-        """
-        List of users - See the User section
-
-        **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-        """
         return pulumi.get(self, "users")
 

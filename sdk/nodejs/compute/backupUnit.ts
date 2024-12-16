@@ -4,17 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * A Backup Unit resource can be imported using its `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}
- * ```
- *
- * This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
- */
 export class BackupUnit extends pulumi.CustomResource {
     /**
      * Get an existing BackupUnit resource's state with the given name, ID, and optional extra
@@ -44,7 +33,7 @@ export class BackupUnit extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The email address assigned to the backup unit
+     * The e-mail address you want assigned to the backup unit.
      */
     public readonly email!: pulumi.Output<string>;
     /**
@@ -52,11 +41,11 @@ export class BackupUnit extends pulumi.CustomResource {
      */
     public /*out*/ readonly login!: pulumi.Output<string>;
     /**
-     * [string] The name of the Backup Unit. This argument is immutable.
+     * Alphanumeric name you want assigned to the backup unit.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The desired password for the Backup Unit
+     * The password you want assigned to the backup unit.
      */
     public readonly password!: pulumi.Output<string>;
 
@@ -102,7 +91,7 @@ export class BackupUnit extends pulumi.CustomResource {
  */
 export interface BackupUnitState {
     /**
-     * [string] The email address assigned to the backup unit
+     * The e-mail address you want assigned to the backup unit.
      */
     email?: pulumi.Input<string>;
     /**
@@ -110,11 +99,11 @@ export interface BackupUnitState {
      */
     login?: pulumi.Input<string>;
     /**
-     * [string] The name of the Backup Unit. This argument is immutable.
+     * Alphanumeric name you want assigned to the backup unit.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The desired password for the Backup Unit
+     * The password you want assigned to the backup unit.
      */
     password?: pulumi.Input<string>;
 }
@@ -124,15 +113,15 @@ export interface BackupUnitState {
  */
 export interface BackupUnitArgs {
     /**
-     * [string] The email address assigned to the backup unit
+     * The e-mail address you want assigned to the backup unit.
      */
     email: pulumi.Input<string>;
     /**
-     * [string] The name of the Backup Unit. This argument is immutable.
+     * Alphanumeric name you want assigned to the backup unit.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The desired password for the Backup Unit
+     * The password you want assigned to the backup unit.
      */
     password: pulumi.Input<string>;
 }

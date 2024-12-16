@@ -13,20 +13,17 @@ namespace Pulumi.Ionoscloud.Cdn.Inputs
     public sealed class DistributionRoutingRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The prefix of the routing rule.
+        /// The prefix of the routing rule.
         /// </summary>
         [Input("prefix", required: true)]
         public Input<string> Prefix { get; set; } = null!;
 
         /// <summary>
-        /// [string] The scheme of the routing rule.
+        /// The scheme of the routing rule.
         /// </summary>
         [Input("scheme", required: true)]
         public Input<string> Scheme { get; set; } = null!;
 
-        /// <summary>
-        /// [map] - A map of properties for the rule
-        /// </summary>
         [Input("upstream", required: true)]
         public Input<Inputs.DistributionRoutingRuleUpstreamArgs> Upstream { get; set; } = null!;
 

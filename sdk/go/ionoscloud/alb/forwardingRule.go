@@ -12,163 +12,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"os"
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("datacenter description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				Public:       pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				Public:       pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleBalancer, err := alb.NewBalancer(ctx, "exampleBalancer", &alb.BalancerArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				ListenerLan:  example1.ID(),
-//				Ips: pulumi.StringArray{
-//					pulumi.String("10.12.118.224"),
-//				},
-//				TargetLan: example2.ID(),
-//				LbPrivateIps: pulumi.StringArray{
-//					pulumi.String("10.13.72.225/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// optionally you can add a certificate to the application load balancer
-//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      readFileOrPanic("path_to_cert"),
-//				CertificateChain: readFileOrPanic("path_to_cert_chain"),
-//				PrivateKey:       readFileOrPanic("path_to_private_key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = alb.NewForwardingRule(ctx, "exampleForwardingRule", &alb.ForwardingRuleArgs{
-//				DatacenterId:              exampleDatacenter.ID(),
-//				ApplicationLoadbalancerId: exampleBalancer.ID(),
-//				Protocol:                  pulumi.String("HTTP"),
-//				ListenerIp:                pulumi.String("10.12.118.224"),
-//				ListenerPort:              pulumi.Int(8080),
-//				ClientTimeout:             pulumi.Int(1000),
-//				HttpRules: alb.ForwardingRuleHttpRuleArray{
-//					&alb.ForwardingRuleHttpRuleArgs{
-//						Name:       pulumi.String("http_rule"),
-//						Type:       pulumi.String("REDIRECT"),
-//						DropQuery:  pulumi.Bool(true),
-//						Location:   pulumi.String("www.ionos.com"),
-//						StatusCode: pulumi.Int(301),
-//						Conditions: alb.ForwardingRuleHttpRuleConditionArray{
-//							&alb.ForwardingRuleHttpRuleConditionArgs{
-//								Type:      pulumi.String("HEADER"),
-//								Condition: pulumi.String("EQUALS"),
-//								Negate:    pulumi.Bool(true),
-//								Key:       pulumi.String("key"),
-//								Value:     pulumi.String("10.12.120.224/24"),
-//							},
-//						},
-//					},
-//					&alb.ForwardingRuleHttpRuleArgs{
-//						Name:            pulumi.String("http_rule_2"),
-//						Type:            pulumi.String("STATIC"),
-//						DropQuery:       pulumi.Bool(false),
-//						StatusCode:      pulumi.Int(303),
-//						ResponseMessage: pulumi.String("Response"),
-//						ContentType:     pulumi.String("text/plain"),
-//						Conditions: alb.ForwardingRuleHttpRuleConditionArray{
-//							&alb.ForwardingRuleHttpRuleConditionArgs{
-//								Type:      pulumi.String("QUERY"),
-//								Condition: pulumi.String("MATCHES"),
-//								Negate:    pulumi.Bool(false),
-//								Key:       pulumi.String("key"),
-//								Value:     pulumi.String("10.12.120.224/24"),
-//							},
-//						},
-//					},
-//				},
-//				ServerCertificates: pulumi.StringArray{
-//					cert.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
-// ```
 type ForwardingRule struct {
 	pulumi.CustomResourceState
 
-	// [string] The ID of Application Load Balancer.
 	ApplicationLoadbalancerId pulumi.StringOutput `pulumi:"applicationLoadbalancerId"`
-	// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
-	ClientTimeout pulumi.IntOutput `pulumi:"clientTimeout"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// [list] Array of items in that collection
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	ClientTimeout pulumi.IntOutput    `pulumi:"clientTimeout"`
+	DatacenterId  pulumi.StringOutput `pulumi:"datacenterId"`
+	// Array of items in that collection
 	HttpRules ForwardingRuleHttpRuleArrayOutput `pulumi:"httpRules"`
-	// [string] Listening (inbound) IP.
+	// Listening (inbound) IP.
 	ListenerIp pulumi.StringOutput `pulumi:"listenerIp"`
-	// [int] Listening (inbound) port number; valid range is 1 to 65535.
+	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntOutput `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] Balancing protocol.
+	// Balancing protocol.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// [list] Array of certificate ids. You can create certificates with the certificate resource.
+	// Array of items in the collection.
 	ServerCertificates pulumi.StringArrayOutput `pulumi:"serverCertificates"`
 }
 
@@ -217,44 +78,40 @@ func GetForwardingRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ForwardingRule resources.
 type forwardingRuleState struct {
-	// [string] The ID of Application Load Balancer.
 	ApplicationLoadbalancerId *string `pulumi:"applicationLoadbalancerId"`
-	// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
-	ClientTimeout *int `pulumi:"clientTimeout"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId *string `pulumi:"datacenterId"`
-	// [list] Array of items in that collection
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	ClientTimeout *int    `pulumi:"clientTimeout"`
+	DatacenterId  *string `pulumi:"datacenterId"`
+	// Array of items in that collection
 	HttpRules []ForwardingRuleHttpRule `pulumi:"httpRules"`
-	// [string] Listening (inbound) IP.
+	// Listening (inbound) IP.
 	ListenerIp *string `pulumi:"listenerIp"`
-	// [int] Listening (inbound) port number; valid range is 1 to 65535.
+	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort *int `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The name of the Application Load Balancer forwarding rule.
 	Name *string `pulumi:"name"`
-	// [string] Balancing protocol.
+	// Balancing protocol.
 	Protocol *string `pulumi:"protocol"`
-	// [list] Array of certificate ids. You can create certificates with the certificate resource.
+	// Array of items in the collection.
 	ServerCertificates []string `pulumi:"serverCertificates"`
 }
 
 type ForwardingRuleState struct {
-	// [string] The ID of Application Load Balancer.
 	ApplicationLoadbalancerId pulumi.StringPtrInput
-	// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
 	ClientTimeout pulumi.IntPtrInput
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringPtrInput
-	// [list] Array of items in that collection
+	DatacenterId  pulumi.StringPtrInput
+	// Array of items in that collection
 	HttpRules ForwardingRuleHttpRuleArrayInput
-	// [string] Listening (inbound) IP.
+	// Listening (inbound) IP.
 	ListenerIp pulumi.StringPtrInput
-	// [int] Listening (inbound) port number; valid range is 1 to 65535.
+	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntPtrInput
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringPtrInput
-	// [string] Balancing protocol.
+	// Balancing protocol.
 	Protocol pulumi.StringPtrInput
-	// [list] Array of certificate ids. You can create certificates with the certificate resource.
+	// Array of items in the collection.
 	ServerCertificates pulumi.StringArrayInput
 }
 
@@ -263,45 +120,41 @@ func (ForwardingRuleState) ElementType() reflect.Type {
 }
 
 type forwardingRuleArgs struct {
-	// [string] The ID of Application Load Balancer.
 	ApplicationLoadbalancerId string `pulumi:"applicationLoadbalancerId"`
-	// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
-	ClientTimeout *int `pulumi:"clientTimeout"`
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId string `pulumi:"datacenterId"`
-	// [list] Array of items in that collection
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	ClientTimeout *int   `pulumi:"clientTimeout"`
+	DatacenterId  string `pulumi:"datacenterId"`
+	// Array of items in that collection
 	HttpRules []ForwardingRuleHttpRule `pulumi:"httpRules"`
-	// [string] Listening (inbound) IP.
+	// Listening (inbound) IP.
 	ListenerIp string `pulumi:"listenerIp"`
-	// [int] Listening (inbound) port number; valid range is 1 to 65535.
+	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort int `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The name of the Application Load Balancer forwarding rule.
 	Name *string `pulumi:"name"`
-	// [string] Balancing protocol.
+	// Balancing protocol.
 	Protocol string `pulumi:"protocol"`
-	// [list] Array of certificate ids. You can create certificates with the certificate resource.
+	// Array of items in the collection.
 	ServerCertificates []string `pulumi:"serverCertificates"`
 }
 
 // The set of arguments for constructing a ForwardingRule resource.
 type ForwardingRuleArgs struct {
-	// [string] The ID of Application Load Balancer.
 	ApplicationLoadbalancerId pulumi.StringInput
-	// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
 	ClientTimeout pulumi.IntPtrInput
-	// [string] The ID of a Virtual Data Center.
-	DatacenterId pulumi.StringInput
-	// [list] Array of items in that collection
+	DatacenterId  pulumi.StringInput
+	// Array of items in that collection
 	HttpRules ForwardingRuleHttpRuleArrayInput
-	// [string] Listening (inbound) IP.
+	// Listening (inbound) IP.
 	ListenerIp pulumi.StringInput
-	// [int] Listening (inbound) port number; valid range is 1 to 65535.
+	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntInput
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringPtrInput
-	// [string] Balancing protocol.
+	// Balancing protocol.
 	Protocol pulumi.StringInput
-	// [list] Array of certificate ids. You can create certificates with the certificate resource.
+	// Array of items in the collection.
 	ServerCertificates pulumi.StringArrayInput
 }
 
@@ -392,47 +245,45 @@ func (o ForwardingRuleOutput) ToForwardingRuleOutputWithContext(ctx context.Cont
 	return o
 }
 
-// [string] The ID of Application Load Balancer.
 func (o ForwardingRuleOutput) ApplicationLoadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.ApplicationLoadbalancerId }).(pulumi.StringOutput)
 }
 
-// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
 func (o ForwardingRuleOutput) ClientTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.IntOutput { return v.ClientTimeout }).(pulumi.IntOutput)
 }
 
-// [string] The ID of a Virtual Data Center.
 func (o ForwardingRuleOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [list] Array of items in that collection
+// Array of items in that collection
 func (o ForwardingRuleOutput) HttpRules() ForwardingRuleHttpRuleArrayOutput {
 	return o.ApplyT(func(v *ForwardingRule) ForwardingRuleHttpRuleArrayOutput { return v.HttpRules }).(ForwardingRuleHttpRuleArrayOutput)
 }
 
-// [string] Listening (inbound) IP.
+// Listening (inbound) IP.
 func (o ForwardingRuleOutput) ListenerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.ListenerIp }).(pulumi.StringOutput)
 }
 
-// [int] Listening (inbound) port number; valid range is 1 to 65535.
+// Listening (inbound) port number; valid range is 1 to 65535.
 func (o ForwardingRuleOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.IntOutput { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
-// [string] The unique name of the Application Load Balancer HTTP rule.
+// The name of the Application Load Balancer forwarding rule.
 func (o ForwardingRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] Balancing protocol.
+// Balancing protocol.
 func (o ForwardingRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// [list] Array of certificate ids. You can create certificates with the certificate resource.
+// Array of items in the collection.
 func (o ForwardingRuleOutput) ServerCertificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringArrayOutput { return v.ServerCertificates }).(pulumi.StringArrayOutput)
 }

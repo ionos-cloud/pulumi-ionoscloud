@@ -25,9 +25,6 @@ namespace Pulumi.Ionoscloud.Nfs.Outputs
         /// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
         /// </summary>
         public readonly ImmutableArray<string> IpNetworks;
-        /// <summary>
-        /// NFS specific configurations. Each configuration includes:
-        /// </summary>
         public readonly Outputs.ShareClientGroupNfs? Nfs;
 
         [OutputConstructor]

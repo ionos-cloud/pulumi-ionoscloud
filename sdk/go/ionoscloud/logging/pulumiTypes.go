@@ -252,13 +252,260 @@ func (o PipelineLogDestinationArrayOutput) Index(i pulumi.IntInput) PipelineLogD
 	}).(PipelineLogDestinationOutput)
 }
 
+type GetPipelineLog struct {
+	// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+	Destinations []GetPipelineLogDestination `pulumi:"destinations"`
+	// [string] "Protocol to use as intake. Possible values are: http, tcp."
+	Protocol string `pulumi:"protocol"`
+	// [bool]
+	Public bool `pulumi:"public"`
+	// [string] The source parser to be used.
+	Source string `pulumi:"source"`
+	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+	Tag string `pulumi:"tag"`
+}
+
+// GetPipelineLogInput is an input type that accepts GetPipelineLogArgs and GetPipelineLogOutput values.
+// You can construct a concrete instance of `GetPipelineLogInput` via:
+//
+//	GetPipelineLogArgs{...}
+type GetPipelineLogInput interface {
+	pulumi.Input
+
+	ToGetPipelineLogOutput() GetPipelineLogOutput
+	ToGetPipelineLogOutputWithContext(context.Context) GetPipelineLogOutput
+}
+
+type GetPipelineLogArgs struct {
+	// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+	Destinations GetPipelineLogDestinationArrayInput `pulumi:"destinations"`
+	// [string] "Protocol to use as intake. Possible values are: http, tcp."
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// [bool]
+	Public pulumi.BoolInput `pulumi:"public"`
+	// [string] The source parser to be used.
+	Source pulumi.StringInput `pulumi:"source"`
+	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+	Tag pulumi.StringInput `pulumi:"tag"`
+}
+
+func (GetPipelineLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPipelineLog)(nil)).Elem()
+}
+
+func (i GetPipelineLogArgs) ToGetPipelineLogOutput() GetPipelineLogOutput {
+	return i.ToGetPipelineLogOutputWithContext(context.Background())
+}
+
+func (i GetPipelineLogArgs) ToGetPipelineLogOutputWithContext(ctx context.Context) GetPipelineLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPipelineLogOutput)
+}
+
+// GetPipelineLogArrayInput is an input type that accepts GetPipelineLogArray and GetPipelineLogArrayOutput values.
+// You can construct a concrete instance of `GetPipelineLogArrayInput` via:
+//
+//	GetPipelineLogArray{ GetPipelineLogArgs{...} }
+type GetPipelineLogArrayInput interface {
+	pulumi.Input
+
+	ToGetPipelineLogArrayOutput() GetPipelineLogArrayOutput
+	ToGetPipelineLogArrayOutputWithContext(context.Context) GetPipelineLogArrayOutput
+}
+
+type GetPipelineLogArray []GetPipelineLogInput
+
+func (GetPipelineLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPipelineLog)(nil)).Elem()
+}
+
+func (i GetPipelineLogArray) ToGetPipelineLogArrayOutput() GetPipelineLogArrayOutput {
+	return i.ToGetPipelineLogArrayOutputWithContext(context.Background())
+}
+
+func (i GetPipelineLogArray) ToGetPipelineLogArrayOutputWithContext(ctx context.Context) GetPipelineLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPipelineLogArrayOutput)
+}
+
+type GetPipelineLogOutput struct{ *pulumi.OutputState }
+
+func (GetPipelineLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPipelineLog)(nil)).Elem()
+}
+
+func (o GetPipelineLogOutput) ToGetPipelineLogOutput() GetPipelineLogOutput {
+	return o
+}
+
+func (o GetPipelineLogOutput) ToGetPipelineLogOutputWithContext(ctx context.Context) GetPipelineLogOutput {
+	return o
+}
+
+// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+func (o GetPipelineLogOutput) Destinations() GetPipelineLogDestinationArrayOutput {
+	return o.ApplyT(func(v GetPipelineLog) []GetPipelineLogDestination { return v.Destinations }).(GetPipelineLogDestinationArrayOutput)
+}
+
+// [string] "Protocol to use as intake. Possible values are: http, tcp."
+func (o GetPipelineLogOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPipelineLog) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// [bool]
+func (o GetPipelineLogOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPipelineLog) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+// [string] The source parser to be used.
+func (o GetPipelineLogOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPipelineLog) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+func (o GetPipelineLogOutput) Tag() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPipelineLog) string { return v.Tag }).(pulumi.StringOutput)
+}
+
+type GetPipelineLogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPipelineLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPipelineLog)(nil)).Elem()
+}
+
+func (o GetPipelineLogArrayOutput) ToGetPipelineLogArrayOutput() GetPipelineLogArrayOutput {
+	return o
+}
+
+func (o GetPipelineLogArrayOutput) ToGetPipelineLogArrayOutputWithContext(ctx context.Context) GetPipelineLogArrayOutput {
+	return o
+}
+
+func (o GetPipelineLogArrayOutput) Index(i pulumi.IntInput) GetPipelineLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPipelineLog {
+		return vs[0].([]GetPipelineLog)[vs[1].(int)]
+	}).(GetPipelineLogOutput)
+}
+
+type GetPipelineLogDestination struct {
+	// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+	RetentionInDays int `pulumi:"retentionInDays"`
+	// [string] The internal output stream to send logs to.
+	Type string `pulumi:"type"`
+}
+
+// GetPipelineLogDestinationInput is an input type that accepts GetPipelineLogDestinationArgs and GetPipelineLogDestinationOutput values.
+// You can construct a concrete instance of `GetPipelineLogDestinationInput` via:
+//
+//	GetPipelineLogDestinationArgs{...}
+type GetPipelineLogDestinationInput interface {
+	pulumi.Input
+
+	ToGetPipelineLogDestinationOutput() GetPipelineLogDestinationOutput
+	ToGetPipelineLogDestinationOutputWithContext(context.Context) GetPipelineLogDestinationOutput
+}
+
+type GetPipelineLogDestinationArgs struct {
+	// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+	RetentionInDays pulumi.IntInput `pulumi:"retentionInDays"`
+	// [string] The internal output stream to send logs to.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetPipelineLogDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPipelineLogDestination)(nil)).Elem()
+}
+
+func (i GetPipelineLogDestinationArgs) ToGetPipelineLogDestinationOutput() GetPipelineLogDestinationOutput {
+	return i.ToGetPipelineLogDestinationOutputWithContext(context.Background())
+}
+
+func (i GetPipelineLogDestinationArgs) ToGetPipelineLogDestinationOutputWithContext(ctx context.Context) GetPipelineLogDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPipelineLogDestinationOutput)
+}
+
+// GetPipelineLogDestinationArrayInput is an input type that accepts GetPipelineLogDestinationArray and GetPipelineLogDestinationArrayOutput values.
+// You can construct a concrete instance of `GetPipelineLogDestinationArrayInput` via:
+//
+//	GetPipelineLogDestinationArray{ GetPipelineLogDestinationArgs{...} }
+type GetPipelineLogDestinationArrayInput interface {
+	pulumi.Input
+
+	ToGetPipelineLogDestinationArrayOutput() GetPipelineLogDestinationArrayOutput
+	ToGetPipelineLogDestinationArrayOutputWithContext(context.Context) GetPipelineLogDestinationArrayOutput
+}
+
+type GetPipelineLogDestinationArray []GetPipelineLogDestinationInput
+
+func (GetPipelineLogDestinationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPipelineLogDestination)(nil)).Elem()
+}
+
+func (i GetPipelineLogDestinationArray) ToGetPipelineLogDestinationArrayOutput() GetPipelineLogDestinationArrayOutput {
+	return i.ToGetPipelineLogDestinationArrayOutputWithContext(context.Background())
+}
+
+func (i GetPipelineLogDestinationArray) ToGetPipelineLogDestinationArrayOutputWithContext(ctx context.Context) GetPipelineLogDestinationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPipelineLogDestinationArrayOutput)
+}
+
+type GetPipelineLogDestinationOutput struct{ *pulumi.OutputState }
+
+func (GetPipelineLogDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPipelineLogDestination)(nil)).Elem()
+}
+
+func (o GetPipelineLogDestinationOutput) ToGetPipelineLogDestinationOutput() GetPipelineLogDestinationOutput {
+	return o
+}
+
+func (o GetPipelineLogDestinationOutput) ToGetPipelineLogDestinationOutputWithContext(ctx context.Context) GetPipelineLogDestinationOutput {
+	return o
+}
+
+// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+func (o GetPipelineLogDestinationOutput) RetentionInDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPipelineLogDestination) int { return v.RetentionInDays }).(pulumi.IntOutput)
+}
+
+// [string] The internal output stream to send logs to.
+func (o GetPipelineLogDestinationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPipelineLogDestination) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetPipelineLogDestinationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPipelineLogDestinationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPipelineLogDestination)(nil)).Elem()
+}
+
+func (o GetPipelineLogDestinationArrayOutput) ToGetPipelineLogDestinationArrayOutput() GetPipelineLogDestinationArrayOutput {
+	return o
+}
+
+func (o GetPipelineLogDestinationArrayOutput) ToGetPipelineLogDestinationArrayOutputWithContext(ctx context.Context) GetPipelineLogDestinationArrayOutput {
+	return o
+}
+
+func (o GetPipelineLogDestinationArrayOutput) Index(i pulumi.IntInput) GetPipelineLogDestinationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPipelineLogDestination {
+		return vs[0].([]GetPipelineLogDestination)[vs[1].(int)]
+	}).(GetPipelineLogDestinationOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PipelineLogInput)(nil)).Elem(), PipelineLogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PipelineLogArrayInput)(nil)).Elem(), PipelineLogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PipelineLogDestinationInput)(nil)).Elem(), PipelineLogDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PipelineLogDestinationArrayInput)(nil)).Elem(), PipelineLogDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPipelineLogInput)(nil)).Elem(), GetPipelineLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPipelineLogArrayInput)(nil)).Elem(), GetPipelineLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPipelineLogDestinationInput)(nil)).Elem(), GetPipelineLogDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPipelineLogDestinationArrayInput)(nil)).Elem(), GetPipelineLogDestinationArray{})
 	pulumi.RegisterOutputType(PipelineLogOutput{})
 	pulumi.RegisterOutputType(PipelineLogArrayOutput{})
 	pulumi.RegisterOutputType(PipelineLogDestinationOutput{})
 	pulumi.RegisterOutputType(PipelineLogDestinationArrayOutput{})
+	pulumi.RegisterOutputType(GetPipelineLogOutput{})
+	pulumi.RegisterOutputType(GetPipelineLogArrayOutput{})
+	pulumi.RegisterOutputType(GetPipelineLogDestinationOutput{})
+	pulumi.RegisterOutputType(GetPipelineLogDestinationArrayOutput{})
 }

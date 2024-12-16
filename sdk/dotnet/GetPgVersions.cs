@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetPgVersionsResult> Invoke(GetPgVersionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPgVersionsResult>("ionoscloud:index/getPgVersions:getPgVersions", args ?? new GetPgVersionsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPgVersionsResult> Invoke(GetPgVersionsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPgVersionsResult>("ionoscloud:index/getPgVersions:getPgVersions", args ?? new GetPgVersionsInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -14,48 +14,46 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class AutoscalingGroupReplicaConfigurationVolume
     {
         /// <summary>
-        /// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+        /// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         /// </summary>
         public readonly string? BackupUnitId;
         /// <summary>
-        /// [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+        /// Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
+        /// Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
         /// Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
         /// </summary>
         public readonly string BootOrder;
         /// <summary>
-        /// [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+        /// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
         /// </summary>
         public readonly string? Bus;
         /// <summary>
-        /// [string] The image installed on the volume. Only the UUID of the image is presently supported.
+        /// The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
         /// </summary>
         public readonly string? Image;
         /// <summary>
-        /// [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+        /// The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
         /// </summary>
         public readonly string? ImageAlias;
         /// <summary>
-        /// [string] Image password for this replica volume.
+        /// Image password for this replica volume.
         /// </summary>
         public readonly string? ImagePassword;
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// Name for this replica volume.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// [int] Name for this replica volume.
+        /// User-defined size for this replica volume in GB.
         /// </summary>
         public readonly int Size;
-        /// <summary>
-        /// List of ssh keys, supports values or paths to files. Cannot be changed at update.
-        /// </summary>
         public readonly ImmutableArray<string> SshKeys;
         /// <summary>
-        /// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+        /// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+        /// User-data (Cloud Init) for this replica volume.
         /// </summary>
         public readonly string? UserData;
 

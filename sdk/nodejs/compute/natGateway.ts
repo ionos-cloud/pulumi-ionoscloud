@@ -6,51 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **Nat Gateway** on IonosCloud.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("exampleIPBlock", {
- *     location: "us/las",
- *     size: 2,
- * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": true,
- * });
- * const exampleNatGateway = new ionoscloud.compute.NatGateway("exampleNatGateway", {
- *     datacenterId: exampleDatacenter.id,
- *     publicIps: [
- *         exampleIPBlock.ips[0],
- *         exampleIPBlock.ips[1],
- *     ],
- *     lans: [{
- *         id: exampleLan.id,
- *         gatewayIps: ["10.11.2.5"],
- *     }],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
- * ```
- */
 export class NatGateway extends pulumi.CustomResource {
     /**
      * Get an existing NatGateway resource's state with the given name, ID, and optional extra
@@ -79,20 +34,17 @@ export class NatGateway extends pulumi.CustomResource {
         return obj['__pulumiType'] === NatGateway.__pulumiType;
     }
 
-    /**
-     * [string] A Datacenter's UUID.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * [list] A list of Local Area Networks the node pool should be part of.
+     * A list of Local Area Networks the node pool should be part of
      */
     public readonly lans!: pulumi.Output<outputs.compute.NatGatewayLan[]>;
     /**
-     * [string] Name of the NAT gateway.
+     * Name of the NAT gateway
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+     * Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
      */
     public readonly publicIps!: pulumi.Output<string[]>;
 
@@ -138,20 +90,17 @@ export class NatGateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering NatGateway resources.
  */
 export interface NatGatewayState {
-    /**
-     * [string] A Datacenter's UUID.
-     */
     datacenterId?: pulumi.Input<string>;
     /**
-     * [list] A list of Local Area Networks the node pool should be part of.
+     * A list of Local Area Networks the node pool should be part of
      */
     lans?: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
     /**
-     * [string] Name of the NAT gateway.
+     * Name of the NAT gateway
      */
     name?: pulumi.Input<string>;
     /**
-     * [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+     * Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
      */
     publicIps?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -160,20 +109,17 @@ export interface NatGatewayState {
  * The set of arguments for constructing a NatGateway resource.
  */
 export interface NatGatewayArgs {
-    /**
-     * [string] A Datacenter's UUID.
-     */
     datacenterId: pulumi.Input<string>;
     /**
-     * [list] A list of Local Area Networks the node pool should be part of.
+     * A list of Local Area Networks the node pool should be part of
      */
     lans: pulumi.Input<pulumi.Input<inputs.compute.NatGatewayLan>[]>;
     /**
-     * [string] Name of the NAT gateway.
+     * Name of the NAT gateway
      */
     name?: pulumi.Input<string>;
     /**
-     * [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
+     * Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
      */
     publicIps: pulumi.Input<pulumi.Input<string>[]>;
 }

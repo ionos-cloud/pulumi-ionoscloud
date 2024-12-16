@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Dsaas.Inputs
     public sealed class ClusterLanGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
+        /// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
         /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         /// <summary>
-        /// [string] The LAN ID of an existing LAN at the related data center.
+        /// The LAN ID of an existing LAN at the related data center
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;
@@ -28,7 +28,7 @@ namespace Pulumi.Ionoscloud.Dsaas.Inputs
         private InputList<Inputs.ClusterLanRouteGetArgs>? _routes;
 
         /// <summary>
-        /// [list] An array of additional LANs attached to worker nodes.
+        /// An array of additional LANs attached to worker nodes
         /// </summary>
         public InputList<Inputs.ClusterLanRouteGetArgs> Routes
         {

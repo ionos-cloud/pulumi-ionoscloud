@@ -9,103 +9,43 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Alb
 {
-    /// <summary>
-    /// Manages an **Application Load Balancer** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Description = "datacenter description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var example1 = new Ionoscloud.Compute.Lan("example1", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var example2 = new Ionoscloud.Compute.Lan("example2", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var exampleBalancer = new Ionoscloud.Alb.Balancer("exampleBalancer", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         ListenerLan = example1.Id,
-    ///         Ips = new[]
-    ///         {
-    ///             "10.12.118.224",
-    ///         },
-    ///         TargetLan = example2.Id,
-    ///         LbPrivateIps = new[]
-    ///         {
-    ///             "10.13.72.225/24",
-    ///         },
-    ///         CentralLogging = true,
-    ///         LoggingFormat = "%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:alb/balancer:Balancer")]
     public partial class Balancer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [bool] Turn logging on and off for this product. Default value is 'false'.
+        /// Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Output("centralLogging")]
         public Output<bool?> CentralLogging { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] ID of the datacenter.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        /// instances are being accessed.
         /// </summary>
         [Output("flowlog")]
         public Output<Outputs.BalancerFlowlog?> Flowlog { get; private set; } = null!;
 
         /// <summary>
-        /// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+        /// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
+        /// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         /// </summary>
         [Output("ips")]
         public Output<ImmutableArray<string>> Ips { get; private set; } = null!;
 
         /// <summary>
-        /// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+        /// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
+        /// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         /// </summary>
         [Output("lbPrivateIps")]
         public Output<ImmutableArray<string>> LbPrivateIps { get; private set; } = null!;
 
         /// <summary>
-        /// [int] ID of the listening (inbound) LAN.
+        /// ID of the listening (inbound) LAN.
         /// </summary>
         [Output("listenerLan")]
         public Output<int> ListenerLan { get; private set; } = null!;
@@ -117,15 +57,13 @@ namespace Pulumi.Ionoscloud.Alb
         public Output<string?> LoggingFormat { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        /// The name of the Application Load Balancer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [int] ID of the balanced private target LAN (outbound).
+        /// ID of the balanced private target LAN (outbound).
         /// </summary>
         [Output("targetLan")]
         public Output<int> TargetLan { get; private set; } = null!;
@@ -177,19 +115,19 @@ namespace Pulumi.Ionoscloud.Alb
     public sealed class BalancerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [bool] Turn logging on and off for this product. Default value is 'false'.
+        /// Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Input("centralLogging")]
         public Input<bool>? CentralLogging { get; set; }
 
-        /// <summary>
-        /// [string] ID of the datacenter.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        /// instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.BalancerFlowlogArgs>? Flowlog { get; set; }
@@ -198,7 +136,8 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _ips;
 
         /// <summary>
-        /// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+        /// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
+        /// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         /// </summary>
         public InputList<string> Ips
         {
@@ -210,7 +149,8 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _lbPrivateIps;
 
         /// <summary>
-        /// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+        /// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
+        /// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         /// </summary>
         public InputList<string> LbPrivateIps
         {
@@ -219,7 +159,7 @@ namespace Pulumi.Ionoscloud.Alb
         }
 
         /// <summary>
-        /// [int] ID of the listening (inbound) LAN.
+        /// ID of the listening (inbound) LAN.
         /// </summary>
         [Input("listenerLan", required: true)]
         public Input<int> ListenerLan { get; set; } = null!;
@@ -231,15 +171,13 @@ namespace Pulumi.Ionoscloud.Alb
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        /// The name of the Application Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [int] ID of the balanced private target LAN (outbound).
+        /// ID of the balanced private target LAN (outbound).
         /// </summary>
         [Input("targetLan", required: true)]
         public Input<int> TargetLan { get; set; } = null!;
@@ -253,19 +191,19 @@ namespace Pulumi.Ionoscloud.Alb
     public sealed class BalancerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [bool] Turn logging on and off for this product. Default value is 'false'.
+        /// Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Input("centralLogging")]
         public Input<bool>? CentralLogging { get; set; }
 
-        /// <summary>
-        /// [string] ID of the datacenter.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        /// instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.BalancerFlowlogGetArgs>? Flowlog { get; set; }
@@ -274,7 +212,8 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _ips;
 
         /// <summary>
-        /// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+        /// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
+        /// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         /// </summary>
         public InputList<string> Ips
         {
@@ -286,7 +225,8 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _lbPrivateIps;
 
         /// <summary>
-        /// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+        /// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
+        /// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         /// </summary>
         public InputList<string> LbPrivateIps
         {
@@ -295,7 +235,7 @@ namespace Pulumi.Ionoscloud.Alb
         }
 
         /// <summary>
-        /// [int] ID of the listening (inbound) LAN.
+        /// ID of the listening (inbound) LAN.
         /// </summary>
         [Input("listenerLan")]
         public Input<int>? ListenerLan { get; set; }
@@ -307,15 +247,13 @@ namespace Pulumi.Ionoscloud.Alb
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        /// The name of the Application Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [int] ID of the balanced private target LAN (outbound).
+        /// ID of the balanced private target LAN (outbound).
         /// </summary>
         [Input("targetLan")]
         public Input<int>? TargetLan { get; set; }

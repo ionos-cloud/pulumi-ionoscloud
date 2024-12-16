@@ -14,9 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ApigatewayCustomDomain struct {
-	// [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+	// The certificate ID for the domain.
 	CertificateId *string `pulumi:"certificateId"`
-	// [string] The domain name. Externally reachable.
+	// The domain name.
 	Name string `pulumi:"name"`
 }
 
@@ -32,9 +32,9 @@ type ApigatewayCustomDomainInput interface {
 }
 
 type ApigatewayCustomDomainArgs struct {
-	// [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+	// The certificate ID for the domain.
 	CertificateId pulumi.StringPtrInput `pulumi:"certificateId"`
-	// [string] The domain name. Externally reachable.
+	// The domain name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -89,12 +89,12 @@ func (o ApigatewayCustomDomainOutput) ToApigatewayCustomDomainOutputWithContext(
 	return o
 }
 
-// [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+// The certificate ID for the domain.
 func (o ApigatewayCustomDomainOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ApigatewayCustomDomain) *string { return v.CertificateId }).(pulumi.StringPtrOutput)
 }
 
-// [string] The domain name. Externally reachable.
+// The domain name.
 func (o ApigatewayCustomDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ApigatewayCustomDomain) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -120,15 +120,15 @@ func (o ApigatewayCustomDomainArrayOutput) Index(i pulumi.IntInput) ApigatewayCu
 }
 
 type ApigatewayRouteUpstream struct {
-	// [string] The host of the upstream.
+	// The host of the upstream.
 	Host string `pulumi:"host"`
-	// [string] The load balancer algorithm. Default value: `roundrobin`.
+	// The load balancer algorithm.
 	Loadbalancer *string `pulumi:"loadbalancer"`
-	// [int] The port of the upstream. Default value: `80`.
+	// The port of the upstream.
 	Port *int `pulumi:"port"`
-	// [string] The target URL of the upstream. Default value: `http`.
+	// The target URL of the upstream.
 	Scheme *string `pulumi:"scheme"`
-	// [int] Weight with which to split traffic to the upstream. Default value: `100`.
+	// Weight with which to split traffic to the upstream.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -144,15 +144,15 @@ type ApigatewayRouteUpstreamInput interface {
 }
 
 type ApigatewayRouteUpstreamArgs struct {
-	// [string] The host of the upstream.
+	// The host of the upstream.
 	Host pulumi.StringInput `pulumi:"host"`
-	// [string] The load balancer algorithm. Default value: `roundrobin`.
+	// The load balancer algorithm.
 	Loadbalancer pulumi.StringPtrInput `pulumi:"loadbalancer"`
-	// [int] The port of the upstream. Default value: `80`.
+	// The port of the upstream.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// [string] The target URL of the upstream. Default value: `http`.
+	// The target URL of the upstream.
 	Scheme pulumi.StringPtrInput `pulumi:"scheme"`
-	// [int] Weight with which to split traffic to the upstream. Default value: `100`.
+	// Weight with which to split traffic to the upstream.
 	Weight pulumi.IntPtrInput `pulumi:"weight"`
 }
 
@@ -207,27 +207,27 @@ func (o ApigatewayRouteUpstreamOutput) ToApigatewayRouteUpstreamOutputWithContex
 	return o
 }
 
-// [string] The host of the upstream.
+// The host of the upstream.
 func (o ApigatewayRouteUpstreamOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v ApigatewayRouteUpstream) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// [string] The load balancer algorithm. Default value: `roundrobin`.
+// The load balancer algorithm.
 func (o ApigatewayRouteUpstreamOutput) Loadbalancer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ApigatewayRouteUpstream) *string { return v.Loadbalancer }).(pulumi.StringPtrOutput)
 }
 
-// [int] The port of the upstream. Default value: `80`.
+// The port of the upstream.
 func (o ApigatewayRouteUpstreamOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ApigatewayRouteUpstream) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// [string] The target URL of the upstream. Default value: `http`.
+// The target URL of the upstream.
 func (o ApigatewayRouteUpstreamOutput) Scheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ApigatewayRouteUpstream) *string { return v.Scheme }).(pulumi.StringPtrOutput)
 }
 
-// [int] Weight with which to split traffic to the upstream. Default value: `100`.
+// Weight with which to split traffic to the upstream.
 func (o ApigatewayRouteUpstreamOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ApigatewayRouteUpstream) *int { return v.Weight }).(pulumi.IntPtrOutput)
 }
@@ -253,19 +253,19 @@ func (o ApigatewayRouteUpstreamArrayOutput) Index(i pulumi.IntInput) ApigatewayR
 }
 
 type AutoscalingGroupPolicy struct {
-	// [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+	// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 	Metric string `pulumi:"metric"`
-	// [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
 	Range *string `pulumi:"range"`
-	// [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+	// Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
 	ScaleInAction AutoscalingGroupPolicyScaleInAction `pulumi:"scaleInAction"`
-	// [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 	ScaleInThreshold int `pulumi:"scaleInThreshold"`
-	// [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+	// Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
 	ScaleOutAction AutoscalingGroupPolicyScaleOutAction `pulumi:"scaleOutAction"`
-	// [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 	ScaleOutThreshold int `pulumi:"scaleOutThreshold"`
-	// [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+	// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 	Unit string `pulumi:"unit"`
 }
 
@@ -281,19 +281,19 @@ type AutoscalingGroupPolicyInput interface {
 }
 
 type AutoscalingGroupPolicyArgs struct {
-	// [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+	// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 	Metric pulumi.StringInput `pulumi:"metric"`
-	// [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
 	Range pulumi.StringPtrInput `pulumi:"range"`
-	// [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+	// Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
 	ScaleInAction AutoscalingGroupPolicyScaleInActionInput `pulumi:"scaleInAction"`
-	// [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 	ScaleInThreshold pulumi.IntInput `pulumi:"scaleInThreshold"`
-	// [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+	// Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
 	ScaleOutAction AutoscalingGroupPolicyScaleOutActionInput `pulumi:"scaleOutAction"`
-	// [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 	ScaleOutThreshold pulumi.IntInput `pulumi:"scaleOutThreshold"`
-	// [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+	// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 	Unit pulumi.StringInput `pulumi:"unit"`
 }
 
@@ -374,37 +374,37 @@ func (o AutoscalingGroupPolicyOutput) ToAutoscalingGroupPolicyPtrOutputWithConte
 	}).(AutoscalingGroupPolicyPtrOutput)
 }
 
-// [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 func (o AutoscalingGroupPolicyOutput) Metric() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) string { return v.Metric }).(pulumi.StringOutput)
 }
 
-// [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
 func (o AutoscalingGroupPolicyOutput) Range() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) *string { return v.Range }).(pulumi.StringPtrOutput)
 }
 
-// [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+// Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
 func (o AutoscalingGroupPolicyOutput) ScaleInAction() AutoscalingGroupPolicyScaleInActionOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) AutoscalingGroupPolicyScaleInAction { return v.ScaleInAction }).(AutoscalingGroupPolicyScaleInActionOutput)
 }
 
-// [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 func (o AutoscalingGroupPolicyOutput) ScaleInThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) int { return v.ScaleInThreshold }).(pulumi.IntOutput)
 }
 
-// [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+// Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
 func (o AutoscalingGroupPolicyOutput) ScaleOutAction() AutoscalingGroupPolicyScaleOutActionOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) AutoscalingGroupPolicyScaleOutAction { return v.ScaleOutAction }).(AutoscalingGroupPolicyScaleOutActionOutput)
 }
 
-// [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 func (o AutoscalingGroupPolicyOutput) ScaleOutThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) int { return v.ScaleOutThreshold }).(pulumi.IntOutput)
 }
 
-// [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 func (o AutoscalingGroupPolicyOutput) Unit() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicy) string { return v.Unit }).(pulumi.StringOutput)
 }
@@ -433,7 +433,7 @@ func (o AutoscalingGroupPolicyPtrOutput) Elem() AutoscalingGroupPolicyOutput {
 	}).(AutoscalingGroupPolicyOutput)
 }
 
-// [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 func (o AutoscalingGroupPolicyPtrOutput) Metric() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *string {
 		if v == nil {
@@ -443,7 +443,7 @@ func (o AutoscalingGroupPolicyPtrOutput) Metric() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
 func (o AutoscalingGroupPolicyPtrOutput) Range() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *string {
 		if v == nil {
@@ -453,7 +453,7 @@ func (o AutoscalingGroupPolicyPtrOutput) Range() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+// Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
 func (o AutoscalingGroupPolicyPtrOutput) ScaleInAction() AutoscalingGroupPolicyScaleInActionPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *AutoscalingGroupPolicyScaleInAction {
 		if v == nil {
@@ -463,7 +463,7 @@ func (o AutoscalingGroupPolicyPtrOutput) ScaleInAction() AutoscalingGroupPolicyS
 	}).(AutoscalingGroupPolicyScaleInActionPtrOutput)
 }
 
-// [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 func (o AutoscalingGroupPolicyPtrOutput) ScaleInThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *int {
 		if v == nil {
@@ -473,7 +473,7 @@ func (o AutoscalingGroupPolicyPtrOutput) ScaleInThreshold() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+// Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
 func (o AutoscalingGroupPolicyPtrOutput) ScaleOutAction() AutoscalingGroupPolicyScaleOutActionPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *AutoscalingGroupPolicyScaleOutAction {
 		if v == nil {
@@ -483,7 +483,7 @@ func (o AutoscalingGroupPolicyPtrOutput) ScaleOutAction() AutoscalingGroupPolicy
 	}).(AutoscalingGroupPolicyScaleOutActionPtrOutput)
 }
 
-// [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+// The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
 func (o AutoscalingGroupPolicyPtrOutput) ScaleOutThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *int {
 		if v == nil {
@@ -493,7 +493,7 @@ func (o AutoscalingGroupPolicyPtrOutput) ScaleOutThreshold() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 func (o AutoscalingGroupPolicyPtrOutput) Unit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicy) *string {
 		if v == nil {
@@ -504,15 +504,15 @@ func (o AutoscalingGroupPolicyPtrOutput) Unit() pulumi.StringPtrOutput {
 }
 
 type AutoscalingGroupPolicyScaleInAction struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount int `pulumi:"amount"`
-	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType string `pulumi:"amountType"`
-	// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 	CooldownPeriod *string `pulumi:"cooldownPeriod"`
-	// [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 	DeleteVolumes bool `pulumi:"deleteVolumes"`
-	// [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+	// The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
 	TerminationPolicyType *string `pulumi:"terminationPolicyType"`
 }
 
@@ -528,15 +528,15 @@ type AutoscalingGroupPolicyScaleInActionInput interface {
 }
 
 type AutoscalingGroupPolicyScaleInActionArgs struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount pulumi.IntInput `pulumi:"amount"`
-	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType pulumi.StringInput `pulumi:"amountType"`
-	// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 	CooldownPeriod pulumi.StringPtrInput `pulumi:"cooldownPeriod"`
-	// [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 	DeleteVolumes pulumi.BoolInput `pulumi:"deleteVolumes"`
-	// [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+	// The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
 	TerminationPolicyType pulumi.StringPtrInput `pulumi:"terminationPolicyType"`
 }
 
@@ -617,27 +617,27 @@ func (o AutoscalingGroupPolicyScaleInActionOutput) ToAutoscalingGroupPolicyScale
 	}).(AutoscalingGroupPolicyScaleInActionPtrOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 func (o AutoscalingGroupPolicyScaleInActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) int { return v.Amount }).(pulumi.IntOutput)
 }
 
-// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 func (o AutoscalingGroupPolicyScaleInActionOutput) AmountType() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) string { return v.AmountType }).(pulumi.StringOutput)
 }
 
-// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 func (o AutoscalingGroupPolicyScaleInActionOutput) CooldownPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) *string { return v.CooldownPeriod }).(pulumi.StringPtrOutput)
 }
 
-// [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 func (o AutoscalingGroupPolicyScaleInActionOutput) DeleteVolumes() pulumi.BoolOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) bool { return v.DeleteVolumes }).(pulumi.BoolOutput)
 }
 
-// [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+// The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
 func (o AutoscalingGroupPolicyScaleInActionOutput) TerminationPolicyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleInAction) *string { return v.TerminationPolicyType }).(pulumi.StringPtrOutput)
 }
@@ -666,7 +666,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) Elem() AutoscalingGroupPol
 	}).(AutoscalingGroupPolicyScaleInActionOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) Amount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *int {
 		if v == nil {
@@ -676,7 +676,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) Amount() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) AmountType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *string {
 		if v == nil {
@@ -686,7 +686,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) AmountType() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) CooldownPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *string {
 		if v == nil {
@@ -696,7 +696,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) CooldownPeriod() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) DeleteVolumes() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *bool {
 		if v == nil {
@@ -706,7 +706,7 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) DeleteVolumes() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+// The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
 func (o AutoscalingGroupPolicyScaleInActionPtrOutput) TerminationPolicyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleInAction) *string {
 		if v == nil {
@@ -717,11 +717,11 @@ func (o AutoscalingGroupPolicyScaleInActionPtrOutput) TerminationPolicyType() pu
 }
 
 type AutoscalingGroupPolicyScaleOutAction struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
 	Amount int `pulumi:"amount"`
-	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType string `pulumi:"amountType"`
-	// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 	CooldownPeriod *string `pulumi:"cooldownPeriod"`
 }
 
@@ -737,11 +737,11 @@ type AutoscalingGroupPolicyScaleOutActionInput interface {
 }
 
 type AutoscalingGroupPolicyScaleOutActionArgs struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
 	Amount pulumi.IntInput `pulumi:"amount"`
-	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType pulumi.StringInput `pulumi:"amountType"`
-	// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 	CooldownPeriod pulumi.StringPtrInput `pulumi:"cooldownPeriod"`
 }
 
@@ -822,17 +822,17 @@ func (o AutoscalingGroupPolicyScaleOutActionOutput) ToAutoscalingGroupPolicyScal
 	}).(AutoscalingGroupPolicyScaleOutActionPtrOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
 func (o AutoscalingGroupPolicyScaleOutActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleOutAction) int { return v.Amount }).(pulumi.IntOutput)
 }
 
-// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 func (o AutoscalingGroupPolicyScaleOutActionOutput) AmountType() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleOutAction) string { return v.AmountType }).(pulumi.StringOutput)
 }
 
-// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 func (o AutoscalingGroupPolicyScaleOutActionOutput) CooldownPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupPolicyScaleOutAction) *string { return v.CooldownPeriod }).(pulumi.StringPtrOutput)
 }
@@ -861,7 +861,7 @@ func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) Elem() AutoscalingGroupPo
 	}).(AutoscalingGroupPolicyScaleOutActionOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
 func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) Amount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleOutAction) *int {
 		if v == nil {
@@ -871,7 +871,7 @@ func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) Amount() pulumi.IntPtrOut
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) AmountType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleOutAction) *string {
 		if v == nil {
@@ -881,7 +881,7 @@ func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) AmountType() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
 func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) CooldownPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupPolicyScaleOutAction) *string {
 		if v == nil {
@@ -892,17 +892,17 @@ func (o AutoscalingGroupPolicyScaleOutActionPtrOutput) CooldownPeriod() pulumi.S
 }
 
 type AutoscalingGroupReplicaConfiguration struct {
-	// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+	// The zone where the VMs are created using this configuration.
 	AvailabilityZone string `pulumi:"availabilityZone"`
-	// [int] The total number of cores for the VMs.
+	// The total number of cores for the VMs.
 	Cores int `pulumi:"cores"`
-	// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+	// The zone where the VMs are created using this configuration.
 	CpuFamily *string `pulumi:"cpuFamily"`
 	// Set of NICs associated with this Replica.
 	Nics []AutoscalingGroupReplicaConfigurationNic `pulumi:"nics"`
-	// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+	// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
 	Ram int `pulumi:"ram"`
-	// [list] List of volumes associated with this Replica.
+	// List of volumes associated with this Replica.
 	Volumes []AutoscalingGroupReplicaConfigurationVolume `pulumi:"volumes"`
 }
 
@@ -918,17 +918,17 @@ type AutoscalingGroupReplicaConfigurationInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationArgs struct {
-	// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+	// The zone where the VMs are created using this configuration.
 	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	// [int] The total number of cores for the VMs.
+	// The total number of cores for the VMs.
 	Cores pulumi.IntInput `pulumi:"cores"`
-	// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+	// The zone where the VMs are created using this configuration.
 	CpuFamily pulumi.StringPtrInput `pulumi:"cpuFamily"`
 	// Set of NICs associated with this Replica.
 	Nics AutoscalingGroupReplicaConfigurationNicArrayInput `pulumi:"nics"`
-	// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+	// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
 	Ram pulumi.IntInput `pulumi:"ram"`
-	// [list] List of volumes associated with this Replica.
+	// List of volumes associated with this Replica.
 	Volumes AutoscalingGroupReplicaConfigurationVolumeArrayInput `pulumi:"volumes"`
 }
 
@@ -1009,17 +1009,17 @@ func (o AutoscalingGroupReplicaConfigurationOutput) ToAutoscalingGroupReplicaCon
 	}).(AutoscalingGroupReplicaConfigurationPtrOutput)
 }
 
-// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+// The zone where the VMs are created using this configuration.
 func (o AutoscalingGroupReplicaConfigurationOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
-// [int] The total number of cores for the VMs.
+// The total number of cores for the VMs.
 func (o AutoscalingGroupReplicaConfigurationOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+// The zone where the VMs are created using this configuration.
 func (o AutoscalingGroupReplicaConfigurationOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) *string { return v.CpuFamily }).(pulumi.StringPtrOutput)
 }
@@ -1029,12 +1029,12 @@ func (o AutoscalingGroupReplicaConfigurationOutput) Nics() AutoscalingGroupRepli
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) []AutoscalingGroupReplicaConfigurationNic { return v.Nics }).(AutoscalingGroupReplicaConfigurationNicArrayOutput)
 }
 
-// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
 func (o AutoscalingGroupReplicaConfigurationOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-// [list] List of volumes associated with this Replica.
+// List of volumes associated with this Replica.
 func (o AutoscalingGroupReplicaConfigurationOutput) Volumes() AutoscalingGroupReplicaConfigurationVolumeArrayOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfiguration) []AutoscalingGroupReplicaConfigurationVolume {
 		return v.Volumes
@@ -1065,7 +1065,7 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Elem() AutoscalingGroupRe
 	}).(AutoscalingGroupReplicaConfigurationOutput)
 }
 
-// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+// The zone where the VMs are created using this configuration.
 func (o AutoscalingGroupReplicaConfigurationPtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfiguration) *string {
 		if v == nil {
@@ -1075,7 +1075,7 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) AvailabilityZone() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// [int] The total number of cores for the VMs.
+// The total number of cores for the VMs.
 func (o AutoscalingGroupReplicaConfigurationPtrOutput) Cores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfiguration) *int {
 		if v == nil {
@@ -1085,7 +1085,7 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Cores() pulumi.IntPtrOutp
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+// The zone where the VMs are created using this configuration.
 func (o AutoscalingGroupReplicaConfigurationPtrOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfiguration) *string {
 		if v == nil {
@@ -1105,7 +1105,7 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Nics() AutoscalingGroupRe
 	}).(AutoscalingGroupReplicaConfigurationNicArrayOutput)
 }
 
-// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
 func (o AutoscalingGroupReplicaConfigurationPtrOutput) Ram() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfiguration) *int {
 		if v == nil {
@@ -1115,7 +1115,7 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Ram() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// [list] List of volumes associated with this Replica.
+// List of volumes associated with this Replica.
 func (o AutoscalingGroupReplicaConfigurationPtrOutput) Volumes() AutoscalingGroupReplicaConfigurationVolumeArrayOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfiguration) []AutoscalingGroupReplicaConfigurationVolume {
 		if v == nil {
@@ -1126,21 +1126,21 @@ func (o AutoscalingGroupReplicaConfigurationPtrOutput) Volumes() AutoscalingGrou
 }
 
 type AutoscalingGroupReplicaConfigurationNic struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp *bool `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive *bool `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules []AutoscalingGroupReplicaConfigurationNicFirewallRule `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType *string `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs []AutoscalingGroupReplicaConfigurationNicFlowLog `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan int `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// Name for this replica NIC.
 	Name string `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup *AutoscalingGroupReplicaConfigurationNicTargetGroup `pulumi:"targetGroup"`
 }
 
@@ -1156,21 +1156,21 @@ type AutoscalingGroupReplicaConfigurationNicInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicArgs struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive pulumi.BoolPtrInput `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType pulumi.StringPtrInput `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs AutoscalingGroupReplicaConfigurationNicFlowLogArrayInput `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan pulumi.IntInput `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// Name for this replica NIC.
 	Name pulumi.StringInput `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup AutoscalingGroupReplicaConfigurationNicTargetGroupPtrInput `pulumi:"targetGroup"`
 }
 
@@ -1225,12 +1225,12 @@ func (o AutoscalingGroupReplicaConfigurationNicOutput) ToAutoscalingGroupReplica
 	return o
 }
 
-// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-// [bool] Firewall active flag.
+// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallActive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
 }
@@ -1242,29 +1242,29 @@ func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallRules() Autoscali
 	}).(AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayOutput)
 }
 
-// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FirewallType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
 }
 
-// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+// List of all flow logs for the specified NIC.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) FlowLogs() AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) []AutoscalingGroupReplicaConfigurationNicFlowLog {
 		return v.FlowLogs
 	}).(AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput)
 }
 
-// [int] Lan ID for this replica Nic.
+// Lan ID for this replica Nic.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
-// [string] Name for this replica volume.
+// Name for this replica NIC.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// [list] In order to link VM to ALB, target group must be provided
+// In order to link VM to ALB, target group must be provided.
 func (o AutoscalingGroupReplicaConfigurationNicOutput) TargetGroup() AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNic) *AutoscalingGroupReplicaConfigurationNicTargetGroup {
 		return v.TargetGroup
@@ -1292,25 +1292,25 @@ func (o AutoscalingGroupReplicaConfigurationNicArrayOutput) Index(i pulumi.IntIn
 }
 
 type AutoscalingGroupReplicaConfigurationNicFirewallRule struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode *int `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType *int `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// The name of the firewall rule.
 	Name *string `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd *int `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart *int `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol string `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp *string `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac *string `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp *string `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type *string `pulumi:"type"`
 }
 
@@ -1326,25 +1326,25 @@ type AutoscalingGroupReplicaConfigurationNicFirewallRuleInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode pulumi.IntPtrInput `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType pulumi.IntPtrInput `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// The name of the firewall rule.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd pulumi.IntPtrInput `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart pulumi.IntPtrInput `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac pulumi.StringPtrInput `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp pulumi.StringPtrInput `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -1399,52 +1399,52 @@ func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) ToAutoscaling
 	return o
 }
 
-// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) IcmpCode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpCode }).(pulumi.IntPtrOutput)
 }
 
-// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) IcmpType() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpType }).(pulumi.IntPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// The name of the firewall rule.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeEnd() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
 }
 
-// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeStart() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeStart }).(pulumi.IntPtrOutput)
 }
 
-// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) SourceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) SourceMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.SourceMac }).(pulumi.StringPtrOutput)
 }
 
-// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) TargetIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFirewallRule) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1470,15 +1470,15 @@ func (o AutoscalingGroupReplicaConfigurationNicFirewallRuleArrayOutput) Index(i 
 }
 
 type AutoscalingGroupReplicaConfigurationNicFlowLog struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action string `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket string `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction string `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id *string `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// The resource name.
 	Name string `pulumi:"name"`
 }
 
@@ -1494,15 +1494,15 @@ type AutoscalingGroupReplicaConfigurationNicFlowLogInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicFlowLogArgs struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action pulumi.StringInput `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// The resource name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1557,17 +1557,17 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) ToAutoscalingGroup
 	return o
 }
 
-// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -1577,7 +1577,7 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Id() pulumi.String
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// The resource name.
 func (o AutoscalingGroupReplicaConfigurationNicFlowLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1603,11 +1603,11 @@ func (o AutoscalingGroupReplicaConfigurationNicFlowLogArrayOutput) Index(i pulum
 }
 
 type AutoscalingGroupReplicaConfigurationNicTargetGroup struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port int `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId string `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight int `pulumi:"weight"`
 }
 
@@ -1623,11 +1623,11 @@ type AutoscalingGroupReplicaConfigurationNicTargetGroupInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationNicTargetGroupArgs struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port pulumi.IntInput `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -1708,17 +1708,17 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) ToAutoscalingG
 	}).(AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) TargetGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) string { return v.TargetGroupId }).(pulumi.StringOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationNicTargetGroup) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -1747,7 +1747,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Elem() Auto
 	}).(AutoscalingGroupReplicaConfigurationNicTargetGroupOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -1757,7 +1757,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *string {
 		if v == nil {
@@ -1767,7 +1767,7 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroup
 	}).(pulumi.StringPtrOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AutoscalingGroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -1778,28 +1778,28 @@ func (o AutoscalingGroupReplicaConfigurationNicTargetGroupPtrOutput) Weight() pu
 }
 
 type AutoscalingGroupReplicaConfigurationVolume struct {
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId *string `pulumi:"backupUnitId"`
-	// [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+	// Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume.
+	// Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
 	// Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
 	BootOrder string `pulumi:"bootOrder"`
-	// [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+	// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
 	Bus *string `pulumi:"bus"`
-	// [string] The image installed on the volume. Only the UUID of the image is presently supported.
+	// The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
 	Image *string `pulumi:"image"`
-	// [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
 	ImageAlias *string `pulumi:"imageAlias"`
-	// [string] Image password for this replica volume.
+	// Image password for this replica volume.
 	ImagePassword *string `pulumi:"imagePassword"`
-	// [string] Name for this replica volume.
+	// Name for this replica volume.
 	Name string `pulumi:"name"`
-	// [int] Name for this replica volume.
-	Size int `pulumi:"size"`
-	// List of ssh keys, supports values or paths to files. Cannot be changed at update.
+	// User-defined size for this replica volume in GB.
+	Size    int      `pulumi:"size"`
 	SshKeys []string `pulumi:"sshKeys"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 	Type string `pulumi:"type"`
-	// [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+	// User-data (Cloud Init) for this replica volume.
 	UserData *string `pulumi:"userData"`
 }
 
@@ -1815,28 +1815,28 @@ type AutoscalingGroupReplicaConfigurationVolumeInput interface {
 }
 
 type AutoscalingGroupReplicaConfigurationVolumeArgs struct {
-	// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
-	// [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+	// Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume.
+	// Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
 	// Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
 	BootOrder pulumi.StringInput `pulumi:"bootOrder"`
-	// [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+	// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
 	Bus pulumi.StringPtrInput `pulumi:"bus"`
-	// [string] The image installed on the volume. Only the UUID of the image is presently supported.
+	// The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
 	Image pulumi.StringPtrInput `pulumi:"image"`
-	// [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
 	ImageAlias pulumi.StringPtrInput `pulumi:"imageAlias"`
-	// [string] Image password for this replica volume.
+	// Image password for this replica volume.
 	ImagePassword pulumi.StringPtrInput `pulumi:"imagePassword"`
-	// [string] Name for this replica volume.
+	// Name for this replica volume.
 	Name pulumi.StringInput `pulumi:"name"`
-	// [int] Name for this replica volume.
-	Size pulumi.IntInput `pulumi:"size"`
-	// List of ssh keys, supports values or paths to files. Cannot be changed at update.
+	// User-defined size for this replica volume in GB.
+	Size    pulumi.IntInput         `pulumi:"size"`
 	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 	Type pulumi.StringInput `pulumi:"type"`
-	// [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+	// User-data (Cloud Init) for this replica volume.
 	UserData pulumi.StringPtrInput `pulumi:"userData"`
 }
 
@@ -1891,58 +1891,58 @@ func (o AutoscalingGroupReplicaConfigurationVolumeOutput) ToAutoscalingGroupRepl
 	return o
 }
 
-// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) BackupUnitId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.BackupUnitId }).(pulumi.StringPtrOutput)
 }
 
-// [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+// Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume.
+// Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
 // Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) BootOrder() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) string { return v.BootOrder }).(pulumi.StringOutput)
 }
 
-// [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) Bus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.Bus }).(pulumi.StringPtrOutput)
 }
 
-// [string] The image installed on the volume. Only the UUID of the image is presently supported.
+// The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.Image }).(pulumi.StringPtrOutput)
 }
 
-// [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+// The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) ImageAlias() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.ImageAlias }).(pulumi.StringPtrOutput)
 }
 
-// [string] Image password for this replica volume.
+// Image password for this replica volume.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.ImagePassword }).(pulumi.StringPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// Name for this replica volume.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// [int] Name for this replica volume.
+// User-defined size for this replica volume in GB.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) int { return v.Size }).(pulumi.IntOutput)
 }
 
-// List of ssh keys, supports values or paths to files. Cannot be changed at update.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
-// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+// User-data (Cloud Init) for this replica volume.
 func (o AutoscalingGroupReplicaConfigurationVolumeOutput) UserData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AutoscalingGroupReplicaConfigurationVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
 }
@@ -1968,11 +1968,11 @@ func (o AutoscalingGroupReplicaConfigurationVolumeArrayOutput) Index(i pulumi.In
 }
 
 type KafkaClusterConnections struct {
-	// [list] IP address and port of cluster brokers.
+	// The broker addresses of the Kafka Cluster. Can be empty, but must be present.
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
-	// [string] The datacenter to connect your instance to.
+	// The datacenter to connect your Kafka Cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// [string] The numeric LAN ID to connect your instance to.
+	// The numeric LAN ID to connect your Kafka Cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -1988,11 +1988,11 @@ type KafkaClusterConnectionsInput interface {
 }
 
 type KafkaClusterConnectionsArgs struct {
-	// [list] IP address and port of cluster brokers.
+	// The broker addresses of the Kafka Cluster. Can be empty, but must be present.
 	BrokerAddresses pulumi.StringArrayInput `pulumi:"brokerAddresses"`
-	// [string] The datacenter to connect your instance to.
+	// The datacenter to connect your Kafka Cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// [string] The numeric LAN ID to connect your instance to.
+	// The numeric LAN ID to connect your Kafka Cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -2073,17 +2073,17 @@ func (o KafkaClusterConnectionsOutput) ToKafkaClusterConnectionsPtrOutputWithCon
 	}).(KafkaClusterConnectionsPtrOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// The broker addresses of the Kafka Cluster. Can be empty, but must be present.
 func (o KafkaClusterConnectionsOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KafkaClusterConnections) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
 
-// [string] The datacenter to connect your instance to.
+// The datacenter to connect your Kafka Cluster to.
 func (o KafkaClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v KafkaClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [string] The numeric LAN ID to connect your instance to.
+// The numeric LAN ID to connect your Kafka Cluster to.
 func (o KafkaClusterConnectionsOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v KafkaClusterConnections) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -2112,7 +2112,7 @@ func (o KafkaClusterConnectionsPtrOutput) Elem() KafkaClusterConnectionsOutput {
 	}).(KafkaClusterConnectionsOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// The broker addresses of the Kafka Cluster. Can be empty, but must be present.
 func (o KafkaClusterConnectionsPtrOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KafkaClusterConnections) []string {
 		if v == nil {
@@ -2122,7 +2122,7 @@ func (o KafkaClusterConnectionsPtrOutput) BrokerAddresses() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
-// [string] The datacenter to connect your instance to.
+// The datacenter to connect your Kafka Cluster to.
 func (o KafkaClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KafkaClusterConnections) *string {
 		if v == nil {
@@ -2132,7 +2132,7 @@ func (o KafkaClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] The numeric LAN ID to connect your instance to.
+// The numeric LAN ID to connect your Kafka Cluster to.
 func (o KafkaClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KafkaClusterConnections) *string {
 		if v == nil {
@@ -2143,11 +2143,11 @@ func (o KafkaClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 }
 
 type TargetGroupHealthCheck struct {
-	// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+	// The interval in milliseconds between consecutive health checks; default is 2000.
 	CheckInterval *int `pulumi:"checkInterval"`
-	// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
 	CheckTimeout *int `pulumi:"checkTimeout"`
-	// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
 	Retries *int `pulumi:"retries"`
 }
 
@@ -2163,11 +2163,11 @@ type TargetGroupHealthCheckInput interface {
 }
 
 type TargetGroupHealthCheckArgs struct {
-	// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+	// The interval in milliseconds between consecutive health checks; default is 2000.
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
-	// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
 	CheckTimeout pulumi.IntPtrInput `pulumi:"checkTimeout"`
-	// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
 }
 
@@ -2248,17 +2248,17 @@ func (o TargetGroupHealthCheckOutput) ToTargetGroupHealthCheckPtrOutputWithConte
 	}).(TargetGroupHealthCheckPtrOutput)
 }
 
-// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+// The interval in milliseconds between consecutive health checks; default is 2000.
 func (o TargetGroupHealthCheckOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
 }
 
-// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
 func (o TargetGroupHealthCheckOutput) CheckTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.CheckTimeout }).(pulumi.IntPtrOutput)
 }
 
-// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
 func (o TargetGroupHealthCheckOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.Retries }).(pulumi.IntPtrOutput)
 }
@@ -2287,7 +2287,7 @@ func (o TargetGroupHealthCheckPtrOutput) Elem() TargetGroupHealthCheckOutput {
 	}).(TargetGroupHealthCheckOutput)
 }
 
-// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+// The interval in milliseconds between consecutive health checks; default is 2000.
 func (o TargetGroupHealthCheckPtrOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
 		if v == nil {
@@ -2297,7 +2297,7 @@ func (o TargetGroupHealthCheckPtrOutput) CheckInterval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
 func (o TargetGroupHealthCheckPtrOutput) CheckTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
 		if v == nil {
@@ -2307,7 +2307,7 @@ func (o TargetGroupHealthCheckPtrOutput) CheckTimeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
 func (o TargetGroupHealthCheckPtrOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
 		if v == nil {
@@ -2318,17 +2318,14 @@ func (o TargetGroupHealthCheckPtrOutput) Retries() pulumi.IntPtrOutput {
 }
 
 type TargetGroupHttpHealthCheck struct {
-	// [string]
 	MatchType string `pulumi:"matchType"`
-	// [string] The method for the HTTP health check.
+	// The method for the HTTP health check.
 	Method *string `pulumi:"method"`
-	// [bool]
-	Negate *bool `pulumi:"negate"`
-	// [string] The path (destination URL) for the HTTP health check request; the default is /.
-	Path *string `pulumi:"path"`
-	// [bool]
-	Regex *bool `pulumi:"regex"`
-	// [string] The response returned by the request, depending on the match type.
+	Negate *bool   `pulumi:"negate"`
+	// The path (destination URL) for the HTTP health check request; the default is /.
+	Path  *string `pulumi:"path"`
+	Regex *bool   `pulumi:"regex"`
+	// The response returned by the request, depending on the match type.
 	Response string `pulumi:"response"`
 }
 
@@ -2344,17 +2341,14 @@ type TargetGroupHttpHealthCheckInput interface {
 }
 
 type TargetGroupHttpHealthCheckArgs struct {
-	// [string]
 	MatchType pulumi.StringInput `pulumi:"matchType"`
-	// [string] The method for the HTTP health check.
+	// The method for the HTTP health check.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// [bool]
-	Negate pulumi.BoolPtrInput `pulumi:"negate"`
-	// [string] The path (destination URL) for the HTTP health check request; the default is /.
-	Path pulumi.StringPtrInput `pulumi:"path"`
-	// [bool]
-	Regex pulumi.BoolPtrInput `pulumi:"regex"`
-	// [string] The response returned by the request, depending on the match type.
+	Negate pulumi.BoolPtrInput   `pulumi:"negate"`
+	// The path (destination URL) for the HTTP health check request; the default is /.
+	Path  pulumi.StringPtrInput `pulumi:"path"`
+	Regex pulumi.BoolPtrInput   `pulumi:"regex"`
+	// The response returned by the request, depending on the match type.
 	Response pulumi.StringInput `pulumi:"response"`
 }
 
@@ -2435,32 +2429,29 @@ func (o TargetGroupHttpHealthCheckOutput) ToTargetGroupHttpHealthCheckPtrOutputW
 	}).(TargetGroupHttpHealthCheckPtrOutput)
 }
 
-// [string]
 func (o TargetGroupHttpHealthCheckOutput) MatchType() pulumi.StringOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) string { return v.MatchType }).(pulumi.StringOutput)
 }
 
-// [string] The method for the HTTP health check.
+// The method for the HTTP health check.
 func (o TargetGroupHttpHealthCheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// [bool]
 func (o TargetGroupHttpHealthCheckOutput) Negate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *bool { return v.Negate }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The path (destination URL) for the HTTP health check request; the default is /.
+// The path (destination URL) for the HTTP health check request; the default is /.
 func (o TargetGroupHttpHealthCheckOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// [bool]
 func (o TargetGroupHttpHealthCheckOutput) Regex() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *bool { return v.Regex }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The response returned by the request, depending on the match type.
+// The response returned by the request, depending on the match type.
 func (o TargetGroupHttpHealthCheckOutput) Response() pulumi.StringOutput {
 	return o.ApplyT(func(v TargetGroupHttpHealthCheck) string { return v.Response }).(pulumi.StringOutput)
 }
@@ -2489,7 +2480,6 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Elem() TargetGroupHttpHealthCheckOu
 	}).(TargetGroupHttpHealthCheckOutput)
 }
 
-// [string]
 func (o TargetGroupHttpHealthCheckPtrOutput) MatchType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
 		if v == nil {
@@ -2499,7 +2489,7 @@ func (o TargetGroupHttpHealthCheckPtrOutput) MatchType() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] The method for the HTTP health check.
+// The method for the HTTP health check.
 func (o TargetGroupHttpHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
 		if v == nil {
@@ -2509,7 +2499,6 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [bool]
 func (o TargetGroupHttpHealthCheckPtrOutput) Negate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *bool {
 		if v == nil {
@@ -2519,7 +2508,7 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Negate() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// [string] The path (destination URL) for the HTTP health check request; the default is /.
+// The path (destination URL) for the HTTP health check request; the default is /.
 func (o TargetGroupHttpHealthCheckPtrOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
 		if v == nil {
@@ -2529,7 +2518,6 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Path() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [bool]
 func (o TargetGroupHttpHealthCheckPtrOutput) Regex() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *bool {
 		if v == nil {
@@ -2539,7 +2527,7 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Regex() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// [string] The response returned by the request, depending on the match type.
+// The response returned by the request, depending on the match type.
 func (o TargetGroupHttpHealthCheckPtrOutput) Response() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
 		if v == nil {
@@ -2550,17 +2538,17 @@ func (o TargetGroupHttpHealthCheckPtrOutput) Response() pulumi.StringPtrOutput {
 }
 
 type TargetGroupTarget struct {
-	// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
 	HealthCheckEnabled *bool `pulumi:"healthCheckEnabled"`
-	// [string] The IP of the balanced target VM.
+	// The IP of the balanced target VM.
 	Ip string `pulumi:"ip"`
-	// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+	// Maintenance mode prevents the target from receiving balanced traffic.
 	MaintenanceEnabled *bool `pulumi:"maintenanceEnabled"`
-	// [int] The port of the balanced target service; valid range is 1 to 65535.
+	// The port of the balanced target service; valid range is 1 to 65535.
 	Port int `pulumi:"port"`
-	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+	// Proxy protocol version
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
-	// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
 	Weight int `pulumi:"weight"`
 }
 
@@ -2576,17 +2564,17 @@ type TargetGroupTargetInput interface {
 }
 
 type TargetGroupTargetArgs struct {
-	// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
 	HealthCheckEnabled pulumi.BoolPtrInput `pulumi:"healthCheckEnabled"`
-	// [string] The IP of the balanced target VM.
+	// The IP of the balanced target VM.
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+	// Maintenance mode prevents the target from receiving balanced traffic.
 	MaintenanceEnabled pulumi.BoolPtrInput `pulumi:"maintenanceEnabled"`
-	// [int] The port of the balanced target service; valid range is 1 to 65535.
+	// The port of the balanced target service; valid range is 1 to 65535.
 	Port pulumi.IntInput `pulumi:"port"`
-	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+	// Proxy protocol version
 	ProxyProtocol pulumi.StringPtrInput `pulumi:"proxyProtocol"`
-	// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -2641,32 +2629,32 @@ func (o TargetGroupTargetOutput) ToTargetGroupTargetOutputWithContext(ctx contex
 	return o
 }
 
-// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
 func (o TargetGroupTargetOutput) HealthCheckEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TargetGroupTarget) *bool { return v.HealthCheckEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The IP of the balanced target VM.
+// The IP of the balanced target VM.
 func (o TargetGroupTargetOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v TargetGroupTarget) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+// Maintenance mode prevents the target from receiving balanced traffic.
 func (o TargetGroupTargetOutput) MaintenanceEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TargetGroupTarget) *bool { return v.MaintenanceEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// [int] The port of the balanced target service; valid range is 1 to 65535.
+// The port of the balanced target service; valid range is 1 to 65535.
 func (o TargetGroupTargetOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v TargetGroupTarget) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+// Proxy protocol version
 func (o TargetGroupTargetOutput) ProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TargetGroupTarget) *string { return v.ProxyProtocol }).(pulumi.StringPtrOutput)
 }
 
-// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
 func (o TargetGroupTargetOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v TargetGroupTarget) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -2694,7 +2682,7 @@ func (o TargetGroupTargetArrayOutput) Index(i pulumi.IntInput) TargetGroupTarget
 type GetApigatewayCustomDomain struct {
 	// The ID of the certificate to use for the distribution.
 	CertificateId string `pulumi:"certificateId"`
-	// Name of an existing API Gateway that you want to search for.
+	// The domain name of the distribution.
 	Name string `pulumi:"name"`
 }
 
@@ -2712,7 +2700,7 @@ type GetApigatewayCustomDomainInput interface {
 type GetApigatewayCustomDomainArgs struct {
 	// The ID of the certificate to use for the distribution.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
-	// Name of an existing API Gateway that you want to search for.
+	// The domain name of the distribution.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2772,7 +2760,7 @@ func (o GetApigatewayCustomDomainOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApigatewayCustomDomain) string { return v.CertificateId }).(pulumi.StringOutput)
 }
 
-// Name of an existing API Gateway that you want to search for.
+// The domain name of the distribution.
 func (o GetApigatewayCustomDomainOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApigatewayCustomDomain) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2930,555 +2918,20 @@ func (o GetApigatewayRouteUpstreamArrayOutput) Index(i pulumi.IntInput) GetApiga
 	}).(GetApigatewayRouteUpstreamOutput)
 }
 
-type GetApplicationLoadbalancerFlowlog struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-	Action string `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-	Direction string `pulumi:"direction"`
-	// ID of the application load balancer you want to search for.
-	Id string `pulumi:"id"`
-	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string `pulumi:"name"`
-}
-
-// GetApplicationLoadbalancerFlowlogInput is an input type that accepts GetApplicationLoadbalancerFlowlogArgs and GetApplicationLoadbalancerFlowlogOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerFlowlogInput` via:
-//
-//	GetApplicationLoadbalancerFlowlogArgs{...}
-type GetApplicationLoadbalancerFlowlogInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerFlowlogOutput() GetApplicationLoadbalancerFlowlogOutput
-	ToGetApplicationLoadbalancerFlowlogOutputWithContext(context.Context) GetApplicationLoadbalancerFlowlogOutput
-}
-
-type GetApplicationLoadbalancerFlowlogArgs struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-	Action pulumi.StringInput `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-	Direction pulumi.StringInput `pulumi:"direction"`
-	// ID of the application load balancer you want to search for.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetApplicationLoadbalancerFlowlogArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerFlowlog)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerFlowlogArgs) ToGetApplicationLoadbalancerFlowlogOutput() GetApplicationLoadbalancerFlowlogOutput {
-	return i.ToGetApplicationLoadbalancerFlowlogOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerFlowlogArgs) ToGetApplicationLoadbalancerFlowlogOutputWithContext(ctx context.Context) GetApplicationLoadbalancerFlowlogOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerFlowlogOutput)
-}
-
-// GetApplicationLoadbalancerFlowlogArrayInput is an input type that accepts GetApplicationLoadbalancerFlowlogArray and GetApplicationLoadbalancerFlowlogArrayOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerFlowlogArrayInput` via:
-//
-//	GetApplicationLoadbalancerFlowlogArray{ GetApplicationLoadbalancerFlowlogArgs{...} }
-type GetApplicationLoadbalancerFlowlogArrayInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerFlowlogArrayOutput() GetApplicationLoadbalancerFlowlogArrayOutput
-	ToGetApplicationLoadbalancerFlowlogArrayOutputWithContext(context.Context) GetApplicationLoadbalancerFlowlogArrayOutput
-}
-
-type GetApplicationLoadbalancerFlowlogArray []GetApplicationLoadbalancerFlowlogInput
-
-func (GetApplicationLoadbalancerFlowlogArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerFlowlog)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerFlowlogArray) ToGetApplicationLoadbalancerFlowlogArrayOutput() GetApplicationLoadbalancerFlowlogArrayOutput {
-	return i.ToGetApplicationLoadbalancerFlowlogArrayOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerFlowlogArray) ToGetApplicationLoadbalancerFlowlogArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerFlowlogArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerFlowlogArrayOutput)
-}
-
-type GetApplicationLoadbalancerFlowlogOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerFlowlogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerFlowlog)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerFlowlogOutput) ToGetApplicationLoadbalancerFlowlogOutput() GetApplicationLoadbalancerFlowlogOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerFlowlogOutput) ToGetApplicationLoadbalancerFlowlogOutputWithContext(ctx context.Context) GetApplicationLoadbalancerFlowlogOutput {
-	return o
-}
-
-// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-func (o GetApplicationLoadbalancerFlowlogOutput) Action() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
-}
-
-// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-func (o GetApplicationLoadbalancerFlowlogOutput) Bucket() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-func (o GetApplicationLoadbalancerFlowlogOutput) Direction() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
-}
-
-// ID of the application load balancer you want to search for.
-func (o GetApplicationLoadbalancerFlowlogOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerFlowlog) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetApplicationLoadbalancerFlowlogOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetApplicationLoadbalancerFlowlogArrayOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerFlowlogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerFlowlog)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerFlowlogArrayOutput) ToGetApplicationLoadbalancerFlowlogArrayOutput() GetApplicationLoadbalancerFlowlogArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerFlowlogArrayOutput) ToGetApplicationLoadbalancerFlowlogArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerFlowlogArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerFlowlogArrayOutput) Index(i pulumi.IntInput) GetApplicationLoadbalancerFlowlogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationLoadbalancerFlowlog {
-		return vs[0].([]GetApplicationLoadbalancerFlowlog)[vs[1].(int)]
-	}).(GetApplicationLoadbalancerFlowlogOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRule struct {
-	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-	Conditions []GetApplicationLoadbalancerForwardingruleHttpRuleCondition `pulumi:"conditions"`
-	// Valid only for STATIC actions.
-	ContentType string `pulumi:"contentType"`
-	// Default is false; valid only for REDIRECT actions.
-	DropQuery bool `pulumi:"dropQuery"`
-	// The location for redirecting; mandatory and valid only for REDIRECT actions.
-	Location string `pulumi:"location"`
-	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string `pulumi:"name"`
-	// The response message of the request; mandatory for STATIC action.
-	ResponseMessage string `pulumi:"responseMessage"`
-	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-	StatusCode int `pulumi:"statusCode"`
-	// The UUID of the target group; mandatory for FORWARD action.
-	TargetGroup string `pulumi:"targetGroup"`
-	// Type of the Http Rule condition.
-	Type string `pulumi:"type"`
-}
-
-// GetApplicationLoadbalancerForwardingruleHttpRuleInput is an input type that accepts GetApplicationLoadbalancerForwardingruleHttpRuleArgs and GetApplicationLoadbalancerForwardingruleHttpRuleOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerForwardingruleHttpRuleInput` via:
-//
-//	GetApplicationLoadbalancerForwardingruleHttpRuleArgs{...}
-type GetApplicationLoadbalancerForwardingruleHttpRuleInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleOutput() GetApplicationLoadbalancerForwardingruleHttpRuleOutput
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleOutputWithContext(context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleOutput
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleArgs struct {
-	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-	Conditions GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput `pulumi:"conditions"`
-	// Valid only for STATIC actions.
-	ContentType pulumi.StringInput `pulumi:"contentType"`
-	// Default is false; valid only for REDIRECT actions.
-	DropQuery pulumi.BoolInput `pulumi:"dropQuery"`
-	// The location for redirecting; mandatory and valid only for REDIRECT actions.
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The response message of the request; mandatory for STATIC action.
-	ResponseMessage pulumi.StringInput `pulumi:"responseMessage"`
-	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-	StatusCode pulumi.IntInput `pulumi:"statusCode"`
-	// The UUID of the target group; mandatory for FORWARD action.
-	TargetGroup pulumi.StringInput `pulumi:"targetGroup"`
-	// Type of the Http Rule condition.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRule)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleArgs) ToGetApplicationLoadbalancerForwardingruleHttpRuleOutput() GetApplicationLoadbalancerForwardingruleHttpRuleOutput {
-	return i.ToGetApplicationLoadbalancerForwardingruleHttpRuleOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleArgs) ToGetApplicationLoadbalancerForwardingruleHttpRuleOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerForwardingruleHttpRuleOutput)
-}
-
-// GetApplicationLoadbalancerForwardingruleHttpRuleArrayInput is an input type that accepts GetApplicationLoadbalancerForwardingruleHttpRuleArray and GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerForwardingruleHttpRuleArrayInput` via:
-//
-//	GetApplicationLoadbalancerForwardingruleHttpRuleArray{ GetApplicationLoadbalancerForwardingruleHttpRuleArgs{...} }
-type GetApplicationLoadbalancerForwardingruleHttpRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutputWithContext(context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleArray []GetApplicationLoadbalancerForwardingruleHttpRuleInput
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerForwardingruleHttpRule)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleArray) ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
-	return i.ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleArray) ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRule)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleOutput() GetApplicationLoadbalancerForwardingruleHttpRuleOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleOutput {
-	return o
-}
-
-// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) Conditions() GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) []GetApplicationLoadbalancerForwardingruleHttpRuleCondition {
-		return v.Conditions
-	}).(GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput)
-}
-
-// Valid only for STATIC actions.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) ContentType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.ContentType }).(pulumi.StringOutput)
-}
-
-// Default is false; valid only for REDIRECT actions.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) DropQuery() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) bool { return v.DropQuery }).(pulumi.BoolOutput)
-}
-
-// The location for redirecting; mandatory and valid only for REDIRECT actions.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.Location }).(pulumi.StringOutput)
-}
-
-// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The response message of the request; mandatory for STATIC action.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) ResponseMessage() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.ResponseMessage }).(pulumi.StringOutput)
-}
-
-// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) StatusCode() pulumi.IntOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) int { return v.StatusCode }).(pulumi.IntOutput)
-}
-
-// The UUID of the target group; mandatory for FORWARD action.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) TargetGroup() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.TargetGroup }).(pulumi.StringOutput)
-}
-
-// Type of the Http Rule condition.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRule) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerForwardingruleHttpRule)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput) Index(i pulumi.IntInput) GetApplicationLoadbalancerForwardingruleHttpRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationLoadbalancerForwardingruleHttpRule {
-		return vs[0].([]GetApplicationLoadbalancerForwardingruleHttpRule)[vs[1].(int)]
-	}).(GetApplicationLoadbalancerForwardingruleHttpRuleOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleCondition struct {
-	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-	Condition string `pulumi:"condition"`
-	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-	Key string `pulumi:"key"`
-	// Specifies whether the condition is negated or not; the default is False.
-	Negate bool `pulumi:"negate"`
-	// Type of the Http Rule condition.
-	Type string `pulumi:"type"`
-	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-	Value string `pulumi:"value"`
-}
-
-// GetApplicationLoadbalancerForwardingruleHttpRuleConditionInput is an input type that accepts GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs and GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerForwardingruleHttpRuleConditionInput` via:
-//
-//	GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{...}
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutputWithContext(context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs struct {
-	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-	Condition pulumi.StringInput `pulumi:"condition"`
-	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-	Key pulumi.StringInput `pulumi:"key"`
-	// Specifies whether the condition is negated or not; the default is False.
-	Negate pulumi.BoolInput `pulumi:"negate"`
-	// Type of the Http Rule condition.
-	Type pulumi.StringInput `pulumi:"type"`
-	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleCondition)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput {
-	return i.ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput)
-}
-
-// GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput is an input type that accepts GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray and GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput values.
-// You can construct a concrete instance of `GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput` via:
-//
-//	GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray{ GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{...} }
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput interface {
-	pulumi.Input
-
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput
-	ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutputWithContext(context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray []GetApplicationLoadbalancerForwardingruleHttpRuleConditionInput
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerForwardingruleHttpRuleCondition)(nil)).Elem()
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput {
-	return i.ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutputWithContext(context.Background())
-}
-
-func (i GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleCondition)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput {
-	return o
-}
-
-// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) Condition() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRuleCondition) string { return v.Condition }).(pulumi.StringOutput)
-}
-
-// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRuleCondition) string { return v.Key }).(pulumi.StringOutput)
-}
-
-// Specifies whether the condition is negated or not; the default is False.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) Negate() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRuleCondition) bool { return v.Negate }).(pulumi.BoolOutput)
-}
-
-// Type of the Http Rule condition.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRuleCondition) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleHttpRuleCondition) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetApplicationLoadbalancerForwardingruleHttpRuleCondition)(nil)).Elem()
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput() GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput) ToGetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput {
-	return o
-}
-
-func (o GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput) Index(i pulumi.IntInput) GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApplicationLoadbalancerForwardingruleHttpRuleCondition {
-		return vs[0].([]GetApplicationLoadbalancerForwardingruleHttpRuleCondition)[vs[1].(int)]
-	}).(GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput)
-}
-
-type GetAutoCertificateProviderExternalAccountBinding struct {
-	// The key ID of the external account binding
-	KeyId string `pulumi:"keyId"`
-}
-
-// GetAutoCertificateProviderExternalAccountBindingInput is an input type that accepts GetAutoCertificateProviderExternalAccountBindingArgs and GetAutoCertificateProviderExternalAccountBindingOutput values.
-// You can construct a concrete instance of `GetAutoCertificateProviderExternalAccountBindingInput` via:
-//
-//	GetAutoCertificateProviderExternalAccountBindingArgs{...}
-type GetAutoCertificateProviderExternalAccountBindingInput interface {
-	pulumi.Input
-
-	ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput
-	ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Context) GetAutoCertificateProviderExternalAccountBindingOutput
-}
-
-type GetAutoCertificateProviderExternalAccountBindingArgs struct {
-	// The key ID of the external account binding
-	KeyId pulumi.StringInput `pulumi:"keyId"`
-}
-
-func (GetAutoCertificateProviderExternalAccountBindingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (i GetAutoCertificateProviderExternalAccountBindingArgs) ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput {
-	return i.ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Background())
-}
-
-func (i GetAutoCertificateProviderExternalAccountBindingArgs) ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAutoCertificateProviderExternalAccountBindingOutput)
-}
-
-// GetAutoCertificateProviderExternalAccountBindingArrayInput is an input type that accepts GetAutoCertificateProviderExternalAccountBindingArray and GetAutoCertificateProviderExternalAccountBindingArrayOutput values.
-// You can construct a concrete instance of `GetAutoCertificateProviderExternalAccountBindingArrayInput` via:
-//
-//	GetAutoCertificateProviderExternalAccountBindingArray{ GetAutoCertificateProviderExternalAccountBindingArgs{...} }
-type GetAutoCertificateProviderExternalAccountBindingArrayInput interface {
-	pulumi.Input
-
-	ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput
-	ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput
-}
-
-type GetAutoCertificateProviderExternalAccountBindingArray []GetAutoCertificateProviderExternalAccountBindingInput
-
-func (GetAutoCertificateProviderExternalAccountBindingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (i GetAutoCertificateProviderExternalAccountBindingArray) ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
-	return i.ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(context.Background())
-}
-
-func (i GetAutoCertificateProviderExternalAccountBindingArray) ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetAutoCertificateProviderExternalAccountBindingArrayOutput)
-}
-
-type GetAutoCertificateProviderExternalAccountBindingOutput struct{ *pulumi.OutputState }
-
-func (GetAutoCertificateProviderExternalAccountBindingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (o GetAutoCertificateProviderExternalAccountBindingOutput) ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput {
-	return o
-}
-
-func (o GetAutoCertificateProviderExternalAccountBindingOutput) ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingOutput {
-	return o
-}
-
-// The key ID of the external account binding
-func (o GetAutoCertificateProviderExternalAccountBindingOutput) KeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAutoCertificateProviderExternalAccountBinding) string { return v.KeyId }).(pulumi.StringOutput)
-}
-
-type GetAutoCertificateProviderExternalAccountBindingArrayOutput struct{ *pulumi.OutputState }
-
-func (GetAutoCertificateProviderExternalAccountBindingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
-}
-
-func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
-	return o
-}
-
-func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput {
-	return o
-}
-
-func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) Index(i pulumi.IntInput) GetAutoCertificateProviderExternalAccountBindingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAutoCertificateProviderExternalAccountBinding {
-		return vs[0].([]GetAutoCertificateProviderExternalAccountBinding)[vs[1].(int)]
-	}).(GetAutoCertificateProviderExternalAccountBindingOutput)
-}
-
 type GetAutoscalingGroupPolicy struct {
-	// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+	// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 	Metric string `pulumi:"metric"`
-	// Defines the range of time from which samples will be aggregated. Default is 120s.
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Defines the time range, for which the samples will be aggregated. Default is 120s.
 	Range string `pulumi:"range"`
-	// Specifies the Action to take when the `scaleInThreshold`
+	// Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
 	ScaleInActions []GetAutoscalingGroupPolicyScaleInAction `pulumi:"scaleInActions"`
-	// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	// The lower threshold for the value of the `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
 	ScaleInThreshold int `pulumi:"scaleInThreshold"`
-	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
 	ScaleOutActions []GetAutoscalingGroupPolicyScaleOutAction `pulumi:"scaleOutActions"`
-	// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	// The upper threshold for the value of the `metric`. Will be used with `greater than` (>) operator. Exceeding this will start a Scale-Out action as specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold` depending on the `metric` to avoid competitive actions at the same time.
 	ScaleOutThreshold int `pulumi:"scaleOutThreshold"`
-	// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+	// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 	Unit string `pulumi:"unit"`
 }
 
@@ -3494,20 +2947,19 @@ type GetAutoscalingGroupPolicyInput interface {
 }
 
 type GetAutoscalingGroupPolicyArgs struct {
-	// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+	// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 	Metric pulumi.StringInput `pulumi:"metric"`
-	// Defines the range of time from which samples will be aggregated. Default is 120s.
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Defines the time range, for which the samples will be aggregated. Default is 120s.
 	Range pulumi.StringInput `pulumi:"range"`
-	// Specifies the Action to take when the `scaleInThreshold`
+	// Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
 	ScaleInActions GetAutoscalingGroupPolicyScaleInActionArrayInput `pulumi:"scaleInActions"`
-	// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	// The lower threshold for the value of the `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
 	ScaleInThreshold pulumi.IntInput `pulumi:"scaleInThreshold"`
-	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
 	ScaleOutActions GetAutoscalingGroupPolicyScaleOutActionArrayInput `pulumi:"scaleOutActions"`
-	// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	// The upper threshold for the value of the `metric`. Will be used with `greater than` (>) operator. Exceeding this will start a Scale-Out action as specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold` depending on the `metric` to avoid competitive actions at the same time.
 	ScaleOutThreshold pulumi.IntInput `pulumi:"scaleOutThreshold"`
-	// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+	// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 	Unit pulumi.StringInput `pulumi:"unit"`
 }
 
@@ -3562,38 +3014,37 @@ func (o GetAutoscalingGroupPolicyOutput) ToGetAutoscalingGroupPolicyOutputWithCo
 	return o
 }
 
-// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+// The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
 func (o GetAutoscalingGroupPolicyOutput) Metric() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) string { return v.Metric }).(pulumi.StringOutput)
 }
 
-// Defines the range of time from which samples will be aggregated. Default is 120s.
-// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// Defines the time range, for which the samples will be aggregated. Default is 120s.
 func (o GetAutoscalingGroupPolicyOutput) Range() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) string { return v.Range }).(pulumi.StringOutput)
 }
 
-// Specifies the Action to take when the `scaleInThreshold`
+// Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
 func (o GetAutoscalingGroupPolicyOutput) ScaleInActions() GetAutoscalingGroupPolicyScaleInActionArrayOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) []GetAutoscalingGroupPolicyScaleInAction { return v.ScaleInActions }).(GetAutoscalingGroupPolicyScaleInActionArrayOutput)
 }
 
-// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+// The lower threshold for the value of the `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
 func (o GetAutoscalingGroupPolicyOutput) ScaleInThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) int { return v.ScaleInThreshold }).(pulumi.IntOutput)
 }
 
-// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
 func (o GetAutoscalingGroupPolicyOutput) ScaleOutActions() GetAutoscalingGroupPolicyScaleOutActionArrayOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) []GetAutoscalingGroupPolicyScaleOutAction { return v.ScaleOutActions }).(GetAutoscalingGroupPolicyScaleOutActionArrayOutput)
 }
 
-// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+// The upper threshold for the value of the `metric`. Will be used with `greater than` (>) operator. Exceeding this will start a Scale-Out action as specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold` depending on the `metric` to avoid competitive actions at the same time.
 func (o GetAutoscalingGroupPolicyOutput) ScaleOutThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) int { return v.ScaleOutThreshold }).(pulumi.IntOutput)
 }
 
-// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+// Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
 func (o GetAutoscalingGroupPolicyOutput) Unit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicy) string { return v.Unit }).(pulumi.StringOutput)
 }
@@ -3619,12 +3070,11 @@ func (o GetAutoscalingGroupPolicyArrayOutput) Index(i pulumi.IntInput) GetAutosc
 }
 
 type GetAutoscalingGroupPolicyScaleInAction struct {
-	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount int `pulumi:"amount"`
 	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType string `pulumi:"amountType"`
-	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 	CooldownPeriod string `pulumi:"cooldownPeriod"`
 	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 	DeleteVolumes bool `pulumi:"deleteVolumes"`
@@ -3644,12 +3094,11 @@ type GetAutoscalingGroupPolicyScaleInActionInput interface {
 }
 
 type GetAutoscalingGroupPolicyScaleInActionArgs struct {
-	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount pulumi.IntInput `pulumi:"amount"`
 	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType pulumi.StringInput `pulumi:"amountType"`
-	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 	CooldownPeriod pulumi.StringInput `pulumi:"cooldownPeriod"`
 	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
 	DeleteVolumes pulumi.BoolInput `pulumi:"deleteVolumes"`
@@ -3708,7 +3157,7 @@ func (o GetAutoscalingGroupPolicyScaleInActionOutput) ToGetAutoscalingGroupPolic
 	return o
 }
 
-// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 func (o GetAutoscalingGroupPolicyScaleInActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleInAction) int { return v.Amount }).(pulumi.IntOutput)
 }
@@ -3718,8 +3167,7 @@ func (o GetAutoscalingGroupPolicyScaleInActionOutput) AmountType() pulumi.String
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleInAction) string { return v.AmountType }).(pulumi.StringOutput)
 }
 
-// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 func (o GetAutoscalingGroupPolicyScaleInActionOutput) CooldownPeriod() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleInAction) string { return v.CooldownPeriod }).(pulumi.StringOutput)
 }
@@ -3755,12 +3203,11 @@ func (o GetAutoscalingGroupPolicyScaleInActionArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetAutoscalingGroupPolicyScaleOutAction struct {
-	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount int `pulumi:"amount"`
 	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType string `pulumi:"amountType"`
-	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 	CooldownPeriod string `pulumi:"cooldownPeriod"`
 }
 
@@ -3776,12 +3223,11 @@ type GetAutoscalingGroupPolicyScaleOutActionInput interface {
 }
 
 type GetAutoscalingGroupPolicyScaleOutActionArgs struct {
-	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 	Amount pulumi.IntInput `pulumi:"amount"`
 	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
 	AmountType pulumi.StringInput `pulumi:"amountType"`
-	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 	CooldownPeriod pulumi.StringInput `pulumi:"cooldownPeriod"`
 }
 
@@ -3836,7 +3282,7 @@ func (o GetAutoscalingGroupPolicyScaleOutActionOutput) ToGetAutoscalingGroupPoli
 	return o
 }
 
-// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
 func (o GetAutoscalingGroupPolicyScaleOutActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleOutAction) int { return v.Amount }).(pulumi.IntOutput)
 }
@@ -3846,8 +3292,7 @@ func (o GetAutoscalingGroupPolicyScaleOutActionOutput) AmountType() pulumi.Strin
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleOutAction) string { return v.AmountType }).(pulumi.StringOutput)
 }
 
-// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+// Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
 func (o GetAutoscalingGroupPolicyScaleOutActionOutput) CooldownPeriod() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupPolicyScaleOutAction) string { return v.CooldownPeriod }).(pulumi.StringOutput)
 }
@@ -4031,9 +3476,7 @@ type GetAutoscalingGroupReplicaConfigurationNic struct {
 	FlowLogs []GetAutoscalingGroupReplicaConfigurationNicFlowLog `pulumi:"flowLogs"`
 	// Lan ID for this replica Nic.
 	Lan int `pulumi:"lan"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// Name for this replica NIC.
 	Name string `pulumi:"name"`
 	// In order to link VM to ALB, target group must be provided.
 	TargetGroups []GetAutoscalingGroupReplicaConfigurationNicTargetGroup `pulumi:"targetGroups"`
@@ -4063,9 +3506,7 @@ type GetAutoscalingGroupReplicaConfigurationNicArgs struct {
 	FlowLogs GetAutoscalingGroupReplicaConfigurationNicFlowLogArrayInput `pulumi:"flowLogs"`
 	// Lan ID for this replica Nic.
 	Lan pulumi.IntInput `pulumi:"lan"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// Name for this replica NIC.
 	Name pulumi.StringInput `pulumi:"name"`
 	// In order to link VM to ALB, target group must be provided.
 	TargetGroups GetAutoscalingGroupReplicaConfigurationNicTargetGroupArrayInput `pulumi:"targetGroups"`
@@ -4156,9 +3597,7 @@ func (o GetAutoscalingGroupReplicaConfigurationNicOutput) Lan() pulumi.IntOutput
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
-// Name of an existing Autoscaling Group that you want to search for.
-//
-// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+// Name for this replica NIC.
 func (o GetAutoscalingGroupReplicaConfigurationNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNic) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4195,9 +3634,7 @@ type GetAutoscalingGroupReplicaConfigurationNicFirewallRule struct {
 	IcmpCode int `pulumi:"icmpCode"`
 	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType int `pulumi:"icmpType"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// The name of the firewall rule.
 	Name string `pulumi:"name"`
 	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd int `pulumi:"portRangeEnd"`
@@ -4211,7 +3648,7 @@ type GetAutoscalingGroupReplicaConfigurationNicFirewallRule struct {
 	SourceMac string `pulumi:"sourceMac"`
 	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp string `pulumi:"targetIp"`
-	// Type of resource
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type string `pulumi:"type"`
 }
 
@@ -4231,9 +3668,7 @@ type GetAutoscalingGroupReplicaConfigurationNicFirewallRuleArgs struct {
 	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
 	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType pulumi.IntInput `pulumi:"icmpType"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// The name of the firewall rule.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
@@ -4247,7 +3682,7 @@ type GetAutoscalingGroupReplicaConfigurationNicFirewallRuleArgs struct {
 	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
 	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp pulumi.StringInput `pulumi:"targetIp"`
-	// Type of resource
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -4312,9 +3747,7 @@ func (o GetAutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) IcmpType()
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
 }
 
-// Name of an existing Autoscaling Group that you want to search for.
-//
-// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+// The name of the firewall rule.
 func (o GetAutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4349,7 +3782,7 @@ func (o GetAutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) TargetIp()
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
 }
 
-// Type of resource
+// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 func (o GetAutoscalingGroupReplicaConfigurationNicFirewallRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -4381,11 +3814,9 @@ type GetAutoscalingGroupReplicaConfigurationNicFlowLog struct {
 	Bucket string `pulumi:"bucket"`
 	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
 	Direction string `pulumi:"direction"`
-	// Id of an existing Autoscaling Group that you want to search for.
+	// The resource's unique identifier.
 	Id string `pulumi:"id"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// The resource name.
 	Name string `pulumi:"name"`
 }
 
@@ -4407,11 +3838,9 @@ type GetAutoscalingGroupReplicaConfigurationNicFlowLogArgs struct {
 	Bucket pulumi.StringInput `pulumi:"bucket"`
 	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
 	Direction pulumi.StringInput `pulumi:"direction"`
-	// Id of an existing Autoscaling Group that you want to search for.
+	// The resource's unique identifier.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// The resource name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -4481,14 +3910,12 @@ func (o GetAutoscalingGroupReplicaConfigurationNicFlowLogOutput) Direction() pul
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Direction }).(pulumi.StringOutput)
 }
 
-// Id of an existing Autoscaling Group that you want to search for.
+// The resource's unique identifier.
 func (o GetAutoscalingGroupReplicaConfigurationNicFlowLogOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Name of an existing Autoscaling Group that you want to search for.
-//
-// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+// The resource name.
 func (o GetAutoscalingGroupReplicaConfigurationNicFlowLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationNicFlowLog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4639,14 +4066,12 @@ type GetAutoscalingGroupReplicaConfigurationVolume struct {
 	Image string `pulumi:"image"`
 	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
 	ImageAlias string `pulumi:"imageAlias"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// Name for this replica volume.
 	Name string `pulumi:"name"`
 	// User-defined size for this replica volume in GB.
 	Size    int      `pulumi:"size"`
 	SshKeys []string `pulumi:"sshKeys"`
-	// Type of resource
+	// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 	Type string `pulumi:"type"`
 }
 
@@ -4672,14 +4097,12 @@ type GetAutoscalingGroupReplicaConfigurationVolumeArgs struct {
 	Image pulumi.StringInput `pulumi:"image"`
 	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
 	ImageAlias pulumi.StringInput `pulumi:"imageAlias"`
-	// Name of an existing Autoscaling Group that you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	// Name for this replica volume.
 	Name pulumi.StringInput `pulumi:"name"`
 	// User-defined size for this replica volume in GB.
 	Size    pulumi.IntInput         `pulumi:"size"`
 	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
-	// Type of resource
+	// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -4759,9 +4182,7 @@ func (o GetAutoscalingGroupReplicaConfigurationVolumeOutput) ImageAlias() pulumi
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationVolume) string { return v.ImageAlias }).(pulumi.StringOutput)
 }
 
-// Name of an existing Autoscaling Group that you want to search for.
-//
-// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+// Name for this replica volume.
 func (o GetAutoscalingGroupReplicaConfigurationVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationVolume) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4775,7 +4196,7 @@ func (o GetAutoscalingGroupReplicaConfigurationVolumeOutput) SshKeys() pulumi.St
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
-// Type of resource
+// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
 func (o GetAutoscalingGroupReplicaConfigurationVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupReplicaConfigurationVolume) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -4801,7 +4222,7 @@ func (o GetAutoscalingGroupReplicaConfigurationVolumeArrayOutput) Index(i pulumi
 }
 
 type GetAutoscalingGroupServersServer struct {
-	// The unique ID of the server.
+	// Unique identifier for the resource
 	Id string `pulumi:"id"`
 }
 
@@ -4817,7 +4238,7 @@ type GetAutoscalingGroupServersServerInput interface {
 }
 
 type GetAutoscalingGroupServersServerArgs struct {
-	// The unique ID of the server.
+	// Unique identifier for the resource
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -4872,7 +4293,7 @@ func (o GetAutoscalingGroupServersServerOutput) ToGetAutoscalingGroupServersServ
 	return o
 }
 
-// The unique ID of the server.
+// Unique identifier for the resource
 func (o GetAutoscalingGroupServersServerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoscalingGroupServersServer) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -4897,2904 +4318,6 @@ func (o GetAutoscalingGroupServersServerArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetAutoscalingGroupServersServerOutput)
 }
 
-type GetCdnDistributionRoutingRule struct {
-	// The prefix of the routing rule.
-	Prefix string `pulumi:"prefix"`
-	// The scheme of the routing rule.
-	Scheme string `pulumi:"scheme"`
-	// A map of properties for the rule
-	Upstreams []GetCdnDistributionRoutingRuleUpstream `pulumi:"upstreams"`
-}
-
-// GetCdnDistributionRoutingRuleInput is an input type that accepts GetCdnDistributionRoutingRuleArgs and GetCdnDistributionRoutingRuleOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleInput` via:
-//
-//	GetCdnDistributionRoutingRuleArgs{...}
-type GetCdnDistributionRoutingRuleInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleOutput() GetCdnDistributionRoutingRuleOutput
-	ToGetCdnDistributionRoutingRuleOutputWithContext(context.Context) GetCdnDistributionRoutingRuleOutput
-}
-
-type GetCdnDistributionRoutingRuleArgs struct {
-	// The prefix of the routing rule.
-	Prefix pulumi.StringInput `pulumi:"prefix"`
-	// The scheme of the routing rule.
-	Scheme pulumi.StringInput `pulumi:"scheme"`
-	// A map of properties for the rule
-	Upstreams GetCdnDistributionRoutingRuleUpstreamArrayInput `pulumi:"upstreams"`
-}
-
-func (GetCdnDistributionRoutingRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRule)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleArgs) ToGetCdnDistributionRoutingRuleOutput() GetCdnDistributionRoutingRuleOutput {
-	return i.ToGetCdnDistributionRoutingRuleOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleArgs) ToGetCdnDistributionRoutingRuleOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleOutput)
-}
-
-// GetCdnDistributionRoutingRuleArrayInput is an input type that accepts GetCdnDistributionRoutingRuleArray and GetCdnDistributionRoutingRuleArrayOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleArrayInput` via:
-//
-//	GetCdnDistributionRoutingRuleArray{ GetCdnDistributionRoutingRuleArgs{...} }
-type GetCdnDistributionRoutingRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleArrayOutput() GetCdnDistributionRoutingRuleArrayOutput
-	ToGetCdnDistributionRoutingRuleArrayOutputWithContext(context.Context) GetCdnDistributionRoutingRuleArrayOutput
-}
-
-type GetCdnDistributionRoutingRuleArray []GetCdnDistributionRoutingRuleInput
-
-func (GetCdnDistributionRoutingRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRule)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleArray) ToGetCdnDistributionRoutingRuleArrayOutput() GetCdnDistributionRoutingRuleArrayOutput {
-	return i.ToGetCdnDistributionRoutingRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleArray) ToGetCdnDistributionRoutingRuleArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleArrayOutput)
-}
-
-type GetCdnDistributionRoutingRuleOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRule)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleOutput) ToGetCdnDistributionRoutingRuleOutput() GetCdnDistributionRoutingRuleOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleOutput) ToGetCdnDistributionRoutingRuleOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleOutput {
-	return o
-}
-
-// The prefix of the routing rule.
-func (o GetCdnDistributionRoutingRuleOutput) Prefix() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRule) string { return v.Prefix }).(pulumi.StringOutput)
-}
-
-// The scheme of the routing rule.
-func (o GetCdnDistributionRoutingRuleOutput) Scheme() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRule) string { return v.Scheme }).(pulumi.StringOutput)
-}
-
-// A map of properties for the rule
-func (o GetCdnDistributionRoutingRuleOutput) Upstreams() GetCdnDistributionRoutingRuleUpstreamArrayOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRule) []GetCdnDistributionRoutingRuleUpstream { return v.Upstreams }).(GetCdnDistributionRoutingRuleUpstreamArrayOutput)
-}
-
-type GetCdnDistributionRoutingRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRule)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleArrayOutput) ToGetCdnDistributionRoutingRuleArrayOutput() GetCdnDistributionRoutingRuleArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleArrayOutput) ToGetCdnDistributionRoutingRuleArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleArrayOutput) Index(i pulumi.IntInput) GetCdnDistributionRoutingRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCdnDistributionRoutingRule {
-		return vs[0].([]GetCdnDistributionRoutingRule)[vs[1].(int)]
-	}).(GetCdnDistributionRoutingRuleOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstream struct {
-	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching bool `pulumi:"caching"`
-	// A map of geo_restrictions
-	GeoRestrictions []GetCdnDistributionRoutingRuleUpstreamGeoRestriction `pulumi:"geoRestrictions"`
-	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-	Host string `pulumi:"host"`
-	// Rate limit class that will be applied to limit the number of incoming requests per IP.
-	RateLimitClass string `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-	SniMode string `pulumi:"sniMode"`
-	// Enable or disable WAF to protect the upstream host.
-	Waf bool `pulumi:"waf"`
-}
-
-// GetCdnDistributionRoutingRuleUpstreamInput is an input type that accepts GetCdnDistributionRoutingRuleUpstreamArgs and GetCdnDistributionRoutingRuleUpstreamOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleUpstreamInput` via:
-//
-//	GetCdnDistributionRoutingRuleUpstreamArgs{...}
-type GetCdnDistributionRoutingRuleUpstreamInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleUpstreamOutput() GetCdnDistributionRoutingRuleUpstreamOutput
-	ToGetCdnDistributionRoutingRuleUpstreamOutputWithContext(context.Context) GetCdnDistributionRoutingRuleUpstreamOutput
-}
-
-type GetCdnDistributionRoutingRuleUpstreamArgs struct {
-	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching pulumi.BoolInput `pulumi:"caching"`
-	// A map of geo_restrictions
-	GeoRestrictions GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayInput `pulumi:"geoRestrictions"`
-	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-	Host pulumi.StringInput `pulumi:"host"`
-	// Rate limit class that will be applied to limit the number of incoming requests per IP.
-	RateLimitClass pulumi.StringInput `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-	SniMode pulumi.StringInput `pulumi:"sniMode"`
-	// Enable or disable WAF to protect the upstream host.
-	Waf pulumi.BoolInput `pulumi:"waf"`
-}
-
-func (GetCdnDistributionRoutingRuleUpstreamArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstream)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamArgs) ToGetCdnDistributionRoutingRuleUpstreamOutput() GetCdnDistributionRoutingRuleUpstreamOutput {
-	return i.ToGetCdnDistributionRoutingRuleUpstreamOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamArgs) ToGetCdnDistributionRoutingRuleUpstreamOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleUpstreamOutput)
-}
-
-// GetCdnDistributionRoutingRuleUpstreamArrayInput is an input type that accepts GetCdnDistributionRoutingRuleUpstreamArray and GetCdnDistributionRoutingRuleUpstreamArrayOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleUpstreamArrayInput` via:
-//
-//	GetCdnDistributionRoutingRuleUpstreamArray{ GetCdnDistributionRoutingRuleUpstreamArgs{...} }
-type GetCdnDistributionRoutingRuleUpstreamArrayInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleUpstreamArrayOutput() GetCdnDistributionRoutingRuleUpstreamArrayOutput
-	ToGetCdnDistributionRoutingRuleUpstreamArrayOutputWithContext(context.Context) GetCdnDistributionRoutingRuleUpstreamArrayOutput
-}
-
-type GetCdnDistributionRoutingRuleUpstreamArray []GetCdnDistributionRoutingRuleUpstreamInput
-
-func (GetCdnDistributionRoutingRuleUpstreamArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRuleUpstream)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamArray) ToGetCdnDistributionRoutingRuleUpstreamArrayOutput() GetCdnDistributionRoutingRuleUpstreamArrayOutput {
-	return i.ToGetCdnDistributionRoutingRuleUpstreamArrayOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamArray) ToGetCdnDistributionRoutingRuleUpstreamArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleUpstreamArrayOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstreamOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleUpstreamOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstream)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) ToGetCdnDistributionRoutingRuleUpstreamOutput() GetCdnDistributionRoutingRuleUpstreamOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) ToGetCdnDistributionRoutingRuleUpstreamOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamOutput {
-	return o
-}
-
-// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) Caching() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) bool { return v.Caching }).(pulumi.BoolOutput)
-}
-
-// A map of geo_restrictions
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) GeoRestrictions() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) []GetCdnDistributionRoutingRuleUpstreamGeoRestriction {
-		return v.GeoRestrictions
-	}).(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput)
-}
-
-// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) string { return v.Host }).(pulumi.StringOutput)
-}
-
-// Rate limit class that will be applied to limit the number of incoming requests per IP.
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) RateLimitClass() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) string { return v.RateLimitClass }).(pulumi.StringOutput)
-}
-
-// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) SniMode() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) string { return v.SniMode }).(pulumi.StringOutput)
-}
-
-// Enable or disable WAF to protect the upstream host.
-func (o GetCdnDistributionRoutingRuleUpstreamOutput) Waf() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstream) bool { return v.Waf }).(pulumi.BoolOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstreamArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleUpstreamArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRuleUpstream)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamArrayOutput) ToGetCdnDistributionRoutingRuleUpstreamArrayOutput() GetCdnDistributionRoutingRuleUpstreamArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamArrayOutput) ToGetCdnDistributionRoutingRuleUpstreamArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamArrayOutput) Index(i pulumi.IntInput) GetCdnDistributionRoutingRuleUpstreamOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCdnDistributionRoutingRuleUpstream {
-		return vs[0].([]GetCdnDistributionRoutingRuleUpstream)[vs[1].(int)]
-	}).(GetCdnDistributionRoutingRuleUpstreamOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstreamGeoRestriction struct {
-	// List of allowed countries
-	AllowLists []string `pulumi:"allowLists"`
-	// List of blocked countries
-	BlockLists []string `pulumi:"blockLists"`
-}
-
-// GetCdnDistributionRoutingRuleUpstreamGeoRestrictionInput is an input type that accepts GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs and GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleUpstreamGeoRestrictionInput` via:
-//
-//	GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs{...}
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput
-	ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput
-}
-
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs struct {
-	// List of allowed countries
-	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
-	// List of blocked countries
-	BlockLists pulumi.StringArrayInput `pulumi:"blockLists"`
-}
-
-func (GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput {
-	return i.ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput)
-}
-
-// GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayInput is an input type that accepts GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray and GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput values.
-// You can construct a concrete instance of `GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayInput` via:
-//
-//	GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray{ GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs{...} }
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayInput interface {
-	pulumi.Input
-
-	ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput
-	ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput
-}
-
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray []GetCdnDistributionRoutingRuleUpstreamGeoRestrictionInput
-
-func (GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
-	return i.ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(context.Background())
-}
-
-func (i GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput {
-	return o
-}
-
-// List of allowed countries
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput) AllowLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
-}
-
-// List of blocked countries
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput) BlockLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCdnDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.BlockLists }).(pulumi.StringArrayOutput)
-}
-
-type GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCdnDistributionRoutingRuleUpstreamGeoRestriction)(nil)).Elem()
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput() GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) ToGetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutputWithContext(ctx context.Context) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
-	return o
-}
-
-func (o GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput) Index(i pulumi.IntInput) GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCdnDistributionRoutingRuleUpstreamGeoRestriction {
-		return vs[0].([]GetCdnDistributionRoutingRuleUpstreamGeoRestriction)[vs[1].(int)]
-	}).(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput)
-}
-
-type GetContainerRegistryFeature struct {
-	VulnerabilityScanning bool `pulumi:"vulnerabilityScanning"`
-}
-
-// GetContainerRegistryFeatureInput is an input type that accepts GetContainerRegistryFeatureArgs and GetContainerRegistryFeatureOutput values.
-// You can construct a concrete instance of `GetContainerRegistryFeatureInput` via:
-//
-//	GetContainerRegistryFeatureArgs{...}
-type GetContainerRegistryFeatureInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryFeatureOutput() GetContainerRegistryFeatureOutput
-	ToGetContainerRegistryFeatureOutputWithContext(context.Context) GetContainerRegistryFeatureOutput
-}
-
-type GetContainerRegistryFeatureArgs struct {
-	VulnerabilityScanning pulumi.BoolInput `pulumi:"vulnerabilityScanning"`
-}
-
-func (GetContainerRegistryFeatureArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryFeature)(nil)).Elem()
-}
-
-func (i GetContainerRegistryFeatureArgs) ToGetContainerRegistryFeatureOutput() GetContainerRegistryFeatureOutput {
-	return i.ToGetContainerRegistryFeatureOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryFeatureArgs) ToGetContainerRegistryFeatureOutputWithContext(ctx context.Context) GetContainerRegistryFeatureOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryFeatureOutput)
-}
-
-// GetContainerRegistryFeatureArrayInput is an input type that accepts GetContainerRegistryFeatureArray and GetContainerRegistryFeatureArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryFeatureArrayInput` via:
-//
-//	GetContainerRegistryFeatureArray{ GetContainerRegistryFeatureArgs{...} }
-type GetContainerRegistryFeatureArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryFeatureArrayOutput() GetContainerRegistryFeatureArrayOutput
-	ToGetContainerRegistryFeatureArrayOutputWithContext(context.Context) GetContainerRegistryFeatureArrayOutput
-}
-
-type GetContainerRegistryFeatureArray []GetContainerRegistryFeatureInput
-
-func (GetContainerRegistryFeatureArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryFeature)(nil)).Elem()
-}
-
-func (i GetContainerRegistryFeatureArray) ToGetContainerRegistryFeatureArrayOutput() GetContainerRegistryFeatureArrayOutput {
-	return i.ToGetContainerRegistryFeatureArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryFeatureArray) ToGetContainerRegistryFeatureArrayOutputWithContext(ctx context.Context) GetContainerRegistryFeatureArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryFeatureArrayOutput)
-}
-
-type GetContainerRegistryFeatureOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryFeatureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryFeature)(nil)).Elem()
-}
-
-func (o GetContainerRegistryFeatureOutput) ToGetContainerRegistryFeatureOutput() GetContainerRegistryFeatureOutput {
-	return o
-}
-
-func (o GetContainerRegistryFeatureOutput) ToGetContainerRegistryFeatureOutputWithContext(ctx context.Context) GetContainerRegistryFeatureOutput {
-	return o
-}
-
-func (o GetContainerRegistryFeatureOutput) VulnerabilityScanning() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetContainerRegistryFeature) bool { return v.VulnerabilityScanning }).(pulumi.BoolOutput)
-}
-
-type GetContainerRegistryFeatureArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryFeatureArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryFeature)(nil)).Elem()
-}
-
-func (o GetContainerRegistryFeatureArrayOutput) ToGetContainerRegistryFeatureArrayOutput() GetContainerRegistryFeatureArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryFeatureArrayOutput) ToGetContainerRegistryFeatureArrayOutputWithContext(ctx context.Context) GetContainerRegistryFeatureArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryFeatureArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryFeatureOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryFeature {
-		return vs[0].([]GetContainerRegistryFeature)[vs[1].(int)]
-	}).(GetContainerRegistryFeatureOutput)
-}
-
-type GetContainerRegistryGarbageCollectionSchedule struct {
-	Days []string `pulumi:"days"`
-	Time string   `pulumi:"time"`
-}
-
-// GetContainerRegistryGarbageCollectionScheduleInput is an input type that accepts GetContainerRegistryGarbageCollectionScheduleArgs and GetContainerRegistryGarbageCollectionScheduleOutput values.
-// You can construct a concrete instance of `GetContainerRegistryGarbageCollectionScheduleInput` via:
-//
-//	GetContainerRegistryGarbageCollectionScheduleArgs{...}
-type GetContainerRegistryGarbageCollectionScheduleInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryGarbageCollectionScheduleOutput() GetContainerRegistryGarbageCollectionScheduleOutput
-	ToGetContainerRegistryGarbageCollectionScheduleOutputWithContext(context.Context) GetContainerRegistryGarbageCollectionScheduleOutput
-}
-
-type GetContainerRegistryGarbageCollectionScheduleArgs struct {
-	Days pulumi.StringArrayInput `pulumi:"days"`
-	Time pulumi.StringInput      `pulumi:"time"`
-}
-
-func (GetContainerRegistryGarbageCollectionScheduleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryGarbageCollectionSchedule)(nil)).Elem()
-}
-
-func (i GetContainerRegistryGarbageCollectionScheduleArgs) ToGetContainerRegistryGarbageCollectionScheduleOutput() GetContainerRegistryGarbageCollectionScheduleOutput {
-	return i.ToGetContainerRegistryGarbageCollectionScheduleOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryGarbageCollectionScheduleArgs) ToGetContainerRegistryGarbageCollectionScheduleOutputWithContext(ctx context.Context) GetContainerRegistryGarbageCollectionScheduleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryGarbageCollectionScheduleOutput)
-}
-
-// GetContainerRegistryGarbageCollectionScheduleArrayInput is an input type that accepts GetContainerRegistryGarbageCollectionScheduleArray and GetContainerRegistryGarbageCollectionScheduleArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryGarbageCollectionScheduleArrayInput` via:
-//
-//	GetContainerRegistryGarbageCollectionScheduleArray{ GetContainerRegistryGarbageCollectionScheduleArgs{...} }
-type GetContainerRegistryGarbageCollectionScheduleArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryGarbageCollectionScheduleArrayOutput() GetContainerRegistryGarbageCollectionScheduleArrayOutput
-	ToGetContainerRegistryGarbageCollectionScheduleArrayOutputWithContext(context.Context) GetContainerRegistryGarbageCollectionScheduleArrayOutput
-}
-
-type GetContainerRegistryGarbageCollectionScheduleArray []GetContainerRegistryGarbageCollectionScheduleInput
-
-func (GetContainerRegistryGarbageCollectionScheduleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryGarbageCollectionSchedule)(nil)).Elem()
-}
-
-func (i GetContainerRegistryGarbageCollectionScheduleArray) ToGetContainerRegistryGarbageCollectionScheduleArrayOutput() GetContainerRegistryGarbageCollectionScheduleArrayOutput {
-	return i.ToGetContainerRegistryGarbageCollectionScheduleArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryGarbageCollectionScheduleArray) ToGetContainerRegistryGarbageCollectionScheduleArrayOutputWithContext(ctx context.Context) GetContainerRegistryGarbageCollectionScheduleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryGarbageCollectionScheduleArrayOutput)
-}
-
-type GetContainerRegistryGarbageCollectionScheduleOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryGarbageCollectionScheduleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryGarbageCollectionSchedule)(nil)).Elem()
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleOutput) ToGetContainerRegistryGarbageCollectionScheduleOutput() GetContainerRegistryGarbageCollectionScheduleOutput {
-	return o
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleOutput) ToGetContainerRegistryGarbageCollectionScheduleOutputWithContext(ctx context.Context) GetContainerRegistryGarbageCollectionScheduleOutput {
-	return o
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleOutput) Days() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetContainerRegistryGarbageCollectionSchedule) []string { return v.Days }).(pulumi.StringArrayOutput)
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryGarbageCollectionSchedule) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetContainerRegistryGarbageCollectionScheduleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryGarbageCollectionScheduleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryGarbageCollectionSchedule)(nil)).Elem()
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleArrayOutput) ToGetContainerRegistryGarbageCollectionScheduleArrayOutput() GetContainerRegistryGarbageCollectionScheduleArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleArrayOutput) ToGetContainerRegistryGarbageCollectionScheduleArrayOutputWithContext(ctx context.Context) GetContainerRegistryGarbageCollectionScheduleArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryGarbageCollectionScheduleArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryGarbageCollectionScheduleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryGarbageCollectionSchedule {
-		return vs[0].([]GetContainerRegistryGarbageCollectionSchedule)[vs[1].(int)]
-	}).(GetContainerRegistryGarbageCollectionScheduleOutput)
-}
-
-type GetContainerRegistryMaintenanceWindow struct {
-	Days []string `pulumi:"days"`
-	Time string   `pulumi:"time"`
-}
-
-// GetContainerRegistryMaintenanceWindowInput is an input type that accepts GetContainerRegistryMaintenanceWindowArgs and GetContainerRegistryMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetContainerRegistryMaintenanceWindowInput` via:
-//
-//	GetContainerRegistryMaintenanceWindowArgs{...}
-type GetContainerRegistryMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryMaintenanceWindowOutput() GetContainerRegistryMaintenanceWindowOutput
-	ToGetContainerRegistryMaintenanceWindowOutputWithContext(context.Context) GetContainerRegistryMaintenanceWindowOutput
-}
-
-type GetContainerRegistryMaintenanceWindowArgs struct {
-	Days pulumi.StringArrayInput `pulumi:"days"`
-	Time pulumi.StringInput      `pulumi:"time"`
-}
-
-func (GetContainerRegistryMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetContainerRegistryMaintenanceWindowArgs) ToGetContainerRegistryMaintenanceWindowOutput() GetContainerRegistryMaintenanceWindowOutput {
-	return i.ToGetContainerRegistryMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryMaintenanceWindowArgs) ToGetContainerRegistryMaintenanceWindowOutputWithContext(ctx context.Context) GetContainerRegistryMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryMaintenanceWindowOutput)
-}
-
-// GetContainerRegistryMaintenanceWindowArrayInput is an input type that accepts GetContainerRegistryMaintenanceWindowArray and GetContainerRegistryMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryMaintenanceWindowArrayInput` via:
-//
-//	GetContainerRegistryMaintenanceWindowArray{ GetContainerRegistryMaintenanceWindowArgs{...} }
-type GetContainerRegistryMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryMaintenanceWindowArrayOutput() GetContainerRegistryMaintenanceWindowArrayOutput
-	ToGetContainerRegistryMaintenanceWindowArrayOutputWithContext(context.Context) GetContainerRegistryMaintenanceWindowArrayOutput
-}
-
-type GetContainerRegistryMaintenanceWindowArray []GetContainerRegistryMaintenanceWindowInput
-
-func (GetContainerRegistryMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetContainerRegistryMaintenanceWindowArray) ToGetContainerRegistryMaintenanceWindowArrayOutput() GetContainerRegistryMaintenanceWindowArrayOutput {
-	return i.ToGetContainerRegistryMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryMaintenanceWindowArray) ToGetContainerRegistryMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetContainerRegistryMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryMaintenanceWindowArrayOutput)
-}
-
-type GetContainerRegistryMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetContainerRegistryMaintenanceWindowOutput) ToGetContainerRegistryMaintenanceWindowOutput() GetContainerRegistryMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetContainerRegistryMaintenanceWindowOutput) ToGetContainerRegistryMaintenanceWindowOutputWithContext(ctx context.Context) GetContainerRegistryMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetContainerRegistryMaintenanceWindowOutput) Days() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetContainerRegistryMaintenanceWindow) []string { return v.Days }).(pulumi.StringArrayOutput)
-}
-
-func (o GetContainerRegistryMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetContainerRegistryMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetContainerRegistryMaintenanceWindowArrayOutput) ToGetContainerRegistryMaintenanceWindowArrayOutput() GetContainerRegistryMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryMaintenanceWindowArrayOutput) ToGetContainerRegistryMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetContainerRegistryMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryMaintenanceWindow {
-		return vs[0].([]GetContainerRegistryMaintenanceWindow)[vs[1].(int)]
-	}).(GetContainerRegistryMaintenanceWindowOutput)
-}
-
-type GetContainerRegistryStorageUsage struct {
-	Bytes     int    `pulumi:"bytes"`
-	UpdatedAt string `pulumi:"updatedAt"`
-}
-
-// GetContainerRegistryStorageUsageInput is an input type that accepts GetContainerRegistryStorageUsageArgs and GetContainerRegistryStorageUsageOutput values.
-// You can construct a concrete instance of `GetContainerRegistryStorageUsageInput` via:
-//
-//	GetContainerRegistryStorageUsageArgs{...}
-type GetContainerRegistryStorageUsageInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryStorageUsageOutput() GetContainerRegistryStorageUsageOutput
-	ToGetContainerRegistryStorageUsageOutputWithContext(context.Context) GetContainerRegistryStorageUsageOutput
-}
-
-type GetContainerRegistryStorageUsageArgs struct {
-	Bytes     pulumi.IntInput    `pulumi:"bytes"`
-	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
-}
-
-func (GetContainerRegistryStorageUsageArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryStorageUsage)(nil)).Elem()
-}
-
-func (i GetContainerRegistryStorageUsageArgs) ToGetContainerRegistryStorageUsageOutput() GetContainerRegistryStorageUsageOutput {
-	return i.ToGetContainerRegistryStorageUsageOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryStorageUsageArgs) ToGetContainerRegistryStorageUsageOutputWithContext(ctx context.Context) GetContainerRegistryStorageUsageOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryStorageUsageOutput)
-}
-
-// GetContainerRegistryStorageUsageArrayInput is an input type that accepts GetContainerRegistryStorageUsageArray and GetContainerRegistryStorageUsageArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryStorageUsageArrayInput` via:
-//
-//	GetContainerRegistryStorageUsageArray{ GetContainerRegistryStorageUsageArgs{...} }
-type GetContainerRegistryStorageUsageArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryStorageUsageArrayOutput() GetContainerRegistryStorageUsageArrayOutput
-	ToGetContainerRegistryStorageUsageArrayOutputWithContext(context.Context) GetContainerRegistryStorageUsageArrayOutput
-}
-
-type GetContainerRegistryStorageUsageArray []GetContainerRegistryStorageUsageInput
-
-func (GetContainerRegistryStorageUsageArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryStorageUsage)(nil)).Elem()
-}
-
-func (i GetContainerRegistryStorageUsageArray) ToGetContainerRegistryStorageUsageArrayOutput() GetContainerRegistryStorageUsageArrayOutput {
-	return i.ToGetContainerRegistryStorageUsageArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryStorageUsageArray) ToGetContainerRegistryStorageUsageArrayOutputWithContext(ctx context.Context) GetContainerRegistryStorageUsageArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryStorageUsageArrayOutput)
-}
-
-type GetContainerRegistryStorageUsageOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryStorageUsageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryStorageUsage)(nil)).Elem()
-}
-
-func (o GetContainerRegistryStorageUsageOutput) ToGetContainerRegistryStorageUsageOutput() GetContainerRegistryStorageUsageOutput {
-	return o
-}
-
-func (o GetContainerRegistryStorageUsageOutput) ToGetContainerRegistryStorageUsageOutputWithContext(ctx context.Context) GetContainerRegistryStorageUsageOutput {
-	return o
-}
-
-func (o GetContainerRegistryStorageUsageOutput) Bytes() pulumi.IntOutput {
-	return o.ApplyT(func(v GetContainerRegistryStorageUsage) int { return v.Bytes }).(pulumi.IntOutput)
-}
-
-func (o GetContainerRegistryStorageUsageOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryStorageUsage) string { return v.UpdatedAt }).(pulumi.StringOutput)
-}
-
-type GetContainerRegistryStorageUsageArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryStorageUsageArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryStorageUsage)(nil)).Elem()
-}
-
-func (o GetContainerRegistryStorageUsageArrayOutput) ToGetContainerRegistryStorageUsageArrayOutput() GetContainerRegistryStorageUsageArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryStorageUsageArrayOutput) ToGetContainerRegistryStorageUsageArrayOutputWithContext(ctx context.Context) GetContainerRegistryStorageUsageArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryStorageUsageArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryStorageUsageOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryStorageUsage {
-		return vs[0].([]GetContainerRegistryStorageUsage)[vs[1].(int)]
-	}).(GetContainerRegistryStorageUsageOutput)
-}
-
-type GetContainerRegistryTokenCredential struct {
-	// * `expiry-date`
-	Username string `pulumi:"username"`
-}
-
-// GetContainerRegistryTokenCredentialInput is an input type that accepts GetContainerRegistryTokenCredentialArgs and GetContainerRegistryTokenCredentialOutput values.
-// You can construct a concrete instance of `GetContainerRegistryTokenCredentialInput` via:
-//
-//	GetContainerRegistryTokenCredentialArgs{...}
-type GetContainerRegistryTokenCredentialInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryTokenCredentialOutput() GetContainerRegistryTokenCredentialOutput
-	ToGetContainerRegistryTokenCredentialOutputWithContext(context.Context) GetContainerRegistryTokenCredentialOutput
-}
-
-type GetContainerRegistryTokenCredentialArgs struct {
-	// * `expiry-date`
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetContainerRegistryTokenCredentialArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryTokenCredential)(nil)).Elem()
-}
-
-func (i GetContainerRegistryTokenCredentialArgs) ToGetContainerRegistryTokenCredentialOutput() GetContainerRegistryTokenCredentialOutput {
-	return i.ToGetContainerRegistryTokenCredentialOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryTokenCredentialArgs) ToGetContainerRegistryTokenCredentialOutputWithContext(ctx context.Context) GetContainerRegistryTokenCredentialOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryTokenCredentialOutput)
-}
-
-// GetContainerRegistryTokenCredentialArrayInput is an input type that accepts GetContainerRegistryTokenCredentialArray and GetContainerRegistryTokenCredentialArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryTokenCredentialArrayInput` via:
-//
-//	GetContainerRegistryTokenCredentialArray{ GetContainerRegistryTokenCredentialArgs{...} }
-type GetContainerRegistryTokenCredentialArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryTokenCredentialArrayOutput() GetContainerRegistryTokenCredentialArrayOutput
-	ToGetContainerRegistryTokenCredentialArrayOutputWithContext(context.Context) GetContainerRegistryTokenCredentialArrayOutput
-}
-
-type GetContainerRegistryTokenCredentialArray []GetContainerRegistryTokenCredentialInput
-
-func (GetContainerRegistryTokenCredentialArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryTokenCredential)(nil)).Elem()
-}
-
-func (i GetContainerRegistryTokenCredentialArray) ToGetContainerRegistryTokenCredentialArrayOutput() GetContainerRegistryTokenCredentialArrayOutput {
-	return i.ToGetContainerRegistryTokenCredentialArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryTokenCredentialArray) ToGetContainerRegistryTokenCredentialArrayOutputWithContext(ctx context.Context) GetContainerRegistryTokenCredentialArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryTokenCredentialArrayOutput)
-}
-
-type GetContainerRegistryTokenCredentialOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryTokenCredentialOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryTokenCredential)(nil)).Elem()
-}
-
-func (o GetContainerRegistryTokenCredentialOutput) ToGetContainerRegistryTokenCredentialOutput() GetContainerRegistryTokenCredentialOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenCredentialOutput) ToGetContainerRegistryTokenCredentialOutputWithContext(ctx context.Context) GetContainerRegistryTokenCredentialOutput {
-	return o
-}
-
-// * `expiry-date`
-func (o GetContainerRegistryTokenCredentialOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryTokenCredential) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetContainerRegistryTokenCredentialArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryTokenCredentialArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryTokenCredential)(nil)).Elem()
-}
-
-func (o GetContainerRegistryTokenCredentialArrayOutput) ToGetContainerRegistryTokenCredentialArrayOutput() GetContainerRegistryTokenCredentialArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenCredentialArrayOutput) ToGetContainerRegistryTokenCredentialArrayOutputWithContext(ctx context.Context) GetContainerRegistryTokenCredentialArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenCredentialArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryTokenCredentialOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryTokenCredential {
-		return vs[0].([]GetContainerRegistryTokenCredential)[vs[1].(int)]
-	}).(GetContainerRegistryTokenCredentialOutput)
-}
-
-type GetContainerRegistryTokenScope struct {
-	Actions []string `pulumi:"actions"`
-	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string `pulumi:"name"`
-	Type string `pulumi:"type"`
-}
-
-// GetContainerRegistryTokenScopeInput is an input type that accepts GetContainerRegistryTokenScopeArgs and GetContainerRegistryTokenScopeOutput values.
-// You can construct a concrete instance of `GetContainerRegistryTokenScopeInput` via:
-//
-//	GetContainerRegistryTokenScopeArgs{...}
-type GetContainerRegistryTokenScopeInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryTokenScopeOutput() GetContainerRegistryTokenScopeOutput
-	ToGetContainerRegistryTokenScopeOutputWithContext(context.Context) GetContainerRegistryTokenScopeOutput
-}
-
-type GetContainerRegistryTokenScopeArgs struct {
-	Actions pulumi.StringArrayInput `pulumi:"actions"`
-	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput `pulumi:"name"`
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetContainerRegistryTokenScopeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryTokenScope)(nil)).Elem()
-}
-
-func (i GetContainerRegistryTokenScopeArgs) ToGetContainerRegistryTokenScopeOutput() GetContainerRegistryTokenScopeOutput {
-	return i.ToGetContainerRegistryTokenScopeOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryTokenScopeArgs) ToGetContainerRegistryTokenScopeOutputWithContext(ctx context.Context) GetContainerRegistryTokenScopeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryTokenScopeOutput)
-}
-
-// GetContainerRegistryTokenScopeArrayInput is an input type that accepts GetContainerRegistryTokenScopeArray and GetContainerRegistryTokenScopeArrayOutput values.
-// You can construct a concrete instance of `GetContainerRegistryTokenScopeArrayInput` via:
-//
-//	GetContainerRegistryTokenScopeArray{ GetContainerRegistryTokenScopeArgs{...} }
-type GetContainerRegistryTokenScopeArrayInput interface {
-	pulumi.Input
-
-	ToGetContainerRegistryTokenScopeArrayOutput() GetContainerRegistryTokenScopeArrayOutput
-	ToGetContainerRegistryTokenScopeArrayOutputWithContext(context.Context) GetContainerRegistryTokenScopeArrayOutput
-}
-
-type GetContainerRegistryTokenScopeArray []GetContainerRegistryTokenScopeInput
-
-func (GetContainerRegistryTokenScopeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryTokenScope)(nil)).Elem()
-}
-
-func (i GetContainerRegistryTokenScopeArray) ToGetContainerRegistryTokenScopeArrayOutput() GetContainerRegistryTokenScopeArrayOutput {
-	return i.ToGetContainerRegistryTokenScopeArrayOutputWithContext(context.Background())
-}
-
-func (i GetContainerRegistryTokenScopeArray) ToGetContainerRegistryTokenScopeArrayOutputWithContext(ctx context.Context) GetContainerRegistryTokenScopeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetContainerRegistryTokenScopeArrayOutput)
-}
-
-type GetContainerRegistryTokenScopeOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryTokenScopeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetContainerRegistryTokenScope)(nil)).Elem()
-}
-
-func (o GetContainerRegistryTokenScopeOutput) ToGetContainerRegistryTokenScopeOutput() GetContainerRegistryTokenScopeOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenScopeOutput) ToGetContainerRegistryTokenScopeOutputWithContext(ctx context.Context) GetContainerRegistryTokenScopeOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenScopeOutput) Actions() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetContainerRegistryTokenScope) []string { return v.Actions }).(pulumi.StringArrayOutput)
-}
-
-// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetContainerRegistryTokenScopeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryTokenScope) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o GetContainerRegistryTokenScopeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContainerRegistryTokenScope) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetContainerRegistryTokenScopeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetContainerRegistryTokenScopeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetContainerRegistryTokenScope)(nil)).Elem()
-}
-
-func (o GetContainerRegistryTokenScopeArrayOutput) ToGetContainerRegistryTokenScopeArrayOutput() GetContainerRegistryTokenScopeArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenScopeArrayOutput) ToGetContainerRegistryTokenScopeArrayOutputWithContext(ctx context.Context) GetContainerRegistryTokenScopeArrayOutput {
-	return o
-}
-
-func (o GetContainerRegistryTokenScopeArrayOutput) Index(i pulumi.IntInput) GetContainerRegistryTokenScopeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetContainerRegistryTokenScope {
-		return vs[0].([]GetContainerRegistryTokenScope)[vs[1].(int)]
-	}).(GetContainerRegistryTokenScopeOutput)
-}
-
-type GetCubeServerCdrom struct {
-	// Cloud init compatibility
-	CloudInit string `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description string `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases []string `pulumi:"imageAliases"`
-	// Type of image
-	ImageType string `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location string `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public bool `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug bool `pulumi:"ramHotUnplug"`
-	// The size of the image in GB
-	Size float64 `pulumi:"size"`
-}
-
-// GetCubeServerCdromInput is an input type that accepts GetCubeServerCdromArgs and GetCubeServerCdromOutput values.
-// You can construct a concrete instance of `GetCubeServerCdromInput` via:
-//
-//	GetCubeServerCdromArgs{...}
-type GetCubeServerCdromInput interface {
-	pulumi.Input
-
-	ToGetCubeServerCdromOutput() GetCubeServerCdromOutput
-	ToGetCubeServerCdromOutputWithContext(context.Context) GetCubeServerCdromOutput
-}
-
-type GetCubeServerCdromArgs struct {
-	// Cloud init compatibility
-	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description pulumi.StringInput `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
-	// Type of image
-	ImageType pulumi.StringInput `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public pulumi.BoolInput `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
-	// The size of the image in GB
-	Size pulumi.Float64Input `pulumi:"size"`
-}
-
-func (GetCubeServerCdromArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerCdrom)(nil)).Elem()
-}
-
-func (i GetCubeServerCdromArgs) ToGetCubeServerCdromOutput() GetCubeServerCdromOutput {
-	return i.ToGetCubeServerCdromOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerCdromArgs) ToGetCubeServerCdromOutputWithContext(ctx context.Context) GetCubeServerCdromOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerCdromOutput)
-}
-
-// GetCubeServerCdromArrayInput is an input type that accepts GetCubeServerCdromArray and GetCubeServerCdromArrayOutput values.
-// You can construct a concrete instance of `GetCubeServerCdromArrayInput` via:
-//
-//	GetCubeServerCdromArray{ GetCubeServerCdromArgs{...} }
-type GetCubeServerCdromArrayInput interface {
-	pulumi.Input
-
-	ToGetCubeServerCdromArrayOutput() GetCubeServerCdromArrayOutput
-	ToGetCubeServerCdromArrayOutputWithContext(context.Context) GetCubeServerCdromArrayOutput
-}
-
-type GetCubeServerCdromArray []GetCubeServerCdromInput
-
-func (GetCubeServerCdromArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerCdrom)(nil)).Elem()
-}
-
-func (i GetCubeServerCdromArray) ToGetCubeServerCdromArrayOutput() GetCubeServerCdromArrayOutput {
-	return i.ToGetCubeServerCdromArrayOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerCdromArray) ToGetCubeServerCdromArrayOutputWithContext(ctx context.Context) GetCubeServerCdromArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerCdromArrayOutput)
-}
-
-type GetCubeServerCdromOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerCdromOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerCdrom)(nil)).Elem()
-}
-
-func (o GetCubeServerCdromOutput) ToGetCubeServerCdromOutput() GetCubeServerCdromOutput {
-	return o
-}
-
-func (o GetCubeServerCdromOutput) ToGetCubeServerCdromOutputWithContext(ctx context.Context) GetCubeServerCdromOutput {
-	return o
-}
-
-// Cloud init compatibility
-func (o GetCubeServerCdromOutput) CloudInit() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetCubeServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of CPU hot unplug (no reboot required)
-func (o GetCubeServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Description of cdrom
-func (o GetCubeServerCdromOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// Is capable of SCSI drive hot plug (no reboot required)
-func (o GetCubeServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of SCSI drive hot unplug (no reboot required)
-func (o GetCubeServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetCubeServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetCubeServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetCubeServerCdromOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// List of image aliases mapped for this Image
-func (o GetCubeServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
-}
-
-// Type of image
-func (o GetCubeServerCdromOutput) ImageType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetCubeServerCdromOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Location of that image/snapshot
-func (o GetCubeServerCdromOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Location }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetCubeServerCdromOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetCubeServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetCubeServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Indicates if the image is part of the public repository or not
-func (o GetCubeServerCdromOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetCubeServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot unplug (no reboot required)
-func (o GetCubeServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The size of the image in GB
-func (o GetCubeServerCdromOutput) Size() pulumi.Float64Output {
-	return o.ApplyT(func(v GetCubeServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
-}
-
-type GetCubeServerCdromArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerCdromArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerCdrom)(nil)).Elem()
-}
-
-func (o GetCubeServerCdromArrayOutput) ToGetCubeServerCdromArrayOutput() GetCubeServerCdromArrayOutput {
-	return o
-}
-
-func (o GetCubeServerCdromArrayOutput) ToGetCubeServerCdromArrayOutputWithContext(ctx context.Context) GetCubeServerCdromArrayOutput {
-	return o
-}
-
-func (o GetCubeServerCdromArrayOutput) Index(i pulumi.IntInput) GetCubeServerCdromOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCubeServerCdrom {
-		return vs[0].([]GetCubeServerCdrom)[vs[1].(int)]
-	}).(GetCubeServerCdromOutput)
-}
-
-type GetCubeServerNic struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   bool  `pulumi:"dhcp"`
-	Dhcpv6 *bool `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive bool `pulumi:"firewallActive"`
-	// list of
-	FirewallRules []GetCubeServerNicFirewallRule `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType string `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           []string `pulumi:"ips"`
-	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       []string `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan int `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac string `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-}
-
-// GetCubeServerNicInput is an input type that accepts GetCubeServerNicArgs and GetCubeServerNicOutput values.
-// You can construct a concrete instance of `GetCubeServerNicInput` via:
-//
-//	GetCubeServerNicArgs{...}
-type GetCubeServerNicInput interface {
-	pulumi.Input
-
-	ToGetCubeServerNicOutput() GetCubeServerNicOutput
-	ToGetCubeServerNicOutputWithContext(context.Context) GetCubeServerNicOutput
-}
-
-type GetCubeServerNicArgs struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
-	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
-	// list of
-	FirewallRules GetCubeServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType pulumi.StringInput `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           pulumi.StringArrayInput `pulumi:"ips"`
-	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan pulumi.IntInput `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac pulumi.StringInput `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-}
-
-func (GetCubeServerNicArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerNic)(nil)).Elem()
-}
-
-func (i GetCubeServerNicArgs) ToGetCubeServerNicOutput() GetCubeServerNicOutput {
-	return i.ToGetCubeServerNicOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerNicArgs) ToGetCubeServerNicOutputWithContext(ctx context.Context) GetCubeServerNicOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerNicOutput)
-}
-
-// GetCubeServerNicArrayInput is an input type that accepts GetCubeServerNicArray and GetCubeServerNicArrayOutput values.
-// You can construct a concrete instance of `GetCubeServerNicArrayInput` via:
-//
-//	GetCubeServerNicArray{ GetCubeServerNicArgs{...} }
-type GetCubeServerNicArrayInput interface {
-	pulumi.Input
-
-	ToGetCubeServerNicArrayOutput() GetCubeServerNicArrayOutput
-	ToGetCubeServerNicArrayOutputWithContext(context.Context) GetCubeServerNicArrayOutput
-}
-
-type GetCubeServerNicArray []GetCubeServerNicInput
-
-func (GetCubeServerNicArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerNic)(nil)).Elem()
-}
-
-func (i GetCubeServerNicArray) ToGetCubeServerNicArrayOutput() GetCubeServerNicArrayOutput {
-	return i.ToGetCubeServerNicArrayOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerNicArray) ToGetCubeServerNicArrayOutputWithContext(ctx context.Context) GetCubeServerNicArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerNicArrayOutput)
-}
-
-type GetCubeServerNicOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerNicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerNic)(nil)).Elem()
-}
-
-func (o GetCubeServerNicOutput) ToGetCubeServerNicOutput() GetCubeServerNicOutput {
-	return o
-}
-
-func (o GetCubeServerNicOutput) ToGetCubeServerNicOutputWithContext(ctx context.Context) GetCubeServerNicOutput {
-	return o
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetCubeServerNicOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Indicates if the nic will reserve an IP using DHCP
-func (o GetCubeServerNicOutput) Dhcp() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
-}
-
-func (o GetCubeServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetCubeServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
-}
-
-// Activate or deactivate the firewall
-func (o GetCubeServerNicOutput) FirewallActive() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
-}
-
-// list of
-func (o GetCubeServerNicOutput) FirewallRules() GetCubeServerNicFirewallRuleArrayOutput {
-	return o.ApplyT(func(v GetCubeServerNic) []GetCubeServerNicFirewallRule { return v.FirewallRules }).(GetCubeServerNicFirewallRuleArrayOutput)
-}
-
-// The type of firewall rules that will be allowed on the NIC
-func (o GetCubeServerNicOutput) FirewallType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetCubeServerNicOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNic) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Collection of IP addresses assigned to a nic
-func (o GetCubeServerNicOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCubeServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
-}
-
-func (o GetCubeServerNicOutput) Ipv6CidrBlock() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNic) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
-}
-
-func (o GetCubeServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCubeServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
-}
-
-// The LAN ID the NIC will sit on
-func (o GetCubeServerNicOutput) Lan() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNic) int { return v.Lan }).(pulumi.IntOutput)
-}
-
-// The MAC address of the NIC
-func (o GetCubeServerNicOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNic) string { return v.Mac }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetCubeServerNicOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNic) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetCubeServerNicOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-type GetCubeServerNicArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerNicArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerNic)(nil)).Elem()
-}
-
-func (o GetCubeServerNicArrayOutput) ToGetCubeServerNicArrayOutput() GetCubeServerNicArrayOutput {
-	return o
-}
-
-func (o GetCubeServerNicArrayOutput) ToGetCubeServerNicArrayOutputWithContext(ctx context.Context) GetCubeServerNicArrayOutput {
-	return o
-}
-
-func (o GetCubeServerNicArrayOutput) Index(i pulumi.IntInput) GetCubeServerNicOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCubeServerNic {
-		return vs[0].([]GetCubeServerNic)[vs[1].(int)]
-	}).(GetCubeServerNicOutput)
-}
-
-type GetCubeServerNicFirewallRule struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode int `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType int `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd int `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart int `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol string `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp string `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac string `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp string `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-}
-
-// GetCubeServerNicFirewallRuleInput is an input type that accepts GetCubeServerNicFirewallRuleArgs and GetCubeServerNicFirewallRuleOutput values.
-// You can construct a concrete instance of `GetCubeServerNicFirewallRuleInput` via:
-//
-//	GetCubeServerNicFirewallRuleArgs{...}
-type GetCubeServerNicFirewallRuleInput interface {
-	pulumi.Input
-
-	ToGetCubeServerNicFirewallRuleOutput() GetCubeServerNicFirewallRuleOutput
-	ToGetCubeServerNicFirewallRuleOutputWithContext(context.Context) GetCubeServerNicFirewallRuleOutput
-}
-
-type GetCubeServerNicFirewallRuleArgs struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType pulumi.IntInput `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp pulumi.StringInput `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetCubeServerNicFirewallRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetCubeServerNicFirewallRuleArgs) ToGetCubeServerNicFirewallRuleOutput() GetCubeServerNicFirewallRuleOutput {
-	return i.ToGetCubeServerNicFirewallRuleOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerNicFirewallRuleArgs) ToGetCubeServerNicFirewallRuleOutputWithContext(ctx context.Context) GetCubeServerNicFirewallRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerNicFirewallRuleOutput)
-}
-
-// GetCubeServerNicFirewallRuleArrayInput is an input type that accepts GetCubeServerNicFirewallRuleArray and GetCubeServerNicFirewallRuleArrayOutput values.
-// You can construct a concrete instance of `GetCubeServerNicFirewallRuleArrayInput` via:
-//
-//	GetCubeServerNicFirewallRuleArray{ GetCubeServerNicFirewallRuleArgs{...} }
-type GetCubeServerNicFirewallRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetCubeServerNicFirewallRuleArrayOutput() GetCubeServerNicFirewallRuleArrayOutput
-	ToGetCubeServerNicFirewallRuleArrayOutputWithContext(context.Context) GetCubeServerNicFirewallRuleArrayOutput
-}
-
-type GetCubeServerNicFirewallRuleArray []GetCubeServerNicFirewallRuleInput
-
-func (GetCubeServerNicFirewallRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetCubeServerNicFirewallRuleArray) ToGetCubeServerNicFirewallRuleArrayOutput() GetCubeServerNicFirewallRuleArrayOutput {
-	return i.ToGetCubeServerNicFirewallRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerNicFirewallRuleArray) ToGetCubeServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetCubeServerNicFirewallRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerNicFirewallRuleArrayOutput)
-}
-
-type GetCubeServerNicFirewallRuleOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerNicFirewallRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetCubeServerNicFirewallRuleOutput) ToGetCubeServerNicFirewallRuleOutput() GetCubeServerNicFirewallRuleOutput {
-	return o
-}
-
-func (o GetCubeServerNicFirewallRuleOutput) ToGetCubeServerNicFirewallRuleOutputWithContext(ctx context.Context) GetCubeServerNicFirewallRuleOutput {
-	return o
-}
-
-// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-func (o GetCubeServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
-}
-
-// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-func (o GetCubeServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetCubeServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetCubeServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-func (o GetCubeServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
-}
-
-// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-func (o GetCubeServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
-}
-
-// he protocol for the rule
-func (o GetCubeServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-func (o GetCubeServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective MAC address is allowed
-func (o GetCubeServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
-}
-
-// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-func (o GetCubeServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
-}
-
-// The type of firewall rule
-func (o GetCubeServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetCubeServerNicFirewallRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerNicFirewallRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetCubeServerNicFirewallRuleArrayOutput) ToGetCubeServerNicFirewallRuleArrayOutput() GetCubeServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetCubeServerNicFirewallRuleArrayOutput) ToGetCubeServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetCubeServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetCubeServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetCubeServerNicFirewallRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCubeServerNicFirewallRule {
-		return vs[0].([]GetCubeServerNicFirewallRule)[vs[1].(int)]
-	}).(GetCubeServerNicFirewallRuleOutput)
-}
-
-type GetCubeServerVolume struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone string `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId string `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer string `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus string `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        string `pulumi:"id"`
-	ImageName string `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword string `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys []string `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData *string `pulumi:"userData"`
-}
-
-// GetCubeServerVolumeInput is an input type that accepts GetCubeServerVolumeArgs and GetCubeServerVolumeOutput values.
-// You can construct a concrete instance of `GetCubeServerVolumeInput` via:
-//
-//	GetCubeServerVolumeArgs{...}
-type GetCubeServerVolumeInput interface {
-	pulumi.Input
-
-	ToGetCubeServerVolumeOutput() GetCubeServerVolumeOutput
-	ToGetCubeServerVolumeOutputWithContext(context.Context) GetCubeServerVolumeOutput
-}
-
-type GetCubeServerVolumeArgs struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer pulumi.StringInput `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus pulumi.StringInput `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        pulumi.StringInput `pulumi:"id"`
-	ImageName pulumi.StringInput `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData pulumi.StringPtrInput `pulumi:"userData"`
-}
-
-func (GetCubeServerVolumeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerVolume)(nil)).Elem()
-}
-
-func (i GetCubeServerVolumeArgs) ToGetCubeServerVolumeOutput() GetCubeServerVolumeOutput {
-	return i.ToGetCubeServerVolumeOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerVolumeArgs) ToGetCubeServerVolumeOutputWithContext(ctx context.Context) GetCubeServerVolumeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerVolumeOutput)
-}
-
-// GetCubeServerVolumeArrayInput is an input type that accepts GetCubeServerVolumeArray and GetCubeServerVolumeArrayOutput values.
-// You can construct a concrete instance of `GetCubeServerVolumeArrayInput` via:
-//
-//	GetCubeServerVolumeArray{ GetCubeServerVolumeArgs{...} }
-type GetCubeServerVolumeArrayInput interface {
-	pulumi.Input
-
-	ToGetCubeServerVolumeArrayOutput() GetCubeServerVolumeArrayOutput
-	ToGetCubeServerVolumeArrayOutputWithContext(context.Context) GetCubeServerVolumeArrayOutput
-}
-
-type GetCubeServerVolumeArray []GetCubeServerVolumeInput
-
-func (GetCubeServerVolumeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerVolume)(nil)).Elem()
-}
-
-func (i GetCubeServerVolumeArray) ToGetCubeServerVolumeArrayOutput() GetCubeServerVolumeArrayOutput {
-	return i.ToGetCubeServerVolumeArrayOutputWithContext(context.Background())
-}
-
-func (i GetCubeServerVolumeArray) ToGetCubeServerVolumeArrayOutputWithContext(ctx context.Context) GetCubeServerVolumeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetCubeServerVolumeArrayOutput)
-}
-
-type GetCubeServerVolumeOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetCubeServerVolume)(nil)).Elem()
-}
-
-func (o GetCubeServerVolumeOutput) ToGetCubeServerVolumeOutput() GetCubeServerVolumeOutput {
-	return o
-}
-
-func (o GetCubeServerVolumeOutput) ToGetCubeServerVolumeOutputWithContext(ctx context.Context) GetCubeServerVolumeOutput {
-	return o
-}
-
-// The availability zone in which the volume should exist
-func (o GetCubeServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
-}
-
-// The uuid of the Backup Unit that user has access to
-func (o GetCubeServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
-}
-
-// The UUID of the attached server.
-func (o GetCubeServerVolumeOutput) BootServer() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
-}
-
-// The bus type of the volume
-func (o GetCubeServerVolumeOutput) Bus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Bus }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetCubeServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetCubeServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetCubeServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetCubeServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetCubeServerVolumeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetCubeServerVolumeOutput) ImageName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
-}
-
-// Initial password to be set for installed OS
-func (o GetCubeServerVolumeOutput) ImagePassword() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetCubeServerVolumeOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetCubeServerVolumeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetCubeServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetCubeServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetCubeServerVolumeOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetCubeServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-func (o GetCubeServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
-}
-
-// The type of firewall rule
-func (o GetCubeServerVolumeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// The cloud-init configuration for the volume as base64 encoded string
-func (o GetCubeServerVolumeOutput) UserData() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetCubeServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
-}
-
-type GetCubeServerVolumeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetCubeServerVolumeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetCubeServerVolume)(nil)).Elem()
-}
-
-func (o GetCubeServerVolumeArrayOutput) ToGetCubeServerVolumeArrayOutput() GetCubeServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetCubeServerVolumeArrayOutput) ToGetCubeServerVolumeArrayOutputWithContext(ctx context.Context) GetCubeServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetCubeServerVolumeArrayOutput) Index(i pulumi.IntInput) GetCubeServerVolumeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCubeServerVolume {
-		return vs[0].([]GetCubeServerVolume)[vs[1].(int)]
-	}).(GetCubeServerVolumeOutput)
-}
-
-type GetDatacenterCpuArchitecture struct {
-	// A valid CPU family name
-	CpuFamily string `pulumi:"cpuFamily"`
-	// The maximum number of cores available
-	MaxCores int `pulumi:"maxCores"`
-	// The maximum number of RAM in MB
-	MaxRam int `pulumi:"maxRam"`
-	// A valid CPU vendor name
-	Vendor string `pulumi:"vendor"`
-}
-
-// GetDatacenterCpuArchitectureInput is an input type that accepts GetDatacenterCpuArchitectureArgs and GetDatacenterCpuArchitectureOutput values.
-// You can construct a concrete instance of `GetDatacenterCpuArchitectureInput` via:
-//
-//	GetDatacenterCpuArchitectureArgs{...}
-type GetDatacenterCpuArchitectureInput interface {
-	pulumi.Input
-
-	ToGetDatacenterCpuArchitectureOutput() GetDatacenterCpuArchitectureOutput
-	ToGetDatacenterCpuArchitectureOutputWithContext(context.Context) GetDatacenterCpuArchitectureOutput
-}
-
-type GetDatacenterCpuArchitectureArgs struct {
-	// A valid CPU family name
-	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
-	// The maximum number of cores available
-	MaxCores pulumi.IntInput `pulumi:"maxCores"`
-	// The maximum number of RAM in MB
-	MaxRam pulumi.IntInput `pulumi:"maxRam"`
-	// A valid CPU vendor name
-	Vendor pulumi.StringInput `pulumi:"vendor"`
-}
-
-func (GetDatacenterCpuArchitectureArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDatacenterCpuArchitecture)(nil)).Elem()
-}
-
-func (i GetDatacenterCpuArchitectureArgs) ToGetDatacenterCpuArchitectureOutput() GetDatacenterCpuArchitectureOutput {
-	return i.ToGetDatacenterCpuArchitectureOutputWithContext(context.Background())
-}
-
-func (i GetDatacenterCpuArchitectureArgs) ToGetDatacenterCpuArchitectureOutputWithContext(ctx context.Context) GetDatacenterCpuArchitectureOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDatacenterCpuArchitectureOutput)
-}
-
-// GetDatacenterCpuArchitectureArrayInput is an input type that accepts GetDatacenterCpuArchitectureArray and GetDatacenterCpuArchitectureArrayOutput values.
-// You can construct a concrete instance of `GetDatacenterCpuArchitectureArrayInput` via:
-//
-//	GetDatacenterCpuArchitectureArray{ GetDatacenterCpuArchitectureArgs{...} }
-type GetDatacenterCpuArchitectureArrayInput interface {
-	pulumi.Input
-
-	ToGetDatacenterCpuArchitectureArrayOutput() GetDatacenterCpuArchitectureArrayOutput
-	ToGetDatacenterCpuArchitectureArrayOutputWithContext(context.Context) GetDatacenterCpuArchitectureArrayOutput
-}
-
-type GetDatacenterCpuArchitectureArray []GetDatacenterCpuArchitectureInput
-
-func (GetDatacenterCpuArchitectureArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDatacenterCpuArchitecture)(nil)).Elem()
-}
-
-func (i GetDatacenterCpuArchitectureArray) ToGetDatacenterCpuArchitectureArrayOutput() GetDatacenterCpuArchitectureArrayOutput {
-	return i.ToGetDatacenterCpuArchitectureArrayOutputWithContext(context.Background())
-}
-
-func (i GetDatacenterCpuArchitectureArray) ToGetDatacenterCpuArchitectureArrayOutputWithContext(ctx context.Context) GetDatacenterCpuArchitectureArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDatacenterCpuArchitectureArrayOutput)
-}
-
-type GetDatacenterCpuArchitectureOutput struct{ *pulumi.OutputState }
-
-func (GetDatacenterCpuArchitectureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDatacenterCpuArchitecture)(nil)).Elem()
-}
-
-func (o GetDatacenterCpuArchitectureOutput) ToGetDatacenterCpuArchitectureOutput() GetDatacenterCpuArchitectureOutput {
-	return o
-}
-
-func (o GetDatacenterCpuArchitectureOutput) ToGetDatacenterCpuArchitectureOutputWithContext(ctx context.Context) GetDatacenterCpuArchitectureOutput {
-	return o
-}
-
-// A valid CPU family name
-func (o GetDatacenterCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatacenterCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
-}
-
-// The maximum number of cores available
-func (o GetDatacenterCpuArchitectureOutput) MaxCores() pulumi.IntOutput {
-	return o.ApplyT(func(v GetDatacenterCpuArchitecture) int { return v.MaxCores }).(pulumi.IntOutput)
-}
-
-// The maximum number of RAM in MB
-func (o GetDatacenterCpuArchitectureOutput) MaxRam() pulumi.IntOutput {
-	return o.ApplyT(func(v GetDatacenterCpuArchitecture) int { return v.MaxRam }).(pulumi.IntOutput)
-}
-
-// A valid CPU vendor name
-func (o GetDatacenterCpuArchitectureOutput) Vendor() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDatacenterCpuArchitecture) string { return v.Vendor }).(pulumi.StringOutput)
-}
-
-type GetDatacenterCpuArchitectureArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDatacenterCpuArchitectureArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDatacenterCpuArchitecture)(nil)).Elem()
-}
-
-func (o GetDatacenterCpuArchitectureArrayOutput) ToGetDatacenterCpuArchitectureArrayOutput() GetDatacenterCpuArchitectureArrayOutput {
-	return o
-}
-
-func (o GetDatacenterCpuArchitectureArrayOutput) ToGetDatacenterCpuArchitectureArrayOutputWithContext(ctx context.Context) GetDatacenterCpuArchitectureArrayOutput {
-	return o
-}
-
-func (o GetDatacenterCpuArchitectureArrayOutput) Index(i pulumi.IntInput) GetDatacenterCpuArchitectureOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatacenterCpuArchitecture {
-		return vs[0].([]GetDatacenterCpuArchitecture)[vs[1].(int)]
-	}).(GetDatacenterCpuArchitectureOutput)
-}
-
-type GetDataplatformClusterConfig struct {
-	ApiVersion     string                                `pulumi:"apiVersion"`
-	Clusters       []GetDataplatformClusterConfigCluster `pulumi:"clusters"`
-	Contexts       []GetDataplatformClusterConfigContext `pulumi:"contexts"`
-	CurrentContext string                                `pulumi:"currentContext"`
-	Kind           string                                `pulumi:"kind"`
-	Users          []GetDataplatformClusterConfigUser    `pulumi:"users"`
-}
-
-// GetDataplatformClusterConfigInput is an input type that accepts GetDataplatformClusterConfigArgs and GetDataplatformClusterConfigOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigInput` via:
-//
-//	GetDataplatformClusterConfigArgs{...}
-type GetDataplatformClusterConfigInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigOutput() GetDataplatformClusterConfigOutput
-	ToGetDataplatformClusterConfigOutputWithContext(context.Context) GetDataplatformClusterConfigOutput
-}
-
-type GetDataplatformClusterConfigArgs struct {
-	ApiVersion     pulumi.StringInput                            `pulumi:"apiVersion"`
-	Clusters       GetDataplatformClusterConfigClusterArrayInput `pulumi:"clusters"`
-	Contexts       GetDataplatformClusterConfigContextArrayInput `pulumi:"contexts"`
-	CurrentContext pulumi.StringInput                            `pulumi:"currentContext"`
-	Kind           pulumi.StringInput                            `pulumi:"kind"`
-	Users          GetDataplatformClusterConfigUserArrayInput    `pulumi:"users"`
-}
-
-func (GetDataplatformClusterConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfig)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigArgs) ToGetDataplatformClusterConfigOutput() GetDataplatformClusterConfigOutput {
-	return i.ToGetDataplatformClusterConfigOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigArgs) ToGetDataplatformClusterConfigOutputWithContext(ctx context.Context) GetDataplatformClusterConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigOutput)
-}
-
-// GetDataplatformClusterConfigArrayInput is an input type that accepts GetDataplatformClusterConfigArray and GetDataplatformClusterConfigArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigArrayInput` via:
-//
-//	GetDataplatformClusterConfigArray{ GetDataplatformClusterConfigArgs{...} }
-type GetDataplatformClusterConfigArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigArrayOutput() GetDataplatformClusterConfigArrayOutput
-	ToGetDataplatformClusterConfigArrayOutputWithContext(context.Context) GetDataplatformClusterConfigArrayOutput
-}
-
-type GetDataplatformClusterConfigArray []GetDataplatformClusterConfigInput
-
-func (GetDataplatformClusterConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfig)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigArray) ToGetDataplatformClusterConfigArrayOutput() GetDataplatformClusterConfigArrayOutput {
-	return i.ToGetDataplatformClusterConfigArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigArray) ToGetDataplatformClusterConfigArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigArrayOutput)
-}
-
-type GetDataplatformClusterConfigOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfig)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigOutput) ToGetDataplatformClusterConfigOutput() GetDataplatformClusterConfigOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigOutput) ToGetDataplatformClusterConfigOutputWithContext(ctx context.Context) GetDataplatformClusterConfigOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigOutput) ApiVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) string { return v.ApiVersion }).(pulumi.StringOutput)
-}
-
-func (o GetDataplatformClusterConfigOutput) Clusters() GetDataplatformClusterConfigClusterArrayOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) []GetDataplatformClusterConfigCluster { return v.Clusters }).(GetDataplatformClusterConfigClusterArrayOutput)
-}
-
-func (o GetDataplatformClusterConfigOutput) Contexts() GetDataplatformClusterConfigContextArrayOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) []GetDataplatformClusterConfigContext { return v.Contexts }).(GetDataplatformClusterConfigContextArrayOutput)
-}
-
-func (o GetDataplatformClusterConfigOutput) CurrentContext() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) string { return v.CurrentContext }).(pulumi.StringOutput)
-}
-
-func (o GetDataplatformClusterConfigOutput) Kind() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) string { return v.Kind }).(pulumi.StringOutput)
-}
-
-func (o GetDataplatformClusterConfigOutput) Users() GetDataplatformClusterConfigUserArrayOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfig) []GetDataplatformClusterConfigUser { return v.Users }).(GetDataplatformClusterConfigUserArrayOutput)
-}
-
-type GetDataplatformClusterConfigArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfig)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigArrayOutput) ToGetDataplatformClusterConfigArrayOutput() GetDataplatformClusterConfigArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigArrayOutput) ToGetDataplatformClusterConfigArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterConfig {
-		return vs[0].([]GetDataplatformClusterConfig)[vs[1].(int)]
-	}).(GetDataplatformClusterConfigOutput)
-}
-
-type GetDataplatformClusterConfigCluster struct {
-	Cluster map[string]string `pulumi:"cluster"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string `pulumi:"name"`
-}
-
-// GetDataplatformClusterConfigClusterInput is an input type that accepts GetDataplatformClusterConfigClusterArgs and GetDataplatformClusterConfigClusterOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigClusterInput` via:
-//
-//	GetDataplatformClusterConfigClusterArgs{...}
-type GetDataplatformClusterConfigClusterInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigClusterOutput() GetDataplatformClusterConfigClusterOutput
-	ToGetDataplatformClusterConfigClusterOutputWithContext(context.Context) GetDataplatformClusterConfigClusterOutput
-}
-
-type GetDataplatformClusterConfigClusterArgs struct {
-	Cluster pulumi.StringMapInput `pulumi:"cluster"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetDataplatformClusterConfigClusterArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigCluster)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigClusterArgs) ToGetDataplatformClusterConfigClusterOutput() GetDataplatformClusterConfigClusterOutput {
-	return i.ToGetDataplatformClusterConfigClusterOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigClusterArgs) ToGetDataplatformClusterConfigClusterOutputWithContext(ctx context.Context) GetDataplatformClusterConfigClusterOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigClusterOutput)
-}
-
-// GetDataplatformClusterConfigClusterArrayInput is an input type that accepts GetDataplatformClusterConfigClusterArray and GetDataplatformClusterConfigClusterArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigClusterArrayInput` via:
-//
-//	GetDataplatformClusterConfigClusterArray{ GetDataplatformClusterConfigClusterArgs{...} }
-type GetDataplatformClusterConfigClusterArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigClusterArrayOutput() GetDataplatformClusterConfigClusterArrayOutput
-	ToGetDataplatformClusterConfigClusterArrayOutputWithContext(context.Context) GetDataplatformClusterConfigClusterArrayOutput
-}
-
-type GetDataplatformClusterConfigClusterArray []GetDataplatformClusterConfigClusterInput
-
-func (GetDataplatformClusterConfigClusterArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigCluster)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigClusterArray) ToGetDataplatformClusterConfigClusterArrayOutput() GetDataplatformClusterConfigClusterArrayOutput {
-	return i.ToGetDataplatformClusterConfigClusterArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigClusterArray) ToGetDataplatformClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigClusterArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigClusterArrayOutput)
-}
-
-type GetDataplatformClusterConfigClusterOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigCluster)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigClusterOutput) ToGetDataplatformClusterConfigClusterOutput() GetDataplatformClusterConfigClusterOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigClusterOutput) ToGetDataplatformClusterConfigClusterOutputWithContext(ctx context.Context) GetDataplatformClusterConfigClusterOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigClusterOutput) Cluster() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigCluster) map[string]string { return v.Cluster }).(pulumi.StringMapOutput)
-}
-
-// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetDataplatformClusterConfigClusterOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigCluster) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetDataplatformClusterConfigClusterArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigClusterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigCluster)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigClusterArrayOutput) ToGetDataplatformClusterConfigClusterArrayOutput() GetDataplatformClusterConfigClusterArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigClusterArrayOutput) ToGetDataplatformClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigClusterArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigClusterArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterConfigClusterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterConfigCluster {
-		return vs[0].([]GetDataplatformClusterConfigCluster)[vs[1].(int)]
-	}).(GetDataplatformClusterConfigClusterOutput)
-}
-
-type GetDataplatformClusterConfigContext struct {
-	Context map[string]string `pulumi:"context"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string `pulumi:"name"`
-}
-
-// GetDataplatformClusterConfigContextInput is an input type that accepts GetDataplatformClusterConfigContextArgs and GetDataplatformClusterConfigContextOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigContextInput` via:
-//
-//	GetDataplatformClusterConfigContextArgs{...}
-type GetDataplatformClusterConfigContextInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigContextOutput() GetDataplatformClusterConfigContextOutput
-	ToGetDataplatformClusterConfigContextOutputWithContext(context.Context) GetDataplatformClusterConfigContextOutput
-}
-
-type GetDataplatformClusterConfigContextArgs struct {
-	Context pulumi.StringMapInput `pulumi:"context"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetDataplatformClusterConfigContextArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigContext)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigContextArgs) ToGetDataplatformClusterConfigContextOutput() GetDataplatformClusterConfigContextOutput {
-	return i.ToGetDataplatformClusterConfigContextOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigContextArgs) ToGetDataplatformClusterConfigContextOutputWithContext(ctx context.Context) GetDataplatformClusterConfigContextOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigContextOutput)
-}
-
-// GetDataplatformClusterConfigContextArrayInput is an input type that accepts GetDataplatformClusterConfigContextArray and GetDataplatformClusterConfigContextArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigContextArrayInput` via:
-//
-//	GetDataplatformClusterConfigContextArray{ GetDataplatformClusterConfigContextArgs{...} }
-type GetDataplatformClusterConfigContextArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigContextArrayOutput() GetDataplatformClusterConfigContextArrayOutput
-	ToGetDataplatformClusterConfigContextArrayOutputWithContext(context.Context) GetDataplatformClusterConfigContextArrayOutput
-}
-
-type GetDataplatformClusterConfigContextArray []GetDataplatformClusterConfigContextInput
-
-func (GetDataplatformClusterConfigContextArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigContext)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigContextArray) ToGetDataplatformClusterConfigContextArrayOutput() GetDataplatformClusterConfigContextArrayOutput {
-	return i.ToGetDataplatformClusterConfigContextArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigContextArray) ToGetDataplatformClusterConfigContextArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigContextArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigContextArrayOutput)
-}
-
-type GetDataplatformClusterConfigContextOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigContextOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigContext)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigContextOutput) ToGetDataplatformClusterConfigContextOutput() GetDataplatformClusterConfigContextOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigContextOutput) ToGetDataplatformClusterConfigContextOutputWithContext(ctx context.Context) GetDataplatformClusterConfigContextOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigContextOutput) Context() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigContext) map[string]string { return v.Context }).(pulumi.StringMapOutput)
-}
-
-// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetDataplatformClusterConfigContextOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigContext) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetDataplatformClusterConfigContextArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigContextArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigContext)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigContextArrayOutput) ToGetDataplatformClusterConfigContextArrayOutput() GetDataplatformClusterConfigContextArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigContextArrayOutput) ToGetDataplatformClusterConfigContextArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigContextArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigContextArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterConfigContextOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterConfigContext {
-		return vs[0].([]GetDataplatformClusterConfigContext)[vs[1].(int)]
-	}).(GetDataplatformClusterConfigContextOutput)
-}
-
-type GetDataplatformClusterConfigUser struct {
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name string            `pulumi:"name"`
-	User map[string]string `pulumi:"user"`
-}
-
-// GetDataplatformClusterConfigUserInput is an input type that accepts GetDataplatformClusterConfigUserArgs and GetDataplatformClusterConfigUserOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigUserInput` via:
-//
-//	GetDataplatformClusterConfigUserArgs{...}
-type GetDataplatformClusterConfigUserInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigUserOutput() GetDataplatformClusterConfigUserOutput
-	ToGetDataplatformClusterConfigUserOutputWithContext(context.Context) GetDataplatformClusterConfigUserOutput
-}
-
-type GetDataplatformClusterConfigUserArgs struct {
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-	Name pulumi.StringInput    `pulumi:"name"`
-	User pulumi.StringMapInput `pulumi:"user"`
-}
-
-func (GetDataplatformClusterConfigUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigUser)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigUserArgs) ToGetDataplatformClusterConfigUserOutput() GetDataplatformClusterConfigUserOutput {
-	return i.ToGetDataplatformClusterConfigUserOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigUserArgs) ToGetDataplatformClusterConfigUserOutputWithContext(ctx context.Context) GetDataplatformClusterConfigUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigUserOutput)
-}
-
-// GetDataplatformClusterConfigUserArrayInput is an input type that accepts GetDataplatformClusterConfigUserArray and GetDataplatformClusterConfigUserArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterConfigUserArrayInput` via:
-//
-//	GetDataplatformClusterConfigUserArray{ GetDataplatformClusterConfigUserArgs{...} }
-type GetDataplatformClusterConfigUserArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterConfigUserArrayOutput() GetDataplatformClusterConfigUserArrayOutput
-	ToGetDataplatformClusterConfigUserArrayOutputWithContext(context.Context) GetDataplatformClusterConfigUserArrayOutput
-}
-
-type GetDataplatformClusterConfigUserArray []GetDataplatformClusterConfigUserInput
-
-func (GetDataplatformClusterConfigUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigUser)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterConfigUserArray) ToGetDataplatformClusterConfigUserArrayOutput() GetDataplatformClusterConfigUserArrayOutput {
-	return i.ToGetDataplatformClusterConfigUserArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterConfigUserArray) ToGetDataplatformClusterConfigUserArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterConfigUserArrayOutput)
-}
-
-type GetDataplatformClusterConfigUserOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterConfigUser)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigUserOutput) ToGetDataplatformClusterConfigUserOutput() GetDataplatformClusterConfigUserOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigUserOutput) ToGetDataplatformClusterConfigUserOutputWithContext(ctx context.Context) GetDataplatformClusterConfigUserOutput {
-	return o
-}
-
-// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-func (o GetDataplatformClusterConfigUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o GetDataplatformClusterConfigUserOutput) User() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetDataplatformClusterConfigUser) map[string]string { return v.User }).(pulumi.StringMapOutput)
-}
-
-type GetDataplatformClusterConfigUserArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterConfigUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterConfigUser)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterConfigUserArrayOutput) ToGetDataplatformClusterConfigUserArrayOutput() GetDataplatformClusterConfigUserArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigUserArrayOutput) ToGetDataplatformClusterConfigUserArrayOutputWithContext(ctx context.Context) GetDataplatformClusterConfigUserArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterConfigUserArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterConfigUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterConfigUser {
-		return vs[0].([]GetDataplatformClusterConfigUser)[vs[1].(int)]
-	}).(GetDataplatformClusterConfigUserOutput)
-}
-
-type GetDataplatformClusterLan struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-	Dhcp bool `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related data center
-	LanId string `pulumi:"lanId"`
-	// An array of additional LANs attached to worker nodes
-	Routes []GetDataplatformClusterLanRoute `pulumi:"routes"`
-}
-
-// GetDataplatformClusterLanInput is an input type that accepts GetDataplatformClusterLanArgs and GetDataplatformClusterLanOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterLanInput` via:
-//
-//	GetDataplatformClusterLanArgs{...}
-type GetDataplatformClusterLanInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterLanOutput() GetDataplatformClusterLanOutput
-	ToGetDataplatformClusterLanOutputWithContext(context.Context) GetDataplatformClusterLanOutput
-}
-
-type GetDataplatformClusterLanArgs struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-	Dhcp pulumi.BoolInput `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related data center
-	LanId pulumi.StringInput `pulumi:"lanId"`
-	// An array of additional LANs attached to worker nodes
-	Routes GetDataplatformClusterLanRouteArrayInput `pulumi:"routes"`
-}
-
-func (GetDataplatformClusterLanArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterLan)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterLanArgs) ToGetDataplatformClusterLanOutput() GetDataplatformClusterLanOutput {
-	return i.ToGetDataplatformClusterLanOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterLanArgs) ToGetDataplatformClusterLanOutputWithContext(ctx context.Context) GetDataplatformClusterLanOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterLanOutput)
-}
-
-// GetDataplatformClusterLanArrayInput is an input type that accepts GetDataplatformClusterLanArray and GetDataplatformClusterLanArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterLanArrayInput` via:
-//
-//	GetDataplatformClusterLanArray{ GetDataplatformClusterLanArgs{...} }
-type GetDataplatformClusterLanArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterLanArrayOutput() GetDataplatformClusterLanArrayOutput
-	ToGetDataplatformClusterLanArrayOutputWithContext(context.Context) GetDataplatformClusterLanArrayOutput
-}
-
-type GetDataplatformClusterLanArray []GetDataplatformClusterLanInput
-
-func (GetDataplatformClusterLanArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterLan)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterLanArray) ToGetDataplatformClusterLanArrayOutput() GetDataplatformClusterLanArrayOutput {
-	return i.ToGetDataplatformClusterLanArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterLanArray) ToGetDataplatformClusterLanArrayOutputWithContext(ctx context.Context) GetDataplatformClusterLanArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterLanArrayOutput)
-}
-
-type GetDataplatformClusterLanOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterLanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterLan)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterLanOutput) ToGetDataplatformClusterLanOutput() GetDataplatformClusterLanOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanOutput) ToGetDataplatformClusterLanOutputWithContext(ctx context.Context) GetDataplatformClusterLanOutput {
-	return o
-}
-
-// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-func (o GetDataplatformClusterLanOutput) Dhcp() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetDataplatformClusterLan) bool { return v.Dhcp }).(pulumi.BoolOutput)
-}
-
-// The LAN ID of an existing LAN at the related data center
-func (o GetDataplatformClusterLanOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterLan) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-// An array of additional LANs attached to worker nodes
-func (o GetDataplatformClusterLanOutput) Routes() GetDataplatformClusterLanRouteArrayOutput {
-	return o.ApplyT(func(v GetDataplatformClusterLan) []GetDataplatformClusterLanRoute { return v.Routes }).(GetDataplatformClusterLanRouteArrayOutput)
-}
-
-type GetDataplatformClusterLanArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterLanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterLan)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterLanArrayOutput) ToGetDataplatformClusterLanArrayOutput() GetDataplatformClusterLanArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanArrayOutput) ToGetDataplatformClusterLanArrayOutputWithContext(ctx context.Context) GetDataplatformClusterLanArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterLanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterLan {
-		return vs[0].([]GetDataplatformClusterLan)[vs[1].(int)]
-	}).(GetDataplatformClusterLanOutput)
-}
-
-type GetDataplatformClusterLanRoute struct {
-	// IPv4 or IPv6 gateway IP for the route
-	Gateway string `pulumi:"gateway"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
-	Network string `pulumi:"network"`
-}
-
-// GetDataplatformClusterLanRouteInput is an input type that accepts GetDataplatformClusterLanRouteArgs and GetDataplatformClusterLanRouteOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterLanRouteInput` via:
-//
-//	GetDataplatformClusterLanRouteArgs{...}
-type GetDataplatformClusterLanRouteInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterLanRouteOutput() GetDataplatformClusterLanRouteOutput
-	ToGetDataplatformClusterLanRouteOutputWithContext(context.Context) GetDataplatformClusterLanRouteOutput
-}
-
-type GetDataplatformClusterLanRouteArgs struct {
-	// IPv4 or IPv6 gateway IP for the route
-	Gateway pulumi.StringInput `pulumi:"gateway"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
-	Network pulumi.StringInput `pulumi:"network"`
-}
-
-func (GetDataplatformClusterLanRouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterLanRoute)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterLanRouteArgs) ToGetDataplatformClusterLanRouteOutput() GetDataplatformClusterLanRouteOutput {
-	return i.ToGetDataplatformClusterLanRouteOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterLanRouteArgs) ToGetDataplatformClusterLanRouteOutputWithContext(ctx context.Context) GetDataplatformClusterLanRouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterLanRouteOutput)
-}
-
-// GetDataplatformClusterLanRouteArrayInput is an input type that accepts GetDataplatformClusterLanRouteArray and GetDataplatformClusterLanRouteArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterLanRouteArrayInput` via:
-//
-//	GetDataplatformClusterLanRouteArray{ GetDataplatformClusterLanRouteArgs{...} }
-type GetDataplatformClusterLanRouteArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterLanRouteArrayOutput() GetDataplatformClusterLanRouteArrayOutput
-	ToGetDataplatformClusterLanRouteArrayOutputWithContext(context.Context) GetDataplatformClusterLanRouteArrayOutput
-}
-
-type GetDataplatformClusterLanRouteArray []GetDataplatformClusterLanRouteInput
-
-func (GetDataplatformClusterLanRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterLanRoute)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterLanRouteArray) ToGetDataplatformClusterLanRouteArrayOutput() GetDataplatformClusterLanRouteArrayOutput {
-	return i.ToGetDataplatformClusterLanRouteArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterLanRouteArray) ToGetDataplatformClusterLanRouteArrayOutputWithContext(ctx context.Context) GetDataplatformClusterLanRouteArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterLanRouteArrayOutput)
-}
-
-type GetDataplatformClusterLanRouteOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterLanRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterLanRoute)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterLanRouteOutput) ToGetDataplatformClusterLanRouteOutput() GetDataplatformClusterLanRouteOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanRouteOutput) ToGetDataplatformClusterLanRouteOutputWithContext(ctx context.Context) GetDataplatformClusterLanRouteOutput {
-	return o
-}
-
-// IPv4 or IPv6 gateway IP for the route
-func (o GetDataplatformClusterLanRouteOutput) Gateway() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterLanRoute) string { return v.Gateway }).(pulumi.StringOutput)
-}
-
-// IPv4 or IPv6 CIDR to be routed via the interface
-func (o GetDataplatformClusterLanRouteOutput) Network() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterLanRoute) string { return v.Network }).(pulumi.StringOutput)
-}
-
-type GetDataplatformClusterLanRouteArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterLanRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterLanRoute)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterLanRouteArrayOutput) ToGetDataplatformClusterLanRouteArrayOutput() GetDataplatformClusterLanRouteArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanRouteArrayOutput) ToGetDataplatformClusterLanRouteArrayOutputWithContext(ctx context.Context) GetDataplatformClusterLanRouteArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterLanRouteArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterLanRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterLanRoute {
-		return vs[0].([]GetDataplatformClusterLanRoute)[vs[1].(int)]
-	}).(GetDataplatformClusterLanRouteOutput)
-}
-
-type GetDataplatformClusterMaintenanceWindow struct {
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
-	Time string `pulumi:"time"`
-}
-
-// GetDataplatformClusterMaintenanceWindowInput is an input type that accepts GetDataplatformClusterMaintenanceWindowArgs and GetDataplatformClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterMaintenanceWindowInput` via:
-//
-//	GetDataplatformClusterMaintenanceWindowArgs{...}
-type GetDataplatformClusterMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterMaintenanceWindowOutput() GetDataplatformClusterMaintenanceWindowOutput
-	ToGetDataplatformClusterMaintenanceWindowOutputWithContext(context.Context) GetDataplatformClusterMaintenanceWindowOutput
-}
-
-type GetDataplatformClusterMaintenanceWindowArgs struct {
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetDataplatformClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterMaintenanceWindowArgs) ToGetDataplatformClusterMaintenanceWindowOutput() GetDataplatformClusterMaintenanceWindowOutput {
-	return i.ToGetDataplatformClusterMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterMaintenanceWindowArgs) ToGetDataplatformClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetDataplatformClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterMaintenanceWindowOutput)
-}
-
-// GetDataplatformClusterMaintenanceWindowArrayInput is an input type that accepts GetDataplatformClusterMaintenanceWindowArray and GetDataplatformClusterMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformClusterMaintenanceWindowArrayInput` via:
-//
-//	GetDataplatformClusterMaintenanceWindowArray{ GetDataplatformClusterMaintenanceWindowArgs{...} }
-type GetDataplatformClusterMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformClusterMaintenanceWindowArrayOutput() GetDataplatformClusterMaintenanceWindowArrayOutput
-	ToGetDataplatformClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetDataplatformClusterMaintenanceWindowArrayOutput
-}
-
-type GetDataplatformClusterMaintenanceWindowArray []GetDataplatformClusterMaintenanceWindowInput
-
-func (GetDataplatformClusterMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetDataplatformClusterMaintenanceWindowArray) ToGetDataplatformClusterMaintenanceWindowArrayOutput() GetDataplatformClusterMaintenanceWindowArrayOutput {
-	return i.ToGetDataplatformClusterMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformClusterMaintenanceWindowArray) ToGetDataplatformClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetDataplatformClusterMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformClusterMaintenanceWindowArrayOutput)
-}
-
-type GetDataplatformClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterMaintenanceWindowOutput) ToGetDataplatformClusterMaintenanceWindowOutput() GetDataplatformClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetDataplatformClusterMaintenanceWindowOutput) ToGetDataplatformClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetDataplatformClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetDataplatformClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// Time at which the maintenance should start.
-func (o GetDataplatformClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetDataplatformClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetDataplatformClusterMaintenanceWindowArrayOutput) ToGetDataplatformClusterMaintenanceWindowArrayOutput() GetDataplatformClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterMaintenanceWindowArrayOutput) ToGetDataplatformClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetDataplatformClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetDataplatformClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetDataplatformClusterMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformClusterMaintenanceWindow {
-		return vs[0].([]GetDataplatformClusterMaintenanceWindow)[vs[1].(int)]
-	}).(GetDataplatformClusterMaintenanceWindowOutput)
-}
-
-type GetDataplatformNodePoolMaintenanceWindow struct {
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
-	Time string `pulumi:"time"`
-}
-
-// GetDataplatformNodePoolMaintenanceWindowInput is an input type that accepts GetDataplatformNodePoolMaintenanceWindowArgs and GetDataplatformNodePoolMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetDataplatformNodePoolMaintenanceWindowInput` via:
-//
-//	GetDataplatformNodePoolMaintenanceWindowArgs{...}
-type GetDataplatformNodePoolMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetDataplatformNodePoolMaintenanceWindowOutput() GetDataplatformNodePoolMaintenanceWindowOutput
-	ToGetDataplatformNodePoolMaintenanceWindowOutputWithContext(context.Context) GetDataplatformNodePoolMaintenanceWindowOutput
-}
-
-type GetDataplatformNodePoolMaintenanceWindowArgs struct {
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetDataplatformNodePoolMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetDataplatformNodePoolMaintenanceWindowArgs) ToGetDataplatformNodePoolMaintenanceWindowOutput() GetDataplatformNodePoolMaintenanceWindowOutput {
-	return i.ToGetDataplatformNodePoolMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformNodePoolMaintenanceWindowArgs) ToGetDataplatformNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetDataplatformNodePoolMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformNodePoolMaintenanceWindowOutput)
-}
-
-// GetDataplatformNodePoolMaintenanceWindowArrayInput is an input type that accepts GetDataplatformNodePoolMaintenanceWindowArray and GetDataplatformNodePoolMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetDataplatformNodePoolMaintenanceWindowArrayInput` via:
-//
-//	GetDataplatformNodePoolMaintenanceWindowArray{ GetDataplatformNodePoolMaintenanceWindowArgs{...} }
-type GetDataplatformNodePoolMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetDataplatformNodePoolMaintenanceWindowArrayOutput() GetDataplatformNodePoolMaintenanceWindowArrayOutput
-	ToGetDataplatformNodePoolMaintenanceWindowArrayOutputWithContext(context.Context) GetDataplatformNodePoolMaintenanceWindowArrayOutput
-}
-
-type GetDataplatformNodePoolMaintenanceWindowArray []GetDataplatformNodePoolMaintenanceWindowInput
-
-func (GetDataplatformNodePoolMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetDataplatformNodePoolMaintenanceWindowArray) ToGetDataplatformNodePoolMaintenanceWindowArrayOutput() GetDataplatformNodePoolMaintenanceWindowArrayOutput {
-	return i.ToGetDataplatformNodePoolMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetDataplatformNodePoolMaintenanceWindowArray) ToGetDataplatformNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetDataplatformNodePoolMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetDataplatformNodePoolMaintenanceWindowArrayOutput)
-}
-
-type GetDataplatformNodePoolMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformNodePoolMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDataplatformNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowOutput) ToGetDataplatformNodePoolMaintenanceWindowOutput() GetDataplatformNodePoolMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowOutput) ToGetDataplatformNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetDataplatformNodePoolMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformNodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// Time at which the maintenance should start.
-func (o GetDataplatformNodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDataplatformNodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetDataplatformNodePoolMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetDataplatformNodePoolMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetDataplatformNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowArrayOutput) ToGetDataplatformNodePoolMaintenanceWindowArrayOutput() GetDataplatformNodePoolMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowArrayOutput) ToGetDataplatformNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetDataplatformNodePoolMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetDataplatformNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetDataplatformNodePoolMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDataplatformNodePoolMaintenanceWindow {
-		return vs[0].([]GetDataplatformNodePoolMaintenanceWindow)[vs[1].(int)]
-	}).(GetDataplatformNodePoolMaintenanceWindowOutput)
-}
-
 type GetDataplatformNodePoolsNodePool struct {
 	// Key-value pairs attached to node pool resource as kubernetes annotations
 	Annotations map[string]string `pulumi:"annotations"`
@@ -7811,7 +4334,7 @@ type GetDataplatformNodePoolsNodePool struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []GetDataplatformNodePoolsNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	// The name of your node pool.
 	Name string `pulumi:"name"`
 	// The number of nodes that make up the node pool.
 	NodeCount int `pulumi:"nodeCount"`
@@ -7852,7 +4375,7 @@ type GetDataplatformNodePoolsNodePoolArgs struct {
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows GetDataplatformNodePoolsNodePoolMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
-	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	// The name of your node pool.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The number of nodes that make up the node pool.
 	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
@@ -7958,7 +4481,7 @@ func (o GetDataplatformNodePoolsNodePoolOutput) MaintenanceWindows() GetDataplat
 	}).(GetDataplatformNodePoolsNodePoolMaintenanceWindowArrayOutput)
 }
 
-// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+// The name of your node pool.
 func (o GetDataplatformNodePoolsNodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDataplatformNodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -8111,572 +4634,6 @@ func (o GetDataplatformNodePoolsNodePoolMaintenanceWindowArrayOutput) Index(i pu
 	}).(GetDataplatformNodePoolsNodePoolMaintenanceWindowOutput)
 }
 
-type GetGroupUser struct {
-	Administrator bool   `pulumi:"administrator"`
-	Email         string `pulumi:"email"`
-	FirstName     string `pulumi:"firstName"`
-	ForceSecAuth  bool   `pulumi:"forceSecAuth"`
-	// ID of the group you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id       string `pulumi:"id"`
-	LastName string `pulumi:"lastName"`
-}
-
-// GetGroupUserInput is an input type that accepts GetGroupUserArgs and GetGroupUserOutput values.
-// You can construct a concrete instance of `GetGroupUserInput` via:
-//
-//	GetGroupUserArgs{...}
-type GetGroupUserInput interface {
-	pulumi.Input
-
-	ToGetGroupUserOutput() GetGroupUserOutput
-	ToGetGroupUserOutputWithContext(context.Context) GetGroupUserOutput
-}
-
-type GetGroupUserArgs struct {
-	Administrator pulumi.BoolInput   `pulumi:"administrator"`
-	Email         pulumi.StringInput `pulumi:"email"`
-	FirstName     pulumi.StringInput `pulumi:"firstName"`
-	ForceSecAuth  pulumi.BoolInput   `pulumi:"forceSecAuth"`
-	// ID of the group you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id       pulumi.StringInput `pulumi:"id"`
-	LastName pulumi.StringInput `pulumi:"lastName"`
-}
-
-func (GetGroupUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGroupUser)(nil)).Elem()
-}
-
-func (i GetGroupUserArgs) ToGetGroupUserOutput() GetGroupUserOutput {
-	return i.ToGetGroupUserOutputWithContext(context.Background())
-}
-
-func (i GetGroupUserArgs) ToGetGroupUserOutputWithContext(ctx context.Context) GetGroupUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGroupUserOutput)
-}
-
-// GetGroupUserArrayInput is an input type that accepts GetGroupUserArray and GetGroupUserArrayOutput values.
-// You can construct a concrete instance of `GetGroupUserArrayInput` via:
-//
-//	GetGroupUserArray{ GetGroupUserArgs{...} }
-type GetGroupUserArrayInput interface {
-	pulumi.Input
-
-	ToGetGroupUserArrayOutput() GetGroupUserArrayOutput
-	ToGetGroupUserArrayOutputWithContext(context.Context) GetGroupUserArrayOutput
-}
-
-type GetGroupUserArray []GetGroupUserInput
-
-func (GetGroupUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGroupUser)(nil)).Elem()
-}
-
-func (i GetGroupUserArray) ToGetGroupUserArrayOutput() GetGroupUserArrayOutput {
-	return i.ToGetGroupUserArrayOutputWithContext(context.Background())
-}
-
-func (i GetGroupUserArray) ToGetGroupUserArrayOutputWithContext(ctx context.Context) GetGroupUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetGroupUserArrayOutput)
-}
-
-type GetGroupUserOutput struct{ *pulumi.OutputState }
-
-func (GetGroupUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetGroupUser)(nil)).Elem()
-}
-
-func (o GetGroupUserOutput) ToGetGroupUserOutput() GetGroupUserOutput {
-	return o
-}
-
-func (o GetGroupUserOutput) ToGetGroupUserOutputWithContext(ctx context.Context) GetGroupUserOutput {
-	return o
-}
-
-func (o GetGroupUserOutput) Administrator() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetGroupUser) bool { return v.Administrator }).(pulumi.BoolOutput)
-}
-
-func (o GetGroupUserOutput) Email() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGroupUser) string { return v.Email }).(pulumi.StringOutput)
-}
-
-func (o GetGroupUserOutput) FirstName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGroupUser) string { return v.FirstName }).(pulumi.StringOutput)
-}
-
-func (o GetGroupUserOutput) ForceSecAuth() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetGroupUser) bool { return v.ForceSecAuth }).(pulumi.BoolOutput)
-}
-
-// ID of the group you want to search for.
-//
-// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-func (o GetGroupUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGroupUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetGroupUserOutput) LastName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetGroupUser) string { return v.LastName }).(pulumi.StringOutput)
-}
-
-type GetGroupUserArrayOutput struct{ *pulumi.OutputState }
-
-func (GetGroupUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetGroupUser)(nil)).Elem()
-}
-
-func (o GetGroupUserArrayOutput) ToGetGroupUserArrayOutput() GetGroupUserArrayOutput {
-	return o
-}
-
-func (o GetGroupUserArrayOutput) ToGetGroupUserArrayOutputWithContext(ctx context.Context) GetGroupUserArrayOutput {
-	return o
-}
-
-func (o GetGroupUserArrayOutput) Index(i pulumi.IntInput) GetGroupUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupUser {
-		return vs[0].([]GetGroupUser)[vs[1].(int)]
-	}).(GetGroupUserOutput)
-}
-
-type GetInmemorydbReplicasetConnection struct {
-	// The IP and subnet for your Replicaset.
-	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your Replicaset to.
-	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your Replicaset to.
-	LanId string `pulumi:"lanId"`
-}
-
-// GetInmemorydbReplicasetConnectionInput is an input type that accepts GetInmemorydbReplicasetConnectionArgs and GetInmemorydbReplicasetConnectionOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetConnectionInput` via:
-//
-//	GetInmemorydbReplicasetConnectionArgs{...}
-type GetInmemorydbReplicasetConnectionInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetConnectionOutput() GetInmemorydbReplicasetConnectionOutput
-	ToGetInmemorydbReplicasetConnectionOutputWithContext(context.Context) GetInmemorydbReplicasetConnectionOutput
-}
-
-type GetInmemorydbReplicasetConnectionArgs struct {
-	// The IP and subnet for your Replicaset.
-	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your Replicaset to.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your Replicaset to.
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetInmemorydbReplicasetConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetConnection)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetConnectionArgs) ToGetInmemorydbReplicasetConnectionOutput() GetInmemorydbReplicasetConnectionOutput {
-	return i.ToGetInmemorydbReplicasetConnectionOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetConnectionArgs) ToGetInmemorydbReplicasetConnectionOutputWithContext(ctx context.Context) GetInmemorydbReplicasetConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetConnectionOutput)
-}
-
-// GetInmemorydbReplicasetConnectionArrayInput is an input type that accepts GetInmemorydbReplicasetConnectionArray and GetInmemorydbReplicasetConnectionArrayOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetConnectionArrayInput` via:
-//
-//	GetInmemorydbReplicasetConnectionArray{ GetInmemorydbReplicasetConnectionArgs{...} }
-type GetInmemorydbReplicasetConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetConnectionArrayOutput() GetInmemorydbReplicasetConnectionArrayOutput
-	ToGetInmemorydbReplicasetConnectionArrayOutputWithContext(context.Context) GetInmemorydbReplicasetConnectionArrayOutput
-}
-
-type GetInmemorydbReplicasetConnectionArray []GetInmemorydbReplicasetConnectionInput
-
-func (GetInmemorydbReplicasetConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetConnection)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetConnectionArray) ToGetInmemorydbReplicasetConnectionArrayOutput() GetInmemorydbReplicasetConnectionArrayOutput {
-	return i.ToGetInmemorydbReplicasetConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetConnectionArray) ToGetInmemorydbReplicasetConnectionArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetConnectionArrayOutput)
-}
-
-type GetInmemorydbReplicasetConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetConnection)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetConnectionOutput) ToGetInmemorydbReplicasetConnectionOutput() GetInmemorydbReplicasetConnectionOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetConnectionOutput) ToGetInmemorydbReplicasetConnectionOutputWithContext(ctx context.Context) GetInmemorydbReplicasetConnectionOutput {
-	return o
-}
-
-// The IP and subnet for your Replicaset.
-func (o GetInmemorydbReplicasetConnectionOutput) Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetConnection) string { return v.Cidr }).(pulumi.StringOutput)
-}
-
-// The datacenter to connect your Replicaset to.
-func (o GetInmemorydbReplicasetConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The numeric LAN ID to connect your Replicaset to.
-func (o GetInmemorydbReplicasetConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetInmemorydbReplicasetConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetConnection)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetConnectionArrayOutput) ToGetInmemorydbReplicasetConnectionArrayOutput() GetInmemorydbReplicasetConnectionArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetConnectionArrayOutput) ToGetInmemorydbReplicasetConnectionArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetConnectionArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetConnectionArrayOutput) Index(i pulumi.IntInput) GetInmemorydbReplicasetConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbReplicasetConnection {
-		return vs[0].([]GetInmemorydbReplicasetConnection)[vs[1].(int)]
-	}).(GetInmemorydbReplicasetConnectionOutput)
-}
-
-type GetInmemorydbReplicasetCredential struct {
-	// The username for your Replicaset.
-	Username string `pulumi:"username"`
-}
-
-// GetInmemorydbReplicasetCredentialInput is an input type that accepts GetInmemorydbReplicasetCredentialArgs and GetInmemorydbReplicasetCredentialOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetCredentialInput` via:
-//
-//	GetInmemorydbReplicasetCredentialArgs{...}
-type GetInmemorydbReplicasetCredentialInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetCredentialOutput() GetInmemorydbReplicasetCredentialOutput
-	ToGetInmemorydbReplicasetCredentialOutputWithContext(context.Context) GetInmemorydbReplicasetCredentialOutput
-}
-
-type GetInmemorydbReplicasetCredentialArgs struct {
-	// The username for your Replicaset.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetInmemorydbReplicasetCredentialArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetCredential)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetCredentialArgs) ToGetInmemorydbReplicasetCredentialOutput() GetInmemorydbReplicasetCredentialOutput {
-	return i.ToGetInmemorydbReplicasetCredentialOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetCredentialArgs) ToGetInmemorydbReplicasetCredentialOutputWithContext(ctx context.Context) GetInmemorydbReplicasetCredentialOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetCredentialOutput)
-}
-
-// GetInmemorydbReplicasetCredentialArrayInput is an input type that accepts GetInmemorydbReplicasetCredentialArray and GetInmemorydbReplicasetCredentialArrayOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetCredentialArrayInput` via:
-//
-//	GetInmemorydbReplicasetCredentialArray{ GetInmemorydbReplicasetCredentialArgs{...} }
-type GetInmemorydbReplicasetCredentialArrayInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetCredentialArrayOutput() GetInmemorydbReplicasetCredentialArrayOutput
-	ToGetInmemorydbReplicasetCredentialArrayOutputWithContext(context.Context) GetInmemorydbReplicasetCredentialArrayOutput
-}
-
-type GetInmemorydbReplicasetCredentialArray []GetInmemorydbReplicasetCredentialInput
-
-func (GetInmemorydbReplicasetCredentialArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetCredential)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetCredentialArray) ToGetInmemorydbReplicasetCredentialArrayOutput() GetInmemorydbReplicasetCredentialArrayOutput {
-	return i.ToGetInmemorydbReplicasetCredentialArrayOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetCredentialArray) ToGetInmemorydbReplicasetCredentialArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetCredentialArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetCredentialArrayOutput)
-}
-
-type GetInmemorydbReplicasetCredentialOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetCredentialOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetCredential)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetCredentialOutput) ToGetInmemorydbReplicasetCredentialOutput() GetInmemorydbReplicasetCredentialOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetCredentialOutput) ToGetInmemorydbReplicasetCredentialOutputWithContext(ctx context.Context) GetInmemorydbReplicasetCredentialOutput {
-	return o
-}
-
-// The username for your Replicaset.
-func (o GetInmemorydbReplicasetCredentialOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetCredential) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetInmemorydbReplicasetCredentialArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetCredentialArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetCredential)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetCredentialArrayOutput) ToGetInmemorydbReplicasetCredentialArrayOutput() GetInmemorydbReplicasetCredentialArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetCredentialArrayOutput) ToGetInmemorydbReplicasetCredentialArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetCredentialArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetCredentialArrayOutput) Index(i pulumi.IntInput) GetInmemorydbReplicasetCredentialOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbReplicasetCredential {
-		return vs[0].([]GetInmemorydbReplicasetCredential)[vs[1].(int)]
-	}).(GetInmemorydbReplicasetCredentialOutput)
-}
-
-type GetInmemorydbReplicasetMaintenanceWindow struct {
-	// The name of the week day.
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
-	Time string `pulumi:"time"`
-}
-
-// GetInmemorydbReplicasetMaintenanceWindowInput is an input type that accepts GetInmemorydbReplicasetMaintenanceWindowArgs and GetInmemorydbReplicasetMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetMaintenanceWindowInput` via:
-//
-//	GetInmemorydbReplicasetMaintenanceWindowArgs{...}
-type GetInmemorydbReplicasetMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetMaintenanceWindowOutput() GetInmemorydbReplicasetMaintenanceWindowOutput
-	ToGetInmemorydbReplicasetMaintenanceWindowOutputWithContext(context.Context) GetInmemorydbReplicasetMaintenanceWindowOutput
-}
-
-type GetInmemorydbReplicasetMaintenanceWindowArgs struct {
-	// The name of the week day.
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetInmemorydbReplicasetMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetMaintenanceWindowArgs) ToGetInmemorydbReplicasetMaintenanceWindowOutput() GetInmemorydbReplicasetMaintenanceWindowOutput {
-	return i.ToGetInmemorydbReplicasetMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetMaintenanceWindowArgs) ToGetInmemorydbReplicasetMaintenanceWindowOutputWithContext(ctx context.Context) GetInmemorydbReplicasetMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetMaintenanceWindowOutput)
-}
-
-// GetInmemorydbReplicasetMaintenanceWindowArrayInput is an input type that accepts GetInmemorydbReplicasetMaintenanceWindowArray and GetInmemorydbReplicasetMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetMaintenanceWindowArrayInput` via:
-//
-//	GetInmemorydbReplicasetMaintenanceWindowArray{ GetInmemorydbReplicasetMaintenanceWindowArgs{...} }
-type GetInmemorydbReplicasetMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetMaintenanceWindowArrayOutput() GetInmemorydbReplicasetMaintenanceWindowArrayOutput
-	ToGetInmemorydbReplicasetMaintenanceWindowArrayOutputWithContext(context.Context) GetInmemorydbReplicasetMaintenanceWindowArrayOutput
-}
-
-type GetInmemorydbReplicasetMaintenanceWindowArray []GetInmemorydbReplicasetMaintenanceWindowInput
-
-func (GetInmemorydbReplicasetMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetMaintenanceWindowArray) ToGetInmemorydbReplicasetMaintenanceWindowArrayOutput() GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
-	return i.ToGetInmemorydbReplicasetMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetMaintenanceWindowArray) ToGetInmemorydbReplicasetMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetMaintenanceWindowArrayOutput)
-}
-
-type GetInmemorydbReplicasetMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetMaintenanceWindowOutput) ToGetInmemorydbReplicasetMaintenanceWindowOutput() GetInmemorydbReplicasetMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetMaintenanceWindowOutput) ToGetInmemorydbReplicasetMaintenanceWindowOutputWithContext(ctx context.Context) GetInmemorydbReplicasetMaintenanceWindowOutput {
-	return o
-}
-
-// The name of the week day.
-func (o GetInmemorydbReplicasetMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// Start of the maintenance window in UTC time.
-func (o GetInmemorydbReplicasetMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetInmemorydbReplicasetMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetMaintenanceWindowArrayOutput) ToGetInmemorydbReplicasetMaintenanceWindowArrayOutput() GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetMaintenanceWindowArrayOutput) ToGetInmemorydbReplicasetMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetInmemorydbReplicasetMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbReplicasetMaintenanceWindow {
-		return vs[0].([]GetInmemorydbReplicasetMaintenanceWindow)[vs[1].(int)]
-	}).(GetInmemorydbReplicasetMaintenanceWindowOutput)
-}
-
-type GetInmemorydbReplicasetResource struct {
-	// The number of CPU cores per instance.
-	Cores int `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
-	Ram int `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
-	Storage int `pulumi:"storage"`
-}
-
-// GetInmemorydbReplicasetResourceInput is an input type that accepts GetInmemorydbReplicasetResourceArgs and GetInmemorydbReplicasetResourceOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetResourceInput` via:
-//
-//	GetInmemorydbReplicasetResourceArgs{...}
-type GetInmemorydbReplicasetResourceInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetResourceOutput() GetInmemorydbReplicasetResourceOutput
-	ToGetInmemorydbReplicasetResourceOutputWithContext(context.Context) GetInmemorydbReplicasetResourceOutput
-}
-
-type GetInmemorydbReplicasetResourceArgs struct {
-	// The number of CPU cores per instance.
-	Cores pulumi.IntInput `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
-	Ram pulumi.IntInput `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
-	Storage pulumi.IntInput `pulumi:"storage"`
-}
-
-func (GetInmemorydbReplicasetResourceArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetResource)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetResourceArgs) ToGetInmemorydbReplicasetResourceOutput() GetInmemorydbReplicasetResourceOutput {
-	return i.ToGetInmemorydbReplicasetResourceOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetResourceArgs) ToGetInmemorydbReplicasetResourceOutputWithContext(ctx context.Context) GetInmemorydbReplicasetResourceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetResourceOutput)
-}
-
-// GetInmemorydbReplicasetResourceArrayInput is an input type that accepts GetInmemorydbReplicasetResourceArray and GetInmemorydbReplicasetResourceArrayOutput values.
-// You can construct a concrete instance of `GetInmemorydbReplicasetResourceArrayInput` via:
-//
-//	GetInmemorydbReplicasetResourceArray{ GetInmemorydbReplicasetResourceArgs{...} }
-type GetInmemorydbReplicasetResourceArrayInput interface {
-	pulumi.Input
-
-	ToGetInmemorydbReplicasetResourceArrayOutput() GetInmemorydbReplicasetResourceArrayOutput
-	ToGetInmemorydbReplicasetResourceArrayOutputWithContext(context.Context) GetInmemorydbReplicasetResourceArrayOutput
-}
-
-type GetInmemorydbReplicasetResourceArray []GetInmemorydbReplicasetResourceInput
-
-func (GetInmemorydbReplicasetResourceArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetResource)(nil)).Elem()
-}
-
-func (i GetInmemorydbReplicasetResourceArray) ToGetInmemorydbReplicasetResourceArrayOutput() GetInmemorydbReplicasetResourceArrayOutput {
-	return i.ToGetInmemorydbReplicasetResourceArrayOutputWithContext(context.Background())
-}
-
-func (i GetInmemorydbReplicasetResourceArray) ToGetInmemorydbReplicasetResourceArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetResourceArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbReplicasetResourceArrayOutput)
-}
-
-type GetInmemorydbReplicasetResourceOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetResourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInmemorydbReplicasetResource)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetResourceOutput) ToGetInmemorydbReplicasetResourceOutput() GetInmemorydbReplicasetResourceOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetResourceOutput) ToGetInmemorydbReplicasetResourceOutputWithContext(ctx context.Context) GetInmemorydbReplicasetResourceOutput {
-	return o
-}
-
-// The number of CPU cores per instance.
-func (o GetInmemorydbReplicasetResourceOutput) Cores() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetResource) int { return v.Cores }).(pulumi.IntOutput)
-}
-
-// The amount of memory per instance in gigabytes (GB).
-func (o GetInmemorydbReplicasetResourceOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetResource) int { return v.Ram }).(pulumi.IntOutput)
-}
-
-// The amount of storage per instance in gigabytes (GB).
-func (o GetInmemorydbReplicasetResourceOutput) Storage() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInmemorydbReplicasetResource) int { return v.Storage }).(pulumi.IntOutput)
-}
-
-type GetInmemorydbReplicasetResourceArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInmemorydbReplicasetResourceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInmemorydbReplicasetResource)(nil)).Elem()
-}
-
-func (o GetInmemorydbReplicasetResourceArrayOutput) ToGetInmemorydbReplicasetResourceArrayOutput() GetInmemorydbReplicasetResourceArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetResourceArrayOutput) ToGetInmemorydbReplicasetResourceArrayOutputWithContext(ctx context.Context) GetInmemorydbReplicasetResourceArrayOutput {
-	return o
-}
-
-func (o GetInmemorydbReplicasetResourceArrayOutput) Index(i pulumi.IntInput) GetInmemorydbReplicasetResourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbReplicasetResource {
-		return vs[0].([]GetInmemorydbReplicasetResource)[vs[1].(int)]
-	}).(GetInmemorydbReplicasetResourceOutput)
-}
-
 type GetInmemorydbSnapshotMetadata struct {
 	// The ISO 8601 creation timestamp.
 	CreatedDate string `pulumi:"createdDate"`
@@ -8808,784 +4765,6 @@ func (o GetInmemorydbSnapshotMetadataArrayOutput) Index(i pulumi.IntInput) GetIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbSnapshotMetadata {
 		return vs[0].([]GetInmemorydbSnapshotMetadata)[vs[1].(int)]
 	}).(GetInmemorydbSnapshotMetadataOutput)
-}
-
-type GetIpblockIpConsumer struct {
-	DatacenterId    string `pulumi:"datacenterId"`
-	DatacenterName  string `pulumi:"datacenterName"`
-	Ip              string `pulumi:"ip"`
-	K8sClusterUuid  string `pulumi:"k8sClusterUuid"`
-	K8sNodepoolUuid string `pulumi:"k8sNodepoolUuid"`
-	Mac             string `pulumi:"mac"`
-	NicId           string `pulumi:"nicId"`
-	ServerId        string `pulumi:"serverId"`
-	ServerName      string `pulumi:"serverName"`
-}
-
-// GetIpblockIpConsumerInput is an input type that accepts GetIpblockIpConsumerArgs and GetIpblockIpConsumerOutput values.
-// You can construct a concrete instance of `GetIpblockIpConsumerInput` via:
-//
-//	GetIpblockIpConsumerArgs{...}
-type GetIpblockIpConsumerInput interface {
-	pulumi.Input
-
-	ToGetIpblockIpConsumerOutput() GetIpblockIpConsumerOutput
-	ToGetIpblockIpConsumerOutputWithContext(context.Context) GetIpblockIpConsumerOutput
-}
-
-type GetIpblockIpConsumerArgs struct {
-	DatacenterId    pulumi.StringInput `pulumi:"datacenterId"`
-	DatacenterName  pulumi.StringInput `pulumi:"datacenterName"`
-	Ip              pulumi.StringInput `pulumi:"ip"`
-	K8sClusterUuid  pulumi.StringInput `pulumi:"k8sClusterUuid"`
-	K8sNodepoolUuid pulumi.StringInput `pulumi:"k8sNodepoolUuid"`
-	Mac             pulumi.StringInput `pulumi:"mac"`
-	NicId           pulumi.StringInput `pulumi:"nicId"`
-	ServerId        pulumi.StringInput `pulumi:"serverId"`
-	ServerName      pulumi.StringInput `pulumi:"serverName"`
-}
-
-func (GetIpblockIpConsumerArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIpblockIpConsumer)(nil)).Elem()
-}
-
-func (i GetIpblockIpConsumerArgs) ToGetIpblockIpConsumerOutput() GetIpblockIpConsumerOutput {
-	return i.ToGetIpblockIpConsumerOutputWithContext(context.Background())
-}
-
-func (i GetIpblockIpConsumerArgs) ToGetIpblockIpConsumerOutputWithContext(ctx context.Context) GetIpblockIpConsumerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetIpblockIpConsumerOutput)
-}
-
-// GetIpblockIpConsumerArrayInput is an input type that accepts GetIpblockIpConsumerArray and GetIpblockIpConsumerArrayOutput values.
-// You can construct a concrete instance of `GetIpblockIpConsumerArrayInput` via:
-//
-//	GetIpblockIpConsumerArray{ GetIpblockIpConsumerArgs{...} }
-type GetIpblockIpConsumerArrayInput interface {
-	pulumi.Input
-
-	ToGetIpblockIpConsumerArrayOutput() GetIpblockIpConsumerArrayOutput
-	ToGetIpblockIpConsumerArrayOutputWithContext(context.Context) GetIpblockIpConsumerArrayOutput
-}
-
-type GetIpblockIpConsumerArray []GetIpblockIpConsumerInput
-
-func (GetIpblockIpConsumerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetIpblockIpConsumer)(nil)).Elem()
-}
-
-func (i GetIpblockIpConsumerArray) ToGetIpblockIpConsumerArrayOutput() GetIpblockIpConsumerArrayOutput {
-	return i.ToGetIpblockIpConsumerArrayOutputWithContext(context.Background())
-}
-
-func (i GetIpblockIpConsumerArray) ToGetIpblockIpConsumerArrayOutputWithContext(ctx context.Context) GetIpblockIpConsumerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetIpblockIpConsumerArrayOutput)
-}
-
-type GetIpblockIpConsumerOutput struct{ *pulumi.OutputState }
-
-func (GetIpblockIpConsumerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIpblockIpConsumer)(nil)).Elem()
-}
-
-func (o GetIpblockIpConsumerOutput) ToGetIpblockIpConsumerOutput() GetIpblockIpConsumerOutput {
-	return o
-}
-
-func (o GetIpblockIpConsumerOutput) ToGetIpblockIpConsumerOutputWithContext(ctx context.Context) GetIpblockIpConsumerOutput {
-	return o
-}
-
-func (o GetIpblockIpConsumerOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) DatacenterName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.DatacenterName }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.Ip }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) K8sClusterUuid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.K8sClusterUuid }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) K8sNodepoolUuid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.K8sNodepoolUuid }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.Mac }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) NicId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.NicId }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) ServerId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.ServerId }).(pulumi.StringOutput)
-}
-
-func (o GetIpblockIpConsumerOutput) ServerName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpblockIpConsumer) string { return v.ServerName }).(pulumi.StringOutput)
-}
-
-type GetIpblockIpConsumerArrayOutput struct{ *pulumi.OutputState }
-
-func (GetIpblockIpConsumerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetIpblockIpConsumer)(nil)).Elem()
-}
-
-func (o GetIpblockIpConsumerArrayOutput) ToGetIpblockIpConsumerArrayOutput() GetIpblockIpConsumerArrayOutput {
-	return o
-}
-
-func (o GetIpblockIpConsumerArrayOutput) ToGetIpblockIpConsumerArrayOutputWithContext(ctx context.Context) GetIpblockIpConsumerArrayOutput {
-	return o
-}
-
-func (o GetIpblockIpConsumerArrayOutput) Index(i pulumi.IntInput) GetIpblockIpConsumerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIpblockIpConsumer {
-		return vs[0].([]GetIpblockIpConsumer)[vs[1].(int)]
-	}).(GetIpblockIpConsumerOutput)
-}
-
-type GetK8sClusterConfig struct {
-	ApiVersion     string                       `pulumi:"apiVersion"`
-	Clusters       []GetK8sClusterConfigCluster `pulumi:"clusters"`
-	Contexts       []GetK8sClusterConfigContext `pulumi:"contexts"`
-	CurrentContext string                       `pulumi:"currentContext"`
-	Kind           string                       `pulumi:"kind"`
-	Users          []GetK8sClusterConfigUser    `pulumi:"users"`
-}
-
-// GetK8sClusterConfigInput is an input type that accepts GetK8sClusterConfigArgs and GetK8sClusterConfigOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigInput` via:
-//
-//	GetK8sClusterConfigArgs{...}
-type GetK8sClusterConfigInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigOutput() GetK8sClusterConfigOutput
-	ToGetK8sClusterConfigOutputWithContext(context.Context) GetK8sClusterConfigOutput
-}
-
-type GetK8sClusterConfigArgs struct {
-	ApiVersion     pulumi.StringInput                   `pulumi:"apiVersion"`
-	Clusters       GetK8sClusterConfigClusterArrayInput `pulumi:"clusters"`
-	Contexts       GetK8sClusterConfigContextArrayInput `pulumi:"contexts"`
-	CurrentContext pulumi.StringInput                   `pulumi:"currentContext"`
-	Kind           pulumi.StringInput                   `pulumi:"kind"`
-	Users          GetK8sClusterConfigUserArrayInput    `pulumi:"users"`
-}
-
-func (GetK8sClusterConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfig)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigArgs) ToGetK8sClusterConfigOutput() GetK8sClusterConfigOutput {
-	return i.ToGetK8sClusterConfigOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigArgs) ToGetK8sClusterConfigOutputWithContext(ctx context.Context) GetK8sClusterConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigOutput)
-}
-
-// GetK8sClusterConfigArrayInput is an input type that accepts GetK8sClusterConfigArray and GetK8sClusterConfigArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigArrayInput` via:
-//
-//	GetK8sClusterConfigArray{ GetK8sClusterConfigArgs{...} }
-type GetK8sClusterConfigArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigArrayOutput() GetK8sClusterConfigArrayOutput
-	ToGetK8sClusterConfigArrayOutputWithContext(context.Context) GetK8sClusterConfigArrayOutput
-}
-
-type GetK8sClusterConfigArray []GetK8sClusterConfigInput
-
-func (GetK8sClusterConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfig)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigArray) ToGetK8sClusterConfigArrayOutput() GetK8sClusterConfigArrayOutput {
-	return i.ToGetK8sClusterConfigArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigArray) ToGetK8sClusterConfigArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigArrayOutput)
-}
-
-type GetK8sClusterConfigOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfig)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigOutput) ToGetK8sClusterConfigOutput() GetK8sClusterConfigOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigOutput) ToGetK8sClusterConfigOutputWithContext(ctx context.Context) GetK8sClusterConfigOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigOutput) ApiVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) string { return v.ApiVersion }).(pulumi.StringOutput)
-}
-
-func (o GetK8sClusterConfigOutput) Clusters() GetK8sClusterConfigClusterArrayOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) []GetK8sClusterConfigCluster { return v.Clusters }).(GetK8sClusterConfigClusterArrayOutput)
-}
-
-func (o GetK8sClusterConfigOutput) Contexts() GetK8sClusterConfigContextArrayOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) []GetK8sClusterConfigContext { return v.Contexts }).(GetK8sClusterConfigContextArrayOutput)
-}
-
-func (o GetK8sClusterConfigOutput) CurrentContext() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) string { return v.CurrentContext }).(pulumi.StringOutput)
-}
-
-func (o GetK8sClusterConfigOutput) Kind() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) string { return v.Kind }).(pulumi.StringOutput)
-}
-
-func (o GetK8sClusterConfigOutput) Users() GetK8sClusterConfigUserArrayOutput {
-	return o.ApplyT(func(v GetK8sClusterConfig) []GetK8sClusterConfigUser { return v.Users }).(GetK8sClusterConfigUserArrayOutput)
-}
-
-type GetK8sClusterConfigArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfig)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigArrayOutput) ToGetK8sClusterConfigArrayOutput() GetK8sClusterConfigArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigArrayOutput) ToGetK8sClusterConfigArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigArrayOutput) Index(i pulumi.IntInput) GetK8sClusterConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterConfig {
-		return vs[0].([]GetK8sClusterConfig)[vs[1].(int)]
-	}).(GetK8sClusterConfigOutput)
-}
-
-type GetK8sClusterConfigCluster struct {
-	Cluster map[string]string `pulumi:"cluster"`
-	// Name of an existing cluster that you want to search for.
-	Name string `pulumi:"name"`
-}
-
-// GetK8sClusterConfigClusterInput is an input type that accepts GetK8sClusterConfigClusterArgs and GetK8sClusterConfigClusterOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigClusterInput` via:
-//
-//	GetK8sClusterConfigClusterArgs{...}
-type GetK8sClusterConfigClusterInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigClusterOutput() GetK8sClusterConfigClusterOutput
-	ToGetK8sClusterConfigClusterOutputWithContext(context.Context) GetK8sClusterConfigClusterOutput
-}
-
-type GetK8sClusterConfigClusterArgs struct {
-	Cluster pulumi.StringMapInput `pulumi:"cluster"`
-	// Name of an existing cluster that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetK8sClusterConfigClusterArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigCluster)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigClusterArgs) ToGetK8sClusterConfigClusterOutput() GetK8sClusterConfigClusterOutput {
-	return i.ToGetK8sClusterConfigClusterOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigClusterArgs) ToGetK8sClusterConfigClusterOutputWithContext(ctx context.Context) GetK8sClusterConfigClusterOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigClusterOutput)
-}
-
-// GetK8sClusterConfigClusterArrayInput is an input type that accepts GetK8sClusterConfigClusterArray and GetK8sClusterConfigClusterArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigClusterArrayInput` via:
-//
-//	GetK8sClusterConfigClusterArray{ GetK8sClusterConfigClusterArgs{...} }
-type GetK8sClusterConfigClusterArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigClusterArrayOutput() GetK8sClusterConfigClusterArrayOutput
-	ToGetK8sClusterConfigClusterArrayOutputWithContext(context.Context) GetK8sClusterConfigClusterArrayOutput
-}
-
-type GetK8sClusterConfigClusterArray []GetK8sClusterConfigClusterInput
-
-func (GetK8sClusterConfigClusterArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigCluster)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigClusterArray) ToGetK8sClusterConfigClusterArrayOutput() GetK8sClusterConfigClusterArrayOutput {
-	return i.ToGetK8sClusterConfigClusterArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigClusterArray) ToGetK8sClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigClusterArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigClusterArrayOutput)
-}
-
-type GetK8sClusterConfigClusterOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigCluster)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigClusterOutput) ToGetK8sClusterConfigClusterOutput() GetK8sClusterConfigClusterOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigClusterOutput) ToGetK8sClusterConfigClusterOutputWithContext(ctx context.Context) GetK8sClusterConfigClusterOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigClusterOutput) Cluster() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigCluster) map[string]string { return v.Cluster }).(pulumi.StringMapOutput)
-}
-
-// Name of an existing cluster that you want to search for.
-func (o GetK8sClusterConfigClusterOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigCluster) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetK8sClusterConfigClusterArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigClusterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigCluster)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigClusterArrayOutput) ToGetK8sClusterConfigClusterArrayOutput() GetK8sClusterConfigClusterArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigClusterArrayOutput) ToGetK8sClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigClusterArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigClusterArrayOutput) Index(i pulumi.IntInput) GetK8sClusterConfigClusterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterConfigCluster {
-		return vs[0].([]GetK8sClusterConfigCluster)[vs[1].(int)]
-	}).(GetK8sClusterConfigClusterOutput)
-}
-
-type GetK8sClusterConfigContext struct {
-	Context map[string]string `pulumi:"context"`
-	// Name of an existing cluster that you want to search for.
-	Name string `pulumi:"name"`
-}
-
-// GetK8sClusterConfigContextInput is an input type that accepts GetK8sClusterConfigContextArgs and GetK8sClusterConfigContextOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigContextInput` via:
-//
-//	GetK8sClusterConfigContextArgs{...}
-type GetK8sClusterConfigContextInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigContextOutput() GetK8sClusterConfigContextOutput
-	ToGetK8sClusterConfigContextOutputWithContext(context.Context) GetK8sClusterConfigContextOutput
-}
-
-type GetK8sClusterConfigContextArgs struct {
-	Context pulumi.StringMapInput `pulumi:"context"`
-	// Name of an existing cluster that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetK8sClusterConfigContextArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigContext)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigContextArgs) ToGetK8sClusterConfigContextOutput() GetK8sClusterConfigContextOutput {
-	return i.ToGetK8sClusterConfigContextOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigContextArgs) ToGetK8sClusterConfigContextOutputWithContext(ctx context.Context) GetK8sClusterConfigContextOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigContextOutput)
-}
-
-// GetK8sClusterConfigContextArrayInput is an input type that accepts GetK8sClusterConfigContextArray and GetK8sClusterConfigContextArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigContextArrayInput` via:
-//
-//	GetK8sClusterConfigContextArray{ GetK8sClusterConfigContextArgs{...} }
-type GetK8sClusterConfigContextArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigContextArrayOutput() GetK8sClusterConfigContextArrayOutput
-	ToGetK8sClusterConfigContextArrayOutputWithContext(context.Context) GetK8sClusterConfigContextArrayOutput
-}
-
-type GetK8sClusterConfigContextArray []GetK8sClusterConfigContextInput
-
-func (GetK8sClusterConfigContextArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigContext)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigContextArray) ToGetK8sClusterConfigContextArrayOutput() GetK8sClusterConfigContextArrayOutput {
-	return i.ToGetK8sClusterConfigContextArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigContextArray) ToGetK8sClusterConfigContextArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigContextArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigContextArrayOutput)
-}
-
-type GetK8sClusterConfigContextOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigContextOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigContext)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigContextOutput) ToGetK8sClusterConfigContextOutput() GetK8sClusterConfigContextOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigContextOutput) ToGetK8sClusterConfigContextOutputWithContext(ctx context.Context) GetK8sClusterConfigContextOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigContextOutput) Context() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigContext) map[string]string { return v.Context }).(pulumi.StringMapOutput)
-}
-
-// Name of an existing cluster that you want to search for.
-func (o GetK8sClusterConfigContextOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigContext) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetK8sClusterConfigContextArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigContextArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigContext)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigContextArrayOutput) ToGetK8sClusterConfigContextArrayOutput() GetK8sClusterConfigContextArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigContextArrayOutput) ToGetK8sClusterConfigContextArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigContextArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigContextArrayOutput) Index(i pulumi.IntInput) GetK8sClusterConfigContextOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterConfigContext {
-		return vs[0].([]GetK8sClusterConfigContext)[vs[1].(int)]
-	}).(GetK8sClusterConfigContextOutput)
-}
-
-type GetK8sClusterConfigUser struct {
-	// Name of an existing cluster that you want to search for.
-	Name string            `pulumi:"name"`
-	User map[string]string `pulumi:"user"`
-}
-
-// GetK8sClusterConfigUserInput is an input type that accepts GetK8sClusterConfigUserArgs and GetK8sClusterConfigUserOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigUserInput` via:
-//
-//	GetK8sClusterConfigUserArgs{...}
-type GetK8sClusterConfigUserInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigUserOutput() GetK8sClusterConfigUserOutput
-	ToGetK8sClusterConfigUserOutputWithContext(context.Context) GetK8sClusterConfigUserOutput
-}
-
-type GetK8sClusterConfigUserArgs struct {
-	// Name of an existing cluster that you want to search for.
-	Name pulumi.StringInput    `pulumi:"name"`
-	User pulumi.StringMapInput `pulumi:"user"`
-}
-
-func (GetK8sClusterConfigUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigUser)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigUserArgs) ToGetK8sClusterConfigUserOutput() GetK8sClusterConfigUserOutput {
-	return i.ToGetK8sClusterConfigUserOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigUserArgs) ToGetK8sClusterConfigUserOutputWithContext(ctx context.Context) GetK8sClusterConfigUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigUserOutput)
-}
-
-// GetK8sClusterConfigUserArrayInput is an input type that accepts GetK8sClusterConfigUserArray and GetK8sClusterConfigUserArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterConfigUserArrayInput` via:
-//
-//	GetK8sClusterConfigUserArray{ GetK8sClusterConfigUserArgs{...} }
-type GetK8sClusterConfigUserArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterConfigUserArrayOutput() GetK8sClusterConfigUserArrayOutput
-	ToGetK8sClusterConfigUserArrayOutputWithContext(context.Context) GetK8sClusterConfigUserArrayOutput
-}
-
-type GetK8sClusterConfigUserArray []GetK8sClusterConfigUserInput
-
-func (GetK8sClusterConfigUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigUser)(nil)).Elem()
-}
-
-func (i GetK8sClusterConfigUserArray) ToGetK8sClusterConfigUserArrayOutput() GetK8sClusterConfigUserArrayOutput {
-	return i.ToGetK8sClusterConfigUserArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterConfigUserArray) ToGetK8sClusterConfigUserArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterConfigUserArrayOutput)
-}
-
-type GetK8sClusterConfigUserOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterConfigUser)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigUserOutput) ToGetK8sClusterConfigUserOutput() GetK8sClusterConfigUserOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigUserOutput) ToGetK8sClusterConfigUserOutputWithContext(ctx context.Context) GetK8sClusterConfigUserOutput {
-	return o
-}
-
-// Name of an existing cluster that you want to search for.
-func (o GetK8sClusterConfigUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigUser) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o GetK8sClusterConfigUserOutput) User() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetK8sClusterConfigUser) map[string]string { return v.User }).(pulumi.StringMapOutput)
-}
-
-type GetK8sClusterConfigUserArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterConfigUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterConfigUser)(nil)).Elem()
-}
-
-func (o GetK8sClusterConfigUserArrayOutput) ToGetK8sClusterConfigUserArrayOutput() GetK8sClusterConfigUserArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigUserArrayOutput) ToGetK8sClusterConfigUserArrayOutputWithContext(ctx context.Context) GetK8sClusterConfigUserArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterConfigUserArrayOutput) Index(i pulumi.IntInput) GetK8sClusterConfigUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterConfigUser {
-		return vs[0].([]GetK8sClusterConfigUser)[vs[1].(int)]
-	}).(GetK8sClusterConfigUserOutput)
-}
-
-type GetK8sClusterMaintenanceWindow struct {
-	// Day of the week when maintenance is allowed
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
-	Time string `pulumi:"time"`
-}
-
-// GetK8sClusterMaintenanceWindowInput is an input type that accepts GetK8sClusterMaintenanceWindowArgs and GetK8sClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetK8sClusterMaintenanceWindowInput` via:
-//
-//	GetK8sClusterMaintenanceWindowArgs{...}
-type GetK8sClusterMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterMaintenanceWindowOutput() GetK8sClusterMaintenanceWindowOutput
-	ToGetK8sClusterMaintenanceWindowOutputWithContext(context.Context) GetK8sClusterMaintenanceWindowOutput
-}
-
-type GetK8sClusterMaintenanceWindowArgs struct {
-	// Day of the week when maintenance is allowed
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetK8sClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetK8sClusterMaintenanceWindowArgs) ToGetK8sClusterMaintenanceWindowOutput() GetK8sClusterMaintenanceWindowOutput {
-	return i.ToGetK8sClusterMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterMaintenanceWindowArgs) ToGetK8sClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetK8sClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterMaintenanceWindowOutput)
-}
-
-// GetK8sClusterMaintenanceWindowArrayInput is an input type that accepts GetK8sClusterMaintenanceWindowArray and GetK8sClusterMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterMaintenanceWindowArrayInput` via:
-//
-//	GetK8sClusterMaintenanceWindowArray{ GetK8sClusterMaintenanceWindowArgs{...} }
-type GetK8sClusterMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterMaintenanceWindowArrayOutput() GetK8sClusterMaintenanceWindowArrayOutput
-	ToGetK8sClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetK8sClusterMaintenanceWindowArrayOutput
-}
-
-type GetK8sClusterMaintenanceWindowArray []GetK8sClusterMaintenanceWindowInput
-
-func (GetK8sClusterMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetK8sClusterMaintenanceWindowArray) ToGetK8sClusterMaintenanceWindowArrayOutput() GetK8sClusterMaintenanceWindowArrayOutput {
-	return i.ToGetK8sClusterMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterMaintenanceWindowArray) ToGetK8sClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetK8sClusterMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterMaintenanceWindowArrayOutput)
-}
-
-type GetK8sClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetK8sClusterMaintenanceWindowOutput) ToGetK8sClusterMaintenanceWindowOutput() GetK8sClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetK8sClusterMaintenanceWindowOutput) ToGetK8sClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetK8sClusterMaintenanceWindowOutput {
-	return o
-}
-
-// Day of the week when maintenance is allowed
-func (o GetK8sClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// A clock time in the day when maintenance is allowed
-func (o GetK8sClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetK8sClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetK8sClusterMaintenanceWindowArrayOutput) ToGetK8sClusterMaintenanceWindowArrayOutput() GetK8sClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterMaintenanceWindowArrayOutput) ToGetK8sClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetK8sClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetK8sClusterMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterMaintenanceWindow {
-		return vs[0].([]GetK8sClusterMaintenanceWindow)[vs[1].(int)]
-	}).(GetK8sClusterMaintenanceWindowOutput)
-}
-
-type GetK8sClusterS3Bucket struct {
-	// Name of an existing cluster that you want to search for.
-	Name string `pulumi:"name"`
-}
-
-// GetK8sClusterS3BucketInput is an input type that accepts GetK8sClusterS3BucketArgs and GetK8sClusterS3BucketOutput values.
-// You can construct a concrete instance of `GetK8sClusterS3BucketInput` via:
-//
-//	GetK8sClusterS3BucketArgs{...}
-type GetK8sClusterS3BucketInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterS3BucketOutput() GetK8sClusterS3BucketOutput
-	ToGetK8sClusterS3BucketOutputWithContext(context.Context) GetK8sClusterS3BucketOutput
-}
-
-type GetK8sClusterS3BucketArgs struct {
-	// Name of an existing cluster that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetK8sClusterS3BucketArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterS3Bucket)(nil)).Elem()
-}
-
-func (i GetK8sClusterS3BucketArgs) ToGetK8sClusterS3BucketOutput() GetK8sClusterS3BucketOutput {
-	return i.ToGetK8sClusterS3BucketOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterS3BucketArgs) ToGetK8sClusterS3BucketOutputWithContext(ctx context.Context) GetK8sClusterS3BucketOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterS3BucketOutput)
-}
-
-// GetK8sClusterS3BucketArrayInput is an input type that accepts GetK8sClusterS3BucketArray and GetK8sClusterS3BucketArrayOutput values.
-// You can construct a concrete instance of `GetK8sClusterS3BucketArrayInput` via:
-//
-//	GetK8sClusterS3BucketArray{ GetK8sClusterS3BucketArgs{...} }
-type GetK8sClusterS3BucketArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sClusterS3BucketArrayOutput() GetK8sClusterS3BucketArrayOutput
-	ToGetK8sClusterS3BucketArrayOutputWithContext(context.Context) GetK8sClusterS3BucketArrayOutput
-}
-
-type GetK8sClusterS3BucketArray []GetK8sClusterS3BucketInput
-
-func (GetK8sClusterS3BucketArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterS3Bucket)(nil)).Elem()
-}
-
-func (i GetK8sClusterS3BucketArray) ToGetK8sClusterS3BucketArrayOutput() GetK8sClusterS3BucketArrayOutput {
-	return i.ToGetK8sClusterS3BucketArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sClusterS3BucketArray) ToGetK8sClusterS3BucketArrayOutputWithContext(ctx context.Context) GetK8sClusterS3BucketArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sClusterS3BucketArrayOutput)
-}
-
-type GetK8sClusterS3BucketOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterS3BucketOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sClusterS3Bucket)(nil)).Elem()
-}
-
-func (o GetK8sClusterS3BucketOutput) ToGetK8sClusterS3BucketOutput() GetK8sClusterS3BucketOutput {
-	return o
-}
-
-func (o GetK8sClusterS3BucketOutput) ToGetK8sClusterS3BucketOutputWithContext(ctx context.Context) GetK8sClusterS3BucketOutput {
-	return o
-}
-
-// Name of an existing cluster that you want to search for.
-func (o GetK8sClusterS3BucketOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sClusterS3Bucket) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetK8sClusterS3BucketArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sClusterS3BucketArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sClusterS3Bucket)(nil)).Elem()
-}
-
-func (o GetK8sClusterS3BucketArrayOutput) ToGetK8sClusterS3BucketArrayOutput() GetK8sClusterS3BucketArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterS3BucketArrayOutput) ToGetK8sClusterS3BucketArrayOutputWithContext(ctx context.Context) GetK8sClusterS3BucketArrayOutput {
-	return o
-}
-
-func (o GetK8sClusterS3BucketArrayOutput) Index(i pulumi.IntInput) GetK8sClusterS3BucketOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sClusterS3Bucket {
-		return vs[0].([]GetK8sClusterS3Bucket)[vs[1].(int)]
-	}).(GetK8sClusterS3BucketOutput)
 }
 
 type GetK8sClustersCluster struct {
@@ -10541,445 +5720,6 @@ func (o GetK8sClustersFilterArrayOutput) Index(i pulumi.IntInput) GetK8sClusters
 	}).(GetK8sClustersFilterOutput)
 }
 
-type GetK8sNodePoolAutoScaling struct {
-	// The maximum number of worker nodes that the node pool can scale to
-	MaxNodeCount int `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to
-	MinNodeCount int `pulumi:"minNodeCount"`
-}
-
-// GetK8sNodePoolAutoScalingInput is an input type that accepts GetK8sNodePoolAutoScalingArgs and GetK8sNodePoolAutoScalingOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolAutoScalingInput` via:
-//
-//	GetK8sNodePoolAutoScalingArgs{...}
-type GetK8sNodePoolAutoScalingInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolAutoScalingOutput() GetK8sNodePoolAutoScalingOutput
-	ToGetK8sNodePoolAutoScalingOutputWithContext(context.Context) GetK8sNodePoolAutoScalingOutput
-}
-
-type GetK8sNodePoolAutoScalingArgs struct {
-	// The maximum number of worker nodes that the node pool can scale to
-	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to
-	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
-}
-
-func (GetK8sNodePoolAutoScalingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolAutoScaling)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolAutoScalingArgs) ToGetK8sNodePoolAutoScalingOutput() GetK8sNodePoolAutoScalingOutput {
-	return i.ToGetK8sNodePoolAutoScalingOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolAutoScalingArgs) ToGetK8sNodePoolAutoScalingOutputWithContext(ctx context.Context) GetK8sNodePoolAutoScalingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolAutoScalingOutput)
-}
-
-// GetK8sNodePoolAutoScalingArrayInput is an input type that accepts GetK8sNodePoolAutoScalingArray and GetK8sNodePoolAutoScalingArrayOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolAutoScalingArrayInput` via:
-//
-//	GetK8sNodePoolAutoScalingArray{ GetK8sNodePoolAutoScalingArgs{...} }
-type GetK8sNodePoolAutoScalingArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolAutoScalingArrayOutput() GetK8sNodePoolAutoScalingArrayOutput
-	ToGetK8sNodePoolAutoScalingArrayOutputWithContext(context.Context) GetK8sNodePoolAutoScalingArrayOutput
-}
-
-type GetK8sNodePoolAutoScalingArray []GetK8sNodePoolAutoScalingInput
-
-func (GetK8sNodePoolAutoScalingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolAutoScaling)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolAutoScalingArray) ToGetK8sNodePoolAutoScalingArrayOutput() GetK8sNodePoolAutoScalingArrayOutput {
-	return i.ToGetK8sNodePoolAutoScalingArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolAutoScalingArray) ToGetK8sNodePoolAutoScalingArrayOutputWithContext(ctx context.Context) GetK8sNodePoolAutoScalingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolAutoScalingArrayOutput)
-}
-
-type GetK8sNodePoolAutoScalingOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolAutoScalingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolAutoScaling)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolAutoScalingOutput) ToGetK8sNodePoolAutoScalingOutput() GetK8sNodePoolAutoScalingOutput {
-	return o
-}
-
-func (o GetK8sNodePoolAutoScalingOutput) ToGetK8sNodePoolAutoScalingOutputWithContext(ctx context.Context) GetK8sNodePoolAutoScalingOutput {
-	return o
-}
-
-// The maximum number of worker nodes that the node pool can scale to
-func (o GetK8sNodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v GetK8sNodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
-}
-
-// The minimum number of worker nodes the node pool can scale down to
-func (o GetK8sNodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v GetK8sNodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
-}
-
-type GetK8sNodePoolAutoScalingArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolAutoScalingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolAutoScaling)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolAutoScalingArrayOutput) ToGetK8sNodePoolAutoScalingArrayOutput() GetK8sNodePoolAutoScalingArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolAutoScalingArrayOutput) ToGetK8sNodePoolAutoScalingArrayOutputWithContext(ctx context.Context) GetK8sNodePoolAutoScalingArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolAutoScalingArrayOutput) Index(i pulumi.IntInput) GetK8sNodePoolAutoScalingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sNodePoolAutoScaling {
-		return vs[0].([]GetK8sNodePoolAutoScaling)[vs[1].(int)]
-	}).(GetK8sNodePoolAutoScalingOutput)
-}
-
-type GetK8sNodePoolLan struct {
-	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
-	Dhcp bool `pulumi:"dhcp"`
-	// ID of the node pool you want to search for.
-	//
-	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id int `pulumi:"id"`
-	// An array of additional LANs attached to worker nodes
-	Routes []GetK8sNodePoolLanRoute `pulumi:"routes"`
-}
-
-// GetK8sNodePoolLanInput is an input type that accepts GetK8sNodePoolLanArgs and GetK8sNodePoolLanOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolLanInput` via:
-//
-//	GetK8sNodePoolLanArgs{...}
-type GetK8sNodePoolLanInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolLanOutput() GetK8sNodePoolLanOutput
-	ToGetK8sNodePoolLanOutputWithContext(context.Context) GetK8sNodePoolLanOutput
-}
-
-type GetK8sNodePoolLanArgs struct {
-	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
-	Dhcp pulumi.BoolInput `pulumi:"dhcp"`
-	// ID of the node pool you want to search for.
-	//
-	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.IntInput `pulumi:"id"`
-	// An array of additional LANs attached to worker nodes
-	Routes GetK8sNodePoolLanRouteArrayInput `pulumi:"routes"`
-}
-
-func (GetK8sNodePoolLanArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolLan)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolLanArgs) ToGetK8sNodePoolLanOutput() GetK8sNodePoolLanOutput {
-	return i.ToGetK8sNodePoolLanOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolLanArgs) ToGetK8sNodePoolLanOutputWithContext(ctx context.Context) GetK8sNodePoolLanOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolLanOutput)
-}
-
-// GetK8sNodePoolLanArrayInput is an input type that accepts GetK8sNodePoolLanArray and GetK8sNodePoolLanArrayOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolLanArrayInput` via:
-//
-//	GetK8sNodePoolLanArray{ GetK8sNodePoolLanArgs{...} }
-type GetK8sNodePoolLanArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolLanArrayOutput() GetK8sNodePoolLanArrayOutput
-	ToGetK8sNodePoolLanArrayOutputWithContext(context.Context) GetK8sNodePoolLanArrayOutput
-}
-
-type GetK8sNodePoolLanArray []GetK8sNodePoolLanInput
-
-func (GetK8sNodePoolLanArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolLan)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolLanArray) ToGetK8sNodePoolLanArrayOutput() GetK8sNodePoolLanArrayOutput {
-	return i.ToGetK8sNodePoolLanArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolLanArray) ToGetK8sNodePoolLanArrayOutputWithContext(ctx context.Context) GetK8sNodePoolLanArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolLanArrayOutput)
-}
-
-type GetK8sNodePoolLanOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolLanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolLan)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolLanOutput) ToGetK8sNodePoolLanOutput() GetK8sNodePoolLanOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanOutput) ToGetK8sNodePoolLanOutputWithContext(ctx context.Context) GetK8sNodePoolLanOutput {
-	return o
-}
-
-// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
-func (o GetK8sNodePoolLanOutput) Dhcp() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetK8sNodePoolLan) bool { return v.Dhcp }).(pulumi.BoolOutput)
-}
-
-// ID of the node pool you want to search for.
-//
-// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetK8sNodePoolLanOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetK8sNodePoolLan) int { return v.Id }).(pulumi.IntOutput)
-}
-
-// An array of additional LANs attached to worker nodes
-func (o GetK8sNodePoolLanOutput) Routes() GetK8sNodePoolLanRouteArrayOutput {
-	return o.ApplyT(func(v GetK8sNodePoolLan) []GetK8sNodePoolLanRoute { return v.Routes }).(GetK8sNodePoolLanRouteArrayOutput)
-}
-
-type GetK8sNodePoolLanArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolLanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolLan)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolLanArrayOutput) ToGetK8sNodePoolLanArrayOutput() GetK8sNodePoolLanArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanArrayOutput) ToGetK8sNodePoolLanArrayOutputWithContext(ctx context.Context) GetK8sNodePoolLanArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanArrayOutput) Index(i pulumi.IntInput) GetK8sNodePoolLanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sNodePoolLan {
-		return vs[0].([]GetK8sNodePoolLan)[vs[1].(int)]
-	}).(GetK8sNodePoolLanOutput)
-}
-
-type GetK8sNodePoolLanRoute struct {
-	// IPv4 or IPv6 Gateway IP for the route
-	GatewayIp string `pulumi:"gatewayIp"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
-	Network string `pulumi:"network"`
-}
-
-// GetK8sNodePoolLanRouteInput is an input type that accepts GetK8sNodePoolLanRouteArgs and GetK8sNodePoolLanRouteOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolLanRouteInput` via:
-//
-//	GetK8sNodePoolLanRouteArgs{...}
-type GetK8sNodePoolLanRouteInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolLanRouteOutput() GetK8sNodePoolLanRouteOutput
-	ToGetK8sNodePoolLanRouteOutputWithContext(context.Context) GetK8sNodePoolLanRouteOutput
-}
-
-type GetK8sNodePoolLanRouteArgs struct {
-	// IPv4 or IPv6 Gateway IP for the route
-	GatewayIp pulumi.StringInput `pulumi:"gatewayIp"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
-	Network pulumi.StringInput `pulumi:"network"`
-}
-
-func (GetK8sNodePoolLanRouteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolLanRoute)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolLanRouteArgs) ToGetK8sNodePoolLanRouteOutput() GetK8sNodePoolLanRouteOutput {
-	return i.ToGetK8sNodePoolLanRouteOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolLanRouteArgs) ToGetK8sNodePoolLanRouteOutputWithContext(ctx context.Context) GetK8sNodePoolLanRouteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolLanRouteOutput)
-}
-
-// GetK8sNodePoolLanRouteArrayInput is an input type that accepts GetK8sNodePoolLanRouteArray and GetK8sNodePoolLanRouteArrayOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolLanRouteArrayInput` via:
-//
-//	GetK8sNodePoolLanRouteArray{ GetK8sNodePoolLanRouteArgs{...} }
-type GetK8sNodePoolLanRouteArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolLanRouteArrayOutput() GetK8sNodePoolLanRouteArrayOutput
-	ToGetK8sNodePoolLanRouteArrayOutputWithContext(context.Context) GetK8sNodePoolLanRouteArrayOutput
-}
-
-type GetK8sNodePoolLanRouteArray []GetK8sNodePoolLanRouteInput
-
-func (GetK8sNodePoolLanRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolLanRoute)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolLanRouteArray) ToGetK8sNodePoolLanRouteArrayOutput() GetK8sNodePoolLanRouteArrayOutput {
-	return i.ToGetK8sNodePoolLanRouteArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolLanRouteArray) ToGetK8sNodePoolLanRouteArrayOutputWithContext(ctx context.Context) GetK8sNodePoolLanRouteArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolLanRouteArrayOutput)
-}
-
-type GetK8sNodePoolLanRouteOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolLanRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolLanRoute)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolLanRouteOutput) ToGetK8sNodePoolLanRouteOutput() GetK8sNodePoolLanRouteOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanRouteOutput) ToGetK8sNodePoolLanRouteOutputWithContext(ctx context.Context) GetK8sNodePoolLanRouteOutput {
-	return o
-}
-
-// IPv4 or IPv6 Gateway IP for the route
-func (o GetK8sNodePoolLanRouteOutput) GatewayIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sNodePoolLanRoute) string { return v.GatewayIp }).(pulumi.StringOutput)
-}
-
-// IPv4 or IPv6 CIDR to be routed via the interface
-func (o GetK8sNodePoolLanRouteOutput) Network() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sNodePoolLanRoute) string { return v.Network }).(pulumi.StringOutput)
-}
-
-type GetK8sNodePoolLanRouteArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolLanRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolLanRoute)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolLanRouteArrayOutput) ToGetK8sNodePoolLanRouteArrayOutput() GetK8sNodePoolLanRouteArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanRouteArrayOutput) ToGetK8sNodePoolLanRouteArrayOutputWithContext(ctx context.Context) GetK8sNodePoolLanRouteArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolLanRouteArrayOutput) Index(i pulumi.IntInput) GetK8sNodePoolLanRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sNodePoolLanRoute {
-		return vs[0].([]GetK8sNodePoolLanRoute)[vs[1].(int)]
-	}).(GetK8sNodePoolLanRouteOutput)
-}
-
-type GetK8sNodePoolMaintenanceWindow struct {
-	// Day of the week when maintenance is allowed
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
-	Time string `pulumi:"time"`
-}
-
-// GetK8sNodePoolMaintenanceWindowInput is an input type that accepts GetK8sNodePoolMaintenanceWindowArgs and GetK8sNodePoolMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolMaintenanceWindowInput` via:
-//
-//	GetK8sNodePoolMaintenanceWindowArgs{...}
-type GetK8sNodePoolMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolMaintenanceWindowOutput() GetK8sNodePoolMaintenanceWindowOutput
-	ToGetK8sNodePoolMaintenanceWindowOutputWithContext(context.Context) GetK8sNodePoolMaintenanceWindowOutput
-}
-
-type GetK8sNodePoolMaintenanceWindowArgs struct {
-	// Day of the week when maintenance is allowed
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetK8sNodePoolMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolMaintenanceWindowArgs) ToGetK8sNodePoolMaintenanceWindowOutput() GetK8sNodePoolMaintenanceWindowOutput {
-	return i.ToGetK8sNodePoolMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolMaintenanceWindowArgs) ToGetK8sNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetK8sNodePoolMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolMaintenanceWindowOutput)
-}
-
-// GetK8sNodePoolMaintenanceWindowArrayInput is an input type that accepts GetK8sNodePoolMaintenanceWindowArray and GetK8sNodePoolMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetK8sNodePoolMaintenanceWindowArrayInput` via:
-//
-//	GetK8sNodePoolMaintenanceWindowArray{ GetK8sNodePoolMaintenanceWindowArgs{...} }
-type GetK8sNodePoolMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetK8sNodePoolMaintenanceWindowArrayOutput() GetK8sNodePoolMaintenanceWindowArrayOutput
-	ToGetK8sNodePoolMaintenanceWindowArrayOutputWithContext(context.Context) GetK8sNodePoolMaintenanceWindowArrayOutput
-}
-
-type GetK8sNodePoolMaintenanceWindowArray []GetK8sNodePoolMaintenanceWindowInput
-
-func (GetK8sNodePoolMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetK8sNodePoolMaintenanceWindowArray) ToGetK8sNodePoolMaintenanceWindowArrayOutput() GetK8sNodePoolMaintenanceWindowArrayOutput {
-	return i.ToGetK8sNodePoolMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetK8sNodePoolMaintenanceWindowArray) ToGetK8sNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetK8sNodePoolMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetK8sNodePoolMaintenanceWindowArrayOutput)
-}
-
-type GetK8sNodePoolMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetK8sNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolMaintenanceWindowOutput) ToGetK8sNodePoolMaintenanceWindowOutput() GetK8sNodePoolMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetK8sNodePoolMaintenanceWindowOutput) ToGetK8sNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetK8sNodePoolMaintenanceWindowOutput {
-	return o
-}
-
-// Day of the week when maintenance is allowed
-func (o GetK8sNodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sNodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// A clock time in the day when maintenance is allowed
-func (o GetK8sNodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sNodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetK8sNodePoolMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetK8sNodePoolMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetK8sNodePoolMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetK8sNodePoolMaintenanceWindowArrayOutput) ToGetK8sNodePoolMaintenanceWindowArrayOutput() GetK8sNodePoolMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolMaintenanceWindowArrayOutput) ToGetK8sNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetK8sNodePoolMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetK8sNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetK8sNodePoolMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetK8sNodePoolMaintenanceWindow {
-		return vs[0].([]GetK8sNodePoolMaintenanceWindow)[vs[1].(int)]
-	}).(GetK8sNodePoolMaintenanceWindowOutput)
-}
-
 type GetK8sNodePoolNodesNode struct {
 	Id *string `pulumi:"id"`
 	// The kubernetes version
@@ -11111,11 +5851,11 @@ func (o GetK8sNodePoolNodesNodeArrayOutput) Index(i pulumi.IntInput) GetK8sNodeP
 }
 
 type GetKafkaClusterConnection struct {
-	// IP address and port of cluster brokers.
+	// The broker addresses of the Kafka Cluster
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
-	// The datacenter that your instance is connected to.
+	// The datacenter to connect your Kafka Cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID your instance is connected to.
+	// The numeric LAN ID to connect your Kafka Cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -11131,11 +5871,11 @@ type GetKafkaClusterConnectionInput interface {
 }
 
 type GetKafkaClusterConnectionArgs struct {
-	// IP address and port of cluster brokers.
+	// The broker addresses of the Kafka Cluster
 	BrokerAddresses pulumi.StringArrayInput `pulumi:"brokerAddresses"`
-	// The datacenter that your instance is connected to.
+	// The datacenter to connect your Kafka Cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID your instance is connected to.
+	// The numeric LAN ID to connect your Kafka Cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -11190,17 +5930,17 @@ func (o GetKafkaClusterConnectionOutput) ToGetKafkaClusterConnectionOutputWithCo
 	return o
 }
 
-// IP address and port of cluster brokers.
+// The broker addresses of the Kafka Cluster
 func (o GetKafkaClusterConnectionOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKafkaClusterConnection) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
 
-// The datacenter that your instance is connected to.
+// The datacenter to connect your Kafka Cluster to.
 func (o GetKafkaClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKafkaClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID your instance is connected to.
+// The numeric LAN ID to connect your Kafka Cluster to.
 func (o GetKafkaClusterConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKafkaClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -11225,115 +5965,11 @@ func (o GetKafkaClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetKafkaC
 	}).(GetKafkaClusterConnectionOutput)
 }
 
-type GetLanIpFailover struct {
-	Ip      string `pulumi:"ip"`
-	NicUuid string `pulumi:"nicUuid"`
-}
-
-// GetLanIpFailoverInput is an input type that accepts GetLanIpFailoverArgs and GetLanIpFailoverOutput values.
-// You can construct a concrete instance of `GetLanIpFailoverInput` via:
-//
-//	GetLanIpFailoverArgs{...}
-type GetLanIpFailoverInput interface {
-	pulumi.Input
-
-	ToGetLanIpFailoverOutput() GetLanIpFailoverOutput
-	ToGetLanIpFailoverOutputWithContext(context.Context) GetLanIpFailoverOutput
-}
-
-type GetLanIpFailoverArgs struct {
-	Ip      pulumi.StringInput `pulumi:"ip"`
-	NicUuid pulumi.StringInput `pulumi:"nicUuid"`
-}
-
-func (GetLanIpFailoverArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLanIpFailover)(nil)).Elem()
-}
-
-func (i GetLanIpFailoverArgs) ToGetLanIpFailoverOutput() GetLanIpFailoverOutput {
-	return i.ToGetLanIpFailoverOutputWithContext(context.Background())
-}
-
-func (i GetLanIpFailoverArgs) ToGetLanIpFailoverOutputWithContext(ctx context.Context) GetLanIpFailoverOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLanIpFailoverOutput)
-}
-
-// GetLanIpFailoverArrayInput is an input type that accepts GetLanIpFailoverArray and GetLanIpFailoverArrayOutput values.
-// You can construct a concrete instance of `GetLanIpFailoverArrayInput` via:
-//
-//	GetLanIpFailoverArray{ GetLanIpFailoverArgs{...} }
-type GetLanIpFailoverArrayInput interface {
-	pulumi.Input
-
-	ToGetLanIpFailoverArrayOutput() GetLanIpFailoverArrayOutput
-	ToGetLanIpFailoverArrayOutputWithContext(context.Context) GetLanIpFailoverArrayOutput
-}
-
-type GetLanIpFailoverArray []GetLanIpFailoverInput
-
-func (GetLanIpFailoverArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLanIpFailover)(nil)).Elem()
-}
-
-func (i GetLanIpFailoverArray) ToGetLanIpFailoverArrayOutput() GetLanIpFailoverArrayOutput {
-	return i.ToGetLanIpFailoverArrayOutputWithContext(context.Background())
-}
-
-func (i GetLanIpFailoverArray) ToGetLanIpFailoverArrayOutputWithContext(ctx context.Context) GetLanIpFailoverArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLanIpFailoverArrayOutput)
-}
-
-type GetLanIpFailoverOutput struct{ *pulumi.OutputState }
-
-func (GetLanIpFailoverOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLanIpFailover)(nil)).Elem()
-}
-
-func (o GetLanIpFailoverOutput) ToGetLanIpFailoverOutput() GetLanIpFailoverOutput {
-	return o
-}
-
-func (o GetLanIpFailoverOutput) ToGetLanIpFailoverOutputWithContext(ctx context.Context) GetLanIpFailoverOutput {
-	return o
-}
-
-func (o GetLanIpFailoverOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLanIpFailover) string { return v.Ip }).(pulumi.StringOutput)
-}
-
-func (o GetLanIpFailoverOutput) NicUuid() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLanIpFailover) string { return v.NicUuid }).(pulumi.StringOutput)
-}
-
-type GetLanIpFailoverArrayOutput struct{ *pulumi.OutputState }
-
-func (GetLanIpFailoverArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLanIpFailover)(nil)).Elem()
-}
-
-func (o GetLanIpFailoverArrayOutput) ToGetLanIpFailoverArrayOutput() GetLanIpFailoverArrayOutput {
-	return o
-}
-
-func (o GetLanIpFailoverArrayOutput) ToGetLanIpFailoverArrayOutputWithContext(ctx context.Context) GetLanIpFailoverArrayOutput {
-	return o
-}
-
-func (o GetLanIpFailoverArrayOutput) Index(i pulumi.IntInput) GetLanIpFailoverOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLanIpFailover {
-		return vs[0].([]GetLanIpFailover)[vs[1].(int)]
-	}).(GetLanIpFailoverOutput)
-}
-
 type GetLocationCpuArchitecture struct {
-	// A valid CPU family name.
 	CpuFamily string `pulumi:"cpuFamily"`
-	// The maximum number of cores available.
-	MaxCores int `pulumi:"maxCores"`
-	// The maximum number of RAM in MB.
-	MaxRam int `pulumi:"maxRam"`
-	// A valid CPU vendor name.
-	Vendor string `pulumi:"vendor"`
+	MaxCores  int    `pulumi:"maxCores"`
+	MaxRam    int    `pulumi:"maxRam"`
+	Vendor    string `pulumi:"vendor"`
 }
 
 // GetLocationCpuArchitectureInput is an input type that accepts GetLocationCpuArchitectureArgs and GetLocationCpuArchitectureOutput values.
@@ -11348,14 +5984,10 @@ type GetLocationCpuArchitectureInput interface {
 }
 
 type GetLocationCpuArchitectureArgs struct {
-	// A valid CPU family name.
 	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
-	// The maximum number of cores available.
-	MaxCores pulumi.IntInput `pulumi:"maxCores"`
-	// The maximum number of RAM in MB.
-	MaxRam pulumi.IntInput `pulumi:"maxRam"`
-	// A valid CPU vendor name.
-	Vendor pulumi.StringInput `pulumi:"vendor"`
+	MaxCores  pulumi.IntInput    `pulumi:"maxCores"`
+	MaxRam    pulumi.IntInput    `pulumi:"maxRam"`
+	Vendor    pulumi.StringInput `pulumi:"vendor"`
 }
 
 func (GetLocationCpuArchitectureArgs) ElementType() reflect.Type {
@@ -11409,22 +6041,18 @@ func (o GetLocationCpuArchitectureOutput) ToGetLocationCpuArchitectureOutputWith
 	return o
 }
 
-// A valid CPU family name.
 func (o GetLocationCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLocationCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
-// The maximum number of cores available.
 func (o GetLocationCpuArchitectureOutput) MaxCores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLocationCpuArchitecture) int { return v.MaxCores }).(pulumi.IntOutput)
 }
 
-// The maximum number of RAM in MB.
 func (o GetLocationCpuArchitectureOutput) MaxRam() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLocationCpuArchitecture) int { return v.MaxRam }).(pulumi.IntOutput)
 }
 
-// A valid CPU vendor name.
 func (o GetLocationCpuArchitectureOutput) Vendor() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLocationCpuArchitecture) string { return v.Vendor }).(pulumi.StringOutput)
 }
@@ -11447,245 +6075,6 @@ func (o GetLocationCpuArchitectureArrayOutput) Index(i pulumi.IntInput) GetLocat
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLocationCpuArchitecture {
 		return vs[0].([]GetLocationCpuArchitecture)[vs[1].(int)]
 	}).(GetLocationCpuArchitectureOutput)
-}
-
-type GetLoggingPipelineLog struct {
-	// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-	Destinations []GetLoggingPipelineLogDestination `pulumi:"destinations"`
-	// [string] "Protocol to use as intake. Possible values are: http, tcp."
-	Protocol string `pulumi:"protocol"`
-	// [bool]
-	Public bool `pulumi:"public"`
-	// [string] The source parser to be used.
-	Source string `pulumi:"source"`
-	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-	Tag string `pulumi:"tag"`
-}
-
-// GetLoggingPipelineLogInput is an input type that accepts GetLoggingPipelineLogArgs and GetLoggingPipelineLogOutput values.
-// You can construct a concrete instance of `GetLoggingPipelineLogInput` via:
-//
-//	GetLoggingPipelineLogArgs{...}
-type GetLoggingPipelineLogInput interface {
-	pulumi.Input
-
-	ToGetLoggingPipelineLogOutput() GetLoggingPipelineLogOutput
-	ToGetLoggingPipelineLogOutputWithContext(context.Context) GetLoggingPipelineLogOutput
-}
-
-type GetLoggingPipelineLogArgs struct {
-	// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-	Destinations GetLoggingPipelineLogDestinationArrayInput `pulumi:"destinations"`
-	// [string] "Protocol to use as intake. Possible values are: http, tcp."
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// [bool]
-	Public pulumi.BoolInput `pulumi:"public"`
-	// [string] The source parser to be used.
-	Source pulumi.StringInput `pulumi:"source"`
-	// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-	Tag pulumi.StringInput `pulumi:"tag"`
-}
-
-func (GetLoggingPipelineLogArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLoggingPipelineLog)(nil)).Elem()
-}
-
-func (i GetLoggingPipelineLogArgs) ToGetLoggingPipelineLogOutput() GetLoggingPipelineLogOutput {
-	return i.ToGetLoggingPipelineLogOutputWithContext(context.Background())
-}
-
-func (i GetLoggingPipelineLogArgs) ToGetLoggingPipelineLogOutputWithContext(ctx context.Context) GetLoggingPipelineLogOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLoggingPipelineLogOutput)
-}
-
-// GetLoggingPipelineLogArrayInput is an input type that accepts GetLoggingPipelineLogArray and GetLoggingPipelineLogArrayOutput values.
-// You can construct a concrete instance of `GetLoggingPipelineLogArrayInput` via:
-//
-//	GetLoggingPipelineLogArray{ GetLoggingPipelineLogArgs{...} }
-type GetLoggingPipelineLogArrayInput interface {
-	pulumi.Input
-
-	ToGetLoggingPipelineLogArrayOutput() GetLoggingPipelineLogArrayOutput
-	ToGetLoggingPipelineLogArrayOutputWithContext(context.Context) GetLoggingPipelineLogArrayOutput
-}
-
-type GetLoggingPipelineLogArray []GetLoggingPipelineLogInput
-
-func (GetLoggingPipelineLogArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLoggingPipelineLog)(nil)).Elem()
-}
-
-func (i GetLoggingPipelineLogArray) ToGetLoggingPipelineLogArrayOutput() GetLoggingPipelineLogArrayOutput {
-	return i.ToGetLoggingPipelineLogArrayOutputWithContext(context.Background())
-}
-
-func (i GetLoggingPipelineLogArray) ToGetLoggingPipelineLogArrayOutputWithContext(ctx context.Context) GetLoggingPipelineLogArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLoggingPipelineLogArrayOutput)
-}
-
-type GetLoggingPipelineLogOutput struct{ *pulumi.OutputState }
-
-func (GetLoggingPipelineLogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLoggingPipelineLog)(nil)).Elem()
-}
-
-func (o GetLoggingPipelineLogOutput) ToGetLoggingPipelineLogOutput() GetLoggingPipelineLogOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogOutput) ToGetLoggingPipelineLogOutputWithContext(ctx context.Context) GetLoggingPipelineLogOutput {
-	return o
-}
-
-// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-func (o GetLoggingPipelineLogOutput) Destinations() GetLoggingPipelineLogDestinationArrayOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLog) []GetLoggingPipelineLogDestination { return v.Destinations }).(GetLoggingPipelineLogDestinationArrayOutput)
-}
-
-// [string] "Protocol to use as intake. Possible values are: http, tcp."
-func (o GetLoggingPipelineLogOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLog) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-// [bool]
-func (o GetLoggingPipelineLogOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLog) bool { return v.Public }).(pulumi.BoolOutput)
-}
-
-// [string] The source parser to be used.
-func (o GetLoggingPipelineLogOutput) Source() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLog) string { return v.Source }).(pulumi.StringOutput)
-}
-
-// [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-func (o GetLoggingPipelineLogOutput) Tag() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLog) string { return v.Tag }).(pulumi.StringOutput)
-}
-
-type GetLoggingPipelineLogArrayOutput struct{ *pulumi.OutputState }
-
-func (GetLoggingPipelineLogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLoggingPipelineLog)(nil)).Elem()
-}
-
-func (o GetLoggingPipelineLogArrayOutput) ToGetLoggingPipelineLogArrayOutput() GetLoggingPipelineLogArrayOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogArrayOutput) ToGetLoggingPipelineLogArrayOutputWithContext(ctx context.Context) GetLoggingPipelineLogArrayOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogArrayOutput) Index(i pulumi.IntInput) GetLoggingPipelineLogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoggingPipelineLog {
-		return vs[0].([]GetLoggingPipelineLog)[vs[1].(int)]
-	}).(GetLoggingPipelineLogOutput)
-}
-
-type GetLoggingPipelineLogDestination struct {
-	// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
-	RetentionInDays int `pulumi:"retentionInDays"`
-	// [string] The internal output stream to send logs to.
-	Type string `pulumi:"type"`
-}
-
-// GetLoggingPipelineLogDestinationInput is an input type that accepts GetLoggingPipelineLogDestinationArgs and GetLoggingPipelineLogDestinationOutput values.
-// You can construct a concrete instance of `GetLoggingPipelineLogDestinationInput` via:
-//
-//	GetLoggingPipelineLogDestinationArgs{...}
-type GetLoggingPipelineLogDestinationInput interface {
-	pulumi.Input
-
-	ToGetLoggingPipelineLogDestinationOutput() GetLoggingPipelineLogDestinationOutput
-	ToGetLoggingPipelineLogDestinationOutputWithContext(context.Context) GetLoggingPipelineLogDestinationOutput
-}
-
-type GetLoggingPipelineLogDestinationArgs struct {
-	// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
-	RetentionInDays pulumi.IntInput `pulumi:"retentionInDays"`
-	// [string] The internal output stream to send logs to.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetLoggingPipelineLogDestinationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLoggingPipelineLogDestination)(nil)).Elem()
-}
-
-func (i GetLoggingPipelineLogDestinationArgs) ToGetLoggingPipelineLogDestinationOutput() GetLoggingPipelineLogDestinationOutput {
-	return i.ToGetLoggingPipelineLogDestinationOutputWithContext(context.Background())
-}
-
-func (i GetLoggingPipelineLogDestinationArgs) ToGetLoggingPipelineLogDestinationOutputWithContext(ctx context.Context) GetLoggingPipelineLogDestinationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLoggingPipelineLogDestinationOutput)
-}
-
-// GetLoggingPipelineLogDestinationArrayInput is an input type that accepts GetLoggingPipelineLogDestinationArray and GetLoggingPipelineLogDestinationArrayOutput values.
-// You can construct a concrete instance of `GetLoggingPipelineLogDestinationArrayInput` via:
-//
-//	GetLoggingPipelineLogDestinationArray{ GetLoggingPipelineLogDestinationArgs{...} }
-type GetLoggingPipelineLogDestinationArrayInput interface {
-	pulumi.Input
-
-	ToGetLoggingPipelineLogDestinationArrayOutput() GetLoggingPipelineLogDestinationArrayOutput
-	ToGetLoggingPipelineLogDestinationArrayOutputWithContext(context.Context) GetLoggingPipelineLogDestinationArrayOutput
-}
-
-type GetLoggingPipelineLogDestinationArray []GetLoggingPipelineLogDestinationInput
-
-func (GetLoggingPipelineLogDestinationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLoggingPipelineLogDestination)(nil)).Elem()
-}
-
-func (i GetLoggingPipelineLogDestinationArray) ToGetLoggingPipelineLogDestinationArrayOutput() GetLoggingPipelineLogDestinationArrayOutput {
-	return i.ToGetLoggingPipelineLogDestinationArrayOutputWithContext(context.Background())
-}
-
-func (i GetLoggingPipelineLogDestinationArray) ToGetLoggingPipelineLogDestinationArrayOutputWithContext(ctx context.Context) GetLoggingPipelineLogDestinationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetLoggingPipelineLogDestinationArrayOutput)
-}
-
-type GetLoggingPipelineLogDestinationOutput struct{ *pulumi.OutputState }
-
-func (GetLoggingPipelineLogDestinationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetLoggingPipelineLogDestination)(nil)).Elem()
-}
-
-func (o GetLoggingPipelineLogDestinationOutput) ToGetLoggingPipelineLogDestinationOutput() GetLoggingPipelineLogDestinationOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogDestinationOutput) ToGetLoggingPipelineLogDestinationOutputWithContext(ctx context.Context) GetLoggingPipelineLogDestinationOutput {
-	return o
-}
-
-// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
-func (o GetLoggingPipelineLogDestinationOutput) RetentionInDays() pulumi.IntOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLogDestination) int { return v.RetentionInDays }).(pulumi.IntOutput)
-}
-
-// [string] The internal output stream to send logs to.
-func (o GetLoggingPipelineLogDestinationOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoggingPipelineLogDestination) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetLoggingPipelineLogDestinationArrayOutput struct{ *pulumi.OutputState }
-
-func (GetLoggingPipelineLogDestinationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetLoggingPipelineLogDestination)(nil)).Elem()
-}
-
-func (o GetLoggingPipelineLogDestinationArrayOutput) ToGetLoggingPipelineLogDestinationArrayOutput() GetLoggingPipelineLogDestinationArrayOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogDestinationArrayOutput) ToGetLoggingPipelineLogDestinationArrayOutputWithContext(ctx context.Context) GetLoggingPipelineLogDestinationArrayOutput {
-	return o
-}
-
-func (o GetLoggingPipelineLogDestinationArrayOutput) Index(i pulumi.IntInput) GetLoggingPipelineLogDestinationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoggingPipelineLogDestination {
-		return vs[0].([]GetLoggingPipelineLogDestination)[vs[1].(int)]
-	}).(GetLoggingPipelineLogDestinationOutput)
 }
 
 type GetMariadbBackupsBackup struct {
@@ -11916,2079 +6305,6 @@ func (o GetMariadbBackupsBackupBaseBackupArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariadbBackupsBackupBaseBackup {
 		return vs[0].([]GetMariadbBackupsBackupBaseBackup)[vs[1].(int)]
 	}).(GetMariadbBackupsBackupBaseBackupOutput)
-}
-
-type GetMariadbClusterConnection struct {
-	// The IP and subnet for your cluster.
-	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
-	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
-	LanId string `pulumi:"lanId"`
-}
-
-// GetMariadbClusterConnectionInput is an input type that accepts GetMariadbClusterConnectionArgs and GetMariadbClusterConnectionOutput values.
-// You can construct a concrete instance of `GetMariadbClusterConnectionInput` via:
-//
-//	GetMariadbClusterConnectionArgs{...}
-type GetMariadbClusterConnectionInput interface {
-	pulumi.Input
-
-	ToGetMariadbClusterConnectionOutput() GetMariadbClusterConnectionOutput
-	ToGetMariadbClusterConnectionOutputWithContext(context.Context) GetMariadbClusterConnectionOutput
-}
-
-type GetMariadbClusterConnectionArgs struct {
-	// The IP and subnet for your cluster.
-	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetMariadbClusterConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMariadbClusterConnection)(nil)).Elem()
-}
-
-func (i GetMariadbClusterConnectionArgs) ToGetMariadbClusterConnectionOutput() GetMariadbClusterConnectionOutput {
-	return i.ToGetMariadbClusterConnectionOutputWithContext(context.Background())
-}
-
-func (i GetMariadbClusterConnectionArgs) ToGetMariadbClusterConnectionOutputWithContext(ctx context.Context) GetMariadbClusterConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMariadbClusterConnectionOutput)
-}
-
-// GetMariadbClusterConnectionArrayInput is an input type that accepts GetMariadbClusterConnectionArray and GetMariadbClusterConnectionArrayOutput values.
-// You can construct a concrete instance of `GetMariadbClusterConnectionArrayInput` via:
-//
-//	GetMariadbClusterConnectionArray{ GetMariadbClusterConnectionArgs{...} }
-type GetMariadbClusterConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetMariadbClusterConnectionArrayOutput() GetMariadbClusterConnectionArrayOutput
-	ToGetMariadbClusterConnectionArrayOutputWithContext(context.Context) GetMariadbClusterConnectionArrayOutput
-}
-
-type GetMariadbClusterConnectionArray []GetMariadbClusterConnectionInput
-
-func (GetMariadbClusterConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMariadbClusterConnection)(nil)).Elem()
-}
-
-func (i GetMariadbClusterConnectionArray) ToGetMariadbClusterConnectionArrayOutput() GetMariadbClusterConnectionArrayOutput {
-	return i.ToGetMariadbClusterConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetMariadbClusterConnectionArray) ToGetMariadbClusterConnectionArrayOutputWithContext(ctx context.Context) GetMariadbClusterConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMariadbClusterConnectionArrayOutput)
-}
-
-type GetMariadbClusterConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetMariadbClusterConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMariadbClusterConnection)(nil)).Elem()
-}
-
-func (o GetMariadbClusterConnectionOutput) ToGetMariadbClusterConnectionOutput() GetMariadbClusterConnectionOutput {
-	return o
-}
-
-func (o GetMariadbClusterConnectionOutput) ToGetMariadbClusterConnectionOutputWithContext(ctx context.Context) GetMariadbClusterConnectionOutput {
-	return o
-}
-
-// The IP and subnet for your cluster.
-func (o GetMariadbClusterConnectionOutput) Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariadbClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
-}
-
-// The datacenter to connect your cluster to.
-func (o GetMariadbClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariadbClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The numeric LAN ID to connect your cluster to.
-func (o GetMariadbClusterConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariadbClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetMariadbClusterConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMariadbClusterConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMariadbClusterConnection)(nil)).Elem()
-}
-
-func (o GetMariadbClusterConnectionArrayOutput) ToGetMariadbClusterConnectionArrayOutput() GetMariadbClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetMariadbClusterConnectionArrayOutput) ToGetMariadbClusterConnectionArrayOutputWithContext(ctx context.Context) GetMariadbClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetMariadbClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMariadbClusterConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariadbClusterConnection {
-		return vs[0].([]GetMariadbClusterConnection)[vs[1].(int)]
-	}).(GetMariadbClusterConnectionOutput)
-}
-
-type GetMariadbClusterMaintenanceWindow struct {
-	// The name of the week day.
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
-	Time string `pulumi:"time"`
-}
-
-// GetMariadbClusterMaintenanceWindowInput is an input type that accepts GetMariadbClusterMaintenanceWindowArgs and GetMariadbClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetMariadbClusterMaintenanceWindowInput` via:
-//
-//	GetMariadbClusterMaintenanceWindowArgs{...}
-type GetMariadbClusterMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetMariadbClusterMaintenanceWindowOutput() GetMariadbClusterMaintenanceWindowOutput
-	ToGetMariadbClusterMaintenanceWindowOutputWithContext(context.Context) GetMariadbClusterMaintenanceWindowOutput
-}
-
-type GetMariadbClusterMaintenanceWindowArgs struct {
-	// The name of the week day.
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
-	Time pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetMariadbClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMariadbClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetMariadbClusterMaintenanceWindowArgs) ToGetMariadbClusterMaintenanceWindowOutput() GetMariadbClusterMaintenanceWindowOutput {
-	return i.ToGetMariadbClusterMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetMariadbClusterMaintenanceWindowArgs) ToGetMariadbClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMariadbClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMariadbClusterMaintenanceWindowOutput)
-}
-
-// GetMariadbClusterMaintenanceWindowArrayInput is an input type that accepts GetMariadbClusterMaintenanceWindowArray and GetMariadbClusterMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetMariadbClusterMaintenanceWindowArrayInput` via:
-//
-//	GetMariadbClusterMaintenanceWindowArray{ GetMariadbClusterMaintenanceWindowArgs{...} }
-type GetMariadbClusterMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetMariadbClusterMaintenanceWindowArrayOutput() GetMariadbClusterMaintenanceWindowArrayOutput
-	ToGetMariadbClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetMariadbClusterMaintenanceWindowArrayOutput
-}
-
-type GetMariadbClusterMaintenanceWindowArray []GetMariadbClusterMaintenanceWindowInput
-
-func (GetMariadbClusterMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMariadbClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetMariadbClusterMaintenanceWindowArray) ToGetMariadbClusterMaintenanceWindowArrayOutput() GetMariadbClusterMaintenanceWindowArrayOutput {
-	return i.ToGetMariadbClusterMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetMariadbClusterMaintenanceWindowArray) ToGetMariadbClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMariadbClusterMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMariadbClusterMaintenanceWindowArrayOutput)
-}
-
-type GetMariadbClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetMariadbClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMariadbClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetMariadbClusterMaintenanceWindowOutput) ToGetMariadbClusterMaintenanceWindowOutput() GetMariadbClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetMariadbClusterMaintenanceWindowOutput) ToGetMariadbClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMariadbClusterMaintenanceWindowOutput {
-	return o
-}
-
-// The name of the week day.
-func (o GetMariadbClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariadbClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-// Start of the maintenance window in UTC time.
-func (o GetMariadbClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariadbClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetMariadbClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMariadbClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMariadbClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetMariadbClusterMaintenanceWindowArrayOutput) ToGetMariadbClusterMaintenanceWindowArrayOutput() GetMariadbClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetMariadbClusterMaintenanceWindowArrayOutput) ToGetMariadbClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMariadbClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetMariadbClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetMariadbClusterMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariadbClusterMaintenanceWindow {
-		return vs[0].([]GetMariadbClusterMaintenanceWindow)[vs[1].(int)]
-	}).(GetMariadbClusterMaintenanceWindowOutput)
-}
-
-type GetMongoClusterBackup struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-	Location string `pulumi:"location"`
-}
-
-// GetMongoClusterBackupInput is an input type that accepts GetMongoClusterBackupArgs and GetMongoClusterBackupOutput values.
-// You can construct a concrete instance of `GetMongoClusterBackupInput` via:
-//
-//	GetMongoClusterBackupArgs{...}
-type GetMongoClusterBackupInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput
-	ToGetMongoClusterBackupOutputWithContext(context.Context) GetMongoClusterBackupOutput
-}
-
-type GetMongoClusterBackupArgs struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-	Location pulumi.StringInput `pulumi:"location"`
-}
-
-func (GetMongoClusterBackupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterBackup)(nil)).Elem()
-}
-
-func (i GetMongoClusterBackupArgs) ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput {
-	return i.ToGetMongoClusterBackupOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterBackupArgs) ToGetMongoClusterBackupOutputWithContext(ctx context.Context) GetMongoClusterBackupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBackupOutput)
-}
-
-// GetMongoClusterBackupArrayInput is an input type that accepts GetMongoClusterBackupArray and GetMongoClusterBackupArrayOutput values.
-// You can construct a concrete instance of `GetMongoClusterBackupArrayInput` via:
-//
-//	GetMongoClusterBackupArray{ GetMongoClusterBackupArgs{...} }
-type GetMongoClusterBackupArrayInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput
-	ToGetMongoClusterBackupArrayOutputWithContext(context.Context) GetMongoClusterBackupArrayOutput
-}
-
-type GetMongoClusterBackupArray []GetMongoClusterBackupInput
-
-func (GetMongoClusterBackupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterBackup)(nil)).Elem()
-}
-
-func (i GetMongoClusterBackupArray) ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput {
-	return i.ToGetMongoClusterBackupArrayOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterBackupArray) ToGetMongoClusterBackupArrayOutputWithContext(ctx context.Context) GetMongoClusterBackupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBackupArrayOutput)
-}
-
-type GetMongoClusterBackupOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterBackupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterBackup)(nil)).Elem()
-}
-
-func (o GetMongoClusterBackupOutput) ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput {
-	return o
-}
-
-func (o GetMongoClusterBackupOutput) ToGetMongoClusterBackupOutputWithContext(ctx context.Context) GetMongoClusterBackupOutput {
-	return o
-}
-
-// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-func (o GetMongoClusterBackupOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterBackup) string { return v.Location }).(pulumi.StringOutput)
-}
-
-type GetMongoClusterBackupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterBackupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterBackup)(nil)).Elem()
-}
-
-func (o GetMongoClusterBackupArrayOutput) ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterBackupArrayOutput) ToGetMongoClusterBackupArrayOutputWithContext(ctx context.Context) GetMongoClusterBackupArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterBackupArrayOutput) Index(i pulumi.IntInput) GetMongoClusterBackupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterBackup {
-		return vs[0].([]GetMongoClusterBackup)[vs[1].(int)]
-	}).(GetMongoClusterBackupOutput)
-}
-
-type GetMongoClusterBiConnector struct {
-	// Enable or disable the BiConnector
-	Enabled bool `pulumi:"enabled"`
-	// The host where this new BI Connector is installed
-	Host string `pulumi:"host"`
-	// Port number used when connecting to this new BI Connector
-	Port string `pulumi:"port"`
-}
-
-// GetMongoClusterBiConnectorInput is an input type that accepts GetMongoClusterBiConnectorArgs and GetMongoClusterBiConnectorOutput values.
-// You can construct a concrete instance of `GetMongoClusterBiConnectorInput` via:
-//
-//	GetMongoClusterBiConnectorArgs{...}
-type GetMongoClusterBiConnectorInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput
-	ToGetMongoClusterBiConnectorOutputWithContext(context.Context) GetMongoClusterBiConnectorOutput
-}
-
-type GetMongoClusterBiConnectorArgs struct {
-	// Enable or disable the BiConnector
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// The host where this new BI Connector is installed
-	Host pulumi.StringInput `pulumi:"host"`
-	// Port number used when connecting to this new BI Connector
-	Port pulumi.StringInput `pulumi:"port"`
-}
-
-func (GetMongoClusterBiConnectorArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterBiConnector)(nil)).Elem()
-}
-
-func (i GetMongoClusterBiConnectorArgs) ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput {
-	return i.ToGetMongoClusterBiConnectorOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterBiConnectorArgs) ToGetMongoClusterBiConnectorOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBiConnectorOutput)
-}
-
-// GetMongoClusterBiConnectorArrayInput is an input type that accepts GetMongoClusterBiConnectorArray and GetMongoClusterBiConnectorArrayOutput values.
-// You can construct a concrete instance of `GetMongoClusterBiConnectorArrayInput` via:
-//
-//	GetMongoClusterBiConnectorArray{ GetMongoClusterBiConnectorArgs{...} }
-type GetMongoClusterBiConnectorArrayInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput
-	ToGetMongoClusterBiConnectorArrayOutputWithContext(context.Context) GetMongoClusterBiConnectorArrayOutput
-}
-
-type GetMongoClusterBiConnectorArray []GetMongoClusterBiConnectorInput
-
-func (GetMongoClusterBiConnectorArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterBiConnector)(nil)).Elem()
-}
-
-func (i GetMongoClusterBiConnectorArray) ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput {
-	return i.ToGetMongoClusterBiConnectorArrayOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterBiConnectorArray) ToGetMongoClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBiConnectorArrayOutput)
-}
-
-type GetMongoClusterBiConnectorOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterBiConnectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterBiConnector)(nil)).Elem()
-}
-
-func (o GetMongoClusterBiConnectorOutput) ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput {
-	return o
-}
-
-func (o GetMongoClusterBiConnectorOutput) ToGetMongoClusterBiConnectorOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorOutput {
-	return o
-}
-
-// Enable or disable the BiConnector
-func (o GetMongoClusterBiConnectorOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetMongoClusterBiConnector) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// The host where this new BI Connector is installed
-func (o GetMongoClusterBiConnectorOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterBiConnector) string { return v.Host }).(pulumi.StringOutput)
-}
-
-// Port number used when connecting to this new BI Connector
-func (o GetMongoClusterBiConnectorOutput) Port() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterBiConnector) string { return v.Port }).(pulumi.StringOutput)
-}
-
-type GetMongoClusterBiConnectorArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterBiConnectorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterBiConnector)(nil)).Elem()
-}
-
-func (o GetMongoClusterBiConnectorArrayOutput) ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterBiConnectorArrayOutput) ToGetMongoClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterBiConnectorArrayOutput) Index(i pulumi.IntInput) GetMongoClusterBiConnectorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterBiConnector {
-		return vs[0].([]GetMongoClusterBiConnector)[vs[1].(int)]
-	}).(GetMongoClusterBiConnectorOutput)
-}
-
-type GetMongoClusterConnection struct {
-	// The list of IPs and subnet for your cluster.
-	//           Note the following unavailable IP ranges:
-	//           10.233.64.0/18
-	//           10.233.0.0/18
-	//           10.233.114.0/24
-	//  example: [192.168.1.100/24, 192.168.1.101/24]
-	CidrLists []string `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to
-	DatacenterId string `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to
-	LanId string `pulumi:"lanId"`
-}
-
-// GetMongoClusterConnectionInput is an input type that accepts GetMongoClusterConnectionArgs and GetMongoClusterConnectionOutput values.
-// You can construct a concrete instance of `GetMongoClusterConnectionInput` via:
-//
-//	GetMongoClusterConnectionArgs{...}
-type GetMongoClusterConnectionInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput
-	ToGetMongoClusterConnectionOutputWithContext(context.Context) GetMongoClusterConnectionOutput
-}
-
-type GetMongoClusterConnectionArgs struct {
-	// The list of IPs and subnet for your cluster.
-	//           Note the following unavailable IP ranges:
-	//           10.233.64.0/18
-	//           10.233.0.0/18
-	//           10.233.114.0/24
-	//  example: [192.168.1.100/24, 192.168.1.101/24]
-	CidrLists pulumi.StringArrayInput `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetMongoClusterConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterConnection)(nil)).Elem()
-}
-
-func (i GetMongoClusterConnectionArgs) ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput {
-	return i.ToGetMongoClusterConnectionOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterConnectionArgs) ToGetMongoClusterConnectionOutputWithContext(ctx context.Context) GetMongoClusterConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterConnectionOutput)
-}
-
-// GetMongoClusterConnectionArrayInput is an input type that accepts GetMongoClusterConnectionArray and GetMongoClusterConnectionArrayOutput values.
-// You can construct a concrete instance of `GetMongoClusterConnectionArrayInput` via:
-//
-//	GetMongoClusterConnectionArray{ GetMongoClusterConnectionArgs{...} }
-type GetMongoClusterConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput
-	ToGetMongoClusterConnectionArrayOutputWithContext(context.Context) GetMongoClusterConnectionArrayOutput
-}
-
-type GetMongoClusterConnectionArray []GetMongoClusterConnectionInput
-
-func (GetMongoClusterConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterConnection)(nil)).Elem()
-}
-
-func (i GetMongoClusterConnectionArray) ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput {
-	return i.ToGetMongoClusterConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterConnectionArray) ToGetMongoClusterConnectionArrayOutputWithContext(ctx context.Context) GetMongoClusterConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterConnectionArrayOutput)
-}
-
-type GetMongoClusterConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterConnection)(nil)).Elem()
-}
-
-func (o GetMongoClusterConnectionOutput) ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput {
-	return o
-}
-
-func (o GetMongoClusterConnectionOutput) ToGetMongoClusterConnectionOutputWithContext(ctx context.Context) GetMongoClusterConnectionOutput {
-	return o
-}
-
-// The list of IPs and subnet for your cluster.
-//
-//	         Note the following unavailable IP ranges:
-//	         10.233.64.0/18
-//	         10.233.0.0/18
-//	         10.233.114.0/24
-//	example: [192.168.1.100/24, 192.168.1.101/24]
-func (o GetMongoClusterConnectionOutput) CidrLists() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetMongoClusterConnection) []string { return v.CidrLists }).(pulumi.StringArrayOutput)
-}
-
-// The datacenter to connect your cluster to
-func (o GetMongoClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The LAN to connect your cluster to
-func (o GetMongoClusterConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetMongoClusterConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterConnection)(nil)).Elem()
-}
-
-func (o GetMongoClusterConnectionArrayOutput) ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterConnectionArrayOutput) ToGetMongoClusterConnectionArrayOutputWithContext(ctx context.Context) GetMongoClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMongoClusterConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterConnection {
-		return vs[0].([]GetMongoClusterConnection)[vs[1].(int)]
-	}).(GetMongoClusterConnectionOutput)
-}
-
-type GetMongoClusterMaintenanceWindow struct {
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	Time         string `pulumi:"time"`
-}
-
-// GetMongoClusterMaintenanceWindowInput is an input type that accepts GetMongoClusterMaintenanceWindowArgs and GetMongoClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetMongoClusterMaintenanceWindowInput` via:
-//
-//	GetMongoClusterMaintenanceWindowArgs{...}
-type GetMongoClusterMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput
-	ToGetMongoClusterMaintenanceWindowOutputWithContext(context.Context) GetMongoClusterMaintenanceWindowOutput
-}
-
-type GetMongoClusterMaintenanceWindowArgs struct {
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	Time         pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetMongoClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetMongoClusterMaintenanceWindowArgs) ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput {
-	return i.ToGetMongoClusterMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterMaintenanceWindowArgs) ToGetMongoClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterMaintenanceWindowOutput)
-}
-
-// GetMongoClusterMaintenanceWindowArrayInput is an input type that accepts GetMongoClusterMaintenanceWindowArray and GetMongoClusterMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetMongoClusterMaintenanceWindowArrayInput` via:
-//
-//	GetMongoClusterMaintenanceWindowArray{ GetMongoClusterMaintenanceWindowArgs{...} }
-type GetMongoClusterMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput
-	ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetMongoClusterMaintenanceWindowArrayOutput
-}
-
-type GetMongoClusterMaintenanceWindowArray []GetMongoClusterMaintenanceWindowInput
-
-func (GetMongoClusterMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetMongoClusterMaintenanceWindowArray) ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput {
-	return i.ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetMongoClusterMaintenanceWindowArray) ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterMaintenanceWindowArrayOutput)
-}
-
-type GetMongoClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetMongoClusterMaintenanceWindowOutput) ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetMongoClusterMaintenanceWindowOutput) ToGetMongoClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetMongoClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-func (o GetMongoClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetMongoClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMongoClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetMongoClusterMaintenanceWindowArrayOutput) ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterMaintenanceWindowArrayOutput) ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetMongoClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetMongoClusterMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterMaintenanceWindow {
-		return vs[0].([]GetMongoClusterMaintenanceWindow)[vs[1].(int)]
-	}).(GetMongoClusterMaintenanceWindowOutput)
-}
-
-type GetMongoUserRole struct {
-	Database string `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-	Role string `pulumi:"role"`
-}
-
-// GetMongoUserRoleInput is an input type that accepts GetMongoUserRoleArgs and GetMongoUserRoleOutput values.
-// You can construct a concrete instance of `GetMongoUserRoleInput` via:
-//
-//	GetMongoUserRoleArgs{...}
-type GetMongoUserRoleInput interface {
-	pulumi.Input
-
-	ToGetMongoUserRoleOutput() GetMongoUserRoleOutput
-	ToGetMongoUserRoleOutputWithContext(context.Context) GetMongoUserRoleOutput
-}
-
-type GetMongoUserRoleArgs struct {
-	Database pulumi.StringInput `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-	Role pulumi.StringInput `pulumi:"role"`
-}
-
-func (GetMongoUserRoleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoUserRole)(nil)).Elem()
-}
-
-func (i GetMongoUserRoleArgs) ToGetMongoUserRoleOutput() GetMongoUserRoleOutput {
-	return i.ToGetMongoUserRoleOutputWithContext(context.Background())
-}
-
-func (i GetMongoUserRoleArgs) ToGetMongoUserRoleOutputWithContext(ctx context.Context) GetMongoUserRoleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoUserRoleOutput)
-}
-
-// GetMongoUserRoleArrayInput is an input type that accepts GetMongoUserRoleArray and GetMongoUserRoleArrayOutput values.
-// You can construct a concrete instance of `GetMongoUserRoleArrayInput` via:
-//
-//	GetMongoUserRoleArray{ GetMongoUserRoleArgs{...} }
-type GetMongoUserRoleArrayInput interface {
-	pulumi.Input
-
-	ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput
-	ToGetMongoUserRoleArrayOutputWithContext(context.Context) GetMongoUserRoleArrayOutput
-}
-
-type GetMongoUserRoleArray []GetMongoUserRoleInput
-
-func (GetMongoUserRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoUserRole)(nil)).Elem()
-}
-
-func (i GetMongoUserRoleArray) ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput {
-	return i.ToGetMongoUserRoleArrayOutputWithContext(context.Background())
-}
-
-func (i GetMongoUserRoleArray) ToGetMongoUserRoleArrayOutputWithContext(ctx context.Context) GetMongoUserRoleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetMongoUserRoleArrayOutput)
-}
-
-type GetMongoUserRoleOutput struct{ *pulumi.OutputState }
-
-func (GetMongoUserRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMongoUserRole)(nil)).Elem()
-}
-
-func (o GetMongoUserRoleOutput) ToGetMongoUserRoleOutput() GetMongoUserRoleOutput {
-	return o
-}
-
-func (o GetMongoUserRoleOutput) ToGetMongoUserRoleOutputWithContext(ctx context.Context) GetMongoUserRoleOutput {
-	return o
-}
-
-func (o GetMongoUserRoleOutput) Database() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoUserRole) string { return v.Database }).(pulumi.StringOutput)
-}
-
-// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-func (o GetMongoUserRoleOutput) Role() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMongoUserRole) string { return v.Role }).(pulumi.StringOutput)
-}
-
-type GetMongoUserRoleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetMongoUserRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetMongoUserRole)(nil)).Elem()
-}
-
-func (o GetMongoUserRoleArrayOutput) ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput {
-	return o
-}
-
-func (o GetMongoUserRoleArrayOutput) ToGetMongoUserRoleArrayOutputWithContext(ctx context.Context) GetMongoUserRoleArrayOutput {
-	return o
-}
-
-func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoUserRole {
-		return vs[0].([]GetMongoUserRole)[vs[1].(int)]
-	}).(GetMongoUserRoleOutput)
-}
-
-type GetNatgatewayLan struct {
-	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
-	GatewayIps []string `pulumi:"gatewayIps"`
-	// ID of the network load balancer forwarding rule you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id int `pulumi:"id"`
-}
-
-// GetNatgatewayLanInput is an input type that accepts GetNatgatewayLanArgs and GetNatgatewayLanOutput values.
-// You can construct a concrete instance of `GetNatgatewayLanInput` via:
-//
-//	GetNatgatewayLanArgs{...}
-type GetNatgatewayLanInput interface {
-	pulumi.Input
-
-	ToGetNatgatewayLanOutput() GetNatgatewayLanOutput
-	ToGetNatgatewayLanOutputWithContext(context.Context) GetNatgatewayLanOutput
-}
-
-type GetNatgatewayLanArgs struct {
-	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
-	GatewayIps pulumi.StringArrayInput `pulumi:"gatewayIps"`
-	// ID of the network load balancer forwarding rule you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.IntInput `pulumi:"id"`
-}
-
-func (GetNatgatewayLanArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNatgatewayLan)(nil)).Elem()
-}
-
-func (i GetNatgatewayLanArgs) ToGetNatgatewayLanOutput() GetNatgatewayLanOutput {
-	return i.ToGetNatgatewayLanOutputWithContext(context.Background())
-}
-
-func (i GetNatgatewayLanArgs) ToGetNatgatewayLanOutputWithContext(ctx context.Context) GetNatgatewayLanOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNatgatewayLanOutput)
-}
-
-// GetNatgatewayLanArrayInput is an input type that accepts GetNatgatewayLanArray and GetNatgatewayLanArrayOutput values.
-// You can construct a concrete instance of `GetNatgatewayLanArrayInput` via:
-//
-//	GetNatgatewayLanArray{ GetNatgatewayLanArgs{...} }
-type GetNatgatewayLanArrayInput interface {
-	pulumi.Input
-
-	ToGetNatgatewayLanArrayOutput() GetNatgatewayLanArrayOutput
-	ToGetNatgatewayLanArrayOutputWithContext(context.Context) GetNatgatewayLanArrayOutput
-}
-
-type GetNatgatewayLanArray []GetNatgatewayLanInput
-
-func (GetNatgatewayLanArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNatgatewayLan)(nil)).Elem()
-}
-
-func (i GetNatgatewayLanArray) ToGetNatgatewayLanArrayOutput() GetNatgatewayLanArrayOutput {
-	return i.ToGetNatgatewayLanArrayOutputWithContext(context.Background())
-}
-
-func (i GetNatgatewayLanArray) ToGetNatgatewayLanArrayOutputWithContext(ctx context.Context) GetNatgatewayLanArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNatgatewayLanArrayOutput)
-}
-
-type GetNatgatewayLanOutput struct{ *pulumi.OutputState }
-
-func (GetNatgatewayLanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNatgatewayLan)(nil)).Elem()
-}
-
-func (o GetNatgatewayLanOutput) ToGetNatgatewayLanOutput() GetNatgatewayLanOutput {
-	return o
-}
-
-func (o GetNatgatewayLanOutput) ToGetNatgatewayLanOutputWithContext(ctx context.Context) GetNatgatewayLanOutput {
-	return o
-}
-
-// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
-func (o GetNatgatewayLanOutput) GatewayIps() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNatgatewayLan) []string { return v.GatewayIps }).(pulumi.StringArrayOutput)
-}
-
-// ID of the network load balancer forwarding rule you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetNatgatewayLanOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNatgatewayLan) int { return v.Id }).(pulumi.IntOutput)
-}
-
-type GetNatgatewayLanArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNatgatewayLanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNatgatewayLan)(nil)).Elem()
-}
-
-func (o GetNatgatewayLanArrayOutput) ToGetNatgatewayLanArrayOutput() GetNatgatewayLanArrayOutput {
-	return o
-}
-
-func (o GetNatgatewayLanArrayOutput) ToGetNatgatewayLanArrayOutputWithContext(ctx context.Context) GetNatgatewayLanArrayOutput {
-	return o
-}
-
-func (o GetNatgatewayLanArrayOutput) Index(i pulumi.IntInput) GetNatgatewayLanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNatgatewayLan {
-		return vs[0].([]GetNatgatewayLan)[vs[1].(int)]
-	}).(GetNatgatewayLanOutput)
-}
-
-type GetNatgatewayRuleTargetPortRange struct {
-	// Target port range end associated with the NAT gateway rule.
-	End int `pulumi:"end"`
-	// Target port range start associated with the NAT gateway rule.
-	Start int `pulumi:"start"`
-}
-
-// GetNatgatewayRuleTargetPortRangeInput is an input type that accepts GetNatgatewayRuleTargetPortRangeArgs and GetNatgatewayRuleTargetPortRangeOutput values.
-// You can construct a concrete instance of `GetNatgatewayRuleTargetPortRangeInput` via:
-//
-//	GetNatgatewayRuleTargetPortRangeArgs{...}
-type GetNatgatewayRuleTargetPortRangeInput interface {
-	pulumi.Input
-
-	ToGetNatgatewayRuleTargetPortRangeOutput() GetNatgatewayRuleTargetPortRangeOutput
-	ToGetNatgatewayRuleTargetPortRangeOutputWithContext(context.Context) GetNatgatewayRuleTargetPortRangeOutput
-}
-
-type GetNatgatewayRuleTargetPortRangeArgs struct {
-	// Target port range end associated with the NAT gateway rule.
-	End pulumi.IntInput `pulumi:"end"`
-	// Target port range start associated with the NAT gateway rule.
-	Start pulumi.IntInput `pulumi:"start"`
-}
-
-func (GetNatgatewayRuleTargetPortRangeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNatgatewayRuleTargetPortRange)(nil)).Elem()
-}
-
-func (i GetNatgatewayRuleTargetPortRangeArgs) ToGetNatgatewayRuleTargetPortRangeOutput() GetNatgatewayRuleTargetPortRangeOutput {
-	return i.ToGetNatgatewayRuleTargetPortRangeOutputWithContext(context.Background())
-}
-
-func (i GetNatgatewayRuleTargetPortRangeArgs) ToGetNatgatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) GetNatgatewayRuleTargetPortRangeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNatgatewayRuleTargetPortRangeOutput)
-}
-
-// GetNatgatewayRuleTargetPortRangeArrayInput is an input type that accepts GetNatgatewayRuleTargetPortRangeArray and GetNatgatewayRuleTargetPortRangeArrayOutput values.
-// You can construct a concrete instance of `GetNatgatewayRuleTargetPortRangeArrayInput` via:
-//
-//	GetNatgatewayRuleTargetPortRangeArray{ GetNatgatewayRuleTargetPortRangeArgs{...} }
-type GetNatgatewayRuleTargetPortRangeArrayInput interface {
-	pulumi.Input
-
-	ToGetNatgatewayRuleTargetPortRangeArrayOutput() GetNatgatewayRuleTargetPortRangeArrayOutput
-	ToGetNatgatewayRuleTargetPortRangeArrayOutputWithContext(context.Context) GetNatgatewayRuleTargetPortRangeArrayOutput
-}
-
-type GetNatgatewayRuleTargetPortRangeArray []GetNatgatewayRuleTargetPortRangeInput
-
-func (GetNatgatewayRuleTargetPortRangeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNatgatewayRuleTargetPortRange)(nil)).Elem()
-}
-
-func (i GetNatgatewayRuleTargetPortRangeArray) ToGetNatgatewayRuleTargetPortRangeArrayOutput() GetNatgatewayRuleTargetPortRangeArrayOutput {
-	return i.ToGetNatgatewayRuleTargetPortRangeArrayOutputWithContext(context.Background())
-}
-
-func (i GetNatgatewayRuleTargetPortRangeArray) ToGetNatgatewayRuleTargetPortRangeArrayOutputWithContext(ctx context.Context) GetNatgatewayRuleTargetPortRangeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNatgatewayRuleTargetPortRangeArrayOutput)
-}
-
-type GetNatgatewayRuleTargetPortRangeOutput struct{ *pulumi.OutputState }
-
-func (GetNatgatewayRuleTargetPortRangeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNatgatewayRuleTargetPortRange)(nil)).Elem()
-}
-
-func (o GetNatgatewayRuleTargetPortRangeOutput) ToGetNatgatewayRuleTargetPortRangeOutput() GetNatgatewayRuleTargetPortRangeOutput {
-	return o
-}
-
-func (o GetNatgatewayRuleTargetPortRangeOutput) ToGetNatgatewayRuleTargetPortRangeOutputWithContext(ctx context.Context) GetNatgatewayRuleTargetPortRangeOutput {
-	return o
-}
-
-// Target port range end associated with the NAT gateway rule.
-func (o GetNatgatewayRuleTargetPortRangeOutput) End() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNatgatewayRuleTargetPortRange) int { return v.End }).(pulumi.IntOutput)
-}
-
-// Target port range start associated with the NAT gateway rule.
-func (o GetNatgatewayRuleTargetPortRangeOutput) Start() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNatgatewayRuleTargetPortRange) int { return v.Start }).(pulumi.IntOutput)
-}
-
-type GetNatgatewayRuleTargetPortRangeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNatgatewayRuleTargetPortRangeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNatgatewayRuleTargetPortRange)(nil)).Elem()
-}
-
-func (o GetNatgatewayRuleTargetPortRangeArrayOutput) ToGetNatgatewayRuleTargetPortRangeArrayOutput() GetNatgatewayRuleTargetPortRangeArrayOutput {
-	return o
-}
-
-func (o GetNatgatewayRuleTargetPortRangeArrayOutput) ToGetNatgatewayRuleTargetPortRangeArrayOutputWithContext(ctx context.Context) GetNatgatewayRuleTargetPortRangeArrayOutput {
-	return o
-}
-
-func (o GetNatgatewayRuleTargetPortRangeArrayOutput) Index(i pulumi.IntInput) GetNatgatewayRuleTargetPortRangeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNatgatewayRuleTargetPortRange {
-		return vs[0].([]GetNatgatewayRuleTargetPortRange)[vs[1].(int)]
-	}).(GetNatgatewayRuleTargetPortRangeOutput)
-}
-
-type GetNetworkloadbalancerFlowlog struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-	Action string `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-	Direction string `pulumi:"direction"`
-	// ID of the network load balancer you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Name of an existing network load balancer that you want to search for.
-	Name string `pulumi:"name"`
-}
-
-// GetNetworkloadbalancerFlowlogInput is an input type that accepts GetNetworkloadbalancerFlowlogArgs and GetNetworkloadbalancerFlowlogOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerFlowlogInput` via:
-//
-//	GetNetworkloadbalancerFlowlogArgs{...}
-type GetNetworkloadbalancerFlowlogInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerFlowlogOutput() GetNetworkloadbalancerFlowlogOutput
-	ToGetNetworkloadbalancerFlowlogOutputWithContext(context.Context) GetNetworkloadbalancerFlowlogOutput
-}
-
-type GetNetworkloadbalancerFlowlogArgs struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-	Action pulumi.StringInput `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-	Direction pulumi.StringInput `pulumi:"direction"`
-	// ID of the network load balancer you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing network load balancer that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetNetworkloadbalancerFlowlogArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerFlowlog)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerFlowlogArgs) ToGetNetworkloadbalancerFlowlogOutput() GetNetworkloadbalancerFlowlogOutput {
-	return i.ToGetNetworkloadbalancerFlowlogOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerFlowlogArgs) ToGetNetworkloadbalancerFlowlogOutputWithContext(ctx context.Context) GetNetworkloadbalancerFlowlogOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerFlowlogOutput)
-}
-
-// GetNetworkloadbalancerFlowlogArrayInput is an input type that accepts GetNetworkloadbalancerFlowlogArray and GetNetworkloadbalancerFlowlogArrayOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerFlowlogArrayInput` via:
-//
-//	GetNetworkloadbalancerFlowlogArray{ GetNetworkloadbalancerFlowlogArgs{...} }
-type GetNetworkloadbalancerFlowlogArrayInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerFlowlogArrayOutput() GetNetworkloadbalancerFlowlogArrayOutput
-	ToGetNetworkloadbalancerFlowlogArrayOutputWithContext(context.Context) GetNetworkloadbalancerFlowlogArrayOutput
-}
-
-type GetNetworkloadbalancerFlowlogArray []GetNetworkloadbalancerFlowlogInput
-
-func (GetNetworkloadbalancerFlowlogArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerFlowlog)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerFlowlogArray) ToGetNetworkloadbalancerFlowlogArrayOutput() GetNetworkloadbalancerFlowlogArrayOutput {
-	return i.ToGetNetworkloadbalancerFlowlogArrayOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerFlowlogArray) ToGetNetworkloadbalancerFlowlogArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerFlowlogArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerFlowlogArrayOutput)
-}
-
-type GetNetworkloadbalancerFlowlogOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerFlowlogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerFlowlog)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerFlowlogOutput) ToGetNetworkloadbalancerFlowlogOutput() GetNetworkloadbalancerFlowlogOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerFlowlogOutput) ToGetNetworkloadbalancerFlowlogOutputWithContext(ctx context.Context) GetNetworkloadbalancerFlowlogOutput {
-	return o
-}
-
-// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-func (o GetNetworkloadbalancerFlowlogOutput) Action() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
-}
-
-// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-func (o GetNetworkloadbalancerFlowlogOutput) Bucket() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-func (o GetNetworkloadbalancerFlowlogOutput) Direction() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
-}
-
-// ID of the network load balancer you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetNetworkloadbalancerFlowlogOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerFlowlog) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Name of an existing network load balancer that you want to search for.
-func (o GetNetworkloadbalancerFlowlogOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetNetworkloadbalancerFlowlogArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerFlowlogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerFlowlog)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerFlowlogArrayOutput) ToGetNetworkloadbalancerFlowlogArrayOutput() GetNetworkloadbalancerFlowlogArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerFlowlogArrayOutput) ToGetNetworkloadbalancerFlowlogArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerFlowlogArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerFlowlogArrayOutput) Index(i pulumi.IntInput) GetNetworkloadbalancerFlowlogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetworkloadbalancerFlowlog {
-		return vs[0].([]GetNetworkloadbalancerFlowlog)[vs[1].(int)]
-	}).(GetNetworkloadbalancerFlowlogOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleHealthCheck struct {
-	// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-	ClientTimeout int `pulumi:"clientTimeout"`
-	// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-	ConnectTimeout int `pulumi:"connectTimeout"`
-	// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-	Retries int `pulumi:"retries"`
-	// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-	TargetTimeout int `pulumi:"targetTimeout"`
-}
-
-// GetNetworkloadbalancerForwardingruleHealthCheckInput is an input type that accepts GetNetworkloadbalancerForwardingruleHealthCheckArgs and GetNetworkloadbalancerForwardingruleHealthCheckOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleHealthCheckInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleHealthCheckArgs{...}
-type GetNetworkloadbalancerForwardingruleHealthCheckInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleHealthCheckOutput() GetNetworkloadbalancerForwardingruleHealthCheckOutput
-	ToGetNetworkloadbalancerForwardingruleHealthCheckOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleHealthCheckOutput
-}
-
-type GetNetworkloadbalancerForwardingruleHealthCheckArgs struct {
-	// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-	ClientTimeout pulumi.IntInput `pulumi:"clientTimeout"`
-	// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-	ConnectTimeout pulumi.IntInput `pulumi:"connectTimeout"`
-	// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-	Retries pulumi.IntInput `pulumi:"retries"`
-	// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-	TargetTimeout pulumi.IntInput `pulumi:"targetTimeout"`
-}
-
-func (GetNetworkloadbalancerForwardingruleHealthCheckArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleHealthCheck)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleHealthCheckArgs) ToGetNetworkloadbalancerForwardingruleHealthCheckOutput() GetNetworkloadbalancerForwardingruleHealthCheckOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleHealthCheckOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleHealthCheckArgs) ToGetNetworkloadbalancerForwardingruleHealthCheckOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleHealthCheckOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleHealthCheckOutput)
-}
-
-// GetNetworkloadbalancerForwardingruleHealthCheckArrayInput is an input type that accepts GetNetworkloadbalancerForwardingruleHealthCheckArray and GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleHealthCheckArrayInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleHealthCheckArray{ GetNetworkloadbalancerForwardingruleHealthCheckArgs{...} }
-type GetNetworkloadbalancerForwardingruleHealthCheckArrayInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput
-	ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput
-}
-
-type GetNetworkloadbalancerForwardingruleHealthCheckArray []GetNetworkloadbalancerForwardingruleHealthCheckInput
-
-func (GetNetworkloadbalancerForwardingruleHealthCheckArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleHealthCheck)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleHealthCheckArray) ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleHealthCheckArray) ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleHealthCheckOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleHealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleHealthCheck)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) ToGetNetworkloadbalancerForwardingruleHealthCheckOutput() GetNetworkloadbalancerForwardingruleHealthCheckOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) ToGetNetworkloadbalancerForwardingruleHealthCheckOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleHealthCheckOutput {
-	return o
-}
-
-// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) ClientTimeout() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleHealthCheck) int { return v.ClientTimeout }).(pulumi.IntOutput)
-}
-
-// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) ConnectTimeout() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleHealthCheck) int { return v.ConnectTimeout }).(pulumi.IntOutput)
-}
-
-// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) Retries() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleHealthCheck) int { return v.Retries }).(pulumi.IntOutput)
-}
-
-// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-func (o GetNetworkloadbalancerForwardingruleHealthCheckOutput) TargetTimeout() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleHealthCheck) int { return v.TargetTimeout }).(pulumi.IntOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleHealthCheck)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput) ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput) ToGetNetworkloadbalancerForwardingruleHealthCheckArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput) Index(i pulumi.IntInput) GetNetworkloadbalancerForwardingruleHealthCheckOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetworkloadbalancerForwardingruleHealthCheck {
-		return vs[0].([]GetNetworkloadbalancerForwardingruleHealthCheck)[vs[1].(int)]
-	}).(GetNetworkloadbalancerForwardingruleHealthCheckOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTarget struct {
-	// Health check attributes for Network Load Balancer forwarding rule target.
-	HealthChecks []GetNetworkloadbalancerForwardingruleTargetHealthCheck `pulumi:"healthChecks"`
-	// IP of a balanced target VM.
-	Ip string `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535).
-	Port int `pulumi:"port"`
-	// The proxy protocol version.
-	ProxyProtocol string `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-	Weight int `pulumi:"weight"`
-}
-
-// GetNetworkloadbalancerForwardingruleTargetInput is an input type that accepts GetNetworkloadbalancerForwardingruleTargetArgs and GetNetworkloadbalancerForwardingruleTargetOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleTargetInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleTargetArgs{...}
-type GetNetworkloadbalancerForwardingruleTargetInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleTargetOutput() GetNetworkloadbalancerForwardingruleTargetOutput
-	ToGetNetworkloadbalancerForwardingruleTargetOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleTargetOutput
-}
-
-type GetNetworkloadbalancerForwardingruleTargetArgs struct {
-	// Health check attributes for Network Load Balancer forwarding rule target.
-	HealthChecks GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayInput `pulumi:"healthChecks"`
-	// IP of a balanced target VM.
-	Ip pulumi.StringInput `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535).
-	Port pulumi.IntInput `pulumi:"port"`
-	// The proxy protocol version.
-	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-	Weight pulumi.IntInput `pulumi:"weight"`
-}
-
-func (GetNetworkloadbalancerForwardingruleTargetArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTarget)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetArgs) ToGetNetworkloadbalancerForwardingruleTargetOutput() GetNetworkloadbalancerForwardingruleTargetOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleTargetOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetArgs) ToGetNetworkloadbalancerForwardingruleTargetOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleTargetOutput)
-}
-
-// GetNetworkloadbalancerForwardingruleTargetArrayInput is an input type that accepts GetNetworkloadbalancerForwardingruleTargetArray and GetNetworkloadbalancerForwardingruleTargetArrayOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleTargetArrayInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleTargetArray{ GetNetworkloadbalancerForwardingruleTargetArgs{...} }
-type GetNetworkloadbalancerForwardingruleTargetArrayInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleTargetArrayOutput() GetNetworkloadbalancerForwardingruleTargetArrayOutput
-	ToGetNetworkloadbalancerForwardingruleTargetArrayOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleTargetArrayOutput
-}
-
-type GetNetworkloadbalancerForwardingruleTargetArray []GetNetworkloadbalancerForwardingruleTargetInput
-
-func (GetNetworkloadbalancerForwardingruleTargetArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleTarget)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetArray) ToGetNetworkloadbalancerForwardingruleTargetArrayOutput() GetNetworkloadbalancerForwardingruleTargetArrayOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleTargetArrayOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetArray) ToGetNetworkloadbalancerForwardingruleTargetArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleTargetArrayOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTargetOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleTargetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTarget)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) ToGetNetworkloadbalancerForwardingruleTargetOutput() GetNetworkloadbalancerForwardingruleTargetOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) ToGetNetworkloadbalancerForwardingruleTargetOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetOutput {
-	return o
-}
-
-// Health check attributes for Network Load Balancer forwarding rule target.
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) HealthChecks() GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTarget) []GetNetworkloadbalancerForwardingruleTargetHealthCheck {
-		return v.HealthChecks
-	}).(GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput)
-}
-
-// IP of a balanced target VM.
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTarget) string { return v.Ip }).(pulumi.StringOutput)
-}
-
-// Port of the balanced target service. (range: 1 to 65535).
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTarget) int { return v.Port }).(pulumi.IntOutput)
-}
-
-// The proxy protocol version.
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) ProxyProtocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTarget) string { return v.ProxyProtocol }).(pulumi.StringOutput)
-}
-
-// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-func (o GetNetworkloadbalancerForwardingruleTargetOutput) Weight() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTarget) int { return v.Weight }).(pulumi.IntOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTargetArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleTargetArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleTarget)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetArrayOutput) ToGetNetworkloadbalancerForwardingruleTargetArrayOutput() GetNetworkloadbalancerForwardingruleTargetArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetArrayOutput) ToGetNetworkloadbalancerForwardingruleTargetArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetArrayOutput) Index(i pulumi.IntInput) GetNetworkloadbalancerForwardingruleTargetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetworkloadbalancerForwardingruleTarget {
-		return vs[0].([]GetNetworkloadbalancerForwardingruleTarget)[vs[1].(int)]
-	}).(GetNetworkloadbalancerForwardingruleTargetOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTargetHealthCheck struct {
-	// Check specifies whether the target VM's health is checked.
-	Check bool `pulumi:"check"`
-	// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-	CheckInterval int `pulumi:"checkInterval"`
-	// Maintenance specifies if a target VM should be marked as down, even if it is not.
-	Maintenance bool `pulumi:"maintenance"`
-}
-
-// GetNetworkloadbalancerForwardingruleTargetHealthCheckInput is an input type that accepts GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs and GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleTargetHealthCheckInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs{...}
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput
-	ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput
-}
-
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs struct {
-	// Check specifies whether the target VM's health is checked.
-	Check pulumi.BoolInput `pulumi:"check"`
-	// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-	CheckInterval pulumi.IntInput `pulumi:"checkInterval"`
-	// Maintenance specifies if a target VM should be marked as down, even if it is not.
-	Maintenance pulumi.BoolInput `pulumi:"maintenance"`
-}
-
-func (GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetHealthCheck)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput)
-}
-
-// GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayInput is an input type that accepts GetNetworkloadbalancerForwardingruleTargetHealthCheckArray and GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput values.
-// You can construct a concrete instance of `GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayInput` via:
-//
-//	GetNetworkloadbalancerForwardingruleTargetHealthCheckArray{ GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs{...} }
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayInput interface {
-	pulumi.Input
-
-	ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput
-	ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutputWithContext(context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput
-}
-
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckArray []GetNetworkloadbalancerForwardingruleTargetHealthCheckInput
-
-func (GetNetworkloadbalancerForwardingruleTargetHealthCheckArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleTargetHealthCheck)(nil)).Elem()
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetHealthCheckArray) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput {
-	return i.ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutputWithContext(context.Background())
-}
-
-func (i GetNetworkloadbalancerForwardingruleTargetHealthCheckArray) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetHealthCheck)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput {
-	return o
-}
-
-// Check specifies whether the target VM's health is checked.
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) Check() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTargetHealthCheck) bool { return v.Check }).(pulumi.BoolOutput)
-}
-
-// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) CheckInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTargetHealthCheck) int { return v.CheckInterval }).(pulumi.IntOutput)
-}
-
-// Maintenance specifies if a target VM should be marked as down, even if it is not.
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput) Maintenance() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetNetworkloadbalancerForwardingruleTargetHealthCheck) bool { return v.Maintenance }).(pulumi.BoolOutput)
-}
-
-type GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNetworkloadbalancerForwardingruleTargetHealthCheck)(nil)).Elem()
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput() GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput) ToGetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutputWithContext(ctx context.Context) GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput {
-	return o
-}
-
-func (o GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput) Index(i pulumi.IntInput) GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNetworkloadbalancerForwardingruleTargetHealthCheck {
-		return vs[0].([]GetNetworkloadbalancerForwardingruleTargetHealthCheck)[vs[1].(int)]
-	}).(GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput)
-}
-
-type GetNfsClusterConnection struct {
-	// The ID of the datacenter where the Network File Storage cluster is located.
-	DatacenterId string `pulumi:"datacenterId"`
-	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-	IpAddress string `pulumi:"ipAddress"`
-	// The Private LAN to which the Network File Storage cluster must be connected.
-	Lan string `pulumi:"lan"`
-}
-
-// GetNfsClusterConnectionInput is an input type that accepts GetNfsClusterConnectionArgs and GetNfsClusterConnectionOutput values.
-// You can construct a concrete instance of `GetNfsClusterConnectionInput` via:
-//
-//	GetNfsClusterConnectionArgs{...}
-type GetNfsClusterConnectionInput interface {
-	pulumi.Input
-
-	ToGetNfsClusterConnectionOutput() GetNfsClusterConnectionOutput
-	ToGetNfsClusterConnectionOutputWithContext(context.Context) GetNfsClusterConnectionOutput
-}
-
-type GetNfsClusterConnectionArgs struct {
-	// The ID of the datacenter where the Network File Storage cluster is located.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The Private LAN to which the Network File Storage cluster must be connected.
-	Lan pulumi.StringInput `pulumi:"lan"`
-}
-
-func (GetNfsClusterConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsClusterConnection)(nil)).Elem()
-}
-
-func (i GetNfsClusterConnectionArgs) ToGetNfsClusterConnectionOutput() GetNfsClusterConnectionOutput {
-	return i.ToGetNfsClusterConnectionOutputWithContext(context.Background())
-}
-
-func (i GetNfsClusterConnectionArgs) ToGetNfsClusterConnectionOutputWithContext(ctx context.Context) GetNfsClusterConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsClusterConnectionOutput)
-}
-
-// GetNfsClusterConnectionArrayInput is an input type that accepts GetNfsClusterConnectionArray and GetNfsClusterConnectionArrayOutput values.
-// You can construct a concrete instance of `GetNfsClusterConnectionArrayInput` via:
-//
-//	GetNfsClusterConnectionArray{ GetNfsClusterConnectionArgs{...} }
-type GetNfsClusterConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetNfsClusterConnectionArrayOutput() GetNfsClusterConnectionArrayOutput
-	ToGetNfsClusterConnectionArrayOutputWithContext(context.Context) GetNfsClusterConnectionArrayOutput
-}
-
-type GetNfsClusterConnectionArray []GetNfsClusterConnectionInput
-
-func (GetNfsClusterConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsClusterConnection)(nil)).Elem()
-}
-
-func (i GetNfsClusterConnectionArray) ToGetNfsClusterConnectionArrayOutput() GetNfsClusterConnectionArrayOutput {
-	return i.ToGetNfsClusterConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetNfsClusterConnectionArray) ToGetNfsClusterConnectionArrayOutputWithContext(ctx context.Context) GetNfsClusterConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsClusterConnectionArrayOutput)
-}
-
-type GetNfsClusterConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetNfsClusterConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsClusterConnection)(nil)).Elem()
-}
-
-func (o GetNfsClusterConnectionOutput) ToGetNfsClusterConnectionOutput() GetNfsClusterConnectionOutput {
-	return o
-}
-
-func (o GetNfsClusterConnectionOutput) ToGetNfsClusterConnectionOutputWithContext(ctx context.Context) GetNfsClusterConnectionOutput {
-	return o
-}
-
-// The ID of the datacenter where the Network File Storage cluster is located.
-func (o GetNfsClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-func (o GetNfsClusterConnectionOutput) IpAddress() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsClusterConnection) string { return v.IpAddress }).(pulumi.StringOutput)
-}
-
-// The Private LAN to which the Network File Storage cluster must be connected.
-func (o GetNfsClusterConnectionOutput) Lan() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsClusterConnection) string { return v.Lan }).(pulumi.StringOutput)
-}
-
-type GetNfsClusterConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNfsClusterConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsClusterConnection)(nil)).Elem()
-}
-
-func (o GetNfsClusterConnectionArrayOutput) ToGetNfsClusterConnectionArrayOutput() GetNfsClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetNfsClusterConnectionArrayOutput) ToGetNfsClusterConnectionArrayOutputWithContext(ctx context.Context) GetNfsClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetNfsClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetNfsClusterConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNfsClusterConnection {
-		return vs[0].([]GetNfsClusterConnection)[vs[1].(int)]
-	}).(GetNfsClusterConnectionOutput)
-}
-
-type GetNfsClusterNf struct {
-	// The minimum supported version of the NFS cluster. Default is `4.2`
-	MinVersion string `pulumi:"minVersion"`
-}
-
-// GetNfsClusterNfInput is an input type that accepts GetNfsClusterNfArgs and GetNfsClusterNfOutput values.
-// You can construct a concrete instance of `GetNfsClusterNfInput` via:
-//
-//	GetNfsClusterNfArgs{...}
-type GetNfsClusterNfInput interface {
-	pulumi.Input
-
-	ToGetNfsClusterNfOutput() GetNfsClusterNfOutput
-	ToGetNfsClusterNfOutputWithContext(context.Context) GetNfsClusterNfOutput
-}
-
-type GetNfsClusterNfArgs struct {
-	// The minimum supported version of the NFS cluster. Default is `4.2`
-	MinVersion pulumi.StringInput `pulumi:"minVersion"`
-}
-
-func (GetNfsClusterNfArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsClusterNf)(nil)).Elem()
-}
-
-func (i GetNfsClusterNfArgs) ToGetNfsClusterNfOutput() GetNfsClusterNfOutput {
-	return i.ToGetNfsClusterNfOutputWithContext(context.Background())
-}
-
-func (i GetNfsClusterNfArgs) ToGetNfsClusterNfOutputWithContext(ctx context.Context) GetNfsClusterNfOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsClusterNfOutput)
-}
-
-// GetNfsClusterNfArrayInput is an input type that accepts GetNfsClusterNfArray and GetNfsClusterNfArrayOutput values.
-// You can construct a concrete instance of `GetNfsClusterNfArrayInput` via:
-//
-//	GetNfsClusterNfArray{ GetNfsClusterNfArgs{...} }
-type GetNfsClusterNfArrayInput interface {
-	pulumi.Input
-
-	ToGetNfsClusterNfArrayOutput() GetNfsClusterNfArrayOutput
-	ToGetNfsClusterNfArrayOutputWithContext(context.Context) GetNfsClusterNfArrayOutput
-}
-
-type GetNfsClusterNfArray []GetNfsClusterNfInput
-
-func (GetNfsClusterNfArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsClusterNf)(nil)).Elem()
-}
-
-func (i GetNfsClusterNfArray) ToGetNfsClusterNfArrayOutput() GetNfsClusterNfArrayOutput {
-	return i.ToGetNfsClusterNfArrayOutputWithContext(context.Background())
-}
-
-func (i GetNfsClusterNfArray) ToGetNfsClusterNfArrayOutputWithContext(ctx context.Context) GetNfsClusterNfArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsClusterNfArrayOutput)
-}
-
-type GetNfsClusterNfOutput struct{ *pulumi.OutputState }
-
-func (GetNfsClusterNfOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsClusterNf)(nil)).Elem()
-}
-
-func (o GetNfsClusterNfOutput) ToGetNfsClusterNfOutput() GetNfsClusterNfOutput {
-	return o
-}
-
-func (o GetNfsClusterNfOutput) ToGetNfsClusterNfOutputWithContext(ctx context.Context) GetNfsClusterNfOutput {
-	return o
-}
-
-// The minimum supported version of the NFS cluster. Default is `4.2`
-func (o GetNfsClusterNfOutput) MinVersion() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsClusterNf) string { return v.MinVersion }).(pulumi.StringOutput)
-}
-
-type GetNfsClusterNfArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNfsClusterNfArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsClusterNf)(nil)).Elem()
-}
-
-func (o GetNfsClusterNfArrayOutput) ToGetNfsClusterNfArrayOutput() GetNfsClusterNfArrayOutput {
-	return o
-}
-
-func (o GetNfsClusterNfArrayOutput) ToGetNfsClusterNfArrayOutputWithContext(ctx context.Context) GetNfsClusterNfArrayOutput {
-	return o
-}
-
-func (o GetNfsClusterNfArrayOutput) Index(i pulumi.IntInput) GetNfsClusterNfOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNfsClusterNf {
-		return vs[0].([]GetNfsClusterNf)[vs[1].(int)]
-	}).(GetNfsClusterNfOutput)
-}
-
-type GetNfsShareClientGroup struct {
-	// Optional description for the clients groups.
-	Description string `pulumi:"description"`
-	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-	Hosts []string `pulumi:"hosts"`
-	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks []string `pulumi:"ipNetworks"`
-	// The NFS configuration for the client group. Each NFS configuration supports the following:
-	Nfs []GetNfsShareClientGroupNf `pulumi:"nfs"`
-}
-
-// GetNfsShareClientGroupInput is an input type that accepts GetNfsShareClientGroupArgs and GetNfsShareClientGroupOutput values.
-// You can construct a concrete instance of `GetNfsShareClientGroupInput` via:
-//
-//	GetNfsShareClientGroupArgs{...}
-type GetNfsShareClientGroupInput interface {
-	pulumi.Input
-
-	ToGetNfsShareClientGroupOutput() GetNfsShareClientGroupOutput
-	ToGetNfsShareClientGroupOutputWithContext(context.Context) GetNfsShareClientGroupOutput
-}
-
-type GetNfsShareClientGroupArgs struct {
-	// Optional description for the clients groups.
-	Description pulumi.StringInput `pulumi:"description"`
-	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
-	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks pulumi.StringArrayInput `pulumi:"ipNetworks"`
-	// The NFS configuration for the client group. Each NFS configuration supports the following:
-	Nfs GetNfsShareClientGroupNfArrayInput `pulumi:"nfs"`
-}
-
-func (GetNfsShareClientGroupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsShareClientGroup)(nil)).Elem()
-}
-
-func (i GetNfsShareClientGroupArgs) ToGetNfsShareClientGroupOutput() GetNfsShareClientGroupOutput {
-	return i.ToGetNfsShareClientGroupOutputWithContext(context.Background())
-}
-
-func (i GetNfsShareClientGroupArgs) ToGetNfsShareClientGroupOutputWithContext(ctx context.Context) GetNfsShareClientGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsShareClientGroupOutput)
-}
-
-// GetNfsShareClientGroupArrayInput is an input type that accepts GetNfsShareClientGroupArray and GetNfsShareClientGroupArrayOutput values.
-// You can construct a concrete instance of `GetNfsShareClientGroupArrayInput` via:
-//
-//	GetNfsShareClientGroupArray{ GetNfsShareClientGroupArgs{...} }
-type GetNfsShareClientGroupArrayInput interface {
-	pulumi.Input
-
-	ToGetNfsShareClientGroupArrayOutput() GetNfsShareClientGroupArrayOutput
-	ToGetNfsShareClientGroupArrayOutputWithContext(context.Context) GetNfsShareClientGroupArrayOutput
-}
-
-type GetNfsShareClientGroupArray []GetNfsShareClientGroupInput
-
-func (GetNfsShareClientGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsShareClientGroup)(nil)).Elem()
-}
-
-func (i GetNfsShareClientGroupArray) ToGetNfsShareClientGroupArrayOutput() GetNfsShareClientGroupArrayOutput {
-	return i.ToGetNfsShareClientGroupArrayOutputWithContext(context.Background())
-}
-
-func (i GetNfsShareClientGroupArray) ToGetNfsShareClientGroupArrayOutputWithContext(ctx context.Context) GetNfsShareClientGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsShareClientGroupArrayOutput)
-}
-
-type GetNfsShareClientGroupOutput struct{ *pulumi.OutputState }
-
-func (GetNfsShareClientGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsShareClientGroup)(nil)).Elem()
-}
-
-func (o GetNfsShareClientGroupOutput) ToGetNfsShareClientGroupOutput() GetNfsShareClientGroupOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupOutput) ToGetNfsShareClientGroupOutputWithContext(ctx context.Context) GetNfsShareClientGroupOutput {
-	return o
-}
-
-// Optional description for the clients groups.
-func (o GetNfsShareClientGroupOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsShareClientGroup) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-func (o GetNfsShareClientGroupOutput) Hosts() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNfsShareClientGroup) []string { return v.Hosts }).(pulumi.StringArrayOutput)
-}
-
-// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-func (o GetNfsShareClientGroupOutput) IpNetworks() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetNfsShareClientGroup) []string { return v.IpNetworks }).(pulumi.StringArrayOutput)
-}
-
-// The NFS configuration for the client group. Each NFS configuration supports the following:
-func (o GetNfsShareClientGroupOutput) Nfs() GetNfsShareClientGroupNfArrayOutput {
-	return o.ApplyT(func(v GetNfsShareClientGroup) []GetNfsShareClientGroupNf { return v.Nfs }).(GetNfsShareClientGroupNfArrayOutput)
-}
-
-type GetNfsShareClientGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNfsShareClientGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsShareClientGroup)(nil)).Elem()
-}
-
-func (o GetNfsShareClientGroupArrayOutput) ToGetNfsShareClientGroupArrayOutput() GetNfsShareClientGroupArrayOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupArrayOutput) ToGetNfsShareClientGroupArrayOutputWithContext(ctx context.Context) GetNfsShareClientGroupArrayOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupArrayOutput) Index(i pulumi.IntInput) GetNfsShareClientGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNfsShareClientGroup {
-		return vs[0].([]GetNfsShareClientGroup)[vs[1].(int)]
-	}).(GetNfsShareClientGroupOutput)
-}
-
-type GetNfsShareClientGroupNf struct {
-	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-	Squash string `pulumi:"squash"`
-}
-
-// GetNfsShareClientGroupNfInput is an input type that accepts GetNfsShareClientGroupNfArgs and GetNfsShareClientGroupNfOutput values.
-// You can construct a concrete instance of `GetNfsShareClientGroupNfInput` via:
-//
-//	GetNfsShareClientGroupNfArgs{...}
-type GetNfsShareClientGroupNfInput interface {
-	pulumi.Input
-
-	ToGetNfsShareClientGroupNfOutput() GetNfsShareClientGroupNfOutput
-	ToGetNfsShareClientGroupNfOutputWithContext(context.Context) GetNfsShareClientGroupNfOutput
-}
-
-type GetNfsShareClientGroupNfArgs struct {
-	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-	Squash pulumi.StringInput `pulumi:"squash"`
-}
-
-func (GetNfsShareClientGroupNfArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsShareClientGroupNf)(nil)).Elem()
-}
-
-func (i GetNfsShareClientGroupNfArgs) ToGetNfsShareClientGroupNfOutput() GetNfsShareClientGroupNfOutput {
-	return i.ToGetNfsShareClientGroupNfOutputWithContext(context.Background())
-}
-
-func (i GetNfsShareClientGroupNfArgs) ToGetNfsShareClientGroupNfOutputWithContext(ctx context.Context) GetNfsShareClientGroupNfOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsShareClientGroupNfOutput)
-}
-
-// GetNfsShareClientGroupNfArrayInput is an input type that accepts GetNfsShareClientGroupNfArray and GetNfsShareClientGroupNfArrayOutput values.
-// You can construct a concrete instance of `GetNfsShareClientGroupNfArrayInput` via:
-//
-//	GetNfsShareClientGroupNfArray{ GetNfsShareClientGroupNfArgs{...} }
-type GetNfsShareClientGroupNfArrayInput interface {
-	pulumi.Input
-
-	ToGetNfsShareClientGroupNfArrayOutput() GetNfsShareClientGroupNfArrayOutput
-	ToGetNfsShareClientGroupNfArrayOutputWithContext(context.Context) GetNfsShareClientGroupNfArrayOutput
-}
-
-type GetNfsShareClientGroupNfArray []GetNfsShareClientGroupNfInput
-
-func (GetNfsShareClientGroupNfArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsShareClientGroupNf)(nil)).Elem()
-}
-
-func (i GetNfsShareClientGroupNfArray) ToGetNfsShareClientGroupNfArrayOutput() GetNfsShareClientGroupNfArrayOutput {
-	return i.ToGetNfsShareClientGroupNfArrayOutputWithContext(context.Background())
-}
-
-func (i GetNfsShareClientGroupNfArray) ToGetNfsShareClientGroupNfArrayOutputWithContext(ctx context.Context) GetNfsShareClientGroupNfArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNfsShareClientGroupNfArrayOutput)
-}
-
-type GetNfsShareClientGroupNfOutput struct{ *pulumi.OutputState }
-
-func (GetNfsShareClientGroupNfOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNfsShareClientGroupNf)(nil)).Elem()
-}
-
-func (o GetNfsShareClientGroupNfOutput) ToGetNfsShareClientGroupNfOutput() GetNfsShareClientGroupNfOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupNfOutput) ToGetNfsShareClientGroupNfOutputWithContext(ctx context.Context) GetNfsShareClientGroupNfOutput {
-	return o
-}
-
-// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-func (o GetNfsShareClientGroupNfOutput) Squash() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNfsShareClientGroupNf) string { return v.Squash }).(pulumi.StringOutput)
-}
-
-type GetNfsShareClientGroupNfArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNfsShareClientGroupNfArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNfsShareClientGroupNf)(nil)).Elem()
-}
-
-func (o GetNfsShareClientGroupNfArrayOutput) ToGetNfsShareClientGroupNfArrayOutput() GetNfsShareClientGroupNfArrayOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupNfArrayOutput) ToGetNfsShareClientGroupNfArrayOutputWithContext(ctx context.Context) GetNfsShareClientGroupNfArrayOutput {
-	return o
-}
-
-func (o GetNfsShareClientGroupNfArrayOutput) Index(i pulumi.IntInput) GetNfsShareClientGroupNfOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNfsShareClientGroupNf {
-		return vs[0].([]GetNfsShareClientGroupNf)[vs[1].(int)]
-	}).(GetNfsShareClientGroupNfOutput)
-}
-
-type GetNicFlowlog struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
-	Action string `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
-	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-	Direction string `pulumi:"direction"`
-	// ID of the nic you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided.
-	// If none, are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// [string] The name of the LAN.
-	Name string `pulumi:"name"`
-}
-
-// GetNicFlowlogInput is an input type that accepts GetNicFlowlogArgs and GetNicFlowlogOutput values.
-// You can construct a concrete instance of `GetNicFlowlogInput` via:
-//
-//	GetNicFlowlogArgs{...}
-type GetNicFlowlogInput interface {
-	pulumi.Input
-
-	ToGetNicFlowlogOutput() GetNicFlowlogOutput
-	ToGetNicFlowlogOutputWithContext(context.Context) GetNicFlowlogOutput
-}
-
-type GetNicFlowlogArgs struct {
-	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
-	Action pulumi.StringInput `pulumi:"action"`
-	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
-	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-	Direction pulumi.StringInput `pulumi:"direction"`
-	// ID of the nic you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided.
-	// If none, are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// [string] The name of the LAN.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetNicFlowlogArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNicFlowlog)(nil)).Elem()
-}
-
-func (i GetNicFlowlogArgs) ToGetNicFlowlogOutput() GetNicFlowlogOutput {
-	return i.ToGetNicFlowlogOutputWithContext(context.Background())
-}
-
-func (i GetNicFlowlogArgs) ToGetNicFlowlogOutputWithContext(ctx context.Context) GetNicFlowlogOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNicFlowlogOutput)
-}
-
-// GetNicFlowlogArrayInput is an input type that accepts GetNicFlowlogArray and GetNicFlowlogArrayOutput values.
-// You can construct a concrete instance of `GetNicFlowlogArrayInput` via:
-//
-//	GetNicFlowlogArray{ GetNicFlowlogArgs{...} }
-type GetNicFlowlogArrayInput interface {
-	pulumi.Input
-
-	ToGetNicFlowlogArrayOutput() GetNicFlowlogArrayOutput
-	ToGetNicFlowlogArrayOutputWithContext(context.Context) GetNicFlowlogArrayOutput
-}
-
-type GetNicFlowlogArray []GetNicFlowlogInput
-
-func (GetNicFlowlogArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNicFlowlog)(nil)).Elem()
-}
-
-func (i GetNicFlowlogArray) ToGetNicFlowlogArrayOutput() GetNicFlowlogArrayOutput {
-	return i.ToGetNicFlowlogArrayOutputWithContext(context.Background())
-}
-
-func (i GetNicFlowlogArray) ToGetNicFlowlogArrayOutputWithContext(ctx context.Context) GetNicFlowlogArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetNicFlowlogArrayOutput)
-}
-
-type GetNicFlowlogOutput struct{ *pulumi.OutputState }
-
-func (GetNicFlowlogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetNicFlowlog)(nil)).Elem()
-}
-
-func (o GetNicFlowlogOutput) ToGetNicFlowlogOutput() GetNicFlowlogOutput {
-	return o
-}
-
-func (o GetNicFlowlogOutput) ToGetNicFlowlogOutputWithContext(ctx context.Context) GetNicFlowlogOutput {
-	return o
-}
-
-// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
-func (o GetNicFlowlogOutput) Action() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNicFlowlog) string { return v.Action }).(pulumi.StringOutput)
-}
-
-// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
-func (o GetNicFlowlogOutput) Bucket() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNicFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-func (o GetNicFlowlogOutput) Direction() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNicFlowlog) string { return v.Direction }).(pulumi.StringOutput)
-}
-
-// ID of the nic you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided.
-// If none, are provided, the datasource will return an error.
-func (o GetNicFlowlogOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNicFlowlog) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// [string] The name of the LAN.
-func (o GetNicFlowlogOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetNicFlowlog) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetNicFlowlogArrayOutput struct{ *pulumi.OutputState }
-
-func (GetNicFlowlogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetNicFlowlog)(nil)).Elem()
-}
-
-func (o GetNicFlowlogArrayOutput) ToGetNicFlowlogArrayOutput() GetNicFlowlogArrayOutput {
-	return o
-}
-
-func (o GetNicFlowlogArrayOutput) ToGetNicFlowlogArrayOutputWithContext(ctx context.Context) GetNicFlowlogArrayOutput {
-	return o
-}
-
-func (o GetNicFlowlogArrayOutput) Index(i pulumi.IntInput) GetNicFlowlogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNicFlowlog {
-		return vs[0].([]GetNicFlowlog)[vs[1].(int)]
-	}).(GetNicFlowlogOutput)
 }
 
 type GetPgBackupsClusterBackup struct {
@@ -14254,430 +6570,6 @@ func (o GetPgBackupsClusterBackupMetadataArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetPgBackupsClusterBackupMetadataOutput)
 }
 
-type GetPgClusterConnection struct {
-	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
-	DatacenterId string `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
-	LanId string `pulumi:"lanId"`
-}
-
-// GetPgClusterConnectionInput is an input type that accepts GetPgClusterConnectionArgs and GetPgClusterConnectionOutput values.
-// You can construct a concrete instance of `GetPgClusterConnectionInput` via:
-//
-//	GetPgClusterConnectionArgs{...}
-type GetPgClusterConnectionInput interface {
-	pulumi.Input
-
-	ToGetPgClusterConnectionOutput() GetPgClusterConnectionOutput
-	ToGetPgClusterConnectionOutputWithContext(context.Context) GetPgClusterConnectionOutput
-}
-
-type GetPgClusterConnectionArgs struct {
-	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetPgClusterConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterConnection)(nil)).Elem()
-}
-
-func (i GetPgClusterConnectionArgs) ToGetPgClusterConnectionOutput() GetPgClusterConnectionOutput {
-	return i.ToGetPgClusterConnectionOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterConnectionArgs) ToGetPgClusterConnectionOutputWithContext(ctx context.Context) GetPgClusterConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterConnectionOutput)
-}
-
-// GetPgClusterConnectionArrayInput is an input type that accepts GetPgClusterConnectionArray and GetPgClusterConnectionArrayOutput values.
-// You can construct a concrete instance of `GetPgClusterConnectionArrayInput` via:
-//
-//	GetPgClusterConnectionArray{ GetPgClusterConnectionArgs{...} }
-type GetPgClusterConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetPgClusterConnectionArrayOutput() GetPgClusterConnectionArrayOutput
-	ToGetPgClusterConnectionArrayOutputWithContext(context.Context) GetPgClusterConnectionArrayOutput
-}
-
-type GetPgClusterConnectionArray []GetPgClusterConnectionInput
-
-func (GetPgClusterConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterConnection)(nil)).Elem()
-}
-
-func (i GetPgClusterConnectionArray) ToGetPgClusterConnectionArrayOutput() GetPgClusterConnectionArrayOutput {
-	return i.ToGetPgClusterConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterConnectionArray) ToGetPgClusterConnectionArrayOutputWithContext(ctx context.Context) GetPgClusterConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterConnectionArrayOutput)
-}
-
-type GetPgClusterConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterConnection)(nil)).Elem()
-}
-
-func (o GetPgClusterConnectionOutput) ToGetPgClusterConnectionOutput() GetPgClusterConnectionOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionOutput) ToGetPgClusterConnectionOutputWithContext(ctx context.Context) GetPgClusterConnectionOutput {
-	return o
-}
-
-// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-func (o GetPgClusterConnectionOutput) Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
-}
-
-// The datacenter to connect your cluster to.
-func (o GetPgClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The LAN to connect your cluster to.
-func (o GetPgClusterConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetPgClusterConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterConnection)(nil)).Elem()
-}
-
-func (o GetPgClusterConnectionArrayOutput) ToGetPgClusterConnectionArrayOutput() GetPgClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionArrayOutput) ToGetPgClusterConnectionArrayOutputWithContext(ctx context.Context) GetPgClusterConnectionArrayOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetPgClusterConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPgClusterConnection {
-		return vs[0].([]GetPgClusterConnection)[vs[1].(int)]
-	}).(GetPgClusterConnectionOutput)
-}
-
-type GetPgClusterConnectionPooler struct {
-	Enabled bool `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
-	PoolMode string `pulumi:"poolMode"`
-}
-
-// GetPgClusterConnectionPoolerInput is an input type that accepts GetPgClusterConnectionPoolerArgs and GetPgClusterConnectionPoolerOutput values.
-// You can construct a concrete instance of `GetPgClusterConnectionPoolerInput` via:
-//
-//	GetPgClusterConnectionPoolerArgs{...}
-type GetPgClusterConnectionPoolerInput interface {
-	pulumi.Input
-
-	ToGetPgClusterConnectionPoolerOutput() GetPgClusterConnectionPoolerOutput
-	ToGetPgClusterConnectionPoolerOutputWithContext(context.Context) GetPgClusterConnectionPoolerOutput
-}
-
-type GetPgClusterConnectionPoolerArgs struct {
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
-	PoolMode pulumi.StringInput `pulumi:"poolMode"`
-}
-
-func (GetPgClusterConnectionPoolerArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterConnectionPooler)(nil)).Elem()
-}
-
-func (i GetPgClusterConnectionPoolerArgs) ToGetPgClusterConnectionPoolerOutput() GetPgClusterConnectionPoolerOutput {
-	return i.ToGetPgClusterConnectionPoolerOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterConnectionPoolerArgs) ToGetPgClusterConnectionPoolerOutputWithContext(ctx context.Context) GetPgClusterConnectionPoolerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterConnectionPoolerOutput)
-}
-
-// GetPgClusterConnectionPoolerArrayInput is an input type that accepts GetPgClusterConnectionPoolerArray and GetPgClusterConnectionPoolerArrayOutput values.
-// You can construct a concrete instance of `GetPgClusterConnectionPoolerArrayInput` via:
-//
-//	GetPgClusterConnectionPoolerArray{ GetPgClusterConnectionPoolerArgs{...} }
-type GetPgClusterConnectionPoolerArrayInput interface {
-	pulumi.Input
-
-	ToGetPgClusterConnectionPoolerArrayOutput() GetPgClusterConnectionPoolerArrayOutput
-	ToGetPgClusterConnectionPoolerArrayOutputWithContext(context.Context) GetPgClusterConnectionPoolerArrayOutput
-}
-
-type GetPgClusterConnectionPoolerArray []GetPgClusterConnectionPoolerInput
-
-func (GetPgClusterConnectionPoolerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterConnectionPooler)(nil)).Elem()
-}
-
-func (i GetPgClusterConnectionPoolerArray) ToGetPgClusterConnectionPoolerArrayOutput() GetPgClusterConnectionPoolerArrayOutput {
-	return i.ToGetPgClusterConnectionPoolerArrayOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterConnectionPoolerArray) ToGetPgClusterConnectionPoolerArrayOutputWithContext(ctx context.Context) GetPgClusterConnectionPoolerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterConnectionPoolerArrayOutput)
-}
-
-type GetPgClusterConnectionPoolerOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterConnectionPoolerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterConnectionPooler)(nil)).Elem()
-}
-
-func (o GetPgClusterConnectionPoolerOutput) ToGetPgClusterConnectionPoolerOutput() GetPgClusterConnectionPoolerOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionPoolerOutput) ToGetPgClusterConnectionPoolerOutputWithContext(ctx context.Context) GetPgClusterConnectionPoolerOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionPoolerOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetPgClusterConnectionPooler) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// Represents different modes of connection pooling for the connection pooler
-func (o GetPgClusterConnectionPoolerOutput) PoolMode() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterConnectionPooler) string { return v.PoolMode }).(pulumi.StringOutput)
-}
-
-type GetPgClusterConnectionPoolerArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterConnectionPoolerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterConnectionPooler)(nil)).Elem()
-}
-
-func (o GetPgClusterConnectionPoolerArrayOutput) ToGetPgClusterConnectionPoolerArrayOutput() GetPgClusterConnectionPoolerArrayOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionPoolerArrayOutput) ToGetPgClusterConnectionPoolerArrayOutputWithContext(ctx context.Context) GetPgClusterConnectionPoolerArrayOutput {
-	return o
-}
-
-func (o GetPgClusterConnectionPoolerArrayOutput) Index(i pulumi.IntInput) GetPgClusterConnectionPoolerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPgClusterConnectionPooler {
-		return vs[0].([]GetPgClusterConnectionPooler)[vs[1].(int)]
-	}).(GetPgClusterConnectionPoolerOutput)
-}
-
-type GetPgClusterFromBackup struct {
-	// The unique ID of the backup you want to restore.
-	BackupId string `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-	RecoveryTargetTime string `pulumi:"recoveryTargetTime"`
-}
-
-// GetPgClusterFromBackupInput is an input type that accepts GetPgClusterFromBackupArgs and GetPgClusterFromBackupOutput values.
-// You can construct a concrete instance of `GetPgClusterFromBackupInput` via:
-//
-//	GetPgClusterFromBackupArgs{...}
-type GetPgClusterFromBackupInput interface {
-	pulumi.Input
-
-	ToGetPgClusterFromBackupOutput() GetPgClusterFromBackupOutput
-	ToGetPgClusterFromBackupOutputWithContext(context.Context) GetPgClusterFromBackupOutput
-}
-
-type GetPgClusterFromBackupArgs struct {
-	// The unique ID of the backup you want to restore.
-	BackupId pulumi.StringInput `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-	RecoveryTargetTime pulumi.StringInput `pulumi:"recoveryTargetTime"`
-}
-
-func (GetPgClusterFromBackupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterFromBackup)(nil)).Elem()
-}
-
-func (i GetPgClusterFromBackupArgs) ToGetPgClusterFromBackupOutput() GetPgClusterFromBackupOutput {
-	return i.ToGetPgClusterFromBackupOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterFromBackupArgs) ToGetPgClusterFromBackupOutputWithContext(ctx context.Context) GetPgClusterFromBackupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterFromBackupOutput)
-}
-
-// GetPgClusterFromBackupArrayInput is an input type that accepts GetPgClusterFromBackupArray and GetPgClusterFromBackupArrayOutput values.
-// You can construct a concrete instance of `GetPgClusterFromBackupArrayInput` via:
-//
-//	GetPgClusterFromBackupArray{ GetPgClusterFromBackupArgs{...} }
-type GetPgClusterFromBackupArrayInput interface {
-	pulumi.Input
-
-	ToGetPgClusterFromBackupArrayOutput() GetPgClusterFromBackupArrayOutput
-	ToGetPgClusterFromBackupArrayOutputWithContext(context.Context) GetPgClusterFromBackupArrayOutput
-}
-
-type GetPgClusterFromBackupArray []GetPgClusterFromBackupInput
-
-func (GetPgClusterFromBackupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterFromBackup)(nil)).Elem()
-}
-
-func (i GetPgClusterFromBackupArray) ToGetPgClusterFromBackupArrayOutput() GetPgClusterFromBackupArrayOutput {
-	return i.ToGetPgClusterFromBackupArrayOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterFromBackupArray) ToGetPgClusterFromBackupArrayOutputWithContext(ctx context.Context) GetPgClusterFromBackupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterFromBackupArrayOutput)
-}
-
-type GetPgClusterFromBackupOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterFromBackupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterFromBackup)(nil)).Elem()
-}
-
-func (o GetPgClusterFromBackupOutput) ToGetPgClusterFromBackupOutput() GetPgClusterFromBackupOutput {
-	return o
-}
-
-func (o GetPgClusterFromBackupOutput) ToGetPgClusterFromBackupOutputWithContext(ctx context.Context) GetPgClusterFromBackupOutput {
-	return o
-}
-
-// The unique ID of the backup you want to restore.
-func (o GetPgClusterFromBackupOutput) BackupId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterFromBackup) string { return v.BackupId }).(pulumi.StringOutput)
-}
-
-// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-func (o GetPgClusterFromBackupOutput) RecoveryTargetTime() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterFromBackup) string { return v.RecoveryTargetTime }).(pulumi.StringOutput)
-}
-
-type GetPgClusterFromBackupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterFromBackupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterFromBackup)(nil)).Elem()
-}
-
-func (o GetPgClusterFromBackupArrayOutput) ToGetPgClusterFromBackupArrayOutput() GetPgClusterFromBackupArrayOutput {
-	return o
-}
-
-func (o GetPgClusterFromBackupArrayOutput) ToGetPgClusterFromBackupArrayOutputWithContext(ctx context.Context) GetPgClusterFromBackupArrayOutput {
-	return o
-}
-
-func (o GetPgClusterFromBackupArrayOutput) Index(i pulumi.IntInput) GetPgClusterFromBackupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPgClusterFromBackup {
-		return vs[0].([]GetPgClusterFromBackup)[vs[1].(int)]
-	}).(GetPgClusterFromBackupOutput)
-}
-
-type GetPgClusterMaintenanceWindow struct {
-	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	Time         string `pulumi:"time"`
-}
-
-// GetPgClusterMaintenanceWindowInput is an input type that accepts GetPgClusterMaintenanceWindowArgs and GetPgClusterMaintenanceWindowOutput values.
-// You can construct a concrete instance of `GetPgClusterMaintenanceWindowInput` via:
-//
-//	GetPgClusterMaintenanceWindowArgs{...}
-type GetPgClusterMaintenanceWindowInput interface {
-	pulumi.Input
-
-	ToGetPgClusterMaintenanceWindowOutput() GetPgClusterMaintenanceWindowOutput
-	ToGetPgClusterMaintenanceWindowOutputWithContext(context.Context) GetPgClusterMaintenanceWindowOutput
-}
-
-type GetPgClusterMaintenanceWindowArgs struct {
-	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	Time         pulumi.StringInput `pulumi:"time"`
-}
-
-func (GetPgClusterMaintenanceWindowArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetPgClusterMaintenanceWindowArgs) ToGetPgClusterMaintenanceWindowOutput() GetPgClusterMaintenanceWindowOutput {
-	return i.ToGetPgClusterMaintenanceWindowOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterMaintenanceWindowArgs) ToGetPgClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPgClusterMaintenanceWindowOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterMaintenanceWindowOutput)
-}
-
-// GetPgClusterMaintenanceWindowArrayInput is an input type that accepts GetPgClusterMaintenanceWindowArray and GetPgClusterMaintenanceWindowArrayOutput values.
-// You can construct a concrete instance of `GetPgClusterMaintenanceWindowArrayInput` via:
-//
-//	GetPgClusterMaintenanceWindowArray{ GetPgClusterMaintenanceWindowArgs{...} }
-type GetPgClusterMaintenanceWindowArrayInput interface {
-	pulumi.Input
-
-	ToGetPgClusterMaintenanceWindowArrayOutput() GetPgClusterMaintenanceWindowArrayOutput
-	ToGetPgClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetPgClusterMaintenanceWindowArrayOutput
-}
-
-type GetPgClusterMaintenanceWindowArray []GetPgClusterMaintenanceWindowInput
-
-func (GetPgClusterMaintenanceWindowArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (i GetPgClusterMaintenanceWindowArray) ToGetPgClusterMaintenanceWindowArrayOutput() GetPgClusterMaintenanceWindowArrayOutput {
-	return i.ToGetPgClusterMaintenanceWindowArrayOutputWithContext(context.Background())
-}
-
-func (i GetPgClusterMaintenanceWindowArray) ToGetPgClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetPgClusterMaintenanceWindowArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPgClusterMaintenanceWindowArrayOutput)
-}
-
-type GetPgClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterMaintenanceWindowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPgClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetPgClusterMaintenanceWindowOutput) ToGetPgClusterMaintenanceWindowOutput() GetPgClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetPgClusterMaintenanceWindowOutput) ToGetPgClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPgClusterMaintenanceWindowOutput {
-	return o
-}
-
-func (o GetPgClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
-}
-
-func (o GetPgClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPgClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
-}
-
-type GetPgClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPgClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPgClusterMaintenanceWindow)(nil)).Elem()
-}
-
-func (o GetPgClusterMaintenanceWindowArrayOutput) ToGetPgClusterMaintenanceWindowArrayOutput() GetPgClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetPgClusterMaintenanceWindowArrayOutput) ToGetPgClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetPgClusterMaintenanceWindowArrayOutput {
-	return o
-}
-
-func (o GetPgClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetPgClusterMaintenanceWindowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPgClusterMaintenanceWindow {
-		return vs[0].([]GetPgClusterMaintenanceWindow)[vs[1].(int)]
-	}).(GetPgClusterMaintenanceWindowOutput)
-}
-
 type GetPgDatabasesDatabase struct {
 	Id    string `pulumi:"id"`
 	Name  string `pulumi:"name"`
@@ -14782,1339 +6674,6 @@ func (o GetPgDatabasesDatabaseArrayOutput) Index(i pulumi.IntInput) GetPgDatabas
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPgDatabasesDatabase {
 		return vs[0].([]GetPgDatabasesDatabase)[vs[1].(int)]
 	}).(GetPgDatabasesDatabaseOutput)
-}
-
-type GetPrivateCrossconnectConnectableDatacenter struct {
-	// ID of the cross connect you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// The physical location of the connectable datacenter
-	Location string `pulumi:"location"`
-	// Name of an existing cross connect that you want to search for.
-	Name string `pulumi:"name"`
-}
-
-// GetPrivateCrossconnectConnectableDatacenterInput is an input type that accepts GetPrivateCrossconnectConnectableDatacenterArgs and GetPrivateCrossconnectConnectableDatacenterOutput values.
-// You can construct a concrete instance of `GetPrivateCrossconnectConnectableDatacenterInput` via:
-//
-//	GetPrivateCrossconnectConnectableDatacenterArgs{...}
-type GetPrivateCrossconnectConnectableDatacenterInput interface {
-	pulumi.Input
-
-	ToGetPrivateCrossconnectConnectableDatacenterOutput() GetPrivateCrossconnectConnectableDatacenterOutput
-	ToGetPrivateCrossconnectConnectableDatacenterOutputWithContext(context.Context) GetPrivateCrossconnectConnectableDatacenterOutput
-}
-
-type GetPrivateCrossconnectConnectableDatacenterArgs struct {
-	// ID of the cross connect you want to search for.
-	//
-	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The physical location of the connectable datacenter
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing cross connect that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetPrivateCrossconnectConnectableDatacenterArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPrivateCrossconnectConnectableDatacenter)(nil)).Elem()
-}
-
-func (i GetPrivateCrossconnectConnectableDatacenterArgs) ToGetPrivateCrossconnectConnectableDatacenterOutput() GetPrivateCrossconnectConnectableDatacenterOutput {
-	return i.ToGetPrivateCrossconnectConnectableDatacenterOutputWithContext(context.Background())
-}
-
-func (i GetPrivateCrossconnectConnectableDatacenterArgs) ToGetPrivateCrossconnectConnectableDatacenterOutputWithContext(ctx context.Context) GetPrivateCrossconnectConnectableDatacenterOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateCrossconnectConnectableDatacenterOutput)
-}
-
-// GetPrivateCrossconnectConnectableDatacenterArrayInput is an input type that accepts GetPrivateCrossconnectConnectableDatacenterArray and GetPrivateCrossconnectConnectableDatacenterArrayOutput values.
-// You can construct a concrete instance of `GetPrivateCrossconnectConnectableDatacenterArrayInput` via:
-//
-//	GetPrivateCrossconnectConnectableDatacenterArray{ GetPrivateCrossconnectConnectableDatacenterArgs{...} }
-type GetPrivateCrossconnectConnectableDatacenterArrayInput interface {
-	pulumi.Input
-
-	ToGetPrivateCrossconnectConnectableDatacenterArrayOutput() GetPrivateCrossconnectConnectableDatacenterArrayOutput
-	ToGetPrivateCrossconnectConnectableDatacenterArrayOutputWithContext(context.Context) GetPrivateCrossconnectConnectableDatacenterArrayOutput
-}
-
-type GetPrivateCrossconnectConnectableDatacenterArray []GetPrivateCrossconnectConnectableDatacenterInput
-
-func (GetPrivateCrossconnectConnectableDatacenterArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPrivateCrossconnectConnectableDatacenter)(nil)).Elem()
-}
-
-func (i GetPrivateCrossconnectConnectableDatacenterArray) ToGetPrivateCrossconnectConnectableDatacenterArrayOutput() GetPrivateCrossconnectConnectableDatacenterArrayOutput {
-	return i.ToGetPrivateCrossconnectConnectableDatacenterArrayOutputWithContext(context.Background())
-}
-
-func (i GetPrivateCrossconnectConnectableDatacenterArray) ToGetPrivateCrossconnectConnectableDatacenterArrayOutputWithContext(ctx context.Context) GetPrivateCrossconnectConnectableDatacenterArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateCrossconnectConnectableDatacenterArrayOutput)
-}
-
-type GetPrivateCrossconnectConnectableDatacenterOutput struct{ *pulumi.OutputState }
-
-func (GetPrivateCrossconnectConnectableDatacenterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPrivateCrossconnectConnectableDatacenter)(nil)).Elem()
-}
-
-func (o GetPrivateCrossconnectConnectableDatacenterOutput) ToGetPrivateCrossconnectConnectableDatacenterOutput() GetPrivateCrossconnectConnectableDatacenterOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectConnectableDatacenterOutput) ToGetPrivateCrossconnectConnectableDatacenterOutputWithContext(ctx context.Context) GetPrivateCrossconnectConnectableDatacenterOutput {
-	return o
-}
-
-// ID of the cross connect you want to search for.
-//
-// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-func (o GetPrivateCrossconnectConnectableDatacenterOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectConnectableDatacenter) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The physical location of the connectable datacenter
-func (o GetPrivateCrossconnectConnectableDatacenterOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectConnectableDatacenter) string { return v.Location }).(pulumi.StringOutput)
-}
-
-// Name of an existing cross connect that you want to search for.
-func (o GetPrivateCrossconnectConnectableDatacenterOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectConnectableDatacenter) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetPrivateCrossconnectConnectableDatacenterArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPrivateCrossconnectConnectableDatacenterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPrivateCrossconnectConnectableDatacenter)(nil)).Elem()
-}
-
-func (o GetPrivateCrossconnectConnectableDatacenterArrayOutput) ToGetPrivateCrossconnectConnectableDatacenterArrayOutput() GetPrivateCrossconnectConnectableDatacenterArrayOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectConnectableDatacenterArrayOutput) ToGetPrivateCrossconnectConnectableDatacenterArrayOutputWithContext(ctx context.Context) GetPrivateCrossconnectConnectableDatacenterArrayOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectConnectableDatacenterArrayOutput) Index(i pulumi.IntInput) GetPrivateCrossconnectConnectableDatacenterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateCrossconnectConnectableDatacenter {
-		return vs[0].([]GetPrivateCrossconnectConnectableDatacenter)[vs[1].(int)]
-	}).(GetPrivateCrossconnectConnectableDatacenterOutput)
-}
-
-type GetPrivateCrossconnectPeer struct {
-	// The id of the cross-connected datacenter
-	DatacenterId string `pulumi:"datacenterId"`
-	// The name of the cross-connected datacenter
-	DatacenterName string `pulumi:"datacenterName"`
-	// The id of the cross-connected LAN
-	LanId string `pulumi:"lanId"`
-	// The name of the cross-connected LAN
-	LanName string `pulumi:"lanName"`
-	// The physical location of the connectable datacenter
-	Location string `pulumi:"location"`
-}
-
-// GetPrivateCrossconnectPeerInput is an input type that accepts GetPrivateCrossconnectPeerArgs and GetPrivateCrossconnectPeerOutput values.
-// You can construct a concrete instance of `GetPrivateCrossconnectPeerInput` via:
-//
-//	GetPrivateCrossconnectPeerArgs{...}
-type GetPrivateCrossconnectPeerInput interface {
-	pulumi.Input
-
-	ToGetPrivateCrossconnectPeerOutput() GetPrivateCrossconnectPeerOutput
-	ToGetPrivateCrossconnectPeerOutputWithContext(context.Context) GetPrivateCrossconnectPeerOutput
-}
-
-type GetPrivateCrossconnectPeerArgs struct {
-	// The id of the cross-connected datacenter
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The name of the cross-connected datacenter
-	DatacenterName pulumi.StringInput `pulumi:"datacenterName"`
-	// The id of the cross-connected LAN
-	LanId pulumi.StringInput `pulumi:"lanId"`
-	// The name of the cross-connected LAN
-	LanName pulumi.StringInput `pulumi:"lanName"`
-	// The physical location of the connectable datacenter
-	Location pulumi.StringInput `pulumi:"location"`
-}
-
-func (GetPrivateCrossconnectPeerArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPrivateCrossconnectPeer)(nil)).Elem()
-}
-
-func (i GetPrivateCrossconnectPeerArgs) ToGetPrivateCrossconnectPeerOutput() GetPrivateCrossconnectPeerOutput {
-	return i.ToGetPrivateCrossconnectPeerOutputWithContext(context.Background())
-}
-
-func (i GetPrivateCrossconnectPeerArgs) ToGetPrivateCrossconnectPeerOutputWithContext(ctx context.Context) GetPrivateCrossconnectPeerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateCrossconnectPeerOutput)
-}
-
-// GetPrivateCrossconnectPeerArrayInput is an input type that accepts GetPrivateCrossconnectPeerArray and GetPrivateCrossconnectPeerArrayOutput values.
-// You can construct a concrete instance of `GetPrivateCrossconnectPeerArrayInput` via:
-//
-//	GetPrivateCrossconnectPeerArray{ GetPrivateCrossconnectPeerArgs{...} }
-type GetPrivateCrossconnectPeerArrayInput interface {
-	pulumi.Input
-
-	ToGetPrivateCrossconnectPeerArrayOutput() GetPrivateCrossconnectPeerArrayOutput
-	ToGetPrivateCrossconnectPeerArrayOutputWithContext(context.Context) GetPrivateCrossconnectPeerArrayOutput
-}
-
-type GetPrivateCrossconnectPeerArray []GetPrivateCrossconnectPeerInput
-
-func (GetPrivateCrossconnectPeerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPrivateCrossconnectPeer)(nil)).Elem()
-}
-
-func (i GetPrivateCrossconnectPeerArray) ToGetPrivateCrossconnectPeerArrayOutput() GetPrivateCrossconnectPeerArrayOutput {
-	return i.ToGetPrivateCrossconnectPeerArrayOutputWithContext(context.Background())
-}
-
-func (i GetPrivateCrossconnectPeerArray) ToGetPrivateCrossconnectPeerArrayOutputWithContext(ctx context.Context) GetPrivateCrossconnectPeerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateCrossconnectPeerArrayOutput)
-}
-
-type GetPrivateCrossconnectPeerOutput struct{ *pulumi.OutputState }
-
-func (GetPrivateCrossconnectPeerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetPrivateCrossconnectPeer)(nil)).Elem()
-}
-
-func (o GetPrivateCrossconnectPeerOutput) ToGetPrivateCrossconnectPeerOutput() GetPrivateCrossconnectPeerOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectPeerOutput) ToGetPrivateCrossconnectPeerOutputWithContext(ctx context.Context) GetPrivateCrossconnectPeerOutput {
-	return o
-}
-
-// The id of the cross-connected datacenter
-func (o GetPrivateCrossconnectPeerOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectPeer) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The name of the cross-connected datacenter
-func (o GetPrivateCrossconnectPeerOutput) DatacenterName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectPeer) string { return v.DatacenterName }).(pulumi.StringOutput)
-}
-
-// The id of the cross-connected LAN
-func (o GetPrivateCrossconnectPeerOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectPeer) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-// The name of the cross-connected LAN
-func (o GetPrivateCrossconnectPeerOutput) LanName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectPeer) string { return v.LanName }).(pulumi.StringOutput)
-}
-
-// The physical location of the connectable datacenter
-func (o GetPrivateCrossconnectPeerOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPrivateCrossconnectPeer) string { return v.Location }).(pulumi.StringOutput)
-}
-
-type GetPrivateCrossconnectPeerArrayOutput struct{ *pulumi.OutputState }
-
-func (GetPrivateCrossconnectPeerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetPrivateCrossconnectPeer)(nil)).Elem()
-}
-
-func (o GetPrivateCrossconnectPeerArrayOutput) ToGetPrivateCrossconnectPeerArrayOutput() GetPrivateCrossconnectPeerArrayOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectPeerArrayOutput) ToGetPrivateCrossconnectPeerArrayOutputWithContext(ctx context.Context) GetPrivateCrossconnectPeerArrayOutput {
-	return o
-}
-
-func (o GetPrivateCrossconnectPeerArrayOutput) Index(i pulumi.IntInput) GetPrivateCrossconnectPeerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivateCrossconnectPeer {
-		return vs[0].([]GetPrivateCrossconnectPeer)[vs[1].(int)]
-	}).(GetPrivateCrossconnectPeerOutput)
-}
-
-type GetServerCdrom struct {
-	// Cloud init compatibility
-	CloudInit string `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description string `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases []string `pulumi:"imageAliases"`
-	// Type of image
-	ImageType string `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location string `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public bool `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug bool `pulumi:"ramHotUnplug"`
-	// The size of the volume in GB
-	Size float64 `pulumi:"size"`
-}
-
-// GetServerCdromInput is an input type that accepts GetServerCdromArgs and GetServerCdromOutput values.
-// You can construct a concrete instance of `GetServerCdromInput` via:
-//
-//	GetServerCdromArgs{...}
-type GetServerCdromInput interface {
-	pulumi.Input
-
-	ToGetServerCdromOutput() GetServerCdromOutput
-	ToGetServerCdromOutputWithContext(context.Context) GetServerCdromOutput
-}
-
-type GetServerCdromArgs struct {
-	// Cloud init compatibility
-	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description pulumi.StringInput `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
-	// Type of image
-	ImageType pulumi.StringInput `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public pulumi.BoolInput `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
-	// The size of the volume in GB
-	Size pulumi.Float64Input `pulumi:"size"`
-}
-
-func (GetServerCdromArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerCdrom)(nil)).Elem()
-}
-
-func (i GetServerCdromArgs) ToGetServerCdromOutput() GetServerCdromOutput {
-	return i.ToGetServerCdromOutputWithContext(context.Background())
-}
-
-func (i GetServerCdromArgs) ToGetServerCdromOutputWithContext(ctx context.Context) GetServerCdromOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerCdromOutput)
-}
-
-// GetServerCdromArrayInput is an input type that accepts GetServerCdromArray and GetServerCdromArrayOutput values.
-// You can construct a concrete instance of `GetServerCdromArrayInput` via:
-//
-//	GetServerCdromArray{ GetServerCdromArgs{...} }
-type GetServerCdromArrayInput interface {
-	pulumi.Input
-
-	ToGetServerCdromArrayOutput() GetServerCdromArrayOutput
-	ToGetServerCdromArrayOutputWithContext(context.Context) GetServerCdromArrayOutput
-}
-
-type GetServerCdromArray []GetServerCdromInput
-
-func (GetServerCdromArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerCdrom)(nil)).Elem()
-}
-
-func (i GetServerCdromArray) ToGetServerCdromArrayOutput() GetServerCdromArrayOutput {
-	return i.ToGetServerCdromArrayOutputWithContext(context.Background())
-}
-
-func (i GetServerCdromArray) ToGetServerCdromArrayOutputWithContext(ctx context.Context) GetServerCdromArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerCdromArrayOutput)
-}
-
-type GetServerCdromOutput struct{ *pulumi.OutputState }
-
-func (GetServerCdromOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerCdrom)(nil)).Elem()
-}
-
-func (o GetServerCdromOutput) ToGetServerCdromOutput() GetServerCdromOutput {
-	return o
-}
-
-func (o GetServerCdromOutput) ToGetServerCdromOutputWithContext(ctx context.Context) GetServerCdromOutput {
-	return o
-}
-
-// Cloud init compatibility
-func (o GetServerCdromOutput) CloudInit() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of CPU hot unplug (no reboot required)
-func (o GetServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Description of cdrom
-func (o GetServerCdromOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// Is capable of SCSI drive hot plug (no reboot required)
-func (o GetServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of SCSI drive hot unplug (no reboot required)
-func (o GetServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetServerCdromOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// List of image aliases mapped for this Image
-func (o GetServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
-}
-
-// Type of image
-func (o GetServerCdromOutput) ImageType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetServerCdromOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Location of that image/snapshot
-func (o GetServerCdromOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.Location }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetServerCdromOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerCdrom) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Indicates if the image is part of the public repository or not
-func (o GetServerCdromOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot unplug (no reboot required)
-func (o GetServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The size of the volume in GB
-func (o GetServerCdromOutput) Size() pulumi.Float64Output {
-	return o.ApplyT(func(v GetServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
-}
-
-type GetServerCdromArrayOutput struct{ *pulumi.OutputState }
-
-func (GetServerCdromArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerCdrom)(nil)).Elem()
-}
-
-func (o GetServerCdromArrayOutput) ToGetServerCdromArrayOutput() GetServerCdromArrayOutput {
-	return o
-}
-
-func (o GetServerCdromArrayOutput) ToGetServerCdromArrayOutputWithContext(ctx context.Context) GetServerCdromArrayOutput {
-	return o
-}
-
-func (o GetServerCdromArrayOutput) Index(i pulumi.IntInput) GetServerCdromOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerCdrom {
-		return vs[0].([]GetServerCdrom)[vs[1].(int)]
-	}).(GetServerCdromOutput)
-}
-
-type GetServerLabel struct {
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// The key of the label
-	Key string `pulumi:"key"`
-	// The value of the label
-	Value string `pulumi:"value"`
-}
-
-// GetServerLabelInput is an input type that accepts GetServerLabelArgs and GetServerLabelOutput values.
-// You can construct a concrete instance of `GetServerLabelInput` via:
-//
-//	GetServerLabelArgs{...}
-type GetServerLabelInput interface {
-	pulumi.Input
-
-	ToGetServerLabelOutput() GetServerLabelOutput
-	ToGetServerLabelOutputWithContext(context.Context) GetServerLabelOutput
-}
-
-type GetServerLabelArgs struct {
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The key of the label
-	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the label
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (GetServerLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerLabel)(nil)).Elem()
-}
-
-func (i GetServerLabelArgs) ToGetServerLabelOutput() GetServerLabelOutput {
-	return i.ToGetServerLabelOutputWithContext(context.Background())
-}
-
-func (i GetServerLabelArgs) ToGetServerLabelOutputWithContext(ctx context.Context) GetServerLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerLabelOutput)
-}
-
-// GetServerLabelArrayInput is an input type that accepts GetServerLabelArray and GetServerLabelArrayOutput values.
-// You can construct a concrete instance of `GetServerLabelArrayInput` via:
-//
-//	GetServerLabelArray{ GetServerLabelArgs{...} }
-type GetServerLabelArrayInput interface {
-	pulumi.Input
-
-	ToGetServerLabelArrayOutput() GetServerLabelArrayOutput
-	ToGetServerLabelArrayOutputWithContext(context.Context) GetServerLabelArrayOutput
-}
-
-type GetServerLabelArray []GetServerLabelInput
-
-func (GetServerLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerLabel)(nil)).Elem()
-}
-
-func (i GetServerLabelArray) ToGetServerLabelArrayOutput() GetServerLabelArrayOutput {
-	return i.ToGetServerLabelArrayOutputWithContext(context.Background())
-}
-
-func (i GetServerLabelArray) ToGetServerLabelArrayOutputWithContext(ctx context.Context) GetServerLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerLabelArrayOutput)
-}
-
-type GetServerLabelOutput struct{ *pulumi.OutputState }
-
-func (GetServerLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerLabel)(nil)).Elem()
-}
-
-func (o GetServerLabelOutput) ToGetServerLabelOutput() GetServerLabelOutput {
-	return o
-}
-
-func (o GetServerLabelOutput) ToGetServerLabelOutputWithContext(ctx context.Context) GetServerLabelOutput {
-	return o
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetServerLabelOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerLabel) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The key of the label
-func (o GetServerLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerLabel) string { return v.Key }).(pulumi.StringOutput)
-}
-
-// The value of the label
-func (o GetServerLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerLabel) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type GetServerLabelArrayOutput struct{ *pulumi.OutputState }
-
-func (GetServerLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerLabel)(nil)).Elem()
-}
-
-func (o GetServerLabelArrayOutput) ToGetServerLabelArrayOutput() GetServerLabelArrayOutput {
-	return o
-}
-
-func (o GetServerLabelArrayOutput) ToGetServerLabelArrayOutputWithContext(ctx context.Context) GetServerLabelArrayOutput {
-	return o
-}
-
-func (o GetServerLabelArrayOutput) Index(i pulumi.IntInput) GetServerLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerLabel {
-		return vs[0].([]GetServerLabel)[vs[1].(int)]
-	}).(GetServerLabelOutput)
-}
-
-type GetServerNic struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   bool  `pulumi:"dhcp"`
-	Dhcpv6 *bool `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive bool `pulumi:"firewallActive"`
-	// list of
-	FirewallRules []GetServerNicFirewallRule `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType string `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           []string `pulumi:"ips"`
-	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       []string `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan int `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac string `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-}
-
-// GetServerNicInput is an input type that accepts GetServerNicArgs and GetServerNicOutput values.
-// You can construct a concrete instance of `GetServerNicInput` via:
-//
-//	GetServerNicArgs{...}
-type GetServerNicInput interface {
-	pulumi.Input
-
-	ToGetServerNicOutput() GetServerNicOutput
-	ToGetServerNicOutputWithContext(context.Context) GetServerNicOutput
-}
-
-type GetServerNicArgs struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
-	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
-	// list of
-	FirewallRules GetServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType pulumi.StringInput `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           pulumi.StringArrayInput `pulumi:"ips"`
-	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan pulumi.IntInput `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac pulumi.StringInput `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-}
-
-func (GetServerNicArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerNic)(nil)).Elem()
-}
-
-func (i GetServerNicArgs) ToGetServerNicOutput() GetServerNicOutput {
-	return i.ToGetServerNicOutputWithContext(context.Background())
-}
-
-func (i GetServerNicArgs) ToGetServerNicOutputWithContext(ctx context.Context) GetServerNicOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerNicOutput)
-}
-
-// GetServerNicArrayInput is an input type that accepts GetServerNicArray and GetServerNicArrayOutput values.
-// You can construct a concrete instance of `GetServerNicArrayInput` via:
-//
-//	GetServerNicArray{ GetServerNicArgs{...} }
-type GetServerNicArrayInput interface {
-	pulumi.Input
-
-	ToGetServerNicArrayOutput() GetServerNicArrayOutput
-	ToGetServerNicArrayOutputWithContext(context.Context) GetServerNicArrayOutput
-}
-
-type GetServerNicArray []GetServerNicInput
-
-func (GetServerNicArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerNic)(nil)).Elem()
-}
-
-func (i GetServerNicArray) ToGetServerNicArrayOutput() GetServerNicArrayOutput {
-	return i.ToGetServerNicArrayOutputWithContext(context.Background())
-}
-
-func (i GetServerNicArray) ToGetServerNicArrayOutputWithContext(ctx context.Context) GetServerNicArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerNicArrayOutput)
-}
-
-type GetServerNicOutput struct{ *pulumi.OutputState }
-
-func (GetServerNicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerNic)(nil)).Elem()
-}
-
-func (o GetServerNicOutput) ToGetServerNicOutput() GetServerNicOutput {
-	return o
-}
-
-func (o GetServerNicOutput) ToGetServerNicOutputWithContext(ctx context.Context) GetServerNicOutput {
-	return o
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetServerNicOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Indicates if the nic will reserve an IP using DHCP
-func (o GetServerNicOutput) Dhcp() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
-}
-
-func (o GetServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
-}
-
-// Activate or deactivate the firewall
-func (o GetServerNicOutput) FirewallActive() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
-}
-
-// list of
-func (o GetServerNicOutput) FirewallRules() GetServerNicFirewallRuleArrayOutput {
-	return o.ApplyT(func(v GetServerNic) []GetServerNicFirewallRule { return v.FirewallRules }).(GetServerNicFirewallRuleArrayOutput)
-}
-
-// The type of firewall rules that will be allowed on the NIC
-func (o GetServerNicOutput) FirewallType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetServerNicOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNic) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Collection of IP addresses assigned to a nic
-func (o GetServerNicOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
-}
-
-func (o GetServerNicOutput) Ipv6CidrBlock() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNic) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
-}
-
-func (o GetServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
-}
-
-// The LAN ID the NIC will sit on
-func (o GetServerNicOutput) Lan() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNic) int { return v.Lan }).(pulumi.IntOutput)
-}
-
-// The MAC address of the NIC
-func (o GetServerNicOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNic) string { return v.Mac }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetServerNicOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNic) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetServerNicOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-type GetServerNicArrayOutput struct{ *pulumi.OutputState }
-
-func (GetServerNicArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerNic)(nil)).Elem()
-}
-
-func (o GetServerNicArrayOutput) ToGetServerNicArrayOutput() GetServerNicArrayOutput {
-	return o
-}
-
-func (o GetServerNicArrayOutput) ToGetServerNicArrayOutputWithContext(ctx context.Context) GetServerNicArrayOutput {
-	return o
-}
-
-func (o GetServerNicArrayOutput) Index(i pulumi.IntInput) GetServerNicOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerNic {
-		return vs[0].([]GetServerNic)[vs[1].(int)]
-	}).(GetServerNicOutput)
-}
-
-type GetServerNicFirewallRule struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode int `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType int `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd int `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart int `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol string `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp string `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac string `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp string `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-}
-
-// GetServerNicFirewallRuleInput is an input type that accepts GetServerNicFirewallRuleArgs and GetServerNicFirewallRuleOutput values.
-// You can construct a concrete instance of `GetServerNicFirewallRuleInput` via:
-//
-//	GetServerNicFirewallRuleArgs{...}
-type GetServerNicFirewallRuleInput interface {
-	pulumi.Input
-
-	ToGetServerNicFirewallRuleOutput() GetServerNicFirewallRuleOutput
-	ToGetServerNicFirewallRuleOutputWithContext(context.Context) GetServerNicFirewallRuleOutput
-}
-
-type GetServerNicFirewallRuleArgs struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType pulumi.IntInput `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp pulumi.StringInput `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetServerNicFirewallRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetServerNicFirewallRuleArgs) ToGetServerNicFirewallRuleOutput() GetServerNicFirewallRuleOutput {
-	return i.ToGetServerNicFirewallRuleOutputWithContext(context.Background())
-}
-
-func (i GetServerNicFirewallRuleArgs) ToGetServerNicFirewallRuleOutputWithContext(ctx context.Context) GetServerNicFirewallRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerNicFirewallRuleOutput)
-}
-
-// GetServerNicFirewallRuleArrayInput is an input type that accepts GetServerNicFirewallRuleArray and GetServerNicFirewallRuleArrayOutput values.
-// You can construct a concrete instance of `GetServerNicFirewallRuleArrayInput` via:
-//
-//	GetServerNicFirewallRuleArray{ GetServerNicFirewallRuleArgs{...} }
-type GetServerNicFirewallRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetServerNicFirewallRuleArrayOutput() GetServerNicFirewallRuleArrayOutput
-	ToGetServerNicFirewallRuleArrayOutputWithContext(context.Context) GetServerNicFirewallRuleArrayOutput
-}
-
-type GetServerNicFirewallRuleArray []GetServerNicFirewallRuleInput
-
-func (GetServerNicFirewallRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetServerNicFirewallRuleArray) ToGetServerNicFirewallRuleArrayOutput() GetServerNicFirewallRuleArrayOutput {
-	return i.ToGetServerNicFirewallRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetServerNicFirewallRuleArray) ToGetServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetServerNicFirewallRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerNicFirewallRuleArrayOutput)
-}
-
-type GetServerNicFirewallRuleOutput struct{ *pulumi.OutputState }
-
-func (GetServerNicFirewallRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetServerNicFirewallRuleOutput) ToGetServerNicFirewallRuleOutput() GetServerNicFirewallRuleOutput {
-	return o
-}
-
-func (o GetServerNicFirewallRuleOutput) ToGetServerNicFirewallRuleOutputWithContext(ctx context.Context) GetServerNicFirewallRuleOutput {
-	return o
-}
-
-// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-func (o GetServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
-}
-
-// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-func (o GetServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-func (o GetServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
-}
-
-// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-func (o GetServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
-}
-
-// he protocol for the rule
-func (o GetServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-func (o GetServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective MAC address is allowed
-func (o GetServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
-}
-
-// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-func (o GetServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
-}
-
-// The type of firewall rule
-func (o GetServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetServerNicFirewallRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetServerNicFirewallRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetServerNicFirewallRuleArrayOutput) ToGetServerNicFirewallRuleArrayOutput() GetServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetServerNicFirewallRuleArrayOutput) ToGetServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetServerNicFirewallRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerNicFirewallRule {
-		return vs[0].([]GetServerNicFirewallRule)[vs[1].(int)]
-	}).(GetServerNicFirewallRuleOutput)
-}
-
-type GetServerVolume struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone string `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId string `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer string `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus string `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        string `pulumi:"id"`
-	ImageName string `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword string `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// The size of the volume in GB
-	Size int `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys []string `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData *string `pulumi:"userData"`
-}
-
-// GetServerVolumeInput is an input type that accepts GetServerVolumeArgs and GetServerVolumeOutput values.
-// You can construct a concrete instance of `GetServerVolumeInput` via:
-//
-//	GetServerVolumeArgs{...}
-type GetServerVolumeInput interface {
-	pulumi.Input
-
-	ToGetServerVolumeOutput() GetServerVolumeOutput
-	ToGetServerVolumeOutputWithContext(context.Context) GetServerVolumeOutput
-}
-
-type GetServerVolumeArgs struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer pulumi.StringInput `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus pulumi.StringInput `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        pulumi.StringInput `pulumi:"id"`
-	ImageName pulumi.StringInput `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// The size of the volume in GB
-	Size pulumi.IntInput `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData pulumi.StringPtrInput `pulumi:"userData"`
-}
-
-func (GetServerVolumeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerVolume)(nil)).Elem()
-}
-
-func (i GetServerVolumeArgs) ToGetServerVolumeOutput() GetServerVolumeOutput {
-	return i.ToGetServerVolumeOutputWithContext(context.Background())
-}
-
-func (i GetServerVolumeArgs) ToGetServerVolumeOutputWithContext(ctx context.Context) GetServerVolumeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerVolumeOutput)
-}
-
-// GetServerVolumeArrayInput is an input type that accepts GetServerVolumeArray and GetServerVolumeArrayOutput values.
-// You can construct a concrete instance of `GetServerVolumeArrayInput` via:
-//
-//	GetServerVolumeArray{ GetServerVolumeArgs{...} }
-type GetServerVolumeArrayInput interface {
-	pulumi.Input
-
-	ToGetServerVolumeArrayOutput() GetServerVolumeArrayOutput
-	ToGetServerVolumeArrayOutputWithContext(context.Context) GetServerVolumeArrayOutput
-}
-
-type GetServerVolumeArray []GetServerVolumeInput
-
-func (GetServerVolumeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerVolume)(nil)).Elem()
-}
-
-func (i GetServerVolumeArray) ToGetServerVolumeArrayOutput() GetServerVolumeArrayOutput {
-	return i.ToGetServerVolumeArrayOutputWithContext(context.Background())
-}
-
-func (i GetServerVolumeArray) ToGetServerVolumeArrayOutputWithContext(ctx context.Context) GetServerVolumeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetServerVolumeArrayOutput)
-}
-
-type GetServerVolumeOutput struct{ *pulumi.OutputState }
-
-func (GetServerVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetServerVolume)(nil)).Elem()
-}
-
-func (o GetServerVolumeOutput) ToGetServerVolumeOutput() GetServerVolumeOutput {
-	return o
-}
-
-func (o GetServerVolumeOutput) ToGetServerVolumeOutputWithContext(ctx context.Context) GetServerVolumeOutput {
-	return o
-}
-
-// The availability zone in which the volume should exist
-func (o GetServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
-}
-
-// The uuid of the Backup Unit that user has access to
-func (o GetServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
-}
-
-// The UUID of the attached server.
-func (o GetServerVolumeOutput) BootServer() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
-}
-
-// The bus type of the volume
-func (o GetServerVolumeOutput) Bus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.Bus }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetServerVolumeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetServerVolumeOutput) ImageName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
-}
-
-// Initial password to be set for installed OS
-func (o GetServerVolumeOutput) ImagePassword() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetServerVolumeOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetServerVolumeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetServerVolumeOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// The size of the volume in GB
-func (o GetServerVolumeOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServerVolume) int { return v.Size }).(pulumi.IntOutput)
-}
-
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-func (o GetServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
-}
-
-// The type of firewall rule
-func (o GetServerVolumeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServerVolume) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// The cloud-init configuration for the volume as base64 encoded string
-func (o GetServerVolumeOutput) UserData() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
-}
-
-type GetServerVolumeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetServerVolumeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetServerVolume)(nil)).Elem()
-}
-
-func (o GetServerVolumeArrayOutput) ToGetServerVolumeArrayOutput() GetServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetServerVolumeArrayOutput) ToGetServerVolumeArrayOutputWithContext(ctx context.Context) GetServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetServerVolumeArrayOutput) Index(i pulumi.IntInput) GetServerVolumeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerVolume {
-		return vs[0].([]GetServerVolume)[vs[1].(int)]
-	}).(GetServerVolumeOutput)
 }
 
 type GetServersFilter struct {
@@ -17524,7 +8083,7 @@ type GetTargetGroupTarget struct {
 	MaintenanceEnabled bool `pulumi:"maintenanceEnabled"`
 	// The port of the balanced target service; valid range is 1 to 65535.
 	Port int `pulumi:"port"`
-	// The proxy protocol version.
+	// Proxy protocol version
 	ProxyProtocol string `pulumi:"proxyProtocol"`
 	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
 	Weight int `pulumi:"weight"`
@@ -17550,7 +8109,7 @@ type GetTargetGroupTargetArgs struct {
 	MaintenanceEnabled pulumi.BoolInput `pulumi:"maintenanceEnabled"`
 	// The port of the balanced target service; valid range is 1 to 65535.
 	Port pulumi.IntInput `pulumi:"port"`
-	// The proxy protocol version.
+	// Proxy protocol version
 	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
 	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
 	Weight pulumi.IntInput `pulumi:"weight"`
@@ -17627,7 +8186,7 @@ func (o GetTargetGroupTargetOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetTargetGroupTarget) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// The proxy protocol version.
+// Proxy protocol version
 func (o GetTargetGroupTargetOutput) ProxyProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTargetGroupTarget) string { return v.ProxyProtocol }).(pulumi.StringOutput)
 }
@@ -17655,1896 +8214,6 @@ func (o GetTargetGroupTargetArrayOutput) Index(i pulumi.IntInput) GetTargetGroup
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTargetGroupTarget {
 		return vs[0].([]GetTargetGroupTarget)[vs[1].(int)]
 	}).(GetTargetGroupTargetOutput)
-}
-
-type GetUserGroup struct {
-	// ID of the user you want to search for.
-	//
-	// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
-}
-
-// GetUserGroupInput is an input type that accepts GetUserGroupArgs and GetUserGroupOutput values.
-// You can construct a concrete instance of `GetUserGroupInput` via:
-//
-//	GetUserGroupArgs{...}
-type GetUserGroupInput interface {
-	pulumi.Input
-
-	ToGetUserGroupOutput() GetUserGroupOutput
-	ToGetUserGroupOutputWithContext(context.Context) GetUserGroupOutput
-}
-
-type GetUserGroupArgs struct {
-	// ID of the user you want to search for.
-	//
-	// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
-	Id   pulumi.StringInput `pulumi:"id"`
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetUserGroupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetUserGroup)(nil)).Elem()
-}
-
-func (i GetUserGroupArgs) ToGetUserGroupOutput() GetUserGroupOutput {
-	return i.ToGetUserGroupOutputWithContext(context.Background())
-}
-
-func (i GetUserGroupArgs) ToGetUserGroupOutputWithContext(ctx context.Context) GetUserGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupOutput)
-}
-
-// GetUserGroupArrayInput is an input type that accepts GetUserGroupArray and GetUserGroupArrayOutput values.
-// You can construct a concrete instance of `GetUserGroupArrayInput` via:
-//
-//	GetUserGroupArray{ GetUserGroupArgs{...} }
-type GetUserGroupArrayInput interface {
-	pulumi.Input
-
-	ToGetUserGroupArrayOutput() GetUserGroupArrayOutput
-	ToGetUserGroupArrayOutputWithContext(context.Context) GetUserGroupArrayOutput
-}
-
-type GetUserGroupArray []GetUserGroupInput
-
-func (GetUserGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetUserGroup)(nil)).Elem()
-}
-
-func (i GetUserGroupArray) ToGetUserGroupArrayOutput() GetUserGroupArrayOutput {
-	return i.ToGetUserGroupArrayOutputWithContext(context.Background())
-}
-
-func (i GetUserGroupArray) ToGetUserGroupArrayOutputWithContext(ctx context.Context) GetUserGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetUserGroupArrayOutput)
-}
-
-type GetUserGroupOutput struct{ *pulumi.OutputState }
-
-func (GetUserGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetUserGroup)(nil)).Elem()
-}
-
-func (o GetUserGroupOutput) ToGetUserGroupOutput() GetUserGroupOutput {
-	return o
-}
-
-func (o GetUserGroupOutput) ToGetUserGroupOutputWithContext(ctx context.Context) GetUserGroupOutput {
-	return o
-}
-
-// ID of the user you want to search for.
-//
-// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
-func (o GetUserGroupOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetUserGroup) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetUserGroupOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetUserGroup) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetUserGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetUserGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetUserGroup)(nil)).Elem()
-}
-
-func (o GetUserGroupArrayOutput) ToGetUserGroupArrayOutput() GetUserGroupArrayOutput {
-	return o
-}
-
-func (o GetUserGroupArrayOutput) ToGetUserGroupArrayOutputWithContext(ctx context.Context) GetUserGroupArrayOutput {
-	return o
-}
-
-func (o GetUserGroupArrayOutput) Index(i pulumi.IntInput) GetUserGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUserGroup {
-		return vs[0].([]GetUserGroup)[vs[1].(int)]
-	}).(GetUserGroupOutput)
-}
-
-type GetVcpuServerCdrom struct {
-	// Cloud init compatibility
-	CloudInit string `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description string `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases []string `pulumi:"imageAliases"`
-	// Type of image
-	ImageType string `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location string `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public bool `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug bool `pulumi:"ramHotUnplug"`
-	// The size of the volume in GB
-	Size float64 `pulumi:"size"`
-}
-
-// GetVcpuServerCdromInput is an input type that accepts GetVcpuServerCdromArgs and GetVcpuServerCdromOutput values.
-// You can construct a concrete instance of `GetVcpuServerCdromInput` via:
-//
-//	GetVcpuServerCdromArgs{...}
-type GetVcpuServerCdromInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerCdromOutput() GetVcpuServerCdromOutput
-	ToGetVcpuServerCdromOutputWithContext(context.Context) GetVcpuServerCdromOutput
-}
-
-type GetVcpuServerCdromArgs struct {
-	// Cloud init compatibility
-	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// Is capable of CPU hot unplug (no reboot required)
-	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
-	// Description of cdrom
-	Description pulumi.StringInput `pulumi:"description"`
-	// Is capable of SCSI drive hot plug (no reboot required)
-	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
-	// Is capable of SCSI drive hot unplug (no reboot required)
-	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// List of image aliases mapped for this Image
-	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
-	// Type of image
-	ImageType pulumi.StringInput `pulumi:"imageType"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Location of that image/snapshot
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// Indicates if the image is part of the public repository or not
-	Public pulumi.BoolInput `pulumi:"public"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// Is capable of memory hot unplug (no reboot required)
-	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
-	// The size of the volume in GB
-	Size pulumi.Float64Input `pulumi:"size"`
-}
-
-func (GetVcpuServerCdromArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerCdrom)(nil)).Elem()
-}
-
-func (i GetVcpuServerCdromArgs) ToGetVcpuServerCdromOutput() GetVcpuServerCdromOutput {
-	return i.ToGetVcpuServerCdromOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerCdromArgs) ToGetVcpuServerCdromOutputWithContext(ctx context.Context) GetVcpuServerCdromOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerCdromOutput)
-}
-
-// GetVcpuServerCdromArrayInput is an input type that accepts GetVcpuServerCdromArray and GetVcpuServerCdromArrayOutput values.
-// You can construct a concrete instance of `GetVcpuServerCdromArrayInput` via:
-//
-//	GetVcpuServerCdromArray{ GetVcpuServerCdromArgs{...} }
-type GetVcpuServerCdromArrayInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerCdromArrayOutput() GetVcpuServerCdromArrayOutput
-	ToGetVcpuServerCdromArrayOutputWithContext(context.Context) GetVcpuServerCdromArrayOutput
-}
-
-type GetVcpuServerCdromArray []GetVcpuServerCdromInput
-
-func (GetVcpuServerCdromArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerCdrom)(nil)).Elem()
-}
-
-func (i GetVcpuServerCdromArray) ToGetVcpuServerCdromArrayOutput() GetVcpuServerCdromArrayOutput {
-	return i.ToGetVcpuServerCdromArrayOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerCdromArray) ToGetVcpuServerCdromArrayOutputWithContext(ctx context.Context) GetVcpuServerCdromArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerCdromArrayOutput)
-}
-
-type GetVcpuServerCdromOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerCdromOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerCdrom)(nil)).Elem()
-}
-
-func (o GetVcpuServerCdromOutput) ToGetVcpuServerCdromOutput() GetVcpuServerCdromOutput {
-	return o
-}
-
-func (o GetVcpuServerCdromOutput) ToGetVcpuServerCdromOutputWithContext(ctx context.Context) GetVcpuServerCdromOutput {
-	return o
-}
-
-// Cloud init compatibility
-func (o GetVcpuServerCdromOutput) CloudInit() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetVcpuServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of CPU hot unplug (no reboot required)
-func (o GetVcpuServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Description of cdrom
-func (o GetVcpuServerCdromOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// Is capable of SCSI drive hot plug (no reboot required)
-func (o GetVcpuServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of SCSI drive hot unplug (no reboot required)
-func (o GetVcpuServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetVcpuServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetVcpuServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetVcpuServerCdromOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// List of image aliases mapped for this Image
-func (o GetVcpuServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
-}
-
-// Type of image
-func (o GetVcpuServerCdromOutput) ImageType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetVcpuServerCdromOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Location of that image/snapshot
-func (o GetVcpuServerCdromOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.Location }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetVcpuServerCdromOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetVcpuServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetVcpuServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// Indicates if the image is part of the public repository or not
-func (o GetVcpuServerCdromOutput) Public() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetVcpuServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of memory hot unplug (no reboot required)
-func (o GetVcpuServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The size of the volume in GB
-func (o GetVcpuServerCdromOutput) Size() pulumi.Float64Output {
-	return o.ApplyT(func(v GetVcpuServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
-}
-
-type GetVcpuServerCdromArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerCdromArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerCdrom)(nil)).Elem()
-}
-
-func (o GetVcpuServerCdromArrayOutput) ToGetVcpuServerCdromArrayOutput() GetVcpuServerCdromArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerCdromArrayOutput) ToGetVcpuServerCdromArrayOutputWithContext(ctx context.Context) GetVcpuServerCdromArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerCdromArrayOutput) Index(i pulumi.IntInput) GetVcpuServerCdromOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcpuServerCdrom {
-		return vs[0].([]GetVcpuServerCdrom)[vs[1].(int)]
-	}).(GetVcpuServerCdromOutput)
-}
-
-type GetVcpuServerLabel struct {
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// The key of the label
-	Key string `pulumi:"key"`
-	// The value of the label
-	Value string `pulumi:"value"`
-}
-
-// GetVcpuServerLabelInput is an input type that accepts GetVcpuServerLabelArgs and GetVcpuServerLabelOutput values.
-// You can construct a concrete instance of `GetVcpuServerLabelInput` via:
-//
-//	GetVcpuServerLabelArgs{...}
-type GetVcpuServerLabelInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerLabelOutput() GetVcpuServerLabelOutput
-	ToGetVcpuServerLabelOutputWithContext(context.Context) GetVcpuServerLabelOutput
-}
-
-type GetVcpuServerLabelArgs struct {
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The key of the label
-	Key pulumi.StringInput `pulumi:"key"`
-	// The value of the label
-	Value pulumi.StringInput `pulumi:"value"`
-}
-
-func (GetVcpuServerLabelArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerLabel)(nil)).Elem()
-}
-
-func (i GetVcpuServerLabelArgs) ToGetVcpuServerLabelOutput() GetVcpuServerLabelOutput {
-	return i.ToGetVcpuServerLabelOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerLabelArgs) ToGetVcpuServerLabelOutputWithContext(ctx context.Context) GetVcpuServerLabelOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerLabelOutput)
-}
-
-// GetVcpuServerLabelArrayInput is an input type that accepts GetVcpuServerLabelArray and GetVcpuServerLabelArrayOutput values.
-// You can construct a concrete instance of `GetVcpuServerLabelArrayInput` via:
-//
-//	GetVcpuServerLabelArray{ GetVcpuServerLabelArgs{...} }
-type GetVcpuServerLabelArrayInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerLabelArrayOutput() GetVcpuServerLabelArrayOutput
-	ToGetVcpuServerLabelArrayOutputWithContext(context.Context) GetVcpuServerLabelArrayOutput
-}
-
-type GetVcpuServerLabelArray []GetVcpuServerLabelInput
-
-func (GetVcpuServerLabelArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerLabel)(nil)).Elem()
-}
-
-func (i GetVcpuServerLabelArray) ToGetVcpuServerLabelArrayOutput() GetVcpuServerLabelArrayOutput {
-	return i.ToGetVcpuServerLabelArrayOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerLabelArray) ToGetVcpuServerLabelArrayOutputWithContext(ctx context.Context) GetVcpuServerLabelArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerLabelArrayOutput)
-}
-
-type GetVcpuServerLabelOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerLabelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerLabel)(nil)).Elem()
-}
-
-func (o GetVcpuServerLabelOutput) ToGetVcpuServerLabelOutput() GetVcpuServerLabelOutput {
-	return o
-}
-
-func (o GetVcpuServerLabelOutput) ToGetVcpuServerLabelOutputWithContext(ctx context.Context) GetVcpuServerLabelOutput {
-	return o
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetVcpuServerLabelOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerLabel) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The key of the label
-func (o GetVcpuServerLabelOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerLabel) string { return v.Key }).(pulumi.StringOutput)
-}
-
-// The value of the label
-func (o GetVcpuServerLabelOutput) Value() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerLabel) string { return v.Value }).(pulumi.StringOutput)
-}
-
-type GetVcpuServerLabelArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerLabelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerLabel)(nil)).Elem()
-}
-
-func (o GetVcpuServerLabelArrayOutput) ToGetVcpuServerLabelArrayOutput() GetVcpuServerLabelArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerLabelArrayOutput) ToGetVcpuServerLabelArrayOutputWithContext(ctx context.Context) GetVcpuServerLabelArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerLabelArrayOutput) Index(i pulumi.IntInput) GetVcpuServerLabelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcpuServerLabel {
-		return vs[0].([]GetVcpuServerLabel)[vs[1].(int)]
-	}).(GetVcpuServerLabelOutput)
-}
-
-type GetVcpuServerNic struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   bool  `pulumi:"dhcp"`
-	Dhcpv6 *bool `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive bool `pulumi:"firewallActive"`
-	// list of
-	FirewallRules []GetVcpuServerNicFirewallRule `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType string `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           []string `pulumi:"ips"`
-	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       []string `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan int `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac string `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-}
-
-// GetVcpuServerNicInput is an input type that accepts GetVcpuServerNicArgs and GetVcpuServerNicOutput values.
-// You can construct a concrete instance of `GetVcpuServerNicInput` via:
-//
-//	GetVcpuServerNicArgs{...}
-type GetVcpuServerNicInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerNicOutput() GetVcpuServerNicOutput
-	ToGetVcpuServerNicOutputWithContext(context.Context) GetVcpuServerNicOutput
-}
-
-type GetVcpuServerNicArgs struct {
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Indicates if the nic will reserve an IP using DHCP
-	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
-	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
-	// Activate or deactivate the firewall
-	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
-	// list of
-	FirewallRules GetVcpuServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// The type of firewall rules that will be allowed on the NIC
-	FirewallType pulumi.StringInput `pulumi:"firewallType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Collection of IP addresses assigned to a nic
-	Ips           pulumi.StringArrayInput `pulumi:"ips"`
-	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
-	// The LAN ID the NIC will sit on
-	Lan pulumi.IntInput `pulumi:"lan"`
-	// The MAC address of the NIC
-	Mac pulumi.StringInput `pulumi:"mac"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-}
-
-func (GetVcpuServerNicArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerNic)(nil)).Elem()
-}
-
-func (i GetVcpuServerNicArgs) ToGetVcpuServerNicOutput() GetVcpuServerNicOutput {
-	return i.ToGetVcpuServerNicOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerNicArgs) ToGetVcpuServerNicOutputWithContext(ctx context.Context) GetVcpuServerNicOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerNicOutput)
-}
-
-// GetVcpuServerNicArrayInput is an input type that accepts GetVcpuServerNicArray and GetVcpuServerNicArrayOutput values.
-// You can construct a concrete instance of `GetVcpuServerNicArrayInput` via:
-//
-//	GetVcpuServerNicArray{ GetVcpuServerNicArgs{...} }
-type GetVcpuServerNicArrayInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerNicArrayOutput() GetVcpuServerNicArrayOutput
-	ToGetVcpuServerNicArrayOutputWithContext(context.Context) GetVcpuServerNicArrayOutput
-}
-
-type GetVcpuServerNicArray []GetVcpuServerNicInput
-
-func (GetVcpuServerNicArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerNic)(nil)).Elem()
-}
-
-func (i GetVcpuServerNicArray) ToGetVcpuServerNicArrayOutput() GetVcpuServerNicArrayOutput {
-	return i.ToGetVcpuServerNicArrayOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerNicArray) ToGetVcpuServerNicArrayOutputWithContext(ctx context.Context) GetVcpuServerNicArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerNicArrayOutput)
-}
-
-type GetVcpuServerNicOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerNicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerNic)(nil)).Elem()
-}
-
-func (o GetVcpuServerNicOutput) ToGetVcpuServerNicOutput() GetVcpuServerNicOutput {
-	return o
-}
-
-func (o GetVcpuServerNicOutput) ToGetVcpuServerNicOutputWithContext(ctx context.Context) GetVcpuServerNicOutput {
-	return o
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetVcpuServerNicOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Indicates if the nic will reserve an IP using DHCP
-func (o GetVcpuServerNicOutput) Dhcp() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
-}
-
-func (o GetVcpuServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
-}
-
-// Activate or deactivate the firewall
-func (o GetVcpuServerNicOutput) FirewallActive() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
-}
-
-// list of
-func (o GetVcpuServerNicOutput) FirewallRules() GetVcpuServerNicFirewallRuleArrayOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) []GetVcpuServerNicFirewallRule { return v.FirewallRules }).(GetVcpuServerNicFirewallRuleArrayOutput)
-}
-
-// The type of firewall rules that will be allowed on the NIC
-func (o GetVcpuServerNicOutput) FirewallType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetVcpuServerNicOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Collection of IP addresses assigned to a nic
-func (o GetVcpuServerNicOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
-}
-
-func (o GetVcpuServerNicOutput) Ipv6CidrBlock() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
-}
-
-func (o GetVcpuServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
-}
-
-// The LAN ID the NIC will sit on
-func (o GetVcpuServerNicOutput) Lan() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) int { return v.Lan }).(pulumi.IntOutput)
-}
-
-// The MAC address of the NIC
-func (o GetVcpuServerNicOutput) Mac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) string { return v.Mac }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetVcpuServerNicOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetVcpuServerNicOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-type GetVcpuServerNicArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerNicArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerNic)(nil)).Elem()
-}
-
-func (o GetVcpuServerNicArrayOutput) ToGetVcpuServerNicArrayOutput() GetVcpuServerNicArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerNicArrayOutput) ToGetVcpuServerNicArrayOutputWithContext(ctx context.Context) GetVcpuServerNicArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerNicArrayOutput) Index(i pulumi.IntInput) GetVcpuServerNicOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcpuServerNic {
-		return vs[0].([]GetVcpuServerNic)[vs[1].(int)]
-	}).(GetVcpuServerNicOutput)
-}
-
-type GetVcpuServerNicFirewallRule struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode int `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType int `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id string `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd int `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart int `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol string `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp string `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac string `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp string `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-}
-
-// GetVcpuServerNicFirewallRuleInput is an input type that accepts GetVcpuServerNicFirewallRuleArgs and GetVcpuServerNicFirewallRuleOutput values.
-// You can construct a concrete instance of `GetVcpuServerNicFirewallRuleInput` via:
-//
-//	GetVcpuServerNicFirewallRuleArgs{...}
-type GetVcpuServerNicFirewallRuleInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerNicFirewallRuleOutput() GetVcpuServerNicFirewallRuleOutput
-	ToGetVcpuServerNicFirewallRuleOutputWithContext(context.Context) GetVcpuServerNicFirewallRuleOutput
-}
-
-type GetVcpuServerNicFirewallRuleArgs struct {
-	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
-	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-	IcmpType pulumi.IntInput `pulumi:"icmpType"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
-	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
-	// he protocol for the rule
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
-	// Only traffic originating from the respective MAC address is allowed
-	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
-	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-	TargetIp pulumi.StringInput `pulumi:"targetIp"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetVcpuServerNicFirewallRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetVcpuServerNicFirewallRuleArgs) ToGetVcpuServerNicFirewallRuleOutput() GetVcpuServerNicFirewallRuleOutput {
-	return i.ToGetVcpuServerNicFirewallRuleOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerNicFirewallRuleArgs) ToGetVcpuServerNicFirewallRuleOutputWithContext(ctx context.Context) GetVcpuServerNicFirewallRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerNicFirewallRuleOutput)
-}
-
-// GetVcpuServerNicFirewallRuleArrayInput is an input type that accepts GetVcpuServerNicFirewallRuleArray and GetVcpuServerNicFirewallRuleArrayOutput values.
-// You can construct a concrete instance of `GetVcpuServerNicFirewallRuleArrayInput` via:
-//
-//	GetVcpuServerNicFirewallRuleArray{ GetVcpuServerNicFirewallRuleArgs{...} }
-type GetVcpuServerNicFirewallRuleArrayInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerNicFirewallRuleArrayOutput() GetVcpuServerNicFirewallRuleArrayOutput
-	ToGetVcpuServerNicFirewallRuleArrayOutputWithContext(context.Context) GetVcpuServerNicFirewallRuleArrayOutput
-}
-
-type GetVcpuServerNicFirewallRuleArray []GetVcpuServerNicFirewallRuleInput
-
-func (GetVcpuServerNicFirewallRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerNicFirewallRule)(nil)).Elem()
-}
-
-func (i GetVcpuServerNicFirewallRuleArray) ToGetVcpuServerNicFirewallRuleArrayOutput() GetVcpuServerNicFirewallRuleArrayOutput {
-	return i.ToGetVcpuServerNicFirewallRuleArrayOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerNicFirewallRuleArray) ToGetVcpuServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetVcpuServerNicFirewallRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerNicFirewallRuleArrayOutput)
-}
-
-type GetVcpuServerNicFirewallRuleOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerNicFirewallRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetVcpuServerNicFirewallRuleOutput) ToGetVcpuServerNicFirewallRuleOutput() GetVcpuServerNicFirewallRuleOutput {
-	return o
-}
-
-func (o GetVcpuServerNicFirewallRuleOutput) ToGetVcpuServerNicFirewallRuleOutputWithContext(ctx context.Context) GetVcpuServerNicFirewallRuleOutput {
-	return o
-}
-
-// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-func (o GetVcpuServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
-}
-
-// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-func (o GetVcpuServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetVcpuServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetVcpuServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-func (o GetVcpuServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
-}
-
-// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-func (o GetVcpuServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
-}
-
-// he protocol for the rule
-func (o GetVcpuServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-func (o GetVcpuServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
-}
-
-// Only traffic originating from the respective MAC address is allowed
-func (o GetVcpuServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
-}
-
-// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-func (o GetVcpuServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
-}
-
-// The type of firewall rule
-func (o GetVcpuServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetVcpuServerNicFirewallRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerNicFirewallRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerNicFirewallRule)(nil)).Elem()
-}
-
-func (o GetVcpuServerNicFirewallRuleArrayOutput) ToGetVcpuServerNicFirewallRuleArrayOutput() GetVcpuServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerNicFirewallRuleArrayOutput) ToGetVcpuServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetVcpuServerNicFirewallRuleArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetVcpuServerNicFirewallRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcpuServerNicFirewallRule {
-		return vs[0].([]GetVcpuServerNicFirewallRule)[vs[1].(int)]
-	}).(GetVcpuServerNicFirewallRuleOutput)
-}
-
-type GetVcpuServerVolume struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone string `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId string `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer string `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus string `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug bool `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber int `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        string `pulumi:"id"`
-	ImageName string `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword string `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType string `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name string `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug bool `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug bool `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot int `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug bool `pulumi:"ramHotPlug"`
-	// The size of the volume in GB
-	Size int `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys []string `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type string `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData *string `pulumi:"userData"`
-}
-
-// GetVcpuServerVolumeInput is an input type that accepts GetVcpuServerVolumeArgs and GetVcpuServerVolumeOutput values.
-// You can construct a concrete instance of `GetVcpuServerVolumeInput` via:
-//
-//	GetVcpuServerVolumeArgs{...}
-type GetVcpuServerVolumeInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerVolumeOutput() GetVcpuServerVolumeOutput
-	ToGetVcpuServerVolumeOutputWithContext(context.Context) GetVcpuServerVolumeOutput
-}
-
-type GetVcpuServerVolumeArgs struct {
-	// The availability zone in which the volume should exist
-	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	// The uuid of the Backup Unit that user has access to
-	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
-	// The UUID of the attached server.
-	BootServer pulumi.StringInput `pulumi:"bootServer"`
-	// The bus type of the volume
-	Bus pulumi.StringInput `pulumi:"bus"`
-	// Is capable of CPU hot plug (no reboot required)
-	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
-	// The Logical Unit Number (LUN) of the storage volume
-	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
-	// Is capable of Virt-IO drive hot plug (no reboot required)
-	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
-	// Is capable of Virt-IO drive hot unplug (no reboot required)
-	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
-	// ID of the server you want to search for.
-	//
-	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-	Id        pulumi.StringInput `pulumi:"id"`
-	ImageName pulumi.StringInput `pulumi:"imageName"`
-	// Initial password to be set for installed OS
-	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
-	// OS type of this volume
-	LicenceType pulumi.StringInput `pulumi:"licenceType"`
-	// Name of an existing server that you want to search for.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Is capable of nic hot plug (no reboot required)
-	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
-	// Is capable of nic hot unplug (no reboot required)
-	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
-	// The PCI slot number of the Nic
-	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
-	// Is capable of memory hot plug (no reboot required)
-	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
-	// The size of the volume in GB
-	Size pulumi.IntInput `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
-	// The type of firewall rule
-	Type pulumi.StringInput `pulumi:"type"`
-	// The cloud-init configuration for the volume as base64 encoded string
-	UserData pulumi.StringPtrInput `pulumi:"userData"`
-}
-
-func (GetVcpuServerVolumeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerVolume)(nil)).Elem()
-}
-
-func (i GetVcpuServerVolumeArgs) ToGetVcpuServerVolumeOutput() GetVcpuServerVolumeOutput {
-	return i.ToGetVcpuServerVolumeOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerVolumeArgs) ToGetVcpuServerVolumeOutputWithContext(ctx context.Context) GetVcpuServerVolumeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerVolumeOutput)
-}
-
-// GetVcpuServerVolumeArrayInput is an input type that accepts GetVcpuServerVolumeArray and GetVcpuServerVolumeArrayOutput values.
-// You can construct a concrete instance of `GetVcpuServerVolumeArrayInput` via:
-//
-//	GetVcpuServerVolumeArray{ GetVcpuServerVolumeArgs{...} }
-type GetVcpuServerVolumeArrayInput interface {
-	pulumi.Input
-
-	ToGetVcpuServerVolumeArrayOutput() GetVcpuServerVolumeArrayOutput
-	ToGetVcpuServerVolumeArrayOutputWithContext(context.Context) GetVcpuServerVolumeArrayOutput
-}
-
-type GetVcpuServerVolumeArray []GetVcpuServerVolumeInput
-
-func (GetVcpuServerVolumeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerVolume)(nil)).Elem()
-}
-
-func (i GetVcpuServerVolumeArray) ToGetVcpuServerVolumeArrayOutput() GetVcpuServerVolumeArrayOutput {
-	return i.ToGetVcpuServerVolumeArrayOutputWithContext(context.Background())
-}
-
-func (i GetVcpuServerVolumeArray) ToGetVcpuServerVolumeArrayOutputWithContext(ctx context.Context) GetVcpuServerVolumeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVcpuServerVolumeArrayOutput)
-}
-
-type GetVcpuServerVolumeOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVcpuServerVolume)(nil)).Elem()
-}
-
-func (o GetVcpuServerVolumeOutput) ToGetVcpuServerVolumeOutput() GetVcpuServerVolumeOutput {
-	return o
-}
-
-func (o GetVcpuServerVolumeOutput) ToGetVcpuServerVolumeOutputWithContext(ctx context.Context) GetVcpuServerVolumeOutput {
-	return o
-}
-
-// The availability zone in which the volume should exist
-func (o GetVcpuServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
-}
-
-// The uuid of the Backup Unit that user has access to
-func (o GetVcpuServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
-}
-
-// The UUID of the attached server.
-func (o GetVcpuServerVolumeOutput) BootServer() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
-}
-
-// The bus type of the volume
-func (o GetVcpuServerVolumeOutput) Bus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.Bus }).(pulumi.StringOutput)
-}
-
-// Is capable of CPU hot plug (no reboot required)
-func (o GetVcpuServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
-}
-
-// The Logical Unit Number (LUN) of the storage volume
-func (o GetVcpuServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
-}
-
-// Is capable of Virt-IO drive hot plug (no reboot required)
-func (o GetVcpuServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of Virt-IO drive hot unplug (no reboot required)
-func (o GetVcpuServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
-}
-
-// ID of the server you want to search for.
-//
-// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-func (o GetVcpuServerVolumeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o GetVcpuServerVolumeOutput) ImageName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
-}
-
-// Initial password to be set for installed OS
-func (o GetVcpuServerVolumeOutput) ImagePassword() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
-}
-
-// OS type of this volume
-func (o GetVcpuServerVolumeOutput) LicenceType() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
-}
-
-// Name of an existing server that you want to search for.
-func (o GetVcpuServerVolumeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Is capable of nic hot plug (no reboot required)
-func (o GetVcpuServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
-}
-
-// Is capable of nic hot unplug (no reboot required)
-func (o GetVcpuServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
-}
-
-// The PCI slot number of the Nic
-func (o GetVcpuServerVolumeOutput) PciSlot() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
-}
-
-// Is capable of memory hot plug (no reboot required)
-func (o GetVcpuServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
-}
-
-// The size of the volume in GB
-func (o GetVcpuServerVolumeOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) int { return v.Size }).(pulumi.IntOutput)
-}
-
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-func (o GetVcpuServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
-}
-
-// The type of firewall rule
-func (o GetVcpuServerVolumeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// The cloud-init configuration for the volume as base64 encoded string
-func (o GetVcpuServerVolumeOutput) UserData() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetVcpuServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
-}
-
-type GetVcpuServerVolumeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVcpuServerVolumeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVcpuServerVolume)(nil)).Elem()
-}
-
-func (o GetVcpuServerVolumeArrayOutput) ToGetVcpuServerVolumeArrayOutput() GetVcpuServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerVolumeArrayOutput) ToGetVcpuServerVolumeArrayOutputWithContext(ctx context.Context) GetVcpuServerVolumeArrayOutput {
-	return o
-}
-
-func (o GetVcpuServerVolumeArrayOutput) Index(i pulumi.IntInput) GetVcpuServerVolumeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVcpuServerVolume {
-		return vs[0].([]GetVcpuServerVolume)[vs[1].(int)]
-	}).(GetVcpuServerVolumeOutput)
-}
-
-type GetVpnIpsecGatewayConnection struct {
-	// The datacenter to connect your VPN Gateway to.
-	DatacenterId string `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway.
-	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
-	Ipv6Cidr string `pulumi:"ipv6Cidr"`
-	// The numeric LAN ID to connect your VPN Gateway to.
-	LanId string `pulumi:"lanId"`
-}
-
-// GetVpnIpsecGatewayConnectionInput is an input type that accepts GetVpnIpsecGatewayConnectionArgs and GetVpnIpsecGatewayConnectionOutput values.
-// You can construct a concrete instance of `GetVpnIpsecGatewayConnectionInput` via:
-//
-//	GetVpnIpsecGatewayConnectionArgs{...}
-type GetVpnIpsecGatewayConnectionInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecGatewayConnectionOutput() GetVpnIpsecGatewayConnectionOutput
-	ToGetVpnIpsecGatewayConnectionOutputWithContext(context.Context) GetVpnIpsecGatewayConnectionOutput
-}
-
-type GetVpnIpsecGatewayConnectionArgs struct {
-	// The datacenter to connect your VPN Gateway to.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the
-	// VPN Gateway.
-	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
-	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
-	// The numeric LAN ID to connect your VPN Gateway to.
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetVpnIpsecGatewayConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecGatewayConnection)(nil)).Elem()
-}
-
-func (i GetVpnIpsecGatewayConnectionArgs) ToGetVpnIpsecGatewayConnectionOutput() GetVpnIpsecGatewayConnectionOutput {
-	return i.ToGetVpnIpsecGatewayConnectionOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecGatewayConnectionArgs) ToGetVpnIpsecGatewayConnectionOutputWithContext(ctx context.Context) GetVpnIpsecGatewayConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecGatewayConnectionOutput)
-}
-
-// GetVpnIpsecGatewayConnectionArrayInput is an input type that accepts GetVpnIpsecGatewayConnectionArray and GetVpnIpsecGatewayConnectionArrayOutput values.
-// You can construct a concrete instance of `GetVpnIpsecGatewayConnectionArrayInput` via:
-//
-//	GetVpnIpsecGatewayConnectionArray{ GetVpnIpsecGatewayConnectionArgs{...} }
-type GetVpnIpsecGatewayConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecGatewayConnectionArrayOutput() GetVpnIpsecGatewayConnectionArrayOutput
-	ToGetVpnIpsecGatewayConnectionArrayOutputWithContext(context.Context) GetVpnIpsecGatewayConnectionArrayOutput
-}
-
-type GetVpnIpsecGatewayConnectionArray []GetVpnIpsecGatewayConnectionInput
-
-func (GetVpnIpsecGatewayConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecGatewayConnection)(nil)).Elem()
-}
-
-func (i GetVpnIpsecGatewayConnectionArray) ToGetVpnIpsecGatewayConnectionArrayOutput() GetVpnIpsecGatewayConnectionArrayOutput {
-	return i.ToGetVpnIpsecGatewayConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecGatewayConnectionArray) ToGetVpnIpsecGatewayConnectionArrayOutputWithContext(ctx context.Context) GetVpnIpsecGatewayConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecGatewayConnectionArrayOutput)
-}
-
-type GetVpnIpsecGatewayConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecGatewayConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecGatewayConnection)(nil)).Elem()
-}
-
-func (o GetVpnIpsecGatewayConnectionOutput) ToGetVpnIpsecGatewayConnectionOutput() GetVpnIpsecGatewayConnectionOutput {
-	return o
-}
-
-func (o GetVpnIpsecGatewayConnectionOutput) ToGetVpnIpsecGatewayConnectionOutputWithContext(ctx context.Context) GetVpnIpsecGatewayConnectionOutput {
-	return o
-}
-
-// The datacenter to connect your VPN Gateway to.
-func (o GetVpnIpsecGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// Describes the private ipv4 subnet in your LAN that should be accessible by the
-// VPN Gateway.
-func (o GetVpnIpsecGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
-}
-
-// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
-func (o GetVpnIpsecGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
-}
-
-// The numeric LAN ID to connect your VPN Gateway to.
-func (o GetVpnIpsecGatewayConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecGatewayConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetVpnIpsecGatewayConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecGatewayConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecGatewayConnection)(nil)).Elem()
-}
-
-func (o GetVpnIpsecGatewayConnectionArrayOutput) ToGetVpnIpsecGatewayConnectionArrayOutput() GetVpnIpsecGatewayConnectionArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecGatewayConnectionArrayOutput) ToGetVpnIpsecGatewayConnectionArrayOutputWithContext(ctx context.Context) GetVpnIpsecGatewayConnectionArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecGatewayConnectionArrayOutput) Index(i pulumi.IntInput) GetVpnIpsecGatewayConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnIpsecGatewayConnection {
-		return vs[0].([]GetVpnIpsecGatewayConnection)[vs[1].(int)]
-	}).(GetVpnIpsecGatewayConnectionOutput)
-}
-
-type GetVpnIpsecTunnelAuth struct {
-	// The Authentication Method to use for IPSec Authentication.
-	Method string `pulumi:"method"`
-}
-
-// GetVpnIpsecTunnelAuthInput is an input type that accepts GetVpnIpsecTunnelAuthArgs and GetVpnIpsecTunnelAuthOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelAuthInput` via:
-//
-//	GetVpnIpsecTunnelAuthArgs{...}
-type GetVpnIpsecTunnelAuthInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelAuthOutput() GetVpnIpsecTunnelAuthOutput
-	ToGetVpnIpsecTunnelAuthOutputWithContext(context.Context) GetVpnIpsecTunnelAuthOutput
-}
-
-type GetVpnIpsecTunnelAuthArgs struct {
-	// The Authentication Method to use for IPSec Authentication.
-	Method pulumi.StringInput `pulumi:"method"`
-}
-
-func (GetVpnIpsecTunnelAuthArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelAuth)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelAuthArgs) ToGetVpnIpsecTunnelAuthOutput() GetVpnIpsecTunnelAuthOutput {
-	return i.ToGetVpnIpsecTunnelAuthOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelAuthArgs) ToGetVpnIpsecTunnelAuthOutputWithContext(ctx context.Context) GetVpnIpsecTunnelAuthOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelAuthOutput)
-}
-
-// GetVpnIpsecTunnelAuthArrayInput is an input type that accepts GetVpnIpsecTunnelAuthArray and GetVpnIpsecTunnelAuthArrayOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelAuthArrayInput` via:
-//
-//	GetVpnIpsecTunnelAuthArray{ GetVpnIpsecTunnelAuthArgs{...} }
-type GetVpnIpsecTunnelAuthArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelAuthArrayOutput() GetVpnIpsecTunnelAuthArrayOutput
-	ToGetVpnIpsecTunnelAuthArrayOutputWithContext(context.Context) GetVpnIpsecTunnelAuthArrayOutput
-}
-
-type GetVpnIpsecTunnelAuthArray []GetVpnIpsecTunnelAuthInput
-
-func (GetVpnIpsecTunnelAuthArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelAuth)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelAuthArray) ToGetVpnIpsecTunnelAuthArrayOutput() GetVpnIpsecTunnelAuthArrayOutput {
-	return i.ToGetVpnIpsecTunnelAuthArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelAuthArray) ToGetVpnIpsecTunnelAuthArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelAuthArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelAuthArrayOutput)
-}
-
-type GetVpnIpsecTunnelAuthOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelAuthOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelAuth)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelAuthOutput) ToGetVpnIpsecTunnelAuthOutput() GetVpnIpsecTunnelAuthOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelAuthOutput) ToGetVpnIpsecTunnelAuthOutputWithContext(ctx context.Context) GetVpnIpsecTunnelAuthOutput {
-	return o
-}
-
-// The Authentication Method to use for IPSec Authentication.
-func (o GetVpnIpsecTunnelAuthOutput) Method() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelAuth) string { return v.Method }).(pulumi.StringOutput)
-}
-
-type GetVpnIpsecTunnelAuthArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelAuthArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelAuth)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelAuthArrayOutput) ToGetVpnIpsecTunnelAuthArrayOutput() GetVpnIpsecTunnelAuthArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelAuthArrayOutput) ToGetVpnIpsecTunnelAuthArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelAuthArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelAuthArrayOutput) Index(i pulumi.IntInput) GetVpnIpsecTunnelAuthOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnIpsecTunnelAuth {
-		return vs[0].([]GetVpnIpsecTunnelAuth)[vs[1].(int)]
-	}).(GetVpnIpsecTunnelAuthOutput)
-}
-
-type GetVpnIpsecTunnelEsp struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
-	DiffieHellmanGroup string `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
-	EncryptionAlgorithm string `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
-	IntegrityAlgorithm string `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
-	Lifetime int `pulumi:"lifetime"`
-}
-
-// GetVpnIpsecTunnelEspInput is an input type that accepts GetVpnIpsecTunnelEspArgs and GetVpnIpsecTunnelEspOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelEspInput` via:
-//
-//	GetVpnIpsecTunnelEspArgs{...}
-type GetVpnIpsecTunnelEspInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelEspOutput() GetVpnIpsecTunnelEspOutput
-	ToGetVpnIpsecTunnelEspOutputWithContext(context.Context) GetVpnIpsecTunnelEspOutput
-}
-
-type GetVpnIpsecTunnelEspArgs struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
-	DiffieHellmanGroup pulumi.StringInput `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
-	EncryptionAlgorithm pulumi.StringInput `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
-	IntegrityAlgorithm pulumi.StringInput `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
-	Lifetime pulumi.IntInput `pulumi:"lifetime"`
-}
-
-func (GetVpnIpsecTunnelEspArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelEsp)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelEspArgs) ToGetVpnIpsecTunnelEspOutput() GetVpnIpsecTunnelEspOutput {
-	return i.ToGetVpnIpsecTunnelEspOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelEspArgs) ToGetVpnIpsecTunnelEspOutputWithContext(ctx context.Context) GetVpnIpsecTunnelEspOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelEspOutput)
-}
-
-// GetVpnIpsecTunnelEspArrayInput is an input type that accepts GetVpnIpsecTunnelEspArray and GetVpnIpsecTunnelEspArrayOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelEspArrayInput` via:
-//
-//	GetVpnIpsecTunnelEspArray{ GetVpnIpsecTunnelEspArgs{...} }
-type GetVpnIpsecTunnelEspArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelEspArrayOutput() GetVpnIpsecTunnelEspArrayOutput
-	ToGetVpnIpsecTunnelEspArrayOutputWithContext(context.Context) GetVpnIpsecTunnelEspArrayOutput
-}
-
-type GetVpnIpsecTunnelEspArray []GetVpnIpsecTunnelEspInput
-
-func (GetVpnIpsecTunnelEspArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelEsp)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelEspArray) ToGetVpnIpsecTunnelEspArrayOutput() GetVpnIpsecTunnelEspArrayOutput {
-	return i.ToGetVpnIpsecTunnelEspArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelEspArray) ToGetVpnIpsecTunnelEspArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelEspArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelEspArrayOutput)
-}
-
-type GetVpnIpsecTunnelEspOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelEspOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelEsp)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelEspOutput) ToGetVpnIpsecTunnelEspOutput() GetVpnIpsecTunnelEspOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelEspOutput) ToGetVpnIpsecTunnelEspOutputWithContext(ctx context.Context) GetVpnIpsecTunnelEspOutput {
-	return o
-}
-
-// The Diffie-Hellman Group to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelEspOutput) DiffieHellmanGroup() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelEsp) string { return v.DiffieHellmanGroup }).(pulumi.StringOutput)
-}
-
-// The encryption algorithm to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelEspOutput) EncryptionAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelEsp) string { return v.EncryptionAlgorithm }).(pulumi.StringOutput)
-}
-
-// The integrity algorithm to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelEspOutput) IntegrityAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelEsp) string { return v.IntegrityAlgorithm }).(pulumi.StringOutput)
-}
-
-// The phase lifetime in seconds.
-func (o GetVpnIpsecTunnelEspOutput) Lifetime() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelEsp) int { return v.Lifetime }).(pulumi.IntOutput)
-}
-
-type GetVpnIpsecTunnelEspArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelEspArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelEsp)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelEspArrayOutput) ToGetVpnIpsecTunnelEspArrayOutput() GetVpnIpsecTunnelEspArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelEspArrayOutput) ToGetVpnIpsecTunnelEspArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelEspArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelEspArrayOutput) Index(i pulumi.IntInput) GetVpnIpsecTunnelEspOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnIpsecTunnelEsp {
-		return vs[0].([]GetVpnIpsecTunnelEsp)[vs[1].(int)]
-	}).(GetVpnIpsecTunnelEspOutput)
-}
-
-type GetVpnIpsecTunnelIke struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
-	DiffieHellmanGroup string `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
-	EncryptionAlgorithm string `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
-	IntegrityAlgorithm string `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
-	Lifetime int `pulumi:"lifetime"`
-}
-
-// GetVpnIpsecTunnelIkeInput is an input type that accepts GetVpnIpsecTunnelIkeArgs and GetVpnIpsecTunnelIkeOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelIkeInput` via:
-//
-//	GetVpnIpsecTunnelIkeArgs{...}
-type GetVpnIpsecTunnelIkeInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelIkeOutput() GetVpnIpsecTunnelIkeOutput
-	ToGetVpnIpsecTunnelIkeOutputWithContext(context.Context) GetVpnIpsecTunnelIkeOutput
-}
-
-type GetVpnIpsecTunnelIkeArgs struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
-	DiffieHellmanGroup pulumi.StringInput `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
-	EncryptionAlgorithm pulumi.StringInput `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
-	IntegrityAlgorithm pulumi.StringInput `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
-	Lifetime pulumi.IntInput `pulumi:"lifetime"`
-}
-
-func (GetVpnIpsecTunnelIkeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelIke)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelIkeArgs) ToGetVpnIpsecTunnelIkeOutput() GetVpnIpsecTunnelIkeOutput {
-	return i.ToGetVpnIpsecTunnelIkeOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelIkeArgs) ToGetVpnIpsecTunnelIkeOutputWithContext(ctx context.Context) GetVpnIpsecTunnelIkeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelIkeOutput)
-}
-
-// GetVpnIpsecTunnelIkeArrayInput is an input type that accepts GetVpnIpsecTunnelIkeArray and GetVpnIpsecTunnelIkeArrayOutput values.
-// You can construct a concrete instance of `GetVpnIpsecTunnelIkeArrayInput` via:
-//
-//	GetVpnIpsecTunnelIkeArray{ GetVpnIpsecTunnelIkeArgs{...} }
-type GetVpnIpsecTunnelIkeArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnIpsecTunnelIkeArrayOutput() GetVpnIpsecTunnelIkeArrayOutput
-	ToGetVpnIpsecTunnelIkeArrayOutputWithContext(context.Context) GetVpnIpsecTunnelIkeArrayOutput
-}
-
-type GetVpnIpsecTunnelIkeArray []GetVpnIpsecTunnelIkeInput
-
-func (GetVpnIpsecTunnelIkeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelIke)(nil)).Elem()
-}
-
-func (i GetVpnIpsecTunnelIkeArray) ToGetVpnIpsecTunnelIkeArrayOutput() GetVpnIpsecTunnelIkeArrayOutput {
-	return i.ToGetVpnIpsecTunnelIkeArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnIpsecTunnelIkeArray) ToGetVpnIpsecTunnelIkeArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelIkeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnIpsecTunnelIkeArrayOutput)
-}
-
-type GetVpnIpsecTunnelIkeOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelIkeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnIpsecTunnelIke)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelIkeOutput) ToGetVpnIpsecTunnelIkeOutput() GetVpnIpsecTunnelIkeOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelIkeOutput) ToGetVpnIpsecTunnelIkeOutputWithContext(ctx context.Context) GetVpnIpsecTunnelIkeOutput {
-	return o
-}
-
-// The Diffie-Hellman Group to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelIkeOutput) DiffieHellmanGroup() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelIke) string { return v.DiffieHellmanGroup }).(pulumi.StringOutput)
-}
-
-// The encryption algorithm to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelIkeOutput) EncryptionAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelIke) string { return v.EncryptionAlgorithm }).(pulumi.StringOutput)
-}
-
-// The integrity algorithm to use for IPSec Encryption.
-func (o GetVpnIpsecTunnelIkeOutput) IntegrityAlgorithm() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelIke) string { return v.IntegrityAlgorithm }).(pulumi.StringOutput)
-}
-
-// The phase lifetime in seconds.
-func (o GetVpnIpsecTunnelIkeOutput) Lifetime() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVpnIpsecTunnelIke) int { return v.Lifetime }).(pulumi.IntOutput)
-}
-
-type GetVpnIpsecTunnelIkeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnIpsecTunnelIkeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnIpsecTunnelIke)(nil)).Elem()
-}
-
-func (o GetVpnIpsecTunnelIkeArrayOutput) ToGetVpnIpsecTunnelIkeArrayOutput() GetVpnIpsecTunnelIkeArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelIkeArrayOutput) ToGetVpnIpsecTunnelIkeArrayOutputWithContext(ctx context.Context) GetVpnIpsecTunnelIkeArrayOutput {
-	return o
-}
-
-func (o GetVpnIpsecTunnelIkeArrayOutput) Index(i pulumi.IntInput) GetVpnIpsecTunnelIkeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnIpsecTunnelIke {
-		return vs[0].([]GetVpnIpsecTunnelIke)[vs[1].(int)]
-	}).(GetVpnIpsecTunnelIkeOutput)
-}
-
-type GetVpnWireguardGatewayConnection struct {
-	// The ID of the datacenter where the WireGuard Gateway is located.
-	DatacenterId string `pulumi:"datacenterId"`
-	// The IPv4 CIDR for the WireGuard Gateway connection.
-	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// The IPv6 CIDR for the WireGuard Gateway connection.
-	Ipv6Cidr string `pulumi:"ipv6Cidr"`
-	// The ID of the LAN where the WireGuard Gateway is connected.
-	LanId string `pulumi:"lanId"`
-}
-
-// GetVpnWireguardGatewayConnectionInput is an input type that accepts GetVpnWireguardGatewayConnectionArgs and GetVpnWireguardGatewayConnectionOutput values.
-// You can construct a concrete instance of `GetVpnWireguardGatewayConnectionInput` via:
-//
-//	GetVpnWireguardGatewayConnectionArgs{...}
-type GetVpnWireguardGatewayConnectionInput interface {
-	pulumi.Input
-
-	ToGetVpnWireguardGatewayConnectionOutput() GetVpnWireguardGatewayConnectionOutput
-	ToGetVpnWireguardGatewayConnectionOutputWithContext(context.Context) GetVpnWireguardGatewayConnectionOutput
-}
-
-type GetVpnWireguardGatewayConnectionArgs struct {
-	// The ID of the datacenter where the WireGuard Gateway is located.
-	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IPv4 CIDR for the WireGuard Gateway connection.
-	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// The IPv6 CIDR for the WireGuard Gateway connection.
-	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
-	// The ID of the LAN where the WireGuard Gateway is connected.
-	LanId pulumi.StringInput `pulumi:"lanId"`
-}
-
-func (GetVpnWireguardGatewayConnectionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnWireguardGatewayConnection)(nil)).Elem()
-}
-
-func (i GetVpnWireguardGatewayConnectionArgs) ToGetVpnWireguardGatewayConnectionOutput() GetVpnWireguardGatewayConnectionOutput {
-	return i.ToGetVpnWireguardGatewayConnectionOutputWithContext(context.Background())
-}
-
-func (i GetVpnWireguardGatewayConnectionArgs) ToGetVpnWireguardGatewayConnectionOutputWithContext(ctx context.Context) GetVpnWireguardGatewayConnectionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnWireguardGatewayConnectionOutput)
-}
-
-// GetVpnWireguardGatewayConnectionArrayInput is an input type that accepts GetVpnWireguardGatewayConnectionArray and GetVpnWireguardGatewayConnectionArrayOutput values.
-// You can construct a concrete instance of `GetVpnWireguardGatewayConnectionArrayInput` via:
-//
-//	GetVpnWireguardGatewayConnectionArray{ GetVpnWireguardGatewayConnectionArgs{...} }
-type GetVpnWireguardGatewayConnectionArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnWireguardGatewayConnectionArrayOutput() GetVpnWireguardGatewayConnectionArrayOutput
-	ToGetVpnWireguardGatewayConnectionArrayOutputWithContext(context.Context) GetVpnWireguardGatewayConnectionArrayOutput
-}
-
-type GetVpnWireguardGatewayConnectionArray []GetVpnWireguardGatewayConnectionInput
-
-func (GetVpnWireguardGatewayConnectionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnWireguardGatewayConnection)(nil)).Elem()
-}
-
-func (i GetVpnWireguardGatewayConnectionArray) ToGetVpnWireguardGatewayConnectionArrayOutput() GetVpnWireguardGatewayConnectionArrayOutput {
-	return i.ToGetVpnWireguardGatewayConnectionArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnWireguardGatewayConnectionArray) ToGetVpnWireguardGatewayConnectionArrayOutputWithContext(ctx context.Context) GetVpnWireguardGatewayConnectionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnWireguardGatewayConnectionArrayOutput)
-}
-
-type GetVpnWireguardGatewayConnectionOutput struct{ *pulumi.OutputState }
-
-func (GetVpnWireguardGatewayConnectionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnWireguardGatewayConnection)(nil)).Elem()
-}
-
-func (o GetVpnWireguardGatewayConnectionOutput) ToGetVpnWireguardGatewayConnectionOutput() GetVpnWireguardGatewayConnectionOutput {
-	return o
-}
-
-func (o GetVpnWireguardGatewayConnectionOutput) ToGetVpnWireguardGatewayConnectionOutputWithContext(ctx context.Context) GetVpnWireguardGatewayConnectionOutput {
-	return o
-}
-
-// The ID of the datacenter where the WireGuard Gateway is located.
-func (o GetVpnWireguardGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnWireguardGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
-}
-
-// The IPv4 CIDR for the WireGuard Gateway connection.
-func (o GetVpnWireguardGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnWireguardGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
-}
-
-// The IPv6 CIDR for the WireGuard Gateway connection.
-func (o GetVpnWireguardGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnWireguardGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
-}
-
-// The ID of the LAN where the WireGuard Gateway is connected.
-func (o GetVpnWireguardGatewayConnectionOutput) LanId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnWireguardGatewayConnection) string { return v.LanId }).(pulumi.StringOutput)
-}
-
-type GetVpnWireguardGatewayConnectionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnWireguardGatewayConnectionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnWireguardGatewayConnection)(nil)).Elem()
-}
-
-func (o GetVpnWireguardGatewayConnectionArrayOutput) ToGetVpnWireguardGatewayConnectionArrayOutput() GetVpnWireguardGatewayConnectionArrayOutput {
-	return o
-}
-
-func (o GetVpnWireguardGatewayConnectionArrayOutput) ToGetVpnWireguardGatewayConnectionArrayOutputWithContext(ctx context.Context) GetVpnWireguardGatewayConnectionArrayOutput {
-	return o
-}
-
-func (o GetVpnWireguardGatewayConnectionArrayOutput) Index(i pulumi.IntInput) GetVpnWireguardGatewayConnectionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnWireguardGatewayConnection {
-		return vs[0].([]GetVpnWireguardGatewayConnection)[vs[1].(int)]
-	}).(GetVpnWireguardGatewayConnectionOutput)
-}
-
-type GetVpnWireguardPeerEndpoint struct {
-	// Hostname or IPV4 address that the WireGuard Server will connect to.
-	Host string `pulumi:"host"`
-	// Port that the WireGuard Server will connect to. Default: 51820
-	Port int `pulumi:"port"`
-}
-
-// GetVpnWireguardPeerEndpointInput is an input type that accepts GetVpnWireguardPeerEndpointArgs and GetVpnWireguardPeerEndpointOutput values.
-// You can construct a concrete instance of `GetVpnWireguardPeerEndpointInput` via:
-//
-//	GetVpnWireguardPeerEndpointArgs{...}
-type GetVpnWireguardPeerEndpointInput interface {
-	pulumi.Input
-
-	ToGetVpnWireguardPeerEndpointOutput() GetVpnWireguardPeerEndpointOutput
-	ToGetVpnWireguardPeerEndpointOutputWithContext(context.Context) GetVpnWireguardPeerEndpointOutput
-}
-
-type GetVpnWireguardPeerEndpointArgs struct {
-	// Hostname or IPV4 address that the WireGuard Server will connect to.
-	Host pulumi.StringInput `pulumi:"host"`
-	// Port that the WireGuard Server will connect to. Default: 51820
-	Port pulumi.IntInput `pulumi:"port"`
-}
-
-func (GetVpnWireguardPeerEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnWireguardPeerEndpoint)(nil)).Elem()
-}
-
-func (i GetVpnWireguardPeerEndpointArgs) ToGetVpnWireguardPeerEndpointOutput() GetVpnWireguardPeerEndpointOutput {
-	return i.ToGetVpnWireguardPeerEndpointOutputWithContext(context.Background())
-}
-
-func (i GetVpnWireguardPeerEndpointArgs) ToGetVpnWireguardPeerEndpointOutputWithContext(ctx context.Context) GetVpnWireguardPeerEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnWireguardPeerEndpointOutput)
-}
-
-// GetVpnWireguardPeerEndpointArrayInput is an input type that accepts GetVpnWireguardPeerEndpointArray and GetVpnWireguardPeerEndpointArrayOutput values.
-// You can construct a concrete instance of `GetVpnWireguardPeerEndpointArrayInput` via:
-//
-//	GetVpnWireguardPeerEndpointArray{ GetVpnWireguardPeerEndpointArgs{...} }
-type GetVpnWireguardPeerEndpointArrayInput interface {
-	pulumi.Input
-
-	ToGetVpnWireguardPeerEndpointArrayOutput() GetVpnWireguardPeerEndpointArrayOutput
-	ToGetVpnWireguardPeerEndpointArrayOutputWithContext(context.Context) GetVpnWireguardPeerEndpointArrayOutput
-}
-
-type GetVpnWireguardPeerEndpointArray []GetVpnWireguardPeerEndpointInput
-
-func (GetVpnWireguardPeerEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnWireguardPeerEndpoint)(nil)).Elem()
-}
-
-func (i GetVpnWireguardPeerEndpointArray) ToGetVpnWireguardPeerEndpointArrayOutput() GetVpnWireguardPeerEndpointArrayOutput {
-	return i.ToGetVpnWireguardPeerEndpointArrayOutputWithContext(context.Background())
-}
-
-func (i GetVpnWireguardPeerEndpointArray) ToGetVpnWireguardPeerEndpointArrayOutputWithContext(ctx context.Context) GetVpnWireguardPeerEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetVpnWireguardPeerEndpointArrayOutput)
-}
-
-type GetVpnWireguardPeerEndpointOutput struct{ *pulumi.OutputState }
-
-func (GetVpnWireguardPeerEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetVpnWireguardPeerEndpoint)(nil)).Elem()
-}
-
-func (o GetVpnWireguardPeerEndpointOutput) ToGetVpnWireguardPeerEndpointOutput() GetVpnWireguardPeerEndpointOutput {
-	return o
-}
-
-func (o GetVpnWireguardPeerEndpointOutput) ToGetVpnWireguardPeerEndpointOutputWithContext(ctx context.Context) GetVpnWireguardPeerEndpointOutput {
-	return o
-}
-
-// Hostname or IPV4 address that the WireGuard Server will connect to.
-func (o GetVpnWireguardPeerEndpointOutput) Host() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpnWireguardPeerEndpoint) string { return v.Host }).(pulumi.StringOutput)
-}
-
-// Port that the WireGuard Server will connect to. Default: 51820
-func (o GetVpnWireguardPeerEndpointOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v GetVpnWireguardPeerEndpoint) int { return v.Port }).(pulumi.IntOutput)
-}
-
-type GetVpnWireguardPeerEndpointArrayOutput struct{ *pulumi.OutputState }
-
-func (GetVpnWireguardPeerEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetVpnWireguardPeerEndpoint)(nil)).Elem()
-}
-
-func (o GetVpnWireguardPeerEndpointArrayOutput) ToGetVpnWireguardPeerEndpointArrayOutput() GetVpnWireguardPeerEndpointArrayOutput {
-	return o
-}
-
-func (o GetVpnWireguardPeerEndpointArrayOutput) ToGetVpnWireguardPeerEndpointArrayOutputWithContext(ctx context.Context) GetVpnWireguardPeerEndpointArrayOutput {
-	return o
-}
-
-func (o GetVpnWireguardPeerEndpointArrayOutput) Index(i pulumi.IntInput) GetVpnWireguardPeerEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpnWireguardPeerEndpoint {
-		return vs[0].([]GetVpnWireguardPeerEndpoint)[vs[1].(int)]
-	}).(GetVpnWireguardPeerEndpointOutput)
 }
 
 func init() {
@@ -19582,14 +8251,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApigatewayCustomDomainArrayInput)(nil)).Elem(), GetApigatewayCustomDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApigatewayRouteUpstreamInput)(nil)).Elem(), GetApigatewayRouteUpstreamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApigatewayRouteUpstreamArrayInput)(nil)).Elem(), GetApigatewayRouteUpstreamArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerFlowlogInput)(nil)).Elem(), GetApplicationLoadbalancerFlowlogArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerFlowlogArrayInput)(nil)).Elem(), GetApplicationLoadbalancerFlowlogArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleInput)(nil)).Elem(), GetApplicationLoadbalancerForwardingruleHttpRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleArrayInput)(nil)).Elem(), GetApplicationLoadbalancerForwardingruleHttpRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleConditionInput)(nil)).Elem(), GetApplicationLoadbalancerForwardingruleHttpRuleConditionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayInput)(nil)).Elem(), GetApplicationLoadbalancerForwardingruleHttpRuleConditionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBindingInput)(nil)).Elem(), GetAutoCertificateProviderExternalAccountBindingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBindingArrayInput)(nil)).Elem(), GetAutoCertificateProviderExternalAccountBindingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupPolicyInput)(nil)).Elem(), GetAutoscalingGroupPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupPolicyArrayInput)(nil)).Elem(), GetAutoscalingGroupPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupPolicyScaleInActionInput)(nil)).Elem(), GetAutoscalingGroupPolicyScaleInActionArgs{})
@@ -19610,80 +8271,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupReplicaConfigurationVolumeArrayInput)(nil)).Elem(), GetAutoscalingGroupReplicaConfigurationVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupServersServerInput)(nil)).Elem(), GetAutoscalingGroupServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoscalingGroupServersServerArrayInput)(nil)).Elem(), GetAutoscalingGroupServersServerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleInput)(nil)).Elem(), GetCdnDistributionRoutingRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleArrayInput)(nil)).Elem(), GetCdnDistributionRoutingRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamInput)(nil)).Elem(), GetCdnDistributionRoutingRuleUpstreamArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamArrayInput)(nil)).Elem(), GetCdnDistributionRoutingRuleUpstreamArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamGeoRestrictionInput)(nil)).Elem(), GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayInput)(nil)).Elem(), GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryFeatureInput)(nil)).Elem(), GetContainerRegistryFeatureArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryFeatureArrayInput)(nil)).Elem(), GetContainerRegistryFeatureArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryGarbageCollectionScheduleInput)(nil)).Elem(), GetContainerRegistryGarbageCollectionScheduleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryGarbageCollectionScheduleArrayInput)(nil)).Elem(), GetContainerRegistryGarbageCollectionScheduleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryMaintenanceWindowInput)(nil)).Elem(), GetContainerRegistryMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryMaintenanceWindowArrayInput)(nil)).Elem(), GetContainerRegistryMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryStorageUsageInput)(nil)).Elem(), GetContainerRegistryStorageUsageArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryStorageUsageArrayInput)(nil)).Elem(), GetContainerRegistryStorageUsageArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryTokenCredentialInput)(nil)).Elem(), GetContainerRegistryTokenCredentialArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryTokenCredentialArrayInput)(nil)).Elem(), GetContainerRegistryTokenCredentialArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryTokenScopeInput)(nil)).Elem(), GetContainerRegistryTokenScopeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryTokenScopeArrayInput)(nil)).Elem(), GetContainerRegistryTokenScopeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerCdromInput)(nil)).Elem(), GetCubeServerCdromArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerCdromArrayInput)(nil)).Elem(), GetCubeServerCdromArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerNicInput)(nil)).Elem(), GetCubeServerNicArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerNicArrayInput)(nil)).Elem(), GetCubeServerNicArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerNicFirewallRuleInput)(nil)).Elem(), GetCubeServerNicFirewallRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerNicFirewallRuleArrayInput)(nil)).Elem(), GetCubeServerNicFirewallRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerVolumeInput)(nil)).Elem(), GetCubeServerVolumeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetCubeServerVolumeArrayInput)(nil)).Elem(), GetCubeServerVolumeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacenterCpuArchitectureInput)(nil)).Elem(), GetDatacenterCpuArchitectureArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDatacenterCpuArchitectureArrayInput)(nil)).Elem(), GetDatacenterCpuArchitectureArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigInput)(nil)).Elem(), GetDataplatformClusterConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigArrayInput)(nil)).Elem(), GetDataplatformClusterConfigArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigClusterInput)(nil)).Elem(), GetDataplatformClusterConfigClusterArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigClusterArrayInput)(nil)).Elem(), GetDataplatformClusterConfigClusterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigContextInput)(nil)).Elem(), GetDataplatformClusterConfigContextArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigContextArrayInput)(nil)).Elem(), GetDataplatformClusterConfigContextArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigUserInput)(nil)).Elem(), GetDataplatformClusterConfigUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterConfigUserArrayInput)(nil)).Elem(), GetDataplatformClusterConfigUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterLanInput)(nil)).Elem(), GetDataplatformClusterLanArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterLanArrayInput)(nil)).Elem(), GetDataplatformClusterLanArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterLanRouteInput)(nil)).Elem(), GetDataplatformClusterLanRouteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterLanRouteArrayInput)(nil)).Elem(), GetDataplatformClusterLanRouteArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterMaintenanceWindowInput)(nil)).Elem(), GetDataplatformClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetDataplatformClusterMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolMaintenanceWindowInput)(nil)).Elem(), GetDataplatformNodePoolMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetDataplatformNodePoolMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolsNodePoolInput)(nil)).Elem(), GetDataplatformNodePoolsNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolsNodePoolArrayInput)(nil)).Elem(), GetDataplatformNodePoolsNodePoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolsNodePoolMaintenanceWindowInput)(nil)).Elem(), GetDataplatformNodePoolsNodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataplatformNodePoolsNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetDataplatformNodePoolsNodePoolMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUserInput)(nil)).Elem(), GetGroupUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupUserArrayInput)(nil)).Elem(), GetGroupUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetConnectionInput)(nil)).Elem(), GetInmemorydbReplicasetConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetConnectionArrayInput)(nil)).Elem(), GetInmemorydbReplicasetConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetCredentialInput)(nil)).Elem(), GetInmemorydbReplicasetCredentialArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetCredentialArrayInput)(nil)).Elem(), GetInmemorydbReplicasetCredentialArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetMaintenanceWindowInput)(nil)).Elem(), GetInmemorydbReplicasetMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetMaintenanceWindowArrayInput)(nil)).Elem(), GetInmemorydbReplicasetMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetResourceInput)(nil)).Elem(), GetInmemorydbReplicasetResourceArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbReplicasetResourceArrayInput)(nil)).Elem(), GetInmemorydbReplicasetResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataArrayInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetIpblockIpConsumerInput)(nil)).Elem(), GetIpblockIpConsumerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetIpblockIpConsumerArrayInput)(nil)).Elem(), GetIpblockIpConsumerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigInput)(nil)).Elem(), GetK8sClusterConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigArrayInput)(nil)).Elem(), GetK8sClusterConfigArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigClusterInput)(nil)).Elem(), GetK8sClusterConfigClusterArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigClusterArrayInput)(nil)).Elem(), GetK8sClusterConfigClusterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigContextInput)(nil)).Elem(), GetK8sClusterConfigContextArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigContextArrayInput)(nil)).Elem(), GetK8sClusterConfigContextArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigUserInput)(nil)).Elem(), GetK8sClusterConfigUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterConfigUserArrayInput)(nil)).Elem(), GetK8sClusterConfigUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterMaintenanceWindowInput)(nil)).Elem(), GetK8sClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetK8sClusterMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterS3BucketInput)(nil)).Elem(), GetK8sClusterS3BucketArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterS3BucketArrayInput)(nil)).Elem(), GetK8sClusterS3BucketArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersClusterInput)(nil)).Elem(), GetK8sClustersClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersClusterArrayInput)(nil)).Elem(), GetK8sClustersClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersClusterConfigInput)(nil)).Elem(), GetK8sClustersClusterConfigArgs{})
@@ -19700,94 +8293,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersClusterS3BucketArrayInput)(nil)).Elem(), GetK8sClustersClusterS3BucketArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersFilterInput)(nil)).Elem(), GetK8sClustersFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClustersFilterArrayInput)(nil)).Elem(), GetK8sClustersFilterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolAutoScalingInput)(nil)).Elem(), GetK8sNodePoolAutoScalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolAutoScalingArrayInput)(nil)).Elem(), GetK8sNodePoolAutoScalingArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolLanInput)(nil)).Elem(), GetK8sNodePoolLanArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolLanArrayInput)(nil)).Elem(), GetK8sNodePoolLanArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolLanRouteInput)(nil)).Elem(), GetK8sNodePoolLanRouteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolLanRouteArrayInput)(nil)).Elem(), GetK8sNodePoolLanRouteArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolMaintenanceWindowInput)(nil)).Elem(), GetK8sNodePoolMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetK8sNodePoolMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolNodesNodeInput)(nil)).Elem(), GetK8sNodePoolNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sNodePoolNodesNodeArrayInput)(nil)).Elem(), GetK8sNodePoolNodesNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterConnectionInput)(nil)).Elem(), GetKafkaClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterConnectionArrayInput)(nil)).Elem(), GetKafkaClusterConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLanIpFailoverInput)(nil)).Elem(), GetLanIpFailoverArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLanIpFailoverArrayInput)(nil)).Elem(), GetLanIpFailoverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLocationCpuArchitectureInput)(nil)).Elem(), GetLocationCpuArchitectureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLocationCpuArchitectureArrayInput)(nil)).Elem(), GetLocationCpuArchitectureArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLoggingPipelineLogInput)(nil)).Elem(), GetLoggingPipelineLogArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLoggingPipelineLogArrayInput)(nil)).Elem(), GetLoggingPipelineLogArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLoggingPipelineLogDestinationInput)(nil)).Elem(), GetLoggingPipelineLogDestinationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetLoggingPipelineLogDestinationArrayInput)(nil)).Elem(), GetLoggingPipelineLogDestinationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbBackupsBackupInput)(nil)).Elem(), GetMariadbBackupsBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbBackupsBackupArrayInput)(nil)).Elem(), GetMariadbBackupsBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbBackupsBackupBaseBackupInput)(nil)).Elem(), GetMariadbBackupsBackupBaseBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbBackupsBackupBaseBackupArrayInput)(nil)).Elem(), GetMariadbBackupsBackupBaseBackupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbClusterConnectionInput)(nil)).Elem(), GetMariadbClusterConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbClusterConnectionArrayInput)(nil)).Elem(), GetMariadbClusterConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbClusterMaintenanceWindowInput)(nil)).Elem(), GetMariadbClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMariadbClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMariadbClusterMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupInput)(nil)).Elem(), GetMongoClusterBackupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupArrayInput)(nil)).Elem(), GetMongoClusterBackupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBiConnectorInput)(nil)).Elem(), GetMongoClusterBiConnectorArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBiConnectorArrayInput)(nil)).Elem(), GetMongoClusterBiConnectorArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterConnectionInput)(nil)).Elem(), GetMongoClusterConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterConnectionArrayInput)(nil)).Elem(), GetMongoClusterConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleInput)(nil)).Elem(), GetMongoUserRoleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleArrayInput)(nil)).Elem(), GetMongoUserRoleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNatgatewayLanInput)(nil)).Elem(), GetNatgatewayLanArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNatgatewayLanArrayInput)(nil)).Elem(), GetNatgatewayLanArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNatgatewayRuleTargetPortRangeInput)(nil)).Elem(), GetNatgatewayRuleTargetPortRangeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNatgatewayRuleTargetPortRangeArrayInput)(nil)).Elem(), GetNatgatewayRuleTargetPortRangeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerFlowlogInput)(nil)).Elem(), GetNetworkloadbalancerFlowlogArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerFlowlogArrayInput)(nil)).Elem(), GetNetworkloadbalancerFlowlogArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleHealthCheckInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleHealthCheckArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleHealthCheckArrayInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleHealthCheckArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleTargetArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetArrayInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleTargetArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetHealthCheckInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleTargetHealthCheckArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayInput)(nil)).Elem(), GetNetworkloadbalancerForwardingruleTargetHealthCheckArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsClusterConnectionInput)(nil)).Elem(), GetNfsClusterConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsClusterConnectionArrayInput)(nil)).Elem(), GetNfsClusterConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsClusterNfInput)(nil)).Elem(), GetNfsClusterNfArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsClusterNfArrayInput)(nil)).Elem(), GetNfsClusterNfArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsShareClientGroupInput)(nil)).Elem(), GetNfsShareClientGroupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsShareClientGroupArrayInput)(nil)).Elem(), GetNfsShareClientGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsShareClientGroupNfInput)(nil)).Elem(), GetNfsShareClientGroupNfArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNfsShareClientGroupNfArrayInput)(nil)).Elem(), GetNfsShareClientGroupNfArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNicFlowlogInput)(nil)).Elem(), GetNicFlowlogArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetNicFlowlogArrayInput)(nil)).Elem(), GetNicFlowlogArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgBackupsClusterBackupInput)(nil)).Elem(), GetPgBackupsClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgBackupsClusterBackupArrayInput)(nil)).Elem(), GetPgBackupsClusterBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgBackupsClusterBackupMetadataInput)(nil)).Elem(), GetPgBackupsClusterBackupMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgBackupsClusterBackupMetadataArrayInput)(nil)).Elem(), GetPgBackupsClusterBackupMetadataArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterConnectionInput)(nil)).Elem(), GetPgClusterConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterConnectionArrayInput)(nil)).Elem(), GetPgClusterConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterConnectionPoolerInput)(nil)).Elem(), GetPgClusterConnectionPoolerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterConnectionPoolerArrayInput)(nil)).Elem(), GetPgClusterConnectionPoolerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterFromBackupInput)(nil)).Elem(), GetPgClusterFromBackupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterFromBackupArrayInput)(nil)).Elem(), GetPgClusterFromBackupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterMaintenanceWindowInput)(nil)).Elem(), GetPgClusterMaintenanceWindowArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPgClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetPgClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgDatabasesDatabaseInput)(nil)).Elem(), GetPgDatabasesDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPgDatabasesDatabaseArrayInput)(nil)).Elem(), GetPgDatabasesDatabaseArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateCrossconnectConnectableDatacenterInput)(nil)).Elem(), GetPrivateCrossconnectConnectableDatacenterArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateCrossconnectConnectableDatacenterArrayInput)(nil)).Elem(), GetPrivateCrossconnectConnectableDatacenterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateCrossconnectPeerInput)(nil)).Elem(), GetPrivateCrossconnectPeerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateCrossconnectPeerArrayInput)(nil)).Elem(), GetPrivateCrossconnectPeerArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerCdromInput)(nil)).Elem(), GetServerCdromArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerCdromArrayInput)(nil)).Elem(), GetServerCdromArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerLabelInput)(nil)).Elem(), GetServerLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerLabelArrayInput)(nil)).Elem(), GetServerLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNicInput)(nil)).Elem(), GetServerNicArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNicArrayInput)(nil)).Elem(), GetServerNicArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNicFirewallRuleInput)(nil)).Elem(), GetServerNicFirewallRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNicFirewallRuleArrayInput)(nil)).Elem(), GetServerNicFirewallRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerVolumeInput)(nil)).Elem(), GetServerVolumeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetServerVolumeArrayInput)(nil)).Elem(), GetServerVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersFilterInput)(nil)).Elem(), GetServersFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersFilterArrayInput)(nil)).Elem(), GetServersFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerInput)(nil)).Elem(), GetServersServerArgs{})
@@ -19808,30 +8329,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupHttpHealthCheckArrayInput)(nil)).Elem(), GetTargetGroupHttpHealthCheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupTargetInput)(nil)).Elem(), GetTargetGroupTargetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupTargetArrayInput)(nil)).Elem(), GetTargetGroupTargetArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupInput)(nil)).Elem(), GetUserGroupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupArrayInput)(nil)).Elem(), GetUserGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerCdromInput)(nil)).Elem(), GetVcpuServerCdromArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerCdromArrayInput)(nil)).Elem(), GetVcpuServerCdromArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerLabelInput)(nil)).Elem(), GetVcpuServerLabelArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerLabelArrayInput)(nil)).Elem(), GetVcpuServerLabelArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerNicInput)(nil)).Elem(), GetVcpuServerNicArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerNicArrayInput)(nil)).Elem(), GetVcpuServerNicArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerNicFirewallRuleInput)(nil)).Elem(), GetVcpuServerNicFirewallRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerNicFirewallRuleArrayInput)(nil)).Elem(), GetVcpuServerNicFirewallRuleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerVolumeInput)(nil)).Elem(), GetVcpuServerVolumeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVcpuServerVolumeArrayInput)(nil)).Elem(), GetVcpuServerVolumeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecGatewayConnectionInput)(nil)).Elem(), GetVpnIpsecGatewayConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecGatewayConnectionArrayInput)(nil)).Elem(), GetVpnIpsecGatewayConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelAuthInput)(nil)).Elem(), GetVpnIpsecTunnelAuthArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelAuthArrayInput)(nil)).Elem(), GetVpnIpsecTunnelAuthArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelEspInput)(nil)).Elem(), GetVpnIpsecTunnelEspArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelEspArrayInput)(nil)).Elem(), GetVpnIpsecTunnelEspArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelIkeInput)(nil)).Elem(), GetVpnIpsecTunnelIkeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnIpsecTunnelIkeArrayInput)(nil)).Elem(), GetVpnIpsecTunnelIkeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnWireguardGatewayConnectionInput)(nil)).Elem(), GetVpnWireguardGatewayConnectionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnWireguardGatewayConnectionArrayInput)(nil)).Elem(), GetVpnWireguardGatewayConnectionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnWireguardPeerEndpointInput)(nil)).Elem(), GetVpnWireguardPeerEndpointArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetVpnWireguardPeerEndpointArrayInput)(nil)).Elem(), GetVpnWireguardPeerEndpointArray{})
 	pulumi.RegisterOutputType(ApigatewayCustomDomainOutput{})
 	pulumi.RegisterOutputType(ApigatewayCustomDomainArrayOutput{})
 	pulumi.RegisterOutputType(ApigatewayRouteUpstreamOutput{})
@@ -19866,14 +8363,6 @@ func init() {
 	pulumi.RegisterOutputType(GetApigatewayCustomDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetApigatewayRouteUpstreamOutput{})
 	pulumi.RegisterOutputType(GetApigatewayRouteUpstreamArrayOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerFlowlogOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerFlowlogArrayOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerForwardingruleHttpRuleOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerForwardingruleHttpRuleConditionOutput{})
-	pulumi.RegisterOutputType(GetApplicationLoadbalancerForwardingruleHttpRuleConditionArrayOutput{})
-	pulumi.RegisterOutputType(GetAutoCertificateProviderExternalAccountBindingOutput{})
-	pulumi.RegisterOutputType(GetAutoCertificateProviderExternalAccountBindingArrayOutput{})
 	pulumi.RegisterOutputType(GetAutoscalingGroupPolicyOutput{})
 	pulumi.RegisterOutputType(GetAutoscalingGroupPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetAutoscalingGroupPolicyScaleInActionOutput{})
@@ -19894,80 +8383,12 @@ func init() {
 	pulumi.RegisterOutputType(GetAutoscalingGroupReplicaConfigurationVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetAutoscalingGroupServersServerOutput{})
 	pulumi.RegisterOutputType(GetAutoscalingGroupServersServerArrayOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleUpstreamOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleUpstreamArrayOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionOutput{})
-	pulumi.RegisterOutputType(GetCdnDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryFeatureOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryFeatureArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryGarbageCollectionScheduleOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryGarbageCollectionScheduleArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryStorageUsageOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryStorageUsageArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryTokenCredentialOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryTokenCredentialArrayOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryTokenScopeOutput{})
-	pulumi.RegisterOutputType(GetContainerRegistryTokenScopeArrayOutput{})
-	pulumi.RegisterOutputType(GetCubeServerCdromOutput{})
-	pulumi.RegisterOutputType(GetCubeServerCdromArrayOutput{})
-	pulumi.RegisterOutputType(GetCubeServerNicOutput{})
-	pulumi.RegisterOutputType(GetCubeServerNicArrayOutput{})
-	pulumi.RegisterOutputType(GetCubeServerNicFirewallRuleOutput{})
-	pulumi.RegisterOutputType(GetCubeServerNicFirewallRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetCubeServerVolumeOutput{})
-	pulumi.RegisterOutputType(GetCubeServerVolumeArrayOutput{})
-	pulumi.RegisterOutputType(GetDatacenterCpuArchitectureOutput{})
-	pulumi.RegisterOutputType(GetDatacenterCpuArchitectureArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigClusterOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigClusterArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigContextOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigContextArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigUserOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterConfigUserArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterLanOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterLanArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterLanRouteOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterLanRouteArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetDataplatformClusterMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetDataplatformNodePoolMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetDataplatformNodePoolMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetDataplatformNodePoolsNodePoolOutput{})
 	pulumi.RegisterOutputType(GetDataplatformNodePoolsNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(GetDataplatformNodePoolsNodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetDataplatformNodePoolsNodePoolMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetGroupUserOutput{})
-	pulumi.RegisterOutputType(GetGroupUserArrayOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetConnectionOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetCredentialOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetCredentialArrayOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetResourceOutput{})
-	pulumi.RegisterOutputType(GetInmemorydbReplicasetResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataArrayOutput{})
-	pulumi.RegisterOutputType(GetIpblockIpConsumerOutput{})
-	pulumi.RegisterOutputType(GetIpblockIpConsumerArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigClusterOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigClusterArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigContextOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigContextArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigUserOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterConfigUserArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterS3BucketOutput{})
-	pulumi.RegisterOutputType(GetK8sClusterS3BucketArrayOutput{})
 	pulumi.RegisterOutputType(GetK8sClustersClusterOutput{})
 	pulumi.RegisterOutputType(GetK8sClustersClusterArrayOutput{})
 	pulumi.RegisterOutputType(GetK8sClustersClusterConfigOutput{})
@@ -19984,94 +8405,22 @@ func init() {
 	pulumi.RegisterOutputType(GetK8sClustersClusterS3BucketArrayOutput{})
 	pulumi.RegisterOutputType(GetK8sClustersFilterOutput{})
 	pulumi.RegisterOutputType(GetK8sClustersFilterArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolAutoScalingOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolAutoScalingArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolLanOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolLanArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolLanRouteOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolLanRouteArrayOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetK8sNodePoolMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetK8sNodePoolNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetK8sNodePoolNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetKafkaClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetKafkaClusterConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetLanIpFailoverOutput{})
-	pulumi.RegisterOutputType(GetLanIpFailoverArrayOutput{})
 	pulumi.RegisterOutputType(GetLocationCpuArchitectureOutput{})
 	pulumi.RegisterOutputType(GetLocationCpuArchitectureArrayOutput{})
-	pulumi.RegisterOutputType(GetLoggingPipelineLogOutput{})
-	pulumi.RegisterOutputType(GetLoggingPipelineLogArrayOutput{})
-	pulumi.RegisterOutputType(GetLoggingPipelineLogDestinationOutput{})
-	pulumi.RegisterOutputType(GetLoggingPipelineLogDestinationArrayOutput{})
 	pulumi.RegisterOutputType(GetMariadbBackupsBackupOutput{})
 	pulumi.RegisterOutputType(GetMariadbBackupsBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariadbBackupsBackupBaseBackupOutput{})
 	pulumi.RegisterOutputType(GetMariadbBackupsBackupBaseBackupArrayOutput{})
-	pulumi.RegisterOutputType(GetMariadbClusterConnectionOutput{})
-	pulumi.RegisterOutputType(GetMariadbClusterConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetMariadbClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetMariadbClusterMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterBackupOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterBackupArrayOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterBiConnectorOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterBiConnectorArrayOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterConnectionOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowArrayOutput{})
-	pulumi.RegisterOutputType(GetMongoUserRoleOutput{})
-	pulumi.RegisterOutputType(GetMongoUserRoleArrayOutput{})
-	pulumi.RegisterOutputType(GetNatgatewayLanOutput{})
-	pulumi.RegisterOutputType(GetNatgatewayLanArrayOutput{})
-	pulumi.RegisterOutputType(GetNatgatewayRuleTargetPortRangeOutput{})
-	pulumi.RegisterOutputType(GetNatgatewayRuleTargetPortRangeArrayOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerFlowlogOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerFlowlogArrayOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleHealthCheckOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleHealthCheckArrayOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleTargetOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleTargetArrayOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleTargetHealthCheckOutput{})
-	pulumi.RegisterOutputType(GetNetworkloadbalancerForwardingruleTargetHealthCheckArrayOutput{})
-	pulumi.RegisterOutputType(GetNfsClusterConnectionOutput{})
-	pulumi.RegisterOutputType(GetNfsClusterConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetNfsClusterNfOutput{})
-	pulumi.RegisterOutputType(GetNfsClusterNfArrayOutput{})
-	pulumi.RegisterOutputType(GetNfsShareClientGroupOutput{})
-	pulumi.RegisterOutputType(GetNfsShareClientGroupArrayOutput{})
-	pulumi.RegisterOutputType(GetNfsShareClientGroupNfOutput{})
-	pulumi.RegisterOutputType(GetNfsShareClientGroupNfArrayOutput{})
-	pulumi.RegisterOutputType(GetNicFlowlogOutput{})
-	pulumi.RegisterOutputType(GetNicFlowlogArrayOutput{})
 	pulumi.RegisterOutputType(GetPgBackupsClusterBackupOutput{})
 	pulumi.RegisterOutputType(GetPgBackupsClusterBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetPgBackupsClusterBackupMetadataOutput{})
 	pulumi.RegisterOutputType(GetPgBackupsClusterBackupMetadataArrayOutput{})
-	pulumi.RegisterOutputType(GetPgClusterConnectionOutput{})
-	pulumi.RegisterOutputType(GetPgClusterConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetPgClusterConnectionPoolerOutput{})
-	pulumi.RegisterOutputType(GetPgClusterConnectionPoolerArrayOutput{})
-	pulumi.RegisterOutputType(GetPgClusterFromBackupOutput{})
-	pulumi.RegisterOutputType(GetPgClusterFromBackupArrayOutput{})
-	pulumi.RegisterOutputType(GetPgClusterMaintenanceWindowOutput{})
-	pulumi.RegisterOutputType(GetPgClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetPgDatabasesDatabaseOutput{})
 	pulumi.RegisterOutputType(GetPgDatabasesDatabaseArrayOutput{})
-	pulumi.RegisterOutputType(GetPrivateCrossconnectConnectableDatacenterOutput{})
-	pulumi.RegisterOutputType(GetPrivateCrossconnectConnectableDatacenterArrayOutput{})
-	pulumi.RegisterOutputType(GetPrivateCrossconnectPeerOutput{})
-	pulumi.RegisterOutputType(GetPrivateCrossconnectPeerArrayOutput{})
-	pulumi.RegisterOutputType(GetServerCdromOutput{})
-	pulumi.RegisterOutputType(GetServerCdromArrayOutput{})
-	pulumi.RegisterOutputType(GetServerLabelOutput{})
-	pulumi.RegisterOutputType(GetServerLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetServerNicOutput{})
-	pulumi.RegisterOutputType(GetServerNicArrayOutput{})
-	pulumi.RegisterOutputType(GetServerNicFirewallRuleOutput{})
-	pulumi.RegisterOutputType(GetServerNicFirewallRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetServerVolumeOutput{})
-	pulumi.RegisterOutputType(GetServerVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetServersFilterOutput{})
 	pulumi.RegisterOutputType(GetServersFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetServersServerOutput{})
@@ -20092,28 +8441,4 @@ func init() {
 	pulumi.RegisterOutputType(GetTargetGroupHttpHealthCheckArrayOutput{})
 	pulumi.RegisterOutputType(GetTargetGroupTargetOutput{})
 	pulumi.RegisterOutputType(GetTargetGroupTargetArrayOutput{})
-	pulumi.RegisterOutputType(GetUserGroupOutput{})
-	pulumi.RegisterOutputType(GetUserGroupArrayOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerCdromOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerCdromArrayOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerLabelOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerLabelArrayOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerNicOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerNicArrayOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerNicFirewallRuleOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerNicFirewallRuleArrayOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerVolumeOutput{})
-	pulumi.RegisterOutputType(GetVcpuServerVolumeArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecGatewayConnectionOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecGatewayConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelAuthOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelAuthArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelEspOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelEspArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelIkeOutput{})
-	pulumi.RegisterOutputType(GetVpnIpsecTunnelIkeArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnWireguardGatewayConnectionOutput{})
-	pulumi.RegisterOutputType(GetVpnWireguardGatewayConnectionArrayOutput{})
-	pulumi.RegisterOutputType(GetVpnWireguardPeerEndpointOutput{})
-	pulumi.RegisterOutputType(GetVpnWireguardPeerEndpointArrayOutput{})
 }

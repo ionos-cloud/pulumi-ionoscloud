@@ -26,13 +26,11 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly string Direction;
         /// <summary>
-        /// Id of an existing Autoscaling Group that you want to search for.
+        /// The resource's unique identifier.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Name of an existing Autoscaling Group that you want to search for.
-        /// 
-        /// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        /// The resource name.
         /// </summary>
         public readonly string Name;
 

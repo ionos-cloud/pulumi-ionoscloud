@@ -11,127 +11,25 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetTargetGroup
     {
-        /// <summary>
-        /// The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.
-        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancer Target Groups.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search and make sure that your resources have unique names.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
-        ///     {
-        ///         Name = "Target Group Example",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
-        ///     {
-        ///         Name = "Example",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetTargetGroupResult> InvokeAsync(GetTargetGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.
-        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancer Target Groups.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search and make sure that your resources have unique names.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
-        ///     {
-        ///         Name = "Target Group Example",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
-        ///     {
-        ///         Name = "Example",
-        ///         PartialMatch = true,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetTargetGroupResult> Invoke(GetTargetGroupInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetTargetGroupResult> Invoke(GetTargetGroupInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetTargetGroupArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of the target group you want to search for.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing target group that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// Whether partial matching is allowed or not when using name argument. Default value is false.
-        /// 
-        /// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
@@ -143,23 +41,12 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetTargetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// ID of the target group you want to search for.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing target group that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Whether partial matching is allowed or not when using name argument. Default value is false.
-        /// 
-        /// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
@@ -173,38 +60,14 @@ namespace Pulumi.Ionoscloud
     [OutputType]
     public sealed class GetTargetGroupResult
     {
-        /// <summary>
-        /// Balancing algorithm.
-        /// </summary>
         public readonly string Algorithm;
-        /// <summary>
-        /// Health check attributes for Target Group.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetTargetGroupHealthCheckResult> HealthChecks;
-        /// <summary>
-        /// Http health check attributes for Target Group
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetTargetGroupHttpHealthCheckResult> HttpHealthChecks;
-        /// <summary>
-        /// The Id of that Target group
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of that Target Group.
-        /// </summary>
         public readonly string? Name;
         public readonly bool? PartialMatch;
-        /// <summary>
-        /// Balancing protocol.
-        /// </summary>
         public readonly string Protocol;
-        /// <summary>
-        /// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        /// </summary>
         public readonly string ProtocolVersion;
-        /// <summary>
-        /// Array of items in the collection
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetTargetGroupTargetResult> Targets;
 
         [OutputConstructor]

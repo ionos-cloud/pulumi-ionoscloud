@@ -34,9 +34,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly string ImageAlias;
         /// <summary>
-        /// Name of an existing Autoscaling Group that you want to search for.
-        /// 
-        /// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+        /// Name for this replica volume.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -45,7 +43,7 @@ namespace Pulumi.Ionoscloud.Outputs
         public readonly int Size;
         public readonly ImmutableArray<string> SshKeys;
         /// <summary>
-        /// Type of resource
+        /// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
         /// </summary>
         public readonly string Type;
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,13 +30,13 @@ class TargetGroupArgs:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
         """
         The set of arguments for constructing a TargetGroup resource.
-        :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[str] protocol: [string] Balancing protocol.
-        :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input['TargetGroupHealthCheckArgs'] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[str] algorithm: Balancing algorithm.
+        :param pulumi.Input[str] protocol: Balancing protocol.
+        :param pulumi.Input[str] protocol_version: The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        :param pulumi.Input['TargetGroupHealthCheckArgs'] health_check: Health check attributes for Application Load Balancer forwarding rule
         :param pulumi.Input['TargetGroupHttpHealthCheckArgs'] http_health_check: Http health check attributes for Target Group
-        :param pulumi.Input[str] name: [string] The name of the target group.
-        :param pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]] targets: [list] Array of items in the collection
+        :param pulumi.Input[str] name: The name of the target group.
+        :param pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]] targets: Array of items in the collection.
         """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "protocol", protocol)
@@ -49,7 +54,7 @@ class TargetGroupArgs:
     @pulumi.getter
     def algorithm(self) -> pulumi.Input[str]:
         """
-        [string] Balancing algorithm.
+        Balancing algorithm.
         """
         return pulumi.get(self, "algorithm")
 
@@ -61,7 +66,7 @@ class TargetGroupArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        [string] Balancing protocol.
+        Balancing protocol.
         """
         return pulumi.get(self, "protocol")
 
@@ -73,7 +78,7 @@ class TargetGroupArgs:
     @pulumi.getter(name="protocolVersion")
     def protocol_version(self) -> pulumi.Input[str]:
         """
-        [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         """
         return pulumi.get(self, "protocol_version")
 
@@ -85,7 +90,7 @@ class TargetGroupArgs:
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> Optional[pulumi.Input['TargetGroupHealthCheckArgs']]:
         """
-        Health check attributes for Target Group.
+        Health check attributes for Application Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -109,7 +114,7 @@ class TargetGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the target group.
+        The name of the target group.
         """
         return pulumi.get(self, "name")
 
@@ -121,7 +126,7 @@ class TargetGroupArgs:
     @pulumi.getter
     def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
         """
-        [list] Array of items in the collection
+        Array of items in the collection.
         """
         return pulumi.get(self, "targets")
 
@@ -142,13 +147,13 @@ class _TargetGroupState:
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]] = None):
         """
         Input properties used for looking up and filtering TargetGroup resources.
-        :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input['TargetGroupHealthCheckArgs'] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[str] algorithm: Balancing algorithm.
+        :param pulumi.Input['TargetGroupHealthCheckArgs'] health_check: Health check attributes for Application Load Balancer forwarding rule
         :param pulumi.Input['TargetGroupHttpHealthCheckArgs'] http_health_check: Http health check attributes for Target Group
-        :param pulumi.Input[str] name: [string] The name of the target group.
-        :param pulumi.Input[str] protocol: [string] Balancing protocol.
-        :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]] targets: [list] Array of items in the collection
+        :param pulumi.Input[str] name: The name of the target group.
+        :param pulumi.Input[str] protocol: Balancing protocol.
+        :param pulumi.Input[str] protocol_version: The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        :param pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]] targets: Array of items in the collection.
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
@@ -169,7 +174,7 @@ class _TargetGroupState:
     @pulumi.getter
     def algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Balancing algorithm.
+        Balancing algorithm.
         """
         return pulumi.get(self, "algorithm")
 
@@ -181,7 +186,7 @@ class _TargetGroupState:
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> Optional[pulumi.Input['TargetGroupHealthCheckArgs']]:
         """
-        Health check attributes for Target Group.
+        Health check attributes for Application Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -205,7 +210,7 @@ class _TargetGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the target group.
+        The name of the target group.
         """
         return pulumi.get(self, "name")
 
@@ -217,7 +222,7 @@ class _TargetGroupState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Balancing protocol.
+        Balancing protocol.
         """
         return pulumi.get(self, "protocol")
 
@@ -229,7 +234,7 @@ class _TargetGroupState:
     @pulumi.getter(name="protocolVersion")
     def protocol_version(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         """
         return pulumi.get(self, "protocol_version")
 
@@ -241,7 +246,7 @@ class _TargetGroupState:
     @pulumi.getter
     def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TargetGroupTargetArgs']]]]:
         """
-        [list] Array of items in the collection
+        Array of items in the collection.
         """
         return pulumi.get(self, "targets")
 
@@ -256,78 +261,24 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-                 http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_version: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages a **Target Group** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.TargetGroup("example",
-            algorithm="ROUND_ROBIN",
-            health_check=ionoscloud.TargetGroupHealthCheckArgs(
-                check_interval=50000,
-                check_timeout=5000,
-                retries=2,
-            ),
-            http_health_check=ionoscloud.TargetGroupHttpHealthCheckArgs(
-                match_type="STATUS_CODE",
-                method="GET",
-                negate=True,
-                path="/.",
-                regex=True,
-                response="200",
-            ),
-            protocol="HTTP",
-            protocol_version="HTTP1",
-            targets=[
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=True,
-                    ip="22.231.2.2",
-                    maintenance_enabled=False,
-                    port=8080,
-                    proxy_protocol="v2ssl",
-                    weight=1,
-                ),
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=False,
-                    ip="22.231.2.3",
-                    maintenance_enabled=False,
-                    port=8081,
-                    proxy_protocol="v2",
-                    weight=124,
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Target Group can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/targetGroup:TargetGroup myTargetGroup {target group uuid}
-        ```
-
+        Create a TargetGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']] http_health_check: Http health check attributes for Target Group
-        :param pulumi.Input[str] name: [string] The name of the target group.
-        :param pulumi.Input[str] protocol: [string] Balancing protocol.
-        :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[str] algorithm: Balancing algorithm.
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Application Load Balancer forwarding rule
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[str] name: The name of the target group.
+        :param pulumi.Input[str] protocol: Balancing protocol.
+        :param pulumi.Input[str] protocol_version: The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: Array of items in the collection.
         """
         ...
     @overload
@@ -336,61 +287,7 @@ class TargetGroup(pulumi.CustomResource):
                  args: TargetGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Target Group** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.TargetGroup("example",
-            algorithm="ROUND_ROBIN",
-            health_check=ionoscloud.TargetGroupHealthCheckArgs(
-                check_interval=50000,
-                check_timeout=5000,
-                retries=2,
-            ),
-            http_health_check=ionoscloud.TargetGroupHttpHealthCheckArgs(
-                match_type="STATUS_CODE",
-                method="GET",
-                negate=True,
-                path="/.",
-                regex=True,
-                response="200",
-            ),
-            protocol="HTTP",
-            protocol_version="HTTP1",
-            targets=[
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=True,
-                    ip="22.231.2.2",
-                    maintenance_enabled=False,
-                    port=8080,
-                    proxy_protocol="v2ssl",
-                    weight=1,
-                ),
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=False,
-                    ip="22.231.2.3",
-                    maintenance_enabled=False,
-                    port=8081,
-                    proxy_protocol="v2",
-                    weight=124,
-                ),
-            ])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Target Group can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:index/targetGroup:TargetGroup myTargetGroup {target group uuid}
-        ```
-
+        Create a TargetGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TargetGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -407,12 +304,12 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-                 http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_version: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -446,12 +343,12 @@ class TargetGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: Optional[pulumi.Input[str]] = None,
-            health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-            http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+            health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+            http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             protocol_version: Optional[pulumi.Input[str]] = None,
-            targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None) -> 'TargetGroup':
+            targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None) -> 'TargetGroup':
         """
         Get an existing TargetGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -459,13 +356,13 @@ class TargetGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']] http_health_check: Http health check attributes for Target Group
-        :param pulumi.Input[str] name: [string] The name of the target group.
-        :param pulumi.Input[str] protocol: [string] Balancing protocol.
-        :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[str] algorithm: Balancing algorithm.
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Application Load Balancer forwarding rule
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[str] name: The name of the target group.
+        :param pulumi.Input[str] protocol: Balancing protocol.
+        :param pulumi.Input[str] protocol_version: The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: Array of items in the collection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -484,7 +381,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[str]:
         """
-        [string] Balancing algorithm.
+        Balancing algorithm.
         """
         return pulumi.get(self, "algorithm")
 
@@ -492,7 +389,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> pulumi.Output['outputs.TargetGroupHealthCheck']:
         """
-        Health check attributes for Target Group.
+        Health check attributes for Application Load Balancer forwarding rule
         """
         return pulumi.get(self, "health_check")
 
@@ -508,7 +405,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The name of the target group.
+        The name of the target group.
         """
         return pulumi.get(self, "name")
 
@@ -516,7 +413,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        [string] Balancing protocol.
+        Balancing protocol.
         """
         return pulumi.get(self, "protocol")
 
@@ -524,7 +421,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter(name="protocolVersion")
     def protocol_version(self) -> pulumi.Output[str]:
         """
-        [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+        The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
         """
         return pulumi.get(self, "protocol_version")
 
@@ -532,7 +429,7 @@ class TargetGroup(pulumi.CustomResource):
     @pulumi.getter
     def targets(self) -> pulumi.Output[Sequence['outputs.TargetGroupTarget']]:
         """
-        [list] Array of items in the collection
+        Array of items in the collection.
         """
         return pulumi.get(self, "targets")
 

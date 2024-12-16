@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,15 +30,12 @@ class ApigatewayRouteArgs:
                  websocket: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a ApigatewayRoute resource.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the API Gateway that the route belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-               `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
-        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayRouteUpstreamArgs']]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
-        :param pulumi.Input[str] name: [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
-        :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
-               service. Default value: `http`.
-        :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
+        :param pulumi.Input[str] gateway_id: The ID of the API Gateway that the route belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: The HTTP methods that the route should match.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The paths that the route should match.
+        :param pulumi.Input[str] name: The name of the API Gateway Route.
+        :param pulumi.Input[str] type: This field specifies the protocol used by the ingress to route traffic to the backend service.
+        :param pulumi.Input[bool] websocket: To enable websocket support.
         """
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "methods", methods)
@@ -50,7 +52,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Input[str]:
         """
-        [string] The ID of the API Gateway that the route belongs to.
+        The ID of the API Gateway that the route belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -62,8 +64,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter
     def methods(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        The HTTP methods that the route should match.
         """
         return pulumi.get(self, "methods")
 
@@ -75,7 +76,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter
     def paths(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list] The paths that the route should match. Minimum items: 1.
+        The paths that the route should match.
         """
         return pulumi.get(self, "paths")
 
@@ -86,9 +87,6 @@ class ApigatewayRouteArgs:
     @property
     @pulumi.getter
     def upstreams(self) -> pulumi.Input[Sequence[pulumi.Input['ApigatewayRouteUpstreamArgs']]]:
-        """
-        Upstreams information of the API Gateway Route. Minimum items: 1.
-        """
         return pulumi.get(self, "upstreams")
 
     @upstreams.setter
@@ -99,7 +97,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        The name of the API Gateway Route.
         """
         return pulumi.get(self, "name")
 
@@ -111,8 +109,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        service. Default value: `http`.
+        This field specifies the protocol used by the ingress to route traffic to the backend service.
         """
         return pulumi.get(self, "type")
 
@@ -124,7 +121,7 @@ class ApigatewayRouteArgs:
     @pulumi.getter
     def websocket(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] To enable websocket support. Default value: `false`.
+        To enable websocket support.
         """
         return pulumi.get(self, "websocket")
 
@@ -145,15 +142,12 @@ class _ApigatewayRouteState:
                  websocket: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering ApigatewayRoute resources.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the API Gateway that the route belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-               `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
-        :param pulumi.Input[str] name: [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
-        :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
-               service. Default value: `http`.
-        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayRouteUpstreamArgs']]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
-        :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
+        :param pulumi.Input[str] gateway_id: The ID of the API Gateway that the route belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: The HTTP methods that the route should match.
+        :param pulumi.Input[str] name: The name of the API Gateway Route.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The paths that the route should match.
+        :param pulumi.Input[str] type: This field specifies the protocol used by the ingress to route traffic to the backend service.
+        :param pulumi.Input[bool] websocket: To enable websocket support.
         """
         if gateway_id is not None:
             pulumi.set(__self__, "gateway_id", gateway_id)
@@ -174,7 +168,7 @@ class _ApigatewayRouteState:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of the API Gateway that the route belongs to.
+        The ID of the API Gateway that the route belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -186,8 +180,7 @@ class _ApigatewayRouteState:
     @pulumi.getter
     def methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        The HTTP methods that the route should match.
         """
         return pulumi.get(self, "methods")
 
@@ -199,7 +192,7 @@ class _ApigatewayRouteState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        The name of the API Gateway Route.
         """
         return pulumi.get(self, "name")
 
@@ -211,7 +204,7 @@ class _ApigatewayRouteState:
     @pulumi.getter
     def paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The paths that the route should match. Minimum items: 1.
+        The paths that the route should match.
         """
         return pulumi.get(self, "paths")
 
@@ -223,8 +216,7 @@ class _ApigatewayRouteState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        service. Default value: `http`.
+        This field specifies the protocol used by the ingress to route traffic to the backend service.
         """
         return pulumi.get(self, "type")
 
@@ -235,9 +227,6 @@ class _ApigatewayRouteState:
     @property
     @pulumi.getter
     def upstreams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApigatewayRouteUpstreamArgs']]]]:
-        """
-        Upstreams information of the API Gateway Route. Minimum items: 1.
-        """
         return pulumi.get(self, "upstreams")
 
     @upstreams.setter
@@ -248,7 +237,7 @@ class _ApigatewayRouteState:
     @pulumi.getter
     def websocket(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] To enable websocket support. Default value: `false`.
+        To enable websocket support.
         """
         return pulumi.get(self, "websocket")
 
@@ -267,74 +256,19 @@ class ApigatewayRoute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Manages an **API Gateway Route** on IonosCloud.
-
-        ## Example Usage
-
-        This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.Apigateway("example",
-            metrics=True,
-            custom_domains=[
-                ionoscloud.ApigatewayCustomDomainArgs(
-                    name="example.com",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-                ionoscloud.ApigatewayCustomDomainArgs(
-                    name="example.org",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-            ])
-        apigateway_route = ionoscloud.ApigatewayRoute("apigatewayRoute",
-            type="http",
-            paths=[
-                "/foo/*",
-                "/bar",
-            ],
-            methods=[
-                "GET",
-                "POST",
-            ],
-            websocket=False,
-            upstreams=[ionoscloud.ApigatewayRouteUpstreamArgs(
-                scheme="http",
-                loadbalancer="roundrobin",
-                host="example.com",
-                port=80,
-                weight=100,
-            )],
-            gateway_id=example.id)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        API Gateway route can be imported using the `apigateway route id`:
-
-        ```sh
-        $ pulumi import ionoscloud:index/apigatewayRoute:ApigatewayRoute myroute {apigateway uuid}:{apigateway route uuid}
-        ```
-
+        Create a ApigatewayRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the API Gateway that the route belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-               `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
-        :param pulumi.Input[str] name: [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
-        :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
-               service. Default value: `http`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
-        :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
+        :param pulumi.Input[str] gateway_id: The ID of the API Gateway that the route belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: The HTTP methods that the route should match.
+        :param pulumi.Input[str] name: The name of the API Gateway Route.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The paths that the route should match.
+        :param pulumi.Input[str] type: This field specifies the protocol used by the ingress to route traffic to the backend service.
+        :param pulumi.Input[bool] websocket: To enable websocket support.
         """
         ...
     @overload
@@ -343,59 +277,7 @@ class ApigatewayRoute(pulumi.CustomResource):
                  args: ApigatewayRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **API Gateway Route** on IonosCloud.
-
-        ## Example Usage
-
-        This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.Apigateway("example",
-            metrics=True,
-            custom_domains=[
-                ionoscloud.ApigatewayCustomDomainArgs(
-                    name="example.com",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-                ionoscloud.ApigatewayCustomDomainArgs(
-                    name="example.org",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-            ])
-        apigateway_route = ionoscloud.ApigatewayRoute("apigatewayRoute",
-            type="http",
-            paths=[
-                "/foo/*",
-                "/bar",
-            ],
-            methods=[
-                "GET",
-                "POST",
-            ],
-            websocket=False,
-            upstreams=[ionoscloud.ApigatewayRouteUpstreamArgs(
-                scheme="http",
-                loadbalancer="roundrobin",
-                host="example.com",
-                port=80,
-                weight=100,
-            )],
-            gateway_id=example.id)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        API Gateway route can be imported using the `apigateway route id`:
-
-        ```sh
-        $ pulumi import ionoscloud:index/apigatewayRoute:ApigatewayRoute myroute {apigateway uuid}:{apigateway route uuid}
-        ```
-
+        Create a ApigatewayRoute resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ApigatewayRouteArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -416,7 +298,7 @@ class ApigatewayRoute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -457,7 +339,7 @@ class ApigatewayRoute(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
             websocket: Optional[pulumi.Input[bool]] = None) -> 'ApigatewayRoute':
         """
         Get an existing ApigatewayRoute resource's state with the given name, id, and optional extra
@@ -466,15 +348,12 @@ class ApigatewayRoute(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the API Gateway that the route belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-               `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
-        :param pulumi.Input[str] name: [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
-        :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
-               service. Default value: `http`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
-        :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
+        :param pulumi.Input[str] gateway_id: The ID of the API Gateway that the route belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] methods: The HTTP methods that the route should match.
+        :param pulumi.Input[str] name: The name of the API Gateway Route.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: The paths that the route should match.
+        :param pulumi.Input[str] type: This field specifies the protocol used by the ingress to route traffic to the backend service.
+        :param pulumi.Input[bool] websocket: To enable websocket support.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -493,7 +372,7 @@ class ApigatewayRoute(pulumi.CustomResource):
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Output[str]:
         """
-        [string] The ID of the API Gateway that the route belongs to.
+        The ID of the API Gateway that the route belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -501,8 +380,7 @@ class ApigatewayRoute(pulumi.CustomResource):
     @pulumi.getter
     def methods(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        The HTTP methods that the route should match.
         """
         return pulumi.get(self, "methods")
 
@@ -510,7 +388,7 @@ class ApigatewayRoute(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        The name of the API Gateway Route.
         """
         return pulumi.get(self, "name")
 
@@ -518,7 +396,7 @@ class ApigatewayRoute(pulumi.CustomResource):
     @pulumi.getter
     def paths(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] The paths that the route should match. Minimum items: 1.
+        The paths that the route should match.
         """
         return pulumi.get(self, "paths")
 
@@ -526,24 +404,20 @@ class ApigatewayRoute(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        service. Default value: `http`.
+        This field specifies the protocol used by the ingress to route traffic to the backend service.
         """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def upstreams(self) -> pulumi.Output[Sequence['outputs.ApigatewayRouteUpstream']]:
-        """
-        Upstreams information of the API Gateway Route. Minimum items: 1.
-        """
         return pulumi.get(self, "upstreams")
 
     @property
     @pulumi.getter
     def websocket(self) -> pulumi.Output[Optional[bool]]:
         """
-        [bool] To enable websocket support. Default value: `false`.
+        To enable websocket support.
         """
         return pulumi.get(self, "websocket")
 

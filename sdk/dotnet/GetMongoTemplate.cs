@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetMongoTemplateResult> Invoke(GetMongoTemplateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoTemplateResult>("ionoscloud:index/getMongoTemplate:getMongoTemplate", args ?? new GetMongoTemplateInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetMongoTemplateResult> Invoke(GetMongoTemplateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongoTemplateResult>("ionoscloud:index/getMongoTemplate:getMongoTemplate", args ?? new GetMongoTemplateInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -9,99 +9,42 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud
 {
-    /// <summary>
-    /// Manages a **Kafka Cluster** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Basic example
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "de/fra",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = false,
-    ///     });
-    /// 
-    ///     var exampleKafkaCluster = new Ionoscloud.KafkaCluster("exampleKafkaCluster", new()
-    ///     {
-    ///         Location = "de/fra",
-    ///         Version = "3.7.0",
-    ///         Size = "S",
-    ///         Connections = new Ionoscloud.Inputs.KafkaClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = exampleDatacenter.Id,
-    ///             LanId = exampleLan.Id,
-    ///             BrokerAddresses = new[]
-    ///             {
-    ///                 "192.168.1.101/24",
-    ///                 "192.168.1.102/24",
-    ///                 "192.168.1.103/24",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Kafka Cluster can be imported using the `location` and `kafka cluster id`:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:index/kafkaCluster:KafkaCluster")]
     public partial class KafkaCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [list] IP address and port of cluster brokers.
+        /// IP address and port of cluster brokers.
         /// </summary>
         [Output("brokerAddresses")]
         public Output<ImmutableArray<string>> BrokerAddresses { get; private set; } = null!;
 
         /// <summary>
-        /// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        /// The network connection for your Kafka Cluster. Only one connection is allowed.
         /// </summary>
         [Output("connections")]
         public Output<Outputs.KafkaClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Name of the Kafka Cluster.
+        /// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        /// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        /// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         /// </summary>
         [Output("size")]
         public Output<string> Size { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// The desired Kafka Version. Supported version: 3.7.0
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -153,31 +96,32 @@ namespace Pulumi.Ionoscloud
     public sealed class KafkaClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        /// The network connection for your Kafka Cluster. Only one connection is allowed.
         /// </summary>
         [Input("connections", required: true)]
         public Input<Inputs.KafkaClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// [string] Name of the Kafka Cluster.
+        /// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        /// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        /// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         /// </summary>
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// The desired Kafka Version. Supported version: 3.7.0
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -194,7 +138,7 @@ namespace Pulumi.Ionoscloud
         private InputList<string>? _brokerAddresses;
 
         /// <summary>
-        /// [list] IP address and port of cluster brokers.
+        /// IP address and port of cluster brokers.
         /// </summary>
         public InputList<string> BrokerAddresses
         {
@@ -203,31 +147,32 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        /// The network connection for your Kafka Cluster. Only one connection is allowed.
         /// </summary>
         [Input("connections")]
         public Input<Inputs.KafkaClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// [string] Name of the Kafka Cluster.
+        /// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        /// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        /// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
         /// <summary>
-        /// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        /// The desired Kafka Version. Supported version: 3.7.0
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

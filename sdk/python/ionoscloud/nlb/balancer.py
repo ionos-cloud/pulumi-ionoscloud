@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,17 +32,19 @@ class BalancerArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Balancer resource.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[int] listener_lan: [int] Id of the listening LAN. (inbound)
-        :param pulumi.Input[int] target_lan: [int] Id of the balanced private target LAN. (outbound)
-        :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
-        :param pulumi.Input['BalancerFlowlogArgs'] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        :param pulumi.Input[int] listener_lan: Id of the listening LAN. (inbound)
+        :param pulumi.Input[int] target_lan: Id of the balanced private target LAN. (outbound)
+        :param pulumi.Input[bool] central_logging: Turn logging on and off for this product. Default value is 'false'.
+        :param pulumi.Input['BalancerFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+               reserved IP for the public load balancer and private IP for the private load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+               user will not provide any IP then the system will generate one IP with /24 subnet.
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        :param pulumi.Input[str] name: A name of that Network Load Balancer
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "listener_lan", listener_lan)
@@ -58,9 +65,6 @@ class BalancerArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -71,7 +75,7 @@ class BalancerArgs:
     @pulumi.getter(name="listenerLan")
     def listener_lan(self) -> pulumi.Input[int]:
         """
-        [int] Id of the listening LAN. (inbound)
+        Id of the listening LAN. (inbound)
         """
         return pulumi.get(self, "listener_lan")
 
@@ -83,7 +87,7 @@ class BalancerArgs:
     @pulumi.getter(name="targetLan")
     def target_lan(self) -> pulumi.Input[int]:
         """
-        [int] Id of the balanced private target LAN. (outbound)
+        Id of the balanced private target LAN. (outbound)
         """
         return pulumi.get(self, "target_lan")
 
@@ -95,7 +99,7 @@ class BalancerArgs:
     @pulumi.getter(name="centralLogging")
     def central_logging(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Turn logging on and off for this product. Default value is 'false'.
+        Turn logging on and off for this product. Default value is 'false'.
         """
         return pulumi.get(self, "central_logging")
 
@@ -107,7 +111,10 @@ class BalancerArgs:
     @pulumi.getter
     def flowlog(self) -> Optional[pulumi.Input['BalancerFlowlogArgs']]:
         """
-        [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -119,7 +126,8 @@ class BalancerArgs:
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
+        Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+        reserved IP for the public load balancer and private IP for the private load balancer.
         """
         return pulumi.get(self, "ips")
 
@@ -131,7 +139,8 @@ class BalancerArgs:
     @pulumi.getter(name="lbPrivateIps")
     def lb_private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+        user will not provide any IP then the system will generate one IP with /24 subnet.
         """
         return pulumi.get(self, "lb_private_ips")
 
@@ -155,9 +164,7 @@ class BalancerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        A name of that Network Load Balancer
         """
         return pulumi.get(self, "name")
 
@@ -180,17 +187,19 @@ class _BalancerState:
                  target_lan: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Balancer resources.
-        :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input['BalancerFlowlogArgs'] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
-        :param pulumi.Input[int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[bool] central_logging: Turn logging on and off for this product. Default value is 'false'.
+        :param pulumi.Input['BalancerFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+               reserved IP for the public load balancer and private IP for the private load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+               user will not provide any IP then the system will generate one IP with /24 subnet.
+        :param pulumi.Input[int] listener_lan: Id of the listening LAN. (inbound)
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-        :param pulumi.Input[int] target_lan: [int] Id of the balanced private target LAN. (outbound)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer
+        :param pulumi.Input[int] target_lan: Id of the balanced private target LAN. (outbound)
         """
         if central_logging is not None:
             pulumi.set(__self__, "central_logging", central_logging)
@@ -215,7 +224,7 @@ class _BalancerState:
     @pulumi.getter(name="centralLogging")
     def central_logging(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Turn logging on and off for this product. Default value is 'false'.
+        Turn logging on and off for this product. Default value is 'false'.
         """
         return pulumi.get(self, "central_logging")
 
@@ -226,9 +235,6 @@ class _BalancerState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -239,7 +245,10 @@ class _BalancerState:
     @pulumi.getter
     def flowlog(self) -> Optional[pulumi.Input['BalancerFlowlogArgs']]:
         """
-        [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -251,7 +260,8 @@ class _BalancerState:
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
+        Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+        reserved IP for the public load balancer and private IP for the private load balancer.
         """
         return pulumi.get(self, "ips")
 
@@ -263,7 +273,8 @@ class _BalancerState:
     @pulumi.getter(name="lbPrivateIps")
     def lb_private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+        user will not provide any IP then the system will generate one IP with /24 subnet.
         """
         return pulumi.get(self, "lb_private_ips")
 
@@ -275,7 +286,7 @@ class _BalancerState:
     @pulumi.getter(name="listenerLan")
     def listener_lan(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] Id of the listening LAN. (inbound)
+        Id of the listening LAN. (inbound)
         """
         return pulumi.get(self, "listener_lan")
 
@@ -299,9 +310,7 @@ class _BalancerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        A name of that Network Load Balancer
         """
         return pulumi.get(self, "name")
 
@@ -313,7 +322,7 @@ class _BalancerState:
     @pulumi.getter(name="targetLan")
     def target_lan(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] Id of the balanced private target LAN. (outbound)
+        Id of the balanced private target LAN. (outbound)
         """
         return pulumi.get(self, "target_lan")
 
@@ -329,7 +338,7 @@ class Balancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: Optional[pulumi.Input[bool]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['BalancerFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  listener_lan: Optional[pulumi.Input[int]] = None,
@@ -338,82 +347,22 @@ class Balancer(pulumi.CustomResource):
                  target_lan: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Manages a **Network Load Balancer**  on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"],
-            central_logging=True,
-            logging_format="%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\"\\" \\"\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Example configuring Flowlog
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.nlb.Balancer("example",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            listener_lan=ionoscloud_lan["example1"]["id"],
-            target_lan=ionoscloud_lan["example2"]["id"],
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"],
-            flowlog=ionoscloud.nlb.BalancerFlowlogArgs(
-                action="ALL",
-                bucket="flowlog-bucket",
-                direction="INGRESS",
-                name="flowlog",
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
-        `name` will. Deleting a flowlog will also force nic re-creation.
-
-        ## Import
-
-        A Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer {datacenter uuid}/{networkloadbalancer uuid}
-        ```
-
+        Create a Balancer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[pulumi.InputType['BalancerFlowlogArgs']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
-        :param pulumi.Input[int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[bool] central_logging: Turn logging on and off for this product. Default value is 'false'.
+        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+               reserved IP for the public load balancer and private IP for the private load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+               user will not provide any IP then the system will generate one IP with /24 subnet.
+        :param pulumi.Input[int] listener_lan: Id of the listening LAN. (inbound)
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-        :param pulumi.Input[int] target_lan: [int] Id of the balanced private target LAN. (outbound)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer
+        :param pulumi.Input[int] target_lan: Id of the balanced private target LAN. (outbound)
         """
         ...
     @overload
@@ -422,69 +371,7 @@ class Balancer(pulumi.CustomResource):
                  args: BalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Network Load Balancer**  on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
-            listener_lan=example1.id,
-            target_lan=example2.id,
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"],
-            central_logging=True,
-            logging_format="%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\"\\" \\"\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Example configuring Flowlog
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.nlb.Balancer("example",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            listener_lan=ionoscloud_lan["example1"]["id"],
-            target_lan=ionoscloud_lan["example2"]["id"],
-            ips=["10.12.118.224"],
-            lb_private_ips=["10.13.72.225/24"],
-            flowlog=ionoscloud.nlb.BalancerFlowlogArgs(
-                action="ALL",
-                bucket="flowlog-bucket",
-                direction="INGRESS",
-                name="flowlog",
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
-        `name` will. Deleting a flowlog will also force nic re-creation.
-
-        ## Import
-
-        A Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer {datacenter uuid}/{networkloadbalancer uuid}
-        ```
-
+        Create a Balancer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param BalancerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -502,7 +389,7 @@ class Balancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: Optional[pulumi.Input[bool]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['BalancerFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  listener_lan: Optional[pulumi.Input[int]] = None,
@@ -545,7 +432,7 @@ class Balancer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             central_logging: Optional[pulumi.Input[bool]] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            flowlog: Optional[pulumi.Input[pulumi.InputType['BalancerFlowlogArgs']]] = None,
+            flowlog: Optional[pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             listener_lan: Optional[pulumi.Input[int]] = None,
@@ -559,17 +446,19 @@ class Balancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
-        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[pulumi.InputType['BalancerFlowlogArgs']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
-        :param pulumi.Input[int] listener_lan: [int] Id of the listening LAN. (inbound)
+        :param pulumi.Input[bool] central_logging: Turn logging on and off for this product. Default value is 'false'.
+        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+               reserved IP for the public load balancer and private IP for the private load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+               user will not provide any IP then the system will generate one IP with /24 subnet.
+        :param pulumi.Input[int] listener_lan: Id of the listening LAN. (inbound)
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-        :param pulumi.Input[int] target_lan: [int] Id of the balanced private target LAN. (outbound)
+        :param pulumi.Input[str] name: A name of that Network Load Balancer
+        :param pulumi.Input[int] target_lan: Id of the balanced private target LAN. (outbound)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -590,23 +479,23 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter(name="centralLogging")
     def central_logging(self) -> pulumi.Output[Optional[bool]]:
         """
-        [bool] Turn logging on and off for this product. Default value is 'false'.
+        Turn logging on and off for this product. Default value is 'false'.
         """
         return pulumi.get(self, "central_logging")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] A Datacenter's UUID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def flowlog(self) -> pulumi.Output[Optional['outputs.BalancerFlowlog']]:
         """
-        [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -614,7 +503,8 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter
     def ips(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
+        Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
+        reserved IP for the public load balancer and private IP for the private load balancer.
         """
         return pulumi.get(self, "ips")
 
@@ -622,7 +512,8 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter(name="lbPrivateIps")
     def lb_private_ips(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
+        user will not provide any IP then the system will generate one IP with /24 subnet.
         """
         return pulumi.get(self, "lb_private_ips")
 
@@ -630,7 +521,7 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter(name="listenerLan")
     def listener_lan(self) -> pulumi.Output[int]:
         """
-        [int] Id of the listening LAN. (inbound)
+        Id of the listening LAN. (inbound)
         """
         return pulumi.get(self, "listener_lan")
 
@@ -646,9 +537,7 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        A name of that Network Load Balancer
         """
         return pulumi.get(self, "name")
 
@@ -656,7 +545,7 @@ class Balancer(pulumi.CustomResource):
     @pulumi.getter(name="targetLan")
     def target_lan(self) -> pulumi.Output[int]:
         """
-        [int] Id of the balanced private target LAN. (outbound)
+        Id of the balanced private target LAN. (outbound)
         """
         return pulumi.get(self, "target_lan")
 

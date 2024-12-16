@@ -35,6 +35,101 @@ export type Firewall = import("./firewall").Firewall;
 export const Firewall: typeof import("./firewall").Firewall = null as any;
 utilities.lazyLoad(exports, ["Firewall"], () => require("./firewall"));
 
+export { GetBackupUnitArgs, GetBackupUnitResult, GetBackupUnitOutputArgs } from "./getBackupUnit";
+export const getBackupUnit: typeof import("./getBackupUnit").getBackupUnit = null as any;
+export const getBackupUnitOutput: typeof import("./getBackupUnit").getBackupUnitOutput = null as any;
+utilities.lazyLoad(exports, ["getBackupUnit","getBackupUnitOutput"], () => require("./getBackupUnit"));
+
+export { GetCrossconnectArgs, GetCrossconnectResult, GetCrossconnectOutputArgs } from "./getCrossconnect";
+export const getCrossconnect: typeof import("./getCrossconnect").getCrossconnect = null as any;
+export const getCrossconnectOutput: typeof import("./getCrossconnect").getCrossconnectOutput = null as any;
+utilities.lazyLoad(exports, ["getCrossconnect","getCrossconnectOutput"], () => require("./getCrossconnect"));
+
+export { GetCubeServerArgs, GetCubeServerResult, GetCubeServerOutputArgs } from "./getCubeServer";
+export const getCubeServer: typeof import("./getCubeServer").getCubeServer = null as any;
+export const getCubeServerOutput: typeof import("./getCubeServer").getCubeServerOutput = null as any;
+utilities.lazyLoad(exports, ["getCubeServer","getCubeServerOutput"], () => require("./getCubeServer"));
+
+export { GetDatacenterArgs, GetDatacenterResult, GetDatacenterOutputArgs } from "./getDatacenter";
+export const getDatacenter: typeof import("./getDatacenter").getDatacenter = null as any;
+export const getDatacenterOutput: typeof import("./getDatacenter").getDatacenterOutput = null as any;
+utilities.lazyLoad(exports, ["getDatacenter","getDatacenterOutput"], () => require("./getDatacenter"));
+
+export { GetFirewallArgs, GetFirewallResult, GetFirewallOutputArgs } from "./getFirewall";
+export const getFirewall: typeof import("./getFirewall").getFirewall = null as any;
+export const getFirewallOutput: typeof import("./getFirewall").getFirewallOutput = null as any;
+utilities.lazyLoad(exports, ["getFirewall","getFirewallOutput"], () => require("./getFirewall"));
+
+export { GetGroupArgs, GetGroupResult, GetGroupOutputArgs } from "./getGroup";
+export const getGroup: typeof import("./getGroup").getGroup = null as any;
+export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
+
+export { GetIPBlockArgs, GetIPBlockResult, GetIPBlockOutputArgs } from "./getIPBlock";
+export const getIPBlock: typeof import("./getIPBlock").getIPBlock = null as any;
+export const getIPBlockOutput: typeof import("./getIPBlock").getIPBlockOutput = null as any;
+utilities.lazyLoad(exports, ["getIPBlock","getIPBlockOutput"], () => require("./getIPBlock"));
+
+export { GetIPFailoverArgs, GetIPFailoverResult, GetIPFailoverOutputArgs } from "./getIPFailover";
+export const getIPFailover: typeof import("./getIPFailover").getIPFailover = null as any;
+export const getIPFailoverOutput: typeof import("./getIPFailover").getIPFailoverOutput = null as any;
+utilities.lazyLoad(exports, ["getIPFailover","getIPFailoverOutput"], () => require("./getIPFailover"));
+
+export { GetLanArgs, GetLanResult, GetLanOutputArgs } from "./getLan";
+export const getLan: typeof import("./getLan").getLan = null as any;
+export const getLanOutput: typeof import("./getLan").getLanOutput = null as any;
+utilities.lazyLoad(exports, ["getLan","getLanOutput"], () => require("./getLan"));
+
+export { GetNatGatewayArgs, GetNatGatewayResult, GetNatGatewayOutputArgs } from "./getNatGateway";
+export const getNatGateway: typeof import("./getNatGateway").getNatGateway = null as any;
+export const getNatGatewayOutput: typeof import("./getNatGateway").getNatGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getNatGateway","getNatGatewayOutput"], () => require("./getNatGateway"));
+
+export { GetNatGatewayRuleArgs, GetNatGatewayRuleResult, GetNatGatewayRuleOutputArgs } from "./getNatGatewayRule";
+export const getNatGatewayRule: typeof import("./getNatGatewayRule").getNatGatewayRule = null as any;
+export const getNatGatewayRuleOutput: typeof import("./getNatGatewayRule").getNatGatewayRuleOutput = null as any;
+utilities.lazyLoad(exports, ["getNatGatewayRule","getNatGatewayRuleOutput"], () => require("./getNatGatewayRule"));
+
+export { GetNicArgs, GetNicResult, GetNicOutputArgs } from "./getNic";
+export const getNic: typeof import("./getNic").getNic = null as any;
+export const getNicOutput: typeof import("./getNic").getNicOutput = null as any;
+utilities.lazyLoad(exports, ["getNic","getNicOutput"], () => require("./getNic"));
+
+export { GetS3KeyArgs, GetS3KeyResult, GetS3KeyOutputArgs } from "./getS3Key";
+export const getS3Key: typeof import("./getS3Key").getS3Key = null as any;
+export const getS3KeyOutput: typeof import("./getS3Key").getS3KeyOutput = null as any;
+utilities.lazyLoad(exports, ["getS3Key","getS3KeyOutput"], () => require("./getS3Key"));
+
+export { GetServerArgs, GetServerResult, GetServerOutputArgs } from "./getServer";
+export const getServer: typeof import("./getServer").getServer = null as any;
+export const getServerOutput: typeof import("./getServer").getServerOutput = null as any;
+utilities.lazyLoad(exports, ["getServer","getServerOutput"], () => require("./getServer"));
+
+export { GetShareArgs, GetShareResult, GetShareOutputArgs } from "./getShare";
+export const getShare: typeof import("./getShare").getShare = null as any;
+export const getShareOutput: typeof import("./getShare").getShareOutput = null as any;
+utilities.lazyLoad(exports, ["getShare","getShareOutput"], () => require("./getShare"));
+
+export { GetSnapshotArgs, GetSnapshotResult, GetSnapshotOutputArgs } from "./getSnapshot";
+export const getSnapshot: typeof import("./getSnapshot").getSnapshot = null as any;
+export const getSnapshotOutput: typeof import("./getSnapshot").getSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getSnapshot","getSnapshotOutput"], () => require("./getSnapshot"));
+
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
+export { GetVCPUServerArgs, GetVCPUServerResult, GetVCPUServerOutputArgs } from "./getVCPUServer";
+export const getVCPUServer: typeof import("./getVCPUServer").getVCPUServer = null as any;
+export const getVCPUServerOutput: typeof import("./getVCPUServer").getVCPUServerOutput = null as any;
+utilities.lazyLoad(exports, ["getVCPUServer","getVCPUServerOutput"], () => require("./getVCPUServer"));
+
+export { GetVolumeArgs, GetVolumeResult, GetVolumeOutputArgs } from "./getVolume";
+export const getVolume: typeof import("./getVolume").getVolume = null as any;
+export const getVolumeOutput: typeof import("./getVolume").getVolumeOutput = null as any;
+utilities.lazyLoad(exports, ["getVolume","getVolumeOutput"], () => require("./getVolume"));
+
 export { GroupArgs, GroupState } from "./group";
 export type Group = import("./group").Group;
 export const Group: typeof import("./group").Group = null as any;

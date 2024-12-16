@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Nlb.Outputs
     public sealed class ForwardingRuleTargetHealthCheck
     {
         /// <summary>
-        /// [boolean] Check specifies whether the target VM's health is checked.
+        /// Check specifies whether the target VM's health is checked.
         /// </summary>
         public readonly bool? Check;
         /// <summary>
-        /// [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+        /// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
         /// </summary>
         public readonly int? CheckInterval;
         /// <summary>
-        /// [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
+        /// Maintenance specifies if a target VM should be marked as down, even if it is not.
         /// </summary>
         public readonly bool? Maintenance;
 

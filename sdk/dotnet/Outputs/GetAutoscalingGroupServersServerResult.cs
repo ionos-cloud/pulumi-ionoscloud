@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class GetAutoscalingGroupServersServerResult
     {
         /// <summary>
-        /// The unique ID of the server.
+        /// Unique identifier for the resource
         /// </summary>
         public readonly string Id;
 

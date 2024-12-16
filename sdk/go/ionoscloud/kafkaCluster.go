@@ -12,85 +12,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **Kafka Cluster** on IonosCloud.
-//
-// ## Example Usage
-//
-// This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Basic example
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location: pulumi.String("de/fra"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				Public:       pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ionoscloud.NewKafkaCluster(ctx, "exampleKafkaCluster", &ionoscloud.KafkaClusterArgs{
-//				Location: pulumi.String("de/fra"),
-//				Version:  pulumi.String("3.7.0"),
-//				Size:     pulumi.String("S"),
-//				Connections: &ionoscloud.KafkaClusterConnectionsArgs{
-//					DatacenterId: exampleDatacenter.ID(),
-//					LanId:        exampleLan.ID(),
-//					BrokerAddresses: pulumi.StringArray{
-//						pulumi.String("192.168.1.101/24"),
-//						pulumi.String("192.168.1.102/24"),
-//						pulumi.String("192.168.1.103/24"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Kafka Cluster can be imported using the `location` and `kafka cluster id`:
-//
-// ```sh
-// $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
-// ```
 type KafkaCluster struct {
 	pulumi.CustomResourceState
 
-	// [list] IP address and port of cluster brokers.
+	// IP address and port of cluster brokers.
 	BrokerAddresses pulumi.StringArrayOutput `pulumi:"brokerAddresses"`
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+	// The network connection for your Kafka Cluster. Only one connection is allowed.
 	Connections KafkaClusterConnectionsOutput `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 	Location pulumi.StringOutput `pulumi:"location"`
-	// [string] Name of the Kafka Cluster.
+	// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+	// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+	// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 	Size pulumi.StringOutput `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// The desired Kafka Version. Supported version: 3.7.0
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -136,32 +72,34 @@ func GetKafkaCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KafkaCluster resources.
 type kafkaClusterState struct {
-	// [list] IP address and port of cluster brokers.
+	// IP address and port of cluster brokers.
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+	// The network connection for your Kafka Cluster. Only one connection is allowed.
 	Connections *KafkaClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 	Location *string `pulumi:"location"`
-	// [string] Name of the Kafka Cluster.
+	// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+	// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 	Name *string `pulumi:"name"`
-	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+	// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 	Size *string `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// The desired Kafka Version. Supported version: 3.7.0
 	Version *string `pulumi:"version"`
 }
 
 type KafkaClusterState struct {
-	// [list] IP address and port of cluster brokers.
+	// IP address and port of cluster brokers.
 	BrokerAddresses pulumi.StringArrayInput
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+	// The network connection for your Kafka Cluster. Only one connection is allowed.
 	Connections KafkaClusterConnectionsPtrInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 	Location pulumi.StringPtrInput
-	// [string] Name of the Kafka Cluster.
+	// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+	// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 	Name pulumi.StringPtrInput
-	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+	// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 	Size pulumi.StringPtrInput
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// The desired Kafka Version. Supported version: 3.7.0
 	Version pulumi.StringPtrInput
 }
 
@@ -170,29 +108,31 @@ func (KafkaClusterState) ElementType() reflect.Type {
 }
 
 type kafkaClusterArgs struct {
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+	// The network connection for your Kafka Cluster. Only one connection is allowed.
 	Connections KafkaClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 	Location string `pulumi:"location"`
-	// [string] Name of the Kafka Cluster.
+	// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+	// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 	Name *string `pulumi:"name"`
-	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+	// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 	Size string `pulumi:"size"`
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// The desired Kafka Version. Supported version: 3.7.0
 	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a KafkaCluster resource.
 type KafkaClusterArgs struct {
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+	// The network connection for your Kafka Cluster. Only one connection is allowed.
 	Connections KafkaClusterConnectionsInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 	Location pulumi.StringInput
-	// [string] Name of the Kafka Cluster.
+	// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+	// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 	Name pulumi.StringPtrInput
-	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+	// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 	Size pulumi.StringInput
-	// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+	// The desired Kafka Version. Supported version: 3.7.0
 	Version pulumi.StringInput
 }
 
@@ -283,32 +223,33 @@ func (o KafkaClusterOutput) ToKafkaClusterOutputWithContext(ctx context.Context)
 	return o
 }
 
-// [list] IP address and port of cluster brokers.
+// IP address and port of cluster brokers.
 func (o KafkaClusterOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringArrayOutput { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
 
-// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+// The network connection for your Kafka Cluster. Only one connection is allowed.
 func (o KafkaClusterOutput) Connections() KafkaClusterConnectionsOutput {
 	return o.ApplyT(func(v *KafkaCluster) KafkaClusterConnectionsOutput { return v.Connections }).(KafkaClusterConnectionsOutput)
 }
 
-// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+// The location of your Kafka Cluster. Supported locations: de/fra, de/txl
 func (o KafkaClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// [string] Name of the Kafka Cluster.
+// The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+// (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
 func (o KafkaClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+// The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
 func (o KafkaClusterOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }
 
-// [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+// The desired Kafka Version. Supported version: 3.7.0
 func (o KafkaClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

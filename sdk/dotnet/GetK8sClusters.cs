@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetK8sClustersResult> Invoke(GetK8sClustersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sClustersResult>("ionoscloud:index/getK8sClusters:getK8sClusters", args ?? new GetK8sClustersInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetK8sClustersResult> Invoke(GetK8sClustersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sClustersResult>("ionoscloud:index/getK8sClusters:getK8sClusters", args ?? new GetK8sClustersInvokeArgs(), options.WithDefaults());
     }
 
 

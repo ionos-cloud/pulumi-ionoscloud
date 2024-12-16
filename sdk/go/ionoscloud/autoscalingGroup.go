@@ -12,161 +12,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages an Autoscaling Group on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
-//				Location: pulumi.String("de/fra"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			lanExample1, err := compute.NewLan(ctx, "lanExample1", &compute.LanArgs{
-//				DatacenterId: datacenterExample.ID(),
-//				Public:       pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			lanExample2, err := compute.NewLan(ctx, "lanExample2", &compute.LanArgs{
-//				DatacenterId: datacenterExample.ID(),
-//				Public:       pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			autoscalingTargetGroup, err := ionoscloud.NewTargetGroup(ctx, "autoscalingTargetGroup", &ionoscloud.TargetGroupArgs{
-//				Algorithm: pulumi.String("ROUND_ROBIN"),
-//				Protocol:  pulumi.String("HTTP"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ionoscloud.NewAutoscalingGroup(ctx, "autoscalingGroupExample", &ionoscloud.AutoscalingGroupArgs{
-//				DatacenterId:    datacenterExample.ID(),
-//				MaxReplicaCount: pulumi.Int(2),
-//				MinReplicaCount: pulumi.Int(1),
-//				Policy: &ionoscloud.AutoscalingGroupPolicyArgs{
-//					Metric: pulumi.String("INSTANCE_CPU_UTILIZATION_AVERAGE"),
-//					Range:  pulumi.String("PT24H"),
-//					ScaleInAction: &ionoscloud.AutoscalingGroupPolicyScaleInActionArgs{
-//						Amount:                pulumi.Int(1),
-//						AmountType:            pulumi.String("ABSOLUTE"),
-//						TerminationPolicyType: pulumi.String("OLDEST_SERVER_FIRST"),
-//						CooldownPeriod:        pulumi.String("PT5M"),
-//						DeleteVolumes:         pulumi.Bool(true),
-//					},
-//					ScaleInThreshold: pulumi.Int(33),
-//					ScaleOutAction: &ionoscloud.AutoscalingGroupPolicyScaleOutActionArgs{
-//						Amount:         pulumi.Int(1),
-//						AmountType:     pulumi.String("ABSOLUTE"),
-//						CooldownPeriod: pulumi.String("PT5M"),
-//					},
-//					ScaleOutThreshold: pulumi.Int(77),
-//					Unit:              pulumi.String("PER_HOUR"),
-//				},
-//				ReplicaConfiguration: &ionoscloud.AutoscalingGroupReplicaConfigurationArgs{
-//					AvailabilityZone: pulumi.String("AUTO"),
-//					Cores:            pulumi.Int(2),
-//					CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
-//					Ram:              pulumi.Int(2048),
-//					Nics: ionoscloud.AutoscalingGroupReplicaConfigurationNicArray{
-//						&ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs{
-//							Lan:  lanExample1.ID(),
-//							Name: pulumi.String("nic_example_1"),
-//							Dhcp: pulumi.Bool(true),
-//						},
-//						&ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs{
-//							Lan:            lanExample2.ID(),
-//							Name:           pulumi.String("nic_example_2"),
-//							Dhcp:           pulumi.Bool(true),
-//							FirewallActive: pulumi.Bool(true),
-//							FirewallType:   pulumi.String("INGRESS"),
-//							FirewallRules: ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArray{
-//								&ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs{
-//									Name:           pulumi.String("rule_1"),
-//									Protocol:       pulumi.String("TCP"),
-//									PortRangeStart: pulumi.Int(1),
-//									PortRangeEnd:   pulumi.Int(1000),
-//									Type:           pulumi.String("INGRESS"),
-//								},
-//							},
-//							FlowLogs: ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArray{
-//								&ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArgs{
-//									Name:      pulumi.String("flow_log_1"),
-//									Bucket:    pulumi.String("test-de-bucket"),
-//									Action:    pulumi.String("ALL"),
-//									Direction: pulumi.String("BIDIRECTIONAL"),
-//								},
-//							},
-//							TargetGroup: &ionoscloud.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs{
-//								TargetGroupId: autoscalingTargetGroup.ID(),
-//								Port:          pulumi.Int(80),
-//								Weight:        pulumi.Int(50),
-//							},
-//						},
-//					},
-//					Volumes: ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArray{
-//						&ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArgs{
-//							ImageAlias:    pulumi.String("ubuntu:latest"),
-//							Name:          pulumi.String("volume_example"),
-//							Size:          pulumi.Int(10),
-//							Type:          pulumi.String("HDD"),
-//							UserData:      pulumi.String("ZWNobyAiSGVsbG8sIFdvcmxkIgo="),
-//							ImagePassword: serverImagePassword.Result,
-//							BootOrder:     pulumi.String("AUTO"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 type AutoscalingGroup struct {
 	pulumi.CustomResourceState
 
-	// [string] Unique identifier for the resource
+	// Unique identifier for the resource
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// Location of the data center.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes.
 	MaxReplicaCount pulumi.IntOutput `pulumi:"maxReplicaCount"`
-	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes
 	MinReplicaCount pulumi.IntOutput `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// User-defined name for the Autoscaling Group.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-	Policy AutoscalingGroupPolicyOutput `pulumi:"policy"`
-	// [List]
+	// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+	// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+	// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+	// metric.
+	Policy               AutoscalingGroupPolicyOutput               `pulumi:"policy"`
 	ReplicaConfiguration AutoscalingGroupReplicaConfigurationOutput `pulumi:"replicaConfiguration"`
 }
 
@@ -215,36 +80,44 @@ func GetAutoscalingGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AutoscalingGroup resources.
 type autoscalingGroupState struct {
-	// [string] Unique identifier for the resource
+	// Unique identifier for the resource
 	DatacenterId *string `pulumi:"datacenterId"`
 	// Location of the data center.
 	Location *string `pulumi:"location"`
-	// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes.
 	MaxReplicaCount *int `pulumi:"maxReplicaCount"`
-	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes
 	MinReplicaCount *int `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
-	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-	Policy *AutoscalingGroupPolicy `pulumi:"policy"`
-	// [List]
+	// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+	// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+	// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+	// metric.
+	Policy               *AutoscalingGroupPolicy               `pulumi:"policy"`
 	ReplicaConfiguration *AutoscalingGroupReplicaConfiguration `pulumi:"replicaConfiguration"`
 }
 
 type AutoscalingGroupState struct {
-	// [string] Unique identifier for the resource
+	// Unique identifier for the resource
 	DatacenterId pulumi.StringPtrInput
 	// Location of the data center.
 	Location pulumi.StringPtrInput
-	// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes.
 	MaxReplicaCount pulumi.IntPtrInput
-	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes
 	MinReplicaCount pulumi.IntPtrInput
-	// [string] Name for this replica volume.
+	// User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput
-	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-	Policy AutoscalingGroupPolicyPtrInput
-	// [List]
+	// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+	// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+	// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+	// metric.
+	Policy               AutoscalingGroupPolicyPtrInput
 	ReplicaConfiguration AutoscalingGroupReplicaConfigurationPtrInput
 }
 
@@ -253,33 +126,41 @@ func (AutoscalingGroupState) ElementType() reflect.Type {
 }
 
 type autoscalingGroupArgs struct {
-	// [string] Unique identifier for the resource
+	// Unique identifier for the resource
 	DatacenterId string `pulumi:"datacenterId"`
-	// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes.
 	MaxReplicaCount int `pulumi:"maxReplicaCount"`
-	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes
 	MinReplicaCount int `pulumi:"minReplicaCount"`
-	// [string] Name for this replica volume.
+	// User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
-	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-	Policy AutoscalingGroupPolicy `pulumi:"policy"`
-	// [List]
+	// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+	// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+	// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+	// metric.
+	Policy               AutoscalingGroupPolicy               `pulumi:"policy"`
 	ReplicaConfiguration AutoscalingGroupReplicaConfiguration `pulumi:"replicaConfiguration"`
 }
 
 // The set of arguments for constructing a AutoscalingGroup resource.
 type AutoscalingGroupArgs struct {
-	// [string] Unique identifier for the resource
+	// Unique identifier for the resource
 	DatacenterId pulumi.StringInput
-	// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes.
 	MaxReplicaCount pulumi.IntInput
-	// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+	// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+	// both automatic and manual changes
 	MinReplicaCount pulumi.IntInput
-	// [string] Name for this replica volume.
+	// User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput
-	// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-	Policy AutoscalingGroupPolicyInput
-	// [List]
+	// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+	// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+	// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+	// metric.
+	Policy               AutoscalingGroupPolicyInput
 	ReplicaConfiguration AutoscalingGroupReplicaConfigurationInput
 }
 
@@ -370,7 +251,7 @@ func (o AutoscalingGroupOutput) ToAutoscalingGroupOutputWithContext(ctx context.
 	return o
 }
 
-// [string] Unique identifier for the resource
+// Unique identifier for the resource
 func (o AutoscalingGroupOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
@@ -380,27 +261,31 @@ func (o AutoscalingGroupOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+// The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+// both automatic and manual changes.
 func (o AutoscalingGroupOutput) MaxReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.IntOutput { return v.MaxReplicaCount }).(pulumi.IntOutput)
 }
 
-// [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+// The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+// both automatic and manual changes
 func (o AutoscalingGroupOutput) MinReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.IntOutput { return v.MinReplicaCount }).(pulumi.IntOutput)
 }
 
-// [string] Name for this replica volume.
+// User-defined name for the Autoscaling Group.
 func (o AutoscalingGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+// Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+// automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+// separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+// metric.
 func (o AutoscalingGroupOutput) Policy() AutoscalingGroupPolicyOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) AutoscalingGroupPolicyOutput { return v.Policy }).(AutoscalingGroupPolicyOutput)
 }
 
-// [List]
 func (o AutoscalingGroupOutput) ReplicaConfiguration() AutoscalingGroupReplicaConfigurationOutput {
 	return o.ApplyT(func(v *AutoscalingGroup) AutoscalingGroupReplicaConfigurationOutput { return v.ReplicaConfiguration }).(AutoscalingGroupReplicaConfigurationOutput)
 }

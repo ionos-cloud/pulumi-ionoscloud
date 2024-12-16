@@ -12,114 +12,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **CDN Distribution** on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"os"
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// optionally you can add a certificate to the distribution
-//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      readFileOrPanic("path_to_cert"),
-//				CertificateChain: readFileOrPanic("path_to_cert_chain"),
-//				PrivateKey:       readFileOrPanic("path_to_private_key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cdn.NewDistribution(ctx, "example", &cdn.DistributionArgs{
-//				Domain:        pulumi.String("example.com"),
-//				CertificateId: cert.ID(),
-//				RoutingRules: cdn.DistributionRoutingRuleArray{
-//					&cdn.DistributionRoutingRuleArgs{
-//						Scheme: pulumi.String("https"),
-//						Prefix: pulumi.String("/api"),
-//						Upstream: &cdn.DistributionRoutingRuleUpstreamArgs{
-//							Host:           pulumi.String("server.example.com"),
-//							Caching:        pulumi.Bool(true),
-//							Waf:            pulumi.Bool(true),
-//							SniMode:        pulumi.String("distribution"),
-//							RateLimitClass: pulumi.String("R500"),
-//							GeoRestrictions: &cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{
-//								AllowLists: pulumi.StringArray{
-//									pulumi.String("CN"),
-//									pulumi.String("RU"),
-//								},
-//							},
-//						},
-//					},
-//					&cdn.DistributionRoutingRuleArgs{
-//						Scheme: pulumi.String("http/https"),
-//						Prefix: pulumi.String("/api2"),
-//						Upstream: &cdn.DistributionRoutingRuleUpstreamArgs{
-//							Host:           pulumi.String("server2.example.com"),
-//							Caching:        pulumi.Bool(false),
-//							Waf:            pulumi.Bool(false),
-//							SniMode:        pulumi.String("origin"),
-//							RateLimitClass: pulumi.String("R10"),
-//							GeoRestrictions: &cdn.DistributionRoutingRuleUpstreamGeoRestrictionsArgs{
-//								BlockLists: pulumi.StringArray{
-//									pulumi.String("CN"),
-//									pulumi.String("RU"),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Resource Distribution can be imported using the `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
-// ```
 type Distribution struct {
 	pulumi.CustomResourceState
 
-	// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	// The ID of the certificate to use for the distribution.
 	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
-	// [string] The domain of the distribution.
+	// The domain of the distribution.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// IP of the distribution, it has to be included on the domain DNS Zone as A record.
 	PublicEndpointV4 pulumi.StringOutput `pulumi:"publicEndpointV4"`
 	// IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
 	PublicEndpointV6 pulumi.StringOutput `pulumi:"publicEndpointV6"`
-	// Unique resource indentifier.
+	// Unique name of the resource.
 	ResourceUrn pulumi.StringOutput `pulumi:"resourceUrn"`
-	// [list] The routing rules for the distribution.
+	// The routing rules for the distribution.
 	RoutingRules DistributionRoutingRuleArrayOutput `pulumi:"routingRules"`
 }
 
@@ -159,32 +65,32 @@ func GetDistribution(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Distribution resources.
 type distributionState struct {
-	// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	// The ID of the certificate to use for the distribution.
 	CertificateId *string `pulumi:"certificateId"`
-	// [string] The domain of the distribution.
+	// The domain of the distribution.
 	Domain *string `pulumi:"domain"`
 	// IP of the distribution, it has to be included on the domain DNS Zone as A record.
 	PublicEndpointV4 *string `pulumi:"publicEndpointV4"`
 	// IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
 	PublicEndpointV6 *string `pulumi:"publicEndpointV6"`
-	// Unique resource indentifier.
+	// Unique name of the resource.
 	ResourceUrn *string `pulumi:"resourceUrn"`
-	// [list] The routing rules for the distribution.
+	// The routing rules for the distribution.
 	RoutingRules []DistributionRoutingRule `pulumi:"routingRules"`
 }
 
 type DistributionState struct {
-	// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	// The ID of the certificate to use for the distribution.
 	CertificateId pulumi.StringPtrInput
-	// [string] The domain of the distribution.
+	// The domain of the distribution.
 	Domain pulumi.StringPtrInput
 	// IP of the distribution, it has to be included on the domain DNS Zone as A record.
 	PublicEndpointV4 pulumi.StringPtrInput
 	// IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
 	PublicEndpointV6 pulumi.StringPtrInput
-	// Unique resource indentifier.
+	// Unique name of the resource.
 	ResourceUrn pulumi.StringPtrInput
-	// [list] The routing rules for the distribution.
+	// The routing rules for the distribution.
 	RoutingRules DistributionRoutingRuleArrayInput
 }
 
@@ -193,21 +99,21 @@ func (DistributionState) ElementType() reflect.Type {
 }
 
 type distributionArgs struct {
-	// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	// The ID of the certificate to use for the distribution.
 	CertificateId *string `pulumi:"certificateId"`
-	// [string] The domain of the distribution.
+	// The domain of the distribution.
 	Domain string `pulumi:"domain"`
-	// [list] The routing rules for the distribution.
+	// The routing rules for the distribution.
 	RoutingRules []DistributionRoutingRule `pulumi:"routingRules"`
 }
 
 // The set of arguments for constructing a Distribution resource.
 type DistributionArgs struct {
-	// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	// The ID of the certificate to use for the distribution.
 	CertificateId pulumi.StringPtrInput
-	// [string] The domain of the distribution.
+	// The domain of the distribution.
 	Domain pulumi.StringInput
-	// [list] The routing rules for the distribution.
+	// The routing rules for the distribution.
 	RoutingRules DistributionRoutingRuleArrayInput
 }
 
@@ -298,12 +204,12 @@ func (o DistributionOutput) ToDistributionOutputWithContext(ctx context.Context)
 	return o
 }
 
-// [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+// The ID of the certificate to use for the distribution.
 func (o DistributionOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Distribution) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
 }
 
-// [string] The domain of the distribution.
+// The domain of the distribution.
 func (o DistributionOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v *Distribution) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
 }
@@ -318,12 +224,12 @@ func (o DistributionOutput) PublicEndpointV6() pulumi.StringOutput {
 	return o.ApplyT(func(v *Distribution) pulumi.StringOutput { return v.PublicEndpointV6 }).(pulumi.StringOutput)
 }
 
-// Unique resource indentifier.
+// Unique name of the resource.
 func (o DistributionOutput) ResourceUrn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Distribution) pulumi.StringOutput { return v.ResourceUrn }).(pulumi.StringOutput)
 }
 
-// [list] The routing rules for the distribution.
+// The routing rules for the distribution.
 func (o DistributionOutput) RoutingRules() DistributionRoutingRuleArrayOutput {
 	return o.ApplyT(func(v *Distribution) DistributionRoutingRuleArrayOutput { return v.RoutingRules }).(DistributionRoutingRuleArrayOutput)
 }

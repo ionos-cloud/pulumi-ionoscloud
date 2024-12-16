@@ -11,12 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
-// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-// When this happens, please refine your search string so that it is specific enough to return only one result.
-//
-// ## Example Usage
 func LookupKafkaCluster(ctx *pulumi.Context, args *LookupKafkaClusterArgs, opts ...pulumi.InvokeOption) (*LookupKafkaClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKafkaClusterResult
@@ -29,53 +23,37 @@ func LookupKafkaCluster(ctx *pulumi.Context, args *LookupKafkaClusterArgs, opts 
 
 // A collection of arguments for invoking getKafkaCluster.
 type LookupKafkaClusterArgs struct {
-	// ID of an existing Kafka Cluster that you want to search for.
-	Id *string `pulumi:"id"`
-	// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-	Location string `pulumi:"location"`
-	// Name of an existing Kafka Cluster that you want to search for.
+	Id           *string `pulumi:"id"`
+	Location     string  `pulumi:"location"`
 	Name         *string `pulumi:"name"`
 	PartialMatch *bool   `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getKafkaCluster.
 type LookupKafkaClusterResult struct {
-	// IP address and port of cluster brokers.
-	BrokerAddresses []string `pulumi:"brokerAddresses"`
-	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-	Connections []GetKafkaClusterConnection `pulumi:"connections"`
-	// UUID of the Kafka Cluster.
-	Id       string `pulumi:"id"`
-	Location string `pulumi:"location"`
-	// The name of the Kafka Cluster.
-	Name         string `pulumi:"name"`
-	PartialMatch *bool  `pulumi:"partialMatch"`
-	// The size of the Kafka Cluster.
-	Size string `pulumi:"size"`
-	// The version of the Kafka Cluster.
-	Version string `pulumi:"version"`
+	BrokerAddresses []string                    `pulumi:"brokerAddresses"`
+	Connections     []GetKafkaClusterConnection `pulumi:"connections"`
+	Id              string                      `pulumi:"id"`
+	Location        string                      `pulumi:"location"`
+	Name            string                      `pulumi:"name"`
+	PartialMatch    *bool                       `pulumi:"partialMatch"`
+	Size            string                      `pulumi:"size"`
+	Version         string                      `pulumi:"version"`
 }
 
 func LookupKafkaClusterOutput(ctx *pulumi.Context, args LookupKafkaClusterOutputArgs, opts ...pulumi.InvokeOption) LookupKafkaClusterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupKafkaClusterResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupKafkaClusterResultOutput, error) {
 			args := v.(LookupKafkaClusterArgs)
-			r, err := LookupKafkaCluster(ctx, &args, opts...)
-			var s LookupKafkaClusterResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getKafkaCluster:getKafkaCluster", args, LookupKafkaClusterResultOutput{}, options).(LookupKafkaClusterResultOutput), nil
 		}).(LookupKafkaClusterResultOutput)
 }
 
 // A collection of arguments for invoking getKafkaCluster.
 type LookupKafkaClusterOutputArgs struct {
-	// ID of an existing Kafka Cluster that you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing Kafka Cluster that you want to search for.
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	Location     pulumi.StringInput    `pulumi:"location"`
 	Name         pulumi.StringPtrInput `pulumi:"name"`
 	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
@@ -99,17 +77,14 @@ func (o LookupKafkaClusterResultOutput) ToLookupKafkaClusterResultOutputWithCont
 	return o
 }
 
-// IP address and port of cluster brokers.
 func (o LookupKafkaClusterResultOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
 
-// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 func (o LookupKafkaClusterResultOutput) Connections() GetKafkaClusterConnectionArrayOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) []GetKafkaClusterConnection { return v.Connections }).(GetKafkaClusterConnectionArrayOutput)
 }
 
-// UUID of the Kafka Cluster.
 func (o LookupKafkaClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -118,7 +93,6 @@ func (o LookupKafkaClusterResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-// The name of the Kafka Cluster.
 func (o LookupKafkaClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -127,12 +101,10 @@ func (o LookupKafkaClusterResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-// The size of the Kafka Cluster.
 func (o LookupKafkaClusterResultOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Size }).(pulumi.StringOutput)
 }
 
-// The version of the Kafka Cluster.
 func (o LookupKafkaClusterResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKafkaClusterResult) string { return v.Version }).(pulumi.StringOutput)
 }

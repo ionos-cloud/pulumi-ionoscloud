@@ -11,54 +11,13 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetDataplatformVersions
     {
-        /// <summary>
-        /// The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
-        /// 
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### Retrieve list of Managed Dataplatform API versions
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetDataplatformVersions.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetDataplatformVersionsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataplatformVersionsResult>("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", InvokeArgs.Empty, options.WithDefaults());
 
-        /// <summary>
-        /// The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
-        /// 
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### Retrieve list of Managed Dataplatform API versions
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetDataplatformVersions.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetDataplatformVersionsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformVersionsResult>("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", InvokeArgs.Empty, options.WithDefaults());
+
+        public static Output<GetDataplatformVersionsResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformVersionsResult>("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", InvokeArgs.Empty, options.WithDefaults());
     }
 
@@ -70,9 +29,6 @@ namespace Pulumi.Ionoscloud
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// list of Managed Dataplatform API versions.
-        /// </summary>
         public readonly ImmutableArray<string> Versions;
 
         [OutputConstructor]

@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class AutoscalingGroupPolicyScaleOutAction
     {
         /// <summary>
-        /// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+        /// When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
         /// </summary>
         public readonly int Amount;
         /// <summary>
-        /// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+        /// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
         /// </summary>
         public readonly string AmountType;
         /// <summary>
-        /// [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+        /// The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
         /// </summary>
         public readonly string? CooldownPeriod;
 

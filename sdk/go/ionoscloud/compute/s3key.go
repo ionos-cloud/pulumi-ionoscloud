@@ -12,65 +12,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages an **IONOS Object Storage Key** on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleUser, err := compute.NewUser(ctx, "exampleUser", &compute.UserArgs{
-//				FirstName:     pulumi.String("example"),
-//				LastName:      pulumi.String("example"),
-//				Email:         pulumi.String("unique@email.com"),
-//				Password:      pulumi.String("abc123-321CBA"),
-//				Administrator: pulumi.Bool(false),
-//				ForceSecAuth:  pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewS3Key(ctx, "exampleS3Key", &compute.S3KeyArgs{
-//				UserId: exampleUser.ID(),
-//				Active: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
-// ```
-//
-// This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
 type S3Key struct {
 	pulumi.CustomResourceState
 
-	// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+	// Whether this key should be active or not.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
-	// The IONOS Object Storage Secret key.
+	// The Object Storage Secret key.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
-	// [string] The UUID of the user owning the IONOS Object Storage Key.
+	// The ID of the user that owns the key.
 	UserId pulumi.StringOutput `pulumi:"userId"`
 }
 
@@ -107,20 +56,20 @@ func GetS3Key(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering S3Key resources.
 type s3keyState struct {
-	// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+	// Whether this key should be active or not.
 	Active *bool `pulumi:"active"`
-	// The IONOS Object Storage Secret key.
+	// The Object Storage Secret key.
 	SecretKey *string `pulumi:"secretKey"`
-	// [string] The UUID of the user owning the IONOS Object Storage Key.
+	// The ID of the user that owns the key.
 	UserId *string `pulumi:"userId"`
 }
 
 type S3KeyState struct {
-	// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+	// Whether this key should be active or not.
 	Active pulumi.BoolPtrInput
-	// The IONOS Object Storage Secret key.
+	// The Object Storage Secret key.
 	SecretKey pulumi.StringPtrInput
-	// [string] The UUID of the user owning the IONOS Object Storage Key.
+	// The ID of the user that owns the key.
 	UserId pulumi.StringPtrInput
 }
 
@@ -129,17 +78,17 @@ func (S3KeyState) ElementType() reflect.Type {
 }
 
 type s3keyArgs struct {
-	// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+	// Whether this key should be active or not.
 	Active *bool `pulumi:"active"`
-	// [string] The UUID of the user owning the IONOS Object Storage Key.
+	// The ID of the user that owns the key.
 	UserId string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a S3Key resource.
 type S3KeyArgs struct {
-	// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+	// Whether this key should be active or not.
 	Active pulumi.BoolPtrInput
-	// [string] The UUID of the user owning the IONOS Object Storage Key.
+	// The ID of the user that owns the key.
 	UserId pulumi.StringInput
 }
 
@@ -230,17 +179,17 @@ func (o S3KeyOutput) ToS3KeyOutputWithContext(ctx context.Context) S3KeyOutput {
 	return o
 }
 
-// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+// Whether this key should be active or not.
 func (o S3KeyOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *S3Key) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
 
-// The IONOS Object Storage Secret key.
+// The Object Storage Secret key.
 func (o S3KeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *S3Key) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }
 
-// [string] The UUID of the user owning the IONOS Object Storage Key.
+// The ID of the user that owns the key.
 func (o S3KeyOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v *S3Key) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
 }

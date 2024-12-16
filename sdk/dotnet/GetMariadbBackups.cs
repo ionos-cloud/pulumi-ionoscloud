@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetMariadbBackupsResult> Invoke(GetMariadbBackupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMariadbBackupsResult>("ionoscloud:index/getMariadbBackups:getMariadbBackups", args ?? new GetMariadbBackupsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetMariadbBackupsResult> Invoke(GetMariadbBackupsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMariadbBackupsResult>("ionoscloud:index/getMariadbBackups:getMariadbBackups", args ?? new GetMariadbBackupsInvokeArgs(), options.WithDefaults());
     }
 
 

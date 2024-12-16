@@ -9,66 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Creg
 {
-    /// <summary>
-    /// Manages an **Container Registry Token** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleRegistry = new Ionoscloud.Creg.Registry("exampleRegistry", new()
-    ///     {
-    ///         GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs
-    ///         {
-    ///             Days = new[]
-    ///             {
-    ///                 "Monday",
-    ///                 "Tuesday",
-    ///             },
-    ///             Time = "05:19:00+00:00",
-    ///         },
-    ///         Location = "de/fra",
-    ///     });
-    /// 
-    ///     var exampleRegistryToken = new Ionoscloud.Creg.RegistryToken("exampleRegistryToken", new()
-    ///     {
-    ///         ExpiryDate = "2023-01-13 16:27:42Z",
-    ///         Scopes = new[]
-    ///         {
-    ///             new Ionoscloud.Creg.Inputs.RegistryTokenScopeArgs
-    ///             {
-    ///                 Actions = new[]
-    ///                 {
-    ///                     "push",
-    ///                 },
-    ///                 Name = "Scope1",
-    ///                 Type = "repository",
-    ///             },
-    ///         },
-    ///         Status = "enabled",
-    ///         RegistryId = exampleRegistry.Id,
-    ///         SavePasswordToFile = "pass.txt",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:creg/registryToken:RegistryToken")]
     public partial class RegistryToken : global::Pulumi.CustomResource
     {
@@ -78,9 +18,6 @@ namespace Pulumi.Ionoscloud.Creg
         [Output("expiryDate")]
         public Output<string?> ExpiryDate { get; private set; } = null!;
 
-        /// <summary>
-        /// [string]
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -88,22 +25,16 @@ namespace Pulumi.Ionoscloud.Creg
         public Output<string> RegistryId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-        /// 
-        /// &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
-        /// &gt; It will save the password(token) returned on create to a file. This is the only way to get the token.
+        /// Saves password to file. Only works on create. Takes as argument a file name, or a file path
         /// </summary>
         [Output("savePasswordToFile")]
         public Output<string?> SavePasswordToFile { get; private set; } = null!;
 
-        /// <summary>
-        /// [map]
-        /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<Outputs.RegistryTokenScope>> Scopes { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Must have on of the values: `enabled`, `disabled`
+        /// Can be one of enabled, disabled
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -157,9 +88,6 @@ namespace Pulumi.Ionoscloud.Creg
         [Input("expiryDate")]
         public Input<string>? ExpiryDate { get; set; }
 
-        /// <summary>
-        /// [string]
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -167,20 +95,13 @@ namespace Pulumi.Ionoscloud.Creg
         public Input<string> RegistryId { get; set; } = null!;
 
         /// <summary>
-        /// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-        /// 
-        /// &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
-        /// &gt; It will save the password(token) returned on create to a file. This is the only way to get the token.
+        /// Saves password to file. Only works on create. Takes as argument a file name, or a file path
         /// </summary>
         [Input("savePasswordToFile")]
         public Input<string>? SavePasswordToFile { get; set; }
 
         [Input("scopes")]
         private InputList<Inputs.RegistryTokenScopeArgs>? _scopes;
-
-        /// <summary>
-        /// [map]
-        /// </summary>
         public InputList<Inputs.RegistryTokenScopeArgs> Scopes
         {
             get => _scopes ?? (_scopes = new InputList<Inputs.RegistryTokenScopeArgs>());
@@ -188,7 +109,7 @@ namespace Pulumi.Ionoscloud.Creg
         }
 
         /// <summary>
-        /// [string] Must have on of the values: `enabled`, `disabled`
+        /// Can be one of enabled, disabled
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -212,9 +133,6 @@ namespace Pulumi.Ionoscloud.Creg
         [Input("expiryDate")]
         public Input<string>? ExpiryDate { get; set; }
 
-        /// <summary>
-        /// [string]
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -222,20 +140,13 @@ namespace Pulumi.Ionoscloud.Creg
         public Input<string>? RegistryId { get; set; }
 
         /// <summary>
-        /// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
-        /// 
-        /// &gt; **⚠ WARNING** `save_password_to_file` must be used with caution.
-        /// &gt; It will save the password(token) returned on create to a file. This is the only way to get the token.
+        /// Saves password to file. Only works on create. Takes as argument a file name, or a file path
         /// </summary>
         [Input("savePasswordToFile")]
         public Input<string>? SavePasswordToFile { get; set; }
 
         [Input("scopes")]
         private InputList<Inputs.RegistryTokenScopeGetArgs>? _scopes;
-
-        /// <summary>
-        /// [map]
-        /// </summary>
         public InputList<Inputs.RegistryTokenScopeGetArgs> Scopes
         {
             get => _scopes ?? (_scopes = new InputList<Inputs.RegistryTokenScopeGetArgs>());
@@ -243,7 +154,7 @@ namespace Pulumi.Ionoscloud.Creg
         }
 
         /// <summary>
-        /// [string] Must have on of the values: `enabled`, `disabled`
+        /// Can be one of enabled, disabled
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

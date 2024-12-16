@@ -9,184 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Alb
 {
-    /// <summary>
-    /// Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Description = "datacenter description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var example1 = new Ionoscloud.Compute.Lan("example1", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var example2 = new Ionoscloud.Compute.Lan("example2", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var exampleBalancer = new Ionoscloud.Alb.Balancer("exampleBalancer", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         ListenerLan = example1.Id,
-    ///         Ips = new[]
-    ///         {
-    ///             "10.12.118.224",
-    ///         },
-    ///         TargetLan = example2.Id,
-    ///         LbPrivateIps = new[]
-    ///         {
-    ///             "10.13.72.225/24",
-    ///         },
-    ///     });
-    /// 
-    ///     //optionally you can add a certificate to the application load balancer
-    ///     var cert = new Ionoscloud.Cert.Certificate("cert", new()
-    ///     {
-    ///         Certificate = File.ReadAllText("path_to_cert"),
-    ///         CertificateChain = File.ReadAllText("path_to_cert_chain"),
-    ///         PrivateKey = File.ReadAllText("path_to_private_key"),
-    ///     });
-    /// 
-    ///     var exampleForwardingRule = new Ionoscloud.Alb.ForwardingRule("exampleForwardingRule", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         ApplicationLoadbalancerId = exampleBalancer.Id,
-    ///         Protocol = "HTTP",
-    ///         ListenerIp = "10.12.118.224",
-    ///         ListenerPort = 8080,
-    ///         ClientTimeout = 1000,
-    ///         HttpRules = new[]
-    ///         {
-    ///             new Ionoscloud.Alb.Inputs.ForwardingRuleHttpRuleArgs
-    ///             {
-    ///                 Name = "http_rule",
-    ///                 Type = "REDIRECT",
-    ///                 DropQuery = true,
-    ///                 Location = "www.ionos.com",
-    ///                 StatusCode = 301,
-    ///                 Conditions = new[]
-    ///                 {
-    ///                     new Ionoscloud.Alb.Inputs.ForwardingRuleHttpRuleConditionArgs
-    ///                     {
-    ///                         Type = "HEADER",
-    ///                         Condition = "EQUALS",
-    ///                         Negate = true,
-    ///                         Key = "key",
-    ///                         Value = "10.12.120.224/24",
-    ///                     },
-    ///                 },
-    ///             },
-    ///             new Ionoscloud.Alb.Inputs.ForwardingRuleHttpRuleArgs
-    ///             {
-    ///                 Name = "http_rule_2",
-    ///                 Type = "STATIC",
-    ///                 DropQuery = false,
-    ///                 StatusCode = 303,
-    ///                 ResponseMessage = "Response",
-    ///                 ContentType = "text/plain",
-    ///                 Conditions = new[]
-    ///                 {
-    ///                     new Ionoscloud.Alb.Inputs.ForwardingRuleHttpRuleConditionArgs
-    ///                     {
-    ///                         Type = "QUERY",
-    ///                         Condition = "MATCHES",
-    ///                         Negate = false,
-    ///                         Key = "key",
-    ///                         Value = "10.12.120.224/24",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///         ServerCertificates = new[]
-    ///         {
-    ///             cert.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:alb/forwardingRule:ForwardingRule")]
     public partial class ForwardingRule : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] The ID of Application Load Balancer.
-        /// </summary>
         [Output("applicationLoadbalancerId")]
         public Output<string> ApplicationLoadbalancerId { get; private set; } = null!;
 
         /// <summary>
-        /// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+        /// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         /// </summary>
         [Output("clientTimeout")]
         public Output<int> ClientTimeout { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Array of items in that collection
+        /// Array of items in that collection
         /// </summary>
         [Output("httpRules")]
         public Output<ImmutableArray<Outputs.ForwardingRuleHttpRule>> HttpRules { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Listening (inbound) IP.
+        /// Listening (inbound) IP.
         /// </summary>
         [Output("listenerIp")]
         public Output<string> ListenerIp { get; private set; } = null!;
 
         /// <summary>
-        /// [int] Listening (inbound) port number; valid range is 1 to 65535.
+        /// Listening (inbound) port number; valid range is 1 to 65535.
         /// </summary>
         [Output("listenerPort")]
         public Output<int> ListenerPort { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// [list] Array of certificate ids. You can create certificates with the certificate resource.
+        /// Array of items in the collection.
         /// </summary>
         [Output("serverCertificates")]
         public Output<ImmutableArray<string>> ServerCertificates { get; private set; } = null!;
@@ -237,21 +106,15 @@ namespace Pulumi.Ionoscloud.Alb
 
     public sealed class ForwardingRuleArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The ID of Application Load Balancer.
-        /// </summary>
         [Input("applicationLoadbalancerId", required: true)]
         public Input<string> ApplicationLoadbalancerId { get; set; } = null!;
 
         /// <summary>
-        /// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+        /// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         /// </summary>
         [Input("clientTimeout")]
         public Input<int>? ClientTimeout { get; set; }
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
@@ -259,7 +122,7 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<Inputs.ForwardingRuleHttpRuleArgs>? _httpRules;
 
         /// <summary>
-        /// [list] Array of items in that collection
+        /// Array of items in that collection
         /// </summary>
         public InputList<Inputs.ForwardingRuleHttpRuleArgs> HttpRules
         {
@@ -268,25 +131,25 @@ namespace Pulumi.Ionoscloud.Alb
         }
 
         /// <summary>
-        /// [string] Listening (inbound) IP.
+        /// Listening (inbound) IP.
         /// </summary>
         [Input("listenerIp", required: true)]
         public Input<string> ListenerIp { get; set; } = null!;
 
         /// <summary>
-        /// [int] Listening (inbound) port number; valid range is 1 to 65535.
+        /// Listening (inbound) port number; valid range is 1 to 65535.
         /// </summary>
         [Input("listenerPort", required: true)]
         public Input<int> ListenerPort { get; set; } = null!;
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -295,7 +158,7 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _serverCertificates;
 
         /// <summary>
-        /// [list] Array of certificate ids. You can create certificates with the certificate resource.
+        /// Array of items in the collection.
         /// </summary>
         public InputList<string> ServerCertificates
         {
@@ -311,21 +174,15 @@ namespace Pulumi.Ionoscloud.Alb
 
     public sealed class ForwardingRuleState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The ID of Application Load Balancer.
-        /// </summary>
         [Input("applicationLoadbalancerId")]
         public Input<string>? ApplicationLoadbalancerId { get; set; }
 
         /// <summary>
-        /// [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+        /// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         /// </summary>
         [Input("clientTimeout")]
         public Input<int>? ClientTimeout { get; set; }
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
@@ -333,7 +190,7 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<Inputs.ForwardingRuleHttpRuleGetArgs>? _httpRules;
 
         /// <summary>
-        /// [list] Array of items in that collection
+        /// Array of items in that collection
         /// </summary>
         public InputList<Inputs.ForwardingRuleHttpRuleGetArgs> HttpRules
         {
@@ -342,25 +199,25 @@ namespace Pulumi.Ionoscloud.Alb
         }
 
         /// <summary>
-        /// [string] Listening (inbound) IP.
+        /// Listening (inbound) IP.
         /// </summary>
         [Input("listenerIp")]
         public Input<string>? ListenerIp { get; set; }
 
         /// <summary>
-        /// [int] Listening (inbound) port number; valid range is 1 to 65535.
+        /// Listening (inbound) port number; valid range is 1 to 65535.
         /// </summary>
         [Input("listenerPort")]
         public Input<int>? ListenerPort { get; set; }
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] Balancing protocol.
+        /// Balancing protocol.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -369,7 +226,7 @@ namespace Pulumi.Ionoscloud.Alb
         private InputList<string>? _serverCertificates;
 
         /// <summary>
-        /// [list] Array of certificate ids. You can create certificates with the certificate resource.
+        /// Array of items in the collection.
         /// </summary>
         public InputList<string> ServerCertificates
         {

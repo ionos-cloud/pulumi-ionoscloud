@@ -9,70 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dns
 {
-    /// <summary>
-    /// Manages a **DNS Record**.
-    /// 
-    /// &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Dns.Zone("example", new()
-    ///     {
-    ///         Description = "description",
-    ///         Enabled = false,
-    ///     });
-    /// 
-    ///     var recordexample = new Ionoscloud.Dns.Record("recordexample", new()
-    ///     {
-    ///         ZoneId = example.Id,
-    ///         Type = "CNAME",
-    ///         Content = "1.2.3.4",
-    ///         Ttl = 2000,
-    ///         Priority = 1024,
-    ///         Enabled = false,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
-    /// 
-    /// hcl
-    /// 
-    /// resource "ionoscloud_dns_record" "example" {
-    /// 
-    /// }
-    /// 
-    /// The resource can be imported using the `zone_id` and the `record_id`, for example:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:dns/record:Record")]
     public partial class Record : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] The content of the DNS Record.
-        /// </summary>
         [Output("content")]
         public Output<string> Content { get; private set; } = null!;
 
-        /// <summary>
-        /// [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
@@ -82,33 +24,18 @@ namespace Pulumi.Ionoscloud.Dns
         [Output("fqdn")]
         public Output<string> Fqdn { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The name of the DNS Record.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// [int] The priority for the DNS Record.
-        /// </summary>
         [Output("priority")]
         public Output<int?> Priority { get; private set; } = null!;
 
-        /// <summary>
-        /// [int] Time to live for the DNS Record. Default is `3600`.
-        /// </summary>
         [Output("ttl")]
         public Output<int> Ttl { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The DNS Zone ID in which the DNS Record will be created.
-        /// </summary>
         [Output("zoneId")]
         public Output<string> ZoneId { get; private set; } = null!;
 
@@ -158,45 +85,24 @@ namespace Pulumi.Ionoscloud.Dns
 
     public sealed class RecordArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The content of the DNS Record.
-        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
-        /// <summary>
-        /// [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
-        /// <summary>
-        /// [string] The name of the DNS Record.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [int] The priority for the DNS Record.
-        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
-        /// <summary>
-        /// [int] Time to live for the DNS Record. Default is `3600`.
-        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
-        /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        /// <summary>
-        /// [string] The DNS Zone ID in which the DNS Record will be created.
-        /// </summary>
         [Input("zoneId", required: true)]
         public Input<string> ZoneId { get; set; } = null!;
 
@@ -208,15 +114,9 @@ namespace Pulumi.Ionoscloud.Dns
 
     public sealed class RecordState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The content of the DNS Record.
-        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
-        /// <summary>
-        /// [bool] Indicates if the DNS Record is active or not. Default is `true`.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
@@ -226,33 +126,18 @@ namespace Pulumi.Ionoscloud.Dns
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
-        /// <summary>
-        /// [string] The name of the DNS Record.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [int] The priority for the DNS Record.
-        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
-        /// <summary>
-        /// [int] Time to live for the DNS Record. Default is `3600`.
-        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
-        /// <summary>
-        /// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
-        /// <summary>
-        /// [string] The DNS Zone ID in which the DNS Record will be created.
-        /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
 

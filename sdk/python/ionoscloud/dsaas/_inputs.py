@@ -4,17 +4,45 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClusterLanArgs',
+    'ClusterLanArgsDict',
     'ClusterLanRouteArgs',
+    'ClusterLanRouteArgsDict',
     'ClusterMaintenanceWindowArgs',
+    'ClusterMaintenanceWindowArgsDict',
     'NodePoolMaintenanceWindowArgs',
+    'NodePoolMaintenanceWindowArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClusterLanArgsDict(TypedDict):
+        lan_id: pulumi.Input[str]
+        """
+        The LAN ID of an existing LAN at the related data center
+        """
+        dhcp: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        """
+        routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterLanRouteArgsDict']]]]
+        """
+        An array of additional LANs attached to worker nodes
+        """
+elif False:
+    ClusterLanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterLanArgs:
@@ -23,9 +51,9 @@ class ClusterLanArgs:
                  dhcp: Optional[pulumi.Input[bool]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLanRouteArgs']]]] = None):
         """
-        :param pulumi.Input[str] lan_id: [string] The LAN ID of an existing LAN at the related data center.
-        :param pulumi.Input[bool] dhcp: [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterLanRouteArgs']]] routes: [list] An array of additional LANs attached to worker nodes.
+        :param pulumi.Input[str] lan_id: The LAN ID of an existing LAN at the related data center
+        :param pulumi.Input[bool] dhcp: Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterLanRouteArgs']]] routes: An array of additional LANs attached to worker nodes
         """
         pulumi.set(__self__, "lan_id", lan_id)
         if dhcp is not None:
@@ -37,7 +65,7 @@ class ClusterLanArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        [string] The LAN ID of an existing LAN at the related data center.
+        The LAN ID of an existing LAN at the related data center
         """
         return pulumi.get(self, "lan_id")
 
@@ -49,7 +77,7 @@ class ClusterLanArgs:
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
+        Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
         """
         return pulumi.get(self, "dhcp")
 
@@ -61,7 +89,7 @@ class ClusterLanArgs:
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLanRouteArgs']]]]:
         """
-        [list] An array of additional LANs attached to worker nodes.
+        An array of additional LANs attached to worker nodes
         """
         return pulumi.get(self, "routes")
 
@@ -70,14 +98,27 @@ class ClusterLanArgs:
         pulumi.set(self, "routes", value)
 
 
+if not MYPY:
+    class ClusterLanRouteArgsDict(TypedDict):
+        gateway: pulumi.Input[str]
+        """
+        IPv4 or IPv6 gateway IP for the route
+        """
+        network: pulumi.Input[str]
+        """
+        IPv4 or IPv6 CIDR to be routed via the interface
+        """
+elif False:
+    ClusterLanRouteArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterLanRouteArgs:
     def __init__(__self__, *,
                  gateway: pulumi.Input[str],
                  network: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] gateway: [string] IPv4 or IPv6 gateway IP for the route.
-        :param pulumi.Input[str] network: [string] IPv4 or IPv6 CIDR to be routed via the interface.
+        :param pulumi.Input[str] gateway: IPv4 or IPv6 gateway IP for the route
+        :param pulumi.Input[str] network: IPv4 or IPv6 CIDR to be routed via the interface
         """
         pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "network", network)
@@ -86,7 +127,7 @@ class ClusterLanRouteArgs:
     @pulumi.getter
     def gateway(self) -> pulumi.Input[str]:
         """
-        [string] IPv4 or IPv6 gateway IP for the route.
+        IPv4 or IPv6 gateway IP for the route
         """
         return pulumi.get(self, "gateway")
 
@@ -98,7 +139,7 @@ class ClusterLanRouteArgs:
     @pulumi.getter
     def network(self) -> pulumi.Input[str]:
         """
-        [string] IPv4 or IPv6 CIDR to be routed via the interface.
+        IPv4 or IPv6 CIDR to be routed via the interface
         """
         return pulumi.get(self, "network")
 
@@ -107,14 +148,23 @@ class ClusterLanRouteArgs:
         pulumi.set(self, "network", value)
 
 
+if not MYPY:
+    class ClusterMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        time: pulumi.Input[str]
+        """
+        Time at which the maintenance should start.
+        """
+elif False:
+    ClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterMaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-        :param pulumi.Input[str] time: [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+        :param pulumi.Input[str] time: Time at which the maintenance should start.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -122,9 +172,6 @@ class ClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
-        """
-        [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-        """
         return pulumi.get(self, "day_of_the_week")
 
     @day_of_the_week.setter
@@ -135,7 +182,7 @@ class ClusterMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+        Time at which the maintenance should start.
         """
         return pulumi.get(self, "time")
 
@@ -144,14 +191,23 @@ class ClusterMaintenanceWindowArgs:
         pulumi.set(self, "time", value)
 
 
+if not MYPY:
+    class NodePoolMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        time: pulumi.Input[str]
+        """
+        Time at which the maintenance should start.
+        """
+elif False:
+    NodePoolMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NodePoolMaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-        :param pulumi.Input[str] time: [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+        :param pulumi.Input[str] time: Time at which the maintenance should start.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -159,9 +215,6 @@ class NodePoolMaintenanceWindowArgs:
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
-        """
-        [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-        """
         return pulumi.get(self, "day_of_the_week")
 
     @day_of_the_week.setter
@@ -172,7 +225,7 @@ class NodePoolMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+        Time at which the maintenance should start.
         """
         return pulumi.get(self, "time")
 

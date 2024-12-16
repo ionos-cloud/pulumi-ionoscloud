@@ -9,87 +9,36 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a Virtual **Data Center** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Compute.Datacenter("example", new()
-    ///     {
-    ///         Description = "datacenter description",
-    ///         Location = "us/las",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Datacenter can be imported using the `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/datacenter:Datacenter")]
     public partial class Datacenter : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Array of features and CPU families available in a location
-        /// </summary>
         [Output("cpuArchitectures")]
         public Output<ImmutableArray<Outputs.DatacenterCpuArchitecture>> CpuArchitectures { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Description for the Virtual Data Center.
+        /// A description for the datacenter, e.g. staging, production
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
-        /// <summary>
-        /// List of features supported by the location this data center is part of
-        /// </summary>
         [Output("features")]
         public Output<ImmutableArray<string>> Features { get; private set; } = null!;
 
         /// <summary>
-        /// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+        /// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
         /// </summary>
         [Output("ipv6CidrBlock")]
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
-        /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The name of the Virtual Data Center.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
-        /// </summary>
         [Output("secAuthProtection")]
         public Output<bool?> SecAuthProtection { get; private set; } = null!;
 
-        /// <summary>
-        /// The version of that Data Center. Gets incremented with every change
-        /// </summary>
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
 
@@ -140,26 +89,17 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class DatacenterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] Description for the Virtual Data Center.
+        /// A description for the datacenter, e.g. staging, production
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
-        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
-        /// <summary>
-        /// [string] The name of the Virtual Data Center.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
-        /// </summary>
         [Input("secAuthProtection")]
         public Input<bool>? SecAuthProtection { get; set; }
 
@@ -173,10 +113,6 @@ namespace Pulumi.Ionoscloud.Compute
     {
         [Input("cpuArchitectures")]
         private InputList<Inputs.DatacenterCpuArchitectureGetArgs>? _cpuArchitectures;
-
-        /// <summary>
-        /// Array of features and CPU families available in a location
-        /// </summary>
         public InputList<Inputs.DatacenterCpuArchitectureGetArgs> CpuArchitectures
         {
             get => _cpuArchitectures ?? (_cpuArchitectures = new InputList<Inputs.DatacenterCpuArchitectureGetArgs>());
@@ -184,17 +120,13 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// [string] Description for the Virtual Data Center.
+        /// A description for the datacenter, e.g. staging, production
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("features")]
         private InputList<string>? _features;
-
-        /// <summary>
-        /// List of features supported by the location this data center is part of
-        /// </summary>
         public InputList<string> Features
         {
             get => _features ?? (_features = new InputList<string>());
@@ -202,32 +134,20 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+        /// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
 
-        /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
-        /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
-        /// <summary>
-        /// [string] The name of the Virtual Data Center.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
-        /// </summary>
         [Input("secAuthProtection")]
         public Input<bool>? SecAuthProtection { get; set; }
 
-        /// <summary>
-        /// The version of that Data Center. Gets incremented with every change
-        /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
 

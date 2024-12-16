@@ -13,25 +13,25 @@ namespace Pulumi.Ionoscloud.Nlb.Inputs
     public sealed class ForwardingRuleHealthCheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+        /// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
         /// </summary>
         [Input("clientTimeout")]
         public Input<int>? ClientTimeout { get; set; }
 
         /// <summary>
-        /// [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+        /// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
         /// </summary>
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
 
         /// <summary>
-        /// [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+        /// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
         /// </summary>
         [Input("retries")]
         public Input<int>? Retries { get; set; }
 
         /// <summary>
-        /// [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+        /// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
         /// </summary>
         [Input("targetTimeout")]
         public Input<int>? TargetTimeout { get; set; }

@@ -11,47 +11,25 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetApigatewayRoute
     {
-        /// <summary>
-        /// The **API Gateway Route data source** can be used to search for and return an existing API Gateway route.
-        /// You can provide a string for the name parameter which will be compared with provisioned API Gateway routes.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// </summary>
         public static Task<GetApigatewayRouteResult> InvokeAsync(GetApigatewayRouteArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApigatewayRouteResult>("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", args ?? new GetApigatewayRouteArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **API Gateway Route data source** can be used to search for and return an existing API Gateway route.
-        /// You can provide a string for the name parameter which will be compared with provisioned API Gateway routes.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// </summary>
         public static Output<GetApigatewayRouteResult> Invoke(GetApigatewayRouteInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetApigatewayRouteResult>("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", args ?? new GetApigatewayRouteInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetApigatewayRouteResult> Invoke(GetApigatewayRouteInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetApigatewayRouteResult>("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", args ?? new GetApigatewayRouteInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetApigatewayRouteArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the API Gateway that the route belongs to.
-        /// </summary>
         [Input("gatewayId", required: true)]
         public string GatewayId { get; set; } = null!;
 
-        /// <summary>
-        /// ID of an existing API Gateway Route that you want to search for.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing API Gateway Route that you want to search for.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -66,21 +44,12 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetApigatewayRouteInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the API Gateway that the route belongs to.
-        /// </summary>
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
 
-        /// <summary>
-        /// ID of an existing API Gateway Route that you want to search for.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// Name of an existing API Gateway Route that you want to search for.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -98,31 +67,13 @@ namespace Pulumi.Ionoscloud
     public sealed class GetApigatewayRouteResult
     {
         public readonly string GatewayId;
-        /// <summary>
-        /// ID of the API Gateway Route.
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The HTTP methods that the route should match.
-        /// </summary>
         public readonly ImmutableArray<string> Methods;
-        /// <summary>
-        /// The name of the API Gateway Route.
-        /// </summary>
         public readonly string Name;
         public readonly bool? PartialMatch;
-        /// <summary>
-        /// The paths that the route should match.
-        /// </summary>
         public readonly ImmutableArray<string> Paths;
-        /// <summary>
-        /// This field specifies the protocol used by the ingress to route traffic to the backend service.
-        /// </summary>
         public readonly string Type;
         public readonly ImmutableArray<Outputs.GetApigatewayRouteUpstreamResult> Upstreams;
-        /// <summary>
-        /// Shows whether websocket support is enabled or disabled.
-        /// </summary>
         public readonly bool Websocket;
 
         [OutputConstructor]

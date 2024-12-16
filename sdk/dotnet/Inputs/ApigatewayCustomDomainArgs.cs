@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class ApigatewayCustomDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+        /// The certificate ID for the domain.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// The domain name.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

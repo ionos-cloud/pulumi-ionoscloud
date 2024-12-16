@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -42,9 +47,6 @@ class GetDataplatformNodePoolsResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        ID of the cluster the searched node pool is part of.
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -63,9 +65,6 @@ class GetDataplatformNodePoolsResult:
     @property
     @pulumi.getter(name="nodePools")
     def node_pools(self) -> Sequence['outputs.GetDataplatformNodePoolsNodePoolResult']:
-        """
-        List of Node Pools - See the Node Pool section.
-        """
         return pulumi.get(self, "node_pools")
 
     @property
@@ -92,14 +91,7 @@ def get_dataplatform_node_pools(cluster_id: Optional[str] = None,
                                 partial_match: Optional[bool] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataplatformNodePoolsResult:
     """
-    The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
-
-    ## Example Usage
-
-
-    :param str cluster_id: ID of the cluster the searched node pool is part of.
-    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
-    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -114,21 +106,22 @@ def get_dataplatform_node_pools(cluster_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         node_pools=pulumi.get(__ret__, 'node_pools'),
         partial_match=pulumi.get(__ret__, 'partial_match'))
-
-
-@_utilities.lift_output_func(get_dataplatform_node_pools)
 def get_dataplatform_node_pools_output(cluster_id: Optional[pulumi.Input[str]] = None,
                                        name: Optional[pulumi.Input[Optional[str]]] = None,
                                        partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataplatformNodePoolsResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataplatformNodePoolsResult]:
     """
-    The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
-
-    ## Example Usage
-
-
-    :param str cluster_id: ID of the cluster the searched node pool is part of.
-    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
-    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+    Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools', __args__, opts=opts, typ=GetDataplatformNodePoolsResult)
+    return __ret__.apply(lambda __response__: GetDataplatformNodePoolsResult(
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        node_pools=pulumi.get(__response__, 'node_pools'),
+        partial_match=pulumi.get(__response__, 'partial_match')))

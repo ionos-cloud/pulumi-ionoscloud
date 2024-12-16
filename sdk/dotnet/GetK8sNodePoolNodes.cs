@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetK8sNodePoolNodesResult> Invoke(GetK8sNodePoolNodesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sNodePoolNodesResult>("ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes", args ?? new GetK8sNodePoolNodesInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetK8sNodePoolNodesResult> Invoke(GetK8sNodePoolNodesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sNodePoolNodesResult>("ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes", args ?? new GetK8sNodePoolNodesInvokeArgs(), options.WithDefaults());
     }
 
 

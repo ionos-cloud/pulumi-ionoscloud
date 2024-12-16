@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -15,6 +20,12 @@ __all__ = [
     'RegistryStorageUsage',
     'RegistryTokenCredential',
     'RegistryTokenScope',
+    'GetRegistryFeatureResult',
+    'GetRegistryGarbageCollectionScheduleResult',
+    'GetRegistryMaintenanceWindowResult',
+    'GetRegistryStorageUsageResult',
+    'GetRegistryTokenCredentialResult',
+    'GetRegistryTokenScopeResult',
 ]
 
 @pulumi.output_type
@@ -39,9 +50,7 @@ class RegistryFeatures(dict):
     def __init__(__self__, *,
                  vulnerability_scanning: Optional[bool] = None):
         """
-        :param bool vulnerability_scanning: [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-               
-               > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+        :param bool vulnerability_scanning: Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
         """
         if vulnerability_scanning is not None:
             pulumi.set(__self__, "vulnerability_scanning", vulnerability_scanning)
@@ -50,9 +59,7 @@ class RegistryFeatures(dict):
     @pulumi.getter(name="vulnerabilityScanning")
     def vulnerability_scanning(self) -> Optional[bool]:
         """
-        [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-
-        > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+        Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
         """
         return pulumi.get(self, "vulnerability_scanning")
 
@@ -63,8 +70,7 @@ class RegistryGarbageCollectionSchedule(dict):
                  days: Sequence[str],
                  time: str):
         """
-        :param Sequence[str] days: [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-        :param str time: [string]
+        :param str time: UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
         """
         pulumi.set(__self__, "days", days)
         pulumi.set(__self__, "time", time)
@@ -72,16 +78,13 @@ class RegistryGarbageCollectionSchedule(dict):
     @property
     @pulumi.getter
     def days(self) -> Sequence[str]:
-        """
-        [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-        """
         return pulumi.get(self, "days")
 
     @property
     @pulumi.getter
     def time(self) -> str:
         """
-        [string]
+        UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
         """
         return pulumi.get(self, "time")
 
@@ -150,9 +153,7 @@ class RegistryTokenScope(dict):
                  name: str,
                  type: str):
         """
-        :param Sequence[str] actions: [string] Example: ["pull", "push", "delete"]
-        :param str name: [string]
-        :param str type: [string]
+        :param Sequence[str] actions: Example: ["pull", "push", "delete"]
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "name", name)
@@ -162,24 +163,125 @@ class RegistryTokenScope(dict):
     @pulumi.getter
     def actions(self) -> Sequence[str]:
         """
-        [string] Example: ["pull", "push", "delete"]
+        Example: ["pull", "push", "delete"]
         """
         return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        [string]
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        [string]
-        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRegistryFeatureResult(dict):
+    def __init__(__self__, *,
+                 vulnerability_scanning: bool):
+        pulumi.set(__self__, "vulnerability_scanning", vulnerability_scanning)
+
+    @property
+    @pulumi.getter(name="vulnerabilityScanning")
+    def vulnerability_scanning(self) -> bool:
+        return pulumi.get(self, "vulnerability_scanning")
+
+
+@pulumi.output_type
+class GetRegistryGarbageCollectionScheduleResult(dict):
+    def __init__(__self__, *,
+                 days: Sequence[str],
+                 time: str):
+        pulumi.set(__self__, "days", days)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Sequence[str]:
+        return pulumi.get(self, "days")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetRegistryMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 days: Sequence[str],
+                 time: str):
+        pulumi.set(__self__, "days", days)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Sequence[str]:
+        return pulumi.get(self, "days")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetRegistryStorageUsageResult(dict):
+    def __init__(__self__, *,
+                 bytes: int,
+                 updated_at: str):
+        pulumi.set(__self__, "bytes", bytes)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def bytes(self) -> int:
+        return pulumi.get(self, "bytes")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetRegistryTokenCredentialResult(dict):
+    def __init__(__self__, *,
+                 username: str):
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetRegistryTokenScopeResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence[str],
+                 name: str,
+                 type: str):
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def actions(self) -> Sequence[str]:
+        return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         return pulumi.get(self, "type")
 
 

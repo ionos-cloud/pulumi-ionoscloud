@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -29,6 +34,21 @@ __all__ = [
     'PSQLClusterCredentials',
     'PSQLClusterFromBackup',
     'PSQLClusterMaintenanceWindow',
+    'GetInMemoryDBReplicaSetConnectionResult',
+    'GetInMemoryDBReplicaSetCredentialResult',
+    'GetInMemoryDBReplicaSetMaintenanceWindowResult',
+    'GetInMemoryDBReplicaSetResourceResult',
+    'GetMariaDBClusterConnectionResult',
+    'GetMariaDBClusterMaintenanceWindowResult',
+    'GetMongoClusterBackupResult',
+    'GetMongoClusterBiConnectorResult',
+    'GetMongoClusterConnectionResult',
+    'GetMongoClusterMaintenanceWindowResult',
+    'GetMongoUserRoleResult',
+    'GetPSQLClusterConnectionResult',
+    'GetPSQLClusterConnectionPoolerResult',
+    'GetPSQLClusterFromBackupResult',
+    'GetPSQLClusterMaintenanceWindowResult',
 ]
 
 @pulumi.output_type
@@ -822,6 +842,467 @@ class PSQLClusterMaintenanceWindow(dict):
         PSQLClusterMaintenanceWindow.__key_warning(key)
         return super().get(key, default)
 
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetInMemoryDBReplicaSetConnectionResult(dict):
+    def __init__(__self__, *,
+                 cidr: str,
+                 datacenter_id: str,
+                 lan_id: str):
+        """
+        :param str cidr: The IP and subnet for your Replicaset.
+        :param str datacenter_id: The datacenter to connect your Replicaset to.
+        :param str lan_id: The numeric LAN ID to connect your Replicaset to.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        The IP and subnet for your Replicaset.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter to connect your Replicaset to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The numeric LAN ID to connect your Replicaset to.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetInMemoryDBReplicaSetCredentialResult(dict):
+    def __init__(__self__, *,
+                 username: str):
+        """
+        :param str username: The username for your Replicaset.
+        """
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username for your Replicaset.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetInMemoryDBReplicaSetMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: The name of the week day.
+        :param str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetInMemoryDBReplicaSetResourceResult(dict):
+    def __init__(__self__, *,
+                 cores: int,
+                 ram: int,
+                 storage: int):
+        """
+        :param int cores: The number of CPU cores per instance.
+        :param int ram: The amount of memory per instance in gigabytes (GB).
+        :param int storage: The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def cores(self) -> int:
+        """
+        The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @property
+    @pulumi.getter
+    def ram(self) -> int:
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> int:
+        """
+        The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class GetMariaDBClusterConnectionResult(dict):
+    def __init__(__self__, *,
+                 cidr: str,
+                 datacenter_id: str,
+                 lan_id: str):
+        """
+        :param str cidr: The IP and subnet for your cluster.
+        :param str datacenter_id: The datacenter to connect your cluster to.
+        :param str lan_id: The numeric LAN ID to connect your cluster to.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        The IP and subnet for your cluster.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter to connect your cluster to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The numeric LAN ID to connect your cluster to.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetMariaDBClusterMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: The name of the week day.
+        :param str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetMongoClusterBackupResult(dict):
+    def __init__(__self__, *,
+                 location: str):
+        """
+        :param str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        """
+        pulumi.set(__self__, "location", location)
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class GetMongoClusterBiConnectorResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 host: str,
+                 port: str):
+        """
+        :param bool enabled: Enable or disable the BiConnector
+        :param str host: The host where this new BI Connector is installed
+        :param str port: Port number used when connecting to this new BI Connector
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        """
+        Enable or disable the BiConnector
+        """
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The host where this new BI Connector is installed
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def port(self) -> str:
+        """
+        Port number used when connecting to this new BI Connector
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetMongoClusterConnectionResult(dict):
+    def __init__(__self__, *,
+                 cidr_lists: Sequence[str],
+                 datacenter_id: str,
+                 lan_id: str):
+        """
+        :param Sequence[str] cidr_lists: The list of IPs and subnet for your cluster.
+                         Note the following unavailable IP ranges:
+                         10.233.64.0/18
+                         10.233.0.0/18
+                         10.233.114.0/24 		
+                example: [192.168.1.100/24, 192.168.1.101/24]
+        :param str datacenter_id: The datacenter to connect your cluster to
+        :param str lan_id: The LAN to connect your cluster to
+        """
+        pulumi.set(__self__, "cidr_lists", cidr_lists)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter(name="cidrLists")
+    def cidr_lists(self) -> Sequence[str]:
+        """
+        The list of IPs and subnet for your cluster.
+                  Note the following unavailable IP ranges:
+                  10.233.64.0/18
+                  10.233.0.0/18
+                  10.233.114.0/24 		
+         example: [192.168.1.100/24, 192.168.1.101/24]
+        """
+        return pulumi.get(self, "cidr_lists")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter to connect your cluster to
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The LAN to connect your cluster to
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetMongoClusterMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetMongoUserRoleResult(dict):
+    def __init__(__self__, *,
+                 database: str,
+                 role: str):
+        """
+        :param str role: A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def database(self) -> str:
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        """
+        return pulumi.get(self, "role")
+
+
+@pulumi.output_type
+class GetPSQLClusterConnectionResult(dict):
+    def __init__(__self__, *,
+                 cidr: str,
+                 datacenter_id: str,
+                 lan_id: str):
+        """
+        :param str cidr: The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        :param str datacenter_id: The datacenter to connect your cluster to.
+        :param str lan_id: The LAN to connect your cluster to.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter to connect your cluster to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The LAN to connect your cluster to.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetPSQLClusterConnectionPoolerResult(dict):
+    def __init__(__self__, *,
+                 enabled: bool,
+                 pool_mode: str):
+        """
+        :param str pool_mode: Represents different modes of connection pooling for the connection pooler
+        """
+        pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "pool_mode", pool_mode)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> bool:
+        return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="poolMode")
+    def pool_mode(self) -> str:
+        """
+        Represents different modes of connection pooling for the connection pooler
+        """
+        return pulumi.get(self, "pool_mode")
+
+
+@pulumi.output_type
+class GetPSQLClusterFromBackupResult(dict):
+    def __init__(__self__, *,
+                 backup_id: str,
+                 recovery_target_time: str):
+        """
+        :param str backup_id: The unique ID of the backup you want to restore.
+        :param str recovery_target_time: If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        pulumi.set(__self__, "backup_id", backup_id)
+        pulumi.set(__self__, "recovery_target_time", recovery_target_time)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> str:
+        """
+        The unique ID of the backup you want to restore.
+        """
+        return pulumi.get(self, "backup_id")
+
+    @property
+    @pulumi.getter(name="recoveryTargetTime")
+    def recovery_target_time(self) -> str:
+        """
+        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+        return pulumi.get(self, "recovery_target_time")
+
+
+@pulumi.output_type
+class GetPSQLClusterMaintenanceWindowResult(dict):
     def __init__(__self__, *,
                  day_of_the_week: str,
                  time: str):

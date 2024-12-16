@@ -2908,6 +2908,1630 @@ func (o PSQLClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetInMemoryDBReplicaSetConnection struct {
+	// The IP and subnet for your Replicaset.
+	Cidr string `pulumi:"cidr"`
+	// The datacenter to connect your Replicaset to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID to connect your Replicaset to.
+	LanId string `pulumi:"lanId"`
+}
+
+// GetInMemoryDBReplicaSetConnectionInput is an input type that accepts GetInMemoryDBReplicaSetConnectionArgs and GetInMemoryDBReplicaSetConnectionOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetConnectionInput` via:
+//
+//	GetInMemoryDBReplicaSetConnectionArgs{...}
+type GetInMemoryDBReplicaSetConnectionInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetConnectionOutput() GetInMemoryDBReplicaSetConnectionOutput
+	ToGetInMemoryDBReplicaSetConnectionOutputWithContext(context.Context) GetInMemoryDBReplicaSetConnectionOutput
+}
+
+type GetInMemoryDBReplicaSetConnectionArgs struct {
+	// The IP and subnet for your Replicaset.
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// The datacenter to connect your Replicaset to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID to connect your Replicaset to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+}
+
+func (GetInMemoryDBReplicaSetConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetConnection)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetConnectionArgs) ToGetInMemoryDBReplicaSetConnectionOutput() GetInMemoryDBReplicaSetConnectionOutput {
+	return i.ToGetInMemoryDBReplicaSetConnectionOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetConnectionArgs) ToGetInMemoryDBReplicaSetConnectionOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetConnectionOutput)
+}
+
+// GetInMemoryDBReplicaSetConnectionArrayInput is an input type that accepts GetInMemoryDBReplicaSetConnectionArray and GetInMemoryDBReplicaSetConnectionArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetConnectionArrayInput` via:
+//
+//	GetInMemoryDBReplicaSetConnectionArray{ GetInMemoryDBReplicaSetConnectionArgs{...} }
+type GetInMemoryDBReplicaSetConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetConnectionArrayOutput() GetInMemoryDBReplicaSetConnectionArrayOutput
+	ToGetInMemoryDBReplicaSetConnectionArrayOutputWithContext(context.Context) GetInMemoryDBReplicaSetConnectionArrayOutput
+}
+
+type GetInMemoryDBReplicaSetConnectionArray []GetInMemoryDBReplicaSetConnectionInput
+
+func (GetInMemoryDBReplicaSetConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetConnection)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetConnectionArray) ToGetInMemoryDBReplicaSetConnectionArrayOutput() GetInMemoryDBReplicaSetConnectionArrayOutput {
+	return i.ToGetInMemoryDBReplicaSetConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetConnectionArray) ToGetInMemoryDBReplicaSetConnectionArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetConnectionArrayOutput)
+}
+
+type GetInMemoryDBReplicaSetConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetConnection)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetConnectionOutput) ToGetInMemoryDBReplicaSetConnectionOutput() GetInMemoryDBReplicaSetConnectionOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetConnectionOutput) ToGetInMemoryDBReplicaSetConnectionOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetConnectionOutput {
+	return o
+}
+
+// The IP and subnet for your Replicaset.
+func (o GetInMemoryDBReplicaSetConnectionOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// The datacenter to connect your Replicaset to.
+func (o GetInMemoryDBReplicaSetConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID to connect your Replicaset to.
+func (o GetInMemoryDBReplicaSetConnectionOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBReplicaSetConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetConnection)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetConnectionArrayOutput) ToGetInMemoryDBReplicaSetConnectionArrayOutput() GetInMemoryDBReplicaSetConnectionArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetConnectionArrayOutput) ToGetInMemoryDBReplicaSetConnectionArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetConnectionArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetConnectionArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBReplicaSetConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBReplicaSetConnection {
+		return vs[0].([]GetInMemoryDBReplicaSetConnection)[vs[1].(int)]
+	}).(GetInMemoryDBReplicaSetConnectionOutput)
+}
+
+type GetInMemoryDBReplicaSetCredential struct {
+	// The username for your Replicaset.
+	Username string `pulumi:"username"`
+}
+
+// GetInMemoryDBReplicaSetCredentialInput is an input type that accepts GetInMemoryDBReplicaSetCredentialArgs and GetInMemoryDBReplicaSetCredentialOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetCredentialInput` via:
+//
+//	GetInMemoryDBReplicaSetCredentialArgs{...}
+type GetInMemoryDBReplicaSetCredentialInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetCredentialOutput() GetInMemoryDBReplicaSetCredentialOutput
+	ToGetInMemoryDBReplicaSetCredentialOutputWithContext(context.Context) GetInMemoryDBReplicaSetCredentialOutput
+}
+
+type GetInMemoryDBReplicaSetCredentialArgs struct {
+	// The username for your Replicaset.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetInMemoryDBReplicaSetCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetCredential)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetCredentialArgs) ToGetInMemoryDBReplicaSetCredentialOutput() GetInMemoryDBReplicaSetCredentialOutput {
+	return i.ToGetInMemoryDBReplicaSetCredentialOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetCredentialArgs) ToGetInMemoryDBReplicaSetCredentialOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetCredentialOutput)
+}
+
+// GetInMemoryDBReplicaSetCredentialArrayInput is an input type that accepts GetInMemoryDBReplicaSetCredentialArray and GetInMemoryDBReplicaSetCredentialArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetCredentialArrayInput` via:
+//
+//	GetInMemoryDBReplicaSetCredentialArray{ GetInMemoryDBReplicaSetCredentialArgs{...} }
+type GetInMemoryDBReplicaSetCredentialArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetCredentialArrayOutput() GetInMemoryDBReplicaSetCredentialArrayOutput
+	ToGetInMemoryDBReplicaSetCredentialArrayOutputWithContext(context.Context) GetInMemoryDBReplicaSetCredentialArrayOutput
+}
+
+type GetInMemoryDBReplicaSetCredentialArray []GetInMemoryDBReplicaSetCredentialInput
+
+func (GetInMemoryDBReplicaSetCredentialArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetCredential)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetCredentialArray) ToGetInMemoryDBReplicaSetCredentialArrayOutput() GetInMemoryDBReplicaSetCredentialArrayOutput {
+	return i.ToGetInMemoryDBReplicaSetCredentialArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetCredentialArray) ToGetInMemoryDBReplicaSetCredentialArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetCredentialArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetCredentialArrayOutput)
+}
+
+type GetInMemoryDBReplicaSetCredentialOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetCredential)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetCredentialOutput) ToGetInMemoryDBReplicaSetCredentialOutput() GetInMemoryDBReplicaSetCredentialOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetCredentialOutput) ToGetInMemoryDBReplicaSetCredentialOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetCredentialOutput {
+	return o
+}
+
+// The username for your Replicaset.
+func (o GetInMemoryDBReplicaSetCredentialOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetCredential) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBReplicaSetCredentialArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetCredentialArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetCredential)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetCredentialArrayOutput) ToGetInMemoryDBReplicaSetCredentialArrayOutput() GetInMemoryDBReplicaSetCredentialArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetCredentialArrayOutput) ToGetInMemoryDBReplicaSetCredentialArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetCredentialArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetCredentialArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBReplicaSetCredentialOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBReplicaSetCredential {
+		return vs[0].([]GetInMemoryDBReplicaSetCredential)[vs[1].(int)]
+	}).(GetInMemoryDBReplicaSetCredentialOutput)
+}
+
+type GetInMemoryDBReplicaSetMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetInMemoryDBReplicaSetMaintenanceWindowInput is an input type that accepts GetInMemoryDBReplicaSetMaintenanceWindowArgs and GetInMemoryDBReplicaSetMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetMaintenanceWindowInput` via:
+//
+//	GetInMemoryDBReplicaSetMaintenanceWindowArgs{...}
+type GetInMemoryDBReplicaSetMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetMaintenanceWindowOutput() GetInMemoryDBReplicaSetMaintenanceWindowOutput
+	ToGetInMemoryDBReplicaSetMaintenanceWindowOutputWithContext(context.Context) GetInMemoryDBReplicaSetMaintenanceWindowOutput
+}
+
+type GetInMemoryDBReplicaSetMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetInMemoryDBReplicaSetMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetMaintenanceWindowArgs) ToGetInMemoryDBReplicaSetMaintenanceWindowOutput() GetInMemoryDBReplicaSetMaintenanceWindowOutput {
+	return i.ToGetInMemoryDBReplicaSetMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetMaintenanceWindowArgs) ToGetInMemoryDBReplicaSetMaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetMaintenanceWindowOutput)
+}
+
+// GetInMemoryDBReplicaSetMaintenanceWindowArrayInput is an input type that accepts GetInMemoryDBReplicaSetMaintenanceWindowArray and GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetMaintenanceWindowArrayInput` via:
+//
+//	GetInMemoryDBReplicaSetMaintenanceWindowArray{ GetInMemoryDBReplicaSetMaintenanceWindowArgs{...} }
+type GetInMemoryDBReplicaSetMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutput() GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput
+	ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutputWithContext(context.Context) GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput
+}
+
+type GetInMemoryDBReplicaSetMaintenanceWindowArray []GetInMemoryDBReplicaSetMaintenanceWindowInput
+
+func (GetInMemoryDBReplicaSetMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetMaintenanceWindowArray) ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutput() GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput {
+	return i.ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetMaintenanceWindowArray) ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput)
+}
+
+type GetInMemoryDBReplicaSetMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) ToGetInMemoryDBReplicaSetMaintenanceWindowOutput() GetInMemoryDBReplicaSetMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) ToGetInMemoryDBReplicaSetMaintenanceWindowOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput) ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutput() GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput) ToGetInMemoryDBReplicaSetMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBReplicaSetMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBReplicaSetMaintenanceWindow {
+		return vs[0].([]GetInMemoryDBReplicaSetMaintenanceWindow)[vs[1].(int)]
+	}).(GetInMemoryDBReplicaSetMaintenanceWindowOutput)
+}
+
+type GetInMemoryDBReplicaSetResource struct {
+	// The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	Storage int `pulumi:"storage"`
+}
+
+// GetInMemoryDBReplicaSetResourceInput is an input type that accepts GetInMemoryDBReplicaSetResourceArgs and GetInMemoryDBReplicaSetResourceOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetResourceInput` via:
+//
+//	GetInMemoryDBReplicaSetResourceArgs{...}
+type GetInMemoryDBReplicaSetResourceInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetResourceOutput() GetInMemoryDBReplicaSetResourceOutput
+	ToGetInMemoryDBReplicaSetResourceOutputWithContext(context.Context) GetInMemoryDBReplicaSetResourceOutput
+}
+
+type GetInMemoryDBReplicaSetResourceArgs struct {
+	// The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	Storage pulumi.IntInput `pulumi:"storage"`
+}
+
+func (GetInMemoryDBReplicaSetResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetResource)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetResourceArgs) ToGetInMemoryDBReplicaSetResourceOutput() GetInMemoryDBReplicaSetResourceOutput {
+	return i.ToGetInMemoryDBReplicaSetResourceOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetResourceArgs) ToGetInMemoryDBReplicaSetResourceOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetResourceOutput)
+}
+
+// GetInMemoryDBReplicaSetResourceArrayInput is an input type that accepts GetInMemoryDBReplicaSetResourceArray and GetInMemoryDBReplicaSetResourceArrayOutput values.
+// You can construct a concrete instance of `GetInMemoryDBReplicaSetResourceArrayInput` via:
+//
+//	GetInMemoryDBReplicaSetResourceArray{ GetInMemoryDBReplicaSetResourceArgs{...} }
+type GetInMemoryDBReplicaSetResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetInMemoryDBReplicaSetResourceArrayOutput() GetInMemoryDBReplicaSetResourceArrayOutput
+	ToGetInMemoryDBReplicaSetResourceArrayOutputWithContext(context.Context) GetInMemoryDBReplicaSetResourceArrayOutput
+}
+
+type GetInMemoryDBReplicaSetResourceArray []GetInMemoryDBReplicaSetResourceInput
+
+func (GetInMemoryDBReplicaSetResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetResource)(nil)).Elem()
+}
+
+func (i GetInMemoryDBReplicaSetResourceArray) ToGetInMemoryDBReplicaSetResourceArrayOutput() GetInMemoryDBReplicaSetResourceArrayOutput {
+	return i.ToGetInMemoryDBReplicaSetResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetInMemoryDBReplicaSetResourceArray) ToGetInMemoryDBReplicaSetResourceArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInMemoryDBReplicaSetResourceArrayOutput)
+}
+
+type GetInMemoryDBReplicaSetResourceOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInMemoryDBReplicaSetResource)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetResourceOutput) ToGetInMemoryDBReplicaSetResourceOutput() GetInMemoryDBReplicaSetResourceOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetResourceOutput) ToGetInMemoryDBReplicaSetResourceOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetResourceOutput {
+	return o
+}
+
+// The number of CPU cores per instance.
+func (o GetInMemoryDBReplicaSetResourceOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The amount of memory per instance in gigabytes (GB).
+func (o GetInMemoryDBReplicaSetResourceOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The amount of storage per instance in gigabytes (GB).
+func (o GetInMemoryDBReplicaSetResourceOutput) Storage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Storage }).(pulumi.IntOutput)
+}
+
+type GetInMemoryDBReplicaSetResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInMemoryDBReplicaSetResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInMemoryDBReplicaSetResource)(nil)).Elem()
+}
+
+func (o GetInMemoryDBReplicaSetResourceArrayOutput) ToGetInMemoryDBReplicaSetResourceArrayOutput() GetInMemoryDBReplicaSetResourceArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetResourceArrayOutput) ToGetInMemoryDBReplicaSetResourceArrayOutputWithContext(ctx context.Context) GetInMemoryDBReplicaSetResourceArrayOutput {
+	return o
+}
+
+func (o GetInMemoryDBReplicaSetResourceArrayOutput) Index(i pulumi.IntInput) GetInMemoryDBReplicaSetResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInMemoryDBReplicaSetResource {
+		return vs[0].([]GetInMemoryDBReplicaSetResource)[vs[1].(int)]
+	}).(GetInMemoryDBReplicaSetResourceOutput)
+}
+
+type GetMariaDBClusterConnection struct {
+	// The IP and subnet for your cluster.
+	Cidr string `pulumi:"cidr"`
+	// The datacenter to connect your cluster to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID to connect your cluster to.
+	LanId string `pulumi:"lanId"`
+}
+
+// GetMariaDBClusterConnectionInput is an input type that accepts GetMariaDBClusterConnectionArgs and GetMariaDBClusterConnectionOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterConnectionInput` via:
+//
+//	GetMariaDBClusterConnectionArgs{...}
+type GetMariaDBClusterConnectionInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterConnectionOutput() GetMariaDBClusterConnectionOutput
+	ToGetMariaDBClusterConnectionOutputWithContext(context.Context) GetMariaDBClusterConnectionOutput
+}
+
+type GetMariaDBClusterConnectionArgs struct {
+	// The IP and subnet for your cluster.
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// The datacenter to connect your cluster to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID to connect your cluster to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+}
+
+func (GetMariaDBClusterConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterConnection)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterConnectionArgs) ToGetMariaDBClusterConnectionOutput() GetMariaDBClusterConnectionOutput {
+	return i.ToGetMariaDBClusterConnectionOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterConnectionArgs) ToGetMariaDBClusterConnectionOutputWithContext(ctx context.Context) GetMariaDBClusterConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterConnectionOutput)
+}
+
+// GetMariaDBClusterConnectionArrayInput is an input type that accepts GetMariaDBClusterConnectionArray and GetMariaDBClusterConnectionArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterConnectionArrayInput` via:
+//
+//	GetMariaDBClusterConnectionArray{ GetMariaDBClusterConnectionArgs{...} }
+type GetMariaDBClusterConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterConnectionArrayOutput() GetMariaDBClusterConnectionArrayOutput
+	ToGetMariaDBClusterConnectionArrayOutputWithContext(context.Context) GetMariaDBClusterConnectionArrayOutput
+}
+
+type GetMariaDBClusterConnectionArray []GetMariaDBClusterConnectionInput
+
+func (GetMariaDBClusterConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterConnection)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterConnectionArray) ToGetMariaDBClusterConnectionArrayOutput() GetMariaDBClusterConnectionArrayOutput {
+	return i.ToGetMariaDBClusterConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterConnectionArray) ToGetMariaDBClusterConnectionArrayOutputWithContext(ctx context.Context) GetMariaDBClusterConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterConnectionArrayOutput)
+}
+
+type GetMariaDBClusterConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterConnection)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterConnectionOutput) ToGetMariaDBClusterConnectionOutput() GetMariaDBClusterConnectionOutput {
+	return o
+}
+
+func (o GetMariaDBClusterConnectionOutput) ToGetMariaDBClusterConnectionOutputWithContext(ctx context.Context) GetMariaDBClusterConnectionOutput {
+	return o
+}
+
+// The IP and subnet for your cluster.
+func (o GetMariaDBClusterConnectionOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// The datacenter to connect your cluster to.
+func (o GetMariaDBClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID to connect your cluster to.
+func (o GetMariaDBClusterConnectionOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClusterConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterConnection)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterConnectionArrayOutput) ToGetMariaDBClusterConnectionArrayOutput() GetMariaDBClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterConnectionArrayOutput) ToGetMariaDBClusterConnectionArrayOutputWithContext(ctx context.Context) GetMariaDBClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMariaDBClusterConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBClusterConnection {
+		return vs[0].([]GetMariaDBClusterConnection)[vs[1].(int)]
+	}).(GetMariaDBClusterConnectionOutput)
+}
+
+type GetMariaDBClusterMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetMariaDBClusterMaintenanceWindowInput is an input type that accepts GetMariaDBClusterMaintenanceWindowArgs and GetMariaDBClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterMaintenanceWindowInput` via:
+//
+//	GetMariaDBClusterMaintenanceWindowArgs{...}
+type GetMariaDBClusterMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterMaintenanceWindowOutput() GetMariaDBClusterMaintenanceWindowOutput
+	ToGetMariaDBClusterMaintenanceWindowOutputWithContext(context.Context) GetMariaDBClusterMaintenanceWindowOutput
+}
+
+type GetMariaDBClusterMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetMariaDBClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterMaintenanceWindowArgs) ToGetMariaDBClusterMaintenanceWindowOutput() GetMariaDBClusterMaintenanceWindowOutput {
+	return i.ToGetMariaDBClusterMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterMaintenanceWindowArgs) ToGetMariaDBClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterMaintenanceWindowOutput)
+}
+
+// GetMariaDBClusterMaintenanceWindowArrayInput is an input type that accepts GetMariaDBClusterMaintenanceWindowArray and GetMariaDBClusterMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterMaintenanceWindowArrayInput` via:
+//
+//	GetMariaDBClusterMaintenanceWindowArray{ GetMariaDBClusterMaintenanceWindowArgs{...} }
+type GetMariaDBClusterMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterMaintenanceWindowArrayOutput() GetMariaDBClusterMaintenanceWindowArrayOutput
+	ToGetMariaDBClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetMariaDBClusterMaintenanceWindowArrayOutput
+}
+
+type GetMariaDBClusterMaintenanceWindowArray []GetMariaDBClusterMaintenanceWindowInput
+
+func (GetMariaDBClusterMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterMaintenanceWindowArray) ToGetMariaDBClusterMaintenanceWindowArrayOutput() GetMariaDBClusterMaintenanceWindowArrayOutput {
+	return i.ToGetMariaDBClusterMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterMaintenanceWindowArray) ToGetMariaDBClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMariaDBClusterMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterMaintenanceWindowArrayOutput)
+}
+
+type GetMariaDBClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterMaintenanceWindowOutput) ToGetMariaDBClusterMaintenanceWindowOutput() GetMariaDBClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetMariaDBClusterMaintenanceWindowOutput) ToGetMariaDBClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClusterMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetMariaDBClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetMariaDBClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterMaintenanceWindowArrayOutput) ToGetMariaDBClusterMaintenanceWindowArrayOutput() GetMariaDBClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterMaintenanceWindowArrayOutput) ToGetMariaDBClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMariaDBClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetMariaDBClusterMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBClusterMaintenanceWindow {
+		return vs[0].([]GetMariaDBClusterMaintenanceWindow)[vs[1].(int)]
+	}).(GetMariaDBClusterMaintenanceWindowOutput)
+}
+
+type GetMongoClusterBackup struct {
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	Location string `pulumi:"location"`
+}
+
+// GetMongoClusterBackupInput is an input type that accepts GetMongoClusterBackupArgs and GetMongoClusterBackupOutput values.
+// You can construct a concrete instance of `GetMongoClusterBackupInput` via:
+//
+//	GetMongoClusterBackupArgs{...}
+type GetMongoClusterBackupInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput
+	ToGetMongoClusterBackupOutputWithContext(context.Context) GetMongoClusterBackupOutput
+}
+
+type GetMongoClusterBackupArgs struct {
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	Location pulumi.StringInput `pulumi:"location"`
+}
+
+func (GetMongoClusterBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterBackup)(nil)).Elem()
+}
+
+func (i GetMongoClusterBackupArgs) ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput {
+	return i.ToGetMongoClusterBackupOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterBackupArgs) ToGetMongoClusterBackupOutputWithContext(ctx context.Context) GetMongoClusterBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBackupOutput)
+}
+
+// GetMongoClusterBackupArrayInput is an input type that accepts GetMongoClusterBackupArray and GetMongoClusterBackupArrayOutput values.
+// You can construct a concrete instance of `GetMongoClusterBackupArrayInput` via:
+//
+//	GetMongoClusterBackupArray{ GetMongoClusterBackupArgs{...} }
+type GetMongoClusterBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput
+	ToGetMongoClusterBackupArrayOutputWithContext(context.Context) GetMongoClusterBackupArrayOutput
+}
+
+type GetMongoClusterBackupArray []GetMongoClusterBackupInput
+
+func (GetMongoClusterBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterBackup)(nil)).Elem()
+}
+
+func (i GetMongoClusterBackupArray) ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput {
+	return i.ToGetMongoClusterBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterBackupArray) ToGetMongoClusterBackupArrayOutputWithContext(ctx context.Context) GetMongoClusterBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBackupArrayOutput)
+}
+
+type GetMongoClusterBackupOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterBackup)(nil)).Elem()
+}
+
+func (o GetMongoClusterBackupOutput) ToGetMongoClusterBackupOutput() GetMongoClusterBackupOutput {
+	return o
+}
+
+func (o GetMongoClusterBackupOutput) ToGetMongoClusterBackupOutputWithContext(ctx context.Context) GetMongoClusterBackupOutput {
+	return o
+}
+
+// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+func (o GetMongoClusterBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+type GetMongoClusterBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterBackup)(nil)).Elem()
+}
+
+func (o GetMongoClusterBackupArrayOutput) ToGetMongoClusterBackupArrayOutput() GetMongoClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterBackupArrayOutput) ToGetMongoClusterBackupArrayOutputWithContext(ctx context.Context) GetMongoClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterBackupArrayOutput) Index(i pulumi.IntInput) GetMongoClusterBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterBackup {
+		return vs[0].([]GetMongoClusterBackup)[vs[1].(int)]
+	}).(GetMongoClusterBackupOutput)
+}
+
+type GetMongoClusterBiConnector struct {
+	// Enable or disable the BiConnector
+	Enabled bool `pulumi:"enabled"`
+	// The host where this new BI Connector is installed
+	Host string `pulumi:"host"`
+	// Port number used when connecting to this new BI Connector
+	Port string `pulumi:"port"`
+}
+
+// GetMongoClusterBiConnectorInput is an input type that accepts GetMongoClusterBiConnectorArgs and GetMongoClusterBiConnectorOutput values.
+// You can construct a concrete instance of `GetMongoClusterBiConnectorInput` via:
+//
+//	GetMongoClusterBiConnectorArgs{...}
+type GetMongoClusterBiConnectorInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput
+	ToGetMongoClusterBiConnectorOutputWithContext(context.Context) GetMongoClusterBiConnectorOutput
+}
+
+type GetMongoClusterBiConnectorArgs struct {
+	// Enable or disable the BiConnector
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The host where this new BI Connector is installed
+	Host pulumi.StringInput `pulumi:"host"`
+	// Port number used when connecting to this new BI Connector
+	Port pulumi.StringInput `pulumi:"port"`
+}
+
+func (GetMongoClusterBiConnectorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterBiConnector)(nil)).Elem()
+}
+
+func (i GetMongoClusterBiConnectorArgs) ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput {
+	return i.ToGetMongoClusterBiConnectorOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterBiConnectorArgs) ToGetMongoClusterBiConnectorOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBiConnectorOutput)
+}
+
+// GetMongoClusterBiConnectorArrayInput is an input type that accepts GetMongoClusterBiConnectorArray and GetMongoClusterBiConnectorArrayOutput values.
+// You can construct a concrete instance of `GetMongoClusterBiConnectorArrayInput` via:
+//
+//	GetMongoClusterBiConnectorArray{ GetMongoClusterBiConnectorArgs{...} }
+type GetMongoClusterBiConnectorArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput
+	ToGetMongoClusterBiConnectorArrayOutputWithContext(context.Context) GetMongoClusterBiConnectorArrayOutput
+}
+
+type GetMongoClusterBiConnectorArray []GetMongoClusterBiConnectorInput
+
+func (GetMongoClusterBiConnectorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterBiConnector)(nil)).Elem()
+}
+
+func (i GetMongoClusterBiConnectorArray) ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput {
+	return i.ToGetMongoClusterBiConnectorArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterBiConnectorArray) ToGetMongoClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterBiConnectorArrayOutput)
+}
+
+type GetMongoClusterBiConnectorOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterBiConnectorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterBiConnector)(nil)).Elem()
+}
+
+func (o GetMongoClusterBiConnectorOutput) ToGetMongoClusterBiConnectorOutput() GetMongoClusterBiConnectorOutput {
+	return o
+}
+
+func (o GetMongoClusterBiConnectorOutput) ToGetMongoClusterBiConnectorOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorOutput {
+	return o
+}
+
+// Enable or disable the BiConnector
+func (o GetMongoClusterBiConnectorOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMongoClusterBiConnector) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The host where this new BI Connector is installed
+func (o GetMongoClusterBiConnectorOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterBiConnector) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// Port number used when connecting to this new BI Connector
+func (o GetMongoClusterBiConnectorOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterBiConnector) string { return v.Port }).(pulumi.StringOutput)
+}
+
+type GetMongoClusterBiConnectorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterBiConnectorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterBiConnector)(nil)).Elem()
+}
+
+func (o GetMongoClusterBiConnectorArrayOutput) ToGetMongoClusterBiConnectorArrayOutput() GetMongoClusterBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterBiConnectorArrayOutput) ToGetMongoClusterBiConnectorArrayOutputWithContext(ctx context.Context) GetMongoClusterBiConnectorArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterBiConnectorArrayOutput) Index(i pulumi.IntInput) GetMongoClusterBiConnectorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterBiConnector {
+		return vs[0].([]GetMongoClusterBiConnector)[vs[1].(int)]
+	}).(GetMongoClusterBiConnectorOutput)
+}
+
+type GetMongoClusterConnection struct {
+	// The list of IPs and subnet for your cluster.
+	//           Note the following unavailable IP ranges:
+	//           10.233.64.0/18
+	//           10.233.0.0/18
+	//           10.233.114.0/24
+	//  example: [192.168.1.100/24, 192.168.1.101/24]
+	CidrLists []string `pulumi:"cidrLists"`
+	// The datacenter to connect your cluster to
+	DatacenterId string `pulumi:"datacenterId"`
+	// The LAN to connect your cluster to
+	LanId string `pulumi:"lanId"`
+}
+
+// GetMongoClusterConnectionInput is an input type that accepts GetMongoClusterConnectionArgs and GetMongoClusterConnectionOutput values.
+// You can construct a concrete instance of `GetMongoClusterConnectionInput` via:
+//
+//	GetMongoClusterConnectionArgs{...}
+type GetMongoClusterConnectionInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput
+	ToGetMongoClusterConnectionOutputWithContext(context.Context) GetMongoClusterConnectionOutput
+}
+
+type GetMongoClusterConnectionArgs struct {
+	// The list of IPs and subnet for your cluster.
+	//           Note the following unavailable IP ranges:
+	//           10.233.64.0/18
+	//           10.233.0.0/18
+	//           10.233.114.0/24
+	//  example: [192.168.1.100/24, 192.168.1.101/24]
+	CidrLists pulumi.StringArrayInput `pulumi:"cidrLists"`
+	// The datacenter to connect your cluster to
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The LAN to connect your cluster to
+	LanId pulumi.StringInput `pulumi:"lanId"`
+}
+
+func (GetMongoClusterConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterConnection)(nil)).Elem()
+}
+
+func (i GetMongoClusterConnectionArgs) ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput {
+	return i.ToGetMongoClusterConnectionOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterConnectionArgs) ToGetMongoClusterConnectionOutputWithContext(ctx context.Context) GetMongoClusterConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterConnectionOutput)
+}
+
+// GetMongoClusterConnectionArrayInput is an input type that accepts GetMongoClusterConnectionArray and GetMongoClusterConnectionArrayOutput values.
+// You can construct a concrete instance of `GetMongoClusterConnectionArrayInput` via:
+//
+//	GetMongoClusterConnectionArray{ GetMongoClusterConnectionArgs{...} }
+type GetMongoClusterConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput
+	ToGetMongoClusterConnectionArrayOutputWithContext(context.Context) GetMongoClusterConnectionArrayOutput
+}
+
+type GetMongoClusterConnectionArray []GetMongoClusterConnectionInput
+
+func (GetMongoClusterConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterConnection)(nil)).Elem()
+}
+
+func (i GetMongoClusterConnectionArray) ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput {
+	return i.ToGetMongoClusterConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterConnectionArray) ToGetMongoClusterConnectionArrayOutputWithContext(ctx context.Context) GetMongoClusterConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterConnectionArrayOutput)
+}
+
+type GetMongoClusterConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterConnection)(nil)).Elem()
+}
+
+func (o GetMongoClusterConnectionOutput) ToGetMongoClusterConnectionOutput() GetMongoClusterConnectionOutput {
+	return o
+}
+
+func (o GetMongoClusterConnectionOutput) ToGetMongoClusterConnectionOutputWithContext(ctx context.Context) GetMongoClusterConnectionOutput {
+	return o
+}
+
+// The list of IPs and subnet for your cluster.
+//
+//	         Note the following unavailable IP ranges:
+//	         10.233.64.0/18
+//	         10.233.0.0/18
+//	         10.233.114.0/24
+//	example: [192.168.1.100/24, 192.168.1.101/24]
+func (o GetMongoClusterConnectionOutput) CidrLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMongoClusterConnection) []string { return v.CidrLists }).(pulumi.StringArrayOutput)
+}
+
+// The datacenter to connect your cluster to
+func (o GetMongoClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The LAN to connect your cluster to
+func (o GetMongoClusterConnectionOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+type GetMongoClusterConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterConnection)(nil)).Elem()
+}
+
+func (o GetMongoClusterConnectionArrayOutput) ToGetMongoClusterConnectionArrayOutput() GetMongoClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterConnectionArrayOutput) ToGetMongoClusterConnectionArrayOutputWithContext(ctx context.Context) GetMongoClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMongoClusterConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterConnection {
+		return vs[0].([]GetMongoClusterConnection)[vs[1].(int)]
+	}).(GetMongoClusterConnectionOutput)
+}
+
+type GetMongoClusterMaintenanceWindow struct {
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	Time         string `pulumi:"time"`
+}
+
+// GetMongoClusterMaintenanceWindowInput is an input type that accepts GetMongoClusterMaintenanceWindowArgs and GetMongoClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetMongoClusterMaintenanceWindowInput` via:
+//
+//	GetMongoClusterMaintenanceWindowArgs{...}
+type GetMongoClusterMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput
+	ToGetMongoClusterMaintenanceWindowOutputWithContext(context.Context) GetMongoClusterMaintenanceWindowOutput
+}
+
+type GetMongoClusterMaintenanceWindowArgs struct {
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	Time         pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetMongoClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMongoClusterMaintenanceWindowArgs) ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput {
+	return i.ToGetMongoClusterMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterMaintenanceWindowArgs) ToGetMongoClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterMaintenanceWindowOutput)
+}
+
+// GetMongoClusterMaintenanceWindowArrayInput is an input type that accepts GetMongoClusterMaintenanceWindowArray and GetMongoClusterMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetMongoClusterMaintenanceWindowArrayInput` via:
+//
+//	GetMongoClusterMaintenanceWindowArray{ GetMongoClusterMaintenanceWindowArgs{...} }
+type GetMongoClusterMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput
+	ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetMongoClusterMaintenanceWindowArrayOutput
+}
+
+type GetMongoClusterMaintenanceWindowArray []GetMongoClusterMaintenanceWindowInput
+
+func (GetMongoClusterMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMongoClusterMaintenanceWindowArray) ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput {
+	return i.ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoClusterMaintenanceWindowArray) ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoClusterMaintenanceWindowArrayOutput)
+}
+
+type GetMongoClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMongoClusterMaintenanceWindowOutput) ToGetMongoClusterMaintenanceWindowOutput() GetMongoClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetMongoClusterMaintenanceWindowOutput) ToGetMongoClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetMongoClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+func (o GetMongoClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetMongoClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMongoClusterMaintenanceWindowArrayOutput) ToGetMongoClusterMaintenanceWindowArrayOutput() GetMongoClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterMaintenanceWindowArrayOutput) ToGetMongoClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetMongoClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetMongoClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetMongoClusterMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoClusterMaintenanceWindow {
+		return vs[0].([]GetMongoClusterMaintenanceWindow)[vs[1].(int)]
+	}).(GetMongoClusterMaintenanceWindowOutput)
+}
+
+type GetMongoUserRole struct {
+	Database string `pulumi:"database"`
+	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	Role string `pulumi:"role"`
+}
+
+// GetMongoUserRoleInput is an input type that accepts GetMongoUserRoleArgs and GetMongoUserRoleOutput values.
+// You can construct a concrete instance of `GetMongoUserRoleInput` via:
+//
+//	GetMongoUserRoleArgs{...}
+type GetMongoUserRoleInput interface {
+	pulumi.Input
+
+	ToGetMongoUserRoleOutput() GetMongoUserRoleOutput
+	ToGetMongoUserRoleOutputWithContext(context.Context) GetMongoUserRoleOutput
+}
+
+type GetMongoUserRoleArgs struct {
+	Database pulumi.StringInput `pulumi:"database"`
+	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (GetMongoUserRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoUserRole)(nil)).Elem()
+}
+
+func (i GetMongoUserRoleArgs) ToGetMongoUserRoleOutput() GetMongoUserRoleOutput {
+	return i.ToGetMongoUserRoleOutputWithContext(context.Background())
+}
+
+func (i GetMongoUserRoleArgs) ToGetMongoUserRoleOutputWithContext(ctx context.Context) GetMongoUserRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoUserRoleOutput)
+}
+
+// GetMongoUserRoleArrayInput is an input type that accepts GetMongoUserRoleArray and GetMongoUserRoleArrayOutput values.
+// You can construct a concrete instance of `GetMongoUserRoleArrayInput` via:
+//
+//	GetMongoUserRoleArray{ GetMongoUserRoleArgs{...} }
+type GetMongoUserRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput
+	ToGetMongoUserRoleArrayOutputWithContext(context.Context) GetMongoUserRoleArrayOutput
+}
+
+type GetMongoUserRoleArray []GetMongoUserRoleInput
+
+func (GetMongoUserRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoUserRole)(nil)).Elem()
+}
+
+func (i GetMongoUserRoleArray) ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput {
+	return i.ToGetMongoUserRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoUserRoleArray) ToGetMongoUserRoleArrayOutputWithContext(ctx context.Context) GetMongoUserRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoUserRoleArrayOutput)
+}
+
+type GetMongoUserRoleOutput struct{ *pulumi.OutputState }
+
+func (GetMongoUserRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoUserRole)(nil)).Elem()
+}
+
+func (o GetMongoUserRoleOutput) ToGetMongoUserRoleOutput() GetMongoUserRoleOutput {
+	return o
+}
+
+func (o GetMongoUserRoleOutput) ToGetMongoUserRoleOutputWithContext(ctx context.Context) GetMongoUserRoleOutput {
+	return o
+}
+
+func (o GetMongoUserRoleOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoUserRole) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+func (o GetMongoUserRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoUserRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type GetMongoUserRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoUserRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoUserRole)(nil)).Elem()
+}
+
+func (o GetMongoUserRoleArrayOutput) ToGetMongoUserRoleArrayOutput() GetMongoUserRoleArrayOutput {
+	return o
+}
+
+func (o GetMongoUserRoleArrayOutput) ToGetMongoUserRoleArrayOutputWithContext(ctx context.Context) GetMongoUserRoleArrayOutput {
+	return o
+}
+
+func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoUserRole {
+		return vs[0].([]GetMongoUserRole)[vs[1].(int)]
+	}).(GetMongoUserRoleOutput)
+}
+
+type GetPSQLClusterConnection struct {
+	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	Cidr string `pulumi:"cidr"`
+	// The datacenter to connect your cluster to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The LAN to connect your cluster to.
+	LanId string `pulumi:"lanId"`
+}
+
+// GetPSQLClusterConnectionInput is an input type that accepts GetPSQLClusterConnectionArgs and GetPSQLClusterConnectionOutput values.
+// You can construct a concrete instance of `GetPSQLClusterConnectionInput` via:
+//
+//	GetPSQLClusterConnectionArgs{...}
+type GetPSQLClusterConnectionInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterConnectionOutput() GetPSQLClusterConnectionOutput
+	ToGetPSQLClusterConnectionOutputWithContext(context.Context) GetPSQLClusterConnectionOutput
+}
+
+type GetPSQLClusterConnectionArgs struct {
+	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// The datacenter to connect your cluster to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The LAN to connect your cluster to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+}
+
+func (GetPSQLClusterConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterConnection)(nil)).Elem()
+}
+
+func (i GetPSQLClusterConnectionArgs) ToGetPSQLClusterConnectionOutput() GetPSQLClusterConnectionOutput {
+	return i.ToGetPSQLClusterConnectionOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterConnectionArgs) ToGetPSQLClusterConnectionOutputWithContext(ctx context.Context) GetPSQLClusterConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterConnectionOutput)
+}
+
+// GetPSQLClusterConnectionArrayInput is an input type that accepts GetPSQLClusterConnectionArray and GetPSQLClusterConnectionArrayOutput values.
+// You can construct a concrete instance of `GetPSQLClusterConnectionArrayInput` via:
+//
+//	GetPSQLClusterConnectionArray{ GetPSQLClusterConnectionArgs{...} }
+type GetPSQLClusterConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterConnectionArrayOutput() GetPSQLClusterConnectionArrayOutput
+	ToGetPSQLClusterConnectionArrayOutputWithContext(context.Context) GetPSQLClusterConnectionArrayOutput
+}
+
+type GetPSQLClusterConnectionArray []GetPSQLClusterConnectionInput
+
+func (GetPSQLClusterConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterConnection)(nil)).Elem()
+}
+
+func (i GetPSQLClusterConnectionArray) ToGetPSQLClusterConnectionArrayOutput() GetPSQLClusterConnectionArrayOutput {
+	return i.ToGetPSQLClusterConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterConnectionArray) ToGetPSQLClusterConnectionArrayOutputWithContext(ctx context.Context) GetPSQLClusterConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterConnectionArrayOutput)
+}
+
+type GetPSQLClusterConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterConnection)(nil)).Elem()
+}
+
+func (o GetPSQLClusterConnectionOutput) ToGetPSQLClusterConnectionOutput() GetPSQLClusterConnectionOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionOutput) ToGetPSQLClusterConnectionOutputWithContext(ctx context.Context) GetPSQLClusterConnectionOutput {
+	return o
+}
+
+// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+func (o GetPSQLClusterConnectionOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// The datacenter to connect your cluster to.
+func (o GetPSQLClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The LAN to connect your cluster to.
+func (o GetPSQLClusterConnectionOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+type GetPSQLClusterConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterConnection)(nil)).Elem()
+}
+
+func (o GetPSQLClusterConnectionArrayOutput) ToGetPSQLClusterConnectionArrayOutput() GetPSQLClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionArrayOutput) ToGetPSQLClusterConnectionArrayOutputWithContext(ctx context.Context) GetPSQLClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetPSQLClusterConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLClusterConnection {
+		return vs[0].([]GetPSQLClusterConnection)[vs[1].(int)]
+	}).(GetPSQLClusterConnectionOutput)
+}
+
+type GetPSQLClusterConnectionPooler struct {
+	Enabled bool `pulumi:"enabled"`
+	// Represents different modes of connection pooling for the connection pooler
+	PoolMode string `pulumi:"poolMode"`
+}
+
+// GetPSQLClusterConnectionPoolerInput is an input type that accepts GetPSQLClusterConnectionPoolerArgs and GetPSQLClusterConnectionPoolerOutput values.
+// You can construct a concrete instance of `GetPSQLClusterConnectionPoolerInput` via:
+//
+//	GetPSQLClusterConnectionPoolerArgs{...}
+type GetPSQLClusterConnectionPoolerInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterConnectionPoolerOutput() GetPSQLClusterConnectionPoolerOutput
+	ToGetPSQLClusterConnectionPoolerOutputWithContext(context.Context) GetPSQLClusterConnectionPoolerOutput
+}
+
+type GetPSQLClusterConnectionPoolerArgs struct {
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Represents different modes of connection pooling for the connection pooler
+	PoolMode pulumi.StringInput `pulumi:"poolMode"`
+}
+
+func (GetPSQLClusterConnectionPoolerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterConnectionPooler)(nil)).Elem()
+}
+
+func (i GetPSQLClusterConnectionPoolerArgs) ToGetPSQLClusterConnectionPoolerOutput() GetPSQLClusterConnectionPoolerOutput {
+	return i.ToGetPSQLClusterConnectionPoolerOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterConnectionPoolerArgs) ToGetPSQLClusterConnectionPoolerOutputWithContext(ctx context.Context) GetPSQLClusterConnectionPoolerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterConnectionPoolerOutput)
+}
+
+// GetPSQLClusterConnectionPoolerArrayInput is an input type that accepts GetPSQLClusterConnectionPoolerArray and GetPSQLClusterConnectionPoolerArrayOutput values.
+// You can construct a concrete instance of `GetPSQLClusterConnectionPoolerArrayInput` via:
+//
+//	GetPSQLClusterConnectionPoolerArray{ GetPSQLClusterConnectionPoolerArgs{...} }
+type GetPSQLClusterConnectionPoolerArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterConnectionPoolerArrayOutput() GetPSQLClusterConnectionPoolerArrayOutput
+	ToGetPSQLClusterConnectionPoolerArrayOutputWithContext(context.Context) GetPSQLClusterConnectionPoolerArrayOutput
+}
+
+type GetPSQLClusterConnectionPoolerArray []GetPSQLClusterConnectionPoolerInput
+
+func (GetPSQLClusterConnectionPoolerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterConnectionPooler)(nil)).Elem()
+}
+
+func (i GetPSQLClusterConnectionPoolerArray) ToGetPSQLClusterConnectionPoolerArrayOutput() GetPSQLClusterConnectionPoolerArrayOutput {
+	return i.ToGetPSQLClusterConnectionPoolerArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterConnectionPoolerArray) ToGetPSQLClusterConnectionPoolerArrayOutputWithContext(ctx context.Context) GetPSQLClusterConnectionPoolerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterConnectionPoolerArrayOutput)
+}
+
+type GetPSQLClusterConnectionPoolerOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterConnectionPoolerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterConnectionPooler)(nil)).Elem()
+}
+
+func (o GetPSQLClusterConnectionPoolerOutput) ToGetPSQLClusterConnectionPoolerOutput() GetPSQLClusterConnectionPoolerOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionPoolerOutput) ToGetPSQLClusterConnectionPoolerOutputWithContext(ctx context.Context) GetPSQLClusterConnectionPoolerOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionPoolerOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPSQLClusterConnectionPooler) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Represents different modes of connection pooling for the connection pooler
+func (o GetPSQLClusterConnectionPoolerOutput) PoolMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterConnectionPooler) string { return v.PoolMode }).(pulumi.StringOutput)
+}
+
+type GetPSQLClusterConnectionPoolerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterConnectionPoolerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterConnectionPooler)(nil)).Elem()
+}
+
+func (o GetPSQLClusterConnectionPoolerArrayOutput) ToGetPSQLClusterConnectionPoolerArrayOutput() GetPSQLClusterConnectionPoolerArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionPoolerArrayOutput) ToGetPSQLClusterConnectionPoolerArrayOutputWithContext(ctx context.Context) GetPSQLClusterConnectionPoolerArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterConnectionPoolerArrayOutput) Index(i pulumi.IntInput) GetPSQLClusterConnectionPoolerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLClusterConnectionPooler {
+		return vs[0].([]GetPSQLClusterConnectionPooler)[vs[1].(int)]
+	}).(GetPSQLClusterConnectionPoolerOutput)
+}
+
+type GetPSQLClusterFromBackup struct {
+	// The unique ID of the backup you want to restore.
+	BackupId string `pulumi:"backupId"`
+	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	RecoveryTargetTime string `pulumi:"recoveryTargetTime"`
+}
+
+// GetPSQLClusterFromBackupInput is an input type that accepts GetPSQLClusterFromBackupArgs and GetPSQLClusterFromBackupOutput values.
+// You can construct a concrete instance of `GetPSQLClusterFromBackupInput` via:
+//
+//	GetPSQLClusterFromBackupArgs{...}
+type GetPSQLClusterFromBackupInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterFromBackupOutput() GetPSQLClusterFromBackupOutput
+	ToGetPSQLClusterFromBackupOutputWithContext(context.Context) GetPSQLClusterFromBackupOutput
+}
+
+type GetPSQLClusterFromBackupArgs struct {
+	// The unique ID of the backup you want to restore.
+	BackupId pulumi.StringInput `pulumi:"backupId"`
+	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	RecoveryTargetTime pulumi.StringInput `pulumi:"recoveryTargetTime"`
+}
+
+func (GetPSQLClusterFromBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterFromBackup)(nil)).Elem()
+}
+
+func (i GetPSQLClusterFromBackupArgs) ToGetPSQLClusterFromBackupOutput() GetPSQLClusterFromBackupOutput {
+	return i.ToGetPSQLClusterFromBackupOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterFromBackupArgs) ToGetPSQLClusterFromBackupOutputWithContext(ctx context.Context) GetPSQLClusterFromBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterFromBackupOutput)
+}
+
+// GetPSQLClusterFromBackupArrayInput is an input type that accepts GetPSQLClusterFromBackupArray and GetPSQLClusterFromBackupArrayOutput values.
+// You can construct a concrete instance of `GetPSQLClusterFromBackupArrayInput` via:
+//
+//	GetPSQLClusterFromBackupArray{ GetPSQLClusterFromBackupArgs{...} }
+type GetPSQLClusterFromBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterFromBackupArrayOutput() GetPSQLClusterFromBackupArrayOutput
+	ToGetPSQLClusterFromBackupArrayOutputWithContext(context.Context) GetPSQLClusterFromBackupArrayOutput
+}
+
+type GetPSQLClusterFromBackupArray []GetPSQLClusterFromBackupInput
+
+func (GetPSQLClusterFromBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterFromBackup)(nil)).Elem()
+}
+
+func (i GetPSQLClusterFromBackupArray) ToGetPSQLClusterFromBackupArrayOutput() GetPSQLClusterFromBackupArrayOutput {
+	return i.ToGetPSQLClusterFromBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterFromBackupArray) ToGetPSQLClusterFromBackupArrayOutputWithContext(ctx context.Context) GetPSQLClusterFromBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterFromBackupArrayOutput)
+}
+
+type GetPSQLClusterFromBackupOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterFromBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterFromBackup)(nil)).Elem()
+}
+
+func (o GetPSQLClusterFromBackupOutput) ToGetPSQLClusterFromBackupOutput() GetPSQLClusterFromBackupOutput {
+	return o
+}
+
+func (o GetPSQLClusterFromBackupOutput) ToGetPSQLClusterFromBackupOutputWithContext(ctx context.Context) GetPSQLClusterFromBackupOutput {
+	return o
+}
+
+// The unique ID of the backup you want to restore.
+func (o GetPSQLClusterFromBackupOutput) BackupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterFromBackup) string { return v.BackupId }).(pulumi.StringOutput)
+}
+
+// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+func (o GetPSQLClusterFromBackupOutput) RecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterFromBackup) string { return v.RecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+type GetPSQLClusterFromBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterFromBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterFromBackup)(nil)).Elem()
+}
+
+func (o GetPSQLClusterFromBackupArrayOutput) ToGetPSQLClusterFromBackupArrayOutput() GetPSQLClusterFromBackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterFromBackupArrayOutput) ToGetPSQLClusterFromBackupArrayOutputWithContext(ctx context.Context) GetPSQLClusterFromBackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterFromBackupArrayOutput) Index(i pulumi.IntInput) GetPSQLClusterFromBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLClusterFromBackup {
+		return vs[0].([]GetPSQLClusterFromBackup)[vs[1].(int)]
+	}).(GetPSQLClusterFromBackupOutput)
+}
+
+type GetPSQLClusterMaintenanceWindow struct {
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	Time         string `pulumi:"time"`
+}
+
+// GetPSQLClusterMaintenanceWindowInput is an input type that accepts GetPSQLClusterMaintenanceWindowArgs and GetPSQLClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetPSQLClusterMaintenanceWindowInput` via:
+//
+//	GetPSQLClusterMaintenanceWindowArgs{...}
+type GetPSQLClusterMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterMaintenanceWindowOutput() GetPSQLClusterMaintenanceWindowOutput
+	ToGetPSQLClusterMaintenanceWindowOutputWithContext(context.Context) GetPSQLClusterMaintenanceWindowOutput
+}
+
+type GetPSQLClusterMaintenanceWindowArgs struct {
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	Time         pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetPSQLClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetPSQLClusterMaintenanceWindowArgs) ToGetPSQLClusterMaintenanceWindowOutput() GetPSQLClusterMaintenanceWindowOutput {
+	return i.ToGetPSQLClusterMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterMaintenanceWindowArgs) ToGetPSQLClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterMaintenanceWindowOutput)
+}
+
+// GetPSQLClusterMaintenanceWindowArrayInput is an input type that accepts GetPSQLClusterMaintenanceWindowArray and GetPSQLClusterMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetPSQLClusterMaintenanceWindowArrayInput` via:
+//
+//	GetPSQLClusterMaintenanceWindowArray{ GetPSQLClusterMaintenanceWindowArgs{...} }
+type GetPSQLClusterMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLClusterMaintenanceWindowArrayOutput() GetPSQLClusterMaintenanceWindowArrayOutput
+	ToGetPSQLClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetPSQLClusterMaintenanceWindowArrayOutput
+}
+
+type GetPSQLClusterMaintenanceWindowArray []GetPSQLClusterMaintenanceWindowInput
+
+func (GetPSQLClusterMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetPSQLClusterMaintenanceWindowArray) ToGetPSQLClusterMaintenanceWindowArrayOutput() GetPSQLClusterMaintenanceWindowArrayOutput {
+	return i.ToGetPSQLClusterMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLClusterMaintenanceWindowArray) ToGetPSQLClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetPSQLClusterMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLClusterMaintenanceWindowArrayOutput)
+}
+
+type GetPSQLClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetPSQLClusterMaintenanceWindowOutput) ToGetPSQLClusterMaintenanceWindowOutput() GetPSQLClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetPSQLClusterMaintenanceWindowOutput) ToGetPSQLClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetPSQLClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetPSQLClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+func (o GetPSQLClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetPSQLClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetPSQLClusterMaintenanceWindowArrayOutput) ToGetPSQLClusterMaintenanceWindowArrayOutput() GetPSQLClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterMaintenanceWindowArrayOutput) ToGetPSQLClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetPSQLClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetPSQLClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetPSQLClusterMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLClusterMaintenanceWindow {
+		return vs[0].([]GetPSQLClusterMaintenanceWindow)[vs[1].(int)]
+	}).(GetPSQLClusterMaintenanceWindowOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsPtrInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
@@ -2945,6 +4569,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterFromBackupPtrInput)(nil)).Elem(), PSQLClusterFromBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterMaintenanceWindowInput)(nil)).Elem(), PSQLClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PSQLClusterMaintenanceWindowPtrInput)(nil)).Elem(), PSQLClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetConnectionArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetCredentialInput)(nil)).Elem(), GetInMemoryDBReplicaSetCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetCredentialArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetCredentialArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindowInput)(nil)).Elem(), GetInMemoryDBReplicaSetMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindowArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionInput)(nil)).Elem(), GetMariaDBClusterConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionArrayInput)(nil)).Elem(), GetMariaDBClusterConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupInput)(nil)).Elem(), GetMongoClusterBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupArrayInput)(nil)).Elem(), GetMongoClusterBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBiConnectorInput)(nil)).Elem(), GetMongoClusterBiConnectorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBiConnectorArrayInput)(nil)).Elem(), GetMongoClusterBiConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterConnectionInput)(nil)).Elem(), GetMongoClusterConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterConnectionArrayInput)(nil)).Elem(), GetMongoClusterConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleInput)(nil)).Elem(), GetMongoUserRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleArrayInput)(nil)).Elem(), GetMongoUserRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionInput)(nil)).Elem(), GetPSQLClusterConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionArrayInput)(nil)).Elem(), GetPSQLClusterConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionPoolerInput)(nil)).Elem(), GetPSQLClusterConnectionPoolerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionPoolerArrayInput)(nil)).Elem(), GetPSQLClusterConnectionPoolerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterFromBackupInput)(nil)).Elem(), GetPSQLClusterFromBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterFromBackupArrayInput)(nil)).Elem(), GetPSQLClusterFromBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArray{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetCredentialsOutput{})
@@ -2981,4 +4635,34 @@ func init() {
 	pulumi.RegisterOutputType(PSQLClusterFromBackupPtrOutput{})
 	pulumi.RegisterOutputType(PSQLClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(PSQLClusterMaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetCredentialOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetCredentialArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceOutput{})
+	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterConnectionOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterBackupOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterBiConnectorOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterBiConnectorArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterConnectionOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoUserRoleOutput{})
+	pulumi.RegisterOutputType(GetMongoUserRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterConnectionOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterConnectionPoolerOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterConnectionPoolerArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterFromBackupOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterFromBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowArrayOutput{})
 }

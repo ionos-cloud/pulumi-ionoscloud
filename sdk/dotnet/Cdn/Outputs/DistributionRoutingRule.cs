@@ -14,16 +14,13 @@ namespace Pulumi.Ionoscloud.Cdn.Outputs
     public sealed class DistributionRoutingRule
     {
         /// <summary>
-        /// [string] The prefix of the routing rule.
+        /// The prefix of the routing rule.
         /// </summary>
         public readonly string Prefix;
         /// <summary>
-        /// [string] The scheme of the routing rule.
+        /// The scheme of the routing rule.
         /// </summary>
         public readonly string Scheme;
-        /// <summary>
-        /// [map] - A map of properties for the rule
-        /// </summary>
         public readonly Outputs.DistributionRoutingRuleUpstream Upstream;
 
         [OutputConstructor]

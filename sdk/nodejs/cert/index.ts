@@ -20,6 +20,21 @@ export type Certificate = import("./certificate").Certificate;
 export const Certificate: typeof import("./certificate").Certificate = null as any;
 utilities.lazyLoad(exports, ["Certificate"], () => require("./certificate"));
 
+export { GetAutoCertificateArgs, GetAutoCertificateResult, GetAutoCertificateOutputArgs } from "./getAutoCertificate";
+export const getAutoCertificate: typeof import("./getAutoCertificate").getAutoCertificate = null as any;
+export const getAutoCertificateOutput: typeof import("./getAutoCertificate").getAutoCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getAutoCertificate","getAutoCertificateOutput"], () => require("./getAutoCertificate"));
+
+export { GetAutoCertificateProviderArgs, GetAutoCertificateProviderResult, GetAutoCertificateProviderOutputArgs } from "./getAutoCertificateProvider";
+export const getAutoCertificateProvider: typeof import("./getAutoCertificateProvider").getAutoCertificateProvider = null as any;
+export const getAutoCertificateProviderOutput: typeof import("./getAutoCertificateProvider").getAutoCertificateProviderOutput = null as any;
+utilities.lazyLoad(exports, ["getAutoCertificateProvider","getAutoCertificateProviderOutput"], () => require("./getAutoCertificateProvider"));
+
+export { GetCertificateArgs, GetCertificateResult, GetCertificateOutputArgs } from "./getCertificate";
+export const getCertificate: typeof import("./getCertificate").getCertificate = null as any;
+export const getCertificateOutput: typeof import("./getCertificate").getCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getCertificate","getCertificateOutput"], () => require("./getCertificate"));
+
 
 const _module = {
     version: utilities.getVersion(),

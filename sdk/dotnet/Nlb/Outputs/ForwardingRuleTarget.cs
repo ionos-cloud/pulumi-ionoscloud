@@ -14,23 +14,23 @@ namespace Pulumi.Ionoscloud.Nlb.Outputs
     public sealed class ForwardingRuleTarget
     {
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule target.
+        /// Health check attributes for Network Load Balancer forwarding rule target
         /// </summary>
         public readonly Outputs.ForwardingRuleTargetHealthCheck? HealthCheck;
         /// <summary>
-        /// [string] IP of a balanced target VM.
+        /// IP of a balanced target VM
         /// </summary>
         public readonly string Ip;
         /// <summary>
-        /// [int] Port of the balanced target service. (range: 1 to 65535).
+        /// Port of the balanced target service. (range: 1 to 65535)
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+        /// Proxy protocol version
         /// </summary>
         public readonly string? ProxyProtocol;
         /// <summary>
-        /// [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+        /// Weight parameter is used to adjust the target VM's weight relative to other target VMs
         /// </summary>
         public readonly int Weight;
 

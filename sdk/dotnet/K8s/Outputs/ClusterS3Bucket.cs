@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class ClusterS3Bucket
     {
         /// <summary>
-        /// [string] The name of the Kubernetes Cluster.
+        /// Name of the Object Storage bucket
         /// </summary>
         public readonly string? Name;
 

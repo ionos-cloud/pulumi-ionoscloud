@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -24,16 +29,13 @@ class IpsecGatewayArgs:
                  version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IpsecGateway resource.
-        :param pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
-               same datacenter. Minimum items: 1. Maximum items: 10.
-        :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-               the same datacenter as the connections.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
-        :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-               values: `IKEv2`.
+        :param pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]] connections: The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        :param pulumi.Input[str] gateway_ip: Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+               connections.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway.
+        :param pulumi.Input[str] name: The human readable name of your IPSecGateway.
+        :param pulumi.Input[str] version: The IKE version that is permitted for the VPN tunnels.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "gateway_ip", gateway_ip)
@@ -49,8 +51,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def connections(self) -> pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]]:
         """
-        [list] The network connection for your gateway. **Note**: all connections must belong to the
-        same datacenter. Minimum items: 1. Maximum items: 10.
+        The network connection for your gateway. Note: all connections must belong to the same datacenter.
         """
         return pulumi.get(self, "connections")
 
@@ -62,8 +63,8 @@ class IpsecGatewayArgs:
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> pulumi.Input[str]:
         """
-        [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-        the same datacenter as the connections.
+        Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+        connections.
         """
         return pulumi.get(self, "gateway_ip")
 
@@ -75,8 +76,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -88,7 +88,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable description of the IPSec Gateway.
+        The human-readable description of your IPSec Gateway.
         """
         return pulumi.get(self, "description")
 
@@ -100,7 +100,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the IPSec Gateway.
+        The human readable name of your IPSecGateway.
         """
         return pulumi.get(self, "name")
 
@@ -112,8 +112,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-        values: `IKEv2`.
+        The IKE version that is permitted for the VPN tunnels.
         """
         return pulumi.get(self, "version")
 
@@ -133,16 +132,13 @@ class _IpsecGatewayState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IpsecGateway resources.
-        :param pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
-               same datacenter. Minimum items: 1. Maximum items: 10.
-        :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-               the same datacenter as the connections.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
-        :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-               values: `IKEv2`.
+        :param pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]] connections: The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway.
+        :param pulumi.Input[str] gateway_ip: Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+               connections.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your IPSecGateway.
+        :param pulumi.Input[str] version: The IKE version that is permitted for the VPN tunnels.
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -161,8 +157,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def connections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpsecGatewayConnectionArgs']]]]:
         """
-        [list] The network connection for your gateway. **Note**: all connections must belong to the
-        same datacenter. Minimum items: 1. Maximum items: 10.
+        The network connection for your gateway. Note: all connections must belong to the same datacenter.
         """
         return pulumi.get(self, "connections")
 
@@ -174,7 +169,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable description of the IPSec Gateway.
+        The human-readable description of your IPSec Gateway.
         """
         return pulumi.get(self, "description")
 
@@ -186,8 +181,8 @@ class _IpsecGatewayState:
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-        the same datacenter as the connections.
+        Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+        connections.
         """
         return pulumi.get(self, "gateway_ip")
 
@@ -199,8 +194,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -212,7 +206,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the IPSec Gateway.
+        The human readable name of your IPSecGateway.
         """
         return pulumi.get(self, "name")
 
@@ -224,8 +218,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-        values: `IKEv2`.
+        The IKE version that is permitted for the VPN tunnels.
         """
         return pulumi.get(self, "version")
 
@@ -239,7 +232,7 @@ class IpsecGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -247,58 +240,16 @@ class IpsecGateway(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
-        infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
-        network resources.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
-            public=False,
-            datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
-            location="de/fra",
-            size=1)
-        example = ionoscloud.vpn.IpsecGateway("example",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        The resource can be imported using the `location` and `gateway_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
-        ```
-
+        Create a IpsecGateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
-               same datacenter. Minimum items: 1. Maximum items: 10.
-        :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-               the same datacenter as the connections.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
-        :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-               values: `IKEv2`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]] connections: The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway.
+        :param pulumi.Input[str] gateway_ip: Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+               connections.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your IPSecGateway.
+        :param pulumi.Input[str] version: The IKE version that is permitted for the VPN tunnels.
         """
         ...
     @overload
@@ -307,46 +258,7 @@ class IpsecGateway(pulumi.CustomResource):
                  args: IpsecGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
-        infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
-        network resources.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
-            public=False,
-            datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
-            location="de/fra",
-            size=1)
-        example = ionoscloud.vpn.IpsecGateway("example",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        The resource can be imported using the `location` and `gateway_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
-        ```
-
+        Create a IpsecGateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param IpsecGatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -362,7 +274,7 @@ class IpsecGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -399,7 +311,7 @@ class IpsecGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+            connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
@@ -412,16 +324,13 @@ class IpsecGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
-               same datacenter. Minimum items: 1. Maximum items: 10.
-        :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-               the same datacenter as the connections.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway.
-        :param pulumi.Input[str] version: [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-               values: `IKEv2`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]] connections: The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway.
+        :param pulumi.Input[str] gateway_ip: Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+               connections.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human readable name of your IPSecGateway.
+        :param pulumi.Input[str] version: The IKE version that is permitted for the VPN tunnels.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -439,8 +348,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def connections(self) -> pulumi.Output[Sequence['outputs.IpsecGatewayConnection']]:
         """
-        [list] The network connection for your gateway. **Note**: all connections must belong to the
-        same datacenter. Minimum items: 1. Maximum items: 10.
+        The network connection for your gateway. Note: all connections must belong to the same datacenter.
         """
         return pulumi.get(self, "connections")
 
@@ -448,7 +356,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The human-readable description of the IPSec Gateway.
+        The human-readable description of your IPSec Gateway.
         """
         return pulumi.get(self, "description")
 
@@ -456,8 +364,8 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> pulumi.Output[str]:
         """
-        [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-        the same datacenter as the connections.
+        Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+        connections.
         """
         return pulumi.get(self, "gateway_ip")
 
@@ -465,8 +373,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -474,7 +381,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The name of the IPSec Gateway.
+        The human readable name of your IPSecGateway.
         """
         return pulumi.get(self, "name")
 
@@ -482,8 +389,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-        values: `IKEv2`.
+        The IKE version that is permitted for the VPN tunnels.
         """
         return pulumi.get(self, "version")
 

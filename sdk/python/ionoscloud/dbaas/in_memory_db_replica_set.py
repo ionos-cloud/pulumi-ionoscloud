@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -401,34 +406,34 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetConnectionsArgs']]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetCredentialsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']]] = None,
+                 credentials: Optional[pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  eviction_policy: Optional[pulumi.Input[str]] = None,
                  initial_snapshot_id: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']]] = None,
                  persistence_mode: Optional[pulumi.Input[str]] = None,
                  replicas: Optional[pulumi.Input[int]] = None,
-                 resources: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetResourcesArgs']]] = None,
+                 resources: Optional[pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a InMemoryDBReplicaSet resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetConnectionsArgs']] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetCredentialsArgs']] credentials: Credentials for the InMemoryDB replicaset.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: The network connection for your replica set. Only one connection is allowed.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: Credentials for the InMemoryDB replicaset.
         :param pulumi.Input[str] display_name: The human readable name of your replica set.
         :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
         :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetMaintenanceWindowArgs']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
         :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
                value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
                standby for a failure of the active instance.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetResourcesArgs']] resources: The resources of the individual replicas.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: The resources of the individual replicas.
         :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
         """
         ...
@@ -454,16 +459,16 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetConnectionsArgs']]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetCredentialsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']]] = None,
+                 credentials: Optional[pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  eviction_policy: Optional[pulumi.Input[str]] = None,
                  initial_snapshot_id: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']]] = None,
                  persistence_mode: Optional[pulumi.Input[str]] = None,
                  replicas: Optional[pulumi.Input[int]] = None,
-                 resources: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetResourcesArgs']]] = None,
+                 resources: Optional[pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -514,17 +519,17 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetConnectionsArgs']]] = None,
-            credentials: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetCredentialsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']]] = None,
+            credentials: Optional[pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             dns_name: Optional[pulumi.Input[str]] = None,
             eviction_policy: Optional[pulumi.Input[str]] = None,
             initial_snapshot_id: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
-            maintenance_window: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetMaintenanceWindowArgs']]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']]] = None,
             persistence_mode: Optional[pulumi.Input[str]] = None,
             replicas: Optional[pulumi.Input[int]] = None,
-            resources: Optional[pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetResourcesArgs']]] = None,
+            resources: Optional[pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'InMemoryDBReplicaSet':
         """
         Get an existing InMemoryDBReplicaSet resource's state with the given name, id, and optional extra
@@ -533,19 +538,19 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetConnectionsArgs']] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetCredentialsArgs']] credentials: Credentials for the InMemoryDB replicaset.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: The network connection for your replica set. Only one connection is allowed.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: Credentials for the InMemoryDB replicaset.
         :param pulumi.Input[str] display_name: The human readable name of your replica set.
         :param pulumi.Input[str] dns_name: The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
         :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
         :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetMaintenanceWindowArgs']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
         :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
                value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
                standby for a failure of the active instance.
-        :param pulumi.Input[pulumi.InputType['InMemoryDBReplicaSetResourcesArgs']] resources: The resources of the individual replicas.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: The resources of the individual replicas.
         :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

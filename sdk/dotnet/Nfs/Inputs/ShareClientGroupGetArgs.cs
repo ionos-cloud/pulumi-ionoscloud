@@ -42,9 +42,6 @@ namespace Pulumi.Ionoscloud.Nfs.Inputs
             set => _ipNetworks = value;
         }
 
-        /// <summary>
-        /// NFS specific configurations. Each configuration includes:
-        /// </summary>
         [Input("nfs")]
         public Input<Inputs.ShareClientGroupNfsGetArgs>? Nfs { get; set; }
 

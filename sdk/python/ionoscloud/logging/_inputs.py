@@ -4,15 +4,49 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'PipelineLogArgs',
+    'PipelineLogArgsDict',
     'PipelineLogDestinationArgs',
+    'PipelineLogDestinationArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class PipelineLogArgsDict(TypedDict):
+        protocol: pulumi.Input[str]
+        """
+        [string] "Protocol to use as intake. Possible values are: http, tcp."
+        """
+        source: pulumi.Input[str]
+        """
+        [string] The source parser to be used.
+        """
+        tag: pulumi.Input[str]
+        """
+        [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+        """
+        destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input['PipelineLogDestinationArgsDict']]]]
+        """
+        [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+        """
+        public: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
+elif False:
+    PipelineLogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PipelineLogArgs:
@@ -97,6 +131,19 @@ class PipelineLogArgs:
     def public(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "public", value)
 
+
+if not MYPY:
+    class PipelineLogDestinationArgsDict(TypedDict):
+        retention_in_days: NotRequired[pulumi.Input[int]]
+        """
+        [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        [string] The internal output stream to send logs to.
+        """
+elif False:
+    PipelineLogDestinationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PipelineLogDestinationArgs:

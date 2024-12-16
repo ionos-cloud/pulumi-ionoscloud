@@ -4,15 +4,22 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
 __all__ = [
     'PipelineLog',
     'PipelineLogDestination',
+    'GetPipelineLogResult',
+    'GetPipelineLogDestinationResult',
 ]
 
 @pulumi.output_type
@@ -121,6 +128,97 @@ class PipelineLogDestination(dict):
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        [string] The internal output stream to send logs to.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetPipelineLogResult(dict):
+    def __init__(__self__, *,
+                 destinations: Sequence['outputs.GetPipelineLogDestinationResult'],
+                 protocol: str,
+                 public: bool,
+                 source: str,
+                 tag: str):
+        """
+        :param Sequence['GetPipelineLogDestinationArgs'] destinations: [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+        :param str protocol: [string] "Protocol to use as intake. Possible values are: http, tcp."
+        :param bool public: [bool]
+        :param str source: [string] The source parser to be used.
+        :param str tag: [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+        """
+        pulumi.set(__self__, "destinations", destinations)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "tag", tag)
+
+    @property
+    @pulumi.getter
+    def destinations(self) -> Sequence['outputs.GetPipelineLogDestinationResult']:
+        """
+        [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+        """
+        return pulumi.get(self, "destinations")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        [string] "Protocol to use as intake. Possible values are: http, tcp."
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        [bool]
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter
+    def source(self) -> str:
+        """
+        [string] The source parser to be used.
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def tag(self) -> str:
+        """
+        [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+        """
+        return pulumi.get(self, "tag")
+
+
+@pulumi.output_type
+class GetPipelineLogDestinationResult(dict):
+    def __init__(__self__, *,
+                 retention_in_days: int,
+                 type: str):
+        """
+        :param int retention_in_days: [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+        :param str type: [string] The internal output stream to send logs to.
+        """
+        pulumi.set(__self__, "retention_in_days", retention_in_days)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="retentionInDays")
+    def retention_in_days(self) -> int:
+        """
+        [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+        """
+        return pulumi.get(self, "retention_in_days")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         """
         [string] The internal output stream to send logs to.
         """

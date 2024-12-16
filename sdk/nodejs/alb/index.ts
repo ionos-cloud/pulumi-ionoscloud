@@ -15,6 +15,16 @@ export type ForwardingRule = import("./forwardingRule").ForwardingRule;
 export const ForwardingRule: typeof import("./forwardingRule").ForwardingRule = null as any;
 utilities.lazyLoad(exports, ["ForwardingRule"], () => require("./forwardingRule"));
 
+export { GetBalancerArgs, GetBalancerResult, GetBalancerOutputArgs } from "./getBalancer";
+export const getBalancer: typeof import("./getBalancer").getBalancer = null as any;
+export const getBalancerOutput: typeof import("./getBalancer").getBalancerOutput = null as any;
+utilities.lazyLoad(exports, ["getBalancer","getBalancerOutput"], () => require("./getBalancer"));
+
+export { GetForwardingRuleArgs, GetForwardingRuleResult, GetForwardingRuleOutputArgs } from "./getForwardingRule";
+export const getForwardingRule: typeof import("./getForwardingRule").getForwardingRule = null as any;
+export const getForwardingRuleOutput: typeof import("./getForwardingRule").getForwardingRuleOutput = null as any;
+utilities.lazyLoad(exports, ["getForwardingRule","getForwardingRuleOutput"], () => require("./getForwardingRule"));
+
 
 const _module = {
     version: utilities.getVersion(),

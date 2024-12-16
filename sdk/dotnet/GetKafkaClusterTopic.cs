@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetKafkaClusterTopicResult> Invoke(GetKafkaClusterTopicInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKafkaClusterTopicResult>("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", args ?? new GetKafkaClusterTopicInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetKafkaClusterTopicResult> Invoke(GetKafkaClusterTopicInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKafkaClusterTopicResult>("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", args ?? new GetKafkaClusterTopicInvokeArgs(), options.WithDefaults());
     }
 
 

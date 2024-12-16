@@ -6,21 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}
- * ```
- *
- * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/vCPUServer:VCPUServer myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
- * ```
- */
 export class VCPUServer extends pulumi.CustomResource {
     /**
      * Get an existing VCPUServer resource's state with the given name, ID, and optional extra
@@ -49,83 +34,40 @@ export class VCPUServer extends pulumi.CustomResource {
         return obj['__pulumiType'] === VCPUServer.__pulumiType;
     }
 
-    /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-     */
     public readonly availabilityZone!: pulumi.Output<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the
+     * ionoscloud.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     public readonly bootCdrom!: pulumi.Output<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     public readonly bootImage!: pulumi.Output<string>;
-    /**
-     * The associated boot volume.
-     */
     public /*out*/ readonly bootVolume!: pulumi.Output<string>;
-    /**
-     * [integer] Number of server CPU cores.
-     */
     public readonly cores!: pulumi.Output<number>;
     public /*out*/ readonly cpuFamily!: pulumi.Output<string>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
-    /**
-     * The associated firewall rule.
-     */
     public /*out*/ readonly firewallruleId!: pulumi.Output<string>;
-    /**
-     * The associated firewall rules.
-     */
     public readonly firewallruleIds!: pulumi.Output<string[]>;
-    /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-     */
     public readonly imageName!: pulumi.Output<string>;
-    /**
-     * [string] The password for the image.
-     */
     public readonly imagePassword!: pulumi.Output<string>;
     /**
-     * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > sshKeys field is immutable.
+     * A list that contains the IDs for the volumes defined inside the server resource.
      */
     public /*out*/ readonly inlineVolumeIds!: pulumi.Output<string[]>;
-    /**
-     * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     public readonly labels!: pulumi.Output<outputs.compute.VCPUServerLabel[] | undefined>;
-    /**
-     * [string] The name of the server.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * See the Nic section.
-     */
     public readonly nic!: pulumi.Output<outputs.compute.VCPUServerNic | undefined>;
-    /**
-     * The associated IP address.
-     */
     public /*out*/ readonly primaryIp!: pulumi.Output<string>;
     /**
-     * The associated NIC.
+     * Id of the primary network interface
      */
     public /*out*/ readonly primaryNic!: pulumi.Output<string>;
-    /**
-     * [integer] The amount of memory for the server in MB.
-     */
     public readonly ram!: pulumi.Output<number>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     public readonly sshKeys!: pulumi.Output<string[] | undefined>;
     public /*out*/ readonly type!: pulumi.Output<string>;
@@ -133,9 +75,6 @@ export class VCPUServer extends pulumi.CustomResource {
      * Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
      */
     public readonly vmState!: pulumi.Output<string>;
-    /**
-     * See the Volume section.
-     */
     public readonly volume!: pulumi.Output<outputs.compute.VCPUServerVolume>;
 
     /**
@@ -221,83 +160,40 @@ export class VCPUServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VCPUServer resources.
  */
 export interface VCPUServerState {
-    /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-     */
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the
+     * ionoscloud.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     bootCdrom?: pulumi.Input<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     bootImage?: pulumi.Input<string>;
-    /**
-     * The associated boot volume.
-     */
     bootVolume?: pulumi.Input<string>;
-    /**
-     * [integer] Number of server CPU cores.
-     */
     cores?: pulumi.Input<number>;
     cpuFamily?: pulumi.Input<string>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
-    /**
-     * The associated firewall rule.
-     */
     firewallruleId?: pulumi.Input<string>;
-    /**
-     * The associated firewall rules.
-     */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-     */
     imageName?: pulumi.Input<string>;
-    /**
-     * [string] The password for the image.
-     */
     imagePassword?: pulumi.Input<string>;
     /**
-     * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > sshKeys field is immutable.
+     * A list that contains the IDs for the volumes defined inside the server resource.
      */
     inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
-    /**
-     * [string] The name of the server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * See the Nic section.
-     */
     nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
-    /**
-     * The associated IP address.
-     */
     primaryIp?: pulumi.Input<string>;
     /**
-     * The associated NIC.
+     * Id of the primary network interface
      */
     primaryNic?: pulumi.Input<string>;
-    /**
-     * [integer] The amount of memory for the server in MB.
-     */
     ram?: pulumi.Input<number>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     type?: pulumi.Input<string>;
@@ -305,9 +201,6 @@ export interface VCPUServerState {
      * Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
      */
     vmState?: pulumi.Input<string>;
-    /**
-     * See the Volume section.
-     */
     volume?: pulumi.Input<inputs.compute.VCPUServerVolume>;
 }
 
@@ -315,66 +208,33 @@ export interface VCPUServerState {
  * The set of arguments for constructing a VCPUServer resource.
  */
 export interface VCPUServerArgs {
-    /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-     */
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the
+     * ionoscloud.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     bootCdrom?: pulumi.Input<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     bootImage?: pulumi.Input<string>;
-    /**
-     * [integer] Number of server CPU cores.
-     */
     cores: pulumi.Input<number>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * The associated firewall rules.
-     */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
-     */
     imageName?: pulumi.Input<string>;
-    /**
-     * [string] The password for the image.
-     */
     imagePassword?: pulumi.Input<string>;
-    /**
-     * A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.VCPUServerLabel>[]>;
-    /**
-     * [string] The name of the server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * See the Nic section.
-     */
     nic?: pulumi.Input<inputs.compute.VCPUServerNic>;
-    /**
-     * [integer] The amount of memory for the server in MB.
-     */
     ram: pulumi.Input<number>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
      */
     vmState?: pulumi.Input<string>;
-    /**
-     * See the Volume section.
-     */
     volume: pulumi.Input<inputs.compute.VCPUServerVolume>;
 }

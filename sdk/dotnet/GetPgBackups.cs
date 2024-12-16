@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetPgBackupsResult> Invoke(GetPgBackupsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPgBackupsResult>("ionoscloud:index/getPgBackups:getPgBackups", args ?? new GetPgBackupsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPgBackupsResult> Invoke(GetPgBackupsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPgBackupsResult>("ionoscloud:index/getPgBackups:getPgBackups", args ?? new GetPgBackupsInvokeArgs(), options.WithDefaults());
     }
 
 

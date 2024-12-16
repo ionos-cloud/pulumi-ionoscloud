@@ -14,17 +14,15 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type BalancerFlowlog struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action string `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket string `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction string `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id *string `pulumi:"id"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// The resource name.
 	Name string `pulumi:"name"`
 }
 
@@ -40,17 +38,15 @@ type BalancerFlowlogInput interface {
 }
 
 type BalancerFlowlogArgs struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action pulumi.StringInput `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// The resource name.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -131,17 +127,17 @@ func (o BalancerFlowlogOutput) ToBalancerFlowlogPtrOutputWithContext(ctx context
 	}).(BalancerFlowlogPtrOutput)
 }
 
-// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -151,9 +147,7 @@ func (o BalancerFlowlogOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BalancerFlowlog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+// The resource name.
 func (o BalancerFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -182,7 +176,7 @@ func (o BalancerFlowlogPtrOutput) Elem() BalancerFlowlogOutput {
 	}).(BalancerFlowlogOutput)
 }
 
-// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -192,7 +186,7 @@ func (o BalancerFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -202,7 +196,7 @@ func (o BalancerFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 func (o BalancerFlowlogPtrOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -222,9 +216,7 @@ func (o BalancerFlowlogPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+// The resource name.
 func (o BalancerFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -235,23 +227,23 @@ func (o BalancerFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 type ForwardingRuleHttpRule struct {
-	// [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
 	Conditions []ForwardingRuleHttpRuleCondition `pulumi:"conditions"`
-	// [string] Valid only for STATIC actions.
+	// Valid only for STATIC actions.
 	ContentType *string `pulumi:"contentType"`
-	// [bool] Default is false; valid only for REDIRECT actions.
+	// Default is false; valid only for REDIRECT actions.
 	DropQuery *bool `pulumi:"dropQuery"`
-	// [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+	// The location for redirecting; mandatory and valid only for REDIRECT actions.
 	Location *string `pulumi:"location"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The unique name of the Application Load Balancer HTTP rule.
 	Name string `pulumi:"name"`
-	// [string] The response message of the request; mandatory for STATIC action.
+	// The response message of the request; mandatory for STATIC actions.
 	ResponseMessage *string `pulumi:"responseMessage"`
-	// [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
 	StatusCode *int `pulumi:"statusCode"`
-	// [string] The UUID of the target group; mandatory for FORWARD action.
+	// The ID of the target group; mandatory and only valid for FORWARD actions.
 	TargetGroup *string `pulumi:"targetGroup"`
-	// [string] Type of the Http Rule condition.
+	// Type of the HTTP rule.
 	Type string `pulumi:"type"`
 }
 
@@ -267,23 +259,23 @@ type ForwardingRuleHttpRuleInput interface {
 }
 
 type ForwardingRuleHttpRuleArgs struct {
-	// [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
 	Conditions ForwardingRuleHttpRuleConditionArrayInput `pulumi:"conditions"`
-	// [string] Valid only for STATIC actions.
+	// Valid only for STATIC actions.
 	ContentType pulumi.StringPtrInput `pulumi:"contentType"`
-	// [bool] Default is false; valid only for REDIRECT actions.
+	// Default is false; valid only for REDIRECT actions.
 	DropQuery pulumi.BoolPtrInput `pulumi:"dropQuery"`
-	// [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+	// The location for redirecting; mandatory and valid only for REDIRECT actions.
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// The unique name of the Application Load Balancer HTTP rule.
 	Name pulumi.StringInput `pulumi:"name"`
-	// [string] The response message of the request; mandatory for STATIC action.
+	// The response message of the request; mandatory for STATIC actions.
 	ResponseMessage pulumi.StringPtrInput `pulumi:"responseMessage"`
-	// [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
 	StatusCode pulumi.IntPtrInput `pulumi:"statusCode"`
-	// [string] The UUID of the target group; mandatory for FORWARD action.
+	// The ID of the target group; mandatory and only valid for FORWARD actions.
 	TargetGroup pulumi.StringPtrInput `pulumi:"targetGroup"`
-	// [string] Type of the Http Rule condition.
+	// Type of the HTTP rule.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -338,47 +330,47 @@ func (o ForwardingRuleHttpRuleOutput) ToForwardingRuleHttpRuleOutputWithContext(
 	return o
 }
 
-// [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
 func (o ForwardingRuleHttpRuleOutput) Conditions() ForwardingRuleHttpRuleConditionArrayOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) []ForwardingRuleHttpRuleCondition { return v.Conditions }).(ForwardingRuleHttpRuleConditionArrayOutput)
 }
 
-// [string] Valid only for STATIC actions.
+// Valid only for STATIC actions.
 func (o ForwardingRuleHttpRuleOutput) ContentType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *string { return v.ContentType }).(pulumi.StringPtrOutput)
 }
 
-// [bool] Default is false; valid only for REDIRECT actions.
+// Default is false; valid only for REDIRECT actions.
 func (o ForwardingRuleHttpRuleOutput) DropQuery() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *bool { return v.DropQuery }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+// The location for redirecting; mandatory and valid only for REDIRECT actions.
 func (o ForwardingRuleHttpRuleOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// [string] The unique name of the Application Load Balancer HTTP rule.
+// The unique name of the Application Load Balancer HTTP rule.
 func (o ForwardingRuleHttpRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] The response message of the request; mandatory for STATIC action.
+// The response message of the request; mandatory for STATIC actions.
 func (o ForwardingRuleHttpRuleOutput) ResponseMessage() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *string { return v.ResponseMessage }).(pulumi.StringPtrOutput)
 }
 
-// [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
 func (o ForwardingRuleHttpRuleOutput) StatusCode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *int { return v.StatusCode }).(pulumi.IntPtrOutput)
 }
 
-// [string] The UUID of the target group; mandatory for FORWARD action.
+// The ID of the target group; mandatory and only valid for FORWARD actions.
 func (o ForwardingRuleHttpRuleOutput) TargetGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) *string { return v.TargetGroup }).(pulumi.StringPtrOutput)
 }
 
-// [string] Type of the Http Rule condition.
+// Type of the HTTP rule.
 func (o ForwardingRuleHttpRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -404,15 +396,15 @@ func (o ForwardingRuleHttpRuleArrayOutput) Index(i pulumi.IntInput) ForwardingRu
 }
 
 type ForwardingRuleHttpRuleCondition struct {
-	// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
 	Condition *string `pulumi:"condition"`
-	// [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
 	Key *string `pulumi:"key"`
-	// [bool] Specifies whether the condition is negated or not; the default is False.
+	// Specifies whether the condition is negated or not; the default is False.
 	Negate *bool `pulumi:"negate"`
-	// [string] Type of the Http Rule condition.
+	// Type of the HTTP rule condition.
 	Type string `pulumi:"type"`
-	// [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
 	Value *string `pulumi:"value"`
 }
 
@@ -428,15 +420,15 @@ type ForwardingRuleHttpRuleConditionInput interface {
 }
 
 type ForwardingRuleHttpRuleConditionArgs struct {
-	// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
 	Condition pulumi.StringPtrInput `pulumi:"condition"`
-	// [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
 	Key pulumi.StringPtrInput `pulumi:"key"`
-	// [bool] Specifies whether the condition is negated or not; the default is False.
+	// Specifies whether the condition is negated or not; the default is False.
 	Negate pulumi.BoolPtrInput `pulumi:"negate"`
-	// [string] Type of the Http Rule condition.
+	// Type of the HTTP rule condition.
 	Type pulumi.StringInput `pulumi:"type"`
-	// [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -491,27 +483,27 @@ func (o ForwardingRuleHttpRuleConditionOutput) ToForwardingRuleHttpRuleCondition
 	return o
 }
 
-// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
 func (o ForwardingRuleHttpRuleConditionOutput) Condition() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRuleCondition) *string { return v.Condition }).(pulumi.StringPtrOutput)
 }
 
-// [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
 func (o ForwardingRuleHttpRuleConditionOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRuleCondition) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// [bool] Specifies whether the condition is negated or not; the default is False.
+// Specifies whether the condition is negated or not; the default is False.
 func (o ForwardingRuleHttpRuleConditionOutput) Negate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRuleCondition) *bool { return v.Negate }).(pulumi.BoolPtrOutput)
 }
 
-// [string] Type of the Http Rule condition.
+// Type of the HTTP rule condition.
 func (o ForwardingRuleHttpRuleConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRuleCondition) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
 func (o ForwardingRuleHttpRuleConditionOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHttpRuleCondition) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -536,6 +528,441 @@ func (o ForwardingRuleHttpRuleConditionArrayOutput) Index(i pulumi.IntInput) For
 	}).(ForwardingRuleHttpRuleConditionOutput)
 }
 
+type GetBalancerFlowlog struct {
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	Action string `pulumi:"action"`
+	// The bucket name of an existing IONOS Object Storage bucket.
+	Bucket string `pulumi:"bucket"`
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	Direction string `pulumi:"direction"`
+	// The resource's unique identifier.
+	Id string `pulumi:"id"`
+	// The resource name.
+	Name string `pulumi:"name"`
+}
+
+// GetBalancerFlowlogInput is an input type that accepts GetBalancerFlowlogArgs and GetBalancerFlowlogOutput values.
+// You can construct a concrete instance of `GetBalancerFlowlogInput` via:
+//
+//	GetBalancerFlowlogArgs{...}
+type GetBalancerFlowlogInput interface {
+	pulumi.Input
+
+	ToGetBalancerFlowlogOutput() GetBalancerFlowlogOutput
+	ToGetBalancerFlowlogOutputWithContext(context.Context) GetBalancerFlowlogOutput
+}
+
+type GetBalancerFlowlogArgs struct {
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The bucket name of an existing IONOS Object Storage bucket.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// The resource's unique identifier.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The resource name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetBalancerFlowlogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBalancerFlowlog)(nil)).Elem()
+}
+
+func (i GetBalancerFlowlogArgs) ToGetBalancerFlowlogOutput() GetBalancerFlowlogOutput {
+	return i.ToGetBalancerFlowlogOutputWithContext(context.Background())
+}
+
+func (i GetBalancerFlowlogArgs) ToGetBalancerFlowlogOutputWithContext(ctx context.Context) GetBalancerFlowlogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBalancerFlowlogOutput)
+}
+
+// GetBalancerFlowlogArrayInput is an input type that accepts GetBalancerFlowlogArray and GetBalancerFlowlogArrayOutput values.
+// You can construct a concrete instance of `GetBalancerFlowlogArrayInput` via:
+//
+//	GetBalancerFlowlogArray{ GetBalancerFlowlogArgs{...} }
+type GetBalancerFlowlogArrayInput interface {
+	pulumi.Input
+
+	ToGetBalancerFlowlogArrayOutput() GetBalancerFlowlogArrayOutput
+	ToGetBalancerFlowlogArrayOutputWithContext(context.Context) GetBalancerFlowlogArrayOutput
+}
+
+type GetBalancerFlowlogArray []GetBalancerFlowlogInput
+
+func (GetBalancerFlowlogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBalancerFlowlog)(nil)).Elem()
+}
+
+func (i GetBalancerFlowlogArray) ToGetBalancerFlowlogArrayOutput() GetBalancerFlowlogArrayOutput {
+	return i.ToGetBalancerFlowlogArrayOutputWithContext(context.Background())
+}
+
+func (i GetBalancerFlowlogArray) ToGetBalancerFlowlogArrayOutputWithContext(ctx context.Context) GetBalancerFlowlogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBalancerFlowlogArrayOutput)
+}
+
+type GetBalancerFlowlogOutput struct{ *pulumi.OutputState }
+
+func (GetBalancerFlowlogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBalancerFlowlog)(nil)).Elem()
+}
+
+func (o GetBalancerFlowlogOutput) ToGetBalancerFlowlogOutput() GetBalancerFlowlogOutput {
+	return o
+}
+
+func (o GetBalancerFlowlogOutput) ToGetBalancerFlowlogOutputWithContext(ctx context.Context) GetBalancerFlowlogOutput {
+	return o
+}
+
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+func (o GetBalancerFlowlogOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The bucket name of an existing IONOS Object Storage bucket.
+func (o GetBalancerFlowlogOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+func (o GetBalancerFlowlogOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// The resource's unique identifier.
+func (o GetBalancerFlowlogOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The resource name.
+func (o GetBalancerFlowlogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetBalancerFlowlogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBalancerFlowlogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBalancerFlowlog)(nil)).Elem()
+}
+
+func (o GetBalancerFlowlogArrayOutput) ToGetBalancerFlowlogArrayOutput() GetBalancerFlowlogArrayOutput {
+	return o
+}
+
+func (o GetBalancerFlowlogArrayOutput) ToGetBalancerFlowlogArrayOutputWithContext(ctx context.Context) GetBalancerFlowlogArrayOutput {
+	return o
+}
+
+func (o GetBalancerFlowlogArrayOutput) Index(i pulumi.IntInput) GetBalancerFlowlogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBalancerFlowlog {
+		return vs[0].([]GetBalancerFlowlog)[vs[1].(int)]
+	}).(GetBalancerFlowlogOutput)
+}
+
+type GetForwardingRuleHttpRule struct {
+	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+	Conditions []GetForwardingRuleHttpRuleCondition `pulumi:"conditions"`
+	// Valid only for STATIC actions.
+	ContentType string `pulumi:"contentType"`
+	// Default is false; valid only for REDIRECT actions.
+	DropQuery bool `pulumi:"dropQuery"`
+	// The location for redirecting; mandatory and valid only for REDIRECT actions.
+	Location string `pulumi:"location"`
+	// The unique name of the Application Load Balancer HTTP rule.
+	Name string `pulumi:"name"`
+	// The response message of the request; mandatory for STATIC actions.
+	ResponseMessage string `pulumi:"responseMessage"`
+	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+	StatusCode int `pulumi:"statusCode"`
+	// The ID of the target group; mandatory and only valid for FORWARD actions.
+	TargetGroup string `pulumi:"targetGroup"`
+	// Type of the HTTP rule.
+	Type string `pulumi:"type"`
+}
+
+// GetForwardingRuleHttpRuleInput is an input type that accepts GetForwardingRuleHttpRuleArgs and GetForwardingRuleHttpRuleOutput values.
+// You can construct a concrete instance of `GetForwardingRuleHttpRuleInput` via:
+//
+//	GetForwardingRuleHttpRuleArgs{...}
+type GetForwardingRuleHttpRuleInput interface {
+	pulumi.Input
+
+	ToGetForwardingRuleHttpRuleOutput() GetForwardingRuleHttpRuleOutput
+	ToGetForwardingRuleHttpRuleOutputWithContext(context.Context) GetForwardingRuleHttpRuleOutput
+}
+
+type GetForwardingRuleHttpRuleArgs struct {
+	// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+	Conditions GetForwardingRuleHttpRuleConditionArrayInput `pulumi:"conditions"`
+	// Valid only for STATIC actions.
+	ContentType pulumi.StringInput `pulumi:"contentType"`
+	// Default is false; valid only for REDIRECT actions.
+	DropQuery pulumi.BoolInput `pulumi:"dropQuery"`
+	// The location for redirecting; mandatory and valid only for REDIRECT actions.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The unique name of the Application Load Balancer HTTP rule.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The response message of the request; mandatory for STATIC actions.
+	ResponseMessage pulumi.StringInput `pulumi:"responseMessage"`
+	// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+	StatusCode pulumi.IntInput `pulumi:"statusCode"`
+	// The ID of the target group; mandatory and only valid for FORWARD actions.
+	TargetGroup pulumi.StringInput `pulumi:"targetGroup"`
+	// Type of the HTTP rule.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetForwardingRuleHttpRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetForwardingRuleHttpRule)(nil)).Elem()
+}
+
+func (i GetForwardingRuleHttpRuleArgs) ToGetForwardingRuleHttpRuleOutput() GetForwardingRuleHttpRuleOutput {
+	return i.ToGetForwardingRuleHttpRuleOutputWithContext(context.Background())
+}
+
+func (i GetForwardingRuleHttpRuleArgs) ToGetForwardingRuleHttpRuleOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetForwardingRuleHttpRuleOutput)
+}
+
+// GetForwardingRuleHttpRuleArrayInput is an input type that accepts GetForwardingRuleHttpRuleArray and GetForwardingRuleHttpRuleArrayOutput values.
+// You can construct a concrete instance of `GetForwardingRuleHttpRuleArrayInput` via:
+//
+//	GetForwardingRuleHttpRuleArray{ GetForwardingRuleHttpRuleArgs{...} }
+type GetForwardingRuleHttpRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetForwardingRuleHttpRuleArrayOutput() GetForwardingRuleHttpRuleArrayOutput
+	ToGetForwardingRuleHttpRuleArrayOutputWithContext(context.Context) GetForwardingRuleHttpRuleArrayOutput
+}
+
+type GetForwardingRuleHttpRuleArray []GetForwardingRuleHttpRuleInput
+
+func (GetForwardingRuleHttpRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetForwardingRuleHttpRule)(nil)).Elem()
+}
+
+func (i GetForwardingRuleHttpRuleArray) ToGetForwardingRuleHttpRuleArrayOutput() GetForwardingRuleHttpRuleArrayOutput {
+	return i.ToGetForwardingRuleHttpRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetForwardingRuleHttpRuleArray) ToGetForwardingRuleHttpRuleArrayOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetForwardingRuleHttpRuleArrayOutput)
+}
+
+type GetForwardingRuleHttpRuleOutput struct{ *pulumi.OutputState }
+
+func (GetForwardingRuleHttpRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetForwardingRuleHttpRule)(nil)).Elem()
+}
+
+func (o GetForwardingRuleHttpRuleOutput) ToGetForwardingRuleHttpRuleOutput() GetForwardingRuleHttpRuleOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleOutput) ToGetForwardingRuleHttpRuleOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleOutput {
+	return o
+}
+
+// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+func (o GetForwardingRuleHttpRuleOutput) Conditions() GetForwardingRuleHttpRuleConditionArrayOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) []GetForwardingRuleHttpRuleCondition { return v.Conditions }).(GetForwardingRuleHttpRuleConditionArrayOutput)
+}
+
+// Valid only for STATIC actions.
+func (o GetForwardingRuleHttpRuleOutput) ContentType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.ContentType }).(pulumi.StringOutput)
+}
+
+// Default is false; valid only for REDIRECT actions.
+func (o GetForwardingRuleHttpRuleOutput) DropQuery() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) bool { return v.DropQuery }).(pulumi.BoolOutput)
+}
+
+// The location for redirecting; mandatory and valid only for REDIRECT actions.
+func (o GetForwardingRuleHttpRuleOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The unique name of the Application Load Balancer HTTP rule.
+func (o GetForwardingRuleHttpRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The response message of the request; mandatory for STATIC actions.
+func (o GetForwardingRuleHttpRuleOutput) ResponseMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.ResponseMessage }).(pulumi.StringOutput)
+}
+
+// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+func (o GetForwardingRuleHttpRuleOutput) StatusCode() pulumi.IntOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) int { return v.StatusCode }).(pulumi.IntOutput)
+}
+
+// The ID of the target group; mandatory and only valid for FORWARD actions.
+func (o GetForwardingRuleHttpRuleOutput) TargetGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.TargetGroup }).(pulumi.StringOutput)
+}
+
+// Type of the HTTP rule.
+func (o GetForwardingRuleHttpRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetForwardingRuleHttpRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetForwardingRuleHttpRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetForwardingRuleHttpRule)(nil)).Elem()
+}
+
+func (o GetForwardingRuleHttpRuleArrayOutput) ToGetForwardingRuleHttpRuleArrayOutput() GetForwardingRuleHttpRuleArrayOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleArrayOutput) ToGetForwardingRuleHttpRuleArrayOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleArrayOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleArrayOutput) Index(i pulumi.IntInput) GetForwardingRuleHttpRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetForwardingRuleHttpRule {
+		return vs[0].([]GetForwardingRuleHttpRule)[vs[1].(int)]
+	}).(GetForwardingRuleHttpRuleOutput)
+}
+
+type GetForwardingRuleHttpRuleCondition struct {
+	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+	Condition string `pulumi:"condition"`
+	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+	Key string `pulumi:"key"`
+	// Specifies whether the condition is negated or not; the default is False.
+	Negate bool `pulumi:"negate"`
+	// Type of the HTTP rule condition.
+	Type string `pulumi:"type"`
+	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+	Value string `pulumi:"value"`
+}
+
+// GetForwardingRuleHttpRuleConditionInput is an input type that accepts GetForwardingRuleHttpRuleConditionArgs and GetForwardingRuleHttpRuleConditionOutput values.
+// You can construct a concrete instance of `GetForwardingRuleHttpRuleConditionInput` via:
+//
+//	GetForwardingRuleHttpRuleConditionArgs{...}
+type GetForwardingRuleHttpRuleConditionInput interface {
+	pulumi.Input
+
+	ToGetForwardingRuleHttpRuleConditionOutput() GetForwardingRuleHttpRuleConditionOutput
+	ToGetForwardingRuleHttpRuleConditionOutputWithContext(context.Context) GetForwardingRuleHttpRuleConditionOutput
+}
+
+type GetForwardingRuleHttpRuleConditionArgs struct {
+	// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+	Condition pulumi.StringInput `pulumi:"condition"`
+	// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Specifies whether the condition is negated or not; the default is False.
+	Negate pulumi.BoolInput `pulumi:"negate"`
+	// Type of the HTTP rule condition.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetForwardingRuleHttpRuleConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetForwardingRuleHttpRuleCondition)(nil)).Elem()
+}
+
+func (i GetForwardingRuleHttpRuleConditionArgs) ToGetForwardingRuleHttpRuleConditionOutput() GetForwardingRuleHttpRuleConditionOutput {
+	return i.ToGetForwardingRuleHttpRuleConditionOutputWithContext(context.Background())
+}
+
+func (i GetForwardingRuleHttpRuleConditionArgs) ToGetForwardingRuleHttpRuleConditionOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetForwardingRuleHttpRuleConditionOutput)
+}
+
+// GetForwardingRuleHttpRuleConditionArrayInput is an input type that accepts GetForwardingRuleHttpRuleConditionArray and GetForwardingRuleHttpRuleConditionArrayOutput values.
+// You can construct a concrete instance of `GetForwardingRuleHttpRuleConditionArrayInput` via:
+//
+//	GetForwardingRuleHttpRuleConditionArray{ GetForwardingRuleHttpRuleConditionArgs{...} }
+type GetForwardingRuleHttpRuleConditionArrayInput interface {
+	pulumi.Input
+
+	ToGetForwardingRuleHttpRuleConditionArrayOutput() GetForwardingRuleHttpRuleConditionArrayOutput
+	ToGetForwardingRuleHttpRuleConditionArrayOutputWithContext(context.Context) GetForwardingRuleHttpRuleConditionArrayOutput
+}
+
+type GetForwardingRuleHttpRuleConditionArray []GetForwardingRuleHttpRuleConditionInput
+
+func (GetForwardingRuleHttpRuleConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetForwardingRuleHttpRuleCondition)(nil)).Elem()
+}
+
+func (i GetForwardingRuleHttpRuleConditionArray) ToGetForwardingRuleHttpRuleConditionArrayOutput() GetForwardingRuleHttpRuleConditionArrayOutput {
+	return i.ToGetForwardingRuleHttpRuleConditionArrayOutputWithContext(context.Background())
+}
+
+func (i GetForwardingRuleHttpRuleConditionArray) ToGetForwardingRuleHttpRuleConditionArrayOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetForwardingRuleHttpRuleConditionArrayOutput)
+}
+
+type GetForwardingRuleHttpRuleConditionOutput struct{ *pulumi.OutputState }
+
+func (GetForwardingRuleHttpRuleConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetForwardingRuleHttpRuleCondition)(nil)).Elem()
+}
+
+func (o GetForwardingRuleHttpRuleConditionOutput) ToGetForwardingRuleHttpRuleConditionOutput() GetForwardingRuleHttpRuleConditionOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleConditionOutput) ToGetForwardingRuleHttpRuleConditionOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleConditionOutput {
+	return o
+}
+
+// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+func (o GetForwardingRuleHttpRuleConditionOutput) Condition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRuleCondition) string { return v.Condition }).(pulumi.StringOutput)
+}
+
+// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+func (o GetForwardingRuleHttpRuleConditionOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRuleCondition) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Specifies whether the condition is negated or not; the default is False.
+func (o GetForwardingRuleHttpRuleConditionOutput) Negate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRuleCondition) bool { return v.Negate }).(pulumi.BoolOutput)
+}
+
+// Type of the HTTP rule condition.
+func (o GetForwardingRuleHttpRuleConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRuleCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+func (o GetForwardingRuleHttpRuleConditionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetForwardingRuleHttpRuleCondition) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetForwardingRuleHttpRuleConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetForwardingRuleHttpRuleConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetForwardingRuleHttpRuleCondition)(nil)).Elem()
+}
+
+func (o GetForwardingRuleHttpRuleConditionArrayOutput) ToGetForwardingRuleHttpRuleConditionArrayOutput() GetForwardingRuleHttpRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleConditionArrayOutput) ToGetForwardingRuleHttpRuleConditionArrayOutputWithContext(ctx context.Context) GetForwardingRuleHttpRuleConditionArrayOutput {
+	return o
+}
+
+func (o GetForwardingRuleHttpRuleConditionArrayOutput) Index(i pulumi.IntInput) GetForwardingRuleHttpRuleConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetForwardingRuleHttpRuleCondition {
+		return vs[0].([]GetForwardingRuleHttpRuleCondition)[vs[1].(int)]
+	}).(GetForwardingRuleHttpRuleConditionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BalancerFlowlogInput)(nil)).Elem(), BalancerFlowlogArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BalancerFlowlogPtrInput)(nil)).Elem(), BalancerFlowlogArgs{})
@@ -543,10 +970,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ForwardingRuleHttpRuleArrayInput)(nil)).Elem(), ForwardingRuleHttpRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ForwardingRuleHttpRuleConditionInput)(nil)).Elem(), ForwardingRuleHttpRuleConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ForwardingRuleHttpRuleConditionArrayInput)(nil)).Elem(), ForwardingRuleHttpRuleConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBalancerFlowlogInput)(nil)).Elem(), GetBalancerFlowlogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBalancerFlowlogArrayInput)(nil)).Elem(), GetBalancerFlowlogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetForwardingRuleHttpRuleInput)(nil)).Elem(), GetForwardingRuleHttpRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetForwardingRuleHttpRuleArrayInput)(nil)).Elem(), GetForwardingRuleHttpRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetForwardingRuleHttpRuleConditionInput)(nil)).Elem(), GetForwardingRuleHttpRuleConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetForwardingRuleHttpRuleConditionArrayInput)(nil)).Elem(), GetForwardingRuleHttpRuleConditionArray{})
 	pulumi.RegisterOutputType(BalancerFlowlogOutput{})
 	pulumi.RegisterOutputType(BalancerFlowlogPtrOutput{})
 	pulumi.RegisterOutputType(ForwardingRuleHttpRuleOutput{})
 	pulumi.RegisterOutputType(ForwardingRuleHttpRuleArrayOutput{})
 	pulumi.RegisterOutputType(ForwardingRuleHttpRuleConditionOutput{})
 	pulumi.RegisterOutputType(ForwardingRuleHttpRuleConditionArrayOutput{})
+	pulumi.RegisterOutputType(GetBalancerFlowlogOutput{})
+	pulumi.RegisterOutputType(GetBalancerFlowlogArrayOutput{})
+	pulumi.RegisterOutputType(GetForwardingRuleHttpRuleOutput{})
+	pulumi.RegisterOutputType(GetForwardingRuleHttpRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetForwardingRuleHttpRuleConditionOutput{})
+	pulumi.RegisterOutputType(GetForwardingRuleHttpRuleConditionArrayOutput{})
 }

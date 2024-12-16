@@ -9,62 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Nfs
 {
-    /// <summary>
-    /// Create clusters of Network File Storage (NFS) on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Basic example
-    ///     var nfsDc = new Ionoscloud.Compute.Datacenter("nfsDc", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var nfsLan = new Ionoscloud.Compute.Lan("nfsLan", new()
-    ///     {
-    ///         DatacenterId = nfsDc.Id,
-    ///         Public = false,
-    ///     });
-    /// 
-    ///     var example = new Ionoscloud.Nfs.Cluster("example", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         Size = 2,
-    ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
-    ///         {
-    ///             MinVersion = "4.2",
-    ///         },
-    ///         Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = nfsDc.Id,
-    ///             IpAddress = "192.168.100.10/24",
-    ///             Lan = nfsLan.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:nfs/cluster:Cluster")]
     public partial class Cluster : global::Pulumi.CustomResource
     {
@@ -75,15 +19,13 @@ namespace Pulumi.Ionoscloud.Nfs
         public Output<Outputs.ClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located.
-        /// - `de/fra` - Frankfurt
-        /// - `de/txl` - Berlin
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the Network File Storage cluster.
+        /// The name of the Network File Storage Cluster.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -92,7 +34,7 @@ namespace Pulumi.Ionoscloud.Nfs
         public Output<Outputs.ClusterNfs?> Nfs { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage Cluster. Minimum size is 2.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
@@ -150,15 +92,13 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located.
-        /// - `de/fra` - Frankfurt
-        /// - `de/txl` - Berlin
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// The name of the Network File Storage cluster.
+        /// The name of the Network File Storage Cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -167,7 +107,7 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterNfsArgs>? Nfs { get; set; }
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage Cluster. Minimum size is 2.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
@@ -187,15 +127,13 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage cluster is located.
-        /// - `de/fra` - Frankfurt
-        /// - `de/txl` - Berlin
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The name of the Network File Storage cluster.
+        /// The name of the Network File Storage Cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -204,7 +142,7 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<Inputs.ClusterNfsGetArgs>? Nfs { get; set; }
 
         /// <summary>
-        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// The size of the Network File Storage Cluster. Minimum size is 2.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }

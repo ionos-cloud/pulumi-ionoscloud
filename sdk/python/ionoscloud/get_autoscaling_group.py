@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -59,49 +64,31 @@ class GetAutoscalingGroupResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        Unique identifier for the resource
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def location(self) -> str:
-        """
-        Location of the datacenter. This location is the same as the one from the selected template.
-        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="maxReplicaCount")
     def max_replica_count(self) -> int:
-        """
-        Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-        """
         return pulumi.get(self, "max_replica_count")
 
     @property
     @pulumi.getter(name="minReplicaCount")
     def min_replica_count(self) -> int:
-        """
-        Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-        """
         return pulumi.get(self, "min_replica_count")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the Autoscaling Group.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def policies(self) -> Sequence['outputs.GetAutoscalingGroupPolicyResult']:
-        """
-        Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        """
         return pulumi.get(self, "policies")
 
     @property
@@ -136,25 +123,7 @@ def get_autoscaling_group(id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoscalingGroupResult:
     """
-    The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
-
-    ## Example Usage
-
-    ### By Name
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    autoscaling_group = ionoscloud.get_autoscaling_group(name="test_ds")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str id: Id of an existing Autoscaling Group that you want to search for.
-    :param str name: Name of an existing Autoscaling Group that you want to search for.
-           
-           Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -172,31 +141,24 @@ def get_autoscaling_group(id: Optional[str] = None,
         policies=pulumi.get(__ret__, 'policies'),
         replica_configurations=pulumi.get(__ret__, 'replica_configurations'),
         target_replica_count=pulumi.get(__ret__, 'target_replica_count'))
-
-
-@_utilities.lift_output_func(get_autoscaling_group)
 def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
     """
-    The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
-
-    ## Example Usage
-
-    ### By Name
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_ionoscloud as ionoscloud
-
-    autoscaling_group = ionoscloud.get_autoscaling_group(name="test_ds")
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str id: Id of an existing Autoscaling Group that you want to search for.
-    :param str name: Name of an existing Autoscaling Group that you want to search for.
-           
-           Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+    Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup', __args__, opts=opts, typ=GetAutoscalingGroupResult)
+    return __ret__.apply(lambda __response__: GetAutoscalingGroupResult(
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        max_replica_count=pulumi.get(__response__, 'max_replica_count'),
+        min_replica_count=pulumi.get(__response__, 'min_replica_count'),
+        name=pulumi.get(__response__, 'name'),
+        policies=pulumi.get(__response__, 'policies'),
+        replica_configurations=pulumi.get(__response__, 'replica_configurations'),
+        target_replica_count=pulumi.get(__response__, 'target_replica_count')))

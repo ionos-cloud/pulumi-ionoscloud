@@ -14,13 +14,11 @@ namespace Pulumi.Ionoscloud.Vpn.Outputs
     public sealed class IpsecTunnelAuth
     {
         /// <summary>
-        /// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
-        /// Default value: `PSK`.
+        /// The Authentication Method to use for IPSec Authentication.
         /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
-        /// PSK.
+        /// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
         /// </summary>
         public readonly string? PskKey;
 

@@ -12,109 +12,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// Basic example
-//			nfsDc, err := compute.NewDatacenter(ctx, "nfsDc", &compute.DatacenterArgs{
-//				Location:          pulumi.String("de/txl"),
-//				Description:       pulumi.String("Datacenter Description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			nfsLan, err := compute.NewLan(ctx, "nfsLan", &compute.LanArgs{
-//				DatacenterId: nfsDc.ID(),
-//				Public:       pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleCluster, err := nfs.NewCluster(ctx, "exampleCluster", &nfs.ClusterArgs{
-//				Location: pulumi.String("de/txl"),
-//				Size:     pulumi.Int(2),
-//				Nfs: &nfs.ClusterNfsArgs{
-//					MinVersion: pulumi.String("4.2"),
-//				},
-//				Connections: &nfs.ClusterConnectionsArgs{
-//					DatacenterId: nfsDc.ID(),
-//					IpAddress:    pulumi.String("192.168.100.10/24"),
-//					Lan:          nfsLan.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = nfs.NewShare(ctx, "exampleShare", &nfs.ShareArgs{
-//				Location:  pulumi.String("de/txl"),
-//				ClusterId: exampleCluster.ID(),
-//				Quota:     pulumi.Int(512),
-//				Gid:       pulumi.Int(512),
-//				Uid:       pulumi.Int(512),
-//				ClientGroups: nfs.ShareClientGroupArray{
-//					&nfs.ShareClientGroupArgs{
-//						Description: pulumi.String("Client Group 1"),
-//						IpNetworks: pulumi.StringArray{
-//							pulumi.String("10.234.50.0/24"),
-//						},
-//						Hosts: pulumi.StringArray{
-//							pulumi.String("10.234.62.123"),
-//						},
-//						Nfs: &nfs.ShareClientGroupNfsArgs{
-//							Squash: pulumi.String("all-anonymous"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
-//
-// ```sh
-// $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
-// ```
 type Share struct {
 	pulumi.CustomResourceState
 
-	// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+	// The groups of clients are the systems connecting to the Network File Storage cluster.
 	ClientGroups ShareClientGroupArrayOutput `pulumi:"clientGroups"`
 	// The ID of the Network File Storage Cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrOutput `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 	Location pulumi.StringOutput `pulumi:"location"`
-	// The directory being exported.
+	// The directory being exported
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Path to the NFS export. The NFS path is the path to the directory being exported.
 	NfsPath pulumi.StringOutput `pulumi:"nfsPath"`
-	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+	// quota can be disabled using `0`.
 	Quota pulumi.IntPtrOutput `pulumi:"quota"`
 	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Uid pulumi.IntPtrOutput `pulumi:"uid"`
@@ -159,38 +73,40 @@ func GetShare(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Share resources.
 type shareState struct {
-	// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+	// The groups of clients are the systems connecting to the Network File Storage cluster.
 	ClientGroups []ShareClientGroup `pulumi:"clientGroups"`
 	// The ID of the Network File Storage Cluster.
 	ClusterId *string `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid *int `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 	Location *string `pulumi:"location"`
-	// The directory being exported.
+	// The directory being exported
 	Name *string `pulumi:"name"`
 	// Path to the NFS export. The NFS path is the path to the directory being exported.
 	NfsPath *string `pulumi:"nfsPath"`
-	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+	// quota can be disabled using `0`.
 	Quota *int `pulumi:"quota"`
 	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Uid *int `pulumi:"uid"`
 }
 
 type ShareState struct {
-	// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+	// The groups of clients are the systems connecting to the Network File Storage cluster.
 	ClientGroups ShareClientGroupArrayInput
 	// The ID of the Network File Storage Cluster.
 	ClusterId pulumi.StringPtrInput
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrInput
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 	Location pulumi.StringPtrInput
-	// The directory being exported.
+	// The directory being exported
 	Name pulumi.StringPtrInput
 	// Path to the NFS export. The NFS path is the path to the directory being exported.
 	NfsPath pulumi.StringPtrInput
-	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+	// quota can be disabled using `0`.
 	Quota pulumi.IntPtrInput
 	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Uid pulumi.IntPtrInput
@@ -201,17 +117,18 @@ func (ShareState) ElementType() reflect.Type {
 }
 
 type shareArgs struct {
-	// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+	// The groups of clients are the systems connecting to the Network File Storage cluster.
 	ClientGroups []ShareClientGroup `pulumi:"clientGroups"`
 	// The ID of the Network File Storage Cluster.
 	ClusterId string `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid *int `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 	Location string `pulumi:"location"`
-	// The directory being exported.
+	// The directory being exported
 	Name *string `pulumi:"name"`
-	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+	// quota can be disabled using `0`.
 	Quota *int `pulumi:"quota"`
 	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Uid *int `pulumi:"uid"`
@@ -219,17 +136,18 @@ type shareArgs struct {
 
 // The set of arguments for constructing a Share resource.
 type ShareArgs struct {
-	// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+	// The groups of clients are the systems connecting to the Network File Storage cluster.
 	ClientGroups ShareClientGroupArrayInput
 	// The ID of the Network File Storage Cluster.
 	ClusterId pulumi.StringInput
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrInput
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 	Location pulumi.StringInput
-	// The directory being exported.
+	// The directory being exported
 	Name pulumi.StringPtrInput
-	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+	// quota can be disabled using `0`.
 	Quota pulumi.IntPtrInput
 	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Uid pulumi.IntPtrInput
@@ -322,7 +240,7 @@ func (o ShareOutput) ToShareOutputWithContext(ctx context.Context) ShareOutput {
 	return o
 }
 
-// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+// The groups of clients are the systems connecting to the Network File Storage cluster.
 func (o ShareOutput) ClientGroups() ShareClientGroupArrayOutput {
 	return o.ApplyT(func(v *Share) ShareClientGroupArrayOutput { return v.ClientGroups }).(ShareClientGroupArrayOutput)
 }
@@ -337,12 +255,12 @@ func (o ShareOutput) Gid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Share) pulumi.IntPtrOutput { return v.Gid }).(pulumi.IntPtrOutput)
 }
 
-// The location of the Network File Storage Cluster.
+// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
 func (o ShareOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// The directory being exported.
+// The directory being exported
 func (o ShareOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -352,7 +270,8 @@ func (o ShareOutput) NfsPath() pulumi.StringOutput {
 	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.NfsPath }).(pulumi.StringOutput)
 }
 
-// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+// quota can be disabled using `0`.
 func (o ShareOutput) Quota() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Share) pulumi.IntPtrOutput { return v.Quota }).(pulumi.IntPtrOutput)
 }

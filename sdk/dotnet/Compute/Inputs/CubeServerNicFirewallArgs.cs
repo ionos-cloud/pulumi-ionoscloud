@@ -18,9 +18,6 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("icmpType")]
         public Input<string>? IcmpType { get; set; }
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

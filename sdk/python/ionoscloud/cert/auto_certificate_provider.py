@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -184,7 +189,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
-                 external_account_binding: Optional[pulumi.Input[pulumi.InputType['AutoCertificateProviderExternalAccountBindingArgs']]] = None,
+                 external_account_binding: Optional[pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
@@ -222,7 +227,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
-                 external_account_binding: Optional[pulumi.Input[pulumi.InputType['AutoCertificateProviderExternalAccountBindingArgs']]] = None,
+                 external_account_binding: Optional[pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
@@ -257,7 +262,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             email: Optional[pulumi.Input[str]] = None,
-            external_account_binding: Optional[pulumi.Input[pulumi.InputType['AutoCertificateProviderExternalAccountBindingArgs']]] = None,
+            external_account_binding: Optional[pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None) -> 'AutoCertificateProvider':
