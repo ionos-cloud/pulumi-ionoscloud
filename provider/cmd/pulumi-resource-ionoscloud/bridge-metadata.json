@@ -24,7 +24,7 @@
                 }
             },
             "ionoscloud_application_loadbalancer": {
-                "current": "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer",
+                "current": "ionoscloud:alb/balancer:Balancer",
                 "fields": {
                     "flowlog": {
                         "maxItemsOne": true
@@ -38,7 +38,7 @@
                 }
             },
             "ionoscloud_application_loadbalancer_forwardingrule": {
-                "current": "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule",
+                "current": "ionoscloud:alb/forwardingRule:ForwardingRule",
                 "fields": {
                     "http_rules": {
                         "maxItemsOne": false,
@@ -505,7 +505,7 @@
                 }
             },
             "ionoscloud_networkloadbalancer": {
-                "current": "ionoscloud:index/networkloadbalancer:Networkloadbalancer",
+                "current": "ionoscloud:nlb/balancer:Balancer",
                 "fields": {
                     "flowlog": {
                         "maxItemsOne": true
@@ -519,7 +519,7 @@
                 }
             },
             "ionoscloud_networkloadbalancer_forwardingrule": {
-                "current": "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule",
+                "current": "ionoscloud:nlb/forwardingRule:ForwardingRule",
                 "fields": {
                     "health_check": {
                         "maxItemsOne": true

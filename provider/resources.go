@@ -49,6 +49,8 @@ const (
 	dnsModule     = "dns"
 	cregModule    = "creg"
 	loggingModule = "logging"
+	albModule     = "alb"
+	nlbModule     = "nlb"
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -331,6 +333,18 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_logging_pipeline": {
 				Tok: tfbridge.MakeResource(mainPkg, loggingModule, "Pipeline"),
+			},
+			"ionoscloud_application_loadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "Balancer"),
+			},
+			"ionoscloud_application_loadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "ForwardingRule"),
+			},
+			"ionoscloud_networkloadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "Balancer"),
+			},
+			"ionoscloud_networkloadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "ForwardingRule"),
 			},
 		},
 	}

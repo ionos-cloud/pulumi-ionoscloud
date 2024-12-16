@@ -39,93 +39,6 @@ export interface ApigatewayRouteUpstream {
     weight?: number;
 }
 
-export interface ApplicationLoadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
-     */
-    name: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions: outputs.ApplicationLoadbalancerForwardingruleHttpRuleCondition[];
-    /**
-     * [string] Valid only for STATIC actions.
-     */
-    contentType: string;
-    /**
-     * [bool] Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery?: boolean;
-    /**
-     * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location?: string;
-    /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
-     */
-    name: string;
-    /**
-     * [string] The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage?: string;
-    /**
-     * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode: number;
-    /**
-     * [string] The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup?: string;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition?: string;
-    /**
-     * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key?: string;
-    /**
-     * [bool] Specifies whether the condition is negated or not; the default is False.
-     */
-    negate?: boolean;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: string;
-    /**
-     * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value?: string;
-}
-
 export interface AutoscalingGroupPolicy {
     /**
      * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -2968,88 +2881,6 @@ export interface KafkaClusterConnections {
     lanId: string;
 }
 
-export interface NetworkloadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-     */
-    name: string;
-}
-
-export interface NetworkloadbalancerForwardingruleHealthCheck {
-    /**
-     * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-     */
-    clientTimeout: number;
-    /**
-     * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-     */
-    connectTimeout: number;
-    /**
-     * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-     */
-    retries: number;
-    /**
-     * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-     */
-    targetTimeout: number;
-}
-
-export interface NetworkloadbalancerForwardingruleTarget {
-    /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
-     */
-    healthCheck: outputs.NetworkloadbalancerForwardingruleTargetHealthCheck;
-    /**
-     * [string] IP of a balanced target VM.
-     */
-    ip: string;
-    /**
-     * [int] Port of the balanced target service. (range: 1 to 65535).
-     */
-    port: number;
-    /**
-     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
-     */
-    proxyProtocol?: string;
-    /**
-     * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-     */
-    weight: number;
-}
-
-export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
-    /**
-     * [boolean] Check specifies whether the target VM's health is checked.
-     */
-    check: boolean;
-    /**
-     * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-     */
-    checkInterval: number;
-    /**
-     * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
-     */
-    maintenance: boolean;
-}
-
 export interface TargetGroupHealthCheck {
     /**
      * [int] The interval in milliseconds between consecutive health checks; default is 2000.
@@ -3117,6 +2948,96 @@ export interface TargetGroupTarget {
      * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: number;
+}
+
+export namespace alb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         */
+        name: string;
+    }
+
+    export interface ForwardingRuleHttpRule {
+        /**
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions: outputs.alb.ForwardingRuleHttpRuleCondition[];
+        /**
+         * [string] Valid only for STATIC actions.
+         */
+        contentType: string;
+        /**
+         * [bool] Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery?: boolean;
+        /**
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location?: string;
+        /**
+         * [string] The unique name of the Application Load Balancer HTTP rule.
+         */
+        name: string;
+        /**
+         * [string] The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage?: string;
+        /**
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode: number;
+        /**
+         * [string] The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup?: string;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: string;
+    }
+
+    export interface ForwardingRuleHttpRuleCondition {
+        /**
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition?: string;
+        /**
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key?: string;
+        /**
+         * [bool] Specifies whether the condition is negated or not; the default is False.
+         */
+        negate?: boolean;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: string;
+        /**
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value?: string;
+    }
+
 }
 
 export namespace cdn {
@@ -4102,6 +4023,91 @@ export namespace nfs {
          * The squash mode for the export. The squash mode can be:
          */
         squash?: string;
+    }
+
+}
+
+export namespace nlb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+         */
+        name: string;
+    }
+
+    export interface ForwardingRuleHealthCheck {
+        /**
+         * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+         */
+        clientTimeout: number;
+        /**
+         * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+         */
+        connectTimeout: number;
+        /**
+         * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+         */
+        retries: number;
+        /**
+         * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+         */
+        targetTimeout: number;
+    }
+
+    export interface ForwardingRuleTarget {
+        /**
+         * Health check attributes for Network Load Balancer forwarding rule target.
+         */
+        healthCheck: outputs.nlb.ForwardingRuleTargetHealthCheck;
+        /**
+         * [string] IP of a balanced target VM.
+         */
+        ip: string;
+        /**
+         * [int] Port of the balanced target service. (range: 1 to 65535).
+         */
+        port: number;
+        /**
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+         */
+        proxyProtocol?: string;
+        /**
+         * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+         */
+        weight: number;
+    }
+
+    export interface ForwardingRuleTargetHealthCheck {
+        /**
+         * [boolean] Check specifies whether the target VM's health is checked.
+         */
+        check: boolean;
+        /**
+         * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+         */
+        checkInterval: number;
+        /**
+         * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
+         */
+        maintenance: boolean;
     }
 
 }
