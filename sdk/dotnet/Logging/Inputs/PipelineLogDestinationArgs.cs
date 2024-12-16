@@ -7,29 +7,26 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Logging.Inputs
 {
 
-    [OutputType]
-    public sealed class LoggingPipelineLogDestination
+    public sealed class PipelineLogDestinationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
         /// </summary>
-        public readonly int? RetentionInDays;
+        [Input("retentionInDays")]
+        public Input<int>? RetentionInDays { get; set; }
+
         /// <summary>
         /// [string] The internal output stream to send logs to.
         /// </summary>
-        public readonly string? Type;
+        [Input("type")]
+        public Input<string>? Type { get; set; }
 
-        [OutputConstructor]
-        private LoggingPipelineLogDestination(
-            int? retentionInDays,
-
-            string? type)
+        public PipelineLogDestinationArgs()
         {
-            RetentionInDays = retentionInDays;
-            Type = type;
         }
+        public static new PipelineLogDestinationArgs Empty => new PipelineLogDestinationArgs();
     }
 }

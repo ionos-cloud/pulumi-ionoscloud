@@ -2294,71 +2294,6 @@
                 "lanId"
             ]
         },
-        "ionoscloud:index/LoggingPipelineLog:LoggingPipelineLog": {
-            "properties": {
-                "destinations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/LoggingPipelineLogDestination:LoggingPipelineLogDestination"
-                    },
-                    "description": "[list] The configuration of the logs datastore, a list that contains elements with the following structure:\n"
-                },
-                "protocol": {
-                    "type": "string",
-                    "description": "[string] \"Protocol to use as intake. Possible values are: http, tcp.\"\n"
-                },
-                "public": {
-                    "type": "boolean",
-                    "description": "[bool]\n"
-                },
-                "source": {
-                    "type": "string",
-                    "description": "[string] The source parser to be used.\n"
-                },
-                "tag": {
-                    "type": "string",
-                    "description": "[string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "protocol",
-                "source",
-                "tag"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "destinations",
-                        "protocol",
-                        "public",
-                        "source",
-                        "tag"
-                    ]
-                }
-            }
-        },
-        "ionoscloud:index/LoggingPipelineLogDestination:LoggingPipelineLogDestination": {
-            "properties": {
-                "retentionInDays": {
-                    "type": "integer",
-                    "description": "[int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.\n"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "[string] The internal output stream to send logs to.\n"
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "retentionInDays",
-                        "type"
-                    ]
-                }
-            }
-        },
         "ionoscloud:index/NetworkloadbalancerFlowlog:NetworkloadbalancerFlowlog": {
             "properties": {
                 "action": {
@@ -7647,6 +7582,71 @@
                 "dayOfTheWeek",
                 "time"
             ]
+        },
+        "ionoscloud:logging/PipelineLog:PipelineLog": {
+            "properties": {
+                "destinations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:logging/PipelineLogDestination:PipelineLogDestination"
+                    },
+                    "description": "[list] The configuration of the logs datastore, a list that contains elements with the following structure:\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "[string] \"Protocol to use as intake. Possible values are: http, tcp.\"\n"
+                },
+                "public": {
+                    "type": "boolean",
+                    "description": "[bool]\n"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "[string] The source parser to be used.\n"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "[string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "protocol",
+                "source",
+                "tag"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "destinations",
+                        "protocol",
+                        "public",
+                        "source",
+                        "tag"
+                    ]
+                }
+            }
+        },
+        "ionoscloud:logging/PipelineLogDestination:PipelineLogDestination": {
+            "properties": {
+                "retentionInDays": {
+                    "type": "integer",
+                    "description": "[int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "[string] The internal output stream to send logs to.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "retentionInDays",
+                        "type"
+                    ]
+                }
+            }
         },
         "ionoscloud:nfs/ClusterConnections:ClusterConnections": {
             "properties": {
@@ -14276,82 +14276,6 @@
                 "type": "object"
             }
         },
-        "ionoscloud:index/loggingPipeline:LoggingPipeline": {
-            "description": "\n\n## Import\n\nIn order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:\n\nhcl\n\nresource \"ionoscloud_logging_pipeline\" \"example\" {\n\n}\n\nThe resource can be imported using the `location` and `pipeline_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:index/loggingPipeline:LoggingPipeline example {location}:{pipeline_id}\n```\n\n",
-            "properties": {
-                "grafanaAddress": {
-                    "type": "string",
-                    "description": "[string] The address of the client's grafana instance.\n"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n"
-                },
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/LoggingPipelineLog:LoggingPipelineLog"
-                    },
-                    "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the Logging pipeline.\n"
-                }
-            },
-            "required": [
-                "grafanaAddress",
-                "logs",
-                "name"
-            ],
-            "inputProperties": {
-                "location": {
-                    "type": "string",
-                    "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n",
-                    "willReplaceOnChanges": true
-                },
-                "logs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/ionoscloud:index/LoggingPipelineLog:LoggingPipelineLog"
-                    },
-                    "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "[string] The name of the Logging pipeline.\n"
-                }
-            },
-            "requiredInputs": [
-                "logs"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering LoggingPipeline resources.\n",
-                "properties": {
-                    "grafanaAddress": {
-                        "type": "string",
-                        "description": "[string] The address of the client's grafana instance.\n"
-                    },
-                    "location": {
-                        "type": "string",
-                        "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "logs": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ionoscloud:index/LoggingPipelineLog:LoggingPipelineLog"
-                        },
-                        "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "[string] The name of the Logging pipeline.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ionoscloud:index/networkloadbalancer:Networkloadbalancer": {
             "description": "Manages a **Network Load Balancer**  on IonosCloud.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleDatacenter = new ionoscloud.compute.Datacenter(\"exampleDatacenter\", {\n    location: \"us/las\",\n    description: \"Datacenter Description\",\n    secAuthProtection: false,\n});\nconst example1 = new ionoscloud.compute.Lan(\"example1\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": false,\n});\nconst example2 = new ionoscloud.compute.Lan(\"example2\", {\n    datacenterId: exampleDatacenter.id,\n    \"public\": false,\n});\nconst exampleNetworkloadbalancer = new ionoscloud.Networkloadbalancer(\"exampleNetworkloadbalancer\", {\n    datacenterId: exampleDatacenter.id,\n    listenerLan: example1.id,\n    targetLan: example2.id,\n    ips: [\"10.12.118.224\"],\n    lbPrivateIps: [\"10.13.72.225/24\"],\n    centralLogging: true,\n    loggingFormat: \"%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\\"\\\" \\\"\\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_datacenter = ionoscloud.compute.Datacenter(\"exampleDatacenter\",\n    location=\"us/las\",\n    description=\"Datacenter Description\",\n    sec_auth_protection=False)\nexample1 = ionoscloud.compute.Lan(\"example1\",\n    datacenter_id=example_datacenter.id,\n    public=False)\nexample2 = ionoscloud.compute.Lan(\"example2\",\n    datacenter_id=example_datacenter.id,\n    public=False)\nexample_networkloadbalancer = ionoscloud.Networkloadbalancer(\"exampleNetworkloadbalancer\",\n    datacenter_id=example_datacenter.id,\n    listener_lan=example1.id,\n    target_lan=example2.id,\n    ips=[\"10.12.118.224\"],\n    lb_private_ips=[\"10.13.72.225/24\"],\n    central_logging=True,\n    logging_format=\"%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\\"\\\" \\\"\\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleDatacenter = new Ionoscloud.Compute.Datacenter(\"exampleDatacenter\", new()\n    {\n        Location = \"us/las\",\n        Description = \"Datacenter Description\",\n        SecAuthProtection = false,\n    });\n\n    var example1 = new Ionoscloud.Compute.Lan(\"example1\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = false,\n    });\n\n    var example2 = new Ionoscloud.Compute.Lan(\"example2\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        Public = false,\n    });\n\n    var exampleNetworkloadbalancer = new Ionoscloud.Networkloadbalancer(\"exampleNetworkloadbalancer\", new()\n    {\n        DatacenterId = exampleDatacenter.Id,\n        ListenerLan = example1.Id,\n        TargetLan = example2.Id,\n        Ips = new[]\n        {\n            \"10.12.118.224\",\n        },\n        LbPrivateIps = new[]\n        {\n            \"10.13.72.225/24\",\n        },\n        CentralLogging = true,\n        LoggingFormat = \"%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\\"\\\" \\\"\\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDatacenter, err := compute.NewDatacenter(ctx, \"exampleDatacenter\", \u0026compute.DatacenterArgs{\n\t\t\tLocation:          pulumi.String(\"us/las\"),\n\t\t\tDescription:       pulumi.String(\"Datacenter Description\"),\n\t\t\tSecAuthProtection: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample1, err := compute.NewLan(ctx, \"example1\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample2, err := compute.NewLan(ctx, \"example2\", \u0026compute.LanArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tPublic:       pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ionoscloud.NewNetworkloadbalancer(ctx, \"exampleNetworkloadbalancer\", \u0026ionoscloud.NetworkloadbalancerArgs{\n\t\t\tDatacenterId: exampleDatacenter.ID(),\n\t\t\tListenerLan:  example1.ID(),\n\t\t\tTargetLan:    example2.ID(),\n\t\t\tIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.12.118.224\"),\n\t\t\t},\n\t\t\tLbPrivateIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.13.72.225/24\"),\n\t\t\t},\n\t\t\tCentralLogging: pulumi.Bool(true),\n\t\t\tLoggingFormat:  pulumi.String(\"%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\\"\\\" \\\"\\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.compute.Datacenter;\nimport com.pulumi.ionoscloud.compute.DatacenterArgs;\nimport com.pulumi.ionoscloud.compute.Lan;\nimport com.pulumi.ionoscloud.compute.LanArgs;\nimport com.pulumi.ionoscloud.Networkloadbalancer;\nimport com.pulumi.ionoscloud.NetworkloadbalancerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleDatacenter = new Datacenter(\"exampleDatacenter\", DatacenterArgs.builder()        \n            .location(\"us/las\")\n            .description(\"Datacenter Description\")\n            .secAuthProtection(false)\n            .build());\n\n        var example1 = new Lan(\"example1\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(false)\n            .build());\n\n        var example2 = new Lan(\"example2\", LanArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .public_(false)\n            .build());\n\n        var exampleNetworkloadbalancer = new Networkloadbalancer(\"exampleNetworkloadbalancer\", NetworkloadbalancerArgs.builder()        \n            .datacenterId(exampleDatacenter.id())\n            .listenerLan(example1.id())\n            .targetLan(example2.id())\n            .ips(\"10.12.118.224\")\n            .lbPrivateIps(\"10.13.72.225/24\")\n            .centralLogging(true)\n            .loggingFormat(\"%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\\"\\\" \\\"\\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleDatacenter:\n    type: ionoscloud:compute:Datacenter\n    properties:\n      location: us/las\n      description: Datacenter Description\n      secAuthProtection: false\n  example1:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: false\n  example2:\n    type: ionoscloud:compute:Lan\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      public: false\n  exampleNetworkloadbalancer:\n    type: ionoscloud:Networkloadbalancer\n    properties:\n      datacenterId: ${exampleDatacenter.id}\n      listenerLan: ${example1.id}\n      targetLan: ${example2.id}\n      ips:\n        - 10.12.118.224\n      lbPrivateIps:\n        - 10.13.72.225/24\n      centralLogging: true\n      loggingFormat: '%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Example configuring Flowlog\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.Networkloadbalancer(\"example\", {\n    datacenterId: ionoscloud_datacenter.example.id,\n    listenerLan: ionoscloud_lan.example1.id,\n    targetLan: ionoscloud_lan.example2.id,\n    ips: [\"10.12.118.224\"],\n    lbPrivateIps: [\"10.13.72.225/24\"],\n    flowlog: {\n        action: \"ALL\",\n        bucket: \"flowlog-bucket\",\n        direction: \"INGRESS\",\n        name: \"flowlog\",\n    },\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.Networkloadbalancer(\"example\",\n    datacenter_id=ionoscloud_datacenter[\"example\"][\"id\"],\n    listener_lan=ionoscloud_lan[\"example1\"][\"id\"],\n    target_lan=ionoscloud_lan[\"example2\"][\"id\"],\n    ips=[\"10.12.118.224\"],\n    lb_private_ips=[\"10.13.72.225/24\"],\n    flowlog=ionoscloud.NetworkloadbalancerFlowlogArgs(\n        action=\"ALL\",\n        bucket=\"flowlog-bucket\",\n        direction=\"INGRESS\",\n        name=\"flowlog\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Networkloadbalancer(\"example\", new()\n    {\n        DatacenterId = ionoscloud_datacenter.Example.Id,\n        ListenerLan = ionoscloud_lan.Example1.Id,\n        TargetLan = ionoscloud_lan.Example2.Id,\n        Ips = new[]\n        {\n            \"10.12.118.224\",\n        },\n        LbPrivateIps = new[]\n        {\n            \"10.13.72.225/24\",\n        },\n        Flowlog = new Ionoscloud.Inputs.NetworkloadbalancerFlowlogArgs\n        {\n            Action = \"ALL\",\n            Bucket = \"flowlog-bucket\",\n            Direction = \"INGRESS\",\n            Name = \"flowlog\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.NewNetworkloadbalancer(ctx, \"example\", \u0026ionoscloud.NetworkloadbalancerArgs{\n\t\t\tDatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),\n\t\t\tListenerLan:  pulumi.Any(ionoscloud_lan.Example1.Id),\n\t\t\tTargetLan:    pulumi.Any(ionoscloud_lan.Example2.Id),\n\t\t\tIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.12.118.224\"),\n\t\t\t},\n\t\t\tLbPrivateIps: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.13.72.225/24\"),\n\t\t\t},\n\t\t\tFlowlog: \u0026ionoscloud.NetworkloadbalancerFlowlogArgs{\n\t\t\t\tAction:    pulumi.String(\"ALL\"),\n\t\t\t\tBucket:    pulumi.String(\"flowlog-bucket\"),\n\t\t\t\tDirection: pulumi.String(\"INGRESS\"),\n\t\t\t\tName:      pulumi.String(\"flowlog\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.Networkloadbalancer;\nimport com.pulumi.ionoscloud.NetworkloadbalancerArgs;\nimport com.pulumi.ionoscloud.inputs.NetworkloadbalancerFlowlogArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Networkloadbalancer(\"example\", NetworkloadbalancerArgs.builder()        \n            .datacenterId(ionoscloud_datacenter.example().id())\n            .listenerLan(ionoscloud_lan.example1().id())\n            .targetLan(ionoscloud_lan.example2().id())\n            .ips(\"10.12.118.224\")\n            .lbPrivateIps(\"10.13.72.225/24\")\n            .flowlog(NetworkloadbalancerFlowlogArgs.builder()\n                .action(\"ALL\")\n                .bucket(\"flowlog-bucket\")\n                .direction(\"INGRESS\")\n                .name(\"flowlog\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:Networkloadbalancer\n    properties:\n      datacenterId: ${ionoscloud_datacenter.example.id}\n      listenerLan: ${ionoscloud_lan.example1.id}\n      targetLan: ${ionoscloud_lan.example2.id}\n      ips:\n        - 10.12.118.224\n      lbPrivateIps:\n        - 10.13.72.225/24\n      flowlog:\n        action: ALL\n        bucket: flowlog-bucket\n        direction: INGRESS\n        name: flowlog\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThis will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than\n`name` will. Deleting a flowlog will also force nic re-creation.\n\n## Import\n\nA Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.\n\n```sh\n$ pulumi import ionoscloud:index/networkloadbalancer:Networkloadbalancer my_networkloadbalancer {datacenter uuid}/{networkloadbalancer uuid}\n```\n\n",
             "properties": {
@@ -15256,6 +15180,82 @@
                         "type": "string",
                         "description": "[string] - The desired storage type - SSD/HDD. *This attribute is immutable*.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ionoscloud:logging/pipeline:Pipeline": {
+            "description": "\n\n## Import\n\nIn order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:\n\nhcl\n\nresource \"ionoscloud_logging_pipeline\" \"example\" {\n\n}\n\nThe resource can be imported using the `location` and `pipeline_id`, for example:\n\n```sh\n$ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}\n```\n\n",
+            "properties": {
+                "grafanaAddress": {
+                    "type": "string",
+                    "description": "[string] The address of the client's grafana instance.\n"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n"
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:logging/PipelineLog:PipelineLog"
+                    },
+                    "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the Logging pipeline.\n"
+                }
+            },
+            "required": [
+                "grafanaAddress",
+                "logs",
+                "name"
+            ],
+            "inputProperties": {
+                "location": {
+                    "type": "string",
+                    "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "logs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/ionoscloud:logging/PipelineLog:PipelineLog"
+                    },
+                    "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "[string] The name of the Logging pipeline.\n"
+                }
+            },
+            "requiredInputs": [
+                "logs"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Pipeline resources.\n",
+                "properties": {
+                    "grafanaAddress": {
+                        "type": "string",
+                        "description": "[string] The address of the client's grafana instance.\n"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "[string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "logs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ionoscloud:logging/PipelineLog:PipelineLog"
+                        },
+                        "description": "[list] Pipeline logs, a list that contains elements with the following structure:\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "[string] The name of the Logging pipeline.\n"
                     }
                 },
                 "type": "object"
@@ -18867,7 +18867,7 @@
             }
         },
         "ionoscloud:index/getLoggingPipeline:getLoggingPipeline": {
-            "description": "The **Logging pipeline** datasource can be used to search for and return an existing Logging pipeline.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getLoggingPipeline({\n    location: \"de/txl\",\n    name: \"pipeline_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_logging_pipeline(location=\"de/txl\",\n    name=\"pipeline_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetLoggingPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Name = \"pipeline_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.LookupLoggingPipeline(ctx, \u0026ionoscloud.LookupLoggingPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tName:     pulumi.StringRef(\"pipeline_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetLoggingPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getLoggingPipeline(GetLoggingPipelineArgs.builder()\n            .location(\"de/txl\")\n            .name(\"pipeline_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getLoggingPipeline\n      Arguments:\n        location: de/txl\n        name: pipeline_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The **Logging pipeline** datasource can be used to search for and return an existing Logging pipeline.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\n\n\u003e ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.\n\n## Example Usage\n\n### By name\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.getLoggingPipeline({\n    location: \"de/txl\",\n    name: \"pipeline_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.get_logging_pipeline(location=\"de/txl\",\n    name=\"pipeline_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.GetLoggingPipeline.Invoke(new()\n    {\n        Location = \"de/txl\",\n        Name = \"pipeline_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := ionoscloud.GetLoggingPipeline(ctx, \u0026ionoscloud.GetLoggingPipelineArgs{\n\t\t\tLocation: pulumi.StringRef(\"de/txl\"),\n\t\t\tName:     pulumi.StringRef(\"pipeline_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.IonoscloudFunctions;\nimport com.pulumi.ionoscloud.inputs.GetLoggingPipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = IonoscloudFunctions.getLoggingPipeline(GetLoggingPipelineArgs.builder()\n            .location(\"de/txl\")\n            .name(\"pipeline_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: ionoscloud:getLoggingPipeline\n      Arguments:\n        location: de/txl\n        name: pipeline_name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getLoggingPipeline.\n",
                 "properties": {

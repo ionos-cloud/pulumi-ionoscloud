@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * ## Import
@@ -20,12 +20,12 @@ import * as utilities from "./utilities";
  * The resource can be imported using the `location` and `pipeline_id`, for example:
  *
  * ```sh
- * $ pulumi import ionoscloud:index/loggingPipeline:LoggingPipeline example {location}:{pipeline_id}
+ * $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
  * ```
  */
-export class LoggingPipeline extends pulumi.CustomResource {
+export class Pipeline extends pulumi.CustomResource {
     /**
-     * Get an existing LoggingPipeline resource's state with the given name, ID, and optional extra
+     * Get an existing Pipeline resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -33,22 +33,22 @@ export class LoggingPipeline extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoggingPipelineState, opts?: pulumi.CustomResourceOptions): LoggingPipeline {
-        return new LoggingPipeline(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: PipelineState, opts?: pulumi.CustomResourceOptions): Pipeline {
+        return new Pipeline(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/loggingPipeline:LoggingPipeline';
+    public static readonly __pulumiType = 'ionoscloud:logging/pipeline:Pipeline';
 
     /**
-     * Returns true if the given object is an instance of LoggingPipeline.  This is designed to work even
+     * Returns true if the given object is an instance of Pipeline.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is LoggingPipeline {
+    public static isInstance(obj: any): obj is Pipeline {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === LoggingPipeline.__pulumiType;
+        return obj['__pulumiType'] === Pipeline.__pulumiType;
     }
 
     /**
@@ -62,31 +62,31 @@ export class LoggingPipeline extends pulumi.CustomResource {
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
      */
-    public readonly logs!: pulumi.Output<outputs.LoggingPipelineLog[]>;
+    public readonly logs!: pulumi.Output<outputs.logging.PipelineLog[]>;
     /**
      * [string] The name of the Logging pipeline.
      */
     public readonly name!: pulumi.Output<string>;
 
     /**
-     * Create a LoggingPipeline resource with the given unique name, arguments, and options.
+     * Create a Pipeline resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: LoggingPipelineArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: LoggingPipelineArgs | LoggingPipelineState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: PipelineArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: PipelineArgs | PipelineState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as LoggingPipelineState | undefined;
+            const state = argsOrState as PipelineState | undefined;
             resourceInputs["grafanaAddress"] = state ? state.grafanaAddress : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
             resourceInputs["logs"] = state ? state.logs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
         } else {
-            const args = argsOrState as LoggingPipelineArgs | undefined;
+            const args = argsOrState as PipelineArgs | undefined;
             if ((!args || args.logs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'logs'");
             }
@@ -96,14 +96,14 @@ export class LoggingPipeline extends pulumi.CustomResource {
             resourceInputs["grafanaAddress"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(LoggingPipeline.__pulumiType, name, resourceInputs, opts);
+        super(Pipeline.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering LoggingPipeline resources.
+ * Input properties used for looking up and filtering Pipeline resources.
  */
-export interface LoggingPipelineState {
+export interface PipelineState {
     /**
      * [string] The address of the client's grafana instance.
      */
@@ -115,7 +115,7 @@ export interface LoggingPipelineState {
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
      */
-    logs?: pulumi.Input<pulumi.Input<inputs.LoggingPipelineLog>[]>;
+    logs?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[]>;
     /**
      * [string] The name of the Logging pipeline.
      */
@@ -123,9 +123,9 @@ export interface LoggingPipelineState {
 }
 
 /**
- * The set of arguments for constructing a LoggingPipeline resource.
+ * The set of arguments for constructing a Pipeline resource.
  */
-export interface LoggingPipelineArgs {
+export interface PipelineArgs {
     /**
      * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
      */
@@ -133,7 +133,7 @@ export interface LoggingPipelineArgs {
     /**
      * [list] Pipeline logs, a list that contains elements with the following structure:
      */
-    logs: pulumi.Input<pulumi.Input<inputs.LoggingPipelineLog>[]>;
+    logs: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[]>;
     /**
      * [string] The name of the Logging pipeline.
      */

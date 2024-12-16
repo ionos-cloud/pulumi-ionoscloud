@@ -513,40 +513,6 @@ export interface KafkaClusterConnections {
     lanId: pulumi.Input<string>;
 }
 
-export interface LoggingPipelineLog {
-    /**
-     * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-     */
-    destinations?: pulumi.Input<pulumi.Input<inputs.LoggingPipelineLogDestination>[]>;
-    /**
-     * [string] "Protocol to use as intake. Possible values are: http, tcp."
-     */
-    protocol: pulumi.Input<string>;
-    /**
-     * [bool]
-     */
-    public?: pulumi.Input<boolean>;
-    /**
-     * [string] The source parser to be used.
-     */
-    source: pulumi.Input<string>;
-    /**
-     * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-     */
-    tag: pulumi.Input<string>;
-}
-
-export interface LoggingPipelineLogDestination {
-    /**
-     * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-     */
-    retentionInDays?: pulumi.Input<number>;
-    /**
-     * [string] The internal output stream to send logs to.
-     */
-    type?: pulumi.Input<string>;
-}
-
 export interface NetworkloadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -1586,6 +1552,42 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: pulumi.Input<string>;
+    }
+}
+
+export namespace logging {
+    export interface PipelineLog {
+        /**
+         * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+         */
+        destinations?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLogDestination>[]>;
+        /**
+         * [string] "Protocol to use as intake. Possible values are: http, tcp."
+         */
+        protocol: pulumi.Input<string>;
+        /**
+         * [bool]
+         */
+        public?: pulumi.Input<boolean>;
+        /**
+         * [string] The source parser to be used.
+         */
+        source: pulumi.Input<string>;
+        /**
+         * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+         */
+        tag: pulumi.Input<string>;
+    }
+
+    export interface PipelineLogDestination {
+        /**
+         * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+         */
+        retentionInDays?: pulumi.Input<number>;
+        /**
+         * [string] The internal output stream to send logs to.
+         */
+        type?: pulumi.Input<string>;
     }
 }
 

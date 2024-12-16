@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupLoggingPipeline(ctx, &ionoscloud.LookupLoggingPipelineArgs{
+//			_, err := ionoscloud.GetLoggingPipeline(ctx, &ionoscloud.GetLoggingPipelineArgs{
 //				Location: pulumi.StringRef("de/txl"),
 //				Name:     pulumi.StringRef("pipeline_name"),
 //			}, nil)
@@ -45,9 +45,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupLoggingPipeline(ctx *pulumi.Context, args *LookupLoggingPipelineArgs, opts ...pulumi.InvokeOption) (*LookupLoggingPipelineResult, error) {
+func GetLoggingPipeline(ctx *pulumi.Context, args *GetLoggingPipelineArgs, opts ...pulumi.InvokeOption) (*GetLoggingPipelineResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupLoggingPipelineResult
+	var rv GetLoggingPipelineResult
 	err := ctx.Invoke("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -56,7 +56,7 @@ func LookupLoggingPipeline(ctx *pulumi.Context, args *LookupLoggingPipelineArgs,
 }
 
 // A collection of arguments for invoking getLoggingPipeline.
-type LookupLoggingPipelineArgs struct {
+type GetLoggingPipelineArgs struct {
 	// [string] The ID of the Logging pipeline you want to search for.
 	Id *string `pulumi:"id"`
 	// [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
@@ -68,7 +68,7 @@ type LookupLoggingPipelineArgs struct {
 }
 
 // A collection of values returned by getLoggingPipeline.
-type LookupLoggingPipelineResult struct {
+type GetLoggingPipelineResult struct {
 	// The address of the client's grafana instance.
 	GrafanaAddress string `pulumi:"grafanaAddress"`
 	// The UUID of the Logging pipeline.
@@ -80,21 +80,21 @@ type LookupLoggingPipelineResult struct {
 	Name string `pulumi:"name"`
 }
 
-func LookupLoggingPipelineOutput(ctx *pulumi.Context, args LookupLoggingPipelineOutputArgs, opts ...pulumi.InvokeOption) LookupLoggingPipelineResultOutput {
+func GetLoggingPipelineOutput(ctx *pulumi.Context, args GetLoggingPipelineOutputArgs, opts ...pulumi.InvokeOption) GetLoggingPipelineResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLoggingPipelineResult, error) {
-			args := v.(LookupLoggingPipelineArgs)
-			r, err := LookupLoggingPipeline(ctx, &args, opts...)
-			var s LookupLoggingPipelineResult
+		ApplyT(func(v interface{}) (GetLoggingPipelineResult, error) {
+			args := v.(GetLoggingPipelineArgs)
+			r, err := GetLoggingPipeline(ctx, &args, opts...)
+			var s GetLoggingPipelineResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupLoggingPipelineResultOutput)
+		}).(GetLoggingPipelineResultOutput)
 }
 
 // A collection of arguments for invoking getLoggingPipeline.
-type LookupLoggingPipelineOutputArgs struct {
+type GetLoggingPipelineOutputArgs struct {
 	// [string] The ID of the Logging pipeline you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The location of the Logging pipeline. Default: `de/txl`. One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
@@ -105,49 +105,49 @@ type LookupLoggingPipelineOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupLoggingPipelineOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLoggingPipelineArgs)(nil)).Elem()
+func (GetLoggingPipelineOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoggingPipelineArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getLoggingPipeline.
-type LookupLoggingPipelineResultOutput struct{ *pulumi.OutputState }
+type GetLoggingPipelineResultOutput struct{ *pulumi.OutputState }
 
-func (LookupLoggingPipelineResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupLoggingPipelineResult)(nil)).Elem()
+func (GetLoggingPipelineResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoggingPipelineResult)(nil)).Elem()
 }
 
-func (o LookupLoggingPipelineResultOutput) ToLookupLoggingPipelineResultOutput() LookupLoggingPipelineResultOutput {
+func (o GetLoggingPipelineResultOutput) ToGetLoggingPipelineResultOutput() GetLoggingPipelineResultOutput {
 	return o
 }
 
-func (o LookupLoggingPipelineResultOutput) ToLookupLoggingPipelineResultOutputWithContext(ctx context.Context) LookupLoggingPipelineResultOutput {
+func (o GetLoggingPipelineResultOutput) ToGetLoggingPipelineResultOutputWithContext(ctx context.Context) GetLoggingPipelineResultOutput {
 	return o
 }
 
 // The address of the client's grafana instance.
-func (o LookupLoggingPipelineResultOutput) GrafanaAddress() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoggingPipelineResult) string { return v.GrafanaAddress }).(pulumi.StringOutput)
+func (o GetLoggingPipelineResultOutput) GrafanaAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoggingPipelineResult) string { return v.GrafanaAddress }).(pulumi.StringOutput)
 }
 
 // The UUID of the Logging pipeline.
-func (o LookupLoggingPipelineResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLoggingPipelineResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetLoggingPipelineResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoggingPipelineResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupLoggingPipelineResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupLoggingPipelineResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o GetLoggingPipelineResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoggingPipelineResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [list] Pipeline logs, a list that contains elements with the following structure:
-func (o LookupLoggingPipelineResultOutput) Logs() GetLoggingPipelineLogArrayOutput {
-	return o.ApplyT(func(v LookupLoggingPipelineResult) []GetLoggingPipelineLog { return v.Logs }).(GetLoggingPipelineLogArrayOutput)
+func (o GetLoggingPipelineResultOutput) Logs() GetLoggingPipelineLogArrayOutput {
+	return o.ApplyT(func(v GetLoggingPipelineResult) []GetLoggingPipelineLog { return v.Logs }).(GetLoggingPipelineLogArrayOutput)
 }
 
 // The name of the Logging pipeline.
-func (o LookupLoggingPipelineResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLoggingPipelineResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetLoggingPipelineResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoggingPipelineResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupLoggingPipelineResultOutput{})
+	pulumi.RegisterOutputType(GetLoggingPipelineResultOutput{})
 }

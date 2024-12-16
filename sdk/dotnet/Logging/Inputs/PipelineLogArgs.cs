@@ -7,20 +7,20 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Logging.Inputs
 {
 
-    public sealed class LoggingPipelineLogArgs : global::Pulumi.ResourceArgs
+    public sealed class PipelineLogArgs : global::Pulumi.ResourceArgs
     {
         [Input("destinations")]
-        private InputList<Inputs.LoggingPipelineLogDestinationArgs>? _destinations;
+        private InputList<Inputs.PipelineLogDestinationArgs>? _destinations;
 
         /// <summary>
         /// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
         /// </summary>
-        public InputList<Inputs.LoggingPipelineLogDestinationArgs> Destinations
+        public InputList<Inputs.PipelineLogDestinationArgs> Destinations
         {
-            get => _destinations ?? (_destinations = new InputList<Inputs.LoggingPipelineLogDestinationArgs>());
+            get => _destinations ?? (_destinations = new InputList<Inputs.PipelineLogDestinationArgs>());
             set => _destinations = value;
         }
 
@@ -48,9 +48,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("tag", required: true)]
         public Input<string> Tag { get; set; } = null!;
 
-        public LoggingPipelineLogArgs()
+        public PipelineLogArgs()
         {
         }
-        public static new LoggingPipelineLogArgs Empty => new LoggingPipelineLogArgs();
+        public static new PipelineLogArgs Empty => new PipelineLogArgs();
     }
 }
