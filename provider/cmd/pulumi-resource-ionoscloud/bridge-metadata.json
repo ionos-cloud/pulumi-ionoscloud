@@ -418,7 +418,7 @@
                 }
             },
             "ionoscloud_logging_pipeline": {
-                "current": "ionoscloud:index/loggingPipeline:LoggingPipeline",
+                "current": "ionoscloud:logging/pipeline:Pipeline",
                 "fields": {
                     "log": {
                         "maxItemsOne": false,

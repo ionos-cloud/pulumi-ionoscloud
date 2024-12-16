@@ -405,11 +405,6 @@ export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
 utilities.lazyLoad(exports, ["Loadbalancer"], () => require("./loadbalancer"));
 
-export { LoggingPipelineArgs, LoggingPipelineState } from "./loggingPipeline";
-export type LoggingPipeline = import("./loggingPipeline").LoggingPipeline;
-export const LoggingPipeline: typeof import("./loggingPipeline").LoggingPipeline = null as any;
-utilities.lazyLoad(exports, ["LoggingPipeline"], () => require("./loggingPipeline"));
-
 export { NetworkloadbalancerArgs, NetworkloadbalancerState } from "./networkloadbalancer";
 export type Networkloadbalancer = import("./networkloadbalancer").Networkloadbalancer;
 export const Networkloadbalancer: typeof import("./networkloadbalancer").Networkloadbalancer = null as any;
@@ -441,6 +436,7 @@ import * as dbaas from "./dbaas";
 import * as dns from "./dns";
 import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
+import * as logging from "./logging";
 import * as nfs from "./nfs";
 import * as types from "./types";
 import * as vpn from "./vpn";
@@ -455,6 +451,7 @@ export {
     dns,
     dsaas,
     k8s,
+    logging,
     nfs,
     types,
     vpn,
@@ -480,8 +477,6 @@ const _module = {
                 return new KafkaClusterTopic(name, <any>undefined, { urn })
             case "ionoscloud:index/loadbalancer:Loadbalancer":
                 return new Loadbalancer(name, <any>undefined, { urn })
-            case "ionoscloud:index/loggingPipeline:LoggingPipeline":
-                return new LoggingPipeline(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
                 return new Networkloadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
@@ -501,7 +496,6 @@ pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _m
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/loggingPipeline", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancerForwardingrule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)

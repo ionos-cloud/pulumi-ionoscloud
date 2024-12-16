@@ -25,8 +25,6 @@ __all__ = [
     'AutoscalingGroupReplicaConfigurationNicTargetGroupArgs',
     'AutoscalingGroupReplicaConfigurationVolumeArgs',
     'KafkaClusterConnectionsArgs',
-    'LoggingPipelineLogArgs',
-    'LoggingPipelineLogDestinationArgs',
     'NetworkloadbalancerFlowlogArgs',
     'NetworkloadbalancerForwardingruleHealthCheckArgs',
     'NetworkloadbalancerForwardingruleTargetArgs',
@@ -1503,129 +1501,6 @@ class KafkaClusterConnectionsArgs:
     @lan_id.setter
     def lan_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "lan_id", value)
-
-
-@pulumi.input_type
-class LoggingPipelineLogArgs:
-    def __init__(__self__, *,
-                 protocol: pulumi.Input[str],
-                 source: pulumi.Input[str],
-                 tag: pulumi.Input[str],
-                 destinations: Optional[pulumi.Input[Sequence[pulumi.Input['LoggingPipelineLogDestinationArgs']]]] = None,
-                 public: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] protocol: [string] "Protocol to use as intake. Possible values are: http, tcp."
-        :param pulumi.Input[str] source: [string] The source parser to be used.
-        :param pulumi.Input[str] tag: [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-        :param pulumi.Input[Sequence[pulumi.Input['LoggingPipelineLogDestinationArgs']]] destinations: [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-        :param pulumi.Input[bool] public: [bool]
-        """
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "tag", tag)
-        if destinations is not None:
-            pulumi.set(__self__, "destinations", destinations)
-        if public is not None:
-            pulumi.set(__self__, "public", public)
-
-    @property
-    @pulumi.getter
-    def protocol(self) -> pulumi.Input[str]:
-        """
-        [string] "Protocol to use as intake. Possible values are: http, tcp."
-        """
-        return pulumi.get(self, "protocol")
-
-    @protocol.setter
-    def protocol(self, value: pulumi.Input[str]):
-        pulumi.set(self, "protocol", value)
-
-    @property
-    @pulumi.getter
-    def source(self) -> pulumi.Input[str]:
-        """
-        [string] The source parser to be used.
-        """
-        return pulumi.get(self, "source")
-
-    @source.setter
-    def source(self, value: pulumi.Input[str]):
-        pulumi.set(self, "source", value)
-
-    @property
-    @pulumi.getter
-    def tag(self) -> pulumi.Input[str]:
-        """
-        [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-        """
-        return pulumi.get(self, "tag")
-
-    @tag.setter
-    def tag(self, value: pulumi.Input[str]):
-        pulumi.set(self, "tag", value)
-
-    @property
-    @pulumi.getter
-    def destinations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoggingPipelineLogDestinationArgs']]]]:
-        """
-        [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-        """
-        return pulumi.get(self, "destinations")
-
-    @destinations.setter
-    def destinations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoggingPipelineLogDestinationArgs']]]]):
-        pulumi.set(self, "destinations", value)
-
-    @property
-    @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [bool]
-        """
-        return pulumi.get(self, "public")
-
-    @public.setter
-    def public(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "public", value)
-
-
-@pulumi.input_type
-class LoggingPipelineLogDestinationArgs:
-    def __init__(__self__, *,
-                 retention_in_days: Optional[pulumi.Input[int]] = None,
-                 type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[int] retention_in_days: [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-        :param pulumi.Input[str] type: [string] The internal output stream to send logs to.
-        """
-        if retention_in_days is not None:
-            pulumi.set(__self__, "retention_in_days", retention_in_days)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter(name="retentionInDays")
-    def retention_in_days(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-        """
-        return pulumi.get(self, "retention_in_days")
-
-    @retention_in_days.setter
-    def retention_in_days(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "retention_in_days", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The internal output stream to send logs to.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type

@@ -37,8 +37,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KafkaClusterTopic{}
 	case "ionoscloud:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
-	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
-		r = &LoggingPipeline{}
 	case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
 		r = &Networkloadbalancer{}
 	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
@@ -114,11 +112,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/loadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/loggingPipeline",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

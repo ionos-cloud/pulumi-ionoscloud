@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Logging
 {
     /// <summary>
     /// ## Import
@@ -23,11 +23,11 @@ namespace Pulumi.Ionoscloud
     /// The resource can be imported using the `location` and `pipeline_id`, for example:
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/loggingPipeline:LoggingPipeline example {location}:{pipeline_id}
+    /// $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/loggingPipeline:LoggingPipeline")]
-    public partial class LoggingPipeline : global::Pulumi.CustomResource
+    [IonoscloudResourceType("ionoscloud:logging/pipeline:Pipeline")]
+    public partial class Pipeline : global::Pulumi.CustomResource
     {
         /// <summary>
         /// [string] The address of the client's grafana instance.
@@ -45,7 +45,7 @@ namespace Pulumi.Ionoscloud
         /// [list] Pipeline logs, a list that contains elements with the following structure:
         /// </summary>
         [Output("logs")]
-        public Output<ImmutableArray<Outputs.LoggingPipelineLog>> Logs { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.PipelineLog>> Logs { get; private set; } = null!;
 
         /// <summary>
         /// [string] The name of the Logging pipeline.
@@ -55,19 +55,19 @@ namespace Pulumi.Ionoscloud
 
 
         /// <summary>
-        /// Create a LoggingPipeline resource with the given unique name, arguments, and options.
+        /// Create a Pipeline resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public LoggingPipeline(string name, LoggingPipelineArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/loggingPipeline:LoggingPipeline", name, args ?? new LoggingPipelineArgs(), MakeResourceOptions(options, ""))
+        public Pipeline(string name, PipelineArgs args, CustomResourceOptions? options = null)
+            : base("ionoscloud:logging/pipeline:Pipeline", name, args ?? new PipelineArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private LoggingPipeline(string name, Input<string> id, LoggingPipelineState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/loggingPipeline:LoggingPipeline", name, state, MakeResourceOptions(options, id))
+        private Pipeline(string name, Input<string> id, PipelineState? state = null, CustomResourceOptions? options = null)
+            : base("ionoscloud:logging/pipeline:Pipeline", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -83,7 +83,7 @@ namespace Pulumi.Ionoscloud
             return merged;
         }
         /// <summary>
-        /// Get an existing LoggingPipeline resource's state with the given name, ID, and optional extra
+        /// Get an existing Pipeline resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -91,13 +91,13 @@ namespace Pulumi.Ionoscloud
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static LoggingPipeline Get(string name, Input<string> id, LoggingPipelineState? state = null, CustomResourceOptions? options = null)
+        public static Pipeline Get(string name, Input<string> id, PipelineState? state = null, CustomResourceOptions? options = null)
         {
-            return new LoggingPipeline(name, id, state, options);
+            return new Pipeline(name, id, state, options);
         }
     }
 
-    public sealed class LoggingPipelineArgs : global::Pulumi.ResourceArgs
+    public sealed class PipelineArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
@@ -106,14 +106,14 @@ namespace Pulumi.Ionoscloud
         public Input<string>? Location { get; set; }
 
         [Input("logs", required: true)]
-        private InputList<Inputs.LoggingPipelineLogArgs>? _logs;
+        private InputList<Inputs.PipelineLogArgs>? _logs;
 
         /// <summary>
         /// [list] Pipeline logs, a list that contains elements with the following structure:
         /// </summary>
-        public InputList<Inputs.LoggingPipelineLogArgs> Logs
+        public InputList<Inputs.PipelineLogArgs> Logs
         {
-            get => _logs ?? (_logs = new InputList<Inputs.LoggingPipelineLogArgs>());
+            get => _logs ?? (_logs = new InputList<Inputs.PipelineLogArgs>());
             set => _logs = value;
         }
 
@@ -123,13 +123,13 @@ namespace Pulumi.Ionoscloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public LoggingPipelineArgs()
+        public PipelineArgs()
         {
         }
-        public static new LoggingPipelineArgs Empty => new LoggingPipelineArgs();
+        public static new PipelineArgs Empty => new PipelineArgs();
     }
 
-    public sealed class LoggingPipelineState : global::Pulumi.ResourceArgs
+    public sealed class PipelineState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] The address of the client's grafana instance.
@@ -144,14 +144,14 @@ namespace Pulumi.Ionoscloud
         public Input<string>? Location { get; set; }
 
         [Input("logs")]
-        private InputList<Inputs.LoggingPipelineLogGetArgs>? _logs;
+        private InputList<Inputs.PipelineLogGetArgs>? _logs;
 
         /// <summary>
         /// [list] Pipeline logs, a list that contains elements with the following structure:
         /// </summary>
-        public InputList<Inputs.LoggingPipelineLogGetArgs> Logs
+        public InputList<Inputs.PipelineLogGetArgs> Logs
         {
-            get => _logs ?? (_logs = new InputList<Inputs.LoggingPipelineLogGetArgs>());
+            get => _logs ?? (_logs = new InputList<Inputs.PipelineLogGetArgs>());
             set => _logs = value;
         }
 
@@ -161,9 +161,9 @@ namespace Pulumi.Ionoscloud
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public LoggingPipelineState()
+        public PipelineState()
         {
         }
-        public static new LoggingPipelineState Empty => new LoggingPipelineState();
+        public static new PipelineState Empty => new PipelineState();
     }
 }

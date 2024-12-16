@@ -2968,40 +2968,6 @@ export interface KafkaClusterConnections {
     lanId: string;
 }
 
-export interface LoggingPipelineLog {
-    /**
-     * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-     */
-    destinations: outputs.LoggingPipelineLogDestination[];
-    /**
-     * [string] "Protocol to use as intake. Possible values are: http, tcp."
-     */
-    protocol: string;
-    /**
-     * [bool]
-     */
-    public: boolean;
-    /**
-     * [string] The source parser to be used.
-     */
-    source: string;
-    /**
-     * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-     */
-    tag: string;
-}
-
-export interface LoggingPipelineLogDestination {
-    /**
-     * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-     */
-    retentionInDays: number;
-    /**
-     * [string] The internal output stream to send logs to.
-     */
-    type: string;
-}
-
 export interface NetworkloadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -4048,6 +4014,43 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+}
+
+export namespace logging {
+    export interface PipelineLog {
+        /**
+         * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+         */
+        destinations: outputs.logging.PipelineLogDestination[];
+        /**
+         * [string] "Protocol to use as intake. Possible values are: http, tcp."
+         */
+        protocol: string;
+        /**
+         * [bool]
+         */
+        public: boolean;
+        /**
+         * [string] The source parser to be used.
+         */
+        source: string;
+        /**
+         * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+         */
+        tag: string;
+    }
+
+    export interface PipelineLogDestination {
+        /**
+         * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+         */
+        retentionInDays: number;
+        /**
+         * [string] The internal output stream to send logs to.
+         */
+        type: string;
     }
 
 }

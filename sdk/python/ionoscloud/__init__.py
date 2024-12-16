@@ -85,7 +85,6 @@ from .get_vpn_wireguard_peer import *
 from .kafka_cluster import *
 from .kafka_cluster_topic import *
 from .loadbalancer import *
-from .logging_pipeline import *
 from .networkloadbalancer import *
 from .networkloadbalancer_forwardingrule import *
 from .provider import *
@@ -113,6 +112,8 @@ if typing.TYPE_CHECKING:
     dsaas = __dsaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.logging as __logging
+    logging = __logging
     import ionoscloud.nfs as __nfs
     nfs = __nfs
     import ionoscloud.vpn as __vpn
@@ -127,6 +128,7 @@ else:
     dns = _utilities.lazy_import('ionoscloud.dns')
     dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
@@ -495,14 +497,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/loggingPipeline",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/loggingPipeline:LoggingPipeline": "LoggingPipeline"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/networkloadbalancer",
   "fqn": "ionoscloud",
   "classes": {
@@ -539,6 +533,14 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "logging/pipeline",
+  "fqn": "ionoscloud.logging",
+  "classes": {
+   "ionoscloud:logging/pipeline:Pipeline": "Pipeline"
   }
  },
  {

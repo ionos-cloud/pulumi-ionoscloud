@@ -7,16 +7,16 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Outputs
+namespace Pulumi.Ionoscloud.Logging.Outputs
 {
 
     [OutputType]
-    public sealed class LoggingPipelineLog
+    public sealed class PipelineLog
     {
         /// <summary>
         /// [list] The configuration of the logs datastore, a list that contains elements with the following structure:
         /// </summary>
-        public readonly ImmutableArray<Outputs.LoggingPipelineLogDestination> Destinations;
+        public readonly ImmutableArray<Outputs.PipelineLogDestination> Destinations;
         /// <summary>
         /// [string] "Protocol to use as intake. Possible values are: http, tcp."
         /// </summary>
@@ -35,8 +35,8 @@ namespace Pulumi.Ionoscloud.Outputs
         public readonly string Tag;
 
         [OutputConstructor]
-        private LoggingPipelineLog(
-            ImmutableArray<Outputs.LoggingPipelineLogDestination> destinations,
+        private PipelineLog(
+            ImmutableArray<Outputs.PipelineLogDestination> destinations,
 
             string protocol,
 
