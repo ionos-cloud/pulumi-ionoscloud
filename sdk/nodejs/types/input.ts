@@ -39,93 +39,6 @@ export interface ApigatewayRouteUpstream {
     weight?: pulumi.Input<number>;
 }
 
-export interface ApplicationLoadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: pulumi.Input<string>;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: pulumi.Input<string>;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: pulumi.Input<string>;
-    /**
-     * The resource's unique identifier.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions?: pulumi.Input<pulumi.Input<inputs.ApplicationLoadbalancerForwardingruleHttpRuleCondition>[]>;
-    /**
-     * [string] Valid only for STATIC actions.
-     */
-    contentType?: pulumi.Input<string>;
-    /**
-     * [bool] Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery?: pulumi.Input<boolean>;
-    /**
-     * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location?: pulumi.Input<string>;
-    /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [string] The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage?: pulumi.Input<string>;
-    /**
-     * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode?: pulumi.Input<number>;
-    /**
-     * [string] The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup?: pulumi.Input<string>;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: pulumi.Input<string>;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition?: pulumi.Input<string>;
-    /**
-     * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key?: pulumi.Input<string>;
-    /**
-     * [bool] Specifies whether the condition is negated or not; the default is False.
-     */
-    negate?: pulumi.Input<boolean>;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value?: pulumi.Input<string>;
-}
-
 export interface AutoscalingGroupPolicy {
     /**
      * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -697,6 +610,95 @@ export interface TargetGroupTarget {
      */
     weight: pulumi.Input<number>;
 }
+export namespace alb {
+    export interface ApplicationLoadbalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: pulumi.Input<string>;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: pulumi.Input<string>;
+        /**
+         * The resource's unique identifier.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         */
+        name: pulumi.Input<string>;
+    }
+
+    export interface ApplicationLoadbalancerForwardingruleHttpRule {
+        /**
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions?: pulumi.Input<pulumi.Input<inputs.alb.ApplicationLoadbalancerForwardingruleHttpRuleCondition>[]>;
+        /**
+         * [string] Valid only for STATIC actions.
+         */
+        contentType?: pulumi.Input<string>;
+        /**
+         * [bool] Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery?: pulumi.Input<boolean>;
+        /**
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location?: pulumi.Input<string>;
+        /**
+         * [string] The unique name of the Application Load Balancer HTTP rule.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [string] The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage?: pulumi.Input<string>;
+        /**
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode?: pulumi.Input<number>;
+        /**
+         * [string] The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup?: pulumi.Input<string>;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
+        /**
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition?: pulumi.Input<string>;
+        /**
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * [bool] Specifies whether the condition is negated or not; the default is False.
+         */
+        negate?: pulumi.Input<boolean>;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value?: pulumi.Input<string>;
+    }
+}
+
 export namespace cdn {
     export interface DistributionRoutingRule {
         /**

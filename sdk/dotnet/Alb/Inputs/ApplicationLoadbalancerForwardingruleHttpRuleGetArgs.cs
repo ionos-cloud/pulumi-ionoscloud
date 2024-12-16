@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Alb.Inputs
 {
 
     public sealed class ApplicationLoadbalancerForwardingruleHttpRuleGetArgs : global::Pulumi.ResourceArgs

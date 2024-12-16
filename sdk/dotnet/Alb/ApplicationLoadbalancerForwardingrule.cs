@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Alb
 {
     /// <summary>
     /// Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
@@ -43,7 +43,7 @@ namespace Pulumi.Ionoscloud
     ///         Public = true,
     ///     });
     /// 
-    ///     var exampleApplicationLoadbalancer = new Ionoscloud.ApplicationLoadbalancer("exampleApplicationLoadbalancer", new()
+    ///     var exampleApplicationLoadbalancer = new Ionoscloud.Alb.ApplicationLoadbalancer("exampleApplicationLoadbalancer", new()
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         ListenerLan = example1.Id,
@@ -66,7 +66,7 @@ namespace Pulumi.Ionoscloud
     ///         PrivateKey = File.ReadAllText("path_to_private_key"),
     ///     });
     /// 
-    ///     var exampleApplicationLoadbalancerForwardingrule = new Ionoscloud.ApplicationLoadbalancerForwardingrule("exampleApplicationLoadbalancerForwardingrule", new()
+    ///     var exampleApplicationLoadbalancerForwardingrule = new Ionoscloud.Alb.ApplicationLoadbalancerForwardingrule("exampleApplicationLoadbalancerForwardingrule", new()
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         ApplicationLoadbalancerId = exampleApplicationLoadbalancer.Id,
@@ -76,7 +76,7 @@ namespace Pulumi.Ionoscloud
     ///         ClientTimeout = 1000,
     ///         HttpRules = new[]
     ///         {
-    ///             new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs
+    ///             new Ionoscloud.Alb.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs
     ///             {
     ///                 Name = "http_rule",
     ///                 Type = "REDIRECT",
@@ -85,7 +85,7 @@ namespace Pulumi.Ionoscloud
     ///                 StatusCode = 301,
     ///                 Conditions = new[]
     ///                 {
-    ///                     new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs
+    ///                     new Ionoscloud.Alb.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs
     ///                     {
     ///                         Type = "HEADER",
     ///                         Condition = "EQUALS",
@@ -95,7 +95,7 @@ namespace Pulumi.Ionoscloud
     ///                     },
     ///                 },
     ///             },
-    ///             new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs
+    ///             new Ionoscloud.Alb.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleArgs
     ///             {
     ///                 Name = "http_rule_2",
     ///                 Type = "STATIC",
@@ -105,7 +105,7 @@ namespace Pulumi.Ionoscloud
     ///                 ContentType = "text/plain",
     ///                 Conditions = new[]
     ///                 {
-    ///                     new Ionoscloud.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs
+    ///                     new Ionoscloud.Alb.Inputs.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs
     ///                     {
     ///                         Type = "QUERY",
     ///                         Condition = "MATCHES",
@@ -131,10 +131,10 @@ namespace Pulumi.Ionoscloud
     /// Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
+    /// $ pulumi import ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule")]
+    [IonoscloudResourceType("ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule")]
     public partial class ApplicationLoadbalancerForwardingrule : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -200,12 +200,12 @@ namespace Pulumi.Ionoscloud
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ApplicationLoadbalancerForwardingrule(string name, ApplicationLoadbalancerForwardingruleArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule", name, args ?? new ApplicationLoadbalancerForwardingruleArgs(), MakeResourceOptions(options, ""))
+            : base("ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule", name, args ?? new ApplicationLoadbalancerForwardingruleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ApplicationLoadbalancerForwardingrule(string name, Input<string> id, ApplicationLoadbalancerForwardingruleState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule", name, state, MakeResourceOptions(options, id))
+            : base("ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -7,8 +7,6 @@ import typing
 # Export this package's modules as members:
 from .apigateway import *
 from .apigateway_route import *
-from .application_loadbalancer import *
-from .application_loadbalancer_forwardingrule import *
 from .autoscaling_group import *
 from .get_apigateway import *
 from .get_apigateway_route import *
@@ -95,6 +93,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.alb as __alb
+    alb = __alb
     import ionoscloud.cdn as __cdn
     cdn = __cdn
     import ionoscloud.cert as __cert
@@ -118,6 +118,7 @@ if typing.TYPE_CHECKING:
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
+    alb = _utilities.lazy_import('ionoscloud.alb')
     cdn = _utilities.lazy_import('ionoscloud.cdn')
     cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
@@ -133,6 +134,22 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/applicationLoadbalancer",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer": "ApplicationLoadbalancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/applicationLoadbalancerForwardingrule",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule": "ApplicationLoadbalancerForwardingrule"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "cdn/distribution",
@@ -443,22 +460,6 @@ _utilities.register(
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/apigatewayRoute:ApigatewayRoute": "ApigatewayRoute"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer": "ApplicationLoadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancerForwardingrule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule": "ApplicationLoadbalancerForwardingrule"
   }
  },
  {

@@ -39,93 +39,6 @@ export interface ApigatewayRouteUpstream {
     weight?: number;
 }
 
-export interface ApplicationLoadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
-     */
-    name: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions: outputs.ApplicationLoadbalancerForwardingruleHttpRuleCondition[];
-    /**
-     * [string] Valid only for STATIC actions.
-     */
-    contentType: string;
-    /**
-     * [bool] Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery?: boolean;
-    /**
-     * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location?: string;
-    /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
-     */
-    name: string;
-    /**
-     * [string] The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage?: string;
-    /**
-     * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode: number;
-    /**
-     * [string] The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup?: string;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition?: string;
-    /**
-     * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key?: string;
-    /**
-     * [bool] Specifies whether the condition is negated or not; the default is False.
-     */
-    negate?: boolean;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: string;
-    /**
-     * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value?: string;
-}
-
 export interface AutoscalingGroupPolicy {
     /**
      * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -3151,6 +3064,96 @@ export interface TargetGroupTarget {
      * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: number;
+}
+
+export namespace alb {
+    export interface ApplicationLoadbalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         */
+        name: string;
+    }
+
+    export interface ApplicationLoadbalancerForwardingruleHttpRule {
+        /**
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions: outputs.alb.ApplicationLoadbalancerForwardingruleHttpRuleCondition[];
+        /**
+         * [string] Valid only for STATIC actions.
+         */
+        contentType: string;
+        /**
+         * [bool] Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery?: boolean;
+        /**
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location?: string;
+        /**
+         * [string] The unique name of the Application Load Balancer HTTP rule.
+         */
+        name: string;
+        /**
+         * [string] The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage?: string;
+        /**
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode: number;
+        /**
+         * [string] The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup?: string;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: string;
+    }
+
+    export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
+        /**
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition?: string;
+        /**
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key?: string;
+        /**
+         * [bool] Specifies whether the condition is negated or not; the default is False.
+         */
+        negate?: boolean;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: string;
+        /**
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value?: string;
+    }
+
 }
 
 export namespace cdn {

@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
  * });
- * const exampleApplicationLoadbalancer = new ionoscloud.ApplicationLoadbalancer("exampleApplicationLoadbalancer", {
+ * const exampleApplicationLoadbalancer = new ionoscloud.alb.ApplicationLoadbalancer("exampleApplicationLoadbalancer", {
  *     datacenterId: exampleDatacenter.id,
  *     listenerLan: example1.id,
  *     ips: ["10.12.118.224"],
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
  *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
  * });
- * const exampleApplicationLoadbalancerForwardingrule = new ionoscloud.ApplicationLoadbalancerForwardingrule("exampleApplicationLoadbalancerForwardingrule", {
+ * const exampleApplicationLoadbalancerForwardingrule = new ionoscloud.alb.ApplicationLoadbalancerForwardingrule("exampleApplicationLoadbalancerForwardingrule", {
  *     datacenterId: exampleDatacenter.id,
  *     applicationLoadbalancerId: exampleApplicationLoadbalancer.id,
  *     protocol: "HTTP",
@@ -91,7 +91,7 @@ import * as utilities from "./utilities";
  * Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
+ * $ pulumi import ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
  * ```
  */
 export class ApplicationLoadbalancerForwardingrule extends pulumi.CustomResource {
@@ -109,7 +109,7 @@ export class ApplicationLoadbalancerForwardingrule extends pulumi.CustomResource
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule';
+    public static readonly __pulumiType = 'ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule';
 
     /**
      * Returns true if the given object is an instance of ApplicationLoadbalancerForwardingrule.  This is designed to work even
@@ -137,7 +137,7 @@ export class ApplicationLoadbalancerForwardingrule extends pulumi.CustomResource
     /**
      * [list] Array of items in that collection
      */
-    public readonly httpRules!: pulumi.Output<outputs.ApplicationLoadbalancerForwardingruleHttpRule[] | undefined>;
+    public readonly httpRules!: pulumi.Output<outputs.alb.ApplicationLoadbalancerForwardingruleHttpRule[] | undefined>;
     /**
      * [string] Listening (inbound) IP.
      */
@@ -232,7 +232,7 @@ export interface ApplicationLoadbalancerForwardingruleState {
     /**
      * [list] Array of items in that collection
      */
-    httpRules?: pulumi.Input<pulumi.Input<inputs.ApplicationLoadbalancerForwardingruleHttpRule>[]>;
+    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ApplicationLoadbalancerForwardingruleHttpRule>[]>;
     /**
      * [string] Listening (inbound) IP.
      */
@@ -274,7 +274,7 @@ export interface ApplicationLoadbalancerForwardingruleArgs {
     /**
      * [list] Array of items in that collection
      */
-    httpRules?: pulumi.Input<pulumi.Input<inputs.ApplicationLoadbalancerForwardingruleHttpRule>[]>;
+    httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ApplicationLoadbalancerForwardingruleHttpRule>[]>;
     /**
      * [string] Listening (inbound) IP.
      */

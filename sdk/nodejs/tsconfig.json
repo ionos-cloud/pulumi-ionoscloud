@@ -13,10 +13,11 @@
         "strict": true
     },
     "files": [
+        "alb/applicationLoadbalancer.ts",
+        "alb/applicationLoadbalancerForwardingrule.ts",
+        "alb/index.ts",
         "apigateway.ts",
         "apigatewayRoute.ts",
-        "applicationLoadbalancer.ts",
-        "applicationLoadbalancerForwardingrule.ts",
         "autoscalingGroup.ts",
         "cdn/distribution.ts",
         "cdn/index.ts",

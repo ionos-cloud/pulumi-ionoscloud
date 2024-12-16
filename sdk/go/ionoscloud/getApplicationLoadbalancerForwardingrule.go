@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupApplicationLoadbalancerForwardingrule(ctx, &ionoscloud.LookupApplicationLoadbalancerForwardingruleArgs{
+//			_, err := ionoscloud.GetApplicationLoadbalancerForwardingrule(ctx, &ionoscloud.GetApplicationLoadbalancerForwardingruleArgs{
 //				DatacenterId:              ionoscloud_datacenter.Example.Id,
 //				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
 //				Name:                      pulumi.StringRef("ALB FR Example"),
@@ -61,7 +61,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupApplicationLoadbalancerForwardingrule(ctx, &ionoscloud.LookupApplicationLoadbalancerForwardingruleArgs{
+//			_, err := ionoscloud.GetApplicationLoadbalancerForwardingrule(ctx, &ionoscloud.GetApplicationLoadbalancerForwardingruleArgs{
 //				DatacenterId:              ionoscloud_datacenter.Example.Id,
 //				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
 //				Name:                      pulumi.StringRef("Example"),
@@ -76,9 +76,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupApplicationLoadbalancerForwardingrule(ctx *pulumi.Context, args *LookupApplicationLoadbalancerForwardingruleArgs, opts ...pulumi.InvokeOption) (*LookupApplicationLoadbalancerForwardingruleResult, error) {
+func GetApplicationLoadbalancerForwardingrule(ctx *pulumi.Context, args *GetApplicationLoadbalancerForwardingruleArgs, opts ...pulumi.InvokeOption) (*GetApplicationLoadbalancerForwardingruleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupApplicationLoadbalancerForwardingruleResult
+	var rv GetApplicationLoadbalancerForwardingruleResult
 	err := ctx.Invoke("ionoscloud:index/getApplicationLoadbalancerForwardingrule:getApplicationLoadbalancerForwardingrule", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func LookupApplicationLoadbalancerForwardingrule(ctx *pulumi.Context, args *Look
 }
 
 // A collection of arguments for invoking getApplicationLoadbalancerForwardingrule.
-type LookupApplicationLoadbalancerForwardingruleArgs struct {
+type GetApplicationLoadbalancerForwardingruleArgs struct {
 	// Application Load Balancer's UUID.
 	ApplicationLoadbalancerId string `pulumi:"applicationLoadbalancerId"`
 	// Datacenter's UUID.
@@ -103,7 +103,7 @@ type LookupApplicationLoadbalancerForwardingruleArgs struct {
 }
 
 // A collection of values returned by getApplicationLoadbalancerForwardingrule.
-type LookupApplicationLoadbalancerForwardingruleResult struct {
+type GetApplicationLoadbalancerForwardingruleResult struct {
 	ApplicationLoadbalancerId string `pulumi:"applicationLoadbalancerId"`
 	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
 	// - `server certificates` - Array of items in that collection.
@@ -125,21 +125,21 @@ type LookupApplicationLoadbalancerForwardingruleResult struct {
 	ServerCertificates []string `pulumi:"serverCertificates"`
 }
 
-func LookupApplicationLoadbalancerForwardingruleOutput(ctx *pulumi.Context, args LookupApplicationLoadbalancerForwardingruleOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationLoadbalancerForwardingruleResultOutput {
+func GetApplicationLoadbalancerForwardingruleOutput(ctx *pulumi.Context, args GetApplicationLoadbalancerForwardingruleOutputArgs, opts ...pulumi.InvokeOption) GetApplicationLoadbalancerForwardingruleResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerForwardingruleResult, error) {
-			args := v.(LookupApplicationLoadbalancerForwardingruleArgs)
-			r, err := LookupApplicationLoadbalancerForwardingrule(ctx, &args, opts...)
-			var s LookupApplicationLoadbalancerForwardingruleResult
+		ApplyT(func(v interface{}) (GetApplicationLoadbalancerForwardingruleResult, error) {
+			args := v.(GetApplicationLoadbalancerForwardingruleArgs)
+			r, err := GetApplicationLoadbalancerForwardingrule(ctx, &args, opts...)
+			var s GetApplicationLoadbalancerForwardingruleResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupApplicationLoadbalancerForwardingruleResultOutput)
+		}).(GetApplicationLoadbalancerForwardingruleResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationLoadbalancerForwardingrule.
-type LookupApplicationLoadbalancerForwardingruleOutputArgs struct {
+type GetApplicationLoadbalancerForwardingruleOutputArgs struct {
 	// Application Load Balancer's UUID.
 	ApplicationLoadbalancerId pulumi.StringInput `pulumi:"applicationLoadbalancerId"`
 	// Datacenter's UUID.
@@ -154,79 +154,79 @@ type LookupApplicationLoadbalancerForwardingruleOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupApplicationLoadbalancerForwardingruleOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApplicationLoadbalancerForwardingruleArgs)(nil)).Elem()
+func (GetApplicationLoadbalancerForwardingruleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getApplicationLoadbalancerForwardingrule.
-type LookupApplicationLoadbalancerForwardingruleResultOutput struct{ *pulumi.OutputState }
+type GetApplicationLoadbalancerForwardingruleResultOutput struct{ *pulumi.OutputState }
 
-func (LookupApplicationLoadbalancerForwardingruleResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApplicationLoadbalancerForwardingruleResult)(nil)).Elem()
+func (GetApplicationLoadbalancerForwardingruleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationLoadbalancerForwardingruleResult)(nil)).Elem()
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ToLookupApplicationLoadbalancerForwardingruleResultOutput() LookupApplicationLoadbalancerForwardingruleResultOutput {
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ToGetApplicationLoadbalancerForwardingruleResultOutput() GetApplicationLoadbalancerForwardingruleResultOutput {
 	return o
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ToLookupApplicationLoadbalancerForwardingruleResultOutputWithContext(ctx context.Context) LookupApplicationLoadbalancerForwardingruleResultOutput {
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ToGetApplicationLoadbalancerForwardingruleResultOutputWithContext(ctx context.Context) GetApplicationLoadbalancerForwardingruleResultOutput {
 	return o
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ApplicationLoadbalancerId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) string { return v.ApplicationLoadbalancerId }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ApplicationLoadbalancerId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) string { return v.ApplicationLoadbalancerId }).(pulumi.StringOutput)
 }
 
 // The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
 // - `server certificates` - Array of items in that collection.
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ClientTimeout() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) int { return v.ClientTimeout }).(pulumi.IntOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ClientTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) int { return v.ClientTimeout }).(pulumi.IntOutput)
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Array of items in that collection
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) HttpRules() GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) []GetApplicationLoadbalancerForwardingruleHttpRule {
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) HttpRules() GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) []GetApplicationLoadbalancerForwardingruleHttpRule {
 		return v.HttpRules
 	}).(GetApplicationLoadbalancerForwardingruleHttpRuleArrayOutput)
 }
 
 // Id of Application Load Balancer Forwarding Rule
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Listening (inbound) IP.
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ListenerIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) string { return v.ListenerIp }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ListenerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) string { return v.ListenerIp }).(pulumi.StringOutput)
 }
 
 // Listening (inbound) port number; valid range is 1 to 65535.
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ListenerPort() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) int { return v.ListenerPort }).(pulumi.IntOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ListenerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) int { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
 // The unique name of the Application Load Balancer HTTP rule.
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // Balancing protocol.
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) string { return v.Protocol }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-func (o LookupApplicationLoadbalancerForwardingruleResultOutput) ServerCertificates() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerForwardingruleResult) []string { return v.ServerCertificates }).(pulumi.StringArrayOutput)
+func (o GetApplicationLoadbalancerForwardingruleResultOutput) ServerCertificates() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerForwardingruleResult) []string { return v.ServerCertificates }).(pulumi.StringArrayOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupApplicationLoadbalancerForwardingruleResultOutput{})
+	pulumi.RegisterOutputType(GetApplicationLoadbalancerForwardingruleResultOutput{})
 }

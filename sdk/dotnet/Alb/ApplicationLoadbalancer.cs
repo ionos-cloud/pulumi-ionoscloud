@@ -7,7 +7,7 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud
+namespace Pulumi.Ionoscloud.Alb
 {
     /// <summary>
     /// Manages an **Application Load Balancer** on IonosCloud.
@@ -42,7 +42,7 @@ namespace Pulumi.Ionoscloud
     ///         Public = true,
     ///     });
     /// 
-    ///     var exampleApplicationLoadbalancer = new Ionoscloud.ApplicationLoadbalancer("exampleApplicationLoadbalancer", new()
+    ///     var exampleApplicationLoadbalancer = new Ionoscloud.Alb.ApplicationLoadbalancer("exampleApplicationLoadbalancer", new()
     ///     {
     ///         DatacenterId = exampleDatacenter.Id,
     ///         ListenerLan = example1.Id,
@@ -68,10 +68,10 @@ namespace Pulumi.Ionoscloud
     /// Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+    /// $ pulumi import ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
     /// ```
     /// </summary>
-    [IonoscloudResourceType("ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer")]
+    [IonoscloudResourceType("ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer")]
     public partial class ApplicationLoadbalancer : global::Pulumi.CustomResource
     {
         /// <summary>
@@ -139,12 +139,12 @@ namespace Pulumi.Ionoscloud
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ApplicationLoadbalancer(string name, ApplicationLoadbalancerArgs args, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer", name, args ?? new ApplicationLoadbalancerArgs(), MakeResourceOptions(options, ""))
+            : base("ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer", name, args ?? new ApplicationLoadbalancerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ApplicationLoadbalancer(string name, Input<string> id, ApplicationLoadbalancerState? state = null, CustomResourceOptions? options = null)
-            : base("ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer", name, state, MakeResourceOptions(options, id))
+            : base("ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer", name, state, MakeResourceOptions(options, id))
         {
         }
 

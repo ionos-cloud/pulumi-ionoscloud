@@ -25,10 +25,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Apigateway{}
 	case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
 		r = &ApigatewayRoute{}
-	case "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer":
-		r = &ApplicationLoadbalancer{}
-	case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
-		r = &ApplicationLoadbalancerForwardingrule{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -84,16 +80,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/apigatewayRoute",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/applicationLoadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/applicationLoadbalancerForwardingrule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -24,7 +24,7 @@
                 }
             },
             "ionoscloud_application_loadbalancer": {
-                "current": "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer",
+                "current": "ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer",
                 "fields": {
                     "flowlog": {
                         "maxItemsOne": true
@@ -38,7 +38,7 @@
                 }
             },
             "ionoscloud_application_loadbalancer_forwardingrule": {
-                "current": "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule",
+                "current": "ionoscloud:alb/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule",
                 "fields": {
                     "http_rules": {
                         "maxItemsOne": false,

@@ -15,16 +15,6 @@ export type ApigatewayRoute = import("./apigatewayRoute").ApigatewayRoute;
 export const ApigatewayRoute: typeof import("./apigatewayRoute").ApigatewayRoute = null as any;
 utilities.lazyLoad(exports, ["ApigatewayRoute"], () => require("./apigatewayRoute"));
 
-export { ApplicationLoadbalancerArgs, ApplicationLoadbalancerState } from "./applicationLoadbalancer";
-export type ApplicationLoadbalancer = import("./applicationLoadbalancer").ApplicationLoadbalancer;
-export const ApplicationLoadbalancer: typeof import("./applicationLoadbalancer").ApplicationLoadbalancer = null as any;
-utilities.lazyLoad(exports, ["ApplicationLoadbalancer"], () => require("./applicationLoadbalancer"));
-
-export { ApplicationLoadbalancerForwardingruleArgs, ApplicationLoadbalancerForwardingruleState } from "./applicationLoadbalancerForwardingrule";
-export type ApplicationLoadbalancerForwardingrule = import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule;
-export const ApplicationLoadbalancerForwardingrule: typeof import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule = null as any;
-utilities.lazyLoad(exports, ["ApplicationLoadbalancerForwardingrule"], () => require("./applicationLoadbalancerForwardingrule"));
-
 export { AutoscalingGroupArgs, AutoscalingGroupState } from "./autoscalingGroup";
 export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
 export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
@@ -432,6 +422,7 @@ utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
 
 
 // Export sub-modules:
+import * as alb from "./alb";
 import * as cdn from "./cdn";
 import * as cert from "./cert";
 import * as compute from "./compute";
@@ -446,6 +437,7 @@ import * as types from "./types";
 import * as vpn from "./vpn";
 
 export {
+    alb,
     cdn,
     cert,
     compute,
@@ -468,10 +460,6 @@ const _module = {
                 return new Apigateway(name, <any>undefined, { urn })
             case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
                 return new ApigatewayRoute(name, <any>undefined, { urn })
-            case "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer":
-                return new ApplicationLoadbalancer(name, <any>undefined, { urn })
-            case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
-                return new ApplicationLoadbalancerForwardingrule(name, <any>undefined, { urn })
             case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
                 return new AutoscalingGroup(name, <any>undefined, { urn })
             case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -495,8 +483,6 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("ionoscloud", "index/apigateway", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/apigatewayRoute", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancerForwardingrule", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)

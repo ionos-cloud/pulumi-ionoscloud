@@ -48,6 +48,7 @@ const (
 	cdnModule     = "cdn"     // the ionoscloud module
 	dnsModule     = "dns"     // the ionoscloud module
 	cregModule    = "creg"    // the ionoscloud module
+	albModule     = "alb"     // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -327,6 +328,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_container_registry_token": {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
+			},
+			"ionoscloud_application_loadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "ApplicationLoadbalancer"),
+			},
+			"ionoscloud_application_loadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "ApplicationLoadbalancerForwardingrule"),
 			},
 		},
 	}

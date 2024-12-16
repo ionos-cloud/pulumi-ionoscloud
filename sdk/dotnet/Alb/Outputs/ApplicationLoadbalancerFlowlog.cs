@@ -7,46 +7,52 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Alb.Outputs
 {
 
-    public sealed class ApplicationLoadbalancerFlowlogGetArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class ApplicationLoadbalancerFlowlog
     {
         /// <summary>
         /// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         /// </summary>
-        [Input("action", required: true)]
-        public Input<string> Action { get; set; } = null!;
-
+        public readonly string Action;
         /// <summary>
         /// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         /// </summary>
-        [Input("bucket", required: true)]
-        public Input<string> Bucket { get; set; } = null!;
-
+        public readonly string Bucket;
         /// <summary>
         /// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         /// </summary>
-        [Input("direction", required: true)]
-        public Input<string> Direction { get; set; } = null!;
-
+        public readonly string Direction;
         /// <summary>
         /// The resource's unique identifier.
         /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
+        public readonly string? Id;
         /// <summary>
         /// [string] Specifies the name of the flow log.
         /// 
         /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        public readonly string Name;
 
-        public ApplicationLoadbalancerFlowlogGetArgs()
+        [OutputConstructor]
+        private ApplicationLoadbalancerFlowlog(
+            string action,
+
+            string bucket,
+
+            string direction,
+
+            string? id,
+
+            string name)
         {
+            Action = action;
+            Bucket = bucket;
+            Direction = direction;
+            Id = id;
+            Name = name;
         }
-        public static new ApplicationLoadbalancerFlowlogGetArgs Empty => new ApplicationLoadbalancerFlowlogGetArgs();
     }
 }

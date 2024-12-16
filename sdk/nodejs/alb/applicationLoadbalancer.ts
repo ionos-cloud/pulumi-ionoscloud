@@ -2,9 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as utilities from "./utilities";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as utilities from "../utilities";
 
 /**
  * Manages an **Application Load Balancer** on IonosCloud.
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     datacenterId: exampleDatacenter.id,
  *     "public": true,
  * });
- * const exampleApplicationLoadbalancer = new ionoscloud.ApplicationLoadbalancer("exampleApplicationLoadbalancer", {
+ * const exampleApplicationLoadbalancer = new ionoscloud.alb.ApplicationLoadbalancer("exampleApplicationLoadbalancer", {
  *     datacenterId: exampleDatacenter.id,
  *     listenerLan: example1.id,
  *     ips: ["10.12.118.224"],
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
  *
  * ```sh
- * $ pulumi import ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+ * $ pulumi import ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
  * ```
  */
 export class ApplicationLoadbalancer extends pulumi.CustomResource {
@@ -64,7 +64,7 @@ export class ApplicationLoadbalancer extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer';
+    public static readonly __pulumiType = 'ionoscloud:alb/applicationLoadbalancer:ApplicationLoadbalancer';
 
     /**
      * Returns true if the given object is an instance of ApplicationLoadbalancer.  This is designed to work even
@@ -88,7 +88,7 @@ export class ApplicationLoadbalancer extends pulumi.CustomResource {
     /**
      * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
      */
-    public readonly flowlog!: pulumi.Output<outputs.ApplicationLoadbalancerFlowlog | undefined>;
+    public readonly flowlog!: pulumi.Output<outputs.alb.ApplicationLoadbalancerFlowlog | undefined>;
     /**
      * [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
      */
@@ -179,7 +179,7 @@ export interface ApplicationLoadbalancerState {
     /**
      * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
      */
-    flowlog?: pulumi.Input<inputs.ApplicationLoadbalancerFlowlog>;
+    flowlog?: pulumi.Input<inputs.alb.ApplicationLoadbalancerFlowlog>;
     /**
      * [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
      */
@@ -223,7 +223,7 @@ export interface ApplicationLoadbalancerArgs {
     /**
      * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
      */
-    flowlog?: pulumi.Input<inputs.ApplicationLoadbalancerFlowlog>;
+    flowlog?: pulumi.Input<inputs.alb.ApplicationLoadbalancerFlowlog>;
     /**
      * [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
      */

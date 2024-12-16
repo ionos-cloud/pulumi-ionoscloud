@@ -7,10 +7,10 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Ionoscloud.Inputs
+namespace Pulumi.Ionoscloud.Alb.Inputs
 {
 
-    public sealed class ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs : global::Pulumi.ResourceArgs
+    public sealed class ApplicationLoadbalancerForwardingruleHttpRuleConditionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
@@ -42,9 +42,9 @@ namespace Pulumi.Ionoscloud.Inputs
         [Input("value")]
         public Input<string>? Value { get; set; }
 
-        public ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs()
+        public ApplicationLoadbalancerForwardingruleHttpRuleConditionGetArgs()
         {
         }
-        public static new ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs Empty => new ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs();
+        public static new ApplicationLoadbalancerForwardingruleHttpRuleConditionGetArgs Empty => new ApplicationLoadbalancerForwardingruleHttpRuleConditionGetArgs();
     }
 }
