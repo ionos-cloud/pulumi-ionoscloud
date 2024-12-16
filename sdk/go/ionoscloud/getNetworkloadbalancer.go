@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupNetworkloadbalancer(ctx, &ionoscloud.LookupNetworkloadbalancerArgs{
+//			_, err := ionoscloud.GetNetworkloadbalancer(ctx, &ionoscloud.GetNetworkloadbalancerArgs{
 //				DatacenterId: ionoscloud_datacenter.Example.Id,
 //				Name:         pulumi.StringRef("Network Load Balancer Name"),
 //			}, nil)
@@ -44,9 +44,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupNetworkloadbalancer(ctx *pulumi.Context, args *LookupNetworkloadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupNetworkloadbalancerResult, error) {
+func GetNetworkloadbalancer(ctx *pulumi.Context, args *GetNetworkloadbalancerArgs, opts ...pulumi.InvokeOption) (*GetNetworkloadbalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupNetworkloadbalancerResult
+	var rv GetNetworkloadbalancerResult
 	err := ctx.Invoke("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func LookupNetworkloadbalancer(ctx *pulumi.Context, args *LookupNetworkloadbalan
 }
 
 // A collection of arguments for invoking getNetworkloadbalancer.
-type LookupNetworkloadbalancerArgs struct {
+type GetNetworkloadbalancerArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the network load balancer you want to search for.
@@ -67,7 +67,7 @@ type LookupNetworkloadbalancerArgs struct {
 }
 
 // A collection of values returned by getNetworkloadbalancer.
-type LookupNetworkloadbalancerResult struct {
+type GetNetworkloadbalancerResult struct {
 	// Turn logging on and off for this product. Default value is 'false'.
 	CentralLogging bool   `pulumi:"centralLogging"`
 	DatacenterId   string `pulumi:"datacenterId"`
@@ -88,21 +88,21 @@ type LookupNetworkloadbalancerResult struct {
 	TargetLan int `pulumi:"targetLan"`
 }
 
-func LookupNetworkloadbalancerOutput(ctx *pulumi.Context, args LookupNetworkloadbalancerOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkloadbalancerResultOutput {
+func GetNetworkloadbalancerOutput(ctx *pulumi.Context, args GetNetworkloadbalancerOutputArgs, opts ...pulumi.InvokeOption) GetNetworkloadbalancerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNetworkloadbalancerResult, error) {
-			args := v.(LookupNetworkloadbalancerArgs)
-			r, err := LookupNetworkloadbalancer(ctx, &args, opts...)
-			var s LookupNetworkloadbalancerResult
+		ApplyT(func(v interface{}) (GetNetworkloadbalancerResult, error) {
+			args := v.(GetNetworkloadbalancerArgs)
+			r, err := GetNetworkloadbalancer(ctx, &args, opts...)
+			var s GetNetworkloadbalancerResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupNetworkloadbalancerResultOutput)
+		}).(GetNetworkloadbalancerResultOutput)
 }
 
 // A collection of arguments for invoking getNetworkloadbalancer.
-type LookupNetworkloadbalancerOutputArgs struct {
+type GetNetworkloadbalancerOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the network load balancer you want to search for.
@@ -113,73 +113,73 @@ type LookupNetworkloadbalancerOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupNetworkloadbalancerOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNetworkloadbalancerArgs)(nil)).Elem()
+func (GetNetworkloadbalancerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetworkloadbalancerArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getNetworkloadbalancer.
-type LookupNetworkloadbalancerResultOutput struct{ *pulumi.OutputState }
+type GetNetworkloadbalancerResultOutput struct{ *pulumi.OutputState }
 
-func (LookupNetworkloadbalancerResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupNetworkloadbalancerResult)(nil)).Elem()
+func (GetNetworkloadbalancerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNetworkloadbalancerResult)(nil)).Elem()
 }
 
-func (o LookupNetworkloadbalancerResultOutput) ToLookupNetworkloadbalancerResultOutput() LookupNetworkloadbalancerResultOutput {
+func (o GetNetworkloadbalancerResultOutput) ToGetNetworkloadbalancerResultOutput() GetNetworkloadbalancerResultOutput {
 	return o
 }
 
-func (o LookupNetworkloadbalancerResultOutput) ToLookupNetworkloadbalancerResultOutputWithContext(ctx context.Context) LookupNetworkloadbalancerResultOutput {
+func (o GetNetworkloadbalancerResultOutput) ToGetNetworkloadbalancerResultOutputWithContext(ctx context.Context) GetNetworkloadbalancerResultOutput {
 	return o
 }
 
 // Turn logging on and off for this product. Default value is 'false'.
-func (o LookupNetworkloadbalancerResultOutput) CentralLogging() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) bool { return v.CentralLogging }).(pulumi.BoolOutput)
+func (o GetNetworkloadbalancerResultOutput) CentralLogging() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) bool { return v.CentralLogging }).(pulumi.BoolOutput)
 }
 
-func (o LookupNetworkloadbalancerResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetNetworkloadbalancerResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-func (o LookupNetworkloadbalancerResultOutput) Flowlogs() GetNetworkloadbalancerFlowlogArrayOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) []GetNetworkloadbalancerFlowlog { return v.Flowlogs }).(GetNetworkloadbalancerFlowlogArrayOutput)
+func (o GetNetworkloadbalancerResultOutput) Flowlogs() GetNetworkloadbalancerFlowlogArrayOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) []GetNetworkloadbalancerFlowlog { return v.Flowlogs }).(GetNetworkloadbalancerFlowlogArrayOutput)
 }
 
 // Id of that Network Load Balancer
-func (o LookupNetworkloadbalancerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetNetworkloadbalancerResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
-func (o LookupNetworkloadbalancerResultOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
+func (o GetNetworkloadbalancerResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
 // Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
-func (o LookupNetworkloadbalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) []string { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
+func (o GetNetworkloadbalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) []string { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
 }
 
 // Id of the listening LAN. (inbound)
-func (o LookupNetworkloadbalancerResultOutput) ListenerLan() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
+func (o GetNetworkloadbalancerResultOutput) ListenerLan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
 }
 
-func (o LookupNetworkloadbalancerResultOutput) LoggingFormat() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) string { return v.LoggingFormat }).(pulumi.StringOutput)
+func (o GetNetworkloadbalancerResultOutput) LoggingFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) string { return v.LoggingFormat }).(pulumi.StringOutput)
 }
 
 // Specifies the name of the flow log.
-func (o LookupNetworkloadbalancerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetNetworkloadbalancerResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Id of the balanced private target LAN. (outbound)
-func (o LookupNetworkloadbalancerResultOutput) TargetLan() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupNetworkloadbalancerResult) int { return v.TargetLan }).(pulumi.IntOutput)
+func (o GetNetworkloadbalancerResultOutput) TargetLan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNetworkloadbalancerResult) int { return v.TargetLan }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupNetworkloadbalancerResultOutput{})
+	pulumi.RegisterOutputType(GetNetworkloadbalancerResultOutput{})
 }

@@ -37,17 +37,20 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "ionoscloud"
 	// modules:
-	mainMod       = "index"   // the ionoscloud module
-	computeModule = "compute" // the ionoscloud module
-	dbaasModule   = "dbaas"   // the ionoscloud module
-	k8sModule     = "k8s"     // the ionoscloud module
-	certModule    = "cert"    // the ionoscloud module
-	dsaasModule   = "dsaas"   // the ionoscloud module
-	nfsModule     = "nfs"     // the ionoscloud module
-	vpnModule     = "vpn"     // the ionoscloud module
-	cdnModule     = "cdn"     // the ionoscloud module
-	dnsModule     = "dns"     // the ionoscloud module
-	cregModule    = "creg"    // the ionoscloud module
+	mainMod       = "index"
+	computeModule = "compute"
+	dbaasModule   = "dbaas"
+	k8sModule     = "k8s"
+	certModule    = "cert"
+	dsaasModule   = "dsaas"
+	nfsModule     = "nfs"
+	vpnModule     = "vpn"
+	cdnModule     = "cdn"
+	dnsModule     = "dns"
+	cregModule    = "creg"
+	loggingModule = "logging"
+	albModule     = "alb"
+	nlbModule     = "nlb"
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -327,6 +330,21 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_container_registry_token": {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
+			},
+			"ionoscloud_logging_pipeline": {
+				Tok: tfbridge.MakeResource(mainPkg, loggingModule, "Pipeline"),
+			},
+			"ionoscloud_application_loadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "Balancer"),
+			},
+			"ionoscloud_application_loadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "ForwardingRule"),
+			},
+			"ionoscloud_networkloadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "Balancer"),
+			},
+			"ionoscloud_networkloadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "ForwardingRule"),
 			},
 		},
 	}

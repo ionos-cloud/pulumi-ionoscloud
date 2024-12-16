@@ -25,10 +25,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Apigateway{}
 	case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
 		r = &ApigatewayRoute{}
-	case "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer":
-		r = &ApplicationLoadbalancer{}
-	case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
-		r = &ApplicationLoadbalancerForwardingrule{}
 	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
 		r = &AutoscalingGroup{}
 	case "ionoscloud:index/kafkaCluster:KafkaCluster":
@@ -37,12 +33,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KafkaClusterTopic{}
 	case "ionoscloud:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
-	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
-		r = &LoggingPipeline{}
-	case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
-		r = &Networkloadbalancer{}
-	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
-		r = &NetworkloadbalancerForwardingrule{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
 	default:
@@ -88,16 +78,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/applicationLoadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/applicationLoadbalancerForwardingrule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/autoscalingGroup",
 		&module{version},
 	)
@@ -114,21 +94,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/loadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/loggingPipeline",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/networkloadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/networkloadbalancerForwardingrule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

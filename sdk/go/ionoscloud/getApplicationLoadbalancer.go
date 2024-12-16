@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupApplicationLoadbalancer(ctx, &ionoscloud.LookupApplicationLoadbalancerArgs{
+//			_, err := ionoscloud.GetApplicationLoadbalancer(ctx, &ionoscloud.GetApplicationLoadbalancerArgs{
 //				DatacenterId: ionoscloud_datacenter.Example.Id,
 //				Name:         pulumi.StringRef("ALB name"),
 //			}, nil)
@@ -60,7 +60,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupApplicationLoadbalancer(ctx, &ionoscloud.LookupApplicationLoadbalancerArgs{
+//			_, err := ionoscloud.GetApplicationLoadbalancer(ctx, &ionoscloud.GetApplicationLoadbalancerArgs{
 //				DatacenterId: ionoscloud_datacenter.Example.Id,
 //				Name:         pulumi.StringRef("name"),
 //				PartialMatch: pulumi.BoolRef(true),
@@ -74,9 +74,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupApplicationLoadbalancer(ctx *pulumi.Context, args *LookupApplicationLoadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupApplicationLoadbalancerResult, error) {
+func GetApplicationLoadbalancer(ctx *pulumi.Context, args *GetApplicationLoadbalancerArgs, opts ...pulumi.InvokeOption) (*GetApplicationLoadbalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupApplicationLoadbalancerResult
+	var rv GetApplicationLoadbalancerResult
 	err := ctx.Invoke("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func LookupApplicationLoadbalancer(ctx *pulumi.Context, args *LookupApplicationL
 }
 
 // A collection of arguments for invoking getApplicationLoadbalancer.
-type LookupApplicationLoadbalancerArgs struct {
+type GetApplicationLoadbalancerArgs struct {
 	// Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
 	// ID of the application load balancer you want to search for.
@@ -99,7 +99,7 @@ type LookupApplicationLoadbalancerArgs struct {
 }
 
 // A collection of values returned by getApplicationLoadbalancer.
-type LookupApplicationLoadbalancerResult struct {
+type GetApplicationLoadbalancerResult struct {
 	// Turn logging on and off for this product. Default value is 'false'.
 	CentralLogging bool   `pulumi:"centralLogging"`
 	DatacenterId   string `pulumi:"datacenterId"`
@@ -121,21 +121,21 @@ type LookupApplicationLoadbalancerResult struct {
 	TargetLan int `pulumi:"targetLan"`
 }
 
-func LookupApplicationLoadbalancerOutput(ctx *pulumi.Context, args LookupApplicationLoadbalancerOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationLoadbalancerResultOutput {
+func GetApplicationLoadbalancerOutput(ctx *pulumi.Context, args GetApplicationLoadbalancerOutputArgs, opts ...pulumi.InvokeOption) GetApplicationLoadbalancerResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerResult, error) {
-			args := v.(LookupApplicationLoadbalancerArgs)
-			r, err := LookupApplicationLoadbalancer(ctx, &args, opts...)
-			var s LookupApplicationLoadbalancerResult
+		ApplyT(func(v interface{}) (GetApplicationLoadbalancerResult, error) {
+			args := v.(GetApplicationLoadbalancerArgs)
+			r, err := GetApplicationLoadbalancer(ctx, &args, opts...)
+			var s GetApplicationLoadbalancerResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupApplicationLoadbalancerResultOutput)
+		}).(GetApplicationLoadbalancerResultOutput)
 }
 
 // A collection of arguments for invoking getApplicationLoadbalancer.
-type LookupApplicationLoadbalancerOutputArgs struct {
+type GetApplicationLoadbalancerOutputArgs struct {
 	// Datacenter's UUID.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
 	// ID of the application load balancer you want to search for.
@@ -148,77 +148,77 @@ type LookupApplicationLoadbalancerOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
-func (LookupApplicationLoadbalancerOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApplicationLoadbalancerArgs)(nil)).Elem()
+func (GetApplicationLoadbalancerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationLoadbalancerArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getApplicationLoadbalancer.
-type LookupApplicationLoadbalancerResultOutput struct{ *pulumi.OutputState }
+type GetApplicationLoadbalancerResultOutput struct{ *pulumi.OutputState }
 
-func (LookupApplicationLoadbalancerResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApplicationLoadbalancerResult)(nil)).Elem()
+func (GetApplicationLoadbalancerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApplicationLoadbalancerResult)(nil)).Elem()
 }
 
-func (o LookupApplicationLoadbalancerResultOutput) ToLookupApplicationLoadbalancerResultOutput() LookupApplicationLoadbalancerResultOutput {
+func (o GetApplicationLoadbalancerResultOutput) ToGetApplicationLoadbalancerResultOutput() GetApplicationLoadbalancerResultOutput {
 	return o
 }
 
-func (o LookupApplicationLoadbalancerResultOutput) ToLookupApplicationLoadbalancerResultOutputWithContext(ctx context.Context) LookupApplicationLoadbalancerResultOutput {
+func (o GetApplicationLoadbalancerResultOutput) ToGetApplicationLoadbalancerResultOutputWithContext(ctx context.Context) GetApplicationLoadbalancerResultOutput {
 	return o
 }
 
 // Turn logging on and off for this product. Default value is 'false'.
-func (o LookupApplicationLoadbalancerResultOutput) CentralLogging() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) bool { return v.CentralLogging }).(pulumi.BoolOutput)
+func (o GetApplicationLoadbalancerResultOutput) CentralLogging() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) bool { return v.CentralLogging }).(pulumi.BoolOutput)
 }
 
-func (o LookupApplicationLoadbalancerResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-func (o LookupApplicationLoadbalancerResultOutput) Flowlogs() GetApplicationLoadbalancerFlowlogArrayOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) []GetApplicationLoadbalancerFlowlog { return v.Flowlogs }).(GetApplicationLoadbalancerFlowlogArrayOutput)
+func (o GetApplicationLoadbalancerResultOutput) Flowlogs() GetApplicationLoadbalancerFlowlogArrayOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) []GetApplicationLoadbalancerFlowlog { return v.Flowlogs }).(GetApplicationLoadbalancerFlowlogArrayOutput)
 }
 
 // Id of the application load balancer.
-func (o LookupApplicationLoadbalancerResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetApplicationLoadbalancerResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
-func (o LookupApplicationLoadbalancerResultOutput) Ips() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
+func (o GetApplicationLoadbalancerResultOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
 // Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
-func (o LookupApplicationLoadbalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) []string { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
+func (o GetApplicationLoadbalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) []string { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
 }
 
 // ID of the listening (inbound) LAN.
-func (o LookupApplicationLoadbalancerResultOutput) ListenerLan() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
+func (o GetApplicationLoadbalancerResultOutput) ListenerLan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
 }
 
-func (o LookupApplicationLoadbalancerResultOutput) LoggingFormat() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) string { return v.LoggingFormat }).(pulumi.StringOutput)
+func (o GetApplicationLoadbalancerResultOutput) LoggingFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) string { return v.LoggingFormat }).(pulumi.StringOutput)
 }
 
 // Specifies the name of the flow log.
-func (o LookupApplicationLoadbalancerResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetApplicationLoadbalancerResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupApplicationLoadbalancerResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetApplicationLoadbalancerResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // ID of the balanced private target LAN (outbound).
-func (o LookupApplicationLoadbalancerResultOutput) TargetLan() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupApplicationLoadbalancerResult) int { return v.TargetLan }).(pulumi.IntOutput)
+func (o GetApplicationLoadbalancerResultOutput) TargetLan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetApplicationLoadbalancerResult) int { return v.TargetLan }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupApplicationLoadbalancerResultOutput{})
+	pulumi.RegisterOutputType(GetApplicationLoadbalancerResultOutput{})
 }

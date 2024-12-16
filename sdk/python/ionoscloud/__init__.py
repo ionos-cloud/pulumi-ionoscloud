@@ -7,8 +7,6 @@ import typing
 # Export this package's modules as members:
 from .apigateway import *
 from .apigateway_route import *
-from .application_loadbalancer import *
-from .application_loadbalancer_forwardingrule import *
 from .autoscaling_group import *
 from .get_apigateway import *
 from .get_apigateway_route import *
@@ -85,9 +83,6 @@ from .get_vpn_wireguard_peer import *
 from .kafka_cluster import *
 from .kafka_cluster_topic import *
 from .loadbalancer import *
-from .logging_pipeline import *
-from .networkloadbalancer import *
-from .networkloadbalancer_forwardingrule import *
 from .provider import *
 from .target_group import *
 from ._inputs import *
@@ -95,6 +90,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.alb as __alb
+    alb = __alb
     import ionoscloud.cdn as __cdn
     cdn = __cdn
     import ionoscloud.cert as __cert
@@ -113,11 +110,16 @@ if typing.TYPE_CHECKING:
     dsaas = __dsaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.logging as __logging
+    logging = __logging
     import ionoscloud.nfs as __nfs
     nfs = __nfs
+    import ionoscloud.nlb as __nlb
+    nlb = __nlb
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
+    alb = _utilities.lazy_import('ionoscloud.alb')
     cdn = _utilities.lazy_import('ionoscloud.cdn')
     cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
@@ -127,12 +129,30 @@ else:
     dns = _utilities.lazy_import('ionoscloud.dns')
     dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
+    nlb = _utilities.lazy_import('ionoscloud.nlb')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/balancer",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/balancer:Balancer": "Balancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/forwardingRule",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/forwardingRule:ForwardingRule": "ForwardingRule"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "cdn/distribution",
@@ -447,22 +467,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer": "ApplicationLoadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancerForwardingrule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule": "ApplicationLoadbalancerForwardingrule"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/autoscalingGroup",
   "fqn": "ionoscloud",
   "classes": {
@@ -495,30 +499,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/loggingPipeline",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/loggingPipeline:LoggingPipeline": "LoggingPipeline"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/networkloadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/networkloadbalancer:Networkloadbalancer": "Networkloadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/networkloadbalancerForwardingrule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule": "NetworkloadbalancerForwardingrule"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/targetGroup",
   "fqn": "ionoscloud",
   "classes": {
@@ -543,6 +523,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "logging/pipeline",
+  "fqn": "ionoscloud.logging",
+  "classes": {
+   "ionoscloud:logging/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "nfs/cluster",
   "fqn": "ionoscloud.nfs",
   "classes": {
@@ -555,6 +543,22 @@ _utilities.register(
   "fqn": "ionoscloud.nfs",
   "classes": {
    "ionoscloud:nfs/share:Share": "Share"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nlb/balancer",
+  "fqn": "ionoscloud.nlb",
+  "classes": {
+   "ionoscloud:nlb/balancer:Balancer": "Balancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nlb/forwardingRule",
+  "fqn": "ionoscloud.nlb",
+  "classes": {
+   "ionoscloud:nlb/forwardingRule:ForwardingRule": "ForwardingRule"
   }
  },
  {
