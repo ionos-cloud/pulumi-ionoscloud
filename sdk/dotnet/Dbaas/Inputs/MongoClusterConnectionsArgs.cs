@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         private InputList<string>? _cidrLists;
 
         /// <summary>
-        /// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        /// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
         /// </summary>
         public InputList<string> CidrLists
         {
@@ -25,13 +25,13 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         }
 
         /// <summary>
-        /// The datacenter to connect your cluster to.
+        /// [string] The datacenter to connect your cluster to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// The LAN to connect your cluster to.
+        /// [string] The LAN to connect your cluster to.
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;

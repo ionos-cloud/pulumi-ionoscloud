@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class MongoClusterBiConnector
     {
         /// <summary>
-        /// Enable or disable the BiConnector.
+        /// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The host where this new BI Connector is installed.
+        /// [string] - The host where this new BI Connector is installed.
         /// </summary>
         public readonly string? Host;
         /// <summary>
-        /// Port number used when connecting to this new BI Connector.
+        /// [string] - Port number used when connecting to this new BI Connector.
         /// </summary>
         public readonly string? Port;
 

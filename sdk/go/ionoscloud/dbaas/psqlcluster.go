@@ -12,41 +12,116 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DbaaS PgSql Cluster**.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic example
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing dbaas cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewPSQLCluster(ctx, "examplePSQLCluster", &dbaas.PSQLClusterArgs{
+//				PostgresVersion: pulumi.String("12"),
+//				Instances:       pulumi.Int(1),
+//				Cores:           pulumi.Int(4),
+//				Ram:             pulumi.Int(2048),
+//				StorageSize:     pulumi.Int(2048),
+//				StorageType:     pulumi.String("HDD"),
+//				ConnectionPooler: &dbaas.PSQLClusterConnectionPoolerArgs{
+//					Enabled:  pulumi.Bool(true),
+//					PoolMode: pulumi.String("session"),
+//				},
+//				Connections: &dbaas.PSQLClusterConnectionsArgs{
+//					DatacenterId: exampleDatacenter.ID(),
+//					LanId:        exampleLan.ID(),
+//					Cidr:         pulumi.String("192.168.100.1/24"),
+//				},
+//				Location:    exampleDatacenter.Location,
+//				DisplayName: pulumi.String("PostgreSQL_cluster"),
+//				MaintenanceWindow: &dbaas.PSQLClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				Credentials: &dbaas.PSQLClusterCredentialsArgs{
+//					Username: pulumi.String("username"),
+//					Password: pulumi.String("strongPassword"),
+//				},
+//				SynchronizationMode: pulumi.String("ASYNCHRONOUS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+// ```
 type PSQLCluster struct {
 	pulumi.CustomResourceState
 
-	// The Object Storage location where the backups will be stored.
+	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringOutput `pulumi:"backupLocation"`
-	// Configuration options for the connection pooler
+	// [object]
 	ConnectionPooler PSQLClusterConnectionPoolerOutput `pulumi:"connectionPooler"`
-	// Details about the network connection for your cluster.
+	// [string] Details about the network connection for your cluster.
 	Connections PSQLClusterConnectionsPtrOutput `pulumi:"connections"`
-	// The number of CPU cores per replica.
+	// [int] The number of CPU cores per replica.
 	Cores pulumi.IntOutput `pulumi:"cores"`
-	// Credentials for the database user to be created.
+	// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 	Credentials PSQLClusterCredentialsOutput `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The DNS name pointing to your cluster
+	// [string] The DNS name pointing to your cluster.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
-	// Creates the cluster based on the existing backup.
+	// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 	FromBackup PSQLClusterFromBackupPtrOutput `pulumi:"fromBackup"`
-	// The total number of instances in the cluster (one master and n-1 standbys)
+	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntOutput `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests)
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringOutput `pulumi:"location"`
-	// a weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// The PostgreSQL version of your cluster.
+	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringOutput `pulumi:"postgresVersion"`
-	// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+	// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 	Ram pulumi.IntOutput `pulumi:"ram"`
-	// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+	// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
-	// The storage type used in your cluster.
+	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
-	// Represents different modes of replication.
+	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 	SynchronizationMode pulumi.StringOutput `pulumi:"synchronizationMode"`
 }
 
@@ -110,74 +185,72 @@ func GetPSQLCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PSQLCluster resources.
 type psqlclusterState struct {
-	// The Object Storage location where the backups will be stored.
+	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation *string `pulumi:"backupLocation"`
-	// Configuration options for the connection pooler
+	// [object]
 	ConnectionPooler *PSQLClusterConnectionPooler `pulumi:"connectionPooler"`
-	// Details about the network connection for your cluster.
+	// [string] Details about the network connection for your cluster.
 	Connections *PSQLClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per replica.
+	// [int] The number of CPU cores per replica.
 	Cores *int `pulumi:"cores"`
-	// Credentials for the database user to be created.
+	// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 	Credentials *PSQLClusterCredentials `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName *string `pulumi:"displayName"`
-	// The DNS name pointing to your cluster
+	// [string] The DNS name pointing to your cluster.
 	DnsName *string `pulumi:"dnsName"`
-	// Creates the cluster based on the existing backup.
+	// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 	FromBackup *PSQLClusterFromBackup `pulumi:"fromBackup"`
-	// The total number of instances in the cluster (one master and n-1 standbys)
+	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances *int `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests)
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location *string `pulumi:"location"`
-	// a weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The PostgreSQL version of your cluster.
+	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion *string `pulumi:"postgresVersion"`
-	// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+	// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 	Ram *int `pulumi:"ram"`
-	// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+	// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 	StorageSize *int `pulumi:"storageSize"`
-	// The storage type used in your cluster.
+	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType *string `pulumi:"storageType"`
-	// Represents different modes of replication.
+	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 	SynchronizationMode *string `pulumi:"synchronizationMode"`
 }
 
 type PSQLClusterState struct {
-	// The Object Storage location where the backups will be stored.
+	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringPtrInput
-	// Configuration options for the connection pooler
+	// [object]
 	ConnectionPooler PSQLClusterConnectionPoolerPtrInput
-	// Details about the network connection for your cluster.
+	// [string] Details about the network connection for your cluster.
 	Connections PSQLClusterConnectionsPtrInput
-	// The number of CPU cores per replica.
+	// [int] The number of CPU cores per replica.
 	Cores pulumi.IntPtrInput
-	// Credentials for the database user to be created.
+	// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 	Credentials PSQLClusterCredentialsPtrInput
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringPtrInput
-	// The DNS name pointing to your cluster
+	// [string] The DNS name pointing to your cluster.
 	DnsName pulumi.StringPtrInput
-	// Creates the cluster based on the existing backup.
+	// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 	FromBackup PSQLClusterFromBackupPtrInput
-	// The total number of instances in the cluster (one master and n-1 standbys)
+	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntPtrInput
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests)
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringPtrInput
-	// a weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
-	// The PostgreSQL version of your cluster.
+	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringPtrInput
-	// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+	// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 	Ram pulumi.IntPtrInput
-	// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+	// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 	StorageSize pulumi.IntPtrInput
-	// The storage type used in your cluster.
+	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringPtrInput
-	// Represents different modes of replication.
+	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 	SynchronizationMode pulumi.StringPtrInput
 }
 
@@ -186,71 +259,69 @@ func (PSQLClusterState) ElementType() reflect.Type {
 }
 
 type psqlclusterArgs struct {
-	// The Object Storage location where the backups will be stored.
+	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation *string `pulumi:"backupLocation"`
-	// Configuration options for the connection pooler
+	// [object]
 	ConnectionPooler *PSQLClusterConnectionPooler `pulumi:"connectionPooler"`
-	// Details about the network connection for your cluster.
+	// [string] Details about the network connection for your cluster.
 	Connections *PSQLClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per replica.
+	// [int] The number of CPU cores per replica.
 	Cores int `pulumi:"cores"`
-	// Credentials for the database user to be created.
+	// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 	Credentials PSQLClusterCredentials `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName string `pulumi:"displayName"`
-	// Creates the cluster based on the existing backup.
+	// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 	FromBackup *PSQLClusterFromBackup `pulumi:"fromBackup"`
-	// The total number of instances in the cluster (one master and n-1 standbys)
+	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances int `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests)
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location string `pulumi:"location"`
-	// a weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The PostgreSQL version of your cluster.
+	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion string `pulumi:"postgresVersion"`
-	// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+	// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 	Ram int `pulumi:"ram"`
-	// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+	// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 	StorageSize int `pulumi:"storageSize"`
-	// The storage type used in your cluster.
+	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType string `pulumi:"storageType"`
-	// Represents different modes of replication.
+	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 	SynchronizationMode string `pulumi:"synchronizationMode"`
 }
 
 // The set of arguments for constructing a PSQLCluster resource.
 type PSQLClusterArgs struct {
-	// The Object Storage location where the backups will be stored.
+	// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 	BackupLocation pulumi.StringPtrInput
-	// Configuration options for the connection pooler
+	// [object]
 	ConnectionPooler PSQLClusterConnectionPoolerPtrInput
-	// Details about the network connection for your cluster.
+	// [string] Details about the network connection for your cluster.
 	Connections PSQLClusterConnectionsPtrInput
-	// The number of CPU cores per replica.
+	// [int] The number of CPU cores per replica.
 	Cores pulumi.IntInput
-	// Credentials for the database user to be created.
+	// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 	Credentials PSQLClusterCredentialsInput
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringInput
-	// Creates the cluster based on the existing backup.
+	// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 	FromBackup PSQLClusterFromBackupPtrInput
-	// The total number of instances in the cluster (one master and n-1 standbys)
+	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntInput
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests)
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 	Location pulumi.StringInput
-	// a weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
-	// The PostgreSQL version of your cluster.
+	// [string] The PostgreSQL version of your cluster.
 	PostgresVersion pulumi.StringInput
-	// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+	// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 	Ram pulumi.IntInput
-	// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+	// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 	StorageSize pulumi.IntInput
-	// The storage type used in your cluster.
+	// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 	StorageType pulumi.StringInput
-	// Represents different modes of replication.
+	// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 	SynchronizationMode pulumi.StringInput
 }
 
@@ -341,83 +412,82 @@ func (o PSQLClusterOutput) ToPSQLClusterOutputWithContext(ctx context.Context) P
 	return o
 }
 
-// The Object Storage location where the backups will be stored.
+// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
 func (o PSQLClusterOutput) BackupLocation() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.BackupLocation }).(pulumi.StringOutput)
 }
 
-// Configuration options for the connection pooler
+// [object]
 func (o PSQLClusterOutput) ConnectionPooler() PSQLClusterConnectionPoolerOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterConnectionPoolerOutput { return v.ConnectionPooler }).(PSQLClusterConnectionPoolerOutput)
 }
 
-// Details about the network connection for your cluster.
+// [string] Details about the network connection for your cluster.
 func (o PSQLClusterOutput) Connections() PSQLClusterConnectionsPtrOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterConnectionsPtrOutput { return v.Connections }).(PSQLClusterConnectionsPtrOutput)
 }
 
-// The number of CPU cores per replica.
+// [int] The number of CPU cores per replica.
 func (o PSQLClusterOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.IntOutput { return v.Cores }).(pulumi.IntOutput)
 }
 
-// Credentials for the database user to be created.
+// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
 func (o PSQLClusterOutput) Credentials() PSQLClusterCredentialsOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterCredentialsOutput { return v.Credentials }).(PSQLClusterCredentialsOutput)
 }
 
-// The friendly name of your cluster.
+// [string] The friendly name of your cluster.
 func (o PSQLClusterOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The DNS name pointing to your cluster
+// [string] The DNS name pointing to your cluster.
 func (o PSQLClusterOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }
 
-// Creates the cluster based on the existing backup.
+// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
 func (o PSQLClusterOutput) FromBackup() PSQLClusterFromBackupPtrOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterFromBackupPtrOutput { return v.FromBackup }).(PSQLClusterFromBackupPtrOutput)
 }
 
-// The total number of instances in the cluster (one master and n-1 standbys)
+// [int] The total number of instances in the cluster (one master and n-1 standbys)
 func (o PSQLClusterOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.IntOutput { return v.Instances }).(pulumi.IntOutput)
 }
 
-// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-// be modified after datacenter creation (disallowed in update requests)
+// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
 func (o PSQLClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// a weekly 4 hour-long window, during which maintenance might occur
+// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
 func (o PSQLClusterOutput) MaintenanceWindow() PSQLClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *PSQLCluster) PSQLClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(PSQLClusterMaintenanceWindowOutput)
 }
 
-// The PostgreSQL version of your cluster.
+// [string] The PostgreSQL version of your cluster.
 func (o PSQLClusterOutput) PostgresVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.PostgresVersion }).(pulumi.StringOutput)
 }
 
-// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
 func (o PSQLClusterOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
 }
 
-// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
 func (o PSQLClusterOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-// The storage type used in your cluster.
+// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
 func (o PSQLClusterOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }
 
-// Represents different modes of replication.
+// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
 func (o PSQLClusterOutput) SynchronizationMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.SynchronizationMode }).(pulumi.StringOutput)
 }

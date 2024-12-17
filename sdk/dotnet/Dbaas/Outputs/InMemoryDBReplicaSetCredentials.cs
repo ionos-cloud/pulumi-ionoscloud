@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class InMemoryDBReplicaSetCredentials
     {
         /// <summary>
-        /// The hashed password for a InMemoryDB user.
+        /// [object] The hashed password for a InMemoryDB user.
         /// </summary>
         public readonly Outputs.InMemoryDBReplicaSetCredentialsHashedPassword? HashedPassword;
         /// <summary>
-        /// The password for a InMemoryDB user.
+        /// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         /// </summary>
         public readonly string? PlainTextPassword;
         /// <summary>
-        /// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        /// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         /// </summary>
         public readonly string Username;
 

@@ -39,28 +39,22 @@ class MongoClusterArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MongoCluster resource.
-        :param pulumi.Input['MongoClusterConnectionsArgs'] connections: Details about the network connection for your cluster.
-        :param pulumi.Input[str] display_name: The name of your cluster.
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-               at least 3.
-        :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-               be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-               Update forces cluster re-creation.
-        :param pulumi.Input[str] mongodb_version: The MongoDB version of your cluster. Update forces cluster re-creation.
-        :param pulumi.Input['MongoClusterBackupArgs'] backup: Backup related properties.
-        :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-               analysis.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[str] edition: The cluster edition. Must be one of: playground, business, enterprise
-        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Multiple of 1024
-        :param pulumi.Input[int] shards: The total number of shards in the cluster.
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. At least 5120, at most 2097152
-        :param pulumi.Input[str] storage_type: The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
-        :param pulumi.Input[str] template_id: The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-               smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-               changes use the /templates endpoint.
-        :param pulumi.Input[str] type: The cluster type, either `replicaset` or `sharded-cluster`
+        :param pulumi.Input['MongoClusterConnectionsArgs'] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input['MongoClusterBackupArgs'] backup: [list]
+        :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
+        :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
+        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
+        :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
+        :param pulumi.Input[int] storage_size: (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
+        :param pulumi.Input[str] storage_type: (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
+        :param pulumi.Input[str] template_id: [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
+        :param pulumi.Input[str] type: (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "display_name", display_name)
@@ -94,7 +88,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def connections(self) -> pulumi.Input['MongoClusterConnectionsArgs']:
         """
-        Details about the network connection for your cluster.
+        [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -106,7 +100,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[str]:
         """
-        The name of your cluster.
+        [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "display_name")
 
@@ -118,8 +112,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def instances(self) -> pulumi.Input[int]:
         """
-        The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-        at least 3.
+        [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "instances")
 
@@ -131,9 +124,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-        Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
@@ -145,7 +136,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="mongodbVersion")
     def mongodb_version(self) -> pulumi.Input[str]:
         """
-        The MongoDB version of your cluster. Update forces cluster re-creation.
+        [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "mongodb_version")
 
@@ -157,7 +148,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def backup(self) -> Optional[pulumi.Input['MongoClusterBackupArgs']]:
         """
-        Backup related properties.
+        [list]
         """
         return pulumi.get(self, "backup")
 
@@ -169,8 +160,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['MongoClusterBiConnectorArgs']]:
         """
-        The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-        analysis.
+        (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         """
         return pulumi.get(self, "bi_connector")
 
@@ -182,7 +172,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def cores(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of CPU cores per instance.
+        (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         """
         return pulumi.get(self, "cores")
 
@@ -194,7 +184,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def edition(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster edition. Must be one of: playground, business, enterprise
+        (Computed)[string] Cluster edition. Playground, business or enterprise.
         """
         return pulumi.get(self, "edition")
 
@@ -206,7 +196,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur
+        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -218,7 +208,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def ram(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of memory per instance in megabytes. Multiple of 1024
+        (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         """
         return pulumi.get(self, "ram")
 
@@ -230,7 +220,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def shards(self) -> Optional[pulumi.Input[int]]:
         """
-        The total number of shards in the cluster.
+        [int]The total number of shards in the cluster.
         """
         return pulumi.get(self, "shards")
 
@@ -242,7 +232,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of storage per instance in megabytes. At least 5120, at most 2097152
+        (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_size")
 
@@ -254,7 +244,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+        (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_type")
 
@@ -266,9 +256,7 @@ class MongoClusterArgs:
     @pulumi.getter(name="templateId")
     def template_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-        smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-        changes use the /templates endpoint.
+        [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
         """
         return pulumi.get(self, "template_id")
 
@@ -280,7 +268,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster type, either `replicaset` or `sharded-cluster`
+        (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         return pulumi.get(self, "type")
 
@@ -311,29 +299,23 @@ class _MongoClusterState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MongoCluster resources.
-        :param pulumi.Input['MongoClusterBackupArgs'] backup: Backup related properties.
-        :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-               analysis.
-        :param pulumi.Input[str] connection_string: The connection string for your cluster.
-        :param pulumi.Input['MongoClusterConnectionsArgs'] connections: Details about the network connection for your cluster.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[str] display_name: The name of your cluster.
-        :param pulumi.Input[str] edition: The cluster edition. Must be one of: playground, business, enterprise
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-               at least 3.
-        :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-               be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-               Update forces cluster re-creation.
-        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mongodb_version: The MongoDB version of your cluster. Update forces cluster re-creation.
-        :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Multiple of 1024
-        :param pulumi.Input[int] shards: The total number of shards in the cluster.
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. At least 5120, at most 2097152
-        :param pulumi.Input[str] storage_type: The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
-        :param pulumi.Input[str] template_id: The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-               smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-               changes use the /templates endpoint.
-        :param pulumi.Input[str] type: The cluster type, either `replicaset` or `sharded-cluster`
+        :param pulumi.Input['MongoClusterBackupArgs'] backup: [list]
+        :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[str] connection_string: [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
+        :param pulumi.Input['MongoClusterConnectionsArgs'] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
+        :param pulumi.Input[str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
+        :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
+        :param pulumi.Input[int] storage_size: (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
+        :param pulumi.Input[str] storage_type: (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
+        :param pulumi.Input[str] template_id: [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
+        :param pulumi.Input[str] type: (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         if backup is not None:
             pulumi.set(__self__, "backup", backup)
@@ -374,7 +356,7 @@ class _MongoClusterState:
     @pulumi.getter
     def backup(self) -> Optional[pulumi.Input['MongoClusterBackupArgs']]:
         """
-        Backup related properties.
+        [list]
         """
         return pulumi.get(self, "backup")
 
@@ -386,8 +368,7 @@ class _MongoClusterState:
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> Optional[pulumi.Input['MongoClusterBiConnectorArgs']]:
         """
-        The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-        analysis.
+        (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         """
         return pulumi.get(self, "bi_connector")
 
@@ -399,7 +380,7 @@ class _MongoClusterState:
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> Optional[pulumi.Input[str]]:
         """
-        The connection string for your cluster.
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
         """
         return pulumi.get(self, "connection_string")
 
@@ -411,7 +392,7 @@ class _MongoClusterState:
     @pulumi.getter
     def connections(self) -> Optional[pulumi.Input['MongoClusterConnectionsArgs']]:
         """
-        Details about the network connection for your cluster.
+        [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -423,7 +404,7 @@ class _MongoClusterState:
     @pulumi.getter
     def cores(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of CPU cores per instance.
+        (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         """
         return pulumi.get(self, "cores")
 
@@ -435,7 +416,7 @@ class _MongoClusterState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of your cluster.
+        [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "display_name")
 
@@ -447,7 +428,7 @@ class _MongoClusterState:
     @pulumi.getter
     def edition(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster edition. Must be one of: playground, business, enterprise
+        (Computed)[string] Cluster edition. Playground, business or enterprise.
         """
         return pulumi.get(self, "edition")
 
@@ -459,8 +440,7 @@ class _MongoClusterState:
     @pulumi.getter
     def instances(self) -> Optional[pulumi.Input[int]]:
         """
-        The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-        at least 3.
+        [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "instances")
 
@@ -472,9 +452,7 @@ class _MongoClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-        Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
@@ -486,7 +464,7 @@ class _MongoClusterState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MongoClusterMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur
+        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -498,7 +476,7 @@ class _MongoClusterState:
     @pulumi.getter(name="mongodbVersion")
     def mongodb_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The MongoDB version of your cluster. Update forces cluster re-creation.
+        [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "mongodb_version")
 
@@ -510,7 +488,7 @@ class _MongoClusterState:
     @pulumi.getter
     def ram(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of memory per instance in megabytes. Multiple of 1024
+        (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         """
         return pulumi.get(self, "ram")
 
@@ -522,7 +500,7 @@ class _MongoClusterState:
     @pulumi.getter
     def shards(self) -> Optional[pulumi.Input[int]]:
         """
-        The total number of shards in the cluster.
+        [int]The total number of shards in the cluster.
         """
         return pulumi.get(self, "shards")
 
@@ -534,7 +512,7 @@ class _MongoClusterState:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of storage per instance in megabytes. At least 5120, at most 2097152
+        (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_size")
 
@@ -546,7 +524,7 @@ class _MongoClusterState:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+        (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_type")
 
@@ -558,9 +536,7 @@ class _MongoClusterState:
     @pulumi.getter(name="templateId")
     def template_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-        smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-        changes use the /templates endpoint.
+        [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
         """
         return pulumi.get(self, "template_id")
 
@@ -572,7 +548,7 @@ class _MongoClusterState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster type, either `replicaset` or `sharded-cluster`
+        (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         return pulumi.get(self, "type")
 
@@ -604,31 +580,116 @@ class MongoCluster(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MongoCluster resource with the given unique name, props, and options.
+        Manages a **DbaaS Mongo Cluster**.
+
+        ## Example Usage
+
+        ### Playground Or Business Editions. They Require Template_id Defined.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        ```
+
+        ### Enterprise Edition
+
+        **Enterprise Support: With MongoDB Enterprise, you gain access to professional support from the MongoDB team ensuring that you receive timely assistance and expert guidance when needed. IONOS offers enterprise-grade Service Level Agreements (SLAs), guaranteeing rapid response times and 24/7 support to address any critical issues that may arise.**
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=3,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": [
+                    "192.168.1.108/24",
+                    "192.168.1.109/24",
+                    "192.168.1.110/24",
+                ],
+            },
+            type="sharded-cluster",
+            shards=2,
+            edition="enterprise",
+            ram=2048,
+            cores=1,
+            storage_size=5120,
+            storage_type="HDD")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        ```
+
+        ## Import
+
+        Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: Backup related properties.
-        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-               analysis.
-        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: Details about the network connection for your cluster.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[str] display_name: The name of your cluster.
-        :param pulumi.Input[str] edition: The cluster edition. Must be one of: playground, business, enterprise
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-               at least 3.
-        :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-               be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-               Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mongodb_version: The MongoDB version of your cluster. Update forces cluster re-creation.
-        :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Multiple of 1024
-        :param pulumi.Input[int] shards: The total number of shards in the cluster.
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. At least 5120, at most 2097152
-        :param pulumi.Input[str] storage_type: The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
-        :param pulumi.Input[str] template_id: The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-               smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-               changes use the /templates endpoint.
-        :param pulumi.Input[str] type: The cluster type, either `replicaset` or `sharded-cluster`
+        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: [list]
+        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
+        :param pulumi.Input[str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
+        :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
+        :param pulumi.Input[int] storage_size: (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
+        :param pulumi.Input[str] storage_type: (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
+        :param pulumi.Input[str] template_id: [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
+        :param pulumi.Input[str] type: (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         ...
     @overload
@@ -637,7 +698,98 @@ class MongoCluster(pulumi.CustomResource):
                  args: MongoClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MongoCluster resource with the given unique name, props, and options.
+        Manages a **DbaaS Mongo Cluster**.
+
+        ## Example Usage
+
+        ### Playground Or Business Editions. They Require Template_id Defined.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        ```
+
+        ### Enterprise Edition
+
+        **Enterprise Support: With MongoDB Enterprise, you gain access to professional support from the MongoDB team ensuring that you receive timely assistance and expert guidance when needed. IONOS offers enterprise-grade Service Level Agreements (SLAs), guaranteeing rapid response times and 24/7 support to address any critical issues that may arise.**
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=3,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": [
+                    "192.168.1.108/24",
+                    "192.168.1.109/24",
+                    "192.168.1.110/24",
+                ],
+            },
+            type="sharded-cluster",
+            shards=2,
+            edition="enterprise",
+            ram=2048,
+            cores=1,
+            storage_size=5120,
+            storage_type="HDD")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        ```
+
+        ## Import
+
+        Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param MongoClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -739,29 +891,23 @@ class MongoCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: Backup related properties.
-        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-               analysis.
-        :param pulumi.Input[str] connection_string: The connection string for your cluster.
-        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: Details about the network connection for your cluster.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[str] display_name: The name of your cluster.
-        :param pulumi.Input[str] edition: The cluster edition. Must be one of: playground, business, enterprise
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-               at least 3.
-        :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-               be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-               Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur
-        :param pulumi.Input[str] mongodb_version: The MongoDB version of your cluster. Update forces cluster re-creation.
-        :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Multiple of 1024
-        :param pulumi.Input[int] shards: The total number of shards in the cluster.
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. At least 5120, at most 2097152
-        :param pulumi.Input[str] storage_type: The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
-        :param pulumi.Input[str] template_id: The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-               smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-               changes use the /templates endpoint.
-        :param pulumi.Input[str] type: The cluster type, either `replicaset` or `sharded-cluster`
+        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: [list]
+        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[str] connection_string: [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
+        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
+        :param pulumi.Input[str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] mongodb_version: [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
+        :param pulumi.Input[int] shards: [int]The total number of shards in the cluster.
+        :param pulumi.Input[int] storage_size: (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
+        :param pulumi.Input[str] storage_type: (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
+        :param pulumi.Input[str] template_id: [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
+        :param pulumi.Input[str] type: (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -790,7 +936,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def backup(self) -> pulumi.Output[Optional['outputs.MongoClusterBackup']]:
         """
-        Backup related properties.
+        [list]
         """
         return pulumi.get(self, "backup")
 
@@ -798,8 +944,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="biConnector")
     def bi_connector(self) -> pulumi.Output['outputs.MongoClusterBiConnector']:
         """
-        The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-        analysis.
+        (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         """
         return pulumi.get(self, "bi_connector")
 
@@ -807,7 +952,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> pulumi.Output[str]:
         """
-        The connection string for your cluster.
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
         """
         return pulumi.get(self, "connection_string")
 
@@ -815,7 +960,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def connections(self) -> pulumi.Output['outputs.MongoClusterConnections']:
         """
-        Details about the network connection for your cluster.
+        [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -823,7 +968,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def cores(self) -> pulumi.Output[int]:
         """
-        The number of CPU cores per instance.
+        (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         """
         return pulumi.get(self, "cores")
 
@@ -831,7 +976,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[str]:
         """
-        The name of your cluster.
+        [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "display_name")
 
@@ -839,7 +984,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def edition(self) -> pulumi.Output[str]:
         """
-        The cluster edition. Must be one of: playground, business, enterprise
+        (Computed)[string] Cluster edition. Playground, business or enterprise.
         """
         return pulumi.get(self, "edition")
 
@@ -847,8 +992,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def instances(self) -> pulumi.Output[int]:
         """
-        The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-        at least 3.
+        [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "instances")
 
@@ -856,9 +1000,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-        Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
@@ -866,7 +1008,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MongoClusterMaintenanceWindow']:
         """
-        A weekly 4 hour-long window, during which maintenance might occur
+        (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -874,7 +1016,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="mongodbVersion")
     def mongodb_version(self) -> pulumi.Output[str]:
         """
-        The MongoDB version of your cluster. Update forces cluster re-creation.
+        [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
         """
         return pulumi.get(self, "mongodb_version")
 
@@ -882,7 +1024,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def ram(self) -> pulumi.Output[int]:
         """
-        The amount of memory per instance in megabytes. Multiple of 1024
+        (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         """
         return pulumi.get(self, "ram")
 
@@ -890,7 +1032,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def shards(self) -> pulumi.Output[Optional[int]]:
         """
-        The total number of shards in the cluster.
+        [int]The total number of shards in the cluster.
         """
         return pulumi.get(self, "shards")
 
@@ -898,7 +1040,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[int]:
         """
-        The amount of storage per instance in megabytes. At least 5120, at most 2097152
+        (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_size")
 
@@ -906,7 +1048,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> pulumi.Output[str]:
         """
-        The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+        (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
         """
         return pulumi.get(self, "storage_type")
 
@@ -914,9 +1056,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter(name="templateId")
     def template_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-        smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-        changes use the /templates endpoint.
+        [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
         """
         return pulumi.get(self, "template_id")
 
@@ -924,7 +1064,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The cluster type, either `replicaset` or `sharded-cluster`
+        (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
         """
         return pulumi.get(self, "type")
 

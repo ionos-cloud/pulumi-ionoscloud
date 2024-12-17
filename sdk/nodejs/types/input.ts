@@ -5,117 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ApplicationLoadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: pulumi.Input<string>;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: pulumi.Input<string>;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: pulumi.Input<string>;
-    /**
-     * The resource's unique identifier.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions?: pulumi.Input<pulumi.Input<inputs.ApplicationLoadbalancerForwardingruleHttpRuleCondition>[]>;
-    /**
-     * [string] Valid only for STATIC actions.
-     */
-    contentType?: pulumi.Input<string>;
-    /**
-     * [bool] Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery?: pulumi.Input<boolean>;
-    /**
-     * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location?: pulumi.Input<string>;
-    /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [string] The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage?: pulumi.Input<string>;
-    /**
-     * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode?: pulumi.Input<number>;
-    /**
-     * [string] The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup?: pulumi.Input<string>;
-    /**
-     * [string] Type of the Http Rule.
-     */
-    type: pulumi.Input<string>;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition?: pulumi.Input<string>;
-    /**
-     * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key?: pulumi.Input<string>;
-    /**
-     * [bool] Specifies whether the condition is negated or not; the default is False.
-     */
-    negate?: pulumi.Input<boolean>;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value?: pulumi.Input<string>;
-}
-
-export interface GetIpblockIpConsumer {
-    datacenterId?: string;
-    datacenterName?: string;
-    ip?: string;
-    k8sClusterUuid?: string;
-    k8sNodepoolUuid?: string;
-    mac?: string;
-    nicId?: string;
-    serverId?: string;
-    serverName?: string;
-}
-
-export interface GetIpblockIpConsumerArgs {
-    datacenterId?: pulumi.Input<string>;
-    datacenterName?: pulumi.Input<string>;
-    ip?: pulumi.Input<string>;
-    k8sClusterUuid?: pulumi.Input<string>;
-    k8sNodepoolUuid?: pulumi.Input<string>;
-    mac?: pulumi.Input<string>;
-    nicId?: pulumi.Input<string>;
-    serverId?: pulumi.Input<string>;
-    serverName?: pulumi.Input<string>;
-}
-
 export interface GetK8sClustersFilter {
     name: string;
     value: string;
@@ -126,74 +15,6 @@ export interface GetK8sClustersFilterArgs {
     value: pulumi.Input<string>;
 }
 
-export interface GetMongoUserRole {
-    database?: string;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role?: string;
-}
-
-export interface GetMongoUserRoleArgs {
-    database?: pulumi.Input<string>;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role?: pulumi.Input<string>;
-}
-
-export interface GetNfsShareClientGroup {
-    /**
-     * Optional description for the clients groups.
-     */
-    description?: string;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts?: string[];
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks?: string[];
-    /**
-     * The NFS configuration for the client group. Each NFS configuration supports the following:
-     */
-    nfs?: inputs.GetNfsShareClientGroupNf[];
-}
-
-export interface GetNfsShareClientGroupArgs {
-    /**
-     * Optional description for the clients groups.
-     */
-    description?: pulumi.Input<string>;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The NFS configuration for the client group. Each NFS configuration supports the following:
-     */
-    nfs?: pulumi.Input<pulumi.Input<inputs.GetNfsShareClientGroupNfArgs>[]>;
-}
-
-export interface GetNfsShareClientGroupNf {
-    /**
-     * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-     */
-    squash?: string;
-}
-
-export interface GetNfsShareClientGroupNfArgs {
-    /**
-     * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-     */
-    squash?: pulumi.Input<string>;
-}
-
 export interface GetServersFilter {
     name: string;
     value: string;
@@ -202,122 +23,6 @@ export interface GetServersFilter {
 export interface GetServersFilterArgs {
     name: pulumi.Input<string>;
     value: pulumi.Input<string>;
-}
-
-export interface LoggingPipelineLog {
-    /**
-     * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-     */
-    destinations?: pulumi.Input<pulumi.Input<inputs.LoggingPipelineLogDestination>[]>;
-    /**
-     * [string] "Protocol to use as intake. Possible values are: http, tcp."
-     */
-    protocol: pulumi.Input<string>;
-    /**
-     * [bool]
-     */
-    public?: pulumi.Input<boolean>;
-    /**
-     * [string] The source parser to be used.
-     */
-    source: pulumi.Input<string>;
-    /**
-     * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-     */
-    tag: pulumi.Input<string>;
-}
-
-export interface LoggingPipelineLogDestination {
-    /**
-     * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-     */
-    retentionInDays?: pulumi.Input<number>;
-    /**
-     * [string] The internal output stream to send logs to.
-     */
-    type?: pulumi.Input<string>;
-}
-
-export interface NetworkloadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: pulumi.Input<string>;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: pulumi.Input<string>;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: pulumi.Input<string>;
-    /**
-     * The resource's unique identifier.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface NetworkloadbalancerForwardingruleHealthCheck {
-    /**
-     * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-     */
-    clientTimeout?: pulumi.Input<number>;
-    /**
-     * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-     */
-    connectTimeout?: pulumi.Input<number>;
-    /**
-     * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-     */
-    retries?: pulumi.Input<number>;
-    /**
-     * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-     */
-    targetTimeout?: pulumi.Input<number>;
-}
-
-export interface NetworkloadbalancerForwardingruleTarget {
-    /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
-     */
-    healthCheck?: pulumi.Input<inputs.NetworkloadbalancerForwardingruleTargetHealthCheck>;
-    /**
-     * [string] IP of a balanced target VM.
-     */
-    ip: pulumi.Input<string>;
-    /**
-     * [int] Port of the balanced target service. (range: 1 to 65535).
-     */
-    port: pulumi.Input<number>;
-    /**
-     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
-     */
-    proxyProtocol?: pulumi.Input<string>;
-    /**
-     * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-     */
-    weight: pulumi.Input<number>;
-}
-
-export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
-    /**
-     * [boolean] Check specifies whether the target VM's health is checked.
-     */
-    check?: pulumi.Input<boolean>;
-    /**
-     * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-     */
-    checkInterval?: pulumi.Input<number>;
-    /**
-     * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
-     */
-    maintenance?: pulumi.Input<boolean>;
 }
 
 export interface TargetGroupHealthCheck {
@@ -388,6 +93,96 @@ export interface TargetGroupTarget {
      */
     weight: pulumi.Input<number>;
 }
+export namespace alb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: pulumi.Input<string>;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: pulumi.Input<string>;
+        /**
+         * The resource's unique identifier.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         */
+        name: pulumi.Input<string>;
+    }
+
+    export interface ForwardingRuleHttpRule {
+        /**
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRuleCondition>[]>;
+        /**
+         * [string] Valid only for STATIC actions.
+         */
+        contentType?: pulumi.Input<string>;
+        /**
+         * [bool] Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery?: pulumi.Input<boolean>;
+        /**
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location?: pulumi.Input<string>;
+        /**
+         * [string] The unique name of the Application Load Balancer HTTP rule.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [string] The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage?: pulumi.Input<string>;
+        /**
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode?: pulumi.Input<number>;
+        /**
+         * [string] The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup?: pulumi.Input<string>;
+        /**
+         * [string] Type of the Http Rule.
+         */
+        type: pulumi.Input<string>;
+    }
+
+    export interface ForwardingRuleHttpRuleCondition {
+        /**
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition?: pulumi.Input<string>;
+        /**
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * [bool] Specifies whether the condition is negated or not; the default is False.
+         */
+        negate?: pulumi.Input<boolean>;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+}
+
 export namespace apigateway {
     export interface ApigatewayCustomDomain {
         /**
@@ -739,6 +534,7 @@ export namespace cdn {
          */
         blockLists?: pulumi.Input<pulumi.Input<string>[]>;
     }
+
 }
 
 export namespace cert {
@@ -752,6 +548,7 @@ export namespace cert {
          */
         keySecret: pulumi.Input<string>;
     }
+
 }
 
 export namespace compute {
@@ -913,6 +710,30 @@ export namespace compute {
          * A valid CPU vendor name
          */
         vendor?: pulumi.Input<string>;
+    }
+
+    export interface GetIPBlockIpConsumer {
+        datacenterId?: string;
+        datacenterName?: string;
+        ip?: string;
+        k8sClusterUuid?: string;
+        k8sNodepoolUuid?: string;
+        mac?: string;
+        nicId?: string;
+        serverId?: string;
+        serverName?: string;
+    }
+
+    export interface GetIPBlockIpConsumerArgs {
+        datacenterId?: pulumi.Input<string>;
+        datacenterName?: pulumi.Input<string>;
+        ip?: pulumi.Input<string>;
+        k8sClusterUuid?: pulumi.Input<string>;
+        k8sNodepoolUuid?: pulumi.Input<string>;
+        mac?: pulumi.Input<string>;
+        nicId?: pulumi.Input<string>;
+        serverId?: pulumi.Input<string>;
+        serverName?: pulumi.Input<string>;
     }
 
     export interface GroupUser {
@@ -1252,63 +1073,95 @@ export namespace creg {
 }
 
 export namespace dbaas {
+    export interface GetMongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
+        database?: string;
+        /**
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
+         */
+        role?: string;
+    }
+
+    export interface GetMongoUserRoleArgs {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
+        database?: pulumi.Input<string>;
+        /**
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
+         */
+        role?: pulumi.Input<string>;
+    }
+
     export interface InMemoryDBReplicaSetConnections {
         /**
-         * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+         * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
          */
         cidr: pulumi.Input<string>;
         /**
-         * The datacenter to connect your instance to.
+         * [string] The datacenter to connect your instance to.
          */
         datacenterId: pulumi.Input<string>;
         /**
-         * The numeric LAN ID to connect your instance to.
+         * [string] The numeric LAN ID to connect your instance to.
          */
         lanId: pulumi.Input<string>;
     }
 
     export interface InMemoryDBReplicaSetCredentials {
         /**
-         * The hashed password for a InMemoryDB user.
+         * [object] The hashed password for a InMemoryDB user.
          */
         hashedPassword?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword>;
         /**
-         * The password for a InMemoryDB user.
+         * [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
          */
         plainTextPassword?: pulumi.Input<string>;
         /**
-         * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+         * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
          */
         username: pulumi.Input<string>;
     }
 
     export interface InMemoryDBReplicaSetCredentialsHashedPassword {
+        /**
+         * [string] The value can be only: "SHA-256".
+         */
         algorithm: pulumi.Input<string>;
+        /**
+         * [string] The hashed password.
+         */
         hash: pulumi.Input<string>;
     }
 
     export interface InMemoryDBReplicaSetMaintenanceWindow {
         /**
-         * The name of the week day.
+         * [string] The name of the week day.
          */
         dayOfTheWeek: pulumi.Input<string>;
         /**
-         * Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time.
          */
         time: pulumi.Input<string>;
     }
 
     export interface InMemoryDBReplicaSetResources {
         /**
-         * The number of CPU cores per instance.
+         * [int] The number of CPU cores per instance.
          */
         cores: pulumi.Input<number>;
         /**
-         * The amount of memory per instance in gigabytes (GB).
+         * [int] The amount of memory per instance in gigabytes (GB).
          */
         ram: pulumi.Input<number>;
         /**
-         * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+         * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage?: pulumi.Input<number>;
     }
@@ -1352,7 +1205,7 @@ export namespace dbaas {
 
     export interface MongoClusterBackup {
         /**
-         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+         * [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
          */
         location?: pulumi.Input<string>;
         /**
@@ -1367,95 +1220,114 @@ export namespace dbaas {
 
     export interface MongoClusterBiConnector {
         /**
-         * Enable or disable the BiConnector.
+         * [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
          */
         enabled?: pulumi.Input<boolean>;
         /**
-         * The host where this new BI Connector is installed.
+         * [string] - The host where this new BI Connector is installed.
          */
         host?: pulumi.Input<string>;
         /**
-         * Port number used when connecting to this new BI Connector.
+         * [string] - Port number used when connecting to this new BI Connector.
          */
         port?: pulumi.Input<string>;
     }
 
     export interface MongoClusterConnections {
         /**
-         * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+         * [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
          */
         cidrLists: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The datacenter to connect your cluster to.
+         * [string] The datacenter to connect your cluster to.
          */
         datacenterId: pulumi.Input<string>;
         /**
-         * The LAN to connect your cluster to.
+         * [string] The LAN to connect your cluster to.
          */
         lanId: pulumi.Input<string>;
     }
 
     export interface MongoClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string]
+         */
         time: pulumi.Input<string>;
     }
 
     export interface MongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
         database?: pulumi.Input<string>;
         /**
-         * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
          */
         role?: pulumi.Input<string>;
     }
 
     export interface PSQLClusterConnectionPooler {
+        /**
+         * [bool]
+         */
         enabled: pulumi.Input<boolean>;
         /**
-         * Represents different modes of connection pooling for the connection pooler
+         * [string] Represents different modes of connection pooling for the connection pooler.
          */
         poolMode: pulumi.Input<string>;
     }
 
     export interface PSQLClusterConnections {
         /**
-         * The IP and subnet for the database.
-         *           Note the following unavailable IP ranges:
-         *           10.233.64.0/18
-         *           10.233.0.0/18
-         *           10.233.114.0/24
+         * [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
          */
         cidr: pulumi.Input<string>;
         /**
-         * The datacenter to connect your cluster to.
+         * [true] The datacenter to connect your cluster to.
          */
         datacenterId: pulumi.Input<string>;
         /**
-         * The LAN to connect your cluster to.
+         * [true] The LAN to connect your cluster to.
          */
         lanId: pulumi.Input<string>;
     }
 
     export interface PSQLClusterCredentials {
+        /**
+         * [string]
+         */
         password: pulumi.Input<string>;
         /**
-         * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+         * [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
          */
         username: pulumi.Input<string>;
     }
 
     export interface PSQLClusterFromBackup {
         /**
-         * The unique ID of the backup you want to restore.
+         * [string] The unique ID of the backup you want to restore.
          */
         backupId: pulumi.Input<string>;
         /**
-         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         * [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
          */
         recoveryTargetTime?: pulumi.Input<string>;
     }
 
     export interface PSQLClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string]
+         */
         time: pulumi.Input<string>;
     }
 }
@@ -1597,6 +1469,42 @@ export namespace kafka {
 
 }
 
+export namespace logging {
+    export interface PipelineLog {
+        /**
+         * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+         */
+        destinations?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLogDestination>[]>;
+        /**
+         * [string] "Protocol to use as intake. Possible values are: http, tcp."
+         */
+        protocol: pulumi.Input<string>;
+        /**
+         * [bool]
+         */
+        public?: pulumi.Input<boolean>;
+        /**
+         * [string] The source parser to be used.
+         */
+        source: pulumi.Input<string>;
+        /**
+         * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+         */
+        tag: pulumi.Input<string>;
+    }
+
+    export interface PipelineLogDestination {
+        /**
+         * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+         */
+        retentionInDays?: pulumi.Input<number>;
+        /**
+         * [string] The internal output stream to send logs to.
+         */
+        type?: pulumi.Input<string>;
+    }
+}
+
 export namespace nfs {
     export interface ClusterConnections {
         /**
@@ -1618,6 +1526,58 @@ export namespace nfs {
          * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
          */
         minVersion?: pulumi.Input<string>;
+    }
+
+    export interface GetShareClientGroup {
+        /**
+         * Optional description for the clients groups.
+         */
+        description?: string;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts?: string[];
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks?: string[];
+        /**
+         * The NFS configuration for the client group. Each NFS configuration supports the following:
+         */
+        nfs?: inputs.nfs.GetShareClientGroupNf[];
+    }
+
+    export interface GetShareClientGroupArgs {
+        /**
+         * Optional description for the clients groups.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The NFS configuration for the client group. Each NFS configuration supports the following:
+         */
+        nfs?: pulumi.Input<pulumi.Input<inputs.nfs.GetShareClientGroupNfArgs>[]>;
+    }
+
+    export interface GetShareClientGroupNf {
+        /**
+         * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+         */
+        squash?: string;
+    }
+
+    export interface GetShareClientGroupNfArgs {
+        /**
+         * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+         */
+        squash?: pulumi.Input<string>;
     }
 
     export interface ShareClientGroup {
@@ -1645,6 +1605,91 @@ export namespace nfs {
          */
         squash?: pulumi.Input<string>;
     }
+}
+
+export namespace nlb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: pulumi.Input<string>;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: pulumi.Input<string>;
+        /**
+         * The resource's unique identifier.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+         */
+        name: pulumi.Input<string>;
+    }
+
+    export interface ForwardingRuleHealthCheck {
+        /**
+         * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+         */
+        clientTimeout?: pulumi.Input<number>;
+        /**
+         * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+         */
+        connectTimeout?: pulumi.Input<number>;
+        /**
+         * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+         */
+        retries?: pulumi.Input<number>;
+        /**
+         * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+         */
+        targetTimeout?: pulumi.Input<number>;
+    }
+
+    export interface ForwardingRuleTarget {
+        /**
+         * Health check attributes for Network Load Balancer forwarding rule target.
+         */
+        healthCheck?: pulumi.Input<inputs.nlb.ForwardingRuleTargetHealthCheck>;
+        /**
+         * [string] IP of a balanced target VM.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * [int] Port of the balanced target service. (range: 1 to 65535).
+         */
+        port: pulumi.Input<number>;
+        /**
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+         */
+        proxyProtocol?: pulumi.Input<string>;
+        /**
+         * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+         */
+        weight: pulumi.Input<number>;
+    }
+
+    export interface ForwardingRuleTargetHealthCheck {
+        /**
+         * [boolean] Check specifies whether the target VM's health is checked.
+         */
+        check?: pulumi.Input<boolean>;
+        /**
+         * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+         */
+        checkInterval?: pulumi.Input<number>;
+        /**
+         * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
+         */
+        maintenance?: pulumi.Input<boolean>;
+    }
+
 }
 
 export namespace vpn {

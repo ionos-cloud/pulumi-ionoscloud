@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -183,7 +188,7 @@ class Apigateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]]] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]]] = None,
                  logs: Optional[pulumi.Input[bool]] = None,
                  metrics: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -192,7 +197,11 @@ class Apigateway(pulumi.CustomResource):
         Create a Apigateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+<<<<<<< HEAD
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+=======
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]] custom_domains: Custom domains for the API Gateway.
+>>>>>>> main
         :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         :param pulumi.Input[bool] metrics: Enable or disable metrics.
         :param pulumi.Input[str] name: The name of the API Gateway.
@@ -220,7 +229,7 @@ class Apigateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]]] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]]] = None,
                  logs: Optional[pulumi.Input[bool]] = None,
                  metrics: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -249,7 +258,7 @@ class Apigateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]]] = None,
+            custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]]] = None,
             logs: Optional[pulumi.Input[bool]] = None,
             metrics: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -261,7 +270,11 @@ class Apigateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+<<<<<<< HEAD
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+=======
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]] custom_domains: Custom domains for the API Gateway.
+>>>>>>> main
         :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         :param pulumi.Input[bool] metrics: Enable or disable metrics.
         :param pulumi.Input[str] name: The name of the API Gateway.

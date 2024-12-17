@@ -25,10 +25,10 @@ class CertificateArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
-        :param pulumi.Input[str] certificate: The certificate body in PEM format. This attribute is immutable.
-        :param pulumi.Input[str] private_key: The private key blob. This attribute is immutable.
-        :param pulumi.Input[str] certificate_chain: The certificate chain. This attribute is immutable.
-        :param pulumi.Input[str] name: The certificate name
+        :param pulumi.Input[str] certificate: [string] The certificate body. Pem encoded. Immutable.
+        :param pulumi.Input[str] private_key: [string] The certificate private key. Immutable. Sensitive.
+        :param pulumi.Input[str] certificate_chain: [string] The certificate chain. Pem encoded. Immutable.
+        :param pulumi.Input[str] name: [string] The certificate name
         """
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "private_key", private_key)
@@ -41,7 +41,7 @@ class CertificateArgs:
     @pulumi.getter
     def certificate(self) -> pulumi.Input[str]:
         """
-        The certificate body in PEM format. This attribute is immutable.
+        [string] The certificate body. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate")
 
@@ -53,7 +53,7 @@ class CertificateArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
         """
-        The private key blob. This attribute is immutable.
+        [string] The certificate private key. Immutable. Sensitive.
         """
         return pulumi.get(self, "private_key")
 
@@ -65,7 +65,7 @@ class CertificateArgs:
     @pulumi.getter(name="certificateChain")
     def certificate_chain(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate chain. This attribute is immutable.
+        [string] The certificate chain. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate_chain")
 
@@ -77,7 +77,7 @@ class CertificateArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate name
+        [string] The certificate name
         """
         return pulumi.get(self, "name")
 
@@ -95,10 +95,10 @@ class _CertificateState:
                  private_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
-        :param pulumi.Input[str] certificate: The certificate body in PEM format. This attribute is immutable.
-        :param pulumi.Input[str] certificate_chain: The certificate chain. This attribute is immutable.
-        :param pulumi.Input[str] name: The certificate name
-        :param pulumi.Input[str] private_key: The private key blob. This attribute is immutable.
+        :param pulumi.Input[str] certificate: [string] The certificate body. Pem encoded. Immutable.
+        :param pulumi.Input[str] certificate_chain: [string] The certificate chain. Pem encoded. Immutable.
+        :param pulumi.Input[str] name: [string] The certificate name
+        :param pulumi.Input[str] private_key: [string] The certificate private key. Immutable. Sensitive.
         """
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
@@ -113,7 +113,7 @@ class _CertificateState:
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate body in PEM format. This attribute is immutable.
+        [string] The certificate body. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate")
 
@@ -125,7 +125,7 @@ class _CertificateState:
     @pulumi.getter(name="certificateChain")
     def certificate_chain(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate chain. This attribute is immutable.
+        [string] The certificate chain. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate_chain")
 
@@ -137,7 +137,7 @@ class _CertificateState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The certificate name
+        [string] The certificate name
         """
         return pulumi.get(self, "name")
 
@@ -149,7 +149,7 @@ class _CertificateState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The private key blob. This attribute is immutable.
+        [string] The certificate private key. Immutable. Sensitive.
         """
         return pulumi.get(self, "private_key")
 
@@ -169,13 +169,50 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Certificate resource with the given unique name, props, and options.
+        Manages a **Certificate** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        ```
+
+        **NOTE**: You can also provide the values as multiline strings, as seen below:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+        cert_body_here
+        -----END CERTIFICATE-----
+
+        \"\"\",
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        ```
+
+        ## Import
+
+        Resource certificate can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate: The certificate body in PEM format. This attribute is immutable.
-        :param pulumi.Input[str] certificate_chain: The certificate chain. This attribute is immutable.
-        :param pulumi.Input[str] name: The certificate name
-        :param pulumi.Input[str] private_key: The private key blob. This attribute is immutable.
+        :param pulumi.Input[str] certificate: [string] The certificate body. Pem encoded. Immutable.
+        :param pulumi.Input[str] certificate_chain: [string] The certificate chain. Pem encoded. Immutable.
+        :param pulumi.Input[str] name: [string] The certificate name
+        :param pulumi.Input[str] private_key: [string] The certificate private key. Immutable. Sensitive.
         """
         ...
     @overload
@@ -184,7 +221,44 @@ class Certificate(pulumi.CustomResource):
                  args: CertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Certificate resource with the given unique name, props, and options.
+        Manages a **Certificate** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        ```
+
+        **NOTE**: You can also provide the values as multiline strings, as seen below:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=\"\"\"-----BEGIN CERTIFICATE-----
+        cert_body_here
+        -----END CERTIFICATE-----
+
+        \"\"\",
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        ```
+
+        ## Import
+
+        Resource certificate can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param CertificateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -244,10 +318,10 @@ class Certificate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate: The certificate body in PEM format. This attribute is immutable.
-        :param pulumi.Input[str] certificate_chain: The certificate chain. This attribute is immutable.
-        :param pulumi.Input[str] name: The certificate name
-        :param pulumi.Input[str] private_key: The private key blob. This attribute is immutable.
+        :param pulumi.Input[str] certificate: [string] The certificate body. Pem encoded. Immutable.
+        :param pulumi.Input[str] certificate_chain: [string] The certificate chain. Pem encoded. Immutable.
+        :param pulumi.Input[str] name: [string] The certificate name
+        :param pulumi.Input[str] private_key: [string] The certificate private key. Immutable. Sensitive.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -263,7 +337,7 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         """
-        The certificate body in PEM format. This attribute is immutable.
+        [string] The certificate body. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate")
 
@@ -271,7 +345,7 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter(name="certificateChain")
     def certificate_chain(self) -> pulumi.Output[Optional[str]]:
         """
-        The certificate chain. This attribute is immutable.
+        [string] The certificate chain. Pem encoded. Immutable.
         """
         return pulumi.get(self, "certificate_chain")
 
@@ -279,7 +353,7 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The certificate name
+        [string] The certificate name
         """
         return pulumi.get(self, "name")
 
@@ -287,7 +361,7 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         """
-        The private key blob. This attribute is immutable.
+        [string] The certificate private key. Immutable. Sensitive.
         """
         return pulumi.get(self, "private_key")
 

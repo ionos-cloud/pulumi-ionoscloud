@@ -9,102 +9,172 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DbaaS PgSql Cluster**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Basic example
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "de/txl",
+    ///         Description = "Datacenter for testing dbaas cluster",
+    ///     });
+    /// 
+    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var examplePSQLCluster = new Ionoscloud.Dbaas.PSQLCluster("examplePSQLCluster", new()
+    ///     {
+    ///         PostgresVersion = "12",
+    ///         Instances = 1,
+    ///         Cores = 4,
+    ///         Ram = 2048,
+    ///         StorageSize = 2048,
+    ///         StorageType = "HDD",
+    ///         ConnectionPooler = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionPoolerArgs
+    ///         {
+    ///             Enabled = true,
+    ///             PoolMode = "session",
+    ///         },
+    ///         Connections = new Ionoscloud.Dbaas.Inputs.PSQLClusterConnectionsArgs
+    ///         {
+    ///             DatacenterId = exampleDatacenter.Id,
+    ///             LanId = exampleLan.Id,
+    ///             Cidr = "192.168.100.1/24",
+    ///         },
+    ///         Location = exampleDatacenter.Location,
+    ///         DisplayName = "PostgreSQL_cluster",
+    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.PSQLClusterMaintenanceWindowArgs
+    ///         {
+    ///             DayOfTheWeek = "Sunday",
+    ///             Time = "09:00:00",
+    ///         },
+    ///         Credentials = new Ionoscloud.Dbaas.Inputs.PSQLClusterCredentialsArgs
+    ///         {
+    ///             Username = "username",
+    ///             Password = "strongPassword",
+    ///         },
+    ///         SynchronizationMode = "ASYNCHRONOUS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/pSQLCluster:PSQLCluster")]
     public partial class PSQLCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The Object Storage location where the backups will be stored.
+        /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Output("backupLocation")]
         public Output<string> BackupLocation { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration options for the connection pooler
+        /// [object]
         /// </summary>
         [Output("connectionPooler")]
         public Output<Outputs.PSQLClusterConnectionPooler> ConnectionPooler { get; private set; } = null!;
 
         /// <summary>
-        /// Details about the network connection for your cluster.
+        /// [string] Details about the network connection for your cluster.
         /// </summary>
         [Output("connections")]
         public Output<Outputs.PSQLClusterConnections?> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// The number of CPU cores per replica.
+        /// [int] The number of CPU cores per replica.
         /// </summary>
         [Output("cores")]
         public Output<int> Cores { get; private set; } = null!;
 
         /// <summary>
-        /// Credentials for the database user to be created.
+        /// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Output("credentials")]
         public Output<Outputs.PSQLClusterCredentials> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS name pointing to your cluster
+        /// [string] The DNS name pointing to your cluster.
         /// </summary>
         [Output("dnsName")]
         public Output<string> DnsName { get; private set; } = null!;
 
         /// <summary>
-        /// Creates the cluster based on the existing backup.
+        /// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Output("fromBackup")]
         public Output<Outputs.PSQLClusterFromBackup?> FromBackup { get; private set; } = null!;
 
         /// <summary>
-        /// The total number of instances in the cluster (one master and n-1 standbys)
+        /// [int] The total number of instances in the cluster (one master and n-1 standbys)
         /// </summary>
         [Output("instances")]
         public Output<int> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        /// be modified after datacenter creation (disallowed in update requests)
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// a weekly 4 hour-long window, during which maintenance might occur
+        /// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.PSQLClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
         /// <summary>
-        /// The PostgreSQL version of your cluster.
+        /// [string] The PostgreSQL version of your cluster.
         /// </summary>
         [Output("postgresVersion")]
         public Output<string> PostgresVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+        /// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         /// </summary>
         [Output("ram")]
         public Output<int> Ram { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+        /// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         /// </summary>
         [Output("storageSize")]
         public Output<int> StorageSize { get; private set; } = null!;
 
         /// <summary>
-        /// The storage type used in your cluster.
+        /// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Output("storageType")]
         public Output<string> StorageType { get; private set; } = null!;
 
         /// <summary>
-        /// Represents different modes of replication.
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Output("synchronizationMode")]
         public Output<string> SynchronizationMode { get; private set; } = null!;
@@ -156,92 +226,91 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class PSQLClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Object Storage location where the backups will be stored.
+        /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Input("backupLocation")]
         public Input<string>? BackupLocation { get; set; }
 
         /// <summary>
-        /// Configuration options for the connection pooler
+        /// [object]
         /// </summary>
         [Input("connectionPooler")]
         public Input<Inputs.PSQLClusterConnectionPoolerArgs>? ConnectionPooler { get; set; }
 
         /// <summary>
-        /// Details about the network connection for your cluster.
+        /// [string] Details about the network connection for your cluster.
         /// </summary>
         [Input("connections")]
         public Input<Inputs.PSQLClusterConnectionsArgs>? Connections { get; set; }
 
         /// <summary>
-        /// The number of CPU cores per replica.
+        /// [int] The number of CPU cores per replica.
         /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
 
         /// <summary>
-        /// Credentials for the database user to be created.
+        /// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("credentials", required: true)]
         public Input<Inputs.PSQLClusterCredentialsArgs> Credentials { get; set; } = null!;
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// Creates the cluster based on the existing backup.
+        /// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("fromBackup")]
         public Input<Inputs.PSQLClusterFromBackupArgs>? FromBackup { get; set; }
 
         /// <summary>
-        /// The total number of instances in the cluster (one master and n-1 standbys)
+        /// [int] The total number of instances in the cluster (one master and n-1 standbys)
         /// </summary>
         [Input("instances", required: true)]
         public Input<int> Instances { get; set; } = null!;
 
         /// <summary>
-        /// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        /// be modified after datacenter creation (disallowed in update requests)
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// a weekly 4 hour-long window, during which maintenance might occur
+        /// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.PSQLClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// The PostgreSQL version of your cluster.
+        /// [string] The PostgreSQL version of your cluster.
         /// </summary>
         [Input("postgresVersion", required: true)]
         public Input<string> PostgresVersion { get; set; } = null!;
 
         /// <summary>
-        /// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+        /// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         /// </summary>
         [Input("ram", required: true)]
         public Input<int> Ram { get; set; } = null!;
 
         /// <summary>
-        /// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+        /// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         /// </summary>
         [Input("storageSize", required: true)]
         public Input<int> StorageSize { get; set; } = null!;
 
         /// <summary>
-        /// The storage type used in your cluster.
+        /// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("storageType", required: true)]
         public Input<string> StorageType { get; set; } = null!;
 
         /// <summary>
-        /// Represents different modes of replication.
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("synchronizationMode", required: true)]
         public Input<string> SynchronizationMode { get; set; } = null!;
@@ -255,98 +324,97 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class PSQLClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Object Storage location where the backups will be stored.
+        /// (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
         /// </summary>
         [Input("backupLocation")]
         public Input<string>? BackupLocation { get; set; }
 
         /// <summary>
-        /// Configuration options for the connection pooler
+        /// [object]
         /// </summary>
         [Input("connectionPooler")]
         public Input<Inputs.PSQLClusterConnectionPoolerGetArgs>? ConnectionPooler { get; set; }
 
         /// <summary>
-        /// Details about the network connection for your cluster.
+        /// [string] Details about the network connection for your cluster.
         /// </summary>
         [Input("connections")]
         public Input<Inputs.PSQLClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// The number of CPU cores per replica.
+        /// [int] The number of CPU cores per replica.
         /// </summary>
         [Input("cores")]
         public Input<int>? Cores { get; set; }
 
         /// <summary>
-        /// Credentials for the database user to be created.
+        /// [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("credentials")]
         public Input<Inputs.PSQLClusterCredentialsGetArgs>? Credentials { get; set; }
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The DNS name pointing to your cluster
+        /// [string] The DNS name pointing to your cluster.
         /// </summary>
         [Input("dnsName")]
         public Input<string>? DnsName { get; set; }
 
         /// <summary>
-        /// Creates the cluster based on the existing backup.
+        /// [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("fromBackup")]
         public Input<Inputs.PSQLClusterFromBackupGetArgs>? FromBackup { get; set; }
 
         /// <summary>
-        /// The total number of instances in the cluster (one master and n-1 standbys)
+        /// [int] The total number of instances in the cluster (one master and n-1 standbys)
         /// </summary>
         [Input("instances")]
         public Input<int>? Instances { get; set; }
 
         /// <summary>
-        /// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-        /// be modified after datacenter creation (disallowed in update requests)
+        /// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// a weekly 4 hour-long window, during which maintenance might occur
+        /// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.PSQLClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// The PostgreSQL version of your cluster.
+        /// [string] The PostgreSQL version of your cluster.
         /// </summary>
         [Input("postgresVersion")]
         public Input<string>? PostgresVersion { get; set; }
 
         /// <summary>
-        /// The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+        /// [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         /// </summary>
         [Input("ram")]
         public Input<int>? Ram { get; set; }
 
         /// <summary>
-        /// The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+        /// [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
         /// </summary>
         [Input("storageSize")]
         public Input<int>? StorageSize { get; set; }
 
         /// <summary>
-        /// The storage type used in your cluster.
+        /// [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
 
         /// <summary>
-        /// Represents different modes of replication.
+        /// [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
         /// </summary>
         [Input("synchronizationMode")]
         public Input<string>? SynchronizationMode { get; set; }

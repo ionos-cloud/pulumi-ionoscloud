@@ -58,25 +58,16 @@ class GetKafkaClusterResult:
     @property
     @pulumi.getter(name="brokerAddresses")
     def broker_addresses(self) -> Sequence[str]:
-        """
-        IP address and port of cluster brokers.
-        """
         return pulumi.get(self, "broker_addresses")
 
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetKafkaClusterConnectionResult']:
-        """
-        Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        UUID of the Kafka Cluster.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -87,9 +78,6 @@ class GetKafkaClusterResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the Kafka Cluster.
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -100,17 +88,11 @@ class GetKafkaClusterResult:
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The size of the Kafka Cluster.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        The version of the Kafka Cluster.
-        """
         return pulumi.get(self, "version")
 
 
@@ -136,17 +118,7 @@ def get_kafka_cluster(id: Optional[str] = None,
                       partial_match: Optional[bool] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKafkaClusterResult:
     """
-    The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-    You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
-
-    ## Example Usage
-
-
-    :param str id: ID of an existing Kafka Cluster that you want to search for.
-    :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-    :param str name: Name of an existing Kafka Cluster that you want to search for.
+    Use this data source to access information about an existing resource.
     """
     pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
     __args__ = dict()
@@ -172,19 +144,12 @@ def get_kafka_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                              partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaClusterResult]:
     """
-    The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-    You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
-
-    ## Example Usage
-
-
-    :param str id: ID of an existing Kafka Cluster that you want to search for.
-    :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-    :param str name: Name of an existing Kafka Cluster that you want to search for.
+    Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
     pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['location'] = location

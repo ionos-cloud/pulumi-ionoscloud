@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class PSQLClusterFromBackupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique ID of the backup you want to restore.
+        /// [string] The unique ID of the backup you want to restore.
         /// </summary>
         [Input("backupId", required: true)]
         public Input<string> BackupId { get; set; } = null!;
 
         /// <summary>
-        /// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        /// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         /// </summary>
         [Input("recoveryTargetTime")]
         public Input<string>? RecoveryTargetTime { get; set; }

@@ -13,9 +13,12 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     [OutputType]
     public sealed class PSQLClusterConnectionPooler
     {
+        /// <summary>
+        /// [bool]
+        /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// Represents different modes of connection pooling for the connection pooler
+        /// [string] Represents different modes of connection pooling for the connection pooler.
         /// </summary>
         public readonly string PoolMode;
 

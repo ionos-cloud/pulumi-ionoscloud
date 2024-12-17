@@ -20,6 +20,12 @@ __all__ = [
     'RegistryStorageUsage',
     'RegistryTokenCredential',
     'RegistryTokenScope',
+    'GetRegistryFeatureResult',
+    'GetRegistryGarbageCollectionScheduleResult',
+    'GetRegistryMaintenanceWindowResult',
+    'GetRegistryStorageUsageResult',
+    'GetRegistryTokenCredentialResult',
+    'GetRegistryTokenScopeResult',
 ]
 
 @pulumi.output_type
@@ -185,6 +191,125 @@ class RegistryTokenScope(dict):
         """
         [string]
         """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRegistryFeatureResult(dict):
+    def __init__(__self__, *,
+                 vulnerability_scanning: bool):
+        pulumi.set(__self__, "vulnerability_scanning", vulnerability_scanning)
+
+    @property
+    @pulumi.getter(name="vulnerabilityScanning")
+    def vulnerability_scanning(self) -> bool:
+        return pulumi.get(self, "vulnerability_scanning")
+
+
+@pulumi.output_type
+class GetRegistryGarbageCollectionScheduleResult(dict):
+    def __init__(__self__, *,
+                 days: Sequence[str],
+                 time: str):
+        pulumi.set(__self__, "days", days)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Sequence[str]:
+        return pulumi.get(self, "days")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetRegistryMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 days: Sequence[str],
+                 time: str):
+        pulumi.set(__self__, "days", days)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Sequence[str]:
+        return pulumi.get(self, "days")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetRegistryStorageUsageResult(dict):
+    def __init__(__self__, *,
+                 bytes: int,
+                 updated_at: str):
+        pulumi.set(__self__, "bytes", bytes)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def bytes(self) -> int:
+        return pulumi.get(self, "bytes")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetRegistryTokenCredentialResult(dict):
+    def __init__(__self__, *,
+                 username: str):
+        """
+        :param str username: * `expiry-date`
+        """
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        * `expiry-date`
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetRegistryTokenScopeResult(dict):
+    def __init__(__self__, *,
+                 actions: Sequence[str],
+                 name: str,
+                 type: str):
+        """
+        :param str name: Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
+        pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def actions(self) -> Sequence[str]:
+        return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
         return pulumi.get(self, "type")
 
 

@@ -13,7 +13,13 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     [OutputType]
     public sealed class PSQLClusterMaintenanceWindow
     {
+        /// <summary>
+        /// [string]
+        /// </summary>
         public readonly string DayOfTheWeek;
+        /// <summary>
+        /// [string]
+        /// </summary>
         public readonly string Time;
 
         [OutputConstructor]

@@ -21,18 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer":
-		r = &ApplicationLoadbalancer{}
-	case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
-		r = &ApplicationLoadbalancerForwardingrule{}
 	case "ionoscloud:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
-	case "ionoscloud:index/loggingPipeline:LoggingPipeline":
-		r = &LoggingPipeline{}
-	case "ionoscloud:index/networkloadbalancer:Networkloadbalancer":
-		r = &Networkloadbalancer{}
-	case "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule":
-		r = &NetworkloadbalancerForwardingrule{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
 		r = &TargetGroup{}
 	default:
@@ -68,32 +58,7 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
-		"index/applicationLoadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/applicationLoadbalancerForwardingrule",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
 		"index/loadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/loggingPipeline",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/networkloadbalancer",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/networkloadbalancerForwardingrule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

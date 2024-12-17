@@ -12,11 +12,16 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
 
     public sealed class MongoUserRoleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [true] Database on which to apply the role.
+        /// 
+        /// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
 
         /// <summary>
-        /// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        /// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

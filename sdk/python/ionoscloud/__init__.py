@@ -5,78 +5,24 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .application_loadbalancer import *
-from .application_loadbalancer_forwardingrule import *
-from .get_application_loadbalancer import *
-from .get_application_loadbalancer_forwardingrule import *
-from .get_auto_certificate import *
-from .get_auto_certificate_provider import *
-from .get_backup_unit import *
-from .get_cdn_distribution import *
-from .get_certificate import *
-from .get_container_registry import *
 from .get_container_registry_locations import *
-from .get_container_registry_token import *
-from .get_cube_server import *
-from .get_datacenter import *
-from .get_dataplatform_cluster import *
-from .get_dataplatform_node_pool import *
 from .get_dataplatform_node_pools import *
 from .get_dataplatform_versions import *
-from .get_dns_record import *
-from .get_dns_zone import *
-from .get_firewall import *
-from .get_group import *
 from .get_image import *
-from .get_inmemorydb_replicaset import *
 from .get_inmemorydb_snapshot import *
-from .get_ipblock import *
-from .get_ipfailover import *
-from .get_k8s_cluster import *
 from .get_k8s_clusters import *
-from .get_k8s_node_pool import *
 from .get_k8s_node_pool_nodes import *
-from .get_lan import *
 from .get_location import *
-from .get_logging_pipeline import *
 from .get_mariadb_backups import *
-from .get_mariadb_cluster import *
-from .get_mongo_cluster import *
 from .get_mongo_template import *
-from .get_mongo_user import *
-from .get_natgateway import *
-from .get_natgateway_rule import *
-from .get_networkloadbalancer import *
-from .get_networkloadbalancer_forwardingrule import *
-from .get_nfs_cluster import *
-from .get_nfs_share import *
-from .get_nic import *
 from .get_pg_backups import *
-from .get_pg_cluster import *
-from .get_pg_database import *
 from .get_pg_databases import *
-from .get_pg_user import *
 from .get_pg_versions import *
-from .get_private_crossconnect import *
 from .get_resource import *
-from .get_s3_key import *
-from .get_server import *
 from .get_servers import *
-from .get_share import *
-from .get_snapshot import *
 from .get_target_group import *
 from .get_template import *
-from .get_user import *
-from .get_vcpu_server import *
-from .get_volume import *
-from .get_vpn_ipsec_gateway import *
-from .get_vpn_ipsec_tunnel import *
-from .get_vpn_wireguard_gateway import *
-from .get_vpn_wireguard_peer import *
 from .loadbalancer import *
-from .logging_pipeline import *
-from .networkloadbalancer import *
-from .networkloadbalancer_forwardingrule import *
 from .provider import *
 from .target_group import *
 from ._inputs import *
@@ -84,6 +30,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import ionoscloud.alb as __alb
+    alb = __alb
     import ionoscloud.apigateway as __apigateway
     apigateway = __apigateway
     import ionoscloud.autoscaling as __autoscaling
@@ -108,11 +56,16 @@ if typing.TYPE_CHECKING:
     k8s = __k8s
     import ionoscloud.kafka as __kafka
     kafka = __kafka
+    import ionoscloud.logging as __logging
+    logging = __logging
     import ionoscloud.nfs as __nfs
     nfs = __nfs
+    import ionoscloud.nlb as __nlb
+    nlb = __nlb
     import ionoscloud.vpn as __vpn
     vpn = __vpn
 else:
+    alb = _utilities.lazy_import('ionoscloud.alb')
     apigateway = _utilities.lazy_import('ionoscloud.apigateway')
     autoscaling = _utilities.lazy_import('ionoscloud.autoscaling')
     cdn = _utilities.lazy_import('ionoscloud.cdn')
@@ -125,12 +78,30 @@ else:
     dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
     kafka = _utilities.lazy_import('ionoscloud.kafka')
+    logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
+    nlb = _utilities.lazy_import('ionoscloud.nlb')
     vpn = _utilities.lazy_import('ionoscloud.vpn')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/balancer",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/balancer:Balancer": "Balancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "alb/forwardingRule",
+  "fqn": "ionoscloud.alb",
+  "classes": {
+   "ionoscloud:alb/forwardingRule:ForwardingRule": "ForwardingRule"
+  }
+ },
  {
   "pkg": "ionoscloud",
   "mod": "apigateway/apigateway",
@@ -453,50 +424,10 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer": "ApplicationLoadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/applicationLoadbalancerForwardingrule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule": "ApplicationLoadbalancerForwardingrule"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/loadbalancer",
   "fqn": "ionoscloud",
   "classes": {
    "ionoscloud:index/loadbalancer:Loadbalancer": "Loadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/loggingPipeline",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/loggingPipeline:LoggingPipeline": "LoggingPipeline"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/networkloadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/networkloadbalancer:Networkloadbalancer": "Networkloadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/networkloadbalancerForwardingrule",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/networkloadbalancerForwardingrule:NetworkloadbalancerForwardingrule": "NetworkloadbalancerForwardingrule"
   }
  },
  {
@@ -541,6 +472,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "logging/pipeline",
+  "fqn": "ionoscloud.logging",
+  "classes": {
+   "ionoscloud:logging/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "nfs/cluster",
   "fqn": "ionoscloud.nfs",
   "classes": {
@@ -553,6 +492,22 @@ _utilities.register(
   "fqn": "ionoscloud.nfs",
   "classes": {
    "ionoscloud:nfs/share:Share": "Share"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nlb/balancer",
+  "fqn": "ionoscloud.nlb",
+  "classes": {
+   "ionoscloud:nlb/balancer:Balancer": "Balancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "nlb/forwardingRule",
+  "fqn": "ionoscloud.nlb",
+  "classes": {
+   "ionoscloud:nlb/forwardingRule:ForwardingRule": "ForwardingRule"
   }
  },
  {

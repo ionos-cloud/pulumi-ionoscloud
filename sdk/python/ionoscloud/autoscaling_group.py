@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -258,8 +263,8 @@ class AutoscalingGroup(pulumi.CustomResource):
                  max_replica_count: Optional[pulumi.Input[int]] = None,
                  min_replica_count: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']]] = None,
-                 replica_configuration: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['AutoscalingGroupPolicyArgs', 'AutoscalingGroupPolicyArgsDict']]] = None,
+                 replica_configuration: Optional[pulumi.Input[Union['AutoscalingGroupReplicaConfigurationArgs', 'AutoscalingGroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         """
         Create a AutoscalingGroup resource with the given unique name, props, and options.
@@ -271,7 +276,11 @@ class AutoscalingGroup(pulumi.CustomResource):
         :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
                both automatic and manual changes
         :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
+<<<<<<< HEAD
         :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+=======
+        :param pulumi.Input[Union['AutoscalingGroupPolicyArgs', 'AutoscalingGroupPolicyArgsDict']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+>>>>>>> main
                automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
                separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
                metric.
@@ -303,8 +312,8 @@ class AutoscalingGroup(pulumi.CustomResource):
                  max_replica_count: Optional[pulumi.Input[int]] = None,
                  min_replica_count: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']]] = None,
-                 replica_configuration: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['AutoscalingGroupPolicyArgs', 'AutoscalingGroupPolicyArgsDict']]] = None,
+                 replica_configuration: Optional[pulumi.Input[Union['AutoscalingGroupReplicaConfigurationArgs', 'AutoscalingGroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         pulumi.log.warn("""AutoscalingGroup is deprecated: ionoscloud.index/autoscalinggroup.AutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/group.Group""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -347,8 +356,8 @@ class AutoscalingGroup(pulumi.CustomResource):
             max_replica_count: Optional[pulumi.Input[int]] = None,
             min_replica_count: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policy: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']]] = None,
-            replica_configuration: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']]] = None) -> 'AutoscalingGroup':
+            policy: Optional[pulumi.Input[Union['AutoscalingGroupPolicyArgs', 'AutoscalingGroupPolicyArgsDict']]] = None,
+            replica_configuration: Optional[pulumi.Input[Union['AutoscalingGroupReplicaConfigurationArgs', 'AutoscalingGroupReplicaConfigurationArgsDict']]] = None) -> 'AutoscalingGroup':
         """
         Get an existing AutoscalingGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -363,7 +372,11 @@ class AutoscalingGroup(pulumi.CustomResource):
         :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
                both automatic and manual changes
         :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
+<<<<<<< HEAD
         :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+=======
+        :param pulumi.Input[Union['AutoscalingGroupPolicyArgs', 'AutoscalingGroupPolicyArgsDict']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+>>>>>>> main
                automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
                separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
                metric.

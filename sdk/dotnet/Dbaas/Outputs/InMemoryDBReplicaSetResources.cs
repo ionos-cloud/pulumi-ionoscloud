@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class InMemoryDBReplicaSetResources
     {
         /// <summary>
-        /// The number of CPU cores per instance.
+        /// [int] The number of CPU cores per instance.
         /// </summary>
         public readonly int Cores;
         /// <summary>
-        /// The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB).
         /// </summary>
         public readonly int Ram;
         /// <summary>
-        /// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        /// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         /// </summary>
         public readonly int? Storage;
 

@@ -12,48 +12,193 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DbaaS Mongo Cluster**.
+//
+// ## Example Usage
+//
+// ### Playground Or Business Editions. They Require Template_id Defined.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing dbaas cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//				DatacenterId: datacenterExample.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				MongodbVersion: pulumi.String("5.0"),
+//				Instances:      pulumi.Int(1),
+//				DisplayName:    pulumi.String("example_mongo_cluster"),
+//				Location:       datacenterExample.Location,
+//				Connections: &dbaas.MongoClusterConnectionsArgs{
+//					DatacenterId: datacenterExample.ID(),
+//					LanId:        lanExample.ID(),
+//					CidrLists: pulumi.StringArray{
+//						pulumi.String("192.168.1.108/24"),
+//					},
+//				},
+//				TemplateId: pulumi.String("6b78ea06-ee0e-4689-998c-fc9c46e781f6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Enterprise Edition
+//
+// **Enterprise Support: With MongoDB Enterprise, you gain access to professional support from the MongoDB team ensuring that you receive timely assistance and expert guidance when needed. IONOS offers enterprise-grade Service Level Agreements (SLAs), guaranteeing rapid response times and 24/7 support to address any critical issues that may arise.**
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing dbaas cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//				DatacenterId: datacenterExample.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				MongodbVersion: pulumi.String("5.0"),
+//				Instances:      pulumi.Int(3),
+//				DisplayName:    pulumi.String("example_mongo_cluster"),
+//				Location:       datacenterExample.Location,
+//				Connections: &dbaas.MongoClusterConnectionsArgs{
+//					DatacenterId: datacenterExample.ID(),
+//					LanId:        lanExample.ID(),
+//					CidrLists: pulumi.StringArray{
+//						pulumi.String("192.168.1.108/24"),
+//						pulumi.String("192.168.1.109/24"),
+//						pulumi.String("192.168.1.110/24"),
+//					},
+//				},
+//				Type:        pulumi.String("sharded-cluster"),
+//				Shards:      pulumi.Int(2),
+//				Edition:     pulumi.String("enterprise"),
+//				Ram:         pulumi.Int(2048),
+//				Cores:       pulumi.Int(1),
+//				StorageSize: pulumi.Int(5120),
+//				StorageType: pulumi.String("HDD"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+// ```
 type MongoCluster struct {
 	pulumi.CustomResourceState
 
-	// Backup related properties.
+	// [list]
 	Backup MongoClusterBackupPtrOutput `pulumi:"backup"`
-	// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-	// analysis.
+	// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 	BiConnector MongoClusterBiConnectorOutput `pulumi:"biConnector"`
-	// The connection string for your cluster.
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
 	ConnectionString pulumi.StringOutput `pulumi:"connectionString"`
-	// Details about the network connection for your cluster.
+	// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 	Connections MongoClusterConnectionsOutput `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 	Cores pulumi.IntOutput `pulumi:"cores"`
-	// The name of your cluster.
+	// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The cluster edition. Must be one of: playground, business, enterprise
+	// (Computed)[string] Cluster edition. Playground, business or enterprise.
 	Edition pulumi.StringOutput `pulumi:"edition"`
-	// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-	// at least 3.
+	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntOutput `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-	// Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// The MongoDB version of your cluster. Update forces cluster re-creation.
+	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringOutput `pulumi:"mongodbVersion"`
-	// The amount of memory per instance in megabytes. Multiple of 1024
+	// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 	Ram pulumi.IntOutput `pulumi:"ram"`
-	// The total number of shards in the cluster.
+	// [int]The total number of shards in the cluster.
 	Shards pulumi.IntPtrOutput `pulumi:"shards"`
-	// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+	// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
-	// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+	// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
-	// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-	// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-	// changes use the /templates endpoint.
+	// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 	TemplateId pulumi.StringPtrOutput `pulumi:"templateId"`
-	// The cluster type, either `replicaset` or `sharded-cluster`
+	// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -102,88 +247,76 @@ func GetMongoCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MongoCluster resources.
 type mongoClusterState struct {
-	// Backup related properties.
+	// [list]
 	Backup *MongoClusterBackup `pulumi:"backup"`
-	// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-	// analysis.
+	// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 	BiConnector *MongoClusterBiConnector `pulumi:"biConnector"`
-	// The connection string for your cluster.
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
 	ConnectionString *string `pulumi:"connectionString"`
-	// Details about the network connection for your cluster.
+	// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 	Connections *MongoClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 	Cores *int `pulumi:"cores"`
-	// The name of your cluster.
+	// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName *string `pulumi:"displayName"`
-	// The cluster edition. Must be one of: playground, business, enterprise
+	// (Computed)[string] Cluster edition. Playground, business or enterprise.
 	Edition *string `pulumi:"edition"`
-	// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-	// at least 3.
+	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances *int `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-	// Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location *string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The MongoDB version of your cluster. Update forces cluster re-creation.
+	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion *string `pulumi:"mongodbVersion"`
-	// The amount of memory per instance in megabytes. Multiple of 1024
+	// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 	Ram *int `pulumi:"ram"`
-	// The total number of shards in the cluster.
+	// [int]The total number of shards in the cluster.
 	Shards *int `pulumi:"shards"`
-	// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+	// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 	StorageSize *int `pulumi:"storageSize"`
-	// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+	// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 	StorageType *string `pulumi:"storageType"`
-	// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-	// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-	// changes use the /templates endpoint.
+	// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 	TemplateId *string `pulumi:"templateId"`
-	// The cluster type, either `replicaset` or `sharded-cluster`
+	// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 	Type *string `pulumi:"type"`
 }
 
 type MongoClusterState struct {
-	// Backup related properties.
+	// [list]
 	Backup MongoClusterBackupPtrInput
-	// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-	// analysis.
+	// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 	BiConnector MongoClusterBiConnectorPtrInput
-	// The connection string for your cluster.
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
 	ConnectionString pulumi.StringPtrInput
-	// Details about the network connection for your cluster.
+	// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 	Connections MongoClusterConnectionsPtrInput
-	// The number of CPU cores per instance.
+	// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 	Cores pulumi.IntPtrInput
-	// The name of your cluster.
+	// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName pulumi.StringPtrInput
-	// The cluster edition. Must be one of: playground, business, enterprise
+	// (Computed)[string] Cluster edition. Playground, business or enterprise.
 	Edition pulumi.StringPtrInput
-	// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-	// at least 3.
+	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntPtrInput
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-	// Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringPtrInput
-	// A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
-	// The MongoDB version of your cluster. Update forces cluster re-creation.
+	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringPtrInput
-	// The amount of memory per instance in megabytes. Multiple of 1024
+	// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 	Ram pulumi.IntPtrInput
-	// The total number of shards in the cluster.
+	// [int]The total number of shards in the cluster.
 	Shards pulumi.IntPtrInput
-	// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+	// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 	StorageSize pulumi.IntPtrInput
-	// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+	// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 	StorageType pulumi.StringPtrInput
-	// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-	// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-	// changes use the /templates endpoint.
+	// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 	TemplateId pulumi.StringPtrInput
-	// The cluster type, either `replicaset` or `sharded-cluster`
+	// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 	Type pulumi.StringPtrInput
 }
 
@@ -192,85 +325,73 @@ func (MongoClusterState) ElementType() reflect.Type {
 }
 
 type mongoClusterArgs struct {
-	// Backup related properties.
+	// [list]
 	Backup *MongoClusterBackup `pulumi:"backup"`
-	// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-	// analysis.
+	// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 	BiConnector *MongoClusterBiConnector `pulumi:"biConnector"`
-	// Details about the network connection for your cluster.
+	// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 	Connections MongoClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 	Cores *int `pulumi:"cores"`
-	// The name of your cluster.
+	// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName string `pulumi:"displayName"`
-	// The cluster edition. Must be one of: playground, business, enterprise
+	// (Computed)[string] Cluster edition. Playground, business or enterprise.
 	Edition *string `pulumi:"edition"`
-	// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-	// at least 3.
+	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances int `pulumi:"instances"`
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-	// Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The MongoDB version of your cluster. Update forces cluster re-creation.
+	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion string `pulumi:"mongodbVersion"`
-	// The amount of memory per instance in megabytes. Multiple of 1024
+	// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 	Ram *int `pulumi:"ram"`
-	// The total number of shards in the cluster.
+	// [int]The total number of shards in the cluster.
 	Shards *int `pulumi:"shards"`
-	// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+	// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 	StorageSize *int `pulumi:"storageSize"`
-	// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+	// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 	StorageType *string `pulumi:"storageType"`
-	// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-	// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-	// changes use the /templates endpoint.
+	// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 	TemplateId *string `pulumi:"templateId"`
-	// The cluster type, either `replicaset` or `sharded-cluster`
+	// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a MongoCluster resource.
 type MongoClusterArgs struct {
-	// Backup related properties.
+	// [list]
 	Backup MongoClusterBackupPtrInput
-	// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-	// analysis.
+	// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 	BiConnector MongoClusterBiConnectorPtrInput
-	// Details about the network connection for your cluster.
+	// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 	Connections MongoClusterConnectionsInput
-	// The number of CPU cores per instance.
+	// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 	Cores pulumi.IntPtrInput
-	// The name of your cluster.
+	// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 	DisplayName pulumi.StringInput
-	// The cluster edition. Must be one of: playground, business, enterprise
+	// (Computed)[string] Cluster edition. Playground, business or enterprise.
 	Edition pulumi.StringPtrInput
-	// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-	// at least 3.
+	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntInput
-	// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-	// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-	// Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringInput
-	// A weekly 4 hour-long window, during which maintenance might occur
+	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
-	// The MongoDB version of your cluster. Update forces cluster re-creation.
+	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringInput
-	// The amount of memory per instance in megabytes. Multiple of 1024
+	// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 	Ram pulumi.IntPtrInput
-	// The total number of shards in the cluster.
+	// [int]The total number of shards in the cluster.
 	Shards pulumi.IntPtrInput
-	// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+	// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 	StorageSize pulumi.IntPtrInput
-	// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+	// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 	StorageType pulumi.StringPtrInput
-	// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-	// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-	// changes use the /templates endpoint.
+	// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 	TemplateId pulumi.StringPtrInput
-	// The cluster type, either `replicaset` or `sharded-cluster`
+	// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 	Type pulumi.StringPtrInput
 }
 
@@ -361,93 +482,87 @@ func (o MongoClusterOutput) ToMongoClusterOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Backup related properties.
+// [list]
 func (o MongoClusterOutput) Backup() MongoClusterBackupPtrOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterBackupPtrOutput { return v.Backup }).(MongoClusterBackupPtrOutput)
 }
 
-// The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data
-// analysis.
+// (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
 func (o MongoClusterOutput) BiConnector() MongoClusterBiConnectorOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterBiConnectorOutput { return v.BiConnector }).(MongoClusterBiConnectorOutput)
 }
 
-// The connection string for your cluster.
+// [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
 func (o MongoClusterOutput) ConnectionString() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.ConnectionString }).(pulumi.StringOutput)
 }
 
-// Details about the network connection for your cluster.
+// [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) Connections() MongoClusterConnectionsOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterConnectionsOutput { return v.Connections }).(MongoClusterConnectionsOutput)
 }
 
-// The number of CPU cores per instance.
+// (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
 func (o MongoClusterOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntOutput { return v.Cores }).(pulumi.IntOutput)
 }
 
-// The name of your cluster.
+// [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The cluster edition. Must be one of: playground, business, enterprise
+// (Computed)[string] Cluster edition. Playground, business or enterprise.
 func (o MongoClusterOutput) Edition() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Edition }).(pulumi.StringOutput)
 }
 
-// The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. For enterprise edition
-// at least 3.
+// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntOutput { return v.Instances }).(pulumi.IntOutput)
 }
 
-// The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-// be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit.
-// Update forces cluster re-creation.
+// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 func (o MongoClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// A weekly 4 hour-long window, during which maintenance might occur
+// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) MaintenanceWindow() MongoClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MongoClusterMaintenanceWindowOutput)
 }
 
-// The MongoDB version of your cluster. Update forces cluster re-creation.
+// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) MongodbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.MongodbVersion }).(pulumi.StringOutput)
 }
 
-// The amount of memory per instance in megabytes. Multiple of 1024
+// (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
 func (o MongoClusterOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
 }
 
-// The total number of shards in the cluster.
+// [int]The total number of shards in the cluster.
 func (o MongoClusterOutput) Shards() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntPtrOutput { return v.Shards }).(pulumi.IntPtrOutput)
 }
 
-// The amount of storage per instance in megabytes. At least 5120, at most 2097152
+// (Computed)[int] The amount of storage per instance in MB. Required for enterprise edition.
 func (o MongoClusterOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-// The storage type. One of : HDD, SSD, SSD Standard, SSD Premium
+// (Computed)[String] The storage type used in your cluster. Required for enterprise edition.
 func (o MongoClusterOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }
 
-// The unique ID of the template, which specifies the number of cores, storage size, and memory. You cannot downgrade to a
-// smaller template or minor edition (e.g. from business to playground). To get a list of all templates to confirm the
-// changes use the /templates endpoint.
+// [string] The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created. Required for playground and business editions. Must not be provided for enterprise edition.
 func (o MongoClusterOutput) TemplateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringPtrOutput { return v.TemplateId }).(pulumi.StringPtrOutput)
 }
 
-// The cluster type, either `replicaset` or `sharded-cluster`
+// (Computed)[string]The cluster type, either `replicaset` or `sharded-cluster`.
 func (o MongoClusterOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -256,7 +261,7 @@ class ApigatewayRoute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -298,7 +303,7 @@ class ApigatewayRoute(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         pulumi.log.warn("""ApigatewayRoute is deprecated: ionoscloud.index/apigatewayroute.ApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/route.Route""")
@@ -340,7 +345,7 @@ class ApigatewayRoute(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayRouteUpstreamArgs']]]]] = None,
+            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
             websocket: Optional[pulumi.Input[bool]] = None) -> 'ApigatewayRoute':
         """
         Get an existing ApigatewayRoute resource's state with the given name, id, and optional extra

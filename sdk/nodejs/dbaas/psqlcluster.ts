@@ -6,6 +6,62 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **DbaaS PgSql Cluster**.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * // Basic example
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ *     location: "de/txl",
+ *     description: "Datacenter for testing dbaas cluster",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
+ *     datacenterId: exampleDatacenter.id,
+ *     "public": false,
+ * });
+ * const examplePSQLCluster = new ionoscloud.dbaas.PSQLCluster("examplePSQLCluster", {
+ *     postgresVersion: "12",
+ *     instances: 1,
+ *     cores: 4,
+ *     ram: 2048,
+ *     storageSize: 2048,
+ *     storageType: "HDD",
+ *     connectionPooler: {
+ *         enabled: true,
+ *         poolMode: "session",
+ *     },
+ *     connections: {
+ *         datacenterId: exampleDatacenter.id,
+ *         lanId: exampleLan.id,
+ *         cidr: "192.168.100.1/24",
+ *     },
+ *     location: exampleDatacenter.location,
+ *     displayName: "PostgreSQL_cluster",
+ *     maintenanceWindow: {
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     },
+ *     credentials: {
+ *         username: "username",
+ *         password: "strongPassword",
+ *     },
+ *     synchronizationMode: "ASYNCHRONOUS",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource DbaaS Postgres Cluster can be imported using the `cluster_id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:dbaas/pSQLCluster:PSQLCluster mycluser {cluster uuid}
+ * ```
+ */
 export class PSQLCluster extends pulumi.CustomResource {
     /**
      * Get an existing PSQLCluster resource's state with the given name, ID, and optional extra
@@ -35,68 +91,67 @@ export class PSQLCluster extends pulumi.CustomResource {
     }
 
     /**
-     * The Object Storage location where the backups will be stored.
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     public readonly backupLocation!: pulumi.Output<string>;
     /**
-     * Configuration options for the connection pooler
+     * [object]
      */
     public readonly connectionPooler!: pulumi.Output<outputs.dbaas.PSQLClusterConnectionPooler>;
     /**
-     * Details about the network connection for your cluster.
+     * [string] Details about the network connection for your cluster.
      */
     public readonly connections!: pulumi.Output<outputs.dbaas.PSQLClusterConnections | undefined>;
     /**
-     * The number of CPU cores per replica.
+     * [int] The number of CPU cores per replica.
      */
     public readonly cores!: pulumi.Output<number>;
     /**
-     * Credentials for the database user to be created.
+     * [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
      */
     public readonly credentials!: pulumi.Output<outputs.dbaas.PSQLClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
-     * The DNS name pointing to your cluster
+     * [string] The DNS name pointing to your cluster.
      */
     public /*out*/ readonly dnsName!: pulumi.Output<string>;
     /**
-     * Creates the cluster based on the existing backup.
+     * [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
      */
     public readonly fromBackup!: pulumi.Output<outputs.dbaas.PSQLClusterFromBackup | undefined>;
     /**
-     * The total number of instances in the cluster (one master and n-1 standbys)
+     * [int] The total number of instances in the cluster (one master and n-1 standbys)
      */
     public readonly instances!: pulumi.Output<number>;
     /**
-     * The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-     * be modified after datacenter creation (disallowed in update requests)
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * a weekly 4 hour-long window, during which maintenance might occur
+     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
-     * The PostgreSQL version of your cluster.
+     * [string] The PostgreSQL version of your cluster.
      */
     public readonly postgresVersion!: pulumi.Output<string>;
     /**
-     * The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+     * [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
      */
     public readonly ram!: pulumi.Output<number>;
     /**
-     * The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+     * [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
      */
     public readonly storageSize!: pulumi.Output<number>;
     /**
-     * The storage type used in your cluster.
+     * [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
      */
     public readonly storageType!: pulumi.Output<string>;
     /**
-     * Represents different modes of replication.
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
      */
     public readonly synchronizationMode!: pulumi.Output<string>;
 
@@ -188,68 +243,67 @@ export class PSQLCluster extends pulumi.CustomResource {
  */
 export interface PSQLClusterState {
     /**
-     * The Object Storage location where the backups will be stored.
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     backupLocation?: pulumi.Input<string>;
     /**
-     * Configuration options for the connection pooler
+     * [object]
      */
     connectionPooler?: pulumi.Input<inputs.dbaas.PSQLClusterConnectionPooler>;
     /**
-     * Details about the network connection for your cluster.
+     * [string] Details about the network connection for your cluster.
      */
     connections?: pulumi.Input<inputs.dbaas.PSQLClusterConnections>;
     /**
-     * The number of CPU cores per replica.
+     * [int] The number of CPU cores per replica.
      */
     cores?: pulumi.Input<number>;
     /**
-     * Credentials for the database user to be created.
+     * [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
      */
     credentials?: pulumi.Input<inputs.dbaas.PSQLClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The DNS name pointing to your cluster
+     * [string] The DNS name pointing to your cluster.
      */
     dnsName?: pulumi.Input<string>;
     /**
-     * Creates the cluster based on the existing backup.
+     * [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
      */
     fromBackup?: pulumi.Input<inputs.dbaas.PSQLClusterFromBackup>;
     /**
-     * The total number of instances in the cluster (one master and n-1 standbys)
+     * [int] The total number of instances in the cluster (one master and n-1 standbys)
      */
     instances?: pulumi.Input<number>;
     /**
-     * The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-     * be modified after datacenter creation (disallowed in update requests)
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
      */
     location?: pulumi.Input<string>;
     /**
-     * a weekly 4 hour-long window, during which maintenance might occur
+     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
-     * The PostgreSQL version of your cluster.
+     * [string] The PostgreSQL version of your cluster.
      */
     postgresVersion?: pulumi.Input<string>;
     /**
-     * The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+     * [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
      */
     ram?: pulumi.Input<number>;
     /**
-     * The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+     * [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
      */
     storageSize?: pulumi.Input<number>;
     /**
-     * The storage type used in your cluster.
+     * [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
      */
     storageType?: pulumi.Input<string>;
     /**
-     * Represents different modes of replication.
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
      */
     synchronizationMode?: pulumi.Input<string>;
 }
@@ -259,64 +313,63 @@ export interface PSQLClusterState {
  */
 export interface PSQLClusterArgs {
     /**
-     * The Object Storage location where the backups will be stored.
+     * (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
      */
     backupLocation?: pulumi.Input<string>;
     /**
-     * Configuration options for the connection pooler
+     * [object]
      */
     connectionPooler?: pulumi.Input<inputs.dbaas.PSQLClusterConnectionPooler>;
     /**
-     * Details about the network connection for your cluster.
+     * [string] Details about the network connection for your cluster.
      */
     connections?: pulumi.Input<inputs.dbaas.PSQLClusterConnections>;
     /**
-     * The number of CPU cores per replica.
+     * [int] The number of CPU cores per replica.
      */
     cores: pulumi.Input<number>;
     /**
-     * Credentials for the database user to be created.
+     * [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
      */
     credentials: pulumi.Input<inputs.dbaas.PSQLClusterCredentials>;
     /**
-     * The friendly name of your cluster.
+     * [string] The friendly name of your cluster.
      */
     displayName: pulumi.Input<string>;
     /**
-     * Creates the cluster based on the existing backup.
+     * [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
      */
     fromBackup?: pulumi.Input<inputs.dbaas.PSQLClusterFromBackup>;
     /**
-     * The total number of instances in the cluster (one master and n-1 standbys)
+     * [int] The total number of instances in the cluster (one master and n-1 standbys)
      */
     instances: pulumi.Input<number>;
     /**
-     * The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
-     * be modified after datacenter creation (disallowed in update requests)
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Possible values are: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`. This attribute is immutable(disallowed in update requests).
      */
     location: pulumi.Input<string>;
     /**
-     * a weekly 4 hour-long window, during which maintenance might occur
+     * (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.PSQLClusterMaintenanceWindow>;
     /**
-     * The PostgreSQL version of your cluster.
+     * [string] The PostgreSQL version of your cluster.
      */
     postgresVersion: pulumi.Input<string>;
     /**
-     * The amount of memory per instance in megabytes. Has to be a multiple of 1024.
+     * [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
      */
     ram: pulumi.Input<number>;
     /**
-     * The amount of storage per instance in megabytes. Has to be a multiple of 2048.
+     * [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
      */
     storageSize: pulumi.Input<number>;
     /**
-     * The storage type used in your cluster.
+     * [string] SSD, SSD Standard, SSD Premium, or HDD. Value "SSD" is deprecated, use the equivalent "SSD Premium" instead. This attribute is immutable(disallowed in update requests).
      */
     storageType: pulumi.Input<string>;
     /**
-     * Represents different modes of replication.
+     * [string] Represents different modes of replication. Can have one of the following values: ASYNCHRONOUS, SYNCHRONOUS, STRICTLY_SYNCHRONOUS. This attribute is immutable(disallowed in update requests).
      */
     synchronizationMode: pulumi.Input<string>;
 }

@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class MongoClusterConnections
     {
         /// <summary>
-        /// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        /// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
         /// </summary>
         public readonly ImmutableArray<string> CidrLists;
         /// <summary>
-        /// The datacenter to connect your cluster to.
+        /// [string] The datacenter to connect your cluster to.
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The LAN to connect your cluster to.
+        /// [string] The LAN to connect your cluster to.
         /// </summary>
         public readonly string LanId;
 

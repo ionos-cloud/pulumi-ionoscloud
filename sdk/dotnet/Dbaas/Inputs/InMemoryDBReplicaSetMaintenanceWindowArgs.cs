@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class InMemoryDBReplicaSetMaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the week day.
+        /// [string] The name of the week day.
         /// </summary>
         [Input("dayOfTheWeek", required: true)]
         public Input<string> DayOfTheWeek { get; set; } = null!;
 
         /// <summary>
-        /// Start of the maintenance window in UTC time.
+        /// [string] Start of the maintenance window in UTC time.
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

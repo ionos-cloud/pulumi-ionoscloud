@@ -9,18 +9,202 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DbaaS Mongo User**. .
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Basic example
+    ///     var datacenterExample = new Ionoscloud.Compute.Datacenter("datacenterExample", new()
+    ///     {
+    ///         Location = "de/txl",
+    ///         Description = "Datacenter for testing dbaas cluster",
+    ///     });
+    /// 
+    ///     var lanExample = new Ionoscloud.Compute.Lan("lanExample", new()
+    ///     {
+    ///         DatacenterId = datacenterExample.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var exampleMongoCluster = new Ionoscloud.Dbaas.MongoCluster("exampleMongoCluster", new()
+    ///     {
+    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.MongoClusterMaintenanceWindowArgs
+    ///         {
+    ///             DayOfTheWeek = "Sunday",
+    ///             Time = "09:00:00",
+    ///         },
+    ///         MongodbVersion = "5.0",
+    ///         Instances = 1,
+    ///         DisplayName = "example_mongo_cluster",
+    ///         Location = datacenterExample.Location,
+    ///         Connections = new Ionoscloud.Dbaas.Inputs.MongoClusterConnectionsArgs
+    ///         {
+    ///             DatacenterId = datacenterExample.Id,
+    ///             LanId = lanExample.Id,
+    ///             CidrLists = new[]
+    ///             {
+    ///                 "192.168.1.108/24",
+    ///             },
+    ///         },
+    ///         TemplateId = "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
+    ///     });
+    /// 
+    ///     var exampleMongoUser = new Ionoscloud.Dbaas.MongoUser("exampleMongoUser", new()
+    ///     {
+    ///         ClusterId = exampleMongoCluster.Id,
+    ///         Username = "myUser",
+    ///         Password = "strongPassword",
+    ///         Roles = new[]
+    ///         {
+    ///             new Ionoscloud.Dbaas.Inputs.MongoUserRoleArgs
+    ///             {
+    ///                 Role = "read",
+    ///                 Database = "db1",
+    ///             },
+    ///             new Ionoscloud.Dbaas.Inputs.MongoUserRoleArgs
+    ///             {
+    ///                 Role = "readWrite",
+    ///                 Database = "db2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Complete example
+    ///     var datacenterExample = new Ionoscloud.Compute.Datacenter("datacenterExample", new()
+    ///     {
+    ///         Location = "de/txl",
+    ///         Description = "Datacenter for testing dbaas cluster",
+    ///     });
+    /// 
+    ///     var lanExample = new Ionoscloud.Compute.Lan("lanExample", new()
+    ///     {
+    ///         DatacenterId = datacenterExample.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var exampleMongoCluster = new Ionoscloud.Dbaas.MongoCluster("exampleMongoCluster", new()
+    ///     {
+    ///         MaintenanceWindow = new Ionoscloud.Dbaas.Inputs.MongoClusterMaintenanceWindowArgs
+    ///         {
+    ///             DayOfTheWeek = "Sunday",
+    ///             Time = "09:00:00",
+    ///         },
+    ///         MongodbVersion = "5.0",
+    ///         Instances = 1,
+    ///         DisplayName = "example_mongo_cluster",
+    ///         Location = datacenterExample.Location,
+    ///         Connections = new Ionoscloud.Dbaas.Inputs.MongoClusterConnectionsArgs
+    ///         {
+    ///             DatacenterId = datacenterExample.Id,
+    ///             LanId = lanExample.Id,
+    ///             CidrLists = new[]
+    ///             {
+    ///                 "192.168.1.108/24",
+    ///             },
+    ///         },
+    ///         TemplateId = "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
+    ///     });
+    /// 
+    ///     var clusterPassword = new Random.RandomPassword("clusterPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
+    ///     });
+    /// 
+    ///     var userPassword = new Random.RandomPassword("userPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
+    ///     });
+    /// 
+    ///     var exampleMongoUser = new Ionoscloud.Dbaas.MongoUser("exampleMongoUser", new()
+    ///     {
+    ///         ClusterId = exampleMongoCluster.Id,
+    ///         Username = "myUser",
+    ///         Password = userPassword.Result,
+    ///         Roles = new[]
+    ///         {
+    ///             new Ionoscloud.Dbaas.Inputs.MongoUserRoleArgs
+    ///             {
+    ///                 Role = "read",
+    ///                 Database = "db1",
+    ///             },
+    ///             new Ionoscloud.Dbaas.Inputs.MongoUserRoleArgs
+    ///             {
+    ///                 Role = "readWrite",
+    ///                 Database = "db2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
+    /// 
+    /// First, define an empty resource in the plan:
+    /// 
+    /// hcl
+    /// 
+    /// resource "ionoscloud_mongo_user" "importeduser" {
+    /// 
+    /// }
+    /// 
+    /// Then you can import the user using the following command:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/mongoUser:MongoUser")]
     public partial class MongoUser : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] User password. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<Outputs.MongoUserRole>> Roles { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
@@ -74,11 +258,18 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class MongoUserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         [Input("password", required: true)]
         private Input<string>? _password;
+
+        /// <summary>
+        /// [string] User password. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -91,12 +282,19 @@ namespace Pulumi.Ionoscloud.Dbaas
 
         [Input("roles")]
         private InputList<Inputs.MongoUserRoleArgs>? _roles;
+
+        /// <summary>
+        /// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public InputList<Inputs.MongoUserRoleArgs> Roles
         {
             get => _roles ?? (_roles = new InputList<Inputs.MongoUserRoleArgs>());
             set => _roles = value;
         }
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -108,11 +306,18 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class MongoUserState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// [string] User password. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -125,12 +330,19 @@ namespace Pulumi.Ionoscloud.Dbaas
 
         [Input("roles")]
         private InputList<Inputs.MongoUserRoleGetArgs>? _roles;
+
+        /// <summary>
+        /// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public InputList<Inputs.MongoUserRoleGetArgs> Roles
         {
             get => _roles ?? (_roles = new InputList<Inputs.MongoUserRoleGetArgs>());
             set => _roles = value;
         }
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

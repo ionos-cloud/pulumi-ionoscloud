@@ -629,6 +629,606 @@ func (o RegistryTokenScopeArrayOutput) Index(i pulumi.IntInput) RegistryTokenSco
 	}).(RegistryTokenScopeOutput)
 }
 
+type GetRegistryFeature struct {
+	VulnerabilityScanning bool `pulumi:"vulnerabilityScanning"`
+}
+
+// GetRegistryFeatureInput is an input type that accepts GetRegistryFeatureArgs and GetRegistryFeatureOutput values.
+// You can construct a concrete instance of `GetRegistryFeatureInput` via:
+//
+//	GetRegistryFeatureArgs{...}
+type GetRegistryFeatureInput interface {
+	pulumi.Input
+
+	ToGetRegistryFeatureOutput() GetRegistryFeatureOutput
+	ToGetRegistryFeatureOutputWithContext(context.Context) GetRegistryFeatureOutput
+}
+
+type GetRegistryFeatureArgs struct {
+	VulnerabilityScanning pulumi.BoolInput `pulumi:"vulnerabilityScanning"`
+}
+
+func (GetRegistryFeatureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryFeature)(nil)).Elem()
+}
+
+func (i GetRegistryFeatureArgs) ToGetRegistryFeatureOutput() GetRegistryFeatureOutput {
+	return i.ToGetRegistryFeatureOutputWithContext(context.Background())
+}
+
+func (i GetRegistryFeatureArgs) ToGetRegistryFeatureOutputWithContext(ctx context.Context) GetRegistryFeatureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryFeatureOutput)
+}
+
+// GetRegistryFeatureArrayInput is an input type that accepts GetRegistryFeatureArray and GetRegistryFeatureArrayOutput values.
+// You can construct a concrete instance of `GetRegistryFeatureArrayInput` via:
+//
+//	GetRegistryFeatureArray{ GetRegistryFeatureArgs{...} }
+type GetRegistryFeatureArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryFeatureArrayOutput() GetRegistryFeatureArrayOutput
+	ToGetRegistryFeatureArrayOutputWithContext(context.Context) GetRegistryFeatureArrayOutput
+}
+
+type GetRegistryFeatureArray []GetRegistryFeatureInput
+
+func (GetRegistryFeatureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryFeature)(nil)).Elem()
+}
+
+func (i GetRegistryFeatureArray) ToGetRegistryFeatureArrayOutput() GetRegistryFeatureArrayOutput {
+	return i.ToGetRegistryFeatureArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryFeatureArray) ToGetRegistryFeatureArrayOutputWithContext(ctx context.Context) GetRegistryFeatureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryFeatureArrayOutput)
+}
+
+type GetRegistryFeatureOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryFeatureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryFeature)(nil)).Elem()
+}
+
+func (o GetRegistryFeatureOutput) ToGetRegistryFeatureOutput() GetRegistryFeatureOutput {
+	return o
+}
+
+func (o GetRegistryFeatureOutput) ToGetRegistryFeatureOutputWithContext(ctx context.Context) GetRegistryFeatureOutput {
+	return o
+}
+
+func (o GetRegistryFeatureOutput) VulnerabilityScanning() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistryFeature) bool { return v.VulnerabilityScanning }).(pulumi.BoolOutput)
+}
+
+type GetRegistryFeatureArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryFeatureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryFeature)(nil)).Elem()
+}
+
+func (o GetRegistryFeatureArrayOutput) ToGetRegistryFeatureArrayOutput() GetRegistryFeatureArrayOutput {
+	return o
+}
+
+func (o GetRegistryFeatureArrayOutput) ToGetRegistryFeatureArrayOutputWithContext(ctx context.Context) GetRegistryFeatureArrayOutput {
+	return o
+}
+
+func (o GetRegistryFeatureArrayOutput) Index(i pulumi.IntInput) GetRegistryFeatureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryFeature {
+		return vs[0].([]GetRegistryFeature)[vs[1].(int)]
+	}).(GetRegistryFeatureOutput)
+}
+
+type GetRegistryGarbageCollectionSchedule struct {
+	Days []string `pulumi:"days"`
+	Time string   `pulumi:"time"`
+}
+
+// GetRegistryGarbageCollectionScheduleInput is an input type that accepts GetRegistryGarbageCollectionScheduleArgs and GetRegistryGarbageCollectionScheduleOutput values.
+// You can construct a concrete instance of `GetRegistryGarbageCollectionScheduleInput` via:
+//
+//	GetRegistryGarbageCollectionScheduleArgs{...}
+type GetRegistryGarbageCollectionScheduleInput interface {
+	pulumi.Input
+
+	ToGetRegistryGarbageCollectionScheduleOutput() GetRegistryGarbageCollectionScheduleOutput
+	ToGetRegistryGarbageCollectionScheduleOutputWithContext(context.Context) GetRegistryGarbageCollectionScheduleOutput
+}
+
+type GetRegistryGarbageCollectionScheduleArgs struct {
+	Days pulumi.StringArrayInput `pulumi:"days"`
+	Time pulumi.StringInput      `pulumi:"time"`
+}
+
+func (GetRegistryGarbageCollectionScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryGarbageCollectionSchedule)(nil)).Elem()
+}
+
+func (i GetRegistryGarbageCollectionScheduleArgs) ToGetRegistryGarbageCollectionScheduleOutput() GetRegistryGarbageCollectionScheduleOutput {
+	return i.ToGetRegistryGarbageCollectionScheduleOutputWithContext(context.Background())
+}
+
+func (i GetRegistryGarbageCollectionScheduleArgs) ToGetRegistryGarbageCollectionScheduleOutputWithContext(ctx context.Context) GetRegistryGarbageCollectionScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryGarbageCollectionScheduleOutput)
+}
+
+// GetRegistryGarbageCollectionScheduleArrayInput is an input type that accepts GetRegistryGarbageCollectionScheduleArray and GetRegistryGarbageCollectionScheduleArrayOutput values.
+// You can construct a concrete instance of `GetRegistryGarbageCollectionScheduleArrayInput` via:
+//
+//	GetRegistryGarbageCollectionScheduleArray{ GetRegistryGarbageCollectionScheduleArgs{...} }
+type GetRegistryGarbageCollectionScheduleArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryGarbageCollectionScheduleArrayOutput() GetRegistryGarbageCollectionScheduleArrayOutput
+	ToGetRegistryGarbageCollectionScheduleArrayOutputWithContext(context.Context) GetRegistryGarbageCollectionScheduleArrayOutput
+}
+
+type GetRegistryGarbageCollectionScheduleArray []GetRegistryGarbageCollectionScheduleInput
+
+func (GetRegistryGarbageCollectionScheduleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryGarbageCollectionSchedule)(nil)).Elem()
+}
+
+func (i GetRegistryGarbageCollectionScheduleArray) ToGetRegistryGarbageCollectionScheduleArrayOutput() GetRegistryGarbageCollectionScheduleArrayOutput {
+	return i.ToGetRegistryGarbageCollectionScheduleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryGarbageCollectionScheduleArray) ToGetRegistryGarbageCollectionScheduleArrayOutputWithContext(ctx context.Context) GetRegistryGarbageCollectionScheduleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryGarbageCollectionScheduleArrayOutput)
+}
+
+type GetRegistryGarbageCollectionScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryGarbageCollectionScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryGarbageCollectionSchedule)(nil)).Elem()
+}
+
+func (o GetRegistryGarbageCollectionScheduleOutput) ToGetRegistryGarbageCollectionScheduleOutput() GetRegistryGarbageCollectionScheduleOutput {
+	return o
+}
+
+func (o GetRegistryGarbageCollectionScheduleOutput) ToGetRegistryGarbageCollectionScheduleOutputWithContext(ctx context.Context) GetRegistryGarbageCollectionScheduleOutput {
+	return o
+}
+
+func (o GetRegistryGarbageCollectionScheduleOutput) Days() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistryGarbageCollectionSchedule) []string { return v.Days }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRegistryGarbageCollectionScheduleOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryGarbageCollectionSchedule) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetRegistryGarbageCollectionScheduleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryGarbageCollectionScheduleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryGarbageCollectionSchedule)(nil)).Elem()
+}
+
+func (o GetRegistryGarbageCollectionScheduleArrayOutput) ToGetRegistryGarbageCollectionScheduleArrayOutput() GetRegistryGarbageCollectionScheduleArrayOutput {
+	return o
+}
+
+func (o GetRegistryGarbageCollectionScheduleArrayOutput) ToGetRegistryGarbageCollectionScheduleArrayOutputWithContext(ctx context.Context) GetRegistryGarbageCollectionScheduleArrayOutput {
+	return o
+}
+
+func (o GetRegistryGarbageCollectionScheduleArrayOutput) Index(i pulumi.IntInput) GetRegistryGarbageCollectionScheduleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryGarbageCollectionSchedule {
+		return vs[0].([]GetRegistryGarbageCollectionSchedule)[vs[1].(int)]
+	}).(GetRegistryGarbageCollectionScheduleOutput)
+}
+
+type GetRegistryMaintenanceWindow struct {
+	Days []string `pulumi:"days"`
+	Time string   `pulumi:"time"`
+}
+
+// GetRegistryMaintenanceWindowInput is an input type that accepts GetRegistryMaintenanceWindowArgs and GetRegistryMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetRegistryMaintenanceWindowInput` via:
+//
+//	GetRegistryMaintenanceWindowArgs{...}
+type GetRegistryMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetRegistryMaintenanceWindowOutput() GetRegistryMaintenanceWindowOutput
+	ToGetRegistryMaintenanceWindowOutputWithContext(context.Context) GetRegistryMaintenanceWindowOutput
+}
+
+type GetRegistryMaintenanceWindowArgs struct {
+	Days pulumi.StringArrayInput `pulumi:"days"`
+	Time pulumi.StringInput      `pulumi:"time"`
+}
+
+func (GetRegistryMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetRegistryMaintenanceWindowArgs) ToGetRegistryMaintenanceWindowOutput() GetRegistryMaintenanceWindowOutput {
+	return i.ToGetRegistryMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetRegistryMaintenanceWindowArgs) ToGetRegistryMaintenanceWindowOutputWithContext(ctx context.Context) GetRegistryMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryMaintenanceWindowOutput)
+}
+
+// GetRegistryMaintenanceWindowArrayInput is an input type that accepts GetRegistryMaintenanceWindowArray and GetRegistryMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetRegistryMaintenanceWindowArrayInput` via:
+//
+//	GetRegistryMaintenanceWindowArray{ GetRegistryMaintenanceWindowArgs{...} }
+type GetRegistryMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryMaintenanceWindowArrayOutput() GetRegistryMaintenanceWindowArrayOutput
+	ToGetRegistryMaintenanceWindowArrayOutputWithContext(context.Context) GetRegistryMaintenanceWindowArrayOutput
+}
+
+type GetRegistryMaintenanceWindowArray []GetRegistryMaintenanceWindowInput
+
+func (GetRegistryMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetRegistryMaintenanceWindowArray) ToGetRegistryMaintenanceWindowArrayOutput() GetRegistryMaintenanceWindowArrayOutput {
+	return i.ToGetRegistryMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryMaintenanceWindowArray) ToGetRegistryMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetRegistryMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryMaintenanceWindowArrayOutput)
+}
+
+type GetRegistryMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetRegistryMaintenanceWindowOutput) ToGetRegistryMaintenanceWindowOutput() GetRegistryMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetRegistryMaintenanceWindowOutput) ToGetRegistryMaintenanceWindowOutputWithContext(ctx context.Context) GetRegistryMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetRegistryMaintenanceWindowOutput) Days() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistryMaintenanceWindow) []string { return v.Days }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRegistryMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetRegistryMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetRegistryMaintenanceWindowArrayOutput) ToGetRegistryMaintenanceWindowArrayOutput() GetRegistryMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetRegistryMaintenanceWindowArrayOutput) ToGetRegistryMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetRegistryMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetRegistryMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetRegistryMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryMaintenanceWindow {
+		return vs[0].([]GetRegistryMaintenanceWindow)[vs[1].(int)]
+	}).(GetRegistryMaintenanceWindowOutput)
+}
+
+type GetRegistryStorageUsage struct {
+	Bytes     int    `pulumi:"bytes"`
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetRegistryStorageUsageInput is an input type that accepts GetRegistryStorageUsageArgs and GetRegistryStorageUsageOutput values.
+// You can construct a concrete instance of `GetRegistryStorageUsageInput` via:
+//
+//	GetRegistryStorageUsageArgs{...}
+type GetRegistryStorageUsageInput interface {
+	pulumi.Input
+
+	ToGetRegistryStorageUsageOutput() GetRegistryStorageUsageOutput
+	ToGetRegistryStorageUsageOutputWithContext(context.Context) GetRegistryStorageUsageOutput
+}
+
+type GetRegistryStorageUsageArgs struct {
+	Bytes     pulumi.IntInput    `pulumi:"bytes"`
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetRegistryStorageUsageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryStorageUsage)(nil)).Elem()
+}
+
+func (i GetRegistryStorageUsageArgs) ToGetRegistryStorageUsageOutput() GetRegistryStorageUsageOutput {
+	return i.ToGetRegistryStorageUsageOutputWithContext(context.Background())
+}
+
+func (i GetRegistryStorageUsageArgs) ToGetRegistryStorageUsageOutputWithContext(ctx context.Context) GetRegistryStorageUsageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryStorageUsageOutput)
+}
+
+// GetRegistryStorageUsageArrayInput is an input type that accepts GetRegistryStorageUsageArray and GetRegistryStorageUsageArrayOutput values.
+// You can construct a concrete instance of `GetRegistryStorageUsageArrayInput` via:
+//
+//	GetRegistryStorageUsageArray{ GetRegistryStorageUsageArgs{...} }
+type GetRegistryStorageUsageArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryStorageUsageArrayOutput() GetRegistryStorageUsageArrayOutput
+	ToGetRegistryStorageUsageArrayOutputWithContext(context.Context) GetRegistryStorageUsageArrayOutput
+}
+
+type GetRegistryStorageUsageArray []GetRegistryStorageUsageInput
+
+func (GetRegistryStorageUsageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryStorageUsage)(nil)).Elem()
+}
+
+func (i GetRegistryStorageUsageArray) ToGetRegistryStorageUsageArrayOutput() GetRegistryStorageUsageArrayOutput {
+	return i.ToGetRegistryStorageUsageArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryStorageUsageArray) ToGetRegistryStorageUsageArrayOutputWithContext(ctx context.Context) GetRegistryStorageUsageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryStorageUsageArrayOutput)
+}
+
+type GetRegistryStorageUsageOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryStorageUsageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryStorageUsage)(nil)).Elem()
+}
+
+func (o GetRegistryStorageUsageOutput) ToGetRegistryStorageUsageOutput() GetRegistryStorageUsageOutput {
+	return o
+}
+
+func (o GetRegistryStorageUsageOutput) ToGetRegistryStorageUsageOutputWithContext(ctx context.Context) GetRegistryStorageUsageOutput {
+	return o
+}
+
+func (o GetRegistryStorageUsageOutput) Bytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegistryStorageUsage) int { return v.Bytes }).(pulumi.IntOutput)
+}
+
+func (o GetRegistryStorageUsageOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryStorageUsage) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetRegistryStorageUsageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryStorageUsageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryStorageUsage)(nil)).Elem()
+}
+
+func (o GetRegistryStorageUsageArrayOutput) ToGetRegistryStorageUsageArrayOutput() GetRegistryStorageUsageArrayOutput {
+	return o
+}
+
+func (o GetRegistryStorageUsageArrayOutput) ToGetRegistryStorageUsageArrayOutputWithContext(ctx context.Context) GetRegistryStorageUsageArrayOutput {
+	return o
+}
+
+func (o GetRegistryStorageUsageArrayOutput) Index(i pulumi.IntInput) GetRegistryStorageUsageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryStorageUsage {
+		return vs[0].([]GetRegistryStorageUsage)[vs[1].(int)]
+	}).(GetRegistryStorageUsageOutput)
+}
+
+type GetRegistryTokenCredential struct {
+	// * `expiry-date`
+	Username string `pulumi:"username"`
+}
+
+// GetRegistryTokenCredentialInput is an input type that accepts GetRegistryTokenCredentialArgs and GetRegistryTokenCredentialOutput values.
+// You can construct a concrete instance of `GetRegistryTokenCredentialInput` via:
+//
+//	GetRegistryTokenCredentialArgs{...}
+type GetRegistryTokenCredentialInput interface {
+	pulumi.Input
+
+	ToGetRegistryTokenCredentialOutput() GetRegistryTokenCredentialOutput
+	ToGetRegistryTokenCredentialOutputWithContext(context.Context) GetRegistryTokenCredentialOutput
+}
+
+type GetRegistryTokenCredentialArgs struct {
+	// * `expiry-date`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetRegistryTokenCredentialArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryTokenCredential)(nil)).Elem()
+}
+
+func (i GetRegistryTokenCredentialArgs) ToGetRegistryTokenCredentialOutput() GetRegistryTokenCredentialOutput {
+	return i.ToGetRegistryTokenCredentialOutputWithContext(context.Background())
+}
+
+func (i GetRegistryTokenCredentialArgs) ToGetRegistryTokenCredentialOutputWithContext(ctx context.Context) GetRegistryTokenCredentialOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryTokenCredentialOutput)
+}
+
+// GetRegistryTokenCredentialArrayInput is an input type that accepts GetRegistryTokenCredentialArray and GetRegistryTokenCredentialArrayOutput values.
+// You can construct a concrete instance of `GetRegistryTokenCredentialArrayInput` via:
+//
+//	GetRegistryTokenCredentialArray{ GetRegistryTokenCredentialArgs{...} }
+type GetRegistryTokenCredentialArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryTokenCredentialArrayOutput() GetRegistryTokenCredentialArrayOutput
+	ToGetRegistryTokenCredentialArrayOutputWithContext(context.Context) GetRegistryTokenCredentialArrayOutput
+}
+
+type GetRegistryTokenCredentialArray []GetRegistryTokenCredentialInput
+
+func (GetRegistryTokenCredentialArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryTokenCredential)(nil)).Elem()
+}
+
+func (i GetRegistryTokenCredentialArray) ToGetRegistryTokenCredentialArrayOutput() GetRegistryTokenCredentialArrayOutput {
+	return i.ToGetRegistryTokenCredentialArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryTokenCredentialArray) ToGetRegistryTokenCredentialArrayOutputWithContext(ctx context.Context) GetRegistryTokenCredentialArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryTokenCredentialArrayOutput)
+}
+
+type GetRegistryTokenCredentialOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryTokenCredentialOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryTokenCredential)(nil)).Elem()
+}
+
+func (o GetRegistryTokenCredentialOutput) ToGetRegistryTokenCredentialOutput() GetRegistryTokenCredentialOutput {
+	return o
+}
+
+func (o GetRegistryTokenCredentialOutput) ToGetRegistryTokenCredentialOutputWithContext(ctx context.Context) GetRegistryTokenCredentialOutput {
+	return o
+}
+
+// * `expiry-date`
+func (o GetRegistryTokenCredentialOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryTokenCredential) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetRegistryTokenCredentialArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryTokenCredentialArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryTokenCredential)(nil)).Elem()
+}
+
+func (o GetRegistryTokenCredentialArrayOutput) ToGetRegistryTokenCredentialArrayOutput() GetRegistryTokenCredentialArrayOutput {
+	return o
+}
+
+func (o GetRegistryTokenCredentialArrayOutput) ToGetRegistryTokenCredentialArrayOutputWithContext(ctx context.Context) GetRegistryTokenCredentialArrayOutput {
+	return o
+}
+
+func (o GetRegistryTokenCredentialArrayOutput) Index(i pulumi.IntInput) GetRegistryTokenCredentialOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryTokenCredential {
+		return vs[0].([]GetRegistryTokenCredential)[vs[1].(int)]
+	}).(GetRegistryTokenCredentialOutput)
+}
+
+type GetRegistryTokenScope struct {
+	Actions []string `pulumi:"actions"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name string `pulumi:"name"`
+	Type string `pulumi:"type"`
+}
+
+// GetRegistryTokenScopeInput is an input type that accepts GetRegistryTokenScopeArgs and GetRegistryTokenScopeOutput values.
+// You can construct a concrete instance of `GetRegistryTokenScopeInput` via:
+//
+//	GetRegistryTokenScopeArgs{...}
+type GetRegistryTokenScopeInput interface {
+	pulumi.Input
+
+	ToGetRegistryTokenScopeOutput() GetRegistryTokenScopeOutput
+	ToGetRegistryTokenScopeOutputWithContext(context.Context) GetRegistryTokenScopeOutput
+}
+
+type GetRegistryTokenScopeArgs struct {
+	Actions pulumi.StringArrayInput `pulumi:"actions"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringInput `pulumi:"name"`
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRegistryTokenScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryTokenScope)(nil)).Elem()
+}
+
+func (i GetRegistryTokenScopeArgs) ToGetRegistryTokenScopeOutput() GetRegistryTokenScopeOutput {
+	return i.ToGetRegistryTokenScopeOutputWithContext(context.Background())
+}
+
+func (i GetRegistryTokenScopeArgs) ToGetRegistryTokenScopeOutputWithContext(ctx context.Context) GetRegistryTokenScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryTokenScopeOutput)
+}
+
+// GetRegistryTokenScopeArrayInput is an input type that accepts GetRegistryTokenScopeArray and GetRegistryTokenScopeArrayOutput values.
+// You can construct a concrete instance of `GetRegistryTokenScopeArrayInput` via:
+//
+//	GetRegistryTokenScopeArray{ GetRegistryTokenScopeArgs{...} }
+type GetRegistryTokenScopeArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistryTokenScopeArrayOutput() GetRegistryTokenScopeArrayOutput
+	ToGetRegistryTokenScopeArrayOutputWithContext(context.Context) GetRegistryTokenScopeArrayOutput
+}
+
+type GetRegistryTokenScopeArray []GetRegistryTokenScopeInput
+
+func (GetRegistryTokenScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryTokenScope)(nil)).Elem()
+}
+
+func (i GetRegistryTokenScopeArray) ToGetRegistryTokenScopeArrayOutput() GetRegistryTokenScopeArrayOutput {
+	return i.ToGetRegistryTokenScopeArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistryTokenScopeArray) ToGetRegistryTokenScopeArrayOutputWithContext(ctx context.Context) GetRegistryTokenScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistryTokenScopeArrayOutput)
+}
+
+type GetRegistryTokenScopeOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryTokenScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistryTokenScope)(nil)).Elem()
+}
+
+func (o GetRegistryTokenScopeOutput) ToGetRegistryTokenScopeOutput() GetRegistryTokenScopeOutput {
+	return o
+}
+
+func (o GetRegistryTokenScopeOutput) ToGetRegistryTokenScopeOutputWithContext(ctx context.Context) GetRegistryTokenScopeOutput {
+	return o
+}
+
+func (o GetRegistryTokenScopeOutput) Actions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistryTokenScope) []string { return v.Actions }).(pulumi.StringArrayOutput)
+}
+
+// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+func (o GetRegistryTokenScopeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryTokenScope) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetRegistryTokenScopeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistryTokenScope) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRegistryTokenScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistryTokenScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistryTokenScope)(nil)).Elem()
+}
+
+func (o GetRegistryTokenScopeArrayOutput) ToGetRegistryTokenScopeArrayOutput() GetRegistryTokenScopeArrayOutput {
+	return o
+}
+
+func (o GetRegistryTokenScopeArrayOutput) ToGetRegistryTokenScopeArrayOutputWithContext(ctx context.Context) GetRegistryTokenScopeArrayOutput {
+	return o
+}
+
+func (o GetRegistryTokenScopeArrayOutput) Index(i pulumi.IntInput) GetRegistryTokenScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistryTokenScope {
+		return vs[0].([]GetRegistryTokenScope)[vs[1].(int)]
+	}).(GetRegistryTokenScopeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryFeaturesInput)(nil)).Elem(), RegistryFeaturesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryFeaturesPtrInput)(nil)).Elem(), RegistryFeaturesArgs{})
@@ -640,6 +1240,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryTokenCredentialArrayInput)(nil)).Elem(), RegistryTokenCredentialArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryTokenScopeInput)(nil)).Elem(), RegistryTokenScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryTokenScopeArrayInput)(nil)).Elem(), RegistryTokenScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryFeatureInput)(nil)).Elem(), GetRegistryFeatureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryFeatureArrayInput)(nil)).Elem(), GetRegistryFeatureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryGarbageCollectionScheduleInput)(nil)).Elem(), GetRegistryGarbageCollectionScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryGarbageCollectionScheduleArrayInput)(nil)).Elem(), GetRegistryGarbageCollectionScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryMaintenanceWindowInput)(nil)).Elem(), GetRegistryMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryMaintenanceWindowArrayInput)(nil)).Elem(), GetRegistryMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryStorageUsageInput)(nil)).Elem(), GetRegistryStorageUsageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryStorageUsageArrayInput)(nil)).Elem(), GetRegistryStorageUsageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryTokenCredentialInput)(nil)).Elem(), GetRegistryTokenCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryTokenCredentialArrayInput)(nil)).Elem(), GetRegistryTokenCredentialArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryTokenScopeInput)(nil)).Elem(), GetRegistryTokenScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistryTokenScopeArrayInput)(nil)).Elem(), GetRegistryTokenScopeArray{})
 	pulumi.RegisterOutputType(RegistryFeaturesOutput{})
 	pulumi.RegisterOutputType(RegistryFeaturesPtrOutput{})
 	pulumi.RegisterOutputType(RegistryGarbageCollectionScheduleOutput{})
@@ -650,4 +1262,16 @@ func init() {
 	pulumi.RegisterOutputType(RegistryTokenCredentialArrayOutput{})
 	pulumi.RegisterOutputType(RegistryTokenScopeOutput{})
 	pulumi.RegisterOutputType(RegistryTokenScopeArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryFeatureOutput{})
+	pulumi.RegisterOutputType(GetRegistryFeatureArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryGarbageCollectionScheduleOutput{})
+	pulumi.RegisterOutputType(GetRegistryGarbageCollectionScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetRegistryMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryStorageUsageOutput{})
+	pulumi.RegisterOutputType(GetRegistryStorageUsageArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryTokenCredentialOutput{})
+	pulumi.RegisterOutputType(GetRegistryTokenCredentialArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistryTokenScopeOutput{})
+	pulumi.RegisterOutputType(GetRegistryTokenScopeArrayOutput{})
 }

@@ -24,8 +24,9 @@ class PSQLDatabaseArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PSQLDatabase resource.
-        :param pulumi.Input[str] owner: The name of the role owning a given database.
-        :param pulumi.Input[str] name: The databasename of a given database.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster.
+        :param pulumi.Input[str] owner: [string] The owner of the database.
+        :param pulumi.Input[str] name: [string] The name of the database.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "owner", owner)
@@ -35,6 +36,9 @@ class PSQLDatabaseArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
+        """
+        [string] The unique ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -45,7 +49,7 @@ class PSQLDatabaseArgs:
     @pulumi.getter
     def owner(self) -> pulumi.Input[str]:
         """
-        The name of the role owning a given database.
+        [string] The owner of the database.
         """
         return pulumi.get(self, "owner")
 
@@ -57,7 +61,7 @@ class PSQLDatabaseArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The databasename of a given database.
+        [string] The name of the database.
         """
         return pulumi.get(self, "name")
 
@@ -74,8 +78,9 @@ class _PSQLDatabaseState:
                  owner: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PSQLDatabase resources.
-        :param pulumi.Input[str] name: The databasename of a given database.
-        :param pulumi.Input[str] owner: The name of the role owning a given database.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster.
+        :param pulumi.Input[str] name: [string] The name of the database.
+        :param pulumi.Input[str] owner: [string] The owner of the database.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -87,6 +92,9 @@ class _PSQLDatabaseState:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The unique ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -97,7 +105,7 @@ class _PSQLDatabaseState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The databasename of a given database.
+        [string] The name of the database.
         """
         return pulumi.get(self, "name")
 
@@ -109,7 +117,7 @@ class _PSQLDatabaseState:
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the role owning a given database.
+        [string] The owner of the database.
         """
         return pulumi.get(self, "owner")
 
@@ -128,11 +136,43 @@ class PSQLDatabase(pulumi.CustomResource):
                  owner: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a PSQLDatabase resource with the given unique name, props, and options.
+        Manages a **DbaaS PgSql Database**.
+
+        ## Example Usage
+
+        Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a database resource
+        and link it with the previously created cluster:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example_pg_database = ionoscloud.dbaas.PSQLDatabase("examplePgDatabase",
+            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            owner="exampleuser")
+        ```
+
+        ## Import
+
+        In order to import a PgSql database, you can define an empty database resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_pg_database" "example" {
+
+        }
+
+        The resource can be imported using the `clusterId` and the `name`, for example:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The databasename of a given database.
-        :param pulumi.Input[str] owner: The name of the role owning a given database.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster.
+        :param pulumi.Input[str] name: [string] The name of the database.
+        :param pulumi.Input[str] owner: [string] The owner of the database.
         """
         ...
     @overload
@@ -141,7 +181,38 @@ class PSQLDatabase(pulumi.CustomResource):
                  args: PSQLDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PSQLDatabase resource with the given unique name, props, and options.
+        Manages a **DbaaS PgSql Database**.
+
+        ## Example Usage
+
+        Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a database resource
+        and link it with the previously created cluster:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example_pg_database = ionoscloud.dbaas.PSQLDatabase("examplePgDatabase",
+            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            owner="exampleuser")
+        ```
+
+        ## Import
+
+        In order to import a PgSql database, you can define an empty database resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_pg_database" "example" {
+
+        }
+
+        The resource can be imported using the `clusterId` and the `name`, for example:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+        ```
+
         :param str resource_name: The name of the resource.
         :param PSQLDatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -196,8 +267,9 @@ class PSQLDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The databasename of a given database.
-        :param pulumi.Input[str] owner: The name of the role owning a given database.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster.
+        :param pulumi.Input[str] name: [string] The name of the database.
+        :param pulumi.Input[str] owner: [string] The owner of the database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -211,13 +283,16 @@ class PSQLDatabase(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
+        """
+        [string] The unique ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The databasename of a given database.
+        [string] The name of the database.
         """
         return pulumi.get(self, "name")
 
@@ -225,7 +300,7 @@ class PSQLDatabase(pulumi.CustomResource):
     @pulumi.getter
     def owner(self) -> pulumi.Output[str]:
         """
-        The name of the role owning a given database.
+        [string] The owner of the database.
         """
         return pulumi.get(self, "owner")
 

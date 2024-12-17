@@ -12,13 +12,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DbaaS PgSql Database**.
+//
+// ## Example Usage
+//
+// Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a database resource
+// and link it with the previously created cluster:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.NewPSQLDatabase(ctx, "examplePgDatabase", &dbaas.PSQLDatabaseArgs{
+//				ClusterId: pulumi.Any(ionoscloud_pg_cluster.Example.Id),
+//				Owner:     pulumi.String("exampleuser"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// In order to import a PgSql database, you can define an empty database resource in the plan:
+//
+// hcl
+//
+// resource "ionoscloud_pg_database" "example" {
+//
+// }
+//
+// The resource can be imported using the `clusterId` and the `name`, for example:
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+// ```
 type PSQLDatabase struct {
 	pulumi.CustomResourceState
 
+	// [string] The unique ID of the cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// The databasename of a given database.
+	// [string] The name of the database.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The name of the role owning a given database.
+	// [string] The owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 }
 
@@ -58,18 +106,20 @@ func GetPSQLDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PSQLDatabase resources.
 type psqldatabaseState struct {
+	// [string] The unique ID of the cluster.
 	ClusterId *string `pulumi:"clusterId"`
-	// The databasename of a given database.
+	// [string] The name of the database.
 	Name *string `pulumi:"name"`
-	// The name of the role owning a given database.
+	// [string] The owner of the database.
 	Owner *string `pulumi:"owner"`
 }
 
 type PSQLDatabaseState struct {
+	// [string] The unique ID of the cluster.
 	ClusterId pulumi.StringPtrInput
-	// The databasename of a given database.
+	// [string] The name of the database.
 	Name pulumi.StringPtrInput
-	// The name of the role owning a given database.
+	// [string] The owner of the database.
 	Owner pulumi.StringPtrInput
 }
 
@@ -78,19 +128,21 @@ func (PSQLDatabaseState) ElementType() reflect.Type {
 }
 
 type psqldatabaseArgs struct {
+	// [string] The unique ID of the cluster.
 	ClusterId string `pulumi:"clusterId"`
-	// The databasename of a given database.
+	// [string] The name of the database.
 	Name *string `pulumi:"name"`
-	// The name of the role owning a given database.
+	// [string] The owner of the database.
 	Owner string `pulumi:"owner"`
 }
 
 // The set of arguments for constructing a PSQLDatabase resource.
 type PSQLDatabaseArgs struct {
+	// [string] The unique ID of the cluster.
 	ClusterId pulumi.StringInput
-	// The databasename of a given database.
+	// [string] The name of the database.
 	Name pulumi.StringPtrInput
-	// The name of the role owning a given database.
+	// [string] The owner of the database.
 	Owner pulumi.StringInput
 }
 
@@ -181,16 +233,17 @@ func (o PSQLDatabaseOutput) ToPSQLDatabaseOutputWithContext(ctx context.Context)
 	return o
 }
 
+// [string] The unique ID of the cluster.
 func (o PSQLDatabaseOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// The databasename of a given database.
+// [string] The name of the database.
 func (o PSQLDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The name of the role owning a given database.
+// [string] The owner of the database.
 func (o PSQLDatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }

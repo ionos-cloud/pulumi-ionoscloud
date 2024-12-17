@@ -19,6 +19,9 @@ __all__ = [
     'DistributionRoutingRule',
     'DistributionRoutingRuleUpstream',
     'DistributionRoutingRuleUpstreamGeoRestrictions',
+    'GetDistributionRoutingRuleResult',
+    'GetDistributionRoutingRuleUpstreamResult',
+    'GetDistributionRoutingRuleUpstreamGeoRestrictionResult',
 ]
 
 @pulumi.output_type
@@ -202,6 +205,148 @@ class DistributionRoutingRuleUpstreamGeoRestrictions(dict):
     def block_lists(self) -> Optional[Sequence[str]]:
         """
         [string] List of blocked countries
+        """
+        return pulumi.get(self, "block_lists")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleResult(dict):
+    def __init__(__self__, *,
+                 prefix: str,
+                 scheme: str,
+                 upstreams: Sequence['outputs.GetDistributionRoutingRuleUpstreamResult']):
+        """
+        :param str prefix: The prefix of the routing rule.
+        :param str scheme: The scheme of the routing rule.
+        :param Sequence['GetDistributionRoutingRuleUpstreamArgs'] upstreams: A map of properties for the rule
+        """
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "scheme", scheme)
+        pulumi.set(__self__, "upstreams", upstreams)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The prefix of the routing rule.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def scheme(self) -> str:
+        """
+        The scheme of the routing rule.
+        """
+        return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter
+    def upstreams(self) -> Sequence['outputs.GetDistributionRoutingRuleUpstreamResult']:
+        """
+        A map of properties for the rule
+        """
+        return pulumi.get(self, "upstreams")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleUpstreamResult(dict):
+    def __init__(__self__, *,
+                 caching: bool,
+                 geo_restrictions: Sequence['outputs.GetDistributionRoutingRuleUpstreamGeoRestrictionResult'],
+                 host: str,
+                 rate_limit_class: str,
+                 sni_mode: str,
+                 waf: bool):
+        """
+        :param bool caching: Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        :param Sequence['GetDistributionRoutingRuleUpstreamGeoRestrictionArgs'] geo_restrictions: A map of geo_restrictions
+        :param str host: The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        :param str rate_limit_class: Rate limit class that will be applied to limit the number of incoming requests per IP.
+        :param str sni_mode: The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+        :param bool waf: Enable or disable WAF to protect the upstream host.
+        """
+        pulumi.set(__self__, "caching", caching)
+        pulumi.set(__self__, "geo_restrictions", geo_restrictions)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "rate_limit_class", rate_limit_class)
+        pulumi.set(__self__, "sni_mode", sni_mode)
+        pulumi.set(__self__, "waf", waf)
+
+    @property
+    @pulumi.getter
+    def caching(self) -> bool:
+        """
+        Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        """
+        return pulumi.get(self, "caching")
+
+    @property
+    @pulumi.getter(name="geoRestrictions")
+    def geo_restrictions(self) -> Sequence['outputs.GetDistributionRoutingRuleUpstreamGeoRestrictionResult']:
+        """
+        A map of geo_restrictions
+        """
+        return pulumi.get(self, "geo_restrictions")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="rateLimitClass")
+    def rate_limit_class(self) -> str:
+        """
+        Rate limit class that will be applied to limit the number of incoming requests per IP.
+        """
+        return pulumi.get(self, "rate_limit_class")
+
+    @property
+    @pulumi.getter(name="sniMode")
+    def sni_mode(self) -> str:
+        """
+        The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+        """
+        return pulumi.get(self, "sni_mode")
+
+    @property
+    @pulumi.getter
+    def waf(self) -> bool:
+        """
+        Enable or disable WAF to protect the upstream host.
+        """
+        return pulumi.get(self, "waf")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleUpstreamGeoRestrictionResult(dict):
+    def __init__(__self__, *,
+                 allow_lists: Sequence[str],
+                 block_lists: Sequence[str]):
+        """
+        :param Sequence[str] allow_lists: List of allowed countries
+        :param Sequence[str] block_lists: List of blocked countries
+        """
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "block_lists", block_lists)
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        List of allowed countries
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="blockLists")
+    def block_lists(self) -> Sequence[str]:
+        """
+        List of blocked countries
         """
         return pulumi.get(self, "block_lists")
 

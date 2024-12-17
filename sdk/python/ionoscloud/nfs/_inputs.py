@@ -23,6 +23,10 @@ __all__ = [
     'ShareClientGroupArgsDict',
     'ShareClientGroupNfsArgs',
     'ShareClientGroupNfsArgsDict',
+    'GetShareClientGroupArgs',
+    'GetShareClientGroupArgsDict',
+    'GetShareClientGroupNfArgs',
+    'GetShareClientGroupNfArgsDict',
 ]
 
 MYPY = False
@@ -247,6 +251,125 @@ class ShareClientGroupNfsArgs:
 
     @squash.setter
     def squash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "squash", value)
+
+
+if not MYPY:
+    class GetShareClientGroupArgsDict(TypedDict):
+        description: str
+        """
+        Optional description for the clients groups.
+        """
+        hosts: Sequence[str]
+        """
+        A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+        """
+        ip_networks: Sequence[str]
+        """
+        The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        """
+        nfs: Sequence['GetShareClientGroupNfArgsDict']
+        """
+        The NFS configuration for the client group. Each NFS configuration supports the following:
+        """
+elif False:
+    GetShareClientGroupArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetShareClientGroupArgs:
+    def __init__(__self__, *,
+                 description: str,
+                 hosts: Sequence[str],
+                 ip_networks: Sequence[str],
+                 nfs: Sequence['GetShareClientGroupNfArgs']):
+        """
+        :param str description: Optional description for the clients groups.
+        :param Sequence[str] hosts: A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+        :param Sequence[str] ip_networks: The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        :param Sequence['GetShareClientGroupNfArgs'] nfs: The NFS configuration for the client group. Each NFS configuration supports the following:
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "hosts", hosts)
+        pulumi.set(__self__, "ip_networks", ip_networks)
+        pulumi.set(__self__, "nfs", nfs)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Optional description for the clients groups.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: str):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def hosts(self) -> Sequence[str]:
+        """
+        A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+        """
+        return pulumi.get(self, "hosts")
+
+    @hosts.setter
+    def hosts(self, value: Sequence[str]):
+        pulumi.set(self, "hosts", value)
+
+    @property
+    @pulumi.getter(name="ipNetworks")
+    def ip_networks(self) -> Sequence[str]:
+        """
+        The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        """
+        return pulumi.get(self, "ip_networks")
+
+    @ip_networks.setter
+    def ip_networks(self, value: Sequence[str]):
+        pulumi.set(self, "ip_networks", value)
+
+    @property
+    @pulumi.getter
+    def nfs(self) -> Sequence['GetShareClientGroupNfArgs']:
+        """
+        The NFS configuration for the client group. Each NFS configuration supports the following:
+        """
+        return pulumi.get(self, "nfs")
+
+    @nfs.setter
+    def nfs(self, value: Sequence['GetShareClientGroupNfArgs']):
+        pulumi.set(self, "nfs", value)
+
+
+if not MYPY:
+    class GetShareClientGroupNfArgsDict(TypedDict):
+        squash: str
+        """
+        The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        """
+elif False:
+    GetShareClientGroupNfArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetShareClientGroupNfArgs:
+    def __init__(__self__, *,
+                 squash: str):
+        """
+        :param str squash: The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        """
+        pulumi.set(__self__, "squash", squash)
+
+    @property
+    @pulumi.getter
+    def squash(self) -> str:
+        """
+        The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        """
+        return pulumi.get(self, "squash")
+
+    @squash.setter
+    def squash(self, value: str):
         pulumi.set(self, "squash", value)
 
 

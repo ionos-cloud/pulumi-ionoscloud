@@ -36,6 +36,30 @@ __all__ = [
     'VCPUServerNic',
     'VCPUServerNicFirewall',
     'VCPUServerVolume',
+    'GetCrossconnectConnectableDatacenterResult',
+    'GetCrossconnectPeerResult',
+    'GetCubeServerCdromResult',
+    'GetCubeServerNicResult',
+    'GetCubeServerNicFirewallRuleResult',
+    'GetCubeServerVolumeResult',
+    'GetDatacenterCpuArchitectureResult',
+    'GetGroupUserResult',
+    'GetIPBlockIpConsumerResult',
+    'GetLanIpFailoverResult',
+    'GetNatGatewayLanResult',
+    'GetNatGatewayRuleTargetPortRangeResult',
+    'GetNicFlowlogResult',
+    'GetServerCdromResult',
+    'GetServerLabelResult',
+    'GetServerNicResult',
+    'GetServerNicFirewallRuleResult',
+    'GetServerVolumeResult',
+    'GetUserGroupResult',
+    'GetVCPUServerCdromResult',
+    'GetVCPUServerLabelResult',
+    'GetVCPUServerNicResult',
+    'GetVCPUServerNicFirewallRuleResult',
+    'GetVCPUServerVolumeResult',
 ]
 
 @pulumi.output_type
@@ -2240,6 +2264,2811 @@ class VCPUServerVolume(dict):
     def user_data(self) -> Optional[str]:
         """
         The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetCrossconnectConnectableDatacenterResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 location: str,
+                 name: str):
+        """
+        :param str id: ID of the cross connect you want to search for.
+               
+               Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        :param str location: The physical location of the connectable datacenter
+        :param str name: Name of an existing cross connect that you want to search for.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the cross connect you want to search for.
+
+        Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The physical location of the connectable datacenter
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing cross connect that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetCrossconnectPeerResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: str,
+                 datacenter_name: str,
+                 lan_id: str,
+                 lan_name: str,
+                 location: str):
+        """
+        :param str datacenter_id: The id of the cross-connected datacenter
+        :param str datacenter_name: The name of the cross-connected datacenter
+        :param str lan_id: The id of the cross-connected LAN
+        :param str lan_name: The name of the cross-connected LAN
+        :param str location: The physical location of the connectable datacenter
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "datacenter_name", datacenter_name)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "lan_name", lan_name)
+        pulumi.set(__self__, "location", location)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The id of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="datacenterName")
+    def datacenter_name(self) -> str:
+        """
+        The name of the cross-connected datacenter
+        """
+        return pulumi.get(self, "datacenter_name")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The id of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_id")
+
+    @property
+    @pulumi.getter(name="lanName")
+    def lan_name(self) -> str:
+        """
+        The name of the cross-connected LAN
+        """
+        return pulumi.get(self, "lan_name")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The physical location of the connectable datacenter
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
+class GetCubeServerCdromResult(dict):
+    def __init__(__self__, *,
+                 cloud_init: str,
+                 cpu_hot_plug: bool,
+                 cpu_hot_unplug: bool,
+                 description: str,
+                 disc_scsi_hot_plug: bool,
+                 disc_scsi_hot_unplug: bool,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_aliases: Sequence[str],
+                 image_type: str,
+                 licence_type: str,
+                 location: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 public: bool,
+                 ram_hot_plug: bool,
+                 ram_hot_unplug: bool,
+                 size: float):
+        """
+        :param str cloud_init: Cloud init compatibility
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param bool cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
+        :param str description: Description of cdrom
+        :param bool disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
+        :param bool disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required)
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] image_aliases: List of image aliases mapped for this Image
+        :param str image_type: Type of image
+        :param str licence_type: OS type of this volume
+        :param str location: Location of that image/snapshot
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param bool public: Indicates if the image is part of the public repository or not
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param bool ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param float size: The size of the image in GB
+        """
+        pulumi.set(__self__, "cloud_init", cloud_init)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "cpu_hot_unplug", cpu_hot_unplug)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disc_scsi_hot_plug", disc_scsi_hot_plug)
+        pulumi.set(__self__, "disc_scsi_hot_unplug", disc_scsi_hot_unplug)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_aliases", image_aliases)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> str:
+        """
+        Cloud init compatibility
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="cpuHotUnplug")
+    def cpu_hot_unplug(self) -> bool:
+        """
+        Is capable of CPU hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of cdrom
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="discScsiHotPlug")
+    def disc_scsi_hot_plug(self) -> bool:
+        """
+        Is capable of SCSI drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_plug")
+
+    @property
+    @pulumi.getter(name="discScsiHotUnplug")
+    def disc_scsi_hot_unplug(self) -> bool:
+        """
+        Is capable of SCSI drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_unplug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageAliases")
+    def image_aliases(self) -> Sequence[str]:
+        """
+        List of image aliases mapped for this Image
+        """
+        return pulumi.get(self, "image_aliases")
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> str:
+        """
+        Type of image
+        """
+        return pulumi.get(self, "image_type")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        Indicates if the image is part of the public repository or not
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="ramHotUnplug")
+    def ram_hot_unplug(self) -> bool:
+        """
+        Is capable of memory hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
+        """
+        The size of the image in GB
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetCubeServerNicResult(dict):
+    def __init__(__self__, *,
+                 device_number: int,
+                 dhcp: bool,
+                 firewall_active: bool,
+                 firewall_rules: Sequence['outputs.GetCubeServerNicFirewallRuleResult'],
+                 firewall_type: str,
+                 id: str,
+                 ips: Sequence[str],
+                 ipv6_cidr_block: str,
+                 ipv6_ips: Sequence[str],
+                 lan: int,
+                 mac: str,
+                 name: str,
+                 pci_slot: int,
+                 dhcpv6: Optional[bool] = None):
+        """
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool dhcp: Indicates if the nic will reserve an IP using DHCP
+        :param bool firewall_active: Activate or deactivate the firewall
+        :param Sequence['GetCubeServerNicFirewallRuleArgs'] firewall_rules: list of
+        :param str firewall_type: The type of firewall rules that will be allowed on the NIC
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] ips: Collection of IP addresses assigned to a nic
+        :param int lan: The LAN ID the NIC will sit on
+        :param str mac: The MAC address of the NIC
+        :param str name: Name of an existing server that you want to search for.
+        :param int pci_slot: The PCI slot number of the Nic
+        """
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "dhcp", dhcp)
+        pulumi.set(__self__, "firewall_active", firewall_active)
+        pulumi.set(__self__, "firewall_rules", firewall_rules)
+        pulumi.set(__self__, "firewall_type", firewall_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        pulumi.set(__self__, "lan", lan)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> bool:
+        """
+        Indicates if the nic will reserve an IP using DHCP
+        """
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> bool:
+        """
+        Activate or deactivate the firewall
+        """
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallRules")
+    def firewall_rules(self) -> Sequence['outputs.GetCubeServerNicFirewallRuleResult']:
+        """
+        list of
+        """
+        return pulumi.get(self, "firewall_rules")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> str:
+        """
+        The type of firewall rules that will be allowed on the NIC
+        """
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        """
+        Collection of IP addresses assigned to a nic
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        """
+        The LAN ID the NIC will sit on
+        """
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        The MAC address of the NIC
+        """
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcpv6")
+
+
+@pulumi.output_type
+class GetCubeServerNicFirewallRuleResult(dict):
+    def __init__(__self__, *,
+                 icmp_code: int,
+                 icmp_type: int,
+                 id: str,
+                 name: str,
+                 port_range_end: int,
+                 port_range_start: int,
+                 protocol: str,
+                 source_ip: str,
+                 source_mac: str,
+                 target_ip: str,
+                 type: str):
+        """
+        :param int icmp_code: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        :param int icmp_type: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str name: Name of an existing server that you want to search for.
+        :param int port_range_end: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        :param int port_range_start: Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        :param str protocol: he protocol for the rule
+        :param str source_ip: Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        :param str source_mac: Only traffic originating from the respective MAC address is allowed
+        :param str target_ip: In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        :param str type: The type of firewall rule
+        """
+        pulumi.set(__self__, "icmp_code", icmp_code)
+        pulumi.set(__self__, "icmp_type", icmp_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_range_end", port_range_end)
+        pulumi.set(__self__, "port_range_start", port_range_start)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "source_mac", source_mac)
+        pulumi.set(__self__, "target_ip", target_ip)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> int:
+        """
+        Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> int:
+        """
+        Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> int:
+        """
+        Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> int:
+        """
+        Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        he protocol for the rule
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        """
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> str:
+        """
+        Only traffic originating from the respective MAC address is allowed
+        """
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> str:
+        """
+        In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        """
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetCubeServerVolumeResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: str,
+                 backup_unit_id: str,
+                 boot_server: str,
+                 bus: str,
+                 cpu_hot_plug: bool,
+                 device_number: int,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_name: str,
+                 image_password: str,
+                 licence_type: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 pci_slot: int,
+                 ram_hot_plug: bool,
+                 ssh_keys: Sequence[str],
+                 type: str,
+                 user_data: Optional[str] = None):
+        """
+        :param str availability_zone: The availability zone in which the volume should exist
+        :param str backup_unit_id: The uuid of the Backup Unit that user has access to
+        :param str boot_server: The UUID of the attached server.
+        :param str bus: The bus type of the volume
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str image_password: Initial password to be set for installed OS
+        :param str licence_type: OS type of this volume
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param int pci_slot: The PCI slot number of the Nic
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param Sequence[str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        :param str type: The type of firewall rule
+        :param str user_data: The cloud-init configuration for the volume as base64 encoded string
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        pulumi.set(__self__, "boot_server", boot_server)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_password", image_password)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ssh_keys", ssh_keys)
+        pulumi.set(__self__, "type", type)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> str:
+        """
+        The uuid of the Backup Unit that user has access to
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> str:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> str:
+        """
+        The bus type of the volume
+        """
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> str:
+        return pulumi.get(self, "image_name")
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> str:
+        """
+        Initial password to be set for installed OS
+        """
+        return pulumi.get(self, "image_password")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="sshKeys")
+    def ssh_keys(self) -> Sequence[str]:
+        """
+        Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        """
+        return pulumi.get(self, "ssh_keys")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetDatacenterCpuArchitectureResult(dict):
+    def __init__(__self__, *,
+                 cpu_family: str,
+                 max_cores: int,
+                 max_ram: int,
+                 vendor: str):
+        """
+        :param str cpu_family: A valid CPU family name
+        :param int max_cores: The maximum number of cores available
+        :param int max_ram: The maximum number of RAM in MB
+        :param str vendor: A valid CPU vendor name
+        """
+        pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "max_cores", max_cores)
+        pulumi.set(__self__, "max_ram", max_ram)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter(name="cpuFamily")
+    def cpu_family(self) -> str:
+        """
+        A valid CPU family name
+        """
+        return pulumi.get(self, "cpu_family")
+
+    @property
+    @pulumi.getter(name="maxCores")
+    def max_cores(self) -> int:
+        """
+        The maximum number of cores available
+        """
+        return pulumi.get(self, "max_cores")
+
+    @property
+    @pulumi.getter(name="maxRam")
+    def max_ram(self) -> int:
+        """
+        The maximum number of RAM in MB
+        """
+        return pulumi.get(self, "max_ram")
+
+    @property
+    @pulumi.getter
+    def vendor(self) -> str:
+        """
+        A valid CPU vendor name
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class GetGroupUserResult(dict):
+    def __init__(__self__, *,
+                 administrator: bool,
+                 email: str,
+                 first_name: str,
+                 force_sec_auth: bool,
+                 id: str,
+                 last_name: str):
+        """
+        :param str id: ID of the group you want to search for.
+               
+               Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        pulumi.set(__self__, "administrator", administrator)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "force_sec_auth", force_sec_auth)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_name", last_name)
+
+    @property
+    @pulumi.getter
+    def administrator(self) -> bool:
+        return pulumi.get(self, "administrator")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> str:
+        return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="forceSecAuth")
+    def force_sec_auth(self) -> bool:
+        return pulumi.get(self, "force_sec_auth")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the group you want to search for.
+
+        Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> str:
+        return pulumi.get(self, "last_name")
+
+
+@pulumi.output_type
+class GetIPBlockIpConsumerResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: str,
+                 datacenter_name: str,
+                 ip: str,
+                 k8s_cluster_uuid: str,
+                 k8s_nodepool_uuid: str,
+                 mac: str,
+                 nic_id: str,
+                 server_id: str,
+                 server_name: str):
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "datacenter_name", datacenter_name)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "k8s_cluster_uuid", k8s_cluster_uuid)
+        pulumi.set(__self__, "k8s_nodepool_uuid", k8s_nodepool_uuid)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "nic_id", nic_id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "server_name", server_name)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="datacenterName")
+    def datacenter_name(self) -> str:
+        return pulumi.get(self, "datacenter_name")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="k8sClusterUuid")
+    def k8s_cluster_uuid(self) -> str:
+        return pulumi.get(self, "k8s_cluster_uuid")
+
+    @property
+    @pulumi.getter(name="k8sNodepoolUuid")
+    def k8s_nodepool_uuid(self) -> str:
+        return pulumi.get(self, "k8s_nodepool_uuid")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter(name="nicId")
+    def nic_id(self) -> str:
+        return pulumi.get(self, "nic_id")
+
+    @property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> str:
+        return pulumi.get(self, "server_id")
+
+    @property
+    @pulumi.getter(name="serverName")
+    def server_name(self) -> str:
+        return pulumi.get(self, "server_name")
+
+
+@pulumi.output_type
+class GetLanIpFailoverResult(dict):
+    def __init__(__self__, *,
+                 ip: str,
+                 nic_uuid: str):
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "nic_uuid", nic_uuid)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="nicUuid")
+    def nic_uuid(self) -> str:
+        return pulumi.get(self, "nic_uuid")
+
+
+@pulumi.output_type
+class GetNatGatewayLanResult(dict):
+    def __init__(__self__, *,
+                 gateway_ips: Sequence[str],
+                 id: int):
+        """
+        :param Sequence[str] gateway_ips: Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+        :param int id: ID of the network load balancer forwarding rule you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        pulumi.set(__self__, "gateway_ips", gateway_ips)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="gatewayIps")
+    def gateway_ips(self) -> Sequence[str]:
+        """
+        Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+        """
+        return pulumi.get(self, "gateway_ips")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        ID of the network load balancer forwarding rule you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetNatGatewayRuleTargetPortRangeResult(dict):
+    def __init__(__self__, *,
+                 end: int,
+                 start: int):
+        """
+        :param int end: Target port range end associated with the NAT gateway rule.
+        :param int start: Target port range start associated with the NAT gateway rule.
+        """
+        pulumi.set(__self__, "end", end)
+        pulumi.set(__self__, "start", start)
+
+    @property
+    @pulumi.getter
+    def end(self) -> int:
+        """
+        Target port range end associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "end")
+
+    @property
+    @pulumi.getter
+    def start(self) -> int:
+        """
+        Target port range start associated with the NAT gateway rule.
+        """
+        return pulumi.get(self, "start")
+
+
+@pulumi.output_type
+class GetNicFlowlogResult(dict):
+    def __init__(__self__, *,
+                 action: str,
+                 bucket: str,
+                 direction: str,
+                 id: str,
+                 name: str):
+        """
+        :param str action: Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
+        :param str bucket: Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
+        :param str direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+        :param str id: ID of the nic you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided.
+               If none, are provided, the datasource will return an error.
+        :param str name: [string] The name of the LAN.
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "direction", direction)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def action(self) -> str:
+        """
+        Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> str:
+        """
+        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+        """
+        return pulumi.get(self, "direction")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the nic you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided.
+        If none, are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        [string] The name of the LAN.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetServerCdromResult(dict):
+    def __init__(__self__, *,
+                 cloud_init: str,
+                 cpu_hot_plug: bool,
+                 cpu_hot_unplug: bool,
+                 description: str,
+                 disc_scsi_hot_plug: bool,
+                 disc_scsi_hot_unplug: bool,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_aliases: Sequence[str],
+                 image_type: str,
+                 licence_type: str,
+                 location: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 public: bool,
+                 ram_hot_plug: bool,
+                 ram_hot_unplug: bool,
+                 size: float):
+        """
+        :param str cloud_init: Cloud init compatibility
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param bool cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
+        :param str description: Description of cdrom
+        :param bool disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
+        :param bool disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required)
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] image_aliases: List of image aliases mapped for this Image
+        :param str image_type: Type of image
+        :param str licence_type: OS type of this volume
+        :param str location: Location of that image/snapshot
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param bool public: Indicates if the image is part of the public repository or not
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param bool ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param float size: The size of the volume in GB
+        """
+        pulumi.set(__self__, "cloud_init", cloud_init)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "cpu_hot_unplug", cpu_hot_unplug)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disc_scsi_hot_plug", disc_scsi_hot_plug)
+        pulumi.set(__self__, "disc_scsi_hot_unplug", disc_scsi_hot_unplug)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_aliases", image_aliases)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> str:
+        """
+        Cloud init compatibility
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="cpuHotUnplug")
+    def cpu_hot_unplug(self) -> bool:
+        """
+        Is capable of CPU hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of cdrom
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="discScsiHotPlug")
+    def disc_scsi_hot_plug(self) -> bool:
+        """
+        Is capable of SCSI drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_plug")
+
+    @property
+    @pulumi.getter(name="discScsiHotUnplug")
+    def disc_scsi_hot_unplug(self) -> bool:
+        """
+        Is capable of SCSI drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_unplug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageAliases")
+    def image_aliases(self) -> Sequence[str]:
+        """
+        List of image aliases mapped for this Image
+        """
+        return pulumi.get(self, "image_aliases")
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> str:
+        """
+        Type of image
+        """
+        return pulumi.get(self, "image_type")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        Indicates if the image is part of the public repository or not
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="ramHotUnplug")
+    def ram_hot_unplug(self) -> bool:
+        """
+        Is capable of memory hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
+        """
+        The size of the volume in GB
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetServerLabelResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 key: str,
+                 value: str):
+        """
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str key: The key of the label
+        :param str value: The value of the label
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the label
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the label
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetServerNicResult(dict):
+    def __init__(__self__, *,
+                 device_number: int,
+                 dhcp: bool,
+                 firewall_active: bool,
+                 firewall_rules: Sequence['outputs.GetServerNicFirewallRuleResult'],
+                 firewall_type: str,
+                 id: str,
+                 ips: Sequence[str],
+                 ipv6_cidr_block: str,
+                 ipv6_ips: Sequence[str],
+                 lan: int,
+                 mac: str,
+                 name: str,
+                 pci_slot: int,
+                 dhcpv6: Optional[bool] = None):
+        """
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool dhcp: Indicates if the nic will reserve an IP using DHCP
+        :param bool firewall_active: Activate or deactivate the firewall
+        :param Sequence['GetServerNicFirewallRuleArgs'] firewall_rules: list of
+        :param str firewall_type: The type of firewall rules that will be allowed on the NIC
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] ips: Collection of IP addresses assigned to a nic
+        :param int lan: The LAN ID the NIC will sit on
+        :param str mac: The MAC address of the NIC
+        :param str name: Name of an existing server that you want to search for.
+        :param int pci_slot: The PCI slot number of the Nic
+        """
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "dhcp", dhcp)
+        pulumi.set(__self__, "firewall_active", firewall_active)
+        pulumi.set(__self__, "firewall_rules", firewall_rules)
+        pulumi.set(__self__, "firewall_type", firewall_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        pulumi.set(__self__, "lan", lan)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> bool:
+        """
+        Indicates if the nic will reserve an IP using DHCP
+        """
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> bool:
+        """
+        Activate or deactivate the firewall
+        """
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallRules")
+    def firewall_rules(self) -> Sequence['outputs.GetServerNicFirewallRuleResult']:
+        """
+        list of
+        """
+        return pulumi.get(self, "firewall_rules")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> str:
+        """
+        The type of firewall rules that will be allowed on the NIC
+        """
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        """
+        Collection of IP addresses assigned to a nic
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        """
+        The LAN ID the NIC will sit on
+        """
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        The MAC address of the NIC
+        """
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcpv6")
+
+
+@pulumi.output_type
+class GetServerNicFirewallRuleResult(dict):
+    def __init__(__self__, *,
+                 icmp_code: int,
+                 icmp_type: int,
+                 id: str,
+                 name: str,
+                 port_range_end: int,
+                 port_range_start: int,
+                 protocol: str,
+                 source_ip: str,
+                 source_mac: str,
+                 target_ip: str,
+                 type: str):
+        """
+        :param int icmp_code: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        :param int icmp_type: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str name: Name of an existing server that you want to search for.
+        :param int port_range_end: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        :param int port_range_start: Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        :param str protocol: he protocol for the rule
+        :param str source_ip: Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        :param str source_mac: Only traffic originating from the respective MAC address is allowed
+        :param str target_ip: In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        :param str type: The type of firewall rule
+        """
+        pulumi.set(__self__, "icmp_code", icmp_code)
+        pulumi.set(__self__, "icmp_type", icmp_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_range_end", port_range_end)
+        pulumi.set(__self__, "port_range_start", port_range_start)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "source_mac", source_mac)
+        pulumi.set(__self__, "target_ip", target_ip)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> int:
+        """
+        Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> int:
+        """
+        Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> int:
+        """
+        Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> int:
+        """
+        Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        he protocol for the rule
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        """
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> str:
+        """
+        Only traffic originating from the respective MAC address is allowed
+        """
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> str:
+        """
+        In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        """
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetServerVolumeResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: str,
+                 backup_unit_id: str,
+                 boot_server: str,
+                 bus: str,
+                 cpu_hot_plug: bool,
+                 device_number: int,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_name: str,
+                 image_password: str,
+                 licence_type: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 pci_slot: int,
+                 ram_hot_plug: bool,
+                 size: int,
+                 ssh_keys: Sequence[str],
+                 type: str,
+                 user_data: Optional[str] = None):
+        """
+        :param str availability_zone: The availability zone in which the volume should exist
+        :param str backup_unit_id: The uuid of the Backup Unit that user has access to
+        :param str boot_server: The UUID of the attached server.
+        :param str bus: The bus type of the volume
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str image_password: Initial password to be set for installed OS
+        :param str licence_type: OS type of this volume
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param int pci_slot: The PCI slot number of the Nic
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param int size: The size of the volume in GB
+        :param Sequence[str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        :param str type: The type of firewall rule
+        :param str user_data: The cloud-init configuration for the volume as base64 encoded string
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        pulumi.set(__self__, "boot_server", boot_server)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_password", image_password)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "ssh_keys", ssh_keys)
+        pulumi.set(__self__, "type", type)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> str:
+        """
+        The uuid of the Backup Unit that user has access to
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> str:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> str:
+        """
+        The bus type of the volume
+        """
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> str:
+        return pulumi.get(self, "image_name")
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> str:
+        """
+        Initial password to be set for installed OS
+        """
+        return pulumi.get(self, "image_password")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of the volume in GB
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="sshKeys")
+    def ssh_keys(self) -> Sequence[str]:
+        """
+        Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        """
+        return pulumi.get(self, "ssh_keys")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string
+        """
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetUserGroupResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str id: ID of the user you want to search for.
+               
+               Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the user you want to search for.
+
+        Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetVCPUServerCdromResult(dict):
+    def __init__(__self__, *,
+                 cloud_init: str,
+                 cpu_hot_plug: bool,
+                 cpu_hot_unplug: bool,
+                 description: str,
+                 disc_scsi_hot_plug: bool,
+                 disc_scsi_hot_unplug: bool,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_aliases: Sequence[str],
+                 image_type: str,
+                 licence_type: str,
+                 location: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 public: bool,
+                 ram_hot_plug: bool,
+                 ram_hot_unplug: bool,
+                 size: float):
+        """
+        :param str cloud_init: Cloud init compatibility
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param bool cpu_hot_unplug: Is capable of CPU hot unplug (no reboot required)
+        :param str description: Description of cdrom
+        :param bool disc_scsi_hot_plug: Is capable of SCSI drive hot plug (no reboot required)
+        :param bool disc_scsi_hot_unplug: Is capable of SCSI drive hot unplug (no reboot required)
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] image_aliases: List of image aliases mapped for this Image
+        :param str image_type: Type of image
+        :param str licence_type: OS type of this volume
+        :param str location: Location of that image/snapshot
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param bool public: Indicates if the image is part of the public repository or not
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param bool ram_hot_unplug: Is capable of memory hot unplug (no reboot required)
+        :param float size: The size of the volume in GB
+        """
+        pulumi.set(__self__, "cloud_init", cloud_init)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "cpu_hot_unplug", cpu_hot_unplug)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disc_scsi_hot_plug", disc_scsi_hot_plug)
+        pulumi.set(__self__, "disc_scsi_hot_unplug", disc_scsi_hot_unplug)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_aliases", image_aliases)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> str:
+        """
+        Cloud init compatibility
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="cpuHotUnplug")
+    def cpu_hot_unplug(self) -> bool:
+        """
+        Is capable of CPU hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of cdrom
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="discScsiHotPlug")
+    def disc_scsi_hot_plug(self) -> bool:
+        """
+        Is capable of SCSI drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_plug")
+
+    @property
+    @pulumi.getter(name="discScsiHotUnplug")
+    def disc_scsi_hot_unplug(self) -> bool:
+        """
+        Is capable of SCSI drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_scsi_hot_unplug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageAliases")
+    def image_aliases(self) -> Sequence[str]:
+        """
+        List of image aliases mapped for this Image
+        """
+        return pulumi.get(self, "image_aliases")
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> str:
+        """
+        Type of image
+        """
+        return pulumi.get(self, "image_type")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        Location of that image/snapshot
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        Indicates if the image is part of the public repository or not
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="ramHotUnplug")
+    def ram_hot_unplug(self) -> bool:
+        """
+        Is capable of memory hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
+        """
+        The size of the volume in GB
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetVCPUServerLabelResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 key: str,
+                 value: str):
+        """
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str key: The key of the label
+        :param str value: The value of the label
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the label
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the label
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetVCPUServerNicResult(dict):
+    def __init__(__self__, *,
+                 device_number: int,
+                 dhcp: bool,
+                 firewall_active: bool,
+                 firewall_rules: Sequence['outputs.GetVCPUServerNicFirewallRuleResult'],
+                 firewall_type: str,
+                 id: str,
+                 ips: Sequence[str],
+                 ipv6_cidr_block: str,
+                 ipv6_ips: Sequence[str],
+                 lan: int,
+                 mac: str,
+                 name: str,
+                 pci_slot: int,
+                 dhcpv6: Optional[bool] = None):
+        """
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool dhcp: Indicates if the nic will reserve an IP using DHCP
+        :param bool firewall_active: Activate or deactivate the firewall
+        :param Sequence['GetVCPUServerNicFirewallRuleArgs'] firewall_rules: list of
+        :param str firewall_type: The type of firewall rules that will be allowed on the NIC
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param Sequence[str] ips: Collection of IP addresses assigned to a nic
+        :param int lan: The LAN ID the NIC will sit on
+        :param str mac: The MAC address of the NIC
+        :param str name: Name of an existing server that you want to search for.
+        :param int pci_slot: The PCI slot number of the Nic
+        """
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "dhcp", dhcp)
+        pulumi.set(__self__, "firewall_active", firewall_active)
+        pulumi.set(__self__, "firewall_rules", firewall_rules)
+        pulumi.set(__self__, "firewall_type", firewall_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        pulumi.set(__self__, "lan", lan)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> bool:
+        """
+        Indicates if the nic will reserve an IP using DHCP
+        """
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> bool:
+        """
+        Activate or deactivate the firewall
+        """
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallRules")
+    def firewall_rules(self) -> Sequence['outputs.GetVCPUServerNicFirewallRuleResult']:
+        """
+        list of
+        """
+        return pulumi.get(self, "firewall_rules")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> str:
+        """
+        The type of firewall rules that will be allowed on the NIC
+        """
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        """
+        Collection of IP addresses assigned to a nic
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        """
+        The LAN ID the NIC will sit on
+        """
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        """
+        The MAC address of the NIC
+        """
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcpv6")
+
+
+@pulumi.output_type
+class GetVCPUServerNicFirewallRuleResult(dict):
+    def __init__(__self__, *,
+                 icmp_code: int,
+                 icmp_type: int,
+                 id: str,
+                 name: str,
+                 port_range_end: int,
+                 port_range_start: int,
+                 protocol: str,
+                 source_ip: str,
+                 source_mac: str,
+                 target_ip: str,
+                 type: str):
+        """
+        :param int icmp_code: Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        :param int icmp_type: Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str name: Name of an existing server that you want to search for.
+        :param int port_range_end: Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        :param int port_range_start: Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        :param str protocol: he protocol for the rule
+        :param str source_ip: Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        :param str source_mac: Only traffic originating from the respective MAC address is allowed
+        :param str target_ip: In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        :param str type: The type of firewall rule
+        """
+        pulumi.set(__self__, "icmp_code", icmp_code)
+        pulumi.set(__self__, "icmp_type", icmp_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_range_end", port_range_end)
+        pulumi.set(__self__, "port_range_start", port_range_start)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "source_mac", source_mac)
+        pulumi.set(__self__, "target_ip", target_ip)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> int:
+        """
+        Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> int:
+        """
+        Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+        """
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> int:
+        """
+        Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> int:
+        """
+        Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+        """
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        he protocol for the rule
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        """
+        Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+        """
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> str:
+        """
+        Only traffic originating from the respective MAC address is allowed
+        """
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> str:
+        """
+        In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+        """
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetVCPUServerVolumeResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: str,
+                 backup_unit_id: str,
+                 boot_server: str,
+                 bus: str,
+                 cpu_hot_plug: bool,
+                 device_number: int,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_name: str,
+                 image_password: str,
+                 licence_type: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 pci_slot: int,
+                 ram_hot_plug: bool,
+                 size: int,
+                 ssh_keys: Sequence[str],
+                 type: str,
+                 user_data: Optional[str] = None):
+        """
+        :param str availability_zone: The availability zone in which the volume should exist
+        :param str backup_unit_id: The uuid of the Backup Unit that user has access to
+        :param str boot_server: The UUID of the attached server.
+        :param str bus: The bus type of the volume
+        :param bool cpu_hot_plug: Is capable of CPU hot plug (no reboot required)
+        :param int device_number: The Logical Unit Number (LUN) of the storage volume
+        :param bool disc_virtio_hot_plug: Is capable of Virt-IO drive hot plug (no reboot required)
+        :param bool disc_virtio_hot_unplug: Is capable of Virt-IO drive hot unplug (no reboot required)
+        :param str id: ID of the server you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str image_password: Initial password to be set for installed OS
+        :param str licence_type: OS type of this volume
+        :param str name: Name of an existing server that you want to search for.
+        :param bool nic_hot_plug: Is capable of nic hot plug (no reboot required)
+        :param bool nic_hot_unplug: Is capable of nic hot unplug (no reboot required)
+        :param int pci_slot: The PCI slot number of the Nic
+        :param bool ram_hot_plug: Is capable of memory hot plug (no reboot required)
+        :param int size: The size of the volume in GB
+        :param Sequence[str] ssh_keys: Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        :param str type: The type of firewall rule
+        :param str user_data: The cloud-init configuration for the volume as base64 encoded string
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        pulumi.set(__self__, "boot_server", boot_server)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_password", image_password)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "ssh_keys", ssh_keys)
+        pulumi.set(__self__, "type", type)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> str:
+        """
+        The uuid of the Backup Unit that user has access to
+        """
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> str:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> str:
+        """
+        The bus type of the volume
+        """
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume
+        """
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the server you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> str:
+        return pulumi.get(self, "image_name")
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> str:
+        """
+        Initial password to be set for installed OS
+        """
+        return pulumi.get(self, "image_password")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        """
+        OS type of this volume
+        """
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing server that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic
+        """
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of the volume in GB
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="sshKeys")
+    def ssh_keys(self) -> Sequence[str]:
+        """
+        Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+        """
+        return pulumi.get(self, "ssh_keys")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of firewall rule
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        """
+        The cloud-init configuration for the volume as base64 encoded string
         """
         return pulumi.get(self, "user_data")
 

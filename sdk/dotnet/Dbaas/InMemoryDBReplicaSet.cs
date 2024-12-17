@@ -9,79 +9,92 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DBaaS InMemoryDB Replica Set**.
+    /// 
+    /// ## Import
+    /// 
+    /// Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet")]
     public partial class InMemoryDBReplicaSet : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The network connection for your replica set. Only one connection is allowed.
+        /// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         /// </summary>
         [Output("connections")]
         public Output<Outputs.InMemoryDBReplicaSetConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// Credentials for the InMemoryDB replicaset.
+        /// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         /// </summary>
         [Output("credentials")]
         public Output<Outputs.InMemoryDBReplicaSetCredentials> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The human readable name of your replica set.
+        /// [string] The human-readable name of your replica set.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        /// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
         /// </summary>
         [Output("dnsName")]
         public Output<string> DnsName { get; private set; } = null!;
 
         /// <summary>
-        /// The eviction policy for the replica set.
+        /// [string] The eviction policy for the replica set, possible values are:
         /// </summary>
         [Output("evictionPolicy")]
         public Output<string> EvictionPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        /// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         /// </summary>
         [Output("initialSnapshotId")]
         public Output<string?> InitialSnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// The replica set location
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.InMemoryDBReplicaSetMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies How and If data is persisted.
+        /// [string] Specifies How and If data is persisted, possible values are:
+        /// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        /// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        /// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        /// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         /// </summary>
         [Output("persistenceMode")]
         public Output<string> PersistenceMode { get; private set; } = null!;
 
         /// <summary>
-        /// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        /// value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only
-        /// standby for a failure of the active instance.
+        /// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         /// </summary>
         [Output("replicas")]
         public Output<int> Replicas { get; private set; } = null!;
 
         /// <summary>
-        /// The resources of the individual replicas.
+        /// [object] The resources of the individual replicas.
         /// </summary>
         [Output("resources")]
         public Output<Outputs.InMemoryDBReplicaSetResources> Resources { get; private set; } = null!;
 
         /// <summary>
-        /// The InMemoryDB version of your replica set.
+        /// [string] The InMemoryDB version of your replica set.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -133,69 +146,71 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class InMemoryDBReplicaSetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The network connection for your replica set. Only one connection is allowed.
+        /// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         /// </summary>
         [Input("connections", required: true)]
         public Input<Inputs.InMemoryDBReplicaSetConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// Credentials for the InMemoryDB replicaset.
+        /// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         /// </summary>
         [Input("credentials", required: true)]
         public Input<Inputs.InMemoryDBReplicaSetCredentialsArgs> Credentials { get; set; } = null!;
 
         /// <summary>
-        /// The human readable name of your replica set.
+        /// [string] The human-readable name of your replica set.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// The eviction policy for the replica set.
+        /// [string] The eviction policy for the replica set, possible values are:
         /// </summary>
         [Input("evictionPolicy", required: true)]
         public Input<string> EvictionPolicy { get; set; } = null!;
 
         /// <summary>
-        /// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        /// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         /// </summary>
         [Input("initialSnapshotId")]
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// The replica set location
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.InMemoryDBReplicaSetMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// Specifies How and If data is persisted.
+        /// [string] Specifies How and If data is persisted, possible values are:
+        /// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        /// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        /// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        /// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         /// </summary>
         [Input("persistenceMode", required: true)]
         public Input<string> PersistenceMode { get; set; } = null!;
 
         /// <summary>
-        /// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        /// value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only
-        /// standby for a failure of the active instance.
+        /// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         /// </summary>
         [Input("replicas", required: true)]
         public Input<int> Replicas { get; set; } = null!;
 
         /// <summary>
-        /// The resources of the individual replicas.
+        /// [object] The resources of the individual replicas.
         /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.InMemoryDBReplicaSetResourcesArgs> Resources { get; set; } = null!;
 
         /// <summary>
-        /// The InMemoryDB version of your replica set.
+        /// [string] The InMemoryDB version of your replica set.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
@@ -209,75 +224,77 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class InMemoryDBReplicaSetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The network connection for your replica set. Only one connection is allowed.
+        /// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         /// </summary>
         [Input("connections")]
         public Input<Inputs.InMemoryDBReplicaSetConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// Credentials for the InMemoryDB replicaset.
+        /// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         /// </summary>
         [Input("credentials")]
         public Input<Inputs.InMemoryDBReplicaSetCredentialsGetArgs>? Credentials { get; set; }
 
         /// <summary>
-        /// The human readable name of your replica set.
+        /// [string] The human-readable name of your replica set.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        /// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
         /// </summary>
         [Input("dnsName")]
         public Input<string>? DnsName { get; set; }
 
         /// <summary>
-        /// The eviction policy for the replica set.
+        /// [string] The eviction policy for the replica set, possible values are:
         /// </summary>
         [Input("evictionPolicy")]
         public Input<string>? EvictionPolicy { get; set; }
 
         /// <summary>
-        /// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        /// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         /// </summary>
         [Input("initialSnapshotId")]
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// The replica set location
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.InMemoryDBReplicaSetMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// Specifies How and If data is persisted.
+        /// [string] Specifies How and If data is persisted, possible values are:
+        /// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        /// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        /// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        /// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         /// </summary>
         [Input("persistenceMode")]
         public Input<string>? PersistenceMode { get; set; }
 
         /// <summary>
-        /// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        /// value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only
-        /// standby for a failure of the active instance.
+        /// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is &gt; 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         /// </summary>
         [Input("replicas")]
         public Input<int>? Replicas { get; set; }
 
         /// <summary>
-        /// The resources of the individual replicas.
+        /// [object] The resources of the individual replicas.
         /// </summary>
         [Input("resources")]
         public Input<Inputs.InMemoryDBReplicaSetResourcesGetArgs>? Resources { get; set; }
 
         /// <summary>
-        /// The InMemoryDB version of your replica set.
+        /// [string] The InMemoryDB version of your replica set.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

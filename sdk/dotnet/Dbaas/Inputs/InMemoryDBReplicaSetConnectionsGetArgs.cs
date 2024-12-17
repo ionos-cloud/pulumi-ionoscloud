@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class InMemoryDBReplicaSetConnectionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        /// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
         /// </summary>
         [Input("cidr", required: true)]
         public Input<string> Cidr { get; set; } = null!;
 
         /// <summary>
-        /// The datacenter to connect your instance to.
+        /// [string] The datacenter to connect your instance to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// The numeric LAN ID to connect your instance to.
+        /// [string] The numeric LAN ID to connect your instance to.
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;

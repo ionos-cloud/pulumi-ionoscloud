@@ -66,49 +66,31 @@ class GetAutoscalingGroupResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        Unique identifier for the resource
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def location(self) -> str:
-        """
-        Location of the datacenter. This location is the same as the one from the selected template.
-        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="maxReplicaCount")
     def max_replica_count(self) -> int:
-        """
-        Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-        """
         return pulumi.get(self, "max_replica_count")
 
     @property
     @pulumi.getter(name="minReplicaCount")
     def min_replica_count(self) -> int:
-        """
-        Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-        """
         return pulumi.get(self, "min_replica_count")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the Autoscaling Group.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def policies(self) -> Sequence['outputs.GetAutoscalingGroupPolicyResult']:
-        """
-        Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        """
         return pulumi.get(self, "policies")
 
     @property
@@ -143,6 +125,7 @@ def get_autoscaling_group(id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoscalingGroupResult:
     """
+<<<<<<< HEAD
     The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
 
     ## Example Usage
@@ -160,6 +143,9 @@ def get_autoscaling_group(id: Optional[str] = None,
     :param str name: Name of an existing Autoscaling Group that you want to search for.
            
            Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+=======
+    Use this data source to access information about an existing resource.
+>>>>>>> main
     """
     pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
     __args__ = dict()
@@ -182,6 +168,7 @@ def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = Non
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
     """
+<<<<<<< HEAD
     The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
 
     ## Example Usage
@@ -201,6 +188,10 @@ def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = Non
            Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
     """
     pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
+=======
+    Use this data source to access information about an existing resource.
+    """
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name

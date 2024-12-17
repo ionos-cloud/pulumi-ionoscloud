@@ -60,33 +60,21 @@ class GetApigatewayResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        ID of the API Gateway.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def logs(self) -> bool:
-        """
-        Shows whether the collection and reporting of logs for observability of this instance is enabled or disabled.
-        """
         return pulumi.get(self, "logs")
 
     @property
     @pulumi.getter
     def metrics(self) -> bool:
-        """
-        Shows whether the collection and reporting of metrics for observability of this instance is enabled or disabled.
-        """
         return pulumi.get(self, "metrics")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The domain name of the distribution.
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -97,9 +85,6 @@ class GetApigatewayResult:
     @property
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> str:
-        """
-        The public endpoint of the API Gateway.
-        """
         return pulumi.get(self, "public_endpoint")
 
 
@@ -123,6 +108,7 @@ def get_apigateway(id: Optional[str] = None,
                    partial_match: Optional[bool] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApigatewayResult:
     """
+<<<<<<< HEAD
     The **API Gateway data source** can be used to search for and return an existing API Gateway.
     You can provide a string for the name parameter which will be compared with provisioned API Gateways.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -146,6 +132,9 @@ def get_apigateway(id: Optional[str] = None,
     :param str id: ID of an existing API Gateway that you want to search for.
     :param str name: Name of an existing API Gateway that you want to search for.
     :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+=======
+    Use this data source to access information about an existing resource.
+>>>>>>> main
     """
     pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
     __args__ = dict()
@@ -168,6 +157,7 @@ def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApigatewayResult]:
     """
+<<<<<<< HEAD
     The **API Gateway data source** can be used to search for and return an existing API Gateway.
     You can provide a string for the name parameter which will be compared with provisioned API Gateways.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -193,6 +183,10 @@ def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
     pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
+=======
+    Use this data source to access information about an existing resource.
+    """
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name

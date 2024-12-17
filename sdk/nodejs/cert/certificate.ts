@@ -4,6 +4,49 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **Certificate** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     certificate: fs.readFileSync("path_to_cert", "utf8"),
+ *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
+ *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
+ * });
+ * ```
+ *
+ * **NOTE**: You can also provide the values as multiline strings, as seen below:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const cert = new ionoscloud.cert.Certificate("cert", {
+ *     certificate: `-----BEGIN CERTIFICATE-----
+ * cert_body_here
+ * -----END CERTIFICATE-----
+ *
+ * `,
+ *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
+ *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource certificate can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+ * ```
+ */
 export class Certificate extends pulumi.CustomResource {
     /**
      * Get an existing Certificate resource's state with the given name, ID, and optional extra
@@ -33,19 +76,19 @@ export class Certificate extends pulumi.CustomResource {
     }
 
     /**
-     * The certificate body in PEM format. This attribute is immutable.
+     * [string] The certificate body. Pem encoded. Immutable.
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
-     * The certificate chain. This attribute is immutable.
+     * [string] The certificate chain. Pem encoded. Immutable.
      */
     public readonly certificateChain!: pulumi.Output<string | undefined>;
     /**
-     * The certificate name
+     * [string] The certificate name
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The private key blob. This attribute is immutable.
+     * [string] The certificate private key. Immutable. Sensitive.
      */
     public readonly privateKey!: pulumi.Output<string>;
 
@@ -91,19 +134,19 @@ export class Certificate extends pulumi.CustomResource {
  */
 export interface CertificateState {
     /**
-     * The certificate body in PEM format. This attribute is immutable.
+     * [string] The certificate body. Pem encoded. Immutable.
      */
     certificate?: pulumi.Input<string>;
     /**
-     * The certificate chain. This attribute is immutable.
+     * [string] The certificate chain. Pem encoded. Immutable.
      */
     certificateChain?: pulumi.Input<string>;
     /**
-     * The certificate name
+     * [string] The certificate name
      */
     name?: pulumi.Input<string>;
     /**
-     * The private key blob. This attribute is immutable.
+     * [string] The certificate private key. Immutable. Sensitive.
      */
     privateKey?: pulumi.Input<string>;
 }
@@ -113,19 +156,19 @@ export interface CertificateState {
  */
 export interface CertificateArgs {
     /**
-     * The certificate body in PEM format. This attribute is immutable.
+     * [string] The certificate body. Pem encoded. Immutable.
      */
     certificate: pulumi.Input<string>;
     /**
-     * The certificate chain. This attribute is immutable.
+     * [string] The certificate chain. Pem encoded. Immutable.
      */
     certificateChain?: pulumi.Input<string>;
     /**
-     * The certificate name
+     * [string] The certificate name
      */
     name?: pulumi.Input<string>;
     /**
-     * The private key blob. This attribute is immutable.
+     * [string] The certificate private key. Immutable. Sensitive.
      */
     privateKey: pulumi.Input<string>;
 }

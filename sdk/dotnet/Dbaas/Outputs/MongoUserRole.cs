@@ -13,9 +13,14 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     [OutputType]
     public sealed class MongoUserRole
     {
+        /// <summary>
+        /// [true] Database on which to apply the role.
+        /// 
+        /// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        /// </summary>
         public readonly string? Database;
         /// <summary>
-        /// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        /// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         /// </summary>
         public readonly string? Role;
 

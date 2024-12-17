@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetRecordArgs, GetRecordResult, GetRecordOutputArgs } from "./getRecord";
+export const getRecord: typeof import("./getRecord").getRecord = null as any;
+export const getRecordOutput: typeof import("./getRecord").getRecordOutput = null as any;
+utilities.lazyLoad(exports, ["getRecord","getRecordOutput"], () => require("./getRecord"));
+
+export { GetZoneArgs, GetZoneResult, GetZoneOutputArgs } from "./getZone";
+export const getZone: typeof import("./getZone").getZone = null as any;
+export const getZoneOutput: typeof import("./getZone").getZoneOutput = null as any;
+utilities.lazyLoad(exports, ["getZone","getZoneOutput"], () => require("./getZone"));
+
 export { RecordArgs, RecordState } from "./record";
 export type Record = import("./record").Record;
 export const Record: typeof import("./record").Record = null as any;

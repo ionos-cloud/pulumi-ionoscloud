@@ -12,16 +12,101 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Certificate** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"os"
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := os.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
+//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
+//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **NOTE**: You can also provide the values as multiline strings, as seen below:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"os"
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := os.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Certificate:      pulumi.String("-----BEGIN CERTIFICATE-----\ncert_body_here\n-----END CERTIFICATE-----\n\n"),
+//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
+//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource certificate can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+// ```
 type Certificate struct {
 	pulumi.CustomResourceState
 
-	// The certificate body in PEM format. This attribute is immutable.
+	// [string] The certificate body. Pem encoded. Immutable.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// The certificate chain. This attribute is immutable.
+	// [string] The certificate chain. Pem encoded. Immutable.
 	CertificateChain pulumi.StringPtrOutput `pulumi:"certificateChain"`
-	// The certificate name
+	// [string] The certificate name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The private key blob. This attribute is immutable.
+	// [string] The certificate private key. Immutable. Sensitive.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 }
 
@@ -68,24 +153,24 @@ func GetCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Certificate resources.
 type certificateState struct {
-	// The certificate body in PEM format. This attribute is immutable.
+	// [string] The certificate body. Pem encoded. Immutable.
 	Certificate *string `pulumi:"certificate"`
-	// The certificate chain. This attribute is immutable.
+	// [string] The certificate chain. Pem encoded. Immutable.
 	CertificateChain *string `pulumi:"certificateChain"`
-	// The certificate name
+	// [string] The certificate name
 	Name *string `pulumi:"name"`
-	// The private key blob. This attribute is immutable.
+	// [string] The certificate private key. Immutable. Sensitive.
 	PrivateKey *string `pulumi:"privateKey"`
 }
 
 type CertificateState struct {
-	// The certificate body in PEM format. This attribute is immutable.
+	// [string] The certificate body. Pem encoded. Immutable.
 	Certificate pulumi.StringPtrInput
-	// The certificate chain. This attribute is immutable.
+	// [string] The certificate chain. Pem encoded. Immutable.
 	CertificateChain pulumi.StringPtrInput
-	// The certificate name
+	// [string] The certificate name
 	Name pulumi.StringPtrInput
-	// The private key blob. This attribute is immutable.
+	// [string] The certificate private key. Immutable. Sensitive.
 	PrivateKey pulumi.StringPtrInput
 }
 
@@ -94,25 +179,25 @@ func (CertificateState) ElementType() reflect.Type {
 }
 
 type certificateArgs struct {
-	// The certificate body in PEM format. This attribute is immutable.
+	// [string] The certificate body. Pem encoded. Immutable.
 	Certificate string `pulumi:"certificate"`
-	// The certificate chain. This attribute is immutable.
+	// [string] The certificate chain. Pem encoded. Immutable.
 	CertificateChain *string `pulumi:"certificateChain"`
-	// The certificate name
+	// [string] The certificate name
 	Name *string `pulumi:"name"`
-	// The private key blob. This attribute is immutable.
+	// [string] The certificate private key. Immutable. Sensitive.
 	PrivateKey string `pulumi:"privateKey"`
 }
 
 // The set of arguments for constructing a Certificate resource.
 type CertificateArgs struct {
-	// The certificate body in PEM format. This attribute is immutable.
+	// [string] The certificate body. Pem encoded. Immutable.
 	Certificate pulumi.StringInput
-	// The certificate chain. This attribute is immutable.
+	// [string] The certificate chain. Pem encoded. Immutable.
 	CertificateChain pulumi.StringPtrInput
-	// The certificate name
+	// [string] The certificate name
 	Name pulumi.StringPtrInput
-	// The private key blob. This attribute is immutable.
+	// [string] The certificate private key. Immutable. Sensitive.
 	PrivateKey pulumi.StringInput
 }
 
@@ -203,22 +288,22 @@ func (o CertificateOutput) ToCertificateOutputWithContext(ctx context.Context) C
 	return o
 }
 
-// The certificate body in PEM format. This attribute is immutable.
+// [string] The certificate body. Pem encoded. Immutable.
 func (o CertificateOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
-// The certificate chain. This attribute is immutable.
+// [string] The certificate chain. Pem encoded. Immutable.
 func (o CertificateOutput) CertificateChain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.CertificateChain }).(pulumi.StringPtrOutput)
 }
 
-// The certificate name
+// [string] The certificate name
 func (o CertificateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The private key blob. This attribute is immutable.
+// [string] The certificate private key. Immutable. Sensitive.
 func (o CertificateOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }

@@ -5,635 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ApplicationLoadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
-     */
-    name: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions: outputs.ApplicationLoadbalancerForwardingruleHttpRuleCondition[];
-    /**
-     * [string] Valid only for STATIC actions.
-     */
-    contentType: string;
-    /**
-     * [bool] Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery?: boolean;
-    /**
-     * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location?: string;
-    /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
-     */
-    name: string;
-    /**
-     * [string] The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage?: string;
-    /**
-     * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode: number;
-    /**
-     * [string] The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup?: string;
-    /**
-     * [string] Type of the Http Rule.
-     */
-    type: string;
-}
-
-export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition?: string;
-    /**
-     * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key?: string;
-    /**
-     * [bool] Specifies whether the condition is negated or not; the default is False.
-     */
-    negate?: boolean;
-    /**
-     * [string] Type of the Http Rule condition.
-     */
-    type: string;
-    /**
-     * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value?: string;
-}
-
-export interface GetApplicationLoadbalancerFlowlog {
-    /**
-     * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * ID of the application load balancer you want to search for.
-     */
-    id: string;
-    /**
-     * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-}
-
-export interface GetApplicationLoadbalancerForwardingruleHttpRule {
-    /**
-     * An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-     */
-    conditions: outputs.GetApplicationLoadbalancerForwardingruleHttpRuleCondition[];
-    /**
-     * Valid only for STATIC actions.
-     */
-    contentType: string;
-    /**
-     * Default is false; valid only for REDIRECT actions.
-     */
-    dropQuery: boolean;
-    /**
-     * The location for redirecting; mandatory and valid only for REDIRECT actions.
-     */
-    location: string;
-    /**
-     * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-    /**
-     * The response message of the request; mandatory for STATIC action.
-     */
-    responseMessage: string;
-    /**
-     * Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-     */
-    statusCode: number;
-    /**
-     * The UUID of the target group; mandatory for FORWARD action.
-     */
-    targetGroup: string;
-    /**
-     * Type of the Http Rule condition.
-     */
-    type: string;
-}
-
-export interface GetApplicationLoadbalancerForwardingruleHttpRuleCondition {
-    /**
-     * Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-     */
-    condition: string;
-    /**
-     * Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-     */
-    key: string;
-    /**
-     * Specifies whether the condition is negated or not; the default is False.
-     */
-    negate: boolean;
-    /**
-     * Type of the Http Rule condition.
-     */
-    type: string;
-    /**
-     * Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
-     */
-    value: string;
-}
-
-export interface GetAutoCertificateProviderExternalAccountBinding {
-    /**
-     * The key ID of the external account binding
-     */
-    keyId: string;
-}
-
-export interface GetCdnDistributionRoutingRule {
-    /**
-     * The prefix of the routing rule.
-     */
-    prefix: string;
-    /**
-     * The scheme of the routing rule.
-     */
-    scheme: string;
-    /**
-     * A map of properties for the rule
-     */
-    upstreams: outputs.GetCdnDistributionRoutingRuleUpstream[];
-}
-
-export interface GetCdnDistributionRoutingRuleUpstream {
-    /**
-     * Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-     */
-    caching: boolean;
-    /**
-     * A map of geo_restrictions
-     */
-    geoRestrictions: outputs.GetCdnDistributionRoutingRuleUpstreamGeoRestriction[];
-    /**
-     * The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-     */
-    host: string;
-    /**
-     * Rate limit class that will be applied to limit the number of incoming requests per IP.
-     */
-    rateLimitClass: string;
-    /**
-     * The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-     */
-    sniMode: string;
-    /**
-     * Enable or disable WAF to protect the upstream host.
-     */
-    waf: boolean;
-}
-
-export interface GetCdnDistributionRoutingRuleUpstreamGeoRestriction {
-    /**
-     * List of allowed countries
-     */
-    allowLists: string[];
-    /**
-     * List of blocked countries
-     */
-    blockLists: string[];
-}
-
-export interface GetContainerRegistryFeature {
-    vulnerabilityScanning: boolean;
-}
-
-export interface GetContainerRegistryGarbageCollectionSchedule {
-    days: string[];
-    time: string;
-}
-
-export interface GetContainerRegistryMaintenanceWindow {
-    days: string[];
-    time: string;
-}
-
-export interface GetContainerRegistryStorageUsage {
-    bytes: number;
-    updatedAt: string;
-}
-
-export interface GetContainerRegistryTokenCredential {
-    /**
-     * * `expiry-date`
-     */
-    username: string;
-}
-
-export interface GetContainerRegistryTokenScope {
-    actions: string[];
-    /**
-     * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-    type: string;
-}
-
-export interface GetCubeServerCdrom {
-    /**
-     * Cloud init compatibility
-     */
-    cloudInit: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
-    cpuHotUnplug: boolean;
-    /**
-     * Description of cdrom
-     */
-    description: string;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
-    discScsiHotPlug: boolean;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required)
-     */
-    discScsiHotUnplug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * List of image aliases mapped for this Image
-     */
-    imageAliases: string[];
-    /**
-     * Type of image
-     */
-    imageType: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Location of that image/snapshot
-     */
-    location: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * Indicates if the image is part of the public repository or not
-     */
-    public: boolean;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
-    ramHotUnplug: boolean;
-    /**
-     * The size of the image in GB
-     */
-    size: number;
-}
-
-export interface GetCubeServerNic {
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Indicates if the nic will reserve an IP using DHCP
-     */
-    dhcp: boolean;
-    dhcpv6?: boolean;
-    /**
-     * Activate or deactivate the firewall
-     */
-    firewallActive: boolean;
-    /**
-     * list of
-     */
-    firewallRules: outputs.GetCubeServerNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC
-     */
-    firewallType: string;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic
-     */
-    ips: string[];
-    ipv6CidrBlock: string;
-    ipv6Ips: string[];
-    /**
-     * The LAN ID the NIC will sit on
-     */
-    lan: number;
-    /**
-     * The MAC address of the NIC
-     */
-    mac: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-}
-
-export interface GetCubeServerNicFirewallRule {
-    /**
-     * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-     */
-    icmpCode: number;
-    /**
-     * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-     */
-    icmpType: number;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-     */
-    portRangeEnd: number;
-    /**
-     * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-     */
-    portRangeStart: number;
-    /**
-     * he protocol for the rule
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-     */
-    sourceIp: string;
-    /**
-     * Only traffic originating from the respective MAC address is allowed
-     */
-    sourceMac: string;
-    /**
-     * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-     */
-    targetIp: string;
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-}
-
-export interface GetCubeServerVolume {
-    /**
-     * The availability zone in which the volume should exist
-     */
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    /**
-     * The bus type of the volume
-     */
-    bus: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    imageName: string;
-    /**
-     * Initial password to be set for installed OS
-     */
-    imagePassword: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-     */
-    sshKeys: string[];
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string
-     */
-    userData?: string;
-}
-
-export interface GetDatacenterCpuArchitecture {
-    /**
-     * A valid CPU family name
-     */
-    cpuFamily: string;
-    /**
-     * The maximum number of cores available
-     */
-    maxCores: number;
-    /**
-     * The maximum number of RAM in MB
-     */
-    maxRam: number;
-    /**
-     * A valid CPU vendor name
-     */
-    vendor: string;
-}
-
-export interface GetDataplatformClusterConfig {
-    apiVersion: string;
-    clusters: outputs.GetDataplatformClusterConfigCluster[];
-    contexts: outputs.GetDataplatformClusterConfigContext[];
-    currentContext: string;
-    kind: string;
-    users: outputs.GetDataplatformClusterConfigUser[];
-}
-
-export interface GetDataplatformClusterConfigCluster {
-    cluster: {[key: string]: string};
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-}
-
-export interface GetDataplatformClusterConfigContext {
-    context: {[key: string]: string};
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-}
-
-export interface GetDataplatformClusterConfigUser {
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-    user: {[key: string]: string};
-}
-
-export interface GetDataplatformClusterLan {
-    /**
-     * Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
-     */
-    dhcp: boolean;
-    /**
-     * The LAN ID of an existing LAN at the related data center
-     */
-    lanId: string;
-    /**
-     * An array of additional LANs attached to worker nodes
-     */
-    routes: outputs.GetDataplatformClusterLanRoute[];
-}
-
-export interface GetDataplatformClusterLanRoute {
-    /**
-     * IPv4 or IPv6 gateway IP for the route
-     */
-    gateway: string;
-    /**
-     * IPv4 or IPv6 CIDR to be routed via the interface
-     */
-    network: string;
-}
-
-export interface GetDataplatformClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    /**
-     * Time at which the maintenance should start.
-     */
-    time: string;
-}
-
-export interface GetDataplatformNodePoolMaintenanceWindow {
-    dayOfTheWeek: string;
-    /**
-     * Time at which the maintenance should start.
-     */
-    time: string;
-}
-
 export interface GetDataplatformNodePoolsNodePool {
     /**
      * Key-value pairs attached to node pool resource as kubernetes annotations
@@ -698,68 +69,6 @@ export interface GetDataplatformNodePoolsNodePoolMaintenanceWindow {
     time: string;
 }
 
-export interface GetGroupUser {
-    administrator: boolean;
-    email: string;
-    firstName: string;
-    forceSecAuth: boolean;
-    /**
-     * ID of the group you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-     */
-    id: string;
-    lastName: string;
-}
-
-export interface GetInmemorydbReplicasetConnection {
-    /**
-     * The IP and subnet for your Replicaset.
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your Replicaset to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your Replicaset to.
-     */
-    lanId: string;
-}
-
-export interface GetInmemorydbReplicasetCredential {
-    /**
-     * The username for your Replicaset.
-     */
-    username: string;
-}
-
-export interface GetInmemorydbReplicasetMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface GetInmemorydbReplicasetResource {
-    /**
-     * The number of CPU cores per instance.
-     */
-    cores: number;
-    /**
-     * The amount of memory per instance in gigabytes (GB).
-     */
-    ram: number;
-    /**
-     * The amount of storage per instance in gigabytes (GB).
-     */
-    storage: number;
-}
-
 export interface GetInmemorydbSnapshotMetadata {
     /**
      * The ISO 8601 creation timestamp.
@@ -781,69 +90,6 @@ export interface GetInmemorydbSnapshotMetadata {
      * The time the snapshot was dumped from the replica set.
      */
     snapshotTime: string;
-}
-
-export interface GetIpblockIpConsumer {
-    datacenterId: string;
-    datacenterName: string;
-    ip: string;
-    k8sClusterUuid: string;
-    k8sNodepoolUuid: string;
-    mac: string;
-    nicId: string;
-    serverId: string;
-    serverName: string;
-}
-
-export interface GetK8sClusterConfig {
-    apiVersion: string;
-    clusters: outputs.GetK8sClusterConfigCluster[];
-    contexts: outputs.GetK8sClusterConfigContext[];
-    currentContext: string;
-    kind: string;
-    users: outputs.GetK8sClusterConfigUser[];
-}
-
-export interface GetK8sClusterConfigCluster {
-    cluster: {[key: string]: string};
-    /**
-     * Name of an existing cluster that you want to search for.
-     */
-    name: string;
-}
-
-export interface GetK8sClusterConfigContext {
-    context: {[key: string]: string};
-    /**
-     * Name of an existing cluster that you want to search for.
-     */
-    name: string;
-}
-
-export interface GetK8sClusterConfigUser {
-    /**
-     * Name of an existing cluster that you want to search for.
-     */
-    name: string;
-    user: {[key: string]: string};
-}
-
-export interface GetK8sClusterMaintenanceWindow {
-    /**
-     * Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
-export interface GetK8sClusterS3Bucket {
-    /**
-     * Name of an existing cluster that you want to search for.
-     */
-    name: string;
 }
 
 export interface GetK8sClustersCluster {
@@ -939,56 +185,6 @@ export interface GetK8sClustersFilter {
     value: string;
 }
 
-export interface GetK8sNodePoolAutoScaling {
-    /**
-     * The maximum number of worker nodes that the node pool can scale to
-     */
-    maxNodeCount: number;
-    /**
-     * The minimum number of worker nodes the node pool can scale down to
-     */
-    minNodeCount: number;
-}
-
-export interface GetK8sNodePoolLan {
-    /**
-     * Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
-     */
-    dhcp: boolean;
-    /**
-     * ID of the node pool you want to search for.
-     *
-     * `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: number;
-    /**
-     * An array of additional LANs attached to worker nodes
-     */
-    routes?: outputs.GetK8sNodePoolLanRoute[];
-}
-
-export interface GetK8sNodePoolLanRoute {
-    /**
-     * IPv4 or IPv6 Gateway IP for the route
-     */
-    gatewayIp: string;
-    /**
-     * IPv4 or IPv6 CIDR to be routed via the interface
-     */
-    network: string;
-}
-
-export interface GetK8sNodePoolMaintenanceWindow {
-    /**
-     * Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
 export interface GetK8sNodePoolNodesNode {
     id?: string;
     /**
@@ -1009,11 +205,6 @@ export interface GetK8sNodePoolNodesNode {
     publicIp?: string;
 }
 
-export interface GetLanIpFailover {
-    ip: string;
-    nicUuid: string;
-}
-
 export interface GetLocationCpuArchitecture {
     /**
      * A valid CPU family name.
@@ -1031,40 +222,6 @@ export interface GetLocationCpuArchitecture {
      * A valid CPU vendor name.
      */
     vendor: string;
-}
-
-export interface GetLoggingPipelineLog {
-    /**
-     * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-     */
-    destinations: outputs.GetLoggingPipelineLogDestination[];
-    /**
-     * [string] "Protocol to use as intake. Possible values are: http, tcp."
-     */
-    protocol: string;
-    /**
-     * [bool]
-     */
-    public: boolean;
-    /**
-     * [string] The source parser to be used.
-     */
-    source: string;
-    /**
-     * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-     */
-    tag: string;
-}
-
-export interface GetLoggingPipelineLogDestination {
-    /**
-     * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
-     */
-    retentionInDays: number;
-    /**
-     * [string] The internal output stream to send logs to.
-     */
-    type: string;
 }
 
 export interface GetMariadbBackupsBackup {
@@ -1095,267 +252,6 @@ export interface GetMariadbBackupsBackupBaseBackup {
      * The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
      */
     size: number;
-}
-
-export interface GetMariadbClusterConnection {
-    /**
-     * The IP and subnet for your cluster.
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface GetMariadbClusterMaintenanceWindow {
-    /**
-     * The name of the week day.
-     */
-    dayOfTheWeek: string;
-    /**
-     * Start of the maintenance window in UTC time.
-     */
-    time: string;
-}
-
-export interface GetMongoClusterBackup {
-    /**
-     * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
-     */
-    location: string;
-}
-
-export interface GetMongoClusterBiConnector {
-    /**
-     * Enable or disable the BiConnector
-     */
-    enabled: boolean;
-    /**
-     * The host where this new BI Connector is installed
-     */
-    host: string;
-    /**
-     * Port number used when connecting to this new BI Connector
-     */
-    port: string;
-}
-
-export interface GetMongoClusterConnection {
-    /**
-     * The list of IPs and subnet for your cluster.
-     *           Note the following unavailable IP ranges:
-     *           10.233.64.0/18
-     *           10.233.0.0/18
-     *           10.233.114.0/24 		
-     *  example: [192.168.1.100/24, 192.168.1.101/24]
-     */
-    cidrLists: string[];
-    /**
-     * The datacenter to connect your cluster to
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to
-     */
-    lanId: string;
-}
-
-export interface GetMongoClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
-export interface GetMongoUserRole {
-    database: string;
-    /**
-     * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
-     */
-    role: string;
-}
-
-export interface GetNatgatewayLan {
-    /**
-     * Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
-     */
-    gatewayIps: string[];
-    /**
-     * ID of the network load balancer forwarding rule you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: number;
-}
-
-export interface GetNatgatewayRuleTargetPortRange {
-    /**
-     * Target port range end associated with the NAT gateway rule.
-     */
-    end: number;
-    /**
-     * Target port range start associated with the NAT gateway rule.
-     */
-    start: number;
-}
-
-export interface GetNetworkloadbalancerFlowlog {
-    /**
-     * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * ID of the network load balancer you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Name of an existing network load balancer that you want to search for.
-     */
-    name: string;
-}
-
-export interface GetNetworkloadbalancerForwardingruleHealthCheck {
-    /**
-     * ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-     */
-    clientTimeout: number;
-    /**
-     * It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-     */
-    connectTimeout: number;
-    /**
-     * Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-     */
-    retries: number;
-    /**
-     * TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-     */
-    targetTimeout: number;
-}
-
-export interface GetNetworkloadbalancerForwardingruleTarget {
-    /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
-     */
-    healthChecks: outputs.GetNetworkloadbalancerForwardingruleTargetHealthCheck[];
-    /**
-     * IP of a balanced target VM.
-     */
-    ip: string;
-    /**
-     * Port of the balanced target service. (range: 1 to 65535).
-     */
-    port: number;
-    /**
-     * The proxy protocol version.
-     */
-    proxyProtocol: string;
-    /**
-     * Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-     */
-    weight: number;
-}
-
-export interface GetNetworkloadbalancerForwardingruleTargetHealthCheck {
-    /**
-     * Check specifies whether the target VM's health is checked.
-     */
-    check: boolean;
-    /**
-     * CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-     */
-    checkInterval: number;
-    /**
-     * Maintenance specifies if a target VM should be marked as down, even if it is not.
-     */
-    maintenance: boolean;
-}
-
-export interface GetNfsClusterConnection {
-    /**
-     * The ID of the datacenter where the Network File Storage cluster is located.
-     */
-    datacenterId: string;
-    /**
-     * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
-     */
-    ipAddress: string;
-    /**
-     * The Private LAN to which the Network File Storage cluster must be connected.
-     */
-    lan: string;
-}
-
-export interface GetNfsClusterNf {
-    /**
-     * The minimum supported version of the NFS cluster. Default is `4.2`
-     */
-    minVersion: string;
-}
-
-export interface GetNfsShareClientGroup {
-    /**
-     * Optional description for the clients groups.
-     */
-    description: string;
-    /**
-     * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
-     */
-    hosts: string[];
-    /**
-     * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-     */
-    ipNetworks: string[];
-    /**
-     * The NFS configuration for the client group. Each NFS configuration supports the following:
-     */
-    nfs: outputs.GetNfsShareClientGroupNf[];
-}
-
-export interface GetNfsShareClientGroupNf {
-    /**
-     * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
-     */
-    squash: string;
-}
-
-export interface GetNicFlowlog {
-    /**
-     * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
-     */
-    action: string;
-    /**
-     * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-     */
-    direction: string;
-    /**
-     * ID of the nic you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided.
-     * If none, are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * [string] The name of the LAN.
-     */
-    name: string;
 }
 
 export interface GetPgBackupsClusterBackup {
@@ -1401,378 +297,10 @@ export interface GetPgBackupsClusterBackupMetadata {
     createdDate: string;
 }
 
-export interface GetPgClusterConnection {
-    /**
-     * The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-     */
-    cidr: string;
-    /**
-     * The datacenter to connect your cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The LAN to connect your cluster to.
-     */
-    lanId: string;
-}
-
-export interface GetPgClusterConnectionPooler {
-    enabled: boolean;
-    /**
-     * Represents different modes of connection pooling for the connection pooler
-     */
-    poolMode: string;
-}
-
-export interface GetPgClusterFromBackup {
-    /**
-     * The unique ID of the backup you want to restore.
-     */
-    backupId: string;
-    /**
-     * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
-     */
-    recoveryTargetTime: string;
-}
-
-export interface GetPgClusterMaintenanceWindow {
-    dayOfTheWeek: string;
-    time: string;
-}
-
 export interface GetPgDatabasesDatabase {
     id: string;
     name: string;
     owner: string;
-}
-
-export interface GetPrivateCrossconnectConnectableDatacenter {
-    /**
-     * ID of the cross connect you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * The physical location of the connectable datacenter
-     */
-    location: string;
-    /**
-     * Name of an existing cross connect that you want to search for.
-     */
-    name: string;
-}
-
-export interface GetPrivateCrossconnectPeer {
-    /**
-     * The id of the cross-connected datacenter
-     */
-    datacenterId: string;
-    /**
-     * The name of the cross-connected datacenter
-     */
-    datacenterName: string;
-    /**
-     * The id of the cross-connected LAN
-     */
-    lanId: string;
-    /**
-     * The name of the cross-connected LAN
-     */
-    lanName: string;
-    /**
-     * The physical location of the connectable datacenter
-     */
-    location: string;
-}
-
-export interface GetServerCdrom {
-    /**
-     * Cloud init compatibility
-     */
-    cloudInit: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
-    cpuHotUnplug: boolean;
-    /**
-     * Description of cdrom
-     */
-    description: string;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
-    discScsiHotPlug: boolean;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required)
-     */
-    discScsiHotUnplug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * List of image aliases mapped for this Image
-     */
-    imageAliases: string[];
-    /**
-     * Type of image
-     */
-    imageType: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Location of that image/snapshot
-     */
-    location: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * Indicates if the image is part of the public repository or not
-     */
-    public: boolean;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
-    ramHotUnplug: boolean;
-    /**
-     * The size of the volume in GB
-     */
-    size: number;
-}
-
-export interface GetServerLabel {
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * The key of the label
-     */
-    key: string;
-    /**
-     * The value of the label
-     */
-    value: string;
-}
-
-export interface GetServerNic {
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Indicates if the nic will reserve an IP using DHCP
-     */
-    dhcp: boolean;
-    dhcpv6?: boolean;
-    /**
-     * Activate or deactivate the firewall
-     */
-    firewallActive: boolean;
-    /**
-     * list of
-     */
-    firewallRules: outputs.GetServerNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC
-     */
-    firewallType: string;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic
-     */
-    ips: string[];
-    ipv6CidrBlock: string;
-    ipv6Ips: string[];
-    /**
-     * The LAN ID the NIC will sit on
-     */
-    lan: number;
-    /**
-     * The MAC address of the NIC
-     */
-    mac: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-}
-
-export interface GetServerNicFirewallRule {
-    /**
-     * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-     */
-    icmpCode: number;
-    /**
-     * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-     */
-    icmpType: number;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-     */
-    portRangeEnd: number;
-    /**
-     * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-     */
-    portRangeStart: number;
-    /**
-     * he protocol for the rule
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-     */
-    sourceIp: string;
-    /**
-     * Only traffic originating from the respective MAC address is allowed
-     */
-    sourceMac: string;
-    /**
-     * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-     */
-    targetIp: string;
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-}
-
-export interface GetServerVolume {
-    /**
-     * The availability zone in which the volume should exist
-     */
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    /**
-     * The bus type of the volume
-     */
-    bus: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    imageName: string;
-    /**
-     * Initial password to be set for installed OS
-     */
-    imagePassword: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * The size of the volume in GB
-     */
-    size: number;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-     */
-    sshKeys: string[];
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string
-     */
-    userData?: string;
 }
 
 export interface GetServersFilter {
@@ -1950,516 +478,6 @@ export interface GetTargetGroupTarget {
     weight: number;
 }
 
-export interface GetUserGroup {
-    /**
-     * ID of the user you want to search for.
-     *
-     * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
-     */
-    id: string;
-    name: string;
-}
-
-export interface GetVcpuServerCdrom {
-    /**
-     * Cloud init compatibility
-     */
-    cloudInit: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
-    cpuHotUnplug: boolean;
-    /**
-     * Description of cdrom
-     */
-    description: string;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
-    discScsiHotPlug: boolean;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required)
-     */
-    discScsiHotUnplug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * List of image aliases mapped for this Image
-     */
-    imageAliases: string[];
-    /**
-     * Type of image
-     */
-    imageType: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Location of that image/snapshot
-     */
-    location: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * Indicates if the image is part of the public repository or not
-     */
-    public: boolean;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
-    ramHotUnplug: boolean;
-    /**
-     * The size of the volume in GB
-     */
-    size: number;
-}
-
-export interface GetVcpuServerLabel {
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * The key of the label
-     */
-    key: string;
-    /**
-     * The value of the label
-     */
-    value: string;
-}
-
-export interface GetVcpuServerNic {
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Indicates if the nic will reserve an IP using DHCP
-     */
-    dhcp: boolean;
-    dhcpv6?: boolean;
-    /**
-     * Activate or deactivate the firewall
-     */
-    firewallActive: boolean;
-    /**
-     * list of
-     */
-    firewallRules: outputs.GetVcpuServerNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC
-     */
-    firewallType: string;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Collection of IP addresses assigned to a nic
-     */
-    ips: string[];
-    ipv6CidrBlock: string;
-    ipv6Ips: string[];
-    /**
-     * The LAN ID the NIC will sit on
-     */
-    lan: number;
-    /**
-     * The MAC address of the NIC
-     */
-    mac: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-}
-
-export interface GetVcpuServerNicFirewallRule {
-    /**
-     * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
-     */
-    icmpCode: number;
-    /**
-     * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
-     */
-    icmpType: number;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
-     */
-    portRangeEnd: number;
-    /**
-     * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
-     */
-    portRangeStart: number;
-    /**
-     * he protocol for the rule
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
-     */
-    sourceIp: string;
-    /**
-     * Only traffic originating from the respective MAC address is allowed
-     */
-    sourceMac: string;
-    /**
-     * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
-     */
-    targetIp: string;
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-}
-
-export interface GetVcpuServerVolume {
-    /**
-     * The availability zone in which the volume should exist
-     */
-    availabilityZone: string;
-    /**
-     * The uuid of the Backup Unit that user has access to
-     */
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    /**
-     * The bus type of the volume
-     */
-    bus: string;
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
-    cpuHotPlug: boolean;
-    /**
-     * The Logical Unit Number (LUN) of the storage volume
-     */
-    deviceNumber: number;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
-    discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required)
-     */
-    discVirtioHotUnplug: boolean;
-    /**
-     * ID of the server you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
-    id: string;
-    imageName: string;
-    /**
-     * Initial password to be set for installed OS
-     */
-    imagePassword: string;
-    /**
-     * OS type of this volume
-     */
-    licenceType: string;
-    /**
-     * Name of an existing server that you want to search for.
-     */
-    name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
-    nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
-    nicHotUnplug: boolean;
-    /**
-     * The PCI slot number of the Nic
-     */
-    pciSlot: number;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
-    ramHotPlug: boolean;
-    /**
-     * The size of the volume in GB
-     */
-    size: number;
-    /**
-     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
-     */
-    sshKeys: string[];
-    /**
-     * The type of firewall rule
-     */
-    type: string;
-    /**
-     * The cloud-init configuration for the volume as base64 encoded string
-     */
-    userData?: string;
-}
-
-export interface GetVpnIpsecGatewayConnection {
-    /**
-     * The datacenter to connect your VPN Gateway to.
-     */
-    datacenterId: string;
-    /**
-     * Describes the private ipv4 subnet in your LAN that should be accessible by the
-     * VPN Gateway.
-     */
-    ipv4Cidr: string;
-    /**
-     * Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
-     */
-    ipv6Cidr: string;
-    /**
-     * The numeric LAN ID to connect your VPN Gateway to.
-     */
-    lanId: string;
-}
-
-export interface GetVpnIpsecTunnelAuth {
-    /**
-     * The Authentication Method to use for IPSec Authentication.
-     */
-    method: string;
-}
-
-export interface GetVpnIpsecTunnelEsp {
-    /**
-     * The Diffie-Hellman Group to use for IPSec Encryption.
-     */
-    diffieHellmanGroup: string;
-    /**
-     * The encryption algorithm to use for IPSec Encryption.
-     */
-    encryptionAlgorithm: string;
-    /**
-     * The integrity algorithm to use for IPSec Encryption.
-     */
-    integrityAlgorithm: string;
-    /**
-     * The phase lifetime in seconds.
-     */
-    lifetime: number;
-}
-
-export interface GetVpnIpsecTunnelIke {
-    /**
-     * The Diffie-Hellman Group to use for IPSec Encryption.
-     */
-    diffieHellmanGroup: string;
-    /**
-     * The encryption algorithm to use for IPSec Encryption.
-     */
-    encryptionAlgorithm: string;
-    /**
-     * The integrity algorithm to use for IPSec Encryption.
-     */
-    integrityAlgorithm: string;
-    /**
-     * The phase lifetime in seconds.
-     */
-    lifetime: number;
-}
-
-export interface GetVpnWireguardGatewayConnection {
-    /**
-     * The ID of the datacenter where the WireGuard Gateway is located.
-     */
-    datacenterId: string;
-    /**
-     * The IPv4 CIDR for the WireGuard Gateway connection.
-     */
-    ipv4Cidr: string;
-    /**
-     * The IPv6 CIDR for the WireGuard Gateway connection.
-     */
-    ipv6Cidr: string;
-    /**
-     * The ID of the LAN where the WireGuard Gateway is connected.
-     */
-    lanId: string;
-}
-
-export interface GetVpnWireguardPeerEndpoint {
-    /**
-     * Hostname or IPV4 address that the WireGuard Server will connect to.
-     */
-    host: string;
-    /**
-     * Port that the WireGuard Server will connect to. Default: 51820
-     */
-    port: number;
-}
-
-export interface LoggingPipelineLog {
-    /**
-     * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
-     */
-    destinations: outputs.LoggingPipelineLogDestination[];
-    /**
-     * [string] "Protocol to use as intake. Possible values are: http, tcp."
-     */
-    protocol: string;
-    /**
-     * [bool]
-     */
-    public: boolean;
-    /**
-     * [string] The source parser to be used.
-     */
-    source: string;
-    /**
-     * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
-     */
-    tag: string;
-}
-
-export interface LoggingPipelineLogDestination {
-    /**
-     * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
-     */
-    retentionInDays: number;
-    /**
-     * [string] The internal output stream to send logs to.
-     */
-    type: string;
-}
-
-export interface NetworkloadbalancerFlowlog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
-     */
-    name: string;
-}
-
-export interface NetworkloadbalancerForwardingruleHealthCheck {
-    /**
-     * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-     */
-    clientTimeout: number;
-    /**
-     * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-     */
-    connectTimeout: number;
-    /**
-     * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-     */
-    retries: number;
-    /**
-     * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
-     */
-    targetTimeout: number;
-}
-
-export interface NetworkloadbalancerForwardingruleTarget {
-    /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
-     */
-    healthCheck: outputs.NetworkloadbalancerForwardingruleTargetHealthCheck;
-    /**
-     * [string] IP of a balanced target VM.
-     */
-    ip: string;
-    /**
-     * [int] Port of the balanced target service. (range: 1 to 65535).
-     */
-    port: number;
-    /**
-     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
-     */
-    proxyProtocol?: string;
-    /**
-     * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
-     */
-    weight: number;
-}
-
-export interface NetworkloadbalancerForwardingruleTargetHealthCheck {
-    /**
-     * [boolean] Check specifies whether the target VM's health is checked.
-     */
-    check: boolean;
-    /**
-     * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-     */
-    checkInterval: number;
-    /**
-     * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
-     */
-    maintenance: boolean;
-}
-
 export interface TargetGroupHealthCheck {
     /**
      * [int] The interval in milliseconds between consecutive health checks; default is 2000.
@@ -2527,6 +545,181 @@ export interface TargetGroupTarget {
      * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: number;
+}
+
+export namespace alb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+         */
+        name: string;
+    }
+
+    export interface ForwardingRuleHttpRule {
+        /**
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions: outputs.alb.ForwardingRuleHttpRuleCondition[];
+        /**
+         * [string] Valid only for STATIC actions.
+         */
+        contentType: string;
+        /**
+         * [bool] Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery?: boolean;
+        /**
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location?: string;
+        /**
+         * [string] The unique name of the Application Load Balancer HTTP rule.
+         */
+        name: string;
+        /**
+         * [string] The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage?: string;
+        /**
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode: number;
+        /**
+         * [string] The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup?: string;
+        /**
+         * [string] Type of the Http Rule.
+         */
+        type: string;
+    }
+
+    export interface ForwardingRuleHttpRuleCondition {
+        /**
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition?: string;
+        /**
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key?: string;
+        /**
+         * [bool] Specifies whether the condition is negated or not; the default is False.
+         */
+        negate?: boolean;
+        /**
+         * [string] Type of the Http Rule condition.
+         */
+        type: string;
+        /**
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value?: string;
+    }
+
+    export interface GetBalancerFlowlog {
+        /**
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * ID of the application load balancer you want to search for.
+         */
+        id: string;
+        /**
+         * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+    }
+
+    export interface GetForwardingRuleHttpRule {
+        /**
+         * An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         */
+        conditions: outputs.alb.GetForwardingRuleHttpRuleCondition[];
+        /**
+         * Valid only for STATIC actions.
+         */
+        contentType: string;
+        /**
+         * Default is false; valid only for REDIRECT actions.
+         */
+        dropQuery: boolean;
+        /**
+         * The location for redirecting; mandatory and valid only for REDIRECT actions.
+         */
+        location: string;
+        /**
+         * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+        /**
+         * The response message of the request; mandatory for STATIC action.
+         */
+        responseMessage: string;
+        /**
+         * Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         */
+        statusCode: number;
+        /**
+         * The UUID of the target group; mandatory for FORWARD action.
+         */
+        targetGroup: string;
+        /**
+         * Type of the Http Rule condition.
+         */
+        type: string;
+    }
+
+    export interface GetForwardingRuleHttpRuleCondition {
+        /**
+         * Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         */
+        condition: string;
+        /**
+         * Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         */
+        key: string;
+        /**
+         * Specifies whether the condition is negated or not; the default is False.
+         */
+        negate: boolean;
+        /**
+         * Type of the Http Rule condition.
+         */
+        type: string;
+        /**
+         * Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         */
+        value: string;
+    }
+
 }
 
 export namespace apigateway {
@@ -3183,6 +1376,59 @@ export namespace cdn {
         blockLists?: string[];
     }
 
+    export interface GetDistributionRoutingRule {
+        /**
+         * The prefix of the routing rule.
+         */
+        prefix: string;
+        /**
+         * The scheme of the routing rule.
+         */
+        scheme: string;
+        /**
+         * A map of properties for the rule
+         */
+        upstreams: outputs.cdn.GetDistributionRoutingRuleUpstream[];
+    }
+
+    export interface GetDistributionRoutingRuleUpstream {
+        /**
+         * Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+         */
+        caching: boolean;
+        /**
+         * A map of geo_restrictions
+         */
+        geoRestrictions: outputs.cdn.GetDistributionRoutingRuleUpstreamGeoRestriction[];
+        /**
+         * The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+         */
+        host: string;
+        /**
+         * Rate limit class that will be applied to limit the number of incoming requests per IP.
+         */
+        rateLimitClass: string;
+        /**
+         * The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+         */
+        sniMode: string;
+        /**
+         * Enable or disable WAF to protect the upstream host.
+         */
+        waf: boolean;
+    }
+
+    export interface GetDistributionRoutingRuleUpstreamGeoRestriction {
+        /**
+         * List of allowed countries
+         */
+        allowLists: string[];
+        /**
+         * List of blocked countries
+         */
+        blockLists: string[];
+    }
+
 }
 
 export namespace cert {
@@ -3195,6 +1441,13 @@ export namespace cert {
          * The secret of the external account binding
          */
         keySecret: string;
+    }
+
+    export interface GetAutoCertificateProviderExternalAccountBinding {
+        /**
+         * The key ID of the external account binding
+         */
+        keyId: string;
     }
 
 }
@@ -3358,6 +1611,1002 @@ export namespace compute {
          * A valid CPU vendor name
          */
         vendor: string;
+    }
+
+    export interface GetCrossconnectConnectableDatacenter {
+        /**
+         * ID of the cross connect you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * The physical location of the connectable datacenter
+         */
+        location: string;
+        /**
+         * Name of an existing cross connect that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetCrossconnectPeer {
+        /**
+         * The id of the cross-connected datacenter
+         */
+        datacenterId: string;
+        /**
+         * The name of the cross-connected datacenter
+         */
+        datacenterName: string;
+        /**
+         * The id of the cross-connected LAN
+         */
+        lanId: string;
+        /**
+         * The name of the cross-connected LAN
+         */
+        lanName: string;
+        /**
+         * The physical location of the connectable datacenter
+         */
+        location: string;
+    }
+
+    export interface GetCubeServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
+        cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
+        cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
+        description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
+        discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
+        discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
+        imageAliases: string[];
+        /**
+         * Type of image
+         */
+        imageType: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
+        location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
+        public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
+        ramHotUnplug: boolean;
+        /**
+         * The size of the image in GB
+         */
+        size: number;
+    }
+
+    export interface GetCubeServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
+        dhcp: boolean;
+        dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
+        firewallActive: boolean;
+        /**
+         * list of
+         */
+        firewallRules: outputs.compute.GetCubeServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
+        firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
+        ips: string[];
+        ipv6CidrBlock: string;
+        ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
+        lan: number;
+        /**
+         * The MAC address of the NIC
+         */
+        mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+    }
+
+    export interface GetCubeServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
+        icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
+        icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
+        portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
+        portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
+        sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
+        sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
+        targetIp: string;
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+    }
+
+    export interface GetCubeServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
+        availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        /**
+         * The bus type of the volume
+         */
+        bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
+        imagePassword: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
+        sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
+        userData?: string;
+    }
+
+    export interface GetDatacenterCpuArchitecture {
+        /**
+         * A valid CPU family name
+         */
+        cpuFamily: string;
+        /**
+         * The maximum number of cores available
+         */
+        maxCores: number;
+        /**
+         * The maximum number of RAM in MB
+         */
+        maxRam: number;
+        /**
+         * A valid CPU vendor name
+         */
+        vendor: string;
+    }
+
+    export interface GetGroupUser {
+        administrator: boolean;
+        email: string;
+        firstName: string;
+        forceSecAuth: boolean;
+        /**
+         * ID of the group you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         */
+        id: string;
+        lastName: string;
+    }
+
+    export interface GetIPBlockIpConsumer {
+        datacenterId: string;
+        datacenterName: string;
+        ip: string;
+        k8sClusterUuid: string;
+        k8sNodepoolUuid: string;
+        mac: string;
+        nicId: string;
+        serverId: string;
+        serverName: string;
+    }
+
+    export interface GetLanIpFailover {
+        ip: string;
+        nicUuid: string;
+    }
+
+    export interface GetNatGatewayLan {
+        /**
+         * Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+         */
+        gatewayIps: string[];
+        /**
+         * ID of the network load balancer forwarding rule you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: number;
+    }
+
+    export interface GetNatGatewayRuleTargetPortRange {
+        /**
+         * Target port range end associated with the NAT gateway rule.
+         */
+        end: number;
+        /**
+         * Target port range start associated with the NAT gateway rule.
+         */
+        start: number;
+    }
+
+    export interface GetNicFlowlog {
+        /**
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
+         */
+        action: string;
+        /**
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+         */
+        direction: string;
+        /**
+         * ID of the nic you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided.
+         * If none, are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * [string] The name of the LAN.
+         */
+        name: string;
+    }
+
+    export interface GetServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
+        cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
+        cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
+        description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
+        discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
+        discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
+        imageAliases: string[];
+        /**
+         * Type of image
+         */
+        imageType: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
+        location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
+        public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
+        ramHotUnplug: boolean;
+        /**
+         * The size of the volume in GB
+         */
+        size: number;
+    }
+
+    export interface GetServerLabel {
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * The key of the label
+         */
+        key: string;
+        /**
+         * The value of the label
+         */
+        value: string;
+    }
+
+    export interface GetServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
+        dhcp: boolean;
+        dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
+        firewallActive: boolean;
+        /**
+         * list of
+         */
+        firewallRules: outputs.compute.GetServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
+        firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
+        ips: string[];
+        ipv6CidrBlock: string;
+        ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
+        lan: number;
+        /**
+         * The MAC address of the NIC
+         */
+        mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+    }
+
+    export interface GetServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
+        icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
+        icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
+        portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
+        portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
+        sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
+        sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
+        targetIp: string;
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+    }
+
+    export interface GetServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
+        availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        /**
+         * The bus type of the volume
+         */
+        bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
+        imagePassword: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * The size of the volume in GB
+         */
+        size: number;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
+        sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
+        userData?: string;
+    }
+
+    export interface GetUserGroup {
+        /**
+         * ID of the user you want to search for.
+         *
+         * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+         */
+        id: string;
+        name: string;
+    }
+
+    export interface GetVCPUServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
+        cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
+        cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
+        description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
+        discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
+        discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
+        imageAliases: string[];
+        /**
+         * Type of image
+         */
+        imageType: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
+        location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
+        public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
+        ramHotUnplug: boolean;
+        /**
+         * The size of the volume in GB
+         */
+        size: number;
+    }
+
+    export interface GetVCPUServerLabel {
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * The key of the label
+         */
+        key: string;
+        /**
+         * The value of the label
+         */
+        value: string;
+    }
+
+    export interface GetVCPUServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
+        dhcp: boolean;
+        dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
+        firewallActive: boolean;
+        /**
+         * list of
+         */
+        firewallRules: outputs.compute.GetVCPUServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
+        firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
+        ips: string[];
+        ipv6CidrBlock: string;
+        ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
+        lan: number;
+        /**
+         * The MAC address of the NIC
+         */
+        mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+    }
+
+    export interface GetVCPUServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
+        icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
+        icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
+        portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
+        portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
+        sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
+        sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
+        targetIp: string;
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+    }
+
+    export interface GetVCPUServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
+        availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        /**
+         * The bus type of the volume
+         */
+        bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
+        cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
+        deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
+        discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
+        discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
+        imagePassword: string;
+        /**
+         * OS type of this volume
+         */
+        licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
+        name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
+        nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
+        nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
+        pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
+        ramHotPlug: boolean;
+        /**
+         * The size of the volume in GB
+         */
+        size: number;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
+        sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
+        type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
+        userData?: string;
     }
 
     export interface GroupUser {
@@ -3651,6 +2900,41 @@ export namespace compute {
 }
 
 export namespace creg {
+    export interface GetRegistryFeature {
+        vulnerabilityScanning: boolean;
+    }
+
+    export interface GetRegistryGarbageCollectionSchedule {
+        days: string[];
+        time: string;
+    }
+
+    export interface GetRegistryMaintenanceWindow {
+        days: string[];
+        time: string;
+    }
+
+    export interface GetRegistryStorageUsage {
+        bytes: number;
+        updatedAt: string;
+    }
+
+    export interface GetRegistryTokenCredential {
+        /**
+         * * `expiry-date`
+         */
+        username: string;
+    }
+
+    export interface GetRegistryTokenScope {
+        actions: string[];
+        /**
+         * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+        type: string;
+    }
+
     export interface RegistryFeatures {
         /**
          * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
@@ -3699,42 +2983,70 @@ export namespace creg {
 }
 
 export namespace dbaas {
-    export interface InMemoryDBReplicaSetConnections {
+    export interface GetInMemoryDBReplicaSetConnection {
         /**
-         * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+         * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
          */
         cidr: string;
         /**
-         * The datacenter to connect your instance to.
+         * [string] The datacenter to connect your instance to.
          */
         datacenterId: string;
         /**
-         * The numeric LAN ID to connect your instance to.
+         * [string] The numeric LAN ID to connect your instance to.
          */
         lanId: string;
     }
 
-    export interface InMemoryDBReplicaSetCredentials {
+    export interface GetInMemoryDBReplicaSetCredential {
         /**
-         * The hashed password for a InMemoryDB user.
-         */
-        hashedPassword?: outputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword;
-        /**
-         * The password for a InMemoryDB user.
-         */
-        plainTextPassword?: string;
-        /**
-         * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+         * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
          */
         username: string;
     }
 
-    export interface InMemoryDBReplicaSetCredentialsHashedPassword {
-        algorithm: string;
-        hash: string;
+    export interface GetInMemoryDBReplicaSetMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: string;
     }
 
-    export interface InMemoryDBReplicaSetMaintenanceWindow {
+    export interface GetInMemoryDBReplicaSetResource {
+        /**
+         * [int] The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * [int] The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+         */
+        storage: number;
+    }
+
+    export interface GetMariaDBClusterConnection {
+        /**
+         * The IP and subnet for your cluster.
+         */
+        cidr: string;
+        /**
+         * The datacenter to connect your cluster to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID to connect your cluster to.
+         */
+        lanId: string;
+    }
+
+    export interface GetMariaDBClusterMaintenanceWindow {
         /**
          * The name of the week day.
          */
@@ -3745,17 +3057,168 @@ export namespace dbaas {
         time: string;
     }
 
+    export interface GetMongoClusterBackup {
+        /**
+         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+         */
+        location: string;
+    }
+
+    export interface GetMongoClusterBiConnector {
+        /**
+         * Enable or disable the BiConnector
+         */
+        enabled: boolean;
+        /**
+         * The host where this new BI Connector is installed
+         */
+        host: string;
+        /**
+         * Port number used when connecting to this new BI Connector
+         */
+        port: string;
+    }
+
+    export interface GetMongoClusterConnection {
+        /**
+         * The list of IPs and subnet for your cluster.
+         *           Note the following unavailable IP ranges:
+         *           10.233.64.0/18
+         *           10.233.0.0/18
+         *           10.233.114.0/24 		
+         *  example: [192.168.1.100/24, 192.168.1.101/24]
+         */
+        cidrLists: string[];
+        /**
+         * The datacenter to connect your cluster to.
+         */
+        datacenterId: string;
+        /**
+         * The LAN to connect your cluster to.
+         */
+        lanId: string;
+    }
+
+    export interface GetMongoClusterMaintenanceWindow {
+        dayOfTheWeek: string;
+        time: string;
+    }
+
+    export interface GetMongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
+        database: string;
+        /**
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
+         */
+        role: string;
+    }
+
+    export interface GetPSQLClusterConnection {
+        /**
+         * The IP and subnet for the database.
+         */
+        cidr: string;
+        /**
+         * The datacenter to connect your cluster to.
+         */
+        datacenterId: string;
+        /**
+         * The LAN to connect your cluster to.
+         */
+        lanId: string;
+    }
+
+    export interface GetPSQLClusterConnectionPooler {
+        enabled: boolean;
+        /**
+         * Represents different modes of connection pooling for the connection pooler.
+         */
+        poolMode: string;
+    }
+
+    export interface GetPSQLClusterFromBackup {
+        /**
+         * The PostgreSQL version of your cluster.
+         */
+        backupId: string;
+        /**
+         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
+         */
+        recoveryTargetTime: string;
+    }
+
+    export interface GetPSQLClusterMaintenanceWindow {
+        dayOfTheWeek: string;
+        time: string;
+    }
+
+    export interface InMemoryDBReplicaSetConnections {
+        /**
+         * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
+         */
+        cidr: string;
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
+    }
+
+    export interface InMemoryDBReplicaSetCredentials {
+        /**
+         * [object] The hashed password for a InMemoryDB user.
+         */
+        hashedPassword?: outputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword;
+        /**
+         * [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
+         */
+        plainTextPassword?: string;
+        /**
+         * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+         */
+        username: string;
+    }
+
+    export interface InMemoryDBReplicaSetCredentialsHashedPassword {
+        /**
+         * [string] The value can be only: "SHA-256".
+         */
+        algorithm: string;
+        /**
+         * [string] The hashed password.
+         */
+        hash: string;
+    }
+
+    export interface InMemoryDBReplicaSetMaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
     export interface InMemoryDBReplicaSetResources {
         /**
-         * The number of CPU cores per instance.
+         * [int] The number of CPU cores per instance.
          */
         cores: number;
         /**
-         * The amount of memory per instance in gigabytes (GB).
+         * [int] The amount of memory per instance in gigabytes (GB).
          */
         ram: number;
         /**
-         * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+         * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage: number;
     }
@@ -3799,7 +3262,7 @@ export namespace dbaas {
 
     export interface MongoClusterBackup {
         /**
-         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+         * [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
          */
         location?: string;
         /**
@@ -3814,95 +3277,114 @@ export namespace dbaas {
 
     export interface MongoClusterBiConnector {
         /**
-         * Enable or disable the BiConnector.
+         * [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
          */
         enabled?: boolean;
         /**
-         * The host where this new BI Connector is installed.
+         * [string] - The host where this new BI Connector is installed.
          */
         host: string;
         /**
-         * Port number used when connecting to this new BI Connector.
+         * [string] - Port number used when connecting to this new BI Connector.
          */
         port: string;
     }
 
     export interface MongoClusterConnections {
         /**
-         * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+         * [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
          */
         cidrLists: string[];
         /**
-         * The datacenter to connect your cluster to.
+         * [string] The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The LAN to connect your cluster to.
+         * [string] The LAN to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface MongoClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: string;
+        /**
+         * [string]
+         */
         time: string;
     }
 
     export interface MongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
         database?: string;
         /**
-         * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
          */
         role?: string;
     }
 
     export interface PSQLClusterConnectionPooler {
+        /**
+         * [bool]
+         */
         enabled: boolean;
         /**
-         * Represents different modes of connection pooling for the connection pooler
+         * [string] Represents different modes of connection pooling for the connection pooler.
          */
         poolMode: string;
     }
 
     export interface PSQLClusterConnections {
         /**
-         * The IP and subnet for the database.
-         *           Note the following unavailable IP ranges:
-         *           10.233.64.0/18
-         *           10.233.0.0/18
-         *           10.233.114.0/24
+         * [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
          */
         cidr: string;
         /**
-         * The datacenter to connect your cluster to.
+         * [true] The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The LAN to connect your cluster to.
+         * [true] The LAN to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface PSQLClusterCredentials {
+        /**
+         * [string]
+         */
         password: string;
         /**
-         * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+         * [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
          */
         username: string;
     }
 
     export interface PSQLClusterFromBackup {
         /**
-         * The unique ID of the backup you want to restore.
+         * [string] The unique ID of the backup you want to restore.
          */
         backupId: string;
         /**
-         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         * [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
          */
         recoveryTargetTime?: string;
     }
 
     export interface PSQLClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: string;
+        /**
+         * [string]
+         */
         time: string;
     }
 
@@ -3946,6 +3428,81 @@ export namespace dsaas {
         time: string;
     }
 
+    export interface GetClusterConfig {
+        apiVersion: string;
+        clusters: outputs.dsaas.GetClusterConfigCluster[];
+        contexts: outputs.dsaas.GetClusterConfigContext[];
+        currentContext: string;
+        kind: string;
+        users: outputs.dsaas.GetClusterConfigUser[];
+    }
+
+    export interface GetClusterConfigCluster {
+        cluster: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+    }
+
+    export interface GetClusterConfigContext {
+        context: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+    }
+
+    export interface GetClusterConfigUser {
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+        user: {[key: string]: string};
+    }
+
+    export interface GetClusterLan {
+        /**
+         * Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
+         */
+        dhcp: boolean;
+        /**
+         * The LAN ID of an existing LAN at the related data center
+         */
+        lanId: string;
+        /**
+         * An array of additional LANs attached to worker nodes
+         */
+        routes: outputs.dsaas.GetClusterLanRoute[];
+    }
+
+    export interface GetClusterLanRoute {
+        /**
+         * IPv4 or IPv6 gateway IP for the route
+         */
+        gateway: string;
+        /**
+         * IPv4 or IPv6 CIDR to be routed via the interface
+         */
+        network: string;
+    }
+
+    export interface GetClusterMaintenanceWindow {
+        dayOfTheWeek: string;
+        /**
+         * Time at which the maintenance should start.
+         */
+        time: string;
+    }
+
+    export interface GetNodePoolMaintenanceWindow {
+        dayOfTheWeek: string;
+        /**
+         * Time at which the maintenance should start.
+         */
+        time: string;
+    }
+
     export interface NodePoolMaintenanceWindow {
         /**
          * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
@@ -3976,6 +3533,107 @@ export namespace k8s {
          * [string] The name of the Kubernetes Cluster.
          */
         name?: string;
+    }
+
+    export interface GetClusterConfig {
+        apiVersion: string;
+        clusters: outputs.k8s.GetClusterConfigCluster[];
+        contexts: outputs.k8s.GetClusterConfigContext[];
+        currentContext: string;
+        kind: string;
+        users: outputs.k8s.GetClusterConfigUser[];
+    }
+
+    export interface GetClusterConfigCluster {
+        cluster: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetClusterConfigContext {
+        context: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetClusterConfigUser {
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
+        name: string;
+        user: {[key: string]: string};
+    }
+
+    export interface GetClusterMaintenanceWindow {
+        /**
+         * Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * A clock time in the day when maintenance is allowed
+         */
+        time: string;
+    }
+
+    export interface GetClusterS3Bucket {
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetNodePoolAutoScaling {
+        /**
+         * The maximum number of worker nodes that the node pool can scale to
+         */
+        maxNodeCount: number;
+        /**
+         * The minimum number of worker nodes the node pool can scale down to
+         */
+        minNodeCount: number;
+    }
+
+    export interface GetNodePoolLan {
+        /**
+         * Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+         */
+        dhcp: boolean;
+        /**
+         * ID of the node pool you want to search for.
+         *
+         * `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: number;
+        /**
+         * An array of additional LANs attached to worker nodes
+         */
+        routes?: outputs.k8s.GetNodePoolLanRoute[];
+    }
+
+    export interface GetNodePoolLanRoute {
+        /**
+         * IPv4 or IPv6 Gateway IP for the route
+         */
+        gatewayIp: string;
+        /**
+         * IPv4 or IPv6 CIDR to be routed via the interface
+         */
+        network: string;
+    }
+
+    export interface GetNodePoolMaintenanceWindow {
+        /**
+         * Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * A clock time in the day when maintenance is allowed
+         */
+        time: string;
     }
 
     export interface NodePoolAutoScaling {
@@ -4062,6 +3720,77 @@ export namespace kafka {
 
 }
 
+export namespace logging {
+    export interface GetPipelineLog {
+        /**
+         * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+         */
+        destinations: outputs.logging.GetPipelineLogDestination[];
+        /**
+         * [string] "Protocol to use as intake. Possible values are: http, tcp."
+         */
+        protocol: string;
+        /**
+         * [bool]
+         */
+        public: boolean;
+        /**
+         * [string] The source parser to be used.
+         */
+        source: string;
+        /**
+         * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+         */
+        tag: string;
+    }
+
+    export interface GetPipelineLogDestination {
+        /**
+         * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only.
+         */
+        retentionInDays: number;
+        /**
+         * [string] The internal output stream to send logs to.
+         */
+        type: string;
+    }
+
+    export interface PipelineLog {
+        /**
+         * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+         */
+        destinations: outputs.logging.PipelineLogDestination[];
+        /**
+         * [string] "Protocol to use as intake. Possible values are: http, tcp."
+         */
+        protocol: string;
+        /**
+         * [bool]
+         */
+        public: boolean;
+        /**
+         * [string] The source parser to be used.
+         */
+        source: string;
+        /**
+         * [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+         */
+        tag: string;
+    }
+
+    export interface PipelineLogDestination {
+        /**
+         * [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+         */
+        retentionInDays: number;
+        /**
+         * [string] The internal output stream to send logs to.
+         */
+        type: string;
+    }
+
+}
+
 export namespace nfs {
     export interface ClusterConnections {
         /**
@@ -4083,6 +3812,54 @@ export namespace nfs {
          * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
          */
         minVersion?: string;
+    }
+
+    export interface GetClusterConnection {
+        /**
+         * The ID of the datacenter where the Network File Storage cluster is located.
+         */
+        datacenterId: string;
+        /**
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+         */
+        ipAddress: string;
+        /**
+         * The Private LAN to which the Network File Storage cluster must be connected.
+         */
+        lan: string;
+    }
+
+    export interface GetClusterNf {
+        /**
+         * The minimum supported version of the NFS cluster. Default is `4.2`
+         */
+        minVersion: string;
+    }
+
+    export interface GetShareClientGroup {
+        /**
+         * Optional description for the clients groups.
+         */
+        description: string;
+        /**
+         * A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+         */
+        hosts: string[];
+        /**
+         * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+         */
+        ipNetworks: string[];
+        /**
+         * The NFS configuration for the client group. Each NFS configuration supports the following:
+         */
+        nfs: outputs.nfs.GetShareClientGroupNf[];
+    }
+
+    export interface GetShareClientGroupNf {
+        /**
+         * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+         */
+        squash: string;
     }
 
     export interface ShareClientGroup {
@@ -4113,7 +3890,269 @@ export namespace nfs {
 
 }
 
+export namespace nlb {
+    export interface BalancerFlowlog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+         */
+        name: string;
+    }
+
+    export interface ForwardingRuleHealthCheck {
+        /**
+         * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+         */
+        clientTimeout: number;
+        /**
+         * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+         */
+        connectTimeout: number;
+        /**
+         * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+         */
+        retries: number;
+        /**
+         * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+         */
+        targetTimeout: number;
+    }
+
+    export interface ForwardingRuleTarget {
+        /**
+         * Health check attributes for Network Load Balancer forwarding rule target.
+         */
+        healthCheck: outputs.nlb.ForwardingRuleTargetHealthCheck;
+        /**
+         * [string] IP of a balanced target VM.
+         */
+        ip: string;
+        /**
+         * [int] Port of the balanced target service. (range: 1 to 65535).
+         */
+        port: number;
+        /**
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+         */
+        proxyProtocol?: string;
+        /**
+         * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+         */
+        weight: number;
+    }
+
+    export interface ForwardingRuleTargetHealthCheck {
+        /**
+         * [boolean] Check specifies whether the target VM's health is checked.
+         */
+        check: boolean;
+        /**
+         * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+         */
+        checkInterval: number;
+        /**
+         * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
+         */
+        maintenance: boolean;
+    }
+
+    export interface GetBalancerFlowlog {
+        /**
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * ID of the network load balancer you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
+        id: string;
+        /**
+         * Name of an existing network load balancer that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetForwardingRuleHealthCheck {
+        /**
+         * ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+         */
+        clientTimeout: number;
+        /**
+         * It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+         */
+        connectTimeout: number;
+        /**
+         * Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+         */
+        retries: number;
+        /**
+         * TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+         */
+        targetTimeout: number;
+    }
+
+    export interface GetForwardingRuleTarget {
+        /**
+         * Health check attributes for Network Load Balancer forwarding rule target.
+         */
+        healthChecks: outputs.nlb.GetForwardingRuleTargetHealthCheck[];
+        /**
+         * IP of a balanced target VM.
+         */
+        ip: string;
+        /**
+         * Port of the balanced target service. (range: 1 to 65535).
+         */
+        port: number;
+        /**
+         * The proxy protocol version.
+         */
+        proxyProtocol: string;
+        /**
+         * Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+         */
+        weight: number;
+    }
+
+    export interface GetForwardingRuleTargetHealthCheck {
+        /**
+         * Check specifies whether the target VM's health is checked.
+         */
+        check: boolean;
+        /**
+         * CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+         */
+        checkInterval: number;
+        /**
+         * Maintenance specifies if a target VM should be marked as down, even if it is not.
+         */
+        maintenance: boolean;
+    }
+
+}
+
 export namespace vpn {
+    export interface GetIpsecGatewayConnection {
+        /**
+         * The datacenter to connect your VPN Gateway to.
+         */
+        datacenterId: string;
+        /**
+         * Describes the private ipv4 subnet in your LAN that should be accessible by the
+         * VPN Gateway.
+         */
+        ipv4Cidr: string;
+        /**
+         * Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+         */
+        ipv6Cidr: string;
+        /**
+         * The numeric LAN ID to connect your VPN Gateway to.
+         */
+        lanId: string;
+    }
+
+    export interface GetIpsecTunnelAuth {
+        /**
+         * The Authentication Method to use for IPSec Authentication.
+         */
+        method: string;
+    }
+
+    export interface GetIpsecTunnelEsp {
+        /**
+         * The Diffie-Hellman Group to use for IPSec Encryption.
+         */
+        diffieHellmanGroup: string;
+        /**
+         * The encryption algorithm to use for IPSec Encryption.
+         */
+        encryptionAlgorithm: string;
+        /**
+         * The integrity algorithm to use for IPSec Encryption.
+         */
+        integrityAlgorithm: string;
+        /**
+         * The phase lifetime in seconds.
+         */
+        lifetime: number;
+    }
+
+    export interface GetIpsecTunnelIke {
+        /**
+         * The Diffie-Hellman Group to use for IPSec Encryption.
+         */
+        diffieHellmanGroup: string;
+        /**
+         * The encryption algorithm to use for IPSec Encryption.
+         */
+        encryptionAlgorithm: string;
+        /**
+         * The integrity algorithm to use for IPSec Encryption.
+         */
+        integrityAlgorithm: string;
+        /**
+         * The phase lifetime in seconds.
+         */
+        lifetime: number;
+    }
+
+    export interface GetWireguardGatewayConnection {
+        /**
+         * The ID of the datacenter where the WireGuard Gateway is located.
+         */
+        datacenterId: string;
+        /**
+         * The IPv4 CIDR for the WireGuard Gateway connection.
+         */
+        ipv4Cidr: string;
+        /**
+         * The IPv6 CIDR for the WireGuard Gateway connection.
+         */
+        ipv6Cidr: string;
+        /**
+         * The ID of the LAN where the WireGuard Gateway is connected.
+         */
+        lanId: string;
+    }
+
+    export interface GetWireguardPeerEndpoint {
+        /**
+         * Hostname or IPV4 address that the WireGuard Server will connect to.
+         */
+        host: string;
+        /**
+         * Port that the WireGuard Server will connect to. Default: 51820
+         */
+        port: number;
+    }
+
     export interface IpsecGatewayConnection {
         /**
          * [string] The datacenter to connect your VPN Gateway to.

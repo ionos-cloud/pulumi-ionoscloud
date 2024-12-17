@@ -55,6 +55,8 @@ __all__ = [
     'VCPUServerNicFirewallArgsDict',
     'VCPUServerVolumeArgs',
     'VCPUServerVolumeArgsDict',
+    'GetIPBlockIpConsumerArgs',
+    'GetIPBlockIpConsumerArgsDict',
 ]
 
 MYPY = False
@@ -3005,5 +3007,123 @@ class VCPUServerVolumeArgs:
     @user_data.setter
     def user_data(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_data", value)
+
+
+if not MYPY:
+    class GetIPBlockIpConsumerArgsDict(TypedDict):
+        datacenter_id: str
+        datacenter_name: str
+        ip: str
+        k8s_cluster_uuid: str
+        k8s_nodepool_uuid: str
+        mac: str
+        nic_id: str
+        server_id: str
+        server_name: str
+elif False:
+    GetIPBlockIpConsumerArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetIPBlockIpConsumerArgs:
+    def __init__(__self__, *,
+                 datacenter_id: str,
+                 datacenter_name: str,
+                 ip: str,
+                 k8s_cluster_uuid: str,
+                 k8s_nodepool_uuid: str,
+                 mac: str,
+                 nic_id: str,
+                 server_id: str,
+                 server_name: str):
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "datacenter_name", datacenter_name)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "k8s_cluster_uuid", k8s_cluster_uuid)
+        pulumi.set(__self__, "k8s_nodepool_uuid", k8s_nodepool_uuid)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "nic_id", nic_id)
+        pulumi.set(__self__, "server_id", server_id)
+        pulumi.set(__self__, "server_name", server_name)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        return pulumi.get(self, "datacenter_id")
+
+    @datacenter_id.setter
+    def datacenter_id(self, value: str):
+        pulumi.set(self, "datacenter_id", value)
+
+    @property
+    @pulumi.getter(name="datacenterName")
+    def datacenter_name(self) -> str:
+        return pulumi.get(self, "datacenter_name")
+
+    @datacenter_name.setter
+    def datacenter_name(self, value: str):
+        pulumi.set(self, "datacenter_name", value)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: str):
+        pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter(name="k8sClusterUuid")
+    def k8s_cluster_uuid(self) -> str:
+        return pulumi.get(self, "k8s_cluster_uuid")
+
+    @k8s_cluster_uuid.setter
+    def k8s_cluster_uuid(self, value: str):
+        pulumi.set(self, "k8s_cluster_uuid", value)
+
+    @property
+    @pulumi.getter(name="k8sNodepoolUuid")
+    def k8s_nodepool_uuid(self) -> str:
+        return pulumi.get(self, "k8s_nodepool_uuid")
+
+    @k8s_nodepool_uuid.setter
+    def k8s_nodepool_uuid(self, value: str):
+        pulumi.set(self, "k8s_nodepool_uuid", value)
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        return pulumi.get(self, "mac")
+
+    @mac.setter
+    def mac(self, value: str):
+        pulumi.set(self, "mac", value)
+
+    @property
+    @pulumi.getter(name="nicId")
+    def nic_id(self) -> str:
+        return pulumi.get(self, "nic_id")
+
+    @nic_id.setter
+    def nic_id(self, value: str):
+        pulumi.set(self, "nic_id", value)
+
+    @property
+    @pulumi.getter(name="serverId")
+    def server_id(self) -> str:
+        return pulumi.get(self, "server_id")
+
+    @server_id.setter
+    def server_id(self, value: str):
+        pulumi.set(self, "server_id", value)
+
+    @property
+    @pulumi.getter(name="serverName")
+    def server_name(self) -> str:
+        return pulumi.get(self, "server_name")
+
+    @server_name.setter
+    def server_name(self, value: str):
+        pulumi.set(self, "server_name", value)
 
 

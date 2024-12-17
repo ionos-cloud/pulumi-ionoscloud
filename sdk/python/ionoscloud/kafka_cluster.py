@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -23,11 +28,12 @@ class KafkaClusterArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KafkaCluster resource.
-        :param pulumi.Input['KafkaClusterConnectionsArgs'] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
-        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
+        :param pulumi.Input['KafkaClusterConnectionsArgs'] connections: The network connection for your Kafka Cluster. Only one connection is allowed.
+        :param pulumi.Input[str] location: The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] size: The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+        :param pulumi.Input[str] version: The desired Kafka Version. Supported version: 3.7.0
+        :param pulumi.Input[str] name: The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+               (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "location", location)
@@ -40,7 +46,7 @@ class KafkaClusterArgs:
     @pulumi.getter
     def connections(self) -> pulumi.Input['KafkaClusterConnectionsArgs']:
         """
-        Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        The network connection for your Kafka Cluster. Only one connection is allowed.
         """
         return pulumi.get(self, "connections")
 
@@ -52,7 +58,7 @@ class KafkaClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -64,7 +70,7 @@ class KafkaClusterArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[str]:
         """
-        [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         """
         return pulumi.get(self, "size")
 
@@ -76,7 +82,7 @@ class KafkaClusterArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        The desired Kafka Version. Supported version: 3.7.0
         """
         return pulumi.get(self, "version")
 
@@ -88,7 +94,8 @@ class KafkaClusterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the Kafka Cluster.
+        The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         """
         return pulumi.get(self, "name")
 
@@ -108,12 +115,13 @@ class _KafkaClusterState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KafkaCluster resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: [list] IP address and port of cluster brokers.
-        :param pulumi.Input['KafkaClusterConnectionsArgs'] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
-        :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: IP address and port of cluster brokers.
+        :param pulumi.Input['KafkaClusterConnectionsArgs'] connections: The network connection for your Kafka Cluster. Only one connection is allowed.
+        :param pulumi.Input[str] location: The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+               (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        :param pulumi.Input[str] size: The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+        :param pulumi.Input[str] version: The desired Kafka Version. Supported version: 3.7.0
         """
         if broker_addresses is not None:
             pulumi.set(__self__, "broker_addresses", broker_addresses)
@@ -132,7 +140,7 @@ class _KafkaClusterState:
     @pulumi.getter(name="brokerAddresses")
     def broker_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] IP address and port of cluster brokers.
+        IP address and port of cluster brokers.
         """
         return pulumi.get(self, "broker_addresses")
 
@@ -144,7 +152,7 @@ class _KafkaClusterState:
     @pulumi.getter
     def connections(self) -> Optional[pulumi.Input['KafkaClusterConnectionsArgs']]:
         """
-        Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        The network connection for your Kafka Cluster. Only one connection is allowed.
         """
         return pulumi.get(self, "connections")
 
@@ -156,7 +164,7 @@ class _KafkaClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -168,7 +176,8 @@ class _KafkaClusterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name of the Kafka Cluster.
+        The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         """
         return pulumi.get(self, "name")
 
@@ -180,7 +189,7 @@ class _KafkaClusterState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         """
         return pulumi.get(self, "size")
 
@@ -192,7 +201,7 @@ class _KafkaClusterState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        The desired Kafka Version. Supported version: 3.7.0
         """
         return pulumi.get(self, "version")
 
@@ -211,13 +220,14 @@ class KafkaCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['KafkaClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+<<<<<<< HEAD
         Manages a **Kafka Cluster** on IonosCloud.
 
         ## Example Usage
@@ -258,13 +268,17 @@ class KafkaCluster(pulumi.CustomResource):
         $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
         ```
 
+=======
+        Create a KafkaCluster resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['KafkaClusterConnectionsArgs']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
-        :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']] connections: The network connection for your Kafka Cluster. Only one connection is allowed.
+        :param pulumi.Input[str] location: The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+               (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        :param pulumi.Input[str] size: The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+        :param pulumi.Input[str] version: The desired Kafka Version. Supported version: 3.7.0
         """
         ...
     @overload
@@ -273,6 +287,7 @@ class KafkaCluster(pulumi.CustomResource):
                  args: KafkaClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+<<<<<<< HEAD
         Manages a **Kafka Cluster** on IonosCloud.
 
         ## Example Usage
@@ -313,6 +328,9 @@ class KafkaCluster(pulumi.CustomResource):
         $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
         ```
 
+=======
+        Create a KafkaCluster resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param KafkaClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -328,7 +346,7 @@ class KafkaCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['KafkaClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -368,7 +386,7 @@ class KafkaCluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             broker_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['KafkaClusterConnectionsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
@@ -380,12 +398,13 @@ class KafkaCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: [list] IP address and port of cluster brokers.
-        :param pulumi.Input[pulumi.InputType['KafkaClusterConnectionsArgs']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
-        :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
-        :param pulumi.Input[str] version: [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: IP address and port of cluster brokers.
+        :param pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']] connections: The network connection for your Kafka Cluster. Only one connection is allowed.
+        :param pulumi.Input[str] location: The location of your Kafka Cluster. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+               (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        :param pulumi.Input[str] size: The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
+        :param pulumi.Input[str] version: The desired Kafka Version. Supported version: 3.7.0
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -403,7 +422,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter(name="brokerAddresses")
     def broker_addresses(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] IP address and port of cluster brokers.
+        IP address and port of cluster brokers.
         """
         return pulumi.get(self, "broker_addresses")
 
@@ -411,7 +430,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def connections(self) -> pulumi.Output['outputs.KafkaClusterConnections']:
         """
-        Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        The network connection for your Kafka Cluster. Only one connection is allowed.
         """
         return pulumi.get(self, "connections")
 
@@ -419,7 +438,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        The location of your Kafka Cluster. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -427,7 +446,8 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Name of the Kafka Cluster.
+        The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+        (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
         """
         return pulumi.get(self, "name")
 
@@ -435,7 +455,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[str]:
         """
-        [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+        The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
         """
         return pulumi.get(self, "size")
 
@@ -443,7 +463,7 @@ class KafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+        The desired Kafka Version. Supported version: 3.7.0
         """
         return pulumi.get(self, "version")
 

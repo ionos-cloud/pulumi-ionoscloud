@@ -14,6 +14,10 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     {
         [Input("password", required: true)]
         private Input<string>? _password;
+
+        /// <summary>
+        /// [string]
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -25,7 +29,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         }
 
         /// <summary>
-        /// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        /// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

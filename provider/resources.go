@@ -39,19 +39,22 @@ const (
 	mainPkg = "ionoscloud"
 	// modules:
 	mainMod       = "index"       // the ionoscloud module
-	computeModule = "compute"     // the ionoscloud module
-	dbaasModule   = "dbaas"       // the ionoscloud module
-	k8sModule     = "k8s"         // the ionoscloud module
-	certModule    = "cert"        // the ionoscloud module
-	dsaasModule   = "dsaas"       // the ionoscloud module
-	nfsModule     = "nfs"         // the ionoscloud module
-	vpnModule     = "vpn"         // the ionoscloud module
-	cdnModule     = "cdn"         // the ionoscloud module
-	dnsModule     = "dns"         // the ionoscloud module
-	cregModule    = "creg"        // the ionoscloud module
-	kafkaModule   = "kafka"       // the ionoscloud module
-	apigModule    = "apigateway"  // the ionoscloud module
-	autosclModule = "autoscaling" // the ionoscloud module
+	computeModule = "compute"     // the compute module
+	dbaasModule   = "dbaas"       // the dbaas module
+	k8sModule     = "k8s"         // the k8s module
+	certModule    = "cert"        // the certificate manager module
+	dsaasModule   = "dsaas"       // the dataplatform module
+	nfsModule     = "nfs"         // the nfs module
+	vpnModule     = "vpn"         // the vpn module
+	cdnModule     = "cdn"         // the cdn module
+	dnsModule     = "dns"         // the dns module
+	cregModule    = "creg"        // the container registry module
+	kafkaModule   = "kafka"       // the kafka module
+	apigModule    = "apigateway"  // the apigateway module
+	autosclModule = "autoscaling" // the autoscaling module
+	loggingModule = "logging"     // the logging module
+	albModule     = "alb"         // the applicationloadblancer module
+	nlbModule     = "nlb"         // the networkloadblancer module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -217,6 +220,160 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_autoscaling_group_servers": {
 				Tok: tfbridge.MakeDataSource(mainPkg, autosclModule, "getServers"),
 			},
+			"ionoscloud_datacenter": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getDatacenter"),
+			},
+			"ionoscloud_server": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getServer"),
+			},
+			"ionoscloud_vcpu_server": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getVCPUServer"),
+			},
+			"ionoscloud_cube_server": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getCubeServer"),
+			},
+			"ionoscloud_lan": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getLan"),
+			},
+			"ionoscloud_nic": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getNic"),
+			},
+			"ionoscloud_volume": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getVolume"),
+			},
+			"ionoscloud_firewall": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getFirewall"),
+			},
+			"ionoscloud_group": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getGroup"),
+			},
+			"ionoscloud_user": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getUser"),
+			},
+			"ionoscloud_ipblock": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getIPBlock"),
+			},
+			"ionoscloud_share": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getShare"),
+			},
+			"ionoscloud_ipfailover": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getIPFailover"),
+			},
+			"ionoscloud_private_crossconnect": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getCrossconnect"),
+			},
+			"ionoscloud_s3_key": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getS3Key"),
+			},
+			"ionoscloud_backup_unit": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getBackupUnit"),
+			},
+			"ionoscloud_snapshot": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getSnapshot"),
+			},
+			"ionoscloud_natgateway": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getNatGateway"),
+			},
+			"ionoscloud_natgateway_rule": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getNatGatewayRule"),
+			},
+			"ionoscloud_pg_cluster": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_cluster.md"},
+			},
+			"ionoscloud_pg_user": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLUser"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_user.md"},
+			},
+			"ionoscloud_pg_database": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLDatabase"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_database.md"},
+			},
+			"ionoscloud_mongo_cluster": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_cluster.md"},
+			},
+			"ionoscloud_mongo_user": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoUser"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_user.md"},
+			},
+			"ionoscloud_mariadb_cluster": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBCluster"),
+			},
+			"ionoscloud_inmemorydb_replicaset": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBReplicaSet"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
+			},
+			"ionoscloud_k8s_cluster": {
+				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getCluster"),
+			},
+			"ionoscloud_k8s_node_pool": {
+				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getNodePool"),
+			},
+			"ionoscloud_auto_certificate": {
+				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificate"),
+			},
+			"ionoscloud_auto_certificate_provider": {
+				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificateProvider"),
+			},
+			"ionoscloud_certificate": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getCertificate"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_certificate.md"},
+			},
+			"ionoscloud_dataplatform_cluster": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dsaasModule, "getCluster"),
+			},
+			"ionoscloud_dataplatform_node_pool": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dsaasModule, "getNodePool"),
+			},
+			"ionoscloud_nfs_cluster": {
+				Tok: tfbridge.MakeDataSource(mainPkg, nfsModule, "getCluster"),
+			},
+			"ionoscloud_nfs_share": {
+				Tok: tfbridge.MakeDataSource(mainPkg, nfsModule, "getShare"),
+			},
+			"ionoscloud_vpn_ipsec_gateway": {
+				Tok: tfbridge.MakeDataSource(mainPkg, vpnModule, "getIpsecGateway"),
+			},
+			"ionoscloud_vpn_ipsec_tunnel": {
+				Tok: tfbridge.MakeDataSource(mainPkg, vpnModule, "getIpsecTunnel"),
+			},
+			"ionoscloud_vpn_wireguard_gateway": {
+				Tok: tfbridge.MakeDataSource(mainPkg, vpnModule, "getWireguardGateway"),
+			},
+			"ionoscloud_vpn_wireguard_peer": {
+				Tok: tfbridge.MakeDataSource(mainPkg, vpnModule, "getWireguardPeer"),
+			},
+			"ionoscloud_cdn_distribution": {
+				Tok: tfbridge.MakeDataSource(mainPkg, cdnModule, "getDistribution"),
+			},
+			"ionoscloud_dns_zone": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dnsModule, "getZone"),
+			},
+			"ionoscloud_dns_record": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dnsModule, "getRecord"),
+			},
+			"ionoscloud_container_registry": {
+				Tok: tfbridge.MakeDataSource(mainPkg, cregModule, "getRegistry"),
+			},
+			"ionoscloud_container_registry_token": {
+				Tok: tfbridge.MakeDataSource(mainPkg, cregModule, "getRegistryToken"),
+			},
+			"ionoscloud_logging_pipeline": {
+				Tok: tfbridge.MakeDataSource(mainPkg, loggingModule, "getPipeline"),
+			},
+			"ionoscloud_application_loadbalancer": {
+				Tok: tfbridge.MakeDataSource(mainPkg, albModule, "getBalancer"),
+			},
+			"ionoscloud_application_loadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeDataSource(mainPkg, albModule, "getForwardingRule"),
+			},
+			"ionoscloud_networkloadbalancer": {
+				Tok: tfbridge.MakeDataSource(mainPkg, nlbModule, "getBalancer"),
+			},
+			"ionoscloud_networkloadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeDataSource(mainPkg, nlbModule, "getForwardingRule"),
+			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"ionoscloud_datacenter": {
@@ -280,25 +437,31 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGatewayRule"),
 			},
 			"ionoscloud_pg_cluster": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_cluster.md"},
 			},
 			"ionoscloud_pg_user": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLUser"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLUser"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_user.md"},
 			},
 			"ionoscloud_pg_database": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLDatabase"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLDatabase"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_database.md"},
 			},
 			"ionoscloud_mongo_cluster": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "MongoCluster"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MongoCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_cluster.md"},
 			},
 			"ionoscloud_mongo_user": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "MongoUser"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MongoUser"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_user.md"},
 			},
 			"ionoscloud_mariadb_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "MariaDBCluster"),
 			},
 			"ionoscloud_inmemorydb_replicaset": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
 			},
 			"ionoscloud_k8s_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "Cluster"),
@@ -313,7 +476,8 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, certModule, "AutoCertificateProvider"),
 			},
 			"ionoscloud_certificate": {
-				Tok: tfbridge.MakeResource(mainPkg, certModule, "Certificate"),
+				Tok:  tfbridge.MakeResource(mainPkg, certModule, "Certificate"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_certificate.md"},
 			},
 			"ionoscloud_dataplatform_cluster": {
 				Tok: tfbridge.MakeResource(mainPkg, dsaasModule, "Cluster"),
@@ -370,6 +534,21 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_autoscaling_group": {
 				Tok: tfbridge.MakeResource(mainPkg, autosclModule, "Group"),
+			},
+			"ionoscloud_logging_pipeline": {
+				Tok: tfbridge.MakeResource(mainPkg, loggingModule, "Pipeline"),
+			},
+			"ionoscloud_application_loadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "Balancer"),
+			},
+			"ionoscloud_application_loadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, albModule, "ForwardingRule"),
+			},
+			"ionoscloud_networkloadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "Balancer"),
+			},
+			"ionoscloud_networkloadbalancer_forwardingrule": {
+				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "ForwardingRule"),
 			},
 		},
 	}

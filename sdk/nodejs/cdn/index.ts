@@ -10,6 +10,11 @@ export type Distribution = import("./distribution").Distribution;
 export const Distribution: typeof import("./distribution").Distribution = null as any;
 utilities.lazyLoad(exports, ["Distribution"], () => require("./distribution"));
 
+export { GetDistributionArgs, GetDistributionResult, GetDistributionOutputArgs } from "./getDistribution";
+export const getDistribution: typeof import("./getDistribution").getDistribution = null as any;
+export const getDistributionOutput: typeof import("./getDistribution").getDistributionOutput = null as any;
+utilities.lazyLoad(exports, ["getDistribution","getDistributionOutput"], () => require("./getDistribution"));
+
 
 const _module = {
     version: utilities.getVersion(),

@@ -6,6 +6,17 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages a **DBaaS InMemoryDB Replica Set**.
+ *
+ * ## Import
+ *
+ * Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+ * ```
+ */
 export class InMemoryDBReplicaSet extends pulumi.CustomResource {
     /**
      * Get an existing InMemoryDBReplicaSet resource's state with the given name, ID, and optional extra
@@ -35,53 +46,55 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
     }
 
     /**
-     * The network connection for your replica set. Only one connection is allowed.
+     * [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
      */
     public readonly connections!: pulumi.Output<outputs.dbaas.InMemoryDBReplicaSetConnections>;
     /**
-     * Credentials for the InMemoryDB replicaset.
+     * [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
      */
     public readonly credentials!: pulumi.Output<outputs.dbaas.InMemoryDBReplicaSetCredentials>;
     /**
-     * The human readable name of your replica set.
+     * [string] The human-readable name of your replica set.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
-     * The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+     * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      */
     public /*out*/ readonly dnsName!: pulumi.Output<string>;
     /**
-     * The eviction policy for the replica set.
+     * [string] The eviction policy for the replica set, possible values are:
      */
     public readonly evictionPolicy!: pulumi.Output<string>;
     /**
-     * The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+     * [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
      */
     public readonly initialSnapshotId!: pulumi.Output<string | undefined>;
     /**
-     * The replica set location
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow>;
     /**
-     * Specifies How and If data is persisted.
+     * [string] Specifies How and If data is persisted, possible values are:
+     * * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+     * * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+     * * `RDB` - RDB persistence performs snapshots of the current in memory state.
+     * * `RDB_AOF` - Both RDB and AOF persistence are enabled.
      */
     public readonly persistenceMode!: pulumi.Output<string>;
     /**
-     * The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-     * value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-     * standby for a failure of the active instance.
+     * [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
      */
     public readonly replicas!: pulumi.Output<number>;
     /**
-     * The resources of the individual replicas.
+     * [object] The resources of the individual replicas.
      */
     public readonly resources!: pulumi.Output<outputs.dbaas.InMemoryDBReplicaSetResources>;
     /**
-     * The InMemoryDB version of your replica set.
+     * [string] The InMemoryDB version of your replica set.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -162,53 +175,55 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
  */
 export interface InMemoryDBReplicaSetState {
     /**
-     * The network connection for your replica set. Only one connection is allowed.
+     * [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
      */
     connections?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetConnections>;
     /**
-     * Credentials for the InMemoryDB replicaset.
+     * [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
      */
     credentials?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentials>;
     /**
-     * The human readable name of your replica set.
+     * [string] The human-readable name of your replica set.
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+     * [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
      */
     dnsName?: pulumi.Input<string>;
     /**
-     * The eviction policy for the replica set.
+     * [string] The eviction policy for the replica set, possible values are:
      */
     evictionPolicy?: pulumi.Input<string>;
     /**
-     * The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+     * [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * The replica set location
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
      */
     location?: pulumi.Input<string>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow>;
     /**
-     * Specifies How and If data is persisted.
+     * [string] Specifies How and If data is persisted, possible values are:
+     * * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+     * * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+     * * `RDB` - RDB persistence performs snapshots of the current in memory state.
+     * * `RDB_AOF` - Both RDB and AOF persistence are enabled.
      */
     persistenceMode?: pulumi.Input<string>;
     /**
-     * The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-     * value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-     * standby for a failure of the active instance.
+     * [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
      */
     replicas?: pulumi.Input<number>;
     /**
-     * The resources of the individual replicas.
+     * [object] The resources of the individual replicas.
      */
     resources?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetResources>;
     /**
-     * The InMemoryDB version of your replica set.
+     * [string] The InMemoryDB version of your replica set.
      */
     version?: pulumi.Input<string>;
 }
@@ -218,49 +233,51 @@ export interface InMemoryDBReplicaSetState {
  */
 export interface InMemoryDBReplicaSetArgs {
     /**
-     * The network connection for your replica set. Only one connection is allowed.
+     * [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
      */
     connections: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetConnections>;
     /**
-     * Credentials for the InMemoryDB replicaset.
+     * [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
      */
     credentials: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetCredentials>;
     /**
-     * The human readable name of your replica set.
+     * [string] The human-readable name of your replica set.
      */
     displayName: pulumi.Input<string>;
     /**
-     * The eviction policy for the replica set.
+     * [string] The eviction policy for the replica set, possible values are:
      */
     evictionPolicy: pulumi.Input<string>;
     /**
-     * The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+     * [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
      */
     initialSnapshotId?: pulumi.Input<string>;
     /**
-     * The replica set location
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
      */
     location: pulumi.Input<string>;
     /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
+     * (Computed) A weekly 4 hour-long window, during which maintenance might occur.
      */
     maintenanceWindow?: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetMaintenanceWindow>;
     /**
-     * Specifies How and If data is persisted.
+     * [string] Specifies How and If data is persisted, possible values are:
+     * * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+     * * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+     * * `RDB` - RDB persistence performs snapshots of the current in memory state.
+     * * `RDB_AOF` - Both RDB and AOF persistence are enabled.
      */
     persistenceMode: pulumi.Input<string>;
     /**
-     * The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-     * value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-     * standby for a failure of the active instance.
+     * [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
      */
     replicas: pulumi.Input<number>;
     /**
-     * The resources of the individual replicas.
+     * [object] The resources of the individual replicas.
      */
     resources: pulumi.Input<inputs.dbaas.InMemoryDBReplicaSetResources>;
     /**
-     * The InMemoryDB version of your replica set.
+     * [string] The InMemoryDB version of your replica set.
      */
     version: pulumi.Input<string>;
 }

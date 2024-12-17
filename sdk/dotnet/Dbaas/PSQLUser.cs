@@ -9,21 +9,80 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DbaaS PgSql User**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a user resource
+    /// and link it with the previously created cluster:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var userPassword = new Random.RandomPassword("userPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
+    ///     });
+    /// 
+    ///     var examplePgUser = new Ionoscloud.Dbaas.PSQLUser("examplePgUser", new()
+    ///     {
+    ///         ClusterId = ionoscloud_pg_cluster.Example.Id,
+    ///         Username = "exampleuser",
+    ///         Password = userPassword.Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// In order to import a PgSql user, you can define an empty user resource in the plan:
+    /// 
+    /// hcl
+    /// 
+    /// resource "ionoscloud_pg_user" "example" {
+    /// 
+    /// }
+    /// 
+    /// The resource can be imported using the `clusterId` and the `username`, for example:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/pSQLUser:PSQLUser")]
     public partial class PSQLUser : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        /// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         /// </summary>
         [Output("isSystemUser")]
         public Output<bool> IsSystemUser { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] User password.
+        /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
@@ -77,11 +136,18 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class PSQLUserArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         [Input("password", required: true)]
         private Input<string>? _password;
+
+        /// <summary>
+        /// [string] User password.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -92,6 +158,9 @@ namespace Pulumi.Ionoscloud.Dbaas
             }
         }
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -103,17 +172,24 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class PSQLUserState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        /// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         /// </summary>
         [Input("isSystemUser")]
         public Input<bool>? IsSystemUser { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// [string] User password.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -124,6 +200,9 @@ namespace Pulumi.Ionoscloud.Dbaas
             }
         }
 
+        /// <summary>
+        /// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

@@ -66,25 +66,16 @@ class GetApigatewayRouteResult:
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        ID of the API Gateway Route.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def methods(self) -> Sequence[str]:
-        """
-        The HTTP methods that the route should match.
-        """
         return pulumi.get(self, "methods")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the API Gateway Route.
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -95,17 +86,11 @@ class GetApigatewayRouteResult:
     @property
     @pulumi.getter
     def paths(self) -> Sequence[str]:
-        """
-        The paths that the route should match.
-        """
         return pulumi.get(self, "paths")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        This field specifies the protocol used by the ingress to route traffic to the backend service.
-        """
         return pulumi.get(self, "type")
 
     @property
@@ -116,9 +101,6 @@ class GetApigatewayRouteResult:
     @property
     @pulumi.getter
     def websocket(self) -> bool:
-        """
-        Shows whether websocket support is enabled or disabled.
-        """
         return pulumi.get(self, "websocket")
 
 
@@ -145,17 +127,7 @@ def get_apigateway_route(gateway_id: Optional[str] = None,
                          partial_match: Optional[bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApigatewayRouteResult:
     """
-    The **API Gateway Route data source** can be used to search for and return an existing API Gateway route.
-    You can provide a string for the name parameter which will be compared with provisioned API Gateway routes.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
-
-    ## Example Usage
-
-
-    :param str gateway_id: The ID of the API Gateway that the route belongs to.
-    :param str id: ID of an existing API Gateway Route that you want to search for.
-    :param str name: Name of an existing API Gateway Route that you want to search for.
+    Use this data source to access information about an existing resource.
     """
     pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
     __args__ = dict()
@@ -182,19 +154,12 @@ def get_apigateway_route_output(gateway_id: Optional[pulumi.Input[str]] = None,
                                 partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApigatewayRouteResult]:
     """
-    The **API Gateway Route data source** can be used to search for and return an existing API Gateway route.
-    You can provide a string for the name parameter which will be compared with provisioned API Gateway routes.
-    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-    When this happens, please refine your search string so that it is specific enough to return only one result.
-
-    ## Example Usage
-
-
-    :param str gateway_id: The ID of the API Gateway that the route belongs to.
-    :param str id: ID of an existing API Gateway Route that you want to search for.
-    :param str name: Name of an existing API Gateway Route that you want to search for.
+    Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
     pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
     __args__['id'] = id

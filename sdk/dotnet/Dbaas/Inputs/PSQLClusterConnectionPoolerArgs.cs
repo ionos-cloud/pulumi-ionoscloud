@@ -12,11 +12,14 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
 
     public sealed class PSQLClusterConnectionPoolerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [bool]
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
-        /// Represents different modes of connection pooling for the connection pooler
+        /// [string] Represents different modes of connection pooling for the connection pooler.
         /// </summary>
         [Input("poolMode", required: true)]
         public Input<string> PoolMode { get; set; } = null!;

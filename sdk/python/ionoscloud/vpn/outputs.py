@@ -21,6 +21,12 @@ __all__ = [
     'IpsecTunnelIke',
     'WireguardGatewayConnection',
     'WireguardPeerEndpoint',
+    'GetIpsecGatewayConnectionResult',
+    'GetIpsecTunnelAuthResult',
+    'GetIpsecTunnelEspResult',
+    'GetIpsecTunnelIkeResult',
+    'GetWireguardGatewayConnectionResult',
+    'GetWireguardPeerEndpointResult',
 ]
 
 @pulumi.output_type
@@ -432,6 +438,259 @@ class WireguardPeerEndpoint(dict):
     def port(self) -> Optional[int]:
         """
         [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
+        """
+        return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetIpsecGatewayConnectionResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: str,
+                 ipv4_cidr: str,
+                 ipv6_cidr: str,
+                 lan_id: str):
+        """
+        :param str datacenter_id: The datacenter to connect your VPN Gateway to.
+        :param str ipv4_cidr: Describes the private ipv4 subnet in your LAN that should be accessible by the
+               VPN Gateway.
+        :param str ipv6_cidr: Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+        :param str lan_id: The numeric LAN ID to connect your VPN Gateway to.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "ipv4_cidr", ipv4_cidr)
+        pulumi.set(__self__, "ipv6_cidr", ipv6_cidr)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter to connect your VPN Gateway to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="ipv4Cidr")
+    def ipv4_cidr(self) -> str:
+        """
+        Describes the private ipv4 subnet in your LAN that should be accessible by the
+        VPN Gateway.
+        """
+        return pulumi.get(self, "ipv4_cidr")
+
+    @property
+    @pulumi.getter(name="ipv6Cidr")
+    def ipv6_cidr(self) -> str:
+        """
+        Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
+        """
+        return pulumi.get(self, "ipv6_cidr")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The numeric LAN ID to connect your VPN Gateway to.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetIpsecTunnelAuthResult(dict):
+    def __init__(__self__, *,
+                 method: str):
+        """
+        :param str method: The Authentication Method to use for IPSec Authentication.
+        """
+        pulumi.set(__self__, "method", method)
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        The Authentication Method to use for IPSec Authentication.
+        """
+        return pulumi.get(self, "method")
+
+
+@pulumi.output_type
+class GetIpsecTunnelEspResult(dict):
+    def __init__(__self__, *,
+                 diffie_hellman_group: str,
+                 encryption_algorithm: str,
+                 integrity_algorithm: str,
+                 lifetime: int):
+        """
+        :param str diffie_hellman_group: The Diffie-Hellman Group to use for IPSec Encryption.
+        :param str encryption_algorithm: The encryption algorithm to use for IPSec Encryption.
+        :param str integrity_algorithm: The integrity algorithm to use for IPSec Encryption.
+        :param int lifetime: The phase lifetime in seconds.
+        """
+        pulumi.set(__self__, "diffie_hellman_group", diffie_hellman_group)
+        pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
+        pulumi.set(__self__, "integrity_algorithm", integrity_algorithm)
+        pulumi.set(__self__, "lifetime", lifetime)
+
+    @property
+    @pulumi.getter(name="diffieHellmanGroup")
+    def diffie_hellman_group(self) -> str:
+        """
+        The Diffie-Hellman Group to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "diffie_hellman_group")
+
+    @property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> str:
+        """
+        The encryption algorithm to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "encryption_algorithm")
+
+    @property
+    @pulumi.getter(name="integrityAlgorithm")
+    def integrity_algorithm(self) -> str:
+        """
+        The integrity algorithm to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "integrity_algorithm")
+
+    @property
+    @pulumi.getter
+    def lifetime(self) -> int:
+        """
+        The phase lifetime in seconds.
+        """
+        return pulumi.get(self, "lifetime")
+
+
+@pulumi.output_type
+class GetIpsecTunnelIkeResult(dict):
+    def __init__(__self__, *,
+                 diffie_hellman_group: str,
+                 encryption_algorithm: str,
+                 integrity_algorithm: str,
+                 lifetime: int):
+        """
+        :param str diffie_hellman_group: The Diffie-Hellman Group to use for IPSec Encryption.
+        :param str encryption_algorithm: The encryption algorithm to use for IPSec Encryption.
+        :param str integrity_algorithm: The integrity algorithm to use for IPSec Encryption.
+        :param int lifetime: The phase lifetime in seconds.
+        """
+        pulumi.set(__self__, "diffie_hellman_group", diffie_hellman_group)
+        pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
+        pulumi.set(__self__, "integrity_algorithm", integrity_algorithm)
+        pulumi.set(__self__, "lifetime", lifetime)
+
+    @property
+    @pulumi.getter(name="diffieHellmanGroup")
+    def diffie_hellman_group(self) -> str:
+        """
+        The Diffie-Hellman Group to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "diffie_hellman_group")
+
+    @property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> str:
+        """
+        The encryption algorithm to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "encryption_algorithm")
+
+    @property
+    @pulumi.getter(name="integrityAlgorithm")
+    def integrity_algorithm(self) -> str:
+        """
+        The integrity algorithm to use for IPSec Encryption.
+        """
+        return pulumi.get(self, "integrity_algorithm")
+
+    @property
+    @pulumi.getter
+    def lifetime(self) -> int:
+        """
+        The phase lifetime in seconds.
+        """
+        return pulumi.get(self, "lifetime")
+
+
+@pulumi.output_type
+class GetWireguardGatewayConnectionResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: str,
+                 ipv4_cidr: str,
+                 ipv6_cidr: str,
+                 lan_id: str):
+        """
+        :param str datacenter_id: The ID of the datacenter where the WireGuard Gateway is located.
+        :param str ipv4_cidr: The IPv4 CIDR for the WireGuard Gateway connection.
+        :param str ipv6_cidr: The IPv6 CIDR for the WireGuard Gateway connection.
+        :param str lan_id: The ID of the LAN where the WireGuard Gateway is connected.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "ipv4_cidr", ipv4_cidr)
+        pulumi.set(__self__, "ipv6_cidr", ipv6_cidr)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The ID of the datacenter where the WireGuard Gateway is located.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="ipv4Cidr")
+    def ipv4_cidr(self) -> str:
+        """
+        The IPv4 CIDR for the WireGuard Gateway connection.
+        """
+        return pulumi.get(self, "ipv4_cidr")
+
+    @property
+    @pulumi.getter(name="ipv6Cidr")
+    def ipv6_cidr(self) -> str:
+        """
+        The IPv6 CIDR for the WireGuard Gateway connection.
+        """
+        return pulumi.get(self, "ipv6_cidr")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The ID of the LAN where the WireGuard Gateway is connected.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetWireguardPeerEndpointResult(dict):
+    def __init__(__self__, *,
+                 host: str,
+                 port: int):
+        """
+        :param str host: Hostname or IPV4 address that the WireGuard Server will connect to.
+        :param int port: Port that the WireGuard Server will connect to. Default: 51820
+        """
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "port", port)
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        Hostname or IPV4 address that the WireGuard Server will connect to.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        Port that the WireGuard Server will connect to. Default: 51820
         """
         return pulumi.get(self, "port")
 

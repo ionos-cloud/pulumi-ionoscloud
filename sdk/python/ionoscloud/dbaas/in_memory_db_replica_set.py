@@ -34,19 +34,21 @@ class InMemoryDBReplicaSetArgs:
                  maintenance_window: Optional[pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs']] = None):
         """
         The set of arguments for constructing a InMemoryDBReplicaSet resource.
-        :param pulumi.Input['InMemoryDBReplicaSetConnectionsArgs'] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input['InMemoryDBReplicaSetCredentialsArgs'] credentials: Credentials for the InMemoryDB replicaset.
-        :param pulumi.Input[str] display_name: The human readable name of your replica set.
-        :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
-        :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
-        :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-               value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-               standby for a failure of the active instance.
-        :param pulumi.Input['InMemoryDBReplicaSetResourcesArgs'] resources: The resources of the individual replicas.
-        :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
-        :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input['InMemoryDBReplicaSetConnectionsArgs'] connections: [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
+        :param pulumi.Input['InMemoryDBReplicaSetCredentialsArgs'] credentials: [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
+        :param pulumi.Input[str] display_name: [string] The human-readable name of your replica set.
+        :param pulumi.Input[str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
+        :param pulumi.Input[str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+        :param pulumi.Input[str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
+               * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+               * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+               * `RDB` - RDB persistence performs snapshots of the current in memory state.
+               * `RDB_AOF` - Both RDB and AOF persistence are enabled.
+        :param pulumi.Input[int] replicas: [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
+        :param pulumi.Input['InMemoryDBReplicaSetResourcesArgs'] resources: [object] The resources of the individual replicas.
+        :param pulumi.Input[str] version: [string] The InMemoryDB version of your replica set.
+        :param pulumi.Input[str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "credentials", credentials)
@@ -66,7 +68,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def connections(self) -> pulumi.Input['InMemoryDBReplicaSetConnectionsArgs']:
         """
-        The network connection for your replica set. Only one connection is allowed.
+        [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -78,7 +80,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def credentials(self) -> pulumi.Input['InMemoryDBReplicaSetCredentialsArgs']:
         """
-        Credentials for the InMemoryDB replicaset.
+        [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         """
         return pulumi.get(self, "credentials")
 
@@ -90,7 +92,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[str]:
         """
-        The human readable name of your replica set.
+        [string] The human-readable name of your replica set.
         """
         return pulumi.get(self, "display_name")
 
@@ -102,7 +104,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter(name="evictionPolicy")
     def eviction_policy(self) -> pulumi.Input[str]:
         """
-        The eviction policy for the replica set.
+        [string] The eviction policy for the replica set, possible values are:
         """
         return pulumi.get(self, "eviction_policy")
 
@@ -114,7 +116,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The replica set location
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         """
         return pulumi.get(self, "location")
 
@@ -126,7 +128,11 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> pulumi.Input[str]:
         """
-        Specifies How and If data is persisted.
+        [string] Specifies How and If data is persisted, possible values are:
+        * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         """
         return pulumi.get(self, "persistence_mode")
 
@@ -138,9 +144,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def replicas(self) -> pulumi.Input[int]:
         """
-        The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-        standby for a failure of the active instance.
+        [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         """
         return pulumi.get(self, "replicas")
 
@@ -152,7 +156,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def resources(self) -> pulumi.Input['InMemoryDBReplicaSetResourcesArgs']:
         """
-        The resources of the individual replicas.
+        [object] The resources of the individual replicas.
         """
         return pulumi.get(self, "resources")
 
@@ -164,7 +168,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        The InMemoryDB version of your replica set.
+        [string] The InMemoryDB version of your replica set.
         """
         return pulumi.get(self, "version")
 
@@ -176,7 +180,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter(name="initialSnapshotId")
     def initial_snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         """
         return pulumi.get(self, "initial_snapshot_id")
 
@@ -188,7 +192,7 @@ class InMemoryDBReplicaSetArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -214,20 +218,22 @@ class _InMemoryDBReplicaSetState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InMemoryDBReplicaSet resources.
-        :param pulumi.Input['InMemoryDBReplicaSetConnectionsArgs'] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input['InMemoryDBReplicaSetCredentialsArgs'] credentials: Credentials for the InMemoryDB replicaset.
-        :param pulumi.Input[str] display_name: The human readable name of your replica set.
-        :param pulumi.Input[str] dns_name: The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
-        :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
-        :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
-        :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-               value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-               standby for a failure of the active instance.
-        :param pulumi.Input['InMemoryDBReplicaSetResourcesArgs'] resources: The resources of the individual replicas.
-        :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
+        :param pulumi.Input['InMemoryDBReplicaSetConnectionsArgs'] connections: [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
+        :param pulumi.Input['InMemoryDBReplicaSetCredentialsArgs'] credentials: [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
+        :param pulumi.Input[str] display_name: [string] The human-readable name of your replica set.
+        :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        :param pulumi.Input[str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
+        :param pulumi.Input[str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        :param pulumi.Input[str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+        :param pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
+               * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+               * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+               * `RDB` - RDB persistence performs snapshots of the current in memory state.
+               * `RDB_AOF` - Both RDB and AOF persistence are enabled.
+        :param pulumi.Input[int] replicas: [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
+        :param pulumi.Input['InMemoryDBReplicaSetResourcesArgs'] resources: [object] The resources of the individual replicas.
+        :param pulumi.Input[str] version: [string] The InMemoryDB version of your replica set.
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -258,7 +264,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def connections(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetConnectionsArgs']]:
         """
-        The network connection for your replica set. Only one connection is allowed.
+        [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -270,7 +276,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsArgs']]:
         """
-        Credentials for the InMemoryDB replicaset.
+        [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         """
         return pulumi.get(self, "credentials")
 
@@ -282,7 +288,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The human readable name of your replica set.
+        [string] The human-readable name of your replica set.
         """
         return pulumi.get(self, "display_name")
 
@@ -294,7 +300,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
         """
         return pulumi.get(self, "dns_name")
 
@@ -306,7 +312,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="evictionPolicy")
     def eviction_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        The eviction policy for the replica set.
+        [string] The eviction policy for the replica set, possible values are:
         """
         return pulumi.get(self, "eviction_policy")
 
@@ -318,7 +324,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="initialSnapshotId")
     def initial_snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         """
         return pulumi.get(self, "initial_snapshot_id")
 
@@ -330,7 +336,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The replica set location
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         """
         return pulumi.get(self, "location")
 
@@ -342,7 +348,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -354,7 +360,11 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies How and If data is persisted.
+        [string] Specifies How and If data is persisted, possible values are:
+        * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         """
         return pulumi.get(self, "persistence_mode")
 
@@ -366,9 +376,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-        standby for a failure of the active instance.
+        [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         """
         return pulumi.get(self, "replicas")
 
@@ -380,7 +388,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetResourcesArgs']]:
         """
-        The resources of the individual replicas.
+        [object] The resources of the individual replicas.
         """
         return pulumi.get(self, "resources")
 
@@ -392,7 +400,7 @@ class _InMemoryDBReplicaSetState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        The InMemoryDB version of your replica set.
+        [string] The InMemoryDB version of your replica set.
         """
         return pulumi.get(self, "version")
 
@@ -419,22 +427,33 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a InMemoryDBReplicaSet resource with the given unique name, props, and options.
+        Manages a **DBaaS InMemoryDB Replica Set**.
+
+        ## Import
+
+        Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: Credentials for the InMemoryDB replicaset.
-        :param pulumi.Input[str] display_name: The human readable name of your replica set.
-        :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
-        :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
-        :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-               value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-               standby for a failure of the active instance.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: The resources of the individual replicas.
-        :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
+        :param pulumi.Input[str] display_name: [string] The human-readable name of your replica set.
+        :param pulumi.Input[str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
+        :param pulumi.Input[str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        :param pulumi.Input[str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
+               * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+               * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+               * `RDB` - RDB persistence performs snapshots of the current in memory state.
+               * `RDB_AOF` - Both RDB and AOF persistence are enabled.
+        :param pulumi.Input[int] replicas: [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: [object] The resources of the individual replicas.
+        :param pulumi.Input[str] version: [string] The InMemoryDB version of your replica set.
         """
         ...
     @overload
@@ -443,7 +462,16 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
                  args: InMemoryDBReplicaSetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a InMemoryDBReplicaSet resource with the given unique name, props, and options.
+        Manages a **DBaaS InMemoryDB Replica Set**.
+
+        ## Import
+
+        Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+        ```
+
         :param str resource_name: The name of the resource.
         :param InMemoryDBReplicaSetArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -538,20 +566,22 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: The network connection for your replica set. Only one connection is allowed.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: Credentials for the InMemoryDB replicaset.
-        :param pulumi.Input[str] display_name: The human readable name of your replica set.
-        :param pulumi.Input[str] dns_name: The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
-        :param pulumi.Input[str] eviction_policy: The eviction policy for the replica set.
-        :param pulumi.Input[str] initial_snapshot_id: The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
-        :param pulumi.Input[str] location: The replica set location
-        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] persistence_mode: Specifies How and If data is persisted.
-        :param pulumi.Input[int] replicas: The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-               value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-               standby for a failure of the active instance.
-        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: The resources of the individual replicas.
-        :param pulumi.Input[str] version: The InMemoryDB version of your replica set.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetConnectionsArgs', 'InMemoryDBReplicaSetConnectionsArgsDict']] connections: [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetCredentialsArgs', 'InMemoryDBReplicaSetCredentialsArgsDict']] credentials: [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
+        :param pulumi.Input[str] display_name: [string] The human-readable name of your replica set.
+        :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        :param pulumi.Input[str] eviction_policy: [string] The eviction policy for the replica set, possible values are:
+        :param pulumi.Input[str] initial_snapshot_id: [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        :param pulumi.Input[str] location: [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetMaintenanceWindowArgs', 'InMemoryDBReplicaSetMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[str] persistence_mode: [string] Specifies How and If data is persisted, possible values are:
+               * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+               * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+               * `RDB` - RDB persistence performs snapshots of the current in memory state.
+               * `RDB_AOF` - Both RDB and AOF persistence are enabled.
+        :param pulumi.Input[int] replicas: [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
+        :param pulumi.Input[Union['InMemoryDBReplicaSetResourcesArgs', 'InMemoryDBReplicaSetResourcesArgsDict']] resources: [object] The resources of the individual replicas.
+        :param pulumi.Input[str] version: [string] The InMemoryDB version of your replica set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -575,7 +605,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def connections(self) -> pulumi.Output['outputs.InMemoryDBReplicaSetConnections']:
         """
-        The network connection for your replica set. Only one connection is allowed.
+        [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
         """
         return pulumi.get(self, "connections")
 
@@ -583,7 +613,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output['outputs.InMemoryDBReplicaSetCredentials']:
         """
-        Credentials for the InMemoryDB replicaset.
+        [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
         """
         return pulumi.get(self, "credentials")
 
@@ -591,7 +621,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[str]:
         """
-        The human readable name of your replica set.
+        [string] The human-readable name of your replica set.
         """
         return pulumi.get(self, "display_name")
 
@@ -599,7 +629,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> pulumi.Output[str]:
         """
-        The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
         """
         return pulumi.get(self, "dns_name")
 
@@ -607,7 +637,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="evictionPolicy")
     def eviction_policy(self) -> pulumi.Output[str]:
         """
-        The eviction policy for the replica set.
+        [string] The eviction policy for the replica set, possible values are:
         """
         return pulumi.get(self, "eviction_policy")
 
@@ -615,7 +645,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="initialSnapshotId")
     def initial_snapshot_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+        [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
         """
         return pulumi.get(self, "initial_snapshot_id")
 
@@ -623,7 +653,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The replica set location
+        [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
         """
         return pulumi.get(self, "location")
 
@@ -631,7 +661,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.InMemoryDBReplicaSetMaintenanceWindow']:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -639,7 +669,11 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> pulumi.Output[str]:
         """
-        Specifies How and If data is persisted.
+        [string] Specifies How and If data is persisted, possible values are:
+        * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        * `RDB_AOF` - Both RDB and AOF persistence are enabled.
         """
         return pulumi.get(self, "persistence_mode")
 
@@ -647,9 +681,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def replicas(self) -> pulumi.Output[int]:
         """
-        The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-        value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-        standby for a failure of the active instance.
+        [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
         """
         return pulumi.get(self, "replicas")
 
@@ -657,7 +689,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.InMemoryDBReplicaSetResources']:
         """
-        The resources of the individual replicas.
+        [object] The resources of the individual replicas.
         """
         return pulumi.get(self, "resources")
 
@@ -665,7 +697,7 @@ class InMemoryDBReplicaSet(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        The InMemoryDB version of your replica set.
+        [string] The InMemoryDB version of your replica set.
         """
         return pulumi.get(self, "version")
 

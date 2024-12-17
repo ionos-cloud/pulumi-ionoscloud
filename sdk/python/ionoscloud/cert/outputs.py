@@ -16,6 +16,7 @@ from .. import _utilities
 
 __all__ = [
     'AutoCertificateProviderExternalAccountBinding',
+    'GetAutoCertificateProviderExternalAccountBindingResult',
 ]
 
 @pulumi.output_type
@@ -64,5 +65,23 @@ class AutoCertificateProviderExternalAccountBinding(dict):
         The secret of the external account binding
         """
         return pulumi.get(self, "key_secret")
+
+
+@pulumi.output_type
+class GetAutoCertificateProviderExternalAccountBindingResult(dict):
+    def __init__(__self__, *,
+                 key_id: str):
+        """
+        :param str key_id: The key ID of the external account binding
+        """
+        pulumi.set(__self__, "key_id", key_id)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The key ID of the external account binding
+        """
+        return pulumi.get(self, "key_id")
 
 

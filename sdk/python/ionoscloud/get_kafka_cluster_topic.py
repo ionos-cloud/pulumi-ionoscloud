@@ -158,7 +158,10 @@ def get_kafka_cluster_topic_output(cluster_id: Optional[pulumi.Input[str]] = Non
     """
     Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
     pulumi.log.warn("""get_kafka_cluster_topic is deprecated: ionoscloud.index/getkafkaclustertopic.getKafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/gettopic.getTopic""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['id'] = id
