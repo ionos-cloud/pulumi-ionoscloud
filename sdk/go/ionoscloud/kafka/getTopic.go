@@ -11,8 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+// The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+// You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
 // If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
@@ -29,29 +29,39 @@ func LookupTopic(ctx *pulumi.Context, args *LookupTopicArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getTopic.
 type LookupTopicArgs struct {
+	// ID of the Kafka Cluster that the topic belongs to.
 	ClusterId string `pulumi:"clusterId"`
-	// ID of an existing Kafka Cluster that you want to search for.
+	// ID of an existing Kafka Cluster Topic that you want to search for.
 	Id *string `pulumi:"id"`
-	// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+	// Cluster. Possible values: `de/fra`, `de/txl`
 	Location string `pulumi:"location"`
-	// Name of an existing Kafka Cluster that you want to search for.
+	// Name of an existing Kafka Cluster Topic that you want to search for.
 	Name         *string `pulumi:"name"`
 	PartialMatch *bool   `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getTopic.
 type LookupTopicResult struct {
+	// The id of the Kafka Cluster that the topic belongs to.
 	ClusterId string `pulumi:"clusterId"`
-	// UUID of the Kafka Cluster.
+	// UUID of the Kafka Cluster Topic.
 	Id       string `pulumi:"id"`
 	Location string `pulumi:"location"`
-	// The name of the Kafka Cluster.
-	Name               string `pulumi:"name"`
-	NumberOfPartitions int    `pulumi:"numberOfPartitions"`
-	PartialMatch       *bool  `pulumi:"partialMatch"`
-	ReplicationFactor  int    `pulumi:"replicationFactor"`
-	RetentionTime      int    `pulumi:"retentionTime"`
-	SegmentBytes       int    `pulumi:"segmentBytes"`
+	// The name of the Kafka Cluster Topic.
+	Name string `pulumi:"name"`
+	// The number of partitions of the topic. Partitions allow for parallel processing of messages.
+	NumberOfPartitions int   `pulumi:"numberOfPartitions"`
+	PartialMatch       *bool `pulumi:"partialMatch"`
+	// The number of replicas of the topic. The replication factor determines how many copies of the
+	// topic are stored on different brokers.
+	ReplicationFactor int `pulumi:"replicationFactor"`
+	// This configuration controls the maximum time we will retain a log before we will discard old log
+	// segments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time
+	// limit is applied.
+	RetentionTime int `pulumi:"retentionTime"`
+	// This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.
+	SegmentBytes int `pulumi:"segmentBytes"`
 }
 
 func LookupTopicOutput(ctx *pulumi.Context, args LookupTopicOutputArgs, opts ...pulumi.InvokeOption) LookupTopicResultOutput {
@@ -65,12 +75,14 @@ func LookupTopicOutput(ctx *pulumi.Context, args LookupTopicOutputArgs, opts ...
 
 // A collection of arguments for invoking getTopic.
 type LookupTopicOutputArgs struct {
+	// ID of the Kafka Cluster that the topic belongs to.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
-	// ID of an existing Kafka Cluster that you want to search for.
+	// ID of an existing Kafka Cluster Topic that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+	// Cluster. Possible values: `de/fra`, `de/txl`
 	Location pulumi.StringInput `pulumi:"location"`
-	// Name of an existing Kafka Cluster that you want to search for.
+	// Name of an existing Kafka Cluster Topic that you want to search for.
 	Name         pulumi.StringPtrInput `pulumi:"name"`
 	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
@@ -94,11 +106,12 @@ func (o LookupTopicResultOutput) ToLookupTopicResultOutputWithContext(ctx contex
 	return o
 }
 
+// The id of the Kafka Cluster that the topic belongs to.
 func (o LookupTopicResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTopicResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// UUID of the Kafka Cluster.
+// UUID of the Kafka Cluster Topic.
 func (o LookupTopicResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTopicResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -107,11 +120,12 @@ func (o LookupTopicResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTopicResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-// The name of the Kafka Cluster.
+// The name of the Kafka Cluster Topic.
 func (o LookupTopicResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTopicResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The number of partitions of the topic. Partitions allow for parallel processing of messages.
 func (o LookupTopicResultOutput) NumberOfPartitions() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTopicResult) int { return v.NumberOfPartitions }).(pulumi.IntOutput)
 }
@@ -120,14 +134,20 @@ func (o LookupTopicResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupTopicResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// The number of replicas of the topic. The replication factor determines how many copies of the
+// topic are stored on different brokers.
 func (o LookupTopicResultOutput) ReplicationFactor() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTopicResult) int { return v.ReplicationFactor }).(pulumi.IntOutput)
 }
 
+// This configuration controls the maximum time we will retain a log before we will discard old log
+// segments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time
+// limit is applied.
 func (o LookupTopicResultOutput) RetentionTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTopicResult) int { return v.RetentionTime }).(pulumi.IntOutput)
 }
 
+// This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.
 func (o LookupTopicResultOutput) SegmentBytes() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTopicResult) int { return v.SegmentBytes }).(pulumi.IntOutput)
 }

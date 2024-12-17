@@ -20886,25 +20886,26 @@
             }
         },
         "ionoscloud:kafka/getTopic:getTopic": {
-            "description": "The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.\nYou can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
+            "description": "The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.\nYou can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTopic.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "ID of the Kafka Cluster that the topic belongs to.\n"
                     },
                     "id": {
                         "type": "string",
-                        "description": "ID of an existing Kafka Cluster that you want to search for.\n"
+                        "description": "ID of an existing Kafka Cluster Topic that you want to search for.\n"
                     },
                     "location": {
                         "type": "string",
-                        "description": "The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`\n",
+                        "description": "The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka\nCluster. Possible values: `de/fra`, `de/txl`\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of an existing Kafka Cluster that you want to search for.\n"
+                        "description": "Name of an existing Kafka Cluster Topic that you want to search for.\n"
                     },
                     "partialMatch": {
                         "type": "boolean"
@@ -20920,33 +20921,38 @@
                 "description": "A collection of values returned by getTopic.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The id of the Kafka Cluster that the topic belongs to.\n"
                     },
                     "id": {
                         "type": "string",
-                        "description": "UUID of the Kafka Cluster.\n"
+                        "description": "UUID of the Kafka Cluster Topic.\n"
                     },
                     "location": {
                         "type": "string"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the Kafka Cluster.\n"
+                        "description": "The name of the Kafka Cluster Topic.\n"
                     },
                     "numberOfPartitions": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The number of partitions of the topic. Partitions allow for parallel processing of messages.\n"
                     },
                     "partialMatch": {
                         "type": "boolean"
                     },
                     "replicationFactor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The number of replicas of the topic. The replication factor determines how many copies of the\ntopic are stored on different brokers.\n"
                     },
                     "retentionTime": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "This configuration controls the maximum time we will retain a log before we will discard old log\nsegments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time\nlimit is applied.\n"
                     },
                     "segmentBytes": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.\n"
                     }
                 },
                 "type": "object",

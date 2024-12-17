@@ -206,7 +206,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_kafka_cluster_topic": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getTopic"),
-				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+				Docs: &tfbridge.DocInfo{Source: "kafka_topic.md"},
 			},
 			"ionoscloud_apigateway": {
 				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getApigateway"),
