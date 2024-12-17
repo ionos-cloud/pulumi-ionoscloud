@@ -12,30 +12,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DBaaS MariaDB Cluster**.
+//
+// ## Import
+//
+// Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+// ```
 type MariaDBCluster struct {
 	pulumi.CustomResourceState
 
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsOutput `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores pulumi.IntOutput `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsOutput `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The DNS name pointing to your cluster.
+	// [string] The DNS name pointing to your cluster.
+	//
+	// > **⚠ WARNING:** `Location` attribute will become required in the future.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
-	// The total number of instances in the cluster (one primary and n-1 secondary).
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntOutput `pulumi:"instances"`
-	// The cluster location
+	// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 	Location pulumi.StringPtrOutput `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster.
 	MariadbVersion pulumi.StringOutput `pulumi:"mariadbVersion"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntOutput `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB).
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 }
 
@@ -95,50 +106,54 @@ func GetMariaDBCluster(ctx *pulumi.Context,
 type mariaDBClusterState struct {
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections *MariaDBClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores *int `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials *MariaDBClusterCredentials `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName *string `pulumi:"displayName"`
-	// The DNS name pointing to your cluster.
+	// [string] The DNS name pointing to your cluster.
+	//
+	// > **⚠ WARNING:** `Location` attribute will become required in the future.
 	DnsName *string `pulumi:"dnsName"`
-	// The total number of instances in the cluster (one primary and n-1 secondary).
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances *int `pulumi:"instances"`
-	// The cluster location
+	// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 	Location *string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster.
 	MariadbVersion *string `pulumi:"mariadbVersion"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram *int `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB).
 	StorageSize *int `pulumi:"storageSize"`
 }
 
 type MariaDBClusterState struct {
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsPtrInput
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores pulumi.IntPtrInput
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsPtrInput
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringPtrInput
-	// The DNS name pointing to your cluster.
+	// [string] The DNS name pointing to your cluster.
+	//
+	// > **⚠ WARNING:** `Location` attribute will become required in the future.
 	DnsName pulumi.StringPtrInput
-	// The total number of instances in the cluster (one primary and n-1 secondary).
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntPtrInput
-	// The cluster location
+	// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 	Location pulumi.StringPtrInput
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster.
 	MariadbVersion pulumi.StringPtrInput
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntPtrInput
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB).
 	StorageSize pulumi.IntPtrInput
 }
 
@@ -149,23 +164,23 @@ func (MariaDBClusterState) ElementType() reflect.Type {
 type mariaDBClusterArgs struct {
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnections `pulumi:"connections"`
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores int `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentials `pulumi:"credentials"`
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName string `pulumi:"displayName"`
-	// The total number of instances in the cluster (one primary and n-1 secondary).
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances int `pulumi:"instances"`
-	// The cluster location
+	// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 	Location *string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster.
 	MariadbVersion string `pulumi:"mariadbVersion"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram int `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB).
 	StorageSize int `pulumi:"storageSize"`
 }
 
@@ -173,23 +188,23 @@ type mariaDBClusterArgs struct {
 type MariaDBClusterArgs struct {
 	// The network connection for your cluster. Only one connection is allowed.
 	Connections MariaDBClusterConnectionsInput
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores pulumi.IntInput
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsInput
-	// The friendly name of your cluster.
+	// [string] The friendly name of your cluster.
 	DisplayName pulumi.StringInput
-	// The total number of instances in the cluster (one primary and n-1 secondary).
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntInput
-	// The cluster location
+	// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 	Location pulumi.StringPtrInput
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
-	// The MariaDB version of your cluster.
+	// [string] The MariaDB version of your cluster.
 	MariadbVersion pulumi.StringInput
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntInput
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB).
 	StorageSize pulumi.IntInput
 }
 
@@ -285,7 +300,7 @@ func (o MariaDBClusterOutput) Connections() MariaDBClusterConnectionsOutput {
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterConnectionsOutput { return v.Connections }).(MariaDBClusterConnectionsOutput)
 }
 
-// The number of CPU cores per instance.
+// [int] The number of CPU cores per instance.
 func (o MariaDBClusterOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.Cores }).(pulumi.IntOutput)
 }
@@ -295,42 +310,44 @@ func (o MariaDBClusterOutput) Credentials() MariaDBClusterCredentialsOutput {
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterCredentialsOutput { return v.Credentials }).(MariaDBClusterCredentialsOutput)
 }
 
-// The friendly name of your cluster.
+// [string] The friendly name of your cluster.
 func (o MariaDBClusterOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The DNS name pointing to your cluster.
+// [string] The DNS name pointing to your cluster.
+//
+// > **⚠ WARNING:** `Location` attribute will become required in the future.
 func (o MariaDBClusterOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }
 
-// The total number of instances in the cluster (one primary and n-1 secondary).
+// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 func (o MariaDBClusterOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.Instances }).(pulumi.IntOutput)
 }
 
-// The cluster location
+// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
 func (o MariaDBClusterOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// A weekly 4 hour-long window, during which maintenance might occur.
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 func (o MariaDBClusterOutput) MaintenanceWindow() MariaDBClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MariaDBClusterMaintenanceWindowOutput)
 }
 
-// The MariaDB version of your cluster.
+// [string] The MariaDB version of your cluster.
 func (o MariaDBClusterOutput) MariadbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.MariadbVersion }).(pulumi.StringOutput)
 }
 
-// The amount of memory per instance in gigabytes (GB).
+// [int] The amount of memory per instance in gigabytes (GB).
 func (o MariaDBClusterOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
 }
 
-// The amount of storage per instance in gigabytes (GB).
+// [int] The amount of storage per instance in gigabytes (GB).
 func (o MariaDBClusterOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }

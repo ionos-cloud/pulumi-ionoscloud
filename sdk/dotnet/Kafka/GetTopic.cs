@@ -12,8 +12,8 @@ namespace Pulumi.Ionoscloud.Kafka
     public static class GetTopic
     {
         /// <summary>
-        /// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+        /// The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -23,8 +23,8 @@ namespace Pulumi.Ionoscloud.Kafka
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTopicResult>("ionoscloud:kafka/getTopic:getTopic", args ?? new GetTopicArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+        /// The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -34,8 +34,8 @@ namespace Pulumi.Ionoscloud.Kafka
             => global::Pulumi.Deployment.Instance.Invoke<GetTopicResult>("ionoscloud:kafka/getTopic:getTopic", args ?? new GetTopicInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+        /// The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+        /// You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
         /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
         /// When this happens, please refine your search string so that it is specific enough to return only one result.
         /// 
@@ -48,23 +48,27 @@ namespace Pulumi.Ionoscloud.Kafka
 
     public sealed class GetTopicArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Kafka Cluster that the topic belongs to.
+        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// ID of an existing Kafka Cluster that you want to search for.
+        /// ID of an existing Kafka Cluster Topic that you want to search for.
         /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+        /// Cluster. Possible values: `de/fra`, `de/txl`
         /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
         /// <summary>
-        /// Name of an existing Kafka Cluster that you want to search for.
+        /// Name of an existing Kafka Cluster Topic that you want to search for.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -80,23 +84,27 @@ namespace Pulumi.Ionoscloud.Kafka
 
     public sealed class GetTopicInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Kafka Cluster that the topic belongs to.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// ID of an existing Kafka Cluster that you want to search for.
+        /// ID of an existing Kafka Cluster Topic that you want to search for.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+        /// The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+        /// Cluster. Possible values: `de/fra`, `de/txl`
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// Name of an existing Kafka Cluster that you want to search for.
+        /// Name of an existing Kafka Cluster Topic that you want to search for.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -114,20 +122,38 @@ namespace Pulumi.Ionoscloud.Kafka
     [OutputType]
     public sealed class GetTopicResult
     {
+        /// <summary>
+        /// The id of the Kafka Cluster that the topic belongs to.
+        /// </summary>
         public readonly string ClusterId;
         /// <summary>
-        /// UUID of the Kafka Cluster.
+        /// UUID of the Kafka Cluster Topic.
         /// </summary>
         public readonly string Id;
         public readonly string Location;
         /// <summary>
-        /// The name of the Kafka Cluster.
+        /// The name of the Kafka Cluster Topic.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The number of partitions of the topic. Partitions allow for parallel processing of messages.
+        /// </summary>
         public readonly int NumberOfPartitions;
         public readonly bool? PartialMatch;
+        /// <summary>
+        /// The number of replicas of the topic. The replication factor determines how many copies of the
+        /// topic are stored on different brokers.
+        /// </summary>
         public readonly int ReplicationFactor;
+        /// <summary>
+        /// This configuration controls the maximum time we will retain a log before we will discard old log
+        /// segments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time
+        /// limit is applied.
+        /// </summary>
         public readonly int RetentionTime;
+        /// <summary>
+        /// This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.
+        /// </summary>
         public readonly int SegmentBytes;
 
         [OutputConstructor]

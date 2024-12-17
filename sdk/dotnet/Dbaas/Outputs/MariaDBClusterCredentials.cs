@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class MariaDBClusterCredentials
     {
         /// <summary>
-        /// The password for a MariaDB user.
+        /// [string] The password for a MariaDB user.
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         /// </summary>
         public readonly string Username;
 

@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.Cert.Inputs
     public sealed class AutoCertificateProviderExternalAccountBindingGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The key ID of the external account binding
+        /// [string] The key ID of the external account binding.
         /// </summary>
         [Input("keyId", required: true)]
         public Input<string> KeyId { get; set; } = null!;
@@ -22,7 +22,7 @@ namespace Pulumi.Ionoscloud.Cert.Inputs
         private Input<string>? _keySecret;
 
         /// <summary>
-        /// The secret of the external account binding
+        /// [string] The key secret of the external account binding
         /// </summary>
         public Input<string>? KeySecret
         {

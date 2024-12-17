@@ -9,32 +9,71 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Cert
 {
+    /// <summary>
+    /// Manages a **CM provider**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.Cert.AutoCertificateProvider("example", new()
+    ///     {
+    ///         Email = "user@example.com",
+    ///         ExternalAccountBinding = new Ionoscloud.Cert.Inputs.AutoCertificateProviderExternalAccountBindingArgs
+    ///         {
+    ///             KeyId = "some-key-id",
+    ///             KeySecret = "secret",
+    ///         },
+    ///         Location = "de/fra",
+    ///         Server = "https://acme-v02.api.letsencrypt.org/directory",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider")]
     public partial class AutoCertificateProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The email address of the certificate requester
+        /// [string] The email address of the certificate requester.
         /// </summary>
         [Output("email")]
         public Output<string> Email { get; private set; } = null!;
 
+        /// <summary>
+        /// [list] External account binding details.
+        /// </summary>
         [Output("externalAccountBinding")]
         public Output<Outputs.AutoCertificateProviderExternalAccountBinding?> ExternalAccountBinding { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the certificate provider
+        /// [string] The location of the provider.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the certificate provider
+        /// [string] The name of the certificate provider.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the certificate provider
+        /// [string] The URL of the certificate provider.
         /// </summary>
         [Output("server")]
         public Output<string> Server { get; private set; } = null!;
@@ -86,28 +125,31 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The email address of the certificate requester
+        /// [string] The email address of the certificate requester.
         /// </summary>
         [Input("email", required: true)]
         public Input<string> Email { get; set; } = null!;
 
+        /// <summary>
+        /// [list] External account binding details.
+        /// </summary>
         [Input("externalAccountBinding")]
         public Input<Inputs.AutoCertificateProviderExternalAccountBindingArgs>? ExternalAccountBinding { get; set; }
 
         /// <summary>
-        /// The location of the certificate provider
+        /// [string] The location of the provider.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// The name of the certificate provider
+        /// [string] The name of the certificate provider.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The URL of the certificate provider
+        /// [string] The URL of the certificate provider.
         /// </summary>
         [Input("server", required: true)]
         public Input<string> Server { get; set; } = null!;
@@ -121,28 +163,31 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The email address of the certificate requester
+        /// [string] The email address of the certificate requester.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// [list] External account binding details.
+        /// </summary>
         [Input("externalAccountBinding")]
         public Input<Inputs.AutoCertificateProviderExternalAccountBindingGetArgs>? ExternalAccountBinding { get; set; }
 
         /// <summary>
-        /// The location of the certificate provider
+        /// [string] The location of the provider.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The name of the certificate provider
+        /// [string] The name of the certificate provider.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The URL of the certificate provider
+        /// [string] The URL of the certificate provider.
         /// </summary>
         [Input("server")]
         public Input<string>? Server { get; set; }

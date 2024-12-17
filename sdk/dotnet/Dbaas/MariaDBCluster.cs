@@ -9,6 +9,17 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DBaaS MariaDB Cluster**.
+    /// 
+    /// ## Import
+    /// 
+    /// Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/mariaDBCluster:MariaDBCluster")]
     public partial class MariaDBCluster : global::Pulumi.CustomResource
     {
@@ -19,7 +30,7 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.MariaDBClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// The number of CPU cores per instance.
+        /// [int] The number of CPU cores per instance.
         /// </summary>
         [Output("cores")]
         public Output<int> Cores { get; private set; } = null!;
@@ -31,49 +42,51 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.MariaDBClusterCredentials> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS name pointing to your cluster.
+        /// [string] The DNS name pointing to your cluster.
+        /// 
+        /// &gt; **⚠ WARNING:** `Location` attribute will become required in the future.
         /// </summary>
         [Output("dnsName")]
         public Output<string> DnsName { get; private set; } = null!;
 
         /// <summary>
-        /// The total number of instances in the cluster (one primary and n-1 secondary).
+        /// [int] The total number of instances in the cluster (one primary and n-1 secondary).
         /// </summary>
         [Output("instances")]
         public Output<int> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// The cluster location
+        /// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.MariaDBClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
         /// <summary>
-        /// The MariaDB version of your cluster.
+        /// [string] The MariaDB version of your cluster.
         /// </summary>
         [Output("mariadbVersion")]
         public Output<string> MariadbVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB).
         /// </summary>
         [Output("ram")]
         public Output<int> Ram { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB).
         /// </summary>
         [Output("storageSize")]
         public Output<int> StorageSize { get; private set; } = null!;
@@ -131,7 +144,7 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// The number of CPU cores per instance.
+        /// [int] The number of CPU cores per instance.
         /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
@@ -143,43 +156,43 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterCredentialsArgs> Credentials { get; set; } = null!;
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// The total number of instances in the cluster (one primary and n-1 secondary).
+        /// [int] The total number of instances in the cluster (one primary and n-1 secondary).
         /// </summary>
         [Input("instances", required: true)]
         public Input<int> Instances { get; set; } = null!;
 
         /// <summary>
-        /// The cluster location
+        /// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MariaDBClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// The MariaDB version of your cluster.
+        /// [string] The MariaDB version of your cluster.
         /// </summary>
         [Input("mariadbVersion", required: true)]
         public Input<string> MariadbVersion { get; set; } = null!;
 
         /// <summary>
-        /// The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB).
         /// </summary>
         [Input("ram", required: true)]
         public Input<int> Ram { get; set; } = null!;
 
         /// <summary>
-        /// The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB).
         /// </summary>
         [Input("storageSize", required: true)]
         public Input<int> StorageSize { get; set; } = null!;
@@ -199,7 +212,7 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// The number of CPU cores per instance.
+        /// [int] The number of CPU cores per instance.
         /// </summary>
         [Input("cores")]
         public Input<int>? Cores { get; set; }
@@ -211,49 +224,51 @@ namespace Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterCredentialsGetArgs>? Credentials { get; set; }
 
         /// <summary>
-        /// The friendly name of your cluster.
+        /// [string] The friendly name of your cluster.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The DNS name pointing to your cluster.
+        /// [string] The DNS name pointing to your cluster.
+        /// 
+        /// &gt; **⚠ WARNING:** `Location` attribute will become required in the future.
         /// </summary>
         [Input("dnsName")]
         public Input<string>? DnsName { get; set; }
 
         /// <summary>
-        /// The total number of instances in the cluster (one primary and n-1 secondary).
+        /// [int] The total number of instances in the cluster (one primary and n-1 secondary).
         /// </summary>
         [Input("instances")]
         public Input<int>? Instances { get; set; }
 
         /// <summary>
-        /// The cluster location
+        /// [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A weekly 4 hour-long window, during which maintenance might occur.
+        /// (Computed) A weekly 4 hour-long window, during which maintenance might occur
         /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MariaDBClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         /// <summary>
-        /// The MariaDB version of your cluster.
+        /// [string] The MariaDB version of your cluster.
         /// </summary>
         [Input("mariadbVersion")]
         public Input<string>? MariadbVersion { get; set; }
 
         /// <summary>
-        /// The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB).
         /// </summary>
         [Input("ram")]
         public Input<int>? Ram { get; set; }
 
         /// <summary>
-        /// The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB).
         /// </summary>
         [Input("storageSize")]
         public Input<int>? StorageSize { get; set; }
