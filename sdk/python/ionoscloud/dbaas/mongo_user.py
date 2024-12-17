@@ -27,6 +27,10 @@ class MongoUserArgs:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]] = None):
         """
         The set of arguments for constructing a MongoUser resource.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "password", password)
@@ -37,6 +41,9 @@ class MongoUserArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -46,6 +53,9 @@ class MongoUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        [string] User password. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -55,6 +65,9 @@ class MongoUserArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -64,6 +77,9 @@ class MongoUserArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]]:
+        """
+        [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -80,6 +96,10 @@ class _MongoUserState:
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MongoUser resources.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -93,6 +113,9 @@ class _MongoUserState:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -102,6 +125,9 @@ class _MongoUserState:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] User password. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -111,6 +137,9 @@ class _MongoUserState:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MongoUserRoleArgs']]]]:
+        """
+        [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -120,6 +149,9 @@ class _MongoUserState:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -138,9 +170,127 @@ class MongoUser(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MongoUser resource with the given unique name, props, and options.
+        Manages a **DbaaS Mongo User**. .
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            cluster_id=example_mongo_cluster.id,
+            username="myUser",
+            password="strongPassword",
+            roles=[
+                {
+                    "role": "read",
+                    "database": "db1",
+                },
+                {
+                    "role": "readWrite",
+                    "database": "db2",
+                },
+            ])
+        ```
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        # Complete example
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        user_password = random.RandomPassword("userPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            cluster_id=example_mongo_cluster.id,
+            username="myUser",
+            password=user_password.result,
+            roles=[
+                {
+                    "role": "read",
+                    "database": "db1",
+                },
+                {
+                    "role": "readWrite",
+                    "database": "db2",
+                },
+            ])
+        ```
+
+        ## Import
+
+        Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
+
+        First, define an empty resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_mongo_user" "importeduser" {
+
+        }
+
+        Then you can import the user using the following command:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         ...
     @overload
@@ -149,7 +299,121 @@ class MongoUser(pulumi.CustomResource):
                  args: MongoUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MongoUser resource with the given unique name, props, and options.
+        Manages a **DbaaS Mongo User**. .
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            cluster_id=example_mongo_cluster.id,
+            username="myUser",
+            password="strongPassword",
+            roles=[
+                {
+                    "role": "read",
+                    "database": "db1",
+                },
+                {
+                    "role": "readWrite",
+                    "database": "db2",
+                },
+            ])
+        ```
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        # Complete example
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample",
+            location="de/txl",
+            description="Datacenter for testing dbaas cluster")
+        lan_example = ionoscloud.compute.Lan("lanExample",
+            datacenter_id=datacenter_example.id,
+            public=False)
+        example_mongo_cluster = ionoscloud.dbaas.MongoCluster("exampleMongoCluster",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            },
+            mongodb_version="5.0",
+            instances=1,
+            display_name="example_mongo_cluster",
+            location=datacenter_example.location,
+            connections={
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "cidr_lists": ["192.168.1.108/24"],
+            },
+            template_id="6b78ea06-ee0e-4689-998c-fc9c46e781f6")
+        cluster_password = random.RandomPassword("clusterPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        user_password = random.RandomPassword("userPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        example_mongo_user = ionoscloud.dbaas.MongoUser("exampleMongoUser",
+            cluster_id=example_mongo_cluster.id,
+            username="myUser",
+            password=user_password.result,
+            roles=[
+                {
+                    "role": "read",
+                    "database": "db1",
+                },
+                {
+                    "role": "readWrite",
+                    "database": "db2",
+                },
+            ])
+        ```
+
+        ## Import
+
+        Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
+
+        First, define an empty resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_mongo_user" "importeduser" {
+
+        }
+
+        Then you can import the user using the following command:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+        ```
+
         :param str resource_name: The name of the resource.
         :param MongoUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -211,6 +475,10 @@ class MongoUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -225,20 +493,32 @@ class MongoUser(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
+        """
+        [string] User password. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def roles(self) -> pulumi.Output[Optional[Sequence['outputs.MongoUserRole']]]:
+        """
+        [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "roles")
 
     @property
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 

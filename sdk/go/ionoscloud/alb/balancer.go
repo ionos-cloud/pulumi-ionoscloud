@@ -12,30 +12,94 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an **Application Load Balancer** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("datacenter description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = alb.NewBalancer(ctx, "exampleBalancer", &alb.BalancerArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				ListenerLan:  example1.ID(),
+//				Ips: pulumi.StringArray{
+//					pulumi.String("10.12.118.224"),
+//				},
+//				TargetLan: example2.ID(),
+//				LbPrivateIps: pulumi.StringArray{
+//					pulumi.String("10.13.72.225/24"),
+//				},
+//				CentralLogging: pulumi.Bool(true),
+//				LoggingFormat:  pulumi.String("%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+// ```
 type Balancer struct {
 	pulumi.CustomResourceState
 
-	// Turn logging on and off for this product. Default value is 'false'.
+	// [bool] Turn logging on and off for this product. Default value is 'false'.
 	CentralLogging pulumi.BoolPtrOutput `pulumi:"centralLogging"`
-	DatacenterId   pulumi.StringOutput  `pulumi:"datacenterId"`
-	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-	// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-	// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-	// instances are being accessed.
+	// [string] ID of the datacenter.
+	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlog BalancerFlowlogPtrOutput `pulumi:"flowlog"`
-	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-	// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips pulumi.StringArrayOutput `pulumi:"ips"`
-	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-	// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps pulumi.StringArrayOutput `pulumi:"lbPrivateIps"`
-	// ID of the listening (inbound) LAN.
+	// [int] ID of the listening (inbound) LAN.
 	ListenerLan pulumi.IntOutput `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrOutput `pulumi:"loggingFormat"`
-	// The name of the Application Load Balancer.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// ID of the balanced private target LAN (outbound).
+	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntOutput `pulumi:"targetLan"`
 }
 
@@ -78,52 +142,44 @@ func GetBalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Balancer resources.
 type balancerState struct {
-	// Turn logging on and off for this product. Default value is 'false'.
-	CentralLogging *bool   `pulumi:"centralLogging"`
-	DatacenterId   *string `pulumi:"datacenterId"`
-	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-	// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-	// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-	// instances are being accessed.
+	// [bool] Turn logging on and off for this product. Default value is 'false'.
+	CentralLogging *bool `pulumi:"centralLogging"`
+	// [string] ID of the datacenter.
+	DatacenterId *string `pulumi:"datacenterId"`
+	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlog *BalancerFlowlog `pulumi:"flowlog"`
-	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-	// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips []string `pulumi:"ips"`
-	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-	// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps []string `pulumi:"lbPrivateIps"`
-	// ID of the listening (inbound) LAN.
+	// [int] ID of the listening (inbound) LAN.
 	ListenerLan *int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// The name of the Application Load Balancer.
+	// [string] The name of the Application Load Balancer.
 	Name *string `pulumi:"name"`
-	// ID of the balanced private target LAN (outbound).
+	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan *int `pulumi:"targetLan"`
 }
 
 type BalancerState struct {
-	// Turn logging on and off for this product. Default value is 'false'.
+	// [bool] Turn logging on and off for this product. Default value is 'false'.
 	CentralLogging pulumi.BoolPtrInput
-	DatacenterId   pulumi.StringPtrInput
-	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-	// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-	// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-	// instances are being accessed.
+	// [string] ID of the datacenter.
+	DatacenterId pulumi.StringPtrInput
+	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlog BalancerFlowlogPtrInput
-	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-	// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips pulumi.StringArrayInput
-	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-	// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps pulumi.StringArrayInput
-	// ID of the listening (inbound) LAN.
+	// [int] ID of the listening (inbound) LAN.
 	ListenerLan pulumi.IntPtrInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// The name of the Application Load Balancer.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringPtrInput
-	// ID of the balanced private target LAN (outbound).
+	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntPtrInput
 }
 
@@ -132,53 +188,45 @@ func (BalancerState) ElementType() reflect.Type {
 }
 
 type balancerArgs struct {
-	// Turn logging on and off for this product. Default value is 'false'.
-	CentralLogging *bool  `pulumi:"centralLogging"`
-	DatacenterId   string `pulumi:"datacenterId"`
-	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-	// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-	// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-	// instances are being accessed.
+	// [bool] Turn logging on and off for this product. Default value is 'false'.
+	CentralLogging *bool `pulumi:"centralLogging"`
+	// [string] ID of the datacenter.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlog *BalancerFlowlog `pulumi:"flowlog"`
-	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-	// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips []string `pulumi:"ips"`
-	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-	// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps []string `pulumi:"lbPrivateIps"`
-	// ID of the listening (inbound) LAN.
+	// [int] ID of the listening (inbound) LAN.
 	ListenerLan int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// The name of the Application Load Balancer.
+	// [string] The name of the Application Load Balancer.
 	Name *string `pulumi:"name"`
-	// ID of the balanced private target LAN (outbound).
+	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan int `pulumi:"targetLan"`
 }
 
 // The set of arguments for constructing a Balancer resource.
 type BalancerArgs struct {
-	// Turn logging on and off for this product. Default value is 'false'.
+	// [bool] Turn logging on and off for this product. Default value is 'false'.
 	CentralLogging pulumi.BoolPtrInput
-	DatacenterId   pulumi.StringInput
-	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-	// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-	// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-	// instances are being accessed.
+	// [string] ID of the datacenter.
+	DatacenterId pulumi.StringInput
+	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 	Flowlog BalancerFlowlogPtrInput
-	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-	// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 	Ips pulumi.StringArrayInput
-	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-	// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 	LbPrivateIps pulumi.StringArrayInput
-	// ID of the listening (inbound) LAN.
+	// [int] ID of the listening (inbound) LAN.
 	ListenerLan pulumi.IntInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// The name of the Application Load Balancer.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringPtrInput
-	// ID of the balanced private target LAN (outbound).
+	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntInput
 }
 
@@ -269,36 +317,32 @@ func (o BalancerOutput) ToBalancerOutputWithContext(ctx context.Context) Balance
 	return o
 }
 
-// Turn logging on and off for this product. Default value is 'false'.
+// [bool] Turn logging on and off for this product. Default value is 'false'.
 func (o BalancerOutput) CentralLogging() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.BoolPtrOutput { return v.CentralLogging }).(pulumi.BoolPtrOutput)
 }
 
+// [string] ID of the datacenter.
 func (o BalancerOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-// instances are being accessed.
+// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 func (o BalancerOutput) Flowlog() BalancerFlowlogPtrOutput {
 	return o.ApplyT(func(v *Balancer) BalancerFlowlogPtrOutput { return v.Flowlog }).(BalancerFlowlogPtrOutput)
 }
 
-// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are
-// customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+// [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 func (o BalancerOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringArrayOutput { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a
-// subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+// [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 func (o BalancerOutput) LbPrivateIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringArrayOutput { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
 }
 
-// ID of the listening (inbound) LAN.
+// [int] ID of the listening (inbound) LAN.
 func (o BalancerOutput) ListenerLan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.IntOutput { return v.ListenerLan }).(pulumi.IntOutput)
 }
@@ -308,12 +352,12 @@ func (o BalancerOutput) LoggingFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringPtrOutput { return v.LoggingFormat }).(pulumi.StringPtrOutput)
 }
 
-// The name of the Application Load Balancer.
+// [string] The name of the Application Load Balancer.
 func (o BalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// ID of the balanced private target LAN (outbound).
+// [int] ID of the balanced private target LAN (outbound).
 func (o BalancerOutput) TargetLan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Balancer) pulumi.IntOutput { return v.TargetLan }).(pulumi.IntOutput)
 }

@@ -18,11 +18,12 @@ namespace Pulumi.Ionoscloud.Vpn.Outputs
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        /// Describes the private ipv4 subnet in your LAN that should be accessible by the
+        /// VPN Gateway.
         /// </summary>
         public readonly string Ipv4Cidr;
         /// <summary>
-        /// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        /// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
         /// </summary>
         public readonly string Ipv6Cidr;
         /// <summary>

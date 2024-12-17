@@ -11,6 +11,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+// You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Type
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetResource(ctx, &ionoscloud.GetResourceArgs{
+//				ResourceType: pulumi.StringRef("datacenter"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetResource(ctx *pulumi.Context, args *GetResourceArgs, opts ...pulumi.InvokeOption) (*GetResourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetResourceResult
@@ -23,7 +54,9 @@ func GetResource(ctx *pulumi.Context, args *GetResourceArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getResource.
 type GetResourceArgs struct {
-	ResourceId   *string `pulumi:"resourceId"`
+	// The ID of the specific resource to retrieve information about.
+	ResourceId *string `pulumi:"resourceId"`
+	// The specific type of resources to retrieve information about.
 	ResourceType *string `pulumi:"resourceType"`
 }
 
@@ -46,7 +79,9 @@ func GetResourceOutput(ctx *pulumi.Context, args GetResourceOutputArgs, opts ...
 
 // A collection of arguments for invoking getResource.
 type GetResourceOutputArgs struct {
-	ResourceId   pulumi.StringPtrInput `pulumi:"resourceId"`
+	// The ID of the specific resource to retrieve information about.
+	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
+	// The specific type of resources to retrieve information about.
 	ResourceType pulumi.StringPtrInput `pulumi:"resourceType"`
 }
 

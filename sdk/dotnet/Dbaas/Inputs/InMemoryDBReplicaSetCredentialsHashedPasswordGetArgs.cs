@@ -12,9 +12,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
 
     public sealed class InMemoryDBReplicaSetCredentialsHashedPasswordGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The value can be only: "SHA-256".
+        /// </summary>
         [Input("algorithm", required: true)]
         public Input<string> Algorithm { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The hashed password.
+        /// </summary>
         [Input("hash", required: true)]
         public Input<string> Hash { get; set; } = null!;
 

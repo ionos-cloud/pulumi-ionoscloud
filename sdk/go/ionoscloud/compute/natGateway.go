@@ -12,15 +12,89 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Nat Gateway** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
+//				Location: pulumi.String("us/las"),
+//				Size:     pulumi.Int(2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewNatGateway(ctx, "exampleNatGateway", &compute.NatGatewayArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				PublicIps: pulumi.StringArray{
+//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//						return ips[0], nil
+//					}).(pulumi.StringOutput),
+//					exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//						return ips[1], nil
+//					}).(pulumi.StringOutput),
+//				},
+//				Lans: compute.NatGatewayLanArray{
+//					&compute.NatGatewayLanArgs{
+//						Id: exampleLan.ID(),
+//						GatewayIps: pulumi.StringArray{
+//							pulumi.String("10.11.2.5"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A Nat Gateway resource can be imported using its `resource id` and the `datacenter id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/natGateway:NatGateway my_natgateway {datacenter uuid}/{nat gateway uuid}
+// ```
 type NatGateway struct {
 	pulumi.CustomResourceState
 
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// A list of Local Area Networks the node pool should be part of
+	// [list] A list of Local Area Networks the node pool should be part of.
 	Lans NatGatewayLanArrayOutput `pulumi:"lans"`
-	// Name of the NAT gateway
+	// [string] Name of the NAT gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 	PublicIps pulumi.StringArrayOutput `pulumi:"publicIps"`
 }
 
@@ -63,22 +137,24 @@ func GetNatGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NatGateway resources.
 type natGatewayState struct {
+	// [string] A Datacenter's UUID.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// A list of Local Area Networks the node pool should be part of
+	// [list] A list of Local Area Networks the node pool should be part of.
 	Lans []NatGatewayLan `pulumi:"lans"`
-	// Name of the NAT gateway
+	// [string] Name of the NAT gateway.
 	Name *string `pulumi:"name"`
-	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 	PublicIps []string `pulumi:"publicIps"`
 }
 
 type NatGatewayState struct {
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringPtrInput
-	// A list of Local Area Networks the node pool should be part of
+	// [list] A list of Local Area Networks the node pool should be part of.
 	Lans NatGatewayLanArrayInput
-	// Name of the NAT gateway
+	// [string] Name of the NAT gateway.
 	Name pulumi.StringPtrInput
-	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 	PublicIps pulumi.StringArrayInput
 }
 
@@ -87,23 +163,25 @@ func (NatGatewayState) ElementType() reflect.Type {
 }
 
 type natGatewayArgs struct {
+	// [string] A Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
-	// A list of Local Area Networks the node pool should be part of
+	// [list] A list of Local Area Networks the node pool should be part of.
 	Lans []NatGatewayLan `pulumi:"lans"`
-	// Name of the NAT gateway
+	// [string] Name of the NAT gateway.
 	Name *string `pulumi:"name"`
-	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 	PublicIps []string `pulumi:"publicIps"`
 }
 
 // The set of arguments for constructing a NatGateway resource.
 type NatGatewayArgs struct {
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringInput
-	// A list of Local Area Networks the node pool should be part of
+	// [list] A list of Local Area Networks the node pool should be part of.
 	Lans NatGatewayLanArrayInput
-	// Name of the NAT gateway
+	// [string] Name of the NAT gateway.
 	Name pulumi.StringPtrInput
-	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 	PublicIps pulumi.StringArrayInput
 }
 
@@ -194,21 +272,22 @@ func (o NatGatewayOutput) ToNatGatewayOutputWithContext(ctx context.Context) Nat
 	return o
 }
 
+// [string] A Datacenter's UUID.
 func (o NatGatewayOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NatGateway) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// A list of Local Area Networks the node pool should be part of
+// [list] A list of Local Area Networks the node pool should be part of.
 func (o NatGatewayOutput) Lans() NatGatewayLanArrayOutput {
 	return o.ApplyT(func(v *NatGateway) NatGatewayLanArrayOutput { return v.Lans }).(NatGatewayLanArrayOutput)
 }
 
-// Name of the NAT gateway
+// [string] Name of the NAT gateway.
 func (o NatGatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *NatGateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+// [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
 func (o NatGatewayOutput) PublicIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NatGateway) pulumi.StringArrayOutput { return v.PublicIps }).(pulumi.StringArrayOutput)
 }

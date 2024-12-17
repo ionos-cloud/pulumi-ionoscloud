@@ -80,16 +80,25 @@ class GetNicResult:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> int:
+        """
+        The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
+        """
         return pulumi.get(self, "device_number")
 
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[bool]:
+        """
+        Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        """
         return pulumi.get(self, "dhcp")
 
     @property
@@ -100,26 +109,41 @@ class GetNicResult:
     @property
     @pulumi.getter(name="firewallActive")
     def firewall_active(self) -> Optional[bool]:
+        """
+        If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        """
         return pulumi.get(self, "firewall_active")
 
     @property
     @pulumi.getter(name="firewallType")
     def firewall_type(self) -> str:
+        """
+        The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        """
         return pulumi.get(self, "firewall_type")
 
     @property
     @pulumi.getter
     def flowlogs(self) -> Sequence['outputs.GetNicFlowlogResult']:
+        """
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        """
         return pulumi.get(self, "flowlogs")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the NIC.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ips(self) -> Sequence[str]:
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
         return pulumi.get(self, "ips")
 
     @property
@@ -135,26 +159,41 @@ class GetNicResult:
     @property
     @pulumi.getter
     def lan(self) -> Optional[int]:
+        """
+        The LAN ID the NIC will sit on.
+        """
         return pulumi.get(self, "lan")
 
     @property
     @pulumi.getter
     def mac(self) -> str:
+        """
+        The MAC address of the NIC.
+        """
         return pulumi.get(self, "mac")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Specifies the name of the flow log.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> int:
+        """
+        The PCI slot number of the Nic.
+        """
         return pulumi.get(self, "pci_slot")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> str:
+        """
+        The ID of a server.
+        """
         return pulumi.get(self, "server_id")
 
 
@@ -196,7 +235,25 @@ def get_nic(datacenter_id: Optional[str] = None,
             server_id: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNicResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Nic data source** can be used to search for and return existing nics.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: [string] The ID of a Virtual Data Center.
+    :param bool dhcp: Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+    :param bool firewall_active: If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+    :param str firewall_type: The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+    :param str id: ID of the nic you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided.
+           If none, are provided, the datasource will return an error.
+    :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+    :param int lan: The LAN ID the NIC will sit on.
+    :param str name: [string] The name of the LAN.
+    :param str server_id: [string] The ID of a server.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -245,7 +302,25 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                    server_id: Optional[pulumi.Input[str]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNicResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Nic data source** can be used to search for and return existing nics.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: [string] The ID of a Virtual Data Center.
+    :param bool dhcp: Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+    :param bool firewall_active: If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+    :param str firewall_type: The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+    :param str id: ID of the nic you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided.
+           If none, are provided, the datasource will return an error.
+    :param Sequence[str] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+    :param int lan: The LAN ID the NIC will sit on.
+    :param str name: [string] The name of the LAN.
+    :param str server_id: [string] The ID of a server.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -12,6 +12,9 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
     public sealed class VCPUServerVolumeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
@@ -45,9 +48,15 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("diskType", required: true)]
         public Input<string> DiskType { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Sets the OS type of the server.
+        /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
 
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

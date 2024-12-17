@@ -9,28 +9,96 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Vpn
 {
+    /// <summary>
+    /// ## Overview
+    /// 
+    /// The `ionoscloud.vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+    /// This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var datacenterExample = new Ionoscloud.Compute.Datacenter("datacenterExample", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///     });
+    /// 
+    ///     var ipblockExample = new Ionoscloud.Compute.IPBlock("ipblockExample", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     var lanExample = new Ionoscloud.Compute.Lan("lanExample", new()
+    ///     {
+    ///         DatacenterId = datacenterExample.Id,
+    ///     });
+    /// 
+    ///     var gateway = new Ionoscloud.Vpn.WireguardGateway("gateway", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///         Description = "description",
+    ///         PrivateKey = "private",
+    ///         GatewayIp = ipblockExample.Ips.Apply(ips =&gt; ips[0]),
+    ///         InterfaceIpv4Cidr = "192.168.1.100/24",
+    ///         Connections = new[]
+    ///         {
+    ///             new Ionoscloud.Vpn.Inputs.WireguardGatewayConnectionArgs
+    ///             {
+    ///                 DatacenterId = datacenterExample.Id,
+    ///                 LanId = lanExample.Id,
+    ///                 Ipv4Cidr = "192.168.1.108/24",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// WireGuard Gateways can be imported using their ID:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:vpn/wireguardGateway:WireguardGateway")]
     public partial class WireguardGateway : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        /// </summary>
         [Output("connections")]
         public Output<ImmutableArray<Outputs.WireguardGatewayConnection>> Connections { get; private set; } = null!;
 
+        /// <summary>
+        /// [String] A description of the WireGuard Gateway.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// [String] The IP address of the WireGuard Gateway.
+        /// </summary>
         [Output("gatewayIp")]
         public Output<string> GatewayIp { get; private set; } = null!;
 
         /// <summary>
-        /// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        /// interfaceIPv6CIDR is __required__.
+        /// [String] The IPv4 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Output("interfaceIpv4Cidr")]
         public Output<string?> InterfaceIpv4Cidr { get; private set; } = null!;
 
         /// <summary>
-        /// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        /// interfaceIPv4CIDR is __required__.
+        /// [String] The IPv6 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Output("interfaceIpv6Cidr")]
         public Output<string?> InterfaceIpv6Cidr { get; private set; } = null!;
@@ -39,28 +107,31 @@ namespace Pulumi.Ionoscloud.Vpn
         public Output<int?> ListenPort { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        /// [String] The location of the WireGuard Gateway.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
+        /// <summary>
+        /// [String] The name of the WireGuard Gateway.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// PrivateKey used for WireGuard Server
+        /// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// PublicKey used for WireGuard Server. Received in response from API
+        /// (Computed)[String] The public key for the WireGuard Gateway.
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the WireGuard Gateway
+        /// (Computed)[String] The current status of the WireGuard Gateway.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -117,28 +188,36 @@ namespace Pulumi.Ionoscloud.Vpn
     {
         [Input("connections", required: true)]
         private InputList<Inputs.WireguardGatewayConnectionArgs>? _connections;
+
+        /// <summary>
+        /// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        /// </summary>
         public InputList<Inputs.WireguardGatewayConnectionArgs> Connections
         {
             get => _connections ?? (_connections = new InputList<Inputs.WireguardGatewayConnectionArgs>());
             set => _connections = value;
         }
 
+        /// <summary>
+        /// [String] A description of the WireGuard Gateway.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// [String] The IP address of the WireGuard Gateway.
+        /// </summary>
         [Input("gatewayIp", required: true)]
         public Input<string> GatewayIp { get; set; } = null!;
 
         /// <summary>
-        /// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        /// interfaceIPv6CIDR is __required__.
+        /// [String] The IPv4 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Input("interfaceIpv4Cidr")]
         public Input<string>? InterfaceIpv4Cidr { get; set; }
 
         /// <summary>
-        /// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        /// interfaceIPv4CIDR is __required__.
+        /// [String] The IPv6 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Input("interfaceIpv6Cidr")]
         public Input<string>? InterfaceIpv6Cidr { get; set; }
@@ -147,11 +226,14 @@ namespace Pulumi.Ionoscloud.Vpn
         public Input<int>? ListenPort { get; set; }
 
         /// <summary>
-        /// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        /// [String] The location of the WireGuard Gateway.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// [String] The name of the WireGuard Gateway.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -159,7 +241,7 @@ namespace Pulumi.Ionoscloud.Vpn
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// PrivateKey used for WireGuard Server
+        /// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -181,28 +263,36 @@ namespace Pulumi.Ionoscloud.Vpn
     {
         [Input("connections")]
         private InputList<Inputs.WireguardGatewayConnectionGetArgs>? _connections;
+
+        /// <summary>
+        /// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        /// </summary>
         public InputList<Inputs.WireguardGatewayConnectionGetArgs> Connections
         {
             get => _connections ?? (_connections = new InputList<Inputs.WireguardGatewayConnectionGetArgs>());
             set => _connections = value;
         }
 
+        /// <summary>
+        /// [String] A description of the WireGuard Gateway.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// [String] The IP address of the WireGuard Gateway.
+        /// </summary>
         [Input("gatewayIp")]
         public Input<string>? GatewayIp { get; set; }
 
         /// <summary>
-        /// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        /// interfaceIPv6CIDR is __required__.
+        /// [String] The IPv4 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Input("interfaceIpv4Cidr")]
         public Input<string>? InterfaceIpv4Cidr { get; set; }
 
         /// <summary>
-        /// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        /// interfaceIPv4CIDR is __required__.
+        /// [String] The IPv6 CIDR for the WireGuard Gateway interface.
         /// </summary>
         [Input("interfaceIpv6Cidr")]
         public Input<string>? InterfaceIpv6Cidr { get; set; }
@@ -211,11 +301,14 @@ namespace Pulumi.Ionoscloud.Vpn
         public Input<int>? ListenPort { get; set; }
 
         /// <summary>
-        /// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        /// [String] The location of the WireGuard Gateway.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
+        /// <summary>
+        /// [String] The name of the WireGuard Gateway.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -223,7 +316,7 @@ namespace Pulumi.Ionoscloud.Vpn
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// PrivateKey used for WireGuard Server
+        /// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -236,13 +329,13 @@ namespace Pulumi.Ionoscloud.Vpn
         }
 
         /// <summary>
-        /// PublicKey used for WireGuard Server. Received in response from API
+        /// (Computed)[String] The public key for the WireGuard Gateway.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The status of the WireGuard Gateway
+        /// (Computed)[String] The current status of the WireGuard Gateway.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

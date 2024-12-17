@@ -21,16 +21,6 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "ionoscloud:index/apigateway:Apigateway":
-		r = &Apigateway{}
-	case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
-		r = &ApigatewayRoute{}
-	case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
-		r = &AutoscalingGroup{}
-	case "ionoscloud:index/kafkaCluster:KafkaCluster":
-		r = &KafkaCluster{}
-	case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
-		r = &KafkaClusterTopic{}
 	case "ionoscloud:index/loadbalancer:Loadbalancer":
 		r = &Loadbalancer{}
 	case "ionoscloud:index/targetGroup:TargetGroup":
@@ -66,31 +56,6 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/apigateway",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/apigatewayRoute",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/autoscalingGroup",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/kafkaCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ionoscloud",
-		"index/kafkaClusterTopic",
-		&module{version},
-	)
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"index/loadbalancer",

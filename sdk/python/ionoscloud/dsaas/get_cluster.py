@@ -68,41 +68,82 @@ class GetClusterResult:
     @property
     @pulumi.getter(name="caCrt")
     def ca_crt(self) -> str:
+        """
+        base64 decoded cluster certificate authority data (provided as an attribute for direct use)
+        """
         return pulumi.get(self, "ca_crt")
 
     @property
     @pulumi.getter
     def configs(self) -> Sequence['outputs.GetClusterConfigResult']:
+        """
+        structured kubernetes config consisting of a list with 1 item with the following fields:
+        * api_version - Kubernetes API Version
+        * kind - "Config"
+        * current-context - string
+        * clusters - list of
+        * name - name of cluster
+        * cluster - map of
+        * certificate-authority-data - **base64 decoded** cluster CA data
+        * server -  server address in the form `https://host:port`
+        * contexts - list of
+        * name - context name
+        * context - map of
+        * cluster - cluster name
+        * user - cluster user
+        * users - list of
+        * name - user name
+        * user - map of
+        * token - user token used for authentication
+        """
         return pulumi.get(self, "configs")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The UUID of the virtual data center (VDC) in which the cluster is provisioned.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The UUID of the cluster.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="kubeConfig")
     def kube_config(self) -> str:
+        """
+        Kubernetes configuration
+        """
         return pulumi.get(self, "kube_config")
 
     @property
     @pulumi.getter
     def lans(self) -> Sequence['outputs.GetClusterLanResult']:
+        """
+        A list of LANs you want this node pool to be part of
+        """
         return pulumi.get(self, "lans")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetClusterMaintenanceWindowResult']:
+        """
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of your cluster.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -113,16 +154,27 @@ class GetClusterResult:
     @property
     @pulumi.getter
     def server(self) -> str:
+        """
+        cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
+        """
         return pulumi.get(self, "server")
 
     @property
     @pulumi.getter(name="userTokens")
     def user_tokens(self) -> Mapping[str, str]:
+        """
+        a convenience map to be search the token of a specific user
+        * key - is the user name
+        * value - is the token
+        """
         return pulumi.get(self, "user_tokens")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The version of the Data Platform.
+        """
         return pulumi.get(self, "version")
 
 
@@ -151,7 +203,37 @@ def get_cluster(id: Optional[str] = None,
                 partial_match: Optional[bool] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(name="_Example",
+        partial_match=True)
+    ```
+
+
+    :param str id: ID of the cluster you want to search for.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -178,7 +260,37 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(name="Dataplatform_Cluster_Example")
+    ```
+
+    ### By Name with Partial Match
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dsaas.get_cluster(name="_Example",
+        partial_match=True)
+    ```
+
+
+    :param str id: ID of the cluster you want to search for.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['id'] = id

@@ -29,19 +29,21 @@ if not MYPY:
     class BalancerFlowlogArgsDict(TypedDict):
         action: pulumi.Input[str]
         """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         """
         bucket: pulumi.Input[str]
         """
-        The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         """
         direction: pulumi.Input[str]
         """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         """
         name: pulumi.Input[str]
         """
-        The resource name.
+        [string] Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
         """
         id: NotRequired[pulumi.Input[str]]
         """
@@ -59,10 +61,12 @@ class BalancerFlowlogArgs:
                  name: pulumi.Input[str],
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] action: Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] bucket: The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] name: The resource name.
+        :param pulumi.Input[str] action: [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        :param pulumi.Input[str] bucket: [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        :param pulumi.Input[str] direction: [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
+               
+               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
         :param pulumi.Input[str] id: The resource's unique identifier.
         """
         pulumi.set(__self__, "action", action)
@@ -76,7 +80,7 @@ class BalancerFlowlogArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "action")
 
@@ -88,7 +92,7 @@ class BalancerFlowlogArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[str]:
         """
-        The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         """
         return pulumi.get(self, "bucket")
 
@@ -100,7 +104,7 @@ class BalancerFlowlogArgs:
     @pulumi.getter
     def direction(self) -> pulumi.Input[str]:
         """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "direction")
 
@@ -112,7 +116,9 @@ class BalancerFlowlogArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The resource name.
+        [string] Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
         """
         return pulumi.get(self, "name")
 
@@ -137,39 +143,39 @@ if not MYPY:
     class ForwardingRuleHttpRuleArgsDict(TypedDict):
         name: pulumi.Input[str]
         """
-        The unique name of the Application Load Balancer HTTP rule.
+        [string] The unique name of the Application Load Balancer HTTP rule.
         """
         type: pulumi.Input[str]
         """
-        Type of the HTTP rule.
+        [string] Type of the Http Rule.
         """
         conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgsDict']]]]
         """
-        An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         """
         content_type: NotRequired[pulumi.Input[str]]
         """
-        Valid only for STATIC actions.
+        [string] Valid only for STATIC actions.
         """
         drop_query: NotRequired[pulumi.Input[bool]]
         """
-        Default is false; valid only for REDIRECT actions.
+        [bool] Default is false; valid only for REDIRECT actions.
         """
         location: NotRequired[pulumi.Input[str]]
         """
-        The location for redirecting; mandatory and valid only for REDIRECT actions.
+        [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
         """
         response_message: NotRequired[pulumi.Input[str]]
         """
-        The response message of the request; mandatory for STATIC actions.
+        [string] The response message of the request; mandatory for STATIC action.
         """
         status_code: NotRequired[pulumi.Input[int]]
         """
-        Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
         """
         target_group: NotRequired[pulumi.Input[str]]
         """
-        The ID of the target group; mandatory and only valid for FORWARD actions.
+        [string] The UUID of the target group; mandatory for FORWARD action.
         """
 elif False:
     ForwardingRuleHttpRuleArgsDict: TypeAlias = Mapping[str, Any]
@@ -187,15 +193,15 @@ class ForwardingRuleHttpRuleArgs:
                  status_code: Optional[pulumi.Input[int]] = None,
                  target_group: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: The unique name of the Application Load Balancer HTTP rule.
-        :param pulumi.Input[str] type: Type of the HTTP rule.
-        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]] conditions: An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
-        :param pulumi.Input[str] content_type: Valid only for STATIC actions.
-        :param pulumi.Input[bool] drop_query: Default is false; valid only for REDIRECT actions.
-        :param pulumi.Input[str] location: The location for redirecting; mandatory and valid only for REDIRECT actions.
-        :param pulumi.Input[str] response_message: The response message of the request; mandatory for STATIC actions.
-        :param pulumi.Input[int] status_code: Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
-        :param pulumi.Input[str] target_group: The ID of the target group; mandatory and only valid for FORWARD actions.
+        :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
+        :param pulumi.Input[str] type: [string] Type of the Http Rule.
+        :param pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]] conditions: [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        :param pulumi.Input[str] content_type: [string] Valid only for STATIC actions.
+        :param pulumi.Input[bool] drop_query: [bool] Default is false; valid only for REDIRECT actions.
+        :param pulumi.Input[str] location: [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+        :param pulumi.Input[str] response_message: [string] The response message of the request; mandatory for STATIC action.
+        :param pulumi.Input[int] status_code: [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        :param pulumi.Input[str] target_group: [string] The UUID of the target group; mandatory for FORWARD action.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -218,7 +224,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
         """
-        The unique name of the Application Load Balancer HTTP rule.
+        [string] The unique name of the Application Load Balancer HTTP rule.
         """
         return pulumi.get(self, "name")
 
@@ -230,7 +236,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of the HTTP rule.
+        [string] Type of the Http Rule.
         """
         return pulumi.get(self, "type")
 
@@ -242,7 +248,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter
     def conditions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ForwardingRuleHttpRuleConditionArgs']]]]:
         """
-        An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         """
         return pulumi.get(self, "conditions")
 
@@ -254,7 +260,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Valid only for STATIC actions.
+        [string] Valid only for STATIC actions.
         """
         return pulumi.get(self, "content_type")
 
@@ -266,7 +272,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter(name="dropQuery")
     def drop_query(self) -> Optional[pulumi.Input[bool]]:
         """
-        Default is false; valid only for REDIRECT actions.
+        [bool] Default is false; valid only for REDIRECT actions.
         """
         return pulumi.get(self, "drop_query")
 
@@ -278,7 +284,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location for redirecting; mandatory and valid only for REDIRECT actions.
+        [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
         """
         return pulumi.get(self, "location")
 
@@ -290,7 +296,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter(name="responseMessage")
     def response_message(self) -> Optional[pulumi.Input[str]]:
         """
-        The response message of the request; mandatory for STATIC actions.
+        [string] The response message of the request; mandatory for STATIC action.
         """
         return pulumi.get(self, "response_message")
 
@@ -302,7 +308,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter(name="statusCode")
     def status_code(self) -> Optional[pulumi.Input[int]]:
         """
-        Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
         """
         return pulumi.get(self, "status_code")
 
@@ -314,7 +320,7 @@ class ForwardingRuleHttpRuleArgs:
     @pulumi.getter(name="targetGroup")
     def target_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the target group; mandatory and only valid for FORWARD actions.
+        [string] The UUID of the target group; mandatory for FORWARD action.
         """
         return pulumi.get(self, "target_group")
 
@@ -327,23 +333,23 @@ if not MYPY:
     class ForwardingRuleHttpRuleConditionArgsDict(TypedDict):
         type: pulumi.Input[str]
         """
-        Type of the HTTP rule condition.
+        [string] Type of the Http Rule condition.
         """
         condition: NotRequired[pulumi.Input[str]]
         """
-        Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
         """
         key: NotRequired[pulumi.Input[str]]
         """
-        Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
         """
         negate: NotRequired[pulumi.Input[bool]]
         """
-        Specifies whether the condition is negated or not; the default is False.
+        [bool] Specifies whether the condition is negated or not; the default is False.
         """
         value: NotRequired[pulumi.Input[str]]
         """
-        Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         """
 elif False:
     ForwardingRuleHttpRuleConditionArgsDict: TypeAlias = Mapping[str, Any]
@@ -357,11 +363,11 @@ class ForwardingRuleHttpRuleConditionArgs:
                  negate: Optional[pulumi.Input[bool]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] type: Type of the HTTP rule condition.
-        :param pulumi.Input[str] condition: Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
-        :param pulumi.Input[str] key: Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
-        :param pulumi.Input[bool] negate: Specifies whether the condition is negated or not; the default is False.
-        :param pulumi.Input[str] value: Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        :param pulumi.Input[str] type: [string] Type of the Http Rule condition.
+        :param pulumi.Input[str] condition: [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        :param pulumi.Input[str] key: [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        :param pulumi.Input[bool] negate: [bool] Specifies whether the condition is negated or not; the default is False.
+        :param pulumi.Input[str] value: [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         """
         pulumi.set(__self__, "type", type)
         if condition is not None:
@@ -377,7 +383,7 @@ class ForwardingRuleHttpRuleConditionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        Type of the HTTP rule condition.
+        [string] Type of the Http Rule condition.
         """
         return pulumi.get(self, "type")
 
@@ -389,7 +395,7 @@ class ForwardingRuleHttpRuleConditionArgs:
     @pulumi.getter
     def condition(self) -> Optional[pulumi.Input[str]]:
         """
-        Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
         """
         return pulumi.get(self, "condition")
 
@@ -401,7 +407,7 @@ class ForwardingRuleHttpRuleConditionArgs:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
         """
         return pulumi.get(self, "key")
 
@@ -413,7 +419,7 @@ class ForwardingRuleHttpRuleConditionArgs:
     @pulumi.getter
     def negate(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specifies whether the condition is negated or not; the default is False.
+        [bool] Specifies whether the condition is negated or not; the default is False.
         """
         return pulumi.get(self, "negate")
 
@@ -425,7 +431,7 @@ class ForwardingRuleHttpRuleConditionArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         """
         return pulumi.get(self, "value")
 

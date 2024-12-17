@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -151,7 +156,6 @@ def get_datacenter(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name & Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -159,7 +163,6 @@ def get_datacenter(id: Optional[str] = None,
     example = ionoscloud.get_datacenter(location="us/las",
         name="Datacenter Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Id of an existing Virtual Data Center that you want to search for.
@@ -185,13 +188,10 @@ def get_datacenter(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         sec_auth_protection=pulumi.get(__ret__, 'sec_auth_protection'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_datacenter)
 def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           location: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacenterResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacenterResult]:
     """
     The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
     You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
@@ -201,7 +201,6 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name & Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -209,7 +208,6 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     example = ionoscloud.get_datacenter(location="us/las",
         name="Datacenter Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Id of an existing Virtual Data Center that you want to search for.
@@ -218,4 +216,19 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
     :param str name: Name of an existing Virtual Data Center that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getDatacenter:getDatacenter', __args__, opts=opts, typ=GetDatacenterResult)
+    return __ret__.apply(lambda __response__: GetDatacenterResult(
+        cpu_architectures=pulumi.get(__response__, 'cpu_architectures'),
+        description=pulumi.get(__response__, 'description'),
+        features=pulumi.get(__response__, 'features'),
+        id=pulumi.get(__response__, 'id'),
+        ipv6_cidr_block=pulumi.get(__response__, 'ipv6_cidr_block'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        sec_auth_protection=pulumi.get(__response__, 'sec_auth_protection'),
+        version=pulumi.get(__response__, 'version')))

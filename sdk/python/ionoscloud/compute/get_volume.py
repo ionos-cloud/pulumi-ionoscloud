@@ -94,26 +94,41 @@ class GetVolumeResult:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="backupUnitId")
     def backup_unit_id(self) -> str:
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
         return pulumi.get(self, "backup_unit_id")
 
     @property
     @pulumi.getter(name="bootServer")
     def boot_server(self) -> str:
+        """
+        The UUID of the attached server.
+        """
         return pulumi.get(self, "boot_server")
 
     @property
     @pulumi.getter
     def bus(self) -> str:
+        """
+        The bus type of the volume: VIRTIO or IDE.
+        """
         return pulumi.get(self, "bus")
 
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @property
@@ -124,76 +139,121 @@ class GetVolumeResult:
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> int:
+        """
+        The LUN ID of the storage volume. Null for volumes not mounted to any VM
+        """
         return pulumi.get(self, "device_number")
 
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @property
     @pulumi.getter(name="diskType")
     def disk_type(self) -> str:
+        """
+        The volume type: HDD or SSD.
+        """
         return pulumi.get(self, "disk_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the volume.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def image(self) -> str:
+        """
+        The image or snapshot UUID.
+        """
         return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> str:
+        """
+        Required if `sshkey_path` is not provided.
+        """
         return pulumi.get(self, "image_password")
 
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> str:
+        """
+        The type of the licence.
+        """
         return pulumi.get(self, "licence_type")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the volume.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_plug")
 
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
         return pulumi.get(self, "ram_hot_plug")
 
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        The size of the volume in GB.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def sshkey(self) -> str:
+        """
+        The associated public SSH key.
+        """
         return pulumi.get(self, "sshkey")
 
     @property
     @pulumi.getter(name="userData")
     def user_data(self) -> str:
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        """
         return pulumi.get(self, "user_data")
 
 
@@ -231,7 +291,17 @@ def get_volume(datacenter_id: Optional[str] = None,
                name: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
-    Use this data source to access information about an existing resource.
+    The volume data source can be used to search for and return existing volumes.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of the volume you want to search for.
+           
+           Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing volume that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -267,7 +337,17 @@ def get_volume_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                       name: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumeResult]:
     """
-    Use this data source to access information about an existing resource.
+    The volume data source can be used to search for and return existing volumes.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of the volume you want to search for.
+           
+           Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing volume that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

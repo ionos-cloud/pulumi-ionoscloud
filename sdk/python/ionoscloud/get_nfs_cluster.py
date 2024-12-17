@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -144,14 +149,11 @@ def get_nfs_cluster(id: Optional[str] = None,
         nfs=pulumi.get(__ret__, 'nfs'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         size=pulumi.get(__ret__, 'size'))
-
-
-@_utilities.lift_output_func(get_nfs_cluster)
 def get_nfs_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            location: Optional[pulumi.Input[str]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNfsClusterResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNfsClusterResult]:
     """
     Returns information about clusters of Network File Storage (NFS) on IonosCloud.
 
@@ -161,4 +163,18 @@ def get_nfs_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: Name of the Network File Storage cluster.
     :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getNfsCluster:getNfsCluster', __args__, opts=opts, typ=GetNfsClusterResult)
+    return __ret__.apply(lambda __response__: GetNfsClusterResult(
+        connections=pulumi.get(__response__, 'connections'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        nfs=pulumi.get(__response__, 'nfs'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        size=pulumi.get(__response__, 'size')))

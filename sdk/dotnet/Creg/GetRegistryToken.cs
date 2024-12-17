@@ -11,12 +11,147 @@ namespace Pulumi.Ionoscloud.Creg
 {
     public static class GetRegistryToken
     {
+        /// <summary>
+        /// The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+        /// You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "container-registry-token-example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "-example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetRegistryTokenResult> InvokeAsync(GetRegistryTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryTokenResult>("ionoscloud:creg/getRegistryToken:getRegistryToken", args ?? new GetRegistryTokenArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+        /// You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "container-registry-token-example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "-example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetRegistryTokenResult> Invoke(GetRegistryTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryTokenResult>("ionoscloud:creg/getRegistryToken:getRegistryToken", args ?? new GetRegistryTokenInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+        /// You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "container-registry-token-example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Creg.GetRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "-example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetRegistryTokenResult> Invoke(GetRegistryTokenInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryTokenResult>("ionoscloud:creg/getRegistryToken:getRegistryToken", args ?? new GetRegistryTokenInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +159,29 @@ namespace Pulumi.Ionoscloud.Creg
 
     public sealed class GetRegistryTokenArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the container registry token you want to search for.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// 
+        /// `registry_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
+        /// <summary>
+        /// Registry's UUID.
+        /// </summary>
         [Input("registryId", required: true)]
         public string RegistryId { get; set; } = null!;
 
@@ -44,15 +193,29 @@ namespace Pulumi.Ionoscloud.Creg
 
     public sealed class GetRegistryTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the container registry token you want to search for.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// 
+        /// `registry_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
+        /// <summary>
+        /// Registry's UUID.
+        /// </summary>
         [Input("registryId", required: true)]
         public Input<string> RegistryId { get; set; } = null!;
 
@@ -68,6 +231,9 @@ namespace Pulumi.Ionoscloud.Creg
     {
         public readonly ImmutableArray<Outputs.GetRegistryTokenCredentialResult> Credentials;
         public readonly string ExpiryDate;
+        /// <summary>
+        /// Id of the container registry token.
+        /// </summary>
         public readonly string? Id;
         public readonly string? Name;
         public readonly bool? PartialMatch;

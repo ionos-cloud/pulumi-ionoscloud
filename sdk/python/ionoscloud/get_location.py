@@ -47,6 +47,9 @@ class GetLocationResult:
     @property
     @pulumi.getter(name="cpuArchitectures")
     def cpu_architectures(self) -> Sequence['outputs.GetLocationCpuArchitectureResult']:
+        """
+        Array of features and CPU families available in a location
+        """
         return pulumi.get(self, "cpu_architectures")
 
     @property
@@ -65,6 +68,9 @@ class GetLocationResult:
     @property
     @pulumi.getter(name="imageAliases")
     def image_aliases(self) -> Sequence[str]:
+        """
+        List of image aliases available for the location
+        """
         return pulumi.get(self, "image_aliases")
 
     @property
@@ -90,7 +96,23 @@ def get_location(feature: Optional[str] = None,
                  name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLocationResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_location(feature="SSD",
+        name="karlsruhe")
+    ```
+
+
+    :param str feature: A desired feature that the location must be able to provide.
+    :param str name: Name of the location to search for.
     """
     __args__ = dict()
     __args__['feature'] = feature
@@ -108,7 +130,23 @@ def get_location_output(feature: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLocationResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_location(feature="SSD",
+        name="karlsruhe")
+    ```
+
+
+    :param str feature: A desired feature that the location must be able to provide.
+    :param str name: Name of the location to search for.
     """
     __args__ = dict()
     __args__['feature'] = feature

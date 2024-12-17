@@ -49,26 +49,41 @@ class GetZoneResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the DNS Zone.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Indicates if the DNS Zone is activated or not.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The UUID of the DNS Zone.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the DNS Zone.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nameservers(self) -> Sequence[str]:
+        """
+        A list of available name servers.
+        """
         return pulumi.get(self, "nameservers")
 
     @property
@@ -96,7 +111,37 @@ def get_zone(id: Optional[str] = None,
              partial_match: Optional[bool] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetZoneResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DNS Zone** can be used to search for and return an existing DNS Zone.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
+
+    ## Example Usage
+
+    ### By name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(name="example.com")
+    ```
+
+    ### By name with partial match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(name="example",
+        partial_match=True)
+    ```
+
+
+    :param str id: [string] The ID of the DNS Zone you want to search for.
+    :param str name: [string] The name of the DNS Zone you want to search for.
+    :param bool partial_match: [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -117,7 +162,37 @@ def get_zone_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                     partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetZoneResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DNS Zone** can be used to search for and return an existing DNS Zone.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
+
+    ## Example Usage
+
+    ### By name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(name="example.com")
+    ```
+
+    ### By name with partial match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dns.get_zone(name="example",
+        partial_match=True)
+    ```
+
+
+    :param str id: [string] The ID of the DNS Zone you want to search for.
+    :param str name: [string] The name of the DNS Zone you want to search for.
+    :param bool partial_match: [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['id'] = id

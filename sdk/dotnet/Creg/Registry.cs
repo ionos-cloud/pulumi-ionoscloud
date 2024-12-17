@@ -9,28 +9,81 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Creg
 {
+    /// <summary>
+    /// Manages an **Container Registry** on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.Creg.Registry("example", new()
+    ///     {
+    ///         ApiSubnetAllowLists = new[]
+    ///         {
+    ///             "1.2.3.4/32",
+    ///         },
+    ///         GarbageCollectionSchedule = new Ionoscloud.Creg.Inputs.RegistryGarbageCollectionScheduleArgs
+    ///         {
+    ///             Days = new[]
+    ///             {
+    ///                 "Monday",
+    ///                 "Tuesday",
+    ///             },
+    ///             Time = "05:19:00+00:00",
+    ///         },
+    ///         Location = "de/fra",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource Container Registry can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:creg/registry:Registry")]
     public partial class Registry : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-        /// __Note__: If this list is empty or not set, there are no restrictions.
+        /// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
         /// </summary>
         [Output("apiSubnetAllowLists")]
         public Output<ImmutableArray<string>> ApiSubnetAllowLists { get; private set; } = null!;
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Output("features")]
         public Output<Outputs.RegistryFeatures> Features { get; private set; } = null!;
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Output("garbageCollectionSchedule")]
         public Output<Outputs.RegistryGarbageCollectionSchedule> GarbageCollectionSchedule { get; private set; } = null!;
 
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the container registry. Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -87,8 +140,7 @@ namespace Pulumi.Ionoscloud.Creg
         private InputList<string>? _apiSubnetAllowLists;
 
         /// <summary>
-        /// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-        /// __Note__: If this list is empty or not set, there are no restrictions.
+        /// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
         /// </summary>
         public InputList<string> ApiSubnetAllowLists
         {
@@ -96,15 +148,27 @@ namespace Pulumi.Ionoscloud.Creg
             set => _apiSubnetAllowLists = value;
         }
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Input("features")]
         public Input<Inputs.RegistryFeaturesArgs>? Features { get; set; }
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Input("garbageCollectionSchedule")]
         public Input<Inputs.RegistryGarbageCollectionScheduleArgs>? GarbageCollectionSchedule { get; set; }
 
+        /// <summary>
+        /// [string] Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the container registry. Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -120,8 +184,7 @@ namespace Pulumi.Ionoscloud.Creg
         private InputList<string>? _apiSubnetAllowLists;
 
         /// <summary>
-        /// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-        /// __Note__: If this list is empty or not set, there are no restrictions.
+        /// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
         /// </summary>
         public InputList<string> ApiSubnetAllowLists
         {
@@ -129,18 +192,30 @@ namespace Pulumi.Ionoscloud.Creg
             set => _apiSubnetAllowLists = value;
         }
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Input("features")]
         public Input<Inputs.RegistryFeaturesGetArgs>? Features { get; set; }
 
+        /// <summary>
+        /// [Map]
+        /// </summary>
         [Input("garbageCollectionSchedule")]
         public Input<Inputs.RegistryGarbageCollectionScheduleGetArgs>? GarbageCollectionSchedule { get; set; }
 
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
+        /// <summary>
+        /// [string] Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
+        /// <summary>
+        /// The name of the container registry. Immutable, update forces re-creation of the resource.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

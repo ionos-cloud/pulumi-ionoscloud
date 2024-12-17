@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class InMemoryDBReplicaSetMaintenanceWindow
     {
         /// <summary>
-        /// The name of the week day.
+        /// [string] The name of the week day.
         /// </summary>
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// Start of the maintenance window in UTC time.
+        /// [string] Start of the maintenance window in UTC time.
         /// </summary>
         public readonly string Time;
 

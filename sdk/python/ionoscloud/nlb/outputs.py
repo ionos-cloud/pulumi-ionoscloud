@@ -35,10 +35,12 @@ class BalancerFlowlog(dict):
                  name: str,
                  id: Optional[str] = None):
         """
-        :param str action: Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-        :param str bucket: The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-        :param str direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-        :param str name: The resource name.
+        :param str action: [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        :param str bucket: [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        :param str direction: [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        :param str name: [string] Specifies the name of the flow log.
+               
+               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
         :param str id: The resource's unique identifier.
         """
         pulumi.set(__self__, "action", action)
@@ -52,7 +54,7 @@ class BalancerFlowlog(dict):
     @pulumi.getter
     def action(self) -> str:
         """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "action")
 
@@ -60,7 +62,7 @@ class BalancerFlowlog(dict):
     @pulumi.getter
     def bucket(self) -> str:
         """
-        The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         """
         return pulumi.get(self, "bucket")
 
@@ -68,7 +70,7 @@ class BalancerFlowlog(dict):
     @pulumi.getter
     def direction(self) -> str:
         """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+        [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "direction")
 
@@ -76,7 +78,9 @@ class BalancerFlowlog(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The resource name.
+        [string] Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
         """
         return pulumi.get(self, "name")
 
@@ -118,10 +122,10 @@ class ForwardingRuleHealthCheck(dict):
                  retries: Optional[int] = None,
                  target_timeout: Optional[int] = None):
         """
-        :param int client_timeout: ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
-        :param int connect_timeout: It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
-        :param int retries: Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
-        :param int target_timeout: TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+        :param int client_timeout: [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+        :param int connect_timeout: [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+        :param int retries: [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+        :param int target_timeout: [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
         """
         if client_timeout is not None:
             pulumi.set(__self__, "client_timeout", client_timeout)
@@ -136,7 +140,7 @@ class ForwardingRuleHealthCheck(dict):
     @pulumi.getter(name="clientTimeout")
     def client_timeout(self) -> Optional[int]:
         """
-        ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+        [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
         """
         return pulumi.get(self, "client_timeout")
 
@@ -144,7 +148,7 @@ class ForwardingRuleHealthCheck(dict):
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[int]:
         """
-        It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+        [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -152,7 +156,7 @@ class ForwardingRuleHealthCheck(dict):
     @pulumi.getter
     def retries(self) -> Optional[int]:
         """
-        Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+        [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
         """
         return pulumi.get(self, "retries")
 
@@ -160,7 +164,7 @@ class ForwardingRuleHealthCheck(dict):
     @pulumi.getter(name="targetTimeout")
     def target_timeout(self) -> Optional[int]:
         """
-        TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+        [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
         """
         return pulumi.get(self, "target_timeout")
 
@@ -193,11 +197,11 @@ class ForwardingRuleTarget(dict):
                  health_check: Optional['outputs.ForwardingRuleTargetHealthCheck'] = None,
                  proxy_protocol: Optional[str] = None):
         """
-        :param str ip: IP of a balanced target VM
-        :param int port: Port of the balanced target service. (range: 1 to 65535)
-        :param int weight: Weight parameter is used to adjust the target VM's weight relative to other target VMs
-        :param 'ForwardingRuleTargetHealthCheckArgs' health_check: Health check attributes for Network Load Balancer forwarding rule target
-        :param str proxy_protocol: Proxy protocol version
+        :param str ip: [string] IP of a balanced target VM.
+        :param int port: [int] Port of the balanced target service. (range: 1 to 65535).
+        :param int weight: [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+        :param 'ForwardingRuleTargetHealthCheckArgs' health_check: Health check attributes for Network Load Balancer forwarding rule target.
+        :param str proxy_protocol: [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "port", port)
@@ -211,7 +215,7 @@ class ForwardingRuleTarget(dict):
     @pulumi.getter
     def ip(self) -> str:
         """
-        IP of a balanced target VM
+        [string] IP of a balanced target VM.
         """
         return pulumi.get(self, "ip")
 
@@ -219,7 +223,7 @@ class ForwardingRuleTarget(dict):
     @pulumi.getter
     def port(self) -> int:
         """
-        Port of the balanced target service. (range: 1 to 65535)
+        [int] Port of the balanced target service. (range: 1 to 65535).
         """
         return pulumi.get(self, "port")
 
@@ -227,7 +231,7 @@ class ForwardingRuleTarget(dict):
     @pulumi.getter
     def weight(self) -> int:
         """
-        Weight parameter is used to adjust the target VM's weight relative to other target VMs
+        [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
         """
         return pulumi.get(self, "weight")
 
@@ -235,7 +239,7 @@ class ForwardingRuleTarget(dict):
     @pulumi.getter(name="healthCheck")
     def health_check(self) -> Optional['outputs.ForwardingRuleTargetHealthCheck']:
         """
-        Health check attributes for Network Load Balancer forwarding rule target
+        Health check attributes for Network Load Balancer forwarding rule target.
         """
         return pulumi.get(self, "health_check")
 
@@ -243,7 +247,7 @@ class ForwardingRuleTarget(dict):
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> Optional[str]:
         """
-        Proxy protocol version
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
         return pulumi.get(self, "proxy_protocol")
 
@@ -272,9 +276,9 @@ class ForwardingRuleTargetHealthCheck(dict):
                  check_interval: Optional[int] = None,
                  maintenance: Optional[bool] = None):
         """
-        :param bool check: Check specifies whether the target VM's health is checked.
-        :param int check_interval: CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
-        :param bool maintenance: Maintenance specifies if a target VM should be marked as down, even if it is not.
+        :param bool check: [boolean] Check specifies whether the target VM's health is checked.
+        :param int check_interval: [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+        :param bool maintenance: [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
         """
         if check is not None:
             pulumi.set(__self__, "check", check)
@@ -287,7 +291,7 @@ class ForwardingRuleTargetHealthCheck(dict):
     @pulumi.getter
     def check(self) -> Optional[bool]:
         """
-        Check specifies whether the target VM's health is checked.
+        [boolean] Check specifies whether the target VM's health is checked.
         """
         return pulumi.get(self, "check")
 
@@ -295,7 +299,7 @@ class ForwardingRuleTargetHealthCheck(dict):
     @pulumi.getter(name="checkInterval")
     def check_interval(self) -> Optional[int]:
         """
-        CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+        [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
         """
         return pulumi.get(self, "check_interval")
 
@@ -303,7 +307,7 @@ class ForwardingRuleTargetHealthCheck(dict):
     @pulumi.getter
     def maintenance(self) -> Optional[bool]:
         """
-        Maintenance specifies if a target VM should be marked as down, even if it is not.
+        [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
         """
         return pulumi.get(self, "maintenance")
 
@@ -317,11 +321,13 @@ class GetBalancerFlowlogResult(dict):
                  id: str,
                  name: str):
         """
-        :param str action: Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
-        :param str bucket: The bucket name of an existing IONOS Object Storage bucket.
-        :param str direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-        :param str id: The resource's unique identifier.
-        :param str name: The resource name.
+        :param str action: Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        :param str bucket: Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        :param str direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        :param str id: ID of the network load balancer you want to search for.
+               
+               `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        :param str name: Name of an existing network load balancer that you want to search for.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "bucket", bucket)
@@ -333,7 +339,7 @@ class GetBalancerFlowlogResult(dict):
     @pulumi.getter
     def action(self) -> str:
         """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+        Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "action")
 
@@ -341,7 +347,7 @@ class GetBalancerFlowlogResult(dict):
     @pulumi.getter
     def bucket(self) -> str:
         """
-        The bucket name of an existing IONOS Object Storage bucket.
+        Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         """
         return pulumi.get(self, "bucket")
 
@@ -349,7 +355,7 @@ class GetBalancerFlowlogResult(dict):
     @pulumi.getter
     def direction(self) -> str:
         """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         """
         return pulumi.get(self, "direction")
 
@@ -357,7 +363,9 @@ class GetBalancerFlowlogResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The resource's unique identifier.
+        ID of the network load balancer you want to search for.
+
+        `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
         """
         return pulumi.get(self, "id")
 
@@ -365,7 +373,7 @@ class GetBalancerFlowlogResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The resource name.
+        Name of an existing network load balancer that you want to search for.
         """
         return pulumi.get(self, "name")
 
@@ -430,11 +438,11 @@ class GetForwardingRuleTargetResult(dict):
                  proxy_protocol: str,
                  weight: int):
         """
-        :param Sequence['GetForwardingRuleTargetHealthCheckArgs'] health_checks: Health check attributes for Network Load Balancer forwarding rule target
-        :param str ip: IP of a balanced target VM
-        :param int port: Port of the balanced target service. (range: 1 to 65535)
-        :param str proxy_protocol: Proxy protocol version
-        :param int weight: Weight parameter is used to adjust the target VM's weight relative to other target VMs
+        :param Sequence['GetForwardingRuleTargetHealthCheckArgs'] health_checks: Health check attributes for Network Load Balancer forwarding rule target.
+        :param str ip: IP of a balanced target VM.
+        :param int port: Port of the balanced target service. (range: 1 to 65535).
+        :param str proxy_protocol: The proxy protocol version.
+        :param int weight: Weight parameter is used to adjust the target VM's weight relative to other target VMs.
         """
         pulumi.set(__self__, "health_checks", health_checks)
         pulumi.set(__self__, "ip", ip)
@@ -446,7 +454,7 @@ class GetForwardingRuleTargetResult(dict):
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Sequence['outputs.GetForwardingRuleTargetHealthCheckResult']:
         """
-        Health check attributes for Network Load Balancer forwarding rule target
+        Health check attributes for Network Load Balancer forwarding rule target.
         """
         return pulumi.get(self, "health_checks")
 
@@ -454,7 +462,7 @@ class GetForwardingRuleTargetResult(dict):
     @pulumi.getter
     def ip(self) -> str:
         """
-        IP of a balanced target VM
+        IP of a balanced target VM.
         """
         return pulumi.get(self, "ip")
 
@@ -462,7 +470,7 @@ class GetForwardingRuleTargetResult(dict):
     @pulumi.getter
     def port(self) -> int:
         """
-        Port of the balanced target service. (range: 1 to 65535)
+        Port of the balanced target service. (range: 1 to 65535).
         """
         return pulumi.get(self, "port")
 
@@ -470,7 +478,7 @@ class GetForwardingRuleTargetResult(dict):
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> str:
         """
-        Proxy protocol version
+        The proxy protocol version.
         """
         return pulumi.get(self, "proxy_protocol")
 
@@ -478,7 +486,7 @@ class GetForwardingRuleTargetResult(dict):
     @pulumi.getter
     def weight(self) -> int:
         """
-        Weight parameter is used to adjust the target VM's weight relative to other target VMs
+        Weight parameter is used to adjust the target VM's weight relative to other target VMs.
         """
         return pulumi.get(self, "weight")
 

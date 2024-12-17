@@ -13,9 +13,12 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     [OutputType]
     public sealed class PSQLClusterCredentials
     {
+        /// <summary>
+        /// [string]
+        /// </summary>
         public readonly string Password;
         /// <summary>
-        /// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        /// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         /// </summary>
         public readonly string Username;
 

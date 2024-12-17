@@ -13,6 +13,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class GetUserGroupResult
     {
+        /// <summary>
+        /// ID of the user you want to search for.
+        /// 
+        /// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+        /// </summary>
         public readonly string Id;
         public readonly string Name;
 

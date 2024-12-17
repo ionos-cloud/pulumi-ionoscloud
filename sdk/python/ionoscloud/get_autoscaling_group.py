@@ -22,6 +22,8 @@ __all__ = [
     'get_autoscaling_group_output',
 ]
 
+warnings.warn("""ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""", DeprecationWarning)
+
 @pulumi.output_type
 class GetAutoscalingGroupResult:
     """
@@ -123,8 +125,29 @@ def get_autoscaling_group(id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoscalingGroupResult:
     """
+<<<<<<< HEAD
+    The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group = ionoscloud.autoscaling.get_group(name="test_ds")
+    ```
+
+
+    :param str id: Id of an existing Autoscaling Group that you want to search for.
+    :param str name: Name of an existing Autoscaling Group that you want to search for.
+           
+           Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+=======
     Use this data source to access information about an existing resource.
+>>>>>>> main
     """
+    pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
@@ -145,8 +168,30 @@ def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = Non
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
     """
+<<<<<<< HEAD
+    The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    autoscaling_group = ionoscloud.autoscaling.get_group(name="test_ds")
+    ```
+
+
+    :param str id: Id of an existing Autoscaling Group that you want to search for.
+    :param str name: Name of an existing Autoscaling Group that you want to search for.
+           
+           Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+    """
+    pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
+=======
     Use this data source to access information about an existing resource.
     """
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name

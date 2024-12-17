@@ -11,12 +11,33 @@ namespace Pulumi.Ionoscloud.Dbaas
 {
     public static class GetMongoCluster
     {
+        /// <summary>
+        /// The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetMongoClusterResult> InvokeAsync(GetMongoClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMongoClusterResult>("ionoscloud:dbaas/getMongoCluster:getMongoCluster", args ?? new GetMongoClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetMongoClusterResult> Invoke(GetMongoClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoClusterResult>("ionoscloud:dbaas/getMongoCluster:getMongoCluster", args ?? new GetMongoClusterInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetMongoClusterResult> Invoke(GetMongoClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoClusterResult>("ionoscloud:dbaas/getMongoCluster:getMongoCluster", args ?? new GetMongoClusterInvokeArgs(), options.WithDefaults());
     }
@@ -24,6 +45,9 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetMongoClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("displayName")]
         public string? DisplayName { get; set; }
 
@@ -38,6 +62,9 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetMongoClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
@@ -56,20 +83,59 @@ namespace Pulumi.Ionoscloud.Dbaas
     {
         public readonly ImmutableArray<Outputs.GetMongoClusterBackupResult> Backups;
         public readonly ImmutableArray<Outputs.GetMongoClusterBiConnectorResult> BiConnectors;
+        /// <summary>
+        /// The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit"
+        /// </summary>
         public readonly string ConnectionString;
+        /// <summary>
+        /// Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMongoClusterConnectionResult> Connections;
+        /// <summary>
+        /// The number of CPU cores per replica. Required for enterprise edition.
+        /// </summary>
         public readonly int Cores;
+        /// <summary>
+        /// The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly string? DisplayName;
+        /// <summary>
+        /// Cluster edition. Playground, business or enterprise.
+        /// </summary>
         public readonly string Edition;
         public readonly string? Id;
+        /// <summary>
+        /// The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly int Instances;
+        /// <summary>
+        /// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+        /// </summary>
         public readonly string Location;
+        /// <summary>
+        /// A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMongoClusterMaintenanceWindowResult> MaintenanceWindows;
+        /// <summary>
+        /// The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly string MongodbVersion;
+        /// <summary>
+        /// The amount of memory per instance in megabytes. Required for enterprise edition.
+        /// </summary>
         public readonly int Ram;
         public readonly int Shards;
+        /// <summary>
+        /// The amount of storage per instance in MB. Required for enterprise edition.
+        /// </summary>
         public readonly int StorageSize;
+        /// <summary>
+        /// The storage type used in your cluster. Required for enterprise edition.
+        /// </summary>
         public readonly string StorageType;
+        /// <summary>
+        /// The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created.
+        /// </summary>
         public readonly string TemplateId;
         public readonly string Type;
 

@@ -12,15 +12,27 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
     public sealed class DatacenterCpuArchitectureGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A valid CPU family name
+        /// </summary>
         [Input("cpuFamily")]
         public Input<string>? CpuFamily { get; set; }
 
+        /// <summary>
+        /// The maximum number of cores available
+        /// </summary>
         [Input("maxCores")]
         public Input<int>? MaxCores { get; set; }
 
+        /// <summary>
+        /// The maximum number of RAM in MB
+        /// </summary>
         [Input("maxRam")]
         public Input<int>? MaxRam { get; set; }
 
+        /// <summary>
+        /// A valid CPU vendor name
+        /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }
 

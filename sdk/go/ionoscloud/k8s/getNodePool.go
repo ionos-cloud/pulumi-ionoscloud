@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNodePoolResult
@@ -23,33 +28,70 @@ func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulum
 
 // A collection of arguments for invoking getNodePool.
 type LookupNodePoolArgs struct {
-	Id           *string `pulumi:"id"`
-	K8sClusterId string  `pulumi:"k8sClusterId"`
-	Name         *string `pulumi:"name"`
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// K8s Cluster' UUID
+	K8sClusterId string `pulumi:"k8sClusterId"`
+	// Name of an existing node pool that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getNodePool.
 type LookupNodePoolResult struct {
-	Annotations              map[string]string              `pulumi:"annotations"`
-	AutoScalings             []GetNodePoolAutoScaling       `pulumi:"autoScalings"`
-	AvailabilityZone         string                         `pulumi:"availabilityZone"`
-	AvailableUpgradeVersions []string                       `pulumi:"availableUpgradeVersions"`
-	CoresCount               int                            `pulumi:"coresCount"`
-	CpuFamily                string                         `pulumi:"cpuFamily"`
-	DatacenterId             string                         `pulumi:"datacenterId"`
-	Id                       *string                        `pulumi:"id"`
-	K8sClusterId             string                         `pulumi:"k8sClusterId"`
-	K8sVersion               string                         `pulumi:"k8sVersion"`
-	Labels                   map[string]string              `pulumi:"labels"`
-	Lans                     []GetNodePoolLan               `pulumi:"lans"`
-	MaintenanceWindows       []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name                     *string                        `pulumi:"name"`
-	NodeCount                int                            `pulumi:"nodeCount"`
-	PublicIps                []string                       `pulumi:"publicIps"`
-	RamSize                  int                            `pulumi:"ramSize"`
-	State                    string                         `pulumi:"state"`
-	StorageSize              int                            `pulumi:"storageSize"`
-	StorageType              string                         `pulumi:"storageType"`
+	// A map of annotations in the form of key > value
+	Annotations map[string]string `pulumi:"annotations"`
+	// The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
+	AutoScalings []GetNodePoolAutoScaling `pulumi:"autoScalings"`
+	// The compute availability zone in which the nodes should exist
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	// A list of kubernetes versions available for upgrade
+	AvailableUpgradeVersions []string `pulumi:"availableUpgradeVersions"`
+	// CPU cores count
+	CoresCount int `pulumi:"coresCount"`
+	// CPU Family
+	CpuFamily string `pulumi:"cpuFamily"`
+	// The UUID of the VDC
+	DatacenterId string `pulumi:"datacenterId"`
+	// The LAN ID of an existing LAN at the related datacenter
+	Id *string `pulumi:"id"`
+	// ID of the cluster this node pool is part of
+	K8sClusterId string `pulumi:"k8sClusterId"`
+	// The kubernetes version
+	K8sVersion string `pulumi:"k8sVersion"`
+	// A map of labels in the form of key > value
+	Labels map[string]string `pulumi:"labels"`
+	// A list of Local Area Networks the node pool is a part of
+	Lans []GetNodePoolLan `pulumi:"lans"`
+	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+	MaintenanceWindows []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// name of the node pool
+	Name *string `pulumi:"name"`
+	// The number of nodes in this node pool
+	NodeCount int `pulumi:"nodeCount"`
+	// The list of fixed IPs associated with this node pool
+	PublicIps []string `pulumi:"publicIps"`
+	// The amount of RAM in MB
+	RamSize int `pulumi:"ramSize"`
+	// one of "AVAILABLE",
+	// "INACTIVE",
+	// "BUSY",
+	// "DEPLOYING",
+	// "ACTIVE",
+	// "FAILED",
+	// "SUSPENDED",
+	// "FAILED_SUSPENDED",
+	// "UPDATING",
+	// "FAILED_UPDATING",
+	// "DESTROYING",
+	// "FAILED_DESTROYING",
+	// "TERMINATED"
+	State string `pulumi:"state"`
+	// The size of the volume in GB. The size should be greater than 10GB.
+	StorageSize int `pulumi:"storageSize"`
+	// HDD or SDD
+	StorageType string `pulumi:"storageType"`
 }
 
 func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupNodePoolResultOutput {
@@ -63,9 +105,14 @@ func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, op
 
 // A collection of arguments for invoking getNodePool.
 type LookupNodePoolOutputArgs struct {
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	K8sClusterId pulumi.StringInput    `pulumi:"k8sClusterId"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// K8s Cluster' UUID
+	K8sClusterId pulumi.StringInput `pulumi:"k8sClusterId"`
+	// Name of an existing node pool that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupNodePoolOutputArgs) ElementType() reflect.Type {
@@ -87,82 +134,114 @@ func (o LookupNodePoolResultOutput) ToLookupNodePoolResultOutputWithContext(ctx 
 	return o
 }
 
+// A map of annotations in the form of key > value
 func (o LookupNodePoolResultOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
 func (o LookupNodePoolResultOutput) AutoScalings() GetNodePoolAutoScalingArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolAutoScaling { return v.AutoScalings }).(GetNodePoolAutoScalingArrayOutput)
 }
 
+// The compute availability zone in which the nodes should exist
 func (o LookupNodePoolResultOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// A list of kubernetes versions available for upgrade
 func (o LookupNodePoolResultOutput) AvailableUpgradeVersions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []string { return v.AvailableUpgradeVersions }).(pulumi.StringArrayOutput)
 }
 
+// CPU cores count
 func (o LookupNodePoolResultOutput) CoresCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.CoresCount }).(pulumi.IntOutput)
 }
 
+// CPU Family
 func (o LookupNodePoolResultOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
+// The UUID of the VDC
 func (o LookupNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The LAN ID of an existing LAN at the related datacenter
 func (o LookupNodePoolResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// ID of the cluster this node pool is part of
 func (o LookupNodePoolResultOutput) K8sClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.K8sClusterId }).(pulumi.StringOutput)
 }
 
+// The kubernetes version
 func (o LookupNodePoolResultOutput) K8sVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.K8sVersion }).(pulumi.StringOutput)
 }
 
+// A map of labels in the form of key > value
 func (o LookupNodePoolResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// A list of Local Area Networks the node pool is a part of
 func (o LookupNodePoolResultOutput) Lans() GetNodePoolLanArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolLan { return v.Lans }).(GetNodePoolLanArrayOutput)
 }
 
+// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 func (o LookupNodePoolResultOutput) MaintenanceWindows() GetNodePoolMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolMaintenanceWindow { return v.MaintenanceWindows }).(GetNodePoolMaintenanceWindowArrayOutput)
 }
 
+// name of the node pool
 func (o LookupNodePoolResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The number of nodes in this node pool
 func (o LookupNodePoolResultOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.NodeCount }).(pulumi.IntOutput)
 }
 
+// The list of fixed IPs associated with this node pool
 func (o LookupNodePoolResultOutput) PublicIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []string { return v.PublicIps }).(pulumi.StringArrayOutput)
 }
 
+// The amount of RAM in MB
 func (o LookupNodePoolResultOutput) RamSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.RamSize }).(pulumi.IntOutput)
 }
 
+// one of "AVAILABLE",
+// "INACTIVE",
+// "BUSY",
+// "DEPLOYING",
+// "ACTIVE",
+// "FAILED",
+// "SUSPENDED",
+// "FAILED_SUSPENDED",
+// "UPDATING",
+// "FAILED_UPDATING",
+// "DESTROYING",
+// "FAILED_DESTROYING",
+// "TERMINATED"
 func (o LookupNodePoolResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// The size of the volume in GB. The size should be greater than 10GB.
 func (o LookupNodePoolResultOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
+// HDD or SDD
 func (o LookupNodePoolResultOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.StorageType }).(pulumi.StringOutput)
 }

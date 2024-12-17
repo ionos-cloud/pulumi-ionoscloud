@@ -14,11 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterLan struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+	// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 	Dhcp *bool `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related data center
+	// [string] The LAN ID of an existing LAN at the related data center.
 	LanId string `pulumi:"lanId"`
-	// An array of additional LANs attached to worker nodes
+	// [list] An array of additional LANs attached to worker nodes.
 	Routes []ClusterLanRoute `pulumi:"routes"`
 }
 
@@ -34,11 +34,11 @@ type ClusterLanInput interface {
 }
 
 type ClusterLanArgs struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+	// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related data center
+	// [string] The LAN ID of an existing LAN at the related data center.
 	LanId pulumi.StringInput `pulumi:"lanId"`
-	// An array of additional LANs attached to worker nodes
+	// [list] An array of additional LANs attached to worker nodes.
 	Routes ClusterLanRouteArrayInput `pulumi:"routes"`
 }
 
@@ -93,17 +93,17 @@ func (o ClusterLanOutput) ToClusterLanOutputWithContext(ctx context.Context) Clu
 	return o
 }
 
-// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 func (o ClusterLanOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterLan) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-// The LAN ID of an existing LAN at the related data center
+// [string] The LAN ID of an existing LAN at the related data center.
 func (o ClusterLanOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterLan) string { return v.LanId }).(pulumi.StringOutput)
 }
 
-// An array of additional LANs attached to worker nodes
+// [list] An array of additional LANs attached to worker nodes.
 func (o ClusterLanOutput) Routes() ClusterLanRouteArrayOutput {
 	return o.ApplyT(func(v ClusterLan) []ClusterLanRoute { return v.Routes }).(ClusterLanRouteArrayOutput)
 }
@@ -129,9 +129,9 @@ func (o ClusterLanArrayOutput) Index(i pulumi.IntInput) ClusterLanOutput {
 }
 
 type ClusterLanRoute struct {
-	// IPv4 or IPv6 gateway IP for the route
+	// [string] IPv4 or IPv6 gateway IP for the route.
 	Gateway string `pulumi:"gateway"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
+	// [string] IPv4 or IPv6 CIDR to be routed via the interface.
 	Network string `pulumi:"network"`
 }
 
@@ -147,9 +147,9 @@ type ClusterLanRouteInput interface {
 }
 
 type ClusterLanRouteArgs struct {
-	// IPv4 or IPv6 gateway IP for the route
+	// [string] IPv4 or IPv6 gateway IP for the route.
 	Gateway pulumi.StringInput `pulumi:"gateway"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
+	// [string] IPv4 or IPv6 CIDR to be routed via the interface.
 	Network pulumi.StringInput `pulumi:"network"`
 }
 
@@ -204,12 +204,12 @@ func (o ClusterLanRouteOutput) ToClusterLanRouteOutputWithContext(ctx context.Co
 	return o
 }
 
-// IPv4 or IPv6 gateway IP for the route
+// [string] IPv4 or IPv6 gateway IP for the route.
 func (o ClusterLanRouteOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterLanRoute) string { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// IPv4 or IPv6 CIDR to be routed via the interface
+// [string] IPv4 or IPv6 CIDR to be routed via the interface.
 func (o ClusterLanRouteOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterLanRoute) string { return v.Network }).(pulumi.StringOutput)
 }
@@ -235,8 +235,9 @@ func (o ClusterLanRouteArrayOutput) Index(i pulumi.IntInput) ClusterLanRouteOutp
 }
 
 type ClusterMaintenanceWindow struct {
+	// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
+	// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 	Time string `pulumi:"time"`
 }
 
@@ -252,8 +253,9 @@ type ClusterMaintenanceWindowInput interface {
 }
 
 type ClusterMaintenanceWindowArgs struct {
+	// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
+	// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -308,11 +310,12 @@ func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowOutputWithCont
 	return o
 }
 
+// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 func (o ClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Time at which the maintenance should start.
+// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 func (o ClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -338,8 +341,9 @@ func (o ClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) ClusterMai
 }
 
 type NodePoolMaintenanceWindow struct {
+	// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
+	// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 	Time string `pulumi:"time"`
 }
 
@@ -355,8 +359,9 @@ type NodePoolMaintenanceWindowInput interface {
 }
 
 type NodePoolMaintenanceWindowArgs struct {
+	// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start.
+	// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -411,11 +416,12 @@ func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowOutputWithCo
 	return o
 }
 
+// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
 func (o NodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Time at which the maintenance should start.
+// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
 func (o NodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -566,7 +572,8 @@ func (o GetClusterConfigArrayOutput) Index(i pulumi.IntInput) GetClusterConfigOu
 
 type GetClusterConfigCluster struct {
 	Cluster map[string]string `pulumi:"cluster"`
-	Name    string            `pulumi:"name"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name string `pulumi:"name"`
 }
 
 // GetClusterConfigClusterInput is an input type that accepts GetClusterConfigClusterArgs and GetClusterConfigClusterOutput values.
@@ -582,7 +589,8 @@ type GetClusterConfigClusterInput interface {
 
 type GetClusterConfigClusterArgs struct {
 	Cluster pulumi.StringMapInput `pulumi:"cluster"`
-	Name    pulumi.StringInput    `pulumi:"name"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetClusterConfigClusterArgs) ElementType() reflect.Type {
@@ -640,6 +648,7 @@ func (o GetClusterConfigClusterOutput) Cluster() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetClusterConfigCluster) map[string]string { return v.Cluster }).(pulumi.StringMapOutput)
 }
 
+// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 func (o GetClusterConfigClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigCluster) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -666,7 +675,8 @@ func (o GetClusterConfigClusterArrayOutput) Index(i pulumi.IntInput) GetClusterC
 
 type GetClusterConfigContext struct {
 	Context map[string]string `pulumi:"context"`
-	Name    string            `pulumi:"name"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name string `pulumi:"name"`
 }
 
 // GetClusterConfigContextInput is an input type that accepts GetClusterConfigContextArgs and GetClusterConfigContextOutput values.
@@ -682,7 +692,8 @@ type GetClusterConfigContextInput interface {
 
 type GetClusterConfigContextArgs struct {
 	Context pulumi.StringMapInput `pulumi:"context"`
-	Name    pulumi.StringInput    `pulumi:"name"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetClusterConfigContextArgs) ElementType() reflect.Type {
@@ -740,6 +751,7 @@ func (o GetClusterConfigContextOutput) Context() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetClusterConfigContext) map[string]string { return v.Context }).(pulumi.StringMapOutput)
 }
 
+// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 func (o GetClusterConfigContextOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigContext) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -765,6 +777,7 @@ func (o GetClusterConfigContextArrayOutput) Index(i pulumi.IntInput) GetClusterC
 }
 
 type GetClusterConfigUser struct {
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name string            `pulumi:"name"`
 	User map[string]string `pulumi:"user"`
 }
@@ -781,6 +794,7 @@ type GetClusterConfigUserInput interface {
 }
 
 type GetClusterConfigUserArgs struct {
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 	Name pulumi.StringInput    `pulumi:"name"`
 	User pulumi.StringMapInput `pulumi:"user"`
 }
@@ -836,6 +850,7 @@ func (o GetClusterConfigUserOutput) ToGetClusterConfigUserOutputWithContext(ctx 
 	return o
 }
 
+// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 func (o GetClusterConfigUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigUser) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -865,7 +880,7 @@ func (o GetClusterConfigUserArrayOutput) Index(i pulumi.IntInput) GetClusterConf
 }
 
 type GetClusterLan struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 	Dhcp bool `pulumi:"dhcp"`
 	// The LAN ID of an existing LAN at the related data center
 	LanId string `pulumi:"lanId"`
@@ -885,7 +900,7 @@ type GetClusterLanInput interface {
 }
 
 type GetClusterLanArgs struct {
-	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+	// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 	Dhcp pulumi.BoolInput `pulumi:"dhcp"`
 	// The LAN ID of an existing LAN at the related data center
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -944,7 +959,7 @@ func (o GetClusterLanOutput) ToGetClusterLanOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
 func (o GetClusterLanOutput) Dhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClusterLan) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
@@ -1087,7 +1102,7 @@ func (o GetClusterLanRouteArrayOutput) Index(i pulumi.IntInput) GetClusterLanRou
 
 type GetClusterMaintenanceWindow struct {
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	// Time at which the maintenance should start.
 	Time string `pulumi:"time"`
 }
 
@@ -1104,7 +1119,7 @@ type GetClusterMaintenanceWindowInput interface {
 
 type GetClusterMaintenanceWindowArgs struct {
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	// Time at which the maintenance should start.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -1163,7 +1178,7 @@ func (o GetClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+// Time at which the maintenance should start.
 func (o GetClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -1190,7 +1205,7 @@ func (o GetClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetClus
 
 type GetNodePoolMaintenanceWindow struct {
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	// Time at which the maintenance should start.
 	Time string `pulumi:"time"`
 }
 
@@ -1207,7 +1222,7 @@ type GetNodePoolMaintenanceWindowInput interface {
 
 type GetNodePoolMaintenanceWindowArgs struct {
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	// Time at which the maintenance should start.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -1266,7 +1281,7 @@ func (o GetNodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+// Time at which the maintenance should start.
 func (o GetNodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }

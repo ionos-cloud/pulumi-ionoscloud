@@ -14,6 +14,9 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class GetClusterConfigContextResult
     {
         public readonly ImmutableDictionary<string, string> Context;
+        /// <summary>
+        /// Name of an existing cluster that you want to search for.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

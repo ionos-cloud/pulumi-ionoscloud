@@ -47,6 +47,9 @@ class GetDataplatformNodePoolsResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        ID of the cluster the searched node pool is part of.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -65,6 +68,9 @@ class GetDataplatformNodePoolsResult:
     @property
     @pulumi.getter(name="nodePools")
     def node_pools(self) -> Sequence['outputs.GetDataplatformNodePoolsNodePoolResult']:
+        """
+        List of Node Pools - See the Node Pool section.
+        """
         return pulumi.get(self, "node_pools")
 
     @property
@@ -91,7 +97,14 @@ def get_dataplatform_node_pools(cluster_id: Optional[str] = None,
                                 partial_match: Optional[bool] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataplatformNodePoolsResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+
+    ## Example Usage
+
+
+    :param str cluster_id: ID of the cluster the searched node pool is part of.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -111,7 +124,14 @@ def get_dataplatform_node_pools_output(cluster_id: Optional[pulumi.Input[str]] =
                                        partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataplatformNodePoolsResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+
+    ## Example Usage
+
+
+    :param str cluster_id: ID of the cluster the searched node pool is part of.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

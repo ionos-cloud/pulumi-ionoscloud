@@ -22,6 +22,8 @@ __all__ = [
     'get_autoscaling_group_servers_output',
 ]
 
+warnings.warn("""ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""", DeprecationWarning)
+
 @pulumi.output_type
 class GetAutoscalingGroupServersResult:
     """
@@ -73,6 +75,7 @@ def get_autoscaling_group_servers(group_id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_autoscaling_group_servers is deprecated: ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""")
     __args__ = dict()
     __args__['groupId'] = group_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -87,6 +90,10 @@ def get_autoscaling_group_servers_output(group_id: Optional[pulumi.Input[str]] =
     """
     Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
+    pulumi.log.warn("""get_autoscaling_group_servers is deprecated: ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['groupId'] = group_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

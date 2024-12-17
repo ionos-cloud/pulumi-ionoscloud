@@ -5,41 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { ApigatewayArgs, ApigatewayState } from "./apigateway";
-export type Apigateway = import("./apigateway").Apigateway;
-export const Apigateway: typeof import("./apigateway").Apigateway = null as any;
-utilities.lazyLoad(exports, ["Apigateway"], () => require("./apigateway"));
-
-export { ApigatewayRouteArgs, ApigatewayRouteState } from "./apigatewayRoute";
-export type ApigatewayRoute = import("./apigatewayRoute").ApigatewayRoute;
-export const ApigatewayRoute: typeof import("./apigatewayRoute").ApigatewayRoute = null as any;
-utilities.lazyLoad(exports, ["ApigatewayRoute"], () => require("./apigatewayRoute"));
-
-export { AutoscalingGroupArgs, AutoscalingGroupState } from "./autoscalingGroup";
-export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
-export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
-utilities.lazyLoad(exports, ["AutoscalingGroup"], () => require("./autoscalingGroup"));
-
-export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
-export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
-export const getApigatewayOutput: typeof import("./getApigateway").getApigatewayOutput = null as any;
-utilities.lazyLoad(exports, ["getApigateway","getApigatewayOutput"], () => require("./getApigateway"));
-
-export { GetApigatewayRouteArgs, GetApigatewayRouteResult, GetApigatewayRouteOutputArgs } from "./getApigatewayRoute";
-export const getApigatewayRoute: typeof import("./getApigatewayRoute").getApigatewayRoute = null as any;
-export const getApigatewayRouteOutput: typeof import("./getApigatewayRoute").getApigatewayRouteOutput = null as any;
-utilities.lazyLoad(exports, ["getApigatewayRoute","getApigatewayRouteOutput"], () => require("./getApigatewayRoute"));
-
-export { GetAutoscalingGroupArgs, GetAutoscalingGroupResult, GetAutoscalingGroupOutputArgs } from "./getAutoscalingGroup";
-export const getAutoscalingGroup: typeof import("./getAutoscalingGroup").getAutoscalingGroup = null as any;
-export const getAutoscalingGroupOutput: typeof import("./getAutoscalingGroup").getAutoscalingGroupOutput = null as any;
-utilities.lazyLoad(exports, ["getAutoscalingGroup","getAutoscalingGroupOutput"], () => require("./getAutoscalingGroup"));
-
-export { GetAutoscalingGroupServersArgs, GetAutoscalingGroupServersResult, GetAutoscalingGroupServersOutputArgs } from "./getAutoscalingGroupServers";
-export const getAutoscalingGroupServers: typeof import("./getAutoscalingGroupServers").getAutoscalingGroupServers = null as any;
-export const getAutoscalingGroupServersOutput: typeof import("./getAutoscalingGroupServers").getAutoscalingGroupServersOutput = null as any;
-utilities.lazyLoad(exports, ["getAutoscalingGroupServers","getAutoscalingGroupServersOutput"], () => require("./getAutoscalingGroupServers"));
-
 export { GetContainerRegistryLocationsResult } from "./getContainerRegistryLocations";
 export const getContainerRegistryLocations: typeof import("./getContainerRegistryLocations").getContainerRegistryLocations = null as any;
 export const getContainerRegistryLocationsOutput: typeof import("./getContainerRegistryLocations").getContainerRegistryLocationsOutput = null as any;
@@ -74,16 +39,6 @@ export { GetK8sNodePoolNodesArgs, GetK8sNodePoolNodesResult, GetK8sNodePoolNodes
 export const getK8sNodePoolNodes: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodes = null as any;
 export const getK8sNodePoolNodesOutput: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodesOutput = null as any;
 utilities.lazyLoad(exports, ["getK8sNodePoolNodes","getK8sNodePoolNodesOutput"], () => require("./getK8sNodePoolNodes"));
-
-export { GetKafkaClusterArgs, GetKafkaClusterResult, GetKafkaClusterOutputArgs } from "./getKafkaCluster";
-export const getKafkaCluster: typeof import("./getKafkaCluster").getKafkaCluster = null as any;
-export const getKafkaClusterOutput: typeof import("./getKafkaCluster").getKafkaClusterOutput = null as any;
-utilities.lazyLoad(exports, ["getKafkaCluster","getKafkaClusterOutput"], () => require("./getKafkaCluster"));
-
-export { GetKafkaClusterTopicArgs, GetKafkaClusterTopicResult, GetKafkaClusterTopicOutputArgs } from "./getKafkaClusterTopic";
-export const getKafkaClusterTopic: typeof import("./getKafkaClusterTopic").getKafkaClusterTopic = null as any;
-export const getKafkaClusterTopicOutput: typeof import("./getKafkaClusterTopic").getKafkaClusterTopicOutput = null as any;
-utilities.lazyLoad(exports, ["getKafkaClusterTopic","getKafkaClusterTopicOutput"], () => require("./getKafkaClusterTopic"));
 
 export { GetLocationArgs, GetLocationResult, GetLocationOutputArgs } from "./getLocation";
 export const getLocation: typeof import("./getLocation").getLocation = null as any;
@@ -135,16 +90,6 @@ export const getTemplate: typeof import("./getTemplate").getTemplate = null as a
 export const getTemplateOutput: typeof import("./getTemplate").getTemplateOutput = null as any;
 utilities.lazyLoad(exports, ["getTemplate","getTemplateOutput"], () => require("./getTemplate"));
 
-export { KafkaClusterArgs, KafkaClusterState } from "./kafkaCluster";
-export type KafkaCluster = import("./kafkaCluster").KafkaCluster;
-export const KafkaCluster: typeof import("./kafkaCluster").KafkaCluster = null as any;
-utilities.lazyLoad(exports, ["KafkaCluster"], () => require("./kafkaCluster"));
-
-export { KafkaClusterTopicArgs, KafkaClusterTopicState } from "./kafkaClusterTopic";
-export type KafkaClusterTopic = import("./kafkaClusterTopic").KafkaClusterTopic;
-export const KafkaClusterTopic: typeof import("./kafkaClusterTopic").KafkaClusterTopic = null as any;
-utilities.lazyLoad(exports, ["KafkaClusterTopic"], () => require("./kafkaClusterTopic"));
-
 export { LoadbalancerArgs, LoadbalancerState } from "./loadbalancer";
 export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
@@ -163,6 +108,8 @@ utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
 
 // Export sub-modules:
 import * as alb from "./alb";
+import * as apigateway from "./apigateway";
+import * as autoscaling from "./autoscaling";
 import * as cdn from "./cdn";
 import * as cert from "./cert";
 import * as compute from "./compute";
@@ -172,6 +119,7 @@ import * as dbaas from "./dbaas";
 import * as dns from "./dns";
 import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
+import * as kafka from "./kafka";
 import * as logging from "./logging";
 import * as nfs from "./nfs";
 import * as nlb from "./nlb";
@@ -180,6 +128,8 @@ import * as vpn from "./vpn";
 
 export {
     alb,
+    apigateway,
+    autoscaling,
     cdn,
     cert,
     compute,
@@ -189,6 +139,7 @@ export {
     dns,
     dsaas,
     k8s,
+    kafka,
     logging,
     nfs,
     nlb,
@@ -200,16 +151,6 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "ionoscloud:index/apigateway:Apigateway":
-                return new Apigateway(name, <any>undefined, { urn })
-            case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
-                return new ApigatewayRoute(name, <any>undefined, { urn })
-            case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
-                return new AutoscalingGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/kafkaCluster:KafkaCluster":
-                return new KafkaCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
-                return new KafkaClusterTopic(name, <any>undefined, { urn })
             case "ionoscloud:index/loadbalancer:Loadbalancer":
                 return new Loadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/targetGroup:TargetGroup":
@@ -219,11 +160,6 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("ionoscloud", "index/apigateway", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/apigatewayRoute", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {

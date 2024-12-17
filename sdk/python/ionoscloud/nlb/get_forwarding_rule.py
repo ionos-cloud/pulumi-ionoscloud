@@ -62,6 +62,9 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter
     def algorithm(self) -> str:
+        """
+        Algorithm for the balancing.
+        """
         return pulumi.get(self, "algorithm")
 
     @property
@@ -72,26 +75,41 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Sequence['outputs.GetForwardingRuleHealthCheckResult']:
+        """
+        Health check attributes for Network Load Balancer forwarding rule target.
+        """
         return pulumi.get(self, "health_checks")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of that Network Load Balancer forwarding rule.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="listenerIp")
     def listener_ip(self) -> str:
+        """
+        Listening IP. (inbound)
+        """
         return pulumi.get(self, "listener_ip")
 
     @property
     @pulumi.getter(name="listenerPort")
     def listener_port(self) -> int:
+        """
+        Listening port number. (inbound) (range: 1 to 65535)
+        """
         return pulumi.get(self, "listener_port")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of that Network Load Balancer forwarding rule.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -102,11 +120,17 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        Protocol of the balancing.
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
     def targets(self) -> Sequence['outputs.GetForwardingRuleTargetResult']:
+        """
+        Array of items in that collection.
+        """
         return pulumi.get(self, "targets")
 
 
@@ -134,7 +158,17 @@ def get_forwarding_rule(datacenter_id: Optional[str] = None,
                         networkloadbalancer_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer forwarding rule you want to search for.
+           
+           Both `datacenter_id` and `networkloadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer forwarding rule that you want to search for.
+    :param str networkloadbalancer_id: Network Load Balancer's UUID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -161,7 +195,17 @@ def get_forwarding_rule_output(datacenter_id: Optional[pulumi.Input[str]] = None
                                networkloadbalancer_id: Optional[pulumi.Input[str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetForwardingRuleResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer forwarding rule you want to search for.
+           
+           Both `datacenter_id` and `networkloadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer forwarding rule that you want to search for.
+    :param str networkloadbalancer_id: Network Load Balancer's UUID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

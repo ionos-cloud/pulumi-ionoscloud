@@ -12,22 +12,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Target Group** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.NewTargetGroup(ctx, "example", &ionoscloud.TargetGroupArgs{
+//				Algorithm: pulumi.String("ROUND_ROBIN"),
+//				HealthCheck: &ionoscloud.TargetGroupHealthCheckArgs{
+//					CheckInterval: pulumi.Int(50000),
+//					CheckTimeout:  pulumi.Int(5000),
+//					Retries:       pulumi.Int(2),
+//				},
+//				HttpHealthCheck: &ionoscloud.TargetGroupHttpHealthCheckArgs{
+//					MatchType: pulumi.String("STATUS_CODE"),
+//					Method:    pulumi.String("GET"),
+//					Negate:    pulumi.Bool(true),
+//					Path:      pulumi.String("/."),
+//					Regex:     pulumi.Bool(true),
+//					Response:  pulumi.String("200"),
+//				},
+//				Protocol:        pulumi.String("HTTP"),
+//				ProtocolVersion: pulumi.String("HTTP1"),
+//				Targets: ionoscloud.TargetGroupTargetArray{
+//					&ionoscloud.TargetGroupTargetArgs{
+//						HealthCheckEnabled: pulumi.Bool(true),
+//						Ip:                 pulumi.String("22.231.2.2"),
+//						MaintenanceEnabled: pulumi.Bool(false),
+//						Port:               pulumi.Int(8080),
+//						ProxyProtocol:      pulumi.String("v2ssl"),
+//						Weight:             pulumi.Int(1),
+//					},
+//					&ionoscloud.TargetGroupTargetArgs{
+//						HealthCheckEnabled: pulumi.Bool(false),
+//						Ip:                 pulumi.String("22.231.2.3"),
+//						MaintenanceEnabled: pulumi.Bool(false),
+//						Port:               pulumi.Int(8081),
+//						ProxyProtocol:      pulumi.String("v2"),
+//						Weight:             pulumi.Int(124),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Target Group can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:index/targetGroup:TargetGroup myTargetGroup {target group uuid}
+// ```
 type TargetGroup struct {
 	pulumi.CustomResourceState
 
-	// Balancing algorithm.
+	// [string] Balancing algorithm.
 	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
-	// Health check attributes for Application Load Balancer forwarding rule
+	// Health check attributes for Target Group.
 	HealthCheck TargetGroupHealthCheckOutput `pulumi:"healthCheck"`
 	// Http health check attributes for Target Group
 	HttpHealthCheck TargetGroupHttpHealthCheckOutput `pulumi:"httpHealthCheck"`
-	// The name of the target group.
+	// [string] The name of the target group.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Balancing protocol.
+	// [string] Balancing protocol.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+	// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 	ProtocolVersion pulumi.StringOutput `pulumi:"protocolVersion"`
-	// Array of items in the collection.
+	// [list] Array of items in the collection
 	Targets TargetGroupTargetArrayOutput `pulumi:"targets"`
 }
 
@@ -70,36 +138,36 @@ func GetTargetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TargetGroup resources.
 type targetGroupState struct {
-	// Balancing algorithm.
+	// [string] Balancing algorithm.
 	Algorithm *string `pulumi:"algorithm"`
-	// Health check attributes for Application Load Balancer forwarding rule
+	// Health check attributes for Target Group.
 	HealthCheck *TargetGroupHealthCheck `pulumi:"healthCheck"`
 	// Http health check attributes for Target Group
 	HttpHealthCheck *TargetGroupHttpHealthCheck `pulumi:"httpHealthCheck"`
-	// The name of the target group.
+	// [string] The name of the target group.
 	Name *string `pulumi:"name"`
-	// Balancing protocol.
+	// [string] Balancing protocol.
 	Protocol *string `pulumi:"protocol"`
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+	// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 	ProtocolVersion *string `pulumi:"protocolVersion"`
-	// Array of items in the collection.
+	// [list] Array of items in the collection
 	Targets []TargetGroupTarget `pulumi:"targets"`
 }
 
 type TargetGroupState struct {
-	// Balancing algorithm.
+	// [string] Balancing algorithm.
 	Algorithm pulumi.StringPtrInput
-	// Health check attributes for Application Load Balancer forwarding rule
+	// Health check attributes for Target Group.
 	HealthCheck TargetGroupHealthCheckPtrInput
 	// Http health check attributes for Target Group
 	HttpHealthCheck TargetGroupHttpHealthCheckPtrInput
-	// The name of the target group.
+	// [string] The name of the target group.
 	Name pulumi.StringPtrInput
-	// Balancing protocol.
+	// [string] Balancing protocol.
 	Protocol pulumi.StringPtrInput
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+	// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 	ProtocolVersion pulumi.StringPtrInput
-	// Array of items in the collection.
+	// [list] Array of items in the collection
 	Targets TargetGroupTargetArrayInput
 }
 
@@ -108,37 +176,37 @@ func (TargetGroupState) ElementType() reflect.Type {
 }
 
 type targetGroupArgs struct {
-	// Balancing algorithm.
+	// [string] Balancing algorithm.
 	Algorithm string `pulumi:"algorithm"`
-	// Health check attributes for Application Load Balancer forwarding rule
+	// Health check attributes for Target Group.
 	HealthCheck *TargetGroupHealthCheck `pulumi:"healthCheck"`
 	// Http health check attributes for Target Group
 	HttpHealthCheck *TargetGroupHttpHealthCheck `pulumi:"httpHealthCheck"`
-	// The name of the target group.
+	// [string] The name of the target group.
 	Name *string `pulumi:"name"`
-	// Balancing protocol.
+	// [string] Balancing protocol.
 	Protocol string `pulumi:"protocol"`
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+	// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 	ProtocolVersion string `pulumi:"protocolVersion"`
-	// Array of items in the collection.
+	// [list] Array of items in the collection
 	Targets []TargetGroupTarget `pulumi:"targets"`
 }
 
 // The set of arguments for constructing a TargetGroup resource.
 type TargetGroupArgs struct {
-	// Balancing algorithm.
+	// [string] Balancing algorithm.
 	Algorithm pulumi.StringInput
-	// Health check attributes for Application Load Balancer forwarding rule
+	// Health check attributes for Target Group.
 	HealthCheck TargetGroupHealthCheckPtrInput
 	// Http health check attributes for Target Group
 	HttpHealthCheck TargetGroupHttpHealthCheckPtrInput
-	// The name of the target group.
+	// [string] The name of the target group.
 	Name pulumi.StringPtrInput
-	// Balancing protocol.
+	// [string] Balancing protocol.
 	Protocol pulumi.StringInput
-	// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+	// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 	ProtocolVersion pulumi.StringInput
-	// Array of items in the collection.
+	// [list] Array of items in the collection
 	Targets TargetGroupTargetArrayInput
 }
 
@@ -229,12 +297,12 @@ func (o TargetGroupOutput) ToTargetGroupOutputWithContext(ctx context.Context) T
 	return o
 }
 
-// Balancing algorithm.
+// [string] Balancing algorithm.
 func (o TargetGroupOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *TargetGroup) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)
 }
 
-// Health check attributes for Application Load Balancer forwarding rule
+// Health check attributes for Target Group.
 func (o TargetGroupOutput) HealthCheck() TargetGroupHealthCheckOutput {
 	return o.ApplyT(func(v *TargetGroup) TargetGroupHealthCheckOutput { return v.HealthCheck }).(TargetGroupHealthCheckOutput)
 }
@@ -244,22 +312,22 @@ func (o TargetGroupOutput) HttpHealthCheck() TargetGroupHttpHealthCheckOutput {
 	return o.ApplyT(func(v *TargetGroup) TargetGroupHttpHealthCheckOutput { return v.HttpHealthCheck }).(TargetGroupHttpHealthCheckOutput)
 }
 
-// The name of the target group.
+// [string] The name of the target group.
 func (o TargetGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *TargetGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Balancing protocol.
+// [string] Balancing protocol.
 func (o TargetGroupOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *TargetGroup) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
+// [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
 func (o TargetGroupOutput) ProtocolVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *TargetGroup) pulumi.StringOutput { return v.ProtocolVersion }).(pulumi.StringOutput)
 }
 
-// Array of items in the collection.
+// [list] Array of items in the collection
 func (o TargetGroupOutput) Targets() TargetGroupTargetArrayOutput {
 	return o.ApplyT(func(v *TargetGroup) TargetGroupTargetArrayOutput { return v.Targets }).(TargetGroupTargetArrayOutput)
 }

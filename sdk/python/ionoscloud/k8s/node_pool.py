@@ -41,23 +41,24 @@ class NodePoolArgs:
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a NodePool resource.
-        :param pulumi.Input[str] availability_zone: The compute availability zone in which the nodes should exist
-        :param pulumi.Input[int] cores_count: CPU cores count
-        :param pulumi.Input[str] cpu_family: CPU Family
-        :param pulumi.Input[str] datacenter_id: The UUID of the VDC
-        :param pulumi.Input[str] k8s_cluster_id: The UUID of an existing kubernetes cluster
-        :param pulumi.Input[str] k8s_version: The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-               The provider will ignore downgrades of patch level.
-        :param pulumi.Input[int] node_count: The number of nodes in this node pool
-        :param pulumi.Input[int] ram_size: The amount of RAM in MB
-        :param pulumi.Input[int] storage_size: The total allocated storage capacity of a node in GB
-        :param pulumi.Input[str] storage_type: Storage type to use
+        :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+        :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID
+        :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
+        :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+        :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
+        :param pulumi.Input[int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+        :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: A list of Local Area Networks the node pool should be part of
-        :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-        :param pulumi.Input[str] name: The desired name for the node pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: A list of fixed IPs. Cannot be set on private clusters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "cores_count", cores_count)
@@ -90,7 +91,7 @@ class NodePoolArgs:
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> pulumi.Input[str]:
         """
-        The compute availability zone in which the nodes should exist
+        [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -102,7 +103,7 @@ class NodePoolArgs:
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> pulumi.Input[int]:
         """
-        CPU cores count
+        [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         """
         return pulumi.get(self, "cores_count")
 
@@ -114,7 +115,7 @@ class NodePoolArgs:
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> pulumi.Input[str]:
         """
-        CPU Family
+        [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -126,7 +127,7 @@ class NodePoolArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The UUID of the VDC
+        [string] A Datacenter's UUID
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -138,7 +139,7 @@ class NodePoolArgs:
     @pulumi.getter(name="k8sClusterId")
     def k8s_cluster_id(self) -> pulumi.Input[str]:
         """
-        The UUID of an existing kubernetes cluster
+        [string] A k8s cluster's UUID
         """
         return pulumi.get(self, "k8s_cluster_id")
 
@@ -150,8 +151,7 @@ class NodePoolArgs:
     @pulumi.getter(name="k8sVersion")
     def k8s_version(self) -> pulumi.Input[str]:
         """
-        The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-        The provider will ignore downgrades of patch level.
+        [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
@@ -163,7 +163,7 @@ class NodePoolArgs:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> pulumi.Input[int]:
         """
-        The number of nodes in this node pool
+        [int] - The desired number of nodes in the node pool
         """
         return pulumi.get(self, "node_count")
 
@@ -175,7 +175,7 @@ class NodePoolArgs:
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> pulumi.Input[int]:
         """
-        The amount of RAM in MB
+        [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         """
         return pulumi.get(self, "ram_size")
 
@@ -187,7 +187,7 @@ class NodePoolArgs:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Input[int]:
         """
-        The total allocated storage capacity of a node in GB
+        [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_size")
 
@@ -199,7 +199,7 @@ class NodePoolArgs:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> pulumi.Input[str]:
         """
-        Storage type to use
+        [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_type")
 
@@ -222,6 +222,9 @@ class NodePoolArgs:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        [map] A key/value map of annotations
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -232,7 +235,7 @@ class NodePoolArgs:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
+        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -243,6 +246,9 @@ class NodePoolArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        [map] A key/value map of labels
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -253,7 +259,7 @@ class NodePoolArgs:
     @pulumi.getter
     def lans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
         """
-        A list of Local Area Networks the node pool should be part of
+        [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         """
         return pulumi.get(self, "lans")
 
@@ -265,7 +271,7 @@ class NodePoolArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]:
         """
-        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        See the **maintenance_window** section in the example above
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -277,7 +283,7 @@ class NodePoolArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The desired name for the node pool
+        [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         """
         return pulumi.get(self, "name")
 
@@ -289,7 +295,7 @@ class NodePoolArgs:
     @pulumi.getter(name="publicIps")
     def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of fixed IPs. Cannot be set on private clusters.
+        [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         return pulumi.get(self, "public_ips")
 
@@ -322,22 +328,23 @@ class _NodePoolState:
         """
         Input properties used for looking up and filtering NodePool resources.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
-        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
-        :param pulumi.Input[str] availability_zone: The compute availability zone in which the nodes should exist
-        :param pulumi.Input[int] cores_count: CPU cores count
-        :param pulumi.Input[str] cpu_family: CPU Family
-        :param pulumi.Input[str] datacenter_id: The UUID of the VDC
-        :param pulumi.Input[str] k8s_cluster_id: The UUID of an existing kubernetes cluster
-        :param pulumi.Input[str] k8s_version: The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-               The provider will ignore downgrades of patch level.
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: A list of Local Area Networks the node pool should be part of
-        :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-        :param pulumi.Input[str] name: The desired name for the node pool
-        :param pulumi.Input[int] node_count: The number of nodes in this node pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: A list of fixed IPs. Cannot be set on private clusters.
-        :param pulumi.Input[int] ram_size: The amount of RAM in MB
-        :param pulumi.Input[int] storage_size: The total allocated storage capacity of a node in GB
-        :param pulumi.Input[str] storage_type: Storage type to use
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
+        :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+        :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID
+        :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
+        :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input['NodePoolMaintenanceWindowArgs'] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+        :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+        :param pulumi.Input[int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+        :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
@@ -391,6 +398,9 @@ class _NodePoolState:
     @property
     @pulumi.getter
     def annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        [map] A key/value map of annotations
+        """
         return pulumi.get(self, "annotations")
 
     @annotations.setter
@@ -401,7 +411,7 @@ class _NodePoolState:
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> Optional[pulumi.Input['NodePoolAutoScalingArgs']]:
         """
-        The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
+        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -413,7 +423,7 @@ class _NodePoolState:
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The compute availability zone in which the nodes should exist
+        [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -425,7 +435,7 @@ class _NodePoolState:
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> Optional[pulumi.Input[int]]:
         """
-        CPU cores count
+        [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         """
         return pulumi.get(self, "cores_count")
 
@@ -437,7 +447,7 @@ class _NodePoolState:
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> Optional[pulumi.Input[str]]:
         """
-        CPU Family
+        [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -449,7 +459,7 @@ class _NodePoolState:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the VDC
+        [string] A Datacenter's UUID
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -461,7 +471,7 @@ class _NodePoolState:
     @pulumi.getter(name="k8sClusterId")
     def k8s_cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of an existing kubernetes cluster
+        [string] A k8s cluster's UUID
         """
         return pulumi.get(self, "k8s_cluster_id")
 
@@ -473,8 +483,7 @@ class _NodePoolState:
     @pulumi.getter(name="k8sVersion")
     def k8s_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-        The provider will ignore downgrades of patch level.
+        [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
@@ -485,6 +494,9 @@ class _NodePoolState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        [map] A key/value map of labels
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -495,7 +507,7 @@ class _NodePoolState:
     @pulumi.getter
     def lans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanArgs']]]]:
         """
-        A list of Local Area Networks the node pool should be part of
+        [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         """
         return pulumi.get(self, "lans")
 
@@ -507,7 +519,7 @@ class _NodePoolState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['NodePoolMaintenanceWindowArgs']]:
         """
-        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        See the **maintenance_window** section in the example above
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -519,7 +531,7 @@ class _NodePoolState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The desired name for the node pool
+        [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         """
         return pulumi.get(self, "name")
 
@@ -531,7 +543,7 @@ class _NodePoolState:
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of nodes in this node pool
+        [int] - The desired number of nodes in the node pool
         """
         return pulumi.get(self, "node_count")
 
@@ -543,7 +555,7 @@ class _NodePoolState:
     @pulumi.getter(name="publicIps")
     def public_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of fixed IPs. Cannot be set on private clusters.
+        [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         return pulumi.get(self, "public_ips")
 
@@ -555,7 +567,7 @@ class _NodePoolState:
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of RAM in MB
+        [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         """
         return pulumi.get(self, "ram_size")
 
@@ -567,7 +579,7 @@ class _NodePoolState:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The total allocated storage capacity of a node in GB
+        [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_size")
 
@@ -579,7 +591,7 @@ class _NodePoolState:
     @pulumi.getter(name="storageType")
     def storage_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Storage type to use
+        [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_type")
 
@@ -613,26 +625,113 @@ class NodePool(pulumi.CustomResource):
                  storage_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a NodePool resource with the given unique name, props, and options.
+        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+            location="us/las",
+            size=3)
+        example_cluster = ionoscloud.k8s.Cluster("exampleCluster",
+            k8s_version="1.28.6",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
+            api_subnet_allow_lists=["1.2.3.4/32"],
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
+        example_node_pool = ionoscloud.k8s.NodePool("exampleNodePool",
+            datacenter_id=example_datacenter.id,
+            k8s_cluster_id=example_cluster.id,
+            k8s_version=example_cluster.k8s_version,
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
+            cpu_family="INTEL_XEON",
+            availability_zone="AUTO",
+            storage_type="SSD",
+            node_count=1,
+            cores_count=2,
+            ram_size=2048,
+            storage_size=40,
+            public_ips=[
+                example_ip_block.ips[0],
+                example_ip_block.ips[1],
+                example_ip_block.ips[2],
+            ],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
+            labels={
+                "lab1": "value1",
+                "lab2": "value2",
+            },
+            annotations={
+                "ann1": "value1",
+                "ann2": "value2",
+            })
+        ```
+        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+
+        ## Import
+
+        A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
+
+        ```sh
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        ```
+
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+
+        ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+
+        ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
-        :param pulumi.Input[str] availability_zone: The compute availability zone in which the nodes should exist
-        :param pulumi.Input[int] cores_count: CPU cores count
-        :param pulumi.Input[str] cpu_family: CPU Family
-        :param pulumi.Input[str] datacenter_id: The UUID of the VDC
-        :param pulumi.Input[str] k8s_cluster_id: The UUID of an existing kubernetes cluster
-        :param pulumi.Input[str] k8s_version: The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-               The provider will ignore downgrades of patch level.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: A list of Local Area Networks the node pool should be part of
-        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-        :param pulumi.Input[str] name: The desired name for the node pool
-        :param pulumi.Input[int] node_count: The number of nodes in this node pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: A list of fixed IPs. Cannot be set on private clusters.
-        :param pulumi.Input[int] ram_size: The amount of RAM in MB
-        :param pulumi.Input[int] storage_size: The total allocated storage capacity of a node in GB
-        :param pulumi.Input[str] storage_type: Storage type to use
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+        :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID
+        :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
+        :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+        :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+        :param pulumi.Input[int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+        :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         ...
     @overload
@@ -641,7 +740,93 @@ class NodePool(pulumi.CustomResource):
                  args: NodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a NodePool resource with the given unique name, props, and options.
+        Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="datacenter description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+            location="us/las",
+            size=3)
+        example_cluster = ionoscloud.k8s.Cluster("exampleCluster",
+            k8s_version="1.28.6",
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
+            api_subnet_allow_lists=["1.2.3.4/32"],
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
+        example_node_pool = ionoscloud.k8s.NodePool("exampleNodePool",
+            datacenter_id=example_datacenter.id,
+            k8s_cluster_id=example_cluster.id,
+            k8s_version=example_cluster.k8s_version,
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
+            cpu_family="INTEL_XEON",
+            availability_zone="AUTO",
+            storage_type="SSD",
+            node_count=1,
+            cores_count=2,
+            ram_size=2048,
+            storage_size=40,
+            public_ips=[
+                example_ip_block.ips[0],
+                example_ip_block.ips[1],
+                example_ip_block.ips[2],
+            ],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
+            labels={
+                "lab1": "value1",
+                "lab2": "value2",
+            },
+            annotations={
+                "ann1": "value1",
+                "ann2": "value2",
+            })
+        ```
+        **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
+
+        ## Import
+
+        A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
+
+        ```sh
+        $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+        ```
+
+        This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
+
+        ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
+
+        terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
+
+        ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
+
         :param str resource_name: The name of the resource.
         :param NodePoolArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -758,22 +943,23 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
-        :param pulumi.Input[str] availability_zone: The compute availability zone in which the nodes should exist
-        :param pulumi.Input[int] cores_count: CPU cores count
-        :param pulumi.Input[str] cpu_family: CPU Family
-        :param pulumi.Input[str] datacenter_id: The UUID of the VDC
-        :param pulumi.Input[str] k8s_cluster_id: The UUID of an existing kubernetes cluster
-        :param pulumi.Input[str] k8s_version: The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-               The provider will ignore downgrades of patch level.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: A list of Local Area Networks the node pool should be part of
-        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-        :param pulumi.Input[str] name: The desired name for the node pool
-        :param pulumi.Input[int] node_count: The number of nodes in this node pool
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: A list of fixed IPs. Cannot be set on private clusters.
-        :param pulumi.Input[int] ram_size: The amount of RAM in MB
-        :param pulumi.Input[int] storage_size: The total allocated storage capacity of a node in GB
-        :param pulumi.Input[str] storage_type: Storage type to use
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+        :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+        :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID
+        :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
+        :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+        :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
+        :param pulumi.Input[int] ram_size: [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+        :param pulumi.Input[int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+        :param pulumi.Input[str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -810,13 +996,16 @@ class NodePool(pulumi.CustomResource):
     @property
     @pulumi.getter
     def annotations(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        [map] A key/value map of annotations
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="autoScaling")
     def auto_scaling(self) -> pulumi.Output[Optional['outputs.NodePoolAutoScaling']]:
         """
-        The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
+        [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
         """
         return pulumi.get(self, "auto_scaling")
 
@@ -824,7 +1013,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> pulumi.Output[str]:
         """
-        The compute availability zone in which the nodes should exist
+        [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "availability_zone")
 
@@ -832,7 +1021,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> pulumi.Output[int]:
         """
-        CPU cores count
+        [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         """
         return pulumi.get(self, "cores_count")
 
@@ -840,7 +1029,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> pulumi.Output[str]:
         """
-        CPU Family
+        [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
         """
         return pulumi.get(self, "cpu_family")
 
@@ -848,7 +1037,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
         """
-        The UUID of the VDC
+        [string] A Datacenter's UUID
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -856,7 +1045,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="k8sClusterId")
     def k8s_cluster_id(self) -> pulumi.Output[str]:
         """
-        The UUID of an existing kubernetes cluster
+        [string] A k8s cluster's UUID
         """
         return pulumi.get(self, "k8s_cluster_id")
 
@@ -864,21 +1053,23 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="k8sVersion")
     def k8s_version(self) -> pulumi.Output[str]:
         """
-        The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
-        The provider will ignore downgrades of patch level.
+        [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         """
         return pulumi.get(self, "k8s_version")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        [map] A key/value map of labels
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def lans(self) -> pulumi.Output[Optional[Sequence['outputs.NodePoolLan']]]:
         """
-        A list of Local Area Networks the node pool should be part of
+        [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         """
         return pulumi.get(self, "lans")
 
@@ -886,7 +1077,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.NodePoolMaintenanceWindow']:
         """
-        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        See the **maintenance_window** section in the example above
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -894,7 +1085,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The desired name for the node pool
+        [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         """
         return pulumi.get(self, "name")
 
@@ -902,7 +1093,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> pulumi.Output[int]:
         """
-        The number of nodes in this node pool
+        [int] - The desired number of nodes in the node pool
         """
         return pulumi.get(self, "node_count")
 
@@ -910,7 +1101,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="publicIps")
     def public_ips(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        A list of fixed IPs. Cannot be set on private clusters.
+        [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         """
         return pulumi.get(self, "public_ips")
 
@@ -918,7 +1109,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> pulumi.Output[int]:
         """
-        The amount of RAM in MB
+        [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
         """
         return pulumi.get(self, "ram_size")
 
@@ -926,7 +1117,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[int]:
         """
-        The total allocated storage capacity of a node in GB
+        [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_size")
 
@@ -934,7 +1125,7 @@ class NodePool(pulumi.CustomResource):
     @pulumi.getter(name="storageType")
     def storage_type(self) -> pulumi.Output[str]:
         """
-        Storage type to use
+        [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_type")
 

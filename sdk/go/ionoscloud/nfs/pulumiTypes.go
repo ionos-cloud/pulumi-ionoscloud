@@ -14,11 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterConnections struct {
-	// The datacenter to connect your instance to.
+	// The ID of the datacenter where the Network File Storage cluster is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The IP address and subnet for your instance.
+	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 	IpAddress string `pulumi:"ipAddress"`
-	// The numeric LAN ID to connect your instance to.
+	// The Private LAN to which the Network File Storage cluster must be connected.
 	Lan string `pulumi:"lan"`
 }
 
@@ -34,11 +34,11 @@ type ClusterConnectionsInput interface {
 }
 
 type ClusterConnectionsArgs struct {
-	// The datacenter to connect your instance to.
+	// The ID of the datacenter where the Network File Storage cluster is located.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IP address and subnet for your instance.
+	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The numeric LAN ID to connect your instance to.
+	// The Private LAN to which the Network File Storage cluster must be connected.
 	Lan pulumi.StringInput `pulumi:"lan"`
 }
 
@@ -119,17 +119,17 @@ func (o ClusterConnectionsOutput) ToClusterConnectionsPtrOutputWithContext(ctx c
 	}).(ClusterConnectionsPtrOutput)
 }
 
-// The datacenter to connect your instance to.
+// The ID of the datacenter where the Network File Storage cluster is located.
 func (o ClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The IP address and subnet for your instance.
+// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 func (o ClusterConnectionsOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your instance to.
+// The Private LAN to which the Network File Storage cluster must be connected.
 func (o ClusterConnectionsOutput) Lan() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.Lan }).(pulumi.StringOutput)
 }
@@ -158,7 +158,7 @@ func (o ClusterConnectionsPtrOutput) Elem() ClusterConnectionsOutput {
 	}).(ClusterConnectionsOutput)
 }
 
-// The datacenter to connect your instance to.
+// The ID of the datacenter where the Network File Storage cluster is located.
 func (o ClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -168,7 +168,7 @@ func (o ClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The IP address and subnet for your instance.
+// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 func (o ClusterConnectionsPtrOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -178,7 +178,7 @@ func (o ClusterConnectionsPtrOutput) IpAddress() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The numeric LAN ID to connect your instance to.
+// The Private LAN to which the Network File Storage cluster must be connected.
 func (o ClusterConnectionsPtrOutput) Lan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -189,7 +189,7 @@ func (o ClusterConnectionsPtrOutput) Lan() pulumi.StringPtrOutput {
 }
 
 type ClusterNfs struct {
-	// The minimum Network File Storage version
+	// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
 	MinVersion *string `pulumi:"minVersion"`
 }
 
@@ -205,7 +205,7 @@ type ClusterNfsInput interface {
 }
 
 type ClusterNfsArgs struct {
-	// The minimum Network File Storage version
+	// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
 	MinVersion pulumi.StringPtrInput `pulumi:"minVersion"`
 }
 
@@ -286,7 +286,7 @@ func (o ClusterNfsOutput) ToClusterNfsPtrOutputWithContext(ctx context.Context) 
 	}).(ClusterNfsPtrOutput)
 }
 
-// The minimum Network File Storage version
+// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
 func (o ClusterNfsOutput) MinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNfs) *string { return v.MinVersion }).(pulumi.StringPtrOutput)
 }
@@ -315,7 +315,7 @@ func (o ClusterNfsPtrOutput) Elem() ClusterNfsOutput {
 	}).(ClusterNfsOutput)
 }
 
-// The minimum Network File Storage version
+// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
 func (o ClusterNfsPtrOutput) MinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterNfs) *string {
 		if v == nil {
@@ -331,8 +331,9 @@ type ShareClientGroup struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts []string `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks []string             `pulumi:"ipNetworks"`
-	Nfs        *ShareClientGroupNfs `pulumi:"nfs"`
+	IpNetworks []string `pulumi:"ipNetworks"`
+	// NFS specific configurations. Each configuration includes:
+	Nfs *ShareClientGroupNfs `pulumi:"nfs"`
 }
 
 // ShareClientGroupInput is an input type that accepts ShareClientGroupArgs and ShareClientGroupOutput values.
@@ -352,8 +353,9 @@ type ShareClientGroupArgs struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks pulumi.StringArrayInput     `pulumi:"ipNetworks"`
-	Nfs        ShareClientGroupNfsPtrInput `pulumi:"nfs"`
+	IpNetworks pulumi.StringArrayInput `pulumi:"ipNetworks"`
+	// NFS specific configurations. Each configuration includes:
+	Nfs ShareClientGroupNfsPtrInput `pulumi:"nfs"`
 }
 
 func (ShareClientGroupArgs) ElementType() reflect.Type {
@@ -422,6 +424,7 @@ func (o ShareClientGroupOutput) IpNetworks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ShareClientGroup) []string { return v.IpNetworks }).(pulumi.StringArrayOutput)
 }
 
+// NFS specific configurations. Each configuration includes:
 func (o ShareClientGroupOutput) Nfs() ShareClientGroupNfsPtrOutput {
 	return o.ApplyT(func(v ShareClientGroup) *ShareClientGroupNfs { return v.Nfs }).(ShareClientGroupNfsPtrOutput)
 }
@@ -447,7 +450,7 @@ func (o ShareClientGroupArrayOutput) Index(i pulumi.IntInput) ShareClientGroupOu
 }
 
 type ShareClientGroupNfs struct {
-	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+	// The squash mode for the export. The squash mode can be:
 	Squash *string `pulumi:"squash"`
 }
 
@@ -463,7 +466,7 @@ type ShareClientGroupNfsInput interface {
 }
 
 type ShareClientGroupNfsArgs struct {
-	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+	// The squash mode for the export. The squash mode can be:
 	Squash pulumi.StringPtrInput `pulumi:"squash"`
 }
 
@@ -544,7 +547,7 @@ func (o ShareClientGroupNfsOutput) ToShareClientGroupNfsPtrOutputWithContext(ctx
 	}).(ShareClientGroupNfsPtrOutput)
 }
 
-// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+// The squash mode for the export. The squash mode can be:
 func (o ShareClientGroupNfsOutput) Squash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShareClientGroupNfs) *string { return v.Squash }).(pulumi.StringPtrOutput)
 }
@@ -573,7 +576,7 @@ func (o ShareClientGroupNfsPtrOutput) Elem() ShareClientGroupNfsOutput {
 	}).(ShareClientGroupNfsOutput)
 }
 
-// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+// The squash mode for the export. The squash mode can be:
 func (o ShareClientGroupNfsPtrOutput) Squash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShareClientGroupNfs) *string {
 		if v == nil {
@@ -584,11 +587,11 @@ func (o ShareClientGroupNfsPtrOutput) Squash() pulumi.StringPtrOutput {
 }
 
 type GetClusterConnection struct {
-	// The datacenter ID of the connection.
+	// The ID of the datacenter where the Network File Storage cluster is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The IP address of the connection.
+	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 	IpAddress string `pulumi:"ipAddress"`
-	// The LAN of the connection.
+	// The Private LAN to which the Network File Storage cluster must be connected.
 	Lan string `pulumi:"lan"`
 }
 
@@ -604,11 +607,11 @@ type GetClusterConnectionInput interface {
 }
 
 type GetClusterConnectionArgs struct {
-	// The datacenter ID of the connection.
+	// The ID of the datacenter where the Network File Storage cluster is located.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IP address of the connection.
+	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The LAN of the connection.
+	// The Private LAN to which the Network File Storage cluster must be connected.
 	Lan pulumi.StringInput `pulumi:"lan"`
 }
 
@@ -663,17 +666,17 @@ func (o GetClusterConnectionOutput) ToGetClusterConnectionOutputWithContext(ctx 
 	return o
 }
 
-// The datacenter ID of the connection.
+// The ID of the datacenter where the Network File Storage cluster is located.
 func (o GetClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The IP address of the connection.
+// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
 func (o GetClusterConnectionOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnection) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The LAN of the connection.
+// The Private LAN to which the Network File Storage cluster must be connected.
 func (o GetClusterConnectionOutput) Lan() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConnection) string { return v.Lan }).(pulumi.StringOutput)
 }
@@ -699,7 +702,7 @@ func (o GetClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetClusterConn
 }
 
 type GetClusterNf struct {
-	// The minimum version of the NFS.
+	// The minimum supported version of the NFS cluster. Default is `4.2`
 	MinVersion string `pulumi:"minVersion"`
 }
 
@@ -715,7 +718,7 @@ type GetClusterNfInput interface {
 }
 
 type GetClusterNfArgs struct {
-	// The minimum version of the NFS.
+	// The minimum supported version of the NFS cluster. Default is `4.2`
 	MinVersion pulumi.StringInput `pulumi:"minVersion"`
 }
 
@@ -770,7 +773,7 @@ func (o GetClusterNfOutput) ToGetClusterNfOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The minimum version of the NFS.
+// The minimum supported version of the NFS cluster. Default is `4.2`
 func (o GetClusterNfOutput) MinVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterNf) string { return v.MinVersion }).(pulumi.StringOutput)
 }
@@ -801,8 +804,9 @@ type GetShareClientGroup struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts []string `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks []string                `pulumi:"ipNetworks"`
-	Nfs        []GetShareClientGroupNf `pulumi:"nfs"`
+	IpNetworks []string `pulumi:"ipNetworks"`
+	// The NFS configuration for the client group. Each NFS configuration supports the following:
+	Nfs []GetShareClientGroupNf `pulumi:"nfs"`
 }
 
 // GetShareClientGroupInput is an input type that accepts GetShareClientGroupArgs and GetShareClientGroupOutput values.
@@ -822,8 +826,9 @@ type GetShareClientGroupArgs struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks pulumi.StringArrayInput         `pulumi:"ipNetworks"`
-	Nfs        GetShareClientGroupNfArrayInput `pulumi:"nfs"`
+	IpNetworks pulumi.StringArrayInput `pulumi:"ipNetworks"`
+	// The NFS configuration for the client group. Each NFS configuration supports the following:
+	Nfs GetShareClientGroupNfArrayInput `pulumi:"nfs"`
 }
 
 func (GetShareClientGroupArgs) ElementType() reflect.Type {
@@ -892,6 +897,7 @@ func (o GetShareClientGroupOutput) IpNetworks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetShareClientGroup) []string { return v.IpNetworks }).(pulumi.StringArrayOutput)
 }
 
+// The NFS configuration for the client group. Each NFS configuration supports the following:
 func (o GetShareClientGroupOutput) Nfs() GetShareClientGroupNfArrayOutput {
 	return o.ApplyT(func(v GetShareClientGroup) []GetShareClientGroupNf { return v.Nfs }).(GetShareClientGroupNfArrayOutput)
 }

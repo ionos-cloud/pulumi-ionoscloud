@@ -14,6 +14,9 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     public sealed class GetClusterConfigClusterResult
     {
         public readonly ImmutableDictionary<string, string> Cluster;
+        /// <summary>
+        /// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

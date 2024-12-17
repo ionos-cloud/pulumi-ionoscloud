@@ -14,7 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type RegistryFeatures struct {
-	// Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+	// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+	//
+	// > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
 	VulnerabilityScanning *bool `pulumi:"vulnerabilityScanning"`
 }
 
@@ -30,7 +32,9 @@ type RegistryFeaturesInput interface {
 }
 
 type RegistryFeaturesArgs struct {
-	// Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+	// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+	//
+	// > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
 	VulnerabilityScanning pulumi.BoolPtrInput `pulumi:"vulnerabilityScanning"`
 }
 
@@ -111,7 +115,9 @@ func (o RegistryFeaturesOutput) ToRegistryFeaturesPtrOutputWithContext(ctx conte
 	}).(RegistryFeaturesPtrOutput)
 }
 
-// Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+//
+// > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
 func (o RegistryFeaturesOutput) VulnerabilityScanning() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RegistryFeatures) *bool { return v.VulnerabilityScanning }).(pulumi.BoolPtrOutput)
 }
@@ -140,7 +146,9 @@ func (o RegistryFeaturesPtrOutput) Elem() RegistryFeaturesOutput {
 	}).(RegistryFeaturesOutput)
 }
 
-// Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+//
+// > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
 func (o RegistryFeaturesPtrOutput) VulnerabilityScanning() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RegistryFeatures) *bool {
 		if v == nil {
@@ -151,8 +159,9 @@ func (o RegistryFeaturesPtrOutput) VulnerabilityScanning() pulumi.BoolPtrOutput 
 }
 
 type RegistryGarbageCollectionSchedule struct {
+	// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
 	Days []string `pulumi:"days"`
-	// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+	// [string]
 	Time string `pulumi:"time"`
 }
 
@@ -168,8 +177,9 @@ type RegistryGarbageCollectionScheduleInput interface {
 }
 
 type RegistryGarbageCollectionScheduleArgs struct {
+	// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
 	Days pulumi.StringArrayInput `pulumi:"days"`
-	// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+	// [string]
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -250,11 +260,12 @@ func (o RegistryGarbageCollectionScheduleOutput) ToRegistryGarbageCollectionSche
 	}).(RegistryGarbageCollectionSchedulePtrOutput)
 }
 
+// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
 func (o RegistryGarbageCollectionScheduleOutput) Days() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RegistryGarbageCollectionSchedule) []string { return v.Days }).(pulumi.StringArrayOutput)
 }
 
-// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+// [string]
 func (o RegistryGarbageCollectionScheduleOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryGarbageCollectionSchedule) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -283,6 +294,7 @@ func (o RegistryGarbageCollectionSchedulePtrOutput) Elem() RegistryGarbageCollec
 	}).(RegistryGarbageCollectionScheduleOutput)
 }
 
+// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
 func (o RegistryGarbageCollectionSchedulePtrOutput) Days() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RegistryGarbageCollectionSchedule) []string {
 		if v == nil {
@@ -292,7 +304,7 @@ func (o RegistryGarbageCollectionSchedulePtrOutput) Days() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+// [string]
 func (o RegistryGarbageCollectionSchedulePtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RegistryGarbageCollectionSchedule) *string {
 		if v == nil {
@@ -503,10 +515,12 @@ func (o RegistryTokenCredentialArrayOutput) Index(i pulumi.IntInput) RegistryTok
 }
 
 type RegistryTokenScope struct {
-	// Example: ["pull", "push", "delete"]
+	// [string] Example: ["pull", "push", "delete"]
 	Actions []string `pulumi:"actions"`
-	Name    string   `pulumi:"name"`
-	Type    string   `pulumi:"type"`
+	// [string]
+	Name string `pulumi:"name"`
+	// [string]
+	Type string `pulumi:"type"`
 }
 
 // RegistryTokenScopeInput is an input type that accepts RegistryTokenScopeArgs and RegistryTokenScopeOutput values.
@@ -521,10 +535,12 @@ type RegistryTokenScopeInput interface {
 }
 
 type RegistryTokenScopeArgs struct {
-	// Example: ["pull", "push", "delete"]
+	// [string] Example: ["pull", "push", "delete"]
 	Actions pulumi.StringArrayInput `pulumi:"actions"`
-	Name    pulumi.StringInput      `pulumi:"name"`
-	Type    pulumi.StringInput      `pulumi:"type"`
+	// [string]
+	Name pulumi.StringInput `pulumi:"name"`
+	// [string]
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (RegistryTokenScopeArgs) ElementType() reflect.Type {
@@ -578,15 +594,17 @@ func (o RegistryTokenScopeOutput) ToRegistryTokenScopeOutputWithContext(ctx cont
 	return o
 }
 
-// Example: ["pull", "push", "delete"]
+// [string] Example: ["pull", "push", "delete"]
 func (o RegistryTokenScopeOutput) Actions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RegistryTokenScope) []string { return v.Actions }).(pulumi.StringArrayOutput)
 }
 
+// [string]
 func (o RegistryTokenScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryTokenScope) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// [string]
 func (o RegistryTokenScopeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryTokenScope) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -1006,6 +1024,7 @@ func (o GetRegistryStorageUsageArrayOutput) Index(i pulumi.IntInput) GetRegistry
 }
 
 type GetRegistryTokenCredential struct {
+	// * `expiry-date`
 	Username string `pulumi:"username"`
 }
 
@@ -1021,6 +1040,7 @@ type GetRegistryTokenCredentialInput interface {
 }
 
 type GetRegistryTokenCredentialArgs struct {
+	// * `expiry-date`
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -1075,6 +1095,7 @@ func (o GetRegistryTokenCredentialOutput) ToGetRegistryTokenCredentialOutputWith
 	return o
 }
 
+// * `expiry-date`
 func (o GetRegistryTokenCredentialOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryTokenCredential) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -1101,8 +1122,9 @@ func (o GetRegistryTokenCredentialArrayOutput) Index(i pulumi.IntInput) GetRegis
 
 type GetRegistryTokenScope struct {
 	Actions []string `pulumi:"actions"`
-	Name    string   `pulumi:"name"`
-	Type    string   `pulumi:"type"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name string `pulumi:"name"`
+	Type string `pulumi:"type"`
 }
 
 // GetRegistryTokenScopeInput is an input type that accepts GetRegistryTokenScopeArgs and GetRegistryTokenScopeOutput values.
@@ -1118,8 +1140,9 @@ type GetRegistryTokenScopeInput interface {
 
 type GetRegistryTokenScopeArgs struct {
 	Actions pulumi.StringArrayInput `pulumi:"actions"`
-	Name    pulumi.StringInput      `pulumi:"name"`
-	Type    pulumi.StringInput      `pulumi:"type"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringInput `pulumi:"name"`
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetRegistryTokenScopeArgs) ElementType() reflect.Type {
@@ -1177,6 +1200,7 @@ func (o GetRegistryTokenScopeOutput) Actions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRegistryTokenScope) []string { return v.Actions }).(pulumi.StringArrayOutput)
 }
 
+// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
 func (o GetRegistryTokenScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistryTokenScope) string { return v.Name }).(pulumi.StringOutput)
 }

@@ -13,9 +13,12 @@ namespace Pulumi.Ionoscloud.Creg.Outputs
     [OutputType]
     public sealed class RegistryGarbageCollectionSchedule
     {
+        /// <summary>
+        /// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+        /// </summary>
         public readonly ImmutableArray<string> Days;
         /// <summary>
-        /// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+        /// [string]
         /// </summary>
         public readonly string Time;
 

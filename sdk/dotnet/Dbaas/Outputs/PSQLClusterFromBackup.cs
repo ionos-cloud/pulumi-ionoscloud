@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class PSQLClusterFromBackup
     {
         /// <summary>
-        /// The unique ID of the backup you want to restore.
+        /// [string] The unique ID of the backup you want to restore.
         /// </summary>
         public readonly string BackupId;
         /// <summary>
-        /// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        /// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         /// </summary>
         public readonly string? RecoveryTargetTime;
 

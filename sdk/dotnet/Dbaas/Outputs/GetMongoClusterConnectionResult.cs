@@ -23,11 +23,11 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
         /// </summary>
         public readonly ImmutableArray<string> CidrLists;
         /// <summary>
-        /// The datacenter to connect your cluster to
+        /// The datacenter to connect your cluster to.
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The LAN to connect your cluster to
+        /// The LAN to connect your cluster to.
         /// </summary>
         public readonly string LanId;
 

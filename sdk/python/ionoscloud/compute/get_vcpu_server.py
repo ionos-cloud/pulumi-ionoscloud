@@ -83,6 +83,9 @@ class GetVCPUServerResult:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
@@ -103,46 +106,73 @@ class GetVCPUServerResult:
     @property
     @pulumi.getter
     def cdroms(self) -> Sequence['outputs.GetVCPUServerCdromResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "cdroms")
 
     @property
     @pulumi.getter
     def cores(self) -> int:
+        """
+        The total number of cores for the server
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> str:
+        """
+        CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
+        """
         return pulumi.get(self, "cpu_family")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The id of the datacenter
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The Id of the label
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetVCPUServerLabelResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the firewall rule
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nics(self) -> Sequence['outputs.GetVCPUServerNicResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "nics")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        The amount of memory for the server in MB
+        """
         return pulumi.get(self, "ram")
 
     @property
@@ -153,16 +183,25 @@ class GetVCPUServerResult:
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of firewall rule
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vmState")
     def vm_state(self) -> str:
+        """
+        Status of the virtual Machine
+        """
         return pulumi.get(self, "vm_state")
 
     @property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.GetVCPUServerVolumeResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -196,7 +235,18 @@ def get_vcpu_server(datacenter_id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVCPUServerResult:
     """
-    Use this data source to access information about an existing resource.
+    The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -228,7 +278,18 @@ def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVCPUServerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

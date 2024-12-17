@@ -12,27 +12,100 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Overview
+//
+// The `vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+// This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ipblockExample, err := compute.NewIPBlock(ctx, "ipblockExample", &compute.IPBlockArgs{
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//				DatacenterId: datacenterExample.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewWireguardGateway(ctx, "gateway", &vpn.WireguardGatewayArgs{
+//				Location:    pulumi.String("de/fra"),
+//				Description: pulumi.String("description"),
+//				PrivateKey:  pulumi.String("private"),
+//				GatewayIp: ipblockExample.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				InterfaceIpv4Cidr: pulumi.String("192.168.1.100/24"),
+//				Connections: vpn.WireguardGatewayConnectionArray{
+//					&vpn.WireguardGatewayConnectionArgs{
+//						DatacenterId: datacenterExample.ID(),
+//						LanId:        lanExample.ID(),
+//						Ipv4Cidr:     pulumi.String("192.168.1.108/24"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// WireGuard Gateways can be imported using their ID:
+//
+// ```sh
+// $ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id
+// ```
 type WireguardGateway struct {
 	pulumi.CustomResourceState
 
+	// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 	Connections WireguardGatewayConnectionArrayOutput `pulumi:"connections"`
-	Description pulumi.StringPtrOutput                `pulumi:"description"`
-	GatewayIp   pulumi.StringOutput                   `pulumi:"gatewayIp"`
-	// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-	// interfaceIPv6CIDR is __required__.
+	// [String] A description of the WireGuard Gateway.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// [String] The IP address of the WireGuard Gateway.
+	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
+	// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr pulumi.StringPtrOutput `pulumi:"interfaceIpv4Cidr"`
-	// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-	// interfaceIPv4CIDR is __required__.
+	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrOutput `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        pulumi.IntPtrOutput    `pulumi:"listenPort"`
-	// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+	// [String] The location of the WireGuard Gateway.
 	Location pulumi.StringOutput `pulumi:"location"`
-	Name     pulumi.StringOutput `pulumi:"name"`
-	// PrivateKey used for WireGuard Server
+	// [String] The name of the WireGuard Gateway.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// PublicKey used for WireGuard Server. Received in response from API
+	// (Computed)[String] The public key for the WireGuard Gateway.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
-	// The status of the WireGuard Gateway
+	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -85,46 +158,50 @@ func GetWireguardGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WireguardGateway resources.
 type wireguardGatewayState struct {
+	// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 	Connections []WireguardGatewayConnection `pulumi:"connections"`
-	Description *string                      `pulumi:"description"`
-	GatewayIp   *string                      `pulumi:"gatewayIp"`
-	// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-	// interfaceIPv6CIDR is __required__.
+	// [String] A description of the WireGuard Gateway.
+	Description *string `pulumi:"description"`
+	// [String] The IP address of the WireGuard Gateway.
+	GatewayIp *string `pulumi:"gatewayIp"`
+	// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr *string `pulumi:"interfaceIpv4Cidr"`
-	// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-	// interfaceIPv4CIDR is __required__.
+	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr *string `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        *int    `pulumi:"listenPort"`
-	// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+	// [String] The location of the WireGuard Gateway.
 	Location *string `pulumi:"location"`
-	Name     *string `pulumi:"name"`
-	// PrivateKey used for WireGuard Server
+	// [String] The name of the WireGuard Gateway.
+	Name *string `pulumi:"name"`
+	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey *string `pulumi:"privateKey"`
-	// PublicKey used for WireGuard Server. Received in response from API
+	// (Computed)[String] The public key for the WireGuard Gateway.
 	PublicKey *string `pulumi:"publicKey"`
-	// The status of the WireGuard Gateway
+	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status *string `pulumi:"status"`
 }
 
 type WireguardGatewayState struct {
+	// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 	Connections WireguardGatewayConnectionArrayInput
+	// [String] A description of the WireGuard Gateway.
 	Description pulumi.StringPtrInput
-	GatewayIp   pulumi.StringPtrInput
-	// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-	// interfaceIPv6CIDR is __required__.
+	// [String] The IP address of the WireGuard Gateway.
+	GatewayIp pulumi.StringPtrInput
+	// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr pulumi.StringPtrInput
-	// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-	// interfaceIPv4CIDR is __required__.
+	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrInput
 	ListenPort        pulumi.IntPtrInput
-	// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+	// [String] The location of the WireGuard Gateway.
 	Location pulumi.StringPtrInput
-	Name     pulumi.StringPtrInput
-	// PrivateKey used for WireGuard Server
+	// [String] The name of the WireGuard Gateway.
+	Name pulumi.StringPtrInput
+	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringPtrInput
-	// PublicKey used for WireGuard Server. Received in response from API
+	// (Computed)[String] The public key for the WireGuard Gateway.
 	PublicKey pulumi.StringPtrInput
-	// The status of the WireGuard Gateway
+	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringPtrInput
 }
 
@@ -133,39 +210,43 @@ func (WireguardGatewayState) ElementType() reflect.Type {
 }
 
 type wireguardGatewayArgs struct {
+	// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 	Connections []WireguardGatewayConnection `pulumi:"connections"`
-	Description *string                      `pulumi:"description"`
-	GatewayIp   string                       `pulumi:"gatewayIp"`
-	// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-	// interfaceIPv6CIDR is __required__.
+	// [String] A description of the WireGuard Gateway.
+	Description *string `pulumi:"description"`
+	// [String] The IP address of the WireGuard Gateway.
+	GatewayIp string `pulumi:"gatewayIp"`
+	// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr *string `pulumi:"interfaceIpv4Cidr"`
-	// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-	// interfaceIPv4CIDR is __required__.
+	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr *string `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        *int    `pulumi:"listenPort"`
-	// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
-	Location string  `pulumi:"location"`
-	Name     *string `pulumi:"name"`
-	// PrivateKey used for WireGuard Server
+	// [String] The location of the WireGuard Gateway.
+	Location string `pulumi:"location"`
+	// [String] The name of the WireGuard Gateway.
+	Name *string `pulumi:"name"`
+	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey string `pulumi:"privateKey"`
 }
 
 // The set of arguments for constructing a WireguardGateway resource.
 type WireguardGatewayArgs struct {
+	// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 	Connections WireguardGatewayConnectionArrayInput
+	// [String] A description of the WireGuard Gateway.
 	Description pulumi.StringPtrInput
-	GatewayIp   pulumi.StringInput
-	// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-	// interfaceIPv6CIDR is __required__.
+	// [String] The IP address of the WireGuard Gateway.
+	GatewayIp pulumi.StringInput
+	// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv4Cidr pulumi.StringPtrInput
-	// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-	// interfaceIPv4CIDR is __required__.
+	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrInput
 	ListenPort        pulumi.IntPtrInput
-	// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+	// [String] The location of the WireGuard Gateway.
 	Location pulumi.StringInput
-	Name     pulumi.StringPtrInput
-	// PrivateKey used for WireGuard Server
+	// [String] The name of the WireGuard Gateway.
+	Name pulumi.StringPtrInput
+	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringInput
 }
 
@@ -256,26 +337,27 @@ func (o WireguardGatewayOutput) ToWireguardGatewayOutputWithContext(ctx context.
 	return o
 }
 
+// [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
 func (o WireguardGatewayOutput) Connections() WireguardGatewayConnectionArrayOutput {
 	return o.ApplyT(func(v *WireguardGateway) WireguardGatewayConnectionArrayOutput { return v.Connections }).(WireguardGatewayConnectionArrayOutput)
 }
 
+// [String] A description of the WireGuard Gateway.
 func (o WireguardGatewayOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// [String] The IP address of the WireGuard Gateway.
 func (o WireguardGatewayOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-// The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-// interfaceIPv6CIDR is __required__.
+// [String] The IPv4 CIDR for the WireGuard Gateway interface.
 func (o WireguardGatewayOutput) InterfaceIpv4Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringPtrOutput { return v.InterfaceIpv4Cidr }).(pulumi.StringPtrOutput)
 }
 
-// The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-// interfaceIPv4CIDR is __required__.
+// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 func (o WireguardGatewayOutput) InterfaceIpv6Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringPtrOutput { return v.InterfaceIpv6Cidr }).(pulumi.StringPtrOutput)
 }
@@ -284,26 +366,27 @@ func (o WireguardGatewayOutput) ListenPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.IntPtrOutput { return v.ListenPort }).(pulumi.IntPtrOutput)
 }
 
-// The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+// [String] The location of the WireGuard Gateway.
 func (o WireguardGatewayOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
+// [String] The name of the WireGuard Gateway.
 func (o WireguardGatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// PrivateKey used for WireGuard Server
+// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 func (o WireguardGatewayOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// PublicKey used for WireGuard Server. Received in response from API
+// (Computed)[String] The public key for the WireGuard Gateway.
 func (o WireguardGatewayOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
-// The status of the WireGuard Gateway
+// (Computed)[String] The current status of the WireGuard Gateway.
 func (o WireguardGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

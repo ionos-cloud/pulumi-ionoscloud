@@ -12,26 +12,114 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages **Users** and list users and groups associated with that user.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			group1, err := compute.NewGroup(ctx, "group1", &compute.GroupArgs{
+//				CreateDatacenter:  pulumi.Bool(true),
+//				CreateSnapshot:    pulumi.Bool(true),
+//				ReserveIp:         pulumi.Bool(true),
+//				AccessActivityLog: pulumi.Bool(false),
+//				CreateK8sCluster:  pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group2, err := compute.NewGroup(ctx, "group2", &compute.GroupArgs{
+//				CreateDatacenter:  pulumi.Bool(true),
+//				CreateSnapshot:    pulumi.Bool(true),
+//				ReserveIp:         pulumi.Bool(true),
+//				AccessActivityLog: pulumi.Bool(false),
+//				CreateK8sCluster:  pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group3, err := compute.NewGroup(ctx, "group3", &compute.GroupArgs{
+//				CreateDatacenter:  pulumi.Bool(true),
+//				CreateSnapshot:    pulumi.Bool(true),
+//				ReserveIp:         pulumi.Bool(true),
+//				AccessActivityLog: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			userPassword, err := random.NewRandomPassword(ctx, "userPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewUser(ctx, "example", &compute.UserArgs{
+//				FirstName:     pulumi.String("example"),
+//				LastName:      pulumi.String("example"),
+//				Email:         pulumi.String("unique@email.com"),
+//				Password:      userPassword.Result,
+//				Administrator: pulumi.Bool(false),
+//				ForceSecAuth:  pulumi.Bool(false),
+//				Active:        pulumi.Bool(true),
+//				GroupIds: pulumi.StringArray{
+//					group1.ID(),
+//					group2.ID(),
+//					group3.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource User can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/user:User myuser {user uuid}
+// ```
 type User struct {
 	pulumi.CustomResourceState
 
-	// Indicates if the user is active
+	// [Boolean] Indicates if the user is active
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
-	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-	// automatically have access to all resources associated with the contract.
+	// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 	Administrator pulumi.BoolPtrOutput `pulumi:"administrator"`
-	// Email address of the user
-	Email     pulumi.StringOutput `pulumi:"email"`
+	// [string] An e-mail address for the user.
+	Email pulumi.StringOutput `pulumi:"email"`
+	// [string] A first name for the user.
 	FirstName pulumi.StringOutput `pulumi:"firstName"`
-	// Indicates if secure (two-factor) authentication is forced for the user
+	// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 	ForceSecAuth pulumi.BoolPtrOutput `pulumi:"forceSecAuth"`
-	// Ids of the groups that the user is a member of
-	GroupIds          pulumi.StringArrayOutput `pulumi:"groupIds"`
-	LastName          pulumi.StringOutput      `pulumi:"lastName"`
-	Password          pulumi.StringOutput      `pulumi:"password"`
-	S3CanonicalUserId pulumi.StringOutput      `pulumi:"s3CanonicalUserId"`
-	// Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
-	// used in update.
+	// [Set] The groups that this user will be a member of
+	//
+	// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+	GroupIds pulumi.StringArrayOutput `pulumi:"groupIds"`
+	// [string] A last name for the user.
+	LastName pulumi.StringOutput `pulumi:"lastName"`
+	// [string] A password for the user.
+	Password pulumi.StringOutput `pulumi:"password"`
+	// Canonical (IONOS Object Storage) id of the user for a given identity
+	S3CanonicalUserId pulumi.StringOutput `pulumi:"s3CanonicalUserId"`
+	// [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
 	SecAuthActive pulumi.BoolOutput `pulumi:"secAuthActive"`
 }
 
@@ -84,44 +172,52 @@ func GetUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering User resources.
 type userState struct {
-	// Indicates if the user is active
+	// [Boolean] Indicates if the user is active
 	Active *bool `pulumi:"active"`
-	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-	// automatically have access to all resources associated with the contract.
+	// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 	Administrator *bool `pulumi:"administrator"`
-	// Email address of the user
-	Email     *string `pulumi:"email"`
+	// [string] An e-mail address for the user.
+	Email *string `pulumi:"email"`
+	// [string] A first name for the user.
 	FirstName *string `pulumi:"firstName"`
-	// Indicates if secure (two-factor) authentication is forced for the user
+	// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 	ForceSecAuth *bool `pulumi:"forceSecAuth"`
-	// Ids of the groups that the user is a member of
-	GroupIds          []string `pulumi:"groupIds"`
-	LastName          *string  `pulumi:"lastName"`
-	Password          *string  `pulumi:"password"`
-	S3CanonicalUserId *string  `pulumi:"s3CanonicalUserId"`
-	// Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
-	// used in update.
+	// [Set] The groups that this user will be a member of
+	//
+	// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+	GroupIds []string `pulumi:"groupIds"`
+	// [string] A last name for the user.
+	LastName *string `pulumi:"lastName"`
+	// [string] A password for the user.
+	Password *string `pulumi:"password"`
+	// Canonical (IONOS Object Storage) id of the user for a given identity
+	S3CanonicalUserId *string `pulumi:"s3CanonicalUserId"`
+	// [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
 	SecAuthActive *bool `pulumi:"secAuthActive"`
 }
 
 type UserState struct {
-	// Indicates if the user is active
+	// [Boolean] Indicates if the user is active
 	Active pulumi.BoolPtrInput
-	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-	// automatically have access to all resources associated with the contract.
+	// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 	Administrator pulumi.BoolPtrInput
-	// Email address of the user
-	Email     pulumi.StringPtrInput
+	// [string] An e-mail address for the user.
+	Email pulumi.StringPtrInput
+	// [string] A first name for the user.
 	FirstName pulumi.StringPtrInput
-	// Indicates if secure (two-factor) authentication is forced for the user
+	// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 	ForceSecAuth pulumi.BoolPtrInput
-	// Ids of the groups that the user is a member of
-	GroupIds          pulumi.StringArrayInput
-	LastName          pulumi.StringPtrInput
-	Password          pulumi.StringPtrInput
+	// [Set] The groups that this user will be a member of
+	//
+	// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+	GroupIds pulumi.StringArrayInput
+	// [string] A last name for the user.
+	LastName pulumi.StringPtrInput
+	// [string] A password for the user.
+	Password pulumi.StringPtrInput
+	// Canonical (IONOS Object Storage) id of the user for a given identity
 	S3CanonicalUserId pulumi.StringPtrInput
-	// Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
-	// used in update.
+	// [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
 	SecAuthActive pulumi.BoolPtrInput
 }
 
@@ -130,37 +226,45 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	// Indicates if the user is active
+	// [Boolean] Indicates if the user is active
 	Active *bool `pulumi:"active"`
-	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-	// automatically have access to all resources associated with the contract.
+	// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 	Administrator *bool `pulumi:"administrator"`
-	// Email address of the user
-	Email     string `pulumi:"email"`
+	// [string] An e-mail address for the user.
+	Email string `pulumi:"email"`
+	// [string] A first name for the user.
 	FirstName string `pulumi:"firstName"`
-	// Indicates if secure (two-factor) authentication is forced for the user
+	// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 	ForceSecAuth *bool `pulumi:"forceSecAuth"`
-	// Ids of the groups that the user is a member of
+	// [Set] The groups that this user will be a member of
+	//
+	// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
 	GroupIds []string `pulumi:"groupIds"`
-	LastName string   `pulumi:"lastName"`
-	Password string   `pulumi:"password"`
+	// [string] A last name for the user.
+	LastName string `pulumi:"lastName"`
+	// [string] A password for the user.
+	Password string `pulumi:"password"`
 }
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	// Indicates if the user is active
+	// [Boolean] Indicates if the user is active
 	Active pulumi.BoolPtrInput
-	// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-	// automatically have access to all resources associated with the contract.
+	// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 	Administrator pulumi.BoolPtrInput
-	// Email address of the user
-	Email     pulumi.StringInput
+	// [string] An e-mail address for the user.
+	Email pulumi.StringInput
+	// [string] A first name for the user.
 	FirstName pulumi.StringInput
-	// Indicates if secure (two-factor) authentication is forced for the user
+	// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 	ForceSecAuth pulumi.BoolPtrInput
-	// Ids of the groups that the user is a member of
+	// [Set] The groups that this user will be a member of
+	//
+	// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
 	GroupIds pulumi.StringArrayInput
+	// [string] A last name for the user.
 	LastName pulumi.StringInput
+	// [string] A password for the user.
 	Password pulumi.StringInput
 }
 
@@ -251,50 +355,54 @@ func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return o
 }
 
-// Indicates if the user is active
+// [Boolean] Indicates if the user is active
 func (o UserOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
-// automatically have access to all resources associated with the contract.
+// [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
 func (o UserOutput) Administrator() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.Administrator }).(pulumi.BoolPtrOutput)
 }
 
-// Email address of the user
+// [string] An e-mail address for the user.
 func (o UserOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
+// [string] A first name for the user.
 func (o UserOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.FirstName }).(pulumi.StringOutput)
 }
 
-// Indicates if secure (two-factor) authentication is forced for the user
+// [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
 func (o UserOutput) ForceSecAuth() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.ForceSecAuth }).(pulumi.BoolPtrOutput)
 }
 
-// Ids of the groups that the user is a member of
+// [Set] The groups that this user will be a member of
+//
+// **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
 func (o UserOutput) GroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *User) pulumi.StringArrayOutput { return v.GroupIds }).(pulumi.StringArrayOutput)
 }
 
+// [string] A last name for the user.
 func (o UserOutput) LastName() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.LastName }).(pulumi.StringOutput)
 }
 
+// [string] A password for the user.
 func (o UserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
+// Canonical (IONOS Object Storage) id of the user for a given identity
 func (o UserOutput) S3CanonicalUserId() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.S3CanonicalUserId }).(pulumi.StringOutput)
 }
 
-// Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
-// used in update.
+// [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
 func (o UserOutput) SecAuthActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolOutput { return v.SecAuthActive }).(pulumi.BoolOutput)
 }

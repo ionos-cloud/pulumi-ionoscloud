@@ -12,24 +12,116 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+//
+// ## Example Usage
+//
+// ###
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nlb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleBalancer, err := nlb.NewBalancer(ctx, "exampleBalancer", &nlb.BalancerArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				ListenerLan:  example1.ID(),
+//				TargetLan:    example2.ID(),
+//				Ips: pulumi.StringArray{
+//					pulumi.String("10.12.118.224"),
+//				},
+//				LbPrivateIps: pulumi.StringArray{
+//					pulumi.String("10.13.72.225/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nlb.NewForwardingRule(ctx, "exampleForwardingRule", &nlb.ForwardingRuleArgs{
+//				DatacenterId:          exampleDatacenter.ID(),
+//				NetworkloadbalancerId: exampleBalancer.ID(),
+//				Algorithm:             pulumi.String("SOURCE_IP"),
+//				Protocol:              pulumi.String("TCP"),
+//				ListenerIp:            pulumi.String("10.12.118.224"),
+//				ListenerPort:          pulumi.Int(8081),
+//				Targets: nlb.ForwardingRuleTargetArray{
+//					&nlb.ForwardingRuleTargetArgs{
+//						Ip:            pulumi.String("22.231.2.2"),
+//						Port:          pulumi.Int(8080),
+//						Weight:        pulumi.Int(123),
+//						ProxyProtocol: pulumi.String("v1"),
+//						HealthCheck: &nlb.ForwardingRuleTargetHealthCheckArgs{
+//							Check:         pulumi.Bool(true),
+//							CheckInterval: pulumi.Int(1000),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+// ```
 type ForwardingRule struct {
 	pulumi.CustomResourceState
 
-	// Algorithm for the balancing.
-	Algorithm    pulumi.StringOutput `pulumi:"algorithm"`
+	// [string] Algorithm for the balancing.
+	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck ForwardingRuleHealthCheckOutput `pulumi:"healthCheck"`
-	// Listening IP. (inbound)
+	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringOutput `pulumi:"listenerIp"`
-	// Listening port number. (inbound) (range: 1 to 65535)
+	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntOutput `pulumi:"listenerPort"`
-	// A name of that Network Load Balancer forwarding rule
+	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringOutput `pulumi:"name"`
 	NetworkloadbalancerId pulumi.StringOutput `pulumi:"networkloadbalancerId"`
-	// Protocol of the balancing.
+	// [string] Protocol of the balancing.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// Array of items in that collection
+	// [Set] Array of items in that collection.
 	Targets ForwardingRuleTargetArrayOutput `pulumi:"targets"`
 }
 
@@ -84,40 +176,42 @@ func GetForwardingRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ForwardingRule resources.
 type forwardingRuleState struct {
-	// Algorithm for the balancing.
-	Algorithm    *string `pulumi:"algorithm"`
+	// [string] Algorithm for the balancing.
+	Algorithm *string `pulumi:"algorithm"`
+	// [string] A Datacenter's UUID.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck *ForwardingRuleHealthCheck `pulumi:"healthCheck"`
-	// Listening IP. (inbound)
+	// [string] Listening IP. (inbound)
 	ListenerIp *string `pulumi:"listenerIp"`
-	// Listening port number. (inbound) (range: 1 to 65535)
+	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort *int `pulumi:"listenerPort"`
-	// A name of that Network Load Balancer forwarding rule
+	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  *string `pulumi:"name"`
 	NetworkloadbalancerId *string `pulumi:"networkloadbalancerId"`
-	// Protocol of the balancing.
+	// [string] Protocol of the balancing.
 	Protocol *string `pulumi:"protocol"`
-	// Array of items in that collection
+	// [Set] Array of items in that collection.
 	Targets []ForwardingRuleTarget `pulumi:"targets"`
 }
 
 type ForwardingRuleState struct {
-	// Algorithm for the balancing.
-	Algorithm    pulumi.StringPtrInput
+	// [string] Algorithm for the balancing.
+	Algorithm pulumi.StringPtrInput
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringPtrInput
-	// Health check attributes for Network Load Balancer forwarding rule
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck ForwardingRuleHealthCheckPtrInput
-	// Listening IP. (inbound)
+	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringPtrInput
-	// Listening port number. (inbound) (range: 1 to 65535)
+	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntPtrInput
-	// A name of that Network Load Balancer forwarding rule
+	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringPtrInput
 	NetworkloadbalancerId pulumi.StringPtrInput
-	// Protocol of the balancing.
+	// [string] Protocol of the balancing.
 	Protocol pulumi.StringPtrInput
-	// Array of items in that collection
+	// [Set] Array of items in that collection.
 	Targets ForwardingRuleTargetArrayInput
 }
 
@@ -126,41 +220,43 @@ func (ForwardingRuleState) ElementType() reflect.Type {
 }
 
 type forwardingRuleArgs struct {
-	// Algorithm for the balancing.
-	Algorithm    string `pulumi:"algorithm"`
+	// [string] Algorithm for the balancing.
+	Algorithm string `pulumi:"algorithm"`
+	// [string] A Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck *ForwardingRuleHealthCheck `pulumi:"healthCheck"`
-	// Listening IP. (inbound)
+	// [string] Listening IP. (inbound)
 	ListenerIp string `pulumi:"listenerIp"`
-	// Listening port number. (inbound) (range: 1 to 65535)
+	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort int `pulumi:"listenerPort"`
-	// A name of that Network Load Balancer forwarding rule
+	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  *string `pulumi:"name"`
 	NetworkloadbalancerId string  `pulumi:"networkloadbalancerId"`
-	// Protocol of the balancing.
+	// [string] Protocol of the balancing.
 	Protocol string `pulumi:"protocol"`
-	// Array of items in that collection
+	// [Set] Array of items in that collection.
 	Targets []ForwardingRuleTarget `pulumi:"targets"`
 }
 
 // The set of arguments for constructing a ForwardingRule resource.
 type ForwardingRuleArgs struct {
-	// Algorithm for the balancing.
-	Algorithm    pulumi.StringInput
+	// [string] Algorithm for the balancing.
+	Algorithm pulumi.StringInput
+	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringInput
-	// Health check attributes for Network Load Balancer forwarding rule
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck ForwardingRuleHealthCheckPtrInput
-	// Listening IP. (inbound)
+	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringInput
-	// Listening port number. (inbound) (range: 1 to 65535)
+	// [int] Listening port number. (inbound) (range: 1 to 65535)
 	ListenerPort pulumi.IntInput
-	// A name of that Network Load Balancer forwarding rule
+	// [string] A name of that Network Load Balancer forwarding rule.
 	Name                  pulumi.StringPtrInput
 	NetworkloadbalancerId pulumi.StringInput
-	// Protocol of the balancing.
+	// [string] Protocol of the balancing.
 	Protocol pulumi.StringInput
-	// Array of items in that collection
+	// [Set] Array of items in that collection.
 	Targets ForwardingRuleTargetArrayInput
 }
 
@@ -251,31 +347,32 @@ func (o ForwardingRuleOutput) ToForwardingRuleOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Algorithm for the balancing.
+// [string] Algorithm for the balancing.
 func (o ForwardingRuleOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+// [string] A Datacenter's UUID.
 func (o ForwardingRuleOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Health check attributes for Network Load Balancer forwarding rule
+// Health check attributes for Network Load Balancer forwarding rule.
 func (o ForwardingRuleOutput) HealthCheck() ForwardingRuleHealthCheckOutput {
 	return o.ApplyT(func(v *ForwardingRule) ForwardingRuleHealthCheckOutput { return v.HealthCheck }).(ForwardingRuleHealthCheckOutput)
 }
 
-// Listening IP. (inbound)
+// [string] Listening IP. (inbound)
 func (o ForwardingRuleOutput) ListenerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.ListenerIp }).(pulumi.StringOutput)
 }
 
-// Listening port number. (inbound) (range: 1 to 65535)
+// [int] Listening port number. (inbound) (range: 1 to 65535)
 func (o ForwardingRuleOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.IntOutput { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
-// A name of that Network Load Balancer forwarding rule
+// [string] A name of that Network Load Balancer forwarding rule.
 func (o ForwardingRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -284,12 +381,12 @@ func (o ForwardingRuleOutput) NetworkloadbalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.NetworkloadbalancerId }).(pulumi.StringOutput)
 }
 
-// Protocol of the balancing.
+// [string] Protocol of the balancing.
 func (o ForwardingRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *ForwardingRule) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// Array of items in that collection
+// [Set] Array of items in that collection.
 func (o ForwardingRuleOutput) Targets() ForwardingRuleTargetArrayOutput {
 	return o.ApplyT(func(v *ForwardingRule) ForwardingRuleTargetArrayOutput { return v.Targets }).(ForwardingRuleTargetArrayOutput)
 }

@@ -13,9 +13,21 @@ namespace Pulumi.Ionoscloud.Vpn.Outputs
     [OutputType]
     public sealed class GetWireguardGatewayConnectionResult
     {
+        /// <summary>
+        /// The ID of the datacenter where the WireGuard Gateway is located.
+        /// </summary>
         public readonly string DatacenterId;
+        /// <summary>
+        /// The IPv4 CIDR for the WireGuard Gateway connection.
+        /// </summary>
         public readonly string Ipv4Cidr;
+        /// <summary>
+        /// The IPv6 CIDR for the WireGuard Gateway connection.
+        /// </summary>
         public readonly string Ipv6Cidr;
+        /// <summary>
+        /// The ID of the LAN where the WireGuard Gateway is connected.
+        /// </summary>
         public readonly string LanId;
 
         [OutputConstructor]

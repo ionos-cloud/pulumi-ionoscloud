@@ -4,6 +4,39 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Manages an **IONOS Object Storage Key** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleUser = new ionoscloud.compute.User("exampleUser", {
+ *     firstName: "example",
+ *     lastName: "example",
+ *     email: "unique@email.com",
+ *     password: "abc123-321CBA",
+ *     administrator: false,
+ *     forceSecAuth: false,
+ * });
+ * const exampleS3Key = new ionoscloud.compute.S3Key("exampleS3Key", {
+ *     userId: exampleUser.id,
+ *     active: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
+ * ```
+ *
+ * This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
+ */
 export class S3Key extends pulumi.CustomResource {
     /**
      * Get an existing S3Key resource's state with the given name, ID, and optional extra
@@ -33,15 +66,15 @@ export class S3Key extends pulumi.CustomResource {
     }
 
     /**
-     * Whether this key should be active or not.
+     * [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
      */
     public readonly active!: pulumi.Output<boolean | undefined>;
     /**
-     * The Object Storage Secret key.
+     * The IONOS Object Storage Secret key.
      */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
     /**
-     * The ID of the user that owns the key.
+     * [string] The UUID of the user owning the IONOS Object Storage Key.
      */
     public readonly userId!: pulumi.Output<string>;
 
@@ -80,15 +113,15 @@ export class S3Key extends pulumi.CustomResource {
  */
 export interface S3KeyState {
     /**
-     * Whether this key should be active or not.
+     * [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
      */
     active?: pulumi.Input<boolean>;
     /**
-     * The Object Storage Secret key.
+     * The IONOS Object Storage Secret key.
      */
     secretKey?: pulumi.Input<string>;
     /**
-     * The ID of the user that owns the key.
+     * [string] The UUID of the user owning the IONOS Object Storage Key.
      */
     userId?: pulumi.Input<string>;
 }
@@ -98,11 +131,11 @@ export interface S3KeyState {
  */
 export interface S3KeyArgs {
     /**
-     * Whether this key should be active or not.
+     * [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
      */
     active?: pulumi.Input<boolean>;
     /**
-     * The ID of the user that owns the key.
+     * [string] The UUID of the user owning the IONOS Object Storage Key.
      */
     userId: pulumi.Input<string>;
 }

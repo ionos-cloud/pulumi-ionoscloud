@@ -13,31 +13,31 @@ namespace Pulumi.Ionoscloud.Nlb.Inputs
     public sealed class ForwardingRuleTargetGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule target
+        /// Health check attributes for Network Load Balancer forwarding rule target.
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.ForwardingRuleTargetHealthCheckGetArgs>? HealthCheck { get; set; }
 
         /// <summary>
-        /// IP of a balanced target VM
+        /// [string] IP of a balanced target VM.
         /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
         /// <summary>
-        /// Port of the balanced target service. (range: 1 to 65535)
+        /// [int] Port of the balanced target service. (range: 1 to 65535).
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
         /// <summary>
-        /// Proxy protocol version
+        /// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         /// </summary>
         [Input("proxyProtocol")]
         public Input<string>? ProxyProtocol { get; set; }
 
         /// <summary>
-        /// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+        /// [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
         /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;

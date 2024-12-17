@@ -14,11 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type InMemoryDBReplicaSetConnections struct {
-	// The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your instance to.
+	// [string] The datacenter to connect your instance to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your instance to.
+	// [string] The numeric LAN ID to connect your instance to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -34,11 +34,11 @@ type InMemoryDBReplicaSetConnectionsInput interface {
 }
 
 type InMemoryDBReplicaSetConnectionsArgs struct {
-	// The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your instance to.
+	// [string] The datacenter to connect your instance to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your instance to.
+	// [string] The numeric LAN ID to connect your instance to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -119,17 +119,17 @@ func (o InMemoryDBReplicaSetConnectionsOutput) ToInMemoryDBReplicaSetConnections
 	}).(InMemoryDBReplicaSetConnectionsPtrOutput)
 }
 
-// The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 func (o InMemoryDBReplicaSetConnectionsOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetConnections) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your instance to.
+// [string] The datacenter to connect your instance to.
 func (o InMemoryDBReplicaSetConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your instance to.
+// [string] The numeric LAN ID to connect your instance to.
 func (o InMemoryDBReplicaSetConnectionsOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetConnections) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -158,7 +158,7 @@ func (o InMemoryDBReplicaSetConnectionsPtrOutput) Elem() InMemoryDBReplicaSetCon
 	}).(InMemoryDBReplicaSetConnectionsOutput)
 }
 
-// The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 func (o InMemoryDBReplicaSetConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetConnections) *string {
 		if v == nil {
@@ -168,7 +168,7 @@ func (o InMemoryDBReplicaSetConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// The datacenter to connect your instance to.
+// [string] The datacenter to connect your instance to.
 func (o InMemoryDBReplicaSetConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetConnections) *string {
 		if v == nil {
@@ -178,7 +178,7 @@ func (o InMemoryDBReplicaSetConnectionsPtrOutput) DatacenterId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// The numeric LAN ID to connect your instance to.
+// [string] The numeric LAN ID to connect your instance to.
 func (o InMemoryDBReplicaSetConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetConnections) *string {
 		if v == nil {
@@ -189,11 +189,11 @@ func (o InMemoryDBReplicaSetConnectionsPtrOutput) LanId() pulumi.StringPtrOutput
 }
 
 type InMemoryDBReplicaSetCredentials struct {
-	// The hashed password for a InMemoryDB user.
+	// [object] The hashed password for a InMemoryDB user.
 	HashedPassword *InMemoryDBReplicaSetCredentialsHashedPassword `pulumi:"hashedPassword"`
-	// The password for a InMemoryDB user.
+	// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
 	PlainTextPassword *string `pulumi:"plainTextPassword"`
-	// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+	// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 	Username string `pulumi:"username"`
 }
 
@@ -209,11 +209,11 @@ type InMemoryDBReplicaSetCredentialsInput interface {
 }
 
 type InMemoryDBReplicaSetCredentialsArgs struct {
-	// The hashed password for a InMemoryDB user.
+	// [object] The hashed password for a InMemoryDB user.
 	HashedPassword InMemoryDBReplicaSetCredentialsHashedPasswordPtrInput `pulumi:"hashedPassword"`
-	// The password for a InMemoryDB user.
+	// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
 	PlainTextPassword pulumi.StringPtrInput `pulumi:"plainTextPassword"`
-	// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+	// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -294,19 +294,19 @@ func (o InMemoryDBReplicaSetCredentialsOutput) ToInMemoryDBReplicaSetCredentials
 	}).(InMemoryDBReplicaSetCredentialsPtrOutput)
 }
 
-// The hashed password for a InMemoryDB user.
+// [object] The hashed password for a InMemoryDB user.
 func (o InMemoryDBReplicaSetCredentialsOutput) HashedPassword() InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetCredentials) *InMemoryDBReplicaSetCredentialsHashedPassword {
 		return v.HashedPassword
 	}).(InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput)
 }
 
-// The password for a InMemoryDB user.
+// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
 func (o InMemoryDBReplicaSetCredentialsOutput) PlainTextPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetCredentials) *string { return v.PlainTextPassword }).(pulumi.StringPtrOutput)
 }
 
-// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 func (o InMemoryDBReplicaSetCredentialsOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetCredentials) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -335,7 +335,7 @@ func (o InMemoryDBReplicaSetCredentialsPtrOutput) Elem() InMemoryDBReplicaSetCre
 	}).(InMemoryDBReplicaSetCredentialsOutput)
 }
 
-// The hashed password for a InMemoryDB user.
+// [object] The hashed password for a InMemoryDB user.
 func (o InMemoryDBReplicaSetCredentialsPtrOutput) HashedPassword() InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetCredentials) *InMemoryDBReplicaSetCredentialsHashedPassword {
 		if v == nil {
@@ -345,7 +345,7 @@ func (o InMemoryDBReplicaSetCredentialsPtrOutput) HashedPassword() InMemoryDBRep
 	}).(InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput)
 }
 
-// The password for a InMemoryDB user.
+// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
 func (o InMemoryDBReplicaSetCredentialsPtrOutput) PlainTextPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetCredentials) *string {
 		if v == nil {
@@ -355,7 +355,7 @@ func (o InMemoryDBReplicaSetCredentialsPtrOutput) PlainTextPassword() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 func (o InMemoryDBReplicaSetCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetCredentials) *string {
 		if v == nil {
@@ -366,8 +366,10 @@ func (o InMemoryDBReplicaSetCredentialsPtrOutput) Username() pulumi.StringPtrOut
 }
 
 type InMemoryDBReplicaSetCredentialsHashedPassword struct {
+	// [string] The value can be only: "SHA-256".
 	Algorithm string `pulumi:"algorithm"`
-	Hash      string `pulumi:"hash"`
+	// [string] The hashed password.
+	Hash string `pulumi:"hash"`
 }
 
 // InMemoryDBReplicaSetCredentialsHashedPasswordInput is an input type that accepts InMemoryDBReplicaSetCredentialsHashedPasswordArgs and InMemoryDBReplicaSetCredentialsHashedPasswordOutput values.
@@ -382,8 +384,10 @@ type InMemoryDBReplicaSetCredentialsHashedPasswordInput interface {
 }
 
 type InMemoryDBReplicaSetCredentialsHashedPasswordArgs struct {
+	// [string] The value can be only: "SHA-256".
 	Algorithm pulumi.StringInput `pulumi:"algorithm"`
-	Hash      pulumi.StringInput `pulumi:"hash"`
+	// [string] The hashed password.
+	Hash pulumi.StringInput `pulumi:"hash"`
 }
 
 func (InMemoryDBReplicaSetCredentialsHashedPasswordArgs) ElementType() reflect.Type {
@@ -463,10 +467,12 @@ func (o InMemoryDBReplicaSetCredentialsHashedPasswordOutput) ToInMemoryDBReplica
 	}).(InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput)
 }
 
+// [string] The value can be only: "SHA-256".
 func (o InMemoryDBReplicaSetCredentialsHashedPasswordOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetCredentialsHashedPassword) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+// [string] The hashed password.
 func (o InMemoryDBReplicaSetCredentialsHashedPasswordOutput) Hash() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetCredentialsHashedPassword) string { return v.Hash }).(pulumi.StringOutput)
 }
@@ -495,6 +501,7 @@ func (o InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput) Elem() InMemoryD
 	}).(InMemoryDBReplicaSetCredentialsHashedPasswordOutput)
 }
 
+// [string] The value can be only: "SHA-256".
 func (o InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetCredentialsHashedPassword) *string {
 		if v == nil {
@@ -504,6 +511,7 @@ func (o InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput) Algorithm() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The hashed password.
 func (o InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput) Hash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetCredentialsHashedPassword) *string {
 		if v == nil {
@@ -514,9 +522,9 @@ func (o InMemoryDBReplicaSetCredentialsHashedPasswordPtrOutput) Hash() pulumi.St
 }
 
 type InMemoryDBReplicaSetMaintenanceWindow struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time string `pulumi:"time"`
 }
 
@@ -532,9 +540,9 @@ type InMemoryDBReplicaSetMaintenanceWindowInput interface {
 }
 
 type InMemoryDBReplicaSetMaintenanceWindowArgs struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -615,12 +623,12 @@ func (o InMemoryDBReplicaSetMaintenanceWindowOutput) ToInMemoryDBReplicaSetMaint
 	}).(InMemoryDBReplicaSetMaintenanceWindowPtrOutput)
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o InMemoryDBReplicaSetMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o InMemoryDBReplicaSetMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -649,7 +657,7 @@ func (o InMemoryDBReplicaSetMaintenanceWindowPtrOutput) Elem() InMemoryDBReplica
 	}).(InMemoryDBReplicaSetMaintenanceWindowOutput)
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o InMemoryDBReplicaSetMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetMaintenanceWindow) *string {
 		if v == nil {
@@ -659,7 +667,7 @@ func (o InMemoryDBReplicaSetMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o InMemoryDBReplicaSetMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetMaintenanceWindow) *string {
 		if v == nil {
@@ -670,11 +678,11 @@ func (o InMemoryDBReplicaSetMaintenanceWindowPtrOutput) Time() pulumi.StringPtrO
 }
 
 type InMemoryDBReplicaSetResources struct {
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores int `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram int `pulumi:"ram"`
-	// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+	// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 	Storage *int `pulumi:"storage"`
 }
 
@@ -690,11 +698,11 @@ type InMemoryDBReplicaSetResourcesInput interface {
 }
 
 type InMemoryDBReplicaSetResourcesArgs struct {
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores pulumi.IntInput `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntInput `pulumi:"ram"`
-	// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+	// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 	Storage pulumi.IntPtrInput `pulumi:"storage"`
 }
 
@@ -775,17 +783,17 @@ func (o InMemoryDBReplicaSetResourcesOutput) ToInMemoryDBReplicaSetResourcesPtrO
 	}).(InMemoryDBReplicaSetResourcesPtrOutput)
 }
 
-// The number of CPU cores per instance.
+// [int] The number of CPU cores per instance.
 func (o InMemoryDBReplicaSetResourcesOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetResources) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-// The amount of memory per instance in gigabytes (GB).
+// [int] The amount of memory per instance in gigabytes (GB).
 func (o InMemoryDBReplicaSetResourcesOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetResources) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 func (o InMemoryDBReplicaSetResourcesOutput) Storage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InMemoryDBReplicaSetResources) *int { return v.Storage }).(pulumi.IntPtrOutput)
 }
@@ -814,7 +822,7 @@ func (o InMemoryDBReplicaSetResourcesPtrOutput) Elem() InMemoryDBReplicaSetResou
 	}).(InMemoryDBReplicaSetResourcesOutput)
 }
 
-// The number of CPU cores per instance.
+// [int] The number of CPU cores per instance.
 func (o InMemoryDBReplicaSetResourcesPtrOutput) Cores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetResources) *int {
 		if v == nil {
@@ -824,7 +832,7 @@ func (o InMemoryDBReplicaSetResourcesPtrOutput) Cores() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The amount of memory per instance in gigabytes (GB).
+// [int] The amount of memory per instance in gigabytes (GB).
 func (o InMemoryDBReplicaSetResourcesPtrOutput) Ram() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetResources) *int {
 		if v == nil {
@@ -834,7 +842,7 @@ func (o InMemoryDBReplicaSetResourcesPtrOutput) Ram() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 func (o InMemoryDBReplicaSetResourcesPtrOutput) Storage() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSetResources) *int {
 		if v == nil {
@@ -1332,7 +1340,7 @@ func (o MariaDBClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput 
 }
 
 type MongoClusterBackup struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	// [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 	Location *string `pulumi:"location"`
 	// Number of hours in the past for which a point-in-time snapshot can be created.
 	PointInTimeWindowHours *int `pulumi:"pointInTimeWindowHours"`
@@ -1352,7 +1360,7 @@ type MongoClusterBackupInput interface {
 }
 
 type MongoClusterBackupArgs struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	// [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Number of hours in the past for which a point-in-time snapshot can be created.
 	PointInTimeWindowHours pulumi.IntPtrInput `pulumi:"pointInTimeWindowHours"`
@@ -1437,7 +1445,7 @@ func (o MongoClusterBackupOutput) ToMongoClusterBackupPtrOutputWithContext(ctx c
 	}).(MongoClusterBackupPtrOutput)
 }
 
-// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+// [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 func (o MongoClusterBackupOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoClusterBackup) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
@@ -1476,7 +1484,7 @@ func (o MongoClusterBackupPtrOutput) Elem() MongoClusterBackupOutput {
 	}).(MongoClusterBackupOutput)
 }
 
-// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+// [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 func (o MongoClusterBackupPtrOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterBackup) *string {
 		if v == nil {
@@ -1507,11 +1515,11 @@ func (o MongoClusterBackupPtrOutput) SnapshotIntervalHours() pulumi.IntPtrOutput
 }
 
 type MongoClusterBiConnector struct {
-	// Enable or disable the BiConnector.
+	// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
 	Enabled *bool `pulumi:"enabled"`
-	// The host where this new BI Connector is installed.
+	// [string] - The host where this new BI Connector is installed.
 	Host *string `pulumi:"host"`
-	// Port number used when connecting to this new BI Connector.
+	// [string] - Port number used when connecting to this new BI Connector.
 	Port *string `pulumi:"port"`
 }
 
@@ -1527,11 +1535,11 @@ type MongoClusterBiConnectorInput interface {
 }
 
 type MongoClusterBiConnectorArgs struct {
-	// Enable or disable the BiConnector.
+	// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The host where this new BI Connector is installed.
+	// [string] - The host where this new BI Connector is installed.
 	Host pulumi.StringPtrInput `pulumi:"host"`
-	// Port number used when connecting to this new BI Connector.
+	// [string] - Port number used when connecting to this new BI Connector.
 	Port pulumi.StringPtrInput `pulumi:"port"`
 }
 
@@ -1612,17 +1620,17 @@ func (o MongoClusterBiConnectorOutput) ToMongoClusterBiConnectorPtrOutputWithCon
 	}).(MongoClusterBiConnectorPtrOutput)
 }
 
-// Enable or disable the BiConnector.
+// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
 func (o MongoClusterBiConnectorOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MongoClusterBiConnector) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The host where this new BI Connector is installed.
+// [string] - The host where this new BI Connector is installed.
 func (o MongoClusterBiConnectorOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoClusterBiConnector) *string { return v.Host }).(pulumi.StringPtrOutput)
 }
 
-// Port number used when connecting to this new BI Connector.
+// [string] - Port number used when connecting to this new BI Connector.
 func (o MongoClusterBiConnectorOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoClusterBiConnector) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
@@ -1651,7 +1659,7 @@ func (o MongoClusterBiConnectorPtrOutput) Elem() MongoClusterBiConnectorOutput {
 	}).(MongoClusterBiConnectorOutput)
 }
 
-// Enable or disable the BiConnector.
+// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
 func (o MongoClusterBiConnectorPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MongoClusterBiConnector) *bool {
 		if v == nil {
@@ -1661,7 +1669,7 @@ func (o MongoClusterBiConnectorPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The host where this new BI Connector is installed.
+// [string] - The host where this new BI Connector is installed.
 func (o MongoClusterBiConnectorPtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterBiConnector) *string {
 		if v == nil {
@@ -1671,7 +1679,7 @@ func (o MongoClusterBiConnectorPtrOutput) Host() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Port number used when connecting to this new BI Connector.
+// [string] - Port number used when connecting to this new BI Connector.
 func (o MongoClusterBiConnectorPtrOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterBiConnector) *string {
 		if v == nil {
@@ -1682,11 +1690,11 @@ func (o MongoClusterBiConnectorPtrOutput) Port() pulumi.StringPtrOutput {
 }
 
 type MongoClusterConnections struct {
-	// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+	// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
 	CidrLists []string `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to.
+	// [string] The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
+	// [string] The LAN to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -1702,11 +1710,11 @@ type MongoClusterConnectionsInput interface {
 }
 
 type MongoClusterConnectionsArgs struct {
-	// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+	// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
 	CidrLists pulumi.StringArrayInput `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to.
+	// [string] The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
+	// [string] The LAN to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -1787,17 +1795,17 @@ func (o MongoClusterConnectionsOutput) ToMongoClusterConnectionsPtrOutputWithCon
 	}).(MongoClusterConnectionsPtrOutput)
 }
 
-// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
 func (o MongoClusterConnectionsOutput) CidrLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v MongoClusterConnections) []string { return v.CidrLists }).(pulumi.StringArrayOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [string] The datacenter to connect your cluster to.
 func (o MongoClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v MongoClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The LAN to connect your cluster to.
+// [string] The LAN to connect your cluster to.
 func (o MongoClusterConnectionsOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v MongoClusterConnections) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -1826,7 +1834,7 @@ func (o MongoClusterConnectionsPtrOutput) Elem() MongoClusterConnectionsOutput {
 	}).(MongoClusterConnectionsOutput)
 }
 
-// The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+// [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
 func (o MongoClusterConnectionsPtrOutput) CidrLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MongoClusterConnections) []string {
 		if v == nil {
@@ -1836,7 +1844,7 @@ func (o MongoClusterConnectionsPtrOutput) CidrLists() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [string] The datacenter to connect your cluster to.
 func (o MongoClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterConnections) *string {
 		if v == nil {
@@ -1846,7 +1854,7 @@ func (o MongoClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// The LAN to connect your cluster to.
+// [string] The LAN to connect your cluster to.
 func (o MongoClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterConnections) *string {
 		if v == nil {
@@ -1857,8 +1865,10 @@ func (o MongoClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 }
 
 type MongoClusterMaintenanceWindow struct {
+	// [string]
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	Time         string `pulumi:"time"`
+	// [string]
+	Time string `pulumi:"time"`
 }
 
 // MongoClusterMaintenanceWindowInput is an input type that accepts MongoClusterMaintenanceWindowArgs and MongoClusterMaintenanceWindowOutput values.
@@ -1873,8 +1883,10 @@ type MongoClusterMaintenanceWindowInput interface {
 }
 
 type MongoClusterMaintenanceWindowArgs struct {
+	// [string]
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	Time         pulumi.StringInput `pulumi:"time"`
+	// [string]
+	Time pulumi.StringInput `pulumi:"time"`
 }
 
 func (MongoClusterMaintenanceWindowArgs) ElementType() reflect.Type {
@@ -1954,10 +1966,12 @@ func (o MongoClusterMaintenanceWindowOutput) ToMongoClusterMaintenanceWindowPtrO
 	}).(MongoClusterMaintenanceWindowPtrOutput)
 }
 
+// [string]
 func (o MongoClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v MongoClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
+// [string]
 func (o MongoClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v MongoClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -1986,6 +2000,7 @@ func (o MongoClusterMaintenanceWindowPtrOutput) Elem() MongoClusterMaintenanceWi
 	}).(MongoClusterMaintenanceWindowOutput)
 }
 
+// [string]
 func (o MongoClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -1995,6 +2010,7 @@ func (o MongoClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string]
 func (o MongoClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -2005,8 +2021,11 @@ func (o MongoClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 }
 
 type MongoUserRole struct {
+	// [true] Database on which to apply the role.
+	//
+	// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 	Database *string `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
 	Role *string `pulumi:"role"`
 }
 
@@ -2022,8 +2041,11 @@ type MongoUserRoleInput interface {
 }
 
 type MongoUserRoleArgs struct {
+	// [true] Database on which to apply the role.
+	//
+	// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 	Database pulumi.StringPtrInput `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
 	Role pulumi.StringPtrInput `pulumi:"role"`
 }
 
@@ -2078,11 +2100,14 @@ func (o MongoUserRoleOutput) ToMongoUserRoleOutputWithContext(ctx context.Contex
 	return o
 }
 
+// [true] Database on which to apply the role.
+//
+// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 func (o MongoUserRoleOutput) Database() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoUserRole) *string { return v.Database }).(pulumi.StringPtrOutput)
 }
 
-// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
 func (o MongoUserRoleOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v MongoUserRole) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
@@ -2108,8 +2133,9 @@ func (o MongoUserRoleArrayOutput) Index(i pulumi.IntInput) MongoUserRoleOutput {
 }
 
 type PSQLClusterConnectionPooler struct {
+	// [bool]
 	Enabled bool `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
+	// [string] Represents different modes of connection pooling for the connection pooler.
 	PoolMode string `pulumi:"poolMode"`
 }
 
@@ -2125,8 +2151,9 @@ type PSQLClusterConnectionPoolerInput interface {
 }
 
 type PSQLClusterConnectionPoolerArgs struct {
+	// [bool]
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
+	// [string] Represents different modes of connection pooling for the connection pooler.
 	PoolMode pulumi.StringInput `pulumi:"poolMode"`
 }
 
@@ -2207,11 +2234,12 @@ func (o PSQLClusterConnectionPoolerOutput) ToPSQLClusterConnectionPoolerPtrOutpu
 	}).(PSQLClusterConnectionPoolerPtrOutput)
 }
 
+// [bool]
 func (o PSQLClusterConnectionPoolerOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v PSQLClusterConnectionPooler) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Represents different modes of connection pooling for the connection pooler
+// [string] Represents different modes of connection pooling for the connection pooler.
 func (o PSQLClusterConnectionPoolerOutput) PoolMode() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterConnectionPooler) string { return v.PoolMode }).(pulumi.StringOutput)
 }
@@ -2240,6 +2268,7 @@ func (o PSQLClusterConnectionPoolerPtrOutput) Elem() PSQLClusterConnectionPooler
 	}).(PSQLClusterConnectionPoolerOutput)
 }
 
+// [bool]
 func (o PSQLClusterConnectionPoolerPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterConnectionPooler) *bool {
 		if v == nil {
@@ -2249,7 +2278,7 @@ func (o PSQLClusterConnectionPoolerPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Represents different modes of connection pooling for the connection pooler
+// [string] Represents different modes of connection pooling for the connection pooler.
 func (o PSQLClusterConnectionPoolerPtrOutput) PoolMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterConnectionPooler) *string {
 		if v == nil {
@@ -2260,15 +2289,11 @@ func (o PSQLClusterConnectionPoolerPtrOutput) PoolMode() pulumi.StringPtrOutput 
 }
 
 type PSQLClusterConnections struct {
-	// The IP and subnet for the database.
-	//           Note the following unavailable IP ranges:
-	//           10.233.64.0/18
-	//           10.233.0.0/18
-	//           10.233.114.0/24
+	// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [true] The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
+	// [true] The LAN to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -2284,15 +2309,11 @@ type PSQLClusterConnectionsInput interface {
 }
 
 type PSQLClusterConnectionsArgs struct {
-	// The IP and subnet for the database.
-	//           Note the following unavailable IP ranges:
-	//           10.233.64.0/18
-	//           10.233.0.0/18
-	//           10.233.114.0/24
+	// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [true] The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to.
+	// [true] The LAN to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -2373,22 +2394,17 @@ func (o PSQLClusterConnectionsOutput) ToPSQLClusterConnectionsPtrOutputWithConte
 	}).(PSQLClusterConnectionsPtrOutput)
 }
 
-// The IP and subnet for the database.
-//
-//	Note the following unavailable IP ranges:
-//	10.233.64.0/18
-//	10.233.0.0/18
-//	10.233.114.0/24
+// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 func (o PSQLClusterConnectionsOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterConnections) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [true] The datacenter to connect your cluster to.
 func (o PSQLClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The LAN to connect your cluster to.
+// [true] The LAN to connect your cluster to.
 func (o PSQLClusterConnectionsOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterConnections) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -2417,12 +2433,7 @@ func (o PSQLClusterConnectionsPtrOutput) Elem() PSQLClusterConnectionsOutput {
 	}).(PSQLClusterConnectionsOutput)
 }
 
-// The IP and subnet for the database.
-//
-//	Note the following unavailable IP ranges:
-//	10.233.64.0/18
-//	10.233.0.0/18
-//	10.233.114.0/24
+// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 func (o PSQLClusterConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterConnections) *string {
 		if v == nil {
@@ -2432,7 +2443,7 @@ func (o PSQLClusterConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [true] The datacenter to connect your cluster to.
 func (o PSQLClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterConnections) *string {
 		if v == nil {
@@ -2442,7 +2453,7 @@ func (o PSQLClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The LAN to connect your cluster to.
+// [true] The LAN to connect your cluster to.
 func (o PSQLClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterConnections) *string {
 		if v == nil {
@@ -2453,8 +2464,9 @@ func (o PSQLClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 }
 
 type PSQLClusterCredentials struct {
+	// [string]
 	Password string `pulumi:"password"`
-	// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+	// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
 	Username string `pulumi:"username"`
 }
 
@@ -2470,8 +2482,9 @@ type PSQLClusterCredentialsInput interface {
 }
 
 type PSQLClusterCredentialsArgs struct {
+	// [string]
 	Password pulumi.StringInput `pulumi:"password"`
-	// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+	// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -2552,11 +2565,12 @@ func (o PSQLClusterCredentialsOutput) ToPSQLClusterCredentialsPtrOutputWithConte
 	}).(PSQLClusterCredentialsPtrOutput)
 }
 
+// [string]
 func (o PSQLClusterCredentialsOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterCredentials) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
 func (o PSQLClusterCredentialsOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterCredentials) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2585,6 +2599,7 @@ func (o PSQLClusterCredentialsPtrOutput) Elem() PSQLClusterCredentialsOutput {
 	}).(PSQLClusterCredentialsOutput)
 }
 
+// [string]
 func (o PSQLClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterCredentials) *string {
 		if v == nil {
@@ -2594,7 +2609,7 @@ func (o PSQLClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+// [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
 func (o PSQLClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterCredentials) *string {
 		if v == nil {
@@ -2605,9 +2620,9 @@ func (o PSQLClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type PSQLClusterFromBackup struct {
-	// The unique ID of the backup you want to restore.
+	// [string] The unique ID of the backup you want to restore.
 	BackupId string `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
 	RecoveryTargetTime *string `pulumi:"recoveryTargetTime"`
 }
 
@@ -2623,9 +2638,9 @@ type PSQLClusterFromBackupInput interface {
 }
 
 type PSQLClusterFromBackupArgs struct {
-	// The unique ID of the backup you want to restore.
+	// [string] The unique ID of the backup you want to restore.
 	BackupId pulumi.StringInput `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
 	RecoveryTargetTime pulumi.StringPtrInput `pulumi:"recoveryTargetTime"`
 }
 
@@ -2706,12 +2721,12 @@ func (o PSQLClusterFromBackupOutput) ToPSQLClusterFromBackupPtrOutputWithContext
 	}).(PSQLClusterFromBackupPtrOutput)
 }
 
-// The unique ID of the backup you want to restore.
+// [string] The unique ID of the backup you want to restore.
 func (o PSQLClusterFromBackupOutput) BackupId() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterFromBackup) string { return v.BackupId }).(pulumi.StringOutput)
 }
 
-// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
 func (o PSQLClusterFromBackupOutput) RecoveryTargetTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PSQLClusterFromBackup) *string { return v.RecoveryTargetTime }).(pulumi.StringPtrOutput)
 }
@@ -2740,7 +2755,7 @@ func (o PSQLClusterFromBackupPtrOutput) Elem() PSQLClusterFromBackupOutput {
 	}).(PSQLClusterFromBackupOutput)
 }
 
-// The unique ID of the backup you want to restore.
+// [string] The unique ID of the backup you want to restore.
 func (o PSQLClusterFromBackupPtrOutput) BackupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterFromBackup) *string {
 		if v == nil {
@@ -2750,7 +2765,7 @@ func (o PSQLClusterFromBackupPtrOutput) BackupId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+// [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
 func (o PSQLClusterFromBackupPtrOutput) RecoveryTargetTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterFromBackup) *string {
 		if v == nil {
@@ -2761,8 +2776,10 @@ func (o PSQLClusterFromBackupPtrOutput) RecoveryTargetTime() pulumi.StringPtrOut
 }
 
 type PSQLClusterMaintenanceWindow struct {
+	// [string]
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	Time         string `pulumi:"time"`
+	// [string]
+	Time string `pulumi:"time"`
 }
 
 // PSQLClusterMaintenanceWindowInput is an input type that accepts PSQLClusterMaintenanceWindowArgs and PSQLClusterMaintenanceWindowOutput values.
@@ -2777,8 +2794,10 @@ type PSQLClusterMaintenanceWindowInput interface {
 }
 
 type PSQLClusterMaintenanceWindowArgs struct {
+	// [string]
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	Time         pulumi.StringInput `pulumi:"time"`
+	// [string]
+	Time pulumi.StringInput `pulumi:"time"`
 }
 
 func (PSQLClusterMaintenanceWindowArgs) ElementType() reflect.Type {
@@ -2858,10 +2877,12 @@ func (o PSQLClusterMaintenanceWindowOutput) ToPSQLClusterMaintenanceWindowPtrOut
 	}).(PSQLClusterMaintenanceWindowPtrOutput)
 }
 
+// [string]
 func (o PSQLClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
+// [string]
 func (o PSQLClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v PSQLClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -2890,6 +2911,7 @@ func (o PSQLClusterMaintenanceWindowPtrOutput) Elem() PSQLClusterMaintenanceWind
 	}).(PSQLClusterMaintenanceWindowOutput)
 }
 
+// [string]
 func (o PSQLClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -2899,6 +2921,7 @@ func (o PSQLClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string]
 func (o PSQLClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PSQLClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -2909,11 +2932,11 @@ func (o PSQLClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 }
 
 type GetInMemoryDBReplicaSetConnection struct {
-	// The IP and subnet for your Replicaset.
+	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your Replicaset to.
+	// [string] The datacenter to connect your instance to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your Replicaset to.
+	// [string] The numeric LAN ID to connect your instance to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -2929,11 +2952,11 @@ type GetInMemoryDBReplicaSetConnectionInput interface {
 }
 
 type GetInMemoryDBReplicaSetConnectionArgs struct {
-	// The IP and subnet for your Replicaset.
+	// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your Replicaset to.
+	// [string] The datacenter to connect your instance to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your Replicaset to.
+	// [string] The numeric LAN ID to connect your instance to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -2988,17 +3011,17 @@ func (o GetInMemoryDBReplicaSetConnectionOutput) ToGetInMemoryDBReplicaSetConnec
 	return o
 }
 
-// The IP and subnet for your Replicaset.
+// [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
 func (o GetInMemoryDBReplicaSetConnectionOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your Replicaset to.
+// [string] The datacenter to connect your instance to.
 func (o GetInMemoryDBReplicaSetConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your Replicaset to.
+// [string] The numeric LAN ID to connect your instance to.
 func (o GetInMemoryDBReplicaSetConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -3024,7 +3047,7 @@ func (o GetInMemoryDBReplicaSetConnectionArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetInMemoryDBReplicaSetCredential struct {
-	// The username for your Replicaset.
+	// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 	Username string `pulumi:"username"`
 }
 
@@ -3040,7 +3063,7 @@ type GetInMemoryDBReplicaSetCredentialInput interface {
 }
 
 type GetInMemoryDBReplicaSetCredentialArgs struct {
-	// The username for your Replicaset.
+	// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -3095,7 +3118,7 @@ func (o GetInMemoryDBReplicaSetCredentialOutput) ToGetInMemoryDBReplicaSetCreden
 	return o
 }
 
-// The username for your Replicaset.
+// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
 func (o GetInMemoryDBReplicaSetCredentialOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetCredential) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -3121,9 +3144,9 @@ func (o GetInMemoryDBReplicaSetCredentialArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetInMemoryDBReplicaSetMaintenanceWindow struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time string `pulumi:"time"`
 }
 
@@ -3139,9 +3162,9 @@ type GetInMemoryDBReplicaSetMaintenanceWindowInput interface {
 }
 
 type GetInMemoryDBReplicaSetMaintenanceWindowArgs struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -3196,12 +3219,12 @@ func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) ToGetInMemoryDBReplicaSe
 	return o
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o GetInMemoryDBReplicaSetMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -3227,11 +3250,11 @@ func (o GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput) Index(i pulumi.IntI
 }
 
 type GetInMemoryDBReplicaSetResource struct {
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores int `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram int `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 	Storage int `pulumi:"storage"`
 }
 
@@ -3247,11 +3270,11 @@ type GetInMemoryDBReplicaSetResourceInput interface {
 }
 
 type GetInMemoryDBReplicaSetResourceArgs struct {
-	// The number of CPU cores per instance.
+	// [int] The number of CPU cores per instance.
 	Cores pulumi.IntInput `pulumi:"cores"`
-	// The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB).
 	Ram pulumi.IntInput `pulumi:"ram"`
-	// The amount of storage per instance in gigabytes (GB).
+	// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 	Storage pulumi.IntInput `pulumi:"storage"`
 }
 
@@ -3306,17 +3329,17 @@ func (o GetInMemoryDBReplicaSetResourceOutput) ToGetInMemoryDBReplicaSetResource
 	return o
 }
 
-// The number of CPU cores per instance.
+// [int] The number of CPU cores per instance.
 func (o GetInMemoryDBReplicaSetResourceOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Cores }).(pulumi.IntOutput)
 }
 
-// The amount of memory per instance in gigabytes (GB).
+// [int] The amount of memory per instance in gigabytes (GB).
 func (o GetInMemoryDBReplicaSetResourceOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Ram }).(pulumi.IntOutput)
 }
 
-// The amount of storage per instance in gigabytes (GB).
+// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
 func (o GetInMemoryDBReplicaSetResourceOutput) Storage() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInMemoryDBReplicaSetResource) int { return v.Storage }).(pulumi.IntOutput)
 }
@@ -3563,7 +3586,7 @@ func (o GetMariaDBClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetMongoClusterBackup struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 	Location string `pulumi:"location"`
 }
 
@@ -3579,7 +3602,7 @@ type GetMongoClusterBackupInput interface {
 }
 
 type GetMongoClusterBackupArgs struct {
-	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+	// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 	Location pulumi.StringInput `pulumi:"location"`
 }
 
@@ -3634,7 +3657,7 @@ func (o GetMongoClusterBackupOutput) ToGetMongoClusterBackupOutputWithContext(ct
 	return o
 }
 
-// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
 func (o GetMongoClusterBackupOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMongoClusterBackup) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -3782,9 +3805,9 @@ type GetMongoClusterConnection struct {
 	//           10.233.114.0/24
 	//  example: [192.168.1.100/24, 192.168.1.101/24]
 	CidrLists []string `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to
+	// The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to
+	// The LAN to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -3807,9 +3830,9 @@ type GetMongoClusterConnectionArgs struct {
 	//           10.233.114.0/24
 	//  example: [192.168.1.100/24, 192.168.1.101/24]
 	CidrLists pulumi.StringArrayInput `pulumi:"cidrLists"`
-	// The datacenter to connect your cluster to
+	// The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The LAN to connect your cluster to
+	// The LAN to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -3875,12 +3898,12 @@ func (o GetMongoClusterConnectionOutput) CidrLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetMongoClusterConnection) []string { return v.CidrLists }).(pulumi.StringArrayOutput)
 }
 
-// The datacenter to connect your cluster to
+// The datacenter to connect your cluster to.
 func (o GetMongoClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The LAN to connect your cluster to
+// The LAN to connect your cluster to.
 func (o GetMongoClusterConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMongoClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -4006,8 +4029,11 @@ func (o GetMongoClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetMongoUserRole struct {
+	// [true] Database on which to apply the role.
+	//
+	// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 	Database string `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
 	Role string `pulumi:"role"`
 }
 
@@ -4023,8 +4049,11 @@ type GetMongoUserRoleInput interface {
 }
 
 type GetMongoUserRoleArgs struct {
+	// [true] Database on which to apply the role.
+	//
+	// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 	Database pulumi.StringInput `pulumi:"database"`
-	// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+	// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
 	Role pulumi.StringInput `pulumi:"role"`
 }
 
@@ -4079,11 +4108,14 @@ func (o GetMongoUserRoleOutput) ToGetMongoUserRoleOutputWithContext(ctx context.
 	return o
 }
 
+// [true] Database on which to apply the role.
+//
+// **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
 func (o GetMongoUserRoleOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMongoUserRole) string { return v.Database }).(pulumi.StringOutput)
 }
 
-// A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+// [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
 func (o GetMongoUserRoleOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMongoUserRole) string { return v.Role }).(pulumi.StringOutput)
 }
@@ -4109,7 +4141,7 @@ func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOu
 }
 
 type GetPSQLClusterConnection struct {
-	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	// The IP and subnet for the database.
 	Cidr string `pulumi:"cidr"`
 	// The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
@@ -4129,7 +4161,7 @@ type GetPSQLClusterConnectionInput interface {
 }
 
 type GetPSQLClusterConnectionArgs struct {
-	// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+	// The IP and subnet for the database.
 	Cidr pulumi.StringInput `pulumi:"cidr"`
 	// The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
@@ -4188,7 +4220,7 @@ func (o GetPSQLClusterConnectionOutput) ToGetPSQLClusterConnectionOutputWithCont
 	return o
 }
 
-// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+// The IP and subnet for the database.
 func (o GetPSQLClusterConnectionOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
 }
@@ -4225,7 +4257,7 @@ func (o GetPSQLClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetPSQLClu
 
 type GetPSQLClusterConnectionPooler struct {
 	Enabled bool `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
+	// Represents different modes of connection pooling for the connection pooler.
 	PoolMode string `pulumi:"poolMode"`
 }
 
@@ -4242,7 +4274,7 @@ type GetPSQLClusterConnectionPoolerInput interface {
 
 type GetPSQLClusterConnectionPoolerArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Represents different modes of connection pooling for the connection pooler
+	// Represents different modes of connection pooling for the connection pooler.
 	PoolMode pulumi.StringInput `pulumi:"poolMode"`
 }
 
@@ -4301,7 +4333,7 @@ func (o GetPSQLClusterConnectionPoolerOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetPSQLClusterConnectionPooler) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Represents different modes of connection pooling for the connection pooler
+// Represents different modes of connection pooling for the connection pooler.
 func (o GetPSQLClusterConnectionPoolerOutput) PoolMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClusterConnectionPooler) string { return v.PoolMode }).(pulumi.StringOutput)
 }
@@ -4327,9 +4359,9 @@ func (o GetPSQLClusterConnectionPoolerArrayOutput) Index(i pulumi.IntInput) GetP
 }
 
 type GetPSQLClusterFromBackup struct {
-	// The unique ID of the backup you want to restore.
+	// The PostgreSQL version of your cluster.
 	BackupId string `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
 	RecoveryTargetTime string `pulumi:"recoveryTargetTime"`
 }
 
@@ -4345,9 +4377,9 @@ type GetPSQLClusterFromBackupInput interface {
 }
 
 type GetPSQLClusterFromBackupArgs struct {
-	// The unique ID of the backup you want to restore.
+	// The PostgreSQL version of your cluster.
 	BackupId pulumi.StringInput `pulumi:"backupId"`
-	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+	// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
 	RecoveryTargetTime pulumi.StringInput `pulumi:"recoveryTargetTime"`
 }
 
@@ -4402,12 +4434,12 @@ func (o GetPSQLClusterFromBackupOutput) ToGetPSQLClusterFromBackupOutputWithCont
 	return o
 }
 
-// The unique ID of the backup you want to restore.
+// The PostgreSQL version of your cluster.
 func (o GetPSQLClusterFromBackupOutput) BackupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClusterFromBackup) string { return v.BackupId }).(pulumi.StringOutput)
 }
 
-// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+// If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
 func (o GetPSQLClusterFromBackupOutput) RecoveryTargetTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClusterFromBackup) string { return v.RecoveryTargetTime }).(pulumi.StringOutput)
 }

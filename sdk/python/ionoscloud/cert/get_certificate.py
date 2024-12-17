@@ -43,21 +43,33 @@ class GetCertificateResult:
     @property
     @pulumi.getter
     def certificate(self) -> str:
+        """
+        Certificate body.
+        """
         return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter(name="certificateChain")
     def certificate_chain(self) -> str:
+        """
+        Certificate chain.
+        """
         return pulumi.get(self, "certificate_chain")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the certificate.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the certificate.
+        """
         return pulumi.get(self, "name")
 
 
@@ -79,7 +91,28 @@ def get_certificate(certificate: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCertificateResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Certificate data source** can be used to search for and return an existing certificate.
+    You can provide a string for either id or name parameters which will be compared with provisioned certificates.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_certificate(name="Certificate Name Example")
+    ```
+
+
+    :param str certificate: Certificate body.
+    :param str certificate_chain: Certificate chain.
+    :param str id: ID of the certificate you want to search for.
+           
+           Either `name` or `id` must be provided, or both. If none are provided, the datasource will return an error.
+    :param str name: Name of an existing certificate that you want to search for.
     """
     __args__ = dict()
     __args__['certificate'] = certificate
@@ -100,7 +133,28 @@ def get_certificate_output(certificate: Optional[pulumi.Input[Optional[str]]] = 
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCertificateResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Certificate data source** can be used to search for and return an existing certificate.
+    You can provide a string for either id or name parameters which will be compared with provisioned certificates.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cert.get_certificate(name="Certificate Name Example")
+    ```
+
+
+    :param str certificate: Certificate body.
+    :param str certificate_chain: Certificate chain.
+    :param str id: ID of the certificate you want to search for.
+           
+           Either `name` or `id` must be provided, or both. If none are provided, the datasource will return an error.
+    :param str name: Name of an existing certificate that you want to search for.
     """
     __args__ = dict()
     __args__['certificate'] = certificate

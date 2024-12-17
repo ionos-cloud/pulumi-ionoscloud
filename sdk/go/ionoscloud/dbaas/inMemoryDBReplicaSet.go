@@ -12,34 +12,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DBaaS InMemoryDB Replica Set**.
+//
+// ## Import
+//
+// Resource DBaaS InMemoryDB Replica Set can be imported using the `replicaset_id` and the `location`, separated by `:`, e.g:
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet example {location}:{replicaSet UUID}
+// ```
 type InMemoryDBReplicaSet struct {
 	pulumi.CustomResourceState
 
-	// The network connection for your replica set. Only one connection is allowed.
+	// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 	Connections InMemoryDBReplicaSetConnectionsOutput `pulumi:"connections"`
-	// Credentials for the InMemoryDB replicaset.
+	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 	Credentials InMemoryDBReplicaSetCredentialsOutput `pulumi:"credentials"`
-	// The human readable name of your replica set.
+	// [string] The human-readable name of your replica set.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
-	// The eviction policy for the replica set.
+	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy pulumi.StringOutput `pulumi:"evictionPolicy"`
-	// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrOutput `pulumi:"initialSnapshotId"`
-	// The replica set location
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	// Specifies How and If data is persisted.
+	// [string] Specifies How and If data is persisted, possible values are:
+	// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+	// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+	// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+	// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 	PersistenceMode pulumi.StringOutput `pulumi:"persistenceMode"`
-	// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-	// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-	// standby for a failure of the active instance.
+	// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 	Replicas pulumi.IntOutput `pulumi:"replicas"`
-	// The resources of the individual replicas.
+	// [object] The resources of the individual replicas.
 	Resources InMemoryDBReplicaSetResourcesOutput `pulumi:"resources"`
-	// The InMemoryDB version of your replica set.
+	// [string] The InMemoryDB version of your replica set.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -100,60 +111,64 @@ func GetInMemoryDBReplicaSet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InMemoryDBReplicaSet resources.
 type inMemoryDBReplicaSetState struct {
-	// The network connection for your replica set. Only one connection is allowed.
+	// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 	Connections *InMemoryDBReplicaSetConnections `pulumi:"connections"`
-	// Credentials for the InMemoryDB replicaset.
+	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 	Credentials *InMemoryDBReplicaSetCredentials `pulumi:"credentials"`
-	// The human readable name of your replica set.
+	// [string] The human-readable name of your replica set.
 	DisplayName *string `pulumi:"displayName"`
-	// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	DnsName *string `pulumi:"dnsName"`
-	// The eviction policy for the replica set.
+	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy *string `pulumi:"evictionPolicy"`
-	// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId *string `pulumi:"initialSnapshotId"`
-	// The replica set location
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 	Location *string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *InMemoryDBReplicaSetMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// Specifies How and If data is persisted.
+	// [string] Specifies How and If data is persisted, possible values are:
+	// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+	// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+	// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+	// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 	PersistenceMode *string `pulumi:"persistenceMode"`
-	// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-	// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-	// standby for a failure of the active instance.
+	// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 	Replicas *int `pulumi:"replicas"`
-	// The resources of the individual replicas.
+	// [object] The resources of the individual replicas.
 	Resources *InMemoryDBReplicaSetResources `pulumi:"resources"`
-	// The InMemoryDB version of your replica set.
+	// [string] The InMemoryDB version of your replica set.
 	Version *string `pulumi:"version"`
 }
 
 type InMemoryDBReplicaSetState struct {
-	// The network connection for your replica set. Only one connection is allowed.
+	// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 	Connections InMemoryDBReplicaSetConnectionsPtrInput
-	// Credentials for the InMemoryDB replicaset.
+	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 	Credentials InMemoryDBReplicaSetCredentialsPtrInput
-	// The human readable name of your replica set.
+	// [string] The human-readable name of your replica set.
 	DisplayName pulumi.StringPtrInput
-	// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	DnsName pulumi.StringPtrInput
-	// The eviction policy for the replica set.
+	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy pulumi.StringPtrInput
-	// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrInput
-	// The replica set location
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 	Location pulumi.StringPtrInput
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowPtrInput
-	// Specifies How and If data is persisted.
+	// [string] Specifies How and If data is persisted, possible values are:
+	// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+	// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+	// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+	// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 	PersistenceMode pulumi.StringPtrInput
-	// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-	// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-	// standby for a failure of the active instance.
+	// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 	Replicas pulumi.IntPtrInput
-	// The resources of the individual replicas.
+	// [object] The resources of the individual replicas.
 	Resources InMemoryDBReplicaSetResourcesPtrInput
-	// The InMemoryDB version of your replica set.
+	// [string] The InMemoryDB version of your replica set.
 	Version pulumi.StringPtrInput
 }
 
@@ -162,57 +177,61 @@ func (InMemoryDBReplicaSetState) ElementType() reflect.Type {
 }
 
 type inMemoryDBReplicaSetArgs struct {
-	// The network connection for your replica set. Only one connection is allowed.
+	// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 	Connections InMemoryDBReplicaSetConnections `pulumi:"connections"`
-	// Credentials for the InMemoryDB replicaset.
+	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 	Credentials InMemoryDBReplicaSetCredentials `pulumi:"credentials"`
-	// The human readable name of your replica set.
+	// [string] The human-readable name of your replica set.
 	DisplayName string `pulumi:"displayName"`
-	// The eviction policy for the replica set.
+	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy string `pulumi:"evictionPolicy"`
-	// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId *string `pulumi:"initialSnapshotId"`
-	// The replica set location
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 	Location string `pulumi:"location"`
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *InMemoryDBReplicaSetMaintenanceWindow `pulumi:"maintenanceWindow"`
-	// Specifies How and If data is persisted.
+	// [string] Specifies How and If data is persisted, possible values are:
+	// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+	// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+	// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+	// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 	PersistenceMode string `pulumi:"persistenceMode"`
-	// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-	// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-	// standby for a failure of the active instance.
+	// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 	Replicas int `pulumi:"replicas"`
-	// The resources of the individual replicas.
+	// [object] The resources of the individual replicas.
 	Resources InMemoryDBReplicaSetResources `pulumi:"resources"`
-	// The InMemoryDB version of your replica set.
+	// [string] The InMemoryDB version of your replica set.
 	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a InMemoryDBReplicaSet resource.
 type InMemoryDBReplicaSetArgs struct {
-	// The network connection for your replica set. Only one connection is allowed.
+	// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 	Connections InMemoryDBReplicaSetConnectionsInput
-	// Credentials for the InMemoryDB replicaset.
+	// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 	Credentials InMemoryDBReplicaSetCredentialsInput
-	// The human readable name of your replica set.
+	// [string] The human-readable name of your replica set.
 	DisplayName pulumi.StringInput
-	// The eviction policy for the replica set.
+	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy pulumi.StringInput
-	// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+	// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 	InitialSnapshotId pulumi.StringPtrInput
-	// The replica set location
+	// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 	Location pulumi.StringInput
-	// A weekly 4 hour-long window, during which maintenance might occur.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow InMemoryDBReplicaSetMaintenanceWindowPtrInput
-	// Specifies How and If data is persisted.
+	// [string] Specifies How and If data is persisted, possible values are:
+	// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+	// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+	// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+	// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 	PersistenceMode pulumi.StringInput
-	// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-	// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-	// standby for a failure of the active instance.
+	// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 	Replicas pulumi.IntInput
-	// The resources of the individual replicas.
+	// [object] The resources of the individual replicas.
 	Resources InMemoryDBReplicaSetResourcesInput
-	// The InMemoryDB version of your replica set.
+	// [string] The InMemoryDB version of your replica set.
 	Version pulumi.StringInput
 }
 
@@ -303,64 +322,66 @@ func (o InMemoryDBReplicaSetOutput) ToInMemoryDBReplicaSetOutputWithContext(ctx 
 	return o
 }
 
-// The network connection for your replica set. Only one connection is allowed.
+// [object] The network connection for your replica set. Only one connection is allowed. Updates to the value of the fields force the replica set to be re-created.
 func (o InMemoryDBReplicaSetOutput) Connections() InMemoryDBReplicaSetConnectionsOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) InMemoryDBReplicaSetConnectionsOutput { return v.Connections }).(InMemoryDBReplicaSetConnectionsOutput)
 }
 
-// Credentials for the InMemoryDB replicaset.
+// [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. These values are used to create the initial InMemoryDB user, updating any of these will force recreation of the replica set resource.
 func (o InMemoryDBReplicaSetOutput) Credentials() InMemoryDBReplicaSetCredentialsOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) InMemoryDBReplicaSetCredentialsOutput { return v.Credentials }).(InMemoryDBReplicaSetCredentialsOutput)
 }
 
-// The human readable name of your replica set.
+// [string] The human-readable name of your replica set.
 func (o InMemoryDBReplicaSetOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 func (o InMemoryDBReplicaSetOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }
 
-// The eviction policy for the replica set.
+// [string] The eviction policy for the replica set, possible values are:
 func (o InMemoryDBReplicaSetOutput) EvictionPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.EvictionPolicy }).(pulumi.StringOutput)
 }
 
-// The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
+// [string] The ID of a snapshot to restore the replica set from. If set, the replica set will be created from the snapshot.
 func (o InMemoryDBReplicaSetOutput) InitialSnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringPtrOutput { return v.InitialSnapshotId }).(pulumi.StringPtrOutput)
 }
 
-// The replica set location
+// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created.
 func (o InMemoryDBReplicaSetOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// A weekly 4 hour-long window, during which maintenance might occur.
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 func (o InMemoryDBReplicaSetOutput) MaintenanceWindow() InMemoryDBReplicaSetMaintenanceWindowOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) InMemoryDBReplicaSetMaintenanceWindowOutput { return v.MaintenanceWindow }).(InMemoryDBReplicaSetMaintenanceWindowOutput)
 }
 
-// Specifies How and If data is persisted.
+// [string] Specifies How and If data is persisted, possible values are:
+// * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+// * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+// * `RDB` - RDB persistence performs snapshots of the current in memory state.
+// * `RDB_AOF` - Both RDB and AOF persistence are enabled.
 func (o InMemoryDBReplicaSetOutput) PersistenceMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.PersistenceMode }).(pulumi.StringOutput)
 }
 
-// The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the
-// value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only
-// standby for a failure of the active instance.
+// [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
 func (o InMemoryDBReplicaSetOutput) Replicas() pulumi.IntOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.IntOutput { return v.Replicas }).(pulumi.IntOutput)
 }
 
-// The resources of the individual replicas.
+// [object] The resources of the individual replicas.
 func (o InMemoryDBReplicaSetOutput) Resources() InMemoryDBReplicaSetResourcesOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) InMemoryDBReplicaSetResourcesOutput { return v.Resources }).(InMemoryDBReplicaSetResourcesOutput)
 }
 
-// The InMemoryDB version of your replica set.
+// [string] The InMemoryDB version of your replica set.
 func (o InMemoryDBReplicaSetOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

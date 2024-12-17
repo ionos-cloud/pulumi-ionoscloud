@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     public sealed class ClusterLanRoute
     {
         /// <summary>
-        /// IPv4 or IPv6 gateway IP for the route
+        /// [string] IPv4 or IPv6 gateway IP for the route.
         /// </summary>
         public readonly string Gateway;
         /// <summary>
-        /// IPv4 or IPv6 CIDR to be routed via the interface
+        /// [string] IPv4 or IPv6 CIDR to be routed via the interface.
         /// </summary>
         public readonly string Network;
 

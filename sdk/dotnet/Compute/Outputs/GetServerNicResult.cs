@@ -13,19 +13,54 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class GetServerNicResult
     {
+        /// <summary>
+        /// The Logical Unit Number (LUN) of the storage volume
+        /// </summary>
         public readonly int DeviceNumber;
+        /// <summary>
+        /// Indicates if the nic will reserve an IP using DHCP
+        /// </summary>
         public readonly bool Dhcp;
         public readonly bool? Dhcpv6;
+        /// <summary>
+        /// Activate or deactivate the firewall
+        /// </summary>
         public readonly bool FirewallActive;
+        /// <summary>
+        /// list of
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetServerNicFirewallRuleResult> FirewallRules;
+        /// <summary>
+        /// The type of firewall rules that will be allowed on the NIC
+        /// </summary>
         public readonly string FirewallType;
+        /// <summary>
+        /// ID of the server you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Collection of IP addresses assigned to a nic
+        /// </summary>
         public readonly ImmutableArray<string> Ips;
         public readonly string Ipv6CidrBlock;
         public readonly ImmutableArray<string> Ipv6Ips;
+        /// <summary>
+        /// The LAN ID the NIC will sit on
+        /// </summary>
         public readonly int Lan;
+        /// <summary>
+        /// The MAC address of the NIC
+        /// </summary>
         public readonly string Mac;
+        /// <summary>
+        /// Name of an existing server that you want to search for.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The PCI slot number of the Nic
+        /// </summary>
         public readonly int PciSlot;
 
         [OutputConstructor]

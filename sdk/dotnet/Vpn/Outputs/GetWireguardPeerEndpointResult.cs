@@ -13,7 +13,13 @@ namespace Pulumi.Ionoscloud.Vpn.Outputs
     [OutputType]
     public sealed class GetWireguardPeerEndpointResult
     {
+        /// <summary>
+        /// Hostname or IPV4 address that the WireGuard Server will connect to.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// Port that the WireGuard Server will connect to. Default: 51820
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

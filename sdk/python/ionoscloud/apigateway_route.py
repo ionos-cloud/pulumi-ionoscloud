@@ -246,7 +246,12 @@ class _ApigatewayRouteState:
         pulumi.set(self, "websocket", value)
 
 
+warnings.warn("""ionoscloud.index/apigatewayroute.ApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/route.Route""", DeprecationWarning)
+
+
 class ApigatewayRoute(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/apigatewayroute.ApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/route.Route""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -301,6 +306,7 @@ class ApigatewayRoute(pulumi.CustomResource):
                  upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayRouteUpstreamArgs', 'ApigatewayRouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
+        pulumi.log.warn("""ApigatewayRoute is deprecated: ionoscloud.index/apigatewayroute.ApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

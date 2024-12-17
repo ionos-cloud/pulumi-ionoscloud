@@ -22,6 +22,8 @@ __all__ = [
     'get_apigateway_output',
 ]
 
+warnings.warn("""ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""", DeprecationWarning)
+
 @pulumi.output_type
 class GetApigatewayResult:
     """
@@ -106,8 +108,35 @@ def get_apigateway(id: Optional[str] = None,
                    partial_match: Optional[bool] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApigatewayResult:
     """
+<<<<<<< HEAD
+    The **API Gateway data source** can be used to search for and return an existing API Gateway.
+    You can provide a string for the name parameter which will be compared with provisioned API Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_apigateway(name="example-apigateway")
+    ```
+
+
+    :param str id: ID of an existing API Gateway that you want to search for.
+    :param str name: Name of an existing API Gateway that you want to search for.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+=======
     Use this data source to access information about an existing resource.
+>>>>>>> main
     """
+    pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
@@ -128,8 +157,36 @@ def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApigatewayResult]:
     """
+<<<<<<< HEAD
+    The **API Gateway data source** can be used to search for and return an existing API Gateway.
+    You can provide a string for the name parameter which will be compared with provisioned API Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+
+    Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
+    this data source is called.
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.apigateway.get_apigateway(name="example-apigateway")
+    ```
+
+
+    :param str id: ID of an existing API Gateway that you want to search for.
+    :param str name: Name of an existing API Gateway that you want to search for.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+    """
+    pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
+=======
     Use this data source to access information about an existing resource.
     """
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name

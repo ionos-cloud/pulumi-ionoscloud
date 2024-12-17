@@ -11,12 +11,21 @@ namespace Pulumi.Ionoscloud.Nfs
 {
     public static class GetCluster
     {
+        /// <summary>
+        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+        /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("ionoscloud:nfs/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +33,27 @@ namespace Pulumi.Ionoscloud.Nfs
 
     public sealed class GetClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Network File Storage cluster.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The location where the Network File Storage cluster is located.
+        /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the Network File Storage cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
@@ -44,15 +65,27 @@ namespace Pulumi.Ionoscloud.Nfs
 
     public sealed class GetClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Network File Storage cluster.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The location where the Network File Storage cluster is located.
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the Network File Storage cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
@@ -66,12 +99,30 @@ namespace Pulumi.Ionoscloud.Nfs
     [OutputType]
     public sealed class GetClusterResult
     {
+        /// <summary>
+        /// A list of connections for the Network File Storage cluster. You can specify only one connection. Each connection supports the following:
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterConnectionResult> Connections;
+        /// <summary>
+        /// The ID of the Network File Storage cluster.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The location where the Network File Storage cluster is located.
+        /// </summary>
         public readonly string Location;
+        /// <summary>
+        /// The name of the Network File Storage cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The NFS configuration for the Network File Storage cluster. Each NFS configuration supports the following:
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetClusterNfResult> Nfs;
         public readonly bool? PartialMatch;
+        /// <summary>
+        /// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        /// </summary>
         public readonly int Size;
 
         [OutputConstructor]

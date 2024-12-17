@@ -21,6 +21,9 @@ namespace Pulumi.Ionoscloud.Cdn.Outputs
         /// The scheme of the routing rule.
         /// </summary>
         public readonly string Scheme;
+        /// <summary>
+        /// A map of properties for the rule
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDistributionRoutingRuleUpstreamResult> Upstreams;
 
         [OutputConstructor]

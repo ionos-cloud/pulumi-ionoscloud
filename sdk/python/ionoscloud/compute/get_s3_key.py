@@ -43,21 +43,33 @@ class GetS3KeyResult:
     @property
     @pulumi.getter
     def active(self) -> Optional[bool]:
+        """
+        The state of the IONOS Object Storage key
+        """
         return pulumi.get(self, "active")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the IONOS Object Storage key
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
+        """
+        (Computed)The IONOS Object Storage Secret key.
+        """
         return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> str:
+        """
+        The ID of the user that owns the key
+        """
         return pulumi.get(self, "user_id")
 
 
@@ -78,7 +90,15 @@ def get_s3_key(active: Optional[bool] = None,
                user_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetS3KeyResult:
     """
-    Use this data source to access information about an existing resource.
+    The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
+    You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param bool active: The state of the IONOS Object Storage key
+    :param str id: ID of the IONOS Object Storage key you want to search for.
+    :param str user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
     """
     __args__ = dict()
     __args__['active'] = active
@@ -97,7 +117,15 @@ def get_s3_key_output(active: Optional[pulumi.Input[Optional[bool]]] = None,
                       user_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetS3KeyResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
+    You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param bool active: The state of the IONOS Object Storage key
+    :param str id: ID of the IONOS Object Storage key you want to search for.
+    :param str user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
     """
     __args__ = dict()
     __args__['active'] = active

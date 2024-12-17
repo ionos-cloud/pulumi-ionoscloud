@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class GetPSQLClusterConnectionResult
     {
         /// <summary>
-        /// The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        /// The IP and subnet for the database.
         /// </summary>
         public readonly string Cidr;
         /// <summary>

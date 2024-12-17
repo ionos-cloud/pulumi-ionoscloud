@@ -80,6 +80,9 @@ class GetCubeServerResult:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
@@ -100,6 +103,9 @@ class GetCubeServerResult:
     @property
     @pulumi.getter
     def cdroms(self) -> Sequence['outputs.GetCubeServerCdromResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "cdroms")
 
     @property
@@ -115,21 +121,33 @@ class GetCubeServerResult:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The id of the datacenter
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of the firewall rule
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the firewall rule
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nics(self) -> Sequence['outputs.GetCubeServerNicResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "nics")
 
     @property
@@ -140,6 +158,9 @@ class GetCubeServerResult:
     @property
     @pulumi.getter(name="templateUuid")
     def template_uuid(self) -> Optional[str]:
+        """
+        The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+        """
         return pulumi.get(self, "template_uuid")
 
     @property
@@ -150,11 +171,17 @@ class GetCubeServerResult:
     @property
     @pulumi.getter(name="vmState")
     def vm_state(self) -> str:
+        """
+        Status of the virtual Machine
+        """
         return pulumi.get(self, "vm_state")
 
     @property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.GetCubeServerVolumeResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -188,7 +215,19 @@ def get_cube_server(datacenter_id: Optional[str] = None,
                     template_uuid: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCubeServerResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Cube Server data source** can be used to search for and return existing servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
+    :param str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -221,7 +260,19 @@ def get_cube_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                            template_uuid: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCubeServerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Cube Server data source** can be used to search for and return existing servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
+    :param str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

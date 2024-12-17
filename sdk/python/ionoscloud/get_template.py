@@ -46,26 +46,41 @@ class GetTemplateResult:
     @property
     @pulumi.getter
     def cores(self) -> float:
+        """
+        The CPU cores count
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        Id of template
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of template
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def ram(self) -> float:
+        """
+        The RAM size in MB
+        """
         return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> float:
+        """
+        The storage size in GB
+        """
         return pulumi.get(self, "storage_size")
 
 
@@ -88,7 +103,51 @@ def get_template(cores: Optional[float] = None,
                  storage_size: Optional[float] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTemplateResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Template data source** can be used to search for and return existing templates by providing any of template properties (name, cores, ram, storage_size).
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(name="CUBES S")
+    ```
+
+    ### By Cores
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(cores=6)
+    ```
+
+    ### By Ram
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(ram=49152)
+    ```
+
+    ### By Storage Size
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(storage_size=80)
+    ```
+
+
+    :param float cores: The CPU cores count.
+    :param str name: A name of that resource.
+    :param float ram: The RAM size in MB.
+    :param float storage_size: The storage size in GB.
+           
+           Any of the arguments ca be provided. If none, the datasource will return an error.
     """
     __args__ = dict()
     __args__['cores'] = cores
@@ -110,7 +169,51 @@ def get_template_output(cores: Optional[pulumi.Input[Optional[float]]] = None,
                         storage_size: Optional[pulumi.Input[Optional[float]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTemplateResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Template data source** can be used to search for and return existing templates by providing any of template properties (name, cores, ram, storage_size).
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(name="CUBES S")
+    ```
+
+    ### By Cores
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(cores=6)
+    ```
+
+    ### By Ram
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(ram=49152)
+    ```
+
+    ### By Storage Size
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_template(storage_size=80)
+    ```
+
+
+    :param float cores: The CPU cores count.
+    :param str name: A name of that resource.
+    :param float ram: The RAM size in MB.
+    :param float storage_size: The storage size in GB.
+           
+           Any of the arguments ca be provided. If none, the datasource will return an error.
     """
     __args__ = dict()
     __args__['cores'] = cores

@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Nlb.Outputs
     public sealed class BalancerFlowlog
     {
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+        /// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+        /// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+        /// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         /// </summary>
         public readonly string Direction;
         /// <summary>
@@ -30,7 +30,9 @@ namespace Pulumi.Ionoscloud.Nlb.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The resource name.
+        /// [string] Specifies the name of the flow log.
+        /// 
+        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
         /// </summary>
         public readonly string Name;
 

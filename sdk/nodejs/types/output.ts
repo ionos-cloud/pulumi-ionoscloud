@@ -5,587 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ApigatewayCustomDomain {
-    /**
-     * The certificate ID for the domain.
-     */
-    certificateId?: string;
-    /**
-     * The domain name.
-     */
-    name: string;
-}
-
-export interface ApigatewayRouteUpstream {
-    /**
-     * The host of the upstream.
-     */
-    host: string;
-    /**
-     * The load balancer algorithm.
-     */
-    loadbalancer?: string;
-    /**
-     * The port of the upstream.
-     */
-    port?: number;
-    /**
-     * The target URL of the upstream.
-     */
-    scheme?: string;
-    /**
-     * Weight with which to split traffic to the upstream.
-     */
-    weight?: number;
-}
-
-export interface AutoscalingGroupPolicy {
-    /**
-     * The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
-     */
-    metric: string;
-    /**
-     * Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
-     */
-    range?: string;
-    /**
-     * Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
-     */
-    scaleInAction: outputs.AutoscalingGroupPolicyScaleInAction;
-    /**
-     * The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-     */
-    scaleInThreshold: number;
-    /**
-     * Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
-     */
-    scaleOutAction: outputs.AutoscalingGroupPolicyScaleOutAction;
-    /**
-     * The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-     */
-    scaleOutThreshold: number;
-    /**
-     * Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
-     */
-    unit: string;
-}
-
-export interface AutoscalingGroupPolicyScaleInAction {
-    /**
-     * When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-     */
-    cooldownPeriod: string;
-    /**
-     * If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-     */
-    deleteVolumes: boolean;
-    /**
-     * The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
-     */
-    terminationPolicyType: string;
-}
-
-export interface AutoscalingGroupPolicyScaleOutAction {
-    /**
-     * When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-     */
-    cooldownPeriod: string;
-}
-
-export interface AutoscalingGroupReplicaConfiguration {
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    availabilityZone: string;
-    /**
-     * The total number of cores for the VMs.
-     */
-    cores: number;
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    cpuFamily?: string;
-    /**
-     * Set of NICs associated with this Replica.
-     */
-    nics?: outputs.AutoscalingGroupReplicaConfigurationNic[];
-    /**
-     * The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-     */
-    ram: number;
-    /**
-     * List of volumes associated with this Replica.
-     */
-    volumes?: outputs.AutoscalingGroupReplicaConfigurationVolume[];
-}
-
-export interface AutoscalingGroupReplicaConfigurationNic {
-    /**
-     * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-     */
-    dhcp?: boolean;
-    /**
-     * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-     */
-    firewallActive?: boolean;
-    /**
-     * List of all firewall rules for the specified NIC.
-     */
-    firewallRules?: outputs.AutoscalingGroupReplicaConfigurationNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-     */
-    firewallType?: string;
-    /**
-     * List of all flow logs for the specified NIC.
-     */
-    flowLogs?: outputs.AutoscalingGroupReplicaConfigurationNicFlowLog[];
-    /**
-     * Lan ID for this replica Nic.
-     */
-    lan: number;
-    /**
-     * Name for this replica NIC.
-     */
-    name: string;
-    /**
-     * In order to link VM to ALB, target group must be provided.
-     */
-    targetGroup?: outputs.AutoscalingGroupReplicaConfigurationNicTargetGroup;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFirewallRule {
-    /**
-     * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-     */
-    icmpCode?: number;
-    /**
-     * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-     */
-    icmpType?: number;
-    /**
-     * The name of the firewall rule.
-     */
-    name?: string;
-    /**
-     * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeEnd?: number;
-    /**
-     * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeStart?: number;
-    /**
-     * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-     */
-    sourceIp?: string;
-    /**
-     * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-     */
-    sourceMac?: string;
-    /**
-     * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-     */
-    targetIp?: string;
-    /**
-     * The firewall rule type. If not specified, the default value 'INGRESS' is used.
-     */
-    type: string;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFlowLog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-     */
-    action: string;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * The resource name.
-     */
-    name: string;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicTargetGroup {
-    /**
-     * The port for the target group.
-     */
-    port: number;
-    /**
-     * The ID of the target group.
-     */
-    targetGroupId: string;
-    /**
-     * The weight for the target group.
-     */
-    weight: number;
-}
-
-export interface AutoscalingGroupReplicaConfigurationVolume {
-    /**
-     * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
-     * Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-     * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-     */
-    bootOrder: string;
-    /**
-     * The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-     */
-    bus?: string;
-    /**
-     * The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
-     */
-    image?: string;
-    /**
-     * The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
-     */
-    imageAlias?: string;
-    /**
-     * Image password for this replica volume.
-     */
-    imagePassword?: string;
-    /**
-     * Name for this replica volume.
-     */
-    name: string;
-    /**
-     * User-defined size for this replica volume in GB.
-     */
-    size: number;
-    sshKeys?: string[];
-    /**
-     * Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
-     */
-    type: string;
-    /**
-     * User-data (Cloud Init) for this replica volume.
-     */
-    userData: string;
-}
-
-export interface GetApigatewayCustomDomain {
-    /**
-     * The ID of the certificate to use for the distribution.
-     */
-    certificateId: string;
-    /**
-     * The domain name of the distribution.
-     */
-    name: string;
-}
-
-export interface GetApigatewayRouteUpstream {
-    /**
-     * The host of the upstream.
-     */
-    host: string;
-    /**
-     * The load balancer algorithm.
-     */
-    loadbalancer: string;
-    /**
-     * The port of the upstream.
-     */
-    port: number;
-    /**
-     * The target URL of the upstream.
-     */
-    scheme: string;
-    /**
-     * Weight with which to split traffic to the upstream.
-     */
-    weight: number;
-}
-
-export interface GetAutoscalingGroupPolicy {
-    /**
-     * The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
-     */
-    metric: string;
-    /**
-     * Defines the time range, for which the samples will be aggregated. Default is 120s.
-     */
-    range: string;
-    /**
-     * Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
-     */
-    scaleInActions: outputs.GetAutoscalingGroupPolicyScaleInAction[];
-    /**
-     * The lower threshold for the value of the `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
-     */
-    scaleInThreshold: number;
-    /**
-     * Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
-     */
-    scaleOutActions: outputs.GetAutoscalingGroupPolicyScaleOutAction[];
-    /**
-     * The upper threshold for the value of the `metric`. Will be used with `greater than` (>) operator. Exceeding this will start a Scale-Out action as specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold` depending on the `metric` to avoid competitive actions at the same time.
-     */
-    scaleOutThreshold: number;
-    /**
-     * Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
-     */
-    unit: string;
-}
-
-export interface GetAutoscalingGroupPolicyScaleInAction {
-    /**
-     * When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
-     */
-    cooldownPeriod: string;
-    /**
-     * If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-     */
-    deleteVolumes: boolean;
-    /**
-     * The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
-     */
-    terminationPolicyType: string;
-}
-
-export interface GetAutoscalingGroupPolicyScaleOutAction {
-    /**
-     * When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given.
-     */
-    cooldownPeriod: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfiguration {
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    availabilityZone: string;
-    /**
-     * The total number of cores for the VMs.
-     */
-    cores: number;
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    cpuFamily: string;
-    /**
-     * List of NICs associated with this Replica.
-     */
-    nics: outputs.GetAutoscalingGroupReplicaConfigurationNic[];
-    /**
-     * The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-     */
-    ram: number;
-    /**
-     * List of volumes associated with this Replica. Only a single volume is currently supported.
-     */
-    volumes: outputs.GetAutoscalingGroupReplicaConfigurationVolume[];
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNic {
-    /**
-     * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-     */
-    dhcp: boolean;
-    /**
-     * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-     */
-    firewallActive: boolean;
-    /**
-     * List of all firewall rules for the specified NIC.
-     */
-    firewallRules: outputs.GetAutoscalingGroupReplicaConfigurationNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-     */
-    firewallType: string;
-    /**
-     * Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
-     */
-    flowLogs: outputs.GetAutoscalingGroupReplicaConfigurationNicFlowLog[];
-    /**
-     * Lan ID for this replica Nic.
-     */
-    lan: number;
-    /**
-     * Name for this replica NIC.
-     */
-    name: string;
-    /**
-     * In order to link VM to ALB, target group must be provided.
-     */
-    targetGroups: outputs.GetAutoscalingGroupReplicaConfigurationNicTargetGroup[];
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicFirewallRule {
-    /**
-     * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-     */
-    icmpCode: number;
-    /**
-     * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-     */
-    icmpType: number;
-    /**
-     * The name of the firewall rule.
-     */
-    name: string;
-    /**
-     * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeEnd: number;
-    /**
-     * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeStart: number;
-    /**
-     * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-     */
-    sourceIp: string;
-    /**
-     * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-     */
-    sourceMac: string;
-    /**
-     * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-     */
-    targetIp: string;
-    /**
-     * The firewall rule type. If not specified, the default value 'INGRESS' is used.
-     */
-    type: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicFlowLog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
-     */
-    action: string;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * The resource name.
-     */
-    name: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicTargetGroup {
-    /**
-     * The port for the target group.
-     */
-    port: number;
-    /**
-     * The ID of the target group.
-     */
-    targetGroupId: string;
-    /**
-     * The weight for the target group.
-     */
-    weight: number;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationVolume {
-    /**
-     * The uuid of the Backup Unit that user has access to.
-     */
-    backupUnitId: string;
-    /**
-     * Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-     */
-    bootOrder: string;
-    /**
-     * The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-     */
-    bus: string;
-    /**
-     * The image installed on the volume. Only the UUID of the image is presently supported.
-     */
-    image: string;
-    /**
-     * The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
-     */
-    imageAlias: string;
-    /**
-     * Name for this replica volume.
-     */
-    name: string;
-    /**
-     * User-defined size for this replica volume in GB.
-     */
-    size: number;
-    sshKeys: string[];
-    /**
-     * Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
-     */
-    type: string;
-}
-
-export interface GetAutoscalingGroupServersServer {
-    /**
-     * Unique identifier for the resource
-     */
-    id: string;
-}
-
 export interface GetDataplatformNodePoolsNodePool {
     /**
      * Key-value pairs attached to node pool resource as kubernetes annotations
@@ -617,7 +36,7 @@ export interface GetDataplatformNodePoolsNodePool {
      */
     maintenanceWindows: outputs.GetDataplatformNodePoolsNodePoolMaintenanceWindow[];
     /**
-     * The name of your node pool.
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
      */
     name: string;
     /**
@@ -786,25 +205,22 @@ export interface GetK8sNodePoolNodesNode {
     publicIp?: string;
 }
 
-export interface GetKafkaClusterConnection {
-    /**
-     * The broker addresses of the Kafka Cluster
-     */
-    brokerAddresses: string[];
-    /**
-     * The datacenter to connect your Kafka Cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your Kafka Cluster to.
-     */
-    lanId: string;
-}
-
 export interface GetLocationCpuArchitecture {
+    /**
+     * A valid CPU family name.
+     */
     cpuFamily: string;
+    /**
+     * The maximum number of cores available.
+     */
     maxCores: number;
+    /**
+     * The maximum number of RAM in MB.
+     */
     maxRam: number;
+    /**
+     * A valid CPU vendor name.
+     */
     vendor: string;
 }
 
@@ -1053,7 +469,7 @@ export interface GetTargetGroupTarget {
      */
     port: number;
     /**
-     * Proxy protocol version
+     * The proxy protocol version.
      */
     proxyProtocol: string;
     /**
@@ -1062,77 +478,71 @@ export interface GetTargetGroupTarget {
     weight: number;
 }
 
-export interface KafkaClusterConnections {
-    /**
-     * The broker addresses of the Kafka Cluster. Can be empty, but must be present.
-     */
-    brokerAddresses: string[];
-    /**
-     * The datacenter to connect your Kafka Cluster to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID to connect your Kafka Cluster to.
-     */
-    lanId: string;
-}
-
 export interface TargetGroupHealthCheck {
     /**
-     * The interval in milliseconds between consecutive health checks; default is 2000.
+     * [int] The interval in milliseconds between consecutive health checks; default is 2000.
      */
     checkInterval: number;
     /**
-     * The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+     * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
      */
     checkTimeout: number;
     /**
-     * The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+     * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
      */
     retries: number;
 }
 
 export interface TargetGroupHttpHealthCheck {
+    /**
+     * [string]
+     */
     matchType: string;
     /**
-     * The method for the HTTP health check.
+     * [string] The method for the HTTP health check.
      */
     method: string;
+    /**
+     * [bool]
+     */
     negate?: boolean;
     /**
-     * The path (destination URL) for the HTTP health check request; the default is /.
+     * [string] The path (destination URL) for the HTTP health check request; the default is /.
      */
     path: string;
+    /**
+     * [bool]
+     */
     regex?: boolean;
     /**
-     * The response returned by the request, depending on the match type.
+     * [string] The response returned by the request, depending on the match type.
      */
     response: string;
 }
 
 export interface TargetGroupTarget {
     /**
-     * Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+     * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
      */
     healthCheckEnabled: boolean;
     /**
-     * The IP of the balanced target VM.
+     * [string] The IP of the balanced target VM.
      */
     ip: string;
     /**
-     * Maintenance mode prevents the target from receiving balanced traffic.
+     * [bool] Maintenance mode prevents the target from receiving balanced traffic.
      */
     maintenanceEnabled?: boolean;
     /**
-     * The port of the balanced target service; valid range is 1 to 65535.
+     * [int] The port of the balanced target service; valid range is 1 to 65535.
      */
     port: number;
     /**
-     * Proxy protocol version
+     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
      */
     proxyProtocol?: string;
     /**
-     * Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+     * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: number;
 }
@@ -1140,15 +550,15 @@ export interface TargetGroupTarget {
 export namespace alb {
     export interface BalancerFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
          */
         bucket: string;
         /**
-         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
          */
         direction: string;
         /**
@@ -1156,92 +566,94 @@ export namespace alb {
          */
         id: string;
         /**
-         * The resource name.
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
          */
         name: string;
     }
 
     export interface ForwardingRuleHttpRule {
         /**
-         * An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+         * [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
          */
         conditions: outputs.alb.ForwardingRuleHttpRuleCondition[];
         /**
-         * Valid only for STATIC actions.
+         * [string] Valid only for STATIC actions.
          */
         contentType: string;
         /**
-         * Default is false; valid only for REDIRECT actions.
+         * [bool] Default is false; valid only for REDIRECT actions.
          */
         dropQuery?: boolean;
         /**
-         * The location for redirecting; mandatory and valid only for REDIRECT actions.
+         * [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
          */
         location?: string;
         /**
-         * The unique name of the Application Load Balancer HTTP rule.
+         * [string] The unique name of the Application Load Balancer HTTP rule.
          */
         name: string;
         /**
-         * The response message of the request; mandatory for STATIC actions.
+         * [string] The response message of the request; mandatory for STATIC action.
          */
         responseMessage?: string;
         /**
-         * Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+         * [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
          */
         statusCode: number;
         /**
-         * The ID of the target group; mandatory and only valid for FORWARD actions.
+         * [string] The UUID of the target group; mandatory for FORWARD action.
          */
         targetGroup?: string;
         /**
-         * Type of the HTTP rule.
+         * [string] Type of the Http Rule.
          */
         type: string;
     }
 
     export interface ForwardingRuleHttpRuleCondition {
         /**
-         * Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+         * [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
          */
         condition?: string;
         /**
-         * Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+         * [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
          */
         key?: string;
         /**
-         * Specifies whether the condition is negated or not; the default is False.
+         * [bool] Specifies whether the condition is negated or not; the default is False.
          */
         negate?: boolean;
         /**
-         * Type of the HTTP rule condition.
+         * [string] Type of the Http Rule condition.
          */
         type: string;
         /**
-         * Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+         * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
          */
         value?: string;
     }
 
     export interface GetBalancerFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket.
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
          */
         bucket: string;
         /**
-         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
          */
         direction: string;
         /**
-         * The resource's unique identifier.
+         * ID of the application load balancer you want to search for.
          */
         id: string;
         /**
-         * The resource name.
+         * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
          */
         name: string;
     }
@@ -1264,11 +676,11 @@ export namespace alb {
          */
         location: string;
         /**
-         * The unique name of the Application Load Balancer HTTP rule.
+         * Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
          */
         name: string;
         /**
-         * The response message of the request; mandatory for STATIC actions.
+         * The response message of the request; mandatory for STATIC action.
          */
         responseMessage: string;
         /**
@@ -1276,11 +688,11 @@ export namespace alb {
          */
         statusCode: number;
         /**
-         * The ID of the target group; mandatory and only valid for FORWARD actions.
+         * The UUID of the target group; mandatory for FORWARD action.
          */
         targetGroup: string;
         /**
-         * Type of the HTTP rule.
+         * Type of the Http Rule condition.
          */
         type: string;
     }
@@ -1299,7 +711,7 @@ export namespace alb {
          */
         negate: boolean;
         /**
-         * Type of the HTTP rule condition.
+         * Type of the Http Rule condition.
          */
         type: string;
         /**
@@ -1310,45 +722,657 @@ export namespace alb {
 
 }
 
+export namespace apigateway {
+    export interface ApigatewayCustomDomain {
+        /**
+         * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+         */
+        certificateId?: string;
+        /**
+         * [string] The domain name. Externally reachable.
+         */
+        name: string;
+    }
+
+    export interface GetApigatewayCustomDomain {
+        /**
+         * The ID of the certificate to use for the distribution.
+         */
+        certificateId: string;
+        /**
+         * Name of an existing API Gateway that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetRouteUpstream {
+        /**
+         * The host of the upstream.
+         */
+        host: string;
+        /**
+         * The load balancer algorithm.
+         */
+        loadbalancer: string;
+        /**
+         * The port of the upstream.
+         */
+        port: number;
+        /**
+         * The target URL of the upstream.
+         */
+        scheme: string;
+        /**
+         * Weight with which to split traffic to the upstream.
+         */
+        weight: number;
+    }
+
+    export interface RouteUpstream {
+        /**
+         * [string] The host of the upstream.
+         */
+        host: string;
+        /**
+         * [string] The load balancer algorithm. Default value: `roundrobin`.
+         */
+        loadbalancer?: string;
+        /**
+         * [int] The port of the upstream. Default value: `80`.
+         */
+        port?: number;
+        /**
+         * [string] The target URL of the upstream. Default value: `http`.
+         */
+        scheme?: string;
+        /**
+         * [int] Weight with which to split traffic to the upstream. Default value: `100`.
+         */
+        weight?: number;
+    }
+
+}
+
+export namespace autoscaling {
+    export interface GetGroupPolicy {
+        /**
+         * The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+         */
+        metric: string;
+        /**
+         * Defines the range of time from which samples will be aggregated. Default is 120s.
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        range: string;
+        /**
+         * Specifies the Action to take when the `scaleInThreshold`
+         */
+        scaleInActions: outputs.autoscaling.GetGroupPolicyScaleInAction[];
+        /**
+         * A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+         */
+        scaleInThreshold: number;
+        /**
+         * Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+         */
+        scaleOutActions: outputs.autoscaling.GetGroupPolicyScaleOutAction[];
+        /**
+         * The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+         */
+        scaleOutThreshold: number;
+        /**
+         * Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+         */
+        unit: string;
+    }
+
+    export interface GetGroupPolicyScaleInAction {
+        /**
+         * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+         */
+        amount: number;
+        /**
+         * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+         */
+        amountType: string;
+        /**
+         * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+        /**
+         * If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+         */
+        deleteVolumes: boolean;
+        /**
+         * The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
+         */
+        terminationPolicyType: string;
+    }
+
+    export interface GetGroupPolicyScaleOutAction {
+        /**
+         * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+         */
+        amount: number;
+        /**
+         * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+         */
+        amountType: string;
+        /**
+         * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+    }
+
+    export interface GetGroupReplicaConfiguration {
+        /**
+         * The zone where the VMs are created using this configuration.
+         */
+        availabilityZone: string;
+        /**
+         * The total number of cores for the VMs.
+         */
+        cores: number;
+        /**
+         * The zone where the VMs are created using this configuration.
+         */
+        cpuFamily: string;
+        /**
+         * List of NICs associated with this Replica.
+         */
+        nics: outputs.autoscaling.GetGroupReplicaConfigurationNic[];
+        /**
+         * The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+         */
+        ram: number;
+        /**
+         * List of volumes associated with this Replica. Only a single volume is currently supported.
+         */
+        volumes: outputs.autoscaling.GetGroupReplicaConfigurationVolume[];
+    }
+
+    export interface GetGroupReplicaConfigurationNic {
+        /**
+         * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+         */
+        dhcp: boolean;
+        /**
+         * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+         */
+        firewallActive: boolean;
+        /**
+         * List of all firewall rules for the specified NIC.
+         */
+        firewallRules: outputs.autoscaling.GetGroupReplicaConfigurationNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+         */
+        firewallType: string;
+        /**
+         * Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
+         */
+        flowLogs: outputs.autoscaling.GetGroupReplicaConfigurationNicFlowLog[];
+        /**
+         * Lan ID for this replica Nic.
+         */
+        lan: number;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * In order to link VM to ALB, target group must be provided.
+         */
+        targetGroups: outputs.autoscaling.GetGroupReplicaConfigurationNicTargetGroup[];
+    }
+
+    export interface GetGroupReplicaConfigurationNicFirewallRule {
+        /**
+         * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+         */
+        icmpCode: number;
+        /**
+         * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+         */
+        icmpType: number;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeEnd: number;
+        /**
+         * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeStart: number;
+        /**
+         * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+         */
+        sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+         */
+        sourceMac: string;
+        /**
+         * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+         */
+        targetIp: string;
+        /**
+         * Type of resource
+         */
+        type: string;
+    }
+
+    export interface GetGroupReplicaConfigurationNicFlowLog {
+        /**
+         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+         */
+        action: string;
+        /**
+         * The bucket name of an existing IONOS Object Storage bucket.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+         */
+        direction: string;
+        /**
+         * Id of an existing Autoscaling Group that you want to search for.
+         */
+        id: string;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+    }
+
+    export interface GetGroupReplicaConfigurationNicTargetGroup {
+        /**
+         * The port for the target group.
+         */
+        port: number;
+        /**
+         * The ID of the target group.
+         */
+        targetGroupId: string;
+        /**
+         * The weight for the target group.
+         */
+        weight: number;
+    }
+
+    export interface GetGroupReplicaConfigurationVolume {
+        /**
+         * The uuid of the Backup Unit that user has access to.
+         */
+        backupUnitId: string;
+        /**
+         * Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+         */
+        bootOrder: string;
+        /**
+         * The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
+         */
+        bus: string;
+        /**
+         * The image installed on the volume. Only the UUID of the image is presently supported.
+         */
+        image: string;
+        /**
+         * The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
+         */
+        imageAlias: string;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * User-defined size for this replica volume in GB.
+         */
+        size: number;
+        sshKeys: string[];
+        /**
+         * Type of resource
+         */
+        type: string;
+    }
+
+    export interface GetServersServer {
+        /**
+         * The unique ID of the server.
+         */
+        id: string;
+    }
+
+    export interface GroupPolicy {
+        /**
+         * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+         */
+        metric: string;
+        /**
+         * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        range?: string;
+        /**
+         * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+         */
+        scaleInAction: outputs.autoscaling.GroupPolicyScaleInAction;
+        /**
+         * [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+         */
+        scaleInThreshold: number;
+        /**
+         * [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+         */
+        scaleOutAction: outputs.autoscaling.GroupPolicyScaleOutAction;
+        /**
+         * [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+         */
+        scaleOutThreshold: number;
+        /**
+         * [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+         */
+        unit: string;
+    }
+
+    export interface GroupPolicyScaleInAction {
+        /**
+         * [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
+         */
+        amount: number;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: string;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+        /**
+         * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+         */
+        deleteVolumes: boolean;
+        /**
+         * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+         */
+        terminationPolicyType: string;
+    }
+
+    export interface GroupPolicyScaleOutAction {
+        /**
+         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         */
+        amount: number;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: string;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+    }
+
+    export interface GroupReplicaConfiguration {
+        /**
+         * [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+         */
+        availabilityZone: string;
+        /**
+         * [int] The total number of cores for the VMs.
+         */
+        cores: number;
+        /**
+         * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         */
+        cpuFamily?: string;
+        /**
+         * Set of NICs associated with this Replica.
+         */
+        nics?: outputs.autoscaling.GroupReplicaConfigurationNic[];
+        /**
+         * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+         */
+        ram: number;
+        /**
+         * [list] List of volumes associated with this Replica.
+         */
+        volumes?: outputs.autoscaling.GroupReplicaConfigurationVolume[];
+    }
+
+    export interface GroupReplicaConfigurationNic {
+        /**
+         * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+         */
+        dhcp?: boolean;
+        /**
+         * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+         */
+        firewallActive?: boolean;
+        /**
+         * List of all firewall rules for the specified NIC.
+         */
+        firewallRules?: outputs.autoscaling.GroupReplicaConfigurationNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+         */
+        firewallType?: string;
+        /**
+         * List of all flow logs for the specified NIC.
+         */
+        flowLogs?: outputs.autoscaling.GroupReplicaConfigurationNicFlowLog[];
+        /**
+         * Lan ID for this replica Nic.
+         */
+        lan: number;
+        /**
+         * [string] User-defined name for the Autoscaling Group.
+         */
+        name: string;
+        /**
+         * In order to link VM to ALB, target group must be provided.
+         */
+        targetGroup?: outputs.autoscaling.GroupReplicaConfigurationNicTargetGroup;
+    }
+
+    export interface GroupReplicaConfigurationNicFirewallRule {
+        /**
+         * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+         */
+        icmpCode?: number;
+        /**
+         * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+         */
+        icmpType?: number;
+        /**
+         * [string] User-defined name for the Autoscaling Group.
+         */
+        name?: string;
+        /**
+         * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeEnd?: number;
+        /**
+         * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeStart?: number;
+        /**
+         * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+         */
+        sourceIp?: string;
+        /**
+         * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+         */
+        sourceMac?: string;
+        /**
+         * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+         */
+        targetIp?: string;
+        /**
+         * The firewall rule type. If not specified, the default value 'INGRESS' is used.
+         */
+        type: string;
+    }
+
+    export interface GroupReplicaConfigurationNicFlowLog {
+        /**
+         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+         */
+        action: string;
+        /**
+         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] User-defined name for the Autoscaling Group.
+         */
+        name: string;
+    }
+
+    export interface GroupReplicaConfigurationNicTargetGroup {
+        /**
+         * The port for the target group.
+         */
+        port: number;
+        /**
+         * The ID of the target group.
+         */
+        targetGroupId: string;
+        /**
+         * The weight for the target group.
+         */
+        weight: number;
+    }
+
+    export interface GroupReplicaConfigurationVolume {
+        /**
+         * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+         */
+        backupUnitId: string;
+        /**
+         * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+         * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
+         */
+        bootOrder: string;
+        /**
+         * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+         */
+        bus?: string;
+        /**
+         * [string] The image installed on the volume. Only the UUID of the image is presently supported.
+         */
+        image?: string;
+        /**
+         * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+         */
+        imageAlias?: string;
+        /**
+         * [string] Image password for this replica volume.
+         */
+        imagePassword?: string;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: string;
+        /**
+         * [int] Name for this replica volume.
+         */
+        size: number;
+        /**
+         * List of ssh keys, supports values or paths to files. Cannot be changed at update.
+         */
+        sshKeys?: string[];
+        /**
+         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         */
+        type: string;
+        /**
+         * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+         */
+        userData: string;
+    }
+
+}
+
 export namespace cdn {
     export interface DistributionRoutingRule {
         /**
-         * The prefix of the routing rule.
+         * [string] The prefix of the routing rule.
          */
         prefix: string;
         /**
-         * The scheme of the routing rule.
+         * [string] The scheme of the routing rule.
          */
         scheme: string;
+        /**
+         * [map] - A map of properties for the rule
+         */
         upstream: outputs.cdn.DistributionRoutingRuleUpstream;
     }
 
     export interface DistributionRoutingRuleUpstream {
         /**
-         * Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+         * [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
          */
         caching: boolean;
+        /**
+         * [map] - A map of geo_restrictions
+         */
         geoRestrictions?: outputs.cdn.DistributionRoutingRuleUpstreamGeoRestrictions;
         /**
-         * The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+         * [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
          */
         host: string;
         /**
-         * Rate limit class that will be applied to limit the number of incoming requests per IP.
+         * [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
          */
         rateLimitClass: string;
         /**
-         * The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+         * [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
          */
         sniMode: string;
         /**
-         * Enable or disable WAF to protect the upstream host.
+         * [bool] Enable or disable WAF to protect the upstream host.
          */
         waf: boolean;
     }
 
     export interface DistributionRoutingRuleUpstreamGeoRestrictions {
+        /**
+         * [string] List of allowed countries
+         */
         allowLists?: string[];
+        /**
+         * [string] List of blocked countries
+         */
         blockLists?: string[];
     }
 
@@ -1361,6 +1385,9 @@ export namespace cdn {
          * The scheme of the routing rule.
          */
         scheme: string;
+        /**
+         * A map of properties for the rule
+         */
         upstreams: outputs.cdn.GetDistributionRoutingRuleUpstream[];
     }
 
@@ -1369,6 +1396,9 @@ export namespace cdn {
          * Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
          */
         caching: boolean;
+        /**
+         * A map of geo_restrictions
+         */
         geoRestrictions: outputs.cdn.GetDistributionRoutingRuleUpstreamGeoRestriction[];
         /**
          * The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
@@ -1379,7 +1409,7 @@ export namespace cdn {
          */
         rateLimitClass: string;
         /**
-         * The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+         * The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
          */
         sniMode: string;
         /**
@@ -1389,7 +1419,13 @@ export namespace cdn {
     }
 
     export interface GetDistributionRoutingRuleUpstreamGeoRestriction {
+        /**
+         * List of allowed countries
+         */
         allowLists: string[];
+        /**
+         * List of blocked countries
+         */
         blockLists: string[];
     }
 
@@ -1427,7 +1463,7 @@ export namespace compute {
          */
         location: string;
         /**
-         * The name of the connectable datacenter
+         * [string] The name of the cross-connection.
          */
         name: string;
     }
@@ -1476,6 +1512,9 @@ export namespace compute {
         ipv6Ips: string[];
         lan: number;
         mac: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         pciSlot: number;
     }
@@ -1483,6 +1522,9 @@ export namespace compute {
     export interface CubeServerNicFirewall {
         icmpCode?: string;
         icmpType?: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         portRangeEnd?: number;
         portRangeStart?: number;
@@ -1494,6 +1536,9 @@ export namespace compute {
     }
 
     export interface CubeServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. This property is immutable.
+         */
         availabilityZone: string;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -1510,16 +1555,36 @@ export namespace compute {
         discVirtioHotUnplug: boolean;
         diskType: string;
         /**
+         * [string] Required if `sshKeyPath` is not provided.
+         *
+         * > **⚠ WARNING**
+         * >
+         * > Image_name under volume level is deprecated, please use imageName under server level
+         *
+         *
+         * > **⚠ WARNING**
+         * >
+         * > For creating a **CUBE** server, you can not set `volume.size` argument.
+         * >
+         *
          * @deprecated Please use imagePassword under server level
          */
         imagePassword?: string;
+        /**
+         * [string] Sets the OS type of the server.
+         */
         licenceType: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         nicHotPlug: boolean;
         nicHotUnplug: boolean;
         pciSlot: number;
         ramHotPlug: boolean;
         /**
+         * [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+         *
          * @deprecated Please use sshKeyPath under server level
          */
         sshKeyPaths: string[];
@@ -1530,25 +1595,48 @@ export namespace compute {
     }
 
     export interface DatacenterCpuArchitecture {
+        /**
+         * A valid CPU family name
+         */
         cpuFamily: string;
+        /**
+         * The maximum number of cores available
+         */
         maxCores: number;
+        /**
+         * The maximum number of RAM in MB
+         */
         maxRam: number;
+        /**
+         * A valid CPU vendor name
+         */
         vendor: string;
     }
 
     export interface GetCrossconnectConnectableDatacenter {
+        /**
+         * ID of the cross connect you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * The physical location of the connectable datacenter
+         */
         location: string;
+        /**
+         * Name of an existing cross connect that you want to search for.
+         */
         name: string;
     }
 
     export interface GetCrossconnectPeer {
         /**
-         * The id of the cross-connected VDC
+         * The id of the cross-connected datacenter
          */
         datacenterId: string;
         /**
-         * The name of the cross-connected VDC
+         * The name of the cross-connected datacenter
          */
         datacenterName: string;
         /**
@@ -1559,93 +1647,296 @@ export namespace compute {
          * The name of the cross-connected LAN
          */
         lanName: string;
+        /**
+         * The physical location of the connectable datacenter
+         */
         location: string;
     }
 
     export interface GetCubeServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
         cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
         cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
         description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
         discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
         discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
         imageAliases: string[];
+        /**
+         * Type of image
+         */
         imageType: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
         location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
         public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
         ramHotUnplug: boolean;
+        /**
+         * The size of the image in GB
+         */
         size: number;
     }
 
     export interface GetCubeServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
         dhcp: boolean;
         dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
         firewallActive: boolean;
+        /**
+         * list of
+         */
         firewallRules: outputs.compute.GetCubeServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
         firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
         ips: string[];
         ipv6CidrBlock: string;
         ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
         lan: number;
+        /**
+         * The MAC address of the NIC
+         */
         mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
     }
 
     export interface GetCubeServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
         icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
         icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
         portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
         portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
         protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
         sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
         sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
         targetIp: string;
+        /**
+         * The type of firewall rule
+         */
         type: string;
     }
 
     export interface GetCubeServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
         availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
         backupUnitId: string;
         /**
          * The UUID of the attached server.
          */
         bootServer: string;
+        /**
+         * The bus type of the volume
+         */
         bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
         imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
         imagePassword: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
         sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
         type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
         userData?: string;
     }
 
     export interface GetDatacenterCpuArchitecture {
+        /**
+         * A valid CPU family name
+         */
         cpuFamily: string;
+        /**
+         * The maximum number of cores available
+         */
         maxCores: number;
+        /**
+         * The maximum number of RAM in MB
+         */
         maxRam: number;
+        /**
+         * A valid CPU vendor name
+         */
         vendor: string;
     }
 
@@ -1654,6 +1945,11 @@ export namespace compute {
         email: string;
         firstName: string;
         forceSecAuth: boolean;
+        /**
+         * ID of the group you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+         */
         id: string;
         lastName: string;
     }
@@ -1681,7 +1977,9 @@ export namespace compute {
          */
         gatewayIps: string[];
         /**
-         * Id for the LAN connected to the NAT gateway
+         * ID of the network load balancer forwarding rule you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
          */
         id: number;
     }
@@ -1699,11 +1997,11 @@ export namespace compute {
 
     export interface GetNicFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket.
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
          */
         bucket: string;
         /**
@@ -1711,191 +2009,603 @@ export namespace compute {
          */
         direction: string;
         /**
-         * The resource's unique identifier.
+         * ID of the nic you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided.
+         * If none, are provided, the datasource will return an error.
          */
         id: string;
         /**
-         * The resource name.
+         * [string] The name of the LAN.
          */
         name: string;
     }
 
     export interface GetServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
         cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
         cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
         description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
         discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
         discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
         imageAliases: string[];
+        /**
+         * Type of image
+         */
         imageType: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
         location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
         public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
         ramHotUnplug: boolean;
+        /**
+         * The size of the volume in GB
+         */
         size: number;
     }
 
     export interface GetServerLabel {
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * The key of the label
+         */
         key: string;
+        /**
+         * The value of the label
+         */
         value: string;
     }
 
     export interface GetServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
         dhcp: boolean;
         dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
         firewallActive: boolean;
+        /**
+         * list of
+         */
         firewallRules: outputs.compute.GetServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
         firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
         ips: string[];
         ipv6CidrBlock: string;
         ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
         lan: number;
+        /**
+         * The MAC address of the NIC
+         */
         mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
     }
 
     export interface GetServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
         icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
         icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
         portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
         portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
         protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
         sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
         sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
         targetIp: string;
+        /**
+         * The type of firewall rule
+         */
         type: string;
     }
 
     export interface GetServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
         availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
         backupUnitId: string;
         /**
          * The UUID of the attached server.
          */
         bootServer: string;
+        /**
+         * The bus type of the volume
+         */
         bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
         imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
         imagePassword: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * The size of the volume in GB
+         */
         size: number;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
         sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
         type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
         userData?: string;
     }
 
     export interface GetUserGroup {
+        /**
+         * ID of the user you want to search for.
+         *
+         * Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+         */
         id: string;
         name: string;
     }
 
     export interface GetVCPUServerCdrom {
+        /**
+         * Cloud init compatibility
+         */
         cloudInit: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * Is capable of CPU hot unplug (no reboot required)
+         */
         cpuHotUnplug: boolean;
+        /**
+         * Description of cdrom
+         */
         description: string;
+        /**
+         * Is capable of SCSI drive hot plug (no reboot required)
+         */
         discScsiHotPlug: boolean;
+        /**
+         * Is capable of SCSI drive hot unplug (no reboot required)
+         */
         discScsiHotUnplug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * List of image aliases mapped for this Image
+         */
         imageAliases: string[];
+        /**
+         * Type of image
+         */
         imageType: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Location of that image/snapshot
+         */
         location: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * Indicates if the image is part of the public repository or not
+         */
         public: boolean;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * Is capable of memory hot unplug (no reboot required)
+         */
         ramHotUnplug: boolean;
+        /**
+         * The size of the volume in GB
+         */
         size: number;
     }
 
     export interface GetVCPUServerLabel {
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * The key of the label
+         */
         key: string;
+        /**
+         * The value of the label
+         */
         value: string;
     }
 
     export interface GetVCPUServerNic {
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Indicates if the nic will reserve an IP using DHCP
+         */
         dhcp: boolean;
         dhcpv6?: boolean;
+        /**
+         * Activate or deactivate the firewall
+         */
         firewallActive: boolean;
+        /**
+         * list of
+         */
         firewallRules: outputs.compute.GetVCPUServerNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC
+         */
         firewallType: string;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Collection of IP addresses assigned to a nic
+         */
         ips: string[];
         ipv6CidrBlock: string;
         ipv6Ips: string[];
+        /**
+         * The LAN ID the NIC will sit on
+         */
         lan: number;
+        /**
+         * The MAC address of the NIC
+         */
         mac: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
     }
 
     export interface GetVCPUServerNicFirewallRule {
+        /**
+         * Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+         */
         icmpCode: number;
+        /**
+         * Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+         */
         icmpType: number;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+         */
         portRangeEnd: number;
+        /**
+         * Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+         */
         portRangeStart: number;
+        /**
+         * he protocol for the rule
+         */
         protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+         */
         sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is allowed
+         */
         sourceMac: string;
+        /**
+         * In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+         */
         targetIp: string;
+        /**
+         * The type of firewall rule
+         */
         type: string;
     }
 
     export interface GetVCPUServerVolume {
+        /**
+         * The availability zone in which the volume should exist
+         */
         availabilityZone: string;
+        /**
+         * The uuid of the Backup Unit that user has access to
+         */
         backupUnitId: string;
         /**
          * The UUID of the attached server.
          */
         bootServer: string;
+        /**
+         * The bus type of the volume
+         */
         bus: string;
+        /**
+         * Is capable of CPU hot plug (no reboot required)
+         */
         cpuHotPlug: boolean;
+        /**
+         * The Logical Unit Number (LUN) of the storage volume
+         */
         deviceNumber: number;
+        /**
+         * Is capable of Virt-IO drive hot plug (no reboot required)
+         */
         discVirtioHotPlug: boolean;
+        /**
+         * Is capable of Virt-IO drive hot unplug (no reboot required)
+         */
         discVirtioHotUnplug: boolean;
+        /**
+         * ID of the server you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+         */
         id: string;
         imageName: string;
+        /**
+         * Initial password to be set for installed OS
+         */
         imagePassword: string;
+        /**
+         * OS type of this volume
+         */
         licenceType: string;
+        /**
+         * Name of an existing server that you want to search for.
+         */
         name: string;
+        /**
+         * Is capable of nic hot plug (no reboot required)
+         */
         nicHotPlug: boolean;
+        /**
+         * Is capable of nic hot unplug (no reboot required)
+         */
         nicHotUnplug: boolean;
+        /**
+         * The PCI slot number of the Nic
+         */
         pciSlot: number;
+        /**
+         * Is capable of memory hot plug (no reboot required)
+         */
         ramHotPlug: boolean;
+        /**
+         * The size of the volume in GB
+         */
         size: number;
+        /**
+         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+         */
         sshKeys: string[];
+        /**
+         * The type of firewall rule
+         */
         type: string;
+        /**
+         * The cloud-init configuration for the volume as base64 encoded string
+         */
         userData?: string;
     }
 
@@ -1928,51 +2638,59 @@ export namespace compute {
 
     export interface NatGatewayLan {
         /**
-         * Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+         * [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
          */
         gatewayIps: string[];
         /**
-         * Id for the LAN connected to the NAT gateway
+         * [int] Id for the LAN connected to the NAT gateway.
          */
         id: number;
     }
 
     export interface NatGatewayRuleTargetPortRange {
         /**
-         * Target port range end associated with the NAT gateway rule.
+         * [int] Target port range end associated with the NAT gateway rule.
          */
         end: number;
         /**
-         * Target port range start associated with the NAT gateway rule.
+         * [int] Target port range start associated with the NAT gateway rule.
          */
         start: number;
     }
 
     export interface NicFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
          */
         bucket: string;
         /**
-         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
          */
         direction: string;
         /**
-         * The resource's unique identifier.
+         * The ID of the NIC.
          */
         id: string;
         /**
-         * The resource name.
+         * Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
          */
         name: string;
     }
 
     export interface ServerLabel {
+        /**
+         * [string] The key of the label.
+         */
         key: string;
+        /**
+         * [string] The value of the label.
+         */
         value: string;
     }
 
@@ -1986,7 +2704,7 @@ export namespace compute {
         firewallActive?: boolean;
         firewallType: string;
         /**
-         * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         * Allows to define firewall rules inline in the server. See the Firewall section.
          */
         firewalls?: outputs.compute.ServerNicFirewall[];
         id: string;
@@ -2004,6 +2722,9 @@ export namespace compute {
         ipv6Ips: string[];
         lan: number;
         mac: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         pciSlot: number;
     }
@@ -2012,6 +2733,9 @@ export namespace compute {
         icmpCode?: string;
         icmpType?: string;
         id: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         portRangeEnd?: number;
         portRangeStart?: number;
@@ -2019,10 +2743,16 @@ export namespace compute {
         sourceIp?: string;
         sourceMac?: string;
         targetIp?: string;
+        /**
+         * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+         */
         type: string;
     }
 
     export interface ServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+         */
         availabilityZone: string;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -2039,10 +2769,18 @@ export namespace compute {
         discVirtioHotUnplug: boolean;
         diskType: string;
         /**
+         * [string] Required if `sshKeyPath` is not provided.
+         *
          * @deprecated Please use imagePassword under server level
          */
         imagePassword?: string;
+        /**
+         * [string] Sets the OS type of the server.
+         */
         licenceType: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         nicHotPlug: boolean;
         nicHotUnplug: boolean;
@@ -2053,13 +2791,13 @@ export namespace compute {
          */
         size: number;
         /**
-         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+         * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
          *
          * @deprecated Please use sshKeyPath under server level
          */
         sshKeyPaths?: string[];
         /**
-         * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+         * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
          *
          * @deprecated Please use sshKeys under server level
          */
@@ -2082,7 +2820,7 @@ export namespace compute {
         firewallActive?: boolean;
         firewallType: string;
         /**
-         * Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+         * Allows to define firewall rules inline in the server. See the Firewall section.
          */
         firewalls?: outputs.compute.VCPUServerNicFirewall[];
         id: string;
@@ -2094,6 +2832,9 @@ export namespace compute {
         ipv6Ips: string[];
         lan: number;
         mac: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         pciSlot: number;
     }
@@ -2102,6 +2843,9 @@ export namespace compute {
         icmpCode?: string;
         icmpType?: string;
         id: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         portRangeEnd?: number;
         portRangeStart?: number;
@@ -2113,6 +2857,9 @@ export namespace compute {
     }
 
     export interface VCPUServerVolume {
+        /**
+         * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+         */
         availabilityZone: string;
         /**
          * The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -2128,7 +2875,13 @@ export namespace compute {
         discVirtioHotPlug: boolean;
         discVirtioHotUnplug: boolean;
         diskType: string;
+        /**
+         * [string] Sets the OS type of the server.
+         */
         licenceType: string;
+        /**
+         * [string] The name of the server.
+         */
         name?: string;
         nicHotPlug: boolean;
         nicHotUnplug: boolean;
@@ -2167,26 +2920,37 @@ export namespace creg {
     }
 
     export interface GetRegistryTokenCredential {
+        /**
+         * * `expiry-date`
+         */
         username: string;
     }
 
     export interface GetRegistryTokenScope {
         actions: string[];
+        /**
+         * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
         name: string;
         type: string;
     }
 
     export interface RegistryFeatures {
         /**
-         * Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+         * [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+         *
+         * > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerabilityScanning` is set to false on resource creation.
          */
         vulnerabilityScanning: boolean;
     }
 
     export interface RegistryGarbageCollectionSchedule {
+        /**
+         * [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+         */
         days: string[];
         /**
-         * UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+         * [string]
          */
         time: string;
     }
@@ -2203,10 +2967,16 @@ export namespace creg {
 
     export interface RegistryTokenScope {
         /**
-         * Example: ["pull", "push", "delete"]
+         * [string] Example: ["pull", "push", "delete"]
          */
         actions: string[];
+        /**
+         * [string]
+         */
         name: string;
+        /**
+         * [string]
+         */
         type: string;
     }
 
@@ -2215,48 +2985,48 @@ export namespace creg {
 export namespace dbaas {
     export interface GetInMemoryDBReplicaSetConnection {
         /**
-         * The IP and subnet for your Replicaset.
+         * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
          */
         cidr: string;
         /**
-         * The datacenter to connect your Replicaset to.
+         * [string] The datacenter to connect your instance to.
          */
         datacenterId: string;
         /**
-         * The numeric LAN ID to connect your Replicaset to.
+         * [string] The numeric LAN ID to connect your instance to.
          */
         lanId: string;
     }
 
     export interface GetInMemoryDBReplicaSetCredential {
         /**
-         * The username for your Replicaset.
+         * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
          */
         username: string;
     }
 
     export interface GetInMemoryDBReplicaSetMaintenanceWindow {
         /**
-         * The name of the week day.
+         * [string] The name of the week day.
          */
         dayOfTheWeek: string;
         /**
-         * Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time.
          */
         time: string;
     }
 
     export interface GetInMemoryDBReplicaSetResource {
         /**
-         * The number of CPU cores per instance.
+         * [int] The number of CPU cores per instance.
          */
         cores: number;
         /**
-         * The amount of memory per instance in gigabytes (GB).
+         * [int] The amount of memory per instance in gigabytes (GB).
          */
         ram: number;
         /**
-         * The amount of storage per instance in gigabytes (GB).
+         * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage: number;
     }
@@ -2289,7 +3059,7 @@ export namespace dbaas {
 
     export interface GetMongoClusterBackup {
         /**
-         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
          */
         location: string;
     }
@@ -2320,11 +3090,11 @@ export namespace dbaas {
          */
         cidrLists: string[];
         /**
-         * The datacenter to connect your cluster to
+         * The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The LAN to connect your cluster to
+         * The LAN to connect your cluster to.
          */
         lanId: string;
     }
@@ -2335,16 +3105,21 @@ export namespace dbaas {
     }
 
     export interface GetMongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
         database: string;
         /**
-         * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
          */
         role: string;
     }
 
     export interface GetPSQLClusterConnection {
         /**
-         * The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+         * The IP and subnet for the database.
          */
         cidr: string;
         /**
@@ -2360,18 +3135,18 @@ export namespace dbaas {
     export interface GetPSQLClusterConnectionPooler {
         enabled: boolean;
         /**
-         * Represents different modes of connection pooling for the connection pooler
+         * Represents different modes of connection pooling for the connection pooler.
          */
         poolMode: string;
     }
 
     export interface GetPSQLClusterFromBackup {
         /**
-         * The unique ID of the backup you want to restore.
+         * The PostgreSQL version of your cluster.
          */
         backupId: string;
         /**
-         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
          */
         recoveryTargetTime: string;
     }
@@ -2383,61 +3158,67 @@ export namespace dbaas {
 
     export interface InMemoryDBReplicaSetConnections {
         /**
-         * The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+         * [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
          */
         cidr: string;
         /**
-         * The datacenter to connect your instance to.
+         * [string] The datacenter to connect your instance to.
          */
         datacenterId: string;
         /**
-         * The numeric LAN ID to connect your instance to.
+         * [string] The numeric LAN ID to connect your instance to.
          */
         lanId: string;
     }
 
     export interface InMemoryDBReplicaSetCredentials {
         /**
-         * The hashed password for a InMemoryDB user.
+         * [object] The hashed password for a InMemoryDB user.
          */
         hashedPassword?: outputs.dbaas.InMemoryDBReplicaSetCredentialsHashedPassword;
         /**
-         * The password for a InMemoryDB user.
+         * [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
          */
         plainTextPassword?: string;
         /**
-         * The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+         * [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
          */
         username: string;
     }
 
     export interface InMemoryDBReplicaSetCredentialsHashedPassword {
+        /**
+         * [string] The value can be only: "SHA-256".
+         */
         algorithm: string;
+        /**
+         * [string] The hashed password.
+         */
         hash: string;
     }
 
     export interface InMemoryDBReplicaSetMaintenanceWindow {
         /**
-         * The name of the week day.
+         * [string] The name of the week day.
          */
         dayOfTheWeek: string;
         /**
-         * Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time.
          */
         time: string;
     }
 
     export interface InMemoryDBReplicaSetResources {
         /**
-         * The number of CPU cores per instance.
+         * [int] The number of CPU cores per instance.
          */
         cores: number;
         /**
-         * The amount of memory per instance in gigabytes (GB).
+         * [int] The amount of memory per instance in gigabytes (GB).
          */
         ram: number;
         /**
-         * The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+         * [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
          */
         storage: number;
     }
@@ -2481,7 +3262,7 @@ export namespace dbaas {
 
     export interface MongoClusterBackup {
         /**
-         * The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+         * [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
          */
         location?: string;
         /**
@@ -2496,95 +3277,114 @@ export namespace dbaas {
 
     export interface MongoClusterBiConnector {
         /**
-         * Enable or disable the BiConnector.
+         * [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
          */
         enabled?: boolean;
         /**
-         * The host where this new BI Connector is installed.
+         * [string] - The host where this new BI Connector is installed.
          */
         host: string;
         /**
-         * Port number used when connecting to this new BI Connector.
+         * [string] - Port number used when connecting to this new BI Connector.
          */
         port: string;
     }
 
     export interface MongoClusterConnections {
         /**
-         * The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+         * [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
          */
         cidrLists: string[];
         /**
-         * The datacenter to connect your cluster to.
+         * [string] The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The LAN to connect your cluster to.
+         * [string] The LAN to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface MongoClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: string;
+        /**
+         * [string]
+         */
         time: string;
     }
 
     export interface MongoUserRole {
+        /**
+         * [true] Database on which to apply the role.
+         *
+         * **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+         */
         database?: string;
         /**
-         * A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+         * [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
          */
         role?: string;
     }
 
     export interface PSQLClusterConnectionPooler {
+        /**
+         * [bool]
+         */
         enabled: boolean;
         /**
-         * Represents different modes of connection pooling for the connection pooler
+         * [string] Represents different modes of connection pooling for the connection pooler.
          */
         poolMode: string;
     }
 
     export interface PSQLClusterConnections {
         /**
-         * The IP and subnet for the database.
-         *           Note the following unavailable IP ranges:
-         *           10.233.64.0/18
-         *           10.233.0.0/18
-         *           10.233.114.0/24
+         * [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
          */
         cidr: string;
         /**
-         * The datacenter to connect your cluster to.
+         * [true] The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The LAN to connect your cluster to.
+         * [true] The LAN to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface PSQLClusterCredentials {
+        /**
+         * [string]
+         */
         password: string;
         /**
-         * the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+         * [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
          */
         username: string;
     }
 
     export interface PSQLClusterFromBackup {
         /**
-         * The unique ID of the backup you want to restore.
+         * [string] The unique ID of the backup you want to restore.
          */
         backupId: string;
         /**
-         * If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+         * [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
          */
         recoveryTargetTime?: string;
     }
 
     export interface PSQLClusterMaintenanceWindow {
+        /**
+         * [string]
+         */
         dayOfTheWeek: string;
+        /**
+         * [string]
+         */
         time: string;
     }
 
@@ -2593,34 +3393,37 @@ export namespace dbaas {
 export namespace dsaas {
     export interface ClusterLan {
         /**
-         * Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+         * [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
          */
         dhcp?: boolean;
         /**
-         * The LAN ID of an existing LAN at the related data center
+         * [string] The LAN ID of an existing LAN at the related data center.
          */
         lanId: string;
         /**
-         * An array of additional LANs attached to worker nodes
+         * [list] An array of additional LANs attached to worker nodes.
          */
         routes?: outputs.dsaas.ClusterLanRoute[];
     }
 
     export interface ClusterLanRoute {
         /**
-         * IPv4 or IPv6 gateway IP for the route
+         * [string] IPv4 or IPv6 gateway IP for the route.
          */
         gateway: string;
         /**
-         * IPv4 or IPv6 CIDR to be routed via the interface
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface.
          */
         network: string;
     }
 
     export interface ClusterMaintenanceWindow {
+        /**
+         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+         */
         dayOfTheWeek: string;
         /**
-         * Time at which the maintenance should start.
+         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
          */
         time: string;
     }
@@ -2636,22 +3439,31 @@ export namespace dsaas {
 
     export interface GetClusterConfigCluster {
         cluster: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
         name: string;
     }
 
     export interface GetClusterConfigContext {
         context: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
         name: string;
     }
 
     export interface GetClusterConfigUser {
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
         name: string;
         user: {[key: string]: string};
     }
 
     export interface GetClusterLan {
         /**
-         * Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+         * Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
          */
         dhcp: boolean;
         /**
@@ -2678,7 +3490,7 @@ export namespace dsaas {
     export interface GetClusterMaintenanceWindow {
         dayOfTheWeek: string;
         /**
-         * Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+         * Time at which the maintenance should start.
          */
         time: string;
     }
@@ -2686,15 +3498,18 @@ export namespace dsaas {
     export interface GetNodePoolMaintenanceWindow {
         dayOfTheWeek: string;
         /**
-         * Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+         * Time at which the maintenance should start.
          */
         time: string;
     }
 
     export interface NodePoolMaintenanceWindow {
+        /**
+         * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+         */
         dayOfTheWeek: string;
         /**
-         * Time at which the maintenance should start.
+         * [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
          */
         time: string;
     }
@@ -2704,18 +3519,18 @@ export namespace dsaas {
 export namespace k8s {
     export interface ClusterMaintenanceWindow {
         /**
-         * Day of the week when maintenance is allowed
+         * [string] Day of the week when maintenance is allowed
          */
         dayOfTheWeek: string;
         /**
-         * A clock time in the day when maintenance is allowed
+         * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
     }
 
     export interface ClusterS3Bucket {
         /**
-         * Name of the Object Storage bucket
+         * [string] The name of the Kubernetes Cluster.
          */
         name?: string;
     }
@@ -2731,15 +3546,24 @@ export namespace k8s {
 
     export interface GetClusterConfigCluster {
         cluster: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
         name: string;
     }
 
     export interface GetClusterConfigContext {
         context: {[key: string]: string};
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
         name: string;
     }
 
     export interface GetClusterConfigUser {
+        /**
+         * Name of an existing cluster that you want to search for.
+         */
         name: string;
         user: {[key: string]: string};
     }
@@ -2757,18 +3581,18 @@ export namespace k8s {
 
     export interface GetClusterS3Bucket {
         /**
-         * Name of the Object Storage bucket
+         * Name of an existing cluster that you want to search for.
          */
         name: string;
     }
 
     export interface GetNodePoolAutoScaling {
         /**
-         * The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         * The maximum number of worker nodes that the node pool can scale to
          */
         maxNodeCount: number;
         /**
-         * The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         * The minimum number of worker nodes the node pool can scale down to
          */
         minNodeCount: number;
     }
@@ -2779,7 +3603,9 @@ export namespace k8s {
          */
         dhcp: boolean;
         /**
-         * The LAN ID of an existing LAN at the related datacenter
+         * ID of the node pool you want to search for.
+         *
+         * `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
          */
         id: number;
         /**
@@ -2812,22 +3638,22 @@ export namespace k8s {
 
     export interface NodePoolAutoScaling {
         /**
-         * The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+         * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
          */
         maxNodeCount: number;
         /**
-         * The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+         * [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
          */
         minNodeCount: number;
     }
 
     export interface NodePoolLan {
         /**
-         * Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+         * [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
          */
         dhcp?: boolean;
         /**
-         * The LAN ID of an existing LAN at the related datacenter
+         * [int] The LAN ID of an existing LAN at the related datacenter
          */
         id: number;
         /**
@@ -2838,24 +3664,58 @@ export namespace k8s {
 
     export interface NodePoolLanRoute {
         /**
-         * IPv4 or IPv6 Gateway IP for the route
+         * [string] IPv4 or IPv6 Gateway IP for the route
          */
         gatewayIp: string;
         /**
-         * IPv4 or IPv6 CIDR to be routed via the interface
+         * [string] IPv4 or IPv6 CIDR to be routed via the interface
          */
         network: string;
     }
 
     export interface NodePoolMaintenanceWindow {
         /**
-         * Day of the week when maintenance is allowed
+         * [string] Day of the week when maintenance is allowed
          */
         dayOfTheWeek: string;
         /**
-         * A clock time in the day when maintenance is allowed
+         * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+}
+
+export namespace kafka {
+    export interface ClusterConnections {
+        /**
+         * [list] IP addresses and subnet of cluster brokers. **Note** the following
+         * unavailable IP range: 10.224.0.0/11
+         */
+        brokerAddresses: string[];
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
+    }
+
+    export interface GetClusterConnection {
+        /**
+         * IP address and port of cluster brokers.
+         */
+        brokerAddresses: string[];
+        /**
+         * The datacenter that your instance is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID your instance is connected to.
+         */
+        lanId: string;
     }
 
 }
@@ -2934,44 +3794,44 @@ export namespace logging {
 export namespace nfs {
     export interface ClusterConnections {
         /**
-         * The datacenter to connect your instance to.
+         * The ID of the datacenter where the Network File Storage cluster is located.
          */
         datacenterId: string;
         /**
-         * The IP address and subnet for your instance.
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
          */
         ipAddress: string;
         /**
-         * The numeric LAN ID to connect your instance to.
+         * The Private LAN to which the Network File Storage cluster must be connected.
          */
         lan: string;
     }
 
     export interface ClusterNfs {
         /**
-         * The minimum Network File Storage version
+         * The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
          */
         minVersion?: string;
     }
 
     export interface GetClusterConnection {
         /**
-         * The datacenter ID of the connection.
+         * The ID of the datacenter where the Network File Storage cluster is located.
          */
         datacenterId: string;
         /**
-         * The IP address of the connection.
+         * The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
          */
         ipAddress: string;
         /**
-         * The LAN of the connection.
+         * The Private LAN to which the Network File Storage cluster must be connected.
          */
         lan: string;
     }
 
     export interface GetClusterNf {
         /**
-         * The minimum version of the NFS.
+         * The minimum supported version of the NFS cluster. Default is `4.2`
          */
         minVersion: string;
     }
@@ -2989,6 +3849,9 @@ export namespace nfs {
          * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
          */
         ipNetworks: string[];
+        /**
+         * The NFS configuration for the client group. Each NFS configuration supports the following:
+         */
         nfs: outputs.nfs.GetShareClientGroupNf[];
     }
 
@@ -3012,12 +3875,15 @@ export namespace nfs {
          * The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
          */
         ipNetworks: string[];
+        /**
+         * NFS specific configurations. Each configuration includes:
+         */
         nfs?: outputs.nfs.ShareClientGroupNfs;
     }
 
     export interface ShareClientGroupNfs {
         /**
-         * The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+         * The squash mode for the export. The squash mode can be:
          */
         squash?: string;
     }
@@ -3027,15 +3893,15 @@ export namespace nfs {
 export namespace nlb {
     export interface BalancerFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
          */
         bucket: string;
         /**
-         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
          */
         direction: string;
         /**
@@ -3043,87 +3909,91 @@ export namespace nlb {
          */
         id: string;
         /**
-         * The resource name.
+         * [string] Specifies the name of the flow log.
+         *
+         * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
          */
         name: string;
     }
 
     export interface ForwardingRuleHealthCheck {
         /**
-         * ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+         * [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
          */
         clientTimeout: number;
         /**
-         * It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+         * [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
          */
         connectTimeout: number;
         /**
-         * Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+         * [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
          */
         retries: number;
         /**
-         * TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+         * [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
          */
         targetTimeout: number;
     }
 
     export interface ForwardingRuleTarget {
         /**
-         * Health check attributes for Network Load Balancer forwarding rule target
+         * Health check attributes for Network Load Balancer forwarding rule target.
          */
         healthCheck: outputs.nlb.ForwardingRuleTargetHealthCheck;
         /**
-         * IP of a balanced target VM
+         * [string] IP of a balanced target VM.
          */
         ip: string;
         /**
-         * Port of the balanced target service. (range: 1 to 65535)
+         * [int] Port of the balanced target service. (range: 1 to 65535).
          */
         port: number;
         /**
-         * Proxy protocol version
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
          */
         proxyProtocol?: string;
         /**
-         * Weight parameter is used to adjust the target VM's weight relative to other target VMs
+         * [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
          */
         weight: number;
     }
 
     export interface ForwardingRuleTargetHealthCheck {
         /**
-         * Check specifies whether the target VM's health is checked.
+         * [boolean] Check specifies whether the target VM's health is checked.
          */
         check: boolean;
         /**
-         * CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+         * [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
          */
         checkInterval: number;
         /**
-         * Maintenance specifies if a target VM should be marked as down, even if it is not.
+         * [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
          */
         maintenance: boolean;
     }
 
     export interface GetBalancerFlowlog {
         /**
-         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+         * Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
          */
         action: string;
         /**
-         * The bucket name of an existing IONOS Object Storage bucket.
+         * Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
          */
         bucket: string;
         /**
-         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
          */
         direction: string;
         /**
-         * The resource's unique identifier.
+         * ID of the network load balancer you want to search for.
+         *
+         * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
          */
         id: string;
         /**
-         * The resource name.
+         * Name of an existing network load balancer that you want to search for.
          */
         name: string;
     }
@@ -3149,23 +4019,23 @@ export namespace nlb {
 
     export interface GetForwardingRuleTarget {
         /**
-         * Health check attributes for Network Load Balancer forwarding rule target
+         * Health check attributes for Network Load Balancer forwarding rule target.
          */
         healthChecks: outputs.nlb.GetForwardingRuleTargetHealthCheck[];
         /**
-         * IP of a balanced target VM
+         * IP of a balanced target VM.
          */
         ip: string;
         /**
-         * Port of the balanced target service. (range: 1 to 65535)
+         * Port of the balanced target service. (range: 1 to 65535).
          */
         port: number;
         /**
-         * Proxy protocol version
+         * The proxy protocol version.
          */
         proxyProtocol: string;
         /**
-         * Weight parameter is used to adjust the target VM's weight relative to other target VMs
+         * Weight parameter is used to adjust the target VM's weight relative to other target VMs.
          */
         weight: number;
     }
@@ -3194,11 +4064,12 @@ export namespace vpn {
          */
         datacenterId: string;
         /**
-         * Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * Describes the private ipv4 subnet in your LAN that should be accessible by the
+         * VPN Gateway.
          */
         ipv4Cidr: string;
         /**
-         * Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
          */
         ipv6Cidr: string;
         /**
@@ -3253,99 +4124,145 @@ export namespace vpn {
     }
 
     export interface GetWireguardGatewayConnection {
+        /**
+         * The ID of the datacenter where the WireGuard Gateway is located.
+         */
         datacenterId: string;
+        /**
+         * The IPv4 CIDR for the WireGuard Gateway connection.
+         */
         ipv4Cidr: string;
+        /**
+         * The IPv6 CIDR for the WireGuard Gateway connection.
+         */
         ipv6Cidr: string;
+        /**
+         * The ID of the LAN where the WireGuard Gateway is connected.
+         */
         lanId: string;
     }
 
     export interface GetWireguardPeerEndpoint {
+        /**
+         * Hostname or IPV4 address that the WireGuard Server will connect to.
+         */
         host: string;
+        /**
+         * Port that the WireGuard Server will connect to. Default: 51820
+         */
         port: number;
     }
 
     export interface IpsecGatewayConnection {
         /**
-         * The datacenter to connect your VPN Gateway to.
+         * [string] The datacenter to connect your VPN Gateway to.
          */
         datacenterId: string;
         /**
-         * Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+         * VPN Gateway. Note: this should be the subnet already assigned to the LAN
          */
         ipv4Cidr: string;
         /**
-         * Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+         * [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+         * Gateway. **Note**: this should be the subnet already assigned to the LAN
          */
         ipv6Cidr?: string;
         /**
-         * The numeric LAN ID to connect your VPN Gateway to.
+         * [string] The numeric LAN ID to connect your VPN Gateway to.
          */
         lanId: string;
     }
 
     export interface IpsecTunnelAuth {
         /**
-         * The Authentication Method to use for IPSec Authentication.
+         * [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+         * Default value: `PSK`.
          */
         method?: string;
         /**
-         * The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+         * [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+         * PSK.
          */
         pskKey?: string;
     }
 
     export interface IpsecTunnelEsp {
         /**
-         * The Diffie-Hellman Group to use for IPSec Encryption.
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
          */
         diffieHellmanGroup?: string;
         /**
-         * The encryption algorithm to use for IPSec Encryption.
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
          */
         encryptionAlgorithm?: string;
         /**
-         * The integrity algorithm to use for IPSec Encryption.
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
          */
         integrityAlgorithm?: string;
         /**
-         * The phase lifetime in seconds.
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
          */
         lifetime?: number;
     }
 
     export interface IpsecTunnelIke {
         /**
-         * The Diffie-Hellman Group to use for IPSec Encryption.
+         * [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+         * values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+         * Default value: `16-MODP4096`.
          */
         diffieHellmanGroup?: string;
         /**
-         * The encryption algorithm to use for IPSec Encryption.
+         * [string] The encryption algorithm to use for IPSec Encryption. Possible
+         * values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+         * `AES256-CCM-12`. Default value: `AES256`.
          */
         encryptionAlgorithm?: string;
         /**
-         * The integrity algorithm to use for IPSec Encryption.
+         * [string] The integrity algorithm to use for IPSec Encryption. Possible
+         * values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
          */
         integrityAlgorithm?: string;
         /**
-         * The phase lifetime in seconds.
+         * [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+         * Default value: `86400`.
          */
         lifetime?: number;
     }
 
     export interface WireguardGatewayConnection {
+        /**
+         * [String] The ID of the datacenter where the WireGuard Gateway is located.
+         */
         datacenterId: string;
+        /**
+         * [String] The IPv4 CIDR for the WireGuard Gateway connection.
+         */
         ipv4Cidr?: string;
+        /**
+         * [String] The IPv6 CIDR for the WireGuard Gateway connection.
+         */
         ipv6Cidr?: string;
+        /**
+         * [String] The ID of the LAN where the WireGuard Gateway is connected.
+         */
         lanId: string;
     }
 
     export interface WireguardPeerEndpoint {
         /**
-         * Hostname or IPV4 address that the WireGuard Server will connect to.
+         * [string] The hostname or IPV4 address that the WireGuard Server will connect to.
          */
         host: string;
         /**
-         * Port that the WireGuard Server will connect to.
+         * [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
          */
         port?: number;
     }

@@ -15,7 +15,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     {
         public readonly bool Enabled;
         /// <summary>
-        /// Represents different modes of connection pooling for the connection pooler
+        /// Represents different modes of connection pooling for the connection pooler.
         /// </summary>
         public readonly string PoolMode;
 

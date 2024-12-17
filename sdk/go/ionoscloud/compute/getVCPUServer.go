@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **VCPU Server data source** can be used to search for and return existing VCPU servers.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupVCPUServer(ctx *pulumi.Context, args *LookupVCPUServerArgs, opts ...pulumi.InvokeOption) (*LookupVCPUServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVCPUServerResult
@@ -23,30 +28,48 @@ func LookupVCPUServer(ctx *pulumi.Context, args *LookupVCPUServerArgs, opts ...p
 
 // A collection of arguments for invoking getVCPUServer.
 type LookupVCPUServerArgs struct {
-	DatacenterId string  `pulumi:"datacenterId"`
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
+	// Datacenter's UUID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getVCPUServer.
 type LookupVCPUServerResult struct {
-	AvailabilityZone string                `pulumi:"availabilityZone"`
-	BootCdrom        string                `pulumi:"bootCdrom"`
-	BootImage        string                `pulumi:"bootImage"`
-	BootVolume       string                `pulumi:"bootVolume"`
-	Cdroms           []GetVCPUServerCdrom  `pulumi:"cdroms"`
-	Cores            int                   `pulumi:"cores"`
-	CpuFamily        string                `pulumi:"cpuFamily"`
-	DatacenterId     string                `pulumi:"datacenterId"`
-	Id               *string               `pulumi:"id"`
-	Labels           []GetVCPUServerLabel  `pulumi:"labels"`
-	Name             *string               `pulumi:"name"`
-	Nics             []GetVCPUServerNic    `pulumi:"nics"`
-	Ram              int                   `pulumi:"ram"`
-	Token            string                `pulumi:"token"`
-	Type             string                `pulumi:"type"`
-	VmState          string                `pulumi:"vmState"`
-	Volumes          []GetVCPUServerVolume `pulumi:"volumes"`
+	// The availability zone in which the volume should exist
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	BootCdrom        string `pulumi:"bootCdrom"`
+	BootImage        string `pulumi:"bootImage"`
+	BootVolume       string `pulumi:"bootVolume"`
+	// list of
+	Cdroms []GetVCPUServerCdrom `pulumi:"cdroms"`
+	// The total number of cores for the server
+	Cores int `pulumi:"cores"`
+	// CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
+	CpuFamily string `pulumi:"cpuFamily"`
+	// The id of the datacenter
+	DatacenterId string `pulumi:"datacenterId"`
+	// The Id of the label
+	Id *string `pulumi:"id"`
+	// list of
+	Labels []GetVCPUServerLabel `pulumi:"labels"`
+	// Name of the firewall rule
+	Name *string `pulumi:"name"`
+	// list of
+	Nics []GetVCPUServerNic `pulumi:"nics"`
+	// The amount of memory for the server in MB
+	Ram   int    `pulumi:"ram"`
+	Token string `pulumi:"token"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
+	// Status of the virtual Machine
+	VmState string `pulumi:"vmState"`
+	// list of
+	Volumes []GetVCPUServerVolume `pulumi:"volumes"`
 }
 
 func LookupVCPUServerOutput(ctx *pulumi.Context, args LookupVCPUServerOutputArgs, opts ...pulumi.InvokeOption) LookupVCPUServerResultOutput {
@@ -60,9 +83,14 @@ func LookupVCPUServerOutput(ctx *pulumi.Context, args LookupVCPUServerOutputArgs
 
 // A collection of arguments for invoking getVCPUServer.
 type LookupVCPUServerOutputArgs struct {
-	DatacenterId pulumi.StringInput    `pulumi:"datacenterId"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	// Datacenter's UUID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupVCPUServerOutputArgs) ElementType() reflect.Type {
@@ -84,6 +112,7 @@ func (o LookupVCPUServerResultOutput) ToLookupVCPUServerResultOutputWithContext(
 	return o
 }
 
+// The availability zone in which the volume should exist
 func (o LookupVCPUServerResultOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
@@ -100,38 +129,47 @@ func (o LookupVCPUServerResultOutput) BootVolume() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.BootVolume }).(pulumi.StringOutput)
 }
 
+// list of
 func (o LookupVCPUServerResultOutput) Cdroms() GetVCPUServerCdromArrayOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) []GetVCPUServerCdrom { return v.Cdroms }).(GetVCPUServerCdromArrayOutput)
 }
 
+// The total number of cores for the server
 func (o LookupVCPUServerResultOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
+// CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
 func (o LookupVCPUServerResultOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
+// The id of the datacenter
 func (o LookupVCPUServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The Id of the label
 func (o LookupVCPUServerResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// list of
 func (o LookupVCPUServerResultOutput) Labels() GetVCPUServerLabelArrayOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) []GetVCPUServerLabel { return v.Labels }).(GetVCPUServerLabelArrayOutput)
 }
 
+// Name of the firewall rule
 func (o LookupVCPUServerResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// list of
 func (o LookupVCPUServerResultOutput) Nics() GetVCPUServerNicArrayOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) []GetVCPUServerNic { return v.Nics }).(GetVCPUServerNicArrayOutput)
 }
 
+// The amount of memory for the server in MB
 func (o LookupVCPUServerResultOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) int { return v.Ram }).(pulumi.IntOutput)
 }
@@ -140,14 +178,17 @@ func (o LookupVCPUServerResultOutput) Token() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Token }).(pulumi.StringOutput)
 }
 
+// The type of firewall rule
 func (o LookupVCPUServerResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Status of the virtual Machine
 func (o LookupVCPUServerResultOutput) VmState() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.VmState }).(pulumi.StringOutput)
 }
 
+// list of
 func (o LookupVCPUServerResultOutput) Volumes() GetVCPUServerVolumeArrayOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) []GetVCPUServerVolume { return v.Volumes }).(GetVCPUServerVolumeArrayOutput)
 }

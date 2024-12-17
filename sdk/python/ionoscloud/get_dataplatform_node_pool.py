@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -267,14 +272,11 @@ def get_dataplatform_node_pool(cluster_id: Optional[str] = None,
         storage_size=pulumi.get(__ret__, 'storage_size'),
         storage_type=pulumi.get(__ret__, 'storage_type'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_dataplatform_node_pool)
 def get_dataplatform_node_pool_output(cluster_id: Optional[pulumi.Input[str]] = None,
                                       id: Optional[pulumi.Input[Optional[str]]] = None,
                                       name: Optional[pulumi.Input[Optional[str]]] = None,
                                       partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataplatformNodePoolResult]:
+                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataplatformNodePoolResult]:
     """
     The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -290,4 +292,27 @@ def get_dataplatform_node_pool_output(cluster_id: Optional[pulumi.Input[str]] = 
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getDataplatformNodePool:getDataplatformNodePool', __args__, opts=opts, typ=GetDataplatformNodePoolResult)
+    return __ret__.apply(lambda __response__: GetDataplatformNodePoolResult(
+        annotations=pulumi.get(__response__, 'annotations'),
+        availability_zone=pulumi.get(__response__, 'availability_zone'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        cores_count=pulumi.get(__response__, 'cores_count'),
+        cpu_family=pulumi.get(__response__, 'cpu_family'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
+        name=pulumi.get(__response__, 'name'),
+        node_count=pulumi.get(__response__, 'node_count'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        ram_size=pulumi.get(__response__, 'ram_size'),
+        storage_size=pulumi.get(__response__, 'storage_size'),
+        storage_type=pulumi.get(__response__, 'storage_type'),
+        version=pulumi.get(__response__, 'version')))

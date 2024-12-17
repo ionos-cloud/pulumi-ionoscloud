@@ -78,21 +78,33 @@ class GetFirewallResult:
     @property
     @pulumi.getter(name="icmpCode")
     def icmp_code(self) -> str:
+        """
+        Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+        """
         return pulumi.get(self, "icmp_code")
 
     @property
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> str:
+        """
+        Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.
+        """
         return pulumi.get(self, "icmp_type")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the firewall rule.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the firewall rule.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -103,16 +115,25 @@ class GetFirewallResult:
     @property
     @pulumi.getter(name="portRangeEnd")
     def port_range_end(self) -> int:
+        """
+        Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.
+        """
         return pulumi.get(self, "port_range_end")
 
     @property
     @pulumi.getter(name="portRangeStart")
     def port_range_start(self) -> int:
+        """
+        Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen.
+        """
         return pulumi.get(self, "port_range_start")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        The protocol for the rule: TCP, UDP, ICMP, ANY. This property is immutable.
+        """
         return pulumi.get(self, "protocol")
 
     @property
@@ -123,16 +144,25 @@ class GetFirewallResult:
     @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> str:
+        """
+        Only traffic originating from the respective IPv4 address is allowed.
+        """
         return pulumi.get(self, "source_ip")
 
     @property
     @pulumi.getter(name="sourceMac")
     def source_mac(self) -> str:
+        """
+        Only traffic originating from the respective MAC address is allowed.
+        """
         return pulumi.get(self, "source_mac")
 
     @property
     @pulumi.getter(name="targetIp")
     def target_ip(self) -> str:
+        """
+        Only traffic directed to the respective IP address of the NIC is allowed.
+        """
         return pulumi.get(self, "target_ip")
 
     @property
@@ -170,7 +200,21 @@ def get_firewall(datacenter_id: Optional[str] = None,
                  server_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFirewallResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Firewall data source** can be used to search for and return an existing FirewallRules.
+    You can provide a string for either id or name parameters which will be compared with provisioned Firewall Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: The Virtual Data Center ID.
+    :param str id: ID of the firewall rule you want to search for.
+    :param str name: Name of an existing firewall rule that you want to search for.
+    :param str nic_id: The NIC ID.
+           
+           Either `name` or   `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str server_id: The Server ID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -203,7 +247,21 @@ def get_firewall_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                         server_id: Optional[pulumi.Input[str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFirewallResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Firewall data source** can be used to search for and return an existing FirewallRules.
+    You can provide a string for either id or name parameters which will be compared with provisioned Firewall Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: The Virtual Data Center ID.
+    :param str id: ID of the firewall rule you want to search for.
+    :param str name: Name of an existing firewall rule that you want to search for.
+    :param str nic_id: The NIC ID.
+           
+           Either `name` or   `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str server_id: The Server ID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -13,34 +13,37 @@ namespace Pulumi.Ionoscloud.Cdn.Inputs
     public sealed class DistributionRoutingRuleUpstreamGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        /// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
         /// </summary>
         [Input("caching", required: true)]
         public Input<bool> Caching { get; set; } = null!;
 
+        /// <summary>
+        /// [map] - A map of geo_restrictions
+        /// </summary>
         [Input("geoRestrictions")]
         public Input<Inputs.DistributionRoutingRuleUpstreamGeoRestrictionsGetArgs>? GeoRestrictions { get; set; }
 
         /// <summary>
-        /// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        /// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// Rate limit class that will be applied to limit the number of incoming requests per IP.
+        /// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
         /// </summary>
         [Input("rateLimitClass", required: true)]
         public Input<string> RateLimitClass { get; set; } = null!;
 
         /// <summary>
-        /// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+        /// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
         /// </summary>
         [Input("sniMode", required: true)]
         public Input<string> SniMode { get; set; } = null!;
 
         /// <summary>
-        /// Enable or disable WAF to protect the upstream host.
+        /// [bool] Enable or disable WAF to protect the upstream host.
         /// </summary>
         [Input("waf", required: true)]
         public Input<bool> Waf { get; set; } = null!;

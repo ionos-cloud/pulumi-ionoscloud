@@ -14,6 +14,10 @@ namespace Pulumi.Ionoscloud.Creg.Inputs
     {
         [Input("days", required: true)]
         private InputList<string>? _days;
+
+        /// <summary>
+        /// [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+        /// </summary>
         public InputList<string> Days
         {
             get => _days ?? (_days = new InputList<string>());
@@ -21,7 +25,7 @@ namespace Pulumi.Ionoscloud.Creg.Inputs
         }
 
         /// <summary>
-        /// UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+        /// [string]
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

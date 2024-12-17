@@ -59,16 +59,25 @@ class GetWireguardPeerResult:
     @property
     @pulumi.getter(name="allowedIps")
     def allowed_ips(self) -> Sequence[str]:
+        """
+        The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        """
         return pulumi.get(self, "allowed_ips")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the WireGuard Peer.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def endpoints(self) -> Sequence['outputs.GetWireguardPeerEndpointResult']:
+        """
+        The endpoint of the WireGuard Peer.
+        """
         return pulumi.get(self, "endpoints")
 
     @property
@@ -79,6 +88,9 @@ class GetWireguardPeerResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The unique ID of the WireGuard Peer.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -89,16 +101,25 @@ class GetWireguardPeerResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the WireGuard Peer.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
+        """
+        WireGuard public key of the connecting peer.
+        """
         return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The current status of the WireGuard Peer.
+        """
         return pulumi.get(self, "status")
 
 
@@ -125,7 +146,25 @@ def get_wireguard_peer(gateway_id: Optional[str] = None,
                        name: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWireguardPeerResult:
     """
-    Use this data source to access information about an existing resource.
+    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_wireguard_peer(location="de/fra",
+        gateway_id="example-gateway",
+        name="example-peer")
+    pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
+    ```
+
+
+    :param str gateway_id: [String] The ID of the WireGuard Gateway.
+    :param str id: [String] The ID of the WireGuard Peer.
+    :param str location: [String] The location of the WireGuard Gateway.
+    :param str name: [String] The name of the WireGuard Peer.
     """
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
@@ -151,7 +190,25 @@ def get_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None,
                               name: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardPeerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_wireguard_peer(location="de/fra",
+        gateway_id="example-gateway",
+        name="example-peer")
+    pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
+    ```
+
+
+    :param str gateway_id: [String] The ID of the WireGuard Gateway.
+    :param str id: [String] The ID of the WireGuard Peer.
+    :param str location: [String] The location of the WireGuard Gateway.
+    :param str name: [String] The name of the WireGuard Peer.
     """
     __args__ = dict()
     __args__['gatewayId'] = gateway_id

@@ -13,9 +13,21 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class DatacenterCpuArchitecture
     {
+        /// <summary>
+        /// A valid CPU family name
+        /// </summary>
         public readonly string? CpuFamily;
+        /// <summary>
+        /// The maximum number of cores available
+        /// </summary>
         public readonly int? MaxCores;
+        /// <summary>
+        /// The maximum number of RAM in MB
+        /// </summary>
         public readonly int? MaxRam;
+        /// <summary>
+        /// A valid CPU vendor name
+        /// </summary>
         public readonly string? Vendor;
 
         [OutputConstructor]

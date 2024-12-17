@@ -11,6 +11,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetLocation(ctx, &ionoscloud.GetLocationArgs{
+//				Feature: pulumi.StringRef("SSD"),
+//				Name:    pulumi.StringRef("karlsruhe"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetLocation(ctx *pulumi.Context, args *GetLocationArgs, opts ...pulumi.InvokeOption) (*GetLocationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLocationResult
@@ -23,16 +53,20 @@ func GetLocation(ctx *pulumi.Context, args *GetLocationArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getLocation.
 type GetLocationArgs struct {
+	// A desired feature that the location must be able to provide.
 	Feature *string `pulumi:"feature"`
-	Name    *string `pulumi:"name"`
+	// Name of the location to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getLocation.
 type GetLocationResult struct {
+	// Array of features and CPU families available in a location
 	CpuArchitectures []GetLocationCpuArchitecture `pulumi:"cpuArchitectures"`
 	Feature          *string                      `pulumi:"feature"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// List of image aliases available for the location
 	ImageAliases []string `pulumi:"imageAliases"`
 	Name         *string  `pulumi:"name"`
 }
@@ -48,8 +82,10 @@ func GetLocationOutput(ctx *pulumi.Context, args GetLocationOutputArgs, opts ...
 
 // A collection of arguments for invoking getLocation.
 type GetLocationOutputArgs struct {
+	// A desired feature that the location must be able to provide.
 	Feature pulumi.StringPtrInput `pulumi:"feature"`
-	Name    pulumi.StringPtrInput `pulumi:"name"`
+	// Name of the location to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (GetLocationOutputArgs) ElementType() reflect.Type {
@@ -71,6 +107,7 @@ func (o GetLocationResultOutput) ToGetLocationResultOutputWithContext(ctx contex
 	return o
 }
 
+// Array of features and CPU families available in a location
 func (o GetLocationResultOutput) CpuArchitectures() GetLocationCpuArchitectureArrayOutput {
 	return o.ApplyT(func(v GetLocationResult) []GetLocationCpuArchitecture { return v.CpuArchitectures }).(GetLocationCpuArchitectureArrayOutput)
 }
@@ -84,6 +121,7 @@ func (o GetLocationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLocationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of image aliases available for the location
 func (o GetLocationResultOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLocationResult) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }

@@ -13,7 +13,13 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     [OutputType]
     public sealed class InMemoryDBReplicaSetCredentialsHashedPassword
     {
+        /// <summary>
+        /// [string] The value can be only: "SHA-256".
+        /// </summary>
         public readonly string Algorithm;
+        /// <summary>
+        /// [string] The hashed password.
+        /// </summary>
         public readonly string Hash;
 
         [OutputConstructor]

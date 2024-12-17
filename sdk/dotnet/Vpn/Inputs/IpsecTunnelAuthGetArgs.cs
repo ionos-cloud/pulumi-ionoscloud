@@ -13,7 +13,8 @@ namespace Pulumi.Ionoscloud.Vpn.Inputs
     public sealed class IpsecTunnelAuthGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Authentication Method to use for IPSec Authentication.
+        /// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+        /// Default value: `PSK`.
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
@@ -22,7 +23,8 @@ namespace Pulumi.Ionoscloud.Vpn.Inputs
         private Input<string>? _pskKey;
 
         /// <summary>
-        /// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+        /// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+        /// PSK.
         /// </summary>
         public Input<string>? PskKey
         {

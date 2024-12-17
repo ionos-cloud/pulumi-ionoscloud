@@ -16,13 +16,13 @@ package ionoscloud
 
 import (
 	"fmt"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	"path"
 
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 
@@ -38,20 +38,23 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "ionoscloud"
 	// modules:
-	mainMod       = "index"
-	computeModule = "compute"
-	dbaasModule   = "dbaas"
-	k8sModule     = "k8s"
-	certModule    = "cert"
-	dsaasModule   = "dsaas"
-	nfsModule     = "nfs"
-	vpnModule     = "vpn"
-	cdnModule     = "cdn"
-	dnsModule     = "dns"
-	cregModule    = "creg"
-	loggingModule = "logging"
-	albModule     = "alb"
-	nlbModule     = "nlb"
+	mainMod       = "index"       // the ionoscloud module
+	computeModule = "compute"     // the compute module
+	dbaasModule   = "dbaas"       // the dbaas module
+	k8sModule     = "k8s"         // the k8s module
+	certModule    = "cert"        // the certificate manager module
+	dsaasModule   = "dsaas"       // the dataplatform module
+	nfsModule     = "nfs"         // the nfs module
+	vpnModule     = "vpn"         // the vpn module
+	cdnModule     = "cdn"         // the cdn module
+	dnsModule     = "dns"         // the dns module
+	cregModule    = "creg"        // the container registry module
+	kafkaModule   = "kafka"       // the kafka module
+	apigModule    = "apigateway"  // the apigateway module
+	autosclModule = "autoscaling" // the autoscaling module
+	loggingModule = "logging"     // the logging module
+	albModule     = "alb"         // the applicationloadblancer module
+	nlbModule     = "nlb"         // the networkloadblancer module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -197,6 +200,26 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		DataSources: map[string]*info.DataSource{
+			"ionoscloud_kafka_cluster": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getCluster"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_kafka_cluster_topic": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getTopic"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_apigateway": {
+				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getApigateway"),
+			},
+			"ionoscloud_apigateway_route": {
+				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getRoute"),
+			},
+			"ionoscloud_autoscaling_group": {
+				Tok: tfbridge.MakeDataSource(mainPkg, autosclModule, "getGroup"),
+			},
+			"ionoscloud_autoscaling_group_servers": {
+				Tok: tfbridge.MakeDataSource(mainPkg, autosclModule, "getServers"),
+			},
 			"ionoscloud_datacenter": {
 				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getDatacenter"),
 			},
@@ -494,6 +517,23 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_container_registry_token": {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
+			},
+			"ionoscloud_kafka_cluster": {
+				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Cluster"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_kafka_cluster_topic": {
+				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Topic"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_topic.md"},
+			},
+			"ionoscloud_apigateway": {
+				Tok: tfbridge.MakeResource(mainPkg, apigModule, "Apigateway"),
+			},
+			"ionoscloud_apigateway_route": {
+				Tok: tfbridge.MakeResource(mainPkg, apigModule, "Route"),
+			},
+			"ionoscloud_autoscaling_group": {
+				Tok: tfbridge.MakeResource(mainPkg, autosclModule, "Group"),
 			},
 			"ionoscloud_logging_pipeline": {
 				Tok: tfbridge.MakeResource(mainPkg, loggingModule, "Pipeline"),

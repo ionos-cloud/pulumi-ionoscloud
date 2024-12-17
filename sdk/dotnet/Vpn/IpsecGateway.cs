@@ -9,42 +9,106 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Vpn
 {
+    /// <summary>
+    /// An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+    /// infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
+    /// network resources.
+    /// 
+    /// ## Usage example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Basic example
+    ///     var testDatacenter = new Ionoscloud.Compute.Datacenter("testDatacenter", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///     });
+    /// 
+    ///     var testLan = new Ionoscloud.Compute.Lan("testLan", new()
+    ///     {
+    ///         Public = false,
+    ///         DatacenterId = testDatacenter.Id,
+    ///     });
+    /// 
+    ///     var testIpblock = new Ionoscloud.Compute.IPBlock("testIpblock", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     var example = new Ionoscloud.Vpn.IpsecGateway("example", new()
+    ///     {
+    ///         Location = "de/fra",
+    ///         GatewayIp = testIpblock.Ips.Apply(ips =&gt; ips[0]),
+    ///         Version = "IKEv2",
+    ///         Description = "This gateway connects site A to VDC X.",
+    ///         Connections = new[]
+    ///         {
+    ///             new Ionoscloud.Vpn.Inputs.IpsecGatewayConnectionArgs
+    ///             {
+    ///                 DatacenterId = testDatacenter.Id,
+    ///                 LanId = testLan.Id,
+    ///                 Ipv4Cidr = "192.168.100.10/24",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The resource can be imported using the `location` and `gateway_id`, for example:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:vpn/ipsecGateway:IpsecGateway")]
     public partial class IpsecGateway : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        /// [list] The network connection for your gateway. **Note**: all connections must belong to the
+        /// same datacenter. Minimum items: 1. Maximum items: 10.
         /// </summary>
         [Output("connections")]
         public Output<ImmutableArray<Outputs.IpsecGatewayConnection>> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// The human-readable description of your IPSec Gateway.
+        /// [string] The human-readable description of the IPSec Gateway.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-        /// connections.
+        /// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+        /// the same datacenter as the connections.
         /// </summary>
         [Output("gatewayIp")]
         public Output<string> GatewayIp { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The human readable name of your IPSecGateway.
+        /// [string] The name of the IPSec Gateway.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The IKE version that is permitted for the VPN tunnels.
+        /// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+        /// values: `IKEv2`.
         /// </summary>
         [Output("version")]
         public Output<string?> Version { get; private set; } = null!;
@@ -99,7 +163,8 @@ namespace Pulumi.Ionoscloud.Vpn
         private InputList<Inputs.IpsecGatewayConnectionArgs>? _connections;
 
         /// <summary>
-        /// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        /// [list] The network connection for your gateway. **Note**: all connections must belong to the
+        /// same datacenter. Minimum items: 1. Maximum items: 10.
         /// </summary>
         public InputList<Inputs.IpsecGatewayConnectionArgs> Connections
         {
@@ -108,32 +173,34 @@ namespace Pulumi.Ionoscloud.Vpn
         }
 
         /// <summary>
-        /// The human-readable description of your IPSec Gateway.
+        /// [string] The human-readable description of the IPSec Gateway.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-        /// connections.
+        /// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+        /// the same datacenter as the connections.
         /// </summary>
         [Input("gatewayIp", required: true)]
         public Input<string> GatewayIp { get; set; } = null!;
 
         /// <summary>
-        /// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// The human readable name of your IPSecGateway.
+        /// [string] The name of the IPSec Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The IKE version that is permitted for the VPN tunnels.
+        /// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+        /// values: `IKEv2`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -150,7 +217,8 @@ namespace Pulumi.Ionoscloud.Vpn
         private InputList<Inputs.IpsecGatewayConnectionGetArgs>? _connections;
 
         /// <summary>
-        /// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+        /// [list] The network connection for your gateway. **Note**: all connections must belong to the
+        /// same datacenter. Minimum items: 1. Maximum items: 10.
         /// </summary>
         public InputList<Inputs.IpsecGatewayConnectionGetArgs> Connections
         {
@@ -159,32 +227,34 @@ namespace Pulumi.Ionoscloud.Vpn
         }
 
         /// <summary>
-        /// The human-readable description of your IPSec Gateway.
+        /// [string] The human-readable description of the IPSec Gateway.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-        /// connections.
+        /// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+        /// the same datacenter as the connections.
         /// </summary>
         [Input("gatewayIp")]
         public Input<string>? GatewayIp { get; set; }
 
         /// <summary>
-        /// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+        /// gb/lhr, us/ewr, us/las, us/mci, fr/par
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The human readable name of your IPSecGateway.
+        /// [string] The name of the IPSec Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The IKE version that is permitted for the VPN tunnels.
+        /// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+        /// values: `IKEv2`.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

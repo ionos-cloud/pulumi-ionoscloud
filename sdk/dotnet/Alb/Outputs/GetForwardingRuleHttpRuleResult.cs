@@ -30,11 +30,11 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
         /// </summary>
         public readonly string Location;
         /// <summary>
-        /// The unique name of the Application Load Balancer HTTP rule.
+        /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The response message of the request; mandatory for STATIC actions.
+        /// The response message of the request; mandatory for STATIC action.
         /// </summary>
         public readonly string ResponseMessage;
         /// <summary>
@@ -42,11 +42,11 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
         /// </summary>
         public readonly int StatusCode;
         /// <summary>
-        /// The ID of the target group; mandatory and only valid for FORWARD actions.
+        /// The UUID of the target group; mandatory for FORWARD action.
         /// </summary>
         public readonly string TargetGroup;
         /// <summary>
-        /// Type of the HTTP rule.
+        /// Type of the Http Rule condition.
         /// </summary>
         public readonly string Type;
 

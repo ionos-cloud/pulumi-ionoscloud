@@ -11,6 +11,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Name: pulumi.StringRef("K8s Cluster Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.InvokeOption) (*LookupClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterResult
@@ -23,31 +53,85 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getCluster.
 type LookupClusterArgs struct {
-	Id   *string `pulumi:"id"`
+	// ID of the cluster you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing cluster that you want to search for.
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getCluster.
 type LookupClusterResult struct {
-	ApiSubnetAllowLists      []string                      `pulumi:"apiSubnetAllowLists"`
-	AvailableUpgradeVersions []string                      `pulumi:"availableUpgradeVersions"`
-	CaCrt                    string                        `pulumi:"caCrt"`
-	Configs                  []GetClusterConfig            `pulumi:"configs"`
-	Id                       *string                       `pulumi:"id"`
-	K8sVersion               string                        `pulumi:"k8sVersion"`
-	KubeConfig               string                        `pulumi:"kubeConfig"`
-	Location                 string                        `pulumi:"location"`
-	MaintenanceWindows       []GetClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name                     *string                       `pulumi:"name"`
-	NatGatewayIp             string                        `pulumi:"natGatewayIp"`
-	NodePools                []string                      `pulumi:"nodePools"`
-	NodeSubnet               string                        `pulumi:"nodeSubnet"`
-	Public                   bool                          `pulumi:"public"`
-	S3Buckets                []GetClusterS3Bucket          `pulumi:"s3Buckets"`
-	Server                   string                        `pulumi:"server"`
-	State                    string                        `pulumi:"state"`
-	UserTokens               map[string]string             `pulumi:"userTokens"`
-	ViableNodePoolVersions   []string                      `pulumi:"viableNodePoolVersions"`
+	// access to the K8s API server is restricted to these CIDRs
+	ApiSubnetAllowLists []string `pulumi:"apiSubnetAllowLists"`
+	// A list of available versions for upgrading the cluster
+	AvailableUpgradeVersions []string `pulumi:"availableUpgradeVersions"`
+	// base64 decoded cluster certificate authority data (provided as an attribute for direct use)
+	CaCrt string `pulumi:"caCrt"`
+	// structured kubernetes config consisting of a list with 1 item with the following fields:
+	// * apiVersion - Kubernetes API Version
+	// * kind - "Config"
+	// * current-context - string
+	// * clusters - list of
+	// * name - name of cluster
+	// * cluster - map of
+	// * certificate-authority-data - **base64 decoded** cluster CA data
+	// * server -  server address in the form `https://host:port`
+	// * contexts - list of
+	// * name - context name
+	// * context - map of
+	// * cluster - cluster name
+	// * user - cluster user
+	// * users - list of
+	// * name - user name
+	// * user - map of
+	// * token - user token used for authentication
+	Configs []GetClusterConfig `pulumi:"configs"`
+	// id of the cluster
+	Id *string `pulumi:"id"`
+	// Kubernetes version
+	K8sVersion string `pulumi:"k8sVersion"`
+	// Kubernetes configuration
+	KubeConfig string `pulumi:"kubeConfig"`
+	// this attribute is mandatory if the cluster is private.
+	Location string `pulumi:"location"`
+	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+	MaintenanceWindows []GetClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// name of the cluster
+	Name *string `pulumi:"name"`
+	// the NAT gateway IP of the cluster if the cluster is private.
+	NatGatewayIp string `pulumi:"natGatewayIp"`
+	// list of the IDs of the node pools in this cluster
+	NodePools []string `pulumi:"nodePools"`
+	// the node subnet of the cluster, if the cluster is private.
+	NodeSubnet string `pulumi:"nodeSubnet"`
+	// indicates if the cluster is public or private.
+	Public bool `pulumi:"public"`
+	// list of IONOS Object Storage bucket configured for K8s usage
+	S3Buckets []GetClusterS3Bucket `pulumi:"s3Buckets"`
+	// cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
+	Server string `pulumi:"server"`
+	// one of "AVAILABLE",
+	// "INACTIVE",
+	// "BUSY",
+	// "DEPLOYING",
+	// "ACTIVE",
+	// "FAILED",
+	// "SUSPENDED",
+	// "FAILED_SUSPENDED",
+	// "UPDATING",
+	// "FAILED_UPDATING",
+	// "DESTROYING",
+	// "FAILED_DESTROYING",
+	// "TERMINATED"
+	State string `pulumi:"state"`
+	// a convenience map to be search the token of a specific user
+	// - key - is the user name
+	// - value - is the token
+	UserTokens map[string]string `pulumi:"userTokens"`
+	// A list of versions that may be used for node pools under this cluster
+	ViableNodePoolVersions []string `pulumi:"viableNodePoolVersions"`
 }
 
 func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts ...pulumi.InvokeOption) LookupClusterResultOutput {
@@ -61,7 +145,11 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 
 // A collection of arguments for invoking getCluster.
 type LookupClusterOutputArgs struct {
-	Id   pulumi.StringPtrInput `pulumi:"id"`
+	// ID of the cluster you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing cluster that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -84,78 +172,128 @@ func (o LookupClusterResultOutput) ToLookupClusterResultOutputWithContext(ctx co
 	return o
 }
 
+// access to the K8s API server is restricted to these CIDRs
 func (o LookupClusterResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
 }
 
+// A list of available versions for upgrading the cluster
 func (o LookupClusterResultOutput) AvailableUpgradeVersions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []string { return v.AvailableUpgradeVersions }).(pulumi.StringArrayOutput)
 }
 
+// base64 decoded cluster certificate authority data (provided as an attribute for direct use)
 func (o LookupClusterResultOutput) CaCrt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.CaCrt }).(pulumi.StringOutput)
 }
 
+// structured kubernetes config consisting of a list with 1 item with the following fields:
+// * apiVersion - Kubernetes API Version
+// * kind - "Config"
+// * current-context - string
+// * clusters - list of
+// * name - name of cluster
+// * cluster - map of
+// * certificate-authority-data - **base64 decoded** cluster CA data
+// * server -  server address in the form `https://host:port`
+// * contexts - list of
+// * name - context name
+// * context - map of
+// * cluster - cluster name
+// * user - cluster user
+// * users - list of
+// * name - user name
+// * user - map of
+// * token - user token used for authentication
 func (o LookupClusterResultOutput) Configs() GetClusterConfigArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterConfig { return v.Configs }).(GetClusterConfigArrayOutput)
 }
 
+// id of the cluster
 func (o LookupClusterResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Kubernetes version
 func (o LookupClusterResultOutput) K8sVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.K8sVersion }).(pulumi.StringOutput)
 }
 
+// Kubernetes configuration
 func (o LookupClusterResultOutput) KubeConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.KubeConfig }).(pulumi.StringOutput)
 }
 
+// this attribute is mandatory if the cluster is private.
 func (o LookupClusterResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 func (o LookupClusterResultOutput) MaintenanceWindows() GetClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetClusterMaintenanceWindowArrayOutput)
 }
 
+// name of the cluster
 func (o LookupClusterResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// the NAT gateway IP of the cluster if the cluster is private.
 func (o LookupClusterResultOutput) NatGatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.NatGatewayIp }).(pulumi.StringOutput)
 }
 
+// list of the IDs of the node pools in this cluster
 func (o LookupClusterResultOutput) NodePools() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []string { return v.NodePools }).(pulumi.StringArrayOutput)
 }
 
+// the node subnet of the cluster, if the cluster is private.
 func (o LookupClusterResultOutput) NodeSubnet() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.NodeSubnet }).(pulumi.StringOutput)
 }
 
+// indicates if the cluster is public or private.
 func (o LookupClusterResultOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClusterResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// list of IONOS Object Storage bucket configured for K8s usage
 func (o LookupClusterResultOutput) S3Buckets() GetClusterS3BucketArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []GetClusterS3Bucket { return v.S3Buckets }).(GetClusterS3BucketArrayOutput)
 }
 
+// cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
 func (o LookupClusterResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.Server }).(pulumi.StringOutput)
 }
 
+// one of "AVAILABLE",
+// "INACTIVE",
+// "BUSY",
+// "DEPLOYING",
+// "ACTIVE",
+// "FAILED",
+// "SUSPENDED",
+// "FAILED_SUSPENDED",
+// "UPDATING",
+// "FAILED_UPDATING",
+// "DESTROYING",
+// "FAILED_DESTROYING",
+// "TERMINATED"
 func (o LookupClusterResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// a convenience map to be search the token of a specific user
+// - key - is the user name
+// - value - is the token
 func (o LookupClusterResultOutput) UserTokens() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupClusterResult) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
 }
 
+// A list of versions that may be used for node pools under this cluster
 func (o LookupClusterResultOutput) ViableNodePoolVersions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupClusterResult) []string { return v.ViableNodePoolVersions }).(pulumi.StringArrayOutput)
 }

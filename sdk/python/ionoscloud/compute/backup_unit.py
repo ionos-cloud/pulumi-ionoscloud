@@ -24,9 +24,9 @@ class BackupUnitArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackupUnit resource.
-        :param pulumi.Input[str] email: The e-mail address you want assigned to the backup unit.
-        :param pulumi.Input[str] password: The password you want assigned to the backup unit.
-        :param pulumi.Input[str] name: Alphanumeric name you want assigned to the backup unit.
+        :param pulumi.Input[str] email: [string] The email address assigned to the backup unit
+        :param pulumi.Input[str] password: [string] The desired password for the Backup Unit
+        :param pulumi.Input[str] name: [string] The name of the Backup Unit. This argument is immutable.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "password", password)
@@ -37,7 +37,7 @@ class BackupUnitArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
         """
-        The e-mail address you want assigned to the backup unit.
+        [string] The email address assigned to the backup unit
         """
         return pulumi.get(self, "email")
 
@@ -49,7 +49,7 @@ class BackupUnitArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password you want assigned to the backup unit.
+        [string] The desired password for the Backup Unit
         """
         return pulumi.get(self, "password")
 
@@ -61,7 +61,7 @@ class BackupUnitArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Alphanumeric name you want assigned to the backup unit.
+        [string] The name of the Backup Unit. This argument is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -79,10 +79,10 @@ class _BackupUnitState:
                  password: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BackupUnit resources.
-        :param pulumi.Input[str] email: The e-mail address you want assigned to the backup unit.
+        :param pulumi.Input[str] email: [string] The email address assigned to the backup unit
         :param pulumi.Input[str] login: The login associated with the backup unit. Derived from the contract number
-        :param pulumi.Input[str] name: Alphanumeric name you want assigned to the backup unit.
-        :param pulumi.Input[str] password: The password you want assigned to the backup unit.
+        :param pulumi.Input[str] name: [string] The name of the Backup Unit. This argument is immutable.
+        :param pulumi.Input[str] password: [string] The desired password for the Backup Unit
         """
         if email is not None:
             pulumi.set(__self__, "email", email)
@@ -97,7 +97,7 @@ class _BackupUnitState:
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
-        The e-mail address you want assigned to the backup unit.
+        [string] The email address assigned to the backup unit
         """
         return pulumi.get(self, "email")
 
@@ -121,7 +121,7 @@ class _BackupUnitState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Alphanumeric name you want assigned to the backup unit.
+        [string] The name of the Backup Unit. This argument is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -133,7 +133,7 @@ class _BackupUnitState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password you want assigned to the backup unit.
+        [string] The desired password for the Backup Unit
         """
         return pulumi.get(self, "password")
 
@@ -152,12 +152,21 @@ class BackupUnit(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a BackupUnit resource with the given unique name, props, and options.
+        ## Import
+
+        A Backup Unit resource can be imported using its `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}
+        ```
+
+        This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] email: The e-mail address you want assigned to the backup unit.
-        :param pulumi.Input[str] name: Alphanumeric name you want assigned to the backup unit.
-        :param pulumi.Input[str] password: The password you want assigned to the backup unit.
+        :param pulumi.Input[str] email: [string] The email address assigned to the backup unit
+        :param pulumi.Input[str] name: [string] The name of the Backup Unit. This argument is immutable.
+        :param pulumi.Input[str] password: [string] The desired password for the Backup Unit
         """
         ...
     @overload
@@ -166,7 +175,16 @@ class BackupUnit(pulumi.CustomResource):
                  args: BackupUnitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a BackupUnit resource with the given unique name, props, and options.
+        ## Import
+
+        A Backup Unit resource can be imported using its `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}
+        ```
+
+        This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
+
         :param str resource_name: The name of the resource.
         :param BackupUnitArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -225,10 +243,10 @@ class BackupUnit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] email: The e-mail address you want assigned to the backup unit.
+        :param pulumi.Input[str] email: [string] The email address assigned to the backup unit
         :param pulumi.Input[str] login: The login associated with the backup unit. Derived from the contract number
-        :param pulumi.Input[str] name: Alphanumeric name you want assigned to the backup unit.
-        :param pulumi.Input[str] password: The password you want assigned to the backup unit.
+        :param pulumi.Input[str] name: [string] The name of the Backup Unit. This argument is immutable.
+        :param pulumi.Input[str] password: [string] The desired password for the Backup Unit
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -244,7 +262,7 @@ class BackupUnit(pulumi.CustomResource):
     @pulumi.getter
     def email(self) -> pulumi.Output[str]:
         """
-        The e-mail address you want assigned to the backup unit.
+        [string] The email address assigned to the backup unit
         """
         return pulumi.get(self, "email")
 
@@ -260,7 +278,7 @@ class BackupUnit(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Alphanumeric name you want assigned to the backup unit.
+        [string] The name of the Backup Unit. This argument is immutable.
         """
         return pulumi.get(self, "name")
 
@@ -268,7 +286,7 @@ class BackupUnit(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
         """
-        The password you want assigned to the backup unit.
+        [string] The desired password for the Backup Unit
         """
         return pulumi.get(self, "password")
 

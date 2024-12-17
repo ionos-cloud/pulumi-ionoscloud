@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -184,14 +189,11 @@ def get_networkloadbalancer_forwardingrule(datacenter_id: Optional[str] = None,
         networkloadbalancer_id=pulumi.get(__ret__, 'networkloadbalancer_id'),
         protocol=pulumi.get(__ret__, 'protocol'),
         targets=pulumi.get(__ret__, 'targets'))
-
-
-@_utilities.lift_output_func(get_networkloadbalancer_forwardingrule)
 def get_networkloadbalancer_forwardingrule_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                                                   id: Optional[pulumi.Input[Optional[str]]] = None,
                                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                                   networkloadbalancer_id: Optional[pulumi.Input[str]] = None,
-                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkloadbalancerForwardingruleResult]:
+                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkloadbalancerForwardingruleResult]:
     """
     The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -205,4 +207,21 @@ def get_networkloadbalancer_forwardingrule_output(datacenter_id: Optional[pulumi
     :param str name: Name of an existing network load balancer forwarding rule that you want to search for.
     :param str networkloadbalancer_id: Network Load Balancer's UUID.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['networkloadbalancerId'] = networkloadbalancer_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule', __args__, opts=opts, typ=GetNetworkloadbalancerForwardingruleResult)
+    return __ret__.apply(lambda __response__: GetNetworkloadbalancerForwardingruleResult(
+        algorithm=pulumi.get(__response__, 'algorithm'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        health_checks=pulumi.get(__response__, 'health_checks'),
+        id=pulumi.get(__response__, 'id'),
+        listener_ip=pulumi.get(__response__, 'listener_ip'),
+        listener_port=pulumi.get(__response__, 'listener_port'),
+        name=pulumi.get(__response__, 'name'),
+        networkloadbalancer_id=pulumi.get(__response__, 'networkloadbalancer_id'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        targets=pulumi.get(__response__, 'targets')))

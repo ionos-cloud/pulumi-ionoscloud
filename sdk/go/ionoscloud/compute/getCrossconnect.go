@@ -11,6 +11,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Cross Connect data source** can be used to search for and return existing cross connects.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupCrossconnect(ctx, &compute.LookupCrossconnectArgs{
+//				Name: pulumi.StringRef("Cross Connect Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCrossconnect(ctx *pulumi.Context, args *LookupCrossconnectArgs, opts ...pulumi.InvokeOption) (*LookupCrossconnectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCrossconnectResult
@@ -23,18 +53,28 @@ func LookupCrossconnect(ctx *pulumi.Context, args *LookupCrossconnectArgs, opts 
 
 // A collection of arguments for invoking getCrossconnect.
 type LookupCrossconnectArgs struct {
+	// Description of cross connect
 	Description *string `pulumi:"description"`
-	Id          *string `pulumi:"id"`
-	Name        *string `pulumi:"name"`
+	// ID of the cross connect you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing cross connect that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getCrossconnect.
 type LookupCrossconnectResult struct {
+	// Lists datacenters that can be joined to this cross connect
 	ConnectableDatacenters []GetCrossconnectConnectableDatacenter `pulumi:"connectableDatacenters"`
-	Description            *string                                `pulumi:"description"`
-	Id                     *string                                `pulumi:"id"`
-	Name                   *string                                `pulumi:"name"`
-	Peers                  []GetCrossconnectPeer                  `pulumi:"peers"`
+	// Description of cross connect
+	Description *string `pulumi:"description"`
+	// The UUID of the connectable datacenter
+	Id *string `pulumi:"id"`
+	// The name of the connectable datacenter
+	Name *string `pulumi:"name"`
+	// Lists LAN's joined to this cross connect
+	Peers []GetCrossconnectPeer `pulumi:"peers"`
 }
 
 func LookupCrossconnectOutput(ctx *pulumi.Context, args LookupCrossconnectOutputArgs, opts ...pulumi.InvokeOption) LookupCrossconnectResultOutput {
@@ -48,9 +88,14 @@ func LookupCrossconnectOutput(ctx *pulumi.Context, args LookupCrossconnectOutput
 
 // A collection of arguments for invoking getCrossconnect.
 type LookupCrossconnectOutputArgs struct {
+	// Description of cross connect
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	Id          pulumi.StringPtrInput `pulumi:"id"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the cross connect you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing cross connect that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupCrossconnectOutputArgs) ElementType() reflect.Type {
@@ -72,24 +117,29 @@ func (o LookupCrossconnectResultOutput) ToLookupCrossconnectResultOutputWithCont
 	return o
 }
 
+// Lists datacenters that can be joined to this cross connect
 func (o LookupCrossconnectResultOutput) ConnectableDatacenters() GetCrossconnectConnectableDatacenterArrayOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) []GetCrossconnectConnectableDatacenter {
 		return v.ConnectableDatacenters
 	}).(GetCrossconnectConnectableDatacenterArrayOutput)
 }
 
+// Description of cross connect
 func (o LookupCrossconnectResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The UUID of the connectable datacenter
 func (o LookupCrossconnectResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The name of the connectable datacenter
 func (o LookupCrossconnectResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Lists LAN's joined to this cross connect
 func (o LookupCrossconnectResultOutput) Peers() GetCrossconnectPeerArrayOutput {
 	return o.ApplyT(func(v LookupCrossconnectResult) []GetCrossconnectPeer { return v.Peers }).(GetCrossconnectPeerArrayOutput)
 }

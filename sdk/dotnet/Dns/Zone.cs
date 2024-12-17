@@ -9,15 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dns
 {
+    /// <summary>
+    /// Manages a **DNS Zone**.
+    /// 
+    /// &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.Dns.Zone("example", new()
+    ///     {
+    ///         Description = "description",
+    ///         Enabled = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
+    /// 
+    /// hcl
+    /// 
+    /// resource "ionoscloud_dns_zone" "example" {
+    /// 
+    /// }
+    /// 
+    /// The resource can be imported using the `zone_id`, for example:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dns/zone:Zone")]
     public partial class Zone : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The description for the DNS Zone.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The name of the DNS Zone.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -73,12 +122,21 @@ namespace Pulumi.Ionoscloud.Dns
 
     public sealed class ZoneArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The description for the DNS Zone.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// [string] The name of the DNS Zone.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -90,12 +148,21 @@ namespace Pulumi.Ionoscloud.Dns
 
     public sealed class ZoneState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The description for the DNS Zone.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// [string] The name of the DNS Zone.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

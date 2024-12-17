@@ -45,6 +45,9 @@ class GetDataplatformVersionsResult:
     @property
     @pulumi.getter
     def versions(self) -> Sequence[str]:
+        """
+        list of Managed Dataplatform API versions.
+        """
         return pulumi.get(self, "versions")
 
 
@@ -60,7 +63,17 @@ class AwaitableGetDataplatformVersionsResult(GetDataplatformVersionsResult):
 
 def get_dataplatform_versions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataplatformVersionsResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
+
+    ## Example Usage
+
+    ### Retrieve list of Managed Dataplatform API versions
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_dataplatform_versions()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -71,7 +84,17 @@ def get_dataplatform_versions(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
         versions=pulumi.get(__ret__, 'versions'))
 def get_dataplatform_versions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataplatformVersionsResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
+
+    ## Example Usage
+
+    ### Retrieve list of Managed Dataplatform API versions
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_dataplatform_versions()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

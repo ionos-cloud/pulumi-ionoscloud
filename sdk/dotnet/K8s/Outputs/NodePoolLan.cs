@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class NodePoolLan
     {
         /// <summary>
-        /// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        /// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         /// </summary>
         public readonly bool? Dhcp;
         /// <summary>
-        /// The LAN ID of an existing LAN at the related datacenter
+        /// [int] The LAN ID of an existing LAN at the related datacenter
         /// </summary>
         public readonly int Id;
         /// <summary>

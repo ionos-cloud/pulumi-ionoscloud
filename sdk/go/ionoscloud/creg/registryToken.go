@@ -12,17 +12,83 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an **Container Registry Token** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleRegistry, err := creg.NewRegistry(ctx, "exampleRegistry", &creg.RegistryArgs{
+//				GarbageCollectionSchedule: &creg.RegistryGarbageCollectionScheduleArgs{
+//					Days: pulumi.StringArray{
+//						pulumi.String("Monday"),
+//						pulumi.String("Tuesday"),
+//					},
+//					Time: pulumi.String("05:19:00+00:00"),
+//				},
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = creg.NewRegistryToken(ctx, "exampleRegistryToken", &creg.RegistryTokenArgs{
+//				ExpiryDate: pulumi.String("2023-01-13 16:27:42Z"),
+//				Scopes: creg.RegistryTokenScopeArray{
+//					&creg.RegistryTokenScopeArgs{
+//						Actions: pulumi.StringArray{
+//							pulumi.String("push"),
+//						},
+//						Name: pulumi.String("Scope1"),
+//						Type: pulumi.String("repository"),
+//					},
+//				},
+//				Status:             pulumi.String("enabled"),
+//				RegistryId:         exampleRegistry.ID(),
+//				SavePasswordToFile: pulumi.String("pass.txt"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Container Registry Token can be imported using the `container registry id` and `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:creg/registryToken:RegistryToken mycrtoken {container_registry uuid}/{container_registry_token uuid}
+// ```
 type RegistryToken struct {
 	pulumi.CustomResourceState
 
 	Credentials RegistryTokenCredentialArrayOutput `pulumi:"credentials"`
 	ExpiryDate  pulumi.StringPtrOutput             `pulumi:"expiryDate"`
-	Name        pulumi.StringOutput                `pulumi:"name"`
-	RegistryId  pulumi.StringOutput                `pulumi:"registryId"`
-	// Saves password to file. Only works on create. Takes as argument a file name, or a file path
-	SavePasswordToFile pulumi.StringPtrOutput        `pulumi:"savePasswordToFile"`
-	Scopes             RegistryTokenScopeArrayOutput `pulumi:"scopes"`
-	// Can be one of enabled, disabled
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+	Name       pulumi.StringOutput `pulumi:"name"`
+	RegistryId pulumi.StringOutput `pulumi:"registryId"`
+	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+	//
+	// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+	// It will save the password(token) returned on create to a file. This is the only way to get the token.
+	SavePasswordToFile pulumi.StringPtrOutput `pulumi:"savePasswordToFile"`
+	// [map]
+	Scopes RegistryTokenScopeArrayOutput `pulumi:"scopes"`
+	// [string] Must have on of the values: `enabled`, `disabled`
 	Status pulumi.StringOutput `pulumi:"status"`
 }
 
@@ -61,24 +127,36 @@ func GetRegistryToken(ctx *pulumi.Context,
 type registryTokenState struct {
 	Credentials []RegistryTokenCredential `pulumi:"credentials"`
 	ExpiryDate  *string                   `pulumi:"expiryDate"`
-	Name        *string                   `pulumi:"name"`
-	RegistryId  *string                   `pulumi:"registryId"`
-	// Saves password to file. Only works on create. Takes as argument a file name, or a file path
-	SavePasswordToFile *string              `pulumi:"savePasswordToFile"`
-	Scopes             []RegistryTokenScope `pulumi:"scopes"`
-	// Can be one of enabled, disabled
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+	Name       *string `pulumi:"name"`
+	RegistryId *string `pulumi:"registryId"`
+	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+	//
+	// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+	// It will save the password(token) returned on create to a file. This is the only way to get the token.
+	SavePasswordToFile *string `pulumi:"savePasswordToFile"`
+	// [map]
+	Scopes []RegistryTokenScope `pulumi:"scopes"`
+	// [string] Must have on of the values: `enabled`, `disabled`
 	Status *string `pulumi:"status"`
 }
 
 type RegistryTokenState struct {
 	Credentials RegistryTokenCredentialArrayInput
 	ExpiryDate  pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
-	RegistryId  pulumi.StringPtrInput
-	// Saves password to file. Only works on create. Takes as argument a file name, or a file path
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
+	Name       pulumi.StringPtrInput
+	RegistryId pulumi.StringPtrInput
+	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+	//
+	// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+	// It will save the password(token) returned on create to a file. This is the only way to get the token.
 	SavePasswordToFile pulumi.StringPtrInput
-	Scopes             RegistryTokenScopeArrayInput
-	// Can be one of enabled, disabled
+	// [map]
+	Scopes RegistryTokenScopeArrayInput
+	// [string] Must have on of the values: `enabled`, `disabled`
 	Status pulumi.StringPtrInput
 }
 
@@ -88,24 +166,36 @@ func (RegistryTokenState) ElementType() reflect.Type {
 
 type registryTokenArgs struct {
 	ExpiryDate *string `pulumi:"expiryDate"`
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       *string `pulumi:"name"`
 	RegistryId string  `pulumi:"registryId"`
-	// Saves password to file. Only works on create. Takes as argument a file name, or a file path
-	SavePasswordToFile *string              `pulumi:"savePasswordToFile"`
-	Scopes             []RegistryTokenScope `pulumi:"scopes"`
-	// Can be one of enabled, disabled
+	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+	//
+	// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+	// It will save the password(token) returned on create to a file. This is the only way to get the token.
+	SavePasswordToFile *string `pulumi:"savePasswordToFile"`
+	// [map]
+	Scopes []RegistryTokenScope `pulumi:"scopes"`
+	// [string] Must have on of the values: `enabled`, `disabled`
 	Status *string `pulumi:"status"`
 }
 
 // The set of arguments for constructing a RegistryToken resource.
 type RegistryTokenArgs struct {
 	ExpiryDate pulumi.StringPtrInput
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       pulumi.StringPtrInput
 	RegistryId pulumi.StringInput
-	// Saves password to file. Only works on create. Takes as argument a file name, or a file path
+	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+	//
+	// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+	// It will save the password(token) returned on create to a file. This is the only way to get the token.
 	SavePasswordToFile pulumi.StringPtrInput
-	Scopes             RegistryTokenScopeArrayInput
-	// Can be one of enabled, disabled
+	// [map]
+	Scopes RegistryTokenScopeArrayInput
+	// [string] Must have on of the values: `enabled`, `disabled`
 	Status pulumi.StringPtrInput
 }
 
@@ -204,6 +294,8 @@ func (o RegistryTokenOutput) ExpiryDate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringPtrOutput { return v.ExpiryDate }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 func (o RegistryTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -212,16 +304,20 @@ func (o RegistryTokenOutput) RegistryId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringOutput { return v.RegistryId }).(pulumi.StringOutput)
 }
 
-// Saves password to file. Only works on create. Takes as argument a file name, or a file path
+// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
+//
+// > **⚠ WARNING** `savePasswordToFile` must be used with caution.
+// It will save the password(token) returned on create to a file. This is the only way to get the token.
 func (o RegistryTokenOutput) SavePasswordToFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringPtrOutput { return v.SavePasswordToFile }).(pulumi.StringPtrOutput)
 }
 
+// [map]
 func (o RegistryTokenOutput) Scopes() RegistryTokenScopeArrayOutput {
 	return o.ApplyT(func(v *RegistryToken) RegistryTokenScopeArrayOutput { return v.Scopes }).(RegistryTokenScopeArrayOutput)
 }
 
-// Can be one of enabled, disabled
+// [string] Must have on of the values: `enabled`, `disabled`
 func (o RegistryTokenOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

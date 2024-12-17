@@ -11,6 +11,65 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.
+// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
+//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				Name:         pulumi.StringRef("ALB name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
+//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				Name:         pulumi.StringRef("name"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupBalancer(ctx *pulumi.Context, args *LookupBalancerArgs, opts ...pulumi.InvokeOption) (*LookupBalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBalancerResult
@@ -23,25 +82,39 @@ func LookupBalancer(ctx *pulumi.Context, args *LookupBalancerArgs, opts ...pulum
 
 // A collection of arguments for invoking getBalancer.
 type LookupBalancerArgs struct {
-	DatacenterId string  `pulumi:"datacenterId"`
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// Datacenter's UUID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the application load balancer you want to search for.
+	Id *string `pulumi:"id"`
+	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getBalancer.
 type LookupBalancerResult struct {
-	CentralLogging bool                 `pulumi:"centralLogging"`
-	DatacenterId   string               `pulumi:"datacenterId"`
-	Flowlogs       []GetBalancerFlowlog `pulumi:"flowlogs"`
-	Id             *string              `pulumi:"id"`
-	Ips            []string             `pulumi:"ips"`
-	LbPrivateIps   []string             `pulumi:"lbPrivateIps"`
-	ListenerLan    int                  `pulumi:"listenerLan"`
-	LoggingFormat  string               `pulumi:"loggingFormat"`
-	Name           *string              `pulumi:"name"`
-	PartialMatch   *bool                `pulumi:"partialMatch"`
-	TargetLan      int                  `pulumi:"targetLan"`
+	// Turn logging on and off for this product. Default value is 'false'.
+	CentralLogging bool   `pulumi:"centralLogging"`
+	DatacenterId   string `pulumi:"datacenterId"`
+	// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	Flowlogs []GetBalancerFlowlog `pulumi:"flowlogs"`
+	// Id of the application load balancer.
+	Id *string `pulumi:"id"`
+	// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+	Ips []string `pulumi:"ips"`
+	// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+	LbPrivateIps []string `pulumi:"lbPrivateIps"`
+	// ID of the listening (inbound) LAN.
+	ListenerLan   int    `pulumi:"listenerLan"`
+	LoggingFormat string `pulumi:"loggingFormat"`
+	// Specifies the name of the flow log.
+	Name         *string `pulumi:"name"`
+	PartialMatch *bool   `pulumi:"partialMatch"`
+	// ID of the balanced private target LAN (outbound).
+	TargetLan int `pulumi:"targetLan"`
 }
 
 func LookupBalancerOutput(ctx *pulumi.Context, args LookupBalancerOutputArgs, opts ...pulumi.InvokeOption) LookupBalancerResultOutput {
@@ -55,10 +128,16 @@ func LookupBalancerOutput(ctx *pulumi.Context, args LookupBalancerOutputArgs, op
 
 // A collection of arguments for invoking getBalancer.
 type LookupBalancerOutputArgs struct {
-	DatacenterId pulumi.StringInput    `pulumi:"datacenterId"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// Datacenter's UUID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the application load balancer you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupBalancerOutputArgs) ElementType() reflect.Type {
@@ -80,6 +159,7 @@ func (o LookupBalancerResultOutput) ToLookupBalancerResultOutputWithContext(ctx 
 	return o
 }
 
+// Turn logging on and off for this product. Default value is 'false'.
 func (o LookupBalancerResultOutput) CentralLogging() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupBalancerResult) bool { return v.CentralLogging }).(pulumi.BoolOutput)
 }
@@ -88,22 +168,27 @@ func (o LookupBalancerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBalancerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
 func (o LookupBalancerResultOutput) Flowlogs() GetBalancerFlowlogArrayOutput {
 	return o.ApplyT(func(v LookupBalancerResult) []GetBalancerFlowlog { return v.Flowlogs }).(GetBalancerFlowlogArrayOutput)
 }
 
+// Id of the application load balancer.
 func (o LookupBalancerResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
 func (o LookupBalancerResultOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupBalancerResult) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
+// Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
 func (o LookupBalancerResultOutput) LbPrivateIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupBalancerResult) []string { return v.LbPrivateIps }).(pulumi.StringArrayOutput)
 }
 
+// ID of the listening (inbound) LAN.
 func (o LookupBalancerResultOutput) ListenerLan() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBalancerResult) int { return v.ListenerLan }).(pulumi.IntOutput)
 }
@@ -112,6 +197,7 @@ func (o LookupBalancerResultOutput) LoggingFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBalancerResult) string { return v.LoggingFormat }).(pulumi.StringOutput)
 }
 
+// Specifies the name of the flow log.
 func (o LookupBalancerResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -120,6 +206,7 @@ func (o LookupBalancerResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupBalancerResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// ID of the balanced private target LAN (outbound).
 func (o LookupBalancerResultOutput) TargetLan() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBalancerResult) int { return v.TargetLan }).(pulumi.IntOutput)
 }

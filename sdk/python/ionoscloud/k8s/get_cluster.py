@@ -89,96 +89,184 @@ class GetClusterResult:
     @property
     @pulumi.getter(name="apiSubnetAllowLists")
     def api_subnet_allow_lists(self) -> Sequence[str]:
+        """
+        access to the K8s API server is restricted to these CIDRs
+        """
         return pulumi.get(self, "api_subnet_allow_lists")
 
     @property
     @pulumi.getter(name="availableUpgradeVersions")
     def available_upgrade_versions(self) -> Sequence[str]:
+        """
+        A list of available versions for upgrading the cluster
+        """
         return pulumi.get(self, "available_upgrade_versions")
 
     @property
     @pulumi.getter(name="caCrt")
     def ca_crt(self) -> str:
+        """
+        base64 decoded cluster certificate authority data (provided as an attribute for direct use)
+        """
         return pulumi.get(self, "ca_crt")
 
     @property
     @pulumi.getter
     def configs(self) -> Sequence['outputs.GetClusterConfigResult']:
+        """
+        structured kubernetes config consisting of a list with 1 item with the following fields:
+        * api_version - Kubernetes API Version
+        * kind - "Config"
+        * current-context - string
+        * clusters - list of
+        * name - name of cluster
+        * cluster - map of
+        * certificate-authority-data - **base64 decoded** cluster CA data
+        * server -  server address in the form `https://host:port`
+        * contexts - list of
+        * name - context name
+        * context - map of
+        * cluster - cluster name
+        * user - cluster user
+        * users - list of
+        * name - user name
+        * user - map of
+        * token - user token used for authentication
+        """
         return pulumi.get(self, "configs")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        id of the cluster
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="k8sVersion")
     def k8s_version(self) -> str:
+        """
+        Kubernetes version
+        """
         return pulumi.get(self, "k8s_version")
 
     @property
     @pulumi.getter(name="kubeConfig")
     def kube_config(self) -> str:
+        """
+        Kubernetes configuration
+        """
         return pulumi.get(self, "kube_config")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        this attribute is mandatory if the cluster is private.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetClusterMaintenanceWindowResult']:
+        """
+        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        name of the cluster
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="natGatewayIp")
     def nat_gateway_ip(self) -> str:
+        """
+        the NAT gateway IP of the cluster if the cluster is private.
+        """
         return pulumi.get(self, "nat_gateway_ip")
 
     @property
     @pulumi.getter(name="nodePools")
     def node_pools(self) -> Sequence[str]:
+        """
+        list of the IDs of the node pools in this cluster
+        """
         return pulumi.get(self, "node_pools")
 
     @property
     @pulumi.getter(name="nodeSubnet")
     def node_subnet(self) -> str:
+        """
+        the node subnet of the cluster, if the cluster is private.
+        """
         return pulumi.get(self, "node_subnet")
 
     @property
     @pulumi.getter
     def public(self) -> bool:
+        """
+        indicates if the cluster is public or private.
+        """
         return pulumi.get(self, "public")
 
     @property
     @pulumi.getter(name="s3Buckets")
     def s3_buckets(self) -> Sequence['outputs.GetClusterS3BucketResult']:
+        """
+        list of IONOS Object Storage bucket configured for K8s usage
+        """
         return pulumi.get(self, "s3_buckets")
 
     @property
     @pulumi.getter
     def server(self) -> str:
+        """
+        cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
+        """
         return pulumi.get(self, "server")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        one of "AVAILABLE",
+        "INACTIVE",
+        "BUSY",
+        "DEPLOYING",
+        "ACTIVE",
+        "FAILED",
+        "SUSPENDED",
+        "FAILED_SUSPENDED",
+        "UPDATING",
+        "FAILED_UPDATING",
+        "DESTROYING",
+        "FAILED_DESTROYING",
+        "TERMINATED"
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="userTokens")
     def user_tokens(self) -> Mapping[str, str]:
+        """
+        a convenience map to be search the token of a specific user
+        - key - is the user name
+        - value - is the token
+        """
         return pulumi.get(self, "user_tokens")
 
     @property
     @pulumi.getter(name="viableNodePoolVersions")
     def viable_node_pool_versions(self) -> Sequence[str]:
+        """
+        A list of versions that may be used for node pools under this cluster
+        """
         return pulumi.get(self, "viable_node_pool_versions")
 
 
@@ -213,7 +301,25 @@ def get_cluster(id: Optional[str] = None,
                 name: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_cluster(name="K8s Cluster Example")
+    ```
+
+
+    :param str id: ID of the cluster you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing cluster that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -245,7 +351,25 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.k8s.get_cluster(name="K8s Cluster Example")
+    ```
+
+
+    :param str id: ID of the cluster you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing cluster that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

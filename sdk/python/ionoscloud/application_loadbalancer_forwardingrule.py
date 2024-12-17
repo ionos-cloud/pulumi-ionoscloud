@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -34,7 +39,7 @@ class ApplicationLoadbalancerForwardingruleArgs:
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[Sequence[pulumi.Input['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]] http_rules: [list] Array of items in that collection
-        :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
         pulumi.set(__self__, "application_loadbalancer_id", application_loadbalancer_id)
@@ -139,7 +144,7 @@ class ApplicationLoadbalancerForwardingruleArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The unique name of the Application Load Balancer HTTP rule.
+        [string] The name of the Application Load Balancer forwarding rule.
         """
         return pulumi.get(self, "name")
 
@@ -180,7 +185,7 @@ class _ApplicationLoadbalancerForwardingruleState:
         :param pulumi.Input[Sequence[pulumi.Input['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
-        :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
@@ -279,7 +284,7 @@ class _ApplicationLoadbalancerForwardingruleState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The unique name of the Application Load Balancer HTTP rule.
+        [string] The name of the Application Load Balancer forwarding rule.
         """
         return pulumi.get(self, "name")
 
@@ -320,7 +325,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
                  application_loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  client_timeout: Optional[pulumi.Input[int]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]]]] = None,
+                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApplicationLoadbalancerForwardingruleHttpRuleArgs', 'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict']]]]] = None,
                  listener_ip: Optional[pulumi.Input[str]] = None,
                  listener_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -332,7 +337,6 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -366,39 +370,38 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
             listener_port=8080,
             client_timeout=1000,
             http_rules=[
-                ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(
-                    name="http_rule",
-                    type="REDIRECT",
-                    drop_query=True,
-                    location="www.ionos.com",
-                    status_code=301,
-                    conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(
-                        type="HEADER",
-                        condition="EQUALS",
-                        negate=True,
-                        key="key",
-                        value="10.12.120.224/24",
-                    )],
-                ),
-                ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(
-                    name="http_rule_2",
-                    type="STATIC",
-                    drop_query=False,
-                    status_code=303,
-                    response_message="Response",
-                    content_type="text/plain",
-                    conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(
-                        type="QUERY",
-                        condition="MATCHES",
-                        negate=False,
-                        key="key",
-                        value="10.12.120.224/24",
-                    )],
-                ),
+                {
+                    "name": "http_rule",
+                    "type": "REDIRECT",
+                    "drop_query": True,
+                    "location": "www.ionos.com",
+                    "status_code": 301,
+                    "conditions": [{
+                        "type": "HEADER",
+                        "condition": "EQUALS",
+                        "negate": True,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+                {
+                    "name": "http_rule_2",
+                    "type": "STATIC",
+                    "drop_query": False,
+                    "status_code": 303,
+                    "response_message": "Response",
+                    "content_type": "text/plain",
+                    "conditions": [{
+                        "type": "QUERY",
+                        "condition": "MATCHES",
+                        "negate": False,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
             ],
             server_certificates=[cert.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -413,10 +416,10 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
         :param pulumi.Input[str] application_loadbalancer_id: [string] The ID of Application Load Balancer.
         :param pulumi.Input[int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]]] http_rules: [list] Array of items in that collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApplicationLoadbalancerForwardingruleHttpRuleArgs', 'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
-        :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
@@ -431,7 +434,6 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -465,39 +467,38 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
             listener_port=8080,
             client_timeout=1000,
             http_rules=[
-                ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(
-                    name="http_rule",
-                    type="REDIRECT",
-                    drop_query=True,
-                    location="www.ionos.com",
-                    status_code=301,
-                    conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(
-                        type="HEADER",
-                        condition="EQUALS",
-                        negate=True,
-                        key="key",
-                        value="10.12.120.224/24",
-                    )],
-                ),
-                ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleArgs(
-                    name="http_rule_2",
-                    type="STATIC",
-                    drop_query=False,
-                    status_code=303,
-                    response_message="Response",
-                    content_type="text/plain",
-                    conditions=[ionoscloud.ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs(
-                        type="QUERY",
-                        condition="MATCHES",
-                        negate=False,
-                        key="key",
-                        value="10.12.120.224/24",
-                    )],
-                ),
+                {
+                    "name": "http_rule",
+                    "type": "REDIRECT",
+                    "drop_query": True,
+                    "location": "www.ionos.com",
+                    "status_code": 301,
+                    "conditions": [{
+                        "type": "HEADER",
+                        "condition": "EQUALS",
+                        "negate": True,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
+                {
+                    "name": "http_rule_2",
+                    "type": "STATIC",
+                    "drop_query": False,
+                    "status_code": 303,
+                    "response_message": "Response",
+                    "content_type": "text/plain",
+                    "conditions": [{
+                        "type": "QUERY",
+                        "condition": "MATCHES",
+                        "negate": False,
+                        "key": "key",
+                        "value": "10.12.120.224/24",
+                    }],
+                },
             ],
             server_certificates=[cert.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -525,7 +526,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
                  application_loadbalancer_id: Optional[pulumi.Input[str]] = None,
                  client_timeout: Optional[pulumi.Input[int]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]]]] = None,
+                 http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApplicationLoadbalancerForwardingruleHttpRuleArgs', 'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict']]]]] = None,
                  listener_ip: Optional[pulumi.Input[str]] = None,
                  listener_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -572,7 +573,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
             application_loadbalancer_id: Optional[pulumi.Input[str]] = None,
             client_timeout: Optional[pulumi.Input[int]] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]]]] = None,
+            http_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ApplicationLoadbalancerForwardingruleHttpRuleArgs', 'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict']]]]] = None,
             listener_ip: Optional[pulumi.Input[str]] = None,
             listener_port: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -588,10 +589,10 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
         :param pulumi.Input[str] application_loadbalancer_id: [string] The ID of Application Load Balancer.
         :param pulumi.Input[int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerForwardingruleHttpRuleArgs']]]] http_rules: [list] Array of items in that collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ApplicationLoadbalancerForwardingruleHttpRuleArgs', 'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
-        :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer forwarding rule.
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_certificates: [list] Array of certificate ids. You can create certificates with the certificate resource.
         """
@@ -662,7 +663,7 @@ class ApplicationLoadbalancerForwardingrule(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The unique name of the Application Load Balancer HTTP rule.
+        [string] The name of the Application Load Balancer forwarding rule.
         """
         return pulumi.get(self, "name")
 

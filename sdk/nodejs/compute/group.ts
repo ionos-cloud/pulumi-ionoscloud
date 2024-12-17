@@ -6,6 +6,73 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Manages **Groups** and **Group Privileges** on IonosCloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ * import * as random from "@pulumi/random";
+ *
+ * const user1Password = new random.RandomPassword("user1Password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const example1 = new ionoscloud.compute.User("example1", {
+ *     firstName: "user1",
+ *     lastName: "user1",
+ *     email: "unique_email.com",
+ *     password: user1Password.result,
+ *     administrator: false,
+ *     forceSecAuth: false,
+ * });
+ * const user2Password = new random.RandomPassword("user2Password", {
+ *     length: 16,
+ *     special: true,
+ *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+ * });
+ * const example2 = new ionoscloud.compute.User("example2", {
+ *     firstName: "user2",
+ *     lastName: "user2",
+ *     email: "unique_email.com",
+ *     password: user2Password.result,
+ *     administrator: false,
+ *     forceSecAuth: false,
+ * });
+ * const example = new ionoscloud.compute.Group("example", {
+ *     createDatacenter: true,
+ *     createSnapshot: true,
+ *     reserveIp: true,
+ *     accessActivityLog: true,
+ *     createPcc: true,
+ *     s3Privilege: true,
+ *     createBackupUnit: true,
+ *     createInternetAccess: true,
+ *     createK8sCluster: true,
+ *     createFlowLog: true,
+ *     accessAndManageMonitoring: true,
+ *     accessAndManageCertificates: true,
+ *     manageDbaas: true,
+ *     userIds: [
+ *         example1.id,
+ *         example2.id,
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Group can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/group:Group mygroup {group uuid}
+ * ```
+ *
+ * > :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
+ */
 export class Group extends pulumi.CustomResource {
     /**
      * Get an existing Group resource's state with the given name, ID, and optional extra
@@ -34,47 +101,77 @@ export class Group extends pulumi.CustomResource {
         return obj['__pulumiType'] === Group.__pulumiType;
     }
 
+    /**
+     * [Boolean] The group will be allowed to access the activity log.
+     */
     public readonly accessActivityLog!: pulumi.Output<boolean | undefined>;
     /**
-     * Privilege for a group to access and manage certificates.
+     * [Boolean]  The group will be allowed to access and manage certificates.
      */
     public readonly accessAndManageCertificates!: pulumi.Output<boolean | undefined>;
     /**
-     * Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
-     * alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+     * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     public readonly accessAndManageMonitoring!: pulumi.Output<boolean | undefined>;
     /**
-     * Create backup unit privilege.
+     * [Boolean] The group will be allowed to create backup unit privilege.
      */
     public readonly createBackupUnit!: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean] The group will be allowed to create virtual data centers.
+     */
     public readonly createDatacenter!: pulumi.Output<boolean | undefined>;
     /**
-     * Create Flow Logs privilege.
+     * [Boolean]  The group will be allowed to create flow log.
      */
     public readonly createFlowLog!: pulumi.Output<boolean | undefined>;
     /**
-     * Create internet access privilege.
+     * [Boolean] The group will be allowed to create internet access privilege.
      */
     public readonly createInternetAccess!: pulumi.Output<boolean | undefined>;
     /**
-     * Create Kubernetes cluster privilege.
+     * [Boolean]  The group will be allowed to create kubernetes cluster privilege.
      */
     public readonly createK8sCluster!: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean] The group will be allowed to create Cross Connects privilege.
+     */
     public readonly createPcc!: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean] The group will be allowed to create snapshots.
+     */
     public readonly createSnapshot!: pulumi.Output<boolean | undefined>;
     /**
-     * Privilege for a group to manage DBaaS related functionality
+     * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     public readonly manageDbaas!: pulumi.Output<boolean | undefined>;
+    /**
+     * [string] A name for the group.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * [Boolean] The group will be allowed to reserve IP addresses.
+     */
     public readonly reserveIp!: pulumi.Output<boolean | undefined>;
+    /**
+     * [Boolean] The group will have S3 privilege.
+     */
     public readonly s3Privilege!: pulumi.Output<boolean | undefined>;
     /**
+     * [string] The ID of the specific user to add to the group. Please use userIds argument since this is **DEPRECATED**
+     *
      * @deprecated Please use userIds for adding users to the group, since userId will be removed in the future
      */
     public readonly userId!: pulumi.Output<string | undefined>;
+    /**
+     * [list] A list of users to add to the group.
+     */
     public readonly userIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of users - See the User section
+     *
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with groupIds field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     */
     public /*out*/ readonly users!: pulumi.Output<outputs.compute.GroupUser[]>;
 
     /**
@@ -136,47 +233,77 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
+    /**
+     * [Boolean] The group will be allowed to access the activity log.
+     */
     accessActivityLog?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to access and manage certificates.
+     * [Boolean]  The group will be allowed to access and manage certificates.
      */
     accessAndManageCertificates?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
-     * alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+     * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     accessAndManageMonitoring?: pulumi.Input<boolean>;
     /**
-     * Create backup unit privilege.
+     * [Boolean] The group will be allowed to create backup unit privilege.
      */
     createBackupUnit?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create virtual data centers.
+     */
     createDatacenter?: pulumi.Input<boolean>;
     /**
-     * Create Flow Logs privilege.
+     * [Boolean]  The group will be allowed to create flow log.
      */
     createFlowLog?: pulumi.Input<boolean>;
     /**
-     * Create internet access privilege.
+     * [Boolean] The group will be allowed to create internet access privilege.
      */
     createInternetAccess?: pulumi.Input<boolean>;
     /**
-     * Create Kubernetes cluster privilege.
+     * [Boolean]  The group will be allowed to create kubernetes cluster privilege.
      */
     createK8sCluster?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create Cross Connects privilege.
+     */
     createPcc?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create snapshots.
+     */
     createSnapshot?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to manage DBaaS related functionality
+     * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     manageDbaas?: pulumi.Input<boolean>;
+    /**
+     * [string] A name for the group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * [Boolean] The group will be allowed to reserve IP addresses.
+     */
     reserveIp?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will have S3 privilege.
+     */
     s3Privilege?: pulumi.Input<boolean>;
     /**
+     * [string] The ID of the specific user to add to the group. Please use userIds argument since this is **DEPRECATED**
+     *
      * @deprecated Please use userIds for adding users to the group, since userId will be removed in the future
      */
     userId?: pulumi.Input<string>;
+    /**
+     * [list] A list of users to add to the group.
+     */
     userIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of users - See the User section
+     *
+     * **NOTE:** user_id/user_ids field cannot be used at the same time with groupIds field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.compute.GroupUser>[]>;
 }
 
@@ -184,45 +311,70 @@ export interface GroupState {
  * The set of arguments for constructing a Group resource.
  */
 export interface GroupArgs {
+    /**
+     * [Boolean] The group will be allowed to access the activity log.
+     */
     accessActivityLog?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to access and manage certificates.
+     * [Boolean]  The group will be allowed to access and manage certificates.
      */
     accessAndManageCertificates?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
-     * alarm-actions etc) using Monotoring-as-a-Service (MaaS).
+     * [Boolean]  The group will be allowed to access and manage monitoring.
      */
     accessAndManageMonitoring?: pulumi.Input<boolean>;
     /**
-     * Create backup unit privilege.
+     * [Boolean] The group will be allowed to create backup unit privilege.
      */
     createBackupUnit?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create virtual data centers.
+     */
     createDatacenter?: pulumi.Input<boolean>;
     /**
-     * Create Flow Logs privilege.
+     * [Boolean]  The group will be allowed to create flow log.
      */
     createFlowLog?: pulumi.Input<boolean>;
     /**
-     * Create internet access privilege.
+     * [Boolean] The group will be allowed to create internet access privilege.
      */
     createInternetAccess?: pulumi.Input<boolean>;
     /**
-     * Create Kubernetes cluster privilege.
+     * [Boolean]  The group will be allowed to create kubernetes cluster privilege.
      */
     createK8sCluster?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create Cross Connects privilege.
+     */
     createPcc?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will be allowed to create snapshots.
+     */
     createSnapshot?: pulumi.Input<boolean>;
     /**
-     * Privilege for a group to manage DBaaS related functionality
+     * [Boolean]  Privilege for a group to manage DBaaS related functionality.
      */
     manageDbaas?: pulumi.Input<boolean>;
+    /**
+     * [string] A name for the group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * [Boolean] The group will be allowed to reserve IP addresses.
+     */
     reserveIp?: pulumi.Input<boolean>;
+    /**
+     * [Boolean] The group will have S3 privilege.
+     */
     s3Privilege?: pulumi.Input<boolean>;
     /**
+     * [string] The ID of the specific user to add to the group. Please use userIds argument since this is **DEPRECATED**
+     *
      * @deprecated Please use userIds for adding users to the group, since userId will be removed in the future
      */
     userId?: pulumi.Input<string>;
+    /**
+     * [list] A list of users to add to the group.
+     */
     userIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

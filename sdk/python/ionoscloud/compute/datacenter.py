@@ -27,7 +27,10 @@ class DatacenterArgs:
                  sec_auth_protection: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Datacenter resource.
-        :param pulumi.Input[str] description: A description for the datacenter, e.g. staging, production
+        :param pulumi.Input[str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[str] description: [string] Description for the Virtual Data Center.
+        :param pulumi.Input[str] name: [string] The name of the Virtual Data Center.
+        :param pulumi.Input[bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
         pulumi.set(__self__, "location", location)
         if description is not None:
@@ -40,6 +43,9 @@ class DatacenterArgs:
     @property
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
+        """
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -50,7 +56,7 @@ class DatacenterArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the datacenter, e.g. staging, production
+        [string] Description for the Virtual Data Center.
         """
         return pulumi.get(self, "description")
 
@@ -61,6 +67,9 @@ class DatacenterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the Virtual Data Center.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -70,6 +79,9 @@ class DatacenterArgs:
     @property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+        """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
@@ -90,8 +102,14 @@ class _DatacenterState:
                  version: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Datacenter resources.
-        :param pulumi.Input[str] description: A description for the datacenter, e.g. staging, production
-        :param pulumi.Input[str] ipv6_cidr_block: Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+        :param pulumi.Input[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]] cpu_architectures: Array of features and CPU families available in a location
+        :param pulumi.Input[str] description: [string] Description for the Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] features: List of features supported by the location this data center is part of
+        :param pulumi.Input[str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+        :param pulumi.Input[str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[str] name: [string] The name of the Virtual Data Center.
+        :param pulumi.Input[bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+        :param pulumi.Input[int] version: The version of that Data Center. Gets incremented with every change
         """
         if cpu_architectures is not None:
             pulumi.set(__self__, "cpu_architectures", cpu_architectures)
@@ -113,6 +131,9 @@ class _DatacenterState:
     @property
     @pulumi.getter(name="cpuArchitectures")
     def cpu_architectures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatacenterCpuArchitectureArgs']]]]:
+        """
+        Array of features and CPU families available in a location
+        """
         return pulumi.get(self, "cpu_architectures")
 
     @cpu_architectures.setter
@@ -123,7 +144,7 @@ class _DatacenterState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description for the datacenter, e.g. staging, production
+        [string] Description for the Virtual Data Center.
         """
         return pulumi.get(self, "description")
 
@@ -134,6 +155,9 @@ class _DatacenterState:
     @property
     @pulumi.getter
     def features(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of features supported by the location this data center is part of
+        """
         return pulumi.get(self, "features")
 
     @features.setter
@@ -144,7 +168,7 @@ class _DatacenterState:
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
         """
-        Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+        The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
@@ -155,6 +179,9 @@ class _DatacenterState:
     @property
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -164,6 +191,9 @@ class _DatacenterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the Virtual Data Center.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -173,6 +203,9 @@ class _DatacenterState:
     @property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+        """
         return pulumi.get(self, "sec_auth_protection")
 
     @sec_auth_protection.setter
@@ -182,6 +215,9 @@ class _DatacenterState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[int]]:
+        """
+        The version of that Data Center. Gets incremented with every change
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -200,10 +236,34 @@ class Datacenter(pulumi.CustomResource):
                  sec_auth_protection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a Datacenter resource with the given unique name, props, and options.
+        Manages a Virtual **Data Center** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            description="datacenter description",
+            location="us/las",
+            sec_auth_protection=False)
+        ```
+
+        ## Import
+
+        Resource Datacenter can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description for the datacenter, e.g. staging, production
+        :param pulumi.Input[str] description: [string] Description for the Virtual Data Center.
+        :param pulumi.Input[str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[str] name: [string] The name of the Virtual Data Center.
+        :param pulumi.Input[bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
         ...
     @overload
@@ -212,7 +272,28 @@ class Datacenter(pulumi.CustomResource):
                  args: DatacenterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Datacenter resource with the given unique name, props, and options.
+        Manages a Virtual **Data Center** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.Datacenter("example",
+            description="datacenter description",
+            location="us/las",
+            sec_auth_protection=False)
+        ```
+
+        ## Import
+
+        Resource Datacenter can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param DatacenterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -276,8 +357,14 @@ class Datacenter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description for the datacenter, e.g. staging, production
-        :param pulumi.Input[str] ipv6_cidr_block: Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict']]]] cpu_architectures: Array of features and CPU families available in a location
+        :param pulumi.Input[str] description: [string] Description for the Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] features: List of features supported by the location this data center is part of
+        :param pulumi.Input[str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+        :param pulumi.Input[str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        :param pulumi.Input[str] name: [string] The name of the Virtual Data Center.
+        :param pulumi.Input[bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+        :param pulumi.Input[int] version: The version of that Data Center. Gets incremented with every change
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -296,46 +383,64 @@ class Datacenter(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cpuArchitectures")
     def cpu_architectures(self) -> pulumi.Output[Sequence['outputs.DatacenterCpuArchitecture']]:
+        """
+        Array of features and CPU families available in a location
+        """
         return pulumi.get(self, "cpu_architectures")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
-        A description for the datacenter, e.g. staging, production
+        [string] Description for the Virtual Data Center.
         """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def features(self) -> pulumi.Output[Sequence[str]]:
+        """
+        List of features supported by the location this data center is part of
+        """
         return pulumi.get(self, "features")
 
     @property
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> pulumi.Output[str]:
         """
-        Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+        The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
+        """
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        [string] The name of the Virtual Data Center.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> pulumi.Output[Optional[bool]]:
+        """
+        [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+        """
         return pulumi.get(self, "sec_auth_protection")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
+        """
+        The version of that Data Center. Gets incremented with every change
+        """
         return pulumi.get(self, "version")
 

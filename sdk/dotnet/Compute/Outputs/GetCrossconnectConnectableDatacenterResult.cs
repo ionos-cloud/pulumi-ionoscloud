@@ -13,8 +13,19 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class GetCrossconnectConnectableDatacenterResult
     {
+        /// <summary>
+        /// ID of the cross connect you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The physical location of the connectable datacenter
+        /// </summary>
         public readonly string Location;
+        /// <summary>
+        /// Name of an existing cross connect that you want to search for.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

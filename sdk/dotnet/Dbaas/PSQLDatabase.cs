@@ -9,20 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dbaas
 {
+    /// <summary>
+    /// Manages a **DbaaS PgSql Database**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a database resource
+    /// and link it with the previously created cluster:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var examplePgDatabase = new Ionoscloud.Dbaas.PSQLDatabase("examplePgDatabase", new()
+    ///     {
+    ///         ClusterId = ionoscloud_pg_cluster.Example.Id,
+    ///         Owner = "exampleuser",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// In order to import a PgSql database, you can define an empty database resource in the plan:
+    /// 
+    /// hcl
+    /// 
+    /// resource "ionoscloud_pg_database" "example" {
+    /// 
+    /// }
+    /// 
+    /// The resource can be imported using the `clusterId` and the `name`, for example:
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dbaas/pSQLDatabase:PSQLDatabase")]
     public partial class PSQLDatabase : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster.
+        /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// The databasename of a given database.
+        /// [string] The name of the database.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the role owning a given database.
+        /// [string] The owner of the database.
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
@@ -73,17 +117,20 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class PSQLDatabaseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// The databasename of a given database.
+        /// [string] The name of the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The name of the role owning a given database.
+        /// [string] The owner of the database.
         /// </summary>
         [Input("owner", required: true)]
         public Input<string> Owner { get; set; } = null!;
@@ -96,17 +143,20 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class PSQLDatabaseState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The unique ID of the cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// The databasename of a given database.
+        /// [string] The name of the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The name of the role owning a given database.
+        /// [string] The owner of the database.
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }

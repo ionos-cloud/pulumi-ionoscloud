@@ -52,21 +52,33 @@ class GetNatGatewayResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id for the LAN connected to the NAT gateway
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def lans(self) -> Sequence['outputs.GetNatGatewayLanResult']:
+        """
+        Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
+        """
         return pulumi.get(self, "lans")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of that natgateway
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="publicIps")
     def public_ips(self) -> Sequence[str]:
+        """
+        Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+        """
         return pulumi.get(self, "public_ips")
 
 
@@ -88,7 +100,18 @@ def get_nat_gateway(datacenter_id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNatGatewayResult:
     """
-    Use this data source to access information about an existing resource.
+    The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer forwarding rule you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer forwarding rule that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -108,7 +131,18 @@ def get_nat_gateway_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNatGatewayResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer forwarding rule you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer forwarding rule that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

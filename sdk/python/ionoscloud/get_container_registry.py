@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -146,17 +151,14 @@ def get_container_registry(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_container_registry(name="container-registry-example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -164,7 +166,6 @@ def get_container_registry(id: Optional[str] = None,
     example = ionoscloud.get_container_registry(name="-example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the container registry you want to search for.
@@ -192,14 +193,11 @@ def get_container_registry(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         storage_usages=pulumi.get(__ret__, 'storage_usages'))
-
-
-@_utilities.lift_output_func(get_container_registry)
 def get_container_registry_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                   location: Optional[pulumi.Input[Optional[str]]] = None,
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                   partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerRegistryResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerRegistryResult]:
     """
     The **Container Registry data source** can be used to search for and return an existing Container Registry.
     You can provide a string for the name parameter which will be compared with provisioned Container Registry.
@@ -209,17 +207,14 @@ def get_container_registry_output(id: Optional[pulumi.Input[Optional[str]]] = No
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_container_registry(name="container-registry-example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -227,7 +222,6 @@ def get_container_registry_output(id: Optional[pulumi.Input[Optional[str]]] = No
     example = ionoscloud.get_container_registry(name="-example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the container registry you want to search for.
@@ -236,4 +230,21 @@ def get_container_registry_output(id: Optional[pulumi.Input[Optional[str]]] = No
            
            Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getContainerRegistry:getContainerRegistry', __args__, opts=opts, typ=GetContainerRegistryResult)
+    return __ret__.apply(lambda __response__: GetContainerRegistryResult(
+        api_subnet_allow_lists=pulumi.get(__response__, 'api_subnet_allow_lists'),
+        features=pulumi.get(__response__, 'features'),
+        garbage_collection_schedules=pulumi.get(__response__, 'garbage_collection_schedules'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        storage_usages=pulumi.get(__response__, 'storage_usages')))

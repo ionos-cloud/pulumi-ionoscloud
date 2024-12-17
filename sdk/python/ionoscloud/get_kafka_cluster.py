@@ -22,6 +22,8 @@ __all__ = [
     'get_kafka_cluster_output',
 ]
 
+warnings.warn("""ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""", DeprecationWarning)
+
 @pulumi.output_type
 class GetKafkaClusterResult:
     """
@@ -118,6 +120,7 @@ def get_kafka_cluster(id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
     __args__ = dict()
     __args__['id'] = id
     __args__['location'] = location
@@ -143,6 +146,10 @@ def get_kafka_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
+    pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['id'] = id
     __args__['location'] = location

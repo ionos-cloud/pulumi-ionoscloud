@@ -178,7 +178,12 @@ class _ApigatewayState:
         pulumi.set(self, "public_endpoint", value)
 
 
+warnings.warn("""ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""", DeprecationWarning)
+
+
 class Apigateway(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -192,7 +197,11 @@ class Apigateway(pulumi.CustomResource):
         Create a Apigateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+<<<<<<< HEAD
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+=======
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]] custom_domains: Custom domains for the API Gateway.
+>>>>>>> main
         :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         :param pulumi.Input[bool] metrics: Enable or disable metrics.
         :param pulumi.Input[str] name: The name of the API Gateway.
@@ -225,6 +234,7 @@ class Apigateway(pulumi.CustomResource):
                  metrics: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Apigateway is deprecated: ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -260,7 +270,11 @@ class Apigateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+<<<<<<< HEAD
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+=======
         :param pulumi.Input[Sequence[pulumi.Input[Union['ApigatewayCustomDomainArgs', 'ApigatewayCustomDomainArgsDict']]]] custom_domains: Custom domains for the API Gateway.
+>>>>>>> main
         :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         :param pulumi.Input[bool] metrics: Enable or disable metrics.
         :param pulumi.Input[str] name: The name of the API Gateway.

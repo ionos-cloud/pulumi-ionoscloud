@@ -11,6 +11,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpn.LookupWireguardGateway(ctx, &vpn.LookupWireguardGatewayArgs{
+//				Location: "de/fra",
+//				Name:     pulumi.StringRef("example-gateway"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("vpnWireguardGatewayPublicKey", data.Vpn_wireguard_gateway.Example.Public_key)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupWireguardGateway(ctx *pulumi.Context, args *LookupWireguardGatewayArgs, opts ...pulumi.InvokeOption) (*LookupWireguardGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWireguardGatewayResult
@@ -23,25 +52,36 @@ func LookupWireguardGateway(ctx *pulumi.Context, args *LookupWireguardGatewayArg
 
 // A collection of arguments for invoking getWireguardGateway.
 type LookupWireguardGatewayArgs struct {
+	// The description of the WireGuard Gateway.
 	Description *string `pulumi:"description"`
-	Id          *string `pulumi:"id"`
-	Location    string  `pulumi:"location"`
-	Name        *string `pulumi:"name"`
+	// [String] The ID of the WireGuard Gateway.
+	Id *string `pulumi:"id"`
+	// [String] The location of the WireGuard Gateway.
+	Location string `pulumi:"location"`
+	// [String] The name of the WireGuard Gateway.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getWireguardGateway.
 type LookupWireguardGatewayResult struct {
-	Connections       []GetWireguardGatewayConnection `pulumi:"connections"`
-	Description       *string                         `pulumi:"description"`
-	GatewayIp         string                          `pulumi:"gatewayIp"`
-	Id                string                          `pulumi:"id"`
-	InterfaceIpv4Cidr string                          `pulumi:"interfaceIpv4Cidr"`
-	InterfaceIpv6Cidr string                          `pulumi:"interfaceIpv6Cidr"`
-	ListenPort        int                             `pulumi:"listenPort"`
-	Location          string                          `pulumi:"location"`
-	Name              string                          `pulumi:"name"`
-	PublicKey         string                          `pulumi:"publicKey"`
-	Status            string                          `pulumi:"status"`
+	// A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
+	Connections []GetWireguardGatewayConnection `pulumi:"connections"`
+	// The description of the WireGuard Gateway.
+	Description *string `pulumi:"description"`
+	// The IP address of the WireGuard Gateway.
+	GatewayIp string `pulumi:"gatewayIp"`
+	Id        string `pulumi:"id"`
+	// The IPv4 CIDR for the WireGuard Gateway interface.
+	InterfaceIpv4Cidr string `pulumi:"interfaceIpv4Cidr"`
+	// The IPv6 CIDR for the WireGuard Gateway interface.
+	InterfaceIpv6Cidr string `pulumi:"interfaceIpv6Cidr"`
+	ListenPort        int    `pulumi:"listenPort"`
+	Location          string `pulumi:"location"`
+	Name              string `pulumi:"name"`
+	// The public key for the WireGuard Gateway.
+	PublicKey string `pulumi:"publicKey"`
+	// The current status of the WireGuard Gateway.
+	Status string `pulumi:"status"`
 }
 
 func LookupWireguardGatewayOutput(ctx *pulumi.Context, args LookupWireguardGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupWireguardGatewayResultOutput {
@@ -55,10 +95,14 @@ func LookupWireguardGatewayOutput(ctx *pulumi.Context, args LookupWireguardGatew
 
 // A collection of arguments for invoking getWireguardGateway.
 type LookupWireguardGatewayOutputArgs struct {
+	// The description of the WireGuard Gateway.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	Id          pulumi.StringPtrInput `pulumi:"id"`
-	Location    pulumi.StringInput    `pulumi:"location"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
+	// [String] The ID of the WireGuard Gateway.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// [String] The location of the WireGuard Gateway.
+	Location pulumi.StringInput `pulumi:"location"`
+	// [String] The name of the WireGuard Gateway.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupWireguardGatewayOutputArgs) ElementType() reflect.Type {
@@ -80,14 +124,17 @@ func (o LookupWireguardGatewayResultOutput) ToLookupWireguardGatewayResultOutput
 	return o
 }
 
+// A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
 func (o LookupWireguardGatewayResultOutput) Connections() GetWireguardGatewayConnectionArrayOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) []GetWireguardGatewayConnection { return v.Connections }).(GetWireguardGatewayConnectionArrayOutput)
 }
 
+// The description of the WireGuard Gateway.
 func (o LookupWireguardGatewayResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The IP address of the WireGuard Gateway.
 func (o LookupWireguardGatewayResultOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
@@ -96,10 +143,12 @@ func (o LookupWireguardGatewayResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The IPv4 CIDR for the WireGuard Gateway interface.
 func (o LookupWireguardGatewayResultOutput) InterfaceIpv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.InterfaceIpv4Cidr }).(pulumi.StringOutput)
 }
 
+// The IPv6 CIDR for the WireGuard Gateway interface.
 func (o LookupWireguardGatewayResultOutput) InterfaceIpv6Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.InterfaceIpv6Cidr }).(pulumi.StringOutput)
 }
@@ -116,10 +165,12 @@ func (o LookupWireguardGatewayResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The public key for the WireGuard Gateway.
 func (o LookupWireguardGatewayResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// The current status of the WireGuard Gateway.
 func (o LookupWireguardGatewayResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupWireguardGatewayResult) string { return v.Status }).(pulumi.StringOutput)
 }

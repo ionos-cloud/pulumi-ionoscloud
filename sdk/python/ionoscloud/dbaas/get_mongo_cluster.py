@@ -96,26 +96,41 @@ class GetMongoClusterResult:
     @property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> str:
+        """
+        The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit"
+        """
         return pulumi.get(self, "connection_string")
 
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetMongoClusterConnectionResult']:
+        """
+        Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def cores(self) -> int:
+        """
+        The number of CPU cores per replica. Required for enterprise edition.
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[str]:
+        """
+        The name of your cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter
     def edition(self) -> str:
+        """
+        Cluster edition. Playground, business or enterprise.
+        """
         return pulumi.get(self, "edition")
 
     @property
@@ -126,26 +141,41 @@ class GetMongoClusterResult:
     @property
     @pulumi.getter
     def instances(self) -> int:
+        """
+        The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetMongoClusterMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter(name="mongodbVersion")
     def mongodb_version(self) -> str:
+        """
+        The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "mongodb_version")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        The amount of memory per instance in megabytes. Required for enterprise edition.
+        """
         return pulumi.get(self, "ram")
 
     @property
@@ -156,16 +186,25 @@ class GetMongoClusterResult:
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        The amount of storage per instance in MB. Required for enterprise edition.
+        """
         return pulumi.get(self, "storage_size")
 
     @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
+        """
+        The storage type used in your cluster. Required for enterprise edition.
+        """
         return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter(name="templateId")
     def template_id(self) -> str:
+        """
+        The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "template_id")
 
     @property
@@ -204,7 +243,14 @@ def get_mongo_cluster(display_name: Optional[str] = None,
                       id: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongoClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
@@ -235,7 +281,14 @@ def get_mongo_cluster_output(display_name: Optional[pulumi.Input[Optional[str]]]
                              id: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str display_name: The name of your cluster. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()
     __args__['displayName'] = display_name

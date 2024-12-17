@@ -13,31 +13,31 @@ namespace Pulumi.Ionoscloud.Alb.Inputs
     public sealed class ForwardingRuleHttpRuleConditionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        /// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
         /// </summary>
         [Input("condition")]
         public Input<string>? Condition { get; set; }
 
         /// <summary>
-        /// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        /// [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         /// <summary>
-        /// Specifies whether the condition is negated or not; the default is False.
+        /// [bool] Specifies whether the condition is negated or not; the default is False.
         /// </summary>
         [Input("negate")]
         public Input<bool>? Negate { get; set; }
 
         /// <summary>
-        /// Type of the HTTP rule condition.
+        /// [string] Type of the Http Rule condition.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        /// [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

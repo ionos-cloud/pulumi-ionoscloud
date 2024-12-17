@@ -31,7 +31,7 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         private InputList<Inputs.VCPUServerNicFirewallArgs>? _firewalls;
 
         /// <summary>
-        /// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+        /// Allows to define firewall rules inline in the server. See the Firewall section.
         /// </summary>
         public InputList<Inputs.VCPUServerNicFirewallArgs> Firewalls
         {
@@ -71,6 +71,9 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("mac")]
         public Input<string>? Mac { get; set; }
 
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

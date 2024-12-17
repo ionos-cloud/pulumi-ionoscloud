@@ -12,30 +12,137 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
+// IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
+// connections between your network resources.
+//
+// ## Usage example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic example
+//			testDatacenter, err := compute.NewDatacenter(ctx, "testDatacenter", &compute.DatacenterArgs{
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLan, err := compute.NewLan(ctx, "testLan", &compute.LanArgs{
+//				Public:       pulumi.Bool(false),
+//				DatacenterId: testDatacenter.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testIpblock, err := compute.NewIPBlock(ctx, "testIpblock", &compute.IPBlockArgs{
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIpsecGateway, err := vpn.NewIpsecGateway(ctx, "exampleIpsecGateway", &vpn.IpsecGatewayArgs{
+//				Location: pulumi.String("de/fra"),
+//				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				Version:     pulumi.String("IKEv2"),
+//				Description: pulumi.String("This gateway connects site A to VDC X."),
+//				Connections: vpn.IpsecGatewayConnectionArray{
+//					&vpn.IpsecGatewayConnectionArgs{
+//						DatacenterId: testDatacenter.ID(),
+//						LanId:        testLan.ID(),
+//						Ipv4Cidr:     pulumi.String("192.168.100.10/24"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewIpsecTunnel(ctx, "exampleIpsecTunnel", &vpn.IpsecTunnelArgs{
+//				Location:    pulumi.String("de/fra"),
+//				GatewayId:   exampleIpsecGateway.ID(),
+//				RemoteHost:  pulumi.String("vpn.mycompany.com"),
+//				Description: pulumi.String("Allows local subnet X to connect to virtual network Y."),
+//				Auth: &vpn.IpsecTunnelAuthArgs{
+//					Method: pulumi.String("PSK"),
+//					PskKey: pulumi.String("X2wosbaw74M8hQGbK3jCCaEusR6CCFRa"),
+//				},
+//				Ike: &vpn.IpsecTunnelIkeArgs{
+//					DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//					EncryptionAlgorithm: pulumi.String("AES256"),
+//					IntegrityAlgorithm:  pulumi.String("SHA256"),
+//					Lifetime:            pulumi.Int(86400),
+//				},
+//				Esps: vpn.IpsecTunnelEspArray{
+//					&vpn.IpsecTunnelEspArgs{
+//						DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//						EncryptionAlgorithm: pulumi.String("AES256"),
+//						IntegrityAlgorithm:  pulumi.String("SHA256"),
+//						Lifetime:            pulumi.Int(3600),
+//					},
+//				},
+//				CloudNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("0.0.0.0/0"),
+//				},
+//				PeerNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
+//
+// ```sh
+// $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
+// ```
 type IpsecTunnel struct {
 	pulumi.CustomResourceState
 
-	// Properties with all data needed to define IPSec Authentication.
+	// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+	// items: 1.
 	Auth IpsecTunnelAuthOutput `pulumi:"auth"`
-	// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-	// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayOutput `pulumi:"cloudNetworkCidrs"`
-	// The human-readable description of your IPSec Gateway Tunnel.
+	// [string] The human-readable description of your IPSec Gateway Tunnel.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Settings for the IPSec SA (ESP) phase.
+	// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 	Esps IpsecTunnelEspArrayOutput `pulumi:"esps"`
-	// The ID of the IPSec Gateway that the tunnel belongs to.
+	// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
-	// Settings for the initial security exchange phase.
+	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkeOutput `pulumi:"ike"`
-	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringOutput `pulumi:"location"`
-	// The human-readable name of your IPSec Gateway Tunnel.
+	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-	// all addresses.
+	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+	// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 	PeerNetworkCidrs pulumi.StringArrayOutput `pulumi:"peerNetworkCidrs"`
-	// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+	// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 	RemoteHost pulumi.StringOutput `pulumi:"remoteHost"`
 }
 
@@ -93,52 +200,58 @@ func GetIpsecTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsecTunnel resources.
 type ipsecTunnelState struct {
-	// Properties with all data needed to define IPSec Authentication.
+	// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+	// items: 1.
 	Auth *IpsecTunnelAuth `pulumi:"auth"`
-	// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-	// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// Maximum items: 20.
 	CloudNetworkCidrs []string `pulumi:"cloudNetworkCidrs"`
-	// The human-readable description of your IPSec Gateway Tunnel.
+	// [string] The human-readable description of your IPSec Gateway Tunnel.
 	Description *string `pulumi:"description"`
-	// Settings for the IPSec SA (ESP) phase.
+	// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 	Esps []IpsecTunnelEsp `pulumi:"esps"`
-	// The ID of the IPSec Gateway that the tunnel belongs to.
+	// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId *string `pulumi:"gatewayId"`
-	// Settings for the initial security exchange phase.
+	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike *IpsecTunnelIke `pulumi:"ike"`
-	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location *string `pulumi:"location"`
-	// The human-readable name of your IPSec Gateway Tunnel.
+	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
-	// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-	// all addresses.
+	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+	// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 	PeerNetworkCidrs []string `pulumi:"peerNetworkCidrs"`
-	// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+	// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 	RemoteHost *string `pulumi:"remoteHost"`
 }
 
 type IpsecTunnelState struct {
-	// Properties with all data needed to define IPSec Authentication.
+	// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+	// items: 1.
 	Auth IpsecTunnelAuthPtrInput
-	// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-	// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayInput
-	// The human-readable description of your IPSec Gateway Tunnel.
+	// [string] The human-readable description of your IPSec Gateway Tunnel.
 	Description pulumi.StringPtrInput
-	// Settings for the IPSec SA (ESP) phase.
+	// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 	Esps IpsecTunnelEspArrayInput
-	// The ID of the IPSec Gateway that the tunnel belongs to.
+	// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId pulumi.StringPtrInput
-	// Settings for the initial security exchange phase.
+	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkePtrInput
-	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringPtrInput
-	// The human-readable name of your IPSec Gateway Tunnel.
+	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
-	// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-	// all addresses.
+	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+	// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 	PeerNetworkCidrs pulumi.StringArrayInput
-	// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+	// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 	RemoteHost pulumi.StringPtrInput
 }
 
@@ -147,53 +260,59 @@ func (IpsecTunnelState) ElementType() reflect.Type {
 }
 
 type ipsecTunnelArgs struct {
-	// Properties with all data needed to define IPSec Authentication.
+	// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+	// items: 1.
 	Auth IpsecTunnelAuth `pulumi:"auth"`
-	// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-	// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// Maximum items: 20.
 	CloudNetworkCidrs []string `pulumi:"cloudNetworkCidrs"`
-	// The human-readable description of your IPSec Gateway Tunnel.
+	// [string] The human-readable description of your IPSec Gateway Tunnel.
 	Description *string `pulumi:"description"`
-	// Settings for the IPSec SA (ESP) phase.
+	// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 	Esps []IpsecTunnelEsp `pulumi:"esps"`
-	// The ID of the IPSec Gateway that the tunnel belongs to.
+	// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId string `pulumi:"gatewayId"`
-	// Settings for the initial security exchange phase.
+	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIke `pulumi:"ike"`
-	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location string `pulumi:"location"`
-	// The human-readable name of your IPSec Gateway Tunnel.
+	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
-	// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-	// all addresses.
+	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+	// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 	PeerNetworkCidrs []string `pulumi:"peerNetworkCidrs"`
-	// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+	// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 	RemoteHost string `pulumi:"remoteHost"`
 }
 
 // The set of arguments for constructing a IpsecTunnel resource.
 type IpsecTunnelArgs struct {
-	// Properties with all data needed to define IPSec Authentication.
+	// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+	// items: 1.
 	Auth IpsecTunnelAuthInput
-	// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-	// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+	// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+	// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+	// Maximum items: 20.
 	CloudNetworkCidrs pulumi.StringArrayInput
-	// The human-readable description of your IPSec Gateway Tunnel.
+	// [string] The human-readable description of your IPSec Gateway Tunnel.
 	Description pulumi.StringPtrInput
-	// Settings for the IPSec SA (ESP) phase.
+	// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 	Esps IpsecTunnelEspArrayInput
-	// The ID of the IPSec Gateway that the tunnel belongs to.
+	// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 	GatewayId pulumi.StringInput
-	// Settings for the initial security exchange phase.
+	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkeInput
-	// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringInput
-	// The human-readable name of your IPSec Gateway Tunnel.
+	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
-	// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-	// all addresses.
+	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+	// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 	PeerNetworkCidrs pulumi.StringArrayInput
-	// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+	// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 	RemoteHost pulumi.StringInput
 }
 
@@ -284,54 +403,57 @@ func (o IpsecTunnelOutput) ToIpsecTunnelOutputWithContext(ctx context.Context) I
 	return o
 }
 
-// Properties with all data needed to define IPSec Authentication.
+// [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
+// items: 1.
 func (o IpsecTunnelOutput) Auth() IpsecTunnelAuthOutput {
 	return o.ApplyT(func(v *IpsecTunnel) IpsecTunnelAuthOutput { return v.Auth }).(IpsecTunnelAuthOutput)
 }
 
-// The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
-// Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+// [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
+// tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
+// Maximum items: 20.
 func (o IpsecTunnelOutput) CloudNetworkCidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringArrayOutput { return v.CloudNetworkCidrs }).(pulumi.StringArrayOutput)
 }
 
-// The human-readable description of your IPSec Gateway Tunnel.
+// [string] The human-readable description of your IPSec Gateway Tunnel.
 func (o IpsecTunnelOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Settings for the IPSec SA (ESP) phase.
+// [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
 func (o IpsecTunnelOutput) Esps() IpsecTunnelEspArrayOutput {
 	return o.ApplyT(func(v *IpsecTunnel) IpsecTunnelEspArrayOutput { return v.Esps }).(IpsecTunnelEspArrayOutput)
 }
 
-// The ID of the IPSec Gateway that the tunnel belongs to.
+// [string] The ID of the IPSec Gateway that the tunnel belongs to.
 func (o IpsecTunnelOutput) GatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.GatewayId }).(pulumi.StringOutput)
 }
 
-// Settings for the initial security exchange phase.
+// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 func (o IpsecTunnelOutput) Ike() IpsecTunnelIkeOutput {
 	return o.ApplyT(func(v *IpsecTunnel) IpsecTunnelIkeOutput { return v.Ike }).(IpsecTunnelIkeOutput)
 }
 
-// The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
+// gb/lhr, us/ewr, us/las, us/mci, fr/par
 func (o IpsecTunnelOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// The human-readable name of your IPSec Gateway Tunnel.
+// [string] The name of the IPSec Gateway Tunnel.
 func (o IpsecTunnelOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
-// all addresses.
+// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
+// tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
 func (o IpsecTunnelOutput) PeerNetworkCidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringArrayOutput { return v.PeerNetworkCidrs }).(pulumi.StringArrayOutput)
 }
 
-// The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+// [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
 func (o IpsecTunnelOutput) RemoteHost() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.RemoteHost }).(pulumi.StringOutput)
 }

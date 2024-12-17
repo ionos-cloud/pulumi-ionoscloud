@@ -80,56 +80,89 @@ class GetNodePoolResult:
     @property
     @pulumi.getter
     def annotations(self) -> Mapping[str, str]:
+        """
+        Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        ID of the cluster the searched node pool is part of.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> int:
+        """
+        The number of CPU cores per node.
+        """
         return pulumi.get(self, "cores_count")
 
     @property
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> str:
+        """
+        A CPU family.
+        """
         return pulumi.get(self, "cpu_family")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The UUID of the virtual data center (VDC) the cluster is provisioned.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        ID of your node pool.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetNodePoolMaintenanceWindowResult']:
+        """
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of your node pool
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> int:
+        """
+        The number of nodes that make up the node pool.
+        """
         return pulumi.get(self, "node_count")
 
     @property
@@ -140,21 +173,33 @@ class GetNodePoolResult:
     @property
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> int:
+        """
+        The RAM size for one node in MB.
+        """
         return pulumi.get(self, "ram_size")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        The size of the volume in GB.
+        """
         return pulumi.get(self, "storage_size")
 
     @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
+        """
+        The type of hardware for the volume.
+        """
         return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The version of the Data Platform.
+        """
         return pulumi.get(self, "version")
 
 
@@ -188,7 +233,19 @@ def get_node_pool(cluster_id: Optional[str] = None,
                   partial_match: Optional[bool] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodePoolResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+
+    :param str cluster_id: ID of the cluster the searched node pool is part of.
+    :param str id: ID of the node pool you want to search for.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -221,7 +278,19 @@ def get_node_pool_output(cluster_id: Optional[pulumi.Input[str]] = None,
                          partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+
+    :param str cluster_id: ID of the cluster the searched node pool is part of.
+    :param str id: ID of the node pool you want to search for.
+    :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

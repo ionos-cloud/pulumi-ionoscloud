@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class MongoClusterBackup
     {
         /// <summary>
-        /// The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        /// [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         /// </summary>
         public readonly string? Location;
         /// <summary>

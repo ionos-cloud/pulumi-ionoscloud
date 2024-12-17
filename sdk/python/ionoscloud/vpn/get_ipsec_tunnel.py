@@ -143,7 +143,18 @@ def get_ipsec_tunnel(gateway_id: Optional[str] = None,
                      name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsecTunnelResult:
     """
-    Use this data source to access information about an existing resource.
+    The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
+    You can provide a string for the name parameter which will be compared with provisioned IPSec Gateway Tunnels.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+    :param str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
+    :param str location: The location of the IPSec Gateway Tunnel.
+    :param str name: Name of an existing IPSec Gateway Tunnel that you want to search for.
     """
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
@@ -171,7 +182,18 @@ def get_ipsec_tunnel_output(gateway_id: Optional[pulumi.Input[str]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecTunnelResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
+    You can provide a string for the name parameter which will be compared with provisioned IPSec Gateway Tunnels.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+    :param str id: ID of an existing IPSec Gateway Tunnel that you want to search for.
+    :param str location: The location of the IPSec Gateway Tunnel.
+    :param str name: Name of an existing IPSec Gateway Tunnel that you want to search for.
     """
     __args__ = dict()
     __args__['gatewayId'] = gateway_id

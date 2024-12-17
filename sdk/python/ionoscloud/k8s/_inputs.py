@@ -35,11 +35,11 @@ if not MYPY:
     class ClusterMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         time: pulumi.Input[str]
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
 elif False:
     ClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
@@ -50,8 +50,8 @@ class ClusterMaintenanceWindowArgs:
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: Day of the week when maintenance is allowed
-        :param pulumi.Input[str] time: A clock time in the day when maintenance is allowed
+        :param pulumi.Input[str] day_of_the_week: [string] Day of the week when maintenance is allowed
+        :param pulumi.Input[str] time: [string] A clock time in the day when maintenance is allowed
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -60,7 +60,7 @@ class ClusterMaintenanceWindowArgs:
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -72,7 +72,7 @@ class ClusterMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
 
@@ -85,7 +85,7 @@ if not MYPY:
     class ClusterS3BucketArgsDict(TypedDict):
         name: NotRequired[pulumi.Input[str]]
         """
-        Name of the Object Storage bucket
+        [string] The name of the Kubernetes Cluster.
         """
 elif False:
     ClusterS3BucketArgsDict: TypeAlias = Mapping[str, Any]
@@ -95,7 +95,7 @@ class ClusterS3BucketArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] name: Name of the Object Storage bucket
+        :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -104,7 +104,7 @@ class ClusterS3BucketArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the Object Storage bucket
+        [string] The name of the Kubernetes Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -117,11 +117,11 @@ if not MYPY:
     class NodePoolAutoScalingArgsDict(TypedDict):
         max_node_count: pulumi.Input[int]
         """
-        The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
         """
         min_node_count: pulumi.Input[int]
         """
-        The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         """
 elif False:
     NodePoolAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
@@ -132,8 +132,8 @@ class NodePoolAutoScalingArgs:
                  max_node_count: pulumi.Input[int],
                  min_node_count: pulumi.Input[int]):
         """
-        :param pulumi.Input[int] max_node_count: The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-        :param pulumi.Input[int] min_node_count: The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        :param pulumi.Input[int] max_node_count: [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        :param pulumi.Input[int] min_node_count: [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         """
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
@@ -142,7 +142,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> pulumi.Input[int]:
         """
-        The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
         """
         return pulumi.get(self, "max_node_count")
 
@@ -154,7 +154,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> pulumi.Input[int]:
         """
-        The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         """
         return pulumi.get(self, "min_node_count")
 
@@ -167,11 +167,11 @@ if not MYPY:
     class NodePoolLanArgsDict(TypedDict):
         id: pulumi.Input[int]
         """
-        The LAN ID of an existing LAN at the related datacenter
+        [int] The LAN ID of an existing LAN at the related datacenter
         """
         dhcp: NotRequired[pulumi.Input[bool]]
         """
-        Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         """
         routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgsDict']]]]
         """
@@ -187,8 +187,8 @@ class NodePoolLanArgs:
                  dhcp: Optional[pulumi.Input[bool]] = None,
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgs']]]] = None):
         """
-        :param pulumi.Input[int] id: The LAN ID of an existing LAN at the related datacenter
-        :param pulumi.Input[bool] dhcp: Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        :param pulumi.Input[int] id: [int] The LAN ID of an existing LAN at the related datacenter
+        :param pulumi.Input[bool] dhcp: [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgs']]] routes: An array of additional LANs attached to worker nodes
         """
         pulumi.set(__self__, "id", id)
@@ -201,7 +201,7 @@ class NodePoolLanArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[int]:
         """
-        The LAN ID of an existing LAN at the related datacenter
+        [int] The LAN ID of an existing LAN at the related datacenter
         """
         return pulumi.get(self, "id")
 
@@ -213,7 +213,7 @@ class NodePoolLanArgs:
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         """
         return pulumi.get(self, "dhcp")
 
@@ -238,11 +238,11 @@ if not MYPY:
     class NodePoolLanRouteArgsDict(TypedDict):
         gateway_ip: pulumi.Input[str]
         """
-        IPv4 or IPv6 Gateway IP for the route
+        [string] IPv4 or IPv6 Gateway IP for the route
         """
         network: pulumi.Input[str]
         """
-        IPv4 or IPv6 CIDR to be routed via the interface
+        [string] IPv4 or IPv6 CIDR to be routed via the interface
         """
 elif False:
     NodePoolLanRouteArgsDict: TypeAlias = Mapping[str, Any]
@@ -253,8 +253,8 @@ class NodePoolLanRouteArgs:
                  gateway_ip: pulumi.Input[str],
                  network: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] gateway_ip: IPv4 or IPv6 Gateway IP for the route
-        :param pulumi.Input[str] network: IPv4 or IPv6 CIDR to be routed via the interface
+        :param pulumi.Input[str] gateway_ip: [string] IPv4 or IPv6 Gateway IP for the route
+        :param pulumi.Input[str] network: [string] IPv4 or IPv6 CIDR to be routed via the interface
         """
         pulumi.set(__self__, "gateway_ip", gateway_ip)
         pulumi.set(__self__, "network", network)
@@ -263,7 +263,7 @@ class NodePoolLanRouteArgs:
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> pulumi.Input[str]:
         """
-        IPv4 or IPv6 Gateway IP for the route
+        [string] IPv4 or IPv6 Gateway IP for the route
         """
         return pulumi.get(self, "gateway_ip")
 
@@ -275,7 +275,7 @@ class NodePoolLanRouteArgs:
     @pulumi.getter
     def network(self) -> pulumi.Input[str]:
         """
-        IPv4 or IPv6 CIDR to be routed via the interface
+        [string] IPv4 or IPv6 CIDR to be routed via the interface
         """
         return pulumi.get(self, "network")
 
@@ -288,11 +288,11 @@ if not MYPY:
     class NodePoolMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         time: pulumi.Input[str]
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
 elif False:
     NodePoolMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
@@ -303,8 +303,8 @@ class NodePoolMaintenanceWindowArgs:
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: Day of the week when maintenance is allowed
-        :param pulumi.Input[str] time: A clock time in the day when maintenance is allowed
+        :param pulumi.Input[str] day_of_the_week: [string] Day of the week when maintenance is allowed
+        :param pulumi.Input[str] time: [string] A clock time in the day when maintenance is allowed
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -313,7 +313,7 @@ class NodePoolMaintenanceWindowArgs:
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -325,7 +325,7 @@ class NodePoolMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
 

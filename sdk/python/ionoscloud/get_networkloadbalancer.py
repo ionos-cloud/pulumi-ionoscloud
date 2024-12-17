@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -159,7 +164,6 @@ def get_networkloadbalancer(datacenter_id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -167,7 +171,6 @@ def get_networkloadbalancer(datacenter_id: Optional[str] = None,
     example = ionoscloud.get_networkloadbalancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
         name="Network Load Balancer Name")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -194,13 +197,10 @@ def get_networkloadbalancer(datacenter_id: Optional[str] = None,
         logging_format=pulumi.get(__ret__, 'logging_format'),
         name=pulumi.get(__ret__, 'name'),
         target_lan=pulumi.get(__ret__, 'target_lan'))
-
-
-@_utilities.lift_output_func(get_networkloadbalancer)
 def get_networkloadbalancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                                    id: Optional[pulumi.Input[Optional[str]]] = None,
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNetworkloadbalancerResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkloadbalancerResult]:
     """
     The **Network Load Balancer data source** can be used to search for and return existing network load balancers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -209,7 +209,6 @@ def get_networkloadbalancer_output(datacenter_id: Optional[pulumi.Input[str]] = 
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -217,7 +216,6 @@ def get_networkloadbalancer_output(datacenter_id: Optional[pulumi.Input[str]] = 
     example = ionoscloud.get_networkloadbalancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
         name="Network Load Balancer Name")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -226,4 +224,20 @@ def get_networkloadbalancer_output(datacenter_id: Optional[pulumi.Input[str]] = 
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     :param str name: Name of an existing network load balancer that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer', __args__, opts=opts, typ=GetNetworkloadbalancerResult)
+    return __ret__.apply(lambda __response__: GetNetworkloadbalancerResult(
+        central_logging=pulumi.get(__response__, 'central_logging'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        flowlogs=pulumi.get(__response__, 'flowlogs'),
+        id=pulumi.get(__response__, 'id'),
+        ips=pulumi.get(__response__, 'ips'),
+        lb_private_ips=pulumi.get(__response__, 'lb_private_ips'),
+        listener_lan=pulumi.get(__response__, 'listener_lan'),
+        logging_format=pulumi.get(__response__, 'logging_format'),
+        name=pulumi.get(__response__, 'name'),
+        target_lan=pulumi.get(__response__, 'target_lan')))

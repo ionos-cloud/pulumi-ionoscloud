@@ -63,6 +63,10 @@ class GetServersResult:
     @property
     @pulumi.getter
     def servers(self) -> Sequence['outputs.GetServersServerResult']:
+        """
+        list of servers that matches the filters provided.
+        For a full reference of all attributes returned, check out documentation
+        """
         return pulumi.get(self, "servers")
 
 
@@ -82,7 +86,63 @@ def get_servers(datacenter_id: Optional[str] = None,
                 filters: Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServersResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Servers data source** can be used to search for and return existing servers based on filters used.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[{
+            "name": "name",
+            "value": "server_name_to_look_here",
+        }])
+    ```
+
+    ### By CPU Family
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[{
+            "name": "cpu_family",
+            "value": "INTEL_XEON",
+        }])
+    ```
+
+    ### By Name and Cores
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[
+            {
+                "name": "name",
+                "value": "test",
+            },
+            {
+                "name": "cores",
+                "value": "1",
+            },
+        ])
+    ```
+
+
+    :param str datacenter_id: Name of an existing datacenter that the servers are a part of
+    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
+           
+           
+           `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
+           
+           **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
+           For example, it will find servers named `test`, `test1`, `testsomething`.
+           
+           **NOTE:** You cannot search by `image_name` by providing an alias like `ubuntu`.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -99,7 +159,63 @@ def get_servers_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                        filters: Optional[pulumi.Input[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Servers data source** can be used to search for and return existing servers based on filters used.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[{
+            "name": "name",
+            "value": "server_name_to_look_here",
+        }])
+    ```
+
+    ### By CPU Family
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[{
+            "name": "cpu_family",
+            "value": "INTEL_XEON",
+        }])
+    ```
+
+    ### By Name and Cores
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        filters=[
+            {
+                "name": "name",
+                "value": "test",
+            },
+            {
+                "name": "cores",
+                "value": "1",
+            },
+        ])
+    ```
+
+
+    :param str datacenter_id: Name of an existing datacenter that the servers are a part of
+    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
+           
+           
+           `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
+           
+           **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
+           For example, it will find servers named `test`, `test1`, `testsomething`.
+           
+           **NOTE:** You cannot search by `image_name` by providing an alias like `ubuntu`.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -11,12 +11,84 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetGroup
     {
+        /// <summary>
+        /// The **Group data source** can be used to search for and return existing groups.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. 
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetGroup.Invoke(new()
+        ///     {
+        ///         Name = "Group Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("ionoscloud:compute/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Group data source** can be used to search for and return existing groups.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. 
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetGroup.Invoke(new()
+        ///     {
+        ///         Name = "Group Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("ionoscloud:compute/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Group data source** can be used to search for and return existing groups.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. 
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetGroup.Invoke(new()
+        ///     {
+        ///         Name = "Group Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("ionoscloud:compute/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
     }
@@ -24,9 +96,17 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the group you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing group that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -38,9 +118,17 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the group you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing group that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -54,21 +142,69 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetGroupResult
     {
+        /// <summary>
+        /// The group will be allowed to access the activity log.
+        /// </summary>
         public readonly bool AccessActivityLog;
+        /// <summary>
+        /// The group will be allowed to access and manage certificates.
+        /// </summary>
         public readonly bool AccessAndManageCertificates;
+        /// <summary>
+        /// The group will be allowed to access and manage monitoring.
+        /// </summary>
         public readonly bool AccessAndManageMonitoring;
+        /// <summary>
+        /// The group will be allowed to create backup unit privilege.
+        /// </summary>
         public readonly bool CreateBackupUnit;
+        /// <summary>
+        /// The group will be allowed to create virtual data centers.
+        /// </summary>
         public readonly bool CreateDatacenter;
+        /// <summary>
+        /// The group will be allowed to create flow log.
+        /// </summary>
         public readonly bool CreateFlowLog;
+        /// <summary>
+        /// The group will be allowed to create internet access privilege.
+        /// </summary>
         public readonly bool CreateInternetAccess;
+        /// <summary>
+        /// The group will be allowed to create kubernetes cluster privilege.
+        /// </summary>
         public readonly bool CreateK8sCluster;
+        /// <summary>
+        /// The group will be allowed to create Cross Connects privilege.
+        /// </summary>
         public readonly bool CreatePcc;
+        /// <summary>
+        /// The group will be allowed to create snapshots.
+        /// </summary>
         public readonly bool CreateSnapshot;
+        /// <summary>
+        /// The id of the group.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Privilege for a group to manage DBaaS related functionality.
+        /// </summary>
         public readonly bool ManageDbaas;
+        /// <summary>
+        /// A name for the group.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The group will be allowed to reserve IP addresses.
+        /// </summary>
         public readonly bool ReserveIp;
+        /// <summary>
+        /// The group will have S3 privilege.
+        /// </summary>
         public readonly bool S3Privilege;
+        /// <summary>
+        /// List of users in group.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetGroupUserResult> Users;
 
         [OutputConstructor]

@@ -210,7 +210,12 @@ class _KafkaClusterState:
         pulumi.set(self, "version", value)
 
 
+warnings.warn("""ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""", DeprecationWarning)
+
+
 class KafkaCluster(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -222,7 +227,50 @@ class KafkaCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+<<<<<<< HEAD
+        Manages a **Kafka Cluster** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+            location="de/fra",
+            version="3.7.0",
+            size="S",
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
+                datacenter_id=example_datacenter.id,
+                lan_id=example_lan.id,
+                broker_addresses=[
+                    "192.168.1.101/24",
+                    "192.168.1.102/24",
+                    "192.168.1.103/24",
+                ],
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Kafka Cluster can be imported using the `location` and `kafka cluster id`:
+
+        ```sh
+        $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
+        ```
+
+=======
         Create a KafkaCluster resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['KafkaClusterConnectionsArgs', 'KafkaClusterConnectionsArgsDict']] connections: The network connection for your Kafka Cluster. Only one connection is allowed.
@@ -239,7 +287,50 @@ class KafkaCluster(pulumi.CustomResource):
                  args: KafkaClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+<<<<<<< HEAD
+        Manages a **Kafka Cluster** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+            location="de/fra",
+            version="3.7.0",
+            size="S",
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
+                datacenter_id=example_datacenter.id,
+                lan_id=example_lan.id,
+                broker_addresses=[
+                    "192.168.1.101/24",
+                    "192.168.1.102/24",
+                    "192.168.1.103/24",
+                ],
+            ))
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Kafka Cluster can be imported using the `location` and `kafka cluster id`:
+
+        ```sh
+        $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
+        ```
+
+=======
         Create a KafkaCluster resource with the given unique name, props, and options.
+>>>>>>> main
         :param str resource_name: The name of the resource.
         :param KafkaClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,6 +352,7 @@ class KafkaCluster(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""KafkaCluster is deprecated: ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -11,16 +11,89 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Cross Connect** on IonosCloud.
+// Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
+// The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
+// You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
+//
+// The IP addresses of the NICs used for the Cross Connect connection may not be used in more than one NIC and they need to belong to the same IP range.
+//
+// ## Example Usage
+//
+// To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			crossConnectTestResource, err := compute.NewCrossconnect(ctx, "crossConnectTestResource", &compute.CrossconnectArgs{
+//				Description: pulumi.String("CrossConnectTestResource"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dc1, err := compute.NewDatacenter(ctx, "dc1", &compute.DatacenterArgs{
+//				Location: pulumi.String("de/txl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dc2, err := compute.NewDatacenter(ctx, "dc2", &compute.DatacenterArgs{
+//				Location: pulumi.String("de/txl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "dc1lan", &compute.LanArgs{
+//				DatacenterId: dc1.ID(),
+//				Public:       pulumi.Bool(false),
+//				Pcc:          crossConnectTestResource.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "dc2lan", &compute.LanArgs{
+//				DatacenterId: dc2.ID(),
+//				Public:       pulumi.Bool(false),
+//				Pcc:          crossConnectTestResource.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A Cross Connect resource can be imported using its `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
+// ```
+//
+// This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
 type Crossconnect struct {
 	pulumi.CustomResourceState
 
 	// A list containing all the connectable datacenters
 	ConnectableDatacenters CrossconnectConnectableDatacenterArrayOutput `pulumi:"connectableDatacenters"`
-	// The desired description
+	// [string] A short description for the cross-connection.
+	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The desired name
+	// [string] The name of the cross-connection.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// A list containing the details of all cross-connected datacenters
+	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayOutput `pulumi:"peers"`
 }
 
@@ -56,22 +129,24 @@ func GetCrossconnect(ctx *pulumi.Context,
 type crossconnectState struct {
 	// A list containing all the connectable datacenters
 	ConnectableDatacenters []CrossconnectConnectableDatacenter `pulumi:"connectableDatacenters"`
-	// The desired description
+	// [string] A short description for the cross-connection.
+	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description *string `pulumi:"description"`
-	// The desired name
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
-	// A list containing the details of all cross-connected datacenters
+	// Lists LAN's joined to this cross connect
 	Peers []CrossconnectPeer `pulumi:"peers"`
 }
 
 type CrossconnectState struct {
 	// A list containing all the connectable datacenters
 	ConnectableDatacenters CrossconnectConnectableDatacenterArrayInput
-	// The desired description
+	// [string] A short description for the cross-connection.
+	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrInput
-	// The desired name
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput
-	// A list containing the details of all cross-connected datacenters
+	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayInput
 }
 
@@ -82,11 +157,12 @@ func (CrossconnectState) ElementType() reflect.Type {
 type crossconnectArgs struct {
 	// A list containing all the connectable datacenters
 	ConnectableDatacenters []CrossconnectConnectableDatacenter `pulumi:"connectableDatacenters"`
-	// The desired description
+	// [string] A short description for the cross-connection.
+	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description *string `pulumi:"description"`
-	// The desired name
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
-	// A list containing the details of all cross-connected datacenters
+	// Lists LAN's joined to this cross connect
 	Peers []CrossconnectPeer `pulumi:"peers"`
 }
 
@@ -94,11 +170,12 @@ type crossconnectArgs struct {
 type CrossconnectArgs struct {
 	// A list containing all the connectable datacenters
 	ConnectableDatacenters CrossconnectConnectableDatacenterArrayInput
-	// The desired description
+	// [string] A short description for the cross-connection.
+	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrInput
-	// The desired name
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput
-	// A list containing the details of all cross-connected datacenters
+	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayInput
 }
 
@@ -194,17 +271,18 @@ func (o CrossconnectOutput) ConnectableDatacenters() CrossconnectConnectableData
 	return o.ApplyT(func(v *Crossconnect) CrossconnectConnectableDatacenterArrayOutput { return v.ConnectableDatacenters }).(CrossconnectConnectableDatacenterArrayOutput)
 }
 
-// The desired description
+// [string] A short description for the cross-connection.
+// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 func (o CrossconnectOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Crossconnect) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The desired name
+// [string] The name of the cross-connection.
 func (o CrossconnectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Crossconnect) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// A list containing the details of all cross-connected datacenters
+// Lists LAN's joined to this cross connect
 func (o CrossconnectOutput) Peers() CrossconnectPeerArrayOutput {
 	return o.ApplyT(func(v *Crossconnect) CrossconnectPeerArrayOutput { return v.Peers }).(CrossconnectPeerArrayOutput)
 }

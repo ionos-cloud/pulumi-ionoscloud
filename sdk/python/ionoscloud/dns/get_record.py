@@ -61,11 +61,17 @@ class GetRecordResult:
     @property
     @pulumi.getter
     def content(self) -> str:
+        """
+        The content of the DNS Record.
+        """
         return pulumi.get(self, "content")
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        Indicates if the DNS Record is active or not.
+        """
         return pulumi.get(self, "enabled")
 
     @property
@@ -76,11 +82,17 @@ class GetRecordResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The UUID of the DNS Record.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the DNS Record.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -91,16 +103,25 @@ class GetRecordResult:
     @property
     @pulumi.getter
     def priority(self) -> int:
+        """
+        The priority for the DNS Record.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def ttl(self) -> int:
+        """
+        The time to live of the DNS Record.
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of the DNS Record.
+        """
         return pulumi.get(self, "type")
 
     @property
@@ -133,7 +154,21 @@ def get_record(id: Optional[str] = None,
                zone_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRecordResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DNS Record** can be used to search for and return an existing DNS Record.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
+
+    ## Example Usage
+
+
+    :param str id: [string] The ID of the DNS Record you want to search for.
+    :param str name: [string] The name of the DNS Record you want to search for.
+    :param bool partial_match: [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str zone_id: [string] The ID of the DNS Zone in which the DNS Record can be found.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -160,7 +195,21 @@ def get_record_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                       zone_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRecordResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DNS Record** can be used to search for and return an existing DNS Record.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
+
+    ## Example Usage
+
+
+    :param str id: [string] The ID of the DNS Record you want to search for.
+    :param str name: [string] The name of the DNS Record you want to search for.
+    :param bool partial_match: [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str zone_id: [string] The ID of the DNS Zone in which the DNS Record can be found.
     """
     __args__ = dict()
     __args__['id'] = id

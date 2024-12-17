@@ -11,12 +11,90 @@ namespace Pulumi.Ionoscloud.Vpn
 {
     public static class GetWireguardGateway
     {
+        /// <summary>
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Vpn.GetWireguardGateway.Invoke(new()
+        ///     {
+        ///         Location = "de/fra",
+        ///         Name = "example-gateway",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["vpnWireguardGatewayPublicKey"] = data.Vpn_wireguard_gateway.Example.Public_key,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetWireguardGatewayResult> InvokeAsync(GetWireguardGatewayArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetWireguardGatewayResult>("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args ?? new GetWireguardGatewayArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Vpn.GetWireguardGateway.Invoke(new()
+        ///     {
+        ///         Location = "de/fra",
+        ///         Name = "example-gateway",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["vpnWireguardGatewayPublicKey"] = data.Vpn_wireguard_gateway.Example.Public_key,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetWireguardGatewayResult> Invoke(GetWireguardGatewayInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetWireguardGatewayResult>("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args ?? new GetWireguardGatewayInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Vpn.GetWireguardGateway.Invoke(new()
+        ///     {
+        ///         Location = "de/fra",
+        ///         Name = "example-gateway",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["vpnWireguardGatewayPublicKey"] = data.Vpn_wireguard_gateway.Example.Public_key,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetWireguardGatewayResult> Invoke(GetWireguardGatewayInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetWireguardGatewayResult>("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args ?? new GetWireguardGatewayInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +102,27 @@ namespace Pulumi.Ionoscloud.Vpn
 
     public sealed class GetWireguardGatewayArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The description of the WireGuard Gateway.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// [String] The ID of the WireGuard Gateway.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// [String] The location of the WireGuard Gateway.
+        /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
+        /// <summary>
+        /// [String] The name of the WireGuard Gateway.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -44,15 +134,27 @@ namespace Pulumi.Ionoscloud.Vpn
 
     public sealed class GetWireguardGatewayInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The description of the WireGuard Gateway.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// [String] The ID of the WireGuard Gateway.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// [String] The location of the WireGuard Gateway.
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// [String] The name of the WireGuard Gateway.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -66,16 +168,37 @@ namespace Pulumi.Ionoscloud.Vpn
     [OutputType]
     public sealed class GetWireguardGatewayResult
     {
+        /// <summary>
+        /// A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetWireguardGatewayConnectionResult> Connections;
+        /// <summary>
+        /// The description of the WireGuard Gateway.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// The IP address of the WireGuard Gateway.
+        /// </summary>
         public readonly string GatewayIp;
         public readonly string Id;
+        /// <summary>
+        /// The IPv4 CIDR for the WireGuard Gateway interface.
+        /// </summary>
         public readonly string InterfaceIpv4Cidr;
+        /// <summary>
+        /// The IPv6 CIDR for the WireGuard Gateway interface.
+        /// </summary>
         public readonly string InterfaceIpv6Cidr;
         public readonly int ListenPort;
         public readonly string Location;
         public readonly string Name;
+        /// <summary>
+        /// The public key for the WireGuard Gateway.
+        /// </summary>
         public readonly string PublicKey;
+        /// <summary>
+        /// The current status of the WireGuard Gateway.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

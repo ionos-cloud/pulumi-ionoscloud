@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     public sealed class GetClusterLanResult
     {
         /// <summary>
-        /// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        /// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
         /// </summary>
         public readonly bool Dhcp;
         /// <summary>

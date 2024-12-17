@@ -17,6 +17,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly string Email;
         public readonly string FirstName;
         public readonly bool ForceSecAuth;
+        /// <summary>
+        /// ID of the group you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         public readonly string Id;
         public readonly string LastName;
 

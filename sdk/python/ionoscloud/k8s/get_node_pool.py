@@ -92,101 +92,173 @@ class GetNodePoolResult:
     @property
     @pulumi.getter
     def annotations(self) -> Mapping[str, str]:
+        """
+        A map of annotations in the form of key > value
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="autoScalings")
     def auto_scalings(self) -> Sequence['outputs.GetNodePoolAutoScalingResult']:
+        """
+        The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
+        """
         return pulumi.get(self, "auto_scalings")
 
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The compute availability zone in which the nodes should exist
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="availableUpgradeVersions")
     def available_upgrade_versions(self) -> Sequence[str]:
+        """
+        A list of kubernetes versions available for upgrade
+        """
         return pulumi.get(self, "available_upgrade_versions")
 
     @property
     @pulumi.getter(name="coresCount")
     def cores_count(self) -> int:
+        """
+        CPU cores count
+        """
         return pulumi.get(self, "cores_count")
 
     @property
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> str:
+        """
+        CPU Family
+        """
         return pulumi.get(self, "cpu_family")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The UUID of the VDC
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The LAN ID of an existing LAN at the related datacenter
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="k8sClusterId")
     def k8s_cluster_id(self) -> str:
+        """
+        ID of the cluster this node pool is part of
+        """
         return pulumi.get(self, "k8s_cluster_id")
 
     @property
     @pulumi.getter(name="k8sVersion")
     def k8s_version(self) -> str:
+        """
+        The kubernetes version
+        """
         return pulumi.get(self, "k8s_version")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels in the form of key > value
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def lans(self) -> Sequence['outputs.GetNodePoolLanResult']:
+        """
+        A list of Local Area Networks the node pool is a part of
+        """
         return pulumi.get(self, "lans")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetNodePoolMaintenanceWindowResult']:
+        """
+        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        name of the node pool
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> int:
+        """
+        The number of nodes in this node pool
+        """
         return pulumi.get(self, "node_count")
 
     @property
     @pulumi.getter(name="publicIps")
     def public_ips(self) -> Sequence[str]:
+        """
+        The list of fixed IPs associated with this node pool
+        """
         return pulumi.get(self, "public_ips")
 
     @property
     @pulumi.getter(name="ramSize")
     def ram_size(self) -> int:
+        """
+        The amount of RAM in MB
+        """
         return pulumi.get(self, "ram_size")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        one of "AVAILABLE",
+        "INACTIVE",
+        "BUSY",
+        "DEPLOYING",
+        "ACTIVE",
+        "FAILED",
+        "SUSPENDED",
+        "FAILED_SUSPENDED",
+        "UPDATING",
+        "FAILED_UPDATING",
+        "DESTROYING",
+        "FAILED_DESTROYING",
+        "TERMINATED"
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        The size of the volume in GB. The size should be greater than 10GB.
+        """
         return pulumi.get(self, "storage_size")
 
     @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
+        """
+        HDD or SDD
+        """
         return pulumi.get(self, "storage_type")
 
 
@@ -223,7 +295,18 @@ def get_node_pool(id: Optional[str] = None,
                   name: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNodePoolResult:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of the node pool you want to search for.
+           
+           `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str k8s_cluster_id: K8s Cluster' UUID
+    :param str name: Name of an existing node pool that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -258,7 +341,18 @@ def get_node_pool_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                          name: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of the node pool you want to search for.
+           
+           `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str k8s_cluster_id: K8s Cluster' UUID
+    :param str name: Name of an existing node pool that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

@@ -12,32 +12,133 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages **Snapshots** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleImage, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
+//				Length:  pulumi.Int(16),
+//				Special: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String(exampleImage.Id),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewSnapshot(ctx, "testSnapshot", &compute.SnapshotArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				VolumeId:     exampleServer.BootVolume,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Snapshot can be imported using the `snapshot id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
+// ```
 type Snapshot struct {
 	pulumi.CustomResourceState
 
-	CpuHotPlug   pulumi.BoolOutput   `pulumi:"cpuHotPlug"`
-	CpuHotUnplug pulumi.BoolOutput   `pulumi:"cpuHotUnplug"`
+	// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
+	CpuHotPlug pulumi.BoolOutput `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug pulumi.BoolOutput `pulumi:"cpuHotUnplug"`
+	// [string] The ID of the Virtual Data Center.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// Human readable description
-	Description         pulumi.StringOutput `pulumi:"description"`
-	DiscScsiHotPlug     pulumi.BoolOutput   `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   pulumi.BoolOutput   `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   pulumi.BoolOutput   `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolOutput   `pulumi:"discVirtioHotUnplug"`
-	// OS type of this Snapshot
+	// (Computed)[string] Human readable description
+	Description pulumi.StringOutput `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug pulumi.BoolOutput `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+	DiscScsiHotUnplug pulumi.BoolOutput `pulumi:"discScsiHotUnplug"`
+	// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
+	DiscVirtioHotPlug pulumi.BoolOutput `pulumi:"discVirtioHotPlug"`
+	// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
+	DiscVirtioHotUnplug pulumi.BoolOutput `pulumi:"discVirtioHotUnplug"`
+	// (Computed)[string] OS type of this Snapshot
 	LicenceType pulumi.StringOutput `pulumi:"licenceType"`
 	// Location of that image/snapshot
 	Location pulumi.StringOutput `pulumi:"location"`
-	// A name of that resource
-	Name         pulumi.StringOutput `pulumi:"name"`
-	NicHotPlug   pulumi.BoolOutput   `pulumi:"nicHotPlug"`
-	NicHotUnplug pulumi.BoolOutput   `pulumi:"nicHotUnplug"`
-	RamHotPlug   pulumi.BoolOutput   `pulumi:"ramHotPlug"`
-	RamHotUnplug pulumi.BoolOutput   `pulumi:"ramHotUnplug"`
+	// [string] The name of the snapshot.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
+	NicHotPlug pulumi.BoolOutput `pulumi:"nicHotPlug"`
+	// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
+	NicHotUnplug pulumi.BoolOutput `pulumi:"nicHotUnplug"`
+	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+	RamHotPlug pulumi.BoolOutput `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug pulumi.BoolOutput `pulumi:"ramHotUnplug"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolOutput `pulumi:"secAuthProtection"`
 	// The size of the image in GB
-	Size     pulumi.IntOutput    `pulumi:"size"`
+	Size pulumi.IntOutput `pulumi:"size"`
+	// [string] The ID of the specific volume to take the snapshot from.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
 }
 
@@ -77,56 +178,80 @@ func GetSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Snapshot resources.
 type snapshotState struct {
-	CpuHotPlug   *bool   `pulumi:"cpuHotPlug"`
-	CpuHotUnplug *bool   `pulumi:"cpuHotUnplug"`
+	// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
+	CpuHotPlug *bool `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug *bool `pulumi:"cpuHotUnplug"`
+	// [string] The ID of the Virtual Data Center.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// Human readable description
-	Description         *string `pulumi:"description"`
-	DiscScsiHotPlug     *bool   `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   *bool   `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
-	// OS type of this Snapshot
+	// (Computed)[string] Human readable description
+	Description *string `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug *bool `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+	DiscScsiHotUnplug *bool `pulumi:"discScsiHotUnplug"`
+	// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
+	DiscVirtioHotPlug *bool `pulumi:"discVirtioHotPlug"`
+	// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
+	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
+	// (Computed)[string] OS type of this Snapshot
 	LicenceType *string `pulumi:"licenceType"`
 	// Location of that image/snapshot
 	Location *string `pulumi:"location"`
-	// A name of that resource
-	Name         *string `pulumi:"name"`
-	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
-	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
-	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
-	RamHotUnplug *bool   `pulumi:"ramHotUnplug"`
+	// [string] The name of the snapshot.
+	Name *string `pulumi:"name"`
+	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
+	NicHotPlug *bool `pulumi:"nicHotPlug"`
+	// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
+	NicHotUnplug *bool `pulumi:"nicHotUnplug"`
+	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+	RamHotPlug *bool `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug *bool `pulumi:"ramHotUnplug"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection *bool `pulumi:"secAuthProtection"`
 	// The size of the image in GB
-	Size     *int    `pulumi:"size"`
+	Size *int `pulumi:"size"`
+	// [string] The ID of the specific volume to take the snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
 }
 
 type SnapshotState struct {
-	CpuHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
+	CpuHotPlug pulumi.BoolPtrInput
+	// Is capable of CPU hot unplug (no reboot required)
 	CpuHotUnplug pulumi.BoolPtrInput
+	// [string] The ID of the Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
-	// Human readable description
-	Description         pulumi.StringPtrInput
-	DiscScsiHotPlug     pulumi.BoolPtrInput
-	DiscScsiHotUnplug   pulumi.BoolPtrInput
-	DiscVirtioHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Human readable description
+	Description pulumi.StringPtrInput
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug pulumi.BoolPtrInput
+	// Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+	DiscScsiHotUnplug pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
+	DiscVirtioHotPlug pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
-	// OS type of this Snapshot
+	// (Computed)[string] OS type of this Snapshot
 	LicenceType pulumi.StringPtrInput
 	// Location of that image/snapshot
 	Location pulumi.StringPtrInput
-	// A name of that resource
-	Name         pulumi.StringPtrInput
-	NicHotPlug   pulumi.BoolPtrInput
+	// [string] The name of the snapshot.
+	Name pulumi.StringPtrInput
+	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
+	NicHotPlug pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
 	NicHotUnplug pulumi.BoolPtrInput
-	RamHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+	RamHotPlug pulumi.BoolPtrInput
+	// Is capable of memory hot unplug (no reboot required)
 	RamHotUnplug pulumi.BoolPtrInput
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
 	// The size of the image in GB
-	Size     pulumi.IntPtrInput
+	Size pulumi.IntPtrInput
+	// [string] The ID of the specific volume to take the snapshot from.
 	VolumeId pulumi.StringPtrInput
 }
 
@@ -135,42 +260,58 @@ func (SnapshotState) ElementType() reflect.Type {
 }
 
 type snapshotArgs struct {
-	CpuHotPlug   *bool  `pulumi:"cpuHotPlug"`
+	// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
+	CpuHotPlug *bool `pulumi:"cpuHotPlug"`
+	// [string] The ID of the Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Human readable description
-	Description         *string `pulumi:"description"`
-	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
-	// OS type of this Snapshot
+	// (Computed)[string] Human readable description
+	Description *string `pulumi:"description"`
+	// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
+	DiscVirtioHotPlug *bool `pulumi:"discVirtioHotPlug"`
+	// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
+	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
+	// (Computed)[string] OS type of this Snapshot
 	LicenceType *string `pulumi:"licenceType"`
-	// A name of that resource
-	Name         *string `pulumi:"name"`
-	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
-	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
-	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
+	// [string] The name of the snapshot.
+	Name *string `pulumi:"name"`
+	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
+	NicHotPlug *bool `pulumi:"nicHotPlug"`
+	// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
+	NicHotUnplug *bool `pulumi:"nicHotUnplug"`
+	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+	RamHotPlug *bool `pulumi:"ramHotPlug"`
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
-	SecAuthProtection *bool  `pulumi:"secAuthProtection"`
-	VolumeId          string `pulumi:"volumeId"`
+	SecAuthProtection *bool `pulumi:"secAuthProtection"`
+	// [string] The ID of the specific volume to take the snapshot from.
+	VolumeId string `pulumi:"volumeId"`
 }
 
 // The set of arguments for constructing a Snapshot resource.
 type SnapshotArgs struct {
-	CpuHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
+	CpuHotPlug pulumi.BoolPtrInput
+	// [string] The ID of the Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	// Human readable description
-	Description         pulumi.StringPtrInput
-	DiscVirtioHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Human readable description
+	Description pulumi.StringPtrInput
+	// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
+	DiscVirtioHotPlug pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
-	// OS type of this Snapshot
+	// (Computed)[string] OS type of this Snapshot
 	LicenceType pulumi.StringPtrInput
-	// A name of that resource
-	Name         pulumi.StringPtrInput
-	NicHotPlug   pulumi.BoolPtrInput
+	// [string] The name of the snapshot.
+	Name pulumi.StringPtrInput
+	// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
+	NicHotPlug pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
 	NicHotUnplug pulumi.BoolPtrInput
-	RamHotPlug   pulumi.BoolPtrInput
+	// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
+	RamHotPlug pulumi.BoolPtrInput
 	// Boolean value representing if the snapshot requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
-	VolumeId          pulumi.StringInput
+	// [string] The ID of the specific volume to take the snapshot from.
+	VolumeId pulumi.StringInput
 }
 
 func (SnapshotArgs) ElementType() reflect.Type {
@@ -260,40 +401,47 @@ func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) Snapsho
 	return o
 }
 
+// (Computed)[string] Is capable of CPU hot plug (no reboot required). Can only be updated.
 func (o SnapshotOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of CPU hot unplug (no reboot required)
 func (o SnapshotOutput) CpuHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
+// [string] The ID of the Virtual Data Center.
 func (o SnapshotOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Human readable description
+// (Computed)[string] Human readable description
 func (o SnapshotOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// Is capable of SCSI drive hot plug (no reboot required)
 func (o SnapshotOutput) DiscScsiHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 func (o SnapshotOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
+// (Computed)[string] Is capable of Virt-IO drive hot plug (no reboot required). Can only be updated.
 func (o SnapshotOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// (Computed)[string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines. Can only be updated.
 func (o SnapshotOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
-// OS type of this Snapshot
+// (Computed)[string] OS type of this Snapshot
 func (o SnapshotOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.LicenceType }).(pulumi.StringOutput)
 }
@@ -303,23 +451,27 @@ func (o SnapshotOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// A name of that resource
+// [string] The name of the snapshot.
 func (o SnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// (Computed)[string] Is capable of nic hot plug (no reboot required). Can only be updated.
 func (o SnapshotOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// (Computed)[string] Is capable of nic hot unplug (no reboot required). Can only be updated.
 func (o SnapshotOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// (Computed)[string] Is capable of memory hot plug (no reboot required). Can only be updated.
 func (o SnapshotOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot unplug (no reboot required)
 func (o SnapshotOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.BoolOutput { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
@@ -334,6 +486,7 @@ func (o SnapshotOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
+// [string] The ID of the specific volume to take the snapshot from.
 func (o SnapshotOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }

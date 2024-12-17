@@ -11,6 +11,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
+// You can provide a string for either id or name parameters which will be compared with provisioned Backup Units.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupBackupUnit(ctx, &compute.LookupBackupUnitArgs{
+//				Name: pulumi.StringRef("Backup Unit Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupBackupUnit(ctx *pulumi.Context, args *LookupBackupUnitArgs, opts ...pulumi.InvokeOption) (*LookupBackupUnitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBackupUnitResult
@@ -23,16 +54,24 @@ func LookupBackupUnit(ctx *pulumi.Context, args *LookupBackupUnitArgs, opts ...p
 
 // A collection of arguments for invoking getBackupUnit.
 type LookupBackupUnitArgs struct {
-	Id   *string `pulumi:"id"`
+	// ID of the backup unit you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing backup unit that you want to search for.
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getBackupUnit.
 type LookupBackupUnitResult struct {
-	Email string  `pulumi:"email"`
-	Id    *string `pulumi:"id"`
-	Login string  `pulumi:"login"`
-	Name  *string `pulumi:"name"`
+	// The e-mail address you want assigned to the backup unit.
+	Email string `pulumi:"email"`
+	// The id of the Backup Unit.
+	Id *string `pulumi:"id"`
+	// The login associated with the backup unit. Derived from the contract number.
+	Login string `pulumi:"login"`
+	// The name of the Backup Unit.
+	Name *string `pulumi:"name"`
 }
 
 func LookupBackupUnitOutput(ctx *pulumi.Context, args LookupBackupUnitOutputArgs, opts ...pulumi.InvokeOption) LookupBackupUnitResultOutput {
@@ -46,7 +85,11 @@ func LookupBackupUnitOutput(ctx *pulumi.Context, args LookupBackupUnitOutputArgs
 
 // A collection of arguments for invoking getBackupUnit.
 type LookupBackupUnitOutputArgs struct {
-	Id   pulumi.StringPtrInput `pulumi:"id"`
+	// ID of the backup unit you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing backup unit that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -69,18 +112,22 @@ func (o LookupBackupUnitResultOutput) ToLookupBackupUnitResultOutputWithContext(
 	return o
 }
 
+// The e-mail address you want assigned to the backup unit.
 func (o LookupBackupUnitResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
+// The id of the Backup Unit.
 func (o LookupBackupUnitResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The login associated with the backup unit. Derived from the contract number.
 func (o LookupBackupUnitResultOutput) Login() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackupUnitResult) string { return v.Login }).(pulumi.StringOutput)
 }
 
+// The name of the Backup Unit.
 func (o LookupBackupUnitResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBackupUnitResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

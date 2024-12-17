@@ -32,12 +32,14 @@ class WireguardGatewayArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WireguardGateway resource.
-        :param pulumi.Input[str] location: The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] private_key: PrivateKey used for WireGuard Server
-        :param pulumi.Input[str] interface_ipv4_cidr: The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-               interfaceIPv6CIDR is __required__.
-        :param pulumi.Input[str] interface_ipv6_cidr: The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-               interfaceIPv4CIDR is __required__.
+        :param pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+        :param pulumi.Input[str] description: [String] A description of the WireGuard Gateway.
+        :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "gateway_ip", gateway_ip)
@@ -57,6 +59,9 @@ class WireguardGatewayArgs:
     @property
     @pulumi.getter
     def connections(self) -> pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]:
+        """
+        [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        """
         return pulumi.get(self, "connections")
 
     @connections.setter
@@ -66,6 +71,9 @@ class WireguardGatewayArgs:
     @property
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> pulumi.Input[str]:
+        """
+        [String] The IP address of the WireGuard Gateway.
+        """
         return pulumi.get(self, "gateway_ip")
 
     @gateway_ip.setter
@@ -76,7 +84,7 @@ class WireguardGatewayArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        [String] The location of the WireGuard Gateway.
         """
         return pulumi.get(self, "location")
 
@@ -88,7 +96,7 @@ class WireguardGatewayArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
         """
-        PrivateKey used for WireGuard Server
+        [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         """
         return pulumi.get(self, "private_key")
 
@@ -99,6 +107,9 @@ class WireguardGatewayArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] A description of the WireGuard Gateway.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -109,8 +120,7 @@ class WireguardGatewayArgs:
     @pulumi.getter(name="interfaceIpv4Cidr")
     def interface_ipv4_cidr(self) -> Optional[pulumi.Input[str]]:
         """
-        The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        interfaceIPv6CIDR is __required__.
+        [String] The IPv4 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv4_cidr")
 
@@ -122,8 +132,7 @@ class WireguardGatewayArgs:
     @pulumi.getter(name="interfaceIpv6Cidr")
     def interface_ipv6_cidr(self) -> Optional[pulumi.Input[str]]:
         """
-        The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        interfaceIPv4CIDR is __required__.
+        [String] The IPv6 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv6_cidr")
 
@@ -143,6 +152,9 @@ class WireguardGatewayArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The name of the WireGuard Gateway.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -166,14 +178,16 @@ class _WireguardGatewayState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WireguardGateway resources.
-        :param pulumi.Input[str] interface_ipv4_cidr: The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-               interfaceIPv6CIDR is __required__.
-        :param pulumi.Input[str] interface_ipv6_cidr: The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-               interfaceIPv4CIDR is __required__.
-        :param pulumi.Input[str] location: The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] private_key: PrivateKey used for WireGuard Server
-        :param pulumi.Input[str] public_key: PublicKey used for WireGuard Server. Received in response from API
-        :param pulumi.Input[str] status: The status of the WireGuard Gateway
+        :param pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        :param pulumi.Input[str] description: [String] A description of the WireGuard Gateway.
+        :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
+        :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
+        :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+        :param pulumi.Input[str] public_key: (Computed)[String] The public key for the WireGuard Gateway.
+        :param pulumi.Input[str] status: (Computed)[String] The current status of the WireGuard Gateway.
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -201,6 +215,9 @@ class _WireguardGatewayState:
     @property
     @pulumi.getter
     def connections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WireguardGatewayConnectionArgs']]]]:
+        """
+        [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        """
         return pulumi.get(self, "connections")
 
     @connections.setter
@@ -210,6 +227,9 @@ class _WireguardGatewayState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] A description of the WireGuard Gateway.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -219,6 +239,9 @@ class _WireguardGatewayState:
     @property
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The IP address of the WireGuard Gateway.
+        """
         return pulumi.get(self, "gateway_ip")
 
     @gateway_ip.setter
@@ -229,8 +252,7 @@ class _WireguardGatewayState:
     @pulumi.getter(name="interfaceIpv4Cidr")
     def interface_ipv4_cidr(self) -> Optional[pulumi.Input[str]]:
         """
-        The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        interfaceIPv6CIDR is __required__.
+        [String] The IPv4 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv4_cidr")
 
@@ -242,8 +264,7 @@ class _WireguardGatewayState:
     @pulumi.getter(name="interfaceIpv6Cidr")
     def interface_ipv6_cidr(self) -> Optional[pulumi.Input[str]]:
         """
-        The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        interfaceIPv4CIDR is __required__.
+        [String] The IPv6 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv6_cidr")
 
@@ -264,7 +285,7 @@ class _WireguardGatewayState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        [String] The location of the WireGuard Gateway.
         """
         return pulumi.get(self, "location")
 
@@ -275,6 +296,9 @@ class _WireguardGatewayState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The name of the WireGuard Gateway.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -285,7 +309,7 @@ class _WireguardGatewayState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        PrivateKey used for WireGuard Server
+        [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         """
         return pulumi.get(self, "private_key")
 
@@ -297,7 +321,7 @@ class _WireguardGatewayState:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        PublicKey used for WireGuard Server. Received in response from API
+        (Computed)[String] The public key for the WireGuard Gateway.
         """
         return pulumi.get(self, "public_key")
 
@@ -309,7 +333,7 @@ class _WireguardGatewayState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the WireGuard Gateway
+        (Computed)[String] The current status of the WireGuard Gateway.
         """
         return pulumi.get(self, "status")
 
@@ -334,15 +358,53 @@ class WireguardGateway(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a WireguardGateway resource with the given unique name, props, and options.
+        ## Overview
+
+        The `vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+        This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
+        ipblock_example = ionoscloud.compute.IPBlock("ipblockExample",
+            location="de/fra",
+            size=1)
+        lan_example = ionoscloud.compute.Lan("lanExample", datacenter_id=datacenter_example.id)
+        gateway = ionoscloud.vpn.WireguardGateway("gateway",
+            location="de/fra",
+            description="description",
+            private_key="private",
+            gateway_ip=ipblock_example.ips[0],
+            interface_ipv4_cidr="192.168.1.100/24",
+            connections=[{
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "ipv4_cidr": "192.168.1.108/24",
+            }])
+        ```
+
+        ## Import
+
+        WireGuard Gateways can be imported using their ID:
+
+        ```sh
+        $ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] interface_ipv4_cidr: The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-               interfaceIPv6CIDR is __required__.
-        :param pulumi.Input[str] interface_ipv6_cidr: The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-               interfaceIPv4CIDR is __required__.
-        :param pulumi.Input[str] location: The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] private_key: PrivateKey used for WireGuard Server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        :param pulumi.Input[str] description: [String] A description of the WireGuard Gateway.
+        :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
+        :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
+        :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         """
         ...
     @overload
@@ -351,7 +413,43 @@ class WireguardGateway(pulumi.CustomResource):
                  args: WireguardGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a WireguardGateway resource with the given unique name, props, and options.
+        ## Overview
+
+        The `vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
+        This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
+        ipblock_example = ionoscloud.compute.IPBlock("ipblockExample",
+            location="de/fra",
+            size=1)
+        lan_example = ionoscloud.compute.Lan("lanExample", datacenter_id=datacenter_example.id)
+        gateway = ionoscloud.vpn.WireguardGateway("gateway",
+            location="de/fra",
+            description="description",
+            private_key="private",
+            gateway_ip=ipblock_example.ips[0],
+            interface_ipv4_cidr="192.168.1.100/24",
+            connections=[{
+                "datacenter_id": datacenter_example.id,
+                "lan_id": lan_example.id,
+                "ipv4_cidr": "192.168.1.108/24",
+            }])
+        ```
+
+        ## Import
+
+        WireGuard Gateways can be imported using their ID:
+
+        ```sh
+        $ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id
+        ```
+
         :param str resource_name: The name of the resource.
         :param WireguardGatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -434,14 +532,16 @@ class WireguardGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] interface_ipv4_cidr: The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-               interfaceIPv6CIDR is __required__.
-        :param pulumi.Input[str] interface_ipv6_cidr: The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-               interfaceIPv4CIDR is __required__.
-        :param pulumi.Input[str] location: The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] private_key: PrivateKey used for WireGuard Server
-        :param pulumi.Input[str] public_key: PublicKey used for WireGuard Server. Received in response from API
-        :param pulumi.Input[str] status: The status of the WireGuard Gateway
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WireguardGatewayConnectionArgs', 'WireguardGatewayConnectionArgsDict']]]] connections: [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        :param pulumi.Input[str] description: [String] A description of the WireGuard Gateway.
+        :param pulumi.Input[str] gateway_ip: [String] The IP address of the WireGuard Gateway.
+        :param pulumi.Input[str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
+        :param pulumi.Input[str] location: [String] The location of the WireGuard Gateway.
+        :param pulumi.Input[str] name: [String] The name of the WireGuard Gateway.
+        :param pulumi.Input[str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+        :param pulumi.Input[str] public_key: (Computed)[String] The public key for the WireGuard Gateway.
+        :param pulumi.Input[str] status: (Computed)[String] The current status of the WireGuard Gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -463,24 +563,32 @@ class WireguardGateway(pulumi.CustomResource):
     @property
     @pulumi.getter
     def connections(self) -> pulumi.Output[Sequence['outputs.WireguardGatewayConnection']]:
+        """
+        [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        [String] A description of the WireGuard Gateway.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> pulumi.Output[str]:
+        """
+        [String] The IP address of the WireGuard Gateway.
+        """
         return pulumi.get(self, "gateway_ip")
 
     @property
     @pulumi.getter(name="interfaceIpv4Cidr")
     def interface_ipv4_cidr(self) -> pulumi.Output[Optional[str]]:
         """
-        The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
-        interfaceIPv6CIDR is __required__.
+        [String] The IPv4 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv4_cidr")
 
@@ -488,8 +596,7 @@ class WireguardGateway(pulumi.CustomResource):
     @pulumi.getter(name="interfaceIpv6Cidr")
     def interface_ipv6_cidr(self) -> pulumi.Output[Optional[str]]:
         """
-        The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
-        interfaceIPv4CIDR is __required__.
+        [String] The IPv6 CIDR for the WireGuard Gateway interface.
         """
         return pulumi.get(self, "interface_ipv6_cidr")
 
@@ -502,20 +609,23 @@ class WireguardGateway(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location of the WireGuard Gateway. Supported locations: de/fra, de/txl
+        [String] The location of the WireGuard Gateway.
         """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        [String] The name of the WireGuard Gateway.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         """
-        PrivateKey used for WireGuard Server
+        [String] The private key for the WireGuard Gateway. To be created with the wg utility.
         """
         return pulumi.get(self, "private_key")
 
@@ -523,7 +633,7 @@ class WireguardGateway(pulumi.CustomResource):
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
         """
-        PublicKey used for WireGuard Server. Received in response from API
+        (Computed)[String] The public key for the WireGuard Gateway.
         """
         return pulumi.get(self, "public_key")
 
@@ -531,7 +641,7 @@ class WireguardGateway(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        The status of the WireGuard Gateway
+        (Computed)[String] The current status of the WireGuard Gateway.
         """
         return pulumi.get(self, "status")
 

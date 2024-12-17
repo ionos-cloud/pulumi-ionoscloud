@@ -9,29 +9,86 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Cert
 {
+    /// <summary>
+    /// Manages a **Certificate** on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cert = new Ionoscloud.Cert.Certificate("cert", new()
+    ///     {
+    ///         Certificate = File.ReadAllText("path_to_cert"),
+    ///         CertificateChain = File.ReadAllText("path_to_cert_chain"),
+    ///         PrivateKey = File.ReadAllText("path_to_private_key"),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **NOTE**: You can also provide the values as multiline strings, as seen below:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cert = new Ionoscloud.Cert.Certificate("cert", new()
+    ///     {
+    ///         Certificate = @"-----BEGIN CERTIFICATE-----
+    /// cert_body_here
+    /// -----END CERTIFICATE-----
+    /// 
+    /// ",
+    ///         CertificateChain = File.ReadAllText("path_to_cert_chain"),
+    ///         PrivateKey = File.ReadAllText("path_to_private_key"),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource certificate can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:cert/certificate:Certificate")]
     public partial class Certificate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The certificate body in PEM format. This attribute is immutable.
+        /// [string] The certificate body. Pem encoded. Immutable.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate chain. This attribute is immutable.
+        /// [string] The certificate chain. Pem encoded. Immutable.
         /// </summary>
         [Output("certificateChain")]
         public Output<string?> CertificateChain { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate name
+        /// [string] The certificate name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The private key blob. This attribute is immutable.
+        /// [string] The certificate private key. Immutable. Sensitive.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -87,19 +144,19 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class CertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The certificate body in PEM format. This attribute is immutable.
+        /// [string] The certificate body. Pem encoded. Immutable.
         /// </summary>
         [Input("certificate", required: true)]
         public Input<string> Certificate { get; set; } = null!;
 
         /// <summary>
-        /// The certificate chain. This attribute is immutable.
+        /// [string] The certificate chain. Pem encoded. Immutable.
         /// </summary>
         [Input("certificateChain")]
         public Input<string>? CertificateChain { get; set; }
 
         /// <summary>
-        /// The certificate name
+        /// [string] The certificate name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -108,7 +165,7 @@ namespace Pulumi.Ionoscloud.Cert
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key blob. This attribute is immutable.
+        /// [string] The certificate private key. Immutable. Sensitive.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -129,19 +186,19 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class CertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The certificate body in PEM format. This attribute is immutable.
+        /// [string] The certificate body. Pem encoded. Immutable.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// The certificate chain. This attribute is immutable.
+        /// [string] The certificate chain. Pem encoded. Immutable.
         /// </summary>
         [Input("certificateChain")]
         public Input<string>? CertificateChain { get; set; }
 
         /// <summary>
-        /// The certificate name
+        /// [string] The certificate name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -150,7 +207,7 @@ namespace Pulumi.Ionoscloud.Cert
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key blob. This attribute is immutable.
+        /// [string] The certificate private key. Immutable. Sensitive.
         /// </summary>
         public Input<string>? PrivateKey
         {

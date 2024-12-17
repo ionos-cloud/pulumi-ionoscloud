@@ -11,12 +11,33 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetCubeServer
     {
+        /// <summary>
+        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetCubeServerResult> InvokeAsync(GetCubeServerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCubeServerResult>("ionoscloud:compute/getCubeServer:getCubeServer", args ?? new GetCubeServerArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetCubeServerResult> Invoke(GetCubeServerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCubeServerResult>("ionoscloud:compute/getCubeServer:getCubeServer", args ?? new GetCubeServerInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetCubeServerResult> Invoke(GetCubeServerInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCubeServerResult>("ionoscloud:compute/getCubeServer:getCubeServer", args ?? new GetCubeServerInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +45,29 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetCubeServerArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the server you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing server that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+        /// </summary>
         [Input("templateUuid")]
         public string? TemplateUuid { get; set; }
 
@@ -44,15 +79,29 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetCubeServerInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the server you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing server that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+        /// </summary>
         [Input("templateUuid")]
         public Input<string>? TemplateUuid { get; set; }
 
@@ -66,21 +115,48 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetCubeServerResult
     {
+        /// <summary>
+        /// The availability zone in which the volume should exist
+        /// </summary>
         public readonly string AvailabilityZone;
         public readonly string BootCdrom;
         public readonly string BootImage;
         public readonly string BootVolume;
+        /// <summary>
+        /// list of
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetCubeServerCdromResult> Cdroms;
         public readonly int Cores;
         public readonly string CpuFamily;
+        /// <summary>
+        /// The id of the datacenter
+        /// </summary>
         public readonly string DatacenterId;
+        /// <summary>
+        /// Id of the firewall rule
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Name of the firewall rule
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// list of
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetCubeServerNicResult> Nics;
         public readonly int Ram;
+        /// <summary>
+        /// The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+        /// </summary>
         public readonly string? TemplateUuid;
         public readonly string Token;
+        /// <summary>
+        /// Status of the virtual Machine
+        /// </summary>
         public readonly string VmState;
+        /// <summary>
+        /// list of
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetCubeServerVolumeResult> Volumes;
 
         [OutputConstructor]

@@ -9,18 +9,127 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
+    /// <summary>
+    /// Manages **IP Failover** groups on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var exampleIPBlock = new Ionoscloud.Compute.IPBlock("exampleIPBlock", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = true,
+    ///     });
+    /// 
+    ///     var serverImagePassword = new Random.RandomPassword("serverImagePassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = false,
+    ///     });
+    /// 
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Cores = 1,
+    ///         Ram = 1024,
+    ///         AvailabilityZone = "ZONE_1",
+    ///         CpuFamily = "INTEL_XEON",
+    ///         ImageName = "Ubuntu-20.04",
+    ///         ImagePassword = serverImagePassword.Result,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "system",
+    ///             Size = 14,
+    ///             DiskType = "SSD",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = 1,
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///             Ips = new[]
+    ///             {
+    ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleIPFailover = new Ionoscloud.Compute.IPFailover("exampleIPFailover", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         LanId = exampleLan.Id,
+    ///         Ip = exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
+    ///         Nicuuid = exampleServer.PrimaryNic,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             exampleLan,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## A note on multiple NICs on an IP Failover
+    /// 
+    /// If you want to add a secondary NIC to an IP Failover, follow these steps:
+    /// 1) Creating NIC A with failover IP on LAN 1
+    /// 2) Create NIC B unde the same LAN but with a different IP
+    /// 3) Create the IP Failover on LAN 1 with NIC A and failover IP of NIC A (A becomes now "master", no slaves)
+    /// 4) Update NIC B IP to be the failover IP ( B becomes now a slave, A remains master)
+    /// 
+    /// After this you can create a new NIC C, NIC D and so on, in LAN 1, directly with the failover IP.
+    /// 
+    /// Please check examples for a full example with the above steps.
+    /// 
+    /// ## Import
+    /// 
+    /// Resource IpFailover can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/iPFailover:IPFailover")]
     public partial class IPFailover : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// Failover IP
+        /// [string] The reserved IP address to be used in the IP failover group.
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of a LAN.
+        /// </summary>
         [Output("lanId")]
         public Output<string> LanId { get; private set; } = null!;
 
@@ -76,15 +185,21 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class IPFailoverArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// Failover IP
+        /// [string] The reserved IP address to be used in the IP failover group.
         /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of a LAN.
+        /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;
 
@@ -102,15 +217,21 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class IPFailoverState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// Failover IP
+        /// [string] The reserved IP address to be used in the IP failover group.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a LAN.
+        /// </summary>
         [Input("lanId")]
         public Input<string>? LanId { get; set; }
 

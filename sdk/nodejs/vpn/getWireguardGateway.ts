@@ -6,6 +6,22 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getWireguardGateway({
+ *     location: "de/fra",
+ *     name: "example-gateway",
+ * });
+ * export const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;
+ * ```
+ */
 export function getWireguardGateway(args: GetWireguardGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetWireguardGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", {
@@ -20,9 +36,21 @@ export function getWireguardGateway(args: GetWireguardGatewayArgs, opts?: pulumi
  * A collection of arguments for invoking getWireguardGateway.
  */
 export interface GetWireguardGatewayArgs {
+    /**
+     * The description of the WireGuard Gateway.
+     */
     description?: string;
+    /**
+     * [String] The ID of the WireGuard Gateway.
+     */
     id?: string;
+    /**
+     * [String] The location of the WireGuard Gateway.
+     */
     location: string;
+    /**
+     * [String] The name of the WireGuard Gateway.
+     */
     name?: string;
 }
 
@@ -30,18 +58,55 @@ export interface GetWireguardGatewayArgs {
  * A collection of values returned by getWireguardGateway.
  */
 export interface GetWireguardGatewayResult {
+    /**
+     * A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
+     */
     readonly connections: outputs.vpn.GetWireguardGatewayConnection[];
+    /**
+     * The description of the WireGuard Gateway.
+     */
     readonly description?: string;
+    /**
+     * The IP address of the WireGuard Gateway.
+     */
     readonly gatewayIp: string;
     readonly id: string;
+    /**
+     * The IPv4 CIDR for the WireGuard Gateway interface.
+     */
     readonly interfaceIpv4Cidr: string;
+    /**
+     * The IPv6 CIDR for the WireGuard Gateway interface.
+     */
     readonly interfaceIpv6Cidr: string;
     readonly listenPort: number;
     readonly location: string;
     readonly name: string;
+    /**
+     * The public key for the WireGuard Gateway.
+     */
     readonly publicKey: string;
+    /**
+     * The current status of the WireGuard Gateway.
+     */
     readonly status: string;
 }
+/**
+ * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.vpn.getWireguardGateway({
+ *     location: "de/fra",
+ *     name: "example-gateway",
+ * });
+ * export const vpnWireguardGatewayPublicKey = data.vpn_wireguard_gateway.example.public_key;
+ * ```
+ */
 export function getWireguardGatewayOutput(args: GetWireguardGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWireguardGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", {
@@ -56,8 +121,20 @@ export function getWireguardGatewayOutput(args: GetWireguardGatewayOutputArgs, o
  * A collection of arguments for invoking getWireguardGateway.
  */
 export interface GetWireguardGatewayOutputArgs {
+    /**
+     * The description of the WireGuard Gateway.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * [String] The ID of the WireGuard Gateway.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * [String] The location of the WireGuard Gateway.
+     */
     location: pulumi.Input<string>;
+    /**
+     * [String] The name of the WireGuard Gateway.
+     */
     name?: pulumi.Input<string>;
 }

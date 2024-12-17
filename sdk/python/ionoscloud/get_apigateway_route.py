@@ -22,6 +22,8 @@ __all__ = [
     'get_apigateway_route_output',
 ]
 
+warnings.warn("""ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""", DeprecationWarning)
+
 @pulumi.output_type
 class GetApigatewayRouteResult:
     """
@@ -127,6 +129,7 @@ def get_apigateway_route(gateway_id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
     __args__['id'] = id
@@ -153,6 +156,10 @@ def get_apigateway_route_output(gateway_id: Optional[pulumi.Input[str]] = None,
     """
     Use this data source to access information about an existing resource.
     """
+<<<<<<< HEAD
+    pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
+=======
+>>>>>>> main
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
     __args__['id'] = id

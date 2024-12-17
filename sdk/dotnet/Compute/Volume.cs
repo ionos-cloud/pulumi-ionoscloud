@@ -9,87 +9,301 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
+    /// <summary>
+    /// Manages a **Volume** on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleImage = Ionoscloud.GetImage.Invoke(new()
+    ///     {
+    ///         Type = "HDD",
+    ///         CloudInit = "V1",
+    ///         ImageAlias = "ubuntu:latest",
+    ///         Location = "us/las",
+    ///     });
+    /// 
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = true,
+    ///     });
+    /// 
+    ///     var exampleIPBlock = new Ionoscloud.Compute.IPBlock("exampleIPBlock", new()
+    ///     {
+    ///         Location = exampleDatacenter.Location,
+    ///         Size = 4,
+    ///     });
+    /// 
+    ///     var serverImagePassword = new Random.RandomPassword("serverImagePassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = false,
+    ///     });
+    /// 
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Cores = 1,
+    ///         Ram = 1024,
+    ///         AvailabilityZone = "ZONE_1",
+    ///         CpuFamily = "INTEL_XEON",
+    ///         ImageName = exampleImage.Apply(getImageResult =&gt; getImageResult.Name),
+    ///         ImagePassword = serverImagePassword.Result,
+    ///         Type = "ENTERPRISE",
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "system",
+    ///             Size = 5,
+    ///             DiskType = "SSD Standard",
+    ///             UserData = "foo",
+    ///             Bus = "VIRTIO",
+    ///             AvailabilityZone = "ZONE_1",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = exampleLan.Id,
+    ///             Name = "system",
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///             FirewallType = "BIDIRECTIONAL",
+    ///             Ips = new[]
+    ///             {
+    ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
+    ///                 exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
+    ///             },
+    ///             Firewalls = new[]
+    ///             {
+    ///                 new Ionoscloud.Compute.Inputs.ServerNicFirewallArgs
+    ///                 {
+    ///                     Protocol = "TCP",
+    ///                     Name = "SSH",
+    ///                     PortRangeStart = 22,
+    ///                     PortRangeEnd = 22,
+    ///                     SourceMac = "00:0a:95:9d:68:17",
+    ///                     SourceIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[2]),
+    ///                     TargetIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[3]),
+    ///                     Type = "EGRESS",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var volumeImagePassword = new Random.RandomPassword("volumeImagePassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = false,
+    ///     });
+    /// 
+    ///     var exampleVolume = new Ionoscloud.Compute.Volume("exampleVolume", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         ServerId = exampleServer.Id,
+    ///         AvailabilityZone = "ZONE_1",
+    ///         Size = 5,
+    ///         DiskType = "SSD Standard",
+    ///         Bus = "VIRTIO",
+    ///         ImageName = exampleImage.Apply(getImageResult =&gt; getImageResult.Name),
+    ///         ImagePassword = volumeImagePassword.Result,
+    ///         UserData = "foo",
+    ///     });
+    /// 
+    ///     var exampleCompute_volumeVolume = new Ionoscloud.Compute.Volume("exampleCompute/volumeVolume", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         ServerId = exampleServer.Id,
+    ///         AvailabilityZone = "ZONE_1",
+    ///         Size = 5,
+    ///         DiskType = "SSD Standard",
+    ///         Bus = "VIRTIO",
+    ///         LicenceType = "OTHER",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource Volume can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/volume:Volume")]
     public partial class Volume : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        /// </summary>
         [Output("availabilityZone")]
         public Output<string> AvailabilityZone { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        /// </summary>
         [Output("backupUnitId")]
         public Output<string> BackupUnitId { get; private set; } = null!;
 
         /// <summary>
-        /// The UUID of the attached server.
+        /// [string] The UUID of the attached server.
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; ssh_key_path and ssh_keys fields are immutable.
+        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         /// </summary>
         [Output("bootServer")]
         public Output<string> BootServer { get; private set; } = null!;
 
+        /// <summary>
+        /// [Boolean] The bus type of the volume: VIRTIO or IDE.
+        /// </summary>
         [Output("bus")]
         public Output<string> Bus { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of CPU hot plug (no reboot required)
+        /// </summary>
         [Output("cpuHotPlug")]
         public Output<bool> CpuHotPlug { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
+        /// <summary>
+        /// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        /// </summary>
         [Output("deviceNumber")]
         public Output<int> DeviceNumber { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        /// </summary>
         [Output("discVirtioHotPlug")]
         public Output<bool> DiscVirtioHotPlug { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        /// </summary>
         [Output("discVirtioHotUnplug")]
         public Output<bool> DiscVirtioHotUnplug { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// </summary>
         [Output("diskType")]
         public Output<string> DiskType { get; private set; } = null!;
 
+        /// <summary>
+        /// The image or snapshot UUID.
+        /// </summary>
         [Output("image")]
         public Output<string> Image { get; private set; } = null!;
 
         [Output("imageId")]
         public Output<string> ImageId { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        /// </summary>
         [Output("imageName")]
         public Output<string?> ImageName { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Required if `sshkey_path` is not provided.
+        /// </summary>
         [Output("imagePassword")]
         public Output<string?> ImagePassword { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Required if `image_name` is not provided.
+        /// </summary>
         [Output("licenceType")]
         public Output<string> LicenceType { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The name of the volume.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of nic hot plug (no reboot required)
+        /// </summary>
         [Output("nicHotPlug")]
         public Output<bool> NicHotPlug { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of nic hot unplug (no reboot required)
+        /// </summary>
         [Output("nicHotUnplug")]
         public Output<bool> NicHotUnplug { get; private set; } = null!;
 
+        /// <summary>
+        /// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        /// </summary>
         [Output("pciSlot")]
         public Output<int> PciSlot { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] Is capable of memory hot plug (no reboot required)
+        /// </summary>
         [Output("ramHotPlug")]
         public Output<bool> RamHotPlug { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
 
+        /// <summary>
+        /// [integer] The size of the volume in GB.
+        /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         [Output("sshKeyPaths")]
         public Output<ImmutableArray<string>> SshKeyPaths { get; private set; } = null!;
 
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         [Output("sshKeys")]
         public Output<ImmutableArray<string>> SshKeys { get; private set; } = null!;
 
+        /// <summary>
+        /// The associated public SSH key.
+        /// </summary>
         [Output("sshkey")]
         public Output<string> Sshkey { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        /// </summary>
         [Output("userData")]
         public Output<string> UserData { get; private set; } = null!;
 
@@ -139,41 +353,78 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
+        /// <summary>
+        /// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        /// </summary>
         [Input("backupUnitId")]
         public Input<string>? BackupUnitId { get; set; }
 
+        /// <summary>
+        /// [Boolean] The bus type of the volume: VIRTIO or IDE.
+        /// </summary>
         [Input("bus")]
         public Input<string>? Bus { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// </summary>
         [Input("diskType", required: true)]
         public Input<string> DiskType { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        /// </summary>
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
+        /// <summary>
+        /// [string] Required if `sshkey_path` is not provided.
+        /// </summary>
         [Input("imagePassword")]
         public Input<string>? ImagePassword { get; set; }
 
+        /// <summary>
+        /// [string] Required if `image_name` is not provided.
+        /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
 
+        /// <summary>
+        /// [string] The name of the volume.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
 
+        /// <summary>
+        /// [integer] The size of the volume in GB.
+        /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;
+
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         public InputList<string> SshKeyPaths
         {
             get => _sshKeyPaths ?? (_sshKeyPaths = new InputList<string>());
@@ -182,12 +433,19 @@ namespace Pulumi.Ionoscloud.Compute
 
         [Input("sshKeys")]
         private InputList<string>? _sshKeys;
+
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         public InputList<string> SshKeys
         {
             get => _sshKeys ?? (_sshKeys = new InputList<string>());
             set => _sshKeys = value;
         }
 
+        /// <summary>
+        /// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }
 
@@ -199,77 +457,145 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
+        /// <summary>
+        /// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        /// </summary>
         [Input("backupUnitId")]
         public Input<string>? BackupUnitId { get; set; }
 
         /// <summary>
-        /// The UUID of the attached server.
+        /// [string] The UUID of the attached server.
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; ssh_key_path and ssh_keys fields are immutable.
+        /// &gt; If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         /// </summary>
         [Input("bootServer")]
         public Input<string>? BootServer { get; set; }
 
+        /// <summary>
+        /// [Boolean] The bus type of the volume: VIRTIO or IDE.
+        /// </summary>
         [Input("bus")]
         public Input<string>? Bus { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of CPU hot plug (no reboot required)
+        /// </summary>
         [Input("cpuHotPlug")]
         public Input<bool>? CpuHotPlug { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
+        /// <summary>
+        /// The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        /// </summary>
         [Input("deviceNumber")]
         public Input<int>? DeviceNumber { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        /// </summary>
         [Input("discVirtioHotPlug")]
         public Input<bool>? DiscVirtioHotPlug { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        /// </summary>
         [Input("discVirtioHotUnplug")]
         public Input<bool>? DiscVirtioHotUnplug { get; set; }
 
+        /// <summary>
+        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
 
+        /// <summary>
+        /// The image or snapshot UUID.
+        /// </summary>
         [Input("image")]
         public Input<string>? Image { get; set; }
 
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
+        /// <summary>
+        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        /// </summary>
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
+        /// <summary>
+        /// [string] Required if `sshkey_path` is not provided.
+        /// </summary>
         [Input("imagePassword")]
         public Input<string>? ImagePassword { get; set; }
 
+        /// <summary>
+        /// [string] Required if `image_name` is not provided.
+        /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
 
+        /// <summary>
+        /// [string] The name of the volume.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of nic hot plug (no reboot required)
+        /// </summary>
         [Input("nicHotPlug")]
         public Input<bool>? NicHotPlug { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of nic hot unplug (no reboot required)
+        /// </summary>
         [Input("nicHotUnplug")]
         public Input<bool>? NicHotUnplug { get; set; }
 
+        /// <summary>
+        /// The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        /// </summary>
         [Input("pciSlot")]
         public Input<int>? PciSlot { get; set; }
 
+        /// <summary>
+        /// [string] Is capable of memory hot plug (no reboot required)
+        /// </summary>
         [Input("ramHotPlug")]
         public Input<bool>? RamHotPlug { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
+        /// <summary>
+        /// [integer] The size of the volume in GB.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;
+
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         public InputList<string> SshKeyPaths
         {
             get => _sshKeyPaths ?? (_sshKeyPaths = new InputList<string>());
@@ -278,15 +604,25 @@ namespace Pulumi.Ionoscloud.Compute
 
         [Input("sshKeys")]
         private InputList<string>? _sshKeys;
+
+        /// <summary>
+        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        /// </summary>
         public InputList<string> SshKeys
         {
             get => _sshKeys ?? (_sshKeys = new InputList<string>());
             set => _sshKeys = value;
         }
 
+        /// <summary>
+        /// The associated public SSH key.
+        /// </summary>
         [Input("sshkey")]
         public Input<string>? Sshkey { get; set; }
 
+        /// <summary>
+        /// [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }
 

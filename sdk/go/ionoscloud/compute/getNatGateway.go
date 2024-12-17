@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupNatGateway(ctx *pulumi.Context, args *LookupNatGatewayArgs, opts ...pulumi.InvokeOption) (*LookupNatGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNatGatewayResult
@@ -23,18 +28,27 @@ func LookupNatGateway(ctx *pulumi.Context, args *LookupNatGatewayArgs, opts ...p
 
 // A collection of arguments for invoking getNatGateway.
 type LookupNatGatewayArgs struct {
-	DatacenterId string  `pulumi:"datacenterId"`
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
+	// Datacenter's UUID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing network load balancer forwarding rule that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getNatGateway.
 type LookupNatGatewayResult struct {
-	DatacenterId string             `pulumi:"datacenterId"`
-	Id           *string            `pulumi:"id"`
-	Lans         []GetNatGatewayLan `pulumi:"lans"`
-	Name         *string            `pulumi:"name"`
-	PublicIps    []string           `pulumi:"publicIps"`
+	DatacenterId string `pulumi:"datacenterId"`
+	// Id for the LAN connected to the NAT gateway
+	Id *string `pulumi:"id"`
+	// Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
+	Lans []GetNatGatewayLan `pulumi:"lans"`
+	// Name of that natgateway
+	Name *string `pulumi:"name"`
+	// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
+	PublicIps []string `pulumi:"publicIps"`
 }
 
 func LookupNatGatewayOutput(ctx *pulumi.Context, args LookupNatGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupNatGatewayResultOutput {
@@ -48,9 +62,14 @@ func LookupNatGatewayOutput(ctx *pulumi.Context, args LookupNatGatewayOutputArgs
 
 // A collection of arguments for invoking getNatGateway.
 type LookupNatGatewayOutputArgs struct {
-	DatacenterId pulumi.StringInput    `pulumi:"datacenterId"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	// Datacenter's UUID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing network load balancer forwarding rule that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupNatGatewayOutputArgs) ElementType() reflect.Type {
@@ -76,18 +95,22 @@ func (o LookupNatGatewayResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNatGatewayResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// Id for the LAN connected to the NAT gateway
 func (o LookupNatGatewayResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNatGatewayResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
 func (o LookupNatGatewayResultOutput) Lans() GetNatGatewayLanArrayOutput {
 	return o.ApplyT(func(v LookupNatGatewayResult) []GetNatGatewayLan { return v.Lans }).(GetNatGatewayLanArrayOutput)
 }
 
+// Name of that natgateway
 func (o LookupNatGatewayResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNatGatewayResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
 func (o LookupNatGatewayResultOutput) PublicIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupNatGatewayResult) []string { return v.PublicIps }).(pulumi.StringArrayOutput)
 }

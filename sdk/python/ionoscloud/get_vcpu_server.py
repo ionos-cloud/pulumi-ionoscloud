@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -268,13 +273,10 @@ def get_vcpu_server(datacenter_id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         vm_state=pulumi.get(__ret__, 'vm_state'),
         volumes=pulumi.get(__ret__, 'volumes'))
-
-
-@_utilities.lift_output_func(get_vcpu_server)
 def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                            id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVcpuServerResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVcpuServerResult]:
     """
     The **VCPU Server data source** can be used to search for and return existing VCPU servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -289,4 +291,27 @@ def get_vcpu_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     :param str name: Name of an existing server that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getVcpuServer:getVcpuServer', __args__, opts=opts, typ=GetVcpuServerResult)
+    return __ret__.apply(lambda __response__: GetVcpuServerResult(
+        availability_zone=pulumi.get(__response__, 'availability_zone'),
+        boot_cdrom=pulumi.get(__response__, 'boot_cdrom'),
+        boot_image=pulumi.get(__response__, 'boot_image'),
+        boot_volume=pulumi.get(__response__, 'boot_volume'),
+        cdroms=pulumi.get(__response__, 'cdroms'),
+        cores=pulumi.get(__response__, 'cores'),
+        cpu_family=pulumi.get(__response__, 'cpu_family'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        name=pulumi.get(__response__, 'name'),
+        nics=pulumi.get(__response__, 'nics'),
+        ram=pulumi.get(__response__, 'ram'),
+        token=pulumi.get(__response__, 'token'),
+        type=pulumi.get(__response__, 'type'),
+        vm_state=pulumi.get(__response__, 'vm_state'),
+        volumes=pulumi.get(__response__, 'volumes')))

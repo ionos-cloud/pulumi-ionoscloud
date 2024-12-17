@@ -80,81 +80,129 @@ class GetGroupResult:
     @property
     @pulumi.getter(name="accessActivityLog")
     def access_activity_log(self) -> bool:
+        """
+        The group will be allowed to access the activity log.
+        """
         return pulumi.get(self, "access_activity_log")
 
     @property
     @pulumi.getter(name="accessAndManageCertificates")
     def access_and_manage_certificates(self) -> bool:
+        """
+        The group will be allowed to access and manage certificates.
+        """
         return pulumi.get(self, "access_and_manage_certificates")
 
     @property
     @pulumi.getter(name="accessAndManageMonitoring")
     def access_and_manage_monitoring(self) -> bool:
+        """
+        The group will be allowed to access and manage monitoring.
+        """
         return pulumi.get(self, "access_and_manage_monitoring")
 
     @property
     @pulumi.getter(name="createBackupUnit")
     def create_backup_unit(self) -> bool:
+        """
+        The group will be allowed to create backup unit privilege.
+        """
         return pulumi.get(self, "create_backup_unit")
 
     @property
     @pulumi.getter(name="createDatacenter")
     def create_datacenter(self) -> bool:
+        """
+        The group will be allowed to create virtual data centers.
+        """
         return pulumi.get(self, "create_datacenter")
 
     @property
     @pulumi.getter(name="createFlowLog")
     def create_flow_log(self) -> bool:
+        """
+        The group will be allowed to create flow log.
+        """
         return pulumi.get(self, "create_flow_log")
 
     @property
     @pulumi.getter(name="createInternetAccess")
     def create_internet_access(self) -> bool:
+        """
+        The group will be allowed to create internet access privilege.
+        """
         return pulumi.get(self, "create_internet_access")
 
     @property
     @pulumi.getter(name="createK8sCluster")
     def create_k8s_cluster(self) -> bool:
+        """
+        The group will be allowed to create kubernetes cluster privilege.
+        """
         return pulumi.get(self, "create_k8s_cluster")
 
     @property
     @pulumi.getter(name="createPcc")
     def create_pcc(self) -> bool:
+        """
+        The group will be allowed to create Cross Connects privilege.
+        """
         return pulumi.get(self, "create_pcc")
 
     @property
     @pulumi.getter(name="createSnapshot")
     def create_snapshot(self) -> bool:
+        """
+        The group will be allowed to create snapshots.
+        """
         return pulumi.get(self, "create_snapshot")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the group.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="manageDbaas")
     def manage_dbaas(self) -> bool:
+        """
+        Privilege for a group to manage DBaaS related functionality.
+        """
         return pulumi.get(self, "manage_dbaas")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        A name for the group.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="reserveIp")
     def reserve_ip(self) -> bool:
+        """
+        The group will be allowed to reserve IP addresses.
+        """
         return pulumi.get(self, "reserve_ip")
 
     @property
     @pulumi.getter(name="s3Privilege")
     def s3_privilege(self) -> bool:
+        """
+        The group will have S3 privilege.
+        """
         return pulumi.get(self, "s3_privilege")
 
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetGroupUserResult']:
+        """
+        List of users in group.
+        """
         return pulumi.get(self, "users")
 
 
@@ -186,7 +234,25 @@ def get_group(id: Optional[str] = None,
               name: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Group data source** can be used to search for and return existing groups.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_group(name="Group Example")
+    ```
+
+
+    :param str id: ID of the group you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing group that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -215,7 +281,25 @@ def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                      name: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Group data source** can be used to search for and return existing groups.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_group(name="Group Example")
+    ```
+
+
+    :param str id: ID of the group you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing group that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

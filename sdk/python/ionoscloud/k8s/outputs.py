@@ -57,8 +57,8 @@ class ClusterMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: Day of the week when maintenance is allowed
-        :param str time: A clock time in the day when maintenance is allowed
+        :param str day_of_the_week: [string] Day of the week when maintenance is allowed
+        :param str time: [string] A clock time in the day when maintenance is allowed
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -67,7 +67,7 @@ class ClusterMaintenanceWindow(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -75,7 +75,7 @@ class ClusterMaintenanceWindow(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
 
@@ -85,7 +85,7 @@ class ClusterS3Bucket(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Name of the Object Storage bucket
+        :param str name: [string] The name of the Kubernetes Cluster.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -94,7 +94,7 @@ class ClusterS3Bucket(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Name of the Object Storage bucket
+        [string] The name of the Kubernetes Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -124,8 +124,8 @@ class NodePoolAutoScaling(dict):
                  max_node_count: int,
                  min_node_count: int):
         """
-        :param int max_node_count: The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-        :param int min_node_count: The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        :param int max_node_count: [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        :param int min_node_count: [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         """
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
@@ -134,7 +134,7 @@ class NodePoolAutoScaling(dict):
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> int:
         """
-        The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
         """
         return pulumi.get(self, "max_node_count")
 
@@ -142,7 +142,7 @@ class NodePoolAutoScaling(dict):
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> int:
         """
-        The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         """
         return pulumi.get(self, "min_node_count")
 
@@ -154,8 +154,8 @@ class NodePoolLan(dict):
                  dhcp: Optional[bool] = None,
                  routes: Optional[Sequence['outputs.NodePoolLanRoute']] = None):
         """
-        :param int id: The LAN ID of an existing LAN at the related datacenter
-        :param bool dhcp: Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        :param int id: [int] The LAN ID of an existing LAN at the related datacenter
+        :param bool dhcp: [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         :param Sequence['NodePoolLanRouteArgs'] routes: An array of additional LANs attached to worker nodes
         """
         pulumi.set(__self__, "id", id)
@@ -168,7 +168,7 @@ class NodePoolLan(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        The LAN ID of an existing LAN at the related datacenter
+        [int] The LAN ID of an existing LAN at the related datacenter
         """
         return pulumi.get(self, "id")
 
@@ -176,7 +176,7 @@ class NodePoolLan(dict):
     @pulumi.getter
     def dhcp(self) -> Optional[bool]:
         """
-        Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+        [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
         """
         return pulumi.get(self, "dhcp")
 
@@ -212,8 +212,8 @@ class NodePoolLanRoute(dict):
                  gateway_ip: str,
                  network: str):
         """
-        :param str gateway_ip: IPv4 or IPv6 Gateway IP for the route
-        :param str network: IPv4 or IPv6 CIDR to be routed via the interface
+        :param str gateway_ip: [string] IPv4 or IPv6 Gateway IP for the route
+        :param str network: [string] IPv4 or IPv6 CIDR to be routed via the interface
         """
         pulumi.set(__self__, "gateway_ip", gateway_ip)
         pulumi.set(__self__, "network", network)
@@ -222,7 +222,7 @@ class NodePoolLanRoute(dict):
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> str:
         """
-        IPv4 or IPv6 Gateway IP for the route
+        [string] IPv4 or IPv6 Gateway IP for the route
         """
         return pulumi.get(self, "gateway_ip")
 
@@ -230,7 +230,7 @@ class NodePoolLanRoute(dict):
     @pulumi.getter
     def network(self) -> str:
         """
-        IPv4 or IPv6 CIDR to be routed via the interface
+        [string] IPv4 or IPv6 CIDR to be routed via the interface
         """
         return pulumi.get(self, "network")
 
@@ -258,8 +258,8 @@ class NodePoolMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: Day of the week when maintenance is allowed
-        :param str time: A clock time in the day when maintenance is allowed
+        :param str day_of_the_week: [string] Day of the week when maintenance is allowed
+        :param str time: [string] A clock time in the day when maintenance is allowed
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -268,7 +268,7 @@ class NodePoolMaintenanceWindow(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        Day of the week when maintenance is allowed
+        [string] Day of the week when maintenance is allowed
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -276,7 +276,7 @@ class NodePoolMaintenanceWindow(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        A clock time in the day when maintenance is allowed
+        [string] A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
 
@@ -333,6 +333,9 @@ class GetClusterConfigClusterResult(dict):
     def __init__(__self__, *,
                  cluster: Mapping[str, str],
                  name: str):
+        """
+        :param str name: Name of an existing cluster that you want to search for.
+        """
         pulumi.set(__self__, "cluster", cluster)
         pulumi.set(__self__, "name", name)
 
@@ -344,6 +347,9 @@ class GetClusterConfigClusterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for.
+        """
         return pulumi.get(self, "name")
 
 
@@ -352,6 +358,9 @@ class GetClusterConfigContextResult(dict):
     def __init__(__self__, *,
                  context: Mapping[str, str],
                  name: str):
+        """
+        :param str name: Name of an existing cluster that you want to search for.
+        """
         pulumi.set(__self__, "context", context)
         pulumi.set(__self__, "name", name)
 
@@ -363,6 +372,9 @@ class GetClusterConfigContextResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for.
+        """
         return pulumi.get(self, "name")
 
 
@@ -371,12 +383,18 @@ class GetClusterConfigUserResult(dict):
     def __init__(__self__, *,
                  name: str,
                  user: Mapping[str, str]):
+        """
+        :param str name: Name of an existing cluster that you want to search for.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -419,7 +437,7 @@ class GetClusterS3BucketResult(dict):
     def __init__(__self__, *,
                  name: str):
         """
-        :param str name: Name of the Object Storage bucket
+        :param str name: Name of an existing cluster that you want to search for.
         """
         pulumi.set(__self__, "name", name)
 
@@ -427,7 +445,7 @@ class GetClusterS3BucketResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        Name of the Object Storage bucket
+        Name of an existing cluster that you want to search for.
         """
         return pulumi.get(self, "name")
 
@@ -438,8 +456,8 @@ class GetNodePoolAutoScalingResult(dict):
                  max_node_count: int,
                  min_node_count: int):
         """
-        :param int max_node_count: The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
-        :param int min_node_count: The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        :param int max_node_count: The maximum number of worker nodes that the node pool can scale to
+        :param int min_node_count: The minimum number of worker nodes the node pool can scale down to
         """
         pulumi.set(__self__, "max_node_count", max_node_count)
         pulumi.set(__self__, "min_node_count", min_node_count)
@@ -448,7 +466,7 @@ class GetNodePoolAutoScalingResult(dict):
     @pulumi.getter(name="maxNodeCount")
     def max_node_count(self) -> int:
         """
-        The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        The maximum number of worker nodes that the node pool can scale to
         """
         return pulumi.get(self, "max_node_count")
 
@@ -456,7 +474,7 @@ class GetNodePoolAutoScalingResult(dict):
     @pulumi.getter(name="minNodeCount")
     def min_node_count(self) -> int:
         """
-        The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        The minimum number of worker nodes the node pool can scale down to
         """
         return pulumi.get(self, "min_node_count")
 
@@ -469,7 +487,9 @@ class GetNodePoolLanResult(dict):
                  routes: Optional[Sequence['outputs.GetNodePoolLanRouteResult']] = None):
         """
         :param bool dhcp: Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
-        :param int id: The LAN ID of an existing LAN at the related datacenter
+        :param int id: ID of the node pool you want to search for.
+               
+               `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
         :param Sequence['GetNodePoolLanRouteArgs'] routes: An array of additional LANs attached to worker nodes
         """
         pulumi.set(__self__, "dhcp", dhcp)
@@ -489,7 +509,9 @@ class GetNodePoolLanResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        The LAN ID of an existing LAN at the related datacenter
+        ID of the node pool you want to search for.
+
+        `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
         """
         return pulumi.get(self, "id")
 

@@ -13,25 +13,27 @@ namespace Pulumi.Ionoscloud.Vpn.Inputs
     public sealed class IpsecGatewayConnectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The datacenter to connect your VPN Gateway to.
+        /// [string] The datacenter to connect your VPN Gateway to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        /// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+        /// VPN Gateway. Note: this should be the subnet already assigned to the LAN
         /// </summary>
         [Input("ipv4Cidr", required: true)]
         public Input<string> Ipv4Cidr { get; set; } = null!;
 
         /// <summary>
-        /// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        /// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+        /// Gateway. **Note**: this should be the subnet already assigned to the LAN
         /// </summary>
         [Input("ipv6Cidr")]
         public Input<string>? Ipv6Cidr { get; set; }
 
         /// <summary>
-        /// The numeric LAN ID to connect your VPN Gateway to.
+        /// [string] The numeric LAN ID to connect your VPN Gateway to.
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;

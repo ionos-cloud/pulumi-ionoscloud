@@ -12,29 +12,38 @@ namespace Pulumi.Ionoscloud.Inputs
 
     public sealed class TargetGroupHttpHealthCheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string]
+        /// </summary>
         [Input("matchType", required: true)]
         public Input<string> MatchType { get; set; } = null!;
 
         /// <summary>
-        /// The method for the HTTP health check.
+        /// [string] The method for the HTTP health check.
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
+        /// <summary>
+        /// [bool]
+        /// </summary>
         [Input("negate")]
         public Input<bool>? Negate { get; set; }
 
         /// <summary>
-        /// The path (destination URL) for the HTTP health check request; the default is /.
+        /// [string] The path (destination URL) for the HTTP health check request; the default is /.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// [bool]
+        /// </summary>
         [Input("regex")]
         public Input<bool>? Regex { get; set; }
 
         /// <summary>
-        /// The response returned by the request, depending on the match type.
+        /// [string] The response returned by the request, depending on the match type.
         /// </summary>
         [Input("response", required: true)]
         public Input<string> Response { get; set; } = null!;

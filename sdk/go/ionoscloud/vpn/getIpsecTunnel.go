@@ -11,6 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
+// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateway Tunnels.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupIpsecTunnel(ctx *pulumi.Context, args *LookupIpsecTunnelArgs, opts ...pulumi.InvokeOption) (*LookupIpsecTunnelResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpsecTunnelResult
@@ -23,10 +29,14 @@ func LookupIpsecTunnel(ctx *pulumi.Context, args *LookupIpsecTunnelArgs, opts ..
 
 // A collection of arguments for invoking getIpsecTunnel.
 type LookupIpsecTunnelArgs struct {
-	GatewayId string  `pulumi:"gatewayId"`
-	Id        *string `pulumi:"id"`
-	Location  string  `pulumi:"location"`
-	Name      *string `pulumi:"name"`
+	// The ID of the IPSec Gateway that the tunnel belongs to.
+	GatewayId string `pulumi:"gatewayId"`
+	// ID of an existing IPSec Gateway Tunnel that you want to search for.
+	Id *string `pulumi:"id"`
+	// The location of the IPSec Gateway Tunnel.
+	Location string `pulumi:"location"`
+	// Name of an existing IPSec Gateway Tunnel that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getIpsecTunnel.
@@ -55,10 +65,14 @@ func LookupIpsecTunnelOutput(ctx *pulumi.Context, args LookupIpsecTunnelOutputAr
 
 // A collection of arguments for invoking getIpsecTunnel.
 type LookupIpsecTunnelOutputArgs struct {
-	GatewayId pulumi.StringInput    `pulumi:"gatewayId"`
-	Id        pulumi.StringPtrInput `pulumi:"id"`
-	Location  pulumi.StringInput    `pulumi:"location"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the IPSec Gateway that the tunnel belongs to.
+	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
+	// ID of an existing IPSec Gateway Tunnel that you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The location of the IPSec Gateway Tunnel.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of an existing IPSec Gateway Tunnel that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupIpsecTunnelOutputArgs) ElementType() reflect.Type {

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -235,15 +240,12 @@ def get_firewall(datacenter_id: Optional[str] = None,
         source_mac=pulumi.get(__ret__, 'source_mac'),
         target_ip=pulumi.get(__ret__, 'target_ip'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_firewall)
 def get_firewall_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                         id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         nic_id: Optional[pulumi.Input[str]] = None,
                         server_id: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFirewallResult]:
     """
     The **Firewall data source** can be used to search for and return an existing FirewallRules.
     You can provide a string for either id or name parameters which will be compared with provisioned Firewall Rules.
@@ -261,4 +263,26 @@ def get_firewall_output(datacenter_id: Optional[pulumi.Input[str]] = None,
            Either `name` or   `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param str server_id: The Server ID.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['nicId'] = nic_id
+    __args__['serverId'] = server_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getFirewall:getFirewall', __args__, opts=opts, typ=GetFirewallResult)
+    return __ret__.apply(lambda __response__: GetFirewallResult(
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        icmp_code=pulumi.get(__response__, 'icmp_code'),
+        icmp_type=pulumi.get(__response__, 'icmp_type'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        nic_id=pulumi.get(__response__, 'nic_id'),
+        port_range_end=pulumi.get(__response__, 'port_range_end'),
+        port_range_start=pulumi.get(__response__, 'port_range_start'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        source_ip=pulumi.get(__response__, 'source_ip'),
+        source_mac=pulumi.get(__response__, 'source_mac'),
+        target_ip=pulumi.get(__response__, 'target_ip'),
+        type=pulumi.get(__response__, 'type')))

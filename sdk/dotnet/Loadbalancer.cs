@@ -9,21 +9,121 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud
 {
+    /// <summary>
+    /// Manages a Load Balancer on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = true,
+    ///     });
+    /// 
+    ///     var serverImagePassword = new Random.RandomPassword("serverImagePassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = false,
+    ///     });
+    /// 
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Cores = 1,
+    ///         Ram = 1024,
+    ///         AvailabilityZone = "ZONE_1",
+    ///         CpuFamily = "INTEL_XEON",
+    ///         ImageName = "Ubuntu-20.04",
+    ///         ImagePassword = serverImagePassword.Result,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "system",
+    ///             Size = 14,
+    ///             DiskType = "SSD",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = 1,
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleLoadbalancer = new Ionoscloud.Loadbalancer("exampleLoadbalancer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         NicIds = new[]
+    ///         {
+    ///             exampleServer.PrimaryNic,
+    ///         },
+    ///         Dhcp = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## A note on nics
+    /// 
+    /// When declaring NIC resources to be used with the load balancer, please make sure
+    /// you use the "lifecycle meta-argument" to make sure changes to the lan attribute
+    /// of the nic are ignored.
+    /// 
+    /// Please see the Nic resource's documentation for an example on how to do that.
+    /// 
+    /// ## Import
+    /// 
+    /// Resource Load Balancer can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:index/loadbalancer:Loadbalancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:index/loadbalancer:Loadbalancer")]
     public partial class Loadbalancer : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
+        /// <summary>
+        /// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        /// </summary>
         [Output("dhcp")]
         public Output<bool?> Dhcp { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] IPv4 address of the load balancer.
+        /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The name of the load balancer.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// [list] A list of NIC IDs that are part of the load balancer.
+        /// </summary>
         [Output("nicIds")]
         public Output<ImmutableArray<string>> NicIds { get; private set; } = null!;
 
@@ -73,20 +173,36 @@ namespace Pulumi.Ionoscloud
 
     public sealed class LoadbalancerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
+        /// <summary>
+        /// [string] IPv4 address of the load balancer.
+        /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// [string] The name of the load balancer.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("nicIds", required: true)]
         private InputList<string>? _nicIds;
+
+        /// <summary>
+        /// [list] A list of NIC IDs that are part of the load balancer.
+        /// </summary>
         public InputList<string> NicIds
         {
             get => _nicIds ?? (_nicIds = new InputList<string>());
@@ -101,20 +217,36 @@ namespace Pulumi.Ionoscloud
 
     public sealed class LoadbalancerState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
+        /// <summary>
+        /// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
+        /// <summary>
+        /// [string] IPv4 address of the load balancer.
+        /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// [string] The name of the load balancer.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("nicIds")]
         private InputList<string>? _nicIds;
+
+        /// <summary>
+        /// [list] A list of NIC IDs that are part of the load balancer.
+        /// </summary>
         public InputList<string> NicIds
         {
             get => _nicIds ?? (_nicIds = new InputList<string>());

@@ -47,26 +47,41 @@ class GetCrossconnectResult:
     @property
     @pulumi.getter(name="connectableDatacenters")
     def connectable_datacenters(self) -> Sequence['outputs.GetCrossconnectConnectableDatacenterResult']:
+        """
+        Lists datacenters that can be joined to this cross connect
+        """
         return pulumi.get(self, "connectable_datacenters")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of cross connect
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The UUID of the connectable datacenter
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the connectable datacenter
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def peers(self) -> Sequence['outputs.GetCrossconnectPeerResult']:
+        """
+        Lists LAN's joined to this cross connect
+        """
         return pulumi.get(self, "peers")
 
 
@@ -88,7 +103,26 @@ def get_crossconnect(description: Optional[str] = None,
                      name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCrossconnectResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Cross Connect data source** can be used to search for and return existing cross connects.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_crossconnect(name="Cross Connect Example")
+    ```
+
+
+    :param str description: Description of cross connect
+    :param str id: ID of the cross connect you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
     __args__['description'] = description
@@ -108,7 +142,26 @@ def get_crossconnect_output(description: Optional[pulumi.Input[Optional[str]]] =
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCrossconnectResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Cross Connect data source** can be used to search for and return existing cross connects.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_crossconnect(name="Cross Connect Example")
+    ```
+
+
+    :param str description: Description of cross connect
+    :param str id: ID of the cross connect you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing cross connect that you want to search for.
     """
     __args__ = dict()
     __args__['description'] = description

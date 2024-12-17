@@ -26,6 +26,11 @@ class LoadbalancerArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Loadbalancer resource.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
+        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        :param pulumi.Input[str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[str] name: [string] The name of the load balancer.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "nic_ids", nic_ids)
@@ -39,6 +44,9 @@ class LoadbalancerArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -48,6 +56,9 @@ class LoadbalancerArgs:
     @property
     @pulumi.getter(name="nicIds")
     def nic_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        [list] A list of NIC IDs that are part of the load balancer.
+        """
         return pulumi.get(self, "nic_ids")
 
     @nic_ids.setter
@@ -57,6 +68,9 @@ class LoadbalancerArgs:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -66,6 +80,9 @@ class LoadbalancerArgs:
     @property
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] IPv4 address of the load balancer.
+        """
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -75,6 +92,9 @@ class LoadbalancerArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -92,6 +112,11 @@ class _LoadbalancerState:
                  nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Loadbalancer resources.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        :param pulumi.Input[str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[str] name: [string] The name of the load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -107,6 +132,9 @@ class _LoadbalancerState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -116,6 +144,9 @@ class _LoadbalancerState:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -125,6 +156,9 @@ class _LoadbalancerState:
     @property
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] IPv4 address of the load balancer.
+        """
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -134,6 +168,9 @@ class _LoadbalancerState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -143,6 +180,9 @@ class _LoadbalancerState:
     @property
     @pulumi.getter(name="nicIds")
     def nic_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] A list of NIC IDs that are part of the load balancer.
+        """
         return pulumi.get(self, "nic_ids")
 
     @nic_ids.setter
@@ -162,9 +202,72 @@ class Loadbalancer(pulumi.CustomResource):
                  nic_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a Loadbalancer resource with the given unique name, props, and options.
+        Manages a Load Balancer on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=True)
+        server_image_password = random.RandomPassword("serverImagePassword",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("exampleServer",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name="Ubuntu-20.04",
+            image_password=server_image_password.result,
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+            })
+        example_loadbalancer = ionoscloud.Loadbalancer("exampleLoadbalancer",
+            datacenter_id=example_datacenter.id,
+            nic_ids=[example_server.primary_nic],
+            dhcp=True)
+        ```
+
+        ## A note on nics
+
+        When declaring NIC resources to be used with the load balancer, please make sure
+        you use the "lifecycle meta-argument" to make sure changes to the lan attribute
+        of the nic are ignored.
+
+        Please see the Nic resource's documentation for an example on how to do that.
+
+        ## Import
+
+        Resource Load Balancer can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:index/loadbalancer:Loadbalancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        :param pulumi.Input[str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[str] name: [string] The name of the load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
         ...
     @overload
@@ -173,7 +276,65 @@ class Loadbalancer(pulumi.CustomResource):
                  args: LoadbalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Loadbalancer resource with the given unique name, props, and options.
+        Manages a Load Balancer on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=True)
+        server_image_password = random.RandomPassword("serverImagePassword",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("exampleServer",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name="Ubuntu-20.04",
+            image_password=server_image_password.result,
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+            })
+        example_loadbalancer = ionoscloud.Loadbalancer("exampleLoadbalancer",
+            datacenter_id=example_datacenter.id,
+            nic_ids=[example_server.primary_nic],
+            dhcp=True)
+        ```
+
+        ## A note on nics
+
+        When declaring NIC resources to be used with the load balancer, please make sure
+        you use the "lifecycle meta-argument" to make sure changes to the lan attribute
+        of the nic are ignored.
+
+        Please see the Nic resource's documentation for an example on how to do that.
+
+        ## Import
+
+        Resource Load Balancer can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:index/loadbalancer:Loadbalancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,6 +395,11 @@ class Loadbalancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        :param pulumi.Input[str] ip: [string] IPv4 address of the load balancer.
+        :param pulumi.Input[str] name: [string] The name of the load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nic_ids: [list] A list of NIC IDs that are part of the load balancer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -249,25 +415,40 @@ class Loadbalancer(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def dhcp(self) -> pulumi.Output[Optional[bool]]:
+        """
+        [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+        """
         return pulumi.get(self, "dhcp")
 
     @property
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
+        """
+        [string] IPv4 address of the load balancer.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        [string] The name of the load balancer.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicIds")
     def nic_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        [list] A list of NIC IDs that are part of the load balancer.
+        """
         return pulumi.get(self, "nic_ids")
 

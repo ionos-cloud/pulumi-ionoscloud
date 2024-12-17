@@ -9,36 +9,101 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Dsaas
 {
+    /// <summary>
+    /// Manages a **Dataplatform Cluster**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "de/txl",
+    ///         Description = "Datacenter for testing Dataplatform Cluster",
+    ///     });
+    /// 
+    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var exampleCluster = new Ionoscloud.Dsaas.Cluster("exampleCluster", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         MaintenanceWindows = new[]
+    ///         {
+    ///             new Ionoscloud.Dsaas.Inputs.ClusterMaintenanceWindowArgs
+    ///             {
+    ///                 DayOfTheWeek = "Sunday",
+    ///                 Time = "09:00:00",
+    ///             },
+    ///         },
+    ///         Version = "23.11",
+    ///         Lans = new[]
+    ///         {
+    ///             new Ionoscloud.Dsaas.Inputs.ClusterLanArgs
+    ///             {
+    ///                 LanId = exampleLan.Id,
+    ///                 Dhcp = false,
+    ///                 Routes = new[]
+    ///                 {
+    ///                     new Ionoscloud.Dsaas.Inputs.ClusterLanRouteArgs
+    ///                     {
+    ///                         Network = "182.168.42.1/24",
+    ///                         Gateway = "192.168.42.1",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:dsaas/cluster:Cluster")]
     public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+        /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
         /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// A list of LANs you want this node pool to be part of
+        /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
         [Output("lans")]
         public Output<ImmutableArray<Outputs.ClusterLan>> Lans { get; private set; } = null!;
 
         /// <summary>
-        /// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
         [Output("maintenanceWindows")]
         public Output<ImmutableArray<Outputs.ClusterMaintenanceWindow>> MaintenanceWindows { get; private set; } = null!;
 
         /// <summary>
-        /// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-        /// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        /// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the Data Platform.
+        /// [int] The version of the Data Platform.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -90,7 +155,7 @@ namespace Pulumi.Ionoscloud.Dsaas
     public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+        /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
@@ -99,7 +164,7 @@ namespace Pulumi.Ionoscloud.Dsaas
         private InputList<Inputs.ClusterLanArgs>? _lans;
 
         /// <summary>
-        /// A list of LANs you want this node pool to be part of
+        /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
         public InputList<Inputs.ClusterLanArgs> Lans
         {
@@ -111,7 +176,7 @@ namespace Pulumi.Ionoscloud.Dsaas
         private InputList<Inputs.ClusterMaintenanceWindowArgs>? _maintenanceWindows;
 
         /// <summary>
-        /// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
         public InputList<Inputs.ClusterMaintenanceWindowArgs> MaintenanceWindows
         {
@@ -120,14 +185,13 @@ namespace Pulumi.Ionoscloud.Dsaas
         }
 
         /// <summary>
-        /// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-        /// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        /// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The version of the Data Platform.
+        /// [int] The version of the Data Platform.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -141,7 +205,7 @@ namespace Pulumi.Ionoscloud.Dsaas
     public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+        /// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
@@ -150,7 +214,7 @@ namespace Pulumi.Ionoscloud.Dsaas
         private InputList<Inputs.ClusterLanGetArgs>? _lans;
 
         /// <summary>
-        /// A list of LANs you want this node pool to be part of
+        /// [list] A list of LANs you want this node pool to be part of.
         /// </summary>
         public InputList<Inputs.ClusterLanGetArgs> Lans
         {
@@ -162,7 +226,7 @@ namespace Pulumi.Ionoscloud.Dsaas
         private InputList<Inputs.ClusterMaintenanceWindowGetArgs>? _maintenanceWindows;
 
         /// <summary>
-        /// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        /// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         /// </summary>
         public InputList<Inputs.ClusterMaintenanceWindowGetArgs> MaintenanceWindows
         {
@@ -171,14 +235,13 @@ namespace Pulumi.Ionoscloud.Dsaas
         }
 
         /// <summary>
-        /// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-        /// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+        /// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The version of the Data Platform.
+        /// [int] The version of the Data Platform.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

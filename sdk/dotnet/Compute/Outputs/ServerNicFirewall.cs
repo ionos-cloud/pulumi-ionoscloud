@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly string? IcmpCode;
         public readonly string? IcmpType;
         public readonly string? Id;
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         public readonly string? Name;
         public readonly int? PortRangeEnd;
         public readonly int? PortRangeStart;
@@ -23,6 +26,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly string? SourceIp;
         public readonly string? SourceMac;
         public readonly string? TargetIp;
+        /// <summary>
+        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

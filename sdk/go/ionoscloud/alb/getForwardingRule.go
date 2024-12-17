@@ -11,6 +11,67 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupForwardingRule(ctx, &alb.LookupForwardingRuleArgs{
+//				DatacenterId:              ionoscloud_datacenter.Example.Id,
+//				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
+//				Name:                      pulumi.StringRef("ALB FR Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupForwardingRule(ctx, &alb.LookupForwardingRuleArgs{
+//				DatacenterId:              ionoscloud_datacenter.Example.Id,
+//				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
+//				Name:                      pulumi.StringRef("Example"),
+//				PartialMatch:              pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupForwardingRule(ctx *pulumi.Context, args *LookupForwardingRuleArgs, opts ...pulumi.InvokeOption) (*LookupForwardingRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupForwardingRuleResult
@@ -23,26 +84,41 @@ func LookupForwardingRule(ctx *pulumi.Context, args *LookupForwardingRuleArgs, o
 
 // A collection of arguments for invoking getForwardingRule.
 type LookupForwardingRuleArgs struct {
-	ApplicationLoadbalancerId string  `pulumi:"applicationLoadbalancerId"`
-	DatacenterId              string  `pulumi:"datacenterId"`
-	Id                        *string `pulumi:"id"`
-	Name                      *string `pulumi:"name"`
-	PartialMatch              *bool   `pulumi:"partialMatch"`
+	// Application Load Balancer's UUID.
+	ApplicationLoadbalancerId string `pulumi:"applicationLoadbalancerId"`
+	// Datacenter's UUID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the application load balancer you want to search for.
+	Id *string `pulumi:"id"`
+	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Both `datacenterId` and `applicationLoadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getForwardingRule.
 type LookupForwardingRuleResult struct {
-	ApplicationLoadbalancerId string                      `pulumi:"applicationLoadbalancerId"`
-	ClientTimeout             int                         `pulumi:"clientTimeout"`
-	DatacenterId              string                      `pulumi:"datacenterId"`
-	HttpRules                 []GetForwardingRuleHttpRule `pulumi:"httpRules"`
-	Id                        *string                     `pulumi:"id"`
-	ListenerIp                string                      `pulumi:"listenerIp"`
-	ListenerPort              int                         `pulumi:"listenerPort"`
-	Name                      *string                     `pulumi:"name"`
-	PartialMatch              *bool                       `pulumi:"partialMatch"`
-	Protocol                  string                      `pulumi:"protocol"`
-	ServerCertificates        []string                    `pulumi:"serverCertificates"`
+	ApplicationLoadbalancerId string `pulumi:"applicationLoadbalancerId"`
+	// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+	// - `server certificates` - Array of items in that collection.
+	ClientTimeout int    `pulumi:"clientTimeout"`
+	DatacenterId  string `pulumi:"datacenterId"`
+	// Array of items in that collection
+	HttpRules []GetForwardingRuleHttpRule `pulumi:"httpRules"`
+	// Id of Application Load Balancer Forwarding Rule
+	Id *string `pulumi:"id"`
+	// Listening (inbound) IP.
+	ListenerIp string `pulumi:"listenerIp"`
+	// Listening (inbound) port number; valid range is 1 to 65535.
+	ListenerPort int `pulumi:"listenerPort"`
+	// The unique name of the Application Load Balancer HTTP rule.
+	Name         *string `pulumi:"name"`
+	PartialMatch *bool   `pulumi:"partialMatch"`
+	// Balancing protocol.
+	Protocol           string   `pulumi:"protocol"`
+	ServerCertificates []string `pulumi:"serverCertificates"`
 }
 
 func LookupForwardingRuleOutput(ctx *pulumi.Context, args LookupForwardingRuleOutputArgs, opts ...pulumi.InvokeOption) LookupForwardingRuleResultOutput {
@@ -56,11 +132,18 @@ func LookupForwardingRuleOutput(ctx *pulumi.Context, args LookupForwardingRuleOu
 
 // A collection of arguments for invoking getForwardingRule.
 type LookupForwardingRuleOutputArgs struct {
-	ApplicationLoadbalancerId pulumi.StringInput    `pulumi:"applicationLoadbalancerId"`
-	DatacenterId              pulumi.StringInput    `pulumi:"datacenterId"`
-	Id                        pulumi.StringPtrInput `pulumi:"id"`
-	Name                      pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch              pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// Application Load Balancer's UUID.
+	ApplicationLoadbalancerId pulumi.StringInput `pulumi:"applicationLoadbalancerId"`
+	// Datacenter's UUID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the application load balancer you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Both `datacenterId` and `applicationLoadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupForwardingRuleOutputArgs) ElementType() reflect.Type {
@@ -86,6 +169,8 @@ func (o LookupForwardingRuleResultOutput) ApplicationLoadbalancerId() pulumi.Str
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.ApplicationLoadbalancerId }).(pulumi.StringOutput)
 }
 
+// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+// - `server certificates` - Array of items in that collection.
 func (o LookupForwardingRuleResultOutput) ClientTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) int { return v.ClientTimeout }).(pulumi.IntOutput)
 }
@@ -94,22 +179,27 @@ func (o LookupForwardingRuleResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// Array of items in that collection
 func (o LookupForwardingRuleResultOutput) HttpRules() GetForwardingRuleHttpRuleArrayOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) []GetForwardingRuleHttpRule { return v.HttpRules }).(GetForwardingRuleHttpRuleArrayOutput)
 }
 
+// Id of Application Load Balancer Forwarding Rule
 func (o LookupForwardingRuleResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Listening (inbound) IP.
 func (o LookupForwardingRuleResultOutput) ListenerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.ListenerIp }).(pulumi.StringOutput)
 }
 
+// Listening (inbound) port number; valid range is 1 to 65535.
 func (o LookupForwardingRuleResultOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) int { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
+// The unique name of the Application Load Balancer HTTP rule.
 func (o LookupForwardingRuleResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -118,6 +208,7 @@ func (o LookupForwardingRuleResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// Balancing protocol.
 func (o LookupForwardingRuleResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }

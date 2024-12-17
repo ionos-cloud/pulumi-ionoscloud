@@ -12,17 +12,299 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages the selection of a boot device for IonosCloud Servers.
+//
+// ## Example Usage
+//
+// The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
+// Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+// This resource also allows switching between a `volume` and a `getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+//
+// ### Select an external volume
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Cores:            pulumi.Int(2),
+//				Ram:              pulumi.Int(2048),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("Inline Updated"),
+//					Size:             pulumi.Int(20),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("AUTO"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleVolume, err := compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//				ServerId:         exampleServer.ID(),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Size:             pulumi.Int(10),
+//				DiskType:         pulumi.String("HDD"),
+//				AvailabilityZone: pulumi.String("AUTO"),
+//				ImageName:        pulumi.String("debian:latest"),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ServerId:     exampleServer.ID(),
+//				BootDeviceId: exampleVolume.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Select an inline volume again
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Cores:            pulumi.Int(2),
+//				Ram:              pulumi.Int(2048),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("Inline Updated"),
+//					Size:             pulumi.Int(20),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("AUTO"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ServerId:     exampleServer.ID(),
+//				BootDeviceId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
+//					return inlineVolumeIds[0], nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//				ServerId:         exampleServer.ID(),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Size:             pulumi.Int(10),
+//				DiskType:         pulumi.String("HDD"),
+//				AvailabilityZone: pulumi.String("AUTO"),
+//				ImageName:        pulumi.String("debian:latest"),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Select a CDROM image
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Cores:            pulumi.Int(2),
+//				Ram:              pulumi.Int(2048),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("Inline Updated"),
+//					Size:             pulumi.Int(20),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("AUTO"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleImage, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				Name:     pulumi.StringRef("ubuntu-20.04"),
+//				Location: pulumi.StringRef("de/txl"),
+//				Type:     pulumi.StringRef("CDROM"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ServerId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
+//					return inlineVolumeIds[0], nil
+//				}).(pulumi.StringOutput),
+//				BootDeviceId: pulumi.String(exampleImage.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//				ServerId:         exampleServer.ID(),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Size:             pulumi.Int(10),
+//				DiskType:         pulumi.String("HDD"),
+//				AvailabilityZone: pulumi.String("AUTO"),
+//				ImageName:        pulumi.String("debian:latest"),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Perform a network boot
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				AvailabilityZone: pulumi.String("ZONE_2"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				Cores:            pulumi.Int(2),
+//				Ram:              pulumi.Int(2048),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("Inline volume"),
+//					Size:             pulumi.Int(20),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("AUTO"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Any(ionoscloud_lan.Example.Id),
+//					Name:           pulumi.String("Nic Example"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewBootDeviceSelection(ctx, "exampleBootDeviceSelection", &compute.BootDeviceSelectionArgs{
+//				DatacenterId: pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				ServerId: exampleServer.InlineVolumeIds.ApplyT(func(inlineVolumeIds []string) (string, error) {
+//					return inlineVolumeIds[0], nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVolume(ctx, "exampleVolume", &compute.VolumeArgs{
+//				ServerId:         exampleServer.ID(),
+//				DatacenterId:     pulumi.Any(ionoscloud_datacenter.Example.Id),
+//				Size:             pulumi.Int(10),
+//				DiskType:         pulumi.String("HDD"),
+//				AvailabilityZone: pulumi.String("AUTO"),
+//				ImageName:        pulumi.String("debian:latest"),
+//				ImagePassword:    pulumi.Any(random_password.Server_image_password.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				Name:     pulumi.StringRef("ubuntu-20.04"),
+//				Location: pulumi.StringRef("de/txl"),
+//				Type:     pulumi.StringRef("CDROM"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type BootDeviceSelection struct {
 	pulumi.CustomResourceState
 
-	// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-	// will boot from PXE
+	// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+	// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 	BootDeviceId pulumi.StringPtrOutput `pulumi:"bootDeviceId"`
-	// ID of the Datacenter that holds the server for which the boot volume is selected
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// ID of the first attached volume of the Server, which will be the default boot volume.
 	DefaultBootVolumeId pulumi.StringOutput `pulumi:"defaultBootVolumeId"`
-	// ID of the Server for which the boot device will be selected.
+	// [string] The ID of a server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 }
 
@@ -62,26 +344,26 @@ func GetBootDeviceSelection(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BootDeviceSelection resources.
 type bootDeviceSelectionState struct {
-	// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-	// will boot from PXE
+	// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+	// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 	BootDeviceId *string `pulumi:"bootDeviceId"`
-	// ID of the Datacenter that holds the server for which the boot volume is selected
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId *string `pulumi:"datacenterId"`
 	// ID of the first attached volume of the Server, which will be the default boot volume.
 	DefaultBootVolumeId *string `pulumi:"defaultBootVolumeId"`
-	// ID of the Server for which the boot device will be selected.
+	// [string] The ID of a server.
 	ServerId *string `pulumi:"serverId"`
 }
 
 type BootDeviceSelectionState struct {
-	// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-	// will boot from PXE
+	// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+	// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 	BootDeviceId pulumi.StringPtrInput
-	// ID of the Datacenter that holds the server for which the boot volume is selected
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
 	// ID of the first attached volume of the Server, which will be the default boot volume.
 	DefaultBootVolumeId pulumi.StringPtrInput
-	// ID of the Server for which the boot device will be selected.
+	// [string] The ID of a server.
 	ServerId pulumi.StringPtrInput
 }
 
@@ -90,23 +372,23 @@ func (BootDeviceSelectionState) ElementType() reflect.Type {
 }
 
 type bootDeviceSelectionArgs struct {
-	// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-	// will boot from PXE
+	// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+	// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 	BootDeviceId *string `pulumi:"bootDeviceId"`
-	// ID of the Datacenter that holds the server for which the boot volume is selected
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
-	// ID of the Server for which the boot device will be selected.
+	// [string] The ID of a server.
 	ServerId string `pulumi:"serverId"`
 }
 
 // The set of arguments for constructing a BootDeviceSelection resource.
 type BootDeviceSelectionArgs struct {
-	// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-	// will boot from PXE
+	// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+	// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 	BootDeviceId pulumi.StringPtrInput
-	// ID of the Datacenter that holds the server for which the boot volume is selected
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	// ID of the Server for which the boot device will be selected.
+	// [string] The ID of a server.
 	ServerId pulumi.StringInput
 }
 
@@ -197,13 +479,13 @@ func (o BootDeviceSelectionOutput) ToBootDeviceSelectionOutputWithContext(ctx co
 	return o
 }
 
-// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-// will boot from PXE
+// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
+// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
 func (o BootDeviceSelectionOutput) BootDeviceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BootDeviceSelection) pulumi.StringPtrOutput { return v.BootDeviceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the Datacenter that holds the server for which the boot volume is selected
+// [string] The ID of a Virtual Data Center.
 func (o BootDeviceSelectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BootDeviceSelection) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
@@ -213,7 +495,7 @@ func (o BootDeviceSelectionOutput) DefaultBootVolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BootDeviceSelection) pulumi.StringOutput { return v.DefaultBootVolumeId }).(pulumi.StringOutput)
 }
 
-// ID of the Server for which the boot device will be selected.
+// [string] The ID of a server.
 func (o BootDeviceSelectionOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BootDeviceSelection) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }

@@ -11,12 +11,33 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetNatGatewayRule
     {
+        /// <summary>
+        /// The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetNatGatewayRuleResult> InvokeAsync(GetNatGatewayRuleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNatGatewayRuleResult>("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", args ?? new GetNatGatewayRuleArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetNatGatewayRuleResult> Invoke(GetNatGatewayRuleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNatGatewayRuleResult>("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", args ?? new GetNatGatewayRuleInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetNatGatewayRuleResult> Invoke(GetNatGatewayRuleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetNatGatewayRuleResult>("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", args ?? new GetNatGatewayRuleInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +45,29 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetNatGatewayRuleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the NAT gateway rule you want to search for.
+        /// 
+        /// Both `datacenter_id` and `natgateway_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing NAT gateway rule that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Nat Gateway's UUID.
+        /// </summary>
         [Input("natgatewayId", required: true)]
         public string NatgatewayId { get; set; } = null!;
 
@@ -44,15 +79,29 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetNatGatewayRuleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the NAT gateway rule you want to search for.
+        /// 
+        /// Both `datacenter_id` and `natgateway_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing NAT gateway rule that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Nat Gateway's UUID.
+        /// </summary>
         [Input("natgatewayId", required: true)]
         public Input<string> NatgatewayId { get; set; } = null!;
 
@@ -67,14 +116,38 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class GetNatGatewayRuleResult
     {
         public readonly string DatacenterId;
+        /// <summary>
+        /// Id of the NAT gateway rule
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Name of the NAT gateway rule
+        /// </summary>
         public readonly string? Name;
         public readonly string NatgatewayId;
+        /// <summary>
+        /// Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        /// </summary>
         public readonly string SourceSubnet;
+        /// <summary>
+        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetNatGatewayRuleTargetPortRangeResult> TargetPortRanges;
+        /// <summary>
+        /// Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        /// </summary>
         public readonly string TargetSubnet;
+        /// <summary>
+        /// ype of the NAT gateway rule.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

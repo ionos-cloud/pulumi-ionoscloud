@@ -46,6 +46,9 @@ class GetIPFailoverResult:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The ID of a Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
@@ -56,16 +59,25 @@ class GetIPFailoverResult:
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The reserved IP address to be used in the IP failover group.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
+        """
+        The ID of a LAN.
+        """
         return pulumi.get(self, "lan_id")
 
     @property
     @pulumi.getter
     def nicuuid(self) -> str:
+        """
+        The ID of a NIC.
+        """
         return pulumi.get(self, "nicuuid")
 
 
@@ -87,7 +99,14 @@ def get_ip_failover(datacenter_id: Optional[str] = None,
                     lan_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIPFailoverResult:
     """
-    Use this data source to access information about an existing resource.
+    The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+    You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+
+
+    :param str datacenter_id: The ID of the datacenter containing the ip failover datasource
+    :param str ip: The reserved IP address to be used in the IP failover group.
+    :param str lan_id: The ID of a LAN.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -107,7 +126,14 @@ def get_ip_failover_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                            lan_id: Optional[pulumi.Input[str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIPFailoverResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+    You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+
+
+    :param str datacenter_id: The ID of the datacenter containing the ip failover datasource
+    :param str ip: The reserved IP address to be used in the IP failover group.
+    :param str lan_id: The ID of a LAN.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

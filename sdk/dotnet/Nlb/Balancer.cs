@@ -9,43 +9,139 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Nlb
 {
+    /// <summary>
+    /// Manages a **Network Load Balancer**  on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var example1 = new Ionoscloud.Compute.Lan("example1", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var example2 = new Ionoscloud.Compute.Lan("example2", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var exampleBalancer = new Ionoscloud.Nlb.Balancer("exampleBalancer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         ListenerLan = example1.Id,
+    ///         TargetLan = example2.Id,
+    ///         Ips = new[]
+    ///         {
+    ///             "10.12.118.224",
+    ///         },
+    ///         LbPrivateIps = new[]
+    ///         {
+    ///             "10.13.72.225/24",
+    ///         },
+    ///         CentralLogging = true,
+    ///         LoggingFormat = "%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Example configuring Flowlog
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Ionoscloud.Nlb.Balancer("example", new()
+    ///     {
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         ListenerLan = ionoscloud_lan.Example1.Id,
+    ///         TargetLan = ionoscloud_lan.Example2.Id,
+    ///         Ips = new[]
+    ///         {
+    ///             "10.12.118.224",
+    ///         },
+    ///         LbPrivateIps = new[]
+    ///         {
+    ///             "10.13.72.225/24",
+    ///         },
+    ///         Flowlog = new Ionoscloud.Nlb.Inputs.BalancerFlowlogArgs
+    ///         {
+    ///             Action = "ALL",
+    ///             Bucket = "flowlog-bucket",
+    ///             Direction = "INGRESS",
+    ///             Name = "flowlog",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
+    /// `name` will. Deleting a flowlog will also force nic re-creation.
+    /// 
+    /// ## Import
+    /// 
+    /// A Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer {datacenter uuid}/{networkloadbalancer uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:nlb/balancer:Balancer")]
     public partial class Balancer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Turn logging on and off for this product. Default value is 'false'.
+        /// [bool] Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Output("centralLogging")]
         public Output<bool?> CentralLogging { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Output("flowlog")]
         public Output<Outputs.BalancerFlowlog?> Flowlog { get; private set; } = null!;
 
         /// <summary>
-        /// Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
-        /// reserved IP for the public load balancer and private IP for the private load balancer.
+        /// [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         /// </summary>
         [Output("ips")]
         public Output<ImmutableArray<string>> Ips { get; private set; } = null!;
 
         /// <summary>
-        /// Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
-        /// user will not provide any IP then the system will generate one IP with /24 subnet.
+        /// [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         /// </summary>
         [Output("lbPrivateIps")]
         public Output<ImmutableArray<string>> LbPrivateIps { get; private set; } = null!;
 
         /// <summary>
-        /// Id of the listening LAN. (inbound)
+        /// [int] Id of the listening LAN. (inbound)
         /// </summary>
         [Output("listenerLan")]
         public Output<int> ListenerLan { get; private set; } = null!;
@@ -57,13 +153,13 @@ namespace Pulumi.Ionoscloud.Nlb
         public Output<string?> LoggingFormat { get; private set; } = null!;
 
         /// <summary>
-        /// A name of that Network Load Balancer
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Id of the balanced private target LAN. (outbound)
+        /// [int] Id of the balanced private target LAN. (outbound)
         /// </summary>
         [Output("targetLan")]
         public Output<int> TargetLan { get; private set; } = null!;
@@ -115,19 +211,19 @@ namespace Pulumi.Ionoscloud.Nlb
     public sealed class BalancerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Turn logging on and off for this product. Default value is 'false'.
+        /// [bool] Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Input("centralLogging")]
         public Input<bool>? CentralLogging { get; set; }
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.BalancerFlowlogArgs>? Flowlog { get; set; }
@@ -136,8 +232,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<string>? _ips;
 
         /// <summary>
-        /// Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
-        /// reserved IP for the public load balancer and private IP for the private load balancer.
+        /// [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         /// </summary>
         public InputList<string> Ips
         {
@@ -149,8 +244,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<string>? _lbPrivateIps;
 
         /// <summary>
-        /// Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
-        /// user will not provide any IP then the system will generate one IP with /24 subnet.
+        /// [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         /// </summary>
         public InputList<string> LbPrivateIps
         {
@@ -159,7 +253,7 @@ namespace Pulumi.Ionoscloud.Nlb
         }
 
         /// <summary>
-        /// Id of the listening LAN. (inbound)
+        /// [int] Id of the listening LAN. (inbound)
         /// </summary>
         [Input("listenerLan", required: true)]
         public Input<int> ListenerLan { get; set; } = null!;
@@ -171,13 +265,13 @@ namespace Pulumi.Ionoscloud.Nlb
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// A name of that Network Load Balancer
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Id of the balanced private target LAN. (outbound)
+        /// [int] Id of the balanced private target LAN. (outbound)
         /// </summary>
         [Input("targetLan", required: true)]
         public Input<int> TargetLan { get; set; } = null!;
@@ -191,19 +285,19 @@ namespace Pulumi.Ionoscloud.Nlb
     public sealed class BalancerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Turn logging on and off for this product. Default value is 'false'.
+        /// [bool] Turn logging on and off for this product. Default value is 'false'.
         /// </summary>
         [Input("centralLogging")]
         public Input<bool>? CentralLogging { get; set; }
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.BalancerFlowlogGetArgs>? Flowlog { get; set; }
@@ -212,8 +306,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<string>? _ips;
 
         /// <summary>
-        /// Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer
-        /// reserved IP for the public load balancer and private IP for the private load balancer.
+        /// [list] Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
         /// </summary>
         public InputList<string> Ips
         {
@@ -225,8 +318,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<string>? _lbPrivateIps;
 
         /// <summary>
-        /// Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If
-        /// user will not provide any IP then the system will generate one IP with /24 subnet.
+        /// [list] Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
         /// </summary>
         public InputList<string> LbPrivateIps
         {
@@ -235,7 +327,7 @@ namespace Pulumi.Ionoscloud.Nlb
         }
 
         /// <summary>
-        /// Id of the listening LAN. (inbound)
+        /// [int] Id of the listening LAN. (inbound)
         /// </summary>
         [Input("listenerLan")]
         public Input<int>? ListenerLan { get; set; }
@@ -247,13 +339,13 @@ namespace Pulumi.Ionoscloud.Nlb
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// A name of that Network Load Balancer
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Id of the balanced private target LAN. (outbound)
+        /// [int] Id of the balanced private target LAN. (outbound)
         /// </summary>
         [Input("targetLan")]
         public Input<int>? TargetLan { get; set; }

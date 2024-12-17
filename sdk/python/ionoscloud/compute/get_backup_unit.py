@@ -43,21 +43,33 @@ class GetBackupUnitResult:
     @property
     @pulumi.getter
     def email(self) -> str:
+        """
+        The e-mail address you want assigned to the backup unit.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the Backup Unit.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def login(self) -> str:
+        """
+        The login associated with the backup unit. Derived from the contract number.
+        """
         return pulumi.get(self, "login")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the Backup Unit.
+        """
         return pulumi.get(self, "name")
 
 
@@ -77,7 +89,26 @@ def get_backup_unit(id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackupUnitResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
+    You can provide a string for either id or name parameters which will be compared with provisioned Backup Units.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_backup_unit(name="Backup Unit Example")
+    ```
+
+
+    :param str id: ID of the backup unit you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing backup unit that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -94,7 +125,26 @@ def get_backup_unit_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupUnitResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
+    You can provide a string for either id or name parameters which will be compared with provisioned Backup Units.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_backup_unit(name="Backup Unit Example")
+    ```
+
+
+    :param str id: ID of the backup unit you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str name: Name of an existing backup unit that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

@@ -11,12 +11,21 @@ namespace Pulumi.Ionoscloud.Dbaas
 {
     public static class GetPSQLDatabase
     {
+        /// <summary>
+        /// The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+        /// </summary>
         public static Task<GetPSQLDatabaseResult> InvokeAsync(GetPSQLDatabaseArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPSQLDatabaseResult>("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", args ?? new GetPSQLDatabaseArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+        /// </summary>
         public static Output<GetPSQLDatabaseResult> Invoke(GetPSQLDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPSQLDatabaseResult>("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", args ?? new GetPSQLDatabaseInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+        /// </summary>
         public static Output<GetPSQLDatabaseResult> Invoke(GetPSQLDatabaseInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPSQLDatabaseResult>("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", args ?? new GetPSQLDatabaseInvokeArgs(), options.WithDefaults());
     }
@@ -24,9 +33,15 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetPSQLDatabaseArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of the cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing database that you want to search for.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -38,9 +53,15 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetPSQLDatabaseInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of the cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing database that you want to search for.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -55,8 +76,14 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class GetPSQLDatabaseResult
     {
         public readonly string ClusterId;
+        /// <summary>
+        /// [string] The id of the database.
+        /// </summary>
         public readonly string Id;
         public readonly string Name;
+        /// <summary>
+        /// [string] The owner of the database.
+        /// </summary>
         public readonly string Owner;
 
         [OutputConstructor]

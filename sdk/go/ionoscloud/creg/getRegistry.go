@@ -11,6 +11,63 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Container Registry data source** can be used to search for and return an existing Container Registry.
+// You can provide a string for the name parameter which will be compared with provisioned Container Registry.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistry(ctx, &creg.LookupRegistryArgs{
+//				Name: pulumi.StringRef("container-registry-example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistry(ctx, &creg.LookupRegistryArgs{
+//				Name:         pulumi.StringRef("-example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupRegistry(ctx *pulumi.Context, args *LookupRegistryArgs, opts ...pulumi.InvokeOption) (*LookupRegistryResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryResult
@@ -23,24 +80,32 @@ func LookupRegistry(ctx *pulumi.Context, args *LookupRegistryArgs, opts ...pulum
 
 // A collection of arguments for invoking getRegistry.
 type LookupRegistryArgs struct {
-	Id           *string `pulumi:"id"`
-	Location     *string `pulumi:"location"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// ID of the container registry you want to search for.
+	Id       *string `pulumi:"id"`
+	Location *string `pulumi:"location"`
+	// Name of an existing container registry that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getRegistry.
 type LookupRegistryResult struct {
+	// The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
 	ApiSubnetAllowLists        []string                               `pulumi:"apiSubnetAllowLists"`
 	Features                   []GetRegistryFeature                   `pulumi:"features"`
 	GarbageCollectionSchedules []GetRegistryGarbageCollectionSchedule `pulumi:"garbageCollectionSchedules"`
 	Hostname                   string                                 `pulumi:"hostname"`
-	Id                         *string                                `pulumi:"id"`
-	Location                   *string                                `pulumi:"location"`
-	MaintenanceWindows         []GetRegistryMaintenanceWindow         `pulumi:"maintenanceWindows"`
-	Name                       *string                                `pulumi:"name"`
-	PartialMatch               *bool                                  `pulumi:"partialMatch"`
-	StorageUsages              []GetRegistryStorageUsage              `pulumi:"storageUsages"`
+	// Id of the container registry.
+	Id                 *string                        `pulumi:"id"`
+	Location           *string                        `pulumi:"location"`
+	MaintenanceWindows []GetRegistryMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// The name of the container registry.
+	Name          *string                   `pulumi:"name"`
+	PartialMatch  *bool                     `pulumi:"partialMatch"`
+	StorageUsages []GetRegistryStorageUsage `pulumi:"storageUsages"`
 }
 
 func LookupRegistryOutput(ctx *pulumi.Context, args LookupRegistryOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryResultOutput {
@@ -54,10 +119,15 @@ func LookupRegistryOutput(ctx *pulumi.Context, args LookupRegistryOutputArgs, op
 
 // A collection of arguments for invoking getRegistry.
 type LookupRegistryOutputArgs struct {
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Location     pulumi.StringPtrInput `pulumi:"location"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// ID of the container registry you want to search for.
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// Name of an existing container registry that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupRegistryOutputArgs) ElementType() reflect.Type {
@@ -79,6 +149,7 @@ func (o LookupRegistryResultOutput) ToLookupRegistryResultOutputWithContext(ctx 
 	return o
 }
 
+// The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
 func (o LookupRegistryResultOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupRegistryResult) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
 }
@@ -97,6 +168,7 @@ func (o LookupRegistryResultOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryResult) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
+// Id of the container registry.
 func (o LookupRegistryResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRegistryResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -109,6 +181,7 @@ func (o LookupRegistryResultOutput) MaintenanceWindows() GetRegistryMaintenanceW
 	return o.ApplyT(func(v LookupRegistryResult) []GetRegistryMaintenanceWindow { return v.MaintenanceWindows }).(GetRegistryMaintenanceWindowArrayOutput)
 }
 
+// The name of the container registry.
 func (o LookupRegistryResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRegistryResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

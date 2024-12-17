@@ -13,8 +13,19 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class GetVCPUServerLabelResult
     {
+        /// <summary>
+        /// ID of the server you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The key of the label
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// The value of the label
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

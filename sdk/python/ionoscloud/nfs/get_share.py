@@ -63,36 +63,57 @@ class GetShareResult:
     @property
     @pulumi.getter(name="clientGroups")
     def client_groups(self) -> Sequence['outputs.GetShareClientGroupResult']:
+        """
+        The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
+        """
         return pulumi.get(self, "client_groups")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The ID of the Network File Storage cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
     def gid(self) -> int:
+        """
+        The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+        """
         return pulumi.get(self, "gid")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the Network File Storage share.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        The location where the Network File Storage share is located.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the Network File Storage share.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nfsPath")
     def nfs_path(self) -> str:
+        """
+        Path to the NFS export. The NFS path is the path to the directory being exported.
+        """
         return pulumi.get(self, "nfs_path")
 
     @property
@@ -103,11 +124,17 @@ class GetShareResult:
     @property
     @pulumi.getter
     def quota(self) -> int:
+        """
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+        """
         return pulumi.get(self, "quota")
 
     @property
     @pulumi.getter
     def uid(self) -> int:
+        """
+        The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+        """
         return pulumi.get(self, "uid")
 
 
@@ -140,7 +167,18 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
               uid: Optional[int] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetShareResult:
     """
-    Use this data source to access information about an existing resource.
+    Returns information about shares of Network File Storage (NFS) on IonosCloud.
+
+
+    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
+    :param str cluster_id: The ID of the Network File Storage cluster.
+    :param int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+    :param str id: ID of the Network File Storage share.
+    :param str location: The location where the Network File Storage share is located.
+    :param str name: Name of the Network File Storage share.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+    :param int quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+    :param int uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     """
     __args__ = dict()
     __args__['clientGroups'] = client_groups
@@ -177,7 +215,18 @@ def get_share_output(client_groups: Optional[pulumi.Input[Optional[Sequence[Unio
                      uid: Optional[pulumi.Input[Optional[int]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
-    Use this data source to access information about an existing resource.
+    Returns information about shares of Network File Storage (NFS) on IonosCloud.
+
+
+    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
+    :param str cluster_id: The ID of the Network File Storage cluster.
+    :param int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+    :param str id: ID of the Network File Storage share.
+    :param str location: The location where the Network File Storage share is located.
+    :param str name: Name of the Network File Storage share.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+    :param int quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+    :param int uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     """
     __args__ = dict()
     __args__['clientGroups'] = client_groups

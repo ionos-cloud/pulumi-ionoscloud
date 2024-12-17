@@ -11,6 +11,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+// You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Name & Location
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupDatacenter(ctx, &compute.LookupDatacenterArgs{
+//				Location: pulumi.StringRef("us/las"),
+//				Name:     pulumi.StringRef("Datacenter Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDatacenter(ctx *pulumi.Context, args *LookupDatacenterArgs, opts ...pulumi.InvokeOption) (*LookupDatacenterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatacenterResult
@@ -23,22 +55,35 @@ func LookupDatacenter(ctx *pulumi.Context, args *LookupDatacenterArgs, opts ...p
 
 // A collection of arguments for invoking getDatacenter.
 type LookupDatacenterArgs struct {
-	Id       *string `pulumi:"id"`
+	// Id of an existing Virtual Data Center that you want to search for.
+	Id *string `pulumi:"id"`
+	// Id of the existing Virtual Data Center's location.
+	//
+	// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
 	Location *string `pulumi:"location"`
-	Name     *string `pulumi:"name"`
+	// Name of an existing Virtual Data Center that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getDatacenter.
 type LookupDatacenterResult struct {
-	CpuArchitectures  []GetDatacenterCpuArchitecture `pulumi:"cpuArchitectures"`
-	Description       string                         `pulumi:"description"`
-	Features          []string                       `pulumi:"features"`
-	Id                *string                        `pulumi:"id"`
-	Ipv6CidrBlock     string                         `pulumi:"ipv6CidrBlock"`
-	Location          *string                        `pulumi:"location"`
-	Name              *string                        `pulumi:"name"`
-	SecAuthProtection bool                           `pulumi:"secAuthProtection"`
-	Version           int                            `pulumi:"version"`
+	// Array of features and CPU families available in a location
+	CpuArchitectures []GetDatacenterCpuArchitecture `pulumi:"cpuArchitectures"`
+	// Description for the Virtual Data Center
+	Description string `pulumi:"description"`
+	// List of features supported by the location this data center is part of
+	Features []string `pulumi:"features"`
+	// UUID of the Virtual Data Center
+	Id            *string `pulumi:"id"`
+	Ipv6CidrBlock string  `pulumi:"ipv6CidrBlock"`
+	// The regional location where the Virtual Data Center will be created
+	Location *string `pulumi:"location"`
+	// The name of the Virtual Data Center
+	Name *string `pulumi:"name"`
+	// Boolean value representing if the data center requires extra protection e.g. two factor protection
+	SecAuthProtection bool `pulumi:"secAuthProtection"`
+	// The version of that Data Center. Gets incremented with every change
+	Version int `pulumi:"version"`
 }
 
 func LookupDatacenterOutput(ctx *pulumi.Context, args LookupDatacenterOutputArgs, opts ...pulumi.InvokeOption) LookupDatacenterResultOutput {
@@ -52,9 +97,14 @@ func LookupDatacenterOutput(ctx *pulumi.Context, args LookupDatacenterOutputArgs
 
 // A collection of arguments for invoking getDatacenter.
 type LookupDatacenterOutputArgs struct {
-	Id       pulumi.StringPtrInput `pulumi:"id"`
+	// Id of an existing Virtual Data Center that you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Id of the existing Virtual Data Center's location.
+	//
+	// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
+	// Name of an existing Virtual Data Center that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupDatacenterOutputArgs) ElementType() reflect.Type {
@@ -76,18 +126,22 @@ func (o LookupDatacenterResultOutput) ToLookupDatacenterResultOutputWithContext(
 	return o
 }
 
+// Array of features and CPU families available in a location
 func (o LookupDatacenterResultOutput) CpuArchitectures() GetDatacenterCpuArchitectureArrayOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) []GetDatacenterCpuArchitecture { return v.CpuArchitectures }).(GetDatacenterCpuArchitectureArrayOutput)
 }
 
+// Description for the Virtual Data Center
 func (o LookupDatacenterResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// List of features supported by the location this data center is part of
 func (o LookupDatacenterResultOutput) Features() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) []string { return v.Features }).(pulumi.StringArrayOutput)
 }
 
+// UUID of the Virtual Data Center
 func (o LookupDatacenterResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -96,18 +150,22 @@ func (o LookupDatacenterResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
+// The regional location where the Virtual Data Center will be created
 func (o LookupDatacenterResultOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
+// The name of the Virtual Data Center
 func (o LookupDatacenterResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Boolean value representing if the data center requires extra protection e.g. two factor protection
 func (o LookupDatacenterResultOutput) SecAuthProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) bool { return v.SecAuthProtection }).(pulumi.BoolOutput)
 }
 
+// The version of that Data Center. Gets incremented with every change
 func (o LookupDatacenterResultOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDatacenterResult) int { return v.Version }).(pulumi.IntOutput)
 }

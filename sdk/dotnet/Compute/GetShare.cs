@@ -11,12 +11,30 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetShare
     {
+        /// <summary>
+        /// The **Share data source** can be used to search for and return an existing share object.
+        /// You need to provide the group_id and resource_id to get the group resources for the shared resource.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
         public static Task<GetShareResult> InvokeAsync(GetShareArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetShareResult>("ionoscloud:compute/getShare:getShare", args ?? new GetShareArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Share data source** can be used to search for and return an existing share object.
+        /// You need to provide the group_id and resource_id to get the group resources for the shared resource.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
         public static Output<GetShareResult> Invoke(GetShareInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:compute/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Share data source** can be used to search for and return an existing share object.
+        /// You need to provide the group_id and resource_id to get the group resources for the shared resource.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
         public static Output<GetShareResult> Invoke(GetShareInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:compute/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
     }
@@ -24,18 +42,36 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetShareArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The flag that specifies if the group has permission to edit privileges on this resource.
+        /// </summary>
         [Input("editPrivilege")]
         public bool? EditPrivilege { get; set; }
 
+        /// <summary>
+        /// The ID of the specific group containing the resource to update.
+        /// </summary>
         [Input("groupId", required: true)]
         public string GroupId { get; set; } = null!;
 
+        /// <summary>
+        /// The uuid of the share object
+        /// 
+        /// 
+        /// `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
+        /// </summary>
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the specific resource to update.
+        /// </summary>
         [Input("resourceId", required: true)]
         public string ResourceId { get; set; } = null!;
 
+        /// <summary>
+        /// The group has permission to share this resource.
+        /// </summary>
         [Input("sharePrivilege")]
         public bool? SharePrivilege { get; set; }
 
@@ -47,18 +83,36 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetShareInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The flag that specifies if the group has permission to edit privileges on this resource.
+        /// </summary>
         [Input("editPrivilege")]
         public Input<bool>? EditPrivilege { get; set; }
 
+        /// <summary>
+        /// The ID of the specific group containing the resource to update.
+        /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
 
+        /// <summary>
+        /// The uuid of the share object
+        /// 
+        /// 
+        /// `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
+        /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the specific resource to update.
+        /// </summary>
         [Input("resourceId", required: true)]
         public Input<string> ResourceId { get; set; } = null!;
 
+        /// <summary>
+        /// The group has permission to share this resource.
+        /// </summary>
         [Input("sharePrivilege")]
         public Input<bool>? SharePrivilege { get; set; }
 
@@ -72,10 +126,25 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetShareResult
     {
+        /// <summary>
+        /// The flag that specifies if the group has permission to edit privileges on this resource.
+        /// </summary>
         public readonly bool? EditPrivilege;
+        /// <summary>
+        /// The ID of the specific group containing the resource to update.
+        /// </summary>
         public readonly string GroupId;
+        /// <summary>
+        /// The id of the share resource.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The ID of the specific resource to update.
+        /// </summary>
         public readonly string ResourceId;
+        /// <summary>
+        /// The group has permission to share this resource.
+        /// </summary>
         public readonly bool? SharePrivilege;
 
         [OutputConstructor]

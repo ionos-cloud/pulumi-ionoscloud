@@ -11,12 +11,36 @@ namespace Pulumi.Ionoscloud.Vpn
 {
     public static class GetIpsecGateway
     {
+        /// <summary>
+        /// The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+        /// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetIpsecGatewayResult> InvokeAsync(GetIpsecGatewayArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpsecGatewayResult>("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", args ?? new GetIpsecGatewayArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+        /// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetIpsecGatewayResult> Invoke(GetIpsecGatewayInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpsecGatewayResult>("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", args ?? new GetIpsecGatewayInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+        /// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetIpsecGatewayResult> Invoke(GetIpsecGatewayInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpsecGatewayResult>("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", args ?? new GetIpsecGatewayInvokeArgs(), options.WithDefaults());
     }
@@ -24,15 +48,27 @@ namespace Pulumi.Ionoscloud.Vpn
 
     public sealed class GetIpsecGatewayArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of an existing IPSec Gateway that you want to search for.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The location of the IPSec Gateway.
+        /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
+        /// <summary>
+        /// Name of an existing IPSec Gateway that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The IKE version that is permitted for the VPN tunnels.
+        /// </summary>
         [Input("version")]
         public string? Version { get; set; }
 
@@ -44,15 +80,27 @@ namespace Pulumi.Ionoscloud.Vpn
 
     public sealed class GetIpsecGatewayInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of an existing IPSec Gateway that you want to search for.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The location of the IPSec Gateway.
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// Name of an existing IPSec Gateway that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The IKE version that is permitted for the VPN tunnels.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -66,12 +114,30 @@ namespace Pulumi.Ionoscloud.Vpn
     [OutputType]
     public sealed class GetIpsecGatewayResult
     {
+        /// <summary>
+        /// The network connection for your gateway.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetIpsecGatewayConnectionResult> Connections;
+        /// <summary>
+        /// (Optional)[string] The human-readable description of the IPSec Gateway.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Public IP address to be assigned to the gateway.
+        /// </summary>
         public readonly string GatewayIp;
+        /// <summary>
+        /// The unique ID of the IPSec Gateway.
+        /// </summary>
         public readonly string Id;
         public readonly string Location;
+        /// <summary>
+        /// The name of the IPSec Gateway.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The IKE version that is permitted for the VPN tunnels.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

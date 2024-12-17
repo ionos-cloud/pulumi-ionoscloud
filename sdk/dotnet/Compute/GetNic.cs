@@ -11,12 +11,33 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetNic
     {
+        /// <summary>
+        /// The **Nic data source** can be used to search for and return existing nics.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetNicResult> InvokeAsync(GetNicArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNicResult>("ionoscloud:compute/getNic:getNic", args ?? new GetNicArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Nic data source** can be used to search for and return existing nics.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetNicResult> Invoke(GetNicInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNicResult>("ionoscloud:compute/getNic:getNic", args ?? new GetNicInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Nic data source** can be used to search for and return existing nics.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetNicResult> Invoke(GetNicInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetNicResult>("ionoscloud:compute/getNic:getNic", args ?? new GetNicInvokeArgs(), options.WithDefaults());
     }
@@ -24,26 +45,48 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetNicArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         [Input("dhcp")]
         public bool? Dhcp { get; set; }
 
         [Input("dhcpv6")]
         public bool? Dhcpv6 { get; set; }
 
+        /// <summary>
+        /// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         [Input("firewallActive")]
         public bool? FirewallActive { get; set; }
 
+        /// <summary>
+        /// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         [Input("firewallType")]
         public string? FirewallType { get; set; }
 
+        /// <summary>
+        /// ID of the nic you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided.
+        /// If none, are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
         [Input("ips")]
         private List<string>? _ips;
+
+        /// <summary>
+        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        /// </summary>
         public List<string> Ips
         {
             get => _ips ?? (_ips = new List<string>());
@@ -61,12 +104,21 @@ namespace Pulumi.Ionoscloud.Compute
             set => _ipv6Ips = value;
         }
 
+        /// <summary>
+        /// The LAN ID the NIC will sit on.
+        /// </summary>
         [Input("lan")]
         public int? Lan { get; set; }
 
+        /// <summary>
+        /// [string] The name of the LAN.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId", required: true)]
         public string ServerId { get; set; } = null!;
 
@@ -78,26 +130,48 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetNicInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         [Input("dhcpv6")]
         public Input<bool>? Dhcpv6 { get; set; }
 
+        /// <summary>
+        /// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         [Input("firewallActive")]
         public Input<bool>? FirewallActive { get; set; }
 
+        /// <summary>
+        /// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         [Input("firewallType")]
         public Input<string>? FirewallType { get; set; }
 
+        /// <summary>
+        /// ID of the nic you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided.
+        /// If none, are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         [Input("ips")]
         private InputList<string>? _ips;
+
+        /// <summary>
+        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        /// </summary>
         public InputList<string> Ips
         {
             get => _ips ?? (_ips = new InputList<string>());
@@ -115,12 +189,21 @@ namespace Pulumi.Ionoscloud.Compute
             set => _ipv6Ips = value;
         }
 
+        /// <summary>
+        /// The LAN ID the NIC will sit on.
+        /// </summary>
         [Input("lan")]
         public Input<int>? Lan { get; set; }
 
+        /// <summary>
+        /// [string] The name of the LAN.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
 
@@ -134,21 +217,60 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetNicResult
     {
+        /// <summary>
+        /// The ID of a Virtual Data Center.
+        /// </summary>
         public readonly string DatacenterId;
+        /// <summary>
+        /// The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
+        /// </summary>
         public readonly int DeviceNumber;
+        /// <summary>
+        /// Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         public readonly bool? Dhcp;
         public readonly bool? Dhcpv6;
+        /// <summary>
+        /// If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         public readonly bool? FirewallActive;
+        /// <summary>
+        /// The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         public readonly string FirewallType;
+        /// <summary>
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetNicFlowlogResult> Flowlogs;
+        /// <summary>
+        /// The id of the NIC.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        /// </summary>
         public readonly ImmutableArray<string> Ips;
         public readonly string Ipv6CidrBlock;
         public readonly ImmutableArray<string> Ipv6Ips;
+        /// <summary>
+        /// The LAN ID the NIC will sit on.
+        /// </summary>
         public readonly int? Lan;
+        /// <summary>
+        /// The MAC address of the NIC.
+        /// </summary>
         public readonly string Mac;
+        /// <summary>
+        /// Specifies the name of the flow log.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The PCI slot number of the Nic.
+        /// </summary>
         public readonly int PciSlot;
+        /// <summary>
+        /// The ID of a server.
+        /// </summary>
         public readonly string ServerId;
 
         [OutputConstructor]

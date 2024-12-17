@@ -14,10 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type DistributionRoutingRule struct {
-	// The prefix of the routing rule.
+	// [string] The prefix of the routing rule.
 	Prefix string `pulumi:"prefix"`
-	// The scheme of the routing rule.
-	Scheme   string                          `pulumi:"scheme"`
+	// [string] The scheme of the routing rule.
+	Scheme string `pulumi:"scheme"`
+	// [map] - A map of properties for the rule
 	Upstream DistributionRoutingRuleUpstream `pulumi:"upstream"`
 }
 
@@ -33,10 +34,11 @@ type DistributionRoutingRuleInput interface {
 }
 
 type DistributionRoutingRuleArgs struct {
-	// The prefix of the routing rule.
+	// [string] The prefix of the routing rule.
 	Prefix pulumi.StringInput `pulumi:"prefix"`
-	// The scheme of the routing rule.
-	Scheme   pulumi.StringInput                   `pulumi:"scheme"`
+	// [string] The scheme of the routing rule.
+	Scheme pulumi.StringInput `pulumi:"scheme"`
+	// [map] - A map of properties for the rule
 	Upstream DistributionRoutingRuleUpstreamInput `pulumi:"upstream"`
 }
 
@@ -91,16 +93,17 @@ func (o DistributionRoutingRuleOutput) ToDistributionRoutingRuleOutputWithContex
 	return o
 }
 
-// The prefix of the routing rule.
+// [string] The prefix of the routing rule.
 func (o DistributionRoutingRuleOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
-// The scheme of the routing rule.
+// [string] The scheme of the routing rule.
 func (o DistributionRoutingRuleOutput) Scheme() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) string { return v.Scheme }).(pulumi.StringOutput)
 }
 
+// [map] - A map of properties for the rule
 func (o DistributionRoutingRuleOutput) Upstream() DistributionRoutingRuleUpstreamOutput {
 	return o.ApplyT(func(v DistributionRoutingRule) DistributionRoutingRuleUpstream { return v.Upstream }).(DistributionRoutingRuleUpstreamOutput)
 }
@@ -126,16 +129,17 @@ func (o DistributionRoutingRuleArrayOutput) Index(i pulumi.IntInput) Distributio
 }
 
 type DistributionRoutingRuleUpstream struct {
-	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching         bool                                            `pulumi:"caching"`
+	// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching bool `pulumi:"caching"`
+	// [map] - A map of geo_restrictions
 	GeoRestrictions *DistributionRoutingRuleUpstreamGeoRestrictions `pulumi:"geoRestrictions"`
-	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host string `pulumi:"host"`
-	// Rate limit class that will be applied to limit the number of incoming requests per IP.
+	// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass string `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+	// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 	SniMode string `pulumi:"sniMode"`
-	// Enable or disable WAF to protect the upstream host.
+	// [bool] Enable or disable WAF to protect the upstream host.
 	Waf bool `pulumi:"waf"`
 }
 
@@ -151,16 +155,17 @@ type DistributionRoutingRuleUpstreamInput interface {
 }
 
 type DistributionRoutingRuleUpstreamArgs struct {
-	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching         pulumi.BoolInput                                       `pulumi:"caching"`
+	// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+	Caching pulumi.BoolInput `pulumi:"caching"`
+	// [map] - A map of geo_restrictions
 	GeoRestrictions DistributionRoutingRuleUpstreamGeoRestrictionsPtrInput `pulumi:"geoRestrictions"`
-	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+	// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host pulumi.StringInput `pulumi:"host"`
-	// Rate limit class that will be applied to limit the number of incoming requests per IP.
+	// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass pulumi.StringInput `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+	// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 	SniMode pulumi.StringInput `pulumi:"sniMode"`
-	// Enable or disable WAF to protect the upstream host.
+	// [bool] Enable or disable WAF to protect the upstream host.
 	Waf pulumi.BoolInput `pulumi:"waf"`
 }
 
@@ -190,39 +195,42 @@ func (o DistributionRoutingRuleUpstreamOutput) ToDistributionRoutingRuleUpstream
 	return o
 }
 
-// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+// [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
 func (o DistributionRoutingRuleUpstreamOutput) Caching() pulumi.BoolOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) bool { return v.Caching }).(pulumi.BoolOutput)
 }
 
+// [map] - A map of geo_restrictions
 func (o DistributionRoutingRuleUpstreamOutput) GeoRestrictions() DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) *DistributionRoutingRuleUpstreamGeoRestrictions {
 		return v.GeoRestrictions
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput)
 }
 
-// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+// [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 func (o DistributionRoutingRuleUpstreamOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Rate limit class that will be applied to limit the number of incoming requests per IP.
+// [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
 func (o DistributionRoutingRuleUpstreamOutput) RateLimitClass() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.RateLimitClass }).(pulumi.StringOutput)
 }
 
-// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+// [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 func (o DistributionRoutingRuleUpstreamOutput) SniMode() pulumi.StringOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) string { return v.SniMode }).(pulumi.StringOutput)
 }
 
-// Enable or disable WAF to protect the upstream host.
+// [bool] Enable or disable WAF to protect the upstream host.
 func (o DistributionRoutingRuleUpstreamOutput) Waf() pulumi.BoolOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstream) bool { return v.Waf }).(pulumi.BoolOutput)
 }
 
 type DistributionRoutingRuleUpstreamGeoRestrictions struct {
+	// [string] List of allowed countries
 	AllowLists []string `pulumi:"allowLists"`
+	// [string] List of blocked countries
 	BlockLists []string `pulumi:"blockLists"`
 }
 
@@ -238,7 +246,9 @@ type DistributionRoutingRuleUpstreamGeoRestrictionsInput interface {
 }
 
 type DistributionRoutingRuleUpstreamGeoRestrictionsArgs struct {
+	// [string] List of allowed countries
 	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// [string] List of blocked countries
 	BlockLists pulumi.StringArrayInput `pulumi:"blockLists"`
 }
 
@@ -319,10 +329,12 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) ToDistributionRout
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput)
 }
 
+// [string] List of allowed countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstreamGeoRestrictions) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
 }
 
+// [string] List of blocked countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsOutput) BlockLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DistributionRoutingRuleUpstreamGeoRestrictions) []string { return v.BlockLists }).(pulumi.StringArrayOutput)
 }
@@ -351,6 +363,7 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) Elem() Distribu
 	}).(DistributionRoutingRuleUpstreamGeoRestrictionsOutput)
 }
 
+// [string] List of allowed countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DistributionRoutingRuleUpstreamGeoRestrictions) []string {
 		if v == nil {
@@ -360,6 +373,7 @@ func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) AllowLists() pu
 	}).(pulumi.StringArrayOutput)
 }
 
+// [string] List of blocked countries
 func (o DistributionRoutingRuleUpstreamGeoRestrictionsPtrOutput) BlockLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DistributionRoutingRuleUpstreamGeoRestrictions) []string {
 		if v == nil {
@@ -373,7 +387,8 @@ type GetDistributionRoutingRule struct {
 	// The prefix of the routing rule.
 	Prefix string `pulumi:"prefix"`
 	// The scheme of the routing rule.
-	Scheme    string                               `pulumi:"scheme"`
+	Scheme string `pulumi:"scheme"`
+	// A map of properties for the rule
 	Upstreams []GetDistributionRoutingRuleUpstream `pulumi:"upstreams"`
 }
 
@@ -392,7 +407,8 @@ type GetDistributionRoutingRuleArgs struct {
 	// The prefix of the routing rule.
 	Prefix pulumi.StringInput `pulumi:"prefix"`
 	// The scheme of the routing rule.
-	Scheme    pulumi.StringInput                           `pulumi:"scheme"`
+	Scheme pulumi.StringInput `pulumi:"scheme"`
+	// A map of properties for the rule
 	Upstreams GetDistributionRoutingRuleUpstreamArrayInput `pulumi:"upstreams"`
 }
 
@@ -457,6 +473,7 @@ func (o GetDistributionRoutingRuleOutput) Scheme() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRule) string { return v.Scheme }).(pulumi.StringOutput)
 }
 
+// A map of properties for the rule
 func (o GetDistributionRoutingRuleOutput) Upstreams() GetDistributionRoutingRuleUpstreamArrayOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRule) []GetDistributionRoutingRuleUpstream { return v.Upstreams }).(GetDistributionRoutingRuleUpstreamArrayOutput)
 }
@@ -483,13 +500,14 @@ func (o GetDistributionRoutingRuleArrayOutput) Index(i pulumi.IntInput) GetDistr
 
 type GetDistributionRoutingRuleUpstream struct {
 	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching         bool                                               `pulumi:"caching"`
+	Caching bool `pulumi:"caching"`
+	// A map of geo_restrictions
 	GeoRestrictions []GetDistributionRoutingRuleUpstreamGeoRestriction `pulumi:"geoRestrictions"`
 	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host string `pulumi:"host"`
 	// Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass string `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+	// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 	SniMode string `pulumi:"sniMode"`
 	// Enable or disable WAF to protect the upstream host.
 	Waf bool `pulumi:"waf"`
@@ -508,13 +526,14 @@ type GetDistributionRoutingRuleUpstreamInput interface {
 
 type GetDistributionRoutingRuleUpstreamArgs struct {
 	// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-	Caching         pulumi.BoolInput                                           `pulumi:"caching"`
+	Caching pulumi.BoolInput `pulumi:"caching"`
+	// A map of geo_restrictions
 	GeoRestrictions GetDistributionRoutingRuleUpstreamGeoRestrictionArrayInput `pulumi:"geoRestrictions"`
 	// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
 	Host pulumi.StringInput `pulumi:"host"`
 	// Rate limit class that will be applied to limit the number of incoming requests per IP.
 	RateLimitClass pulumi.StringInput `pulumi:"rateLimitClass"`
-	// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+	// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 	SniMode pulumi.StringInput `pulumi:"sniMode"`
 	// Enable or disable WAF to protect the upstream host.
 	Waf pulumi.BoolInput `pulumi:"waf"`
@@ -576,6 +595,7 @@ func (o GetDistributionRoutingRuleUpstreamOutput) Caching() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) bool { return v.Caching }).(pulumi.BoolOutput)
 }
 
+// A map of geo_restrictions
 func (o GetDistributionRoutingRuleUpstreamOutput) GeoRestrictions() GetDistributionRoutingRuleUpstreamGeoRestrictionArrayOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) []GetDistributionRoutingRuleUpstreamGeoRestriction {
 		return v.GeoRestrictions
@@ -592,7 +612,7 @@ func (o GetDistributionRoutingRuleUpstreamOutput) RateLimitClass() pulumi.String
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) string { return v.RateLimitClass }).(pulumi.StringOutput)
 }
 
-// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
 func (o GetDistributionRoutingRuleUpstreamOutput) SniMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstream) string { return v.SniMode }).(pulumi.StringOutput)
 }
@@ -623,7 +643,9 @@ func (o GetDistributionRoutingRuleUpstreamArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetDistributionRoutingRuleUpstreamGeoRestriction struct {
+	// List of allowed countries
 	AllowLists []string `pulumi:"allowLists"`
+	// List of blocked countries
 	BlockLists []string `pulumi:"blockLists"`
 }
 
@@ -639,7 +661,9 @@ type GetDistributionRoutingRuleUpstreamGeoRestrictionInput interface {
 }
 
 type GetDistributionRoutingRuleUpstreamGeoRestrictionArgs struct {
+	// List of allowed countries
 	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// List of blocked countries
 	BlockLists pulumi.StringArrayInput `pulumi:"blockLists"`
 }
 
@@ -694,10 +718,12 @@ func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) ToGetDistributio
 	return o
 }
 
+// List of allowed countries
 func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) AllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
 }
 
+// List of blocked countries
 func (o GetDistributionRoutingRuleUpstreamGeoRestrictionOutput) BlockLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDistributionRoutingRuleUpstreamGeoRestriction) []string { return v.BlockLists }).(pulumi.StringArrayOutput)
 }

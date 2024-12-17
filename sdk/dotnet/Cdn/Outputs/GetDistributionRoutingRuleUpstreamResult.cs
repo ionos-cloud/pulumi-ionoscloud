@@ -17,6 +17,9 @@ namespace Pulumi.Ionoscloud.Cdn.Outputs
         /// Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
         /// </summary>
         public readonly bool Caching;
+        /// <summary>
+        /// A map of geo_restrictions
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDistributionRoutingRuleUpstreamGeoRestrictionResult> GeoRestrictions;
         /// <summary>
         /// The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
@@ -27,7 +30,7 @@ namespace Pulumi.Ionoscloud.Cdn.Outputs
         /// </summary>
         public readonly string RateLimitClass;
         /// <summary>
-        /// The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+        /// The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
         /// </summary>
         public readonly string SniMode;
         /// <summary>

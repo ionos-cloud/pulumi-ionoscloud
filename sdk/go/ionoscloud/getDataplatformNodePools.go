@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+//
+// ## Example Usage
 func GetDataplatformNodePools(ctx *pulumi.Context, args *GetDataplatformNodePoolsArgs, opts ...pulumi.InvokeOption) (*GetDataplatformNodePoolsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDataplatformNodePoolsResult
@@ -23,17 +26,22 @@ func GetDataplatformNodePools(ctx *pulumi.Context, args *GetDataplatformNodePool
 
 // A collection of arguments for invoking getDataplatformNodePools.
 type GetDataplatformNodePoolsArgs struct {
-	ClusterId    string  `pulumi:"clusterId"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// ID of the cluster the searched node pool is part of.
+	ClusterId string `pulumi:"clusterId"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getDataplatformNodePools.
 type GetDataplatformNodePoolsResult struct {
+	// ID of the cluster the searched node pool is part of.
 	ClusterId string `pulumi:"clusterId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string                             `pulumi:"id"`
-	Name         *string                            `pulumi:"name"`
+	Id   string  `pulumi:"id"`
+	Name *string `pulumi:"name"`
+	// List of Node Pools - See the Node Pool section.
 	NodePools    []GetDataplatformNodePoolsNodePool `pulumi:"nodePools"`
 	PartialMatch *bool                              `pulumi:"partialMatch"`
 }
@@ -49,9 +57,12 @@ func GetDataplatformNodePoolsOutput(ctx *pulumi.Context, args GetDataplatformNod
 
 // A collection of arguments for invoking getDataplatformNodePools.
 type GetDataplatformNodePoolsOutputArgs struct {
-	ClusterId    pulumi.StringInput    `pulumi:"clusterId"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// ID of the cluster the searched node pool is part of.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (GetDataplatformNodePoolsOutputArgs) ElementType() reflect.Type {
@@ -73,6 +84,7 @@ func (o GetDataplatformNodePoolsResultOutput) ToGetDataplatformNodePoolsResultOu
 	return o
 }
 
+// ID of the cluster the searched node pool is part of.
 func (o GetDataplatformNodePoolsResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDataplatformNodePoolsResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -86,6 +98,7 @@ func (o GetDataplatformNodePoolsResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDataplatformNodePoolsResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// List of Node Pools - See the Node Pool section.
 func (o GetDataplatformNodePoolsResultOutput) NodePools() GetDataplatformNodePoolsNodePoolArrayOutput {
 	return o.ApplyT(func(v GetDataplatformNodePoolsResult) []GetDataplatformNodePoolsNodePool { return v.NodePools }).(GetDataplatformNodePoolsNodePoolArrayOutput)
 }

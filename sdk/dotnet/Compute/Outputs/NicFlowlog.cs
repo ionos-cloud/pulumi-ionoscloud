@@ -14,23 +14,25 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     public sealed class NicFlowlog
     {
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+        /// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+        /// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
         /// </summary>
         public readonly string Direction;
         /// <summary>
-        /// The resource's unique identifier.
+        /// The ID of the NIC.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The resource name.
+        /// Specifies the name of the flow log.
+        /// 
+        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
         /// </summary>
         public readonly string Name;
 

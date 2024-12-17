@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class GetClusterS3BucketResult
     {
         /// <summary>
-        /// Name of the Object Storage bucket
+        /// Name of an existing cluster that you want to search for.
         /// </summary>
         public readonly string Name;
 

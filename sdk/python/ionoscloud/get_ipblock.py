@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -107,7 +112,7 @@ class AwaitableGetIpblockResult(GetIpblockResult):
 
 
 def get_ipblock(id: Optional[str] = None,
-                ip_consumers: Optional[Sequence[pulumi.InputType['GetIpblockIpConsumerArgs']]] = None,
+                ip_consumers: Optional[Sequence[Union['GetIpblockIpConsumerArgs', 'GetIpblockIpConsumerArgsDict']]] = None,
                 location: Optional[str] = None,
                 name: Optional[str] = None,
                 size: Optional[int] = None,
@@ -121,30 +126,26 @@ def get_ipblock(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_ipblock(name="IP Block Name")
     ```
-    <!--End PulumiCodeChooser --> 
 
     ### By Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_ipblock(location="us/las")
     ```
-    <!--End PulumiCodeChooser --> 
 
     ### By Name & Location
 
 
     :param str id: ID of an existing Ip Block that you want to search for.
-    :param Sequence[pulumi.InputType['GetIpblockIpConsumerArgs']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+    :param Sequence[Union['GetIpblockIpConsumerArgs', 'GetIpblockIpConsumerArgsDict']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
     :param str location: The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
     :param str name: Name of an existing Ip Block that you want to search for.
     :param int size: The number of IP addresses to reserve for this block.
@@ -165,15 +166,12 @@ def get_ipblock(id: Optional[str] = None,
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'),
         size=pulumi.get(__ret__, 'size'))
-
-
-@_utilities.lift_output_func(get_ipblock)
 def get_ipblock_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                       ip_consumers: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetIpblockIpConsumerArgs']]]]] = None,
+                       ip_consumers: Optional[pulumi.Input[Optional[Sequence[Union['GetIpblockIpConsumerArgs', 'GetIpblockIpConsumerArgsDict']]]]] = None,
                        location: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
                        size: Optional[pulumi.Input[Optional[int]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpblockResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpblockResult]:
     """
     The **IP Block data source** can be used to search for and return an existing Ip Block.
     You can provide a string for the id, the name or the location parameters which will be compared with the provisioned Ip Blocks.
@@ -183,32 +181,42 @@ def get_ipblock_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_ipblock(name="IP Block Name")
     ```
-    <!--End PulumiCodeChooser --> 
 
     ### By Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_ipblock(location="us/las")
     ```
-    <!--End PulumiCodeChooser --> 
 
     ### By Name & Location
 
 
     :param str id: ID of an existing Ip Block that you want to search for.
-    :param Sequence[pulumi.InputType['GetIpblockIpConsumerArgs']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+    :param Sequence[Union['GetIpblockIpConsumerArgs', 'GetIpblockIpConsumerArgsDict']] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
     :param str location: The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
     :param str name: Name of an existing Ip Block that you want to search for.
     :param int size: The number of IP addresses to reserve for this block.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['ipConsumers'] = ip_consumers
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['size'] = size
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getIpblock:getIpblock', __args__, opts=opts, typ=GetIpblockResult)
+    return __ret__.apply(lambda __response__: GetIpblockResult(
+        id=pulumi.get(__response__, 'id'),
+        ip_consumers=pulumi.get(__response__, 'ip_consumers'),
+        ips=pulumi.get(__response__, 'ips'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        size=pulumi.get(__response__, 'size')))

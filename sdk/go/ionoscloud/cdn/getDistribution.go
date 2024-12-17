@@ -11,6 +11,63 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The Distribution data source can be used to search for and return an existing Distributions.
+// You can provide a string for the domain parameter which will be compared with provisioned Distributions.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique domains.
+//
+// ## Example Usage
+//
+// ### By Domain
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cdn.LookupDistribution(ctx, &cdn.LookupDistributionArgs{
+//				Domain: pulumi.StringRef("example.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Domain with Partial Match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cdn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cdn.LookupDistribution(ctx, &cdn.LookupDistributionArgs{
+//				Domain:       pulumi.StringRef("example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDistribution(ctx *pulumi.Context, args *LookupDistributionArgs, opts ...pulumi.InvokeOption) (*LookupDistributionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDistributionResult
@@ -23,21 +80,32 @@ func LookupDistribution(ctx *pulumi.Context, args *LookupDistributionArgs, opts 
 
 // A collection of arguments for invoking getDistribution.
 type LookupDistributionArgs struct {
-	Domain       *string `pulumi:"domain"`
-	Id           *string `pulumi:"id"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partialMatch` parameter is not set to true.
+	Domain *string `pulumi:"domain"`
+	// ID of the distribution you want to search for.
+	Id *string `pulumi:"id"`
+	// Whether partial matching is allowed or not when using domain argument. Default value is false.
+	//
+	// Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getDistribution.
 type LookupDistributionResult struct {
-	CertificateId    string                       `pulumi:"certificateId"`
-	Domain           *string                      `pulumi:"domain"`
-	Id               *string                      `pulumi:"id"`
-	PartialMatch     *bool                        `pulumi:"partialMatch"`
-	PublicEndpointV4 string                       `pulumi:"publicEndpointV4"`
-	PublicEndpointV6 string                       `pulumi:"publicEndpointV6"`
-	ResourceUrn      string                       `pulumi:"resourceUrn"`
-	RoutingRules     []GetDistributionRoutingRule `pulumi:"routingRules"`
+	// The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+	CertificateId string `pulumi:"certificateId"`
+	// The domain of the distribution.
+	Domain       *string `pulumi:"domain"`
+	Id           *string `pulumi:"id"`
+	PartialMatch *bool   `pulumi:"partialMatch"`
+	// IP of the distribution, it has to be included on the domain DNS Zone as A record.
+	PublicEndpointV4 string `pulumi:"publicEndpointV4"`
+	// IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
+	PublicEndpointV6 string `pulumi:"publicEndpointV6"`
+	// Unique resource identifier.
+	ResourceUrn string `pulumi:"resourceUrn"`
+	// The routing rules for the distribution.
+	RoutingRules []GetDistributionRoutingRule `pulumi:"routingRules"`
 }
 
 func LookupDistributionOutput(ctx *pulumi.Context, args LookupDistributionOutputArgs, opts ...pulumi.InvokeOption) LookupDistributionResultOutput {
@@ -51,9 +119,14 @@ func LookupDistributionOutput(ctx *pulumi.Context, args LookupDistributionOutput
 
 // A collection of arguments for invoking getDistribution.
 type LookupDistributionOutputArgs struct {
-	Domain       pulumi.StringPtrInput `pulumi:"domain"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partialMatch` parameter is not set to true.
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// ID of the distribution you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Whether partial matching is allowed or not when using domain argument. Default value is false.
+	//
+	// Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupDistributionOutputArgs) ElementType() reflect.Type {
@@ -75,10 +148,12 @@ func (o LookupDistributionResultOutput) ToLookupDistributionResultOutputWithCont
 	return o
 }
 
+// The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
 func (o LookupDistributionResultOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDistributionResult) string { return v.CertificateId }).(pulumi.StringOutput)
 }
 
+// The domain of the distribution.
 func (o LookupDistributionResultOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDistributionResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
@@ -91,18 +166,22 @@ func (o LookupDistributionResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupDistributionResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// IP of the distribution, it has to be included on the domain DNS Zone as A record.
 func (o LookupDistributionResultOutput) PublicEndpointV4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDistributionResult) string { return v.PublicEndpointV4 }).(pulumi.StringOutput)
 }
 
+// IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
 func (o LookupDistributionResultOutput) PublicEndpointV6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDistributionResult) string { return v.PublicEndpointV6 }).(pulumi.StringOutput)
 }
 
+// Unique resource identifier.
 func (o LookupDistributionResultOutput) ResourceUrn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDistributionResult) string { return v.ResourceUrn }).(pulumi.StringOutput)
 }
 
+// The routing rules for the distribution.
 func (o LookupDistributionResultOutput) RoutingRules() GetDistributionRoutingRuleArrayOutput {
 	return o.ApplyT(func(v LookupDistributionResult) []GetDistributionRoutingRule { return v.RoutingRules }).(GetDistributionRoutingRuleArrayOutput)
 }

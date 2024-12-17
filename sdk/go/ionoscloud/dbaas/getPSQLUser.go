@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **PgSql User data source** can be used to search for and return an existing PgSql user.
 func LookupPSQLUser(ctx *pulumi.Context, args *LookupPSQLUserArgs, opts ...pulumi.InvokeOption) (*LookupPSQLUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPSQLUserResult
@@ -23,14 +24,18 @@ func LookupPSQLUser(ctx *pulumi.Context, args *LookupPSQLUserArgs, opts ...pulum
 
 // A collection of arguments for invoking getPSQLUser.
 type LookupPSQLUserArgs struct {
+	// [string] The ID of the cluster.
 	ClusterId string `pulumi:"clusterId"`
-	Username  string `pulumi:"username"`
+	// [string] Name of an existing user that you want to search for.
+	Username string `pulumi:"username"`
 }
 
 // A collection of values returned by getPSQLUser.
 type LookupPSQLUserResult struct {
-	ClusterId    string `pulumi:"clusterId"`
-	Id           string `pulumi:"id"`
+	ClusterId string `pulumi:"clusterId"`
+	// [string] The id of the user.
+	Id string `pulumi:"id"`
+	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 	IsSystemUser bool   `pulumi:"isSystemUser"`
 	Username     string `pulumi:"username"`
 }
@@ -46,8 +51,10 @@ func LookupPSQLUserOutput(ctx *pulumi.Context, args LookupPSQLUserOutputArgs, op
 
 // A collection of arguments for invoking getPSQLUser.
 type LookupPSQLUserOutputArgs struct {
+	// [string] The ID of the cluster.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
-	Username  pulumi.StringInput `pulumi:"username"`
+	// [string] Name of an existing user that you want to search for.
+	Username pulumi.StringInput `pulumi:"username"`
 }
 
 func (LookupPSQLUserOutputArgs) ElementType() reflect.Type {
@@ -73,10 +80,12 @@ func (o LookupPSQLUserResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLUserResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// [string] The id of the user.
 func (o LookupPSQLUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 func (o LookupPSQLUserResultOutput) IsSystemUser() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupPSQLUserResult) bool { return v.IsSystemUser }).(pulumi.BoolOutput)
 }

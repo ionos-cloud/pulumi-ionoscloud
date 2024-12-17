@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.Nfs.Inputs
     public sealed class ShareClientGroupNfsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        /// The squash mode for the export. The squash mode can be:
         /// </summary>
         [Input("squash")]
         public Input<string>? Squash { get; set; }

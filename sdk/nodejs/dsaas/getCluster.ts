@@ -6,6 +6,36 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -20,8 +50,19 @@ export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getCluster.
  */
 export interface GetClusterArgs {
+    /**
+     * ID of the cluster you want to search for.
+     */
     id?: string;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: string;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     partialMatch?: boolean;
 }
 
@@ -29,19 +70,101 @@ export interface GetClusterArgs {
  * A collection of values returned by getCluster.
  */
 export interface GetClusterResult {
+    /**
+     * base64 decoded cluster certificate authority data (provided as an attribute for direct use)
+     */
     readonly caCrt: string;
+    /**
+     * structured kubernetes config consisting of a list with 1 item with the following fields:
+     * * apiVersion - Kubernetes API Version
+     * * kind - "Config"
+     * * current-context - string
+     * * clusters - list of
+     * * name - name of cluster
+     * * cluster - map of
+     * * certificate-authority-data - **base64 decoded** cluster CA data
+     * * server -  server address in the form `https://host:port`
+     * * contexts - list of
+     * * name - context name
+     * * context - map of
+     * * cluster - cluster name
+     * * user - cluster user
+     * * users - list of
+     * * name - user name
+     * * user - map of
+     * * token - user token used for authentication
+     */
     readonly configs: outputs.dsaas.GetClusterConfig[];
+    /**
+     * The UUID of the virtual data center (VDC) in which the cluster is provisioned.
+     */
     readonly datacenterId: string;
+    /**
+     * The UUID of the cluster.
+     */
     readonly id?: string;
+    /**
+     * Kubernetes configuration
+     */
     readonly kubeConfig: string;
+    /**
+     * A list of LANs you want this node pool to be part of
+     */
     readonly lans: outputs.dsaas.GetClusterLan[];
+    /**
+     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+     */
     readonly maintenanceWindows: outputs.dsaas.GetClusterMaintenanceWindow[];
+    /**
+     * The name of your cluster.
+     */
     readonly name?: string;
     readonly partialMatch?: boolean;
+    /**
+     * cluster server (same as `config[0].clusters[0].cluster.server` but provided as an attribute for ease of use)
+     */
     readonly server: string;
+    /**
+     * a convenience map to be search the token of a specific user
+     * * key - is the user name
+     * * value - is the token
+     */
     readonly userTokens: {[key: string]: string};
+    /**
+     * The version of the Data Platform.
+     */
     readonly version: string;
 }
+/**
+ * The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search and make sure that your resources have unique names.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
+ * });
+ * ```
+ *
+ * ### By Name with Partial Match
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "_Example",
+ *     partialMatch: true,
+ * });
+ * ```
+ */
 export function getClusterOutput(args?: GetClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -56,7 +179,18 @@ export function getClusterOutput(args?: GetClusterOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getCluster.
  */
 export interface GetClusterOutputArgs {
+    /**
+     * ID of the cluster you want to search for.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     *
+     * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     partialMatch?: pulumi.Input<boolean>;
 }

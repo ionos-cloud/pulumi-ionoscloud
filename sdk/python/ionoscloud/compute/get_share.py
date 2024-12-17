@@ -46,26 +46,41 @@ class GetShareResult:
     @property
     @pulumi.getter(name="editPrivilege")
     def edit_privilege(self) -> Optional[bool]:
+        """
+        The flag that specifies if the group has permission to edit privileges on this resource.
+        """
         return pulumi.get(self, "edit_privilege")
 
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> str:
+        """
+        The ID of the specific group containing the resource to update.
+        """
         return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The id of the share resource.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> str:
+        """
+        The ID of the specific resource to update.
+        """
         return pulumi.get(self, "resource_id")
 
     @property
     @pulumi.getter(name="sharePrivilege")
     def share_privilege(self) -> Optional[bool]:
+        """
+        The group has permission to share this resource.
+        """
         return pulumi.get(self, "share_privilege")
 
 
@@ -89,7 +104,20 @@ def get_share(edit_privilege: Optional[bool] = None,
               share_privilege: Optional[bool] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetShareResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Share data source** can be used to search for and return an existing share object.
+    You need to provide the group_id and resource_id to get the group resources for the shared resource.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param bool edit_privilege: The flag that specifies if the group has permission to edit privileges on this resource.
+    :param str group_id: The ID of the specific group containing the resource to update.
+    :param str id: The uuid of the share object
+           
+           
+           `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
+    :param str resource_id: The ID of the specific resource to update.
+    :param bool share_privilege: The group has permission to share this resource.
     """
     __args__ = dict()
     __args__['editPrivilege'] = edit_privilege
@@ -113,7 +141,20 @@ def get_share_output(edit_privilege: Optional[pulumi.Input[Optional[bool]]] = No
                      share_privilege: Optional[pulumi.Input[Optional[bool]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Share data source** can be used to search for and return an existing share object.
+    You need to provide the group_id and resource_id to get the group resources for the shared resource.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param bool edit_privilege: The flag that specifies if the group has permission to edit privileges on this resource.
+    :param str group_id: The ID of the specific group containing the resource to update.
+    :param str id: The uuid of the share object
+           
+           
+           `id`, `resource_id` and `group_id` must be provided. If any of them are missing, the datasource will return an error.
+    :param str resource_id: The ID of the specific resource to update.
+    :param bool share_privilege: The group has permission to share this resource.
     """
     __args__ = dict()
     __args__['editPrivilege'] = edit_privilege

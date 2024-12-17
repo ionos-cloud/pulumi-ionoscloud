@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Vpn.Inputs
     public sealed class WireguardPeerEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Hostname or IPV4 address that the WireGuard Server will connect to.
+        /// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// Port that the WireGuard Server will connect to.
+        /// [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

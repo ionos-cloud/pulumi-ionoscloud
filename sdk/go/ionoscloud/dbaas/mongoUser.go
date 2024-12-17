@@ -12,13 +12,201 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DbaaS Mongo User**. .
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic example
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing dbaas cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//				DatacenterId: datacenterExample.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				MongodbVersion: pulumi.String("5.0"),
+//				Instances:      pulumi.Int(1),
+//				DisplayName:    pulumi.String("example_mongo_cluster"),
+//				Location:       datacenterExample.Location,
+//				Connections: &dbaas.MongoClusterConnectionsArgs{
+//					DatacenterId: datacenterExample.ID(),
+//					LanId:        lanExample.ID(),
+//					CidrLists: pulumi.StringArray{
+//						pulumi.String("192.168.1.108/24"),
+//					},
+//				},
+//				TemplateId: pulumi.String("6b78ea06-ee0e-4689-998c-fc9c46e781f6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewMongoUser(ctx, "exampleMongoUser", &dbaas.MongoUserArgs{
+//				ClusterId: exampleMongoCluster.ID(),
+//				Username:  pulumi.String("myUser"),
+//				Password:  pulumi.String("strongPassword"),
+//				Roles: dbaas.MongoUserRoleArray{
+//					&dbaas.MongoUserRoleArgs{
+//						Role:     pulumi.String("read"),
+//						Database: pulumi.String("db1"),
+//					},
+//					&dbaas.MongoUserRoleArgs{
+//						Role:     pulumi.String("readWrite"),
+//						Database: pulumi.String("db2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing dbaas cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//				DatacenterId: datacenterExample.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleMongoCluster, err := dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Sunday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				MongodbVersion: pulumi.String("5.0"),
+//				Instances:      pulumi.Int(1),
+//				DisplayName:    pulumi.String("example_mongo_cluster"),
+//				Location:       datacenterExample.Location,
+//				Connections: &dbaas.MongoClusterConnectionsArgs{
+//					DatacenterId: datacenterExample.ID(),
+//					LanId:        lanExample.ID(),
+//					CidrLists: pulumi.StringArray{
+//						pulumi.String("192.168.1.108/24"),
+//					},
+//				},
+//				TemplateId: pulumi.String("6b78ea06-ee0e-4689-998c-fc9c46e781f6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			userPassword, err := random.NewRandomPassword(ctx, "userPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewMongoUser(ctx, "exampleMongoUser", &dbaas.MongoUserArgs{
+//				ClusterId: exampleMongoCluster.ID(),
+//				Username:  pulumi.String("myUser"),
+//				Password:  userPassword.Result,
+//				Roles: dbaas.MongoUserRoleArray{
+//					&dbaas.MongoUserRoleArgs{
+//						Role:     pulumi.String("read"),
+//						Database: pulumi.String("db1"),
+//					},
+//					&dbaas.MongoUserRoleArgs{
+//						Role:     pulumi.String("readWrite"),
+//						Database: pulumi.String("db2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
+//
+// First, define an empty resource in the plan:
+//
+// hcl
+//
+// resource "ionoscloud_mongo_user" "importeduser" {
+//
+// }
+//
+// Then you can import the user using the following command:
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+// ```
 type MongoUser struct {
 	pulumi.CustomResourceState
 
-	ClusterId pulumi.StringOutput      `pulumi:"clusterId"`
-	Password  pulumi.StringOutput      `pulumi:"password"`
-	Roles     MongoUserRoleArrayOutput `pulumi:"roles"`
-	Username  pulumi.StringOutput      `pulumi:"username"`
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// [string] User password. Updates to the value of the field force the cluster to be re-created.
+	Password pulumi.StringOutput `pulumi:"password"`
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles MongoUserRoleArrayOutput `pulumi:"roles"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringOutput `pulumi:"username"`
 }
 
 // NewMongoUser registers a new resource with the given unique name, arguments, and options.
@@ -67,17 +255,25 @@ func GetMongoUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MongoUser resources.
 type mongoUserState struct {
-	ClusterId *string         `pulumi:"clusterId"`
-	Password  *string         `pulumi:"password"`
-	Roles     []MongoUserRole `pulumi:"roles"`
-	Username  *string         `pulumi:"username"`
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+	ClusterId *string `pulumi:"clusterId"`
+	// [string] User password. Updates to the value of the field force the cluster to be re-created.
+	Password *string `pulumi:"password"`
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles []MongoUserRole `pulumi:"roles"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username *string `pulumi:"username"`
 }
 
 type MongoUserState struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringPtrInput
-	Password  pulumi.StringPtrInput
-	Roles     MongoUserRoleArrayInput
-	Username  pulumi.StringPtrInput
+	// [string] User password. Updates to the value of the field force the cluster to be re-created.
+	Password pulumi.StringPtrInput
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles MongoUserRoleArrayInput
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringPtrInput
 }
 
 func (MongoUserState) ElementType() reflect.Type {
@@ -85,18 +281,26 @@ func (MongoUserState) ElementType() reflect.Type {
 }
 
 type mongoUserArgs struct {
-	ClusterId string          `pulumi:"clusterId"`
-	Password  string          `pulumi:"password"`
-	Roles     []MongoUserRole `pulumi:"roles"`
-	Username  string          `pulumi:"username"`
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+	ClusterId string `pulumi:"clusterId"`
+	// [string] User password. Updates to the value of the field force the cluster to be re-created.
+	Password string `pulumi:"password"`
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles []MongoUserRole `pulumi:"roles"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a MongoUser resource.
 type MongoUserArgs struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringInput
-	Password  pulumi.StringInput
-	Roles     MongoUserRoleArrayInput
-	Username  pulumi.StringInput
+	// [string] User password. Updates to the value of the field force the cluster to be re-created.
+	Password pulumi.StringInput
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles MongoUserRoleArrayInput
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringInput
 }
 
 func (MongoUserArgs) ElementType() reflect.Type {
@@ -186,18 +390,22 @@ func (o MongoUserOutput) ToMongoUserOutputWithContext(ctx context.Context) Mongo
 	return o
 }
 
+// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 func (o MongoUserOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoUser) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// [string] User password. Updates to the value of the field force the cluster to be re-created.
 func (o MongoUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
+// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
 func (o MongoUserOutput) Roles() MongoUserRoleArrayOutput {
 	return o.ApplyT(func(v *MongoUser) MongoUserRoleArrayOutput { return v.Roles }).(MongoUserRoleArrayOutput)
 }
 
+// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
 func (o MongoUserOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoUser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }

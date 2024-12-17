@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -236,14 +241,12 @@ def get_group(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_group(name="Group Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the group you want to search for.
@@ -274,12 +277,9 @@ def get_group(id: Optional[str] = None,
         reserve_ip=pulumi.get(__ret__, 'reserve_ip'),
         s3_privilege=pulumi.get(__ret__, 's3_privilege'),
         users=pulumi.get(__ret__, 'users'))
-
-
-@_utilities.lift_output_func(get_group)
 def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                      name: Optional[pulumi.Input[Optional[str]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     The **Group data source** can be used to search for and return existing groups.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -288,14 +288,12 @@ def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_group(name="Group Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the group you want to search for.
@@ -303,4 +301,25 @@ def get_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param str name: Name of an existing group that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
+    return __ret__.apply(lambda __response__: GetGroupResult(
+        access_activity_log=pulumi.get(__response__, 'access_activity_log'),
+        access_and_manage_certificates=pulumi.get(__response__, 'access_and_manage_certificates'),
+        access_and_manage_monitoring=pulumi.get(__response__, 'access_and_manage_monitoring'),
+        create_backup_unit=pulumi.get(__response__, 'create_backup_unit'),
+        create_datacenter=pulumi.get(__response__, 'create_datacenter'),
+        create_flow_log=pulumi.get(__response__, 'create_flow_log'),
+        create_internet_access=pulumi.get(__response__, 'create_internet_access'),
+        create_k8s_cluster=pulumi.get(__response__, 'create_k8s_cluster'),
+        create_pcc=pulumi.get(__response__, 'create_pcc'),
+        create_snapshot=pulumi.get(__response__, 'create_snapshot'),
+        id=pulumi.get(__response__, 'id'),
+        manage_dbaas=pulumi.get(__response__, 'manage_dbaas'),
+        name=pulumi.get(__response__, 'name'),
+        reserve_ip=pulumi.get(__response__, 'reserve_ip'),
+        s3_privilege=pulumi.get(__response__, 's3_privilege'),
+        users=pulumi.get(__response__, 'users')))

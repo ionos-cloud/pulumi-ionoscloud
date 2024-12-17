@@ -48,11 +48,17 @@ class GetPSQLUserResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        [string] The id of the user.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="isSystemUser")
     def is_system_user(self) -> bool:
+        """
+        [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        """
         return pulumi.get(self, "is_system_user")
 
     @property
@@ -77,7 +83,11 @@ def get_psqluser(cluster_id: Optional[str] = None,
                  username: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLUserResult:
     """
-    Use this data source to access information about an existing resource.
+    The **PgSql User data source** can be used to search for and return an existing PgSql user.
+
+
+    :param str cluster_id: [string] The ID of the cluster.
+    :param str username: [string] Name of an existing user that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -94,7 +104,11 @@ def get_psqluser_output(cluster_id: Optional[pulumi.Input[str]] = None,
                         username: Optional[pulumi.Input[str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **PgSql User data source** can be used to search for and return an existing PgSql user.
+
+
+    :param str cluster_id: [string] The ID of the cluster.
+    :param str username: [string] Name of an existing user that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

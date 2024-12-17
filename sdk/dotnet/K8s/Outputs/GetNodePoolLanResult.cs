@@ -18,7 +18,9 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
         /// </summary>
         public readonly bool Dhcp;
         /// <summary>
-        /// The LAN ID of an existing LAN at the related datacenter
+        /// ID of the node pool you want to search for.
+        /// 
+        /// `k8s_cluster_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
         /// </summary>
         public readonly int Id;
         /// <summary>

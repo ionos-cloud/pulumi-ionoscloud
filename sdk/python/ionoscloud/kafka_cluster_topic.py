@@ -28,18 +28,21 @@ class KafkaClusterTopicArgs:
                  segment_bytes: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a KafkaClusterTopic resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kafka Cluster to which the topic belongs.
-        :param pulumi.Input[str] location: The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] name: The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-               character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
-        :param pulumi.Input[int] number_of_partitions: The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-               greater than or equal to the replication factor.
-        :param pulumi.Input[int] replication_factor: The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-               different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
-        :param pulumi.Input[int] retention_time: This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-               space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
-        :param pulumi.Input[int] segment_bytes: This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-               a larger segment size means fewer files but less granular control over retention.
+        :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
+        :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
+               processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+               Default value: 3.
+        :param pulumi.Input[int] replication_factor: [int] The number of replicas of the topic. The replication factor determines how many
+               copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+               of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+        :param pulumi.Input[int] retention_time: [int] This configuration controls the maximum time we will retain a log before we will
+               discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+               to -1, no time limit is applied. Default value: 604800000.
+        :param pulumi.Input[int] segment_bytes: [int] This configuration controls the segment file size for the log. Retention and
+               cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+               retention. Default value: 1073741824.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "location", location)
@@ -58,7 +61,7 @@ class KafkaClusterTopicArgs:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
         """
-        The ID of the Kafka Cluster to which the topic belongs.
+        [string] ID of the Kafka Cluster that the topic belongs to.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -70,7 +73,7 @@ class KafkaClusterTopicArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
         """
         return pulumi.get(self, "location")
 
@@ -82,8 +85,7 @@ class KafkaClusterTopicArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-        character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        [string] Name of the Kafka Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -95,8 +97,9 @@ class KafkaClusterTopicArgs:
     @pulumi.getter(name="numberOfPartitions")
     def number_of_partitions(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-        greater than or equal to the replication factor.
+        [int] The number of partitions of the topic. Partitions allow for parallel
+        processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+        Default value: 3.
         """
         return pulumi.get(self, "number_of_partitions")
 
@@ -108,8 +111,9 @@ class KafkaClusterTopicArgs:
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-        different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
+        [int] The number of replicas of the topic. The replication factor determines how many
+        copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+        of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -121,8 +125,9 @@ class KafkaClusterTopicArgs:
     @pulumi.getter(name="retentionTime")
     def retention_time(self) -> Optional[pulumi.Input[int]]:
         """
-        This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-        space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
+        [int] This configuration controls the maximum time we will retain a log before we will
+        discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+        to -1, no time limit is applied. Default value: 604800000.
         """
         return pulumi.get(self, "retention_time")
 
@@ -134,8 +139,9 @@ class KafkaClusterTopicArgs:
     @pulumi.getter(name="segmentBytes")
     def segment_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-        a larger segment size means fewer files but less granular control over retention.
+        [int] This configuration controls the segment file size for the log. Retention and
+        cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+        retention. Default value: 1073741824.
         """
         return pulumi.get(self, "segment_bytes")
 
@@ -156,18 +162,21 @@ class _KafkaClusterTopicState:
                  segment_bytes: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering KafkaClusterTopic resources.
-        :param pulumi.Input[str] cluster_id: The ID of the Kafka Cluster to which the topic belongs.
-        :param pulumi.Input[str] location: The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] name: The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-               character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
-        :param pulumi.Input[int] number_of_partitions: The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-               greater than or equal to the replication factor.
-        :param pulumi.Input[int] replication_factor: The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-               different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
-        :param pulumi.Input[int] retention_time: This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-               space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
-        :param pulumi.Input[int] segment_bytes: This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-               a larger segment size means fewer files but less granular control over retention.
+        :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
+        :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
+               processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+               Default value: 3.
+        :param pulumi.Input[int] replication_factor: [int] The number of replicas of the topic. The replication factor determines how many
+               copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+               of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+        :param pulumi.Input[int] retention_time: [int] This configuration controls the maximum time we will retain a log before we will
+               discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+               to -1, no time limit is applied. Default value: 604800000.
+        :param pulumi.Input[int] segment_bytes: [int] This configuration controls the segment file size for the log. Retention and
+               cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+               retention. Default value: 1073741824.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -188,7 +197,7 @@ class _KafkaClusterTopicState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Kafka Cluster to which the topic belongs.
+        [string] ID of the Kafka Cluster that the topic belongs to.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -200,7 +209,7 @@ class _KafkaClusterTopicState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
         """
         return pulumi.get(self, "location")
 
@@ -212,8 +221,7 @@ class _KafkaClusterTopicState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-        character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        [string] Name of the Kafka Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -225,8 +233,9 @@ class _KafkaClusterTopicState:
     @pulumi.getter(name="numberOfPartitions")
     def number_of_partitions(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-        greater than or equal to the replication factor.
+        [int] The number of partitions of the topic. Partitions allow for parallel
+        processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+        Default value: 3.
         """
         return pulumi.get(self, "number_of_partitions")
 
@@ -238,8 +247,9 @@ class _KafkaClusterTopicState:
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-        different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
+        [int] The number of replicas of the topic. The replication factor determines how many
+        copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+        of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -251,8 +261,9 @@ class _KafkaClusterTopicState:
     @pulumi.getter(name="retentionTime")
     def retention_time(self) -> Optional[pulumi.Input[int]]:
         """
-        This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-        space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
+        [int] This configuration controls the maximum time we will retain a log before we will
+        discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+        to -1, no time limit is applied. Default value: 604800000.
         """
         return pulumi.get(self, "retention_time")
 
@@ -264,8 +275,9 @@ class _KafkaClusterTopicState:
     @pulumi.getter(name="segmentBytes")
     def segment_bytes(self) -> Optional[pulumi.Input[int]]:
         """
-        This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-        a larger segment size means fewer files but less granular control over retention.
+        [int] This configuration controls the segment file size for the log. Retention and
+        cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+        retention. Default value: 1073741824.
         """
         return pulumi.get(self, "segment_bytes")
 
@@ -274,7 +286,12 @@ class _KafkaClusterTopicState:
         pulumi.set(self, "segment_bytes", value)
 
 
+warnings.warn("""ionoscloud.index/kafkaclustertopic.KafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/topic.Topic""", DeprecationWarning)
+
+
 class KafkaClusterTopic(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/kafkaclustertopic.KafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/topic.Topic""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -288,21 +305,71 @@ class KafkaClusterTopic(pulumi.CustomResource):
                  segment_bytes: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a KafkaClusterTopic resource with the given unique name, props, and options.
+        Manages a **Kafka Cluster Topic** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
+        called.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+            location=example_datacenter.location,
+            version="3.7.0",
+            size="S",
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
+                datacenter_id=example_datacenter.id,
+                lan_id=example_lan.id,
+                broker_addresses=[
+                    "192.168.1.101/24",
+                    "192.168.1.102/24",
+                    "192.168.1.103/24",
+                ],
+            ))
+        example_topic = ionoscloud.kafka.Topic("exampleTopic",
+            cluster_id=example_cluster.id,
+            location=example_cluster.location,
+            replication_factor=1,
+            number_of_partitions=1,
+            retention_time=86400000,
+            segment_bytes=1073741824)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
+
+        ```sh
+        $ pulumi import ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kafka Cluster to which the topic belongs.
-        :param pulumi.Input[str] location: The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] name: The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-               character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
-        :param pulumi.Input[int] number_of_partitions: The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-               greater than or equal to the replication factor.
-        :param pulumi.Input[int] replication_factor: The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-               different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
-        :param pulumi.Input[int] retention_time: This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-               space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
-        :param pulumi.Input[int] segment_bytes: This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-               a larger segment size means fewer files but less granular control over retention.
+        :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
+        :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
+               processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+               Default value: 3.
+        :param pulumi.Input[int] replication_factor: [int] The number of replicas of the topic. The replication factor determines how many
+               copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+               of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+        :param pulumi.Input[int] retention_time: [int] This configuration controls the maximum time we will retain a log before we will
+               discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+               to -1, no time limit is applied. Default value: 604800000.
+        :param pulumi.Input[int] segment_bytes: [int] This configuration controls the segment file size for the log. Retention and
+               cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+               retention. Default value: 1073741824.
         """
         ...
     @overload
@@ -311,7 +378,54 @@ class KafkaClusterTopic(pulumi.CustomResource):
                  args: KafkaClusterTopicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KafkaClusterTopic resource with the given unique name, props, and options.
+        Manages a **Kafka Cluster Topic** on IonosCloud.
+
+        ## Example Usage
+
+        This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
+        called.
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        # Basic example
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/fra")
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=False)
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
+            location=example_datacenter.location,
+            version="3.7.0",
+            size="S",
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
+                datacenter_id=example_datacenter.id,
+                lan_id=example_lan.id,
+                broker_addresses=[
+                    "192.168.1.101/24",
+                    "192.168.1.102/24",
+                    "192.168.1.103/24",
+                ],
+            ))
+        example_topic = ionoscloud.kafka.Topic("exampleTopic",
+            cluster_id=example_cluster.id,
+            location=example_cluster.location,
+            replication_factor=1,
+            number_of_partitions=1,
+            retention_time=86400000,
+            segment_bytes=1073741824)
+        ```
+        <!--End PulumiCodeChooser -->
+
+        ## Import
+
+        Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
+
+        ```sh
+        $ pulumi import ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param KafkaClusterTopicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -335,6 +449,7 @@ class KafkaClusterTopic(pulumi.CustomResource):
                  retention_time: Optional[pulumi.Input[int]] = None,
                  segment_bytes: Optional[pulumi.Input[int]] = None,
                  __props__=None):
+        pulumi.log.warn("""KafkaClusterTopic is deprecated: ionoscloud.index/kafkaclustertopic.KafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/topic.Topic""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -378,18 +493,21 @@ class KafkaClusterTopic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kafka Cluster to which the topic belongs.
-        :param pulumi.Input[str] location: The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
-        :param pulumi.Input[str] name: The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-               character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
-        :param pulumi.Input[int] number_of_partitions: The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-               greater than or equal to the replication factor.
-        :param pulumi.Input[int] replication_factor: The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-               different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
-        :param pulumi.Input[int] retention_time: This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-               space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
-        :param pulumi.Input[int] segment_bytes: This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-               a larger segment size means fewer files but less granular control over retention.
+        :param pulumi.Input[str] cluster_id: [string] ID of the Kafka Cluster that the topic belongs to.
+        :param pulumi.Input[str] location: [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+        :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
+        :param pulumi.Input[int] number_of_partitions: [int] The number of partitions of the topic. Partitions allow for parallel
+               processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+               Default value: 3.
+        :param pulumi.Input[int] replication_factor: [int] The number of replicas of the topic. The replication factor determines how many
+               copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+               of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+        :param pulumi.Input[int] retention_time: [int] This configuration controls the maximum time we will retain a log before we will
+               discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+               to -1, no time limit is applied. Default value: 604800000.
+        :param pulumi.Input[int] segment_bytes: [int] This configuration controls the segment file size for the log. Retention and
+               cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+               retention. Default value: 1073741824.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -408,7 +526,7 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         """
-        The ID of the Kafka Cluster to which the topic belongs.
+        [string] ID of the Kafka Cluster that the topic belongs to.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -416,7 +534,7 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
+        [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
         """
         return pulumi.get(self, "location")
 
@@ -424,8 +542,7 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
-        character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
+        [string] Name of the Kafka Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -433,8 +550,9 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter(name="numberOfPartitions")
     def number_of_partitions(self) -> pulumi.Output[Optional[int]]:
         """
-        The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
-        greater than or equal to the replication factor.
+        [int] The number of partitions of the topic. Partitions allow for parallel
+        processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
+        Default value: 3.
         """
         return pulumi.get(self, "number_of_partitions")
 
@@ -442,8 +560,9 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> pulumi.Output[Optional[int]]:
         """
-        The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
-        different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
+        [int] The number of replicas of the topic. The replication factor determines how many
+        copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
+        of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
         """
         return pulumi.get(self, "replication_factor")
 
@@ -451,8 +570,9 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter(name="retentionTime")
     def retention_time(self) -> pulumi.Output[Optional[int]]:
         """
-        This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
-        space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
+        [int] This configuration controls the maximum time we will retain a log before we will
+        discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
+        to -1, no time limit is applied. Default value: 604800000.
         """
         return pulumi.get(self, "retention_time")
 
@@ -460,8 +580,9 @@ class KafkaClusterTopic(pulumi.CustomResource):
     @pulumi.getter(name="segmentBytes")
     def segment_bytes(self) -> pulumi.Output[Optional[int]]:
         """
-        This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
-        a larger segment size means fewer files but less granular control over retention.
+        [int] This configuration controls the segment file size for the log. Retention and
+        cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
+        retention. Default value: 1073741824.
         """
         return pulumi.get(self, "segment_bytes")
 

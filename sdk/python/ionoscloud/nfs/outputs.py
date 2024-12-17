@@ -52,9 +52,9 @@ class ClusterConnections(dict):
                  ip_address: str,
                  lan: str):
         """
-        :param str datacenter_id: The datacenter to connect your instance to.
-        :param str ip_address: The IP address and subnet for your instance.
-        :param str lan: The numeric LAN ID to connect your instance to.
+        :param str datacenter_id: The ID of the datacenter where the Network File Storage cluster is located.
+        :param str ip_address: The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+        :param str lan: The Private LAN to which the Network File Storage cluster must be connected.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "ip_address", ip_address)
@@ -64,7 +64,7 @@ class ClusterConnections(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your instance to.
+        The ID of the datacenter where the Network File Storage cluster is located.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -72,7 +72,7 @@ class ClusterConnections(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
-        The IP address and subnet for your instance.
+        The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
         """
         return pulumi.get(self, "ip_address")
 
@@ -80,7 +80,7 @@ class ClusterConnections(dict):
     @pulumi.getter
     def lan(self) -> str:
         """
-        The numeric LAN ID to connect your instance to.
+        The Private LAN to which the Network File Storage cluster must be connected.
         """
         return pulumi.get(self, "lan")
 
@@ -107,7 +107,7 @@ class ClusterNfs(dict):
     def __init__(__self__, *,
                  min_version: Optional[str] = None):
         """
-        :param str min_version: The minimum Network File Storage version
+        :param str min_version: The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         """
         if min_version is not None:
             pulumi.set(__self__, "min_version", min_version)
@@ -116,7 +116,7 @@ class ClusterNfs(dict):
     @pulumi.getter(name="minVersion")
     def min_version(self) -> Optional[str]:
         """
-        The minimum Network File Storage version
+        The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         """
         return pulumi.get(self, "min_version")
 
@@ -149,6 +149,7 @@ class ShareClientGroup(dict):
         :param Sequence[str] hosts: A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
         :param Sequence[str] ip_networks: The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
         :param str description: Optional description for the clients groups.
+        :param 'ShareClientGroupNfsArgs' nfs: NFS specific configurations. Each configuration includes:
         """
         pulumi.set(__self__, "hosts", hosts)
         pulumi.set(__self__, "ip_networks", ip_networks)
@@ -184,6 +185,9 @@ class ShareClientGroup(dict):
     @property
     @pulumi.getter
     def nfs(self) -> Optional['outputs.ShareClientGroupNfs']:
+        """
+        NFS specific configurations. Each configuration includes:
+        """
         return pulumi.get(self, "nfs")
 
 
@@ -192,7 +196,7 @@ class ShareClientGroupNfs(dict):
     def __init__(__self__, *,
                  squash: Optional[str] = None):
         """
-        :param str squash: The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        :param str squash: The squash mode for the export. The squash mode can be:
         """
         if squash is not None:
             pulumi.set(__self__, "squash", squash)
@@ -201,7 +205,7 @@ class ShareClientGroupNfs(dict):
     @pulumi.getter
     def squash(self) -> Optional[str]:
         """
-        The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        The squash mode for the export. The squash mode can be:
         """
         return pulumi.get(self, "squash")
 
@@ -213,9 +217,9 @@ class GetClusterConnectionResult(dict):
                  ip_address: str,
                  lan: str):
         """
-        :param str datacenter_id: The datacenter ID of the connection.
-        :param str ip_address: The IP address of the connection.
-        :param str lan: The LAN of the connection.
+        :param str datacenter_id: The ID of the datacenter where the Network File Storage cluster is located.
+        :param str ip_address: The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+        :param str lan: The Private LAN to which the Network File Storage cluster must be connected.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "ip_address", ip_address)
@@ -225,7 +229,7 @@ class GetClusterConnectionResult(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter ID of the connection.
+        The ID of the datacenter where the Network File Storage cluster is located.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -233,7 +237,7 @@ class GetClusterConnectionResult(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> str:
         """
-        The IP address of the connection.
+        The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
         """
         return pulumi.get(self, "ip_address")
 
@@ -241,7 +245,7 @@ class GetClusterConnectionResult(dict):
     @pulumi.getter
     def lan(self) -> str:
         """
-        The LAN of the connection.
+        The Private LAN to which the Network File Storage cluster must be connected.
         """
         return pulumi.get(self, "lan")
 
@@ -251,7 +255,7 @@ class GetClusterNfResult(dict):
     def __init__(__self__, *,
                  min_version: str):
         """
-        :param str min_version: The minimum version of the NFS.
+        :param str min_version: The minimum supported version of the NFS cluster. Default is `4.2`
         """
         pulumi.set(__self__, "min_version", min_version)
 
@@ -259,7 +263,7 @@ class GetClusterNfResult(dict):
     @pulumi.getter(name="minVersion")
     def min_version(self) -> str:
         """
-        The minimum version of the NFS.
+        The minimum supported version of the NFS cluster. Default is `4.2`
         """
         return pulumi.get(self, "min_version")
 
@@ -275,6 +279,7 @@ class GetShareClientGroupResult(dict):
         :param str description: Optional description for the clients groups.
         :param Sequence[str] hosts: A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
         :param Sequence[str] ip_networks: The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        :param Sequence['GetShareClientGroupNfArgs'] nfs: The NFS configuration for the client group. Each NFS configuration supports the following:
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "hosts", hosts)
@@ -308,6 +313,9 @@ class GetShareClientGroupResult(dict):
     @property
     @pulumi.getter
     def nfs(self) -> Sequence['outputs.GetShareClientGroupNfResult']:
+        """
+        The NFS configuration for the client group. Each NFS configuration supports the following:
+        """
         return pulumi.get(self, "nfs")
 
 

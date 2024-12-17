@@ -91,7 +91,17 @@ def get_mongo_user(cluster_id: Optional[str] = None,
                    username: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongoUserResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Mongo User data source** can be used to search for and return an existing DbaaS MongoDB User.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+    :param str database: [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
+    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+    :param str username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -115,7 +125,17 @@ def get_mongo_user_output(cluster_id: Optional[pulumi.Input[str]] = None,
                           username: Optional[pulumi.Input[str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Mongo User data source** can be used to search for and return an existing DbaaS MongoDB User.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+    :param str database: [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
+    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+    :param str username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

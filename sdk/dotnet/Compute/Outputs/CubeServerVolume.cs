@@ -13,6 +13,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class CubeServerVolume
     {
+        /// <summary>
+        /// [string] The availability zone in which the server should exist. This property is immutable.
+        /// </summary>
         public readonly string? AvailabilityZone;
         /// <summary>
         /// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -28,13 +31,35 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? DiscVirtioHotPlug;
         public readonly bool? DiscVirtioHotUnplug;
         public readonly string DiskType;
+        /// <summary>
+        /// [string] Required if `ssh_key_path` is not provided.
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use image_name under server level
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; For creating a **CUBE** server, you can not set `volume.size` argument.
+        /// &gt;
+        /// </summary>
         public readonly string? ImagePassword;
+        /// <summary>
+        /// [string] Sets the OS type of the server.
+        /// </summary>
         public readonly string? LicenceType;
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         public readonly string? Name;
         public readonly bool? NicHotPlug;
         public readonly bool? NicHotUnplug;
         public readonly int? PciSlot;
         public readonly bool? RamHotPlug;
+        /// <summary>
+        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        /// </summary>
         public readonly ImmutableArray<string> SshKeyPaths;
         /// <summary>
         /// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.

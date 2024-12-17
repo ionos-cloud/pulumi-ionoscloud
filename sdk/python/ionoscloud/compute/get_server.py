@@ -86,6 +86,9 @@ class GetServerResult:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> str:
+        """
+        The availability zone in which the volume should exist
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
@@ -106,51 +109,81 @@ class GetServerResult:
     @property
     @pulumi.getter
     def cdroms(self) -> Sequence['outputs.GetServerCdromResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "cdroms")
 
     @property
     @pulumi.getter
     def cores(self) -> int:
+        """
+        The total number of cores for the server
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> str:
+        """
+        CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
+        """
         return pulumi.get(self, "cpu_family")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The id of the datacenter
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The Id of the label
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def labels(self) -> Sequence['outputs.GetServerLabelResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the firewall rule
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nics(self) -> Sequence['outputs.GetServerNicResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "nics")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        The amount of memory for the server in MB
+        """
         return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter(name="templateUuid")
     def template_uuid(self) -> Optional[str]:
+        """
+        The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+        """
         return pulumi.get(self, "template_uuid")
 
     @property
@@ -161,16 +194,25 @@ class GetServerResult:
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of firewall rule
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="vmState")
     def vm_state(self) -> str:
+        """
+        Status of the virtual Machine
+        """
         return pulumi.get(self, "vm_state")
 
     @property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.GetServerVolumeResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -207,7 +249,20 @@ def get_server(datacenter_id: Optional[str] = None,
                type: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Server data source** can be used to search for and return existing servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
+    :param str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+    :param str type: The type of firewall rule
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -244,7 +299,20 @@ def get_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                       type: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Server data source** can be used to search for and return existing servers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the server you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing server that you want to search for.
+    :param str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
+    :param str type: The type of firewall rule
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -11,12 +11,27 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetIPFailover
     {
+        /// <summary>
+        /// The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+        /// You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// </summary>
         public static Task<GetIPFailoverResult> InvokeAsync(GetIPFailoverArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIPFailoverResult>("ionoscloud:compute/getIPFailover:getIPFailover", args ?? new GetIPFailoverArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+        /// You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// </summary>
         public static Output<GetIPFailoverResult> Invoke(GetIPFailoverInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIPFailoverResult>("ionoscloud:compute/getIPFailover:getIPFailover", args ?? new GetIPFailoverInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+        /// You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// </summary>
         public static Output<GetIPFailoverResult> Invoke(GetIPFailoverInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetIPFailoverResult>("ionoscloud:compute/getIPFailover:getIPFailover", args ?? new GetIPFailoverInvokeArgs(), options.WithDefaults());
     }
@@ -24,12 +39,21 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetIPFailoverArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the datacenter containing the ip failover datasource
+        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// The reserved IP address to be used in the IP failover group.
+        /// </summary>
         [Input("ip", required: true)]
         public string Ip { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of a LAN.
+        /// </summary>
         [Input("lanId", required: true)]
         public string LanId { get; set; } = null!;
 
@@ -41,12 +65,21 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetIPFailoverInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the datacenter containing the ip failover datasource
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// The reserved IP address to be used in the IP failover group.
+        /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of a LAN.
+        /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;
 
@@ -60,10 +93,22 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetIPFailoverResult
     {
+        /// <summary>
+        /// The ID of a Data Center.
+        /// </summary>
         public readonly string DatacenterId;
         public readonly string Id;
+        /// <summary>
+        /// The reserved IP address to be used in the IP failover group.
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// The ID of a LAN.
+        /// </summary>
         public readonly string LanId;
+        /// <summary>
+        /// The ID of a NIC.
+        /// </summary>
         public readonly string Nicuuid;
 
         [OutputConstructor]

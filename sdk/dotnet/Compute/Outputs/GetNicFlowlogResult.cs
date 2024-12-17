@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     public sealed class GetNicFlowlogResult
     {
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+        /// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// The bucket name of an existing IONOS Object Storage bucket.
+        /// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
@@ -26,11 +26,14 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly string Direction;
         /// <summary>
-        /// The resource's unique identifier.
+        /// ID of the nic you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided.
+        /// If none, are provided, the datasource will return an error.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The resource name.
+        /// [string] The name of the LAN.
         /// </summary>
         public readonly string Name;
 

@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly string? IcmpCode;
         public readonly string? IcmpType;
         public readonly string? Id;
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         public readonly string? Name;
         public readonly int? PortRangeEnd;
         public readonly int? PortRangeStart;

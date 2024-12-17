@@ -27,6 +27,10 @@ class IPBlockArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IPBlock resource.
+        :param pulumi.Input[str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        :param pulumi.Input[int] size: [integer] The number of IP addresses to reserve for this block.
+        :param pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[str] name: [string] The name of Ip Block
         """
         pulumi.set(__self__, "location", location)
         pulumi.set(__self__, "size", size)
@@ -38,6 +42,9 @@ class IPBlockArgs:
     @property
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
+        """
+        [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -47,6 +54,9 @@ class IPBlockArgs:
     @property
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
+        """
+        [integer] The number of IP addresses to reserve for this block.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -56,6 +66,9 @@ class IPBlockArgs:
     @property
     @pulumi.getter(name="ipConsumers")
     def ip_consumers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
+        """
+        Read-Only attribute. Lists consumption detail of an individual ip
+        """
         return pulumi.get(self, "ip_consumers")
 
     @ip_consumers.setter
@@ -65,6 +78,9 @@ class IPBlockArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of Ip Block
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -82,6 +98,11 @@ class _IPBlockState:
                  size: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering IPBlock resources.
+        :param pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [integer] The list of IP addresses associated with this block.
+        :param pulumi.Input[str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        :param pulumi.Input[str] name: [string] The name of Ip Block
+        :param pulumi.Input[int] size: [integer] The number of IP addresses to reserve for this block.
         """
         if ip_consumers is not None:
             pulumi.set(__self__, "ip_consumers", ip_consumers)
@@ -97,6 +118,9 @@ class _IPBlockState:
     @property
     @pulumi.getter(name="ipConsumers")
     def ip_consumers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IPBlockIpConsumerArgs']]]]:
+        """
+        Read-Only attribute. Lists consumption detail of an individual ip
+        """
         return pulumi.get(self, "ip_consumers")
 
     @ip_consumers.setter
@@ -106,6 +130,9 @@ class _IPBlockState:
     @property
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [integer] The list of IP addresses associated with this block.
+        """
         return pulumi.get(self, "ips")
 
     @ips.setter
@@ -115,6 +142,9 @@ class _IPBlockState:
     @property
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        """
         return pulumi.get(self, "location")
 
     @location.setter
@@ -124,6 +154,9 @@ class _IPBlockState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of Ip Block
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -133,6 +166,9 @@ class _IPBlockState:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        [integer] The number of IP addresses to reserve for this block.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -151,9 +187,33 @@ class IPBlock(pulumi.CustomResource):
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a IPBlock resource with the given unique name, props, and options.
+        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.IPBlock("example",
+            location="us/las",
+            size=1)
+        ```
+
+        ## Import
+
+        Resource Ipblock can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        :param pulumi.Input[str] name: [string] The name of Ip Block
+        :param pulumi.Input[int] size: [integer] The number of IP addresses to reserve for this block.
         """
         ...
     @overload
@@ -162,7 +222,27 @@ class IPBlock(pulumi.CustomResource):
                  args: IPBlockArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IPBlock resource with the given unique name, props, and options.
+        Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.compute.IPBlock("example",
+            location="us/las",
+            size=1)
+        ```
+
+        ## Import
+
+        Resource Ipblock can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param IPBlockArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -222,6 +302,11 @@ class IPBlock(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [integer] The list of IP addresses associated with this block.
+        :param pulumi.Input[str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        :param pulumi.Input[str] name: [string] The name of Ip Block
+        :param pulumi.Input[int] size: [integer] The number of IP addresses to reserve for this block.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -237,25 +322,40 @@ class IPBlock(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ipConsumers")
     def ip_consumers(self) -> pulumi.Output[Sequence['outputs.IPBlockIpConsumer']]:
+        """
+        Read-Only attribute. Lists consumption detail of an individual ip
+        """
         return pulumi.get(self, "ip_consumers")
 
     @property
     @pulumi.getter
     def ips(self) -> pulumi.Output[Sequence[str]]:
+        """
+        [integer] The list of IP addresses associated with this block.
+        """
         return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
+        """
+        [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        [string] The name of Ip Block
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
+        """
+        [integer] The number of IP addresses to reserve for this block.
+        """
         return pulumi.get(self, "size")
 

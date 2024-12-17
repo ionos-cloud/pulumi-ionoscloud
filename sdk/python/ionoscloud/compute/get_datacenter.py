@@ -59,21 +59,33 @@ class GetDatacenterResult:
     @property
     @pulumi.getter(name="cpuArchitectures")
     def cpu_architectures(self) -> Sequence['outputs.GetDatacenterCpuArchitectureResult']:
+        """
+        Array of features and CPU families available in a location
+        """
         return pulumi.get(self, "cpu_architectures")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description for the Virtual Data Center
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def features(self) -> Sequence[str]:
+        """
+        List of features supported by the location this data center is part of
+        """
         return pulumi.get(self, "features")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        UUID of the Virtual Data Center
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -84,21 +96,33 @@ class GetDatacenterResult:
     @property
     @pulumi.getter
     def location(self) -> Optional[str]:
+        """
+        The regional location where the Virtual Data Center will be created
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the Virtual Data Center
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> bool:
+        """
+        Boolean value representing if the data center requires extra protection e.g. two factor protection
+        """
         return pulumi.get(self, "sec_auth_protection")
 
     @property
     @pulumi.getter
     def version(self) -> int:
+        """
+        The version of that Data Center. Gets incremented with every change
+        """
         return pulumi.get(self, "version")
 
 
@@ -124,7 +148,28 @@ def get_datacenter(id: Optional[str] = None,
                    name: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatacenterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+    You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name & Location
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_datacenter(location="us/las",
+        name="Datacenter Example")
+    ```
+
+
+    :param str id: Id of an existing Virtual Data Center that you want to search for.
+    :param str location: Id of the existing Virtual Data Center's location.
+           
+           Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
+    :param str name: Name of an existing Virtual Data Center that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -148,7 +193,28 @@ def get_datacenter_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacenterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+    You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name & Location
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_datacenter(location="us/las",
+        name="Datacenter Example")
+    ```
+
+
+    :param str id: Id of an existing Virtual Data Center that you want to search for.
+    :param str location: Id of the existing Virtual Data Center's location.
+           
+           Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
+    :param str name: Name of an existing Virtual Data Center that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

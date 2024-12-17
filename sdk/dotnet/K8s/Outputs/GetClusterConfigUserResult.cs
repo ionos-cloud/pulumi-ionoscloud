@@ -13,6 +13,9 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     [OutputType]
     public sealed class GetClusterConfigUserResult
     {
+        /// <summary>
+        /// Name of an existing cluster that you want to search for.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableDictionary<string, string> User;
 

@@ -11,12 +11,90 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetDatacenter
     {
+        /// <summary>
+        /// The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+        /// You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name &amp; Location
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetDatacenter.Invoke(new()
+        ///     {
+        ///         Location = "us/las",
+        ///         Name = "Datacenter Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetDatacenterResult> InvokeAsync(GetDatacenterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatacenterResult>("ionoscloud:compute/getDatacenter:getDatacenter", args ?? new GetDatacenterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+        /// You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name &amp; Location
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetDatacenter.Invoke(new()
+        ///     {
+        ///         Location = "us/las",
+        ///         Name = "Datacenter Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetDatacenterResult> Invoke(GetDatacenterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatacenterResult>("ionoscloud:compute/getDatacenter:getDatacenter", args ?? new GetDatacenterInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Datacenter data source** can be used to search for and return an existing Virtual Data Center.
+        /// You can provide a string for the name and location parameters which will be compared with provisioned Virtual Data Centers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name &amp; Location
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetDatacenter.Invoke(new()
+        ///     {
+        ///         Location = "us/las",
+        ///         Name = "Datacenter Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetDatacenterResult> Invoke(GetDatacenterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatacenterResult>("ionoscloud:compute/getDatacenter:getDatacenter", args ?? new GetDatacenterInvokeArgs(), options.WithDefaults());
     }
@@ -24,12 +102,23 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetDatacenterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Id of an existing Virtual Data Center that you want to search for.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Id of the existing Virtual Data Center's location.
+        /// 
+        /// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
+        /// </summary>
         [Input("location")]
         public string? Location { get; set; }
 
+        /// <summary>
+        /// Name of an existing Virtual Data Center that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -41,12 +130,23 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetDatacenterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Id of an existing Virtual Data Center that you want to search for.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Id of the existing Virtual Data Center's location.
+        /// 
+        /// Either `name`, `location` or `id` must be provided. If none, the datasource will return an error.
+        /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
+        /// <summary>
+        /// Name of an existing Virtual Data Center that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -60,14 +160,38 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetDatacenterResult
     {
+        /// <summary>
+        /// Array of features and CPU families available in a location
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDatacenterCpuArchitectureResult> CpuArchitectures;
+        /// <summary>
+        /// Description for the Virtual Data Center
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// List of features supported by the location this data center is part of
+        /// </summary>
         public readonly ImmutableArray<string> Features;
+        /// <summary>
+        /// UUID of the Virtual Data Center
+        /// </summary>
         public readonly string? Id;
         public readonly string Ipv6CidrBlock;
+        /// <summary>
+        /// The regional location where the Virtual Data Center will be created
+        /// </summary>
         public readonly string? Location;
+        /// <summary>
+        /// The name of the Virtual Data Center
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Boolean value representing if the data center requires extra protection e.g. two factor protection
+        /// </summary>
         public readonly bool SecAuthProtection;
+        /// <summary>
+        /// The version of that Data Center. Gets incremented with every change
+        /// </summary>
         public readonly int Version;
 
         [OutputConstructor]

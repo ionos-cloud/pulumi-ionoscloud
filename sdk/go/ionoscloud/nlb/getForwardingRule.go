@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
 func LookupForwardingRule(ctx *pulumi.Context, args *LookupForwardingRuleArgs, opts ...pulumi.InvokeOption) (*LookupForwardingRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupForwardingRuleResult
@@ -23,24 +26,38 @@ func LookupForwardingRule(ctx *pulumi.Context, args *LookupForwardingRuleArgs, o
 
 // A collection of arguments for invoking getForwardingRule.
 type LookupForwardingRuleArgs struct {
-	DatacenterId          string  `pulumi:"datacenterId"`
-	Id                    *string `pulumi:"id"`
-	Name                  *string `pulumi:"name"`
-	NetworkloadbalancerId string  `pulumi:"networkloadbalancerId"`
+	// Datacenter's UUID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing network load balancer forwarding rule that you want to search for.
+	Name *string `pulumi:"name"`
+	// Network Load Balancer's UUID.
+	NetworkloadbalancerId string `pulumi:"networkloadbalancerId"`
 }
 
 // A collection of values returned by getForwardingRule.
 type LookupForwardingRuleResult struct {
-	Algorithm             string                         `pulumi:"algorithm"`
-	DatacenterId          string                         `pulumi:"datacenterId"`
-	HealthChecks          []GetForwardingRuleHealthCheck `pulumi:"healthChecks"`
-	Id                    *string                        `pulumi:"id"`
-	ListenerIp            string                         `pulumi:"listenerIp"`
-	ListenerPort          int                            `pulumi:"listenerPort"`
-	Name                  *string                        `pulumi:"name"`
-	NetworkloadbalancerId string                         `pulumi:"networkloadbalancerId"`
-	Protocol              string                         `pulumi:"protocol"`
-	Targets               []GetForwardingRuleTarget      `pulumi:"targets"`
+	// Algorithm for the balancing.
+	Algorithm    string `pulumi:"algorithm"`
+	DatacenterId string `pulumi:"datacenterId"`
+	// Health check attributes for Network Load Balancer forwarding rule target.
+	HealthChecks []GetForwardingRuleHealthCheck `pulumi:"healthChecks"`
+	// The id of that Network Load Balancer forwarding rule.
+	Id *string `pulumi:"id"`
+	// Listening IP. (inbound)
+	ListenerIp string `pulumi:"listenerIp"`
+	// Listening port number. (inbound) (range: 1 to 65535)
+	ListenerPort int `pulumi:"listenerPort"`
+	// The name of that Network Load Balancer forwarding rule.
+	Name                  *string `pulumi:"name"`
+	NetworkloadbalancerId string  `pulumi:"networkloadbalancerId"`
+	// Protocol of the balancing.
+	Protocol string `pulumi:"protocol"`
+	// Array of items in that collection.
+	Targets []GetForwardingRuleTarget `pulumi:"targets"`
 }
 
 func LookupForwardingRuleOutput(ctx *pulumi.Context, args LookupForwardingRuleOutputArgs, opts ...pulumi.InvokeOption) LookupForwardingRuleResultOutput {
@@ -54,10 +71,16 @@ func LookupForwardingRuleOutput(ctx *pulumi.Context, args LookupForwardingRuleOu
 
 // A collection of arguments for invoking getForwardingRule.
 type LookupForwardingRuleOutputArgs struct {
-	DatacenterId          pulumi.StringInput    `pulumi:"datacenterId"`
-	Id                    pulumi.StringPtrInput `pulumi:"id"`
-	Name                  pulumi.StringPtrInput `pulumi:"name"`
-	NetworkloadbalancerId pulumi.StringInput    `pulumi:"networkloadbalancerId"`
+	// Datacenter's UUID.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing network load balancer forwarding rule that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Network Load Balancer's UUID.
+	NetworkloadbalancerId pulumi.StringInput `pulumi:"networkloadbalancerId"`
 }
 
 func (LookupForwardingRuleOutputArgs) ElementType() reflect.Type {
@@ -79,6 +102,7 @@ func (o LookupForwardingRuleResultOutput) ToLookupForwardingRuleResultOutputWith
 	return o
 }
 
+// Algorithm for the balancing.
 func (o LookupForwardingRuleResultOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.Algorithm }).(pulumi.StringOutput)
 }
@@ -87,22 +111,27 @@ func (o LookupForwardingRuleResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// Health check attributes for Network Load Balancer forwarding rule target.
 func (o LookupForwardingRuleResultOutput) HealthChecks() GetForwardingRuleHealthCheckArrayOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) []GetForwardingRuleHealthCheck { return v.HealthChecks }).(GetForwardingRuleHealthCheckArrayOutput)
 }
 
+// The id of that Network Load Balancer forwarding rule.
 func (o LookupForwardingRuleResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Listening IP. (inbound)
 func (o LookupForwardingRuleResultOutput) ListenerIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.ListenerIp }).(pulumi.StringOutput)
 }
 
+// Listening port number. (inbound) (range: 1 to 65535)
 func (o LookupForwardingRuleResultOutput) ListenerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) int { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
+// The name of that Network Load Balancer forwarding rule.
 func (o LookupForwardingRuleResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -111,10 +140,12 @@ func (o LookupForwardingRuleResultOutput) NetworkloadbalancerId() pulumi.StringO
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.NetworkloadbalancerId }).(pulumi.StringOutput)
 }
 
+// Protocol of the balancing.
 func (o LookupForwardingRuleResultOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// Array of items in that collection.
 func (o LookupForwardingRuleResultOutput) Targets() GetForwardingRuleTargetArrayOutput {
 	return o.ApplyT(func(v LookupForwardingRuleResult) []GetForwardingRuleTarget { return v.Targets }).(GetForwardingRuleTargetArrayOutput)
 }

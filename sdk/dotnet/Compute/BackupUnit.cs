@@ -9,11 +9,22 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// A Backup Unit resource can be imported using its `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}
+    /// ```
+    /// 
+    /// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/backupUnit:BackupUnit")]
     public partial class BackupUnit : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The e-mail address you want assigned to the backup unit.
+        /// [string] The email address assigned to the backup unit
         /// </summary>
         [Output("email")]
         public Output<string> Email { get; private set; } = null!;
@@ -25,13 +36,13 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string> Login { get; private set; } = null!;
 
         /// <summary>
-        /// Alphanumeric name you want assigned to the backup unit.
+        /// [string] The name of the Backup Unit. This argument is immutable.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The password you want assigned to the backup unit.
+        /// [string] The desired password for the Backup Unit
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -87,13 +98,13 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class BackupUnitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The e-mail address you want assigned to the backup unit.
+        /// [string] The email address assigned to the backup unit
         /// </summary>
         [Input("email", required: true)]
         public Input<string> Email { get; set; } = null!;
 
         /// <summary>
-        /// Alphanumeric name you want assigned to the backup unit.
+        /// [string] The name of the Backup Unit. This argument is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -102,7 +113,7 @@ namespace Pulumi.Ionoscloud.Compute
         private Input<string>? _password;
 
         /// <summary>
-        /// The password you want assigned to the backup unit.
+        /// [string] The desired password for the Backup Unit
         /// </summary>
         public Input<string>? Password
         {
@@ -123,7 +134,7 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class BackupUnitState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The e-mail address you want assigned to the backup unit.
+        /// [string] The email address assigned to the backup unit
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
@@ -135,7 +146,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Login { get; set; }
 
         /// <summary>
-        /// Alphanumeric name you want assigned to the backup unit.
+        /// [string] The name of the Backup Unit. This argument is immutable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -144,7 +155,7 @@ namespace Pulumi.Ionoscloud.Compute
         private Input<string>? _password;
 
         /// <summary>
-        /// The password you want assigned to the backup unit.
+        /// [string] The desired password for the Backup Unit
         /// </summary>
         public Input<string>? Password
         {

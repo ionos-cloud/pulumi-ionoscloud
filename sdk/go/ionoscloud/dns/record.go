@@ -12,18 +12,82 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DNS Record**.
+//
+// > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := dns.NewZone(ctx, "example", &dns.ZoneArgs{
+//				Description: pulumi.String("description"),
+//				Enabled:     pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dns.NewRecord(ctx, "recordexample", &dns.RecordArgs{
+//				ZoneId:   example.ID(),
+//				Type:     pulumi.String("CNAME"),
+//				Content:  pulumi.String("1.2.3.4"),
+//				Ttl:      pulumi.Int(2000),
+//				Priority: pulumi.Int(1024),
+//				Enabled:  pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
+//
+// hcl
+//
+// resource "ionoscloud_dns_record" "example" {
+//
+// }
+//
+// The resource can be imported using the `zone_id` and the `record_id`, for example:
+//
+// ```sh
+// $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
+// ```
 type Record struct {
 	pulumi.CustomResourceState
 
+	// [string] The content of the DNS Record.
 	Content pulumi.StringOutput `pulumi:"content"`
-	Enabled pulumi.BoolOutput   `pulumi:"enabled"`
+	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
+	Enabled pulumi.BoolOutput `pulumi:"enabled"`
 	// Fully qualified domain name
-	Fqdn     pulumi.StringOutput `pulumi:"fqdn"`
-	Name     pulumi.StringOutput `pulumi:"name"`
+	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
+	// [string] The name of the DNS Record.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	Ttl      pulumi.IntOutput    `pulumi:"ttl"`
-	Type     pulumi.StringOutput `pulumi:"type"`
-	ZoneId   pulumi.StringOutput `pulumi:"zoneId"`
+	// [int] Time to live for the DNS Record. Default is `3600`.
+	Ttl pulumi.IntOutput `pulumi:"ttl"`
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	Type pulumi.StringOutput `pulumi:"type"`
+	// [string] The DNS Zone ID in which the DNS Record will be created.
+	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
 }
 
 // NewRecord registers a new resource with the given unique name, arguments, and options.
@@ -65,27 +129,41 @@ func GetRecord(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Record resources.
 type recordState struct {
+	// [string] The content of the DNS Record.
 	Content *string `pulumi:"content"`
-	Enabled *bool   `pulumi:"enabled"`
+	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
+	Enabled *bool `pulumi:"enabled"`
 	// Fully qualified domain name
-	Fqdn     *string `pulumi:"fqdn"`
-	Name     *string `pulumi:"name"`
-	Priority *int    `pulumi:"priority"`
-	Ttl      *int    `pulumi:"ttl"`
-	Type     *string `pulumi:"type"`
-	ZoneId   *string `pulumi:"zoneId"`
+	Fqdn *string `pulumi:"fqdn"`
+	// [string] The name of the DNS Record.
+	Name *string `pulumi:"name"`
+	// [int] The priority for the DNS Record.
+	Priority *int `pulumi:"priority"`
+	// [int] Time to live for the DNS Record. Default is `3600`.
+	Ttl *int `pulumi:"ttl"`
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	Type *string `pulumi:"type"`
+	// [string] The DNS Zone ID in which the DNS Record will be created.
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 type RecordState struct {
+	// [string] The content of the DNS Record.
 	Content pulumi.StringPtrInput
+	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
 	Enabled pulumi.BoolPtrInput
 	// Fully qualified domain name
-	Fqdn     pulumi.StringPtrInput
-	Name     pulumi.StringPtrInput
+	Fqdn pulumi.StringPtrInput
+	// [string] The name of the DNS Record.
+	Name pulumi.StringPtrInput
+	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrInput
-	Ttl      pulumi.IntPtrInput
-	Type     pulumi.StringPtrInput
-	ZoneId   pulumi.StringPtrInput
+	// [int] Time to live for the DNS Record. Default is `3600`.
+	Ttl pulumi.IntPtrInput
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	Type pulumi.StringPtrInput
+	// [string] The DNS Zone ID in which the DNS Record will be created.
+	ZoneId pulumi.StringPtrInput
 }
 
 func (RecordState) ElementType() reflect.Type {
@@ -93,24 +171,38 @@ func (RecordState) ElementType() reflect.Type {
 }
 
 type recordArgs struct {
-	Content  string  `pulumi:"content"`
-	Enabled  *bool   `pulumi:"enabled"`
-	Name     *string `pulumi:"name"`
-	Priority *int    `pulumi:"priority"`
-	Ttl      *int    `pulumi:"ttl"`
-	Type     string  `pulumi:"type"`
-	ZoneId   string  `pulumi:"zoneId"`
+	// [string] The content of the DNS Record.
+	Content string `pulumi:"content"`
+	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// [string] The name of the DNS Record.
+	Name *string `pulumi:"name"`
+	// [int] The priority for the DNS Record.
+	Priority *int `pulumi:"priority"`
+	// [int] Time to live for the DNS Record. Default is `3600`.
+	Ttl *int `pulumi:"ttl"`
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	Type string `pulumi:"type"`
+	// [string] The DNS Zone ID in which the DNS Record will be created.
+	ZoneId string `pulumi:"zoneId"`
 }
 
 // The set of arguments for constructing a Record resource.
 type RecordArgs struct {
-	Content  pulumi.StringInput
-	Enabled  pulumi.BoolPtrInput
-	Name     pulumi.StringPtrInput
+	// [string] The content of the DNS Record.
+	Content pulumi.StringInput
+	// [bool] Indicates if the DNS Record is active or not. Default is `true`.
+	Enabled pulumi.BoolPtrInput
+	// [string] The name of the DNS Record.
+	Name pulumi.StringPtrInput
+	// [int] The priority for the DNS Record.
 	Priority pulumi.IntPtrInput
-	Ttl      pulumi.IntPtrInput
-	Type     pulumi.StringInput
-	ZoneId   pulumi.StringInput
+	// [int] Time to live for the DNS Record. Default is `3600`.
+	Ttl pulumi.IntPtrInput
+	// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
+	Type pulumi.StringInput
+	// [string] The DNS Zone ID in which the DNS Record will be created.
+	ZoneId pulumi.StringInput
 }
 
 func (RecordArgs) ElementType() reflect.Type {
@@ -200,10 +292,12 @@ func (o RecordOutput) ToRecordOutputWithContext(ctx context.Context) RecordOutpu
 	return o
 }
 
+// [string] The content of the DNS Record.
 func (o RecordOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
 }
 
+// [bool] Indicates if the DNS Record is active or not. Default is `true`.
 func (o RecordOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Record) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -213,22 +307,27 @@ func (o RecordOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
+// [string] The name of the DNS Record.
 func (o RecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [int] The priority for the DNS Record.
 func (o RecordOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Record) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
+// [int] Time to live for the DNS Record. Default is `3600`.
 func (o RecordOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Record) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
 func (o RecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
+// [string] The DNS Zone ID in which the DNS Record will be created.
 func (o RecordOutput) ZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Record) pulumi.StringOutput { return v.ZoneId }).(pulumi.StringOutput)
 }

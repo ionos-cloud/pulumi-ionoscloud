@@ -14,39 +14,39 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
     public sealed class ForwardingRuleHttpRule
     {
         /// <summary>
-        /// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        /// [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         /// </summary>
         public readonly ImmutableArray<Outputs.ForwardingRuleHttpRuleCondition> Conditions;
         /// <summary>
-        /// Valid only for STATIC actions.
+        /// [string] Valid only for STATIC actions.
         /// </summary>
         public readonly string? ContentType;
         /// <summary>
-        /// Default is false; valid only for REDIRECT actions.
+        /// [bool] Default is false; valid only for REDIRECT actions.
         /// </summary>
         public readonly bool? DropQuery;
         /// <summary>
-        /// The location for redirecting; mandatory and valid only for REDIRECT actions.
+        /// [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
         /// </summary>
         public readonly string? Location;
         /// <summary>
-        /// The unique name of the Application Load Balancer HTTP rule.
+        /// [string] The unique name of the Application Load Balancer HTTP rule.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The response message of the request; mandatory for STATIC actions.
+        /// [string] The response message of the request; mandatory for STATIC action.
         /// </summary>
         public readonly string? ResponseMessage;
         /// <summary>
-        /// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        /// [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
         /// </summary>
         public readonly int? StatusCode;
         /// <summary>
-        /// The ID of the target group; mandatory and only valid for FORWARD actions.
+        /// [string] The UUID of the target group; mandatory for FORWARD action.
         /// </summary>
         public readonly string? TargetGroup;
         /// <summary>
-        /// Type of the HTTP rule.
+        /// [string] Type of the Http Rule.
         /// </summary>
         public readonly string Type;
 

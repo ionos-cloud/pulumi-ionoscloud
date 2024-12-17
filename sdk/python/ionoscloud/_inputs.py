@@ -15,30 +15,6 @@ else:
 from . import _utilities
 
 __all__ = [
-    'ApigatewayCustomDomainArgs',
-    'ApigatewayCustomDomainArgsDict',
-    'ApigatewayRouteUpstreamArgs',
-    'ApigatewayRouteUpstreamArgsDict',
-    'AutoscalingGroupPolicyArgs',
-    'AutoscalingGroupPolicyArgsDict',
-    'AutoscalingGroupPolicyScaleInActionArgs',
-    'AutoscalingGroupPolicyScaleInActionArgsDict',
-    'AutoscalingGroupPolicyScaleOutActionArgs',
-    'AutoscalingGroupPolicyScaleOutActionArgsDict',
-    'AutoscalingGroupReplicaConfigurationArgs',
-    'AutoscalingGroupReplicaConfigurationArgsDict',
-    'AutoscalingGroupReplicaConfigurationNicArgs',
-    'AutoscalingGroupReplicaConfigurationNicArgsDict',
-    'AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs',
-    'AutoscalingGroupReplicaConfigurationNicFirewallRuleArgsDict',
-    'AutoscalingGroupReplicaConfigurationNicFlowLogArgs',
-    'AutoscalingGroupReplicaConfigurationNicFlowLogArgsDict',
-    'AutoscalingGroupReplicaConfigurationNicTargetGroupArgs',
-    'AutoscalingGroupReplicaConfigurationNicTargetGroupArgsDict',
-    'AutoscalingGroupReplicaConfigurationVolumeArgs',
-    'AutoscalingGroupReplicaConfigurationVolumeArgsDict',
-    'KafkaClusterConnectionsArgs',
-    'KafkaClusterConnectionsArgsDict',
     'TargetGroupHealthCheckArgs',
     'TargetGroupHealthCheckArgsDict',
     'TargetGroupHttpHealthCheckArgs',
@@ -54,1488 +30,18 @@ __all__ = [
 MYPY = False
 
 if not MYPY:
-    class ApigatewayCustomDomainArgsDict(TypedDict):
-        name: pulumi.Input[str]
-        """
-        The domain name.
-        """
-        certificate_id: NotRequired[pulumi.Input[str]]
-        """
-        The certificate ID for the domain.
-        """
-elif False:
-    ApigatewayCustomDomainArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ApigatewayCustomDomainArgs:
-    def __init__(__self__, *,
-                 name: pulumi.Input[str],
-                 certificate_id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] name: The domain name.
-        :param pulumi.Input[str] certificate_id: The certificate ID for the domain.
-        """
-        pulumi.set(__self__, "name", name)
-        if certificate_id is not None:
-            pulumi.set(__self__, "certificate_id", certificate_id)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The domain name.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="certificateId")
-    def certificate_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The certificate ID for the domain.
-        """
-        return pulumi.get(self, "certificate_id")
-
-    @certificate_id.setter
-    def certificate_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "certificate_id", value)
-
-
-if not MYPY:
-    class ApigatewayRouteUpstreamArgsDict(TypedDict):
-        host: pulumi.Input[str]
-        """
-        The host of the upstream.
-        """
-        loadbalancer: NotRequired[pulumi.Input[str]]
-        """
-        The load balancer algorithm.
-        """
-        port: NotRequired[pulumi.Input[int]]
-        """
-        The port of the upstream.
-        """
-        scheme: NotRequired[pulumi.Input[str]]
-        """
-        The target URL of the upstream.
-        """
-        weight: NotRequired[pulumi.Input[int]]
-        """
-        Weight with which to split traffic to the upstream.
-        """
-elif False:
-    ApigatewayRouteUpstreamArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class ApigatewayRouteUpstreamArgs:
-    def __init__(__self__, *,
-                 host: pulumi.Input[str],
-                 loadbalancer: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 scheme: Optional[pulumi.Input[str]] = None,
-                 weight: Optional[pulumi.Input[int]] = None):
-        """
-        :param pulumi.Input[str] host: The host of the upstream.
-        :param pulumi.Input[str] loadbalancer: The load balancer algorithm.
-        :param pulumi.Input[int] port: The port of the upstream.
-        :param pulumi.Input[str] scheme: The target URL of the upstream.
-        :param pulumi.Input[int] weight: Weight with which to split traffic to the upstream.
-        """
-        pulumi.set(__self__, "host", host)
-        if loadbalancer is not None:
-            pulumi.set(__self__, "loadbalancer", loadbalancer)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if scheme is not None:
-            pulumi.set(__self__, "scheme", scheme)
-        if weight is not None:
-            pulumi.set(__self__, "weight", weight)
-
-    @property
-    @pulumi.getter
-    def host(self) -> pulumi.Input[str]:
-        """
-        The host of the upstream.
-        """
-        return pulumi.get(self, "host")
-
-    @host.setter
-    def host(self, value: pulumi.Input[str]):
-        pulumi.set(self, "host", value)
-
-    @property
-    @pulumi.getter
-    def loadbalancer(self) -> Optional[pulumi.Input[str]]:
-        """
-        The load balancer algorithm.
-        """
-        return pulumi.get(self, "loadbalancer")
-
-    @loadbalancer.setter
-    def loadbalancer(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "loadbalancer", value)
-
-    @property
-    @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        The port of the upstream.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter
-    def scheme(self) -> Optional[pulumi.Input[str]]:
-        """
-        The target URL of the upstream.
-        """
-        return pulumi.get(self, "scheme")
-
-    @scheme.setter
-    def scheme(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "scheme", value)
-
-    @property
-    @pulumi.getter
-    def weight(self) -> Optional[pulumi.Input[int]]:
-        """
-        Weight with which to split traffic to the upstream.
-        """
-        return pulumi.get(self, "weight")
-
-    @weight.setter
-    def weight(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "weight", value)
-
-
-if not MYPY:
-    class AutoscalingGroupPolicyArgsDict(TypedDict):
-        metric: pulumi.Input[str]
-        """
-        The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
-        """
-        scale_in_action: pulumi.Input['AutoscalingGroupPolicyScaleInActionArgsDict']
-        """
-        Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
-        """
-        scale_in_threshold: pulumi.Input[int]
-        """
-        The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        """
-        scale_out_action: pulumi.Input['AutoscalingGroupPolicyScaleOutActionArgsDict']
-        """
-        Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
-        """
-        scale_out_threshold: pulumi.Input[int]
-        """
-        The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        """
-        unit: pulumi.Input[str]
-        """
-        Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
-        """
-        range: NotRequired[pulumi.Input[str]]
-        """
-        Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
-        """
-elif False:
-    AutoscalingGroupPolicyArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupPolicyArgs:
-    def __init__(__self__, *,
-                 metric: pulumi.Input[str],
-                 scale_in_action: pulumi.Input['AutoscalingGroupPolicyScaleInActionArgs'],
-                 scale_in_threshold: pulumi.Input[int],
-                 scale_out_action: pulumi.Input['AutoscalingGroupPolicyScaleOutActionArgs'],
-                 scale_out_threshold: pulumi.Input[int],
-                 unit: pulumi.Input[str],
-                 range: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] metric: The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
-        :param pulumi.Input['AutoscalingGroupPolicyScaleInActionArgs'] scale_in_action: Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
-        :param pulumi.Input[int] scale_in_threshold: The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        :param pulumi.Input['AutoscalingGroupPolicyScaleOutActionArgs'] scale_out_action: Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
-        :param pulumi.Input[int] scale_out_threshold: The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        :param pulumi.Input[str] unit: Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
-        :param pulumi.Input[str] range: Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
-        """
-        pulumi.set(__self__, "metric", metric)
-        pulumi.set(__self__, "scale_in_action", scale_in_action)
-        pulumi.set(__self__, "scale_in_threshold", scale_in_threshold)
-        pulumi.set(__self__, "scale_out_action", scale_out_action)
-        pulumi.set(__self__, "scale_out_threshold", scale_out_threshold)
-        pulumi.set(__self__, "unit", unit)
-        if range is not None:
-            pulumi.set(__self__, "range", range)
-
-    @property
-    @pulumi.getter
-    def metric(self) -> pulumi.Input[str]:
-        """
-        The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals.
-        """
-        return pulumi.get(self, "metric")
-
-    @metric.setter
-    def metric(self, value: pulumi.Input[str]):
-        pulumi.set(self, "metric", value)
-
-    @property
-    @pulumi.getter(name="scaleInAction")
-    def scale_in_action(self) -> pulumi.Input['AutoscalingGroupPolicyScaleInActionArgs']:
-        """
-        Defines the action to be taken when the 'scaleInThreshold' is exceeded. Here, scaling is always about removing VMs associated with this VM Auto Scaling Group. By default, the termination policy is 'OLDEST_SERVER_FIRST' is effective.
-        """
-        return pulumi.get(self, "scale_in_action")
-
-    @scale_in_action.setter
-    def scale_in_action(self, value: pulumi.Input['AutoscalingGroupPolicyScaleInActionArgs']):
-        pulumi.set(self, "scale_in_action", value)
-
-    @property
-    @pulumi.getter(name="scaleInThreshold")
-    def scale_in_threshold(self) -> pulumi.Input[int]:
-        """
-        The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scale_out_action' property. The value must have a lower minimum delta to the 'scale_in_threshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        """
-        return pulumi.get(self, "scale_in_threshold")
-
-    @scale_in_threshold.setter
-    def scale_in_threshold(self, value: pulumi.Input[int]):
-        pulumi.set(self, "scale_in_threshold", value)
-
-    @property
-    @pulumi.getter(name="scaleOutAction")
-    def scale_out_action(self) -> pulumi.Input['AutoscalingGroupPolicyScaleOutActionArgs']:
-        """
-        Defines the action to be performed when the 'scaleOutThreshold' is exceeded. Here, scaling is always about adding new VMs to this VM Auto Scaling Group.
-        """
-        return pulumi.get(self, "scale_out_action")
-
-    @scale_out_action.setter
-    def scale_out_action(self, value: pulumi.Input['AutoscalingGroupPolicyScaleOutActionArgs']):
-        pulumi.set(self, "scale_out_action", value)
-
-    @property
-    @pulumi.getter(name="scaleOutThreshold")
-    def scale_out_threshold(self) -> pulumi.Input[int]:
-        """
-        The upper threshold for the value of the 'metric'. Used with the 'greater than' (>) operator. A scale-out action is triggered when this value is exceeded, specified by the 'scaleOutAction' property. The value must have a lower minimum delta to the 'scaleInThreshold', depending on the metric, to avoid competing for actions simultaneously. If 'properties.policy.unit=TOTAL', a value >= 40 must be chosen.
-        """
-        return pulumi.get(self, "scale_out_threshold")
-
-    @scale_out_threshold.setter
-    def scale_out_threshold(self, value: pulumi.Input[int]):
-        pulumi.set(self, "scale_out_threshold", value)
-
-    @property
-    @pulumi.getter
-    def unit(self) -> pulumi.Input[str]:
-        """
-        Units of the applied Metric. Possible values are: PER_HOUR, PER_MINUTE, PER_SECOND, TOTAL.
-        """
-        return pulumi.get(self, "unit")
-
-    @unit.setter
-    def unit(self, value: pulumi.Input[str]):
-        pulumi.set(self, "unit", value)
-
-    @property
-    @pulumi.getter
-    def range(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the time range for which the samples are to be aggregated. Must be >= 2 minutes.
-        """
-        return pulumi.get(self, "range")
-
-    @range.setter
-    def range(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "range", value)
-
-
-if not MYPY:
-    class AutoscalingGroupPolicyScaleInActionArgsDict(TypedDict):
-        amount: pulumi.Input[int]
-        """
-        When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-        """
-        amount_type: pulumi.Input[str]
-        """
-        The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        """
-        delete_volumes: pulumi.Input[bool]
-        """
-        If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-        """
-        cooldown_period: NotRequired[pulumi.Input[str]]
-        """
-        The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        """
-        termination_policy_type: NotRequired[pulumi.Input[str]]
-        """
-        The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
-        """
-elif False:
-    AutoscalingGroupPolicyScaleInActionArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupPolicyScaleInActionArgs:
-    def __init__(__self__, *,
-                 amount: pulumi.Input[int],
-                 amount_type: pulumi.Input[str],
-                 delete_volumes: pulumi.Input[bool],
-                 cooldown_period: Optional[pulumi.Input[str]] = None,
-                 termination_policy_type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[int] amount: When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-        :param pulumi.Input[str] amount_type: The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        :param pulumi.Input[bool] delete_volumes: If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-        :param pulumi.Input[str] cooldown_period: The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        :param pulumi.Input[str] termination_policy_type: The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
-        """
-        pulumi.set(__self__, "amount", amount)
-        pulumi.set(__self__, "amount_type", amount_type)
-        pulumi.set(__self__, "delete_volumes", delete_volumes)
-        if cooldown_period is not None:
-            pulumi.set(__self__, "cooldown_period", cooldown_period)
-        if termination_policy_type is not None:
-            pulumi.set(__self__, "termination_policy_type", termination_policy_type)
-
-    @property
-    @pulumi.getter
-    def amount(self) -> pulumi.Input[int]:
-        """
-        When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are removed. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always removed. Note that for 'SCALE_IN' operations, volumes are not deleted after the server is deleted.
-        """
-        return pulumi.get(self, "amount")
-
-    @amount.setter
-    def amount(self, value: pulumi.Input[int]):
-        pulumi.set(self, "amount", value)
-
-    @property
-    @pulumi.getter(name="amountType")
-    def amount_type(self) -> pulumi.Input[str]:
-        """
-        The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        """
-        return pulumi.get(self, "amount_type")
-
-    @amount_type.setter
-    def amount_type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "amount_type", value)
-
-    @property
-    @pulumi.getter(name="deleteVolumes")
-    def delete_volumes(self) -> pulumi.Input[bool]:
-        """
-        If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-        """
-        return pulumi.get(self, "delete_volumes")
-
-    @delete_volumes.setter
-    def delete_volumes(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "delete_volumes", value)
-
-    @property
-    @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[str]]:
-        """
-        The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        """
-        return pulumi.get(self, "cooldown_period")
-
-    @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cooldown_period", value)
-
-    @property
-    @pulumi.getter(name="terminationPolicyType")
-    def termination_policy_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of termination policy for the VM Auto Scaling Group to follow a specific pattern for scaling-in replicas. The default termination policy is 'OLDEST_SERVER_FIRST'.
-        """
-        return pulumi.get(self, "termination_policy_type")
-
-    @termination_policy_type.setter
-    def termination_policy_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "termination_policy_type", value)
-
-
-if not MYPY:
-    class AutoscalingGroupPolicyScaleOutActionArgsDict(TypedDict):
-        amount: pulumi.Input[int]
-        """
-        When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
-        """
-        amount_type: pulumi.Input[str]
-        """
-        The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        """
-        cooldown_period: NotRequired[pulumi.Input[str]]
-        """
-        The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        """
-elif False:
-    AutoscalingGroupPolicyScaleOutActionArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupPolicyScaleOutActionArgs:
-    def __init__(__self__, *,
-                 amount: pulumi.Input[int],
-                 amount_type: pulumi.Input[str],
-                 cooldown_period: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[int] amount: When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
-        :param pulumi.Input[str] amount_type: The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        :param pulumi.Input[str] cooldown_period: The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        """
-        pulumi.set(__self__, "amount", amount)
-        pulumi.set(__self__, "amount_type", amount_type)
-        if cooldown_period is not None:
-            pulumi.set(__self__, "cooldown_period", cooldown_period)
-
-    @property
-    @pulumi.getter
-    def amount(self) -> pulumi.Input[int]:
-        """
-        When 'amountType=ABSOLUTE' specifies the absolute number of VMs that are added. The value must be between 1 to 10. 'amountType=PERCENTAGE' specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added or removed.
-        """
-        return pulumi.get(self, "amount")
-
-    @amount.setter
-    def amount(self, value: pulumi.Input[int]):
-        pulumi.set(self, "amount", value)
-
-    @property
-    @pulumi.getter(name="amountType")
-    def amount_type(self) -> pulumi.Input[str]:
-        """
-        The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-        """
-        return pulumi.get(self, "amount_type")
-
-    @amount_type.setter
-    def amount_type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "amount_type", value)
-
-    @property
-    @pulumi.getter(name="cooldownPeriod")
-    def cooldown_period(self) -> Optional[pulumi.Input[str]]:
-        """
-        The minimum time that elapses after the start of this scaling action until the following scaling action is started. While a scaling action is in progress, no second action is initiated for the same VM Auto Scaling Group. Instead, the metric is re-evaluated after the current scaling action completes (either successfully or with errors). This is currently validated with a minimum value of 2 minutes and a maximum of 24 hours. The default value is 5 minutes if not specified.
-        """
-        return pulumi.get(self, "cooldown_period")
-
-    @cooldown_period.setter
-    def cooldown_period(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cooldown_period", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationArgsDict(TypedDict):
-        availability_zone: pulumi.Input[str]
-        """
-        The zone where the VMs are created using this configuration.
-        """
-        cores: pulumi.Input[int]
-        """
-        The total number of cores for the VMs.
-        """
-        ram: pulumi.Input[int]
-        """
-        The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-        """
-        cpu_family: NotRequired[pulumi.Input[str]]
-        """
-        The zone where the VMs are created using this configuration.
-        """
-        nics: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicArgsDict']]]]
-        """
-        Set of NICs associated with this Replica.
-        """
-        volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationVolumeArgsDict']]]]
-        """
-        List of volumes associated with this Replica.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationArgs:
-    def __init__(__self__, *,
-                 availability_zone: pulumi.Input[str],
-                 cores: pulumi.Input[int],
-                 ram: pulumi.Input[int],
-                 cpu_family: Optional[pulumi.Input[str]] = None,
-                 nics: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicArgs']]]] = None,
-                 volumes: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationVolumeArgs']]]] = None):
-        """
-        :param pulumi.Input[str] availability_zone: The zone where the VMs are created using this configuration.
-        :param pulumi.Input[int] cores: The total number of cores for the VMs.
-        :param pulumi.Input[int] ram: The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-        :param pulumi.Input[str] cpu_family: The zone where the VMs are created using this configuration.
-        :param pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicArgs']]] nics: Set of NICs associated with this Replica.
-        :param pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationVolumeArgs']]] volumes: List of volumes associated with this Replica.
-        """
-        pulumi.set(__self__, "availability_zone", availability_zone)
-        pulumi.set(__self__, "cores", cores)
-        pulumi.set(__self__, "ram", ram)
-        if cpu_family is not None:
-            pulumi.set(__self__, "cpu_family", cpu_family)
-        if nics is not None:
-            pulumi.set(__self__, "nics", nics)
-        if volumes is not None:
-            pulumi.set(__self__, "volumes", volumes)
-
-    @property
-    @pulumi.getter(name="availabilityZone")
-    def availability_zone(self) -> pulumi.Input[str]:
-        """
-        The zone where the VMs are created using this configuration.
-        """
-        return pulumi.get(self, "availability_zone")
-
-    @availability_zone.setter
-    def availability_zone(self, value: pulumi.Input[str]):
-        pulumi.set(self, "availability_zone", value)
-
-    @property
-    @pulumi.getter
-    def cores(self) -> pulumi.Input[int]:
-        """
-        The total number of cores for the VMs.
-        """
-        return pulumi.get(self, "cores")
-
-    @cores.setter
-    def cores(self, value: pulumi.Input[int]):
-        pulumi.set(self, "cores", value)
-
-    @property
-    @pulumi.getter
-    def ram(self) -> pulumi.Input[int]:
-        """
-        The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-        """
-        return pulumi.get(self, "ram")
-
-    @ram.setter
-    def ram(self, value: pulumi.Input[int]):
-        pulumi.set(self, "ram", value)
-
-    @property
-    @pulumi.getter(name="cpuFamily")
-    def cpu_family(self) -> Optional[pulumi.Input[str]]:
-        """
-        The zone where the VMs are created using this configuration.
-        """
-        return pulumi.get(self, "cpu_family")
-
-    @cpu_family.setter
-    def cpu_family(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cpu_family", value)
-
-    @property
-    @pulumi.getter
-    def nics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicArgs']]]]:
-        """
-        Set of NICs associated with this Replica.
-        """
-        return pulumi.get(self, "nics")
-
-    @nics.setter
-    def nics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicArgs']]]]):
-        pulumi.set(self, "nics", value)
-
-    @property
-    @pulumi.getter
-    def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationVolumeArgs']]]]:
-        """
-        List of volumes associated with this Replica.
-        """
-        return pulumi.get(self, "volumes")
-
-    @volumes.setter
-    def volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationVolumeArgs']]]]):
-        pulumi.set(self, "volumes", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationNicArgsDict(TypedDict):
-        lan: pulumi.Input[int]
-        """
-        Lan ID for this replica Nic.
-        """
-        name: pulumi.Input[str]
-        """
-        Name for this replica NIC.
-        """
-        dhcp: NotRequired[pulumi.Input[bool]]
-        """
-        Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-        """
-        firewall_active: NotRequired[pulumi.Input[bool]]
-        """
-        Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-        """
-        firewall_rules: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFirewallRuleArgsDict']]]]
-        """
-        List of all firewall rules for the specified NIC.
-        """
-        firewall_type: NotRequired[pulumi.Input[str]]
-        """
-        The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-        """
-        flow_logs: NotRequired[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFlowLogArgsDict']]]]
-        """
-        List of all flow logs for the specified NIC.
-        """
-        target_group: NotRequired[pulumi.Input['AutoscalingGroupReplicaConfigurationNicTargetGroupArgsDict']]
-        """
-        In order to link VM to ALB, target group must be provided.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationNicArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationNicArgs:
-    def __init__(__self__, *,
-                 lan: pulumi.Input[int],
-                 name: pulumi.Input[str],
-                 dhcp: Optional[pulumi.Input[bool]] = None,
-                 firewall_active: Optional[pulumi.Input[bool]] = None,
-                 firewall_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs']]]] = None,
-                 firewall_type: Optional[pulumi.Input[str]] = None,
-                 flow_logs: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFlowLogArgs']]]] = None,
-                 target_group: Optional[pulumi.Input['AutoscalingGroupReplicaConfigurationNicTargetGroupArgs']] = None):
-        """
-        :param pulumi.Input[int] lan: Lan ID for this replica Nic.
-        :param pulumi.Input[str] name: Name for this replica NIC.
-        :param pulumi.Input[bool] dhcp: Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-        :param pulumi.Input[bool] firewall_active: Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-        :param pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs']]] firewall_rules: List of all firewall rules for the specified NIC.
-        :param pulumi.Input[str] firewall_type: The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-        :param pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFlowLogArgs']]] flow_logs: List of all flow logs for the specified NIC.
-        :param pulumi.Input['AutoscalingGroupReplicaConfigurationNicTargetGroupArgs'] target_group: In order to link VM to ALB, target group must be provided.
-        """
-        pulumi.set(__self__, "lan", lan)
-        pulumi.set(__self__, "name", name)
-        if dhcp is not None:
-            pulumi.set(__self__, "dhcp", dhcp)
-        if firewall_active is not None:
-            pulumi.set(__self__, "firewall_active", firewall_active)
-        if firewall_rules is not None:
-            pulumi.set(__self__, "firewall_rules", firewall_rules)
-        if firewall_type is not None:
-            pulumi.set(__self__, "firewall_type", firewall_type)
-        if flow_logs is not None:
-            pulumi.set(__self__, "flow_logs", flow_logs)
-        if target_group is not None:
-            pulumi.set(__self__, "target_group", target_group)
-
-    @property
-    @pulumi.getter
-    def lan(self) -> pulumi.Input[int]:
-        """
-        Lan ID for this replica Nic.
-        """
-        return pulumi.get(self, "lan")
-
-    @lan.setter
-    def lan(self, value: pulumi.Input[int]):
-        pulumi.set(self, "lan", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name for this replica NIC.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def dhcp(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-        """
-        return pulumi.get(self, "dhcp")
-
-    @dhcp.setter
-    def dhcp(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "dhcp", value)
-
-    @property
-    @pulumi.getter(name="firewallActive")
-    def firewall_active(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-        """
-        return pulumi.get(self, "firewall_active")
-
-    @firewall_active.setter
-    def firewall_active(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "firewall_active", value)
-
-    @property
-    @pulumi.getter(name="firewallRules")
-    def firewall_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs']]]]:
-        """
-        List of all firewall rules for the specified NIC.
-        """
-        return pulumi.get(self, "firewall_rules")
-
-    @firewall_rules.setter
-    def firewall_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs']]]]):
-        pulumi.set(self, "firewall_rules", value)
-
-    @property
-    @pulumi.getter(name="firewallType")
-    def firewall_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-        """
-        return pulumi.get(self, "firewall_type")
-
-    @firewall_type.setter
-    def firewall_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "firewall_type", value)
-
-    @property
-    @pulumi.getter(name="flowLogs")
-    def flow_logs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFlowLogArgs']]]]:
-        """
-        List of all flow logs for the specified NIC.
-        """
-        return pulumi.get(self, "flow_logs")
-
-    @flow_logs.setter
-    def flow_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AutoscalingGroupReplicaConfigurationNicFlowLogArgs']]]]):
-        pulumi.set(self, "flow_logs", value)
-
-    @property
-    @pulumi.getter(name="targetGroup")
-    def target_group(self) -> Optional[pulumi.Input['AutoscalingGroupReplicaConfigurationNicTargetGroupArgs']]:
-        """
-        In order to link VM to ALB, target group must be provided.
-        """
-        return pulumi.get(self, "target_group")
-
-    @target_group.setter
-    def target_group(self, value: Optional[pulumi.Input['AutoscalingGroupReplicaConfigurationNicTargetGroupArgs']]):
-        pulumi.set(self, "target_group", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationNicFirewallRuleArgsDict(TypedDict):
-        protocol: pulumi.Input[str]
-        """
-        The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-        """
-        icmp_code: NotRequired[pulumi.Input[int]]
-        """
-        Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-        """
-        icmp_type: NotRequired[pulumi.Input[int]]
-        """
-        Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-        """
-        name: NotRequired[pulumi.Input[str]]
-        """
-        The name of the firewall rule.
-        """
-        port_range_end: NotRequired[pulumi.Input[int]]
-        """
-        Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        """
-        port_range_start: NotRequired[pulumi.Input[int]]
-        """
-        Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        """
-        source_ip: NotRequired[pulumi.Input[str]]
-        """
-        Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-        """
-        source_mac: NotRequired[pulumi.Input[str]]
-        """
-        Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-        """
-        target_ip: NotRequired[pulumi.Input[str]]
-        """
-        If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-        """
-        type: NotRequired[pulumi.Input[str]]
-        """
-        The firewall rule type. If not specified, the default value 'INGRESS' is used.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationNicFirewallRuleArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs:
-    def __init__(__self__, *,
-                 protocol: pulumi.Input[str],
-                 icmp_code: Optional[pulumi.Input[int]] = None,
-                 icmp_type: Optional[pulumi.Input[int]] = None,
-                 name: Optional[pulumi.Input[str]] = None,
-                 port_range_end: Optional[pulumi.Input[int]] = None,
-                 port_range_start: Optional[pulumi.Input[int]] = None,
-                 source_ip: Optional[pulumi.Input[str]] = None,
-                 source_mac: Optional[pulumi.Input[str]] = None,
-                 target_ip: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] protocol: The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-        :param pulumi.Input[int] icmp_code: Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-        :param pulumi.Input[int] icmp_type: Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-        :param pulumi.Input[str] name: The name of the firewall rule.
-        :param pulumi.Input[int] port_range_end: Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        :param pulumi.Input[int] port_range_start: Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        :param pulumi.Input[str] source_ip: Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-        :param pulumi.Input[str] source_mac: Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-        :param pulumi.Input[str] target_ip: If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-        :param pulumi.Input[str] type: The firewall rule type. If not specified, the default value 'INGRESS' is used.
-        """
-        pulumi.set(__self__, "protocol", protocol)
-        if icmp_code is not None:
-            pulumi.set(__self__, "icmp_code", icmp_code)
-        if icmp_type is not None:
-            pulumi.set(__self__, "icmp_type", icmp_type)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if port_range_end is not None:
-            pulumi.set(__self__, "port_range_end", port_range_end)
-        if port_range_start is not None:
-            pulumi.set(__self__, "port_range_start", port_range_start)
-        if source_ip is not None:
-            pulumi.set(__self__, "source_ip", source_ip)
-        if source_mac is not None:
-            pulumi.set(__self__, "source_mac", source_mac)
-        if target_ip is not None:
-            pulumi.set(__self__, "target_ip", target_ip)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def protocol(self) -> pulumi.Input[str]:
-        """
-        The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-        """
-        return pulumi.get(self, "protocol")
-
-    @protocol.setter
-    def protocol(self, value: pulumi.Input[str]):
-        pulumi.set(self, "protocol", value)
-
-    @property
-    @pulumi.getter(name="icmpCode")
-    def icmp_code(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-        """
-        return pulumi.get(self, "icmp_code")
-
-    @icmp_code.setter
-    def icmp_code(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "icmp_code", value)
-
-    @property
-    @pulumi.getter(name="icmpType")
-    def icmp_type(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-        """
-        return pulumi.get(self, "icmp_type")
-
-    @icmp_type.setter
-    def icmp_type(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "icmp_type", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the firewall rule.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="portRangeEnd")
-    def port_range_end(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        """
-        return pulumi.get(self, "port_range_end")
-
-    @port_range_end.setter
-    def port_range_end(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port_range_end", value)
-
-    @property
-    @pulumi.getter(name="portRangeStart")
-    def port_range_start(self) -> Optional[pulumi.Input[int]]:
-        """
-        Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-        """
-        return pulumi.get(self, "port_range_start")
-
-    @port_range_start.setter
-    def port_range_start(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port_range_start", value)
-
-    @property
-    @pulumi.getter(name="sourceIp")
-    def source_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-        """
-        return pulumi.get(self, "source_ip")
-
-    @source_ip.setter
-    def source_ip(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "source_ip", value)
-
-    @property
-    @pulumi.getter(name="sourceMac")
-    def source_mac(self) -> Optional[pulumi.Input[str]]:
-        """
-        Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-        """
-        return pulumi.get(self, "source_mac")
-
-    @source_mac.setter
-    def source_mac(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "source_mac", value)
-
-    @property
-    @pulumi.getter(name="targetIp")
-    def target_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-        """
-        return pulumi.get(self, "target_ip")
-
-    @target_ip.setter
-    def target_ip(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "target_ip", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The firewall rule type. If not specified, the default value 'INGRESS' is used.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationNicFlowLogArgsDict(TypedDict):
-        action: pulumi.Input[str]
-        """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-        """
-        bucket: pulumi.Input[str]
-        """
-        The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-        """
-        direction: pulumi.Input[str]
-        """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-        """
-        name: pulumi.Input[str]
-        """
-        The resource name.
-        """
-        id: NotRequired[pulumi.Input[str]]
-        """
-        The resource's unique identifier.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationNicFlowLogArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationNicFlowLogArgs:
-    def __init__(__self__, *,
-                 action: pulumi.Input[str],
-                 bucket: pulumi.Input[str],
-                 direction: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] action: Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] bucket: The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] direction: Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-        :param pulumi.Input[str] name: The resource name.
-        :param pulumi.Input[str] id: The resource's unique identifier.
-        """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "direction", direction)
-        pulumi.set(__self__, "name", name)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-
-    @property
-    @pulumi.getter
-    def action(self) -> pulumi.Input[str]:
-        """
-        Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
-        """
-        return pulumi.get(self, "action")
-
-    @action.setter
-    def action(self, value: pulumi.Input[str]):
-        pulumi.set(self, "action", value)
-
-    @property
-    @pulumi.getter
-    def bucket(self) -> pulumi.Input[str]:
-        """
-        The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
-        """
-        return pulumi.get(self, "bucket")
-
-    @bucket.setter
-    def bucket(self, value: pulumi.Input[str]):
-        pulumi.set(self, "bucket", value)
-
-    @property
-    @pulumi.getter
-    def direction(self) -> pulumi.Input[str]:
-        """
-        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
-        """
-        return pulumi.get(self, "direction")
-
-    @direction.setter
-    def direction(self, value: pulumi.Input[str]):
-        pulumi.set(self, "direction", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        The resource name.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The resource's unique identifier.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationNicTargetGroupArgsDict(TypedDict):
-        port: pulumi.Input[int]
-        """
-        The port for the target group.
-        """
-        target_group_id: pulumi.Input[str]
-        """
-        The ID of the target group.
-        """
-        weight: pulumi.Input[int]
-        """
-        The weight for the target group.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationNicTargetGroupArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationNicTargetGroupArgs:
-    def __init__(__self__, *,
-                 port: pulumi.Input[int],
-                 target_group_id: pulumi.Input[str],
-                 weight: pulumi.Input[int]):
-        """
-        :param pulumi.Input[int] port: The port for the target group.
-        :param pulumi.Input[str] target_group_id: The ID of the target group.
-        :param pulumi.Input[int] weight: The weight for the target group.
-        """
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "target_group_id", target_group_id)
-        pulumi.set(__self__, "weight", weight)
-
-    @property
-    @pulumi.getter
-    def port(self) -> pulumi.Input[int]:
-        """
-        The port for the target group.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: pulumi.Input[int]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter(name="targetGroupId")
-    def target_group_id(self) -> pulumi.Input[str]:
-        """
-        The ID of the target group.
-        """
-        return pulumi.get(self, "target_group_id")
-
-    @target_group_id.setter
-    def target_group_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "target_group_id", value)
-
-    @property
-    @pulumi.getter
-    def weight(self) -> pulumi.Input[int]:
-        """
-        The weight for the target group.
-        """
-        return pulumi.get(self, "weight")
-
-    @weight.setter
-    def weight(self, value: pulumi.Input[int]):
-        pulumi.set(self, "weight", value)
-
-
-if not MYPY:
-    class AutoscalingGroupReplicaConfigurationVolumeArgsDict(TypedDict):
-        boot_order: pulumi.Input[str]
-        """
-        Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
-        Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-        Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-        """
-        name: pulumi.Input[str]
-        """
-        Name for this replica volume.
-        """
-        size: pulumi.Input[int]
-        """
-        User-defined size for this replica volume in GB.
-        """
-        type: pulumi.Input[str]
-        """
-        Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
-        """
-        backup_unit_id: NotRequired[pulumi.Input[str]]
-        """
-        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-        """
-        bus: NotRequired[pulumi.Input[str]]
-        """
-        The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-        """
-        image: NotRequired[pulumi.Input[str]]
-        """
-        The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
-        """
-        image_alias: NotRequired[pulumi.Input[str]]
-        """
-        The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
-        """
-        image_password: NotRequired[pulumi.Input[str]]
-        """
-        Image password for this replica volume.
-        """
-        ssh_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
-        user_data: NotRequired[pulumi.Input[str]]
-        """
-        User-data (Cloud Init) for this replica volume.
-        """
-elif False:
-    AutoscalingGroupReplicaConfigurationVolumeArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AutoscalingGroupReplicaConfigurationVolumeArgs:
-    def __init__(__self__, *,
-                 boot_order: pulumi.Input[str],
-                 name: pulumi.Input[str],
-                 size: pulumi.Input[int],
-                 type: pulumi.Input[str],
-                 backup_unit_id: Optional[pulumi.Input[str]] = None,
-                 bus: Optional[pulumi.Input[str]] = None,
-                 image: Optional[pulumi.Input[str]] = None,
-                 image_alias: Optional[pulumi.Input[str]] = None,
-                 image_password: Optional[pulumi.Input[str]] = None,
-                 ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 user_data: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] boot_order: Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
-               Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-               Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-        :param pulumi.Input[str] name: Name for this replica volume.
-        :param pulumi.Input[int] size: User-defined size for this replica volume in GB.
-        :param pulumi.Input[str] type: Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
-        :param pulumi.Input[str] backup_unit_id: The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-        :param pulumi.Input[str] bus: The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-        :param pulumi.Input[str] image: The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
-        :param pulumi.Input[str] image_alias: The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
-        :param pulumi.Input[str] image_password: Image password for this replica volume.
-        :param pulumi.Input[str] user_data: User-data (Cloud Init) for this replica volume.
-        """
-        pulumi.set(__self__, "boot_order", boot_order)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "type", type)
-        if backup_unit_id is not None:
-            pulumi.set(__self__, "backup_unit_id", backup_unit_id)
-        if bus is not None:
-            pulumi.set(__self__, "bus", bus)
-        if image is not None:
-            pulumi.set(__self__, "image", image)
-        if image_alias is not None:
-            pulumi.set(__self__, "image_alias", image_alias)
-        if image_password is not None:
-            pulumi.set(__self__, "image_password", image_password)
-        if ssh_keys is not None:
-            pulumi.set(__self__, "ssh_keys", ssh_keys)
-        if user_data is not None:
-            pulumi.set(__self__, "user_data", user_data)
-
-    @property
-    @pulumi.getter(name="bootOrder")
-    def boot_order(self) -> pulumi.Input[str]:
-        """
-        Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
-        Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-        Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-        """
-        return pulumi.get(self, "boot_order")
-
-    @boot_order.setter
-    def boot_order(self, value: pulumi.Input[str]):
-        pulumi.set(self, "boot_order", value)
-
-    @property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[str]:
-        """
-        Name for this replica volume.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def size(self) -> pulumi.Input[int]:
-        """
-        User-defined size for this replica volume in GB.
-        """
-        return pulumi.get(self, "size")
-
-    @size.setter
-    def size(self, value: pulumi.Input[int]):
-        pulumi.set(self, "size", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[str]:
-        """
-        Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[str]):
-        pulumi.set(self, "type", value)
-
-    @property
-    @pulumi.getter(name="backupUnitId")
-    def backup_unit_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
-        """
-        return pulumi.get(self, "backup_unit_id")
-
-    @backup_unit_id.setter
-    def backup_unit_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "backup_unit_id", value)
-
-    @property
-    @pulumi.getter
-    def bus(self) -> Optional[pulumi.Input[str]]:
-        """
-        The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-        """
-        return pulumi.get(self, "bus")
-
-    @bus.setter
-    def bus(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "bus", value)
-
-    @property
-    @pulumi.getter
-    def image(self) -> Optional[pulumi.Input[str]]:
-        """
-        The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
-        """
-        return pulumi.get(self, "image")
-
-    @image.setter
-    def image(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "image", value)
-
-    @property
-    @pulumi.getter(name="imageAlias")
-    def image_alias(self) -> Optional[pulumi.Input[str]]:
-        """
-        The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
-        """
-        return pulumi.get(self, "image_alias")
-
-    @image_alias.setter
-    def image_alias(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "image_alias", value)
-
-    @property
-    @pulumi.getter(name="imagePassword")
-    def image_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        Image password for this replica volume.
-        """
-        return pulumi.get(self, "image_password")
-
-    @image_password.setter
-    def image_password(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "image_password", value)
-
-    @property
-    @pulumi.getter(name="sshKeys")
-    def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        return pulumi.get(self, "ssh_keys")
-
-    @ssh_keys.setter
-    def ssh_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "ssh_keys", value)
-
-    @property
-    @pulumi.getter(name="userData")
-    def user_data(self) -> Optional[pulumi.Input[str]]:
-        """
-        User-data (Cloud Init) for this replica volume.
-        """
-        return pulumi.get(self, "user_data")
-
-    @user_data.setter
-    def user_data(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "user_data", value)
-
-
-if not MYPY:
-    class KafkaClusterConnectionsArgsDict(TypedDict):
-        broker_addresses: pulumi.Input[Sequence[pulumi.Input[str]]]
-        """
-        The broker addresses of the Kafka Cluster. Can be empty, but must be present.
-        """
-        datacenter_id: pulumi.Input[str]
-        """
-        The datacenter to connect your Kafka Cluster to.
-        """
-        lan_id: pulumi.Input[str]
-        """
-        The numeric LAN ID to connect your Kafka Cluster to.
-        """
-elif False:
-    KafkaClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class KafkaClusterConnectionsArgs:
-    def __init__(__self__, *,
-                 broker_addresses: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 datacenter_id: pulumi.Input[str],
-                 lan_id: pulumi.Input[str]):
-        """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: The broker addresses of the Kafka Cluster. Can be empty, but must be present.
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your Kafka Cluster to.
-        :param pulumi.Input[str] lan_id: The numeric LAN ID to connect your Kafka Cluster to.
-        """
-        pulumi.set(__self__, "broker_addresses", broker_addresses)
-        pulumi.set(__self__, "datacenter_id", datacenter_id)
-        pulumi.set(__self__, "lan_id", lan_id)
-
-    @property
-    @pulumi.getter(name="brokerAddresses")
-    def broker_addresses(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        The broker addresses of the Kafka Cluster. Can be empty, but must be present.
-        """
-        return pulumi.get(self, "broker_addresses")
-
-    @broker_addresses.setter
-    def broker_addresses(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "broker_addresses", value)
-
-    @property
-    @pulumi.getter(name="datacenterId")
-    def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        The datacenter to connect your Kafka Cluster to.
-        """
-        return pulumi.get(self, "datacenter_id")
-
-    @datacenter_id.setter
-    def datacenter_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "datacenter_id", value)
-
-    @property
-    @pulumi.getter(name="lanId")
-    def lan_id(self) -> pulumi.Input[str]:
-        """
-        The numeric LAN ID to connect your Kafka Cluster to.
-        """
-        return pulumi.get(self, "lan_id")
-
-    @lan_id.setter
-    def lan_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "lan_id", value)
-
-
-if not MYPY:
     class TargetGroupHealthCheckArgsDict(TypedDict):
         check_interval: NotRequired[pulumi.Input[int]]
         """
-        The interval in milliseconds between consecutive health checks; default is 2000.
+        [int] The interval in milliseconds between consecutive health checks; default is 2000.
         """
         check_timeout: NotRequired[pulumi.Input[int]]
         """
-        The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
         """
         retries: NotRequired[pulumi.Input[int]]
         """
-        The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
         """
 elif False:
     TargetGroupHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
@@ -1547,9 +53,9 @@ class TargetGroupHealthCheckArgs:
                  check_timeout: Optional[pulumi.Input[int]] = None,
                  retries: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] check_interval: The interval in milliseconds between consecutive health checks; default is 2000.
-        :param pulumi.Input[int] check_timeout: The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
-        :param pulumi.Input[int] retries: The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        :param pulumi.Input[int] check_interval: [int] The interval in milliseconds between consecutive health checks; default is 2000.
+        :param pulumi.Input[int] check_timeout: [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        :param pulumi.Input[int] retries: [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
         """
         if check_interval is not None:
             pulumi.set(__self__, "check_interval", check_interval)
@@ -1562,7 +68,7 @@ class TargetGroupHealthCheckArgs:
     @pulumi.getter(name="checkInterval")
     def check_interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The interval in milliseconds between consecutive health checks; default is 2000.
+        [int] The interval in milliseconds between consecutive health checks; default is 2000.
         """
         return pulumi.get(self, "check_interval")
 
@@ -1574,7 +80,7 @@ class TargetGroupHealthCheckArgs:
     @pulumi.getter(name="checkTimeout")
     def check_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
         """
         return pulumi.get(self, "check_timeout")
 
@@ -1586,7 +92,7 @@ class TargetGroupHealthCheckArgs:
     @pulumi.getter
     def retries(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
         """
         return pulumi.get(self, "retries")
 
@@ -1598,20 +104,29 @@ class TargetGroupHealthCheckArgs:
 if not MYPY:
     class TargetGroupHttpHealthCheckArgsDict(TypedDict):
         match_type: pulumi.Input[str]
+        """
+        [string]
+        """
         response: pulumi.Input[str]
         """
-        The response returned by the request, depending on the match type.
+        [string] The response returned by the request, depending on the match type.
         """
         method: NotRequired[pulumi.Input[str]]
         """
-        The method for the HTTP health check.
+        [string] The method for the HTTP health check.
         """
         negate: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
         path: NotRequired[pulumi.Input[str]]
         """
-        The path (destination URL) for the HTTP health check request; the default is /.
+        [string] The path (destination URL) for the HTTP health check request; the default is /.
         """
         regex: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
 elif False:
     TargetGroupHttpHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1625,9 +140,12 @@ class TargetGroupHttpHealthCheckArgs:
                  path: Optional[pulumi.Input[str]] = None,
                  regex: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] response: The response returned by the request, depending on the match type.
-        :param pulumi.Input[str] method: The method for the HTTP health check.
-        :param pulumi.Input[str] path: The path (destination URL) for the HTTP health check request; the default is /.
+        :param pulumi.Input[str] match_type: [string]
+        :param pulumi.Input[str] response: [string] The response returned by the request, depending on the match type.
+        :param pulumi.Input[str] method: [string] The method for the HTTP health check.
+        :param pulumi.Input[bool] negate: [bool]
+        :param pulumi.Input[str] path: [string] The path (destination URL) for the HTTP health check request; the default is /.
+        :param pulumi.Input[bool] regex: [bool]
         """
         pulumi.set(__self__, "match_type", match_type)
         pulumi.set(__self__, "response", response)
@@ -1643,6 +161,9 @@ class TargetGroupHttpHealthCheckArgs:
     @property
     @pulumi.getter(name="matchType")
     def match_type(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "match_type")
 
     @match_type.setter
@@ -1653,7 +174,7 @@ class TargetGroupHttpHealthCheckArgs:
     @pulumi.getter
     def response(self) -> pulumi.Input[str]:
         """
-        The response returned by the request, depending on the match type.
+        [string] The response returned by the request, depending on the match type.
         """
         return pulumi.get(self, "response")
 
@@ -1665,7 +186,7 @@ class TargetGroupHttpHealthCheckArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        The method for the HTTP health check.
+        [string] The method for the HTTP health check.
         """
         return pulumi.get(self, "method")
 
@@ -1676,6 +197,9 @@ class TargetGroupHttpHealthCheckArgs:
     @property
     @pulumi.getter
     def negate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool]
+        """
         return pulumi.get(self, "negate")
 
     @negate.setter
@@ -1686,7 +210,7 @@ class TargetGroupHttpHealthCheckArgs:
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path (destination URL) for the HTTP health check request; the default is /.
+        [string] The path (destination URL) for the HTTP health check request; the default is /.
         """
         return pulumi.get(self, "path")
 
@@ -1697,6 +221,9 @@ class TargetGroupHttpHealthCheckArgs:
     @property
     @pulumi.getter
     def regex(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [bool]
+        """
         return pulumi.get(self, "regex")
 
     @regex.setter
@@ -1708,27 +235,27 @@ if not MYPY:
     class TargetGroupTargetArgsDict(TypedDict):
         ip: pulumi.Input[str]
         """
-        The IP of the balanced target VM.
+        [string] The IP of the balanced target VM.
         """
         port: pulumi.Input[int]
         """
-        The port of the balanced target service; valid range is 1 to 65535.
+        [int] The port of the balanced target service; valid range is 1 to 65535.
         """
         weight: pulumi.Input[int]
         """
-        Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
         """
         health_check_enabled: NotRequired[pulumi.Input[bool]]
         """
-        Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
         """
         maintenance_enabled: NotRequired[pulumi.Input[bool]]
         """
-        Maintenance mode prevents the target from receiving balanced traffic.
+        [bool] Maintenance mode prevents the target from receiving balanced traffic.
         """
         proxy_protocol: NotRequired[pulumi.Input[str]]
         """
-        Proxy protocol version
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
 elif False:
     TargetGroupTargetArgsDict: TypeAlias = Mapping[str, Any]
@@ -1743,12 +270,12 @@ class TargetGroupTargetArgs:
                  maintenance_enabled: Optional[pulumi.Input[bool]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] ip: The IP of the balanced target VM.
-        :param pulumi.Input[int] port: The port of the balanced target service; valid range is 1 to 65535.
-        :param pulumi.Input[int] weight: Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
-        :param pulumi.Input[bool] health_check_enabled: Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
-        :param pulumi.Input[bool] maintenance_enabled: Maintenance mode prevents the target from receiving balanced traffic.
-        :param pulumi.Input[str] proxy_protocol: Proxy protocol version
+        :param pulumi.Input[str] ip: [string] The IP of the balanced target VM.
+        :param pulumi.Input[int] port: [int] The port of the balanced target service; valid range is 1 to 65535.
+        :param pulumi.Input[int] weight: [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        :param pulumi.Input[bool] health_check_enabled: [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        :param pulumi.Input[bool] maintenance_enabled: [bool] Maintenance mode prevents the target from receiving balanced traffic.
+        :param pulumi.Input[str] proxy_protocol: [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "port", port)
@@ -1764,7 +291,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[str]:
         """
-        The IP of the balanced target VM.
+        [string] The IP of the balanced target VM.
         """
         return pulumi.get(self, "ip")
 
@@ -1776,7 +303,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port of the balanced target service; valid range is 1 to 65535.
+        [int] The port of the balanced target service; valid range is 1 to 65535.
         """
         return pulumi.get(self, "port")
 
@@ -1788,7 +315,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter
     def weight(self) -> pulumi.Input[int]:
         """
-        Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
         """
         return pulumi.get(self, "weight")
 
@@ -1800,7 +327,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter(name="healthCheckEnabled")
     def health_check_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
         """
         return pulumi.get(self, "health_check_enabled")
 
@@ -1812,7 +339,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter(name="maintenanceEnabled")
     def maintenance_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Maintenance mode prevents the target from receiving balanced traffic.
+        [bool] Maintenance mode prevents the target from receiving balanced traffic.
         """
         return pulumi.get(self, "maintenance_enabled")
 
@@ -1824,7 +351,7 @@ class TargetGroupTargetArgs:
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Proxy protocol version
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
         """
         return pulumi.get(self, "proxy_protocol")
 

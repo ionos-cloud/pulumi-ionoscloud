@@ -67,11 +67,17 @@ class GetNatGatewayRuleResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of the NAT gateway rule
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the NAT gateway rule
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -82,31 +88,49 @@ class GetNatGatewayRuleResult:
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
+        """
+        Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource
+        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="sourceSubnet")
     def source_subnet(self) -> str:
+        """
+        Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        """
         return pulumi.get(self, "source_subnet")
 
     @property
     @pulumi.getter(name="targetPortRanges")
     def target_port_ranges(self) -> Sequence['outputs.GetNatGatewayRuleTargetPortRangeResult']:
+        """
+        Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port
+        """
         return pulumi.get(self, "target_port_ranges")
 
     @property
     @pulumi.getter(name="targetSubnet")
     def target_subnet(self) -> str:
+        """
+        Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        """
         return pulumi.get(self, "target_subnet")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        ype of the NAT gateway rule.
+        """
         return pulumi.get(self, "type")
 
 
@@ -134,7 +158,19 @@ def get_nat_gateway_rule(datacenter_id: Optional[str] = None,
                          natgateway_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNatGatewayRuleResult:
     """
-    Use this data source to access information about an existing resource.
+    The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the NAT gateway rule you want to search for.
+           
+           Both `datacenter_id` and `natgateway_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing NAT gateway rule that you want to search for.
+    :param str natgateway_id: Nat Gateway's UUID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -161,7 +197,19 @@ def get_nat_gateway_rule_output(datacenter_id: Optional[pulumi.Input[str]] = Non
                                 natgateway_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNatGatewayRuleResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the NAT gateway rule you want to search for.
+           
+           Both `datacenter_id` and `natgateway_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing NAT gateway rule that you want to search for.
+    :param str natgateway_id: Nat Gateway's UUID.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

@@ -26,9 +26,9 @@ class DistributionArgs:
                  certificate_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Distribution resource.
-        :param pulumi.Input[str] domain: The domain of the distribution.
-        :param pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]] routing_rules: The routing rules for the distribution.
-        :param pulumi.Input[str] certificate_id: The ID of the certificate to use for the distribution.
+        :param pulumi.Input[str] domain: [string] The domain of the distribution.
+        :param pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]] routing_rules: [list] The routing rules for the distribution.
+        :param pulumi.Input[str] certificate_id: [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "routing_rules", routing_rules)
@@ -39,7 +39,7 @@ class DistributionArgs:
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
         """
-        The domain of the distribution.
+        [string] The domain of the distribution.
         """
         return pulumi.get(self, "domain")
 
@@ -51,7 +51,7 @@ class DistributionArgs:
     @pulumi.getter(name="routingRules")
     def routing_rules(self) -> pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]:
         """
-        The routing rules for the distribution.
+        [list] The routing rules for the distribution.
         """
         return pulumi.get(self, "routing_rules")
 
@@ -63,7 +63,7 @@ class DistributionArgs:
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the certificate to use for the distribution.
+        [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -83,12 +83,12 @@ class _DistributionState:
                  routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]] = None):
         """
         Input properties used for looking up and filtering Distribution resources.
-        :param pulumi.Input[str] certificate_id: The ID of the certificate to use for the distribution.
-        :param pulumi.Input[str] domain: The domain of the distribution.
+        :param pulumi.Input[str] certificate_id: [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+        :param pulumi.Input[str] domain: [string] The domain of the distribution.
         :param pulumi.Input[str] public_endpoint_v4: IP of the distribution, it has to be included on the domain DNS Zone as A record.
         :param pulumi.Input[str] public_endpoint_v6: IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
-        :param pulumi.Input[str] resource_urn: Unique name of the resource.
-        :param pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]] routing_rules: The routing rules for the distribution.
+        :param pulumi.Input[str] resource_urn: Unique resource indentifier.
+        :param pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]] routing_rules: [list] The routing rules for the distribution.
         """
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
@@ -107,7 +107,7 @@ class _DistributionState:
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the certificate to use for the distribution.
+        [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -119,7 +119,7 @@ class _DistributionState:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        The domain of the distribution.
+        [string] The domain of the distribution.
         """
         return pulumi.get(self, "domain")
 
@@ -155,7 +155,7 @@ class _DistributionState:
     @pulumi.getter(name="resourceUrn")
     def resource_urn(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique name of the resource.
+        Unique resource indentifier.
         """
         return pulumi.get(self, "resource_urn")
 
@@ -167,7 +167,7 @@ class _DistributionState:
     @pulumi.getter(name="routingRules")
     def routing_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DistributionRoutingRuleArgs']]]]:
         """
-        The routing rules for the distribution.
+        [list] The routing rules for the distribution.
         """
         return pulumi.get(self, "routing_rules")
 
@@ -186,12 +186,73 @@ class Distribution(pulumi.CustomResource):
                  routing_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Create a Distribution resource with the given unique name, props, and options.
+        Manages a **CDN Distribution** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        example = ionoscloud.cdn.Distribution("example",
+            domain="example.com",
+            certificate_id=cert.id,
+            routing_rules=[
+                {
+                    "scheme": "https",
+                    "prefix": "/api",
+                    "upstream": {
+                        "host": "server.example.com",
+                        "caching": True,
+                        "waf": True,
+                        "sni_mode": "distribution",
+                        "rate_limit_class": "R500",
+                        "geo_restrictions": {
+                            "allow_lists": [
+                                "CN",
+                                "RU",
+                            ],
+                        },
+                    },
+                },
+                {
+                    "scheme": "http/https",
+                    "prefix": "/api2",
+                    "upstream": {
+                        "host": "server2.example.com",
+                        "caching": False,
+                        "waf": False,
+                        "sni_mode": "origin",
+                        "rate_limit_class": "R10",
+                        "geo_restrictions": {
+                            "block_lists": [
+                                "CN",
+                                "RU",
+                            ],
+                        },
+                    },
+                },
+            ])
+        ```
+
+        ## Import
+
+        Resource Distribution can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_id: The ID of the certificate to use for the distribution.
-        :param pulumi.Input[str] domain: The domain of the distribution.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: The routing rules for the distribution.
+        :param pulumi.Input[str] certificate_id: [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+        :param pulumi.Input[str] domain: [string] The domain of the distribution.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: [list] The routing rules for the distribution.
         """
         ...
     @overload
@@ -200,7 +261,68 @@ class Distribution(pulumi.CustomResource):
                  args: DistributionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Distribution resource with the given unique name, props, and options.
+        Manages a **CDN Distribution** on IonosCloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        #optionally you can add a certificate to the distribution
+        cert = ionoscloud.cert.Certificate("cert",
+            certificate=(lambda path: open(path).read())("path_to_cert"),
+            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
+            private_key=(lambda path: open(path).read())("path_to_private_key"))
+        example = ionoscloud.cdn.Distribution("example",
+            domain="example.com",
+            certificate_id=cert.id,
+            routing_rules=[
+                {
+                    "scheme": "https",
+                    "prefix": "/api",
+                    "upstream": {
+                        "host": "server.example.com",
+                        "caching": True,
+                        "waf": True,
+                        "sni_mode": "distribution",
+                        "rate_limit_class": "R500",
+                        "geo_restrictions": {
+                            "allow_lists": [
+                                "CN",
+                                "RU",
+                            ],
+                        },
+                    },
+                },
+                {
+                    "scheme": "http/https",
+                    "prefix": "/api2",
+                    "upstream": {
+                        "host": "server2.example.com",
+                        "caching": False,
+                        "waf": False,
+                        "sni_mode": "origin",
+                        "rate_limit_class": "R10",
+                        "geo_restrictions": {
+                            "block_lists": [
+                                "CN",
+                                "RU",
+                            ],
+                        },
+                    },
+                },
+            ])
+        ```
+
+        ## Import
+
+        Resource Distribution can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param DistributionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -261,12 +383,12 @@ class Distribution(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] certificate_id: The ID of the certificate to use for the distribution.
-        :param pulumi.Input[str] domain: The domain of the distribution.
+        :param pulumi.Input[str] certificate_id: [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+        :param pulumi.Input[str] domain: [string] The domain of the distribution.
         :param pulumi.Input[str] public_endpoint_v4: IP of the distribution, it has to be included on the domain DNS Zone as A record.
         :param pulumi.Input[str] public_endpoint_v6: IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
-        :param pulumi.Input[str] resource_urn: Unique name of the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: The routing rules for the distribution.
+        :param pulumi.Input[str] resource_urn: Unique resource indentifier.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: [list] The routing rules for the distribution.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -284,7 +406,7 @@ class Distribution(pulumi.CustomResource):
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the certificate to use for the distribution.
+        [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -292,7 +414,7 @@ class Distribution(pulumi.CustomResource):
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
         """
-        The domain of the distribution.
+        [string] The domain of the distribution.
         """
         return pulumi.get(self, "domain")
 
@@ -316,7 +438,7 @@ class Distribution(pulumi.CustomResource):
     @pulumi.getter(name="resourceUrn")
     def resource_urn(self) -> pulumi.Output[str]:
         """
-        Unique name of the resource.
+        Unique resource indentifier.
         """
         return pulumi.get(self, "resource_urn")
 
@@ -324,7 +446,7 @@ class Distribution(pulumi.CustomResource):
     @pulumi.getter(name="routingRules")
     def routing_rules(self) -> pulumi.Output[Sequence['outputs.DistributionRoutingRule']]:
         """
-        The routing rules for the distribution.
+        [list] The routing rules for the distribution.
         """
         return pulumi.get(self, "routing_rules")
 

@@ -71,7 +71,24 @@ def get_resource(resource_id: Optional[str] = None,
                  resource_type: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourceResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+    You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Type
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_resource(resource_type="datacenter")
+    ```
+
+
+    :param str resource_id: The ID of the specific resource to retrieve information about.
+    :param str resource_type: The specific type of resources to retrieve information about.
     """
     __args__ = dict()
     __args__['resourceId'] = resource_id
@@ -87,7 +104,24 @@ def get_resource_output(resource_id: Optional[pulumi.Input[Optional[str]]] = Non
                         resource_type: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+    You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Type
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_resource(resource_type="datacenter")
+    ```
+
+
+    :param str resource_id: The ID of the specific resource to retrieve information about.
+    :param str resource_type: The specific type of resources to retrieve information about.
     """
     __args__ = dict()
     __args__['resourceId'] = resource_id

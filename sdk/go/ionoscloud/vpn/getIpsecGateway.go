@@ -11,6 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupIpsecGateway(ctx *pulumi.Context, args *LookupIpsecGatewayArgs, opts ...pulumi.InvokeOption) (*LookupIpsecGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpsecGatewayResult
@@ -23,21 +29,31 @@ func LookupIpsecGateway(ctx *pulumi.Context, args *LookupIpsecGatewayArgs, opts 
 
 // A collection of arguments for invoking getIpsecGateway.
 type LookupIpsecGatewayArgs struct {
-	Id       *string `pulumi:"id"`
-	Location string  `pulumi:"location"`
-	Name     *string `pulumi:"name"`
-	Version  *string `pulumi:"version"`
+	// ID of an existing IPSec Gateway that you want to search for.
+	Id *string `pulumi:"id"`
+	// The location of the IPSec Gateway.
+	Location string `pulumi:"location"`
+	// Name of an existing IPSec Gateway that you want to search for.
+	Name *string `pulumi:"name"`
+	// The IKE version that is permitted for the VPN tunnels.
+	Version *string `pulumi:"version"`
 }
 
 // A collection of values returned by getIpsecGateway.
 type LookupIpsecGatewayResult struct {
+	// The network connection for your gateway.
 	Connections []GetIpsecGatewayConnection `pulumi:"connections"`
-	Description string                      `pulumi:"description"`
-	GatewayIp   string                      `pulumi:"gatewayIp"`
-	Id          string                      `pulumi:"id"`
-	Location    string                      `pulumi:"location"`
-	Name        string                      `pulumi:"name"`
-	Version     string                      `pulumi:"version"`
+	// (Optional)[string] The human-readable description of the IPSec Gateway.
+	Description string `pulumi:"description"`
+	// Public IP address to be assigned to the gateway.
+	GatewayIp string `pulumi:"gatewayIp"`
+	// The unique ID of the IPSec Gateway.
+	Id       string `pulumi:"id"`
+	Location string `pulumi:"location"`
+	// The name of the IPSec Gateway.
+	Name string `pulumi:"name"`
+	// The IKE version that is permitted for the VPN tunnels.
+	Version string `pulumi:"version"`
 }
 
 func LookupIpsecGatewayOutput(ctx *pulumi.Context, args LookupIpsecGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupIpsecGatewayResultOutput {
@@ -51,10 +67,14 @@ func LookupIpsecGatewayOutput(ctx *pulumi.Context, args LookupIpsecGatewayOutput
 
 // A collection of arguments for invoking getIpsecGateway.
 type LookupIpsecGatewayOutputArgs struct {
-	Id       pulumi.StringPtrInput `pulumi:"id"`
-	Location pulumi.StringInput    `pulumi:"location"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	Version  pulumi.StringPtrInput `pulumi:"version"`
+	// ID of an existing IPSec Gateway that you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The location of the IPSec Gateway.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of an existing IPSec Gateway that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The IKE version that is permitted for the VPN tunnels.
+	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
 func (LookupIpsecGatewayOutputArgs) ElementType() reflect.Type {
@@ -76,18 +96,22 @@ func (o LookupIpsecGatewayResultOutput) ToLookupIpsecGatewayResultOutputWithCont
 	return o
 }
 
+// The network connection for your gateway.
 func (o LookupIpsecGatewayResultOutput) Connections() GetIpsecGatewayConnectionArrayOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) []GetIpsecGatewayConnection { return v.Connections }).(GetIpsecGatewayConnectionArrayOutput)
 }
 
+// (Optional)[string] The human-readable description of the IPSec Gateway.
 func (o LookupIpsecGatewayResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Public IP address to be assigned to the gateway.
 func (o LookupIpsecGatewayResultOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
+// The unique ID of the IPSec Gateway.
 func (o LookupIpsecGatewayResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -96,10 +120,12 @@ func (o LookupIpsecGatewayResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// The name of the IPSec Gateway.
 func (o LookupIpsecGatewayResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The IKE version that is permitted for the VPN tunnels.
 func (o LookupIpsecGatewayResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpsecGatewayResult) string { return v.Version }).(pulumi.StringOutput)
 }

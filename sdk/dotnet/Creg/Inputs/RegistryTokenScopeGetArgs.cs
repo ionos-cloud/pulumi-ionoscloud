@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Creg.Inputs
         private InputList<string>? _actions;
 
         /// <summary>
-        /// Example: ["pull", "push", "delete"]
+        /// [string] Example: ["pull", "push", "delete"]
         /// </summary>
         public InputList<string> Actions
         {
@@ -24,9 +24,15 @@ namespace Pulumi.Ionoscloud.Creg.Inputs
             set => _actions = value;
         }
 
+        /// <summary>
+        /// [string]
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// [string]
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

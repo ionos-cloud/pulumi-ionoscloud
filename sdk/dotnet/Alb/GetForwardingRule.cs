@@ -11,12 +11,153 @@ namespace Pulumi.Ionoscloud.Alb
 {
     public static class GetForwardingRule
     {
+        /// <summary>
+        /// The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "ALB FR Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "Example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetForwardingRuleResult> InvokeAsync(GetForwardingRuleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetForwardingRuleResult>("ionoscloud:alb/getForwardingRule:getForwardingRule", args ?? new GetForwardingRuleArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "ALB FR Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "Example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetForwardingRuleResult> Invoke(GetForwardingRuleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetForwardingRuleResult>("ionoscloud:alb/getForwardingRule:getForwardingRule", args ?? new GetForwardingRuleInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "ALB FR Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Alb.GetForwardingRule.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         ApplicationLoadbalancerId = ionoscloud_application_loadbalancer.Example.Id,
+        ///         Name = "Example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetForwardingRuleResult> Invoke(GetForwardingRuleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetForwardingRuleResult>("ionoscloud:alb/getForwardingRule:getForwardingRule", args ?? new GetForwardingRuleInvokeArgs(), options.WithDefaults());
     }
@@ -24,18 +165,35 @@ namespace Pulumi.Ionoscloud.Alb
 
     public sealed class GetForwardingRuleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Application Load Balancer's UUID.
+        /// </summary>
         [Input("applicationLoadbalancerId", required: true)]
         public string ApplicationLoadbalancerId { get; set; } = null!;
 
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public string DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the application load balancer you want to search for.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// 
+        /// Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
@@ -47,18 +205,35 @@ namespace Pulumi.Ionoscloud.Alb
 
     public sealed class GetForwardingRuleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Application Load Balancer's UUID.
+        /// </summary>
         [Input("applicationLoadbalancerId", required: true)]
         public Input<string> ApplicationLoadbalancerId { get; set; } = null!;
 
+        /// <summary>
+        /// Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the application load balancer you want to search for.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// 
+        /// Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
@@ -73,14 +248,36 @@ namespace Pulumi.Ionoscloud.Alb
     public sealed class GetForwardingRuleResult
     {
         public readonly string ApplicationLoadbalancerId;
+        /// <summary>
+        /// The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+        /// - `server certificates` - Array of items in that collection.
+        /// </summary>
         public readonly int ClientTimeout;
         public readonly string DatacenterId;
+        /// <summary>
+        /// Array of items in that collection
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetForwardingRuleHttpRuleResult> HttpRules;
+        /// <summary>
+        /// Id of Application Load Balancer Forwarding Rule
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Listening (inbound) IP.
+        /// </summary>
         public readonly string ListenerIp;
+        /// <summary>
+        /// Listening (inbound) port number; valid range is 1 to 65535.
+        /// </summary>
         public readonly int ListenerPort;
+        /// <summary>
+        /// The unique name of the Application Load Balancer HTTP rule.
+        /// </summary>
         public readonly string? Name;
         public readonly bool? PartialMatch;
+        /// <summary>
+        /// Balancing protocol.
+        /// </summary>
         public readonly string Protocol;
         public readonly ImmutableArray<string> ServerCertificates;
 

@@ -11,6 +11,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **DNS Zone** can be used to search for and return an existing DNS Zone.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
+//
+// ## Example Usage
+//
+// ### By name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupZone(ctx, &dns.LookupZoneArgs{
+//				Name: pulumi.StringRef("example.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By name with partial match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dns.LookupZone(ctx, &dns.LookupZoneArgs{
+//				Name:         pulumi.StringRef("example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupZone(ctx *pulumi.Context, args *LookupZoneArgs, opts ...pulumi.InvokeOption) (*LookupZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupZoneResult
@@ -23,17 +81,27 @@ func LookupZone(ctx *pulumi.Context, args *LookupZoneArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getZone.
 type LookupZoneArgs struct {
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// [string] The ID of the DNS Zone you want to search for.
+	Id *string `pulumi:"id"`
+	// [string] The name of the DNS Zone you want to search for.
+	Name *string `pulumi:"name"`
+	// [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getZone.
 type LookupZoneResult struct {
-	Description  string   `pulumi:"description"`
-	Enabled      bool     `pulumi:"enabled"`
-	Id           *string  `pulumi:"id"`
-	Name         *string  `pulumi:"name"`
+	// The description of the DNS Zone.
+	Description string `pulumi:"description"`
+	// Indicates if the DNS Zone is activated or not.
+	Enabled bool `pulumi:"enabled"`
+	// The UUID of the DNS Zone.
+	Id *string `pulumi:"id"`
+	// The name of the DNS Zone.
+	Name *string `pulumi:"name"`
+	// A list of available name servers.
 	Nameservers  []string `pulumi:"nameservers"`
 	PartialMatch *bool    `pulumi:"partialMatch"`
 }
@@ -49,9 +117,14 @@ func LookupZoneOutput(ctx *pulumi.Context, args LookupZoneOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getZone.
 type LookupZoneOutputArgs struct {
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// [string] The ID of the DNS Zone you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The name of the DNS Zone you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupZoneOutputArgs) ElementType() reflect.Type {
@@ -73,22 +146,27 @@ func (o LookupZoneResultOutput) ToLookupZoneResultOutputWithContext(ctx context.
 	return o
 }
 
+// The description of the DNS Zone.
 func (o LookupZoneResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupZoneResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Indicates if the DNS Zone is activated or not.
 func (o LookupZoneResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupZoneResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// The UUID of the DNS Zone.
 func (o LookupZoneResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupZoneResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The name of the DNS Zone.
 func (o LookupZoneResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupZoneResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// A list of available name servers.
 func (o LookupZoneResultOutput) Nameservers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupZoneResult) []string { return v.Nameservers }).(pulumi.StringArrayOutput)
 }

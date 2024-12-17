@@ -35,19 +35,21 @@ if not MYPY:
     class IpsecGatewayConnectionArgsDict(TypedDict):
         datacenter_id: pulumi.Input[str]
         """
-        The datacenter to connect your VPN Gateway to.
+        [string] The datacenter to connect your VPN Gateway to.
         """
         ipv4_cidr: pulumi.Input[str]
         """
-        Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+        VPN Gateway. Note: this should be the subnet already assigned to the LAN
         """
         lan_id: pulumi.Input[str]
         """
-        The numeric LAN ID to connect your VPN Gateway to.
+        [string] The numeric LAN ID to connect your VPN Gateway to.
         """
         ipv6_cidr: NotRequired[pulumi.Input[str]]
         """
-        Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+        Gateway. **Note**: this should be the subnet already assigned to the LAN
         """
 elif False:
     IpsecGatewayConnectionArgsDict: TypeAlias = Mapping[str, Any]
@@ -60,10 +62,12 @@ class IpsecGatewayConnectionArgs:
                  lan_id: pulumi.Input[str],
                  ipv6_cidr: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your VPN Gateway to.
-        :param pulumi.Input[str] ipv4_cidr: Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
-        :param pulumi.Input[str] lan_id: The numeric LAN ID to connect your VPN Gateway to.
-        :param pulumi.Input[str] ipv6_cidr: Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        :param pulumi.Input[str] datacenter_id: [string] The datacenter to connect your VPN Gateway to.
+        :param pulumi.Input[str] ipv4_cidr: [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+               VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        :param pulumi.Input[str] lan_id: [string] The numeric LAN ID to connect your VPN Gateway to.
+        :param pulumi.Input[str] ipv6_cidr: [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+               Gateway. **Note**: this should be the subnet already assigned to the LAN
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "ipv4_cidr", ipv4_cidr)
@@ -75,7 +79,7 @@ class IpsecGatewayConnectionArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The datacenter to connect your VPN Gateway to.
+        [string] The datacenter to connect your VPN Gateway to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -87,7 +91,8 @@ class IpsecGatewayConnectionArgs:
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> pulumi.Input[str]:
         """
-        Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+        VPN Gateway. Note: this should be the subnet already assigned to the LAN
         """
         return pulumi.get(self, "ipv4_cidr")
 
@@ -99,7 +104,7 @@ class IpsecGatewayConnectionArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        The numeric LAN ID to connect your VPN Gateway to.
+        [string] The numeric LAN ID to connect your VPN Gateway to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -111,7 +116,8 @@ class IpsecGatewayConnectionArgs:
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> Optional[pulumi.Input[str]]:
         """
-        Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+        [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+        Gateway. **Note**: this should be the subnet already assigned to the LAN
         """
         return pulumi.get(self, "ipv6_cidr")
 
@@ -124,11 +130,13 @@ if not MYPY:
     class IpsecTunnelAuthArgsDict(TypedDict):
         method: NotRequired[pulumi.Input[str]]
         """
-        The Authentication Method to use for IPSec Authentication.
+        [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+        Default value: `PSK`.
         """
         psk_key: NotRequired[pulumi.Input[str]]
         """
-        The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+        [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+        PSK.
         """
 elif False:
     IpsecTunnelAuthArgsDict: TypeAlias = Mapping[str, Any]
@@ -139,8 +147,10 @@ class IpsecTunnelAuthArgs:
                  method: Optional[pulumi.Input[str]] = None,
                  psk_key: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] method: The Authentication Method to use for IPSec Authentication.
-        :param pulumi.Input[str] psk_key: The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+        :param pulumi.Input[str] method: [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+               Default value: `PSK`.
+        :param pulumi.Input[str] psk_key: [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+               PSK.
         """
         if method is not None:
             pulumi.set(__self__, "method", method)
@@ -151,7 +161,8 @@ class IpsecTunnelAuthArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        The Authentication Method to use for IPSec Authentication.
+        [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+        Default value: `PSK`.
         """
         return pulumi.get(self, "method")
 
@@ -163,7 +174,8 @@ class IpsecTunnelAuthArgs:
     @pulumi.getter(name="pskKey")
     def psk_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+        [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+        PSK.
         """
         return pulumi.get(self, "psk_key")
 
@@ -176,19 +188,25 @@ if not MYPY:
     class IpsecTunnelEspArgsDict(TypedDict):
         diffie_hellman_group: NotRequired[pulumi.Input[str]]
         """
-        The Diffie-Hellman Group to use for IPSec Encryption.
+        [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+        values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+        Default value: `16-MODP4096`.
         """
         encryption_algorithm: NotRequired[pulumi.Input[str]]
         """
-        The encryption algorithm to use for IPSec Encryption.
+        [string] The encryption algorithm to use for IPSec Encryption. Possible
+        values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+        `AES256-CCM-12`. Default value: `AES256`.
         """
         integrity_algorithm: NotRequired[pulumi.Input[str]]
         """
-        The integrity algorithm to use for IPSec Encryption.
+        [string] The integrity algorithm to use for IPSec Encryption. Possible
+        values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
         """
         lifetime: NotRequired[pulumi.Input[int]]
         """
-        The phase lifetime in seconds.
+        [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+        Default value: `86400`.
         """
 elif False:
     IpsecTunnelEspArgsDict: TypeAlias = Mapping[str, Any]
@@ -201,10 +219,16 @@ class IpsecTunnelEspArgs:
                  integrity_algorithm: Optional[pulumi.Input[str]] = None,
                  lifetime: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] diffie_hellman_group: The Diffie-Hellman Group to use for IPSec Encryption.
-        :param pulumi.Input[str] encryption_algorithm: The encryption algorithm to use for IPSec Encryption.
-        :param pulumi.Input[str] integrity_algorithm: The integrity algorithm to use for IPSec Encryption.
-        :param pulumi.Input[int] lifetime: The phase lifetime in seconds.
+        :param pulumi.Input[str] diffie_hellman_group: [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+               values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+               Default value: `16-MODP4096`.
+        :param pulumi.Input[str] encryption_algorithm: [string] The encryption algorithm to use for IPSec Encryption. Possible
+               values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+               `AES256-CCM-12`. Default value: `AES256`.
+        :param pulumi.Input[str] integrity_algorithm: [string] The integrity algorithm to use for IPSec Encryption. Possible
+               values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+        :param pulumi.Input[int] lifetime: [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+               Default value: `86400`.
         """
         if diffie_hellman_group is not None:
             pulumi.set(__self__, "diffie_hellman_group", diffie_hellman_group)
@@ -219,7 +243,9 @@ class IpsecTunnelEspArgs:
     @pulumi.getter(name="diffieHellmanGroup")
     def diffie_hellman_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The Diffie-Hellman Group to use for IPSec Encryption.
+        [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+        values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+        Default value: `16-MODP4096`.
         """
         return pulumi.get(self, "diffie_hellman_group")
 
@@ -231,7 +257,9 @@ class IpsecTunnelEspArgs:
     @pulumi.getter(name="encryptionAlgorithm")
     def encryption_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The encryption algorithm to use for IPSec Encryption.
+        [string] The encryption algorithm to use for IPSec Encryption. Possible
+        values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+        `AES256-CCM-12`. Default value: `AES256`.
         """
         return pulumi.get(self, "encryption_algorithm")
 
@@ -243,7 +271,8 @@ class IpsecTunnelEspArgs:
     @pulumi.getter(name="integrityAlgorithm")
     def integrity_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The integrity algorithm to use for IPSec Encryption.
+        [string] The integrity algorithm to use for IPSec Encryption. Possible
+        values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
         """
         return pulumi.get(self, "integrity_algorithm")
 
@@ -255,7 +284,8 @@ class IpsecTunnelEspArgs:
     @pulumi.getter
     def lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The phase lifetime in seconds.
+        [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+        Default value: `86400`.
         """
         return pulumi.get(self, "lifetime")
 
@@ -268,19 +298,25 @@ if not MYPY:
     class IpsecTunnelIkeArgsDict(TypedDict):
         diffie_hellman_group: NotRequired[pulumi.Input[str]]
         """
-        The Diffie-Hellman Group to use for IPSec Encryption.
+        [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+        values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+        Default value: `16-MODP4096`.
         """
         encryption_algorithm: NotRequired[pulumi.Input[str]]
         """
-        The encryption algorithm to use for IPSec Encryption.
+        [string] The encryption algorithm to use for IPSec Encryption. Possible
+        values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+        `AES256-CCM-12`. Default value: `AES256`.
         """
         integrity_algorithm: NotRequired[pulumi.Input[str]]
         """
-        The integrity algorithm to use for IPSec Encryption.
+        [string] The integrity algorithm to use for IPSec Encryption. Possible
+        values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
         """
         lifetime: NotRequired[pulumi.Input[int]]
         """
-        The phase lifetime in seconds.
+        [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+        Default value: `86400`.
         """
 elif False:
     IpsecTunnelIkeArgsDict: TypeAlias = Mapping[str, Any]
@@ -293,10 +329,16 @@ class IpsecTunnelIkeArgs:
                  integrity_algorithm: Optional[pulumi.Input[str]] = None,
                  lifetime: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] diffie_hellman_group: The Diffie-Hellman Group to use for IPSec Encryption.
-        :param pulumi.Input[str] encryption_algorithm: The encryption algorithm to use for IPSec Encryption.
-        :param pulumi.Input[str] integrity_algorithm: The integrity algorithm to use for IPSec Encryption.
-        :param pulumi.Input[int] lifetime: The phase lifetime in seconds.
+        :param pulumi.Input[str] diffie_hellman_group: [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+               values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+               Default value: `16-MODP4096`.
+        :param pulumi.Input[str] encryption_algorithm: [string] The encryption algorithm to use for IPSec Encryption. Possible
+               values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+               `AES256-CCM-12`. Default value: `AES256`.
+        :param pulumi.Input[str] integrity_algorithm: [string] The integrity algorithm to use for IPSec Encryption. Possible
+               values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
+        :param pulumi.Input[int] lifetime: [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+               Default value: `86400`.
         """
         if diffie_hellman_group is not None:
             pulumi.set(__self__, "diffie_hellman_group", diffie_hellman_group)
@@ -311,7 +353,9 @@ class IpsecTunnelIkeArgs:
     @pulumi.getter(name="diffieHellmanGroup")
     def diffie_hellman_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The Diffie-Hellman Group to use for IPSec Encryption.
+        [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+        values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+        Default value: `16-MODP4096`.
         """
         return pulumi.get(self, "diffie_hellman_group")
 
@@ -323,7 +367,9 @@ class IpsecTunnelIkeArgs:
     @pulumi.getter(name="encryptionAlgorithm")
     def encryption_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The encryption algorithm to use for IPSec Encryption.
+        [string] The encryption algorithm to use for IPSec Encryption. Possible
+        values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+        `AES256-CCM-12`. Default value: `AES256`.
         """
         return pulumi.get(self, "encryption_algorithm")
 
@@ -335,7 +381,8 @@ class IpsecTunnelIkeArgs:
     @pulumi.getter(name="integrityAlgorithm")
     def integrity_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        The integrity algorithm to use for IPSec Encryption.
+        [string] The integrity algorithm to use for IPSec Encryption. Possible
+        values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
         """
         return pulumi.get(self, "integrity_algorithm")
 
@@ -347,7 +394,8 @@ class IpsecTunnelIkeArgs:
     @pulumi.getter
     def lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The phase lifetime in seconds.
+        [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+        Default value: `86400`.
         """
         return pulumi.get(self, "lifetime")
 
@@ -359,9 +407,21 @@ class IpsecTunnelIkeArgs:
 if not MYPY:
     class WireguardGatewayConnectionArgsDict(TypedDict):
         datacenter_id: pulumi.Input[str]
+        """
+        [String] The ID of the datacenter where the WireGuard Gateway is located.
+        """
         lan_id: pulumi.Input[str]
+        """
+        [String] The ID of the LAN where the WireGuard Gateway is connected.
+        """
         ipv4_cidr: NotRequired[pulumi.Input[str]]
+        """
+        [String] The IPv4 CIDR for the WireGuard Gateway connection.
+        """
         ipv6_cidr: NotRequired[pulumi.Input[str]]
+        """
+        [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        """
 elif False:
     WireguardGatewayConnectionArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -372,6 +432,12 @@ class WireguardGatewayConnectionArgs:
                  lan_id: pulumi.Input[str],
                  ipv4_cidr: Optional[pulumi.Input[str]] = None,
                  ipv6_cidr: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] datacenter_id: [String] The ID of the datacenter where the WireGuard Gateway is located.
+        :param pulumi.Input[str] lan_id: [String] The ID of the LAN where the WireGuard Gateway is connected.
+        :param pulumi.Input[str] ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway connection.
+        :param pulumi.Input[str] ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "lan_id", lan_id)
         if ipv4_cidr is not None:
@@ -382,6 +448,9 @@ class WireguardGatewayConnectionArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
+        """
+        [String] The ID of the datacenter where the WireGuard Gateway is located.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -391,6 +460,9 @@ class WireguardGatewayConnectionArgs:
     @property
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
+        """
+        [String] The ID of the LAN where the WireGuard Gateway is connected.
+        """
         return pulumi.get(self, "lan_id")
 
     @lan_id.setter
@@ -400,6 +472,9 @@ class WireguardGatewayConnectionArgs:
     @property
     @pulumi.getter(name="ipv4Cidr")
     def ipv4_cidr(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The IPv4 CIDR for the WireGuard Gateway connection.
+        """
         return pulumi.get(self, "ipv4_cidr")
 
     @ipv4_cidr.setter
@@ -409,6 +484,9 @@ class WireguardGatewayConnectionArgs:
     @property
     @pulumi.getter(name="ipv6Cidr")
     def ipv6_cidr(self) -> Optional[pulumi.Input[str]]:
+        """
+        [String] The IPv6 CIDR for the WireGuard Gateway connection.
+        """
         return pulumi.get(self, "ipv6_cidr")
 
     @ipv6_cidr.setter
@@ -420,11 +498,11 @@ if not MYPY:
     class WireguardPeerEndpointArgsDict(TypedDict):
         host: pulumi.Input[str]
         """
-        Hostname or IPV4 address that the WireGuard Server will connect to.
+        [string] The hostname or IPV4 address that the WireGuard Server will connect to.
         """
         port: NotRequired[pulumi.Input[int]]
         """
-        Port that the WireGuard Server will connect to.
+        [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
         """
 elif False:
     WireguardPeerEndpointArgsDict: TypeAlias = Mapping[str, Any]
@@ -435,8 +513,8 @@ class WireguardPeerEndpointArgs:
                  host: pulumi.Input[str],
                  port: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] host: Hostname or IPV4 address that the WireGuard Server will connect to.
-        :param pulumi.Input[int] port: Port that the WireGuard Server will connect to.
+        :param pulumi.Input[str] host: [string] The hostname or IPV4 address that the WireGuard Server will connect to.
+        :param pulumi.Input[int] port: [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
         """
         pulumi.set(__self__, "host", host)
         if port is not None:
@@ -446,7 +524,7 @@ class WireguardPeerEndpointArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        Hostname or IPV4 address that the WireGuard Server will connect to.
+        [string] The hostname or IPV4 address that the WireGuard Server will connect to.
         """
         return pulumi.get(self, "host")
 
@@ -458,7 +536,7 @@ class WireguardPeerEndpointArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        Port that the WireGuard Server will connect to.
+        [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
         """
         return pulumi.get(self, "port")
 

@@ -35,6 +35,20 @@ class VolumeArgs:
                  user_data: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[int] size: [integer] The size of the volume in GB.
+        :param pulumi.Input[str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        :param pulumi.Input[str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `sshkey_path` is not provided.
+        :param pulumi.Input[str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[str] name: [string] The name of the volume.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "disk_type", disk_type)
@@ -64,6 +78,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -73,6 +90,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="diskType")
     def disk_type(self) -> pulumi.Input[str]:
+        """
+        [string] The volume type: HDD or SSD. This property is immutable.
+        """
         return pulumi.get(self, "disk_type")
 
     @disk_type.setter
@@ -82,6 +102,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[str]:
+        """
+        [string] The ID of a server.
+        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -91,6 +114,9 @@ class VolumeArgs:
     @property
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
+        """
+        [integer] The size of the volume in GB.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -100,6 +126,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
@@ -109,6 +138,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="backupUnitId")
     def backup_unit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
         return pulumi.get(self, "backup_unit_id")
 
     @backup_unit_id.setter
@@ -118,6 +150,9 @@ class VolumeArgs:
     @property
     @pulumi.getter
     def bus(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Boolean] The bus type of the volume: VIRTIO or IDE.
+        """
         return pulumi.get(self, "bus")
 
     @bus.setter
@@ -127,6 +162,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
@@ -136,6 +174,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Required if `sshkey_path` is not provided.
+        """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -145,6 +186,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Required if `image_name` is not provided.
+        """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
@@ -154,6 +198,9 @@ class VolumeArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the volume.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -163,6 +210,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -172,6 +222,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
@@ -181,6 +234,9 @@ class VolumeArgs:
     @property
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
@@ -219,7 +275,35 @@ class _VolumeState:
                  user_data: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[str] boot_server: The UUID of the attached server.
+        :param pulumi.Input[str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        :param pulumi.Input[str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] boot_server: [string] The UUID of the attached server.
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        :param pulumi.Input[str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
+        :param pulumi.Input[bool] cpu_hot_plug: [string] Is capable of CPU hot plug (no reboot required)
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[int] device_number: The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        :param pulumi.Input[bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        :param pulumi.Input[bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        :param pulumi.Input[str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[str] image: The image or snapshot UUID.
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `sshkey_path` is not provided.
+        :param pulumi.Input[str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[str] name: [string] The name of the volume.
+        :param pulumi.Input[bool] nic_hot_plug: [string] Is capable of nic hot plug (no reboot required)
+        :param pulumi.Input[bool] nic_hot_unplug: [string] Is capable of nic hot unplug (no reboot required)
+        :param pulumi.Input[int] pci_slot: The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        :param pulumi.Input[bool] ram_hot_plug: [string] Is capable of memory hot plug (no reboot required)
+        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[int] size: [integer] The size of the volume in GB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[str] sshkey: The associated public SSH key.
+        :param pulumi.Input[str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         if availability_zone is not None:
             pulumi.set(__self__, "availability_zone", availability_zone)
@@ -277,6 +361,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
@@ -286,6 +373,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="backupUnitId")
     def backup_unit_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
         return pulumi.get(self, "backup_unit_id")
 
     @backup_unit_id.setter
@@ -296,7 +386,11 @@ class _VolumeState:
     @pulumi.getter(name="bootServer")
     def boot_server(self) -> Optional[pulumi.Input[str]]:
         """
-        The UUID of the attached server.
+        [string] The UUID of the attached server.
+        > **⚠ WARNING**
+        >
+        > ssh_key_path and ssh_keys fields are immutable.
+        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "boot_server")
 
@@ -307,6 +401,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def bus(self) -> Optional[pulumi.Input[str]]:
+        """
+        [Boolean] The bus type of the volume: VIRTIO or IDE.
+        """
         return pulumi.get(self, "bus")
 
     @bus.setter
@@ -316,6 +413,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of CPU hot plug (no reboot required)
+        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @cpu_hot_plug.setter
@@ -325,6 +425,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -334,6 +437,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> Optional[pulumi.Input[int]]:
+        """
+        The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        """
         return pulumi.get(self, "device_number")
 
     @device_number.setter
@@ -343,6 +449,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @disc_virtio_hot_plug.setter
@@ -352,6 +461,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @disc_virtio_hot_unplug.setter
@@ -361,6 +473,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="diskType")
     def disk_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The volume type: HDD or SSD. This property is immutable.
+        """
         return pulumi.get(self, "disk_type")
 
     @disk_type.setter
@@ -370,6 +485,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The image or snapshot UUID.
+        """
         return pulumi.get(self, "image")
 
     @image.setter
@@ -388,6 +506,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
@@ -397,6 +518,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Required if `sshkey_path` is not provided.
+        """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -406,6 +530,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Required if `image_name` is not provided.
+        """
         return pulumi.get(self, "licence_type")
 
     @licence_type.setter
@@ -415,6 +542,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The name of the volume.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -424,6 +554,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of nic hot plug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_plug")
 
     @nic_hot_plug.setter
@@ -433,6 +566,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of nic hot unplug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @nic_hot_unplug.setter
@@ -442,6 +578,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> Optional[pulumi.Input[int]]:
+        """
+        The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        """
         return pulumi.get(self, "pci_slot")
 
     @pci_slot.setter
@@ -451,6 +590,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> Optional[pulumi.Input[bool]]:
+        """
+        [string] Is capable of memory hot plug (no reboot required)
+        """
         return pulumi.get(self, "ram_hot_plug")
 
     @ram_hot_plug.setter
@@ -460,6 +602,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The ID of a server.
+        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -469,6 +614,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        [integer] The size of the volume in GB.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -478,6 +626,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -487,6 +638,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
@@ -496,6 +650,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def sshkey(self) -> Optional[pulumi.Input[str]]:
+        """
+        The associated public SSH key.
+        """
         return pulumi.get(self, "sshkey")
 
     @sshkey.setter
@@ -505,6 +662,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
@@ -533,9 +693,120 @@ class Volume(pulumi.CustomResource):
                  user_data: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Volume resource with the given unique name, props, and options.
+        Manages a **Volume** on IonosCloud.
+
+        ## Example Usage
+
+        A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example_image = ionoscloud.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=True)
+        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+            location=example_datacenter.location,
+            size=4)
+        server_image_password = random.RandomPassword("serverImagePassword",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("exampleServer",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example_image.name,
+            image_password=server_image_password.result,
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        volume_image_password = random.RandomPassword("volumeImagePassword",
+            length=16,
+            special=False)
+        example_volume = ionoscloud.compute.Volume("exampleVolume",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            image_name=example_image.name,
+            image_password=volume_image_password.result,
+            user_data="foo")
+        example_compute_volume_volume = ionoscloud.compute.Volume("exampleCompute/volumeVolume",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            licence_type="OTHER")
+        ```
+
+        ## Import
+
+        Resource Volume can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        :param pulumi.Input[str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `sshkey_path` is not provided.
+        :param pulumi.Input[str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[str] name: [string] The name of the volume.
+        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[int] size: [integer] The size of the volume in GB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         ...
     @overload
@@ -544,7 +815,104 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Volume resource with the given unique name, props, and options.
+        Manages a **Volume** on IonosCloud.
+
+        ## Example Usage
+
+        A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        example_image = ionoscloud.get_image(type="HDD",
+            cloud_init="V1",
+            image_alias="ubuntu:latest",
+            location="us/las")
+        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+            location="us/las",
+            description="Datacenter Description",
+            sec_auth_protection=False)
+        example_lan = ionoscloud.compute.Lan("exampleLan",
+            datacenter_id=example_datacenter.id,
+            public=True)
+        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+            location=example_datacenter.location,
+            size=4)
+        server_image_password = random.RandomPassword("serverImagePassword",
+            length=16,
+            special=False)
+        example_server = ionoscloud.compute.Server("exampleServer",
+            datacenter_id=example_datacenter.id,
+            cores=1,
+            ram=1024,
+            availability_zone="ZONE_1",
+            cpu_family="INTEL_XEON",
+            image_name=example_image.name,
+            image_password=server_image_password.result,
+            type="ENTERPRISE",
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
+                    example_ip_block.ips[0],
+                    example_ip_block.ips[1],
+                ],
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
+        volume_image_password = random.RandomPassword("volumeImagePassword",
+            length=16,
+            special=False)
+        example_volume = ionoscloud.compute.Volume("exampleVolume",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            image_name=example_image.name,
+            image_password=volume_image_password.result,
+            user_data="foo")
+        example_compute_volume_volume = ionoscloud.compute.Volume("exampleCompute/volumeVolume",
+            datacenter_id=example_datacenter.id,
+            server_id=example_server.id,
+            availability_zone="ZONE_1",
+            size=5,
+            disk_type="SSD Standard",
+            bus="VIRTIO",
+            licence_type="OTHER")
+        ```
+
+        ## Import
+
+        Resource Volume can be imported using the `resource id`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+        ```
+
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -660,7 +1028,35 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] boot_server: The UUID of the attached server.
+        :param pulumi.Input[str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        :param pulumi.Input[str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        :param pulumi.Input[str] boot_server: [string] The UUID of the attached server.
+               > **⚠ WARNING**
+               >
+               > ssh_key_path and ssh_keys fields are immutable.
+               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        :param pulumi.Input[str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
+        :param pulumi.Input[bool] cpu_hot_plug: [string] Is capable of CPU hot plug (no reboot required)
+        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[int] device_number: The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        :param pulumi.Input[bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        :param pulumi.Input[bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        :param pulumi.Input[str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[str] image: The image or snapshot UUID.
+        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[str] image_password: [string] Required if `sshkey_path` is not provided.
+        :param pulumi.Input[str] licence_type: [string] Required if `image_name` is not provided.
+        :param pulumi.Input[str] name: [string] The name of the volume.
+        :param pulumi.Input[bool] nic_hot_plug: [string] Is capable of nic hot plug (no reboot required)
+        :param pulumi.Input[bool] nic_hot_unplug: [string] Is capable of nic hot unplug (no reboot required)
+        :param pulumi.Input[int] pci_slot: The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        :param pulumi.Input[bool] ram_hot_plug: [string] Is capable of memory hot plug (no reboot required)
+        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[int] size: [integer] The size of the volume in GB.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        :param pulumi.Input[str] sshkey: The associated public SSH key.
+        :param pulumi.Input[str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -697,59 +1093,93 @@ class Volume(pulumi.CustomResource):
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> pulumi.Output[str]:
+        """
+        [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
+        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="backupUnitId")
     def backup_unit_id(self) -> pulumi.Output[str]:
+        """
+        [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
         return pulumi.get(self, "backup_unit_id")
 
     @property
     @pulumi.getter(name="bootServer")
     def boot_server(self) -> pulumi.Output[str]:
         """
-        The UUID of the attached server.
+        [string] The UUID of the attached server.
+        > **⚠ WARNING**
+        >
+        > ssh_key_path and ssh_keys fields are immutable.
+        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "boot_server")
 
     @property
     @pulumi.getter
     def bus(self) -> pulumi.Output[str]:
+        """
+        [Boolean] The bus type of the volume: VIRTIO or IDE.
+        """
         return pulumi.get(self, "bus")
 
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of CPU hot plug (no reboot required)
+        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
+        """
+        [string] The ID of a Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> pulumi.Output[int]:
+        """
+        The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
+        """
         return pulumi.get(self, "device_number")
 
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of Virt-IO drive hot plug (no reboot required)
+        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @property
     @pulumi.getter(name="diskType")
     def disk_type(self) -> pulumi.Output[str]:
+        """
+        [string] The volume type: HDD or SSD. This property is immutable.
+        """
         return pulumi.get(self, "disk_type")
 
     @property
     @pulumi.getter
     def image(self) -> pulumi.Output[str]:
+        """
+        The image or snapshot UUID.
+        """
         return pulumi.get(self, "image")
 
     @property
@@ -760,70 +1190,112 @@ class Volume(pulumi.CustomResource):
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        """
         return pulumi.get(self, "image_name")
 
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        [string] Required if `sshkey_path` is not provided.
+        """
         return pulumi.get(self, "image_password")
 
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> pulumi.Output[str]:
+        """
+        [string] Required if `image_name` is not provided.
+        """
         return pulumi.get(self, "licence_type")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        [string] The name of the volume.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of nic hot plug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_plug")
 
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of nic hot unplug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @property
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> pulumi.Output[int]:
+        """
+        The PCI slot number of the storage volume. Null for volumes not mounted to any VM.
+        """
         return pulumi.get(self, "pci_slot")
 
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> pulumi.Output[bool]:
+        """
+        [string] Is capable of memory hot plug (no reboot required)
+        """
         return pulumi.get(self, "ram_hot_plug")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[str]:
+        """
+        [string] The ID of a server.
+        """
         return pulumi.get(self, "server_id")
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
+        """
+        [integer] The size of the volume in GB.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_key_paths")
 
     @property
     @pulumi.getter(name="sshKeys")
     def ssh_keys(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. This property is immutable.
+        """
         return pulumi.get(self, "ssh_keys")
 
     @property
     @pulumi.getter
     def sshkey(self) -> pulumi.Output[str]:
+        """
+        The associated public SSH key.
+        """
         return pulumi.get(self, "sshkey")
 
     @property
     @pulumi.getter(name="userData")
     def user_data(self) -> pulumi.Output[str]:
+        """
+        [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+        """
         return pulumi.get(self, "user_data")
 

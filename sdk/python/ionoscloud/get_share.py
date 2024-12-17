@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -129,15 +134,12 @@ def get_share(edit_privilege: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         share_privilege=pulumi.get(__ret__, 'share_privilege'))
-
-
-@_utilities.lift_output_func(get_share)
 def get_share_output(edit_privilege: Optional[pulumi.Input[Optional[bool]]] = None,
                      group_id: Optional[pulumi.Input[str]] = None,
                      id: Optional[pulumi.Input[str]] = None,
                      resource_id: Optional[pulumi.Input[str]] = None,
                      share_privilege: Optional[pulumi.Input[Optional[bool]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetShareResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetShareResult]:
     """
     The **Share data source** can be used to search for and return an existing share object.
     You need to provide the group_id and resource_id to get the group resources for the shared resource.
@@ -154,4 +156,17 @@ def get_share_output(edit_privilege: Optional[pulumi.Input[Optional[bool]]] = No
     :param str resource_id: The ID of the specific resource to update.
     :param bool share_privilege: The group has permission to share this resource.
     """
-    ...
+    __args__ = dict()
+    __args__['editPrivilege'] = edit_privilege
+    __args__['groupId'] = group_id
+    __args__['id'] = id
+    __args__['resourceId'] = resource_id
+    __args__['sharePrivilege'] = share_privilege
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getShare:getShare', __args__, opts=opts, typ=GetShareResult)
+    return __ret__.apply(lambda __response__: GetShareResult(
+        edit_privilege=pulumi.get(__response__, 'edit_privilege'),
+        group_id=pulumi.get(__response__, 'group_id'),
+        id=pulumi.get(__response__, 'id'),
+        resource_id=pulumi.get(__response__, 'resource_id'),
+        share_privilege=pulumi.get(__response__, 'share_privilege')))

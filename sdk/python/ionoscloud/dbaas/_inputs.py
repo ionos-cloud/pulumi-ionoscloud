@@ -61,15 +61,15 @@ if not MYPY:
     class InMemoryDBReplicaSetConnectionsArgsDict(TypedDict):
         cidr: pulumi.Input[str]
         """
-        The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
         """
         datacenter_id: pulumi.Input[str]
         """
-        The datacenter to connect your instance to.
+        [string] The datacenter to connect your instance to.
         """
         lan_id: pulumi.Input[str]
         """
-        The numeric LAN ID to connect your instance to.
+        [string] The numeric LAN ID to connect your instance to.
         """
 elif False:
     InMemoryDBReplicaSetConnectionsArgsDict: TypeAlias = Mapping[str, Any]
@@ -81,9 +81,9 @@ class InMemoryDBReplicaSetConnectionsArgs:
                  datacenter_id: pulumi.Input[str],
                  lan_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] cidr: The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your instance to.
-        :param pulumi.Input[str] lan_id: The numeric LAN ID to connect your instance to.
+        :param pulumi.Input[str] cidr: [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
+        :param pulumi.Input[str] datacenter_id: [string] The datacenter to connect your instance to.
+        :param pulumi.Input[str] lan_id: [string] The numeric LAN ID to connect your instance to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -93,7 +93,7 @@ class InMemoryDBReplicaSetConnectionsArgs:
     @pulumi.getter
     def cidr(self) -> pulumi.Input[str]:
         """
-        The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
         """
         return pulumi.get(self, "cidr")
 
@@ -105,7 +105,7 @@ class InMemoryDBReplicaSetConnectionsArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The datacenter to connect your instance to.
+        [string] The datacenter to connect your instance to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -117,7 +117,7 @@ class InMemoryDBReplicaSetConnectionsArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        The numeric LAN ID to connect your instance to.
+        [string] The numeric LAN ID to connect your instance to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -130,15 +130,15 @@ if not MYPY:
     class InMemoryDBReplicaSetCredentialsArgsDict(TypedDict):
         username: pulumi.Input[str]
         """
-        The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         """
         hashed_password: NotRequired[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict']]
         """
-        The hashed password for a InMemoryDB user.
+        [object] The hashed password for a InMemoryDB user.
         """
         plain_text_password: NotRequired[pulumi.Input[str]]
         """
-        The password for a InMemoryDB user.
+        [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
 elif False:
     InMemoryDBReplicaSetCredentialsArgsDict: TypeAlias = Mapping[str, Any]
@@ -150,9 +150,9 @@ class InMemoryDBReplicaSetCredentialsArgs:
                  hashed_password: Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']] = None,
                  plain_text_password: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] username: The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
-        :param pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs'] hashed_password: The hashed password for a InMemoryDB user.
-        :param pulumi.Input[str] plain_text_password: The password for a InMemoryDB user.
+        :param pulumi.Input[str] username: [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        :param pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs'] hashed_password: [object] The hashed password for a InMemoryDB user.
+        :param pulumi.Input[str] plain_text_password: [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
         pulumi.set(__self__, "username", username)
         if hashed_password is not None:
@@ -164,7 +164,7 @@ class InMemoryDBReplicaSetCredentialsArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         """
         return pulumi.get(self, "username")
 
@@ -176,7 +176,7 @@ class InMemoryDBReplicaSetCredentialsArgs:
     @pulumi.getter(name="hashedPassword")
     def hashed_password(self) -> Optional[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgs']]:
         """
-        The hashed password for a InMemoryDB user.
+        [object] The hashed password for a InMemoryDB user.
         """
         return pulumi.get(self, "hashed_password")
 
@@ -188,7 +188,7 @@ class InMemoryDBReplicaSetCredentialsArgs:
     @pulumi.getter(name="plainTextPassword")
     def plain_text_password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password for a InMemoryDB user.
+        [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
         return pulumi.get(self, "plain_text_password")
 
@@ -200,7 +200,13 @@ class InMemoryDBReplicaSetCredentialsArgs:
 if not MYPY:
     class InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict(TypedDict):
         algorithm: pulumi.Input[str]
+        """
+        [string] The value can be only: "SHA-256".
+        """
         hash: pulumi.Input[str]
+        """
+        [string] The hashed password.
+        """
 elif False:
     InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -209,12 +215,19 @@ class InMemoryDBReplicaSetCredentialsHashedPasswordArgs:
     def __init__(__self__, *,
                  algorithm: pulumi.Input[str],
                  hash: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] algorithm: [string] The value can be only: "SHA-256".
+        :param pulumi.Input[str] hash: [string] The hashed password.
+        """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "hash", hash)
 
     @property
     @pulumi.getter
     def algorithm(self) -> pulumi.Input[str]:
+        """
+        [string] The value can be only: "SHA-256".
+        """
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
@@ -224,6 +237,9 @@ class InMemoryDBReplicaSetCredentialsHashedPasswordArgs:
     @property
     @pulumi.getter
     def hash(self) -> pulumi.Input[str]:
+        """
+        [string] The hashed password.
+        """
         return pulumi.get(self, "hash")
 
     @hash.setter
@@ -235,11 +251,11 @@ if not MYPY:
     class InMemoryDBReplicaSetMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         time: pulumi.Input[str]
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
 elif False:
     InMemoryDBReplicaSetMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
@@ -250,8 +266,8 @@ class InMemoryDBReplicaSetMaintenanceWindowArgs:
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: The name of the week day.
-        :param pulumi.Input[str] time: Start of the maintenance window in UTC time.
+        :param pulumi.Input[str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[str] time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -260,7 +276,7 @@ class InMemoryDBReplicaSetMaintenanceWindowArgs:
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -272,7 +288,7 @@ class InMemoryDBReplicaSetMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 
@@ -285,15 +301,15 @@ if not MYPY:
     class InMemoryDBReplicaSetResourcesArgsDict(TypedDict):
         cores: pulumi.Input[int]
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         ram: pulumi.Input[int]
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         storage: NotRequired[pulumi.Input[int]]
         """
-        The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
 elif False:
     InMemoryDBReplicaSetResourcesArgsDict: TypeAlias = Mapping[str, Any]
@@ -305,9 +321,9 @@ class InMemoryDBReplicaSetResourcesArgs:
                  ram: pulumi.Input[int],
                  storage: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[int] storage: The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        :param pulumi.Input[int] cores: [int] The number of CPU cores per instance.
+        :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[int] storage: [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "ram", ram)
@@ -318,7 +334,7 @@ class InMemoryDBReplicaSetResourcesArgs:
     @pulumi.getter
     def cores(self) -> pulumi.Input[int]:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -330,7 +346,7 @@ class InMemoryDBReplicaSetResourcesArgs:
     @pulumi.getter
     def ram(self) -> pulumi.Input[int]:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -342,7 +358,7 @@ class InMemoryDBReplicaSetResourcesArgs:
     @pulumi.getter
     def storage(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
 
@@ -524,7 +540,7 @@ if not MYPY:
     class MongoClusterBackupArgsDict(TypedDict):
         location: NotRequired[pulumi.Input[str]]
         """
-        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         point_in_time_window_hours: NotRequired[pulumi.Input[int]]
         """
@@ -544,7 +560,7 @@ class MongoClusterBackupArgs:
                  point_in_time_window_hours: Optional[pulumi.Input[int]] = None,
                  snapshot_interval_hours: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        :param pulumi.Input[str] location: [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         :param pulumi.Input[int] point_in_time_window_hours: Number of hours in the past for which a point-in-time snapshot can be created.
         :param pulumi.Input[int] snapshot_interval_hours: Number of hours between snapshots.
         """
@@ -559,7 +575,7 @@ class MongoClusterBackupArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         return pulumi.get(self, "location")
 
@@ -596,15 +612,15 @@ if not MYPY:
     class MongoClusterBiConnectorArgsDict(TypedDict):
         enabled: NotRequired[pulumi.Input[bool]]
         """
-        Enable or disable the BiConnector.
+        [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         """
         host: NotRequired[pulumi.Input[str]]
         """
-        The host where this new BI Connector is installed.
+        [string] - The host where this new BI Connector is installed.
         """
         port: NotRequired[pulumi.Input[str]]
         """
-        Port number used when connecting to this new BI Connector.
+        [string] - Port number used when connecting to this new BI Connector.
         """
 elif False:
     MongoClusterBiConnectorArgsDict: TypeAlias = Mapping[str, Any]
@@ -616,9 +632,9 @@ class MongoClusterBiConnectorArgs:
                  host: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[bool] enabled: Enable or disable the BiConnector.
-        :param pulumi.Input[str] host: The host where this new BI Connector is installed.
-        :param pulumi.Input[str] port: Port number used when connecting to this new BI Connector.
+        :param pulumi.Input[bool] enabled: [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
+        :param pulumi.Input[str] host: [string] - The host where this new BI Connector is installed.
+        :param pulumi.Input[str] port: [string] - Port number used when connecting to this new BI Connector.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -631,7 +647,7 @@ class MongoClusterBiConnectorArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable the BiConnector.
+        [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         """
         return pulumi.get(self, "enabled")
 
@@ -643,7 +659,7 @@ class MongoClusterBiConnectorArgs:
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
-        The host where this new BI Connector is installed.
+        [string] - The host where this new BI Connector is installed.
         """
         return pulumi.get(self, "host")
 
@@ -655,7 +671,7 @@ class MongoClusterBiConnectorArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[str]]:
         """
-        Port number used when connecting to this new BI Connector.
+        [string] - Port number used when connecting to this new BI Connector.
         """
         return pulumi.get(self, "port")
 
@@ -668,15 +684,15 @@ if not MYPY:
     class MongoClusterConnectionsArgsDict(TypedDict):
         cidr_lists: pulumi.Input[Sequence[pulumi.Input[str]]]
         """
-        The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
         """
         datacenter_id: pulumi.Input[str]
         """
-        The datacenter to connect your cluster to.
+        [string] The datacenter to connect your cluster to.
         """
         lan_id: pulumi.Input[str]
         """
-        The LAN to connect your cluster to.
+        [string] The LAN to connect your cluster to.
         """
 elif False:
     MongoClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
@@ -688,9 +704,9 @@ class MongoClusterConnectionsArgs:
                  datacenter_id: pulumi.Input[str],
                  lan_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_lists: The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your cluster to.
-        :param pulumi.Input[str] lan_id: The LAN to connect your cluster to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_lists: [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
+        :param pulumi.Input[str] datacenter_id: [string] The datacenter to connect your cluster to.
+        :param pulumi.Input[str] lan_id: [string] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr_lists", cidr_lists)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -700,7 +716,7 @@ class MongoClusterConnectionsArgs:
     @pulumi.getter(name="cidrLists")
     def cidr_lists(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
         """
         return pulumi.get(self, "cidr_lists")
 
@@ -712,7 +728,7 @@ class MongoClusterConnectionsArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The datacenter to connect your cluster to.
+        [string] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -724,7 +740,7 @@ class MongoClusterConnectionsArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        The LAN to connect your cluster to.
+        [string] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -736,7 +752,13 @@ class MongoClusterConnectionsArgs:
 if not MYPY:
     class MongoClusterMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
+        """
+        [string]
+        """
         time: pulumi.Input[str]
+        """
+        [string]
+        """
 elif False:
     MongoClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -745,12 +767,19 @@ class MongoClusterMaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] day_of_the_week: [string]
+        :param pulumi.Input[str] time: [string]
+        """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @day_of_the_week.setter
@@ -760,6 +789,9 @@ class MongoClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "time")
 
     @time.setter
@@ -770,9 +802,14 @@ class MongoClusterMaintenanceWindowArgs:
 if not MYPY:
     class MongoUserRoleArgsDict(TypedDict):
         database: NotRequired[pulumi.Input[str]]
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         role: NotRequired[pulumi.Input[str]]
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
 elif False:
     MongoUserRoleArgsDict: TypeAlias = Mapping[str, Any]
@@ -783,7 +820,10 @@ class MongoUserRoleArgs:
                  database: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] role: A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        :param pulumi.Input[str] database: [true] Database on which to apply the role.
+               
+               **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        :param pulumi.Input[str] role: [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
         if database is not None:
             pulumi.set(__self__, "database", database)
@@ -793,6 +833,11 @@ class MongoUserRoleArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -803,7 +848,7 @@ class MongoUserRoleArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
         return pulumi.get(self, "role")
 
@@ -815,9 +860,12 @@ class MongoUserRoleArgs:
 if not MYPY:
     class PSQLClusterConnectionPoolerArgsDict(TypedDict):
         enabled: pulumi.Input[bool]
+        """
+        [bool]
+        """
         pool_mode: pulumi.Input[str]
         """
-        Represents different modes of connection pooling for the connection pooler
+        [string] Represents different modes of connection pooling for the connection pooler.
         """
 elif False:
     PSQLClusterConnectionPoolerArgsDict: TypeAlias = Mapping[str, Any]
@@ -828,7 +876,8 @@ class PSQLClusterConnectionPoolerArgs:
                  enabled: pulumi.Input[bool],
                  pool_mode: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] pool_mode: Represents different modes of connection pooling for the connection pooler
+        :param pulumi.Input[bool] enabled: [bool]
+        :param pulumi.Input[str] pool_mode: [string] Represents different modes of connection pooling for the connection pooler.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "pool_mode", pool_mode)
@@ -836,6 +885,9 @@ class PSQLClusterConnectionPoolerArgs:
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
+        """
+        [bool]
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -846,7 +898,7 @@ class PSQLClusterConnectionPoolerArgs:
     @pulumi.getter(name="poolMode")
     def pool_mode(self) -> pulumi.Input[str]:
         """
-        Represents different modes of connection pooling for the connection pooler
+        [string] Represents different modes of connection pooling for the connection pooler.
         """
         return pulumi.get(self, "pool_mode")
 
@@ -859,19 +911,15 @@ if not MYPY:
     class PSQLClusterConnectionsArgsDict(TypedDict):
         cidr: pulumi.Input[str]
         """
-        The IP and subnet for the database.
-                  Note the following unavailable IP ranges:
-                  10.233.64.0/18
-                  10.233.0.0/18
-                  10.233.114.0/24
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         datacenter_id: pulumi.Input[str]
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         lan_id: pulumi.Input[str]
         """
-        The LAN to connect your cluster to.
+        [true] The LAN to connect your cluster to.
         """
 elif False:
     PSQLClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
@@ -883,13 +931,9 @@ class PSQLClusterConnectionsArgs:
                  datacenter_id: pulumi.Input[str],
                  lan_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] cidr: The IP and subnet for the database.
-                         Note the following unavailable IP ranges:
-                         10.233.64.0/18
-                         10.233.0.0/18
-                         10.233.114.0/24
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your cluster to.
-        :param pulumi.Input[str] lan_id: The LAN to connect your cluster to.
+        :param pulumi.Input[str] cidr: [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
+        :param pulumi.Input[str] datacenter_id: [true] The datacenter to connect your cluster to.
+        :param pulumi.Input[str] lan_id: [true] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -899,11 +943,7 @@ class PSQLClusterConnectionsArgs:
     @pulumi.getter
     def cidr(self) -> pulumi.Input[str]:
         """
-        The IP and subnet for the database.
-                  Note the following unavailable IP ranges:
-                  10.233.64.0/18
-                  10.233.0.0/18
-                  10.233.114.0/24
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         return pulumi.get(self, "cidr")
 
@@ -915,7 +955,7 @@ class PSQLClusterConnectionsArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -927,7 +967,7 @@ class PSQLClusterConnectionsArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        The LAN to connect your cluster to.
+        [true] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -939,9 +979,12 @@ class PSQLClusterConnectionsArgs:
 if not MYPY:
     class PSQLClusterCredentialsArgsDict(TypedDict):
         password: pulumi.Input[str]
+        """
+        [string]
+        """
         username: pulumi.Input[str]
         """
-        the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         """
 elif False:
     PSQLClusterCredentialsArgsDict: TypeAlias = Mapping[str, Any]
@@ -952,7 +995,8 @@ class PSQLClusterCredentialsArgs:
                  password: pulumi.Input[str],
                  username: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] username: the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        :param pulumi.Input[str] password: [string]
+        :param pulumi.Input[str] username: [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -960,6 +1004,9 @@ class PSQLClusterCredentialsArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -970,7 +1017,7 @@ class PSQLClusterCredentialsArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         """
         return pulumi.get(self, "username")
 
@@ -983,11 +1030,11 @@ if not MYPY:
     class PSQLClusterFromBackupArgsDict(TypedDict):
         backup_id: pulumi.Input[str]
         """
-        The unique ID of the backup you want to restore.
+        [string] The unique ID of the backup you want to restore.
         """
         recovery_target_time: NotRequired[pulumi.Input[str]]
         """
-        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
 elif False:
     PSQLClusterFromBackupArgsDict: TypeAlias = Mapping[str, Any]
@@ -998,8 +1045,8 @@ class PSQLClusterFromBackupArgs:
                  backup_id: pulumi.Input[str],
                  recovery_target_time: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] backup_id: The unique ID of the backup you want to restore.
-        :param pulumi.Input[str] recovery_target_time: If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        :param pulumi.Input[str] backup_id: [string] The unique ID of the backup you want to restore.
+        :param pulumi.Input[str] recovery_target_time: [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
         pulumi.set(__self__, "backup_id", backup_id)
         if recovery_target_time is not None:
@@ -1009,7 +1056,7 @@ class PSQLClusterFromBackupArgs:
     @pulumi.getter(name="backupId")
     def backup_id(self) -> pulumi.Input[str]:
         """
-        The unique ID of the backup you want to restore.
+        [string] The unique ID of the backup you want to restore.
         """
         return pulumi.get(self, "backup_id")
 
@@ -1021,7 +1068,7 @@ class PSQLClusterFromBackupArgs:
     @pulumi.getter(name="recoveryTargetTime")
     def recovery_target_time(self) -> Optional[pulumi.Input[str]]:
         """
-        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
         return pulumi.get(self, "recovery_target_time")
 
@@ -1033,7 +1080,13 @@ class PSQLClusterFromBackupArgs:
 if not MYPY:
     class PSQLClusterMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
+        """
+        [string]
+        """
         time: pulumi.Input[str]
+        """
+        [string]
+        """
 elif False:
     PSQLClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1042,12 +1095,19 @@ class PSQLClusterMaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] day_of_the_week: [string]
+        :param pulumi.Input[str] time: [string]
+        """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @day_of_the_week.setter
@@ -1057,6 +1117,9 @@ class PSQLClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
+        """
+        [string]
+        """
         return pulumi.get(self, "time")
 
     @time.setter
@@ -1067,9 +1130,14 @@ class PSQLClusterMaintenanceWindowArgs:
 if not MYPY:
     class GetMongoUserRoleArgsDict(TypedDict):
         database: str
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         role: str
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
         """
 elif False:
     GetMongoUserRoleArgsDict: TypeAlias = Mapping[str, Any]
@@ -1080,7 +1148,10 @@ class GetMongoUserRoleArgs:
                  database: str,
                  role: str):
         """
-        :param str role: A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        :param str database: [true] Database on which to apply the role.
+               
+               **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        :param str role: [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
         """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "role", role)
@@ -1088,6 +1159,11 @@ class GetMongoUserRoleArgs:
     @property
     @pulumi.getter
     def database(self) -> str:
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -1098,7 +1174,7 @@ class GetMongoUserRoleArgs:
     @pulumi.getter
     def role(self) -> str:
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
         """
         return pulumi.get(self, "role")
 

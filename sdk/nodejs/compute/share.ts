@@ -4,6 +4,47 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Manages **Shares** and list shares permissions granted to the group members for each shared resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ *     location: "us/las",
+ *     description: "Datacenter Description",
+ *     secAuthProtection: false,
+ * });
+ * const exampleGroup = new ionoscloud.compute.Group("exampleGroup", {
+ *     createDatacenter: true,
+ *     createSnapshot: true,
+ *     reserveIp: true,
+ *     accessActivityLog: true,
+ *     createPcc: true,
+ *     s3Privilege: true,
+ *     createBackupUnit: true,
+ *     createInternetAccess: true,
+ *     createK8sCluster: true,
+ * });
+ * const exampleShare = new ionoscloud.compute.Share("exampleShare", {
+ *     groupId: exampleGroup.id,
+ *     resourceId: exampleDatacenter.id,
+ *     editPrivilege: true,
+ *     sharePrivilege: false,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Resource Share can be imported using the `resource id`, e.g.
+ *
+ * ```sh
+ * $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
+ * ```
+ */
 export class Share extends pulumi.CustomResource {
     /**
      * Get an existing Share resource's state with the given name, ID, and optional extra
@@ -32,9 +73,26 @@ export class Share extends pulumi.CustomResource {
         return obj['__pulumiType'] === Share.__pulumiType;
     }
 
+    /**
+     * [Boolean] The group has permission to edit privileges on this resource.
+     */
     public readonly editPrivilege!: pulumi.Output<boolean | undefined>;
+    /**
+     * [string] The ID of the specific group containing the resource to update.
+     */
     public readonly groupId!: pulumi.Output<string>;
+    /**
+     * [string] The ID of the specific resource to update.
+     */
     public readonly resourceId!: pulumi.Output<string>;
+    /**
+     * [Boolean] The group has permission to share this resource.
+     *
+     * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
+     * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
+     * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+     */
     public readonly sharePrivilege!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -76,9 +134,26 @@ export class Share extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Share resources.
  */
 export interface ShareState {
+    /**
+     * [Boolean] The group has permission to edit privileges on this resource.
+     */
     editPrivilege?: pulumi.Input<boolean>;
+    /**
+     * [string] The ID of the specific group containing the resource to update.
+     */
     groupId?: pulumi.Input<string>;
+    /**
+     * [string] The ID of the specific resource to update.
+     */
     resourceId?: pulumi.Input<string>;
+    /**
+     * [Boolean] The group has permission to share this resource.
+     *
+     * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
+     * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
+     * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+     */
     sharePrivilege?: pulumi.Input<boolean>;
 }
 
@@ -86,8 +161,25 @@ export interface ShareState {
  * The set of arguments for constructing a Share resource.
  */
 export interface ShareArgs {
+    /**
+     * [Boolean] The group has permission to edit privileges on this resource.
+     */
     editPrivilege?: pulumi.Input<boolean>;
+    /**
+     * [string] The ID of the specific group containing the resource to update.
+     */
     groupId: pulumi.Input<string>;
+    /**
+     * [string] The ID of the specific resource to update.
+     */
     resourceId: pulumi.Input<string>;
+    /**
+     * [Boolean] The group has permission to share this resource.
+     *
+     * ⚠️ **Note:** There is a limitation due to which the creation of several shares at the same time leads
+     * to an error. To avoid this, `parallelism=1` can be used when running `pulumi up` command in order
+     * to create the resources in a sequential manner. Another solution involves the usage of `dependsOn`
+     * attributes inside the `ionoscloud.compute.Share` resource to enforce the sequential creation of the shares.
+     */
     sharePrivilege?: pulumi.Input<boolean>;
 }

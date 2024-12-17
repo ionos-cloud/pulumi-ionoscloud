@@ -14,15 +14,17 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type BalancerFlowlog struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 	Action string `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 	Direction string `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id *string `pulumi:"id"`
-	// The resource name.
+	// [string] Specifies the name of the flow log.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
 	Name string `pulumi:"name"`
 }
 
@@ -38,15 +40,17 @@ type BalancerFlowlogInput interface {
 }
 
 type BalancerFlowlogArgs struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 	Action pulumi.StringInput `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The resource name.
+	// [string] Specifies the name of the flow log.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -127,17 +131,17 @@ func (o BalancerFlowlogOutput) ToBalancerFlowlogPtrOutputWithContext(ctx context
 	}).(BalancerFlowlogPtrOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 func (o BalancerFlowlogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 func (o BalancerFlowlogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 func (o BalancerFlowlogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -147,7 +151,9 @@ func (o BalancerFlowlogOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BalancerFlowlog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The resource name.
+// [string] Specifies the name of the flow log.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
 func (o BalancerFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v BalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -176,7 +182,7 @@ func (o BalancerFlowlogPtrOutput) Elem() BalancerFlowlogOutput {
 	}).(BalancerFlowlogOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 func (o BalancerFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -186,7 +192,7 @@ func (o BalancerFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 func (o BalancerFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -196,7 +202,7 @@ func (o BalancerFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 func (o BalancerFlowlogPtrOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -216,7 +222,9 @@ func (o BalancerFlowlogPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The resource name.
+// [string] Specifies the name of the flow log.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
 func (o BalancerFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BalancerFlowlog) *string {
 		if v == nil {
@@ -227,13 +235,13 @@ func (o BalancerFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 type ForwardingRuleHealthCheck struct {
-	// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+	// [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
 	ClientTimeout *int `pulumi:"clientTimeout"`
-	// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+	// [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+	// [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
 	Retries *int `pulumi:"retries"`
-	// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+	// [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
 	TargetTimeout *int `pulumi:"targetTimeout"`
 }
 
@@ -249,13 +257,13 @@ type ForwardingRuleHealthCheckInput interface {
 }
 
 type ForwardingRuleHealthCheckArgs struct {
-	// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+	// [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
 	ClientTimeout pulumi.IntPtrInput `pulumi:"clientTimeout"`
-	// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+	// [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+	// [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
 	Retries pulumi.IntPtrInput `pulumi:"retries"`
-	// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+	// [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
 	TargetTimeout pulumi.IntPtrInput `pulumi:"targetTimeout"`
 }
 
@@ -336,22 +344,22 @@ func (o ForwardingRuleHealthCheckOutput) ToForwardingRuleHealthCheckPtrOutputWit
 	}).(ForwardingRuleHealthCheckPtrOutput)
 }
 
-// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+// [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
 func (o ForwardingRuleHealthCheckOutput) ClientTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHealthCheck) *int { return v.ClientTimeout }).(pulumi.IntPtrOutput)
 }
 
-// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+// [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
 func (o ForwardingRuleHealthCheckOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHealthCheck) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+// [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
 func (o ForwardingRuleHealthCheckOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHealthCheck) *int { return v.Retries }).(pulumi.IntPtrOutput)
 }
 
-// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+// [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
 func (o ForwardingRuleHealthCheckOutput) TargetTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleHealthCheck) *int { return v.TargetTimeout }).(pulumi.IntPtrOutput)
 }
@@ -380,7 +388,7 @@ func (o ForwardingRuleHealthCheckPtrOutput) Elem() ForwardingRuleHealthCheckOutp
 	}).(ForwardingRuleHealthCheckOutput)
 }
 
-// ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+// [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
 func (o ForwardingRuleHealthCheckPtrOutput) ClientTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleHealthCheck) *int {
 		if v == nil {
@@ -390,7 +398,7 @@ func (o ForwardingRuleHealthCheckPtrOutput) ClientTimeout() pulumi.IntPtrOutput 
 	}).(pulumi.IntPtrOutput)
 }
 
-// It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+// [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
 func (o ForwardingRuleHealthCheckPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleHealthCheck) *int {
 		if v == nil {
@@ -400,7 +408,7 @@ func (o ForwardingRuleHealthCheckPtrOutput) ConnectTimeout() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
-// Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+// [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
 func (o ForwardingRuleHealthCheckPtrOutput) Retries() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleHealthCheck) *int {
 		if v == nil {
@@ -410,7 +418,7 @@ func (o ForwardingRuleHealthCheckPtrOutput) Retries() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+// [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
 func (o ForwardingRuleHealthCheckPtrOutput) TargetTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleHealthCheck) *int {
 		if v == nil {
@@ -421,15 +429,15 @@ func (o ForwardingRuleHealthCheckPtrOutput) TargetTimeout() pulumi.IntPtrOutput 
 }
 
 type ForwardingRuleTarget struct {
-	// Health check attributes for Network Load Balancer forwarding rule target
+	// Health check attributes for Network Load Balancer forwarding rule target.
 	HealthCheck *ForwardingRuleTargetHealthCheck `pulumi:"healthCheck"`
-	// IP of a balanced target VM
+	// [string] IP of a balanced target VM.
 	Ip string `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535)
+	// [int] Port of the balanced target service. (range: 1 to 65535).
 	Port int `pulumi:"port"`
-	// Proxy protocol version
+	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+	// [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 	Weight int `pulumi:"weight"`
 }
 
@@ -445,15 +453,15 @@ type ForwardingRuleTargetInput interface {
 }
 
 type ForwardingRuleTargetArgs struct {
-	// Health check attributes for Network Load Balancer forwarding rule target
+	// Health check attributes for Network Load Balancer forwarding rule target.
 	HealthCheck ForwardingRuleTargetHealthCheckPtrInput `pulumi:"healthCheck"`
-	// IP of a balanced target VM
+	// [string] IP of a balanced target VM.
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535)
+	// [int] Port of the balanced target service. (range: 1 to 65535).
 	Port pulumi.IntInput `pulumi:"port"`
-	// Proxy protocol version
+	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
 	ProxyProtocol pulumi.StringPtrInput `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+	// [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -508,27 +516,27 @@ func (o ForwardingRuleTargetOutput) ToForwardingRuleTargetOutputWithContext(ctx 
 	return o
 }
 
-// Health check attributes for Network Load Balancer forwarding rule target
+// Health check attributes for Network Load Balancer forwarding rule target.
 func (o ForwardingRuleTargetOutput) HealthCheck() ForwardingRuleTargetHealthCheckPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleTarget) *ForwardingRuleTargetHealthCheck { return v.HealthCheck }).(ForwardingRuleTargetHealthCheckPtrOutput)
 }
 
-// IP of a balanced target VM
+// [string] IP of a balanced target VM.
 func (o ForwardingRuleTargetOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v ForwardingRuleTarget) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Port of the balanced target service. (range: 1 to 65535)
+// [int] Port of the balanced target service. (range: 1 to 65535).
 func (o ForwardingRuleTargetOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ForwardingRuleTarget) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Proxy protocol version
+// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
 func (o ForwardingRuleTargetOutput) ProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleTarget) *string { return v.ProxyProtocol }).(pulumi.StringPtrOutput)
 }
 
-// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+// [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 func (o ForwardingRuleTargetOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v ForwardingRuleTarget) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -554,11 +562,11 @@ func (o ForwardingRuleTargetArrayOutput) Index(i pulumi.IntInput) ForwardingRule
 }
 
 type ForwardingRuleTargetHealthCheck struct {
-	// Check specifies whether the target VM's health is checked.
+	// [boolean] Check specifies whether the target VM's health is checked.
 	Check *bool `pulumi:"check"`
-	// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+	// [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
 	CheckInterval *int `pulumi:"checkInterval"`
-	// Maintenance specifies if a target VM should be marked as down, even if it is not.
+	// [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
 	Maintenance *bool `pulumi:"maintenance"`
 }
 
@@ -574,11 +582,11 @@ type ForwardingRuleTargetHealthCheckInput interface {
 }
 
 type ForwardingRuleTargetHealthCheckArgs struct {
-	// Check specifies whether the target VM's health is checked.
+	// [boolean] Check specifies whether the target VM's health is checked.
 	Check pulumi.BoolPtrInput `pulumi:"check"`
-	// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+	// [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
 	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
-	// Maintenance specifies if a target VM should be marked as down, even if it is not.
+	// [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
 	Maintenance pulumi.BoolPtrInput `pulumi:"maintenance"`
 }
 
@@ -659,17 +667,17 @@ func (o ForwardingRuleTargetHealthCheckOutput) ToForwardingRuleTargetHealthCheck
 	}).(ForwardingRuleTargetHealthCheckPtrOutput)
 }
 
-// Check specifies whether the target VM's health is checked.
+// [boolean] Check specifies whether the target VM's health is checked.
 func (o ForwardingRuleTargetHealthCheckOutput) Check() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleTargetHealthCheck) *bool { return v.Check }).(pulumi.BoolPtrOutput)
 }
 
-// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+// [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
 func (o ForwardingRuleTargetHealthCheckOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleTargetHealthCheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
 }
 
-// Maintenance specifies if a target VM should be marked as down, even if it is not.
+// [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
 func (o ForwardingRuleTargetHealthCheckOutput) Maintenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ForwardingRuleTargetHealthCheck) *bool { return v.Maintenance }).(pulumi.BoolPtrOutput)
 }
@@ -698,7 +706,7 @@ func (o ForwardingRuleTargetHealthCheckPtrOutput) Elem() ForwardingRuleTargetHea
 	}).(ForwardingRuleTargetHealthCheckOutput)
 }
 
-// Check specifies whether the target VM's health is checked.
+// [boolean] Check specifies whether the target VM's health is checked.
 func (o ForwardingRuleTargetHealthCheckPtrOutput) Check() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleTargetHealthCheck) *bool {
 		if v == nil {
@@ -708,7 +716,7 @@ func (o ForwardingRuleTargetHealthCheckPtrOutput) Check() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+// [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
 func (o ForwardingRuleTargetHealthCheckPtrOutput) CheckInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleTargetHealthCheck) *int {
 		if v == nil {
@@ -718,7 +726,7 @@ func (o ForwardingRuleTargetHealthCheckPtrOutput) CheckInterval() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
-// Maintenance specifies if a target VM should be marked as down, even if it is not.
+// [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
 func (o ForwardingRuleTargetHealthCheckPtrOutput) Maintenance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ForwardingRuleTargetHealthCheck) *bool {
 		if v == nil {
@@ -729,15 +737,17 @@ func (o ForwardingRuleTargetHealthCheckPtrOutput) Maintenance() pulumi.BoolPtrOu
 }
 
 type GetBalancerFlowlog struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 	Action string `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 	Direction string `pulumi:"direction"`
-	// The resource's unique identifier.
+	// ID of the network load balancer you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id string `pulumi:"id"`
-	// The resource name.
+	// Name of an existing network load balancer that you want to search for.
 	Name string `pulumi:"name"`
 }
 
@@ -753,15 +763,17 @@ type GetBalancerFlowlogInput interface {
 }
 
 type GetBalancerFlowlogArgs struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 	Action pulumi.StringInput `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 	Direction pulumi.StringInput `pulumi:"direction"`
-	// The resource's unique identifier.
+	// ID of the network load balancer you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The resource name.
+	// Name of an existing network load balancer that you want to search for.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -816,27 +828,29 @@ func (o GetBalancerFlowlogOutput) ToGetBalancerFlowlogOutputWithContext(ctx cont
 	return o
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
 func (o GetBalancerFlowlogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket.
+// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
 func (o GetBalancerFlowlogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
 func (o GetBalancerFlowlogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Direction }).(pulumi.StringOutput)
 }
 
-// The resource's unique identifier.
+// ID of the network load balancer you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetBalancerFlowlogOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The resource name.
+// Name of an existing network load balancer that you want to search for.
 func (o GetBalancerFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBalancerFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -986,15 +1000,15 @@ func (o GetForwardingRuleHealthCheckArrayOutput) Index(i pulumi.IntInput) GetFor
 }
 
 type GetForwardingRuleTarget struct {
-	// Health check attributes for Network Load Balancer forwarding rule target
+	// Health check attributes for Network Load Balancer forwarding rule target.
 	HealthChecks []GetForwardingRuleTargetHealthCheck `pulumi:"healthChecks"`
-	// IP of a balanced target VM
+	// IP of a balanced target VM.
 	Ip string `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535)
+	// Port of the balanced target service. (range: 1 to 65535).
 	Port int `pulumi:"port"`
-	// Proxy protocol version
+	// The proxy protocol version.
 	ProxyProtocol string `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+	// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 	Weight int `pulumi:"weight"`
 }
 
@@ -1010,15 +1024,15 @@ type GetForwardingRuleTargetInput interface {
 }
 
 type GetForwardingRuleTargetArgs struct {
-	// Health check attributes for Network Load Balancer forwarding rule target
+	// Health check attributes for Network Load Balancer forwarding rule target.
 	HealthChecks GetForwardingRuleTargetHealthCheckArrayInput `pulumi:"healthChecks"`
-	// IP of a balanced target VM
+	// IP of a balanced target VM.
 	Ip pulumi.StringInput `pulumi:"ip"`
-	// Port of the balanced target service. (range: 1 to 65535)
+	// Port of the balanced target service. (range: 1 to 65535).
 	Port pulumi.IntInput `pulumi:"port"`
-	// Proxy protocol version
+	// The proxy protocol version.
 	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
-	// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+	// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -1073,27 +1087,27 @@ func (o GetForwardingRuleTargetOutput) ToGetForwardingRuleTargetOutputWithContex
 	return o
 }
 
-// Health check attributes for Network Load Balancer forwarding rule target
+// Health check attributes for Network Load Balancer forwarding rule target.
 func (o GetForwardingRuleTargetOutput) HealthChecks() GetForwardingRuleTargetHealthCheckArrayOutput {
 	return o.ApplyT(func(v GetForwardingRuleTarget) []GetForwardingRuleTargetHealthCheck { return v.HealthChecks }).(GetForwardingRuleTargetHealthCheckArrayOutput)
 }
 
-// IP of a balanced target VM
+// IP of a balanced target VM.
 func (o GetForwardingRuleTargetOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v GetForwardingRuleTarget) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-// Port of the balanced target service. (range: 1 to 65535)
+// Port of the balanced target service. (range: 1 to 65535).
 func (o GetForwardingRuleTargetOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetForwardingRuleTarget) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Proxy protocol version
+// The proxy protocol version.
 func (o GetForwardingRuleTargetOutput) ProxyProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetForwardingRuleTarget) string { return v.ProxyProtocol }).(pulumi.StringOutput)
 }
 
-// Weight parameter is used to adjust the target VM's weight relative to other target VMs
+// Weight parameter is used to adjust the target VM's weight relative to other target VMs.
 func (o GetForwardingRuleTargetOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v GetForwardingRuleTarget) int { return v.Weight }).(pulumi.IntOutput)
 }

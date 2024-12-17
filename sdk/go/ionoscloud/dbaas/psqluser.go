@@ -12,14 +12,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **DbaaS PgSql User**.
+//
+// ## Example Usage
+//
+// Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a user resource
+// and link it with the previously created cluster:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			userPassword, err := random.NewRandomPassword(ctx, "userPassword", &random.RandomPasswordArgs{
+//				Length:          pulumi.Int(16),
+//				Special:         pulumi.Bool(true),
+//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dbaas.NewPSQLUser(ctx, "examplePgUser", &dbaas.PSQLUserArgs{
+//				ClusterId: pulumi.Any(ionoscloud_pg_cluster.Example.Id),
+//				Username:  pulumi.String("exampleuser"),
+//				Password:  userPassword.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// In order to import a PgSql user, you can define an empty user resource in the plan:
+//
+// hcl
+//
+// resource "ionoscloud_pg_user" "example" {
+//
+// }
+//
+// The resource can be imported using the `clusterId` and the `username`, for example:
+//
+// ```sh
+// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+// ```
 type PSQLUser struct {
 	pulumi.CustomResourceState
 
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
-	IsSystemUser pulumi.BoolOutput   `pulumi:"isSystemUser"`
-	Password     pulumi.StringOutput `pulumi:"password"`
-	Username     pulumi.StringOutput `pulumi:"username"`
+	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+	IsSystemUser pulumi.BoolOutput `pulumi:"isSystemUser"`
+	// [string] User password.
+	Password pulumi.StringOutput `pulumi:"password"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringOutput `pulumi:"username"`
 }
 
 // NewPSQLUser registers a new resource with the given unique name, arguments, and options.
@@ -68,19 +128,25 @@ func GetPSQLUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PSQLUser resources.
 type psqluserState struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId *string `pulumi:"clusterId"`
-	// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
-	IsSystemUser *bool   `pulumi:"isSystemUser"`
-	Password     *string `pulumi:"password"`
-	Username     *string `pulumi:"username"`
+	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+	IsSystemUser *bool `pulumi:"isSystemUser"`
+	// [string] User password.
+	Password *string `pulumi:"password"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username *string `pulumi:"username"`
 }
 
 type PSQLUserState struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringPtrInput
-	// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+	// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 	IsSystemUser pulumi.BoolPtrInput
-	Password     pulumi.StringPtrInput
-	Username     pulumi.StringPtrInput
+	// [string] User password.
+	Password pulumi.StringPtrInput
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringPtrInput
 }
 
 func (PSQLUserState) ElementType() reflect.Type {
@@ -88,16 +154,22 @@ func (PSQLUserState) ElementType() reflect.Type {
 }
 
 type psqluserArgs struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId string `pulumi:"clusterId"`
-	Password  string `pulumi:"password"`
-	Username  string `pulumi:"username"`
+	// [string] User password.
+	Password string `pulumi:"password"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a PSQLUser resource.
 type PSQLUserArgs struct {
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 	ClusterId pulumi.StringInput
-	Password  pulumi.StringInput
-	Username  pulumi.StringInput
+	// [string] User password.
+	Password pulumi.StringInput
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringInput
 }
 
 func (PSQLUserArgs) ElementType() reflect.Type {
@@ -187,19 +259,22 @@ func (o PSQLUserOutput) ToPSQLUserOutputWithContext(ctx context.Context) PSQLUse
 	return o
 }
 
+// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
 func (o PSQLUserOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLUser) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
 func (o PSQLUserOutput) IsSystemUser() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PSQLUser) pulumi.BoolOutput { return v.IsSystemUser }).(pulumi.BoolOutput)
 }
 
+// [string] User password.
 func (o PSQLUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
+// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
 func (o PSQLUserOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLUser) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }

@@ -50,7 +50,9 @@ class RegistryFeatures(dict):
     def __init__(__self__, *,
                  vulnerability_scanning: Optional[bool] = None):
         """
-        :param bool vulnerability_scanning: Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+        :param bool vulnerability_scanning: [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+               
+               > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
         """
         if vulnerability_scanning is not None:
             pulumi.set(__self__, "vulnerability_scanning", vulnerability_scanning)
@@ -59,7 +61,9 @@ class RegistryFeatures(dict):
     @pulumi.getter(name="vulnerabilityScanning")
     def vulnerability_scanning(self) -> Optional[bool]:
         """
-        Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+        [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+
+        > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
         """
         return pulumi.get(self, "vulnerability_scanning")
 
@@ -70,7 +74,8 @@ class RegistryGarbageCollectionSchedule(dict):
                  days: Sequence[str],
                  time: str):
         """
-        :param str time: UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+        :param Sequence[str] days: [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+        :param str time: [string]
         """
         pulumi.set(__self__, "days", days)
         pulumi.set(__self__, "time", time)
@@ -78,13 +83,16 @@ class RegistryGarbageCollectionSchedule(dict):
     @property
     @pulumi.getter
     def days(self) -> Sequence[str]:
+        """
+        [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
+        """
         return pulumi.get(self, "days")
 
     @property
     @pulumi.getter
     def time(self) -> str:
         """
-        UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+        [string]
         """
         return pulumi.get(self, "time")
 
@@ -153,7 +161,9 @@ class RegistryTokenScope(dict):
                  name: str,
                  type: str):
         """
-        :param Sequence[str] actions: Example: ["pull", "push", "delete"]
+        :param Sequence[str] actions: [string] Example: ["pull", "push", "delete"]
+        :param str name: [string]
+        :param str type: [string]
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "name", name)
@@ -163,18 +173,24 @@ class RegistryTokenScope(dict):
     @pulumi.getter
     def actions(self) -> Sequence[str]:
         """
-        Example: ["pull", "push", "delete"]
+        [string] Example: ["pull", "push", "delete"]
         """
         return pulumi.get(self, "actions")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "type")
 
 
@@ -251,11 +267,17 @@ class GetRegistryStorageUsageResult(dict):
 class GetRegistryTokenCredentialResult(dict):
     def __init__(__self__, *,
                  username: str):
+        """
+        :param str username: * `expiry-date`
+        """
         pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        * `expiry-date`
+        """
         return pulumi.get(self, "username")
 
 
@@ -265,6 +287,9 @@ class GetRegistryTokenScopeResult(dict):
                  actions: Sequence[str],
                  name: str,
                  type: str):
+        """
+        :param str name: Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
@@ -277,6 +302,9 @@ class GetRegistryTokenScopeResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         return pulumi.get(self, "name")
 
     @property

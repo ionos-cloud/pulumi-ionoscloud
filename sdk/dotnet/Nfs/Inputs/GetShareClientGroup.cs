@@ -44,6 +44,10 @@ namespace Pulumi.Ionoscloud.Nfs.Inputs
 
         [Input("nfs", required: true)]
         private List<Inputs.GetShareClientGroupNfArgs>? _nfs;
+
+        /// <summary>
+        /// The NFS configuration for the client group. Each NFS configuration supports the following:
+        /// </summary>
         public List<Inputs.GetShareClientGroupNfArgs> Nfs
         {
             get => _nfs ?? (_nfs = new List<Inputs.GetShareClientGroupNfArgs>());

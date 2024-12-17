@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.Nfs.Inputs
     public sealed class ClusterNfsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The minimum Network File Storage version
+        /// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
         /// </summary>
         [Input("minVersion")]
         public Input<string>? MinVersion { get; set; }

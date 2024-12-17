@@ -65,16 +65,25 @@ class GetWireguardGatewayResult:
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetWireguardGatewayConnectionResult']:
+        """
+        A list of connection configurations for the WireGuard Gateway. Each `connections` block contains:
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        The description of the WireGuard Gateway.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> str:
+        """
+        The IP address of the WireGuard Gateway.
+        """
         return pulumi.get(self, "gateway_ip")
 
     @property
@@ -85,11 +94,17 @@ class GetWireguardGatewayResult:
     @property
     @pulumi.getter(name="interfaceIpv4Cidr")
     def interface_ipv4_cidr(self) -> str:
+        """
+        The IPv4 CIDR for the WireGuard Gateway interface.
+        """
         return pulumi.get(self, "interface_ipv4_cidr")
 
     @property
     @pulumi.getter(name="interfaceIpv6Cidr")
     def interface_ipv6_cidr(self) -> str:
+        """
+        The IPv6 CIDR for the WireGuard Gateway interface.
+        """
         return pulumi.get(self, "interface_ipv6_cidr")
 
     @property
@@ -110,11 +125,17 @@ class GetWireguardGatewayResult:
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
+        """
+        The public key for the WireGuard Gateway.
+        """
         return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The current status of the WireGuard Gateway.
+        """
         return pulumi.get(self, "status")
 
 
@@ -143,7 +164,24 @@ def get_wireguard_gateway(description: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWireguardGatewayResult:
     """
-    Use this data source to access information about an existing resource.
+    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_wireguard_gateway(location="de/fra",
+        name="example-gateway")
+    pulumi.export("vpnWireguardGatewayPublicKey", data["vpn_wireguard_gateway"]["example"]["public_key"])
+    ```
+
+
+    :param str description: The description of the WireGuard Gateway.
+    :param str id: [String] The ID of the WireGuard Gateway.
+    :param str location: [String] The location of the WireGuard Gateway.
+    :param str name: [String] The name of the WireGuard Gateway.
     """
     __args__ = dict()
     __args__['description'] = description
@@ -171,7 +209,24 @@ def get_wireguard_gateway_output(description: Optional[pulumi.Input[Optional[str
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWireguardGatewayResult]:
     """
-    Use this data source to access information about an existing resource.
+    The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.vpn.get_wireguard_gateway(location="de/fra",
+        name="example-gateway")
+    pulumi.export("vpnWireguardGatewayPublicKey", data["vpn_wireguard_gateway"]["example"]["public_key"])
+    ```
+
+
+    :param str description: The description of the WireGuard Gateway.
+    :param str id: [String] The ID of the WireGuard Gateway.
+    :param str location: [String] The location of the WireGuard Gateway.
+    :param str name: [String] The name of the WireGuard Gateway.
     """
     __args__ = dict()
     __args__['description'] = description

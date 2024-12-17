@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Nfs.Outputs
     public sealed class GetClusterNfResult
     {
         /// <summary>
-        /// The minimum version of the NFS.
+        /// The minimum supported version of the NFS cluster. Default is `4.2`
         /// </summary>
         public readonly string MinVersion;
 

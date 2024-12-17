@@ -9,18 +9,261 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
+    /// <summary>
+    /// Manages the selection of a boot device for IonosCloud Servers.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
+    /// Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
+    /// This resource also allows switching between a `volume` and a `ionoscloud.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+    /// 
+    /// ### Select an external volume
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         AvailabilityZone = "ZONE_2",
+    ///         ImageName = "ubuntu:latest",
+    ///         Cores = 2,
+    ///         Ram = 2048,
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "Inline Updated",
+    ///             Size = 20,
+    ///             DiskType = "SSD Standard",
+    ///             Bus = "VIRTIO",
+    ///             AvailabilityZone = "AUTO",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = ionoscloud_lan.Example.Id,
+    ///             Name = "Nic Example",
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleVolume = new Ionoscloud.Compute.Volume("exampleVolume", new()
+    ///     {
+    ///         ServerId = exampleServer.Id,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Size = 10,
+    ///         DiskType = "HDD",
+    ///         AvailabilityZone = "AUTO",
+    ///         ImageName = "debian:latest",
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///     });
+    /// 
+    ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("exampleBootDeviceSelection", new()
+    ///     {
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         ServerId = exampleServer.Id,
+    ///         BootDeviceId = exampleVolume.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Select an inline volume again
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         AvailabilityZone = "ZONE_2",
+    ///         ImageName = "ubuntu:latest",
+    ///         Cores = 2,
+    ///         Ram = 2048,
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "Inline Updated",
+    ///             Size = 20,
+    ///             DiskType = "SSD Standard",
+    ///             Bus = "VIRTIO",
+    ///             AvailabilityZone = "AUTO",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = ionoscloud_lan.Example.Id,
+    ///             Name = "Nic Example",
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("exampleBootDeviceSelection", new()
+    ///     {
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         ServerId = exampleServer.Id,
+    ///         BootDeviceId = exampleServer.InlineVolumeIds.Apply(inlineVolumeIds =&gt; inlineVolumeIds[0]),
+    ///     });
+    /// 
+    ///     var exampleVolume = new Ionoscloud.Compute.Volume("exampleVolume", new()
+    ///     {
+    ///         ServerId = exampleServer.Id,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Size = 10,
+    ///         DiskType = "HDD",
+    ///         AvailabilityZone = "AUTO",
+    ///         ImageName = "debian:latest",
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Select a CDROM image
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         AvailabilityZone = "ZONE_2",
+    ///         ImageName = "ubuntu:latest",
+    ///         Cores = 2,
+    ///         Ram = 2048,
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "Inline Updated",
+    ///             Size = 20,
+    ///             DiskType = "SSD Standard",
+    ///             Bus = "VIRTIO",
+    ///             AvailabilityZone = "AUTO",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = ionoscloud_lan.Example.Id,
+    ///             Name = "Nic Example",
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleImage = Ionoscloud.GetImage.Invoke(new()
+    ///     {
+    ///         Name = "ubuntu-20.04",
+    ///         Location = "de/txl",
+    ///         Type = "CDROM",
+    ///     });
+    /// 
+    ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("exampleBootDeviceSelection", new()
+    ///     {
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         ServerId = exampleServer.InlineVolumeIds.Apply(inlineVolumeIds =&gt; inlineVolumeIds[0]),
+    ///         BootDeviceId = exampleImage.Apply(getImageResult =&gt; getImageResult.Id),
+    ///     });
+    /// 
+    ///     var exampleVolume = new Ionoscloud.Compute.Volume("exampleVolume", new()
+    ///     {
+    ///         ServerId = exampleServer.Id,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Size = 10,
+    ///         DiskType = "HDD",
+    ///         AvailabilityZone = "AUTO",
+    ///         ImageName = "debian:latest",
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Perform a network boot
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleServer = new Ionoscloud.Compute.Server("exampleServer", new()
+    ///     {
+    ///         AvailabilityZone = "ZONE_2",
+    ///         ImageName = "ubuntu:latest",
+    ///         Cores = 2,
+    ///         Ram = 2048,
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Volume = new Ionoscloud.Compute.Inputs.ServerVolumeArgs
+    ///         {
+    ///             Name = "Inline volume",
+    ///             Size = 20,
+    ///             DiskType = "SSD Standard",
+    ///             Bus = "VIRTIO",
+    ///             AvailabilityZone = "AUTO",
+    ///         },
+    ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
+    ///         {
+    ///             Lan = ionoscloud_lan.Example.Id,
+    ///             Name = "Nic Example",
+    ///             Dhcp = true,
+    ///             FirewallActive = true,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleBootDeviceSelection = new Ionoscloud.Compute.BootDeviceSelection("exampleBootDeviceSelection", new()
+    ///     {
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         ServerId = exampleServer.InlineVolumeIds.Apply(inlineVolumeIds =&gt; inlineVolumeIds[0]),
+    ///     });
+    /// 
+    ///     // boot_device_id = data.ionoscloud_image.example.id   VM will boot in the PXE shell when boot_device_id is omitted
+    ///     var exampleVolume = new Ionoscloud.Compute.Volume("exampleVolume", new()
+    ///     {
+    ///         ServerId = exampleServer.Id,
+    ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+    ///         Size = 10,
+    ///         DiskType = "HDD",
+    ///         AvailabilityZone = "AUTO",
+    ///         ImageName = "debian:latest",
+    ///         ImagePassword = random_password.Server_image_password.Result,
+    ///     });
+    /// 
+    ///     var exampleImage = Ionoscloud.GetImage.Invoke(new()
+    ///     {
+    ///         Name = "ubuntu-20.04",
+    ///         Location = "de/txl",
+    ///         Type = "CDROM",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/bootDeviceSelection:BootDeviceSelection")]
     public partial class BootDeviceSelection : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-        /// will boot from PXE
+        /// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        /// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         /// </summary>
         [Output("bootDeviceId")]
         public Output<string?> BootDeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the Datacenter that holds the server for which the boot volume is selected
+        /// [string] The ID of a Virtual Data Center.
         /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
@@ -32,7 +275,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string> DefaultBootVolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the Server for which the boot device will be selected.
+        /// [string] The ID of a server.
         /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
@@ -84,20 +327,20 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class BootDeviceSelectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-        /// will boot from PXE
+        /// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        /// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         /// </summary>
         [Input("bootDeviceId")]
         public Input<string>? BootDeviceId { get; set; }
 
         /// <summary>
-        /// ID of the Datacenter that holds the server for which the boot volume is selected
+        /// [string] The ID of a Virtual Data Center.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// ID of the Server for which the boot device will be selected.
+        /// [string] The ID of a server.
         /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
@@ -111,14 +354,14 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class BootDeviceSelectionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
-        /// will boot from PXE
+        /// [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        /// ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         /// </summary>
         [Input("bootDeviceId")]
         public Input<string>? BootDeviceId { get; set; }
 
         /// <summary>
-        /// ID of the Datacenter that holds the server for which the boot volume is selected
+        /// [string] The ID of a Virtual Data Center.
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
@@ -130,7 +373,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? DefaultBootVolumeId { get; set; }
 
         /// <summary>
-        /// ID of the Server for which the boot device will be selected.
+        /// [string] The ID of a server.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }

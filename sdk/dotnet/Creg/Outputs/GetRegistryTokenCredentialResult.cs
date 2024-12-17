@@ -13,6 +13,9 @@ namespace Pulumi.Ionoscloud.Creg.Outputs
     [OutputType]
     public sealed class GetRegistryTokenCredentialResult
     {
+        /// <summary>
+        /// * `expiry-date`
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

@@ -11,6 +11,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
+//
+// ## Example Usage
+//
+// ### Retrieve list of Managed Dataplatform API versions
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetDataplatformVersions(ctx, map[string]interface{}{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetDataplatformVersions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetDataplatformVersionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDataplatformVersionsResult
@@ -24,7 +50,8 @@ func GetDataplatformVersions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (
 // A collection of values returned by getDataplatformVersions.
 type GetDataplatformVersionsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id       string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// list of Managed Dataplatform API versions.
 	Versions []string `pulumi:"versions"`
 }
 
@@ -55,6 +82,7 @@ func (o GetDataplatformVersionsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDataplatformVersionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// list of Managed Dataplatform API versions.
 func (o GetDataplatformVersionsResultOutput) Versions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDataplatformVersionsResult) []string { return v.Versions }).(pulumi.StringArrayOutput)
 }

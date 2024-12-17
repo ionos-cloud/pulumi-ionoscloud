@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Nfs.Outputs
     public sealed class GetClusterConnectionResult
     {
         /// <summary>
-        /// The datacenter ID of the connection.
+        /// The ID of the datacenter where the Network File Storage cluster is located.
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The IP address of the connection.
+        /// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
-        /// The LAN of the connection.
+        /// The Private LAN to which the Network File Storage cluster must be connected.
         /// </summary>
         public readonly string Lan;
 

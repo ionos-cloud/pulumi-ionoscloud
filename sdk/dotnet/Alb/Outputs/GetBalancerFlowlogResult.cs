@@ -14,23 +14,23 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
     public sealed class GetBalancerFlowlogResult
     {
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+        /// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// The bucket name of an existing IONOS Object Storage bucket.
+        /// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
         /// </summary>
         public readonly string Direction;
         /// <summary>
-        /// The resource's unique identifier.
+        /// ID of the application load balancer you want to search for.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The resource name.
+        /// Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
         /// </summary>
         public readonly string Name;
 

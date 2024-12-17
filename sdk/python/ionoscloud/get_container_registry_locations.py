@@ -45,6 +45,9 @@ class GetContainerRegistryLocationsResult:
     @property
     @pulumi.getter
     def locations(self) -> Sequence[str]:
+        """
+        list of container registry locations
+        """
         return pulumi.get(self, "locations")
 
 
@@ -60,7 +63,16 @@ class AwaitableGetContainerRegistryLocationsResult(GetContainerRegistryLocations
 
 def get_container_registry_locations(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerRegistryLocationsResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_container_registry_locations()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -71,7 +83,16 @@ def get_container_registry_locations(opts: Optional[pulumi.InvokeOptions] = None
         locations=pulumi.get(__ret__, 'locations'))
 def get_container_registry_locations_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerRegistryLocationsResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.get_container_registry_locations()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

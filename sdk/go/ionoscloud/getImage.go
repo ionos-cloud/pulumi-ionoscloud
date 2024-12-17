@@ -11,6 +11,97 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Image data source** can be used to search for and return an existing image which can then be used to provision a server.\
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				CloudInit:  pulumi.StringRef("NONE"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest_iso"),
+//				Location:   pulumi.StringRef("de/txl"),
+//				Type:       pulumi.StringRef("CDROM"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
+//
+// ### Additional Examples
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("de/txl"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
+//
+// ### Additional Examples
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//				CloudInit:  pulumi.StringRef("V1"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/ewr"),
+//				Type:       pulumi.StringRef("HDD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 func GetImage(ctx *pulumi.Context, args *GetImageArgs, opts ...pulumi.InvokeOption) (*GetImageResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetImageResult
@@ -23,40 +114,69 @@ func GetImage(ctx *pulumi.Context, args *GetImageArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getImage.
 type GetImageArgs struct {
-	CloudInit   *string `pulumi:"cloudInit"`
+	// Cloud init compatibility ("NONE" or "V1"). Exact match.
+	CloudInit *string `pulumi:"cloudInit"`
+	// description of the image
 	Description *string `pulumi:"description"`
-	ImageAlias  *string `pulumi:"imageAlias"`
-	Location    *string `pulumi:"location"`
-	Name        *string `pulumi:"name"`
-	Type        *string `pulumi:"type"`
-	Version     *string `pulumi:"version"`
+	// Image alias of the image you are searching for. Exact match. E.g. =`centos:latest`, `ubuntu:latest`
+	ImageAlias *string `pulumi:"imageAlias"`
+	// Id of the existing image's location. Exact match. Possible values: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`
+	Location *string `pulumi:"location"`
+	// Name of an existing image that you want to search for. It will return an exact match if one exists, otherwise it will retrieve partial matches.
+	Name *string `pulumi:"name"`
+	// The image type, HDD or CD-ROM. Exact match.
+	Type *string `pulumi:"type"`
+	// The version of the image that you want to search for.
+	//
+	// If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version].
+	// The resulting string will be used to search for an exact match. An error will be thrown if one is not found.
+	Version *string `pulumi:"version"`
 }
 
 // A collection of values returned by getImage.
 type GetImageResult struct {
-	CloudInit           string  `pulumi:"cloudInit"`
-	CpuHotPlug          bool    `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        bool    `pulumi:"cpuHotUnplug"`
-	Description         *string `pulumi:"description"`
-	DiscScsiHotPlug     bool    `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   bool    `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   bool    `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool    `pulumi:"discVirtioHotUnplug"`
+	// Cloud init compatibility
+	CloudInit string `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
+	// description of the image
+	Description *string `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string   `pulumi:"id"`
-	ImageAlias   *string  `pulumi:"imageAlias"`
+	Id         string  `pulumi:"id"`
+	ImageAlias *string `pulumi:"imageAlias"`
+	// List of image aliases mapped for this Image
 	ImageAliases []string `pulumi:"imageAliases"`
-	LicenceType  string   `pulumi:"licenceType"`
-	Location     *string  `pulumi:"location"`
-	Name         *string  `pulumi:"name"`
-	NicHotPlug   bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug bool     `pulumi:"nicHotUnplug"`
-	Public       bool     `pulumi:"public"`
-	RamHotPlug   bool     `pulumi:"ramHotPlug"`
-	RamHotUnplug bool     `pulumi:"ramHotUnplug"`
-	Size         float64  `pulumi:"size"`
-	Type         *string  `pulumi:"type"`
-	Version      *string  `pulumi:"version"`
+	// OS type of this Image
+	LicenceType string `pulumi:"licenceType"`
+	// Location of that image/snapshot.
+	Location *string `pulumi:"location"`
+	// name of the image
+	Name *string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public bool `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug bool `pulumi:"ramHotUnplug"`
+	// The size of the image in GB
+	Size float64 `pulumi:"size"`
+	// This indicates the type of image
+	Type    *string `pulumi:"type"`
+	Version *string `pulumi:"version"`
 }
 
 func GetImageOutput(ctx *pulumi.Context, args GetImageOutputArgs, opts ...pulumi.InvokeOption) GetImageResultOutput {
@@ -70,13 +190,23 @@ func GetImageOutput(ctx *pulumi.Context, args GetImageOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getImage.
 type GetImageOutputArgs struct {
-	CloudInit   pulumi.StringPtrInput `pulumi:"cloudInit"`
+	// Cloud init compatibility ("NONE" or "V1"). Exact match.
+	CloudInit pulumi.StringPtrInput `pulumi:"cloudInit"`
+	// description of the image
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	ImageAlias  pulumi.StringPtrInput `pulumi:"imageAlias"`
-	Location    pulumi.StringPtrInput `pulumi:"location"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
-	Type        pulumi.StringPtrInput `pulumi:"type"`
-	Version     pulumi.StringPtrInput `pulumi:"version"`
+	// Image alias of the image you are searching for. Exact match. E.g. =`centos:latest`, `ubuntu:latest`
+	ImageAlias pulumi.StringPtrInput `pulumi:"imageAlias"`
+	// Id of the existing image's location. Exact match. Possible values: `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `us/ewr`, `us/las`
+	Location pulumi.StringPtrInput `pulumi:"location"`
+	// Name of an existing image that you want to search for. It will return an exact match if one exists, otherwise it will retrieve partial matches.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The image type, HDD or CD-ROM. Exact match.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// The version of the image that you want to search for.
+	//
+	// If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version].
+	// The resulting string will be used to search for an exact match. An error will be thrown if one is not found.
+	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
 func (GetImageOutputArgs) ElementType() reflect.Type {
@@ -98,34 +228,42 @@ func (o GetImageResultOutput) ToGetImageResultOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Cloud init compatibility
 func (o GetImageResultOutput) CloudInit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageResult) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetImageResultOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of CPU hot unplug (no reboot required)
 func (o GetImageResultOutput) CpuHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
+// description of the image
 func (o GetImageResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetImageResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Is capable of SCSI drive hot plug (no reboot required)
 func (o GetImageResultOutput) DiscScsiHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of SCSI drive hot unplug (no reboot required)
 func (o GetImageResultOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetImageResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetImageResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
@@ -139,46 +277,57 @@ func (o GetImageResultOutput) ImageAlias() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetImageResult) *string { return v.ImageAlias }).(pulumi.StringPtrOutput)
 }
 
+// List of image aliases mapped for this Image
 func (o GetImageResultOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetImageResult) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }
 
+// OS type of this Image
 func (o GetImageResultOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageResult) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Location of that image/snapshot.
 func (o GetImageResultOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetImageResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
+// name of the image
 func (o GetImageResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetImageResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetImageResultOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetImageResultOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Indicates if the image is part of the public repository or not
 func (o GetImageResultOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetImageResultOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot unplug (no reboot required)
 func (o GetImageResultOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The size of the image in GB
 func (o GetImageResultOutput) Size() pulumi.Float64Output {
 	return o.ApplyT(func(v GetImageResult) float64 { return v.Size }).(pulumi.Float64Output)
 }
 
+// This indicates the type of image
 func (o GetImageResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetImageResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

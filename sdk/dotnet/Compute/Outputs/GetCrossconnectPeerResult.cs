@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     public sealed class GetCrossconnectPeerResult
     {
         /// <summary>
-        /// The id of the cross-connected VDC
+        /// The id of the cross-connected datacenter
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The name of the cross-connected VDC
+        /// The name of the cross-connected datacenter
         /// </summary>
         public readonly string DatacenterName;
         /// <summary>
@@ -29,6 +29,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         /// The name of the cross-connected LAN
         /// </summary>
         public readonly string LanName;
+        /// <summary>
+        /// The physical location of the connectable datacenter
+        /// </summary>
         public readonly string Location;
 
         [OutputConstructor]

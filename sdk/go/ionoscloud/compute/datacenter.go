@@ -12,19 +12,62 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Virtual **Data Center** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Description:       pulumi.String("datacenter description"),
+//				Location:          pulumi.String("us/las"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Datacenter can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+// ```
 type Datacenter struct {
 	pulumi.CustomResourceState
 
+	// Array of features and CPU families available in a location
 	CpuArchitectures DatacenterCpuArchitectureArrayOutput `pulumi:"cpuArchitectures"`
-	// A description for the datacenter, e.g. staging, production
-	Description pulumi.StringOutput      `pulumi:"description"`
-	Features    pulumi.StringArrayOutput `pulumi:"features"`
-	// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
-	Ipv6CidrBlock     pulumi.StringOutput  `pulumi:"ipv6CidrBlock"`
-	Location          pulumi.StringOutput  `pulumi:"location"`
-	Name              pulumi.StringOutput  `pulumi:"name"`
+	// [string] Description for the Virtual Data Center.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// List of features supported by the location this data center is part of
+	Features pulumi.StringArrayOutput `pulumi:"features"`
+	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	Location pulumi.StringOutput `pulumi:"location"`
+	// [string] The name of the Virtual Data Center.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrOutput `pulumi:"secAuthProtection"`
-	Version           pulumi.IntOutput     `pulumi:"version"`
+	// The version of that Data Center. Gets incremented with every change
+	Version pulumi.IntOutput `pulumi:"version"`
 }
 
 // NewDatacenter registers a new resource with the given unique name, arguments, and options.
@@ -60,29 +103,41 @@ func GetDatacenter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Datacenter resources.
 type datacenterState struct {
+	// Array of features and CPU families available in a location
 	CpuArchitectures []DatacenterCpuArchitecture `pulumi:"cpuArchitectures"`
-	// A description for the datacenter, e.g. staging, production
-	Description *string  `pulumi:"description"`
-	Features    []string `pulumi:"features"`
-	// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
-	Ipv6CidrBlock     *string `pulumi:"ipv6CidrBlock"`
-	Location          *string `pulumi:"location"`
-	Name              *string `pulumi:"name"`
-	SecAuthProtection *bool   `pulumi:"secAuthProtection"`
-	Version           *int    `pulumi:"version"`
+	// [string] Description for the Virtual Data Center.
+	Description *string `pulumi:"description"`
+	// List of features supported by the location this data center is part of
+	Features []string `pulumi:"features"`
+	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	Location *string `pulumi:"location"`
+	// [string] The name of the Virtual Data Center.
+	Name *string `pulumi:"name"`
+	// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+	SecAuthProtection *bool `pulumi:"secAuthProtection"`
+	// The version of that Data Center. Gets incremented with every change
+	Version *int `pulumi:"version"`
 }
 
 type DatacenterState struct {
+	// Array of features and CPU families available in a location
 	CpuArchitectures DatacenterCpuArchitectureArrayInput
-	// A description for the datacenter, e.g. staging, production
+	// [string] Description for the Virtual Data Center.
 	Description pulumi.StringPtrInput
-	Features    pulumi.StringArrayInput
-	// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
-	Ipv6CidrBlock     pulumi.StringPtrInput
-	Location          pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
+	// List of features supported by the location this data center is part of
+	Features pulumi.StringArrayInput
+	// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
+	Ipv6CidrBlock pulumi.StringPtrInput
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	Location pulumi.StringPtrInput
+	// [string] The name of the Virtual Data Center.
+	Name pulumi.StringPtrInput
+	// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
-	Version           pulumi.IntPtrInput
+	// The version of that Data Center. Gets incremented with every change
+	Version pulumi.IntPtrInput
 }
 
 func (DatacenterState) ElementType() reflect.Type {
@@ -90,19 +145,25 @@ func (DatacenterState) ElementType() reflect.Type {
 }
 
 type datacenterArgs struct {
-	// A description for the datacenter, e.g. staging, production
-	Description       *string `pulumi:"description"`
-	Location          string  `pulumi:"location"`
-	Name              *string `pulumi:"name"`
-	SecAuthProtection *bool   `pulumi:"secAuthProtection"`
+	// [string] Description for the Virtual Data Center.
+	Description *string `pulumi:"description"`
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	Location string `pulumi:"location"`
+	// [string] The name of the Virtual Data Center.
+	Name *string `pulumi:"name"`
+	// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
+	SecAuthProtection *bool `pulumi:"secAuthProtection"`
 }
 
 // The set of arguments for constructing a Datacenter resource.
 type DatacenterArgs struct {
-	// A description for the datacenter, e.g. staging, production
-	Description       pulumi.StringPtrInput
-	Location          pulumi.StringInput
-	Name              pulumi.StringPtrInput
+	// [string] Description for the Virtual Data Center.
+	Description pulumi.StringPtrInput
+	// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
+	Location pulumi.StringInput
+	// [string] The name of the Virtual Data Center.
+	Name pulumi.StringPtrInput
+	// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
 	SecAuthProtection pulumi.BoolPtrInput
 }
 
@@ -193,36 +254,42 @@ func (o DatacenterOutput) ToDatacenterOutputWithContext(ctx context.Context) Dat
 	return o
 }
 
+// Array of features and CPU families available in a location
 func (o DatacenterOutput) CpuArchitectures() DatacenterCpuArchitectureArrayOutput {
 	return o.ApplyT(func(v *Datacenter) DatacenterCpuArchitectureArrayOutput { return v.CpuArchitectures }).(DatacenterCpuArchitectureArrayOutput)
 }
 
-// A description for the datacenter, e.g. staging, production
+// [string] Description for the Virtual Data Center.
 func (o DatacenterOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// List of features supported by the location this data center is part of
 func (o DatacenterOutput) Features() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringArrayOutput { return v.Features }).(pulumi.StringArrayOutput)
 }
 
-// Auto-assigned /56 IPv6 CIDR block, if IPv6 is enabled for the datacenter. Read-only
+// The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
 func (o DatacenterOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
+// [string] The regional location where the Virtual Data Center will be created. This argument is immutable.
 func (o DatacenterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
+// [string] The name of the Virtual Data Center.
 func (o DatacenterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
 func (o DatacenterOutput) SecAuthProtection() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.BoolPtrOutput { return v.SecAuthProtection }).(pulumi.BoolPtrOutput)
 }
 
+// The version of that Data Center. Gets incremented with every change
 func (o DatacenterOutput) Version() pulumi.IntOutput {
 	return o.ApplyT(func(v *Datacenter) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
 }

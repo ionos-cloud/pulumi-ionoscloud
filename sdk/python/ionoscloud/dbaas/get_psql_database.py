@@ -48,6 +48,9 @@ class GetPSQLDatabaseResult:
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        [string] The id of the database.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -58,6 +61,9 @@ class GetPSQLDatabaseResult:
     @property
     @pulumi.getter
     def owner(self) -> str:
+        """
+        [string] The owner of the database.
+        """
         return pulumi.get(self, "owner")
 
 
@@ -77,7 +83,11 @@ def get_psql_database(cluster_id: Optional[str] = None,
                       name: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLDatabaseResult:
     """
-    Use this data source to access information about an existing resource.
+    The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+
+
+    :param str cluster_id: [string] The ID of the cluster.
+    :param str name: [string] Name of an existing database that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -94,7 +104,11 @@ def get_psql_database_output(cluster_id: Optional[pulumi.Input[str]] = None,
                              name: Optional[pulumi.Input[str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLDatabaseResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **PgSql Database data source** can be used to search for and return an existing PgSql database.
+
+
+    :param str cluster_id: [string] The ID of the cluster.
+    :param str name: [string] Name of an existing database that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

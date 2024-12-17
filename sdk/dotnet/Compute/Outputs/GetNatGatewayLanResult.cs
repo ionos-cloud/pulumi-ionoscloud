@@ -18,7 +18,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly ImmutableArray<string> GatewayIps;
         /// <summary>
-        /// Id for the LAN connected to the NAT gateway
+        /// ID of the network load balancer forwarding rule you want to search for.
+        /// 
+        /// `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
         /// </summary>
         public readonly int Id;
 

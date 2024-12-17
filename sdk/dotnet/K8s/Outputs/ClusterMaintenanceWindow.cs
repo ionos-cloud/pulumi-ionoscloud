@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class ClusterMaintenanceWindow
     {
         /// <summary>
-        /// Day of the week when maintenance is allowed
+        /// [string] Day of the week when maintenance is allowed
         /// </summary>
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// A clock time in the day when maintenance is allowed
+        /// [string] A clock time in the day when maintenance is allowed
         /// </summary>
         public readonly string Time;
 

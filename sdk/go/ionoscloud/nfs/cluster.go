@@ -12,17 +12,80 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Create clusters of Network File Storage (NFS) on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic example
+//			nfsDc, err := compute.NewDatacenter(ctx, "nfsDc", &compute.DatacenterArgs{
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			nfsLan, err := compute.NewLan(ctx, "nfsLan", &compute.LanArgs{
+//				DatacenterId: nfsDc.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
+//				Location: pulumi.String("de/txl"),
+//				Size:     pulumi.Int(2),
+//				Nfs: &nfs.ClusterNfsArgs{
+//					MinVersion: pulumi.String("4.2"),
+//				},
+//				Connections: &nfs.ClusterConnectionsArgs{
+//					DatacenterId: nfsDc.ID(),
+//					IpAddress:    pulumi.String("192.168.100.10/24"),
+//					Lan:          nfsLan.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
+//
+// ```sh
+// $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
+// ```
 type Cluster struct {
 	pulumi.CustomResourceState
 
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+	// The location where the Network File Storage cluster is located.
+	// - `de/fra` - Frankfurt
+	// - `de/txl` - Berlin
 	Location pulumi.StringOutput `pulumi:"location"`
-	// The name of the Network File Storage Cluster.
+	// The name of the Network File Storage cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	Nfs  ClusterNfsPtrOutput `pulumi:"nfs"`
-	// The size of the Network File Storage Cluster. Minimum size is 2.
+	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 	Size pulumi.IntOutput `pulumi:"size"`
 }
 
@@ -67,24 +130,28 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+	// The location where the Network File Storage cluster is located.
+	// - `de/fra` - Frankfurt
+	// - `de/txl` - Berlin
 	Location *string `pulumi:"location"`
-	// The name of the Network File Storage Cluster.
+	// The name of the Network File Storage cluster.
 	Name *string     `pulumi:"name"`
 	Nfs  *ClusterNfs `pulumi:"nfs"`
-	// The size of the Network File Storage Cluster. Minimum size is 2.
+	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 	Size *int `pulumi:"size"`
 }
 
 type ClusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsPtrInput
-	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+	// The location where the Network File Storage cluster is located.
+	// - `de/fra` - Frankfurt
+	// - `de/txl` - Berlin
 	Location pulumi.StringPtrInput
-	// The name of the Network File Storage Cluster.
+	// The name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput
 	Nfs  ClusterNfsPtrInput
-	// The size of the Network File Storage Cluster. Minimum size is 2.
+	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 	Size pulumi.IntPtrInput
 }
 
@@ -95,12 +162,14 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnections `pulumi:"connections"`
-	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+	// The location where the Network File Storage cluster is located.
+	// - `de/fra` - Frankfurt
+	// - `de/txl` - Berlin
 	Location string `pulumi:"location"`
-	// The name of the Network File Storage Cluster.
+	// The name of the Network File Storage cluster.
 	Name *string     `pulumi:"name"`
 	Nfs  *ClusterNfs `pulumi:"nfs"`
-	// The size of the Network File Storage Cluster. Minimum size is 2.
+	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 	Size int `pulumi:"size"`
 }
 
@@ -108,12 +177,14 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsInput
-	// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+	// The location where the Network File Storage cluster is located.
+	// - `de/fra` - Frankfurt
+	// - `de/txl` - Berlin
 	Location pulumi.StringInput
-	// The name of the Network File Storage Cluster.
+	// The name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput
 	Nfs  ClusterNfsPtrInput
-	// The size of the Network File Storage Cluster. Minimum size is 2.
+	// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 	Size pulumi.IntInput
 }
 
@@ -209,12 +280,14 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+// The location where the Network File Storage cluster is located.
+// - `de/fra` - Frankfurt
+// - `de/txl` - Berlin
 func (o ClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// The name of the Network File Storage Cluster.
+// The name of the Network File Storage cluster.
 func (o ClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -223,7 +296,7 @@ func (o ClusterOutput) Nfs() ClusterNfsPtrOutput {
 	return o.ApplyT(func(v *Cluster) ClusterNfsPtrOutput { return v.Nfs }).(ClusterNfsPtrOutput)
 }
 
-// The size of the Network File Storage Cluster. Minimum size is 2.
+// The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
 func (o ClusterOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }

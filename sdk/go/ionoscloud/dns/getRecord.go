@@ -11,6 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **DNS Record** can be used to search for and return an existing DNS Record.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** data source. Please ensure you are using tokens as other methods will not be valid.
+//
+// ## Example Usage
 func LookupRecord(ctx *pulumi.Context, args *LookupRecordArgs, opts ...pulumi.InvokeOption) (*LookupRecordResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRecordResult
@@ -23,24 +30,37 @@ func LookupRecord(ctx *pulumi.Context, args *LookupRecordArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getRecord.
 type LookupRecordArgs struct {
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
-	ZoneId       string  `pulumi:"zoneId"`
+	// [string] The ID of the DNS Record you want to search for.
+	Id *string `pulumi:"id"`
+	// [string] The name of the DNS Record you want to search for.
+	Name *string `pulumi:"name"`
+	// [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
+	// [string] The ID of the DNS Zone in which the DNS Record can be found.
+	ZoneId string `pulumi:"zoneId"`
 }
 
 // A collection of values returned by getRecord.
 type LookupRecordResult struct {
-	Content      string  `pulumi:"content"`
-	Enabled      bool    `pulumi:"enabled"`
-	Fqdn         string  `pulumi:"fqdn"`
-	Id           *string `pulumi:"id"`
+	// The content of the DNS Record.
+	Content string `pulumi:"content"`
+	// Indicates if the DNS Record is active or not.
+	Enabled bool   `pulumi:"enabled"`
+	Fqdn    string `pulumi:"fqdn"`
+	// The UUID of the DNS Record.
+	Id *string `pulumi:"id"`
+	// The name of the DNS Record.
 	Name         *string `pulumi:"name"`
 	PartialMatch *bool   `pulumi:"partialMatch"`
-	Priority     int     `pulumi:"priority"`
-	Ttl          int     `pulumi:"ttl"`
-	Type         string  `pulumi:"type"`
-	ZoneId       string  `pulumi:"zoneId"`
+	// The priority for the DNS Record.
+	Priority int `pulumi:"priority"`
+	// The time to live of the DNS Record.
+	Ttl int `pulumi:"ttl"`
+	// The type of the DNS Record.
+	Type   string `pulumi:"type"`
+	ZoneId string `pulumi:"zoneId"`
 }
 
 func LookupRecordOutput(ctx *pulumi.Context, args LookupRecordOutputArgs, opts ...pulumi.InvokeOption) LookupRecordResultOutput {
@@ -54,10 +74,16 @@ func LookupRecordOutput(ctx *pulumi.Context, args LookupRecordOutputArgs, opts .
 
 // A collection of arguments for invoking getRecord.
 type LookupRecordOutputArgs struct {
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
-	ZoneId       pulumi.StringInput    `pulumi:"zoneId"`
+	// [string] The ID of the DNS Record you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The name of the DNS Record you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// [bool] Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
+	// [string] The ID of the DNS Zone in which the DNS Record can be found.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 }
 
 func (LookupRecordOutputArgs) ElementType() reflect.Type {
@@ -79,10 +105,12 @@ func (o LookupRecordResultOutput) ToLookupRecordResultOutputWithContext(ctx cont
 	return o
 }
 
+// The content of the DNS Record.
 func (o LookupRecordResultOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRecordResult) string { return v.Content }).(pulumi.StringOutput)
 }
 
+// Indicates if the DNS Record is active or not.
 func (o LookupRecordResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRecordResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -91,10 +119,12 @@ func (o LookupRecordResultOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRecordResult) string { return v.Fqdn }).(pulumi.StringOutput)
 }
 
+// The UUID of the DNS Record.
 func (o LookupRecordResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRecordResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The name of the DNS Record.
 func (o LookupRecordResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRecordResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -103,14 +133,17 @@ func (o LookupRecordResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupRecordResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// The priority for the DNS Record.
 func (o LookupRecordResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRecordResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// The time to live of the DNS Record.
 func (o LookupRecordResultOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRecordResult) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// The type of the DNS Record.
 func (o LookupRecordResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRecordResult) string { return v.Type }).(pulumi.StringOutput)
 }

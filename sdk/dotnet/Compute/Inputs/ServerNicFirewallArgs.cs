@@ -21,6 +21,9 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -42,6 +45,9 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("targetIp")]
         public Input<string>? TargetIp { get; set; }
 
+        /// <summary>
+        /// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

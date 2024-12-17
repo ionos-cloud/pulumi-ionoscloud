@@ -14,10 +14,16 @@ namespace Pulumi.Ionoscloud.Creg.Outputs
     public sealed class RegistryTokenScope
     {
         /// <summary>
-        /// Example: ["pull", "push", "delete"]
+        /// [string] Example: ["pull", "push", "delete"]
         /// </summary>
         public readonly ImmutableArray<string> Actions;
+        /// <summary>
+        /// [string]
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// [string]
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

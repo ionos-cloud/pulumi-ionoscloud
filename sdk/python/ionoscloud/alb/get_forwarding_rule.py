@@ -70,6 +70,10 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter(name="clientTimeout")
     def client_timeout(self) -> int:
+        """
+        The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+        - `server certificates` - Array of items in that collection.
+        """
         return pulumi.get(self, "client_timeout")
 
     @property
@@ -80,26 +84,41 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter(name="httpRules")
     def http_rules(self) -> Sequence['outputs.GetForwardingRuleHttpRuleResult']:
+        """
+        Array of items in that collection
+        """
         return pulumi.get(self, "http_rules")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of Application Load Balancer Forwarding Rule
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="listenerIp")
     def listener_ip(self) -> str:
+        """
+        Listening (inbound) IP.
+        """
         return pulumi.get(self, "listener_ip")
 
     @property
     @pulumi.getter(name="listenerPort")
     def listener_port(self) -> int:
+        """
+        Listening (inbound) port number; valid range is 1 to 65535.
+        """
         return pulumi.get(self, "listener_port")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The unique name of the Application Load Balancer HTTP rule.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -110,6 +129,9 @@ class GetForwardingRuleResult:
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        Balancing protocol.
+        """
         return pulumi.get(self, "protocol")
 
     @property
@@ -144,7 +166,42 @@ def get_forwarding_rule(application_loadbalancer_id: Optional[str] = None,
                         partial_match: Optional[bool] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
     """
-    Use this data source to access information about an existing resource.
+    The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+    You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+        name="ALB FR Example")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+        name="Example",
+        partial_match=True)
+    ```
+
+
+    :param str application_loadbalancer_id: Application Load Balancer's UUID.
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the application load balancer you want to search for.
+    :param str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['applicationLoadbalancerId'] = application_loadbalancer_id
@@ -174,7 +231,42 @@ def get_forwarding_rule_output(application_loadbalancer_id: Optional[pulumi.Inpu
                                partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetForwardingRuleResult]:
     """
-    Use this data source to access information about an existing resource.
+    The Application Load Balancer Forwarding Rule data source can be used to search for and return an existing Application Load Balancer Forwarding Rules.
+    You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers Forwarding Rules.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+        name="ALB FR Example")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_forwarding_rule(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        application_loadbalancer_id=ionoscloud_application_loadbalancer["example"]["id"],
+        name="Example",
+        partial_match=True)
+    ```
+
+
+    :param str application_loadbalancer_id: Application Load Balancer's UUID.
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the application load balancer you want to search for.
+    :param str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           Both `datacenter_id` and `application_loadbalancer_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['applicationLoadbalancerId'] = application_loadbalancer_id

@@ -12,14 +12,112 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Load Balancer on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
+//				Length:  pulumi.Int(16),
+//				Special: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("Ubuntu-20.04"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ionoscloud.NewLoadbalancer(ctx, "exampleLoadbalancer", &ionoscloud.LoadbalancerArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				NicIds: pulumi.StringArray{
+//					exampleServer.PrimaryNic,
+//				},
+//				Dhcp: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## A note on nics
+//
+// When declaring NIC resources to be used with the load balancer, please make sure
+// you use the "lifecycle meta-argument" to make sure changes to the lan attribute
+// of the nic are ignored.
+//
+// Please see the Nic resource's documentation for an example on how to do that.
+//
+// ## Import
+//
+// Resource Load Balancer can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:index/loadbalancer:Loadbalancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
+// ```
 type Loadbalancer struct {
 	pulumi.CustomResourceState
 
-	DatacenterId pulumi.StringOutput      `pulumi:"datacenterId"`
-	Dhcp         pulumi.BoolPtrOutput     `pulumi:"dhcp"`
-	Ip           pulumi.StringOutput      `pulumi:"ip"`
-	Name         pulumi.StringOutput      `pulumi:"name"`
-	NicIds       pulumi.StringArrayOutput `pulumi:"nicIds"`
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+	Dhcp pulumi.BoolPtrOutput `pulumi:"dhcp"`
+	// [string] IPv4 address of the load balancer.
+	Ip pulumi.StringOutput `pulumi:"ip"`
+	// [string] The name of the load balancer.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [list] A list of NIC IDs that are part of the load balancer.
+	NicIds pulumi.StringArrayOutput `pulumi:"nicIds"`
 }
 
 // NewLoadbalancer registers a new resource with the given unique name, arguments, and options.
@@ -58,19 +156,29 @@ func GetLoadbalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Loadbalancer resources.
 type loadbalancerState struct {
-	DatacenterId *string  `pulumi:"datacenterId"`
-	Dhcp         *bool    `pulumi:"dhcp"`
-	Ip           *string  `pulumi:"ip"`
-	Name         *string  `pulumi:"name"`
-	NicIds       []string `pulumi:"nicIds"`
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId *string `pulumi:"datacenterId"`
+	// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+	Dhcp *bool `pulumi:"dhcp"`
+	// [string] IPv4 address of the load balancer.
+	Ip *string `pulumi:"ip"`
+	// [string] The name of the load balancer.
+	Name *string `pulumi:"name"`
+	// [list] A list of NIC IDs that are part of the load balancer.
+	NicIds []string `pulumi:"nicIds"`
 }
 
 type LoadbalancerState struct {
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
-	Dhcp         pulumi.BoolPtrInput
-	Ip           pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
-	NicIds       pulumi.StringArrayInput
+	// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+	Dhcp pulumi.BoolPtrInput
+	// [string] IPv4 address of the load balancer.
+	Ip pulumi.StringPtrInput
+	// [string] The name of the load balancer.
+	Name pulumi.StringPtrInput
+	// [list] A list of NIC IDs that are part of the load balancer.
+	NicIds pulumi.StringArrayInput
 }
 
 func (LoadbalancerState) ElementType() reflect.Type {
@@ -78,20 +186,30 @@ func (LoadbalancerState) ElementType() reflect.Type {
 }
 
 type loadbalancerArgs struct {
-	DatacenterId string   `pulumi:"datacenterId"`
-	Dhcp         *bool    `pulumi:"dhcp"`
-	Ip           *string  `pulumi:"ip"`
-	Name         *string  `pulumi:"name"`
-	NicIds       []string `pulumi:"nicIds"`
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+	Dhcp *bool `pulumi:"dhcp"`
+	// [string] IPv4 address of the load balancer.
+	Ip *string `pulumi:"ip"`
+	// [string] The name of the load balancer.
+	Name *string `pulumi:"name"`
+	// [list] A list of NIC IDs that are part of the load balancer.
+	NicIds []string `pulumi:"nicIds"`
 }
 
 // The set of arguments for constructing a Loadbalancer resource.
 type LoadbalancerArgs struct {
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	Dhcp         pulumi.BoolPtrInput
-	Ip           pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
-	NicIds       pulumi.StringArrayInput
+	// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
+	Dhcp pulumi.BoolPtrInput
+	// [string] IPv4 address of the load balancer.
+	Ip pulumi.StringPtrInput
+	// [string] The name of the load balancer.
+	Name pulumi.StringPtrInput
+	// [list] A list of NIC IDs that are part of the load balancer.
+	NicIds pulumi.StringArrayInput
 }
 
 func (LoadbalancerArgs) ElementType() reflect.Type {
@@ -181,22 +299,27 @@ func (o LoadbalancerOutput) ToLoadbalancerOutputWithContext(ctx context.Context)
 	return o
 }
 
+// [string] The ID of a Virtual Data Center.
 func (o LoadbalancerOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
 func (o LoadbalancerOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.BoolPtrOutput { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
+// [string] IPv4 address of the load balancer.
 func (o LoadbalancerOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
+// [string] The name of the load balancer.
 func (o LoadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [list] A list of NIC IDs that are part of the load balancer.
 func (o LoadbalancerOutput) NicIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.NicIds }).(pulumi.StringArrayOutput)
 }

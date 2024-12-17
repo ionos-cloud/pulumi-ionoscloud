@@ -13,7 +13,13 @@ namespace Pulumi.Ionoscloud.Cdn.Outputs
     [OutputType]
     public sealed class DistributionRoutingRuleUpstreamGeoRestrictions
     {
+        /// <summary>
+        /// [string] List of allowed countries
+        /// </summary>
         public readonly ImmutableArray<string> AllowLists;
+        /// <summary>
+        /// [string] List of blocked countries
+        /// </summary>
         public readonly ImmutableArray<string> BlockLists;
 
         [OutputConstructor]

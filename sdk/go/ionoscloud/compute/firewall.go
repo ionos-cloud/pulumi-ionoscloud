@@ -12,22 +12,138 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a set of **Firewall Rules** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
+//				Length:  pulumi.Int(16),
+//				Special: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String("Ubuntu-20.04"),
+//				ImagePassword:    serverImagePassword.Result,
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            pulumi.Int(1),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleNic, err := compute.NewNic(ctx, "exampleNic", &compute.NicArgs{
+//				DatacenterId:   exampleDatacenter.ID(),
+//				ServerId:       exampleServer.ID(),
+//				Lan:            pulumi.Int(2),
+//				Dhcp:           pulumi.Bool(true),
+//				FirewallActive: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewFirewall(ctx, "exampleFirewall", &compute.FirewallArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				ServerId:     exampleServer.ID(),
+//				NicId:        exampleNic.ID(),
+//				Protocol:     pulumi.String("ICMP"),
+//				SourceMac:    pulumi.String("00:0a:95:9d:68:16"),
+//				SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[1], nil
+//				}).(pulumi.StringOutput),
+//				IcmpType: pulumi.String("1"),
+//				IcmpCode: pulumi.String("8"),
+//				Type:     pulumi.String("INGRESS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Firewall can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
+// ```
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	DatacenterId   pulumi.StringOutput    `pulumi:"datacenterId"`
-	IcmpCode       pulumi.StringPtrOutput `pulumi:"icmpCode"`
-	IcmpType       pulumi.StringPtrOutput `pulumi:"icmpType"`
-	Name           pulumi.StringOutput    `pulumi:"name"`
-	NicId          pulumi.StringOutput    `pulumi:"nicId"`
-	PortRangeEnd   pulumi.IntPtrOutput    `pulumi:"portRangeEnd"`
-	PortRangeStart pulumi.IntPtrOutput    `pulumi:"portRangeStart"`
-	Protocol       pulumi.StringOutput    `pulumi:"protocol"`
-	ServerId       pulumi.StringOutput    `pulumi:"serverId"`
-	SourceIp       pulumi.StringOutput    `pulumi:"sourceIp"`
-	SourceMac      pulumi.StringPtrOutput `pulumi:"sourceMac"`
-	TargetIp       pulumi.StringOutput    `pulumi:"targetIp"`
-	Type           pulumi.StringOutput    `pulumi:"type"`
+	// [string] The Virtual Data Center ID.
+	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	IcmpCode pulumi.StringPtrOutput `pulumi:"icmpCode"`
+	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	IcmpType pulumi.StringPtrOutput `pulumi:"icmpType"`
+	// [string] The name of the firewall rule.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [string] The NIC ID.
+	NicId pulumi.StringOutput `pulumi:"nicId"`
+	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeEnd pulumi.IntPtrOutput `pulumi:"portRangeEnd"`
+	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeStart pulumi.IntPtrOutput `pulumi:"portRangeStart"`
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// [string] The Server ID.
+	ServerId pulumi.StringOutput `pulumi:"serverId"`
+	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
+	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	SourceMac pulumi.StringPtrOutput `pulumi:"sourceMac"`
+	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	TargetIp pulumi.StringOutput `pulumi:"targetIp"`
+	// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
+	Type pulumi.StringOutput `pulumi:"type"`
 }
 
 // NewFirewall registers a new resource with the given unique name, arguments, and options.
@@ -72,35 +188,61 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	DatacenterId   *string `pulumi:"datacenterId"`
-	IcmpCode       *string `pulumi:"icmpCode"`
-	IcmpType       *string `pulumi:"icmpType"`
-	Name           *string `pulumi:"name"`
-	NicId          *string `pulumi:"nicId"`
-	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
-	PortRangeStart *int    `pulumi:"portRangeStart"`
-	Protocol       *string `pulumi:"protocol"`
-	ServerId       *string `pulumi:"serverId"`
-	SourceIp       *string `pulumi:"sourceIp"`
-	SourceMac      *string `pulumi:"sourceMac"`
-	TargetIp       *string `pulumi:"targetIp"`
-	Type           *string `pulumi:"type"`
+	// [string] The Virtual Data Center ID.
+	DatacenterId *string `pulumi:"datacenterId"`
+	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	IcmpCode *string `pulumi:"icmpCode"`
+	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	IcmpType *string `pulumi:"icmpType"`
+	// [string] The name of the firewall rule.
+	Name *string `pulumi:"name"`
+	// [string] The NIC ID.
+	NicId *string `pulumi:"nicId"`
+	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeEnd *int `pulumi:"portRangeEnd"`
+	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeStart *int `pulumi:"portRangeStart"`
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	Protocol *string `pulumi:"protocol"`
+	// [string] The Server ID.
+	ServerId *string `pulumi:"serverId"`
+	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	SourceIp *string `pulumi:"sourceIp"`
+	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	SourceMac *string `pulumi:"sourceMac"`
+	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	TargetIp *string `pulumi:"targetIp"`
+	// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
+	Type *string `pulumi:"type"`
 }
 
 type FirewallState struct {
-	DatacenterId   pulumi.StringPtrInput
-	IcmpCode       pulumi.StringPtrInput
-	IcmpType       pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	NicId          pulumi.StringPtrInput
-	PortRangeEnd   pulumi.IntPtrInput
+	// [string] The Virtual Data Center ID.
+	DatacenterId pulumi.StringPtrInput
+	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	IcmpCode pulumi.StringPtrInput
+	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	IcmpType pulumi.StringPtrInput
+	// [string] The name of the firewall rule.
+	Name pulumi.StringPtrInput
+	// [string] The NIC ID.
+	NicId pulumi.StringPtrInput
+	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeEnd pulumi.IntPtrInput
+	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart pulumi.IntPtrInput
-	Protocol       pulumi.StringPtrInput
-	ServerId       pulumi.StringPtrInput
-	SourceIp       pulumi.StringPtrInput
-	SourceMac      pulumi.StringPtrInput
-	TargetIp       pulumi.StringPtrInput
-	Type           pulumi.StringPtrInput
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	Protocol pulumi.StringPtrInput
+	// [string] The Server ID.
+	ServerId pulumi.StringPtrInput
+	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	SourceIp pulumi.StringPtrInput
+	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	SourceMac pulumi.StringPtrInput
+	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	TargetIp pulumi.StringPtrInput
+	// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
+	Type pulumi.StringPtrInput
 }
 
 func (FirewallState) ElementType() reflect.Type {
@@ -108,36 +250,62 @@ func (FirewallState) ElementType() reflect.Type {
 }
 
 type firewallArgs struct {
-	DatacenterId   string  `pulumi:"datacenterId"`
-	IcmpCode       *string `pulumi:"icmpCode"`
-	IcmpType       *string `pulumi:"icmpType"`
-	Name           *string `pulumi:"name"`
-	NicId          string  `pulumi:"nicId"`
-	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
-	PortRangeStart *int    `pulumi:"portRangeStart"`
-	Protocol       string  `pulumi:"protocol"`
-	ServerId       string  `pulumi:"serverId"`
-	SourceIp       *string `pulumi:"sourceIp"`
-	SourceMac      *string `pulumi:"sourceMac"`
-	TargetIp       *string `pulumi:"targetIp"`
-	Type           *string `pulumi:"type"`
+	// [string] The Virtual Data Center ID.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	IcmpCode *string `pulumi:"icmpCode"`
+	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	IcmpType *string `pulumi:"icmpType"`
+	// [string] The name of the firewall rule.
+	Name *string `pulumi:"name"`
+	// [string] The NIC ID.
+	NicId string `pulumi:"nicId"`
+	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeEnd *int `pulumi:"portRangeEnd"`
+	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeStart *int `pulumi:"portRangeStart"`
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	Protocol string `pulumi:"protocol"`
+	// [string] The Server ID.
+	ServerId string `pulumi:"serverId"`
+	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	SourceIp *string `pulumi:"sourceIp"`
+	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	SourceMac *string `pulumi:"sourceMac"`
+	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	TargetIp *string `pulumi:"targetIp"`
+	// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
-	DatacenterId   pulumi.StringInput
-	IcmpCode       pulumi.StringPtrInput
-	IcmpType       pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	NicId          pulumi.StringInput
-	PortRangeEnd   pulumi.IntPtrInput
+	// [string] The Virtual Data Center ID.
+	DatacenterId pulumi.StringInput
+	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	IcmpCode pulumi.StringPtrInput
+	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	IcmpType pulumi.StringPtrInput
+	// [string] The name of the firewall rule.
+	Name pulumi.StringPtrInput
+	// [string] The NIC ID.
+	NicId pulumi.StringInput
+	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	PortRangeEnd pulumi.IntPtrInput
+	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart pulumi.IntPtrInput
-	Protocol       pulumi.StringInput
-	ServerId       pulumi.StringInput
-	SourceIp       pulumi.StringPtrInput
-	SourceMac      pulumi.StringPtrInput
-	TargetIp       pulumi.StringPtrInput
-	Type           pulumi.StringPtrInput
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	Protocol pulumi.StringInput
+	// [string] The Server ID.
+	ServerId pulumi.StringInput
+	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	SourceIp pulumi.StringPtrInput
+	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	SourceMac pulumi.StringPtrInput
+	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	TargetIp pulumi.StringPtrInput
+	// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
+	Type pulumi.StringPtrInput
 }
 
 func (FirewallArgs) ElementType() reflect.Type {
@@ -227,54 +395,67 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
+// [string] The Virtual Data Center ID.
 func (o FirewallOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
 func (o FirewallOutput) IcmpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.IcmpCode }).(pulumi.StringPtrOutput)
 }
 
+// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
 func (o FirewallOutput) IcmpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.IcmpType }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the firewall rule.
 func (o FirewallOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [string] The NIC ID.
 func (o FirewallOutput) NicId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.NicId }).(pulumi.StringOutput)
 }
 
+// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 func (o FirewallOutput) PortRangeEnd() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.IntPtrOutput { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
 }
 
+// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 func (o FirewallOutput) PortRangeStart() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.IntPtrOutput { return v.PortRangeStart }).(pulumi.IntPtrOutput)
 }
 
+// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
 func (o FirewallOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// [string] The Server ID.
 func (o FirewallOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.ServerId }).(pulumi.StringOutput)
 }
 
+// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 func (o FirewallOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
+// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
 func (o FirewallOutput) SourceMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.SourceMac }).(pulumi.StringPtrOutput)
 }
 
+// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
 func (o FirewallOutput) TargetIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.TargetIp }).(pulumi.StringOutput)
 }
 
+// [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
 func (o FirewallOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

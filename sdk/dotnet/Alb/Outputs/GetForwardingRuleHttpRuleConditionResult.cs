@@ -26,7 +26,7 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
         /// </summary>
         public readonly bool Negate;
         /// <summary>
-        /// Type of the HTTP rule condition.
+        /// Type of the Http Rule condition.
         /// </summary>
         public readonly string Type;
         /// <summary>

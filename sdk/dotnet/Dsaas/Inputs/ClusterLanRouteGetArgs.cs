@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Dsaas.Inputs
     public sealed class ClusterLanRouteGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// IPv4 or IPv6 gateway IP for the route
+        /// [string] IPv4 or IPv6 gateway IP for the route.
         /// </summary>
         [Input("gateway", required: true)]
         public Input<string> Gateway { get; set; } = null!;
 
         /// <summary>
-        /// IPv4 or IPv6 CIDR to be routed via the interface
+        /// [string] IPv4 or IPv6 CIDR to be routed via the interface.
         /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;

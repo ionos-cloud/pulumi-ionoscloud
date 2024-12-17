@@ -77,9 +77,9 @@ class InMemoryDBReplicaSetConnections(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
-        :param str datacenter_id: The datacenter to connect your instance to.
-        :param str lan_id: The numeric LAN ID to connect your instance to.
+        :param str cidr: [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
+        :param str datacenter_id: [string] The datacenter to connect your instance to.
+        :param str lan_id: [string] The numeric LAN ID to connect your instance to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -89,7 +89,7 @@ class InMemoryDBReplicaSetConnections(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
         """
         return pulumi.get(self, "cidr")
 
@@ -97,7 +97,7 @@ class InMemoryDBReplicaSetConnections(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your instance to.
+        [string] The datacenter to connect your instance to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -105,7 +105,7 @@ class InMemoryDBReplicaSetConnections(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The numeric LAN ID to connect your instance to.
+        [string] The numeric LAN ID to connect your instance to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -136,9 +136,9 @@ class InMemoryDBReplicaSetCredentials(dict):
                  hashed_password: Optional['outputs.InMemoryDBReplicaSetCredentialsHashedPassword'] = None,
                  plain_text_password: Optional[str] = None):
         """
-        :param str username: The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
-        :param 'InMemoryDBReplicaSetCredentialsHashedPasswordArgs' hashed_password: The hashed password for a InMemoryDB user.
-        :param str plain_text_password: The password for a InMemoryDB user.
+        :param str username: [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        :param 'InMemoryDBReplicaSetCredentialsHashedPasswordArgs' hashed_password: [object] The hashed password for a InMemoryDB user.
+        :param str plain_text_password: [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
         pulumi.set(__self__, "username", username)
         if hashed_password is not None:
@@ -150,7 +150,7 @@ class InMemoryDBReplicaSetCredentials(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         """
         return pulumi.get(self, "username")
 
@@ -158,7 +158,7 @@ class InMemoryDBReplicaSetCredentials(dict):
     @pulumi.getter(name="hashedPassword")
     def hashed_password(self) -> Optional['outputs.InMemoryDBReplicaSetCredentialsHashedPassword']:
         """
-        The hashed password for a InMemoryDB user.
+        [object] The hashed password for a InMemoryDB user.
         """
         return pulumi.get(self, "hashed_password")
 
@@ -166,7 +166,7 @@ class InMemoryDBReplicaSetCredentials(dict):
     @pulumi.getter(name="plainTextPassword")
     def plain_text_password(self) -> Optional[str]:
         """
-        The password for a InMemoryDB user.
+        [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         """
         return pulumi.get(self, "plain_text_password")
 
@@ -176,17 +176,27 @@ class InMemoryDBReplicaSetCredentialsHashedPassword(dict):
     def __init__(__self__, *,
                  algorithm: str,
                  hash: str):
+        """
+        :param str algorithm: [string] The value can be only: "SHA-256".
+        :param str hash: [string] The hashed password.
+        """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "hash", hash)
 
     @property
     @pulumi.getter
     def algorithm(self) -> str:
+        """
+        [string] The value can be only: "SHA-256".
+        """
         return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter
     def hash(self) -> str:
+        """
+        [string] The hashed password.
+        """
         return pulumi.get(self, "hash")
 
 
@@ -213,8 +223,8 @@ class InMemoryDBReplicaSetMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: The name of the week day.
-        :param str time: Start of the maintenance window in UTC time.
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -223,7 +233,7 @@ class InMemoryDBReplicaSetMaintenanceWindow(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -231,7 +241,7 @@ class InMemoryDBReplicaSetMaintenanceWindow(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 
@@ -243,9 +253,9 @@ class InMemoryDBReplicaSetResources(dict):
                  ram: int,
                  storage: Optional[int] = None):
         """
-        :param int cores: The number of CPU cores per instance.
-        :param int ram: The amount of memory per instance in gigabytes (GB).
-        :param int storage: The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        :param int cores: [int] The number of CPU cores per instance.
+        :param int ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param int storage: [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "ram", ram)
@@ -256,7 +266,7 @@ class InMemoryDBReplicaSetResources(dict):
     @pulumi.getter
     def cores(self) -> int:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -264,7 +274,7 @@ class InMemoryDBReplicaSetResources(dict):
     @pulumi.getter
     def ram(self) -> int:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -272,7 +282,7 @@ class InMemoryDBReplicaSetResources(dict):
     @pulumi.getter
     def storage(self) -> Optional[int]:
         """
-        The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
 
@@ -437,7 +447,7 @@ class MongoClusterBackup(dict):
                  point_in_time_window_hours: Optional[int] = None,
                  snapshot_interval_hours: Optional[int] = None):
         """
-        :param str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        :param str location: [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         :param int point_in_time_window_hours: Number of hours in the past for which a point-in-time snapshot can be created.
         :param int snapshot_interval_hours: Number of hours between snapshots.
         """
@@ -452,7 +462,7 @@ class MongoClusterBackup(dict):
     @pulumi.getter
     def location(self) -> Optional[str]:
         """
-        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        [string] - The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         return pulumi.get(self, "location")
 
@@ -480,9 +490,9 @@ class MongoClusterBiConnector(dict):
                  host: Optional[str] = None,
                  port: Optional[str] = None):
         """
-        :param bool enabled: Enable or disable the BiConnector.
-        :param str host: The host where this new BI Connector is installed.
-        :param str port: Port number used when connecting to this new BI Connector.
+        :param bool enabled: [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
+        :param str host: [string] - The host where this new BI Connector is installed.
+        :param str port: [string] - Port number used when connecting to this new BI Connector.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -495,7 +505,7 @@ class MongoClusterBiConnector(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        Enable or disable the BiConnector.
+        [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         """
         return pulumi.get(self, "enabled")
 
@@ -503,7 +513,7 @@ class MongoClusterBiConnector(dict):
     @pulumi.getter
     def host(self) -> Optional[str]:
         """
-        The host where this new BI Connector is installed.
+        [string] - The host where this new BI Connector is installed.
         """
         return pulumi.get(self, "host")
 
@@ -511,7 +521,7 @@ class MongoClusterBiConnector(dict):
     @pulumi.getter
     def port(self) -> Optional[str]:
         """
-        Port number used when connecting to this new BI Connector.
+        [string] - Port number used when connecting to this new BI Connector.
         """
         return pulumi.get(self, "port")
 
@@ -544,9 +554,9 @@ class MongoClusterConnections(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param Sequence[str] cidr_lists: The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
-        :param str datacenter_id: The datacenter to connect your cluster to.
-        :param str lan_id: The LAN to connect your cluster to.
+        :param Sequence[str] cidr_lists: [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
+        :param str datacenter_id: [string] The datacenter to connect your cluster to.
+        :param str lan_id: [string] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr_lists", cidr_lists)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -556,7 +566,7 @@ class MongoClusterConnections(dict):
     @pulumi.getter(name="cidrLists")
     def cidr_lists(self) -> Sequence[str]:
         """
-        The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        [List] The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/cloud/databases/mongodb/api-howtos/create-a-cluster#preparing-the-network).
         """
         return pulumi.get(self, "cidr_lists")
 
@@ -564,7 +574,7 @@ class MongoClusterConnections(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to.
+        [string] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -572,7 +582,7 @@ class MongoClusterConnections(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The LAN to connect your cluster to.
+        [string] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -599,17 +609,27 @@ class MongoClusterMaintenanceWindow(dict):
     def __init__(__self__, *,
                  day_of_the_week: str,
                  time: str):
+        """
+        :param str day_of_the_week: [string]
+        :param str time: [string]
+        """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @property
     @pulumi.getter
     def time(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "time")
 
 
@@ -619,7 +639,10 @@ class MongoUserRole(dict):
                  database: Optional[str] = None,
                  role: Optional[str] = None):
         """
-        :param str role: A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        :param str database: [true] Database on which to apply the role.
+               
+               **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        :param str role: [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
         if database is not None:
             pulumi.set(__self__, "database", database)
@@ -629,13 +652,18 @@ class MongoUserRole(dict):
     @property
     @pulumi.getter
     def database(self) -> Optional[str]:
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         return pulumi.get(self, "database")
 
     @property
     @pulumi.getter
     def role(self) -> Optional[str]:
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor.
         """
         return pulumi.get(self, "role")
 
@@ -663,7 +691,8 @@ class PSQLClusterConnectionPooler(dict):
                  enabled: bool,
                  pool_mode: str):
         """
-        :param str pool_mode: Represents different modes of connection pooling for the connection pooler
+        :param bool enabled: [bool]
+        :param str pool_mode: [string] Represents different modes of connection pooling for the connection pooler.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "pool_mode", pool_mode)
@@ -671,13 +700,16 @@ class PSQLClusterConnectionPooler(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        [bool]
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="poolMode")
     def pool_mode(self) -> str:
         """
-        Represents different modes of connection pooling for the connection pooler
+        [string] Represents different modes of connection pooling for the connection pooler.
         """
         return pulumi.get(self, "pool_mode")
 
@@ -708,13 +740,9 @@ class PSQLClusterConnections(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for the database.
-                         Note the following unavailable IP ranges:
-                         10.233.64.0/18
-                         10.233.0.0/18
-                         10.233.114.0/24
-        :param str datacenter_id: The datacenter to connect your cluster to.
-        :param str lan_id: The LAN to connect your cluster to.
+        :param str cidr: [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
+        :param str datacenter_id: [true] The datacenter to connect your cluster to.
+        :param str lan_id: [true] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -724,11 +752,7 @@ class PSQLClusterConnections(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for the database.
-                  Note the following unavailable IP ranges:
-                  10.233.64.0/18
-                  10.233.0.0/18
-                  10.233.114.0/24
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         return pulumi.get(self, "cidr")
 
@@ -736,7 +760,7 @@ class PSQLClusterConnections(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -744,7 +768,7 @@ class PSQLClusterConnections(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The LAN to connect your cluster to.
+        [true] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -755,7 +779,8 @@ class PSQLClusterCredentials(dict):
                  password: str,
                  username: str):
         """
-        :param str username: the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        :param str password: [string]
+        :param str username: [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -763,13 +788,16 @@ class PSQLClusterCredentials(dict):
     @property
     @pulumi.getter
     def password(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def username(self) -> str:
         """
-        the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        [string] The username for the initial postgres user. Some system usernames are restricted (e.g. "postgres", "admin", "standby")
         """
         return pulumi.get(self, "username")
 
@@ -799,8 +827,8 @@ class PSQLClusterFromBackup(dict):
                  backup_id: str,
                  recovery_target_time: Optional[str] = None):
         """
-        :param str backup_id: The unique ID of the backup you want to restore.
-        :param str recovery_target_time: If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        :param str backup_id: [string] The unique ID of the backup you want to restore.
+        :param str recovery_target_time: [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
         pulumi.set(__self__, "backup_id", backup_id)
         if recovery_target_time is not None:
@@ -810,7 +838,7 @@ class PSQLClusterFromBackup(dict):
     @pulumi.getter(name="backupId")
     def backup_id(self) -> str:
         """
-        The unique ID of the backup you want to restore.
+        [string] The unique ID of the backup you want to restore.
         """
         return pulumi.get(self, "backup_id")
 
@@ -818,7 +846,7 @@ class PSQLClusterFromBackup(dict):
     @pulumi.getter(name="recoveryTargetTime")
     def recovery_target_time(self) -> Optional[str]:
         """
-        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        [string] If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
         """
         return pulumi.get(self, "recovery_target_time")
 
@@ -845,17 +873,27 @@ class PSQLClusterMaintenanceWindow(dict):
     def __init__(__self__, *,
                  day_of_the_week: str,
                  time: str):
+        """
+        :param str day_of_the_week: [string]
+        :param str time: [string]
+        """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @property
     @pulumi.getter
     def time(self) -> str:
+        """
+        [string]
+        """
         return pulumi.get(self, "time")
 
 
@@ -866,9 +904,9 @@ class GetInMemoryDBReplicaSetConnectionResult(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for your Replicaset.
-        :param str datacenter_id: The datacenter to connect your Replicaset to.
-        :param str lan_id: The numeric LAN ID to connect your Replicaset to.
+        :param str cidr: [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
+        :param str datacenter_id: [string] The datacenter to connect your instance to.
+        :param str lan_id: [string] The numeric LAN ID to connect your instance to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -878,7 +916,7 @@ class GetInMemoryDBReplicaSetConnectionResult(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for your Replicaset.
+        [string] The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24.
         """
         return pulumi.get(self, "cidr")
 
@@ -886,7 +924,7 @@ class GetInMemoryDBReplicaSetConnectionResult(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your Replicaset to.
+        [string] The datacenter to connect your instance to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -894,7 +932,7 @@ class GetInMemoryDBReplicaSetConnectionResult(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The numeric LAN ID to connect your Replicaset to.
+        [string] The numeric LAN ID to connect your instance to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -904,7 +942,7 @@ class GetInMemoryDBReplicaSetCredentialResult(dict):
     def __init__(__self__, *,
                  username: str):
         """
-        :param str username: The username for your Replicaset.
+        :param str username: [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         """
         pulumi.set(__self__, "username", username)
 
@@ -912,7 +950,7 @@ class GetInMemoryDBReplicaSetCredentialResult(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username for your Replicaset.
+        [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         """
         return pulumi.get(self, "username")
 
@@ -923,8 +961,8 @@ class GetInMemoryDBReplicaSetMaintenanceWindowResult(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: The name of the week day.
-        :param str time: Start of the maintenance window in UTC time.
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -933,7 +971,7 @@ class GetInMemoryDBReplicaSetMaintenanceWindowResult(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -941,7 +979,7 @@ class GetInMemoryDBReplicaSetMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 
@@ -953,9 +991,9 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
                  ram: int,
                  storage: int):
         """
-        :param int cores: The number of CPU cores per instance.
-        :param int ram: The amount of memory per instance in gigabytes (GB).
-        :param int storage: The amount of storage per instance in gigabytes (GB).
+        :param int cores: [int] The number of CPU cores per instance.
+        :param int ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param int storage: [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "ram", ram)
@@ -965,7 +1003,7 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
     @pulumi.getter
     def cores(self) -> int:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -973,7 +1011,7 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
     @pulumi.getter
     def ram(self) -> int:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -981,7 +1019,7 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
     @pulumi.getter
     def storage(self) -> int:
         """
-        The amount of storage per instance in gigabytes (GB).
+        [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         """
         return pulumi.get(self, "storage")
 
@@ -1060,7 +1098,7 @@ class GetMongoClusterBackupResult(dict):
     def __init__(__self__, *,
                  location: str):
         """
-        :param str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        :param str location: The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         pulumi.set(__self__, "location", location)
 
@@ -1068,7 +1106,7 @@ class GetMongoClusterBackupResult(dict):
     @pulumi.getter
     def location(self) -> str:
         """
-        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Possible values are de, eu-south-2, or eu-central-2.
         """
         return pulumi.get(self, "location")
 
@@ -1126,8 +1164,8 @@ class GetMongoClusterConnectionResult(dict):
                          10.233.0.0/18
                          10.233.114.0/24 		
                 example: [192.168.1.100/24, 192.168.1.101/24]
-        :param str datacenter_id: The datacenter to connect your cluster to
-        :param str lan_id: The LAN to connect your cluster to
+        :param str datacenter_id: The datacenter to connect your cluster to.
+        :param str lan_id: The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr_lists", cidr_lists)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -1150,7 +1188,7 @@ class GetMongoClusterConnectionResult(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to
+        The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -1158,7 +1196,7 @@ class GetMongoClusterConnectionResult(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The LAN to connect your cluster to
+        The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -1188,7 +1226,10 @@ class GetMongoUserRoleResult(dict):
                  database: str,
                  role: str):
         """
-        :param str role: A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        :param str database: [true] Database on which to apply the role.
+               
+               **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        :param str role: [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
         """
         pulumi.set(__self__, "database", database)
         pulumi.set(__self__, "role", role)
@@ -1196,13 +1237,18 @@ class GetMongoUserRoleResult(dict):
     @property
     @pulumi.getter
     def database(self) -> str:
+        """
+        [true] Database on which to apply the role.
+
+        **NOTE:** MongoDb users do not support update at the moment. Changing any attribute will result in the user being re-created.
+        """
         return pulumi.get(self, "database")
 
     @property
     @pulumi.getter
     def role(self) -> str:
         """
-        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        [true] Mongodb user role. Examples: read, readWrite, readAnyDatabase, readWriteAnyDatabase, dbAdmin, dbAdminAnyDatabase, clusterMonitor and enableSharding.
         """
         return pulumi.get(self, "role")
 
@@ -1214,7 +1260,7 @@ class GetPSQLClusterConnectionResult(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        :param str cidr: The IP and subnet for the database.
         :param str datacenter_id: The datacenter to connect your cluster to.
         :param str lan_id: The LAN to connect your cluster to.
         """
@@ -1226,7 +1272,7 @@ class GetPSQLClusterConnectionResult(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        The IP and subnet for the database.
         """
         return pulumi.get(self, "cidr")
 
@@ -1253,7 +1299,7 @@ class GetPSQLClusterConnectionPoolerResult(dict):
                  enabled: bool,
                  pool_mode: str):
         """
-        :param str pool_mode: Represents different modes of connection pooling for the connection pooler
+        :param str pool_mode: Represents different modes of connection pooling for the connection pooler.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "pool_mode", pool_mode)
@@ -1267,7 +1313,7 @@ class GetPSQLClusterConnectionPoolerResult(dict):
     @pulumi.getter(name="poolMode")
     def pool_mode(self) -> str:
         """
-        Represents different modes of connection pooling for the connection pooler
+        Represents different modes of connection pooling for the connection pooler.
         """
         return pulumi.get(self, "pool_mode")
 
@@ -1278,8 +1324,8 @@ class GetPSQLClusterFromBackupResult(dict):
                  backup_id: str,
                  recovery_target_time: str):
         """
-        :param str backup_id: The unique ID of the backup you want to restore.
-        :param str recovery_target_time: If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        :param str backup_id: The PostgreSQL version of your cluster.
+        :param str recovery_target_time: If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
         """
         pulumi.set(__self__, "backup_id", backup_id)
         pulumi.set(__self__, "recovery_target_time", recovery_target_time)
@@ -1288,7 +1334,7 @@ class GetPSQLClusterFromBackupResult(dict):
     @pulumi.getter(name="backupId")
     def backup_id(self) -> str:
         """
-        The unique ID of the backup you want to restore.
+        The PostgreSQL version of your cluster.
         """
         return pulumi.get(self, "backup_id")
 
@@ -1296,7 +1342,7 @@ class GetPSQLClusterFromBackupResult(dict):
     @pulumi.getter(name="recoveryTargetTime")
     def recovery_target_time(self) -> str:
         """
-        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.
         """
         return pulumi.get(self, "recovery_target_time")
 

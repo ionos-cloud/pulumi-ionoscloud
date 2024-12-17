@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -184,14 +189,11 @@ def get_dns_record(id: Optional[str] = None,
         ttl=pulumi.get(__ret__, 'ttl'),
         type=pulumi.get(__ret__, 'type'),
         zone_id=pulumi.get(__ret__, 'zone_id'))
-
-
-@_utilities.lift_output_func(get_dns_record)
 def get_dns_record_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                           zone_id: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDnsRecordResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDnsRecordResult]:
     """
     The **DNS Record** can be used to search for and return an existing DNS Record.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -209,4 +211,21 @@ def get_dns_record_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     :param str zone_id: [string] The ID of the DNS Zone in which the DNS Record can be found.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    __args__['zoneId'] = zone_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getDnsRecord:getDnsRecord', __args__, opts=opts, typ=GetDnsRecordResult)
+    return __ret__.apply(lambda __response__: GetDnsRecordResult(
+        content=pulumi.get(__response__, 'content'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        fqdn=pulumi.get(__response__, 'fqdn'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        priority=pulumi.get(__response__, 'priority'),
+        ttl=pulumi.get(__response__, 'ttl'),
+        type=pulumi.get(__response__, 'type'),
+        zone_id=pulumi.get(__response__, 'zone_id')))

@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **DbaaS Mongo User data source** can be used to search for and return an existing DbaaS MongoDB User.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pulumi.InvokeOption) (*LookupMongoUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMongoUserResult
@@ -23,11 +28,15 @@ func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pul
 
 // A collection of arguments for invoking getMongoUser.
 type LookupMongoUserArgs struct {
-	ClusterId string             `pulumi:"clusterId"`
-	Database  *string            `pulumi:"database"`
-	Id        *string            `pulumi:"id"`
-	Roles     []GetMongoUserRole `pulumi:"roles"`
-	Username  string             `pulumi:"username"`
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+	ClusterId string `pulumi:"clusterId"`
+	// [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
+	Database *string `pulumi:"database"`
+	Id       *string `pulumi:"id"`
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles []GetMongoUserRole `pulumi:"roles"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username string `pulumi:"username"`
 }
 
 // A collection of values returned by getMongoUser.
@@ -50,11 +59,15 @@ func LookupMongoUserOutput(ctx *pulumi.Context, args LookupMongoUserOutputArgs, 
 
 // A collection of arguments for invoking getMongoUser.
 type LookupMongoUserOutputArgs struct {
-	ClusterId pulumi.StringInput         `pulumi:"clusterId"`
-	Database  pulumi.StringPtrInput      `pulumi:"database"`
-	Id        pulumi.StringPtrInput      `pulumi:"id"`
-	Roles     GetMongoUserRoleArrayInput `pulumi:"roles"`
-	Username  pulumi.StringInput         `pulumi:"username"`
+	// [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
+	Database pulumi.StringPtrInput `pulumi:"database"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	// [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+	Roles GetMongoUserRoleArrayInput `pulumi:"roles"`
+	// [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+	Username pulumi.StringInput `pulumi:"username"`
 }
 
 func (LookupMongoUserOutputArgs) ElementType() reflect.Type {

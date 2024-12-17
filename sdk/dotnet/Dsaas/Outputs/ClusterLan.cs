@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     public sealed class ClusterLan
     {
         /// <summary>
-        /// Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        /// [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
         /// </summary>
         public readonly bool? Dhcp;
         /// <summary>
-        /// The LAN ID of an existing LAN at the related data center
+        /// [string] The LAN ID of an existing LAN at the related data center.
         /// </summary>
         public readonly string LanId;
         /// <summary>
-        /// An array of additional LANs attached to worker nodes
+        /// [list] An array of additional LANs attached to worker nodes.
         /// </summary>
         public readonly ImmutableArray<Outputs.ClusterLanRoute> Routes;
 

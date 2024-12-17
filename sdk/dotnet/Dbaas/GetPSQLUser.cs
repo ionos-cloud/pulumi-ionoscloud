@@ -11,12 +11,21 @@ namespace Pulumi.Ionoscloud.Dbaas
 {
     public static class GetPSQLUser
     {
+        /// <summary>
+        /// The **PgSql User data source** can be used to search for and return an existing PgSql user.
+        /// </summary>
         public static Task<GetPSQLUserResult> InvokeAsync(GetPSQLUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPSQLUserResult>("ionoscloud:dbaas/getPSQLUser:getPSQLUser", args ?? new GetPSQLUserArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **PgSql User data source** can be used to search for and return an existing PgSql user.
+        /// </summary>
         public static Output<GetPSQLUserResult> Invoke(GetPSQLUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPSQLUserResult>("ionoscloud:dbaas/getPSQLUser:getPSQLUser", args ?? new GetPSQLUserInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **PgSql User data source** can be used to search for and return an existing PgSql user.
+        /// </summary>
         public static Output<GetPSQLUserResult> Invoke(GetPSQLUserInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPSQLUserResult>("ionoscloud:dbaas/getPSQLUser:getPSQLUser", args ?? new GetPSQLUserInvokeArgs(), options.WithDefaults());
     }
@@ -24,9 +33,15 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetPSQLUserArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of the cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing user that you want to search for.
+        /// </summary>
         [Input("username", required: true)]
         public string Username { get; set; } = null!;
 
@@ -38,9 +53,15 @@ namespace Pulumi.Ionoscloud.Dbaas
 
     public sealed class GetPSQLUserInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] The ID of the cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing user that you want to search for.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -55,7 +76,13 @@ namespace Pulumi.Ionoscloud.Dbaas
     public sealed class GetPSQLUserResult
     {
         public readonly string ClusterId;
+        /// <summary>
+        /// [string] The id of the user.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        /// </summary>
         public readonly bool IsSystemUser;
         public readonly string Username;
 

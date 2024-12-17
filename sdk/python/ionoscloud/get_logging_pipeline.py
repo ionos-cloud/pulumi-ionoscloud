@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -103,7 +108,6 @@ def get_logging_pipeline(id: Optional[str] = None,
     ## Example Usage
 
     ### By name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -111,7 +115,6 @@ def get_logging_pipeline(id: Optional[str] = None,
     example = ionoscloud.get_logging_pipeline(location="de/txl",
         name="pipeline_name")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: [string] The ID of the Logging pipeline you want to search for.
@@ -133,13 +136,10 @@ def get_logging_pipeline(id: Optional[str] = None,
         location=pulumi.get(__ret__, 'location'),
         logs=pulumi.get(__ret__, 'logs'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_logging_pipeline)
 def get_logging_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                 location: Optional[pulumi.Input[Optional[str]]] = None,
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoggingPipelineResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLoggingPipelineResult]:
     """
     The **Logging pipeline** datasource can be used to search for and return an existing Logging pipeline.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -149,7 +149,6 @@ def get_logging_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None
     ## Example Usage
 
     ### By name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -157,7 +156,6 @@ def get_logging_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None
     example = ionoscloud.get_logging_pipeline(location="de/txl",
         name="pipeline_name")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: [string] The ID of the Logging pipeline you want to search for.
@@ -166,4 +164,15 @@ def get_logging_pipeline_output(id: Optional[pulumi.Input[Optional[str]]] = None
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getLoggingPipeline:getLoggingPipeline', __args__, opts=opts, typ=GetLoggingPipelineResult)
+    return __ret__.apply(lambda __response__: GetLoggingPipelineResult(
+        grafana_address=pulumi.get(__response__, 'grafana_address'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        logs=pulumi.get(__response__, 'logs'),
+        name=pulumi.get(__response__, 'name')))

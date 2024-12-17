@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class MongoClusterBiConnectorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable the BiConnector.
+        /// [bool] - The status of the BI Connector. If not set, the BI Connector is disabled.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The host where this new BI Connector is installed.
+        /// [string] - The host where this new BI Connector is installed.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
         /// <summary>
-        /// Port number used when connecting to this new BI Connector.
+        /// [string] - Port number used when connecting to this new BI Connector.
         /// </summary>
         [Input("port")]
         public Input<string>? Port { get; set; }

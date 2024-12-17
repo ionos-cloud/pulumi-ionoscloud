@@ -53,16 +53,25 @@ class GetLanResult:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
+        """
+        The ID of lan's Virtual Data Center.
+        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the LAN.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ipFailovers")
     def ip_failovers(self) -> Sequence['outputs.GetLanIpFailoverResult']:
+        """
+        list of
+        """
         return pulumi.get(self, "ip_failovers")
 
     @property
@@ -73,16 +82,25 @@ class GetLanResult:
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the LAN.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def pcc(self) -> str:
+        """
+        The unique id of a `compute.Crossconnect` resource, in order.
+        """
         return pulumi.get(self, "pcc")
 
     @property
     @pulumi.getter
     def public(self) -> bool:
+        """
+        Indicates if the LAN faces the public Internet (true) or not (false).
+        """
         return pulumi.get(self, "public")
 
 
@@ -106,7 +124,18 @@ def get_lan(datacenter_id: Optional[str] = None,
             name: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLanResult:
     """
-    Use this data source to access information about an existing resource.
+    The **LAN data source** can be used to search for and return existing lans.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the lan you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing lan that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -128,7 +157,18 @@ def get_lan_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                    name: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLanResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **LAN data source** can be used to search for and return existing lans.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the lan you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing lan that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

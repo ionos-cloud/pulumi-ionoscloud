@@ -11,6 +11,65 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+// You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// ## Example Usage
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
+//				RegistryId: ionoscloud_container_registry.Example.Id,
+//				Name:       pulumi.StringRef("container-registry-token-example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
+//				RegistryId:   ionoscloud_container_registry.Example.Id,
+//				Name:         pulumi.StringRef("-example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupRegistryToken(ctx *pulumi.Context, args *LookupRegistryTokenArgs, opts ...pulumi.InvokeOption) (*LookupRegistryTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryTokenResult
@@ -23,22 +82,29 @@ func LookupRegistryToken(ctx *pulumi.Context, args *LookupRegistryTokenArgs, opt
 
 // A collection of arguments for invoking getRegistryToken.
 type LookupRegistryTokenArgs struct {
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
-	RegistryId   string  `pulumi:"registryId"`
+	// ID of the container registry token you want to search for.
+	Id *string `pulumi:"id"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// `registryId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
+	// Registry's UUID.
+	RegistryId string `pulumi:"registryId"`
 }
 
 // A collection of values returned by getRegistryToken.
 type LookupRegistryTokenResult struct {
-	Credentials  []GetRegistryTokenCredential `pulumi:"credentials"`
-	ExpiryDate   string                       `pulumi:"expiryDate"`
-	Id           *string                      `pulumi:"id"`
-	Name         *string                      `pulumi:"name"`
-	PartialMatch *bool                        `pulumi:"partialMatch"`
-	RegistryId   string                       `pulumi:"registryId"`
-	Scopes       []GetRegistryTokenScope      `pulumi:"scopes"`
-	Status       string                       `pulumi:"status"`
+	Credentials []GetRegistryTokenCredential `pulumi:"credentials"`
+	ExpiryDate  string                       `pulumi:"expiryDate"`
+	// Id of the container registry token.
+	Id           *string                 `pulumi:"id"`
+	Name         *string                 `pulumi:"name"`
+	PartialMatch *bool                   `pulumi:"partialMatch"`
+	RegistryId   string                  `pulumi:"registryId"`
+	Scopes       []GetRegistryTokenScope `pulumi:"scopes"`
+	Status       string                  `pulumi:"status"`
 }
 
 func LookupRegistryTokenOutput(ctx *pulumi.Context, args LookupRegistryTokenOutputArgs, opts ...pulumi.InvokeOption) LookupRegistryTokenResultOutput {
@@ -52,10 +118,16 @@ func LookupRegistryTokenOutput(ctx *pulumi.Context, args LookupRegistryTokenOutp
 
 // A collection of arguments for invoking getRegistryToken.
 type LookupRegistryTokenOutputArgs struct {
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
-	RegistryId   pulumi.StringInput    `pulumi:"registryId"`
+	// ID of the container registry token you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// `registryId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
+	// Registry's UUID.
+	RegistryId pulumi.StringInput `pulumi:"registryId"`
 }
 
 func (LookupRegistryTokenOutputArgs) ElementType() reflect.Type {
@@ -85,6 +157,7 @@ func (o LookupRegistryTokenResultOutput) ExpiryDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRegistryTokenResult) string { return v.ExpiryDate }).(pulumi.StringOutput)
 }
 
+// Id of the container registry token.
 func (o LookupRegistryTokenResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRegistryTokenResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }

@@ -80,36 +80,57 @@ class GetPSQLClusterResult:
     @property
     @pulumi.getter(name="backupLocation")
     def backup_location(self) -> str:
+        """
+        The IONOS Object Storage location where the backups will be stored.
+        """
         return pulumi.get(self, "backup_location")
 
     @property
     @pulumi.getter(name="connectionPoolers")
     def connection_poolers(self) -> Sequence['outputs.GetPSQLClusterConnectionPoolerResult']:
+        """
+        Details about the connection pooler.
+        """
         return pulumi.get(self, "connection_poolers")
 
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetPSQLClusterConnectionResult']:
+        """
+        Details about the network connection for your cluster.
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def cores(self) -> int:
+        """
+        The number of CPU cores per replica.
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[str]:
+        """
+        The friendly name of your cluster.
+        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> str:
+        """
+        The DNS name pointing to your cluster.
+        """
         return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter(name="fromBackups")
     def from_backups(self) -> Sequence['outputs.GetPSQLClusterFromBackupResult']:
+        """
+        The unique ID of the backup you want to restore.
+        """
         return pulumi.get(self, "from_backups")
 
     @property
@@ -120,41 +141,65 @@ class GetPSQLClusterResult:
     @property
     @pulumi.getter
     def instances(self) -> int:
+        """
+        The total number of instances in the cluster (one master and n-1 standbys)
+        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        The physical location where the cluster will be created. This will be where all of your instances live.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetPSQLClusterMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter(name="postgresVersion")
     def postgres_version(self) -> str:
+        """
+        The PostgreSQL version of your cluster.
+        """
         return pulumi.get(self, "postgres_version")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        The amount of memory per instance in megabytes.
+        """
         return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        The amount of storage per instance in MB.
+        """
         return pulumi.get(self, "storage_size")
 
     @property
     @pulumi.getter(name="storageType")
     def storage_type(self) -> str:
+        """
+        The storage type used in your cluster.
+        """
         return pulumi.get(self, "storage_type")
 
     @property
     @pulumi.getter(name="synchronizationMode")
     def synchronization_mode(self) -> str:
+        """
+        Represents different modes of replication.
+        """
         return pulumi.get(self, "synchronization_mode")
 
 
@@ -186,7 +231,26 @@ def get_psql_cluster(display_name: Optional[str] = None,
                      id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPSQLClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_cluster(display_name="PostgreSQL_cluster")
+    ```
+
+
+    :param str display_name: Display Name of an existing cluster that you want to search for.
+    :param str id: ID of the cluster you want to search for.
+           
+           Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
@@ -215,7 +279,26 @@ def get_psql_cluster_output(display_name: Optional[pulumi.Input[Optional[str]]] 
                             id: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_psql_cluster(display_name="PostgreSQL_cluster")
+    ```
+
+
+    :param str display_name: Display Name of an existing cluster that you want to search for.
+    :param str id: ID of the cluster you want to search for.
+           
+           Either `display_name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name

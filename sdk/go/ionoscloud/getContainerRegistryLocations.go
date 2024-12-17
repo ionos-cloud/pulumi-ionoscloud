@@ -11,6 +11,31 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ionoscloud.GetContainerRegistryLocations(ctx, map[string]interface{}{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetContainerRegistryLocations(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetContainerRegistryLocationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetContainerRegistryLocationsResult
@@ -24,7 +49,8 @@ func GetContainerRegistryLocations(ctx *pulumi.Context, opts ...pulumi.InvokeOpt
 // A collection of values returned by getContainerRegistryLocations.
 type GetContainerRegistryLocationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// list of container registry locations
 	Locations []string `pulumi:"locations"`
 }
 
@@ -55,6 +81,7 @@ func (o GetContainerRegistryLocationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetContainerRegistryLocationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// list of container registry locations
 func (o GetContainerRegistryLocationsResultOutput) Locations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetContainerRegistryLocationsResult) []string { return v.Locations }).(pulumi.StringArrayOutput)
 }

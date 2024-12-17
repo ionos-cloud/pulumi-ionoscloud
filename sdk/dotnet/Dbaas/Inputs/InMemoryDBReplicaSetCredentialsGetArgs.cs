@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class InMemoryDBReplicaSetCredentialsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The hashed password for a InMemoryDB user.
+        /// [object] The hashed password for a InMemoryDB user.
         /// </summary>
         [Input("hashedPassword")]
         public Input<Inputs.InMemoryDBReplicaSetCredentialsHashedPasswordGetArgs>? HashedPassword { get; set; }
@@ -22,7 +22,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         private Input<string>? _plainTextPassword;
 
         /// <summary>
-        /// The password for a InMemoryDB user.
+        /// [string] The password for a InMemoryDB user, this is a field that is marked as `Sensitive`.
         /// </summary>
         public Input<string>? PlainTextPassword
         {
@@ -35,7 +35,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         }
 
         /// <summary>
-        /// The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        /// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

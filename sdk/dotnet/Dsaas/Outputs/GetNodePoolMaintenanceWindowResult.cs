@@ -15,7 +15,7 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     {
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        /// Time at which the maintenance should start.
         /// </summary>
         public readonly string Time;
 

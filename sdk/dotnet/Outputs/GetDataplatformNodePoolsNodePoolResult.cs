@@ -43,7 +43,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDataplatformNodePoolsNodePoolMaintenanceWindowResult> MaintenanceWindows;
         /// <summary>
-        /// The name of your node pool.
+        /// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
         /// </summary>
         public readonly string Name;
         /// <summary>

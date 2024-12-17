@@ -18,7 +18,7 @@ type CrossconnectConnectableDatacenter struct {
 	Id *string `pulumi:"id"`
 	// The physical location of the connectable datacenter
 	Location *string `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
 }
 
@@ -38,7 +38,7 @@ type CrossconnectConnectableDatacenterArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The physical location of the connectable datacenter
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -103,7 +103,7 @@ func (o CrossconnectConnectableDatacenterOutput) Location() pulumi.StringPtrOutp
 	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// The name of the connectable datacenter
+// [string] The name of the cross-connection.
 func (o CrossconnectConnectableDatacenterOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -276,8 +276,9 @@ type CubeServerNic struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	Lan     int      `pulumi:"lan"`
 	Mac     *string  `pulumi:"mac"`
-	Name    *string  `pulumi:"name"`
-	PciSlot *int     `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    *string `pulumi:"name"`
+	PciSlot *int    `pulumi:"pciSlot"`
 }
 
 // CubeServerNicInput is an input type that accepts CubeServerNicArgs and CubeServerNicOutput values.
@@ -306,8 +307,9 @@ type CubeServerNicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput `pulumi:"ipv6Ips"`
 	Lan     pulumi.IntInput         `pulumi:"lan"`
 	Mac     pulumi.StringPtrInput   `pulumi:"mac"`
-	Name    pulumi.StringPtrInput   `pulumi:"name"`
-	PciSlot pulumi.IntPtrInput      `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
 }
 
 func (CubeServerNicArgs) ElementType() reflect.Type {
@@ -434,6 +436,7 @@ func (o CubeServerNicOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerNic) *string { return v.Mac }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerNicOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerNic) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -568,6 +571,7 @@ func (o CubeServerNicPtrOutput) Mac() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerNicPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerNic) *string {
 		if v == nil {
@@ -587,8 +591,9 @@ func (o CubeServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 }
 
 type CubeServerNicFirewall struct {
-	IcmpCode       *string `pulumi:"icmpCode"`
-	IcmpType       *string `pulumi:"icmpType"`
+	IcmpCode *string `pulumi:"icmpCode"`
+	IcmpType *string `pulumi:"icmpType"`
+	// [string] The name of the server.
 	Name           *string `pulumi:"name"`
 	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
 	PortRangeStart *int    `pulumi:"portRangeStart"`
@@ -611,8 +616,9 @@ type CubeServerNicFirewallInput interface {
 }
 
 type CubeServerNicFirewallArgs struct {
-	IcmpCode       pulumi.StringPtrInput `pulumi:"icmpCode"`
-	IcmpType       pulumi.StringPtrInput `pulumi:"icmpType"`
+	IcmpCode pulumi.StringPtrInput `pulumi:"icmpCode"`
+	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
+	// [string] The name of the server.
 	Name           pulumi.StringPtrInput `pulumi:"name"`
 	PortRangeEnd   pulumi.IntPtrInput    `pulumi:"portRangeEnd"`
 	PortRangeStart pulumi.IntPtrInput    `pulumi:"portRangeStart"`
@@ -708,6 +714,7 @@ func (o CubeServerNicFirewallOutput) IcmpType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.IcmpType }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerNicFirewallOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerNicFirewall) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -782,6 +789,7 @@ func (o CubeServerNicFirewallPtrOutput) IcmpType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerNicFirewallPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerNicFirewall) *string {
 		if v == nil {
@@ -855,6 +863,7 @@ func (o CubeServerNicFirewallPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type CubeServerVolume struct {
+	// [string] The availability zone in which the server should exist. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId *string `pulumi:"backupUnitId"`
@@ -866,14 +875,28 @@ type CubeServerVolume struct {
 	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
 	DiskType            string  `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	//
+	// > **⚠ WARNING**
+	// >
+	// > For creating a **CUBE** server, you can not set `volume.size` argument.
+	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword *string `pulumi:"imagePassword"`
-	LicenceType   *string `pulumi:"licenceType"`
-	Name          *string `pulumi:"name"`
-	NicHotPlug    *bool   `pulumi:"nicHotPlug"`
-	NicHotUnplug  *bool   `pulumi:"nicHotUnplug"`
-	PciSlot       *int    `pulumi:"pciSlot"`
-	RamHotPlug    *bool   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType *string `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         *string `pulumi:"name"`
+	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
+	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
+	PciSlot      *int    `pulumi:"pciSlot"`
+	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
+	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
 	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
@@ -892,6 +915,7 @@ type CubeServerVolumeInput interface {
 }
 
 type CubeServerVolumeArgs struct {
+	// [string] The availability zone in which the server should exist. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
@@ -903,14 +927,28 @@ type CubeServerVolumeArgs struct {
 	DiscVirtioHotPlug   pulumi.BoolPtrInput   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
 	DiskType            pulumi.StringInput    `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
+	// > **⚠ WARNING**
+	// >
+	// > Image_name under volume level is deprecated, please use imageName under server level
+	//
+	// > **⚠ WARNING**
+	// >
+	// > For creating a **CUBE** server, you can not set `volume.size` argument.
+	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword pulumi.StringPtrInput `pulumi:"imagePassword"`
-	LicenceType   pulumi.StringPtrInput `pulumi:"licenceType"`
-	Name          pulumi.StringPtrInput `pulumi:"name"`
-	NicHotPlug    pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
-	NicHotUnplug  pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
-	PciSlot       pulumi.IntPtrInput    `pulumi:"pciSlot"`
-	RamHotPlug    pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType pulumi.StringPtrInput `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	NicHotPlug   pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
+	NicHotUnplug pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
+	PciSlot      pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths pulumi.StringArrayInput `pulumi:"sshKeyPaths"`
 	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
@@ -994,6 +1032,7 @@ func (o CubeServerVolumeOutput) ToCubeServerVolumePtrOutputWithContext(ctx conte
 	}).(CubeServerVolumePtrOutput)
 }
 
+// [string] The availability zone in which the server should exist. This property is immutable.
 func (o CubeServerVolumeOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
 }
@@ -1032,15 +1071,27 @@ func (o CubeServerVolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v CubeServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// [string] Required if `sshKeyPath` is not provided.
+//
+// > **⚠ WARNING**
+// >
+// > Image_name under volume level is deprecated, please use imageName under server level
+//
+// > **⚠ WARNING**
+// >
+// > For creating a **CUBE** server, you can not set `volume.size` argument.
+//
 // Deprecated: Please use imagePassword under server level
 func (o CubeServerVolumeOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *string { return v.ImagePassword }).(pulumi.StringPtrOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o CubeServerVolumeOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *string { return v.LicenceType }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -1061,6 +1112,8 @@ func (o CubeServerVolumeOutput) RamHotPlug() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CubeServerVolume) *bool { return v.RamHotPlug }).(pulumi.BoolPtrOutput)
 }
 
+// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+//
 // Deprecated: Please use sshKeyPath under server level
 func (o CubeServerVolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v CubeServerVolume) []string { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
@@ -1095,6 +1148,7 @@ func (o CubeServerVolumePtrOutput) Elem() CubeServerVolumeOutput {
 	}).(CubeServerVolumeOutput)
 }
 
+// [string] The availability zone in which the server should exist. This property is immutable.
 func (o CubeServerVolumePtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerVolume) *string {
 		if v == nil {
@@ -1178,6 +1232,16 @@ func (o CubeServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] Required if `sshKeyPath` is not provided.
+//
+// > **⚠ WARNING**
+// >
+// > Image_name under volume level is deprecated, please use imageName under server level
+//
+// > **⚠ WARNING**
+// >
+// > For creating a **CUBE** server, you can not set `volume.size` argument.
+//
 // Deprecated: Please use imagePassword under server level
 func (o CubeServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerVolume) *string {
@@ -1188,6 +1252,7 @@ func (o CubeServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o CubeServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerVolume) *string {
 		if v == nil {
@@ -1197,6 +1262,7 @@ func (o CubeServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o CubeServerVolumePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CubeServerVolume) *string {
 		if v == nil {
@@ -1242,6 +1308,8 @@ func (o CubeServerVolumePtrOutput) RamHotPlug() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `imagePassword` is not provided.
+//
 // Deprecated: Please use sshKeyPath under server level
 func (o CubeServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CubeServerVolume) []string {
@@ -1263,10 +1331,14 @@ func (o CubeServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 }
 
 type DatacenterCpuArchitecture struct {
+	// A valid CPU family name
 	CpuFamily *string `pulumi:"cpuFamily"`
-	MaxCores  *int    `pulumi:"maxCores"`
-	MaxRam    *int    `pulumi:"maxRam"`
-	Vendor    *string `pulumi:"vendor"`
+	// The maximum number of cores available
+	MaxCores *int `pulumi:"maxCores"`
+	// The maximum number of RAM in MB
+	MaxRam *int `pulumi:"maxRam"`
+	// A valid CPU vendor name
+	Vendor *string `pulumi:"vendor"`
 }
 
 // DatacenterCpuArchitectureInput is an input type that accepts DatacenterCpuArchitectureArgs and DatacenterCpuArchitectureOutput values.
@@ -1281,10 +1353,14 @@ type DatacenterCpuArchitectureInput interface {
 }
 
 type DatacenterCpuArchitectureArgs struct {
+	// A valid CPU family name
 	CpuFamily pulumi.StringPtrInput `pulumi:"cpuFamily"`
-	MaxCores  pulumi.IntPtrInput    `pulumi:"maxCores"`
-	MaxRam    pulumi.IntPtrInput    `pulumi:"maxRam"`
-	Vendor    pulumi.StringPtrInput `pulumi:"vendor"`
+	// The maximum number of cores available
+	MaxCores pulumi.IntPtrInput `pulumi:"maxCores"`
+	// The maximum number of RAM in MB
+	MaxRam pulumi.IntPtrInput `pulumi:"maxRam"`
+	// A valid CPU vendor name
+	Vendor pulumi.StringPtrInput `pulumi:"vendor"`
 }
 
 func (DatacenterCpuArchitectureArgs) ElementType() reflect.Type {
@@ -1338,18 +1414,22 @@ func (o DatacenterCpuArchitectureOutput) ToDatacenterCpuArchitectureOutputWithCo
 	return o
 }
 
+// A valid CPU family name
 func (o DatacenterCpuArchitectureOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *string { return v.CpuFamily }).(pulumi.StringPtrOutput)
 }
 
+// The maximum number of cores available
 func (o DatacenterCpuArchitectureOutput) MaxCores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *int { return v.MaxCores }).(pulumi.IntPtrOutput)
 }
 
+// The maximum number of RAM in MB
 func (o DatacenterCpuArchitectureOutput) MaxRam() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *int { return v.MaxRam }).(pulumi.IntPtrOutput)
 }
 
+// A valid CPU vendor name
 func (o DatacenterCpuArchitectureOutput) Vendor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *string { return v.Vendor }).(pulumi.StringPtrOutput)
 }
@@ -1747,9 +1827,9 @@ func (o LanIpFailoverArrayOutput) Index(i pulumi.IntInput) LanIpFailoverOutput {
 }
 
 type NatGatewayLan struct {
-	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
 	GatewayIps []string `pulumi:"gatewayIps"`
-	// Id for the LAN connected to the NAT gateway
+	// [int] Id for the LAN connected to the NAT gateway.
 	Id int `pulumi:"id"`
 }
 
@@ -1765,9 +1845,9 @@ type NatGatewayLanInput interface {
 }
 
 type NatGatewayLanArgs struct {
-	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+	// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
 	GatewayIps pulumi.StringArrayInput `pulumi:"gatewayIps"`
-	// Id for the LAN connected to the NAT gateway
+	// [int] Id for the LAN connected to the NAT gateway.
 	Id pulumi.IntInput `pulumi:"id"`
 }
 
@@ -1822,12 +1902,12 @@ func (o NatGatewayLanOutput) ToNatGatewayLanOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
 func (o NatGatewayLanOutput) GatewayIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NatGatewayLan) []string { return v.GatewayIps }).(pulumi.StringArrayOutput)
 }
 
-// Id for the LAN connected to the NAT gateway
+// [int] Id for the LAN connected to the NAT gateway.
 func (o NatGatewayLanOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v NatGatewayLan) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -1853,9 +1933,9 @@ func (o NatGatewayLanArrayOutput) Index(i pulumi.IntInput) NatGatewayLanOutput {
 }
 
 type NatGatewayRuleTargetPortRange struct {
-	// Target port range end associated with the NAT gateway rule.
+	// [int] Target port range end associated with the NAT gateway rule.
 	End *int `pulumi:"end"`
-	// Target port range start associated with the NAT gateway rule.
+	// [int] Target port range start associated with the NAT gateway rule.
 	Start *int `pulumi:"start"`
 }
 
@@ -1871,9 +1951,9 @@ type NatGatewayRuleTargetPortRangeInput interface {
 }
 
 type NatGatewayRuleTargetPortRangeArgs struct {
-	// Target port range end associated with the NAT gateway rule.
+	// [int] Target port range end associated with the NAT gateway rule.
 	End pulumi.IntPtrInput `pulumi:"end"`
-	// Target port range start associated with the NAT gateway rule.
+	// [int] Target port range start associated with the NAT gateway rule.
 	Start pulumi.IntPtrInput `pulumi:"start"`
 }
 
@@ -1954,12 +2034,12 @@ func (o NatGatewayRuleTargetPortRangeOutput) ToNatGatewayRuleTargetPortRangePtrO
 	}).(NatGatewayRuleTargetPortRangePtrOutput)
 }
 
-// Target port range end associated with the NAT gateway rule.
+// [int] Target port range end associated with the NAT gateway rule.
 func (o NatGatewayRuleTargetPortRangeOutput) End() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.End }).(pulumi.IntPtrOutput)
 }
 
-// Target port range start associated with the NAT gateway rule.
+// [int] Target port range start associated with the NAT gateway rule.
 func (o NatGatewayRuleTargetPortRangeOutput) Start() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NatGatewayRuleTargetPortRange) *int { return v.Start }).(pulumi.IntPtrOutput)
 }
@@ -1988,7 +2068,7 @@ func (o NatGatewayRuleTargetPortRangePtrOutput) Elem() NatGatewayRuleTargetPortR
 	}).(NatGatewayRuleTargetPortRangeOutput)
 }
 
-// Target port range end associated with the NAT gateway rule.
+// [int] Target port range end associated with the NAT gateway rule.
 func (o NatGatewayRuleTargetPortRangePtrOutput) End() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
 		if v == nil {
@@ -1998,7 +2078,7 @@ func (o NatGatewayRuleTargetPortRangePtrOutput) End() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Target port range start associated with the NAT gateway rule.
+// [int] Target port range start associated with the NAT gateway rule.
 func (o NatGatewayRuleTargetPortRangePtrOutput) Start() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NatGatewayRuleTargetPortRange) *int {
 		if v == nil {
@@ -2009,15 +2089,17 @@ func (o NatGatewayRuleTargetPortRangePtrOutput) Start() pulumi.IntPtrOutput {
 }
 
 type NicFlowlog struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
 	Action string `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
 	Bucket string `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
 	Direction string `pulumi:"direction"`
-	// The resource's unique identifier.
+	// The ID of the NIC.
 	Id *string `pulumi:"id"`
-	// The resource name.
+	// Specifies the name of the flow log.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 	Name string `pulumi:"name"`
 }
 
@@ -2033,15 +2115,17 @@ type NicFlowlogInput interface {
 }
 
 type NicFlowlogArgs struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
 	Action pulumi.StringInput `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
 	Direction pulumi.StringInput `pulumi:"direction"`
-	// The resource's unique identifier.
+	// The ID of the NIC.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The resource name.
+	// Specifies the name of the flow log.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -2122,27 +2206,29 @@ func (o NicFlowlogOutput) ToNicFlowlogPtrOutputWithContext(ctx context.Context) 
 	}).(NicFlowlogPtrOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
 func (o NicFlowlogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v NicFlowlog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
 func (o NicFlowlogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v NicFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
 func (o NicFlowlogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v NicFlowlog) string { return v.Direction }).(pulumi.StringOutput)
 }
 
-// The resource's unique identifier.
+// The ID of the NIC.
 func (o NicFlowlogOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NicFlowlog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The resource name.
+// Specifies the name of the flow log.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 func (o NicFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v NicFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2171,7 +2257,7 @@ func (o NicFlowlogPtrOutput) Elem() NicFlowlogOutput {
 	}).(NicFlowlogOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
+// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
 func (o NicFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2181,7 +2267,7 @@ func (o NicFlowlogPtrOutput) Action() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
+// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
 func (o NicFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2191,7 +2277,7 @@ func (o NicFlowlogPtrOutput) Bucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
 func (o NicFlowlogPtrOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2201,7 +2287,7 @@ func (o NicFlowlogPtrOutput) Direction() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The resource's unique identifier.
+// The ID of the NIC.
 func (o NicFlowlogPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2211,7 +2297,9 @@ func (o NicFlowlogPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The resource name.
+// Specifies the name of the flow log.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
 func (o NicFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NicFlowlog) *string {
 		if v == nil {
@@ -2222,7 +2310,9 @@ func (o NicFlowlogPtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 type ServerLabel struct {
-	Key   string `pulumi:"key"`
+	// [string] The key of the label.
+	Key string `pulumi:"key"`
+	// [string] The value of the label.
 	Value string `pulumi:"value"`
 }
 
@@ -2238,7 +2328,9 @@ type ServerLabelInput interface {
 }
 
 type ServerLabelArgs struct {
-	Key   pulumi.StringInput `pulumi:"key"`
+	// [string] The key of the label.
+	Key pulumi.StringInput `pulumi:"key"`
+	// [string] The value of the label.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -2293,10 +2385,12 @@ func (o ServerLabelOutput) ToServerLabelOutputWithContext(ctx context.Context) S
 	return o
 }
 
+// [string] The key of the label.
 func (o ServerLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// [string] The value of the label.
 func (o ServerLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -2328,7 +2422,7 @@ type ServerNic struct {
 	Dhcpv6         *bool   `pulumi:"dhcpv6"`
 	FirewallActive *bool   `pulumi:"firewallActive"`
 	FirewallType   *string `pulumi:"firewallType"`
-	// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+	// Allows to define firewall rules inline in the server. See the Firewall section.
 	Firewalls []ServerNicFirewall `pulumi:"firewalls"`
 	Id        *string             `pulumi:"id"`
 	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
@@ -2339,8 +2433,9 @@ type ServerNic struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	Lan     int      `pulumi:"lan"`
 	Mac     *string  `pulumi:"mac"`
-	Name    *string  `pulumi:"name"`
-	PciSlot *int     `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    *string `pulumi:"name"`
+	PciSlot *int    `pulumi:"pciSlot"`
 }
 
 // ServerNicInput is an input type that accepts ServerNicArgs and ServerNicOutput values.
@@ -2361,7 +2456,7 @@ type ServerNicArgs struct {
 	Dhcpv6         pulumi.BoolPtrInput   `pulumi:"dhcpv6"`
 	FirewallActive pulumi.BoolPtrInput   `pulumi:"firewallActive"`
 	FirewallType   pulumi.StringPtrInput `pulumi:"firewallType"`
-	// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+	// Allows to define firewall rules inline in the server. See the Firewall section.
 	Firewalls ServerNicFirewallArrayInput `pulumi:"firewalls"`
 	Id        pulumi.StringPtrInput       `pulumi:"id"`
 	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
@@ -2372,8 +2467,9 @@ type ServerNicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput `pulumi:"ipv6Ips"`
 	Lan     pulumi.IntInput         `pulumi:"lan"`
 	Mac     pulumi.StringPtrInput   `pulumi:"mac"`
-	Name    pulumi.StringPtrInput   `pulumi:"name"`
-	PciSlot pulumi.IntPtrInput      `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
 }
 
 func (ServerNicArgs) ElementType() reflect.Type {
@@ -2474,7 +2570,7 @@ func (o ServerNicOutput) FirewallType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
 }
 
-// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+// Allows to define firewall rules inline in the server. See the Firewall section.
 func (o ServerNicOutput) Firewalls() ServerNicFirewallArrayOutput {
 	return o.ApplyT(func(v ServerNic) []ServerNicFirewall { return v.Firewalls }).(ServerNicFirewallArrayOutput)
 }
@@ -2506,6 +2602,7 @@ func (o ServerNicOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNic) *string { return v.Mac }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o ServerNicOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNic) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -2584,7 +2681,7 @@ func (o ServerNicPtrOutput) FirewallType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+// Allows to define firewall rules inline in the server. See the Firewall section.
 func (o ServerNicPtrOutput) Firewalls() ServerNicFirewallArrayOutput {
 	return o.ApplyT(func(v *ServerNic) []ServerNicFirewall {
 		if v == nil {
@@ -2651,6 +2748,7 @@ func (o ServerNicPtrOutput) Mac() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o ServerNicPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerNic) *string {
 		if v == nil {
@@ -2670,9 +2768,10 @@ func (o ServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 }
 
 type ServerNicFirewall struct {
-	IcmpCode       *string `pulumi:"icmpCode"`
-	IcmpType       *string `pulumi:"icmpType"`
-	Id             *string `pulumi:"id"`
+	IcmpCode *string `pulumi:"icmpCode"`
+	IcmpType *string `pulumi:"icmpType"`
+	Id       *string `pulumi:"id"`
+	// [string] The name of the server.
 	Name           *string `pulumi:"name"`
 	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
 	PortRangeStart *int    `pulumi:"portRangeStart"`
@@ -2680,7 +2779,8 @@ type ServerNicFirewall struct {
 	SourceIp       *string `pulumi:"sourceIp"`
 	SourceMac      *string `pulumi:"sourceMac"`
 	TargetIp       *string `pulumi:"targetIp"`
-	Type           *string `pulumi:"type"`
+	// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+	Type *string `pulumi:"type"`
 }
 
 // ServerNicFirewallInput is an input type that accepts ServerNicFirewallArgs and ServerNicFirewallOutput values.
@@ -2695,9 +2795,10 @@ type ServerNicFirewallInput interface {
 }
 
 type ServerNicFirewallArgs struct {
-	IcmpCode       pulumi.StringPtrInput `pulumi:"icmpCode"`
-	IcmpType       pulumi.StringPtrInput `pulumi:"icmpType"`
-	Id             pulumi.StringPtrInput `pulumi:"id"`
+	IcmpCode pulumi.StringPtrInput `pulumi:"icmpCode"`
+	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The name of the server.
 	Name           pulumi.StringPtrInput `pulumi:"name"`
 	PortRangeEnd   pulumi.IntPtrInput    `pulumi:"portRangeEnd"`
 	PortRangeStart pulumi.IntPtrInput    `pulumi:"portRangeStart"`
@@ -2705,7 +2806,8 @@ type ServerNicFirewallArgs struct {
 	SourceIp       pulumi.StringPtrInput `pulumi:"sourceIp"`
 	SourceMac      pulumi.StringPtrInput `pulumi:"sourceMac"`
 	TargetIp       pulumi.StringPtrInput `pulumi:"targetIp"`
-	Type           pulumi.StringPtrInput `pulumi:"type"`
+	// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (ServerNicFirewallArgs) ElementType() reflect.Type {
@@ -2771,6 +2873,7 @@ func (o ServerNicFirewallOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNicFirewall) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o ServerNicFirewallOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNicFirewall) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -2799,6 +2902,7 @@ func (o ServerNicFirewallOutput) TargetIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNicFirewall) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
 }
 
+// (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
 func (o ServerNicFirewallOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerNicFirewall) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -2824,6 +2928,7 @@ func (o ServerNicFirewallArrayOutput) Index(i pulumi.IntInput) ServerNicFirewall
 }
 
 type ServerVolume struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId *string `pulumi:"backupUnitId"`
@@ -2835,21 +2940,25 @@ type ServerVolume struct {
 	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
 	DiskType            string  `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword *string `pulumi:"imagePassword"`
-	LicenceType   *string `pulumi:"licenceType"`
-	Name          *string `pulumi:"name"`
-	NicHotPlug    *bool   `pulumi:"nicHotPlug"`
-	NicHotUnplug  *bool   `pulumi:"nicHotUnplug"`
-	PciSlot       *int    `pulumi:"pciSlot"`
-	RamHotPlug    *bool   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType *string `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         *string `pulumi:"name"`
+	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
+	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
+	PciSlot      *int    `pulumi:"pciSlot"`
+	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
 	// The size of the volume in GB.
 	Size *int `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths []string `pulumi:"sshKeyPaths"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	//
 	// Deprecated: Please use sshKeys under server level
 	SshKeys []string `pulumi:"sshKeys"`
@@ -2869,6 +2978,7 @@ type ServerVolumeInput interface {
 }
 
 type ServerVolumeArgs struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
@@ -2880,21 +2990,25 @@ type ServerVolumeArgs struct {
 	DiscVirtioHotPlug   pulumi.BoolPtrInput   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
 	DiskType            pulumi.StringInput    `pulumi:"diskType"`
+	// [string] Required if `sshKeyPath` is not provided.
+	//
 	// Deprecated: Please use imagePassword under server level
 	ImagePassword pulumi.StringPtrInput `pulumi:"imagePassword"`
-	LicenceType   pulumi.StringPtrInput `pulumi:"licenceType"`
-	Name          pulumi.StringPtrInput `pulumi:"name"`
-	NicHotPlug    pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
-	NicHotUnplug  pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
-	PciSlot       pulumi.IntPtrInput    `pulumi:"pciSlot"`
-	RamHotPlug    pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType pulumi.StringPtrInput `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	NicHotPlug   pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
+	NicHotUnplug pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
+	PciSlot      pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
 	// The size of the volume in GB.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+	// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 	//
 	// Deprecated: Please use sshKeyPath under server level
 	SshKeyPaths pulumi.StringArrayInput `pulumi:"sshKeyPaths"`
-	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+	// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 	//
 	// Deprecated: Please use sshKeys under server level
 	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
@@ -2979,6 +3093,7 @@ func (o ServerVolumeOutput) ToServerVolumePtrOutputWithContext(ctx context.Conte
 	}).(ServerVolumePtrOutput)
 }
 
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 func (o ServerVolumeOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
 }
@@ -3017,15 +3132,19 @@ func (o ServerVolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// [string] Required if `sshKeyPath` is not provided.
+//
 // Deprecated: Please use imagePassword under server level
 func (o ServerVolumeOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *string { return v.ImagePassword }).(pulumi.StringPtrOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o ServerVolumeOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *string { return v.LicenceType }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o ServerVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -3051,14 +3170,14 @@ func (o ServerVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o ServerVolumeOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerVolume) []string { return v.SshKeyPaths }).(pulumi.StringArrayOutput)
 }
 
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 //
 // Deprecated: Please use sshKeys under server level
 func (o ServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
@@ -3094,6 +3213,7 @@ func (o ServerVolumePtrOutput) Elem() ServerVolumeOutput {
 	}).(ServerVolumeOutput)
 }
 
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 func (o ServerVolumePtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerVolume) *string {
 		if v == nil {
@@ -3177,6 +3297,8 @@ func (o ServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] Required if `sshKeyPath` is not provided.
+//
 // Deprecated: Please use imagePassword under server level
 func (o ServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerVolume) *string {
@@ -3187,6 +3309,7 @@ func (o ServerVolumePtrOutput) ImagePassword() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o ServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerVolume) *string {
 		if v == nil {
@@ -3196,6 +3319,7 @@ func (o ServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o ServerVolumePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerVolume) *string {
 		if v == nil {
@@ -3251,7 +3375,7 @@ func (o ServerVolumePtrOutput) Size() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
 //
 // Deprecated: Please use sshKeyPath under server level
 func (o ServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
@@ -3263,7 +3387,7 @@ func (o ServerVolumePtrOutput) SshKeyPaths() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
+// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
 //
 // Deprecated: Please use sshKeys under server level
 func (o ServerVolumePtrOutput) SshKeys() pulumi.StringArrayOutput {
@@ -3391,7 +3515,7 @@ type VCPUServerNic struct {
 	Dhcpv6         *bool   `pulumi:"dhcpv6"`
 	FirewallActive *bool   `pulumi:"firewallActive"`
 	FirewallType   *string `pulumi:"firewallType"`
-	// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+	// Allows to define firewall rules inline in the server. See the Firewall section.
 	Firewalls []VCPUServerNicFirewall `pulumi:"firewalls"`
 	Id        *string                 `pulumi:"id"`
 	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
@@ -3400,8 +3524,9 @@ type VCPUServerNic struct {
 	Ipv6Ips       []string `pulumi:"ipv6Ips"`
 	Lan           int      `pulumi:"lan"`
 	Mac           *string  `pulumi:"mac"`
-	Name          *string  `pulumi:"name"`
-	PciSlot       *int     `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    *string `pulumi:"name"`
+	PciSlot *int    `pulumi:"pciSlot"`
 }
 
 // VCPUServerNicInput is an input type that accepts VCPUServerNicArgs and VCPUServerNicOutput values.
@@ -3421,7 +3546,7 @@ type VCPUServerNicArgs struct {
 	Dhcpv6         pulumi.BoolPtrInput   `pulumi:"dhcpv6"`
 	FirewallActive pulumi.BoolPtrInput   `pulumi:"firewallActive"`
 	FirewallType   pulumi.StringPtrInput `pulumi:"firewallType"`
-	// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+	// Allows to define firewall rules inline in the server. See the Firewall section.
 	Firewalls VCPUServerNicFirewallArrayInput `pulumi:"firewalls"`
 	Id        pulumi.StringPtrInput           `pulumi:"id"`
 	// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
@@ -3430,8 +3555,9 @@ type VCPUServerNicArgs struct {
 	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
 	Lan           pulumi.IntInput         `pulumi:"lan"`
 	Mac           pulumi.StringPtrInput   `pulumi:"mac"`
-	Name          pulumi.StringPtrInput   `pulumi:"name"`
-	PciSlot       pulumi.IntPtrInput      `pulumi:"pciSlot"`
+	// [string] The name of the server.
+	Name    pulumi.StringPtrInput `pulumi:"name"`
+	PciSlot pulumi.IntPtrInput    `pulumi:"pciSlot"`
 }
 
 func (VCPUServerNicArgs) ElementType() reflect.Type {
@@ -3531,7 +3657,7 @@ func (o VCPUServerNicOutput) FirewallType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
 }
 
-// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+// Allows to define firewall rules inline in the server. See the Firewall section.
 func (o VCPUServerNicOutput) Firewalls() VCPUServerNicFirewallArrayOutput {
 	return o.ApplyT(func(v VCPUServerNic) []VCPUServerNicFirewall { return v.Firewalls }).(VCPUServerNicFirewallArrayOutput)
 }
@@ -3561,6 +3687,7 @@ func (o VCPUServerNicOutput) Mac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerNic) *string { return v.Mac }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o VCPUServerNicOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerNic) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -3638,7 +3765,7 @@ func (o VCPUServerNicPtrOutput) FirewallType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Firewall rules created in the server resource. The rules can also be created as separate resources outside the server resource
+// Allows to define firewall rules inline in the server. See the Firewall section.
 func (o VCPUServerNicPtrOutput) Firewalls() VCPUServerNicFirewallArrayOutput {
 	return o.ApplyT(func(v *VCPUServerNic) []VCPUServerNicFirewall {
 		if v == nil {
@@ -3703,6 +3830,7 @@ func (o VCPUServerNicPtrOutput) Mac() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o VCPUServerNicPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VCPUServerNic) *string {
 		if v == nil {
@@ -3722,9 +3850,10 @@ func (o VCPUServerNicPtrOutput) PciSlot() pulumi.IntPtrOutput {
 }
 
 type VCPUServerNicFirewall struct {
-	IcmpCode       *string `pulumi:"icmpCode"`
-	IcmpType       *string `pulumi:"icmpType"`
-	Id             *string `pulumi:"id"`
+	IcmpCode *string `pulumi:"icmpCode"`
+	IcmpType *string `pulumi:"icmpType"`
+	Id       *string `pulumi:"id"`
+	// [string] The name of the server.
 	Name           *string `pulumi:"name"`
 	PortRangeEnd   *int    `pulumi:"portRangeEnd"`
 	PortRangeStart *int    `pulumi:"portRangeStart"`
@@ -3747,9 +3876,10 @@ type VCPUServerNicFirewallInput interface {
 }
 
 type VCPUServerNicFirewallArgs struct {
-	IcmpCode       pulumi.StringPtrInput `pulumi:"icmpCode"`
-	IcmpType       pulumi.StringPtrInput `pulumi:"icmpType"`
-	Id             pulumi.StringPtrInput `pulumi:"id"`
+	IcmpCode pulumi.StringPtrInput `pulumi:"icmpCode"`
+	IcmpType pulumi.StringPtrInput `pulumi:"icmpType"`
+	Id       pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The name of the server.
 	Name           pulumi.StringPtrInput `pulumi:"name"`
 	PortRangeEnd   pulumi.IntPtrInput    `pulumi:"portRangeEnd"`
 	PortRangeStart pulumi.IntPtrInput    `pulumi:"portRangeStart"`
@@ -3823,6 +3953,7 @@ func (o VCPUServerNicFirewallOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o VCPUServerNicFirewallOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerNicFirewall) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -3876,6 +4007,7 @@ func (o VCPUServerNicFirewallArrayOutput) Index(i pulumi.IntInput) VCPUServerNic
 }
 
 type VCPUServerVolume struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId *string `pulumi:"backupUnitId"`
@@ -3887,12 +4019,14 @@ type VCPUServerVolume struct {
 	DiscVirtioHotPlug   *bool   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug *bool   `pulumi:"discVirtioHotUnplug"`
 	DiskType            string  `pulumi:"diskType"`
-	LicenceType         *string `pulumi:"licenceType"`
-	Name                *string `pulumi:"name"`
-	NicHotPlug          *bool   `pulumi:"nicHotPlug"`
-	NicHotUnplug        *bool   `pulumi:"nicHotUnplug"`
-	PciSlot             *int    `pulumi:"pciSlot"`
-	RamHotPlug          *bool   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType *string `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         *string `pulumi:"name"`
+	NicHotPlug   *bool   `pulumi:"nicHotPlug"`
+	NicHotUnplug *bool   `pulumi:"nicHotUnplug"`
+	PciSlot      *int    `pulumi:"pciSlot"`
+	RamHotPlug   *bool   `pulumi:"ramHotPlug"`
 	// The size of the volume in GB.
 	Size *int `pulumi:"size"`
 	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
@@ -3911,6 +4045,7 @@ type VCPUServerVolumeInput interface {
 }
 
 type VCPUServerVolumeArgs struct {
+	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput `pulumi:"availabilityZone"`
 	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 	BackupUnitId pulumi.StringPtrInput `pulumi:"backupUnitId"`
@@ -3922,12 +4057,14 @@ type VCPUServerVolumeArgs struct {
 	DiscVirtioHotPlug   pulumi.BoolPtrInput   `pulumi:"discVirtioHotPlug"`
 	DiscVirtioHotUnplug pulumi.BoolPtrInput   `pulumi:"discVirtioHotUnplug"`
 	DiskType            pulumi.StringInput    `pulumi:"diskType"`
-	LicenceType         pulumi.StringPtrInput `pulumi:"licenceType"`
-	Name                pulumi.StringPtrInput `pulumi:"name"`
-	NicHotPlug          pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
-	PciSlot             pulumi.IntPtrInput    `pulumi:"pciSlot"`
-	RamHotPlug          pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
+	// [string] Sets the OS type of the server.
+	LicenceType pulumi.StringPtrInput `pulumi:"licenceType"`
+	// [string] The name of the server.
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	NicHotPlug   pulumi.BoolPtrInput   `pulumi:"nicHotPlug"`
+	NicHotUnplug pulumi.BoolPtrInput   `pulumi:"nicHotUnplug"`
+	PciSlot      pulumi.IntPtrInput    `pulumi:"pciSlot"`
+	RamHotPlug   pulumi.BoolPtrInput   `pulumi:"ramHotPlug"`
 	// The size of the volume in GB.
 	Size pulumi.IntPtrInput `pulumi:"size"`
 	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
@@ -4011,6 +4148,7 @@ func (o VCPUServerVolumeOutput) ToVCPUServerVolumePtrOutputWithContext(ctx conte
 	}).(VCPUServerVolumePtrOutput)
 }
 
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 func (o VCPUServerVolumeOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerVolume) *string { return v.AvailabilityZone }).(pulumi.StringPtrOutput)
 }
@@ -4049,10 +4187,12 @@ func (o VCPUServerVolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v VCPUServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o VCPUServerVolumeOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerVolume) *string { return v.LicenceType }).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o VCPUServerVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VCPUServerVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -4107,6 +4247,7 @@ func (o VCPUServerVolumePtrOutput) Elem() VCPUServerVolumeOutput {
 	}).(VCPUServerVolumeOutput)
 }
 
+// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 func (o VCPUServerVolumePtrOutput) AvailabilityZone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VCPUServerVolume) *string {
 		if v == nil {
@@ -4190,6 +4331,7 @@ func (o VCPUServerVolumePtrOutput) DiskType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] Sets the OS type of the server.
 func (o VCPUServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VCPUServerVolume) *string {
 		if v == nil {
@@ -4199,6 +4341,7 @@ func (o VCPUServerVolumePtrOutput) LicenceType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// [string] The name of the server.
 func (o VCPUServerVolumePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VCPUServerVolume) *string {
 		if v == nil {
@@ -4265,9 +4408,14 @@ func (o VCPUServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 }
 
 type GetCrossconnectConnectableDatacenter struct {
-	Id       string `pulumi:"id"`
+	// ID of the cross connect you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// The physical location of the connectable datacenter
 	Location string `pulumi:"location"`
-	Name     string `pulumi:"name"`
+	// Name of an existing cross connect that you want to search for.
+	Name string `pulumi:"name"`
 }
 
 // GetCrossconnectConnectableDatacenterInput is an input type that accepts GetCrossconnectConnectableDatacenterArgs and GetCrossconnectConnectableDatacenterOutput values.
@@ -4282,9 +4430,14 @@ type GetCrossconnectConnectableDatacenterInput interface {
 }
 
 type GetCrossconnectConnectableDatacenterArgs struct {
-	Id       pulumi.StringInput `pulumi:"id"`
+	// ID of the cross connect you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The physical location of the connectable datacenter
 	Location pulumi.StringInput `pulumi:"location"`
-	Name     pulumi.StringInput `pulumi:"name"`
+	// Name of an existing cross connect that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetCrossconnectConnectableDatacenterArgs) ElementType() reflect.Type {
@@ -4338,14 +4491,19 @@ func (o GetCrossconnectConnectableDatacenterOutput) ToGetCrossconnectConnectable
 	return o
 }
 
+// ID of the cross connect you want to search for.
+//
+// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 func (o GetCrossconnectConnectableDatacenterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectConnectableDatacenter) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The physical location of the connectable datacenter
 func (o GetCrossconnectConnectableDatacenterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectConnectableDatacenter) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// Name of an existing cross connect that you want to search for.
 func (o GetCrossconnectConnectableDatacenterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectConnectableDatacenter) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -4371,14 +4529,15 @@ func (o GetCrossconnectConnectableDatacenterArrayOutput) Index(i pulumi.IntInput
 }
 
 type GetCrossconnectPeer struct {
-	// The id of the cross-connected VDC
+	// The id of the cross-connected datacenter
 	DatacenterId string `pulumi:"datacenterId"`
-	// The name of the cross-connected VDC
+	// The name of the cross-connected datacenter
 	DatacenterName string `pulumi:"datacenterName"`
 	// The id of the cross-connected LAN
 	LanId string `pulumi:"lanId"`
 	// The name of the cross-connected LAN
-	LanName  string `pulumi:"lanName"`
+	LanName string `pulumi:"lanName"`
+	// The physical location of the connectable datacenter
 	Location string `pulumi:"location"`
 }
 
@@ -4394,14 +4553,15 @@ type GetCrossconnectPeerInput interface {
 }
 
 type GetCrossconnectPeerArgs struct {
-	// The id of the cross-connected VDC
+	// The id of the cross-connected datacenter
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The name of the cross-connected VDC
+	// The name of the cross-connected datacenter
 	DatacenterName pulumi.StringInput `pulumi:"datacenterName"`
 	// The id of the cross-connected LAN
 	LanId pulumi.StringInput `pulumi:"lanId"`
 	// The name of the cross-connected LAN
-	LanName  pulumi.StringInput `pulumi:"lanName"`
+	LanName pulumi.StringInput `pulumi:"lanName"`
+	// The physical location of the connectable datacenter
 	Location pulumi.StringInput `pulumi:"location"`
 }
 
@@ -4456,12 +4616,12 @@ func (o GetCrossconnectPeerOutput) ToGetCrossconnectPeerOutputWithContext(ctx co
 	return o
 }
 
-// The id of the cross-connected VDC
+// The id of the cross-connected datacenter
 func (o GetCrossconnectPeerOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectPeer) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The name of the cross-connected VDC
+// The name of the cross-connected datacenter
 func (o GetCrossconnectPeerOutput) DatacenterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectPeer) string { return v.DatacenterName }).(pulumi.StringOutput)
 }
@@ -4476,6 +4636,7 @@ func (o GetCrossconnectPeerOutput) LanName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectPeer) string { return v.LanName }).(pulumi.StringOutput)
 }
 
+// The physical location of the connectable datacenter
 func (o GetCrossconnectPeerOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCrossconnectPeer) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -4501,26 +4662,48 @@ func (o GetCrossconnectPeerArrayOutput) Index(i pulumi.IntInput) GetCrossconnect
 }
 
 type GetCubeServerCdrom struct {
-	CloudInit           string   `pulumi:"cloudInit"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        bool     `pulumi:"cpuHotUnplug"`
-	Description         string   `pulumi:"description"`
-	DiscScsiHotPlug     bool     `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   bool     `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageAliases        []string `pulumi:"imageAliases"`
-	ImageType           string   `pulumi:"imageType"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Location            string   `pulumi:"location"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	Public              bool     `pulumi:"public"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	RamHotUnplug        bool     `pulumi:"ramHotUnplug"`
-	Size                float64  `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit string `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description string `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases []string `pulumi:"imageAliases"`
+	// Type of image
+	ImageType string `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location string `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public bool `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug bool `pulumi:"ramHotUnplug"`
+	// The size of the image in GB
+	Size float64 `pulumi:"size"`
 }
 
 // GetCubeServerCdromInput is an input type that accepts GetCubeServerCdromArgs and GetCubeServerCdromOutput values.
@@ -4535,26 +4718,48 @@ type GetCubeServerCdromInput interface {
 }
 
 type GetCubeServerCdromArgs struct {
-	CloudInit           pulumi.StringInput      `pulumi:"cloudInit"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        pulumi.BoolInput        `pulumi:"cpuHotUnplug"`
-	Description         pulumi.StringInput      `pulumi:"description"`
-	DiscScsiHotPlug     pulumi.BoolInput        `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   pulumi.BoolInput        `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageAliases        pulumi.StringArrayInput `pulumi:"imageAliases"`
-	ImageType           pulumi.StringInput      `pulumi:"imageType"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Location            pulumi.StringInput      `pulumi:"location"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	Public              pulumi.BoolInput        `pulumi:"public"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	RamHotUnplug        pulumi.BoolInput        `pulumi:"ramHotUnplug"`
-	Size                pulumi.Float64Input     `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description pulumi.StringInput `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
+	// Type of image
+	ImageType pulumi.StringInput `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public pulumi.BoolInput `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
+	// The size of the image in GB
+	Size pulumi.Float64Input `pulumi:"size"`
 }
 
 func (GetCubeServerCdromArgs) ElementType() reflect.Type {
@@ -4608,82 +4813,104 @@ func (o GetCubeServerCdromOutput) ToGetCubeServerCdromOutputWithContext(ctx cont
 	return o
 }
 
+// Cloud init compatibility
 func (o GetCubeServerCdromOutput) CloudInit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetCubeServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of CPU hot unplug (no reboot required)
 func (o GetCubeServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Description of cdrom
 func (o GetCubeServerCdromOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Is capable of SCSI drive hot plug (no reboot required)
 func (o GetCubeServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of SCSI drive hot unplug (no reboot required)
 func (o GetCubeServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetCubeServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetCubeServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetCubeServerCdromOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of image aliases mapped for this Image
 func (o GetCubeServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }
 
+// Type of image
 func (o GetCubeServerCdromOutput) ImageType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetCubeServerCdromOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Location of that image/snapshot
 func (o GetCubeServerCdromOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetCubeServerCdromOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetCubeServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetCubeServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Indicates if the image is part of the public repository or not
 func (o GetCubeServerCdromOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetCubeServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot unplug (no reboot required)
 func (o GetCubeServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The size of the image in GB
 func (o GetCubeServerCdromOutput) Size() pulumi.Float64Output {
 	return o.ApplyT(func(v GetCubeServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
 }
@@ -4709,20 +4936,33 @@ func (o GetCubeServerCdromArrayOutput) Index(i pulumi.IntInput) GetCubeServerCdr
 }
 
 type GetCubeServerNic struct {
-	DeviceNumber   int                            `pulumi:"deviceNumber"`
-	Dhcp           bool                           `pulumi:"dhcp"`
-	Dhcpv6         *bool                          `pulumi:"dhcpv6"`
-	FirewallActive bool                           `pulumi:"firewallActive"`
-	FirewallRules  []GetCubeServerNicFirewallRule `pulumi:"firewallRules"`
-	FirewallType   string                         `pulumi:"firewallType"`
-	Id             string                         `pulumi:"id"`
-	Ips            []string                       `pulumi:"ips"`
-	Ipv6CidrBlock  string                         `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        []string                       `pulumi:"ipv6Ips"`
-	Lan            int                            `pulumi:"lan"`
-	Mac            string                         `pulumi:"mac"`
-	Name           string                         `pulumi:"name"`
-	PciSlot        int                            `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   bool  `pulumi:"dhcp"`
+	Dhcpv6 *bool `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive bool `pulumi:"firewallActive"`
+	// list of
+	FirewallRules []GetCubeServerNicFirewallRule `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType string `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           []string `pulumi:"ips"`
+	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       []string `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan int `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac string `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
 }
 
 // GetCubeServerNicInput is an input type that accepts GetCubeServerNicArgs and GetCubeServerNicOutput values.
@@ -4737,20 +4977,33 @@ type GetCubeServerNicInput interface {
 }
 
 type GetCubeServerNicArgs struct {
-	DeviceNumber   pulumi.IntInput                        `pulumi:"deviceNumber"`
-	Dhcp           pulumi.BoolInput                       `pulumi:"dhcp"`
-	Dhcpv6         pulumi.BoolPtrInput                    `pulumi:"dhcpv6"`
-	FirewallActive pulumi.BoolInput                       `pulumi:"firewallActive"`
-	FirewallRules  GetCubeServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	FirewallType   pulumi.StringInput                     `pulumi:"firewallType"`
-	Id             pulumi.StringInput                     `pulumi:"id"`
-	Ips            pulumi.StringArrayInput                `pulumi:"ips"`
-	Ipv6CidrBlock  pulumi.StringInput                     `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        pulumi.StringArrayInput                `pulumi:"ipv6Ips"`
-	Lan            pulumi.IntInput                        `pulumi:"lan"`
-	Mac            pulumi.StringInput                     `pulumi:"mac"`
-	Name           pulumi.StringInput                     `pulumi:"name"`
-	PciSlot        pulumi.IntInput                        `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
+	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
+	// list of
+	FirewallRules GetCubeServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType pulumi.StringInput `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           pulumi.StringArrayInput `pulumi:"ips"`
+	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan pulumi.IntInput `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac pulumi.StringInput `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
 }
 
 func (GetCubeServerNicArgs) ElementType() reflect.Type {
@@ -4804,10 +5057,12 @@ func (o GetCubeServerNicOutput) ToGetCubeServerNicOutputWithContext(ctx context.
 	return o
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetCubeServerNicOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Indicates if the nic will reserve an IP using DHCP
 func (o GetCubeServerNicOutput) Dhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
@@ -4816,22 +5071,29 @@ func (o GetCubeServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetCubeServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
 }
 
+// Activate or deactivate the firewall
 func (o GetCubeServerNicOutput) FirewallActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
 }
 
+// list of
 func (o GetCubeServerNicOutput) FirewallRules() GetCubeServerNicFirewallRuleArrayOutput {
 	return o.ApplyT(func(v GetCubeServerNic) []GetCubeServerNicFirewallRule { return v.FirewallRules }).(GetCubeServerNicFirewallRuleArrayOutput)
 }
 
+// The type of firewall rules that will be allowed on the NIC
 func (o GetCubeServerNicOutput) FirewallType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetCubeServerNicOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNic) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Collection of IP addresses assigned to a nic
 func (o GetCubeServerNicOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCubeServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
@@ -4844,18 +5106,22 @@ func (o GetCubeServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCubeServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
 }
 
+// The LAN ID the NIC will sit on
 func (o GetCubeServerNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
+// The MAC address of the NIC
 func (o GetCubeServerNicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNic) string { return v.Mac }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetCubeServerNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetCubeServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
 }
@@ -4881,17 +5147,30 @@ func (o GetCubeServerNicArrayOutput) Index(i pulumi.IntInput) GetCubeServerNicOu
 }
 
 type GetCubeServerNicFirewallRule struct {
-	IcmpCode       int    `pulumi:"icmpCode"`
-	IcmpType       int    `pulumi:"icmpType"`
-	Id             string `pulumi:"id"`
-	Name           string `pulumi:"name"`
-	PortRangeEnd   int    `pulumi:"portRangeEnd"`
-	PortRangeStart int    `pulumi:"portRangeStart"`
-	Protocol       string `pulumi:"protocol"`
-	SourceIp       string `pulumi:"sourceIp"`
-	SourceMac      string `pulumi:"sourceMac"`
-	TargetIp       string `pulumi:"targetIp"`
-	Type           string `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode int `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType int `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd int `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart int `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol string `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp string `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac string `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp string `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
 }
 
 // GetCubeServerNicFirewallRuleInput is an input type that accepts GetCubeServerNicFirewallRuleArgs and GetCubeServerNicFirewallRuleOutput values.
@@ -4906,17 +5185,30 @@ type GetCubeServerNicFirewallRuleInput interface {
 }
 
 type GetCubeServerNicFirewallRuleArgs struct {
-	IcmpCode       pulumi.IntInput    `pulumi:"icmpCode"`
-	IcmpType       pulumi.IntInput    `pulumi:"icmpType"`
-	Id             pulumi.StringInput `pulumi:"id"`
-	Name           pulumi.StringInput `pulumi:"name"`
-	PortRangeEnd   pulumi.IntInput    `pulumi:"portRangeEnd"`
-	PortRangeStart pulumi.IntInput    `pulumi:"portRangeStart"`
-	Protocol       pulumi.StringInput `pulumi:"protocol"`
-	SourceIp       pulumi.StringInput `pulumi:"sourceIp"`
-	SourceMac      pulumi.StringInput `pulumi:"sourceMac"`
-	TargetIp       pulumi.StringInput `pulumi:"targetIp"`
-	Type           pulumi.StringInput `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType pulumi.IntInput `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp pulumi.StringInput `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetCubeServerNicFirewallRuleArgs) ElementType() reflect.Type {
@@ -4970,46 +5262,59 @@ func (o GetCubeServerNicFirewallRuleOutput) ToGetCubeServerNicFirewallRuleOutput
 	return o
 }
 
+// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
 func (o GetCubeServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
 }
 
+// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
 func (o GetCubeServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetCubeServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetCubeServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
 func (o GetCubeServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
 }
 
+// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
 func (o GetCubeServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
 }
 
+// he protocol for the rule
 func (o GetCubeServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
 func (o GetCubeServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective MAC address is allowed
 func (o GetCubeServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
 }
 
+// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
 func (o GetCubeServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
 }
 
+// The type of firewall rule
 func (o GetCubeServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -5035,27 +5340,47 @@ func (o GetCubeServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetCub
 }
 
 type GetCubeServerVolume struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone string `pulumi:"availabilityZone"`
-	BackupUnitId     string `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId string `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          string   `pulumi:"bootServer"`
-	Bus                 string   `pulumi:"bus"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	DeviceNumber        int      `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageName           string   `pulumi:"imageName"`
-	ImagePassword       string   `pulumi:"imagePassword"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	PciSlot             int      `pulumi:"pciSlot"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	SshKeys             []string `pulumi:"sshKeys"`
-	Type                string   `pulumi:"type"`
-	UserData            *string  `pulumi:"userData"`
+	BootServer string `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus string `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        string `pulumi:"id"`
+	ImageName string `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword string `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys []string `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData *string `pulumi:"userData"`
 }
 
 // GetCubeServerVolumeInput is an input type that accepts GetCubeServerVolumeArgs and GetCubeServerVolumeOutput values.
@@ -5070,27 +5395,47 @@ type GetCubeServerVolumeInput interface {
 }
 
 type GetCubeServerVolumeArgs struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	BackupUnitId     pulumi.StringInput `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          pulumi.StringInput      `pulumi:"bootServer"`
-	Bus                 pulumi.StringInput      `pulumi:"bus"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	DeviceNumber        pulumi.IntInput         `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageName           pulumi.StringInput      `pulumi:"imageName"`
-	ImagePassword       pulumi.StringInput      `pulumi:"imagePassword"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	PciSlot             pulumi.IntInput         `pulumi:"pciSlot"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	SshKeys             pulumi.StringArrayInput `pulumi:"sshKeys"`
-	Type                pulumi.StringInput      `pulumi:"type"`
-	UserData            pulumi.StringPtrInput   `pulumi:"userData"`
+	BootServer pulumi.StringInput `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus pulumi.StringInput `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        pulumi.StringInput `pulumi:"id"`
+	ImageName pulumi.StringInput `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData pulumi.StringPtrInput `pulumi:"userData"`
 }
 
 func (GetCubeServerVolumeArgs) ElementType() reflect.Type {
@@ -5144,10 +5489,12 @@ func (o GetCubeServerVolumeOutput) ToGetCubeServerVolumeOutputWithContext(ctx co
 	return o
 }
 
+// The availability zone in which the volume should exist
 func (o GetCubeServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// The uuid of the Backup Unit that user has access to
 func (o GetCubeServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
 }
@@ -5157,26 +5504,34 @@ func (o GetCubeServerVolumeOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
 }
 
+// The bus type of the volume
 func (o GetCubeServerVolumeOutput) Bus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Bus }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetCubeServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetCubeServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetCubeServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetCubeServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetCubeServerVolumeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -5185,42 +5540,52 @@ func (o GetCubeServerVolumeOutput) ImageName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
 }
 
+// Initial password to be set for installed OS
 func (o GetCubeServerVolumeOutput) ImagePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetCubeServerVolumeOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetCubeServerVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetCubeServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetCubeServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetCubeServerVolumeOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetCubeServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
 func (o GetCubeServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
+// The type of firewall rule
 func (o GetCubeServerVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The cloud-init configuration for the volume as base64 encoded string
 func (o GetCubeServerVolumeOutput) UserData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetCubeServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
 }
@@ -5246,10 +5611,14 @@ func (o GetCubeServerVolumeArrayOutput) Index(i pulumi.IntInput) GetCubeServerVo
 }
 
 type GetDatacenterCpuArchitecture struct {
+	// A valid CPU family name
 	CpuFamily string `pulumi:"cpuFamily"`
-	MaxCores  int    `pulumi:"maxCores"`
-	MaxRam    int    `pulumi:"maxRam"`
-	Vendor    string `pulumi:"vendor"`
+	// The maximum number of cores available
+	MaxCores int `pulumi:"maxCores"`
+	// The maximum number of RAM in MB
+	MaxRam int `pulumi:"maxRam"`
+	// A valid CPU vendor name
+	Vendor string `pulumi:"vendor"`
 }
 
 // GetDatacenterCpuArchitectureInput is an input type that accepts GetDatacenterCpuArchitectureArgs and GetDatacenterCpuArchitectureOutput values.
@@ -5264,10 +5633,14 @@ type GetDatacenterCpuArchitectureInput interface {
 }
 
 type GetDatacenterCpuArchitectureArgs struct {
+	// A valid CPU family name
 	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
-	MaxCores  pulumi.IntInput    `pulumi:"maxCores"`
-	MaxRam    pulumi.IntInput    `pulumi:"maxRam"`
-	Vendor    pulumi.StringInput `pulumi:"vendor"`
+	// The maximum number of cores available
+	MaxCores pulumi.IntInput `pulumi:"maxCores"`
+	// The maximum number of RAM in MB
+	MaxRam pulumi.IntInput `pulumi:"maxRam"`
+	// A valid CPU vendor name
+	Vendor pulumi.StringInput `pulumi:"vendor"`
 }
 
 func (GetDatacenterCpuArchitectureArgs) ElementType() reflect.Type {
@@ -5321,18 +5694,22 @@ func (o GetDatacenterCpuArchitectureOutput) ToGetDatacenterCpuArchitectureOutput
 	return o
 }
 
+// A valid CPU family name
 func (o GetDatacenterCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacenterCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
+// The maximum number of cores available
 func (o GetDatacenterCpuArchitectureOutput) MaxCores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDatacenterCpuArchitecture) int { return v.MaxCores }).(pulumi.IntOutput)
 }
 
+// The maximum number of RAM in MB
 func (o GetDatacenterCpuArchitectureOutput) MaxRam() pulumi.IntOutput {
 	return o.ApplyT(func(v GetDatacenterCpuArchitecture) int { return v.MaxRam }).(pulumi.IntOutput)
 }
 
+// A valid CPU vendor name
 func (o GetDatacenterCpuArchitectureOutput) Vendor() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacenterCpuArchitecture) string { return v.Vendor }).(pulumi.StringOutput)
 }
@@ -5362,8 +5739,11 @@ type GetGroupUser struct {
 	Email         string `pulumi:"email"`
 	FirstName     string `pulumi:"firstName"`
 	ForceSecAuth  bool   `pulumi:"forceSecAuth"`
-	Id            string `pulumi:"id"`
-	LastName      string `pulumi:"lastName"`
+	// ID of the group you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id       string `pulumi:"id"`
+	LastName string `pulumi:"lastName"`
 }
 
 // GetGroupUserInput is an input type that accepts GetGroupUserArgs and GetGroupUserOutput values.
@@ -5382,8 +5762,11 @@ type GetGroupUserArgs struct {
 	Email         pulumi.StringInput `pulumi:"email"`
 	FirstName     pulumi.StringInput `pulumi:"firstName"`
 	ForceSecAuth  pulumi.BoolInput   `pulumi:"forceSecAuth"`
-	Id            pulumi.StringInput `pulumi:"id"`
-	LastName      pulumi.StringInput `pulumi:"lastName"`
+	// ID of the group you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id       pulumi.StringInput `pulumi:"id"`
+	LastName pulumi.StringInput `pulumi:"lastName"`
 }
 
 func (GetGroupUserArgs) ElementType() reflect.Type {
@@ -5453,6 +5836,9 @@ func (o GetGroupUserOutput) ForceSecAuth() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetGroupUser) bool { return v.ForceSecAuth }).(pulumi.BoolOutput)
 }
 
+// ID of the group you want to search for.
+//
+// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 func (o GetGroupUserOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGroupUser) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -5726,7 +6112,9 @@ func (o GetLanIpFailoverArrayOutput) Index(i pulumi.IntInput) GetLanIpFailoverOu
 type GetNatGatewayLan struct {
 	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
 	GatewayIps []string `pulumi:"gatewayIps"`
-	// Id for the LAN connected to the NAT gateway
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id int `pulumi:"id"`
 }
 
@@ -5744,7 +6132,9 @@ type GetNatGatewayLanInput interface {
 type GetNatGatewayLanArgs struct {
 	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
 	GatewayIps pulumi.StringArrayInput `pulumi:"gatewayIps"`
-	// Id for the LAN connected to the NAT gateway
+	// ID of the network load balancer forwarding rule you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.IntInput `pulumi:"id"`
 }
 
@@ -5804,7 +6194,9 @@ func (o GetNatGatewayLanOutput) GatewayIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNatGatewayLan) []string { return v.GatewayIps }).(pulumi.StringArrayOutput)
 }
 
-// Id for the LAN connected to the NAT gateway
+// ID of the network load balancer forwarding rule you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetNatGatewayLanOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNatGatewayLan) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -5936,15 +6328,18 @@ func (o GetNatGatewayRuleTargetPortRangeArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetNicFlowlog struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
 	Action string `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
 	Bucket string `pulumi:"bucket"`
 	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
 	Direction string `pulumi:"direction"`
-	// The resource's unique identifier.
+	// ID of the nic you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided.
+	// If none, are provided, the datasource will return an error.
 	Id string `pulumi:"id"`
-	// The resource name.
+	// [string] The name of the LAN.
 	Name string `pulumi:"name"`
 }
 
@@ -5960,15 +6355,18 @@ type GetNicFlowlogInput interface {
 }
 
 type GetNicFlowlogArgs struct {
-	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
 	Action pulumi.StringInput `pulumi:"action"`
-	// The bucket name of an existing IONOS Object Storage bucket.
+	// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
 	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
 	Direction pulumi.StringInput `pulumi:"direction"`
-	// The resource's unique identifier.
+	// ID of the nic you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided.
+	// If none, are provided, the datasource will return an error.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The resource name.
+	// [string] The name of the LAN.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -6023,12 +6421,12 @@ func (o GetNicFlowlogOutput) ToGetNicFlowlogOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL.
 func (o GetNicFlowlogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNicFlowlog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// The bucket name of an existing IONOS Object Storage bucket.
+// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist.
 func (o GetNicFlowlogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNicFlowlog) string { return v.Bucket }).(pulumi.StringOutput)
 }
@@ -6038,12 +6436,15 @@ func (o GetNicFlowlogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNicFlowlog) string { return v.Direction }).(pulumi.StringOutput)
 }
 
-// The resource's unique identifier.
+// ID of the nic you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided.
+// If none, are provided, the datasource will return an error.
 func (o GetNicFlowlogOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNicFlowlog) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The resource name.
+// [string] The name of the LAN.
 func (o GetNicFlowlogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNicFlowlog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6069,26 +6470,48 @@ func (o GetNicFlowlogArrayOutput) Index(i pulumi.IntInput) GetNicFlowlogOutput {
 }
 
 type GetServerCdrom struct {
-	CloudInit           string   `pulumi:"cloudInit"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        bool     `pulumi:"cpuHotUnplug"`
-	Description         string   `pulumi:"description"`
-	DiscScsiHotPlug     bool     `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   bool     `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageAliases        []string `pulumi:"imageAliases"`
-	ImageType           string   `pulumi:"imageType"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Location            string   `pulumi:"location"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	Public              bool     `pulumi:"public"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	RamHotUnplug        bool     `pulumi:"ramHotUnplug"`
-	Size                float64  `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit string `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description string `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases []string `pulumi:"imageAliases"`
+	// Type of image
+	ImageType string `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location string `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public bool `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug bool `pulumi:"ramHotUnplug"`
+	// The size of the volume in GB
+	Size float64 `pulumi:"size"`
 }
 
 // GetServerCdromInput is an input type that accepts GetServerCdromArgs and GetServerCdromOutput values.
@@ -6103,26 +6526,48 @@ type GetServerCdromInput interface {
 }
 
 type GetServerCdromArgs struct {
-	CloudInit           pulumi.StringInput      `pulumi:"cloudInit"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        pulumi.BoolInput        `pulumi:"cpuHotUnplug"`
-	Description         pulumi.StringInput      `pulumi:"description"`
-	DiscScsiHotPlug     pulumi.BoolInput        `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   pulumi.BoolInput        `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageAliases        pulumi.StringArrayInput `pulumi:"imageAliases"`
-	ImageType           pulumi.StringInput      `pulumi:"imageType"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Location            pulumi.StringInput      `pulumi:"location"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	Public              pulumi.BoolInput        `pulumi:"public"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	RamHotUnplug        pulumi.BoolInput        `pulumi:"ramHotUnplug"`
-	Size                pulumi.Float64Input     `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description pulumi.StringInput `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
+	// Type of image
+	ImageType pulumi.StringInput `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public pulumi.BoolInput `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
+	// The size of the volume in GB
+	Size pulumi.Float64Input `pulumi:"size"`
 }
 
 func (GetServerCdromArgs) ElementType() reflect.Type {
@@ -6176,82 +6621,104 @@ func (o GetServerCdromOutput) ToGetServerCdromOutputWithContext(ctx context.Cont
 	return o
 }
 
+// Cloud init compatibility
 func (o GetServerCdromOutput) CloudInit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of CPU hot unplug (no reboot required)
 func (o GetServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Description of cdrom
 func (o GetServerCdromOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Is capable of SCSI drive hot plug (no reboot required)
 func (o GetServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of SCSI drive hot unplug (no reboot required)
 func (o GetServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetServerCdromOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of image aliases mapped for this Image
 func (o GetServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }
 
+// Type of image
 func (o GetServerCdromOutput) ImageType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetServerCdromOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Location of that image/snapshot
 func (o GetServerCdromOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetServerCdromOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerCdrom) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Indicates if the image is part of the public repository or not
 func (o GetServerCdromOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot unplug (no reboot required)
 func (o GetServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The size of the volume in GB
 func (o GetServerCdromOutput) Size() pulumi.Float64Output {
 	return o.ApplyT(func(v GetServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
 }
@@ -6277,8 +6744,13 @@ func (o GetServerCdromArrayOutput) Index(i pulumi.IntInput) GetServerCdromOutput
 }
 
 type GetServerLabel struct {
-	Id    string `pulumi:"id"`
-	Key   string `pulumi:"key"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// The key of the label
+	Key string `pulumi:"key"`
+	// The value of the label
 	Value string `pulumi:"value"`
 }
 
@@ -6294,8 +6766,13 @@ type GetServerLabelInput interface {
 }
 
 type GetServerLabelArgs struct {
-	Id    pulumi.StringInput `pulumi:"id"`
-	Key   pulumi.StringInput `pulumi:"key"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The key of the label
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the label
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -6350,14 +6827,19 @@ func (o GetServerLabelOutput) ToGetServerLabelOutputWithContext(ctx context.Cont
 	return o
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetServerLabelOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerLabel) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The key of the label
 func (o GetServerLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// The value of the label
 func (o GetServerLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -6383,20 +6865,33 @@ func (o GetServerLabelArrayOutput) Index(i pulumi.IntInput) GetServerLabelOutput
 }
 
 type GetServerNic struct {
-	DeviceNumber   int                        `pulumi:"deviceNumber"`
-	Dhcp           bool                       `pulumi:"dhcp"`
-	Dhcpv6         *bool                      `pulumi:"dhcpv6"`
-	FirewallActive bool                       `pulumi:"firewallActive"`
-	FirewallRules  []GetServerNicFirewallRule `pulumi:"firewallRules"`
-	FirewallType   string                     `pulumi:"firewallType"`
-	Id             string                     `pulumi:"id"`
-	Ips            []string                   `pulumi:"ips"`
-	Ipv6CidrBlock  string                     `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        []string                   `pulumi:"ipv6Ips"`
-	Lan            int                        `pulumi:"lan"`
-	Mac            string                     `pulumi:"mac"`
-	Name           string                     `pulumi:"name"`
-	PciSlot        int                        `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   bool  `pulumi:"dhcp"`
+	Dhcpv6 *bool `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive bool `pulumi:"firewallActive"`
+	// list of
+	FirewallRules []GetServerNicFirewallRule `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType string `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           []string `pulumi:"ips"`
+	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       []string `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan int `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac string `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
 }
 
 // GetServerNicInput is an input type that accepts GetServerNicArgs and GetServerNicOutput values.
@@ -6411,20 +6906,33 @@ type GetServerNicInput interface {
 }
 
 type GetServerNicArgs struct {
-	DeviceNumber   pulumi.IntInput                    `pulumi:"deviceNumber"`
-	Dhcp           pulumi.BoolInput                   `pulumi:"dhcp"`
-	Dhcpv6         pulumi.BoolPtrInput                `pulumi:"dhcpv6"`
-	FirewallActive pulumi.BoolInput                   `pulumi:"firewallActive"`
-	FirewallRules  GetServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	FirewallType   pulumi.StringInput                 `pulumi:"firewallType"`
-	Id             pulumi.StringInput                 `pulumi:"id"`
-	Ips            pulumi.StringArrayInput            `pulumi:"ips"`
-	Ipv6CidrBlock  pulumi.StringInput                 `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        pulumi.StringArrayInput            `pulumi:"ipv6Ips"`
-	Lan            pulumi.IntInput                    `pulumi:"lan"`
-	Mac            pulumi.StringInput                 `pulumi:"mac"`
-	Name           pulumi.StringInput                 `pulumi:"name"`
-	PciSlot        pulumi.IntInput                    `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
+	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
+	// list of
+	FirewallRules GetServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType pulumi.StringInput `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           pulumi.StringArrayInput `pulumi:"ips"`
+	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan pulumi.IntInput `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac pulumi.StringInput `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
 }
 
 func (GetServerNicArgs) ElementType() reflect.Type {
@@ -6478,10 +6986,12 @@ func (o GetServerNicOutput) ToGetServerNicOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetServerNicOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Indicates if the nic will reserve an IP using DHCP
 func (o GetServerNicOutput) Dhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
@@ -6490,22 +7000,29 @@ func (o GetServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
 }
 
+// Activate or deactivate the firewall
 func (o GetServerNicOutput) FirewallActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
 }
 
+// list of
 func (o GetServerNicOutput) FirewallRules() GetServerNicFirewallRuleArrayOutput {
 	return o.ApplyT(func(v GetServerNic) []GetServerNicFirewallRule { return v.FirewallRules }).(GetServerNicFirewallRuleArrayOutput)
 }
 
+// The type of firewall rules that will be allowed on the NIC
 func (o GetServerNicOutput) FirewallType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetServerNicOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNic) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Collection of IP addresses assigned to a nic
 func (o GetServerNicOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
@@ -6518,18 +7035,22 @@ func (o GetServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
 }
 
+// The LAN ID the NIC will sit on
 func (o GetServerNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
+// The MAC address of the NIC
 func (o GetServerNicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNic) string { return v.Mac }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetServerNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
 }
@@ -6555,17 +7076,30 @@ func (o GetServerNicArrayOutput) Index(i pulumi.IntInput) GetServerNicOutput {
 }
 
 type GetServerNicFirewallRule struct {
-	IcmpCode       int    `pulumi:"icmpCode"`
-	IcmpType       int    `pulumi:"icmpType"`
-	Id             string `pulumi:"id"`
-	Name           string `pulumi:"name"`
-	PortRangeEnd   int    `pulumi:"portRangeEnd"`
-	PortRangeStart int    `pulumi:"portRangeStart"`
-	Protocol       string `pulumi:"protocol"`
-	SourceIp       string `pulumi:"sourceIp"`
-	SourceMac      string `pulumi:"sourceMac"`
-	TargetIp       string `pulumi:"targetIp"`
-	Type           string `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode int `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType int `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd int `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart int `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol string `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp string `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac string `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp string `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
 }
 
 // GetServerNicFirewallRuleInput is an input type that accepts GetServerNicFirewallRuleArgs and GetServerNicFirewallRuleOutput values.
@@ -6580,17 +7114,30 @@ type GetServerNicFirewallRuleInput interface {
 }
 
 type GetServerNicFirewallRuleArgs struct {
-	IcmpCode       pulumi.IntInput    `pulumi:"icmpCode"`
-	IcmpType       pulumi.IntInput    `pulumi:"icmpType"`
-	Id             pulumi.StringInput `pulumi:"id"`
-	Name           pulumi.StringInput `pulumi:"name"`
-	PortRangeEnd   pulumi.IntInput    `pulumi:"portRangeEnd"`
-	PortRangeStart pulumi.IntInput    `pulumi:"portRangeStart"`
-	Protocol       pulumi.StringInput `pulumi:"protocol"`
-	SourceIp       pulumi.StringInput `pulumi:"sourceIp"`
-	SourceMac      pulumi.StringInput `pulumi:"sourceMac"`
-	TargetIp       pulumi.StringInput `pulumi:"targetIp"`
-	Type           pulumi.StringInput `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType pulumi.IntInput `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp pulumi.StringInput `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetServerNicFirewallRuleArgs) ElementType() reflect.Type {
@@ -6644,46 +7191,59 @@ func (o GetServerNicFirewallRuleOutput) ToGetServerNicFirewallRuleOutputWithCont
 	return o
 }
 
+// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
 func (o GetServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
 }
 
+// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
 func (o GetServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
 func (o GetServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
 }
 
+// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
 func (o GetServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
 }
 
+// he protocol for the rule
 func (o GetServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
 func (o GetServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective MAC address is allowed
 func (o GetServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
 }
 
+// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
 func (o GetServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
 }
 
+// The type of firewall rule
 func (o GetServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -6709,28 +7269,49 @@ func (o GetServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetServerN
 }
 
 type GetServerVolume struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone string `pulumi:"availabilityZone"`
-	BackupUnitId     string `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId string `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          string   `pulumi:"bootServer"`
-	Bus                 string   `pulumi:"bus"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	DeviceNumber        int      `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageName           string   `pulumi:"imageName"`
-	ImagePassword       string   `pulumi:"imagePassword"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	PciSlot             int      `pulumi:"pciSlot"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	Size                int      `pulumi:"size"`
-	SshKeys             []string `pulumi:"sshKeys"`
-	Type                string   `pulumi:"type"`
-	UserData            *string  `pulumi:"userData"`
+	BootServer string `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus string `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        string `pulumi:"id"`
+	ImageName string `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword string `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// The size of the volume in GB
+	Size int `pulumi:"size"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys []string `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData *string `pulumi:"userData"`
 }
 
 // GetServerVolumeInput is an input type that accepts GetServerVolumeArgs and GetServerVolumeOutput values.
@@ -6745,28 +7326,49 @@ type GetServerVolumeInput interface {
 }
 
 type GetServerVolumeArgs struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	BackupUnitId     pulumi.StringInput `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          pulumi.StringInput      `pulumi:"bootServer"`
-	Bus                 pulumi.StringInput      `pulumi:"bus"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	DeviceNumber        pulumi.IntInput         `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageName           pulumi.StringInput      `pulumi:"imageName"`
-	ImagePassword       pulumi.StringInput      `pulumi:"imagePassword"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	PciSlot             pulumi.IntInput         `pulumi:"pciSlot"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	Size                pulumi.IntInput         `pulumi:"size"`
-	SshKeys             pulumi.StringArrayInput `pulumi:"sshKeys"`
-	Type                pulumi.StringInput      `pulumi:"type"`
-	UserData            pulumi.StringPtrInput   `pulumi:"userData"`
+	BootServer pulumi.StringInput `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus pulumi.StringInput `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        pulumi.StringInput `pulumi:"id"`
+	ImageName pulumi.StringInput `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// The size of the volume in GB
+	Size pulumi.IntInput `pulumi:"size"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData pulumi.StringPtrInput `pulumi:"userData"`
 }
 
 func (GetServerVolumeArgs) ElementType() reflect.Type {
@@ -6820,10 +7422,12 @@ func (o GetServerVolumeOutput) ToGetServerVolumeOutputWithContext(ctx context.Co
 	return o
 }
 
+// The availability zone in which the volume should exist
 func (o GetServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// The uuid of the Backup Unit that user has access to
 func (o GetServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
 }
@@ -6833,26 +7437,34 @@ func (o GetServerVolumeOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
 }
 
+// The bus type of the volume
 func (o GetServerVolumeOutput) Bus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.Bus }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetServerVolumeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -6861,46 +7473,57 @@ func (o GetServerVolumeOutput) ImageName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
 }
 
+// Initial password to be set for installed OS
 func (o GetServerVolumeOutput) ImagePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetServerVolumeOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetServerVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetServerVolumeOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// The size of the volume in GB
 func (o GetServerVolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerVolume) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
 func (o GetServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
+// The type of firewall rule
 func (o GetServerVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVolume) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The cloud-init configuration for the volume as base64 encoded string
 func (o GetServerVolumeOutput) UserData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
 }
@@ -6926,6 +7549,9 @@ func (o GetServerVolumeArrayOutput) Index(i pulumi.IntInput) GetServerVolumeOutp
 }
 
 type GetUserGroup struct {
+	// ID of the user you want to search for.
+	//
+	// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 }
@@ -6942,6 +7568,9 @@ type GetUserGroupInput interface {
 }
 
 type GetUserGroupArgs struct {
+	// ID of the user you want to search for.
+	//
+	// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
 	Id   pulumi.StringInput `pulumi:"id"`
 	Name pulumi.StringInput `pulumi:"name"`
 }
@@ -6997,6 +7626,9 @@ func (o GetUserGroupOutput) ToGetUserGroupOutputWithContext(ctx context.Context)
 	return o
 }
 
+// ID of the user you want to search for.
+//
+// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
 func (o GetUserGroupOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUserGroup) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -7026,26 +7658,48 @@ func (o GetUserGroupArrayOutput) Index(i pulumi.IntInput) GetUserGroupOutput {
 }
 
 type GetVCPUServerCdrom struct {
-	CloudInit           string   `pulumi:"cloudInit"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        bool     `pulumi:"cpuHotUnplug"`
-	Description         string   `pulumi:"description"`
-	DiscScsiHotPlug     bool     `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   bool     `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageAliases        []string `pulumi:"imageAliases"`
-	ImageType           string   `pulumi:"imageType"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Location            string   `pulumi:"location"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	Public              bool     `pulumi:"public"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	RamHotUnplug        bool     `pulumi:"ramHotUnplug"`
-	Size                float64  `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit string `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description string `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug bool `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases []string `pulumi:"imageAliases"`
+	// Type of image
+	ImageType string `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location string `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public bool `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug bool `pulumi:"ramHotUnplug"`
+	// The size of the volume in GB
+	Size float64 `pulumi:"size"`
 }
 
 // GetVCPUServerCdromInput is an input type that accepts GetVCPUServerCdromArgs and GetVCPUServerCdromOutput values.
@@ -7060,26 +7714,48 @@ type GetVCPUServerCdromInput interface {
 }
 
 type GetVCPUServerCdromArgs struct {
-	CloudInit           pulumi.StringInput      `pulumi:"cloudInit"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	CpuHotUnplug        pulumi.BoolInput        `pulumi:"cpuHotUnplug"`
-	Description         pulumi.StringInput      `pulumi:"description"`
-	DiscScsiHotPlug     pulumi.BoolInput        `pulumi:"discScsiHotPlug"`
-	DiscScsiHotUnplug   pulumi.BoolInput        `pulumi:"discScsiHotUnplug"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageAliases        pulumi.StringArrayInput `pulumi:"imageAliases"`
-	ImageType           pulumi.StringInput      `pulumi:"imageType"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Location            pulumi.StringInput      `pulumi:"location"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	Public              pulumi.BoolInput        `pulumi:"public"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	RamHotUnplug        pulumi.BoolInput        `pulumi:"ramHotUnplug"`
-	Size                pulumi.Float64Input     `pulumi:"size"`
+	// Cloud init compatibility
+	CloudInit pulumi.StringInput `pulumi:"cloudInit"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// Is capable of CPU hot unplug (no reboot required)
+	CpuHotUnplug pulumi.BoolInput `pulumi:"cpuHotUnplug"`
+	// Description of cdrom
+	Description pulumi.StringInput `pulumi:"description"`
+	// Is capable of SCSI drive hot plug (no reboot required)
+	DiscScsiHotPlug pulumi.BoolInput `pulumi:"discScsiHotPlug"`
+	// Is capable of SCSI drive hot unplug (no reboot required)
+	DiscScsiHotUnplug pulumi.BoolInput `pulumi:"discScsiHotUnplug"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of image aliases mapped for this Image
+	ImageAliases pulumi.StringArrayInput `pulumi:"imageAliases"`
+	// Type of image
+	ImageType pulumi.StringInput `pulumi:"imageType"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Location of that image/snapshot
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// Indicates if the image is part of the public repository or not
+	Public pulumi.BoolInput `pulumi:"public"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// Is capable of memory hot unplug (no reboot required)
+	RamHotUnplug pulumi.BoolInput `pulumi:"ramHotUnplug"`
+	// The size of the volume in GB
+	Size pulumi.Float64Input `pulumi:"size"`
 }
 
 func (GetVCPUServerCdromArgs) ElementType() reflect.Type {
@@ -7133,82 +7809,104 @@ func (o GetVCPUServerCdromOutput) ToGetVCPUServerCdromOutputWithContext(ctx cont
 	return o
 }
 
+// Cloud init compatibility
 func (o GetVCPUServerCdromOutput) CloudInit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetVCPUServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of CPU hot unplug (no reboot required)
 func (o GetVCPUServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Description of cdrom
 func (o GetVCPUServerCdromOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Is capable of SCSI drive hot plug (no reboot required)
 func (o GetVCPUServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of SCSI drive hot unplug (no reboot required)
 func (o GetVCPUServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetVCPUServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetVCPUServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetVCPUServerCdromOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of image aliases mapped for this Image
 func (o GetVCPUServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }
 
+// Type of image
 func (o GetVCPUServerCdromOutput) ImageType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetVCPUServerCdromOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Location of that image/snapshot
 func (o GetVCPUServerCdromOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetVCPUServerCdromOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetVCPUServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetVCPUServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Indicates if the image is part of the public repository or not
 func (o GetVCPUServerCdromOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetVCPUServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot unplug (no reboot required)
 func (o GetVCPUServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The size of the volume in GB
 func (o GetVCPUServerCdromOutput) Size() pulumi.Float64Output {
 	return o.ApplyT(func(v GetVCPUServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
 }
@@ -7234,8 +7932,13 @@ func (o GetVCPUServerCdromArrayOutput) Index(i pulumi.IntInput) GetVCPUServerCdr
 }
 
 type GetVCPUServerLabel struct {
-	Id    string `pulumi:"id"`
-	Key   string `pulumi:"key"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// The key of the label
+	Key string `pulumi:"key"`
+	// The value of the label
 	Value string `pulumi:"value"`
 }
 
@@ -7251,8 +7954,13 @@ type GetVCPUServerLabelInput interface {
 }
 
 type GetVCPUServerLabelArgs struct {
-	Id    pulumi.StringInput `pulumi:"id"`
-	Key   pulumi.StringInput `pulumi:"key"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The key of the label
+	Key pulumi.StringInput `pulumi:"key"`
+	// The value of the label
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -7307,14 +8015,19 @@ func (o GetVCPUServerLabelOutput) ToGetVCPUServerLabelOutputWithContext(ctx cont
 	return o
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetVCPUServerLabelOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerLabel) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The key of the label
 func (o GetVCPUServerLabelOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// The value of the label
 func (o GetVCPUServerLabelOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerLabel) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -7340,20 +8053,33 @@ func (o GetVCPUServerLabelArrayOutput) Index(i pulumi.IntInput) GetVCPUServerLab
 }
 
 type GetVCPUServerNic struct {
-	DeviceNumber   int                            `pulumi:"deviceNumber"`
-	Dhcp           bool                           `pulumi:"dhcp"`
-	Dhcpv6         *bool                          `pulumi:"dhcpv6"`
-	FirewallActive bool                           `pulumi:"firewallActive"`
-	FirewallRules  []GetVCPUServerNicFirewallRule `pulumi:"firewallRules"`
-	FirewallType   string                         `pulumi:"firewallType"`
-	Id             string                         `pulumi:"id"`
-	Ips            []string                       `pulumi:"ips"`
-	Ipv6CidrBlock  string                         `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        []string                       `pulumi:"ipv6Ips"`
-	Lan            int                            `pulumi:"lan"`
-	Mac            string                         `pulumi:"mac"`
-	Name           string                         `pulumi:"name"`
-	PciSlot        int                            `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   bool  `pulumi:"dhcp"`
+	Dhcpv6 *bool `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive bool `pulumi:"firewallActive"`
+	// list of
+	FirewallRules []GetVCPUServerNicFirewallRule `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType string `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           []string `pulumi:"ips"`
+	Ipv6CidrBlock string   `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       []string `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan int `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac string `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
 }
 
 // GetVCPUServerNicInput is an input type that accepts GetVCPUServerNicArgs and GetVCPUServerNicOutput values.
@@ -7368,20 +8094,33 @@ type GetVCPUServerNicInput interface {
 }
 
 type GetVCPUServerNicArgs struct {
-	DeviceNumber   pulumi.IntInput                        `pulumi:"deviceNumber"`
-	Dhcp           pulumi.BoolInput                       `pulumi:"dhcp"`
-	Dhcpv6         pulumi.BoolPtrInput                    `pulumi:"dhcpv6"`
-	FirewallActive pulumi.BoolInput                       `pulumi:"firewallActive"`
-	FirewallRules  GetVCPUServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	FirewallType   pulumi.StringInput                     `pulumi:"firewallType"`
-	Id             pulumi.StringInput                     `pulumi:"id"`
-	Ips            pulumi.StringArrayInput                `pulumi:"ips"`
-	Ipv6CidrBlock  pulumi.StringInput                     `pulumi:"ipv6CidrBlock"`
-	Ipv6Ips        pulumi.StringArrayInput                `pulumi:"ipv6Ips"`
-	Lan            pulumi.IntInput                        `pulumi:"lan"`
-	Mac            pulumi.StringInput                     `pulumi:"mac"`
-	Name           pulumi.StringInput                     `pulumi:"name"`
-	PciSlot        pulumi.IntInput                        `pulumi:"pciSlot"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Indicates if the nic will reserve an IP using DHCP
+	Dhcp   pulumi.BoolInput    `pulumi:"dhcp"`
+	Dhcpv6 pulumi.BoolPtrInput `pulumi:"dhcpv6"`
+	// Activate or deactivate the firewall
+	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
+	// list of
+	FirewallRules GetVCPUServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC
+	FirewallType pulumi.StringInput `pulumi:"firewallType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Collection of IP addresses assigned to a nic
+	Ips           pulumi.StringArrayInput `pulumi:"ips"`
+	Ipv6CidrBlock pulumi.StringInput      `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips       pulumi.StringArrayInput `pulumi:"ipv6Ips"`
+	// The LAN ID the NIC will sit on
+	Lan pulumi.IntInput `pulumi:"lan"`
+	// The MAC address of the NIC
+	Mac pulumi.StringInput `pulumi:"mac"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
 }
 
 func (GetVCPUServerNicArgs) ElementType() reflect.Type {
@@ -7435,10 +8174,12 @@ func (o GetVCPUServerNicOutput) ToGetVCPUServerNicOutputWithContext(ctx context.
 	return o
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetVCPUServerNicOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Indicates if the nic will reserve an IP using DHCP
 func (o GetVCPUServerNicOutput) Dhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
@@ -7447,22 +8188,29 @@ func (o GetVCPUServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
 }
 
+// Activate or deactivate the firewall
 func (o GetVCPUServerNicOutput) FirewallActive() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
 }
 
+// list of
 func (o GetVCPUServerNicOutput) FirewallRules() GetVCPUServerNicFirewallRuleArrayOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) []GetVCPUServerNicFirewallRule { return v.FirewallRules }).(GetVCPUServerNicFirewallRuleArrayOutput)
 }
 
+// The type of firewall rules that will be allowed on the NIC
 func (o GetVCPUServerNicOutput) FirewallType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetVCPUServerNicOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Collection of IP addresses assigned to a nic
 func (o GetVCPUServerNicOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
@@ -7475,18 +8223,22 @@ func (o GetVCPUServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
 }
 
+// The LAN ID the NIC will sit on
 func (o GetVCPUServerNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
+// The MAC address of the NIC
 func (o GetVCPUServerNicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) string { return v.Mac }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetVCPUServerNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetVCPUServerNicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
 }
@@ -7512,17 +8264,30 @@ func (o GetVCPUServerNicArrayOutput) Index(i pulumi.IntInput) GetVCPUServerNicOu
 }
 
 type GetVCPUServerNicFirewallRule struct {
-	IcmpCode       int    `pulumi:"icmpCode"`
-	IcmpType       int    `pulumi:"icmpType"`
-	Id             string `pulumi:"id"`
-	Name           string `pulumi:"name"`
-	PortRangeEnd   int    `pulumi:"portRangeEnd"`
-	PortRangeStart int    `pulumi:"portRangeStart"`
-	Protocol       string `pulumi:"protocol"`
-	SourceIp       string `pulumi:"sourceIp"`
-	SourceMac      string `pulumi:"sourceMac"`
-	TargetIp       string `pulumi:"targetIp"`
-	Type           string `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode int `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType int `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id string `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd int `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart int `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol string `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp string `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac string `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp string `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
 }
 
 // GetVCPUServerNicFirewallRuleInput is an input type that accepts GetVCPUServerNicFirewallRuleArgs and GetVCPUServerNicFirewallRuleOutput values.
@@ -7537,17 +8302,30 @@ type GetVCPUServerNicFirewallRuleInput interface {
 }
 
 type GetVCPUServerNicFirewallRuleArgs struct {
-	IcmpCode       pulumi.IntInput    `pulumi:"icmpCode"`
-	IcmpType       pulumi.IntInput    `pulumi:"icmpType"`
-	Id             pulumi.StringInput `pulumi:"id"`
-	Name           pulumi.StringInput `pulumi:"name"`
-	PortRangeEnd   pulumi.IntInput    `pulumi:"portRangeEnd"`
-	PortRangeStart pulumi.IntInput    `pulumi:"portRangeStart"`
-	Protocol       pulumi.StringInput `pulumi:"protocol"`
-	SourceIp       pulumi.StringInput `pulumi:"sourceIp"`
-	SourceMac      pulumi.StringInput `pulumi:"sourceMac"`
-	TargetIp       pulumi.StringInput `pulumi:"targetIp"`
-	Type           pulumi.StringInput `pulumi:"type"`
+	// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
+	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
+	// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
+	IcmpType pulumi.IntInput `pulumi:"icmpType"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
+	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
+	// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
+	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
+	// he protocol for the rule
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is allowed
+	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
+	// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
+	TargetIp pulumi.StringInput `pulumi:"targetIp"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetVCPUServerNicFirewallRuleArgs) ElementType() reflect.Type {
@@ -7601,46 +8379,59 @@ func (o GetVCPUServerNicFirewallRuleOutput) ToGetVCPUServerNicFirewallRuleOutput
 	return o
 }
 
+// Defines the allowed code (from 0 to 254) if protocol ICMP is chosen
 func (o GetVCPUServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
 }
 
+// Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen
 func (o GetVCPUServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetVCPUServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetVCPUServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen
 func (o GetVCPUServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
 }
 
+// Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen
 func (o GetVCPUServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
 }
 
+// he protocol for the rule
 func (o GetVCPUServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs
 func (o GetVCPUServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
 }
 
+// Only traffic originating from the respective MAC address is allowed
 func (o GetVCPUServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
 }
 
+// In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed
 func (o GetVCPUServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
 }
 
+// The type of firewall rule
 func (o GetVCPUServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -7666,28 +8457,49 @@ func (o GetVCPUServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetVCP
 }
 
 type GetVCPUServerVolume struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone string `pulumi:"availabilityZone"`
-	BackupUnitId     string `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId string `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          string   `pulumi:"bootServer"`
-	Bus                 string   `pulumi:"bus"`
-	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
-	DeviceNumber        int      `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
-	Id                  string   `pulumi:"id"`
-	ImageName           string   `pulumi:"imageName"`
-	ImagePassword       string   `pulumi:"imagePassword"`
-	LicenceType         string   `pulumi:"licenceType"`
-	Name                string   `pulumi:"name"`
-	NicHotPlug          bool     `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
-	PciSlot             int      `pulumi:"pciSlot"`
-	RamHotPlug          bool     `pulumi:"ramHotPlug"`
-	Size                int      `pulumi:"size"`
-	SshKeys             []string `pulumi:"sshKeys"`
-	Type                string   `pulumi:"type"`
-	UserData            *string  `pulumi:"userData"`
+	BootServer string `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus string `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug bool `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        string `pulumi:"id"`
+	ImageName string `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword string `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType string `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot int `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// The size of the volume in GB
+	Size int `pulumi:"size"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys []string `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type string `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData *string `pulumi:"userData"`
 }
 
 // GetVCPUServerVolumeInput is an input type that accepts GetVCPUServerVolumeArgs and GetVCPUServerVolumeOutput values.
@@ -7702,28 +8514,49 @@ type GetVCPUServerVolumeInput interface {
 }
 
 type GetVCPUServerVolumeArgs struct {
+	// The availability zone in which the volume should exist
 	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
-	BackupUnitId     pulumi.StringInput `pulumi:"backupUnitId"`
+	// The uuid of the Backup Unit that user has access to
+	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
 	// The UUID of the attached server.
-	BootServer          pulumi.StringInput      `pulumi:"bootServer"`
-	Bus                 pulumi.StringInput      `pulumi:"bus"`
-	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
-	DeviceNumber        pulumi.IntInput         `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
-	Id                  pulumi.StringInput      `pulumi:"id"`
-	ImageName           pulumi.StringInput      `pulumi:"imageName"`
-	ImagePassword       pulumi.StringInput      `pulumi:"imagePassword"`
-	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
-	Name                pulumi.StringInput      `pulumi:"name"`
-	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
-	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
-	PciSlot             pulumi.IntInput         `pulumi:"pciSlot"`
-	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
-	Size                pulumi.IntInput         `pulumi:"size"`
-	SshKeys             pulumi.StringArrayInput `pulumi:"sshKeys"`
-	Type                pulumi.StringInput      `pulumi:"type"`
-	UserData            pulumi.StringPtrInput   `pulumi:"userData"`
+	BootServer pulumi.StringInput `pulumi:"bootServer"`
+	// The bus type of the volume
+	Bus pulumi.StringInput `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug pulumi.BoolInput `pulumi:"cpuHotPlug"`
+	// The Logical Unit Number (LUN) of the storage volume
+	DeviceNumber pulumi.IntInput `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug pulumi.BoolInput `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required)
+	DiscVirtioHotUnplug pulumi.BoolInput `pulumi:"discVirtioHotUnplug"`
+	// ID of the server you want to search for.
+	//
+	// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+	Id        pulumi.StringInput `pulumi:"id"`
+	ImageName pulumi.StringInput `pulumi:"imageName"`
+	// Initial password to be set for installed OS
+	ImagePassword pulumi.StringInput `pulumi:"imagePassword"`
+	// OS type of this volume
+	LicenceType pulumi.StringInput `pulumi:"licenceType"`
+	// Name of an existing server that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug pulumi.BoolInput `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug pulumi.BoolInput `pulumi:"nicHotUnplug"`
+	// The PCI slot number of the Nic
+	PciSlot pulumi.IntInput `pulumi:"pciSlot"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug pulumi.BoolInput `pulumi:"ramHotPlug"`
+	// The size of the volume in GB
+	Size pulumi.IntInput `pulumi:"size"`
+	// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
+	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
+	// The type of firewall rule
+	Type pulumi.StringInput `pulumi:"type"`
+	// The cloud-init configuration for the volume as base64 encoded string
+	UserData pulumi.StringPtrInput `pulumi:"userData"`
 }
 
 func (GetVCPUServerVolumeArgs) ElementType() reflect.Type {
@@ -7777,10 +8610,12 @@ func (o GetVCPUServerVolumeOutput) ToGetVCPUServerVolumeOutputWithContext(ctx co
 	return o
 }
 
+// The availability zone in which the volume should exist
 func (o GetVCPUServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// The uuid of the Backup Unit that user has access to
 func (o GetVCPUServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
 }
@@ -7790,26 +8625,34 @@ func (o GetVCPUServerVolumeOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
 }
 
+// The bus type of the volume
 func (o GetVCPUServerVolumeOutput) Bus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.Bus }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o GetVCPUServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
 
+// The Logical Unit Number (LUN) of the storage volume
 func (o GetVCPUServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o GetVCPUServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required)
 func (o GetVCPUServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// ID of the server you want to search for.
+//
+// `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetVCPUServerVolumeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -7818,46 +8661,57 @@ func (o GetVCPUServerVolumeOutput) ImageName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
 }
 
+// Initial password to be set for installed OS
 func (o GetVCPUServerVolumeOutput) ImagePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
 }
 
+// OS type of this volume
 func (o GetVCPUServerVolumeOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// Name of an existing server that you want to search for.
 func (o GetVCPUServerVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o GetVCPUServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o GetVCPUServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The PCI slot number of the Nic
 func (o GetVCPUServerVolumeOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o GetVCPUServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// The size of the volume in GB
 func (o GetVCPUServerVolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key
 func (o GetVCPUServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
 }
 
+// The type of firewall rule
 func (o GetVCPUServerVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The cloud-init configuration for the volume as base64 encoded string
 func (o GetVCPUServerVolumeOutput) UserData() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVCPUServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
 }

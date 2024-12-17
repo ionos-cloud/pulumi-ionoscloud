@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The volume data source can be used to search for and return existing volumes.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVolumeResult
@@ -23,34 +28,58 @@ func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getVolume.
 type LookupVolumeArgs struct {
-	DatacenterId string  `pulumi:"datacenterId"`
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of the volume you want to search for.
+	//
+	// Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// Name of an existing volume that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getVolume.
 type LookupVolumeResult struct {
-	AvailabilityZone    string  `pulumi:"availabilityZone"`
-	BackupUnitId        string  `pulumi:"backupUnitId"`
-	BootServer          string  `pulumi:"bootServer"`
-	Bus                 string  `pulumi:"bus"`
-	CpuHotPlug          bool    `pulumi:"cpuHotPlug"`
-	DatacenterId        string  `pulumi:"datacenterId"`
-	DeviceNumber        int     `pulumi:"deviceNumber"`
-	DiscVirtioHotPlug   bool    `pulumi:"discVirtioHotPlug"`
-	DiscVirtioHotUnplug bool    `pulumi:"discVirtioHotUnplug"`
-	DiskType            string  `pulumi:"diskType"`
-	Id                  *string `pulumi:"id"`
-	Image               string  `pulumi:"image"`
-	ImagePassword       string  `pulumi:"imagePassword"`
-	LicenceType         string  `pulumi:"licenceType"`
-	Name                *string `pulumi:"name"`
-	NicHotPlug          bool    `pulumi:"nicHotPlug"`
-	NicHotUnplug        bool    `pulumi:"nicHotUnplug"`
-	RamHotPlug          bool    `pulumi:"ramHotPlug"`
-	Size                int     `pulumi:"size"`
-	Sshkey              string  `pulumi:"sshkey"`
-	UserData            string  `pulumi:"userData"`
+	// The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+	BackupUnitId string `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer string `pulumi:"bootServer"`
+	// The bus type of the volume: VIRTIO or IDE.
+	Bus string `pulumi:"bus"`
+	// Is capable of CPU hot plug (no reboot required)
+	CpuHotPlug   bool   `pulumi:"cpuHotPlug"`
+	DatacenterId string `pulumi:"datacenterId"`
+	// The LUN ID of the storage volume. Null for volumes not mounted to any VM
+	DeviceNumber int `pulumi:"deviceNumber"`
+	// Is capable of Virt-IO drive hot plug (no reboot required)
+	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
+	// Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// The volume type: HDD or SSD.
+	DiskType string `pulumi:"diskType"`
+	// The id of the volume.
+	Id *string `pulumi:"id"`
+	// The image or snapshot UUID.
+	Image string `pulumi:"image"`
+	// Required if `sshkeyPath` is not provided.
+	ImagePassword string `pulumi:"imagePassword"`
+	// The type of the licence.
+	LicenceType string `pulumi:"licenceType"`
+	// The name of the volume.
+	Name *string `pulumi:"name"`
+	// Is capable of nic hot plug (no reboot required)
+	NicHotPlug bool `pulumi:"nicHotPlug"`
+	// Is capable of nic hot unplug (no reboot required)
+	NicHotUnplug bool `pulumi:"nicHotUnplug"`
+	// Is capable of memory hot plug (no reboot required)
+	RamHotPlug bool `pulumi:"ramHotPlug"`
+	// The size of the volume in GB.
+	Size int `pulumi:"size"`
+	// The associated public SSH key.
+	Sshkey string `pulumi:"sshkey"`
+	// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
+	UserData string `pulumi:"userData"`
 }
 
 func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupVolumeResultOutput {
@@ -64,9 +93,13 @@ func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts .
 
 // A collection of arguments for invoking getVolume.
 type LookupVolumeOutputArgs struct {
-	DatacenterId pulumi.StringInput    `pulumi:"datacenterId"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// ID of the volume you want to search for.
+	//
+	// Either `volume` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing volume that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupVolumeOutputArgs) ElementType() reflect.Type {
@@ -88,22 +121,27 @@ func (o LookupVolumeResultOutput) ToLookupVolumeResultOutputWithContext(ctx cont
 	return o
 }
 
+// The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable.
 func (o LookupVolumeResultOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
 func (o LookupVolumeResultOutput) BackupUnitId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.BackupUnitId }).(pulumi.StringOutput)
 }
 
+// The UUID of the attached server.
 func (o LookupVolumeResultOutput) BootServer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.BootServer }).(pulumi.StringOutput)
 }
 
+// The bus type of the volume: VIRTIO or IDE.
 func (o LookupVolumeResultOutput) Bus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.Bus }).(pulumi.StringOutput)
 }
 
+// Is capable of CPU hot plug (no reboot required)
 func (o LookupVolumeResultOutput) CpuHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
 }
@@ -112,62 +150,77 @@ func (o LookupVolumeResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The LUN ID of the storage volume. Null for volumes not mounted to any VM
 func (o LookupVolumeResultOutput) DeviceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVolumeResult) int { return v.DeviceNumber }).(pulumi.IntOutput)
 }
 
+// Is capable of Virt-IO drive hot plug (no reboot required)
 func (o LookupVolumeResultOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 func (o LookupVolumeResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// The volume type: HDD or SSD.
 func (o LookupVolumeResultOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
+// The id of the volume.
 func (o LookupVolumeResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The image or snapshot UUID.
 func (o LookupVolumeResultOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.Image }).(pulumi.StringOutput)
 }
 
+// Required if `sshkeyPath` is not provided.
 func (o LookupVolumeResultOutput) ImagePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.ImagePassword }).(pulumi.StringOutput)
 }
 
+// The type of the licence.
 func (o LookupVolumeResultOutput) LicenceType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.LicenceType }).(pulumi.StringOutput)
 }
 
+// The name of the volume.
 func (o LookupVolumeResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Is capable of nic hot plug (no reboot required)
 func (o LookupVolumeResultOutput) NicHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
 }
 
+// Is capable of nic hot unplug (no reboot required)
 func (o LookupVolumeResultOutput) NicHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Is capable of memory hot plug (no reboot required)
 func (o LookupVolumeResultOutput) RamHotPlug() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVolumeResult) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
 }
 
+// The size of the volume in GB.
 func (o LookupVolumeResultOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVolumeResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// The associated public SSH key.
 func (o LookupVolumeResultOutput) Sshkey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.Sshkey }).(pulumi.StringOutput)
 }
 
+// The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
 func (o LookupVolumeResultOutput) UserData() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.UserData }).(pulumi.StringOutput)
 }

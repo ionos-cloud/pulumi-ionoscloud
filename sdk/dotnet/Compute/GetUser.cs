@@ -11,12 +11,96 @@ namespace Pulumi.Ionoscloud.Compute
 {
     public static class GetUser
     {
+        /// <summary>
+        /// The **User data source** can be used to search for and return existing users.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Email
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetUser.Invoke(new()
+        ///     {
+        ///         Email = "example@email.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Email from Env Variables - Current User
+        /// data "ionoscloud.compute.User" "example" {
+        /// }
+        /// </summary>
         public static Task<GetUserResult> InvokeAsync(GetUserArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("ionoscloud:compute/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **User data source** can be used to search for and return existing users.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Email
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetUser.Invoke(new()
+        ///     {
+        ///         Email = "example@email.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Email from Env Variables - Current User
+        /// data "ionoscloud.compute.User" "example" {
+        /// }
+        /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("ionoscloud:compute/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **User data source** can be used to search for and return existing users.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Email
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.Compute.GetUser.Invoke(new()
+        ///     {
+        ///         Email = "example@email.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Email from Env Variables - Current User
+        /// data "ionoscloud.compute.User" "example" {
+        /// }
+        /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("ionoscloud:compute/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());
     }
@@ -24,9 +108,17 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetUserArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Email of an existing user that you want to search for.
+        /// </summary>
         [Input("email")]
         public string? Email { get; set; }
 
+        /// <summary>
+        /// ID of the user you want to search for.
+        /// 
+        /// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
@@ -38,9 +130,17 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GetUserInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Email of an existing user that you want to search for.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// ID of the user you want to search for.
+        /// 
+        /// Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
@@ -54,15 +154,45 @@ namespace Pulumi.Ionoscloud.Compute
     [OutputType]
     public sealed class GetUserResult
     {
+        /// <summary>
+        /// Indicates if the user is active
+        /// </summary>
         public readonly bool Active;
+        /// <summary>
+        /// Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+        /// </summary>
         public readonly bool Administrator;
+        /// <summary>
+        /// The e-mail address for the user.
+        /// </summary>
         public readonly string? Email;
+        /// <summary>
+        /// The first name for the user.
+        /// </summary>
         public readonly string FirstName;
+        /// <summary>
+        /// Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+        /// </summary>
         public readonly bool ForceSecAuth;
+        /// <summary>
+        /// Shows the id and name of the groups that the user is a member of
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetUserGroupResult> Groups;
+        /// <summary>
+        /// The id of the user.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The last name for the user.
+        /// </summary>
         public readonly string LastName;
+        /// <summary>
+        /// Canonical (S3) id of the user for a given identity
+        /// </summary>
         public readonly string S3CanonicalUserId;
+        /// <summary>
+        /// Indicates if secure authentication is active for the user or not
+        /// </summary>
         public readonly bool SecAuthActive;
 
         [OutputConstructor]

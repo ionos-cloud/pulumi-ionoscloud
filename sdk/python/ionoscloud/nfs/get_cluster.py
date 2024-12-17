@@ -53,26 +53,41 @@ class GetClusterResult:
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetClusterConnectionResult']:
+        """
+        A list of connections for the Network File Storage cluster. You can specify only one connection. Each connection supports the following:
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the Network File Storage cluster.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        The location where the Network File Storage cluster is located.
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the Network File Storage cluster.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nfs(self) -> Sequence['outputs.GetClusterNfResult']:
+        """
+        The NFS configuration for the Network File Storage cluster. Each NFS configuration supports the following:
+        """
         return pulumi.get(self, "nfs")
 
     @property
@@ -83,6 +98,9 @@ class GetClusterResult:
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        """
         return pulumi.get(self, "size")
 
 
@@ -107,7 +125,13 @@ def get_cluster(id: Optional[str] = None,
                 partial_match: Optional[bool] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+
+
+    :param str id: ID of the Network File Storage cluster.
+    :param str location: The location where the Network File Storage cluster is located.
+    :param str name: Name of the Network File Storage cluster.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -131,7 +155,13 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Returns information about clusters of Network File Storage (NFS) on IonosCloud.
+
+
+    :param str id: ID of the Network File Storage cluster.
+    :param str location: The location where the Network File Storage cluster is located.
+    :param str name: Name of the Network File Storage cluster.
+    :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
     __args__ = dict()
     __args__['id'] = id

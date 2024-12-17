@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -92,14 +97,12 @@ def get_backup_unit(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_backup_unit(name="Backup Unit Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the backup unit you want to search for.
@@ -118,12 +121,9 @@ def get_backup_unit(id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         login=pulumi.get(__ret__, 'login'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_backup_unit)
 def get_backup_unit_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackupUnitResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupUnitResult]:
     """
     The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
     You can provide a string for either id or name parameters which will be compared with provisioned Backup Units.
@@ -133,14 +133,12 @@ def get_backup_unit_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_backup_unit(name="Backup Unit Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the backup unit you want to search for.
@@ -148,4 +146,13 @@ def get_backup_unit_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param str name: Name of an existing backup unit that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getBackupUnit:getBackupUnit', __args__, opts=opts, typ=GetBackupUnitResult)
+    return __ret__.apply(lambda __response__: GetBackupUnitResult(
+        email=pulumi.get(__response__, 'email'),
+        id=pulumi.get(__response__, 'id'),
+        login=pulumi.get(__response__, 'login'),
+        name=pulumi.get(__response__, 'name')))

@@ -62,6 +62,9 @@ class GetBalancerResult:
     @property
     @pulumi.getter(name="centralLogging")
     def central_logging(self) -> bool:
+        """
+        Turn logging on and off for this product. Default value is 'false'.
+        """
         return pulumi.get(self, "central_logging")
 
     @property
@@ -72,26 +75,41 @@ class GetBalancerResult:
     @property
     @pulumi.getter
     def flowlogs(self) -> Sequence['outputs.GetBalancerFlowlogResult']:
+        """
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        """
         return pulumi.get(self, "flowlogs")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of that Network Load Balancer
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ips(self) -> Sequence[str]:
+        """
+        Collection of IP addresses of the Network Load Balancer. (inbound and outbound) IP of the listenerLan must be a customer reserved IP for the public load balancer and private IP for the private load balancer.
+        """
         return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter(name="lbPrivateIps")
     def lb_private_ips(self) -> Sequence[str]:
+        """
+        Collection of private IP addresses with subnet mask of the Network Load Balancer. IPs must contain valid subnet mask. If user will not provide any IP then the system will generate one IP with /24 subnet.
+        """
         return pulumi.get(self, "lb_private_ips")
 
     @property
     @pulumi.getter(name="listenerLan")
     def listener_lan(self) -> int:
+        """
+        Id of the listening LAN. (inbound)
+        """
         return pulumi.get(self, "listener_lan")
 
     @property
@@ -102,11 +120,17 @@ class GetBalancerResult:
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Specifies the name of the flow log.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="targetLan")
     def target_lan(self) -> int:
+        """
+        Id of the balanced private target LAN. (outbound)
+        """
         return pulumi.get(self, "target_lan")
 
 
@@ -133,7 +157,27 @@ def get_balancer(datacenter_id: Optional[str] = None,
                  name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBalancerResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Network Load Balancer data source** can be used to search for and return existing network load balancers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="Network Load Balancer Name")
+    ```
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -158,7 +202,27 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBalancerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Network Load Balancer data source** can be used to search for and return existing network load balancers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.nlb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="Network Load Balancer Name")
+    ```
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the network load balancer you want to search for.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str name: Name of an existing network load balancer that you want to search for.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

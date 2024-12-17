@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class InMemoryDBReplicaSetResourcesGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of CPU cores per instance.
+        /// [int] The number of CPU cores per instance.
         /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
 
         /// <summary>
-        /// The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB).
         /// </summary>
         [Input("ram", required: true)]
         public Input<int> Ram { get; set; } = null!;
 
         /// <summary>
-        /// The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        /// [int] The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
         /// </summary>
         [Input("storage")]
         public Input<int>? Storage { get; set; }

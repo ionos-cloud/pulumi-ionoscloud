@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -136,17 +141,14 @@ def get_cdn_distribution(domain: Optional[str] = None,
     ## Example Usage
 
     ### By Domain
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_cdn_distribution(domain="example.com")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Domain with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -154,7 +156,6 @@ def get_cdn_distribution(domain: Optional[str] = None,
     example = ionoscloud.get_cdn_distribution(domain="example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str domain: Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
@@ -179,13 +180,10 @@ def get_cdn_distribution(domain: Optional[str] = None,
         public_endpoint_v6=pulumi.get(__ret__, 'public_endpoint_v6'),
         resource_urn=pulumi.get(__ret__, 'resource_urn'),
         routing_rules=pulumi.get(__ret__, 'routing_rules'))
-
-
-@_utilities.lift_output_func(get_cdn_distribution)
 def get_cdn_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                                 id: Optional[pulumi.Input[Optional[str]]] = None,
                                 partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCdnDistributionResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCdnDistributionResult]:
     """
     The Distribution data source can be used to search for and return an existing Distributions.
     You can provide a string for the domain parameter which will be compared with provisioned Distributions.
@@ -195,17 +193,14 @@ def get_cdn_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = 
     ## Example Usage
 
     ### By Domain
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_cdn_distribution(domain="example.com")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Domain with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -213,7 +208,6 @@ def get_cdn_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = 
     example = ionoscloud.get_cdn_distribution(domain="example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str domain: Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
@@ -222,4 +216,18 @@ def get_cdn_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = 
            
            Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['domain'] = domain
+    __args__['id'] = id
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getCdnDistribution:getCdnDistribution', __args__, opts=opts, typ=GetCdnDistributionResult)
+    return __ret__.apply(lambda __response__: GetCdnDistributionResult(
+        certificate_id=pulumi.get(__response__, 'certificate_id'),
+        domain=pulumi.get(__response__, 'domain'),
+        id=pulumi.get(__response__, 'id'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        public_endpoint_v4=pulumi.get(__response__, 'public_endpoint_v4'),
+        public_endpoint_v6=pulumi.get(__response__, 'public_endpoint_v6'),
+        resource_urn=pulumi.get(__response__, 'resource_urn'),
+        routing_rules=pulumi.get(__response__, 'routing_rules')))

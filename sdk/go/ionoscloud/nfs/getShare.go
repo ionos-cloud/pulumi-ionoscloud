@@ -11,6 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Returns information about shares of Network File Storage (NFS) on IonosCloud.
 func LookupShare(ctx *pulumi.Context, args *LookupShareArgs, opts ...pulumi.InvokeOption) (*LookupShareResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupShareResult
@@ -23,29 +24,47 @@ func LookupShare(ctx *pulumi.Context, args *LookupShareArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getShare.
 type LookupShareArgs struct {
+	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups []GetShareClientGroup `pulumi:"clientGroups"`
-	ClusterId    string                `pulumi:"clusterId"`
-	Gid          *int                  `pulumi:"gid"`
-	Id           *string               `pulumi:"id"`
-	Location     string                `pulumi:"location"`
-	Name         *string               `pulumi:"name"`
-	PartialMatch *bool                 `pulumi:"partialMatch"`
-	Quota        *int                  `pulumi:"quota"`
-	Uid          *int                  `pulumi:"uid"`
+	// The ID of the Network File Storage cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Gid *int `pulumi:"gid"`
+	// ID of the Network File Storage share.
+	Id *string `pulumi:"id"`
+	// The location where the Network File Storage share is located.
+	Location string `pulumi:"location"`
+	// Name of the Network File Storage share.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+	PartialMatch *bool `pulumi:"partialMatch"`
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+	Quota *int `pulumi:"quota"`
+	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Uid *int `pulumi:"uid"`
 }
 
 // A collection of values returned by getShare.
 type LookupShareResult struct {
+	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups []GetShareClientGroup `pulumi:"clientGroups"`
-	ClusterId    string                `pulumi:"clusterId"`
-	Gid          int                   `pulumi:"gid"`
-	Id           string                `pulumi:"id"`
-	Location     string                `pulumi:"location"`
-	Name         string                `pulumi:"name"`
-	NfsPath      string                `pulumi:"nfsPath"`
-	PartialMatch *bool                 `pulumi:"partialMatch"`
-	Quota        int                   `pulumi:"quota"`
-	Uid          int                   `pulumi:"uid"`
+	// The ID of the Network File Storage cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Gid int `pulumi:"gid"`
+	// The ID of the Network File Storage share.
+	Id string `pulumi:"id"`
+	// The location where the Network File Storage share is located.
+	Location string `pulumi:"location"`
+	// The name of the Network File Storage share.
+	Name string `pulumi:"name"`
+	// Path to the NFS export. The NFS path is the path to the directory being exported.
+	NfsPath      string `pulumi:"nfsPath"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+	Quota int `pulumi:"quota"`
+	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Uid int `pulumi:"uid"`
 }
 
 func LookupShareOutput(ctx *pulumi.Context, args LookupShareOutputArgs, opts ...pulumi.InvokeOption) LookupShareResultOutput {
@@ -59,15 +78,24 @@ func LookupShareOutput(ctx *pulumi.Context, args LookupShareOutputArgs, opts ...
 
 // A collection of arguments for invoking getShare.
 type LookupShareOutputArgs struct {
+	// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 	ClientGroups GetShareClientGroupArrayInput `pulumi:"clientGroups"`
-	ClusterId    pulumi.StringInput            `pulumi:"clusterId"`
-	Gid          pulumi.IntPtrInput            `pulumi:"gid"`
-	Id           pulumi.StringPtrInput         `pulumi:"id"`
-	Location     pulumi.StringInput            `pulumi:"location"`
-	Name         pulumi.StringPtrInput         `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput           `pulumi:"partialMatch"`
-	Quota        pulumi.IntPtrInput            `pulumi:"quota"`
-	Uid          pulumi.IntPtrInput            `pulumi:"uid"`
+	// The ID of the Network File Storage cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Gid pulumi.IntPtrInput `pulumi:"gid"`
+	// ID of the Network File Storage share.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The location where the Network File Storage share is located.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Name of the Network File Storage share.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
+	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
+	Quota pulumi.IntPtrInput `pulumi:"quota"`
+	// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
+	Uid pulumi.IntPtrInput `pulumi:"uid"`
 }
 
 func (LookupShareOutputArgs) ElementType() reflect.Type {
@@ -89,30 +117,37 @@ func (o LookupShareResultOutput) ToLookupShareResultOutputWithContext(ctx contex
 	return o
 }
 
+// The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
 func (o LookupShareResultOutput) ClientGroups() GetShareClientGroupArrayOutput {
 	return o.ApplyT(func(v LookupShareResult) []GetShareClientGroup { return v.ClientGroups }).(GetShareClientGroupArrayOutput)
 }
 
+// The ID of the Network File Storage cluster.
 func (o LookupShareResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupShareResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 func (o LookupShareResultOutput) Gid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupShareResult) int { return v.Gid }).(pulumi.IntOutput)
 }
 
+// The ID of the Network File Storage share.
 func (o LookupShareResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupShareResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The location where the Network File Storage share is located.
 func (o LookupShareResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupShareResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// The name of the Network File Storage share.
 func (o LookupShareResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupShareResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Path to the NFS export. The NFS path is the path to the directory being exported.
 func (o LookupShareResultOutput) NfsPath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupShareResult) string { return v.NfsPath }).(pulumi.StringOutput)
 }
@@ -121,10 +156,12 @@ func (o LookupShareResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupShareResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`.
 func (o LookupShareResultOutput) Quota() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupShareResult) int { return v.Quota }).(pulumi.IntOutput)
 }
 
+// The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 func (o LookupShareResultOutput) Uid() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupShareResult) int { return v.Uid }).(pulumi.IntOutput)
 }

@@ -12,21 +12,95 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
+// infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
+// network resources.
+//
+// ## Usage example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic example
+//			testDatacenter, err := compute.NewDatacenter(ctx, "testDatacenter", &compute.DatacenterArgs{
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLan, err := compute.NewLan(ctx, "testLan", &compute.LanArgs{
+//				Public:       pulumi.Bool(false),
+//				DatacenterId: testDatacenter.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testIpblock, err := compute.NewIPBlock(ctx, "testIpblock", &compute.IPBlockArgs{
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Location: pulumi.String("de/fra"),
+//				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				Version:     pulumi.String("IKEv2"),
+//				Description: pulumi.String("This gateway connects site A to VDC X."),
+//				Connections: vpn.IpsecGatewayConnectionArray{
+//					&vpn.IpsecGatewayConnectionArgs{
+//						DatacenterId: testDatacenter.ID(),
+//						LanId:        testLan.ID(),
+//						Ipv4Cidr:     pulumi.String("192.168.100.10/24"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The resource can be imported using the `location` and `gateway_id`, for example:
+//
+// ```sh
+// $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
+// ```
 type IpsecGateway struct {
 	pulumi.CustomResourceState
 
-	// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+	// [list] The network connection for your gateway. **Note**: all connections must belong to the
+	// same datacenter. Minimum items: 1. Maximum items: 10.
 	Connections IpsecGatewayConnectionArrayOutput `pulumi:"connections"`
-	// The human-readable description of your IPSec Gateway.
+	// [string] The human-readable description of the IPSec Gateway.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-	// connections.
+	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+	// the same datacenter as the connections.
 	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
-	// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringOutput `pulumi:"location"`
-	// The human readable name of your IPSecGateway.
+	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The IKE version that is permitted for the VPN tunnels.
+	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+	// values: `IKEv2`.
 	Version pulumi.StringPtrOutput `pulumi:"version"`
 }
 
@@ -69,34 +143,40 @@ func GetIpsecGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IpsecGateway resources.
 type ipsecGatewayState struct {
-	// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+	// [list] The network connection for your gateway. **Note**: all connections must belong to the
+	// same datacenter. Minimum items: 1. Maximum items: 10.
 	Connections []IpsecGatewayConnection `pulumi:"connections"`
-	// The human-readable description of your IPSec Gateway.
+	// [string] The human-readable description of the IPSec Gateway.
 	Description *string `pulumi:"description"`
-	// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-	// connections.
+	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+	// the same datacenter as the connections.
 	GatewayIp *string `pulumi:"gatewayIp"`
-	// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location *string `pulumi:"location"`
-	// The human readable name of your IPSecGateway.
+	// [string] The name of the IPSec Gateway.
 	Name *string `pulumi:"name"`
-	// The IKE version that is permitted for the VPN tunnels.
+	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+	// values: `IKEv2`.
 	Version *string `pulumi:"version"`
 }
 
 type IpsecGatewayState struct {
-	// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+	// [list] The network connection for your gateway. **Note**: all connections must belong to the
+	// same datacenter. Minimum items: 1. Maximum items: 10.
 	Connections IpsecGatewayConnectionArrayInput
-	// The human-readable description of your IPSec Gateway.
+	// [string] The human-readable description of the IPSec Gateway.
 	Description pulumi.StringPtrInput
-	// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-	// connections.
+	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+	// the same datacenter as the connections.
 	GatewayIp pulumi.StringPtrInput
-	// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringPtrInput
-	// The human readable name of your IPSecGateway.
+	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringPtrInput
-	// The IKE version that is permitted for the VPN tunnels.
+	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+	// values: `IKEv2`.
 	Version pulumi.StringPtrInput
 }
 
@@ -105,35 +185,41 @@ func (IpsecGatewayState) ElementType() reflect.Type {
 }
 
 type ipsecGatewayArgs struct {
-	// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+	// [list] The network connection for your gateway. **Note**: all connections must belong to the
+	// same datacenter. Minimum items: 1. Maximum items: 10.
 	Connections []IpsecGatewayConnection `pulumi:"connections"`
-	// The human-readable description of your IPSec Gateway.
+	// [string] The human-readable description of the IPSec Gateway.
 	Description *string `pulumi:"description"`
-	// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-	// connections.
+	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+	// the same datacenter as the connections.
 	GatewayIp string `pulumi:"gatewayIp"`
-	// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location string `pulumi:"location"`
-	// The human readable name of your IPSecGateway.
+	// [string] The name of the IPSec Gateway.
 	Name *string `pulumi:"name"`
-	// The IKE version that is permitted for the VPN tunnels.
+	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+	// values: `IKEv2`.
 	Version *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a IpsecGateway resource.
 type IpsecGatewayArgs struct {
-	// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+	// [list] The network connection for your gateway. **Note**: all connections must belong to the
+	// same datacenter. Minimum items: 1. Maximum items: 10.
 	Connections IpsecGatewayConnectionArrayInput
-	// The human-readable description of your IPSec Gateway.
+	// [string] The human-readable description of the IPSec Gateway.
 	Description pulumi.StringPtrInput
-	// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-	// connections.
+	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+	// the same datacenter as the connections.
 	GatewayIp pulumi.StringInput
-	// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/lhr, us/ewr, us/las, us/mci, fr/par
 	Location pulumi.StringInput
-	// The human readable name of your IPSecGateway.
+	// [string] The name of the IPSec Gateway.
 	Name pulumi.StringPtrInput
-	// The IKE version that is permitted for the VPN tunnels.
+	// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+	// values: `IKEv2`.
 	Version pulumi.StringPtrInput
 }
 
@@ -224,33 +310,36 @@ func (o IpsecGatewayOutput) ToIpsecGatewayOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The network connection for your gateway. Note: all connections must belong to the same datacenter.
+// [list] The network connection for your gateway. **Note**: all connections must belong to the
+// same datacenter. Minimum items: 1. Maximum items: 10.
 func (o IpsecGatewayOutput) Connections() IpsecGatewayConnectionArrayOutput {
 	return o.ApplyT(func(v *IpsecGateway) IpsecGatewayConnectionArrayOutput { return v.Connections }).(IpsecGatewayConnectionArrayOutput)
 }
 
-// The human-readable description of your IPSec Gateway.
+// [string] The human-readable description of the IPSec Gateway.
 func (o IpsecGatewayOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
-// connections.
+// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
+// the same datacenter as the connections.
 func (o IpsecGatewayOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-// The location of the IPSec Gateway. Supported locations: de/fra, de/txl
+// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
+// gb/lhr, us/ewr, us/las, us/mci, fr/par
 func (o IpsecGatewayOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// The human readable name of your IPSecGateway.
+// [string] The name of the IPSec Gateway.
 func (o IpsecGatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The IKE version that is permitted for the VPN tunnels.
+// [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
+// values: `IKEv2`.
 func (o IpsecGatewayOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringPtrOutput { return v.Version }).(pulumi.StringPtrOutput)
 }

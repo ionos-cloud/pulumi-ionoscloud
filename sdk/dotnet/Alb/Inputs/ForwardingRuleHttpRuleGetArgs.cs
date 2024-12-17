@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Alb.Inputs
         private InputList<Inputs.ForwardingRuleHttpRuleConditionGetArgs>? _conditions;
 
         /// <summary>
-        /// An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        /// [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         /// </summary>
         public InputList<Inputs.ForwardingRuleHttpRuleConditionGetArgs> Conditions
         {
@@ -25,49 +25,49 @@ namespace Pulumi.Ionoscloud.Alb.Inputs
         }
 
         /// <summary>
-        /// Valid only for STATIC actions.
+        /// [string] Valid only for STATIC actions.
         /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
         /// <summary>
-        /// Default is false; valid only for REDIRECT actions.
+        /// [bool] Default is false; valid only for REDIRECT actions.
         /// </summary>
         [Input("dropQuery")]
         public Input<bool>? DropQuery { get; set; }
 
         /// <summary>
-        /// The location for redirecting; mandatory and valid only for REDIRECT actions.
+        /// [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The unique name of the Application Load Balancer HTTP rule.
+        /// [string] The unique name of the Application Load Balancer HTTP rule.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The response message of the request; mandatory for STATIC actions.
+        /// [string] The response message of the request; mandatory for STATIC action.
         /// </summary>
         [Input("responseMessage")]
         public Input<string>? ResponseMessage { get; set; }
 
         /// <summary>
-        /// Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        /// [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
         /// </summary>
         [Input("statusCode")]
         public Input<int>? StatusCode { get; set; }
 
         /// <summary>
-        /// The ID of the target group; mandatory and only valid for FORWARD actions.
+        /// [string] The UUID of the target group; mandatory for FORWARD action.
         /// </summary>
         [Input("targetGroup")]
         public Input<string>? TargetGroup { get; set; }
 
         /// <summary>
-        /// Type of the HTTP rule.
+        /// [string] Type of the Http Rule.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

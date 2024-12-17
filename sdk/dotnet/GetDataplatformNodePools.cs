@@ -11,12 +11,27 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetDataplatformNodePools
     {
+        /// <summary>
+        /// The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetDataplatformNodePoolsResult> InvokeAsync(GetDataplatformNodePoolsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataplatformNodePoolsResult>("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args ?? new GetDataplatformNodePoolsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetDataplatformNodePoolsResult> Invoke(GetDataplatformNodePoolsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformNodePoolsResult>("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args ?? new GetDataplatformNodePoolsInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetDataplatformNodePoolsResult> Invoke(GetDataplatformNodePoolsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformNodePoolsResult>("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args ?? new GetDataplatformNodePoolsInvokeArgs(), options.WithDefaults());
     }
@@ -24,12 +39,21 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetDataplatformNodePoolsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the cluster the searched node pool is part of.
+        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// </summary>
         [Input("partialMatch")]
         public bool? PartialMatch { get; set; }
 
@@ -41,12 +65,21 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetDataplatformNodePoolsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the cluster the searched node pool is part of.
+        /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Whether partial matching is allowed or not when using name argument. Default value is false.
+        /// </summary>
         [Input("partialMatch")]
         public Input<bool>? PartialMatch { get; set; }
 
@@ -60,12 +93,18 @@ namespace Pulumi.Ionoscloud
     [OutputType]
     public sealed class GetDataplatformNodePoolsResult
     {
+        /// <summary>
+        /// ID of the cluster the searched node pool is part of.
+        /// </summary>
         public readonly string ClusterId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
+        /// <summary>
+        /// List of Node Pools - See the Node Pool section.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDataplatformNodePoolsNodePoolResult> NodePools;
         public readonly bool? PartialMatch;
 

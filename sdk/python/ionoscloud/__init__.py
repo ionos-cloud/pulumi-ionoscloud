@@ -5,13 +5,6 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .apigateway import *
-from .apigateway_route import *
-from .autoscaling_group import *
-from .get_apigateway import *
-from .get_apigateway_route import *
-from .get_autoscaling_group import *
-from .get_autoscaling_group_servers import *
 from .get_container_registry_locations import *
 from .get_dataplatform_node_pools import *
 from .get_dataplatform_versions import *
@@ -19,8 +12,6 @@ from .get_image import *
 from .get_inmemorydb_snapshot import *
 from .get_k8s_clusters import *
 from .get_k8s_node_pool_nodes import *
-from .get_kafka_cluster import *
-from .get_kafka_cluster_topic import *
 from .get_location import *
 from .get_mariadb_backups import *
 from .get_mongo_template import *
@@ -31,8 +22,6 @@ from .get_resource import *
 from .get_servers import *
 from .get_target_group import *
 from .get_template import *
-from .kafka_cluster import *
-from .kafka_cluster_topic import *
 from .loadbalancer import *
 from .provider import *
 from .target_group import *
@@ -43,6 +32,10 @@ from . import outputs
 if typing.TYPE_CHECKING:
     import ionoscloud.alb as __alb
     alb = __alb
+    import ionoscloud.apigateway as __apigateway
+    apigateway = __apigateway
+    import ionoscloud.autoscaling as __autoscaling
+    autoscaling = __autoscaling
     import ionoscloud.cdn as __cdn
     cdn = __cdn
     import ionoscloud.cert as __cert
@@ -61,6 +54,8 @@ if typing.TYPE_CHECKING:
     dsaas = __dsaas
     import ionoscloud.k8s as __k8s
     k8s = __k8s
+    import ionoscloud.kafka as __kafka
+    kafka = __kafka
     import ionoscloud.logging as __logging
     logging = __logging
     import ionoscloud.nfs as __nfs
@@ -71,6 +66,8 @@ if typing.TYPE_CHECKING:
     vpn = __vpn
 else:
     alb = _utilities.lazy_import('ionoscloud.alb')
+    apigateway = _utilities.lazy_import('ionoscloud.apigateway')
+    autoscaling = _utilities.lazy_import('ionoscloud.autoscaling')
     cdn = _utilities.lazy_import('ionoscloud.cdn')
     cert = _utilities.lazy_import('ionoscloud.cert')
     compute = _utilities.lazy_import('ionoscloud.compute')
@@ -80,6 +77,7 @@ else:
     dns = _utilities.lazy_import('ionoscloud.dns')
     dsaas = _utilities.lazy_import('ionoscloud.dsaas')
     k8s = _utilities.lazy_import('ionoscloud.k8s')
+    kafka = _utilities.lazy_import('ionoscloud.kafka')
     logging = _utilities.lazy_import('ionoscloud.logging')
     nfs = _utilities.lazy_import('ionoscloud.nfs')
     nlb = _utilities.lazy_import('ionoscloud.nlb')
@@ -102,6 +100,30 @@ _utilities.register(
   "fqn": "ionoscloud.alb",
   "classes": {
    "ionoscloud:alb/forwardingRule:ForwardingRule": "ForwardingRule"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "apigateway/apigateway",
+  "fqn": "ionoscloud.apigateway",
+  "classes": {
+   "ionoscloud:apigateway/apigateway:Apigateway": "Apigateway"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "apigateway/route",
+  "fqn": "ionoscloud.apigateway",
+  "classes": {
+   "ionoscloud:apigateway/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "autoscaling/group",
+  "fqn": "ionoscloud.autoscaling",
+  "classes": {
+   "ionoscloud:autoscaling/group:Group": "Group"
   }
  },
  {
@@ -402,46 +424,6 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
-  "mod": "index/apigateway",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/apigateway:Apigateway": "Apigateway"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/apigatewayRoute",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/apigatewayRoute:ApigatewayRoute": "ApigatewayRoute"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/autoscalingGroup",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/autoscalingGroup:AutoscalingGroup": "AutoscalingGroup"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/kafkaCluster",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/kafkaCluster:KafkaCluster": "KafkaCluster"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/kafkaClusterTopic",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic": "KafkaClusterTopic"
-  }
- },
- {
-  "pkg": "ionoscloud",
   "mod": "index/loadbalancer",
   "fqn": "ionoscloud",
   "classes": {
@@ -470,6 +452,22 @@ _utilities.register(
   "fqn": "ionoscloud.k8s",
   "classes": {
    "ionoscloud:k8s/nodePool:NodePool": "NodePool"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "kafka/cluster",
+  "fqn": "ionoscloud.kafka",
+  "classes": {
+   "ionoscloud:kafka/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
+  "mod": "kafka/topic",
+  "fqn": "ionoscloud.kafka",
+  "classes": {
+   "ionoscloud:kafka/topic:Topic": "Topic"
   }
  },
  {

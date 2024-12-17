@@ -54,9 +54,9 @@ class ClusterLan(dict):
                  dhcp: Optional[bool] = None,
                  routes: Optional[Sequence['outputs.ClusterLanRoute']] = None):
         """
-        :param str lan_id: The LAN ID of an existing LAN at the related data center
-        :param bool dhcp: Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
-        :param Sequence['ClusterLanRouteArgs'] routes: An array of additional LANs attached to worker nodes
+        :param str lan_id: [string] The LAN ID of an existing LAN at the related data center.
+        :param bool dhcp: [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
+        :param Sequence['ClusterLanRouteArgs'] routes: [list] An array of additional LANs attached to worker nodes.
         """
         pulumi.set(__self__, "lan_id", lan_id)
         if dhcp is not None:
@@ -68,7 +68,7 @@ class ClusterLan(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The LAN ID of an existing LAN at the related data center
+        [string] The LAN ID of an existing LAN at the related data center.
         """
         return pulumi.get(self, "lan_id")
 
@@ -76,7 +76,7 @@ class ClusterLan(dict):
     @pulumi.getter
     def dhcp(self) -> Optional[bool]:
         """
-        Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        [bool] Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
         """
         return pulumi.get(self, "dhcp")
 
@@ -84,7 +84,7 @@ class ClusterLan(dict):
     @pulumi.getter
     def routes(self) -> Optional[Sequence['outputs.ClusterLanRoute']]:
         """
-        An array of additional LANs attached to worker nodes
+        [list] An array of additional LANs attached to worker nodes.
         """
         return pulumi.get(self, "routes")
 
@@ -95,8 +95,8 @@ class ClusterLanRoute(dict):
                  gateway: str,
                  network: str):
         """
-        :param str gateway: IPv4 or IPv6 gateway IP for the route
-        :param str network: IPv4 or IPv6 CIDR to be routed via the interface
+        :param str gateway: [string] IPv4 or IPv6 gateway IP for the route.
+        :param str network: [string] IPv4 or IPv6 CIDR to be routed via the interface.
         """
         pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "network", network)
@@ -105,7 +105,7 @@ class ClusterLanRoute(dict):
     @pulumi.getter
     def gateway(self) -> str:
         """
-        IPv4 or IPv6 gateway IP for the route
+        [string] IPv4 or IPv6 gateway IP for the route.
         """
         return pulumi.get(self, "gateway")
 
@@ -113,7 +113,7 @@ class ClusterLanRoute(dict):
     @pulumi.getter
     def network(self) -> str:
         """
-        IPv4 or IPv6 CIDR to be routed via the interface
+        [string] IPv4 or IPv6 CIDR to be routed via the interface.
         """
         return pulumi.get(self, "network")
 
@@ -141,7 +141,8 @@ class ClusterMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str time: Time at which the maintenance should start.
+        :param str day_of_the_week: [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+        :param str time: [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -149,13 +150,16 @@ class ClusterMaintenanceWindow(dict):
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
+        """
+        [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @property
     @pulumi.getter
     def time(self) -> str:
         """
-        Time at which the maintenance should start.
+        [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         """
         return pulumi.get(self, "time")
 
@@ -183,7 +187,8 @@ class NodePoolMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str time: Time at which the maintenance should start.
+        :param str day_of_the_week: [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+        :param str time: [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -191,13 +196,16 @@ class NodePoolMaintenanceWindow(dict):
     @property
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
+        """
+        [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+        """
         return pulumi.get(self, "day_of_the_week")
 
     @property
     @pulumi.getter
     def time(self) -> str:
         """
-        Time at which the maintenance should start.
+        [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         """
         return pulumi.get(self, "time")
 
@@ -254,6 +262,9 @@ class GetClusterConfigClusterResult(dict):
     def __init__(__self__, *,
                  cluster: Mapping[str, str],
                  name: str):
+        """
+        :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         pulumi.set(__self__, "cluster", cluster)
         pulumi.set(__self__, "name", name)
 
@@ -265,6 +276,9 @@ class GetClusterConfigClusterResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         return pulumi.get(self, "name")
 
 
@@ -273,6 +287,9 @@ class GetClusterConfigContextResult(dict):
     def __init__(__self__, *,
                  context: Mapping[str, str],
                  name: str):
+        """
+        :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         pulumi.set(__self__, "context", context)
         pulumi.set(__self__, "name", name)
 
@@ -284,6 +301,9 @@ class GetClusterConfigContextResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         return pulumi.get(self, "name")
 
 
@@ -292,12 +312,18 @@ class GetClusterConfigUserResult(dict):
     def __init__(__self__, *,
                  name: str,
                  user: Mapping[str, str]):
+        """
+        :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -313,7 +339,7 @@ class GetClusterLanResult(dict):
                  lan_id: str,
                  routes: Sequence['outputs.GetClusterLanRouteResult']):
         """
-        :param bool dhcp: Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        :param bool dhcp: Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
         :param str lan_id: The LAN ID of an existing LAN at the related data center
         :param Sequence['GetClusterLanRouteArgs'] routes: An array of additional LANs attached to worker nodes
         """
@@ -325,7 +351,7 @@ class GetClusterLanResult(dict):
     @pulumi.getter
     def dhcp(self) -> bool:
         """
-        Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'
+        Indicates if the Kubernetes node pool LAN will reserve an IP using DHCP. The default value is 'true'.
         """
         return pulumi.get(self, "dhcp")
 
@@ -381,7 +407,7 @@ class GetClusterMaintenanceWindowResult(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str time: Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        :param str time: Time at which the maintenance should start.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -395,7 +421,7 @@ class GetClusterMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        Time at which the maintenance should start.
         """
         return pulumi.get(self, "time")
 
@@ -406,7 +432,7 @@ class GetNodePoolMaintenanceWindowResult(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str time: Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        :param str time: Time at which the maintenance should start.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -420,7 +446,7 @@ class GetNodePoolMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        Time at which the maintenance should start.
         """
         return pulumi.get(self, "time")
 

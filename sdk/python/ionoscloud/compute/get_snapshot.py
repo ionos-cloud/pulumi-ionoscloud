@@ -82,86 +82,137 @@ class GetSnapshotResult:
     @property
     @pulumi.getter(name="cpuHotPlug")
     def cpu_hot_plug(self) -> bool:
+        """
+        Is capable of CPU hot plug (no reboot required)
+        """
         return pulumi.get(self, "cpu_hot_plug")
 
     @property
     @pulumi.getter(name="cpuHotUnplug")
     def cpu_hot_unplug(self) -> bool:
+        """
+        Is capable of CPU hot unplug (no reboot required)
+        """
         return pulumi.get(self, "cpu_hot_unplug")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Human readable description
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="discScsiHotPlug")
     def disc_scsi_hot_plug(self) -> bool:
+        """
+        Is capable of SCSI drive hot plug (no reboot required)
+        """
         return pulumi.get(self, "disc_scsi_hot_plug")
 
     @property
     @pulumi.getter(name="discScsiHotUnplug")
     def disc_scsi_hot_unplug(self) -> bool:
+        """
+        Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        """
         return pulumi.get(self, "disc_scsi_hot_unplug")
 
     @property
     @pulumi.getter(name="discVirtioHotPlug")
     def disc_virtio_hot_plug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot plug (no reboot required)
+        """
         return pulumi.get(self, "disc_virtio_hot_plug")
 
     @property
     @pulumi.getter(name="discVirtioHotUnplug")
     def disc_virtio_hot_unplug(self) -> bool:
+        """
+        Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
+        """
         return pulumi.get(self, "disc_virtio_hot_unplug")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        UUID of the snapshot
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="licenceType")
     def licence_type(self) -> str:
+        """
+        OS type of this Snapshot
+        """
         return pulumi.get(self, "licence_type")
 
     @property
     @pulumi.getter
     def location(self) -> str:
+        """
+        Location of that image/snapshot
+        """
         return pulumi.get(self, "location")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the snapshot.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicHotPlug")
     def nic_hot_plug(self) -> bool:
+        """
+        Is capable of nic hot plug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_plug")
 
     @property
     @pulumi.getter(name="nicHotUnplug")
     def nic_hot_unplug(self) -> bool:
+        """
+        Is capable of nic hot unplug (no reboot required)
+        """
         return pulumi.get(self, "nic_hot_unplug")
 
     @property
     @pulumi.getter(name="ramHotPlug")
     def ram_hot_plug(self) -> bool:
+        """
+        Is capable of memory hot plug (no reboot required)
+        """
         return pulumi.get(self, "ram_hot_plug")
 
     @property
     @pulumi.getter(name="ramHotUnplug")
     def ram_hot_unplug(self) -> bool:
+        """
+        Is capable of memory hot unplug (no reboot required)
+        """
         return pulumi.get(self, "ram_hot_unplug")
 
     @property
     @pulumi.getter(name="secAuthProtection")
     def sec_auth_protection(self) -> bool:
+        """
+        Boolean value representing if the snapshot requires extra protection e.g. two factor protection
+        """
         return pulumi.get(self, "sec_auth_protection")
 
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        The size of the image in GB
+        """
         return pulumi.get(self, "size")
 
 
@@ -196,7 +247,31 @@ def get_snapshot(id: Optional[str] = None,
                  size: Optional[int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name & Size & Location
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_snapshot(location="us/las",
+        name="Snapshot Example",
+        size=2)
+    ```
+    Note: The size argument is in GB
+
+
+    :param str id: UUID of an existing snapshot that you want to search for.
+    :param str location: Existing snapshot's location.
+    :param str name: Name of an existing snapshot that you want to search for.
+    :param int size: The size of the snapshot to look for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+           Additionally, you can add `location` and `size` along with the `name` argument for a more refined search.
+           If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+           When this happens, please refine your search string so that it is specific enough to return only one result.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -230,7 +305,31 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                         size: Optional[pulumi.Input[Optional[int]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnapshotResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Name & Size & Location
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_snapshot(location="us/las",
+        name="Snapshot Example",
+        size=2)
+    ```
+    Note: The size argument is in GB
+
+
+    :param str id: UUID of an existing snapshot that you want to search for.
+    :param str location: Existing snapshot's location.
+    :param str name: Name of an existing snapshot that you want to search for.
+    :param int size: The size of the snapshot to look for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+           Additionally, you can add `location` and `size` along with the `name` argument for a more refined search.
+           If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+           When this happens, please refine your search string so that it is specific enough to return only one result.
     """
     __args__ = dict()
     __args__['id'] = id

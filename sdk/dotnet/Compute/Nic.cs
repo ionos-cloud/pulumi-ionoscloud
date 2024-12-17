@@ -9,71 +9,105 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Resource **Nic** can be imported using the `resource id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/nic:Nic")]
     public partial class Nic : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
+        /// <summary>
+        /// The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
+        /// </summary>
         [Output("deviceNumber")]
         public Output<int> DeviceNumber { get; private set; } = null!;
 
+        /// <summary>
+        /// [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         [Output("dhcp")]
         public Output<bool?> Dhcp { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether this NIC receives an IPv6 address through DHCP.
+        /// [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
         /// </summary>
         [Output("dhcpv6")]
         public Output<bool?> Dhcpv6 { get; private set; } = null!;
 
+        /// <summary>
+        /// [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         [Output("firewallActive")]
         public Output<bool?> FirewallActive { get; private set; } = null!;
 
+        /// <summary>
+        /// [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         [Output("firewallType")]
         public Output<string> FirewallType { get; private set; } = null!;
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Output("flowlog")]
         public Output<Outputs.NicFlowlog?> Flowlog { get; private set; } = null!;
 
         /// <summary>
-        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
-        /// Passing value null or empty array will assign an IP address automatically.
+        /// [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         /// </summary>
         [Output("ips")]
         public Output<ImmutableArray<string>> Ips { get; private set; } = null!;
 
         /// <summary>
-        /// IPv6 CIDR block assigned to the NIC.
+        /// Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         /// </summary>
         [Output("ipv6CidrBlock")]
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
-        /// CIDR block assigned to the nic.
+        /// [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         /// </summary>
         [Output("ipv6Ips")]
         public Output<ImmutableArray<string>> Ipv6Ips { get; private set; } = null!;
 
+        /// <summary>
+        /// [integer] The LAN ID the NIC will sit on.
+        /// </summary>
         [Output("lan")]
         public Output<int> Lan { get; private set; } = null!;
 
+        /// <summary>
+        /// The MAC address of the NIC.
+        /// </summary>
         [Output("mac")]
         public Output<string> Mac { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The name of the LAN.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The PCI slot number of the Nic.
+        /// </summary>
         [Output("pciSlot")]
         public Output<int> PciSlot { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Output("serverId")]
         public Output<string> ServerId { get; private set; } = null!;
 
@@ -123,29 +157,38 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NicArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
+        /// <summary>
+        /// [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         /// <summary>
-        /// Indicates whether this NIC receives an IPv6 address through DHCP.
+        /// [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
         /// </summary>
         [Input("dhcpv6")]
         public Input<bool>? Dhcpv6 { get; set; }
 
+        /// <summary>
+        /// [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         [Input("firewallActive")]
         public Input<bool>? FirewallActive { get; set; }
 
+        /// <summary>
+        /// [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         [Input("firewallType")]
         public Input<string>? FirewallType { get; set; }
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.NicFlowlogArgs>? Flowlog { get; set; }
@@ -154,8 +197,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _ips;
 
         /// <summary>
-        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
-        /// Passing value null or empty array will assign an IP address automatically.
+        /// [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         /// </summary>
         public InputList<string> Ips
         {
@@ -164,7 +206,7 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// IPv6 CIDR block assigned to the NIC.
+        /// Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
@@ -173,8 +215,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _ipv6Ips;
 
         /// <summary>
-        /// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
-        /// CIDR block assigned to the nic.
+        /// [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         /// </summary>
         public InputList<string> Ipv6Ips
         {
@@ -182,12 +223,21 @@ namespace Pulumi.Ionoscloud.Compute
             set => _ipv6Ips = value;
         }
 
+        /// <summary>
+        /// [integer] The LAN ID the NIC will sit on.
+        /// </summary>
         [Input("lan", required: true)]
         public Input<int> Lan { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The name of the LAN.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId", required: true)]
         public Input<string> ServerId { get; set; } = null!;
 
@@ -199,32 +249,44 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NicState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The ID of a Virtual Data Center.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
+        /// <summary>
+        /// The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
+        /// </summary>
         [Input("deviceNumber")]
         public Input<int>? DeviceNumber { get; set; }
 
+        /// <summary>
+        /// [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
+        /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         /// <summary>
-        /// Indicates whether this NIC receives an IPv6 address through DHCP.
+        /// [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
         /// </summary>
         [Input("dhcpv6")]
         public Input<bool>? Dhcpv6 { get; set; }
 
+        /// <summary>
+        /// [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
+        /// </summary>
         [Input("firewallActive")]
         public Input<bool>? FirewallActive { get; set; }
 
+        /// <summary>
+        /// [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
+        /// </summary>
         [Input("firewallType")]
         public Input<string>? FirewallType { get; set; }
 
         /// <summary>
-        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
-        /// network information such as source and destination IP addresses, source and destination ports, number of packets, amount
-        /// of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
-        /// instances are being accessed.
+        /// Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         /// </summary>
         [Input("flowlog")]
         public Input<Inputs.NicFlowlogGetArgs>? Flowlog { get; set; }
@@ -233,8 +295,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _ips;
 
         /// <summary>
-        /// Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
-        /// Passing value null or empty array will assign an IP address automatically.
+        /// [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
         /// </summary>
         public InputList<string> Ips
         {
@@ -243,7 +304,7 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// IPv6 CIDR block assigned to the NIC.
+        /// Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
@@ -252,8 +313,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<string>? _ipv6Ips;
 
         /// <summary>
-        /// Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
-        /// CIDR block assigned to the nic.
+        /// [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
         /// </summary>
         public InputList<string> Ipv6Ips
         {
@@ -261,18 +321,33 @@ namespace Pulumi.Ionoscloud.Compute
             set => _ipv6Ips = value;
         }
 
+        /// <summary>
+        /// [integer] The LAN ID the NIC will sit on.
+        /// </summary>
         [Input("lan")]
         public Input<int>? Lan { get; set; }
 
+        /// <summary>
+        /// The MAC address of the NIC.
+        /// </summary>
         [Input("mac")]
         public Input<string>? Mac { get; set; }
 
+        /// <summary>
+        /// [string] The name of the LAN.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The PCI slot number of the Nic.
+        /// </summary>
         [Input("pciSlot")]
         public Input<int>? PciSlot { get; set; }
 
+        /// <summary>
+        /// [string] The ID of a server.
+        /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 

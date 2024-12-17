@@ -11,6 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **Dataplatform Node Pool Data Source** can be used to search for and return an existing Dataplatform Node Pool under a Dataplatform Cluster.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search and make sure that your resources have unique names.
+//
+// ## Example Usage
 func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNodePoolResult
@@ -23,30 +28,51 @@ func LookupNodePool(ctx *pulumi.Context, args *LookupNodePoolArgs, opts ...pulum
 
 // A collection of arguments for invoking getNodePool.
 type LookupNodePoolArgs struct {
-	ClusterId    string  `pulumi:"clusterId"`
-	Id           *string `pulumi:"id"`
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	// ID of the cluster the searched node pool is part of.
+	ClusterId string `pulumi:"clusterId"`
+	// ID of the node pool you want to search for.
+	Id *string `pulumi:"id"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name *string `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch *bool `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getNodePool.
 type LookupNodePoolResult struct {
-	Annotations        map[string]string              `pulumi:"annotations"`
-	AvailabilityZone   string                         `pulumi:"availabilityZone"`
-	ClusterId          string                         `pulumi:"clusterId"`
-	CoresCount         int                            `pulumi:"coresCount"`
-	CpuFamily          string                         `pulumi:"cpuFamily"`
-	DatacenterId       string                         `pulumi:"datacenterId"`
-	Id                 *string                        `pulumi:"id"`
-	Labels             map[string]string              `pulumi:"labels"`
+	// Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	Annotations map[string]string `pulumi:"annotations"`
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	// ID of the cluster the searched node pool is part of.
+	ClusterId string `pulumi:"clusterId"`
+	// The number of CPU cores per node.
+	CoresCount int `pulumi:"coresCount"`
+	// A CPU family.
+	CpuFamily string `pulumi:"cpuFamily"`
+	// The UUID of the virtual data center (VDC) the cluster is provisioned.
+	DatacenterId string `pulumi:"datacenterId"`
+	// ID of your node pool.
+	Id *string `pulumi:"id"`
+	// Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	Labels map[string]string `pulumi:"labels"`
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []GetNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name               *string                        `pulumi:"name"`
-	NodeCount          int                            `pulumi:"nodeCount"`
-	PartialMatch       *bool                          `pulumi:"partialMatch"`
-	RamSize            int                            `pulumi:"ramSize"`
-	StorageSize        int                            `pulumi:"storageSize"`
-	StorageType        string                         `pulumi:"storageType"`
-	Version            string                         `pulumi:"version"`
+	// The name of your node pool
+	Name *string `pulumi:"name"`
+	// The number of nodes that make up the node pool.
+	NodeCount    int   `pulumi:"nodeCount"`
+	PartialMatch *bool `pulumi:"partialMatch"`
+	// The RAM size for one node in MB.
+	RamSize int `pulumi:"ramSize"`
+	// The size of the volume in GB.
+	StorageSize int `pulumi:"storageSize"`
+	// The type of hardware for the volume.
+	StorageType string `pulumi:"storageType"`
+	// The version of the Data Platform.
+	Version string `pulumi:"version"`
 }
 
 func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupNodePoolResultOutput {
@@ -60,10 +86,16 @@ func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, op
 
 // A collection of arguments for invoking getNodePool.
 type LookupNodePoolOutputArgs struct {
-	ClusterId    pulumi.StringInput    `pulumi:"clusterId"`
-	Id           pulumi.StringPtrInput `pulumi:"id"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
-	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
+	// ID of the cluster the searched node pool is part of.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// ID of the node pool you want to search for.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Whether partial matching is allowed or not when using name argument. Default value is false.
+	//
+	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
 }
 
 func (LookupNodePoolOutputArgs) ElementType() reflect.Type {
@@ -85,46 +117,57 @@ func (o LookupNodePoolResultOutput) ToLookupNodePoolResultOutputWithContext(ctx 
 	return o
 }
 
+// Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 func (o LookupNodePoolResultOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 func (o LookupNodePoolResultOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
+// ID of the cluster the searched node pool is part of.
 func (o LookupNodePoolResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// The number of CPU cores per node.
 func (o LookupNodePoolResultOutput) CoresCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.CoresCount }).(pulumi.IntOutput)
 }
 
+// A CPU family.
 func (o LookupNodePoolResultOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.CpuFamily }).(pulumi.StringOutput)
 }
 
+// The UUID of the virtual data center (VDC) the cluster is provisioned.
 func (o LookupNodePoolResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// ID of your node pool.
 func (o LookupNodePoolResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 func (o LookupNodePoolResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 func (o LookupNodePoolResultOutput) MaintenanceWindows() GetNodePoolMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolMaintenanceWindow { return v.MaintenanceWindows }).(GetNodePoolMaintenanceWindowArrayOutput)
 }
 
+// The name of your node pool
 func (o LookupNodePoolResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The number of nodes that make up the node pool.
 func (o LookupNodePoolResultOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.NodeCount }).(pulumi.IntOutput)
 }
@@ -133,18 +176,22 @@ func (o LookupNodePoolResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
+// The RAM size for one node in MB.
 func (o LookupNodePoolResultOutput) RamSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.RamSize }).(pulumi.IntOutput)
 }
 
+// The size of the volume in GB.
 func (o LookupNodePoolResultOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
+// The type of hardware for the volume.
 func (o LookupNodePoolResultOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.StorageType }).(pulumi.StringOutput)
 }
 
+// The version of the Data Platform.
 func (o LookupNodePoolResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Version }).(pulumi.StringOutput)
 }

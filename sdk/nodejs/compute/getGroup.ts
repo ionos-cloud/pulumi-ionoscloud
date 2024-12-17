@@ -6,6 +6,23 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **Group data source** can be used to search for and return existing groups.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getGroup({
+ *     name: "Group Example",
+ * });
+ * ```
+ */
 export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -19,7 +36,15 @@ export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Prom
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupArgs {
+    /**
+     * ID of the group you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * Name of an existing group that you want to search for.
+     */
     name?: string;
 }
 
@@ -27,23 +52,88 @@ export interface GetGroupArgs {
  * A collection of values returned by getGroup.
  */
 export interface GetGroupResult {
+    /**
+     * The group will be allowed to access the activity log.
+     */
     readonly accessActivityLog: boolean;
+    /**
+     * The group will be allowed to access and manage certificates.
+     */
     readonly accessAndManageCertificates: boolean;
+    /**
+     * The group will be allowed to access and manage monitoring.
+     */
     readonly accessAndManageMonitoring: boolean;
+    /**
+     * The group will be allowed to create backup unit privilege.
+     */
     readonly createBackupUnit: boolean;
+    /**
+     * The group will be allowed to create virtual data centers.
+     */
     readonly createDatacenter: boolean;
+    /**
+     * The group will be allowed to create flow log.
+     */
     readonly createFlowLog: boolean;
+    /**
+     * The group will be allowed to create internet access privilege.
+     */
     readonly createInternetAccess: boolean;
+    /**
+     * The group will be allowed to create kubernetes cluster privilege.
+     */
     readonly createK8sCluster: boolean;
+    /**
+     * The group will be allowed to create Cross Connects privilege.
+     */
     readonly createPcc: boolean;
+    /**
+     * The group will be allowed to create snapshots.
+     */
     readonly createSnapshot: boolean;
+    /**
+     * The id of the group.
+     */
     readonly id?: string;
+    /**
+     * Privilege for a group to manage DBaaS related functionality.
+     */
     readonly manageDbaas: boolean;
+    /**
+     * A name for the group.
+     */
     readonly name?: string;
+    /**
+     * The group will be allowed to reserve IP addresses.
+     */
     readonly reserveIp: boolean;
+    /**
+     * The group will have S3 privilege.
+     */
     readonly s3Privilege: boolean;
+    /**
+     * List of users in group.
+     */
     readonly users: outputs.compute.GetGroupUser[];
 }
+/**
+ * The **Group data source** can be used to search for and return existing groups.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ *
+ * ### By Name
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const example = ionoscloud.compute.getGroup({
+ *     name: "Group Example",
+ * });
+ * ```
+ */
 export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -57,6 +147,14 @@ export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupOutputArgs {
+    /**
+     * ID of the group you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of an existing group that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

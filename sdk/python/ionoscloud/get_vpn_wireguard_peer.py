@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -145,7 +150,6 @@ def get_vpn_wireguard_peer(gateway_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -155,7 +159,6 @@ def get_vpn_wireguard_peer(gateway_id: Optional[str] = None,
         name="example-peer")
     pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str gateway_id: [String] The ID of the WireGuard Gateway.
@@ -181,20 +184,16 @@ def get_vpn_wireguard_peer(gateway_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         public_key=pulumi.get(__ret__, 'public_key'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_vpn_wireguard_peer)
 def get_vpn_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None,
                                   id: Optional[pulumi.Input[Optional[str]]] = None,
                                   location: Optional[pulumi.Input[str]] = None,
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpnWireguardPeerResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpnWireguardPeerResult]:
     """
     The `vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -204,7 +203,6 @@ def get_vpn_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None
         name="example-peer")
     pulumi.export("vpnWireguardPeerPublicKey", data["vpn_wireguard_peer"]["example"]["public_key"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str gateway_id: [String] The ID of the WireGuard Gateway.
@@ -212,4 +210,20 @@ def get_vpn_wireguard_peer_output(gateway_id: Optional[pulumi.Input[str]] = None
     :param str location: [String] The location of the WireGuard Gateway.
     :param str name: [String] The name of the WireGuard Peer.
     """
-    ...
+    __args__ = dict()
+    __args__['gatewayId'] = gateway_id
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getVpnWireguardPeer:getVpnWireguardPeer', __args__, opts=opts, typ=GetVpnWireguardPeerResult)
+    return __ret__.apply(lambda __response__: GetVpnWireguardPeerResult(
+        allowed_ips=pulumi.get(__response__, 'allowed_ips'),
+        description=pulumi.get(__response__, 'description'),
+        endpoints=pulumi.get(__response__, 'endpoints'),
+        gateway_id=pulumi.get(__response__, 'gateway_id'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        public_key=pulumi.get(__response__, 'public_key'),
+        status=pulumi.get(__response__, 'status')))

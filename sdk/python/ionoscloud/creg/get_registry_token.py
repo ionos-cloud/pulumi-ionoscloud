@@ -66,6 +66,9 @@ class GetRegistryTokenResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of the container registry token.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -116,7 +119,39 @@ def get_registry_token(id: Optional[str] = None,
                        registry_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryTokenResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+    You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+        name="container-registry-token-example")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+        name="-example",
+        partial_match=True)
+    ```
+
+
+    :param str id: ID of the container registry token you want to search for.
+    :param str name: Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           `registry_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str registry_id: Registry's UUID.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -141,7 +176,39 @@ def get_registry_token_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                               registry_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegistryTokenResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+    You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+        name="container-registry-token-example")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.creg.get_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
+        name="-example",
+        partial_match=True)
+    ```
+
+
+    :param str id: ID of the container registry token you want to search for.
+    :param str name: Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           `registry_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
+    :param str registry_id: Registry's UUID.
     """
     __args__ = dict()
     __args__['id'] = id

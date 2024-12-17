@@ -11,6 +11,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **DbaaS Postgres Cluster data source** can be used to search for and return an existing DbaaS Postgres Cluster.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
+//
+// ### By Name
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupPSQLCluster(ctx, &dbaas.LookupPSQLClusterArgs{
+//				DisplayName: pulumi.StringRef("PostgreSQL_cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupPSQLCluster(ctx *pulumi.Context, args *LookupPSQLClusterArgs, opts ...pulumi.InvokeOption) (*LookupPSQLClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPSQLClusterResult
@@ -23,28 +54,47 @@ func LookupPSQLCluster(ctx *pulumi.Context, args *LookupPSQLClusterArgs, opts ..
 
 // A collection of arguments for invoking getPSQLCluster.
 type LookupPSQLClusterArgs struct {
+	// Display Name of an existing cluster that you want to search for.
 	DisplayName *string `pulumi:"displayName"`
-	Id          *string `pulumi:"id"`
+	// ID of the cluster you want to search for.
+	//
+	// Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
 }
 
 // A collection of values returned by getPSQLCluster.
 type LookupPSQLClusterResult struct {
-	BackupLocation      string                            `pulumi:"backupLocation"`
-	ConnectionPoolers   []GetPSQLClusterConnectionPooler  `pulumi:"connectionPoolers"`
-	Connections         []GetPSQLClusterConnection        `pulumi:"connections"`
-	Cores               int                               `pulumi:"cores"`
-	DisplayName         *string                           `pulumi:"displayName"`
-	DnsName             string                            `pulumi:"dnsName"`
-	FromBackups         []GetPSQLClusterFromBackup        `pulumi:"fromBackups"`
-	Id                  *string                           `pulumi:"id"`
-	Instances           int                               `pulumi:"instances"`
-	Location            string                            `pulumi:"location"`
-	MaintenanceWindows  []GetPSQLClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	PostgresVersion     string                            `pulumi:"postgresVersion"`
-	Ram                 int                               `pulumi:"ram"`
-	StorageSize         int                               `pulumi:"storageSize"`
-	StorageType         string                            `pulumi:"storageType"`
-	SynchronizationMode string                            `pulumi:"synchronizationMode"`
+	// The IONOS Object Storage location where the backups will be stored.
+	BackupLocation string `pulumi:"backupLocation"`
+	// Details about the connection pooler.
+	ConnectionPoolers []GetPSQLClusterConnectionPooler `pulumi:"connectionPoolers"`
+	// Details about the network connection for your cluster.
+	Connections []GetPSQLClusterConnection `pulumi:"connections"`
+	// The number of CPU cores per replica.
+	Cores int `pulumi:"cores"`
+	// The friendly name of your cluster.
+	DisplayName *string `pulumi:"displayName"`
+	// The DNS name pointing to your cluster.
+	DnsName string `pulumi:"dnsName"`
+	// The unique ID of the backup you want to restore.
+	FromBackups []GetPSQLClusterFromBackup `pulumi:"fromBackups"`
+	Id          *string                    `pulumi:"id"`
+	// The total number of instances in the cluster (one master and n-1 standbys)
+	Instances int `pulumi:"instances"`
+	// The physical location where the cluster will be created. This will be where all of your instances live.
+	Location string `pulumi:"location"`
+	// A weekly 4 hour-long window, during which maintenance might occur
+	MaintenanceWindows []GetPSQLClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// The PostgreSQL version of your cluster.
+	PostgresVersion string `pulumi:"postgresVersion"`
+	// The amount of memory per instance in megabytes.
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in MB.
+	StorageSize int `pulumi:"storageSize"`
+	// The storage type used in your cluster.
+	StorageType string `pulumi:"storageType"`
+	// Represents different modes of replication.
+	SynchronizationMode string `pulumi:"synchronizationMode"`
 }
 
 func LookupPSQLClusterOutput(ctx *pulumi.Context, args LookupPSQLClusterOutputArgs, opts ...pulumi.InvokeOption) LookupPSQLClusterResultOutput {
@@ -58,8 +108,12 @@ func LookupPSQLClusterOutput(ctx *pulumi.Context, args LookupPSQLClusterOutputAr
 
 // A collection of arguments for invoking getPSQLCluster.
 type LookupPSQLClusterOutputArgs struct {
+	// Display Name of an existing cluster that you want to search for.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	Id          pulumi.StringPtrInput `pulumi:"id"`
+	// ID of the cluster you want to search for.
+	//
+	// Either `displayName` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
 func (LookupPSQLClusterOutputArgs) ElementType() reflect.Type {
@@ -81,30 +135,37 @@ func (o LookupPSQLClusterResultOutput) ToLookupPSQLClusterResultOutputWithContex
 	return o
 }
 
+// The IONOS Object Storage location where the backups will be stored.
 func (o LookupPSQLClusterResultOutput) BackupLocation() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.BackupLocation }).(pulumi.StringOutput)
 }
 
+// Details about the connection pooler.
 func (o LookupPSQLClusterResultOutput) ConnectionPoolers() GetPSQLClusterConnectionPoolerArrayOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) []GetPSQLClusterConnectionPooler { return v.ConnectionPoolers }).(GetPSQLClusterConnectionPoolerArrayOutput)
 }
 
+// Details about the network connection for your cluster.
 func (o LookupPSQLClusterResultOutput) Connections() GetPSQLClusterConnectionArrayOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) []GetPSQLClusterConnection { return v.Connections }).(GetPSQLClusterConnectionArrayOutput)
 }
 
+// The number of CPU cores per replica.
 func (o LookupPSQLClusterResultOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
+// The friendly name of your cluster.
 func (o LookupPSQLClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
+// The DNS name pointing to your cluster.
 func (o LookupPSQLClusterResultOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
+// The unique ID of the backup you want to restore.
 func (o LookupPSQLClusterResultOutput) FromBackups() GetPSQLClusterFromBackupArrayOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) []GetPSQLClusterFromBackup { return v.FromBackups }).(GetPSQLClusterFromBackupArrayOutput)
 }
@@ -113,34 +174,42 @@ func (o LookupPSQLClusterResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The total number of instances in the cluster (one master and n-1 standbys)
 func (o LookupPSQLClusterResultOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) int { return v.Instances }).(pulumi.IntOutput)
 }
 
+// The physical location where the cluster will be created. This will be where all of your instances live.
 func (o LookupPSQLClusterResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
+// A weekly 4 hour-long window, during which maintenance might occur
 func (o LookupPSQLClusterResultOutput) MaintenanceWindows() GetPSQLClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) []GetPSQLClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetPSQLClusterMaintenanceWindowArrayOutput)
 }
 
+// The PostgreSQL version of your cluster.
 func (o LookupPSQLClusterResultOutput) PostgresVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.PostgresVersion }).(pulumi.StringOutput)
 }
 
+// The amount of memory per instance in megabytes.
 func (o LookupPSQLClusterResultOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) int { return v.Ram }).(pulumi.IntOutput)
 }
 
+// The amount of storage per instance in MB.
 func (o LookupPSQLClusterResultOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) int { return v.StorageSize }).(pulumi.IntOutput)
 }
 
+// The storage type used in your cluster.
 func (o LookupPSQLClusterResultOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.StorageType }).(pulumi.StringOutput)
 }
 
+// Represents different modes of replication.
 func (o LookupPSQLClusterResultOutput) SynchronizationMode() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPSQLClusterResult) string { return v.SynchronizationMode }).(pulumi.StringOutput)
 }

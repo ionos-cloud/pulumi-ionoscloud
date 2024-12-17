@@ -53,21 +53,33 @@ class GetIpsecGatewayResult:
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetIpsecGatewayConnectionResult']:
+        """
+        The network connection for your gateway.
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        (Optional)[string] The human-readable description of the IPSec Gateway.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="gatewayIp")
     def gateway_ip(self) -> str:
+        """
+        Public IP address to be assigned to the gateway.
+        """
         return pulumi.get(self, "gateway_ip")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The unique ID of the IPSec Gateway.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -78,11 +90,17 @@ class GetIpsecGatewayResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the IPSec Gateway.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The IKE version that is permitted for the VPN tunnels.
+        """
         return pulumi.get(self, "version")
 
 
@@ -107,7 +125,18 @@ def get_ipsec_gateway(id: Optional[str] = None,
                       version: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpsecGatewayResult:
     """
-    Use this data source to access information about an existing resource.
+    The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+    You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of an existing IPSec Gateway that you want to search for.
+    :param str location: The location of the IPSec Gateway.
+    :param str name: Name of an existing IPSec Gateway that you want to search for.
+    :param str version: The IKE version that is permitted for the VPN tunnels.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -131,7 +160,18 @@ def get_ipsec_gateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                              version: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpsecGatewayResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+    You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: ID of an existing IPSec Gateway that you want to search for.
+    :param str location: The location of the IPSec Gateway.
+    :param str name: Name of an existing IPSec Gateway that you want to search for.
+    :param str version: The IKE version that is permitted for the VPN tunnels.
     """
     __args__ = dict()
     __args__['id'] = id

@@ -14,19 +14,25 @@ namespace Pulumi.Ionoscloud.Vpn.Outputs
     public sealed class IpsecTunnelIke
     {
         /// <summary>
-        /// The Diffie-Hellman Group to use for IPSec Encryption.
+        /// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+        /// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+        /// Default value: `16-MODP4096`.
         /// </summary>
         public readonly string? DiffieHellmanGroup;
         /// <summary>
-        /// The encryption algorithm to use for IPSec Encryption.
+        /// [string] The encryption algorithm to use for IPSec Encryption. Possible
+        /// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+        /// `AES256-CCM-12`. Default value: `AES256`.
         /// </summary>
         public readonly string? EncryptionAlgorithm;
         /// <summary>
-        /// The integrity algorithm to use for IPSec Encryption.
+        /// [string] The integrity algorithm to use for IPSec Encryption. Possible
+        /// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
         /// </summary>
         public readonly string? IntegrityAlgorithm;
         /// <summary>
-        /// The phase lifetime in seconds.
+        /// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+        /// Default value: `86400`.
         /// </summary>
         public readonly int? Lifetime;
 

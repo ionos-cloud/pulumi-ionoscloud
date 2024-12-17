@@ -24,6 +24,9 @@ class PSQLUserArgs:
                  username: pulumi.Input[str]):
         """
         The set of arguments for constructing a PSQLUser resource.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "password", password)
@@ -32,6 +35,9 @@ class PSQLUserArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -41,6 +47,9 @@ class PSQLUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        [string] User password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -50,6 +59,9 @@ class PSQLUserArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -66,7 +78,10 @@ class _PSQLUserState:
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PSQLUser resources.
-        :param pulumi.Input[bool] is_system_user: Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[bool] is_system_user: [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[str] password: [string] User password.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -80,6 +95,9 @@ class _PSQLUserState:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -90,7 +108,7 @@ class _PSQLUserState:
     @pulumi.getter(name="isSystemUser")
     def is_system_user(self) -> Optional[pulumi.Input[bool]]:
         """
-        Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         """
         return pulumi.get(self, "is_system_user")
 
@@ -101,6 +119,9 @@ class _PSQLUserState:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] User password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -110,6 +131,9 @@ class _PSQLUserState:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -127,9 +151,49 @@ class PSQLUser(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a PSQLUser resource with the given unique name, props, and options.
+        Manages a **DbaaS PgSql User**.
+
+        ## Example Usage
+
+        Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a user resource
+        and link it with the previously created cluster:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        user_password = random.RandomPassword("userPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        example_pg_user = ionoscloud.dbaas.PSQLUser("examplePgUser",
+            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            username="exampleuser",
+            password=user_password.result)
+        ```
+
+        ## Import
+
+        In order to import a PgSql user, you can define an empty user resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_pg_user" "example" {
+
+        }
+
+        The resource can be imported using the `clusterId` and the `username`, for example:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[str] password: [string] User password.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         ...
     @overload
@@ -138,7 +202,44 @@ class PSQLUser(pulumi.CustomResource):
                  args: PSQLUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a PSQLUser resource with the given unique name, props, and options.
+        Manages a **DbaaS PgSql User**.
+
+        ## Example Usage
+
+        Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a user resource
+        and link it with the previously created cluster:
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+        import pulumi_random as random
+
+        user_password = random.RandomPassword("userPassword",
+            length=16,
+            special=True,
+            override_special="!#$%&*()-_=+[]{}<>:?")
+        example_pg_user = ionoscloud.dbaas.PSQLUser("examplePgUser",
+            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            username="exampleuser",
+            password=user_password.result)
+        ```
+
+        ## Import
+
+        In order to import a PgSql user, you can define an empty user resource in the plan:
+
+        hcl
+
+        resource "ionoscloud_pg_user" "example" {
+
+        }
+
+        The resource can be imported using the `clusterId` and the `username`, for example:
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+        ```
+
         :param str resource_name: The name of the resource.
         :param PSQLUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -199,7 +300,10 @@ class PSQLUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] is_system_user: Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[bool] is_system_user: [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        :param pulumi.Input[str] password: [string] User password.
+        :param pulumi.Input[str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -214,23 +318,32 @@ class PSQLUser(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
+        """
+        [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="isSystemUser")
     def is_system_user(self) -> pulumi.Output[bool]:
         """
-        Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+        [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
         """
         return pulumi.get(self, "is_system_user")
 
     @property
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
+        """
+        [string] User password.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
+        """
+        [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
+        """
         return pulumi.get(self, "username")
 

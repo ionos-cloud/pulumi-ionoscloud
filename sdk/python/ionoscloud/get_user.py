@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -164,14 +169,12 @@ def get_user(email: Optional[str] = None,
     ## Example Usage
 
     ### By Email
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_user(email="example@email.com")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Email from Env Variables - Current User
     data "compute.User" "example" {
@@ -200,12 +203,9 @@ def get_user(email: Optional[str] = None,
         last_name=pulumi.get(__ret__, 'last_name'),
         s3_canonical_user_id=pulumi.get(__ret__, 's3_canonical_user_id'),
         sec_auth_active=pulumi.get(__ret__, 'sec_auth_active'))
-
-
-@_utilities.lift_output_func(get_user)
 def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                     id: Optional[pulumi.Input[Optional[str]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     The **User data source** can be used to search for and return existing users.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -214,14 +214,12 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Email
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_user(email="example@email.com")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Email from Env Variables - Current User
     data "compute.User" "example" {
@@ -233,4 +231,19 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
            
            Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['email'] = email
+    __args__['id'] = id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
+    return __ret__.apply(lambda __response__: GetUserResult(
+        active=pulumi.get(__response__, 'active'),
+        administrator=pulumi.get(__response__, 'administrator'),
+        email=pulumi.get(__response__, 'email'),
+        first_name=pulumi.get(__response__, 'first_name'),
+        force_sec_auth=pulumi.get(__response__, 'force_sec_auth'),
+        groups=pulumi.get(__response__, 'groups'),
+        id=pulumi.get(__response__, 'id'),
+        last_name=pulumi.get(__response__, 'last_name'),
+        s3_canonical_user_id=pulumi.get(__response__, 's3_canonical_user_id'),
+        sec_auth_active=pulumi.get(__response__, 'sec_auth_active')))

@@ -12,9 +12,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
 
     public sealed class PSQLClusterMaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string]
+        /// </summary>
         [Input("dayOfTheWeek", required: true)]
         public Input<string> DayOfTheWeek { get; set; } = null!;
 
+        /// <summary>
+        /// [string]
+        /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;
 

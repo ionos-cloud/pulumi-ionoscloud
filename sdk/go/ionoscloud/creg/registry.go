@@ -12,18 +12,66 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an **Container Registry** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/creg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := creg.NewRegistry(ctx, "example", &creg.RegistryArgs{
+//				ApiSubnetAllowLists: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
+//				},
+//				GarbageCollectionSchedule: &creg.RegistryGarbageCollectionScheduleArgs{
+//					Days: pulumi.StringArray{
+//						pulumi.String("Monday"),
+//						pulumi.String("Tuesday"),
+//					},
+//					Time: pulumi.String("05:19:00+00:00"),
+//				},
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Container Registry can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
+// ```
 type Registry struct {
 	pulumi.CustomResourceState
 
-	// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-	// __Note__: If this list is empty or not set, there are no restrictions.
-	ApiSubnetAllowLists       pulumi.StringArrayOutput                `pulumi:"apiSubnetAllowLists"`
-	Features                  RegistryFeaturesOutput                  `pulumi:"features"`
+	// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+	ApiSubnetAllowLists pulumi.StringArrayOutput `pulumi:"apiSubnetAllowLists"`
+	// [Map]
+	Features RegistryFeaturesOutput `pulumi:"features"`
+	// [Map]
 	GarbageCollectionSchedule RegistryGarbageCollectionScheduleOutput `pulumi:"garbageCollectionSchedule"`
 	Hostname                  pulumi.StringOutput                     `pulumi:"hostname"`
-	Location                  pulumi.StringOutput                     `pulumi:"location"`
-	Name                      pulumi.StringOutput                     `pulumi:"name"`
-	StorageUsages             RegistryStorageUsageArrayOutput         `pulumi:"storageUsages"`
+	// [string] Immutable, update forces re-creation of the resource.
+	Location pulumi.StringOutput `pulumi:"location"`
+	// The name of the container registry. Immutable, update forces re-creation of the resource.
+	Name          pulumi.StringOutput             `pulumi:"name"`
+	StorageUsages RegistryStorageUsageArrayOutput `pulumi:"storageUsages"`
 }
 
 // NewRegistry registers a new resource with the given unique name, arguments, and options.
@@ -59,27 +107,33 @@ func GetRegistry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Registry resources.
 type registryState struct {
-	// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-	// __Note__: If this list is empty or not set, there are no restrictions.
-	ApiSubnetAllowLists       []string                           `pulumi:"apiSubnetAllowLists"`
-	Features                  *RegistryFeatures                  `pulumi:"features"`
+	// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+	ApiSubnetAllowLists []string `pulumi:"apiSubnetAllowLists"`
+	// [Map]
+	Features *RegistryFeatures `pulumi:"features"`
+	// [Map]
 	GarbageCollectionSchedule *RegistryGarbageCollectionSchedule `pulumi:"garbageCollectionSchedule"`
 	Hostname                  *string                            `pulumi:"hostname"`
-	Location                  *string                            `pulumi:"location"`
-	Name                      *string                            `pulumi:"name"`
-	StorageUsages             []RegistryStorageUsage             `pulumi:"storageUsages"`
+	// [string] Immutable, update forces re-creation of the resource.
+	Location *string `pulumi:"location"`
+	// The name of the container registry. Immutable, update forces re-creation of the resource.
+	Name          *string                `pulumi:"name"`
+	StorageUsages []RegistryStorageUsage `pulumi:"storageUsages"`
 }
 
 type RegistryState struct {
-	// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-	// __Note__: If this list is empty or not set, there are no restrictions.
-	ApiSubnetAllowLists       pulumi.StringArrayInput
-	Features                  RegistryFeaturesPtrInput
+	// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+	ApiSubnetAllowLists pulumi.StringArrayInput
+	// [Map]
+	Features RegistryFeaturesPtrInput
+	// [Map]
 	GarbageCollectionSchedule RegistryGarbageCollectionSchedulePtrInput
 	Hostname                  pulumi.StringPtrInput
-	Location                  pulumi.StringPtrInput
-	Name                      pulumi.StringPtrInput
-	StorageUsages             RegistryStorageUsageArrayInput
+	// [string] Immutable, update forces re-creation of the resource.
+	Location pulumi.StringPtrInput
+	// The name of the container registry. Immutable, update forces re-creation of the resource.
+	Name          pulumi.StringPtrInput
+	StorageUsages RegistryStorageUsageArrayInput
 }
 
 func (RegistryState) ElementType() reflect.Type {
@@ -87,24 +141,30 @@ func (RegistryState) ElementType() reflect.Type {
 }
 
 type registryArgs struct {
-	// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-	// __Note__: If this list is empty or not set, there are no restrictions.
-	ApiSubnetAllowLists       []string                           `pulumi:"apiSubnetAllowLists"`
-	Features                  *RegistryFeatures                  `pulumi:"features"`
+	// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+	ApiSubnetAllowLists []string `pulumi:"apiSubnetAllowLists"`
+	// [Map]
+	Features *RegistryFeatures `pulumi:"features"`
+	// [Map]
 	GarbageCollectionSchedule *RegistryGarbageCollectionSchedule `pulumi:"garbageCollectionSchedule"`
-	Location                  string                             `pulumi:"location"`
-	Name                      *string                            `pulumi:"name"`
+	// [string] Immutable, update forces re-creation of the resource.
+	Location string `pulumi:"location"`
+	// The name of the container registry. Immutable, update forces re-creation of the resource.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Registry resource.
 type RegistryArgs struct {
-	// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-	// __Note__: If this list is empty or not set, there are no restrictions.
-	ApiSubnetAllowLists       pulumi.StringArrayInput
-	Features                  RegistryFeaturesPtrInput
+	// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
+	ApiSubnetAllowLists pulumi.StringArrayInput
+	// [Map]
+	Features RegistryFeaturesPtrInput
+	// [Map]
 	GarbageCollectionSchedule RegistryGarbageCollectionSchedulePtrInput
-	Location                  pulumi.StringInput
-	Name                      pulumi.StringPtrInput
+	// [string] Immutable, update forces re-creation of the resource.
+	Location pulumi.StringInput
+	// The name of the container registry. Immutable, update forces re-creation of the resource.
+	Name pulumi.StringPtrInput
 }
 
 func (RegistryArgs) ElementType() reflect.Type {
@@ -194,16 +254,17 @@ func (o RegistryOutput) ToRegistryOutputWithContext(ctx context.Context) Registr
 	return o
 }
 
-// The subnet CIDRs that are allowed to connect to the registry. Specify 'a.b.c.d/32' for an individual IP address.
-// __Note__: If this list is empty or not set, there are no restrictions.
+// [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
 func (o RegistryOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringArrayOutput { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
 }
 
+// [Map]
 func (o RegistryOutput) Features() RegistryFeaturesOutput {
 	return o.ApplyT(func(v *Registry) RegistryFeaturesOutput { return v.Features }).(RegistryFeaturesOutput)
 }
 
+// [Map]
 func (o RegistryOutput) GarbageCollectionSchedule() RegistryGarbageCollectionScheduleOutput {
 	return o.ApplyT(func(v *Registry) RegistryGarbageCollectionScheduleOutput { return v.GarbageCollectionSchedule }).(RegistryGarbageCollectionScheduleOutput)
 }
@@ -212,10 +273,12 @@ func (o RegistryOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
+// [string] Immutable, update forces re-creation of the resource.
 func (o RegistryOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
+// The name of the container registry. Immutable, update forces re-creation of the resource.
 func (o RegistryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Registry) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

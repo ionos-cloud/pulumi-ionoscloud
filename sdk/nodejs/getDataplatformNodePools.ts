@@ -6,6 +6,11 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+ *
+ * ## Example Usage
+ */
 export function getDataplatformNodePools(args: GetDataplatformNodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetDataplatformNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", {
@@ -19,8 +24,17 @@ export function getDataplatformNodePools(args: GetDataplatformNodePoolsArgs, opt
  * A collection of arguments for invoking getDataplatformNodePools.
  */
 export interface GetDataplatformNodePoolsArgs {
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     clusterId: string;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: string;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     */
     partialMatch?: boolean;
 }
 
@@ -28,15 +42,26 @@ export interface GetDataplatformNodePoolsArgs {
  * A collection of values returned by getDataplatformNodePools.
  */
 export interface GetDataplatformNodePoolsResult {
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name?: string;
+    /**
+     * List of Node Pools - See the Node Pool section.
+     */
     readonly nodePools: outputs.GetDataplatformNodePoolsNodePool[];
     readonly partialMatch?: boolean;
 }
+/**
+ * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+ *
+ * ## Example Usage
+ */
 export function getDataplatformNodePoolsOutput(args: GetDataplatformNodePoolsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataplatformNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", {
@@ -50,7 +75,16 @@ export function getDataplatformNodePoolsOutput(args: GetDataplatformNodePoolsOut
  * A collection of arguments for invoking getDataplatformNodePools.
  */
 export interface GetDataplatformNodePoolsOutputArgs {
+    /**
+     * ID of the cluster the searched node pool is part of.
+     */
     clusterId: pulumi.Input<string>;
+    /**
+     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Whether partial matching is allowed or not when using name argument. Default value is false.
+     */
     partialMatch?: pulumi.Input<boolean>;
 }

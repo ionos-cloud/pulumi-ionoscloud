@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         private InputList<string>? _gatewayIps;
 
         /// <summary>
-        /// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
+        /// [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
         /// </summary>
         public InputList<string> GatewayIps
         {
@@ -25,7 +25,7 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         }
 
         /// <summary>
-        /// Id for the LAN connected to the NAT gateway
+        /// [int] Id for the LAN connected to the NAT gateway.
         /// </summary>
         [Input("id", required: true)]
         public Input<int> Id { get; set; } = null!;

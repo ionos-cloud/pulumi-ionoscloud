@@ -12,6 +12,9 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
     public sealed class CubeServerVolumeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The availability zone in which the server should exist. This property is immutable.
+        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
@@ -45,12 +48,31 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("diskType", required: true)]
         public Input<string> DiskType { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Required if `ssh_key_path` is not provided.
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use image_name under server level
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; For creating a **CUBE** server, you can not set `volume.size` argument.
+        /// &gt;
+        /// </summary>
         [Input("imagePassword")]
         public Input<string>? ImagePassword { get; set; }
 
+        /// <summary>
+        /// [string] Sets the OS type of the server.
+        /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
 
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -68,6 +90,10 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;
+
+        /// <summary>
+        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        /// </summary>
         [Obsolete(@"Please use ssh_key_path under server level")]
         public InputList<string> SshKeyPaths
         {

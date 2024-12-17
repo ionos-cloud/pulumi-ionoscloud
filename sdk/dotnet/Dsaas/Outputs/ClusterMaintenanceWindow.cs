@@ -13,9 +13,12 @@ namespace Pulumi.Ionoscloud.Dsaas.Outputs
     [OutputType]
     public sealed class ClusterMaintenanceWindow
     {
+        /// <summary>
+        /// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
+        /// </summary>
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// Time at which the maintenance should start.
+        /// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
         /// </summary>
         public readonly string Time;
 

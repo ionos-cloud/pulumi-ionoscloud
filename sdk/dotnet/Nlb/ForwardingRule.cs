@@ -9,38 +9,126 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Nlb
 {
+    /// <summary>
+    /// Manages a **Network Load Balancer Forwarding Rule** on IonosCloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### 
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
+    ///     {
+    ///         Location = "us/las",
+    ///         Description = "Datacenter Description",
+    ///         SecAuthProtection = false,
+    ///     });
+    /// 
+    ///     var example1 = new Ionoscloud.Compute.Lan("example1", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var example2 = new Ionoscloud.Compute.Lan("example2", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         Public = false,
+    ///     });
+    /// 
+    ///     var exampleBalancer = new Ionoscloud.Nlb.Balancer("exampleBalancer", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         ListenerLan = example1.Id,
+    ///         TargetLan = example2.Id,
+    ///         Ips = new[]
+    ///         {
+    ///             "10.12.118.224",
+    ///         },
+    ///         LbPrivateIps = new[]
+    ///         {
+    ///             "10.13.72.225/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleForwardingRule = new Ionoscloud.Nlb.ForwardingRule("exampleForwardingRule", new()
+    ///     {
+    ///         DatacenterId = exampleDatacenter.Id,
+    ///         NetworkloadbalancerId = exampleBalancer.Id,
+    ///         Algorithm = "SOURCE_IP",
+    ///         Protocol = "TCP",
+    ///         ListenerIp = "10.12.118.224",
+    ///         ListenerPort = 8081,
+    ///         Targets = new[]
+    ///         {
+    ///             new Ionoscloud.Nlb.Inputs.ForwardingRuleTargetArgs
+    ///             {
+    ///                 Ip = "22.231.2.2",
+    ///                 Port = 8080,
+    ///                 Weight = 123,
+    ///                 ProxyProtocol = "v1",
+    ///                 HealthCheck = new Ionoscloud.Nlb.Inputs.ForwardingRuleTargetHealthCheckArgs
+    ///                 {
+    ///                     Check = true,
+    ///                     CheckInterval = 1000,
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A Network Load Balancer Forwarding Rule resource can be imported using its `resource id`, the `datacenter id` and the `networkloadbalancer id` e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:nlb/forwardingRule:ForwardingRule my_networkloadbalancer_forwardingrule {datacenter uuid}/{networkloadbalancer uuid}/{networkloadbalancer_forwardingrule uuid}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:nlb/forwardingRule:ForwardingRule")]
     public partial class ForwardingRule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Algorithm for the balancing.
+        /// [string] Algorithm for the balancing.
         /// </summary>
         [Output("algorithm")]
         public Output<string> Algorithm { get; private set; } = null!;
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Output("healthCheck")]
         public Output<Outputs.ForwardingRuleHealthCheck> HealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// Listening IP. (inbound)
+        /// [string] Listening IP. (inbound)
         /// </summary>
         [Output("listenerIp")]
         public Output<string> ListenerIp { get; private set; } = null!;
 
         /// <summary>
-        /// Listening port number. (inbound) (range: 1 to 65535)
+        /// [int] Listening port number. (inbound) (range: 1 to 65535)
         /// </summary>
         [Output("listenerPort")]
         public Output<int> ListenerPort { get; private set; } = null!;
 
         /// <summary>
-        /// A name of that Network Load Balancer forwarding rule
+        /// [string] A name of that Network Load Balancer forwarding rule.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -49,13 +137,13 @@ namespace Pulumi.Ionoscloud.Nlb
         public Output<string> NetworkloadbalancerId { get; private set; } = null!;
 
         /// <summary>
-        /// Protocol of the balancing.
+        /// [string] Protocol of the balancing.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// Array of items in that collection
+        /// [Set] Array of items in that collection.
         /// </summary>
         [Output("targets")]
         public Output<ImmutableArray<Outputs.ForwardingRuleTarget>> Targets { get; private set; } = null!;
@@ -107,34 +195,37 @@ namespace Pulumi.Ionoscloud.Nlb
     public sealed class ForwardingRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Algorithm for the balancing.
+        /// [string] Algorithm for the balancing.
         /// </summary>
         [Input("algorithm", required: true)]
         public Input<string> Algorithm { get; set; } = null!;
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.ForwardingRuleHealthCheckArgs>? HealthCheck { get; set; }
 
         /// <summary>
-        /// Listening IP. (inbound)
+        /// [string] Listening IP. (inbound)
         /// </summary>
         [Input("listenerIp", required: true)]
         public Input<string> ListenerIp { get; set; } = null!;
 
         /// <summary>
-        /// Listening port number. (inbound) (range: 1 to 65535)
+        /// [int] Listening port number. (inbound) (range: 1 to 65535)
         /// </summary>
         [Input("listenerPort", required: true)]
         public Input<int> ListenerPort { get; set; } = null!;
 
         /// <summary>
-        /// A name of that Network Load Balancer forwarding rule
+        /// [string] A name of that Network Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -143,7 +234,7 @@ namespace Pulumi.Ionoscloud.Nlb
         public Input<string> NetworkloadbalancerId { get; set; } = null!;
 
         /// <summary>
-        /// Protocol of the balancing.
+        /// [string] Protocol of the balancing.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -152,7 +243,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<Inputs.ForwardingRuleTargetArgs>? _targets;
 
         /// <summary>
-        /// Array of items in that collection
+        /// [Set] Array of items in that collection.
         /// </summary>
         public InputList<Inputs.ForwardingRuleTargetArgs> Targets
         {
@@ -169,34 +260,37 @@ namespace Pulumi.Ionoscloud.Nlb
     public sealed class ForwardingRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Algorithm for the balancing.
+        /// [string] Algorithm for the balancing.
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
 
+        /// <summary>
+        /// [string] A Datacenter's UUID.
+        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.ForwardingRuleHealthCheckGetArgs>? HealthCheck { get; set; }
 
         /// <summary>
-        /// Listening IP. (inbound)
+        /// [string] Listening IP. (inbound)
         /// </summary>
         [Input("listenerIp")]
         public Input<string>? ListenerIp { get; set; }
 
         /// <summary>
-        /// Listening port number. (inbound) (range: 1 to 65535)
+        /// [int] Listening port number. (inbound) (range: 1 to 65535)
         /// </summary>
         [Input("listenerPort")]
         public Input<int>? ListenerPort { get; set; }
 
         /// <summary>
-        /// A name of that Network Load Balancer forwarding rule
+        /// [string] A name of that Network Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -205,7 +299,7 @@ namespace Pulumi.Ionoscloud.Nlb
         public Input<string>? NetworkloadbalancerId { get; set; }
 
         /// <summary>
-        /// Protocol of the balancing.
+        /// [string] Protocol of the balancing.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -214,7 +308,7 @@ namespace Pulumi.Ionoscloud.Nlb
         private InputList<Inputs.ForwardingRuleTargetGetArgs>? _targets;
 
         /// <summary>
-        /// Array of items in that collection
+        /// [Set] Array of items in that collection.
         /// </summary>
         public InputList<Inputs.ForwardingRuleTargetGetArgs> Targets
         {

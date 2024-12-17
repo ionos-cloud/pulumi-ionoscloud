@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.K8s.Inputs
     public sealed class NodePoolAutoScalingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        /// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
         /// </summary>
         [Input("maxNodeCount", required: true)]
         public Input<int> MaxNodeCount { get; set; } = null!;
 
         /// <summary>
-        /// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        /// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         /// </summary>
         [Input("minNodeCount", required: true)]
         public Input<int> MinNodeCount { get; set; } = null!;

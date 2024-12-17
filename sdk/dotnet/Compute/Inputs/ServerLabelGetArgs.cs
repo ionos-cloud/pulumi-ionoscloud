@@ -12,9 +12,15 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
     public sealed class ServerLabelGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [string] The key of the label.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// [string] The value of the label.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

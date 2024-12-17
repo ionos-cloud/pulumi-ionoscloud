@@ -14,23 +14,23 @@ namespace Pulumi.Ionoscloud.Alb.Outputs
     public sealed class ForwardingRuleHttpRuleCondition
     {
         /// <summary>
-        /// Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        /// [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
         /// </summary>
         public readonly string? Condition;
         /// <summary>
-        /// Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        /// [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
         /// </summary>
         public readonly string? Key;
         /// <summary>
-        /// Specifies whether the condition is negated or not; the default is False.
+        /// [bool] Specifies whether the condition is negated or not; the default is False.
         /// </summary>
         public readonly bool? Negate;
         /// <summary>
-        /// Type of the HTTP rule condition.
+        /// [string] Type of the Http Rule condition.
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        /// [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
         /// </summary>
         public readonly string? Value;
 

@@ -14,13 +14,15 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type IpsecGatewayConnection struct {
-	// The datacenter to connect your VPN Gateway to.
+	// [string] The datacenter to connect your VPN Gateway to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+	// VPN Gateway. Note: this should be the subnet already assigned to the LAN
 	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+	// Gateway. **Note**: this should be the subnet already assigned to the LAN
 	Ipv6Cidr *string `pulumi:"ipv6Cidr"`
-	// The numeric LAN ID to connect your VPN Gateway to.
+	// [string] The numeric LAN ID to connect your VPN Gateway to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -36,13 +38,15 @@ type IpsecGatewayConnectionInput interface {
 }
 
 type IpsecGatewayConnectionArgs struct {
-	// The datacenter to connect your VPN Gateway to.
+	// [string] The datacenter to connect your VPN Gateway to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+	// VPN Gateway. Note: this should be the subnet already assigned to the LAN
 	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+	// Gateway. **Note**: this should be the subnet already assigned to the LAN
 	Ipv6Cidr pulumi.StringPtrInput `pulumi:"ipv6Cidr"`
-	// The numeric LAN ID to connect your VPN Gateway to.
+	// [string] The numeric LAN ID to connect your VPN Gateway to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -97,22 +101,24 @@ func (o IpsecGatewayConnectionOutput) ToIpsecGatewayConnectionOutputWithContext(
 	return o
 }
 
-// The datacenter to connect your VPN Gateway to.
+// [string] The datacenter to connect your VPN Gateway to.
 func (o IpsecGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+// [string] Describes the private ipv4 subnet in your LAN that should be accessible by the
+// VPN Gateway. Note: this should be the subnet already assigned to the LAN
 func (o IpsecGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
-// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+// [string] Describes the ipv6 subnet in your LAN that should be accessible by the VPN
+// Gateway. **Note**: this should be the subnet already assigned to the LAN
 func (o IpsecGatewayConnectionOutput) Ipv6Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) *string { return v.Ipv6Cidr }).(pulumi.StringPtrOutput)
 }
 
-// The numeric LAN ID to connect your VPN Gateway to.
+// [string] The numeric LAN ID to connect your VPN Gateway to.
 func (o IpsecGatewayConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v IpsecGatewayConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -138,9 +144,11 @@ func (o IpsecGatewayConnectionArrayOutput) Index(i pulumi.IntInput) IpsecGateway
 }
 
 type IpsecTunnelAuth struct {
-	// The Authentication Method to use for IPSec Authentication.
+	// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+	// Default value: `PSK`.
 	Method *string `pulumi:"method"`
-	// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+	// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+	// PSK.
 	PskKey *string `pulumi:"pskKey"`
 }
 
@@ -156,9 +164,11 @@ type IpsecTunnelAuthInput interface {
 }
 
 type IpsecTunnelAuthArgs struct {
-	// The Authentication Method to use for IPSec Authentication.
+	// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+	// Default value: `PSK`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+	// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+	// PSK.
 	PskKey pulumi.StringPtrInput `pulumi:"pskKey"`
 }
 
@@ -239,12 +249,14 @@ func (o IpsecTunnelAuthOutput) ToIpsecTunnelAuthPtrOutputWithContext(ctx context
 	}).(IpsecTunnelAuthPtrOutput)
 }
 
-// The Authentication Method to use for IPSec Authentication.
+// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+// Default value: `PSK`.
 func (o IpsecTunnelAuthOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelAuth) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+// PSK.
 func (o IpsecTunnelAuthOutput) PskKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelAuth) *string { return v.PskKey }).(pulumi.StringPtrOutput)
 }
@@ -273,7 +285,8 @@ func (o IpsecTunnelAuthPtrOutput) Elem() IpsecTunnelAuthOutput {
 	}).(IpsecTunnelAuthOutput)
 }
 
-// The Authentication Method to use for IPSec Authentication.
+// [string] The authentication method to use for IPSec Authentication. Possible values: `PSK`.
+// Default value: `PSK`.
 func (o IpsecTunnelAuthPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelAuth) *string {
 		if v == nil {
@@ -283,7 +296,8 @@ func (o IpsecTunnelAuthPtrOutput) Method() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The Pre-Shared Key to use for IPSec Authentication. Note: Required if method is PSK.
+// [string] The pre-shared key to use for IPSec Authentication. **Note**: Required if method is
+// PSK.
 func (o IpsecTunnelAuthPtrOutput) PskKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelAuth) *string {
 		if v == nil {
@@ -294,13 +308,19 @@ func (o IpsecTunnelAuthPtrOutput) PskKey() pulumi.StringPtrOutput {
 }
 
 type IpsecTunnelEsp struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
+	// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+	// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+	// Default value: `16-MODP4096`.
 	DiffieHellmanGroup *string `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
+	// [string] The encryption algorithm to use for IPSec Encryption. Possible
+	// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+	// `AES256-CCM-12`. Default value: `AES256`.
 	EncryptionAlgorithm *string `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
+	// [string] The integrity algorithm to use for IPSec Encryption. Possible
+	// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 	IntegrityAlgorithm *string `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
+	// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+	// Default value: `86400`.
 	Lifetime *int `pulumi:"lifetime"`
 }
 
@@ -316,13 +336,19 @@ type IpsecTunnelEspInput interface {
 }
 
 type IpsecTunnelEspArgs struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
+	// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+	// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+	// Default value: `16-MODP4096`.
 	DiffieHellmanGroup pulumi.StringPtrInput `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
+	// [string] The encryption algorithm to use for IPSec Encryption. Possible
+	// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+	// `AES256-CCM-12`. Default value: `AES256`.
 	EncryptionAlgorithm pulumi.StringPtrInput `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
+	// [string] The integrity algorithm to use for IPSec Encryption. Possible
+	// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 	IntegrityAlgorithm pulumi.StringPtrInput `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
+	// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+	// Default value: `86400`.
 	Lifetime pulumi.IntPtrInput `pulumi:"lifetime"`
 }
 
@@ -377,22 +403,28 @@ func (o IpsecTunnelEspOutput) ToIpsecTunnelEspOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The Diffie-Hellman Group to use for IPSec Encryption.
+// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+// Default value: `16-MODP4096`.
 func (o IpsecTunnelEspOutput) DiffieHellmanGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelEsp) *string { return v.DiffieHellmanGroup }).(pulumi.StringPtrOutput)
 }
 
-// The encryption algorithm to use for IPSec Encryption.
+// [string] The encryption algorithm to use for IPSec Encryption. Possible
+// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+// `AES256-CCM-12`. Default value: `AES256`.
 func (o IpsecTunnelEspOutput) EncryptionAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelEsp) *string { return v.EncryptionAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// The integrity algorithm to use for IPSec Encryption.
+// [string] The integrity algorithm to use for IPSec Encryption. Possible
+// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 func (o IpsecTunnelEspOutput) IntegrityAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelEsp) *string { return v.IntegrityAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// The phase lifetime in seconds.
+// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+// Default value: `86400`.
 func (o IpsecTunnelEspOutput) Lifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelEsp) *int { return v.Lifetime }).(pulumi.IntPtrOutput)
 }
@@ -418,13 +450,19 @@ func (o IpsecTunnelEspArrayOutput) Index(i pulumi.IntInput) IpsecTunnelEspOutput
 }
 
 type IpsecTunnelIke struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
+	// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+	// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+	// Default value: `16-MODP4096`.
 	DiffieHellmanGroup *string `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
+	// [string] The encryption algorithm to use for IPSec Encryption. Possible
+	// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+	// `AES256-CCM-12`. Default value: `AES256`.
 	EncryptionAlgorithm *string `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
+	// [string] The integrity algorithm to use for IPSec Encryption. Possible
+	// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 	IntegrityAlgorithm *string `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
+	// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+	// Default value: `86400`.
 	Lifetime *int `pulumi:"lifetime"`
 }
 
@@ -440,13 +478,19 @@ type IpsecTunnelIkeInput interface {
 }
 
 type IpsecTunnelIkeArgs struct {
-	// The Diffie-Hellman Group to use for IPSec Encryption.
+	// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+	// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+	// Default value: `16-MODP4096`.
 	DiffieHellmanGroup pulumi.StringPtrInput `pulumi:"diffieHellmanGroup"`
-	// The encryption algorithm to use for IPSec Encryption.
+	// [string] The encryption algorithm to use for IPSec Encryption. Possible
+	// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+	// `AES256-CCM-12`. Default value: `AES256`.
 	EncryptionAlgorithm pulumi.StringPtrInput `pulumi:"encryptionAlgorithm"`
-	// The integrity algorithm to use for IPSec Encryption.
+	// [string] The integrity algorithm to use for IPSec Encryption. Possible
+	// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 	IntegrityAlgorithm pulumi.StringPtrInput `pulumi:"integrityAlgorithm"`
-	// The phase lifetime in seconds.
+	// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+	// Default value: `86400`.
 	Lifetime pulumi.IntPtrInput `pulumi:"lifetime"`
 }
 
@@ -527,22 +571,28 @@ func (o IpsecTunnelIkeOutput) ToIpsecTunnelIkePtrOutputWithContext(ctx context.C
 	}).(IpsecTunnelIkePtrOutput)
 }
 
-// The Diffie-Hellman Group to use for IPSec Encryption.
+// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+// Default value: `16-MODP4096`.
 func (o IpsecTunnelIkeOutput) DiffieHellmanGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelIke) *string { return v.DiffieHellmanGroup }).(pulumi.StringPtrOutput)
 }
 
-// The encryption algorithm to use for IPSec Encryption.
+// [string] The encryption algorithm to use for IPSec Encryption. Possible
+// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+// `AES256-CCM-12`. Default value: `AES256`.
 func (o IpsecTunnelIkeOutput) EncryptionAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelIke) *string { return v.EncryptionAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// The integrity algorithm to use for IPSec Encryption.
+// [string] The integrity algorithm to use for IPSec Encryption. Possible
+// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 func (o IpsecTunnelIkeOutput) IntegrityAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelIke) *string { return v.IntegrityAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// The phase lifetime in seconds.
+// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+// Default value: `86400`.
 func (o IpsecTunnelIkeOutput) Lifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v IpsecTunnelIke) *int { return v.Lifetime }).(pulumi.IntPtrOutput)
 }
@@ -571,7 +621,9 @@ func (o IpsecTunnelIkePtrOutput) Elem() IpsecTunnelIkeOutput {
 	}).(IpsecTunnelIkeOutput)
 }
 
-// The Diffie-Hellman Group to use for IPSec Encryption.
+// [string] The Diffie-Hellman Group to use for IPSec Encryption. Possible
+// values: `15-MODP3072`, `16-MODP4096`, `19-ECP256`, `20-ECP384`, `21-ECP521`, `28-ECP256BP`, `29-ECP384BP`, `30-ECP512BP`.
+// Default value: `16-MODP4096`.
 func (o IpsecTunnelIkePtrOutput) DiffieHellmanGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelIke) *string {
 		if v == nil {
@@ -581,7 +633,9 @@ func (o IpsecTunnelIkePtrOutput) DiffieHellmanGroup() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The encryption algorithm to use for IPSec Encryption.
+// [string] The encryption algorithm to use for IPSec Encryption. Possible
+// values: `AES128`, `AES256`, `AES128-CTR`, `AES256-CTR`, `AES128-GCM-16`, `AES256-GCM-16`, `AES128-GCM-12`, `AES256-GCM-12`, `AES128-CCM-12`,
+// `AES256-CCM-12`. Default value: `AES256`.
 func (o IpsecTunnelIkePtrOutput) EncryptionAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelIke) *string {
 		if v == nil {
@@ -591,7 +645,8 @@ func (o IpsecTunnelIkePtrOutput) EncryptionAlgorithm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The integrity algorithm to use for IPSec Encryption.
+// [string] The integrity algorithm to use for IPSec Encryption. Possible
+// values: `SHA256`, `SHA384`, `SHA512`, `AES-XCBC`. Default value: `SHA256`.
 func (o IpsecTunnelIkePtrOutput) IntegrityAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelIke) *string {
 		if v == nil {
@@ -601,7 +656,8 @@ func (o IpsecTunnelIkePtrOutput) IntegrityAlgorithm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The phase lifetime in seconds.
+// [string] The phase lifetime in seconds. Minimum value: `3600`. Maximum value: `86400`.
+// Default value: `86400`.
 func (o IpsecTunnelIkePtrOutput) Lifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnelIke) *int {
 		if v == nil {
@@ -612,10 +668,14 @@ func (o IpsecTunnelIkePtrOutput) Lifetime() pulumi.IntPtrOutput {
 }
 
 type WireguardGatewayConnection struct {
-	DatacenterId string  `pulumi:"datacenterId"`
-	Ipv4Cidr     *string `pulumi:"ipv4Cidr"`
-	Ipv6Cidr     *string `pulumi:"ipv6Cidr"`
-	LanId        string  `pulumi:"lanId"`
+	// [String] The ID of the datacenter where the WireGuard Gateway is located.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+	Ipv4Cidr *string `pulumi:"ipv4Cidr"`
+	// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+	Ipv6Cidr *string `pulumi:"ipv6Cidr"`
+	// [String] The ID of the LAN where the WireGuard Gateway is connected.
+	LanId string `pulumi:"lanId"`
 }
 
 // WireguardGatewayConnectionInput is an input type that accepts WireguardGatewayConnectionArgs and WireguardGatewayConnectionOutput values.
@@ -630,10 +690,14 @@ type WireguardGatewayConnectionInput interface {
 }
 
 type WireguardGatewayConnectionArgs struct {
-	DatacenterId pulumi.StringInput    `pulumi:"datacenterId"`
-	Ipv4Cidr     pulumi.StringPtrInput `pulumi:"ipv4Cidr"`
-	Ipv6Cidr     pulumi.StringPtrInput `pulumi:"ipv6Cidr"`
-	LanId        pulumi.StringInput    `pulumi:"lanId"`
+	// [String] The ID of the datacenter where the WireGuard Gateway is located.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// [String] The IPv4 CIDR for the WireGuard Gateway connection.
+	Ipv4Cidr pulumi.StringPtrInput `pulumi:"ipv4Cidr"`
+	// [String] The IPv6 CIDR for the WireGuard Gateway connection.
+	Ipv6Cidr pulumi.StringPtrInput `pulumi:"ipv6Cidr"`
+	// [String] The ID of the LAN where the WireGuard Gateway is connected.
+	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
 func (WireguardGatewayConnectionArgs) ElementType() reflect.Type {
@@ -687,18 +751,22 @@ func (o WireguardGatewayConnectionOutput) ToWireguardGatewayConnectionOutputWith
 	return o
 }
 
+// [String] The ID of the datacenter where the WireGuard Gateway is located.
 func (o WireguardGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// [String] The IPv4 CIDR for the WireGuard Gateway connection.
 func (o WireguardGatewayConnectionOutput) Ipv4Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) *string { return v.Ipv4Cidr }).(pulumi.StringPtrOutput)
 }
 
+// [String] The IPv6 CIDR for the WireGuard Gateway connection.
 func (o WireguardGatewayConnectionOutput) Ipv6Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) *string { return v.Ipv6Cidr }).(pulumi.StringPtrOutput)
 }
 
+// [String] The ID of the LAN where the WireGuard Gateway is connected.
 func (o WireguardGatewayConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v WireguardGatewayConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -724,9 +792,9 @@ func (o WireguardGatewayConnectionArrayOutput) Index(i pulumi.IntInput) Wireguar
 }
 
 type WireguardPeerEndpoint struct {
-	// Hostname or IPV4 address that the WireGuard Server will connect to.
+	// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
 	Host string `pulumi:"host"`
-	// Port that the WireGuard Server will connect to.
+	// [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
 	Port *int `pulumi:"port"`
 }
 
@@ -742,9 +810,9 @@ type WireguardPeerEndpointInput interface {
 }
 
 type WireguardPeerEndpointArgs struct {
-	// Hostname or IPV4 address that the WireGuard Server will connect to.
+	// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
 	Host pulumi.StringInput `pulumi:"host"`
-	// Port that the WireGuard Server will connect to.
+	// [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
@@ -825,12 +893,12 @@ func (o WireguardPeerEndpointOutput) ToWireguardPeerEndpointPtrOutputWithContext
 	}).(WireguardPeerEndpointPtrOutput)
 }
 
-// Hostname or IPV4 address that the WireGuard Server will connect to.
+// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
 func (o WireguardPeerEndpointOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v WireguardPeerEndpoint) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Port that the WireGuard Server will connect to.
+// [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
 func (o WireguardPeerEndpointOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WireguardPeerEndpoint) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -859,7 +927,7 @@ func (o WireguardPeerEndpointPtrOutput) Elem() WireguardPeerEndpointOutput {
 	}).(WireguardPeerEndpointOutput)
 }
 
-// Hostname or IPV4 address that the WireGuard Server will connect to.
+// [string] The hostname or IPV4 address that the WireGuard Server will connect to.
 func (o WireguardPeerEndpointPtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WireguardPeerEndpoint) *string {
 		if v == nil {
@@ -869,7 +937,7 @@ func (o WireguardPeerEndpointPtrOutput) Host() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Port that the WireGuard Server will connect to.
+// [int] The port that the WireGuard Server will connect to. Defaults to `51820`.
 func (o WireguardPeerEndpointPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WireguardPeerEndpoint) *int {
 		if v == nil {
@@ -882,9 +950,10 @@ func (o WireguardPeerEndpointPtrOutput) Port() pulumi.IntPtrOutput {
 type GetIpsecGatewayConnection struct {
 	// The datacenter to connect your VPN Gateway to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// Describes the private ipv4 subnet in your LAN that should be accessible by the
+	// VPN Gateway.
 	Ipv4Cidr string `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
 	Ipv6Cidr string `pulumi:"ipv6Cidr"`
 	// The numeric LAN ID to connect your VPN Gateway to.
 	LanId string `pulumi:"lanId"`
@@ -904,9 +973,10 @@ type GetIpsecGatewayConnectionInput interface {
 type GetIpsecGatewayConnectionArgs struct {
 	// The datacenter to connect your VPN Gateway to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// Describes the private ipv4 subnet in your LAN that should be accessible by the
+	// VPN Gateway.
 	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
-	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+	// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
 	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
 	// The numeric LAN ID to connect your VPN Gateway to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
@@ -968,12 +1038,13 @@ func (o GetIpsecGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Describes the private ipv4 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+// Describes the private ipv4 subnet in your LAN that should be accessible by the
+// VPN Gateway.
 func (o GetIpsecGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
-// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway. Note: this should be the subnet already assigned to the LAN
+// Describes the ipv6 subnet in your LAN that should be accessible by the VPN Gateway.
 func (o GetIpsecGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsecGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
 }
@@ -1349,10 +1420,14 @@ func (o GetIpsecTunnelIkeArrayOutput) Index(i pulumi.IntInput) GetIpsecTunnelIke
 }
 
 type GetWireguardGatewayConnection struct {
+	// The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	Ipv4Cidr     string `pulumi:"ipv4Cidr"`
-	Ipv6Cidr     string `pulumi:"ipv6Cidr"`
-	LanId        string `pulumi:"lanId"`
+	// The IPv4 CIDR for the WireGuard Gateway connection.
+	Ipv4Cidr string `pulumi:"ipv4Cidr"`
+	// The IPv6 CIDR for the WireGuard Gateway connection.
+	Ipv6Cidr string `pulumi:"ipv6Cidr"`
+	// The ID of the LAN where the WireGuard Gateway is connected.
+	LanId string `pulumi:"lanId"`
 }
 
 // GetWireguardGatewayConnectionInput is an input type that accepts GetWireguardGatewayConnectionArgs and GetWireguardGatewayConnectionOutput values.
@@ -1367,10 +1442,14 @@ type GetWireguardGatewayConnectionInput interface {
 }
 
 type GetWireguardGatewayConnectionArgs struct {
+	// The ID of the datacenter where the WireGuard Gateway is located.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	Ipv4Cidr     pulumi.StringInput `pulumi:"ipv4Cidr"`
-	Ipv6Cidr     pulumi.StringInput `pulumi:"ipv6Cidr"`
-	LanId        pulumi.StringInput `pulumi:"lanId"`
+	// The IPv4 CIDR for the WireGuard Gateway connection.
+	Ipv4Cidr pulumi.StringInput `pulumi:"ipv4Cidr"`
+	// The IPv6 CIDR for the WireGuard Gateway connection.
+	Ipv6Cidr pulumi.StringInput `pulumi:"ipv6Cidr"`
+	// The ID of the LAN where the WireGuard Gateway is connected.
+	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
 func (GetWireguardGatewayConnectionArgs) ElementType() reflect.Type {
@@ -1424,18 +1503,22 @@ func (o GetWireguardGatewayConnectionOutput) ToGetWireguardGatewayConnectionOutp
 	return o
 }
 
+// The ID of the datacenter where the WireGuard Gateway is located.
 func (o GetWireguardGatewayConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// The IPv4 CIDR for the WireGuard Gateway connection.
 func (o GetWireguardGatewayConnectionOutput) Ipv4Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.Ipv4Cidr }).(pulumi.StringOutput)
 }
 
+// The IPv6 CIDR for the WireGuard Gateway connection.
 func (o GetWireguardGatewayConnectionOutput) Ipv6Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.Ipv6Cidr }).(pulumi.StringOutput)
 }
 
+// The ID of the LAN where the WireGuard Gateway is connected.
 func (o GetWireguardGatewayConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardGatewayConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -1461,8 +1544,10 @@ func (o GetWireguardGatewayConnectionArrayOutput) Index(i pulumi.IntInput) GetWi
 }
 
 type GetWireguardPeerEndpoint struct {
+	// Hostname or IPV4 address that the WireGuard Server will connect to.
 	Host string `pulumi:"host"`
-	Port int    `pulumi:"port"`
+	// Port that the WireGuard Server will connect to. Default: 51820
+	Port int `pulumi:"port"`
 }
 
 // GetWireguardPeerEndpointInput is an input type that accepts GetWireguardPeerEndpointArgs and GetWireguardPeerEndpointOutput values.
@@ -1477,8 +1562,10 @@ type GetWireguardPeerEndpointInput interface {
 }
 
 type GetWireguardPeerEndpointArgs struct {
+	// Hostname or IPV4 address that the WireGuard Server will connect to.
 	Host pulumi.StringInput `pulumi:"host"`
-	Port pulumi.IntInput    `pulumi:"port"`
+	// Port that the WireGuard Server will connect to. Default: 51820
+	Port pulumi.IntInput `pulumi:"port"`
 }
 
 func (GetWireguardPeerEndpointArgs) ElementType() reflect.Type {
@@ -1532,10 +1619,12 @@ func (o GetWireguardPeerEndpointOutput) ToGetWireguardPeerEndpointOutputWithCont
 	return o
 }
 
+// Hostname or IPV4 address that the WireGuard Server will connect to.
 func (o GetWireguardPeerEndpointOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWireguardPeerEndpoint) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// Port that the WireGuard Server will connect to. Default: 51820
 func (o GetWireguardPeerEndpointOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetWireguardPeerEndpoint) int { return v.Port }).(pulumi.IntOutput)
 }

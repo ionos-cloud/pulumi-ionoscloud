@@ -22,7 +22,7 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly string? Location;
         /// <summary>
-        /// The name of the connectable datacenter
+        /// [string] The name of the cross-connection.
         /// </summary>
         public readonly string? Name;
 

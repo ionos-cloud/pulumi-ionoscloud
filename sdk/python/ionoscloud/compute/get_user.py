@@ -62,51 +62,81 @@ class GetUserResult:
     @property
     @pulumi.getter
     def active(self) -> bool:
+        """
+        Indicates if the user is active
+        """
         return pulumi.get(self, "active")
 
     @property
     @pulumi.getter
     def administrator(self) -> bool:
+        """
+        Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+        """
         return pulumi.get(self, "administrator")
 
     @property
     @pulumi.getter
     def email(self) -> Optional[str]:
+        """
+        The e-mail address for the user.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="firstName")
     def first_name(self) -> str:
+        """
+        The first name for the user.
+        """
         return pulumi.get(self, "first_name")
 
     @property
     @pulumi.getter(name="forceSecAuth")
     def force_sec_auth(self) -> bool:
+        """
+        Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+        """
         return pulumi.get(self, "force_sec_auth")
 
     @property
     @pulumi.getter
     def groups(self) -> Sequence['outputs.GetUserGroupResult']:
+        """
+        Shows the id and name of the groups that the user is a member of
+        """
         return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The id of the user.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="lastName")
     def last_name(self) -> str:
+        """
+        The last name for the user.
+        """
         return pulumi.get(self, "last_name")
 
     @property
     @pulumi.getter(name="s3CanonicalUserId")
     def s3_canonical_user_id(self) -> str:
+        """
+        Canonical (S3) id of the user for a given identity
+        """
         return pulumi.get(self, "s3_canonical_user_id")
 
     @property
     @pulumi.getter(name="secAuthActive")
     def sec_auth_active(self) -> bool:
+        """
+        Indicates if secure authentication is active for the user or not
+        """
         return pulumi.get(self, "sec_auth_active")
 
 
@@ -132,7 +162,29 @@ def get_user(email: Optional[str] = None,
              id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
-    Use this data source to access information about an existing resource.
+    The **User data source** can be used to search for and return existing users.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Email
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_user(email="example@email.com")
+    ```
+
+    ### By Email from Env Variables - Current User
+    data "compute.User" "example" {
+    }
+
+
+    :param str email: Email of an existing user that you want to search for.
+    :param str id: ID of the user you want to search for.
+           
+           Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
     """
     __args__ = dict()
     __args__['email'] = email
@@ -155,7 +207,29 @@ def get_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
                     id: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **User data source** can be used to search for and return existing users.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+    ### By Email
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.compute.get_user(email="example@email.com")
+    ```
+
+    ### By Email from Env Variables - Current User
+    data "compute.User" "example" {
+    }
+
+
+    :param str email: Email of an existing user that you want to search for.
+    :param str id: ID of the user you want to search for.
+           
+           Either `email` or `id` can be provided. If no argument is set, the provider will search for the **email that was provided for the configuration**. If none is found, the provider will return an error.
     """
     __args__ = dict()
     __args__['email'] = email

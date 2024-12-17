@@ -14,9 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterMaintenanceWindow struct {
-	// Day of the week when maintenance is allowed
+	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
+	// [string] A clock time in the day when maintenance is allowed
 	Time string `pulumi:"time"`
 }
 
@@ -32,9 +32,9 @@ type ClusterMaintenanceWindowInput interface {
 }
 
 type ClusterMaintenanceWindowArgs struct {
-	// Day of the week when maintenance is allowed
+	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
+	// [string] A clock time in the day when maintenance is allowed
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -115,12 +115,12 @@ func (o ClusterMaintenanceWindowOutput) ToClusterMaintenanceWindowPtrOutputWithC
 	}).(ClusterMaintenanceWindowPtrOutput)
 }
 
-// Day of the week when maintenance is allowed
+// [string] Day of the week when maintenance is allowed
 func (o ClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// A clock time in the day when maintenance is allowed
+// [string] A clock time in the day when maintenance is allowed
 func (o ClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -149,7 +149,7 @@ func (o ClusterMaintenanceWindowPtrOutput) Elem() ClusterMaintenanceWindowOutput
 	}).(ClusterMaintenanceWindowOutput)
 }
 
-// Day of the week when maintenance is allowed
+// [string] Day of the week when maintenance is allowed
 func (o ClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -159,7 +159,7 @@ func (o ClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// A clock time in the day when maintenance is allowed
+// [string] A clock time in the day when maintenance is allowed
 func (o ClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -170,7 +170,7 @@ func (o ClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 }
 
 type ClusterS3Bucket struct {
-	// Name of the Object Storage bucket
+	// [string] The name of the Kubernetes Cluster.
 	Name *string `pulumi:"name"`
 }
 
@@ -186,7 +186,7 @@ type ClusterS3BucketInput interface {
 }
 
 type ClusterS3BucketArgs struct {
-	// Name of the Object Storage bucket
+	// [string] The name of the Kubernetes Cluster.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -241,7 +241,7 @@ func (o ClusterS3BucketOutput) ToClusterS3BucketOutputWithContext(ctx context.Co
 	return o
 }
 
-// Name of the Object Storage bucket
+// [string] The name of the Kubernetes Cluster.
 func (o ClusterS3BucketOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterS3Bucket) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -267,9 +267,9 @@ func (o ClusterS3BucketArrayOutput) Index(i pulumi.IntInput) ClusterS3BucketOutp
 }
 
 type NodePoolAutoScaling struct {
-	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 	MaxNodeCount int `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 	MinNodeCount int `pulumi:"minNodeCount"`
 }
 
@@ -285,9 +285,9 @@ type NodePoolAutoScalingInput interface {
 }
 
 type NodePoolAutoScalingArgs struct {
-	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
 }
 
@@ -368,12 +368,12 @@ func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx
 	}).(NodePoolAutoScalingPtrOutput)
 }
 
-// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 func (o NodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
 }
 
-// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 func (o NodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
 }
@@ -402,7 +402,7 @@ func (o NodePoolAutoScalingPtrOutput) Elem() NodePoolAutoScalingOutput {
 	}).(NodePoolAutoScalingOutput)
 }
 
-// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
 func (o NodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -412,7 +412,7 @@ func (o NodePoolAutoScalingPtrOutput) MaxNodeCount() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
 func (o NodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -423,9 +423,9 @@ func (o NodePoolAutoScalingPtrOutput) MinNodeCount() pulumi.IntPtrOutput {
 }
 
 type NodePoolLan struct {
-	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+	// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
 	Dhcp *bool `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related datacenter
+	// [int] The LAN ID of an existing LAN at the related datacenter
 	Id int `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
 	Routes []NodePoolLanRoute `pulumi:"routes"`
@@ -443,9 +443,9 @@ type NodePoolLanInput interface {
 }
 
 type NodePoolLanArgs struct {
-	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+	// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related datacenter
+	// [int] The LAN ID of an existing LAN at the related datacenter
 	Id pulumi.IntInput `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
 	Routes NodePoolLanRouteArrayInput `pulumi:"routes"`
@@ -502,12 +502,12 @@ func (o NodePoolLanOutput) ToNodePoolLanOutputWithContext(ctx context.Context) N
 	return o
 }
 
-// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
+// [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
 func (o NodePoolLanOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NodePoolLan) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-// The LAN ID of an existing LAN at the related datacenter
+// [int] The LAN ID of an existing LAN at the related datacenter
 func (o NodePoolLanOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolLan) int { return v.Id }).(pulumi.IntOutput)
 }
@@ -538,9 +538,9 @@ func (o NodePoolLanArrayOutput) Index(i pulumi.IntInput) NodePoolLanOutput {
 }
 
 type NodePoolLanRoute struct {
-	// IPv4 or IPv6 Gateway IP for the route
+	// [string] IPv4 or IPv6 Gateway IP for the route
 	GatewayIp string `pulumi:"gatewayIp"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
+	// [string] IPv4 or IPv6 CIDR to be routed via the interface
 	Network string `pulumi:"network"`
 }
 
@@ -556,9 +556,9 @@ type NodePoolLanRouteInput interface {
 }
 
 type NodePoolLanRouteArgs struct {
-	// IPv4 or IPv6 Gateway IP for the route
+	// [string] IPv4 or IPv6 Gateway IP for the route
 	GatewayIp pulumi.StringInput `pulumi:"gatewayIp"`
-	// IPv4 or IPv6 CIDR to be routed via the interface
+	// [string] IPv4 or IPv6 CIDR to be routed via the interface
 	Network pulumi.StringInput `pulumi:"network"`
 }
 
@@ -613,12 +613,12 @@ func (o NodePoolLanRouteOutput) ToNodePoolLanRouteOutputWithContext(ctx context.
 	return o
 }
 
-// IPv4 or IPv6 Gateway IP for the route
+// [string] IPv4 or IPv6 Gateway IP for the route
 func (o NodePoolLanRouteOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolLanRoute) string { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-// IPv4 or IPv6 CIDR to be routed via the interface
+// [string] IPv4 or IPv6 CIDR to be routed via the interface
 func (o NodePoolLanRouteOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolLanRoute) string { return v.Network }).(pulumi.StringOutput)
 }
@@ -644,9 +644,9 @@ func (o NodePoolLanRouteArrayOutput) Index(i pulumi.IntInput) NodePoolLanRouteOu
 }
 
 type NodePoolMaintenanceWindow struct {
-	// Day of the week when maintenance is allowed
+	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
+	// [string] A clock time in the day when maintenance is allowed
 	Time string `pulumi:"time"`
 }
 
@@ -662,9 +662,9 @@ type NodePoolMaintenanceWindowInput interface {
 }
 
 type NodePoolMaintenanceWindowArgs struct {
-	// Day of the week when maintenance is allowed
+	// [string] Day of the week when maintenance is allowed
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// A clock time in the day when maintenance is allowed
+	// [string] A clock time in the day when maintenance is allowed
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -745,12 +745,12 @@ func (o NodePoolMaintenanceWindowOutput) ToNodePoolMaintenanceWindowPtrOutputWit
 	}).(NodePoolMaintenanceWindowPtrOutput)
 }
 
-// Day of the week when maintenance is allowed
+// [string] Day of the week when maintenance is allowed
 func (o NodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// A clock time in the day when maintenance is allowed
+// [string] A clock time in the day when maintenance is allowed
 func (o NodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -779,7 +779,7 @@ func (o NodePoolMaintenanceWindowPtrOutput) Elem() NodePoolMaintenanceWindowOutp
 	}).(NodePoolMaintenanceWindowOutput)
 }
 
-// Day of the week when maintenance is allowed
+// [string] Day of the week when maintenance is allowed
 func (o NodePoolMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePoolMaintenanceWindow) *string {
 		if v == nil {
@@ -789,7 +789,7 @@ func (o NodePoolMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// A clock time in the day when maintenance is allowed
+// [string] A clock time in the day when maintenance is allowed
 func (o NodePoolMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePoolMaintenanceWindow) *string {
 		if v == nil {
@@ -925,7 +925,8 @@ func (o GetClusterConfigArrayOutput) Index(i pulumi.IntInput) GetClusterConfigOu
 
 type GetClusterConfigCluster struct {
 	Cluster map[string]string `pulumi:"cluster"`
-	Name    string            `pulumi:"name"`
+	// Name of an existing cluster that you want to search for.
+	Name string `pulumi:"name"`
 }
 
 // GetClusterConfigClusterInput is an input type that accepts GetClusterConfigClusterArgs and GetClusterConfigClusterOutput values.
@@ -941,7 +942,8 @@ type GetClusterConfigClusterInput interface {
 
 type GetClusterConfigClusterArgs struct {
 	Cluster pulumi.StringMapInput `pulumi:"cluster"`
-	Name    pulumi.StringInput    `pulumi:"name"`
+	// Name of an existing cluster that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetClusterConfigClusterArgs) ElementType() reflect.Type {
@@ -999,6 +1001,7 @@ func (o GetClusterConfigClusterOutput) Cluster() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetClusterConfigCluster) map[string]string { return v.Cluster }).(pulumi.StringMapOutput)
 }
 
+// Name of an existing cluster that you want to search for.
 func (o GetClusterConfigClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigCluster) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1025,7 +1028,8 @@ func (o GetClusterConfigClusterArrayOutput) Index(i pulumi.IntInput) GetClusterC
 
 type GetClusterConfigContext struct {
 	Context map[string]string `pulumi:"context"`
-	Name    string            `pulumi:"name"`
+	// Name of an existing cluster that you want to search for.
+	Name string `pulumi:"name"`
 }
 
 // GetClusterConfigContextInput is an input type that accepts GetClusterConfigContextArgs and GetClusterConfigContextOutput values.
@@ -1041,7 +1045,8 @@ type GetClusterConfigContextInput interface {
 
 type GetClusterConfigContextArgs struct {
 	Context pulumi.StringMapInput `pulumi:"context"`
-	Name    pulumi.StringInput    `pulumi:"name"`
+	// Name of an existing cluster that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetClusterConfigContextArgs) ElementType() reflect.Type {
@@ -1099,6 +1104,7 @@ func (o GetClusterConfigContextOutput) Context() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetClusterConfigContext) map[string]string { return v.Context }).(pulumi.StringMapOutput)
 }
 
+// Name of an existing cluster that you want to search for.
 func (o GetClusterConfigContextOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigContext) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1124,6 +1130,7 @@ func (o GetClusterConfigContextArrayOutput) Index(i pulumi.IntInput) GetClusterC
 }
 
 type GetClusterConfigUser struct {
+	// Name of an existing cluster that you want to search for.
 	Name string            `pulumi:"name"`
 	User map[string]string `pulumi:"user"`
 }
@@ -1140,6 +1147,7 @@ type GetClusterConfigUserInput interface {
 }
 
 type GetClusterConfigUserArgs struct {
+	// Name of an existing cluster that you want to search for.
 	Name pulumi.StringInput    `pulumi:"name"`
 	User pulumi.StringMapInput `pulumi:"user"`
 }
@@ -1195,6 +1203,7 @@ func (o GetClusterConfigUserOutput) ToGetClusterConfigUserOutputWithContext(ctx 
 	return o
 }
 
+// Name of an existing cluster that you want to search for.
 func (o GetClusterConfigUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterConfigUser) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1330,7 +1339,7 @@ func (o GetClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetClus
 }
 
 type GetClusterS3Bucket struct {
-	// Name of the Object Storage bucket
+	// Name of an existing cluster that you want to search for.
 	Name string `pulumi:"name"`
 }
 
@@ -1346,7 +1355,7 @@ type GetClusterS3BucketInput interface {
 }
 
 type GetClusterS3BucketArgs struct {
-	// Name of the Object Storage bucket
+	// Name of an existing cluster that you want to search for.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1401,7 +1410,7 @@ func (o GetClusterS3BucketOutput) ToGetClusterS3BucketOutputWithContext(ctx cont
 	return o
 }
 
-// Name of the Object Storage bucket
+// Name of an existing cluster that you want to search for.
 func (o GetClusterS3BucketOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterS3Bucket) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1427,9 +1436,9 @@ func (o GetClusterS3BucketArrayOutput) Index(i pulumi.IntInput) GetClusterS3Buck
 }
 
 type GetNodePoolAutoScaling struct {
-	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	// The maximum number of worker nodes that the node pool can scale to
 	MaxNodeCount int `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	// The minimum number of worker nodes the node pool can scale down to
 	MinNodeCount int `pulumi:"minNodeCount"`
 }
 
@@ -1445,9 +1454,9 @@ type GetNodePoolAutoScalingInput interface {
 }
 
 type GetNodePoolAutoScalingArgs struct {
-	// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+	// The maximum number of worker nodes that the node pool can scale to
 	MaxNodeCount pulumi.IntInput `pulumi:"maxNodeCount"`
-	// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+	// The minimum number of worker nodes the node pool can scale down to
 	MinNodeCount pulumi.IntInput `pulumi:"minNodeCount"`
 }
 
@@ -1502,12 +1511,12 @@ func (o GetNodePoolAutoScalingOutput) ToGetNodePoolAutoScalingOutputWithContext(
 	return o
 }
 
-// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+// The maximum number of worker nodes that the node pool can scale to
 func (o GetNodePoolAutoScalingOutput) MaxNodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNodePoolAutoScaling) int { return v.MaxNodeCount }).(pulumi.IntOutput)
 }
 
-// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+// The minimum number of worker nodes the node pool can scale down to
 func (o GetNodePoolAutoScalingOutput) MinNodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNodePoolAutoScaling) int { return v.MinNodeCount }).(pulumi.IntOutput)
 }
@@ -1535,7 +1544,9 @@ func (o GetNodePoolAutoScalingArrayOutput) Index(i pulumi.IntInput) GetNodePoolA
 type GetNodePoolLan struct {
 	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
 	Dhcp bool `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related datacenter
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id int `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
 	Routes []GetNodePoolLanRoute `pulumi:"routes"`
@@ -1555,7 +1566,9 @@ type GetNodePoolLanInput interface {
 type GetNodePoolLanArgs struct {
 	// Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP
 	Dhcp pulumi.BoolInput `pulumi:"dhcp"`
-	// The LAN ID of an existing LAN at the related datacenter
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 	Id pulumi.IntInput `pulumi:"id"`
 	// An array of additional LANs attached to worker nodes
 	Routes GetNodePoolLanRouteArrayInput `pulumi:"routes"`
@@ -1617,7 +1630,9 @@ func (o GetNodePoolLanOutput) Dhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetNodePoolLan) bool { return v.Dhcp }).(pulumi.BoolOutput)
 }
 
-// The LAN ID of an existing LAN at the related datacenter
+// ID of the node pool you want to search for.
+//
+// `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
 func (o GetNodePoolLanOutput) Id() pulumi.IntOutput {
 	return o.ApplyT(func(v GetNodePoolLan) int { return v.Id }).(pulumi.IntOutput)
 }

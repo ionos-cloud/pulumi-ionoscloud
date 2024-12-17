@@ -12,19 +12,87 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **Dataplatform Cluster**.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:    pulumi.String("de/txl"),
+//				Description: pulumi.String("Datacenter for testing Dataplatform Cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dsaas.NewCluster(ctx, "exampleCluster", &dsaas.ClusterArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
+//					&dsaas.ClusterMaintenanceWindowArgs{
+//						DayOfTheWeek: pulumi.String("Sunday"),
+//						Time:         pulumi.String("09:00:00"),
+//					},
+//				},
+//				Version: pulumi.String("23.11"),
+//				Lans: dsaas.ClusterLanArray{
+//					&dsaas.ClusterLanArgs{
+//						LanId: exampleLan.ID(),
+//						Dhcp:  pulumi.Bool(false),
+//						Routes: dsaas.ClusterLanRouteArray{
+//							&dsaas.ClusterLanRouteArgs{
+//								Network: pulumi.String("182.168.42.1/24"),
+//								Gateway: pulumi.String("192.168.42.1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}
+// ```
 type Cluster struct {
 	pulumi.CustomResourceState
 
-	// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+	// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// A list of LANs you want this node pool to be part of
+	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayOutput `pulumi:"lans"`
-	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayOutput `pulumi:"maintenanceWindows"`
-	// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The version of the Data Platform.
+	// [int] The version of the Data Platform.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -61,30 +129,28 @@ func GetCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
-	// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+	// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// A list of LANs you want this node pool to be part of
+	// [list] A list of LANs you want this node pool to be part of.
 	Lans []ClusterLan `pulumi:"lans"`
-	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []ClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
-	// The version of the Data Platform.
+	// [int] The version of the Data Platform.
 	Version *string `pulumi:"version"`
 }
 
 type ClusterState struct {
-	// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+	// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId pulumi.StringPtrInput
-	// A list of LANs you want this node pool to be part of
+	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayInput
-	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayInput
-	// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
-	// The version of the Data Platform.
+	// [int] The version of the Data Platform.
 	Version pulumi.StringPtrInput
 }
 
@@ -93,31 +159,29 @@ func (ClusterState) ElementType() reflect.Type {
 }
 
 type clusterArgs struct {
-	// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+	// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId string `pulumi:"datacenterId"`
-	// A list of LANs you want this node pool to be part of
+	// [list] A list of LANs you want this node pool to be part of.
 	Lans []ClusterLan `pulumi:"lans"`
-	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []ClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
-	// The version of the Data Platform.
+	// [int] The version of the Data Platform.
 	Version *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a Cluster resource.
 type ClusterArgs struct {
-	// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+	// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 	DatacenterId pulumi.StringInput
-	// A list of LANs you want this node pool to be part of
+	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayInput
-	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayInput
-	// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
-	// The version of the Data Platform.
+	// [int] The version of the Data Platform.
 	Version pulumi.StringPtrInput
 }
 
@@ -208,28 +272,27 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 	return o
 }
 
-// The UUID of the virtual data center (VDC) in which the cluster is provisioned
+// [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
 func (o ClusterOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// A list of LANs you want this node pool to be part of
+// [list] A list of LANs you want this node pool to be part of.
 func (o ClusterOutput) Lans() ClusterLanArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterLanArrayOutput { return v.Lans }).(ClusterLanArrayOutput)
 }
 
-// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 func (o ClusterOutput) MaintenanceWindows() ClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterMaintenanceWindowArrayOutput { return v.MaintenanceWindows }).(ClusterMaintenanceWindowArrayOutput)
 }
 
-// The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
-// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 func (o ClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The version of the Data Platform.
+// [int] The version of the Data Platform.
 func (o ClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

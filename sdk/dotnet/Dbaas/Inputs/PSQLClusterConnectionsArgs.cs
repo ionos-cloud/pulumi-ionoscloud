@@ -13,23 +13,19 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
     public sealed class PSQLClusterConnectionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IP and subnet for the database.
-        ///           Note the following unavailable IP ranges:
-        ///           10.233.64.0/18
-        ///           10.233.0.0/18
-        ///           10.233.114.0/24
+        /// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         /// </summary>
         [Input("cidr", required: true)]
         public Input<string> Cidr { get; set; } = null!;
 
         /// <summary>
-        /// The datacenter to connect your cluster to.
+        /// [true] The datacenter to connect your cluster to.
         /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// The LAN to connect your cluster to.
+        /// [true] The LAN to connect your cluster to.
         /// </summary>
         [Input("lanId", required: true)]
         public Input<string> LanId { get; set; } = null!;

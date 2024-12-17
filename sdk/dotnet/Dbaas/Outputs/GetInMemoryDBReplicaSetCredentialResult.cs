@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class GetInMemoryDBReplicaSetCredentialResult
     {
         /// <summary>
-        /// The username for your Replicaset.
+        /// [string] The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
         /// </summary>
         public readonly string Username;
 

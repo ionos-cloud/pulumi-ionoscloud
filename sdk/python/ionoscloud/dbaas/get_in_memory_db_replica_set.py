@@ -68,11 +68,17 @@ class GetInMemoryDBReplicaSetResult:
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetInMemoryDBReplicaSetConnectionResult']:
+        """
+        [object] The network connection for your replica set. Only one connection is allowed. It includes:
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def credentials(self) -> Sequence['outputs.GetInMemoryDBReplicaSetCredentialResult']:
+        """
+        [object] Credentials for the InMemoryDB replicaset, only one type of password can be used since they are mutually exclusive. It includes:
+        """
         return pulumi.get(self, "credentials")
 
     @property
@@ -83,11 +89,17 @@ class GetInMemoryDBReplicaSetResult:
     @property
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> str:
+        """
+        [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
+        """
         return pulumi.get(self, "dns_name")
 
     @property
     @pulumi.getter(name="evictionPolicy")
     def eviction_policy(self) -> str:
+        """
+        [string] The eviction policy for the replica set, possible values are:
+        """
         return pulumi.get(self, "eviction_policy")
 
     @property
@@ -103,26 +115,45 @@ class GetInMemoryDBReplicaSetResult:
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetInMemoryDBReplicaSetMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur. It includes:
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> str:
+        """
+        [string] Specifies How and If data is persisted, possible values are:
+        * `None` - Data is inMemory only and will not be persisted. Useful for cache only applications.
+        * `AOF` - (Append Only File) AOF persistence logs every write operation received by the server. These operations can then be replayed again at server startup, reconstructing the original dataset. Commands are logged using the same format as the InMemoryDB protocol itself.
+        * `RDB` - RDB persistence performs snapshots of the current in memory state.
+        * `RDB_AOF` - Both, RDB and AOF persistence are enabled.
+        """
         return pulumi.get(self, "persistence_mode")
 
     @property
     @pulumi.getter
     def replicas(self) -> int:
+        """
+        [int] The total number of replicas in the replica set (one active and n-1 passive). In case of a standalone instance, the value is 1. In all other cases, the value is > 1. The replicas will not be available as read replicas, they are only standby for a failure of the active instance.
+        """
         return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetInMemoryDBReplicaSetResourceResult']:
+        """
+        [object] The resources of the individual replicas. It includes:
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        [string] The InMemoryDB version of your replica set.
+        """
         return pulumi.get(self, "version")
 
 
@@ -151,7 +182,34 @@ def get_in_memory_db_replica_set(display_name: Optional[str] = None,
                                  location: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInMemoryDBReplicaSetResult:
     """
-    Use this data source to access information about an existing resource.
+    The `dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+
+    ## Example Usage
+
+    ### By id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_in_memory_db_replica_set(id="example-id",
+        location="es/vit")
+    ```
+
+    ### By display_name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_in_memory_db_replica_set(display_name="example-id",
+        location="us/las")
+    ```
+
+
+    :param str display_name: The display name of the InMemoryDB Replica Set.
+    :param str id: The ID of the InMemoryDB Replica Set.
+    :param str location: The location of the InMemoryDB Replica Set.
+           
+           > **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
@@ -178,7 +236,34 @@ def get_in_memory_db_replica_set_output(display_name: Optional[pulumi.Input[Opti
                                         location: Optional[pulumi.Input[str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInMemoryDBReplicaSetResult]:
     """
-    Use this data source to access information about an existing resource.
+    The `dbaas.InMemoryDBReplicaSet` data source can be used to retrieve information about an existing InMemoryDB Replica Set.
+
+    ## Example Usage
+
+    ### By id
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_in_memory_db_replica_set(id="example-id",
+        location="es/vit")
+    ```
+
+    ### By display_name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_in_memory_db_replica_set(display_name="example-id",
+        location="us/las")
+    ```
+
+
+    :param str display_name: The display name of the InMemoryDB Replica Set.
+    :param str id: The ID of the InMemoryDB Replica Set.
+    :param str location: The location of the InMemoryDB Replica Set.
+           
+           > **Note:** Either `id` or `display_name` must be provided. If none, or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name

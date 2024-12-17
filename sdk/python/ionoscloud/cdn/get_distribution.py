@@ -56,11 +56,17 @@ class GetDistributionResult:
     @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> str:
+        """
+        The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+        """
         return pulumi.get(self, "certificate_id")
 
     @property
     @pulumi.getter
     def domain(self) -> Optional[str]:
+        """
+        The domain of the distribution.
+        """
         return pulumi.get(self, "domain")
 
     @property
@@ -76,21 +82,33 @@ class GetDistributionResult:
     @property
     @pulumi.getter(name="publicEndpointV4")
     def public_endpoint_v4(self) -> str:
+        """
+        IP of the distribution, it has to be included on the domain DNS Zone as A record.
+        """
         return pulumi.get(self, "public_endpoint_v4")
 
     @property
     @pulumi.getter(name="publicEndpointV6")
     def public_endpoint_v6(self) -> str:
+        """
+        IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
+        """
         return pulumi.get(self, "public_endpoint_v6")
 
     @property
     @pulumi.getter(name="resourceUrn")
     def resource_urn(self) -> str:
+        """
+        Unique resource identifier.
+        """
         return pulumi.get(self, "resource_urn")
 
     @property
     @pulumi.getter(name="routingRules")
     def routing_rules(self) -> Sequence['outputs.GetDistributionRoutingRuleResult']:
+        """
+        The routing rules for the distribution.
+        """
         return pulumi.get(self, "routing_rules")
 
 
@@ -115,7 +133,36 @@ def get_distribution(domain: Optional[str] = None,
                      partial_match: Optional[bool] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDistributionResult:
     """
-    Use this data source to access information about an existing resource.
+    The Distribution data source can be used to search for and return an existing Distributions.
+    You can provide a string for the domain parameter which will be compared with provisioned Distributions.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique domains.
+
+    ## Example Usage
+
+    ### By Domain
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(domain="example.com")
+    ```
+
+    ### By Domain with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(domain="example",
+        partial_match=True)
+    ```
+
+
+    :param str domain: Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
+    :param str id: ID of the distribution you want to search for.
+    :param bool partial_match: Whether partial matching is allowed or not when using domain argument. Default value is false.
+           
+           Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['domain'] = domain
@@ -138,7 +185,36 @@ def get_distribution_output(domain: Optional[pulumi.Input[Optional[str]]] = None
                             partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDistributionResult]:
     """
-    Use this data source to access information about an existing resource.
+    The Distribution data source can be used to search for and return an existing Distributions.
+    You can provide a string for the domain parameter which will be compared with provisioned Distributions.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique domains.
+
+    ## Example Usage
+
+    ### By Domain
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(domain="example.com")
+    ```
+
+    ### By Domain with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.cdn.get_distribution(domain="example",
+        partial_match=True)
+    ```
+
+
+    :param str domain: Domain of an existing distribution that you want to search for. Search by domain is case-insensitive. The whole resource domain is required if `partial_match` parameter is not set to true.
+    :param str id: ID of the distribution you want to search for.
+    :param bool partial_match: Whether partial matching is allowed or not when using domain argument. Default value is false.
+           
+           Either `domain` or `id` must be provided. If none, or both of `domain` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['domain'] = domain

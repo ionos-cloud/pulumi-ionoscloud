@@ -12,17 +12,113 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **LAN** on IonosCloud.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleCrossconnect, err := compute.NewCrossconnect(ctx, "exampleCrossconnect", &compute.CrossconnectArgs{
+//				Description: pulumi.String("Cross Connect Description"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(false),
+//				Pcc:          exampleCrossconnect.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With IPv6 Enabled
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//				DatacenterId:  exampleDatacenter.ID(),
+//				Public:        pulumi.Bool(true),
+//				Ipv6CidrBlock: pulumi.String("AUTO"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Important Notes
+//
+// - Please note that only LANs datacenters found in the same physical location can be connected through a Cross-connect
+// - A LAN cannot be a part of two Cross-connects
+//
+// ## Import
+//
+// Resource Lan can be imported using the `resource id`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
+// ```
 type Lan struct {
 	pulumi.CustomResourceState
 
-	DatacenterId pulumi.StringOutput      `pulumi:"datacenterId"`
-	IpFailovers  LanIpFailoverArrayOutput `pulumi:"ipFailovers"`
-	// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-	// explicitly supplied.
-	Ipv6CidrBlock pulumi.StringOutput    `pulumi:"ipv6CidrBlock"`
-	Name          pulumi.StringOutput    `pulumi:"name"`
-	Pcc           pulumi.StringPtrOutput `pulumi:"pcc"`
-	Public        pulumi.BoolPtrOutput   `pulumi:"public"`
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	// IP failover configurations for lan
+	IpFailovers LanIpFailoverArrayOutput `pulumi:"ipFailovers"`
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
+	// [string] The name of the LAN.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	Pcc pulumi.StringPtrOutput `pulumi:"pcc"`
+	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
+	Public pulumi.BoolPtrOutput `pulumi:"public"`
 }
 
 // NewLan registers a new resource with the given unique name, arguments, and options.
@@ -58,25 +154,33 @@ func GetLan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Lan resources.
 type lanState struct {
-	DatacenterId *string         `pulumi:"datacenterId"`
-	IpFailovers  []LanIpFailover `pulumi:"ipFailovers"`
-	// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-	// explicitly supplied.
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId *string `pulumi:"datacenterId"`
+	// IP failover configurations for lan
+	IpFailovers []LanIpFailover `pulumi:"ipFailovers"`
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
-	Name          *string `pulumi:"name"`
-	Pcc           *string `pulumi:"pcc"`
-	Public        *bool   `pulumi:"public"`
+	// [string] The name of the LAN.
+	Name *string `pulumi:"name"`
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	Pcc *string `pulumi:"pcc"`
+	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
+	Public *bool `pulumi:"public"`
 }
 
 type LanState struct {
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
-	IpFailovers  LanIpFailoverArrayInput
-	// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-	// explicitly supplied.
+	// IP failover configurations for lan
+	IpFailovers LanIpFailoverArrayInput
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Pcc           pulumi.StringPtrInput
-	Public        pulumi.BoolPtrInput
+	// [string] The name of the LAN.
+	Name pulumi.StringPtrInput
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	Pcc pulumi.StringPtrInput
+	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
+	Public pulumi.BoolPtrInput
 }
 
 func (LanState) ElementType() reflect.Type {
@@ -84,26 +188,34 @@ func (LanState) ElementType() reflect.Type {
 }
 
 type lanArgs struct {
-	DatacenterId string          `pulumi:"datacenterId"`
-	IpFailovers  []LanIpFailover `pulumi:"ipFailovers"`
-	// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-	// explicitly supplied.
+	// [string] The ID of a Virtual Data Center.
+	DatacenterId string `pulumi:"datacenterId"`
+	// IP failover configurations for lan
+	IpFailovers []LanIpFailover `pulumi:"ipFailovers"`
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
-	Name          *string `pulumi:"name"`
-	Pcc           *string `pulumi:"pcc"`
-	Public        *bool   `pulumi:"public"`
+	// [string] The name of the LAN.
+	Name *string `pulumi:"name"`
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	Pcc *string `pulumi:"pcc"`
+	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
+	Public *bool `pulumi:"public"`
 }
 
 // The set of arguments for constructing a Lan resource.
 type LanArgs struct {
+	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	IpFailovers  LanIpFailoverArrayInput
-	// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-	// explicitly supplied.
+	// IP failover configurations for lan
+	IpFailovers LanIpFailoverArrayInput
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock pulumi.StringPtrInput
-	Name          pulumi.StringPtrInput
-	Pcc           pulumi.StringPtrInput
-	Public        pulumi.BoolPtrInput
+	// [string] The name of the LAN.
+	Name pulumi.StringPtrInput
+	// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
+	Pcc pulumi.StringPtrInput
+	// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
+	Public pulumi.BoolPtrInput
 }
 
 func (LanArgs) ElementType() reflect.Type {
@@ -193,28 +305,32 @@ func (o LanOutput) ToLanOutputWithContext(ctx context.Context) LanOutput {
 	return o
 }
 
+// [string] The ID of a Virtual Data Center.
 func (o LanOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
+// IP failover configurations for lan
 func (o LanOutput) IpFailovers() LanIpFailoverArrayOutput {
 	return o.ApplyT(func(v *Lan) LanIpFailoverArrayOutput { return v.IpFailovers }).(LanIpFailoverArrayOutput)
 }
 
-// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
-// explicitly supplied.
+// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 func (o LanOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringOutput { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }
 
+// [string] The name of the LAN.
 func (o LanOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [String] The unique id of a `compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
 func (o LanOutput) Pcc() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Lan) pulumi.StringPtrOutput { return v.Pcc }).(pulumi.StringPtrOutput)
 }
 
+// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
 func (o LanOutput) Public() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Lan) pulumi.BoolPtrOutput { return v.Public }).(pulumi.BoolPtrOutput)
 }

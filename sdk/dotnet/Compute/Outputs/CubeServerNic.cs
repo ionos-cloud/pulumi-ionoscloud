@@ -33,6 +33,9 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly ImmutableArray<string> Ipv6Ips;
         public readonly int Lan;
         public readonly string? Mac;
+        /// <summary>
+        /// [string] The name of the server.
+        /// </summary>
         public readonly string? Name;
         public readonly int? PciSlot;
 

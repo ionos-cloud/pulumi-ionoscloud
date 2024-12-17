@@ -65,6 +65,9 @@ class GetBalancerResult:
     @property
     @pulumi.getter(name="centralLogging")
     def central_logging(self) -> bool:
+        """
+        Turn logging on and off for this product. Default value is 'false'.
+        """
         return pulumi.get(self, "central_logging")
 
     @property
@@ -75,26 +78,41 @@ class GetBalancerResult:
     @property
     @pulumi.getter
     def flowlogs(self) -> Sequence['outputs.GetBalancerFlowlogResult']:
+        """
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        """
         return pulumi.get(self, "flowlogs")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        Id of the application load balancer.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def ips(self) -> Sequence[str]:
+        """
+        Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
+        """
         return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter(name="lbPrivateIps")
     def lb_private_ips(self) -> Sequence[str]:
+        """
+        Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
+        """
         return pulumi.get(self, "lb_private_ips")
 
     @property
     @pulumi.getter(name="listenerLan")
     def listener_lan(self) -> int:
+        """
+        ID of the listening (inbound) LAN.
+        """
         return pulumi.get(self, "listener_lan")
 
     @property
@@ -105,6 +123,9 @@ class GetBalancerResult:
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Specifies the name of the flow log.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -115,6 +136,9 @@ class GetBalancerResult:
     @property
     @pulumi.getter(name="targetLan")
     def target_lan(self) -> int:
+        """
+        ID of the balanced private target LAN (outbound).
+        """
         return pulumi.get(self, "target_lan")
 
 
@@ -143,7 +167,39 @@ def get_balancer(datacenter_id: Optional[str] = None,
                  partial_match: Optional[bool] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBalancerResult:
     """
-    Use this data source to access information about an existing resource.
+    The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.
+    You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="ALB name")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="name",
+        partial_match=True)
+    ```
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the application load balancer you want to search for.
+    :param str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id
@@ -171,7 +227,39 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                         partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBalancerResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.
+    You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search and make sure that your resources have unique names.
+
+    ## Example Usage
+
+    ### By Name
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="ALB name")
+    ```
+
+    ### By Name with Partial Match
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+        name="name",
+        partial_match=True)
+    ```
+
+
+    :param str datacenter_id: Datacenter's UUID.
+    :param str id: ID of the application load balancer you want to search for.
+    :param str name: Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+    :param bool partial_match: Whether partial matching is allowed or not when using name argument. Default value is false.
+           
+           `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['datacenterId'] = datacenter_id

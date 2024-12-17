@@ -14,7 +14,9 @@ namespace Pulumi.Ionoscloud.Creg.Outputs
     public sealed class RegistryFeatures
     {
         /// <summary>
-        /// Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+        /// [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
+        /// 
+        /// &gt; **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
         /// </summary>
         public readonly bool? VulnerabilityScanning;
 
