@@ -58,13 +58,16 @@ class GetTopicResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The id of the Kafka Cluster that the topic belongs to.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
     def id(self) -> str:
         """
-        UUID of the Kafka Cluster.
+        UUID of the Kafka Cluster Topic.
         """
         return pulumi.get(self, "id")
 
@@ -77,13 +80,16 @@ class GetTopicResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the Kafka Cluster.
+        The name of the Kafka Cluster Topic.
         """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="numberOfPartitions")
     def number_of_partitions(self) -> int:
+        """
+        The number of partitions of the topic. Partitions allow for parallel processing of messages.
+        """
         return pulumi.get(self, "number_of_partitions")
 
     @property
@@ -94,16 +100,28 @@ class GetTopicResult:
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> int:
+        """
+        The number of replicas of the topic. The replication factor determines how many copies of the
+        topic are stored on different brokers.
+        """
         return pulumi.get(self, "replication_factor")
 
     @property
     @pulumi.getter(name="retentionTime")
     def retention_time(self) -> int:
+        """
+        This configuration controls the maximum time we will retain a log before we will discard old log
+        segments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time
+        limit is applied.
+        """
         return pulumi.get(self, "retention_time")
 
     @property
     @pulumi.getter(name="segmentBytes")
     def segment_bytes(self) -> int:
+        """
+        This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.
+        """
         return pulumi.get(self, "segment_bytes")
 
 
@@ -131,17 +149,19 @@ def get_topic(cluster_id: Optional[str] = None,
               partial_match: Optional[bool] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTopicResult:
     """
-    The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-    You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+    The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+    You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
 
 
-    :param str id: ID of an existing Kafka Cluster that you want to search for.
-    :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-    :param str name: Name of an existing Kafka Cluster that you want to search for.
+    :param str cluster_id: ID of the Kafka Cluster that the topic belongs to.
+    :param str id: ID of an existing Kafka Cluster Topic that you want to search for.
+    :param str location: The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+           Cluster. Possible values: `de/fra`, `de/txl`
+    :param str name: Name of an existing Kafka Cluster Topic that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -169,17 +189,19 @@ def get_topic_output(cluster_id: Optional[pulumi.Input[str]] = None,
                      partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTopicResult]:
     """
-    The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
-    You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
+    The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.
+    You can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
 
 
-    :param str id: ID of an existing Kafka Cluster that you want to search for.
-    :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-    :param str name: Name of an existing Kafka Cluster that you want to search for.
+    :param str cluster_id: ID of the Kafka Cluster that the topic belongs to.
+    :param str id: ID of an existing Kafka Cluster Topic that you want to search for.
+    :param str location: The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka
+           Cluster. Possible values: `de/fra`, `de/txl`
+    :param str name: Name of an existing Kafka Cluster Topic that you want to search for.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

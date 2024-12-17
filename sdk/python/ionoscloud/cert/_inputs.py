@@ -25,11 +25,11 @@ if not MYPY:
     class AutoCertificateProviderExternalAccountBindingArgsDict(TypedDict):
         key_id: pulumi.Input[str]
         """
-        The key ID of the external account binding
+        [string] The key ID of the external account binding.
         """
         key_secret: pulumi.Input[str]
         """
-        The secret of the external account binding
+        [string] The key secret of the external account binding
         """
 elif False:
     AutoCertificateProviderExternalAccountBindingArgsDict: TypeAlias = Mapping[str, Any]
@@ -40,8 +40,8 @@ class AutoCertificateProviderExternalAccountBindingArgs:
                  key_id: pulumi.Input[str],
                  key_secret: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] key_id: The key ID of the external account binding
-        :param pulumi.Input[str] key_secret: The secret of the external account binding
+        :param pulumi.Input[str] key_id: [string] The key ID of the external account binding.
+        :param pulumi.Input[str] key_secret: [string] The key secret of the external account binding
         """
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "key_secret", key_secret)
@@ -50,7 +50,7 @@ class AutoCertificateProviderExternalAccountBindingArgs:
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Input[str]:
         """
-        The key ID of the external account binding
+        [string] The key ID of the external account binding.
         """
         return pulumi.get(self, "key_id")
 
@@ -62,7 +62,7 @@ class AutoCertificateProviderExternalAccountBindingArgs:
     @pulumi.getter(name="keySecret")
     def key_secret(self) -> pulumi.Input[str]:
         """
-        The secret of the external account binding
+        [string] The key secret of the external account binding
         """
         return pulumi.get(self, "key_secret")
 

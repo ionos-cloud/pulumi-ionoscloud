@@ -1458,12 +1458,12 @@
             "properties": {
                 "keyId": {
                     "type": "string",
-                    "description": "The key ID of the external account binding\n",
+                    "description": "[string] The key ID of the external account binding.\n",
                     "willReplaceOnChanges": true
                 },
                 "keySecret": {
                     "type": "string",
-                    "description": "The secret of the external account binding\n",
+                    "description": "[string] The key secret of the external account binding\n",
                     "secret": true,
                     "willReplaceOnChanges": true
                 }
@@ -1478,7 +1478,7 @@
             "properties": {
                 "keyId": {
                     "type": "string",
-                    "description": "The key ID of the external account binding\n"
+                    "description": "[string] The key ID of the external account binding.\n"
                 }
             },
             "type": "object",
@@ -4345,15 +4345,15 @@
             "properties": {
                 "cidr": {
                     "type": "string",
-                    "description": "The IP and subnet for your cluster.\n"
+                    "description": "[true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).\n"
                 },
                 "datacenterId": {
                     "type": "string",
-                    "description": "The datacenter to connect your cluster to.\n"
+                    "description": "[true] The datacenter to connect your cluster to.\n"
                 },
                 "lanId": {
                     "type": "string",
-                    "description": "The numeric LAN ID to connect your cluster to.\n"
+                    "description": "[true] The numeric LAN ID to connect your cluster to.\n"
                 }
             },
             "type": "object",
@@ -4367,12 +4367,12 @@
             "properties": {
                 "password": {
                     "type": "string",
-                    "description": "The password for a MariaDB user.\n",
+                    "description": "[string] The password for a MariaDB user.\n",
                     "secret": true
                 },
                 "username": {
                     "type": "string",
-                    "description": "The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').\n"
+                    "description": "[string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').\n"
                 }
             },
             "type": "object",
@@ -4385,11 +4385,11 @@
             "properties": {
                 "dayOfTheWeek": {
                     "type": "string",
-                    "description": "The name of the week day.\n"
+                    "description": "[string] The name of the week day.\n"
                 },
                 "time": {
                     "type": "string",
-                    "description": "Start of the maintenance window in UTC time.\n"
+                    "description": "[string] Start of the maintenance window in UTC time.\n"
                 }
             },
             "type": "object",
@@ -4682,15 +4682,15 @@
             "properties": {
                 "cidr": {
                     "type": "string",
-                    "description": "The IP and subnet for your cluster.\n"
+                    "description": "[string] The IP and subnet for your cluster.\n"
                 },
                 "datacenterId": {
                     "type": "string",
-                    "description": "The datacenter to connect your cluster to.\n"
+                    "description": "[string] The datacenter to connect your cluster to.\n"
                 },
                 "lanId": {
                     "type": "string",
-                    "description": "The numeric LAN ID to connect your cluster to.\n"
+                    "description": "[string] The LAN to connect your cluster to.\n"
                 }
             },
             "type": "object",
@@ -4709,11 +4709,11 @@
             "properties": {
                 "dayOfTheWeek": {
                     "type": "string",
-                    "description": "The name of the week day.\n"
+                    "description": "[string] The name of the week day.\n"
                 },
                 "time": {
                     "type": "string",
-                    "description": "Start of the maintenance window in UTC time.\n"
+                    "description": "[string] Start of the maintenance window in UTC time.\n"
                 }
             },
             "type": "object",
@@ -8664,37 +8664,38 @@
             }
         },
         "ionoscloud:cert/autoCertificate:AutoCertificate": {
+            "description": "Manages a **CM AutoCertificate**. \n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst exampleAutoCertificateProvider = new ionoscloud.cert.AutoCertificateProvider(\"exampleAutoCertificateProvider\", {\n    email: \"user@example.com\",\n    location: \"de/fra\",\n    server: \"https://acme-v02.api.letsencrypt.org/directory\",\n    externalAccountBinding: {\n        keyId: \"some-key-id\",\n        keySecret: \"secret\",\n    },\n});\nconst exampleAutoCertificate = new ionoscloud.cert.AutoCertificate(\"exampleAutoCertificate\", {\n    providerId: exampleAutoCertificateProvider.id,\n    commonName: \"www.example.com\",\n    location: exampleAutoCertificateProvider.location,\n    keyAlgorithm: \"rsa4096\",\n    subjectAlternativeNames: [\"app.example.com\"],\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample_auto_certificate_provider = ionoscloud.cert.AutoCertificateProvider(\"exampleAutoCertificateProvider\",\n    email=\"user@example.com\",\n    location=\"de/fra\",\n    server=\"https://acme-v02.api.letsencrypt.org/directory\",\n    external_account_binding={\n        \"key_id\": \"some-key-id\",\n        \"key_secret\": \"secret\",\n    })\nexample_auto_certificate = ionoscloud.cert.AutoCertificate(\"exampleAutoCertificate\",\n    provider_id=example_auto_certificate_provider.id,\n    common_name=\"www.example.com\",\n    location=example_auto_certificate_provider.location,\n    key_algorithm=\"rsa4096\",\n    subject_alternative_names=[\"app.example.com\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleAutoCertificateProvider = new Ionoscloud.Cert.AutoCertificateProvider(\"exampleAutoCertificateProvider\", new()\n    {\n        Email = \"user@example.com\",\n        Location = \"de/fra\",\n        Server = \"https://acme-v02.api.letsencrypt.org/directory\",\n        ExternalAccountBinding = new Ionoscloud.Cert.Inputs.AutoCertificateProviderExternalAccountBindingArgs\n        {\n            KeyId = \"some-key-id\",\n            KeySecret = \"secret\",\n        },\n    });\n\n    var exampleAutoCertificate = new Ionoscloud.Cert.AutoCertificate(\"exampleAutoCertificate\", new()\n    {\n        ProviderId = exampleAutoCertificateProvider.Id,\n        CommonName = \"www.example.com\",\n        Location = exampleAutoCertificateProvider.Location,\n        KeyAlgorithm = \"rsa4096\",\n        SubjectAlternativeNames = new[]\n        {\n            \"app.example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleAutoCertificateProvider, err := cert.NewAutoCertificateProvider(ctx, \"exampleAutoCertificateProvider\", \u0026cert.AutoCertificateProviderArgs{\n\t\t\tEmail:    pulumi.String(\"user@example.com\"),\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tServer:   pulumi.String(\"https://acme-v02.api.letsencrypt.org/directory\"),\n\t\t\tExternalAccountBinding: \u0026cert.AutoCertificateProviderExternalAccountBindingArgs{\n\t\t\t\tKeyId:     pulumi.String(\"some-key-id\"),\n\t\t\t\tKeySecret: pulumi.String(\"secret\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cert.NewAutoCertificate(ctx, \"exampleAutoCertificate\", \u0026cert.AutoCertificateArgs{\n\t\t\tProviderId:   exampleAutoCertificateProvider.ID(),\n\t\t\tCommonName:   pulumi.String(\"www.example.com\"),\n\t\t\tLocation:     exampleAutoCertificateProvider.Location,\n\t\t\tKeyAlgorithm: pulumi.String(\"rsa4096\"),\n\t\t\tSubjectAlternativeNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"app.example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.cert.AutoCertificateProvider;\nimport com.pulumi.ionoscloud.cert.AutoCertificateProviderArgs;\nimport com.pulumi.ionoscloud.cert.inputs.AutoCertificateProviderExternalAccountBindingArgs;\nimport com.pulumi.ionoscloud.cert.AutoCertificate;\nimport com.pulumi.ionoscloud.cert.AutoCertificateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleAutoCertificateProvider = new AutoCertificateProvider(\"exampleAutoCertificateProvider\", AutoCertificateProviderArgs.builder()\n            .email(\"user@example.com\")\n            .location(\"de/fra\")\n            .server(\"https://acme-v02.api.letsencrypt.org/directory\")\n            .externalAccountBinding(AutoCertificateProviderExternalAccountBindingArgs.builder()\n                .keyId(\"some-key-id\")\n                .keySecret(\"secret\")\n                .build())\n            .build());\n\n        var exampleAutoCertificate = new AutoCertificate(\"exampleAutoCertificate\", AutoCertificateArgs.builder()\n            .providerId(exampleAutoCertificateProvider.id())\n            .commonName(\"www.example.com\")\n            .location(exampleAutoCertificateProvider.location())\n            .keyAlgorithm(\"rsa4096\")\n            .subjectAlternativeNames(\"app.example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleAutoCertificateProvider:\n    type: ionoscloud:cert:AutoCertificateProvider\n    properties:\n      email: user@example.com\n      location: de/fra\n      server: https://acme-v02.api.letsencrypt.org/directory\n      externalAccountBinding:\n        keyId: some-key-id\n        keySecret: secret\n  exampleAutoCertificate:\n    type: ionoscloud:cert:AutoCertificate\n    properties:\n      providerId: ${exampleAutoCertificateProvider.id}\n      commonName: www.example.com\n      location: ${exampleAutoCertificateProvider.location}\n      keyAlgorithm: rsa4096\n      subjectAlternativeNames:\n        - app.example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `auto_certificate_id` and the `location`, separated by `:`, e.g.\n\n```sh\n$ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example {location}:{auto_certificate_id}\n```\n\n",
             "properties": {
                 "commonName": {
                     "type": "string",
-                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n"
+                    "description": "[string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.\n"
                 },
                 "keyAlgorithm": {
                     "type": "string",
-                    "description": "The key algorithm used to generate the certificate\n"
+                    "description": "[string] The key algorithm used to generate the certificate.\n"
                 },
                 "lastIssuedCertificateId": {
                     "type": "string",
-                    "description": "The ID of the last certificate that was issued\n"
+                    "description": "[string] The ID of the last certificate that was issued.\n"
                 },
                 "location": {
                     "type": "string",
-                    "description": "The location of the auto-certificate\n"
+                    "description": "[string] The location of the auto-certificate.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "A certificate name used for management purposes\n"
+                    "description": "[string] A certificate name used for management purposes.\n"
                 },
                 "providerId": {
                     "type": "string",
-                    "description": "The certificate provider used to issue the certificates\n"
+                    "description": "[string] The certificate provider used to issue the certificates.\n"
                 },
                 "subjectAlternativeNames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n"
+                    "description": "[list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.\n"
                 }
             },
             "required": [
@@ -8708,26 +8709,26 @@
             "inputProperties": {
                 "commonName": {
                     "type": "string",
-                    "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
+                    "description": "[string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.\n",
                     "willReplaceOnChanges": true
                 },
                 "keyAlgorithm": {
                     "type": "string",
-                    "description": "The key algorithm used to generate the certificate\n",
+                    "description": "[string] The key algorithm used to generate the certificate.\n",
                     "willReplaceOnChanges": true
                 },
                 "location": {
                     "type": "string",
-                    "description": "The location of the auto-certificate\n",
+                    "description": "[string] The location of the auto-certificate.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "A certificate name used for management purposes\n"
+                    "description": "[string] A certificate name used for management purposes.\n"
                 },
                 "providerId": {
                     "type": "string",
-                    "description": "The certificate provider used to issue the certificates\n",
+                    "description": "[string] The certificate provider used to issue the certificates.\n",
                     "willReplaceOnChanges": true
                 },
                 "subjectAlternativeNames": {
@@ -8735,7 +8736,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
+                    "description": "[list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8750,30 +8751,30 @@
                 "properties": {
                     "commonName": {
                         "type": "string",
-                        "description": "The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS\n",
+                        "description": "[string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.\n",
                         "willReplaceOnChanges": true
                     },
                     "keyAlgorithm": {
                         "type": "string",
-                        "description": "The key algorithm used to generate the certificate\n",
+                        "description": "[string] The key algorithm used to generate the certificate.\n",
                         "willReplaceOnChanges": true
                     },
                     "lastIssuedCertificateId": {
                         "type": "string",
-                        "description": "The ID of the last certificate that was issued\n"
+                        "description": "[string] The ID of the last certificate that was issued.\n"
                     },
                     "location": {
                         "type": "string",
-                        "description": "The location of the auto-certificate\n",
+                        "description": "[string] The location of the auto-certificate.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "A certificate name used for management purposes\n"
+                        "description": "[string] A certificate name used for management purposes.\n"
                     },
                     "providerId": {
                         "type": "string",
-                        "description": "The certificate provider used to issue the certificates\n",
+                        "description": "[string] The certificate provider used to issue the certificates.\n",
                         "willReplaceOnChanges": true
                     },
                     "subjectAlternativeNames": {
@@ -8781,7 +8782,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in\nIONOS Cloud DNS\n",
+                        "description": "[list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -8789,25 +8790,27 @@
             }
         },
         "ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider": {
+            "description": "Manages a **CM provider**. \n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = new ionoscloud.cert.AutoCertificateProvider(\"example\", {\n    email: \"user@example.com\",\n    externalAccountBinding: {\n        keyId: \"some-key-id\",\n        keySecret: \"secret\",\n    },\n    location: \"de/fra\",\n    server: \"https://acme-v02.api.letsencrypt.org/directory\",\n});\n```\n```python\nimport pulumi\nimport ionoscloud as ionoscloud\n\nexample = ionoscloud.cert.AutoCertificateProvider(\"example\",\n    email=\"user@example.com\",\n    external_account_binding={\n        \"key_id\": \"some-key-id\",\n        \"key_secret\": \"secret\",\n    },\n    location=\"de/fra\",\n    server=\"https://acme-v02.api.letsencrypt.org/directory\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Ionoscloud.Cert.AutoCertificateProvider(\"example\", new()\n    {\n        Email = \"user@example.com\",\n        ExternalAccountBinding = new Ionoscloud.Cert.Inputs.AutoCertificateProviderExternalAccountBindingArgs\n        {\n            KeyId = \"some-key-id\",\n            KeySecret = \"secret\",\n        },\n        Location = \"de/fra\",\n        Server = \"https://acme-v02.api.letsencrypt.org/directory\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cert.NewAutoCertificateProvider(ctx, \"example\", \u0026cert.AutoCertificateProviderArgs{\n\t\t\tEmail: pulumi.String(\"user@example.com\"),\n\t\t\tExternalAccountBinding: \u0026cert.AutoCertificateProviderExternalAccountBindingArgs{\n\t\t\t\tKeyId:     pulumi.String(\"some-key-id\"),\n\t\t\t\tKeySecret: pulumi.String(\"secret\"),\n\t\t\t},\n\t\t\tLocation: pulumi.String(\"de/fra\"),\n\t\t\tServer:   pulumi.String(\"https://acme-v02.api.letsencrypt.org/directory\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.cert.AutoCertificateProvider;\nimport com.pulumi.ionoscloud.cert.AutoCertificateProviderArgs;\nimport com.pulumi.ionoscloud.cert.inputs.AutoCertificateProviderExternalAccountBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AutoCertificateProvider(\"example\", AutoCertificateProviderArgs.builder()\n            .email(\"user@example.com\")\n            .externalAccountBinding(AutoCertificateProviderExternalAccountBindingArgs.builder()\n                .keyId(\"some-key-id\")\n                .keySecret(\"secret\")\n                .build())\n            .location(\"de/fra\")\n            .server(\"https://acme-v02.api.letsencrypt.org/directory\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: ionoscloud:cert:AutoCertificateProvider\n    properties:\n      email: user@example.com\n      externalAccountBinding:\n        keyId: some-key-id\n        keySecret: secret\n      location: de/fra\n      server: https://acme-v02.api.letsencrypt.org/directory\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.\n\n```sh\n$ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}\n```\n\n",
             "properties": {
                 "email": {
                     "type": "string",
-                    "description": "The email address of the certificate requester\n"
+                    "description": "[string] The email address of the certificate requester.\n"
                 },
                 "externalAccountBinding": {
-                    "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding"
+                    "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
+                    "description": "[list] External account binding details.\n"
                 },
                 "location": {
                     "type": "string",
-                    "description": "The location of the certificate provider\n"
+                    "description": "[string] The location of the provider.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the certificate provider\n"
+                    "description": "[string] The name of the certificate provider.\n"
                 },
                 "server": {
                     "type": "string",
-                    "description": "The URL of the certificate provider\n"
+                    "description": "[string] The URL of the certificate provider.\n"
                 }
             },
             "required": [
@@ -8819,25 +8822,26 @@
             "inputProperties": {
                 "email": {
                     "type": "string",
-                    "description": "The email address of the certificate requester\n",
+                    "description": "[string] The email address of the certificate requester.\n",
                     "willReplaceOnChanges": true
                 },
                 "externalAccountBinding": {
                     "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
+                    "description": "[list] External account binding details.\n",
                     "willReplaceOnChanges": true
                 },
                 "location": {
                     "type": "string",
-                    "description": "The location of the certificate provider\n",
+                    "description": "[string] The location of the provider.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the certificate provider\n"
+                    "description": "[string] The name of the certificate provider.\n"
                 },
                 "server": {
                     "type": "string",
-                    "description": "The URL of the certificate provider\n",
+                    "description": "[string] The URL of the certificate provider.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -8851,25 +8855,26 @@
                 "properties": {
                     "email": {
                         "type": "string",
-                        "description": "The email address of the certificate requester\n",
+                        "description": "[string] The email address of the certificate requester.\n",
                         "willReplaceOnChanges": true
                     },
                     "externalAccountBinding": {
                         "$ref": "#/types/ionoscloud:cert/AutoCertificateProviderExternalAccountBinding:AutoCertificateProviderExternalAccountBinding",
+                        "description": "[list] External account binding details.\n",
                         "willReplaceOnChanges": true
                     },
                     "location": {
                         "type": "string",
-                        "description": "The location of the certificate provider\n",
+                        "description": "[string] The location of the provider.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the certificate provider\n"
+                        "description": "[string] The name of the certificate provider.\n"
                     },
                     "server": {
                         "type": "string",
-                        "description": "The URL of the certificate provider\n",
+                        "description": "[string] The URL of the certificate provider.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -12616,6 +12621,7 @@
             }
         },
         "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster": {
+            "description": "Manages a **DBaaS MariaDB Cluster**. \n\n## Import\n\nResource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.\n\n```sh\n$ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}\n```\n\n",
             "properties": {
                 "connections": {
                     "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterConnections:MariaDBClusterConnections",
@@ -12623,7 +12629,7 @@
                 },
                 "cores": {
                     "type": "integer",
-                    "description": "The number of CPU cores per instance.\n"
+                    "description": "[int] The number of CPU cores per instance.\n"
                 },
                 "credentials": {
                     "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterCredentials:MariaDBClusterCredentials",
@@ -12631,35 +12637,35 @@
                 },
                 "displayName": {
                     "type": "string",
-                    "description": "The friendly name of your cluster.\n"
+                    "description": "[string] The friendly name of your cluster.\n"
                 },
                 "dnsName": {
                     "type": "string",
-                    "description": "The DNS name pointing to your cluster.\n"
+                    "description": "[string] The DNS name pointing to your cluster.\n\n\u003e **⚠ WARNING:** `Location` attribute will become required in the future.\n"
                 },
                 "instances": {
                     "type": "integer",
-                    "description": "The total number of instances in the cluster (one primary and n-1 secondary).\n"
+                    "description": "[int] The total number of instances in the cluster (one primary and n-1 secondary).\n"
                 },
                 "location": {
                     "type": "string",
-                    "description": "The cluster location\n"
+                    "description": "[string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: \"de/fra\", \"de/txl\", \"es/vit\", \"fr/par\", \"gb/lhr\", \"us/ewr\", \"us/las\", \"us/mci\". If not set, the endpoint will be the one corresponding to \"de/txl\".\n"
                 },
                 "maintenanceWindow": {
                     "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterMaintenanceWindow:MariaDBClusterMaintenanceWindow",
-                    "description": "A weekly 4 hour-long window, during which maintenance might occur.\n"
+                    "description": "(Computed) A weekly 4 hour-long window, during which maintenance might occur\n"
                 },
                 "mariadbVersion": {
                     "type": "string",
-                    "description": "The MariaDB version of your cluster.\n"
+                    "description": "[string] The MariaDB version of your cluster.\n"
                 },
                 "ram": {
                     "type": "integer",
-                    "description": "The amount of memory per instance in gigabytes (GB).\n"
+                    "description": "[int] The amount of memory per instance in gigabytes (GB).\n"
                 },
                 "storageSize": {
                     "type": "integer",
-                    "description": "The amount of storage per instance in gigabytes (GB).\n"
+                    "description": "[int] The amount of storage per instance in gigabytes (GB).\n"
                 }
             },
             "required": [
@@ -12681,7 +12687,7 @@
                 },
                 "cores": {
                     "type": "integer",
-                    "description": "The number of CPU cores per instance.\n"
+                    "description": "[int] The number of CPU cores per instance.\n"
                 },
                 "credentials": {
                     "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterCredentials:MariaDBClusterCredentials",
@@ -12689,32 +12695,32 @@
                 },
                 "displayName": {
                     "type": "string",
-                    "description": "The friendly name of your cluster.\n"
+                    "description": "[string] The friendly name of your cluster.\n"
                 },
                 "instances": {
                     "type": "integer",
-                    "description": "The total number of instances in the cluster (one primary and n-1 secondary).\n"
+                    "description": "[int] The total number of instances in the cluster (one primary and n-1 secondary).\n"
                 },
                 "location": {
                     "type": "string",
-                    "description": "The cluster location\n",
+                    "description": "[string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: \"de/fra\", \"de/txl\", \"es/vit\", \"fr/par\", \"gb/lhr\", \"us/ewr\", \"us/las\", \"us/mci\". If not set, the endpoint will be the one corresponding to \"de/txl\".\n",
                     "willReplaceOnChanges": true
                 },
                 "maintenanceWindow": {
                     "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterMaintenanceWindow:MariaDBClusterMaintenanceWindow",
-                    "description": "A weekly 4 hour-long window, during which maintenance might occur.\n"
+                    "description": "(Computed) A weekly 4 hour-long window, during which maintenance might occur\n"
                 },
                 "mariadbVersion": {
                     "type": "string",
-                    "description": "The MariaDB version of your cluster.\n"
+                    "description": "[string] The MariaDB version of your cluster.\n"
                 },
                 "ram": {
                     "type": "integer",
-                    "description": "The amount of memory per instance in gigabytes (GB).\n"
+                    "description": "[int] The amount of memory per instance in gigabytes (GB).\n"
                 },
                 "storageSize": {
                     "type": "integer",
-                    "description": "The amount of storage per instance in gigabytes (GB).\n"
+                    "description": "[int] The amount of storage per instance in gigabytes (GB).\n"
                 }
             },
             "requiredInputs": [
@@ -12736,7 +12742,7 @@
                     },
                     "cores": {
                         "type": "integer",
-                        "description": "The number of CPU cores per instance.\n"
+                        "description": "[int] The number of CPU cores per instance.\n"
                     },
                     "credentials": {
                         "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterCredentials:MariaDBClusterCredentials",
@@ -12744,36 +12750,36 @@
                     },
                     "displayName": {
                         "type": "string",
-                        "description": "The friendly name of your cluster.\n"
+                        "description": "[string] The friendly name of your cluster.\n"
                     },
                     "dnsName": {
                         "type": "string",
-                        "description": "The DNS name pointing to your cluster.\n"
+                        "description": "[string] The DNS name pointing to your cluster.\n\n\u003e **⚠ WARNING:** `Location` attribute will become required in the future.\n"
                     },
                     "instances": {
                         "type": "integer",
-                        "description": "The total number of instances in the cluster (one primary and n-1 secondary).\n"
+                        "description": "[int] The total number of instances in the cluster (one primary and n-1 secondary).\n"
                     },
                     "location": {
                         "type": "string",
-                        "description": "The cluster location\n",
+                        "description": "[string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: \"de/fra\", \"de/txl\", \"es/vit\", \"fr/par\", \"gb/lhr\", \"us/ewr\", \"us/las\", \"us/mci\". If not set, the endpoint will be the one corresponding to \"de/txl\".\n",
                         "willReplaceOnChanges": true
                     },
                     "maintenanceWindow": {
                         "$ref": "#/types/ionoscloud:dbaas/MariaDBClusterMaintenanceWindow:MariaDBClusterMaintenanceWindow",
-                        "description": "A weekly 4 hour-long window, during which maintenance might occur.\n"
+                        "description": "(Computed) A weekly 4 hour-long window, during which maintenance might occur\n"
                     },
                     "mariadbVersion": {
                         "type": "string",
-                        "description": "The MariaDB version of your cluster.\n"
+                        "description": "[string] The MariaDB version of your cluster.\n"
                     },
                     "ram": {
                         "type": "integer",
-                        "description": "The amount of memory per instance in gigabytes (GB).\n"
+                        "description": "[int] The amount of memory per instance in gigabytes (GB).\n"
                     },
                     "storageSize": {
                         "type": "integer",
-                        "description": "The amount of storage per instance in gigabytes (GB).\n"
+                        "description": "[int] The amount of storage per instance in gigabytes (GB).\n"
                     }
                 },
                 "type": "object"
@@ -16618,17 +16624,21 @@
             }
         },
         "ionoscloud:cert/getAutoCertificate:getAutoCertificate": {
+            "description": "The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.\nYou can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAutoCertificate.\n",
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] ID of the auto-certificate you want to search for.\n\nEither `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.\n"
                     },
                     "location": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The location of the auto-certificate.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] Name of an existing auto-certificate that you want to search for.\n"
                     }
                 },
                 "type": "object",
@@ -16640,16 +16650,19 @@
                 "description": "A collection of values returned by getAutoCertificate.\n",
                 "properties": {
                     "commonName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.\n"
                     },
                     "id": {
                         "type": "string"
                     },
                     "keyAlgorithm": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The key algorithm used to generate the certificate.\n"
                     },
                     "lastIssuedCertificateId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The ID of the last certificate that was issued.\n"
                     },
                     "location": {
                         "type": "string"
@@ -16664,7 +16677,8 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "[list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.\n"
                     }
                 },
                 "type": "object",
@@ -16679,17 +16693,21 @@
             }
         },
         "ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider": {
+            "description": "The **CM Provider data source** can be used to search for and return an existing certificate manager provider.\nYou can provide a string for either id or name parameters which will be compared with provisioned providers.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getAutoCertificateProvider.\n",
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] ID of the provider you want to search for.\n\nEither `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.\n"
                     },
                     "location": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The location of the provider.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] Name of an existing provider that you want to search for.\n"
                     }
                 },
                 "type": "object",
@@ -16701,13 +16719,15 @@
                 "description": "A collection of values returned by getAutoCertificateProvider.\n",
                 "properties": {
                     "email": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The email address of the certificate requester.\n"
                     },
                     "externalAccountBindings": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/ionoscloud:cert/getAutoCertificateProviderExternalAccountBinding:getAutoCertificateProviderExternalAccountBinding"
-                        }
+                        },
+                        "description": "[list]\n"
                     },
                     "id": {
                         "type": "string"
@@ -16719,7 +16739,8 @@
                         "type": "string"
                     },
                     "server": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The URL of the certificate provider.\n"
                     }
                 },
                 "type": "object",
@@ -18742,17 +18763,21 @@
             }
         },
         "ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster": {
+            "description": "The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.\n\n## Example Usage\n\n### By Name\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ionoscloud from \"@pulumi/ionoscloud\";\n\nconst example = ionoscloud.dbaas.getMariaDBCluster({\n    displayName: \"MariaDB_cluster\",\n    location: \"de/txl\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ionoscloud as ionoscloud\n\nexample = ionoscloud.dbaas.get_maria_db_cluster(display_name=\"MariaDB_cluster\",\n    location=\"de/txl\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ionoscloud = Pulumi.Ionoscloud;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Ionoscloud.Dbaas.GetMariaDBCluster.Invoke(new()\n    {\n        DisplayName = \"MariaDB_cluster\",\n        Location = \"de/txl\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := dbaas.LookupMariaDBCluster(ctx, \u0026dbaas.LookupMariaDBClusterArgs{\n\t\t\tDisplayName: pulumi.StringRef(\"MariaDB_cluster\"),\n\t\t\tLocation:    pulumi.StringRef(\"de/txl\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ionoscloud.dbaas.DbaasFunctions;\nimport com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = DbaasFunctions.getMariaDBCluster(GetMariaDBClusterArgs.builder()\n            .displayName(\"MariaDB_cluster\")\n            .location(\"de/txl\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: ionoscloud:dbaas:getMariaDBCluster\n      arguments:\n        displayName: MariaDB_cluster\n        location: de/txl\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getMariaDBCluster.\n",
                 "properties": {
                     "displayName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] Display Name of an existing cluster that you want to search for.\n"
                     },
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] ID of the cluster you want to search for.\n"
                     },
                     "location": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The location of the cluster. Different service endpoints are used based on location, possible options are: \"de/fra\", \"de/txl\", \"es/vit\", \"fr/par\", \"gb/lhr\", \"us/ewr\", \"us/las\", \"us/mci\". If not set, the endpoint will be the one corresponding to \"de/txl\".\n\n\u003e **⚠ WARNING:** `Location` attribute will become required in the future.\n\nEither `display_name` or `id` must be provided. If none or both are provided, the datasource will return an error.\n"
                     }
                 },
                 "type": "object"
@@ -18764,22 +18789,27 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/ionoscloud:dbaas/getMariaDBClusterConnection:getMariaDBClusterConnection"
-                        }
+                        },
+                        "description": "The network connection for your cluster. Only one connection is allowed.\n"
                     },
                     "cores": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "[int] The number of CPU cores per instance.\n"
                     },
                     "displayName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The friendly name of your cluster.\n"
                     },
                     "dnsName": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The DNS name pointing to your cluster.\n"
                     },
                     "id": {
                         "type": "string"
                     },
                     "instances": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "[int] The total number of instances in the cluster (one primary and n-1 secondary).\n"
                     },
                     "location": {
                         "type": "string"
@@ -18788,16 +18818,20 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/ionoscloud:dbaas/getMariaDBClusterMaintenanceWindow:getMariaDBClusterMaintenanceWindow"
-                        }
+                        },
+                        "description": "A weekly 4 hour-long window, during which maintenance might occur.\n"
                     },
                     "mariadbVersion": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "[string] The MariaDB version of your cluster.\n"
                     },
                     "ram": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "[int] The amount of memory per instance in gigabytes (GB).\n"
                     },
                     "storageSize": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "[int] The amount of storage per instance in gigabytes (GB).\n"
                     }
                 },
                 "type": "object",
@@ -20820,25 +20854,26 @@
             }
         },
         "ionoscloud:kafka/getTopic:getTopic": {
-            "description": "The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.\nYou can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
+            "description": "The **Kafka topic data source** can be used to search for and return an existing Kafka Cluster Topic.\nYou can provide a string for the name parameter which will be compared with provisioned Kafka Cluster Topics.\nIf a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.\nWhen this happens, please refine your search string so that it is specific enough to return only one result.\n\n## Example Usage\n\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getTopic.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "ID of the Kafka Cluster that the topic belongs to.\n"
                     },
                     "id": {
                         "type": "string",
-                        "description": "ID of an existing Kafka Cluster that you want to search for.\n"
+                        "description": "ID of an existing Kafka Cluster Topic that you want to search for.\n"
                     },
                     "location": {
                         "type": "string",
-                        "description": "The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`\n",
+                        "description": "The location of the Kafka Cluster Topic. Must be the same as the location of the Kafka\nCluster. Possible values: `de/fra`, `de/txl`\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "Name of an existing Kafka Cluster that you want to search for.\n"
+                        "description": "Name of an existing Kafka Cluster Topic that you want to search for.\n"
                     },
                     "partialMatch": {
                         "type": "boolean"
@@ -20854,33 +20889,38 @@
                 "description": "A collection of values returned by getTopic.\n",
                 "properties": {
                     "clusterId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The id of the Kafka Cluster that the topic belongs to.\n"
                     },
                     "id": {
                         "type": "string",
-                        "description": "UUID of the Kafka Cluster.\n"
+                        "description": "UUID of the Kafka Cluster Topic.\n"
                     },
                     "location": {
                         "type": "string"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the Kafka Cluster.\n"
+                        "description": "The name of the Kafka Cluster Topic.\n"
                     },
                     "numberOfPartitions": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The number of partitions of the topic. Partitions allow for parallel processing of messages.\n"
                     },
                     "partialMatch": {
                         "type": "boolean"
                     },
                     "replicationFactor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "The number of replicas of the topic. The replication factor determines how many copies of the\ntopic are stored on different brokers.\n"
                     },
                     "retentionTime": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "This configuration controls the maximum time we will retain a log before we will discard old log\nsegments to free up space. This represents an SLA on how soon consumers must read their data. If set to -1, no time\nlimit is applied.\n"
                     },
                     "segmentBytes": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over retention.\n"
                     }
                 },
                 "type": "object",

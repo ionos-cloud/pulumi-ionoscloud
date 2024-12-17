@@ -853,11 +853,11 @@ func (o InMemoryDBReplicaSetResourcesPtrOutput) Storage() pulumi.IntPtrOutput {
 }
 
 type MariaDBClusterConnections struct {
-	// The IP and subnet for your cluster.
+	// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [true] The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// [true] The numeric LAN ID to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -873,11 +873,11 @@ type MariaDBClusterConnectionsInput interface {
 }
 
 type MariaDBClusterConnectionsArgs struct {
-	// The IP and subnet for your cluster.
+	// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [true] The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// [true] The numeric LAN ID to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -958,17 +958,17 @@ func (o MariaDBClusterConnectionsOutput) ToMariaDBClusterConnectionsPtrOutputWit
 	}).(MariaDBClusterConnectionsPtrOutput)
 }
 
-// The IP and subnet for your cluster.
+// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 func (o MariaDBClusterConnectionsOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterConnections) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [true] The datacenter to connect your cluster to.
 func (o MariaDBClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your cluster to.
+// [true] The numeric LAN ID to connect your cluster to.
 func (o MariaDBClusterConnectionsOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterConnections) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -997,7 +997,7 @@ func (o MariaDBClusterConnectionsPtrOutput) Elem() MariaDBClusterConnectionsOutp
 	}).(MariaDBClusterConnectionsOutput)
 }
 
-// The IP and subnet for your cluster.
+// [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
 func (o MariaDBClusterConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterConnections) *string {
 		if v == nil {
@@ -1007,7 +1007,7 @@ func (o MariaDBClusterConnectionsPtrOutput) Cidr() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [true] The datacenter to connect your cluster to.
 func (o MariaDBClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterConnections) *string {
 		if v == nil {
@@ -1017,7 +1017,7 @@ func (o MariaDBClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The numeric LAN ID to connect your cluster to.
+// [true] The numeric LAN ID to connect your cluster to.
 func (o MariaDBClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterConnections) *string {
 		if v == nil {
@@ -1028,9 +1028,9 @@ func (o MariaDBClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 }
 
 type MariaDBClusterCredentials struct {
-	// The password for a MariaDB user.
+	// [string] The password for a MariaDB user.
 	Password string `pulumi:"password"`
-	// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
 	Username string `pulumi:"username"`
 }
 
@@ -1046,9 +1046,9 @@ type MariaDBClusterCredentialsInput interface {
 }
 
 type MariaDBClusterCredentialsArgs struct {
-	// The password for a MariaDB user.
+	// [string] The password for a MariaDB user.
 	Password pulumi.StringInput `pulumi:"password"`
-	// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -1129,12 +1129,12 @@ func (o MariaDBClusterCredentialsOutput) ToMariaDBClusterCredentialsPtrOutputWit
 	}).(MariaDBClusterCredentialsPtrOutput)
 }
 
-// The password for a MariaDB user.
+// [string] The password for a MariaDB user.
 func (o MariaDBClusterCredentialsOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterCredentials) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
 func (o MariaDBClusterCredentialsOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterCredentials) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -1163,7 +1163,7 @@ func (o MariaDBClusterCredentialsPtrOutput) Elem() MariaDBClusterCredentialsOutp
 	}).(MariaDBClusterCredentialsOutput)
 }
 
-// The password for a MariaDB user.
+// [string] The password for a MariaDB user.
 func (o MariaDBClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterCredentials) *string {
 		if v == nil {
@@ -1173,7 +1173,7 @@ func (o MariaDBClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
 func (o MariaDBClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterCredentials) *string {
 		if v == nil {
@@ -1184,9 +1184,9 @@ func (o MariaDBClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type MariaDBClusterMaintenanceWindow struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time string `pulumi:"time"`
 }
 
@@ -1202,9 +1202,9 @@ type MariaDBClusterMaintenanceWindowInput interface {
 }
 
 type MariaDBClusterMaintenanceWindowArgs struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -1285,12 +1285,12 @@ func (o MariaDBClusterMaintenanceWindowOutput) ToMariaDBClusterMaintenanceWindow
 	}).(MariaDBClusterMaintenanceWindowPtrOutput)
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o MariaDBClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o MariaDBClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -1319,7 +1319,7 @@ func (o MariaDBClusterMaintenanceWindowPtrOutput) Elem() MariaDBClusterMaintenan
 	}).(MariaDBClusterMaintenanceWindowOutput)
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o MariaDBClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -1329,7 +1329,7 @@ func (o MariaDBClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o MariaDBClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterMaintenanceWindow) *string {
 		if v == nil {
@@ -3365,11 +3365,11 @@ func (o GetInMemoryDBReplicaSetResourceArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetMariaDBClusterConnection struct {
-	// The IP and subnet for your cluster.
+	// [string] The IP and subnet for your cluster.
 	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [string] The datacenter to connect your cluster to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// [string] The LAN to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -3385,11 +3385,11 @@ type GetMariaDBClusterConnectionInput interface {
 }
 
 type GetMariaDBClusterConnectionArgs struct {
-	// The IP and subnet for your cluster.
+	// [string] The IP and subnet for your cluster.
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [string] The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// [string] The LAN to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -3444,17 +3444,17 @@ func (o GetMariaDBClusterConnectionOutput) ToGetMariaDBClusterConnectionOutputWi
 	return o
 }
 
-// The IP and subnet for your cluster.
+// [string] The IP and subnet for your cluster.
 func (o GetMariaDBClusterConnectionOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [string] The datacenter to connect your cluster to.
 func (o GetMariaDBClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your cluster to.
+// [string] The LAN to connect your cluster to.
 func (o GetMariaDBClusterConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -3480,9 +3480,9 @@ func (o GetMariaDBClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMari
 }
 
 type GetMariaDBClusterMaintenanceWindow struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time string `pulumi:"time"`
 }
 
@@ -3498,9 +3498,9 @@ type GetMariaDBClusterMaintenanceWindowInput interface {
 }
 
 type GetMariaDBClusterMaintenanceWindowArgs struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -3555,12 +3555,12 @@ func (o GetMariaDBClusterMaintenanceWindowOutput) ToGetMariaDBClusterMaintenance
 	return o
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o GetMariaDBClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o GetMariaDBClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }

@@ -50,11 +50,17 @@ class GetAutoCertificateProviderResult:
     @property
     @pulumi.getter
     def email(self) -> str:
+        """
+        [string] The email address of the certificate requester.
+        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="externalAccountBindings")
     def external_account_bindings(self) -> Sequence['outputs.GetAutoCertificateProviderExternalAccountBindingResult']:
+        """
+        [list]
+        """
         return pulumi.get(self, "external_account_bindings")
 
     @property
@@ -75,6 +81,9 @@ class GetAutoCertificateProviderResult:
     @property
     @pulumi.getter
     def server(self) -> str:
+        """
+        [string] The URL of the certificate provider.
+        """
         return pulumi.get(self, "server")
 
 
@@ -97,7 +106,19 @@ def get_auto_certificate_provider(id: Optional[str] = None,
                                   name: Optional[str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoCertificateProviderResult:
     """
-    Use this data source to access information about an existing resource.
+    The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+    You can provide a string for either id or name parameters which will be compared with provisioned providers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: [string] ID of the provider you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str location: [string] The location of the provider.
+    :param str name: [string] Name of an existing provider that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -118,7 +139,19 @@ def get_auto_certificate_provider_output(id: Optional[pulumi.Input[Optional[str]
                                          name: Optional[pulumi.Input[Optional[str]]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateProviderResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+    You can provide a string for either id or name parameters which will be compared with provisioned providers.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: [string] ID of the provider you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str location: [string] The location of the provider.
+    :param str name: [string] Name of an existing provider that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

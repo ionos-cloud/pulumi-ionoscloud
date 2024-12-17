@@ -371,15 +371,15 @@ if not MYPY:
     class MariaDBClusterConnectionsArgsDict(TypedDict):
         cidr: pulumi.Input[str]
         """
-        The IP and subnet for your cluster.
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         datacenter_id: pulumi.Input[str]
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         lan_id: pulumi.Input[str]
         """
-        The numeric LAN ID to connect your cluster to.
+        [true] The numeric LAN ID to connect your cluster to.
         """
 elif False:
     MariaDBClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
@@ -391,9 +391,9 @@ class MariaDBClusterConnectionsArgs:
                  datacenter_id: pulumi.Input[str],
                  lan_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] cidr: The IP and subnet for your cluster.
-        :param pulumi.Input[str] datacenter_id: The datacenter to connect your cluster to.
-        :param pulumi.Input[str] lan_id: The numeric LAN ID to connect your cluster to.
+        :param pulumi.Input[str] cidr: [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
+        :param pulumi.Input[str] datacenter_id: [true] The datacenter to connect your cluster to.
+        :param pulumi.Input[str] lan_id: [true] The numeric LAN ID to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -403,7 +403,7 @@ class MariaDBClusterConnectionsArgs:
     @pulumi.getter
     def cidr(self) -> pulumi.Input[str]:
         """
-        The IP and subnet for your cluster.
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         return pulumi.get(self, "cidr")
 
@@ -415,7 +415,7 @@ class MariaDBClusterConnectionsArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -427,7 +427,7 @@ class MariaDBClusterConnectionsArgs:
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
         """
-        The numeric LAN ID to connect your cluster to.
+        [true] The numeric LAN ID to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -440,11 +440,11 @@ if not MYPY:
     class MariaDBClusterCredentialsArgsDict(TypedDict):
         password: pulumi.Input[str]
         """
-        The password for a MariaDB user.
+        [string] The password for a MariaDB user.
         """
         username: pulumi.Input[str]
         """
-        The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         """
 elif False:
     MariaDBClusterCredentialsArgsDict: TypeAlias = Mapping[str, Any]
@@ -455,8 +455,8 @@ class MariaDBClusterCredentialsArgs:
                  password: pulumi.Input[str],
                  username: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] password: The password for a MariaDB user.
-        :param pulumi.Input[str] username: The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        :param pulumi.Input[str] password: [string] The password for a MariaDB user.
+        :param pulumi.Input[str] username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -465,7 +465,7 @@ class MariaDBClusterCredentialsArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password for a MariaDB user.
+        [string] The password for a MariaDB user.
         """
         return pulumi.get(self, "password")
 
@@ -477,7 +477,7 @@ class MariaDBClusterCredentialsArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         """
         return pulumi.get(self, "username")
 
@@ -490,11 +490,11 @@ if not MYPY:
     class MariaDBClusterMaintenanceWindowArgsDict(TypedDict):
         day_of_the_week: pulumi.Input[str]
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         time: pulumi.Input[str]
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
 elif False:
     MariaDBClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
@@ -505,8 +505,8 @@ class MariaDBClusterMaintenanceWindowArgs:
                  day_of_the_week: pulumi.Input[str],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] day_of_the_week: The name of the week day.
-        :param pulumi.Input[str] time: Start of the maintenance window in UTC time.
+        :param pulumi.Input[str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[str] time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -515,7 +515,7 @@ class MariaDBClusterMaintenanceWindowArgs:
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> pulumi.Input[str]:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -527,7 +527,7 @@ class MariaDBClusterMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 

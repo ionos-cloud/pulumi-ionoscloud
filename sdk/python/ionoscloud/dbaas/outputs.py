@@ -313,9 +313,9 @@ class MariaDBClusterConnections(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for your cluster.
-        :param str datacenter_id: The datacenter to connect your cluster to.
-        :param str lan_id: The numeric LAN ID to connect your cluster to.
+        :param str cidr: [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
+        :param str datacenter_id: [true] The datacenter to connect your cluster to.
+        :param str lan_id: [true] The numeric LAN ID to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -325,7 +325,7 @@ class MariaDBClusterConnections(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for your cluster.
+        [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
         """
         return pulumi.get(self, "cidr")
 
@@ -333,7 +333,7 @@ class MariaDBClusterConnections(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to.
+        [true] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -341,7 +341,7 @@ class MariaDBClusterConnections(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The numeric LAN ID to connect your cluster to.
+        [true] The numeric LAN ID to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -352,8 +352,8 @@ class MariaDBClusterCredentials(dict):
                  password: str,
                  username: str):
         """
-        :param str password: The password for a MariaDB user.
-        :param str username: The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        :param str password: [string] The password for a MariaDB user.
+        :param str username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -362,7 +362,7 @@ class MariaDBClusterCredentials(dict):
     @pulumi.getter
     def password(self) -> str:
         """
-        The password for a MariaDB user.
+        [string] The password for a MariaDB user.
         """
         return pulumi.get(self, "password")
 
@@ -370,7 +370,7 @@ class MariaDBClusterCredentials(dict):
     @pulumi.getter
     def username(self) -> str:
         """
-        The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         """
         return pulumi.get(self, "username")
 
@@ -398,8 +398,8 @@ class MariaDBClusterMaintenanceWindow(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: The name of the week day.
-        :param str time: Start of the maintenance window in UTC time.
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -408,7 +408,7 @@ class MariaDBClusterMaintenanceWindow(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -416,7 +416,7 @@ class MariaDBClusterMaintenanceWindow(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 
@@ -1031,9 +1031,9 @@ class GetMariaDBClusterConnectionResult(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for your cluster.
-        :param str datacenter_id: The datacenter to connect your cluster to.
-        :param str lan_id: The numeric LAN ID to connect your cluster to.
+        :param str cidr: [string] The IP and subnet for your cluster.
+        :param str datacenter_id: [string] The datacenter to connect your cluster to.
+        :param str lan_id: [string] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -1043,7 +1043,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for your cluster.
+        [string] The IP and subnet for your cluster.
         """
         return pulumi.get(self, "cidr")
 
@@ -1051,7 +1051,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to.
+        [string] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -1059,7 +1059,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The numeric LAN ID to connect your cluster to.
+        [string] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -1070,8 +1070,8 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: The name of the week day.
-        :param str time: Start of the maintenance window in UTC time.
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -1080,7 +1080,7 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -1088,7 +1088,7 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 

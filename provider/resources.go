@@ -158,7 +158,7 @@ func Provider() tfbridge.ProviderInfo {
 		// match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "ionos-cloud",
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -206,7 +206,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_kafka_cluster_topic": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getTopic"),
-				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+				Docs: &tfbridge.DocInfo{Source: "kafka_topic.md"},
 			},
 			"ionoscloud_apigateway": {
 				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getApigateway"),
@@ -298,7 +298,8 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_user.md"},
 			},
 			"ionoscloud_mariadb_cluster": {
-				Tok: tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBCluster"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_cluster.md"},
 			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBReplicaSet"),
@@ -311,10 +312,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getNodePool"),
 			},
 			"ionoscloud_auto_certificate": {
-				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificate"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificate"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_auto_certificate.md"},
 			},
 			"ionoscloud_auto_certificate_provider": {
-				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificateProvider"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificateProvider"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_provider.md"},
 			},
 			"ionoscloud_certificate": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getCertificate"),
@@ -457,7 +460,8 @@ func Provider() tfbridge.ProviderInfo {
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_user.md"},
 			},
 			"ionoscloud_mariadb_cluster": {
-				Tok: tfbridge.MakeResource(mainPkg, dbaasModule, "MariaDBCluster"),
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MariaDBCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_cluster.md"},
 			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),
@@ -470,10 +474,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, k8sModule, "NodePool"),
 			},
 			"ionoscloud_auto_certificate": {
-				Tok: tfbridge.MakeResource(mainPkg, certModule, "AutoCertificate"),
+				Tok:  tfbridge.MakeResource(mainPkg, certModule, "AutoCertificate"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_auto_certificate.md"},
 			},
 			"ionoscloud_auto_certificate_provider": {
-				Tok: tfbridge.MakeResource(mainPkg, certModule, "AutoCertificateProvider"),
+				Tok:  tfbridge.MakeResource(mainPkg, certModule, "AutoCertificateProvider"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_provider.md"},
 			},
 			"ionoscloud_certificate": {
 				Tok:  tfbridge.MakeResource(mainPkg, certModule, "Certificate"),
@@ -519,8 +525,7 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
 			},
 			"ionoscloud_kafka_cluster": {
-				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Cluster"),
-				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+				Tok: tfbridge.MakeResource(mainPkg, kafkaModule, "Cluster"),
 			},
 			"ionoscloud_kafka_cluster_topic": {
 				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Topic"),
