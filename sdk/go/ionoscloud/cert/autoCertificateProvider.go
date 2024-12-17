@@ -12,17 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **CM provider**.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.NewAutoCertificateProvider(ctx, "example", &cert.AutoCertificateProviderArgs{
+//				Email: pulumi.String("user@example.com"),
+//				ExternalAccountBinding: &cert.AutoCertificateProviderExternalAccountBindingArgs{
+//					KeyId:     pulumi.String("some-key-id"),
+//					KeySecret: pulumi.String("secret"),
+//				},
+//				Location: pulumi.String("de/fra"),
+//				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
+//
+// ```sh
+// $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+// ```
 type AutoCertificateProvider struct {
 	pulumi.CustomResourceState
 
-	// The email address of the certificate requester
-	Email                  pulumi.StringOutput                                    `pulumi:"email"`
+	// [string] The email address of the certificate requester.
+	Email pulumi.StringOutput `pulumi:"email"`
+	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrOutput `pulumi:"externalAccountBinding"`
-	// The location of the certificate provider
+	// [string] The location of the provider.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// The name of the certificate provider
+	// [string] The name of the certificate provider.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The URL of the certificate provider
+	// [string] The URL of the certificate provider.
 	Server pulumi.StringOutput `pulumi:"server"`
 }
 
@@ -65,26 +107,28 @@ func GetAutoCertificateProvider(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AutoCertificateProvider resources.
 type autoCertificateProviderState struct {
-	// The email address of the certificate requester
-	Email                  *string                                        `pulumi:"email"`
+	// [string] The email address of the certificate requester.
+	Email *string `pulumi:"email"`
+	// [list] External account binding details.
 	ExternalAccountBinding *AutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBinding"`
-	// The location of the certificate provider
+	// [string] The location of the provider.
 	Location *string `pulumi:"location"`
-	// The name of the certificate provider
+	// [string] The name of the certificate provider.
 	Name *string `pulumi:"name"`
-	// The URL of the certificate provider
+	// [string] The URL of the certificate provider.
 	Server *string `pulumi:"server"`
 }
 
 type AutoCertificateProviderState struct {
-	// The email address of the certificate requester
-	Email                  pulumi.StringPtrInput
+	// [string] The email address of the certificate requester.
+	Email pulumi.StringPtrInput
+	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrInput
-	// The location of the certificate provider
+	// [string] The location of the provider.
 	Location pulumi.StringPtrInput
-	// The name of the certificate provider
+	// [string] The name of the certificate provider.
 	Name pulumi.StringPtrInput
-	// The URL of the certificate provider
+	// [string] The URL of the certificate provider.
 	Server pulumi.StringPtrInput
 }
 
@@ -93,27 +137,29 @@ func (AutoCertificateProviderState) ElementType() reflect.Type {
 }
 
 type autoCertificateProviderArgs struct {
-	// The email address of the certificate requester
-	Email                  string                                         `pulumi:"email"`
+	// [string] The email address of the certificate requester.
+	Email string `pulumi:"email"`
+	// [list] External account binding details.
 	ExternalAccountBinding *AutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBinding"`
-	// The location of the certificate provider
+	// [string] The location of the provider.
 	Location string `pulumi:"location"`
-	// The name of the certificate provider
+	// [string] The name of the certificate provider.
 	Name *string `pulumi:"name"`
-	// The URL of the certificate provider
+	// [string] The URL of the certificate provider.
 	Server string `pulumi:"server"`
 }
 
 // The set of arguments for constructing a AutoCertificateProvider resource.
 type AutoCertificateProviderArgs struct {
-	// The email address of the certificate requester
-	Email                  pulumi.StringInput
+	// [string] The email address of the certificate requester.
+	Email pulumi.StringInput
+	// [list] External account binding details.
 	ExternalAccountBinding AutoCertificateProviderExternalAccountBindingPtrInput
-	// The location of the certificate provider
+	// [string] The location of the provider.
 	Location pulumi.StringInput
-	// The name of the certificate provider
+	// [string] The name of the certificate provider.
 	Name pulumi.StringPtrInput
-	// The URL of the certificate provider
+	// [string] The URL of the certificate provider.
 	Server pulumi.StringInput
 }
 
@@ -204,28 +250,29 @@ func (o AutoCertificateProviderOutput) ToAutoCertificateProviderOutputWithContex
 	return o
 }
 
-// The email address of the certificate requester
+// [string] The email address of the certificate requester.
 func (o AutoCertificateProviderOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
+// [list] External account binding details.
 func (o AutoCertificateProviderOutput) ExternalAccountBinding() AutoCertificateProviderExternalAccountBindingPtrOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) AutoCertificateProviderExternalAccountBindingPtrOutput {
 		return v.ExternalAccountBinding
 	}).(AutoCertificateProviderExternalAccountBindingPtrOutput)
 }
 
-// The location of the certificate provider
+// [string] The location of the provider.
 func (o AutoCertificateProviderOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// The name of the certificate provider
+// [string] The name of the certificate provider.
 func (o AutoCertificateProviderOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The URL of the certificate provider
+// [string] The URL of the certificate provider.
 func (o AutoCertificateProviderOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificateProvider) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }

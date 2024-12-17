@@ -28,10 +28,11 @@ class AutoCertificateProviderArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AutoCertificateProvider resource.
-        :param pulumi.Input[str] email: The email address of the certificate requester
-        :param pulumi.Input[str] location: The location of the certificate provider
-        :param pulumi.Input[str] server: The URL of the certificate provider
-        :param pulumi.Input[str] name: The name of the certificate provider
+        :param pulumi.Input[str] email: [string] The email address of the certificate requester.
+        :param pulumi.Input[str] location: [string] The location of the provider.
+        :param pulumi.Input[str] server: [string] The URL of the certificate provider.
+        :param pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs'] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[str] name: [string] The name of the certificate provider.
         """
         pulumi.set(__self__, "email", email)
         pulumi.set(__self__, "location", location)
@@ -45,7 +46,7 @@ class AutoCertificateProviderArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
         """
-        The email address of the certificate requester
+        [string] The email address of the certificate requester.
         """
         return pulumi.get(self, "email")
 
@@ -57,7 +58,7 @@ class AutoCertificateProviderArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location of the certificate provider
+        [string] The location of the provider.
         """
         return pulumi.get(self, "location")
 
@@ -69,7 +70,7 @@ class AutoCertificateProviderArgs:
     @pulumi.getter
     def server(self) -> pulumi.Input[str]:
         """
-        The URL of the certificate provider
+        [string] The URL of the certificate provider.
         """
         return pulumi.get(self, "server")
 
@@ -80,6 +81,9 @@ class AutoCertificateProviderArgs:
     @property
     @pulumi.getter(name="externalAccountBinding")
     def external_account_binding(self) -> Optional[pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs']]:
+        """
+        [list] External account binding details.
+        """
         return pulumi.get(self, "external_account_binding")
 
     @external_account_binding.setter
@@ -90,7 +94,7 @@ class AutoCertificateProviderArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the certificate provider
+        [string] The name of the certificate provider.
         """
         return pulumi.get(self, "name")
 
@@ -109,10 +113,11 @@ class _AutoCertificateProviderState:
                  server: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AutoCertificateProvider resources.
-        :param pulumi.Input[str] email: The email address of the certificate requester
-        :param pulumi.Input[str] location: The location of the certificate provider
-        :param pulumi.Input[str] name: The name of the certificate provider
-        :param pulumi.Input[str] server: The URL of the certificate provider
+        :param pulumi.Input[str] email: [string] The email address of the certificate requester.
+        :param pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs'] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[str] location: [string] The location of the provider.
+        :param pulumi.Input[str] name: [string] The name of the certificate provider.
+        :param pulumi.Input[str] server: [string] The URL of the certificate provider.
         """
         if email is not None:
             pulumi.set(__self__, "email", email)
@@ -129,7 +134,7 @@ class _AutoCertificateProviderState:
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
-        The email address of the certificate requester
+        [string] The email address of the certificate requester.
         """
         return pulumi.get(self, "email")
 
@@ -140,6 +145,9 @@ class _AutoCertificateProviderState:
     @property
     @pulumi.getter(name="externalAccountBinding")
     def external_account_binding(self) -> Optional[pulumi.Input['AutoCertificateProviderExternalAccountBindingArgs']]:
+        """
+        [list] External account binding details.
+        """
         return pulumi.get(self, "external_account_binding")
 
     @external_account_binding.setter
@@ -150,7 +158,7 @@ class _AutoCertificateProviderState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the certificate provider
+        [string] The location of the provider.
         """
         return pulumi.get(self, "location")
 
@@ -162,7 +170,7 @@ class _AutoCertificateProviderState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the certificate provider
+        [string] The name of the certificate provider.
         """
         return pulumi.get(self, "name")
 
@@ -174,7 +182,7 @@ class _AutoCertificateProviderState:
     @pulumi.getter
     def server(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL of the certificate provider
+        [string] The URL of the certificate provider.
         """
         return pulumi.get(self, "server")
 
@@ -195,13 +203,39 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AutoCertificateProvider resource with the given unique name, props, and options.
+        Manages a **CM provider**.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.cert.AutoCertificateProvider("example",
+            email="user@example.com",
+            external_account_binding={
+                "key_id": "some-key-id",
+                "key_secret": "secret",
+            },
+            location="de/fra",
+            server="https://acme-v02.api.letsencrypt.org/directory")
+        ```
+
+        ## Import
+
+        The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] email: The email address of the certificate requester
-        :param pulumi.Input[str] location: The location of the certificate provider
-        :param pulumi.Input[str] name: The name of the certificate provider
-        :param pulumi.Input[str] server: The URL of the certificate provider
+        :param pulumi.Input[str] email: [string] The email address of the certificate requester.
+        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[str] location: [string] The location of the provider.
+        :param pulumi.Input[str] name: [string] The name of the certificate provider.
+        :param pulumi.Input[str] server: [string] The URL of the certificate provider.
         """
         ...
     @overload
@@ -210,7 +244,32 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  args: AutoCertificateProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AutoCertificateProvider resource with the given unique name, props, and options.
+        Manages a **CM provider**.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ionoscloud as ionoscloud
+
+        example = ionoscloud.cert.AutoCertificateProvider("example",
+            email="user@example.com",
+            external_account_binding={
+                "key_id": "some-key-id",
+                "key_secret": "secret",
+            },
+            location="de/fra",
+            server="https://acme-v02.api.letsencrypt.org/directory")
+        ```
+
+        ## Import
+
+        The resource can be imported using the `provider_id` and the `location`, separated by `:`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:cert/autoCertificateProvider:AutoCertificateProvider example {location}:{provider_id}
+        ```
+
         :param str resource_name: The name of the resource.
         :param AutoCertificateProviderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -273,10 +332,11 @@ class AutoCertificateProvider(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] email: The email address of the certificate requester
-        :param pulumi.Input[str] location: The location of the certificate provider
-        :param pulumi.Input[str] name: The name of the certificate provider
-        :param pulumi.Input[str] server: The URL of the certificate provider
+        :param pulumi.Input[str] email: [string] The email address of the certificate requester.
+        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[str] location: [string] The location of the provider.
+        :param pulumi.Input[str] name: [string] The name of the certificate provider.
+        :param pulumi.Input[str] server: [string] The URL of the certificate provider.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -293,20 +353,23 @@ class AutoCertificateProvider(pulumi.CustomResource):
     @pulumi.getter
     def email(self) -> pulumi.Output[str]:
         """
-        The email address of the certificate requester
+        [string] The email address of the certificate requester.
         """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="externalAccountBinding")
     def external_account_binding(self) -> pulumi.Output[Optional['outputs.AutoCertificateProviderExternalAccountBinding']]:
+        """
+        [list] External account binding details.
+        """
         return pulumi.get(self, "external_account_binding")
 
     @property
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location of the certificate provider
+        [string] The location of the provider.
         """
         return pulumi.get(self, "location")
 
@@ -314,7 +377,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the certificate provider
+        [string] The name of the certificate provider.
         """
         return pulumi.get(self, "name")
 
@@ -322,7 +385,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
     @pulumi.getter
     def server(self) -> pulumi.Output[str]:
         """
-        The URL of the certificate provider
+        [string] The URL of the certificate provider.
         """
         return pulumi.get(self, "server")
 
