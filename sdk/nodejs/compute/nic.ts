@@ -6,15 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * Resource **Nic** can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
- * ```
- */
 export class Nic extends pulumi.CustomResource {
     /**
      * Get an existing Nic resource's state with the given name, ID, and optional extra
@@ -43,67 +34,40 @@ export class Nic extends pulumi.CustomResource {
         return obj['__pulumiType'] === Nic.__pulumiType;
     }
 
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
-    /**
-     * The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-     */
     public /*out*/ readonly deviceNumber!: pulumi.Output<number>;
-    /**
-     * [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-     */
     public readonly dhcp!: pulumi.Output<boolean | undefined>;
     /**
-     * [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+     * Indicates whether this NIC receives an IPv6 address through DHCP.
      */
     public readonly dhcpv6!: pulumi.Output<boolean | undefined>;
-    /**
-     * [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-     */
     public readonly firewallActive!: pulumi.Output<boolean | undefined>;
-    /**
-     * [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-     */
     public readonly firewallType!: pulumi.Output<string>;
     /**
-     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+     * network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+     * of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+     * instances are being accessed.
      */
     public readonly flowlog!: pulumi.Output<outputs.compute.NicFlowlog | undefined>;
     /**
-     * [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+     * Passing value null or empty array will assign an IP address automatically.
      */
     public readonly ips!: pulumi.Output<string[]>;
     /**
-     * Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+     * IPv6 CIDR block assigned to the NIC.
      */
     public readonly ipv6CidrBlock!: pulumi.Output<string>;
     /**
-     * [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+     * CIDR block assigned to the nic.
      */
     public readonly ipv6Ips!: pulumi.Output<string[]>;
-    /**
-     * [integer] The LAN ID the NIC will sit on.
-     */
     public readonly lan!: pulumi.Output<number>;
-    /**
-     * The MAC address of the NIC.
-     */
     public /*out*/ readonly mac!: pulumi.Output<string>;
-    /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * The PCI slot number of the Nic.
-     */
     public /*out*/ readonly pciSlot!: pulumi.Output<number>;
-    /**
-     * [string] The ID of a server.
-     */
     public readonly serverId!: pulumi.Output<string>;
 
     /**
@@ -170,67 +134,40 @@ export class Nic extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Nic resources.
  */
 export interface NicState {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
-    /**
-     * The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-     */
     deviceNumber?: pulumi.Input<number>;
-    /**
-     * [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-     */
     dhcp?: pulumi.Input<boolean>;
     /**
-     * [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+     * Indicates whether this NIC receives an IPv6 address through DHCP.
      */
     dhcpv6?: pulumi.Input<boolean>;
-    /**
-     * [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-     */
     firewallActive?: pulumi.Input<boolean>;
-    /**
-     * [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-     */
     firewallType?: pulumi.Input<string>;
     /**
-     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+     * network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+     * of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+     * instances are being accessed.
      */
     flowlog?: pulumi.Input<inputs.compute.NicFlowlog>;
     /**
-     * [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+     * Passing value null or empty array will assign an IP address automatically.
      */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+     * IPv6 CIDR block assigned to the NIC.
      */
     ipv6CidrBlock?: pulumi.Input<string>;
     /**
-     * [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+     * CIDR block assigned to the nic.
      */
     ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [integer] The LAN ID the NIC will sit on.
-     */
     lan?: pulumi.Input<number>;
-    /**
-     * The MAC address of the NIC.
-     */
     mac?: pulumi.Input<string>;
-    /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The PCI slot number of the Nic.
-     */
     pciSlot?: pulumi.Input<number>;
-    /**
-     * [string] The ID of a server.
-     */
     serverId?: pulumi.Input<string>;
 }
 
@@ -238,54 +175,36 @@ export interface NicState {
  * The set of arguments for constructing a Nic resource.
  */
 export interface NicArgs {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-     */
     dhcp?: pulumi.Input<boolean>;
     /**
-     * [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+     * Indicates whether this NIC receives an IPv6 address through DHCP.
      */
     dhcpv6?: pulumi.Input<boolean>;
-    /**
-     * [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-     */
     firewallActive?: pulumi.Input<boolean>;
-    /**
-     * [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-     */
     firewallType?: pulumi.Input<string>;
     /**
-     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+     * Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+     * network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+     * of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+     * instances are being accessed.
      */
     flowlog?: pulumi.Input<inputs.compute.NicFlowlog>;
     /**
-     * [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+     * Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+     * Passing value null or empty array will assign an IP address automatically.
      */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+     * IPv6 CIDR block assigned to the NIC.
      */
     ipv6CidrBlock?: pulumi.Input<string>;
     /**
-     * [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+     * Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+     * CIDR block assigned to the nic.
      */
     ipv6Ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [integer] The LAN ID the NIC will sit on.
-     */
     lan: pulumi.Input<number>;
-    /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [string] The ID of a server.
-     */
     serverId: pulumi.Input<string>;
 }

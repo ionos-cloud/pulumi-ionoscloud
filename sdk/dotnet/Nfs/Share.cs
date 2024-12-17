@@ -9,95 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Nfs
 {
-    /// <summary>
-    /// Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Basic example
-    ///     var nfsDc = new Ionoscloud.Compute.Datacenter("nfsDc", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var nfsLan = new Ionoscloud.Compute.Lan("nfsLan", new()
-    ///     {
-    ///         DatacenterId = nfsDc.Id,
-    ///         Public = false,
-    ///     });
-    /// 
-    ///     var exampleCluster = new Ionoscloud.Nfs.Cluster("exampleCluster", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         Size = 2,
-    ///         Nfs = new Ionoscloud.Nfs.Inputs.ClusterNfsArgs
-    ///         {
-    ///             MinVersion = "4.2",
-    ///         },
-    ///         Connections = new Ionoscloud.Nfs.Inputs.ClusterConnectionsArgs
-    ///         {
-    ///             DatacenterId = nfsDc.Id,
-    ///             IpAddress = "192.168.100.10/24",
-    ///             Lan = nfsLan.Id,
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleShare = new Ionoscloud.Nfs.Share("exampleShare", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         ClusterId = exampleCluster.Id,
-    ///         Quota = 512,
-    ///         Gid = 512,
-    ///         Uid = 512,
-    ///         ClientGroups = new[]
-    ///         {
-    ///             new Ionoscloud.Nfs.Inputs.ShareClientGroupArgs
-    ///             {
-    ///                 Description = "Client Group 1",
-    ///                 IpNetworks = new[]
-    ///                 {
-    ///                     "10.234.50.0/24",
-    ///                 },
-    ///                 Hosts = new[]
-    ///                 {
-    ///                     "10.234.62.123",
-    ///                 },
-    ///                 Nfs = new Ionoscloud.Nfs.Inputs.ShareClientGroupNfsArgs
-    ///                 {
-    ///                     Squash = "all-anonymous",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:nfs/share:Share")]
     public partial class Share : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        /// The groups of clients are the systems connecting to the Network File Storage cluster.
         /// </summary>
         [Output("clientGroups")]
         public Output<ImmutableArray<Outputs.ShareClientGroup>> ClientGroups { get; private set; } = null!;
@@ -115,13 +31,13 @@ namespace Pulumi.Ionoscloud.Nfs
         public Output<int?> Gid { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the Network File Storage Cluster.
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The directory being exported.
+        /// The directory being exported
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -133,7 +49,8 @@ namespace Pulumi.Ionoscloud.Nfs
         public Output<string> NfsPath { get; private set; } = null!;
 
         /// <summary>
-        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        /// quota can be disabled using `0`.
         /// </summary>
         [Output("quota")]
         public Output<int?> Quota { get; private set; } = null!;
@@ -194,7 +111,7 @@ namespace Pulumi.Ionoscloud.Nfs
         private InputList<Inputs.ShareClientGroupArgs>? _clientGroups;
 
         /// <summary>
-        /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        /// The groups of clients are the systems connecting to the Network File Storage cluster.
         /// </summary>
         public InputList<Inputs.ShareClientGroupArgs> ClientGroups
         {
@@ -215,19 +132,20 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<int>? Gid { get; set; }
 
         /// <summary>
-        /// The location of the Network File Storage Cluster.
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// The directory being exported.
+        /// The directory being exported
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        /// quota can be disabled using `0`.
         /// </summary>
         [Input("quota")]
         public Input<int>? Quota { get; set; }
@@ -250,7 +168,7 @@ namespace Pulumi.Ionoscloud.Nfs
         private InputList<Inputs.ShareClientGroupGetArgs>? _clientGroups;
 
         /// <summary>
-        /// The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        /// The groups of clients are the systems connecting to the Network File Storage cluster.
         /// </summary>
         public InputList<Inputs.ShareClientGroupGetArgs> ClientGroups
         {
@@ -271,13 +189,13 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<int>? Gid { get; set; }
 
         /// <summary>
-        /// The location of the Network File Storage Cluster.
+        /// The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The directory being exported.
+        /// The directory being exported
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -289,7 +207,8 @@ namespace Pulumi.Ionoscloud.Nfs
         public Input<string>? NfsPath { get; set; }
 
         /// <summary>
-        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        /// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        /// quota can be disabled using `0`.
         /// </summary>
         [Input("quota")]
         public Input<int>? Quota { get; set; }

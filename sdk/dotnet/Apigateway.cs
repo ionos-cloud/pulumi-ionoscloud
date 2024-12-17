@@ -9,72 +9,35 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud
 {
-    /// <summary>
-    /// An API gateway consists of the generic rules and configurations.
-    /// 
-    /// ## Usage example
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Apigateway("example", new()
-    ///     {
-    ///         Metrics = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
-    /// 
-    /// resource "ionoscloud_apigateway" "example" {
-    /// 
-    /// }
-    /// 
-    /// The resource can be imported using the `gateway_id`, for example:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:index/apigateway:Apigateway")]
     public partial class Apigateway : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        /// Custom domains for the API Gateway.
         /// </summary>
         [Output("customDomains")]
         public Output<ImmutableArray<Outputs.ApigatewayCustomDomain>> CustomDomains { get; private set; } = null!;
 
         /// <summary>
-        /// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        /// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         /// </summary>
         [Output("logs")]
         public Output<bool?> Logs { get; private set; } = null!;
 
         /// <summary>
-        /// [bool] Enable or disable metrics. Defaults to `false`.
+        /// Enable or disable metrics.
         /// </summary>
         [Output("metrics")]
         public Output<bool?> Metrics { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// The name of the API Gateway.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The public endpoint of the API Gateway.
+        /// The public endpoint of the API Gateway.
         /// </summary>
         [Output("publicEndpoint")]
         public Output<string> PublicEndpoint { get; private set; } = null!;
@@ -129,7 +92,7 @@ namespace Pulumi.Ionoscloud
         private InputList<Inputs.ApigatewayCustomDomainArgs>? _customDomains;
 
         /// <summary>
-        /// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        /// Custom domains for the API Gateway.
         /// </summary>
         public InputList<Inputs.ApigatewayCustomDomainArgs> CustomDomains
         {
@@ -138,19 +101,19 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        /// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         /// </summary>
         [Input("logs")]
         public Input<bool>? Logs { get; set; }
 
         /// <summary>
-        /// [bool] Enable or disable metrics. Defaults to `false`.
+        /// Enable or disable metrics.
         /// </summary>
         [Input("metrics")]
         public Input<bool>? Metrics { get; set; }
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// The name of the API Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -167,7 +130,7 @@ namespace Pulumi.Ionoscloud
         private InputList<Inputs.ApigatewayCustomDomainGetArgs>? _customDomains;
 
         /// <summary>
-        /// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        /// Custom domains for the API Gateway.
         /// </summary>
         public InputList<Inputs.ApigatewayCustomDomainGetArgs> CustomDomains
         {
@@ -176,25 +139,25 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        /// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         /// </summary>
         [Input("logs")]
         public Input<bool>? Logs { get; set; }
 
         /// <summary>
-        /// [bool] Enable or disable metrics. Defaults to `false`.
+        /// Enable or disable metrics.
         /// </summary>
         [Input("metrics")]
         public Input<bool>? Metrics { get; set; }
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// The name of the API Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] The public endpoint of the API Gateway.
+        /// The public endpoint of the API Gateway.
         /// </summary>
         [Input("publicEndpoint")]
         public Input<string>? PublicEndpoint { get; set; }

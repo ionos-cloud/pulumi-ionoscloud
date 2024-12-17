@@ -21,9 +21,6 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

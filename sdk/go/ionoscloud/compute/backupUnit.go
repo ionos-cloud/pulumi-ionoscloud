@@ -12,25 +12,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Import
-//
-// A Backup Unit resource can be imported using its `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo {backup_unit_uuid}
-// ```
-//
-// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
 type BackupUnit struct {
 	pulumi.CustomResourceState
 
-	// [string] The email address assigned to the backup unit
+	// The e-mail address you want assigned to the backup unit.
 	Email pulumi.StringOutput `pulumi:"email"`
 	// The login associated with the backup unit. Derived from the contract number
 	Login pulumi.StringOutput `pulumi:"login"`
-	// [string] The name of the Backup Unit. This argument is immutable.
+	// Alphanumeric name you want assigned to the backup unit.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] The desired password for the Backup Unit
+	// The password you want assigned to the backup unit.
 	Password pulumi.StringOutput `pulumi:"password"`
 }
 
@@ -77,24 +68,24 @@ func GetBackupUnit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackupUnit resources.
 type backupUnitState struct {
-	// [string] The email address assigned to the backup unit
+	// The e-mail address you want assigned to the backup unit.
 	Email *string `pulumi:"email"`
 	// The login associated with the backup unit. Derived from the contract number
 	Login *string `pulumi:"login"`
-	// [string] The name of the Backup Unit. This argument is immutable.
+	// Alphanumeric name you want assigned to the backup unit.
 	Name *string `pulumi:"name"`
-	// [string] The desired password for the Backup Unit
+	// The password you want assigned to the backup unit.
 	Password *string `pulumi:"password"`
 }
 
 type BackupUnitState struct {
-	// [string] The email address assigned to the backup unit
+	// The e-mail address you want assigned to the backup unit.
 	Email pulumi.StringPtrInput
 	// The login associated with the backup unit. Derived from the contract number
 	Login pulumi.StringPtrInput
-	// [string] The name of the Backup Unit. This argument is immutable.
+	// Alphanumeric name you want assigned to the backup unit.
 	Name pulumi.StringPtrInput
-	// [string] The desired password for the Backup Unit
+	// The password you want assigned to the backup unit.
 	Password pulumi.StringPtrInput
 }
 
@@ -103,21 +94,21 @@ func (BackupUnitState) ElementType() reflect.Type {
 }
 
 type backupUnitArgs struct {
-	// [string] The email address assigned to the backup unit
+	// The e-mail address you want assigned to the backup unit.
 	Email string `pulumi:"email"`
-	// [string] The name of the Backup Unit. This argument is immutable.
+	// Alphanumeric name you want assigned to the backup unit.
 	Name *string `pulumi:"name"`
-	// [string] The desired password for the Backup Unit
+	// The password you want assigned to the backup unit.
 	Password string `pulumi:"password"`
 }
 
 // The set of arguments for constructing a BackupUnit resource.
 type BackupUnitArgs struct {
-	// [string] The email address assigned to the backup unit
+	// The e-mail address you want assigned to the backup unit.
 	Email pulumi.StringInput
-	// [string] The name of the Backup Unit. This argument is immutable.
+	// Alphanumeric name you want assigned to the backup unit.
 	Name pulumi.StringPtrInput
-	// [string] The desired password for the Backup Unit
+	// The password you want assigned to the backup unit.
 	Password pulumi.StringInput
 }
 
@@ -208,7 +199,7 @@ func (o BackupUnitOutput) ToBackupUnitOutputWithContext(ctx context.Context) Bac
 	return o
 }
 
-// [string] The email address assigned to the backup unit
+// The e-mail address you want assigned to the backup unit.
 func (o BackupUnitOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupUnit) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
@@ -218,12 +209,12 @@ func (o BackupUnitOutput) Login() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupUnit) pulumi.StringOutput { return v.Login }).(pulumi.StringOutput)
 }
 
-// [string] The name of the Backup Unit. This argument is immutable.
+// Alphanumeric name you want assigned to the backup unit.
 func (o BackupUnitOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupUnit) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] The desired password for the Backup Unit
+// The password you want assigned to the backup unit.
 func (o BackupUnitOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupUnit) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }

@@ -6,49 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Manages a **Kafka Cluster** on IonosCloud.
- *
- * ## Example Usage
- *
- * This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {location: "de/fra"});
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": false,
- * });
- * const exampleKafkaCluster = new ionoscloud.KafkaCluster("exampleKafkaCluster", {
- *     location: "de/fra",
- *     version: "3.7.0",
- *     size: "S",
- *     connections: {
- *         datacenterId: exampleDatacenter.id,
- *         lanId: exampleLan.id,
- *         brokerAddresses: [
- *             "192.168.1.101/24",
- *             "192.168.1.102/24",
- *             "192.168.1.103/24",
- *         ],
- *     },
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * Kafka Cluster can be imported using the `location` and `kafka cluster id`:
- *
- * ```sh
- * $ pulumi import ionoscloud:index/kafkaCluster:KafkaCluster mycluster {location}:{kafka cluster uuid}
- * ```
- */
 export class KafkaCluster extends pulumi.CustomResource {
     /**
      * Get an existing KafkaCluster resource's state with the given name, ID, and optional extra
@@ -78,27 +35,28 @@ export class KafkaCluster extends pulumi.CustomResource {
     }
 
     /**
-     * [list] IP address and port of cluster brokers.
+     * IP address and port of cluster brokers.
      */
     public /*out*/ readonly brokerAddresses!: pulumi.Output<string[]>;
     /**
-     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+     * The network connection for your Kafka Cluster. Only one connection is allowed.
      */
     public readonly connections!: pulumi.Output<outputs.KafkaClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
      */
     public readonly location!: pulumi.Output<string>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
      */
     public readonly size!: pulumi.Output<string>;
     /**
-     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+     * The desired Kafka Version. Supported version: 3.7.0
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -152,27 +110,28 @@ export class KafkaCluster extends pulumi.CustomResource {
  */
 export interface KafkaClusterState {
     /**
-     * [list] IP address and port of cluster brokers.
+     * IP address and port of cluster brokers.
      */
     brokerAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+     * The network connection for your Kafka Cluster. Only one connection is allowed.
      */
     connections?: pulumi.Input<inputs.KafkaClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
      */
     size?: pulumi.Input<string>;
     /**
-     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+     * The desired Kafka Version. Supported version: 3.7.0
      */
     version?: pulumi.Input<string>;
 }
@@ -182,23 +141,24 @@ export interface KafkaClusterState {
  */
 export interface KafkaClusterArgs {
     /**
-     * Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+     * The network connection for your Kafka Cluster. Only one connection is allowed.
      */
     connections: pulumi.Input<inputs.KafkaClusterConnections>;
     /**
-     * [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster. Supported locations: de/fra, de/txl
      */
     location: pulumi.Input<string>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster. Must be 63 characters or less and must begin and end with an alphanumeric character
+     * (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
+     * The size of your Kafka Cluster. The size of the Kafka Cluster is given in T-shirt sizes. Valid values are: XS, S
      */
     size: pulumi.Input<string>;
     /**
-     * [string] Version of the Kafka Cluster. Possible values: `3.7.0`
+     * The desired Kafka Version. Supported version: 3.7.0
      */
     version: pulumi.Input<string>;
 }

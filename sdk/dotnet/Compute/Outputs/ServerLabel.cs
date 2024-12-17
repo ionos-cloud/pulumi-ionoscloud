@@ -13,13 +13,7 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class ServerLabel
     {
-        /// <summary>
-        /// [string] The key of the label.
-        /// </summary>
         public readonly string Key;
-        /// <summary>
-        /// [string] The value of the label.
-        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

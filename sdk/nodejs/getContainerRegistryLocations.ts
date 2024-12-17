@@ -4,22 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getContainerRegistryLocations({});
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getContainerRegistryLocations(opts?: pulumi.InvokeOptions): Promise<GetContainerRegistryLocationsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", {
     }, opts);
@@ -33,25 +18,10 @@ export interface GetContainerRegistryLocationsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * list of container registry locations
-     */
     readonly locations: string[];
 }
-/**
- * The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getContainerRegistryLocations({});
- * ```
- * <!--End PulumiCodeChooser -->
- */
-export function getContainerRegistryLocationsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerRegistryLocationsResult> {
-    return pulumi.output(getContainerRegistryLocations(opts))
+export function getContainerRegistryLocationsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContainerRegistryLocationsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", {
+    }, opts);
 }

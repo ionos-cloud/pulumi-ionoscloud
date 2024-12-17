@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class AutoscalingGroupReplicaConfigurationNicTargetGroupGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [int] The port of the target group.
+        /// The port for the target group.
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
         /// <summary>
-        /// [string] The ID of the target group.
+        /// The ID of the target group.
         /// </summary>
         [Input("targetGroupId", required: true)]
         public Input<string> TargetGroupId { get; set; } = null!;
 
         /// <summary>
-        /// [int] The weight of the target group.
+        /// The weight for the target group.
         /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;

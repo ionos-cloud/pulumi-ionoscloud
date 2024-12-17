@@ -4,27 +4,46 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'RegistryFeaturesArgs',
+    'RegistryFeaturesArgsDict',
     'RegistryGarbageCollectionScheduleArgs',
+    'RegistryGarbageCollectionScheduleArgsDict',
     'RegistryStorageUsageArgs',
+    'RegistryStorageUsageArgsDict',
     'RegistryTokenCredentialArgs',
+    'RegistryTokenCredentialArgsDict',
     'RegistryTokenScopeArgs',
+    'RegistryTokenScopeArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class RegistryFeaturesArgsDict(TypedDict):
+        vulnerability_scanning: NotRequired[pulumi.Input[bool]]
+        """
+        Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
+        """
+elif False:
+    RegistryFeaturesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RegistryFeaturesArgs:
     def __init__(__self__, *,
                  vulnerability_scanning: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] vulnerability_scanning: [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-               
-               > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+        :param pulumi.Input[bool] vulnerability_scanning: Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
         """
         if vulnerability_scanning is not None:
             pulumi.set(__self__, "vulnerability_scanning", vulnerability_scanning)
@@ -33,9 +52,7 @@ class RegistryFeaturesArgs:
     @pulumi.getter(name="vulnerabilityScanning")
     def vulnerability_scanning(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Enables or disables the Vulnerability Scanning feature for the Container Registry. To disable this feature, set the attribute to false when creating the CR resource.
-
-        > **⚠ WARNING** `Container Registry Vulnerability Scanning` is a paid feature which is enabled by default, and cannot be turned off after activation. To disable this feature for a Container Registry, ensure `vulnerability_scanning` is set to false on resource creation.
+        Enables vulnerability scanning for images in the container registry. Note: this feature can incur additional charges
         """
         return pulumi.get(self, "vulnerability_scanning")
 
@@ -44,14 +61,23 @@ class RegistryFeaturesArgs:
         pulumi.set(self, "vulnerability_scanning", value)
 
 
+if not MYPY:
+    class RegistryGarbageCollectionScheduleArgsDict(TypedDict):
+        days: pulumi.Input[Sequence[pulumi.Input[str]]]
+        time: pulumi.Input[str]
+        """
+        UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
+        """
+elif False:
+    RegistryGarbageCollectionScheduleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RegistryGarbageCollectionScheduleArgs:
     def __init__(__self__, *,
                  days: pulumi.Input[Sequence[pulumi.Input[str]]],
                  time: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] days: [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-        :param pulumi.Input[str] time: [string]
+        :param pulumi.Input[str] time: UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
         """
         pulumi.set(__self__, "days", days)
         pulumi.set(__self__, "time", time)
@@ -59,9 +85,6 @@ class RegistryGarbageCollectionScheduleArgs:
     @property
     @pulumi.getter
     def days(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        [list] Elements of list must have one of the values: `Saturday`, `Sunday`, `Monday`, `Tuesday`,  `Wednesday`,  `Thursday`,  `Friday`
-        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -72,7 +95,7 @@ class RegistryGarbageCollectionScheduleArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[str]:
         """
-        [string]
+        UTC time of day e.g. 01:00:00 - as defined by partial-time - RFC3339
         """
         return pulumi.get(self, "time")
 
@@ -80,6 +103,13 @@ class RegistryGarbageCollectionScheduleArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class RegistryStorageUsageArgsDict(TypedDict):
+        bytes: NotRequired[pulumi.Input[int]]
+        updated_at: NotRequired[pulumi.Input[str]]
+elif False:
+    RegistryStorageUsageArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RegistryStorageUsageArgs:
@@ -110,6 +140,13 @@ class RegistryStorageUsageArgs:
         pulumi.set(self, "updated_at", value)
 
 
+if not MYPY:
+    class RegistryTokenCredentialArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        username: pulumi.Input[str]
+elif False:
+    RegistryTokenCredentialArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RegistryTokenCredentialArgs:
     def __init__(__self__, *,
@@ -137,6 +174,17 @@ class RegistryTokenCredentialArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class RegistryTokenScopeArgsDict(TypedDict):
+        actions: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        Example: ["pull", "push", "delete"]
+        """
+        name: pulumi.Input[str]
+        type: pulumi.Input[str]
+elif False:
+    RegistryTokenScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RegistryTokenScopeArgs:
     def __init__(__self__, *,
@@ -144,9 +192,7 @@ class RegistryTokenScopeArgs:
                  name: pulumi.Input[str],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] actions: [string] Example: ["pull", "push", "delete"]
-        :param pulumi.Input[str] name: [string]
-        :param pulumi.Input[str] type: [string]
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] actions: Example: ["pull", "push", "delete"]
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "name", name)
@@ -156,7 +202,7 @@ class RegistryTokenScopeArgs:
     @pulumi.getter
     def actions(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [string] Example: ["pull", "push", "delete"]
+        Example: ["pull", "push", "delete"]
         """
         return pulumi.get(self, "actions")
 
@@ -167,9 +213,6 @@ class RegistryTokenScopeArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
-        """
-        [string]
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -179,9 +222,6 @@ class RegistryTokenScopeArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
-        """
-        [string]
-        """
         return pulumi.get(self, "type")
 
     @type.setter

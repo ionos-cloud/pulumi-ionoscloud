@@ -5,6 +5,10 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_ipsec_gateway import *
+from .get_ipsec_tunnel import *
+from .get_wireguard_gateway import *
+from .get_wireguard_peer import *
 from .ipsec_gateway import *
 from .ipsec_tunnel import *
 from .wireguard_gateway import *

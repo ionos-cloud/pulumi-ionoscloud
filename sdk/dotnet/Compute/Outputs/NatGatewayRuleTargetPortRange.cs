@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     public sealed class NatGatewayRuleTargetPortRange
     {
         /// <summary>
-        /// [int] Target port range end associated with the NAT gateway rule.
+        /// Target port range end associated with the NAT gateway rule.
         /// </summary>
         public readonly int? End;
         /// <summary>
-        /// [int] Target port range start associated with the NAT gateway rule.
+        /// Target port range start associated with the NAT gateway rule.
         /// </summary>
         public readonly int? Start;
 

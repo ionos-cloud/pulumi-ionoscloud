@@ -12,14 +12,11 @@ namespace Pulumi.Ionoscloud.Dsaas.Inputs
 
     public sealed class NodePoolMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
-        /// </summary>
         [Input("dayOfTheWeek", required: true)]
         public Input<string> DayOfTheWeek { get; set; } = null!;
 
         /// <summary>
-        /// [string] Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format. This pattern matches the "HH:MM:SS 24-hour format with leading 0" format. For more information take a look at [this link](https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format).
+        /// Time at which the maintenance should start.
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

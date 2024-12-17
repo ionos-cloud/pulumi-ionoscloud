@@ -14,11 +14,11 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterConnections struct {
-	// The ID of the datacenter where the Network File Storage cluster is located.
+	// The datacenter to connect your instance to.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+	// The IP address and subnet for your instance.
 	IpAddress string `pulumi:"ipAddress"`
-	// The Private LAN to which the Network File Storage cluster must be connected.
+	// The numeric LAN ID to connect your instance to.
 	Lan string `pulumi:"lan"`
 }
 
@@ -34,11 +34,11 @@ type ClusterConnectionsInput interface {
 }
 
 type ClusterConnectionsArgs struct {
-	// The ID of the datacenter where the Network File Storage cluster is located.
+	// The datacenter to connect your instance to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+	// The IP address and subnet for your instance.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The Private LAN to which the Network File Storage cluster must be connected.
+	// The numeric LAN ID to connect your instance to.
 	Lan pulumi.StringInput `pulumi:"lan"`
 }
 
@@ -119,17 +119,17 @@ func (o ClusterConnectionsOutput) ToClusterConnectionsPtrOutputWithContext(ctx c
 	}).(ClusterConnectionsPtrOutput)
 }
 
-// The ID of the datacenter where the Network File Storage cluster is located.
+// The datacenter to connect your instance to.
 func (o ClusterConnectionsOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+// The IP address and subnet for your instance.
 func (o ClusterConnectionsOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The Private LAN to which the Network File Storage cluster must be connected.
+// The numeric LAN ID to connect your instance to.
 func (o ClusterConnectionsOutput) Lan() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.Lan }).(pulumi.StringOutput)
 }
@@ -158,7 +158,7 @@ func (o ClusterConnectionsPtrOutput) Elem() ClusterConnectionsOutput {
 	}).(ClusterConnectionsOutput)
 }
 
-// The ID of the datacenter where the Network File Storage cluster is located.
+// The datacenter to connect your instance to.
 func (o ClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -168,7 +168,7 @@ func (o ClusterConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+// The IP address and subnet for your instance.
 func (o ClusterConnectionsPtrOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -178,7 +178,7 @@ func (o ClusterConnectionsPtrOutput) IpAddress() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The Private LAN to which the Network File Storage cluster must be connected.
+// The numeric LAN ID to connect your instance to.
 func (o ClusterConnectionsPtrOutput) Lan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {
@@ -189,7 +189,7 @@ func (o ClusterConnectionsPtrOutput) Lan() pulumi.StringPtrOutput {
 }
 
 type ClusterNfs struct {
-	// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+	// The minimum Network File Storage version
 	MinVersion *string `pulumi:"minVersion"`
 }
 
@@ -205,7 +205,7 @@ type ClusterNfsInput interface {
 }
 
 type ClusterNfsArgs struct {
-	// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+	// The minimum Network File Storage version
 	MinVersion pulumi.StringPtrInput `pulumi:"minVersion"`
 }
 
@@ -286,7 +286,7 @@ func (o ClusterNfsOutput) ToClusterNfsPtrOutputWithContext(ctx context.Context) 
 	}).(ClusterNfsPtrOutput)
 }
 
-// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+// The minimum Network File Storage version
 func (o ClusterNfsOutput) MinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNfs) *string { return v.MinVersion }).(pulumi.StringPtrOutput)
 }
@@ -315,7 +315,7 @@ func (o ClusterNfsPtrOutput) Elem() ClusterNfsOutput {
 	}).(ClusterNfsOutput)
 }
 
-// The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+// The minimum Network File Storage version
 func (o ClusterNfsPtrOutput) MinVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterNfs) *string {
 		if v == nil {
@@ -331,9 +331,8 @@ type ShareClientGroup struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts []string `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks []string `pulumi:"ipNetworks"`
-	// NFS specific configurations. Each configuration includes:
-	Nfs *ShareClientGroupNfs `pulumi:"nfs"`
+	IpNetworks []string             `pulumi:"ipNetworks"`
+	Nfs        *ShareClientGroupNfs `pulumi:"nfs"`
 }
 
 // ShareClientGroupInput is an input type that accepts ShareClientGroupArgs and ShareClientGroupOutput values.
@@ -353,9 +352,8 @@ type ShareClientGroupArgs struct {
 	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
-	IpNetworks pulumi.StringArrayInput `pulumi:"ipNetworks"`
-	// NFS specific configurations. Each configuration includes:
-	Nfs ShareClientGroupNfsPtrInput `pulumi:"nfs"`
+	IpNetworks pulumi.StringArrayInput     `pulumi:"ipNetworks"`
+	Nfs        ShareClientGroupNfsPtrInput `pulumi:"nfs"`
 }
 
 func (ShareClientGroupArgs) ElementType() reflect.Type {
@@ -424,7 +422,6 @@ func (o ShareClientGroupOutput) IpNetworks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ShareClientGroup) []string { return v.IpNetworks }).(pulumi.StringArrayOutput)
 }
 
-// NFS specific configurations. Each configuration includes:
 func (o ShareClientGroupOutput) Nfs() ShareClientGroupNfsPtrOutput {
 	return o.ApplyT(func(v ShareClientGroup) *ShareClientGroupNfs { return v.Nfs }).(ShareClientGroupNfsPtrOutput)
 }
@@ -450,7 +447,7 @@ func (o ShareClientGroupArrayOutput) Index(i pulumi.IntInput) ShareClientGroupOu
 }
 
 type ShareClientGroupNfs struct {
-	// The squash mode for the export. The squash mode can be:
+	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
 	Squash *string `pulumi:"squash"`
 }
 
@@ -466,7 +463,7 @@ type ShareClientGroupNfsInput interface {
 }
 
 type ShareClientGroupNfsArgs struct {
-	// The squash mode for the export. The squash mode can be:
+	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
 	Squash pulumi.StringPtrInput `pulumi:"squash"`
 }
 
@@ -547,7 +544,7 @@ func (o ShareClientGroupNfsOutput) ToShareClientGroupNfsPtrOutputWithContext(ctx
 	}).(ShareClientGroupNfsPtrOutput)
 }
 
-// The squash mode for the export. The squash mode can be:
+// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
 func (o ShareClientGroupNfsOutput) Squash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ShareClientGroupNfs) *string { return v.Squash }).(pulumi.StringPtrOutput)
 }
@@ -576,7 +573,7 @@ func (o ShareClientGroupNfsPtrOutput) Elem() ShareClientGroupNfsOutput {
 	}).(ShareClientGroupNfsOutput)
 }
 
-// The squash mode for the export. The squash mode can be:
+// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
 func (o ShareClientGroupNfsPtrOutput) Squash() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ShareClientGroupNfs) *string {
 		if v == nil {
@@ -584,6 +581,436 @@ func (o ShareClientGroupNfsPtrOutput) Squash() pulumi.StringPtrOutput {
 		}
 		return v.Squash
 	}).(pulumi.StringPtrOutput)
+}
+
+type GetClusterConnection struct {
+	// The datacenter ID of the connection.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The IP address of the connection.
+	IpAddress string `pulumi:"ipAddress"`
+	// The LAN of the connection.
+	Lan string `pulumi:"lan"`
+}
+
+// GetClusterConnectionInput is an input type that accepts GetClusterConnectionArgs and GetClusterConnectionOutput values.
+// You can construct a concrete instance of `GetClusterConnectionInput` via:
+//
+//	GetClusterConnectionArgs{...}
+type GetClusterConnectionInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionOutput() GetClusterConnectionOutput
+	ToGetClusterConnectionOutputWithContext(context.Context) GetClusterConnectionOutput
+}
+
+type GetClusterConnectionArgs struct {
+	// The datacenter ID of the connection.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The IP address of the connection.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The LAN of the connection.
+	Lan pulumi.StringInput `pulumi:"lan"`
+}
+
+func (GetClusterConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnection)(nil)).Elem()
+}
+
+func (i GetClusterConnectionArgs) ToGetClusterConnectionOutput() GetClusterConnectionOutput {
+	return i.ToGetClusterConnectionOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionArgs) ToGetClusterConnectionOutputWithContext(ctx context.Context) GetClusterConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionOutput)
+}
+
+// GetClusterConnectionArrayInput is an input type that accepts GetClusterConnectionArray and GetClusterConnectionArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionArrayInput` via:
+//
+//	GetClusterConnectionArray{ GetClusterConnectionArgs{...} }
+type GetClusterConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput
+	ToGetClusterConnectionArrayOutputWithContext(context.Context) GetClusterConnectionArrayOutput
+}
+
+type GetClusterConnectionArray []GetClusterConnectionInput
+
+func (GetClusterConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnection)(nil)).Elem()
+}
+
+func (i GetClusterConnectionArray) ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput {
+	return i.ToGetClusterConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionArray) ToGetClusterConnectionArrayOutputWithContext(ctx context.Context) GetClusterConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionArrayOutput)
+}
+
+type GetClusterConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnection)(nil)).Elem()
+}
+
+func (o GetClusterConnectionOutput) ToGetClusterConnectionOutput() GetClusterConnectionOutput {
+	return o
+}
+
+func (o GetClusterConnectionOutput) ToGetClusterConnectionOutputWithContext(ctx context.Context) GetClusterConnectionOutput {
+	return o
+}
+
+// The datacenter ID of the connection.
+func (o GetClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The IP address of the connection.
+func (o GetClusterConnectionOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnection) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The LAN of the connection.
+func (o GetClusterConnectionOutput) Lan() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnection) string { return v.Lan }).(pulumi.StringOutput)
+}
+
+type GetClusterConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnection)(nil)).Elem()
+}
+
+func (o GetClusterConnectionArrayOutput) ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionArrayOutput) ToGetClusterConnectionArrayOutputWithContext(ctx context.Context) GetClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnection {
+		return vs[0].([]GetClusterConnection)[vs[1].(int)]
+	}).(GetClusterConnectionOutput)
+}
+
+type GetClusterNf struct {
+	// The minimum version of the NFS.
+	MinVersion string `pulumi:"minVersion"`
+}
+
+// GetClusterNfInput is an input type that accepts GetClusterNfArgs and GetClusterNfOutput values.
+// You can construct a concrete instance of `GetClusterNfInput` via:
+//
+//	GetClusterNfArgs{...}
+type GetClusterNfInput interface {
+	pulumi.Input
+
+	ToGetClusterNfOutput() GetClusterNfOutput
+	ToGetClusterNfOutputWithContext(context.Context) GetClusterNfOutput
+}
+
+type GetClusterNfArgs struct {
+	// The minimum version of the NFS.
+	MinVersion pulumi.StringInput `pulumi:"minVersion"`
+}
+
+func (GetClusterNfArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterNf)(nil)).Elem()
+}
+
+func (i GetClusterNfArgs) ToGetClusterNfOutput() GetClusterNfOutput {
+	return i.ToGetClusterNfOutputWithContext(context.Background())
+}
+
+func (i GetClusterNfArgs) ToGetClusterNfOutputWithContext(ctx context.Context) GetClusterNfOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterNfOutput)
+}
+
+// GetClusterNfArrayInput is an input type that accepts GetClusterNfArray and GetClusterNfArrayOutput values.
+// You can construct a concrete instance of `GetClusterNfArrayInput` via:
+//
+//	GetClusterNfArray{ GetClusterNfArgs{...} }
+type GetClusterNfArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterNfArrayOutput() GetClusterNfArrayOutput
+	ToGetClusterNfArrayOutputWithContext(context.Context) GetClusterNfArrayOutput
+}
+
+type GetClusterNfArray []GetClusterNfInput
+
+func (GetClusterNfArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterNf)(nil)).Elem()
+}
+
+func (i GetClusterNfArray) ToGetClusterNfArrayOutput() GetClusterNfArrayOutput {
+	return i.ToGetClusterNfArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterNfArray) ToGetClusterNfArrayOutputWithContext(ctx context.Context) GetClusterNfArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterNfArrayOutput)
+}
+
+type GetClusterNfOutput struct{ *pulumi.OutputState }
+
+func (GetClusterNfOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterNf)(nil)).Elem()
+}
+
+func (o GetClusterNfOutput) ToGetClusterNfOutput() GetClusterNfOutput {
+	return o
+}
+
+func (o GetClusterNfOutput) ToGetClusterNfOutputWithContext(ctx context.Context) GetClusterNfOutput {
+	return o
+}
+
+// The minimum version of the NFS.
+func (o GetClusterNfOutput) MinVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterNf) string { return v.MinVersion }).(pulumi.StringOutput)
+}
+
+type GetClusterNfArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterNfArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterNf)(nil)).Elem()
+}
+
+func (o GetClusterNfArrayOutput) ToGetClusterNfArrayOutput() GetClusterNfArrayOutput {
+	return o
+}
+
+func (o GetClusterNfArrayOutput) ToGetClusterNfArrayOutputWithContext(ctx context.Context) GetClusterNfArrayOutput {
+	return o
+}
+
+func (o GetClusterNfArrayOutput) Index(i pulumi.IntInput) GetClusterNfOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterNf {
+		return vs[0].([]GetClusterNf)[vs[1].(int)]
+	}).(GetClusterNfOutput)
+}
+
+type GetShareClientGroup struct {
+	// Optional description for the clients groups.
+	Description string `pulumi:"description"`
+	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+	Hosts []string `pulumi:"hosts"`
+	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+	IpNetworks []string                `pulumi:"ipNetworks"`
+	Nfs        []GetShareClientGroupNf `pulumi:"nfs"`
+}
+
+// GetShareClientGroupInput is an input type that accepts GetShareClientGroupArgs and GetShareClientGroupOutput values.
+// You can construct a concrete instance of `GetShareClientGroupInput` via:
+//
+//	GetShareClientGroupArgs{...}
+type GetShareClientGroupInput interface {
+	pulumi.Input
+
+	ToGetShareClientGroupOutput() GetShareClientGroupOutput
+	ToGetShareClientGroupOutputWithContext(context.Context) GetShareClientGroupOutput
+}
+
+type GetShareClientGroupArgs struct {
+	// Optional description for the clients groups.
+	Description pulumi.StringInput `pulumi:"description"`
+	// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
+	// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+	IpNetworks pulumi.StringArrayInput         `pulumi:"ipNetworks"`
+	Nfs        GetShareClientGroupNfArrayInput `pulumi:"nfs"`
+}
+
+func (GetShareClientGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShareClientGroup)(nil)).Elem()
+}
+
+func (i GetShareClientGroupArgs) ToGetShareClientGroupOutput() GetShareClientGroupOutput {
+	return i.ToGetShareClientGroupOutputWithContext(context.Background())
+}
+
+func (i GetShareClientGroupArgs) ToGetShareClientGroupOutputWithContext(ctx context.Context) GetShareClientGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShareClientGroupOutput)
+}
+
+// GetShareClientGroupArrayInput is an input type that accepts GetShareClientGroupArray and GetShareClientGroupArrayOutput values.
+// You can construct a concrete instance of `GetShareClientGroupArrayInput` via:
+//
+//	GetShareClientGroupArray{ GetShareClientGroupArgs{...} }
+type GetShareClientGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetShareClientGroupArrayOutput() GetShareClientGroupArrayOutput
+	ToGetShareClientGroupArrayOutputWithContext(context.Context) GetShareClientGroupArrayOutput
+}
+
+type GetShareClientGroupArray []GetShareClientGroupInput
+
+func (GetShareClientGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShareClientGroup)(nil)).Elem()
+}
+
+func (i GetShareClientGroupArray) ToGetShareClientGroupArrayOutput() GetShareClientGroupArrayOutput {
+	return i.ToGetShareClientGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetShareClientGroupArray) ToGetShareClientGroupArrayOutputWithContext(ctx context.Context) GetShareClientGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShareClientGroupArrayOutput)
+}
+
+type GetShareClientGroupOutput struct{ *pulumi.OutputState }
+
+func (GetShareClientGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShareClientGroup)(nil)).Elem()
+}
+
+func (o GetShareClientGroupOutput) ToGetShareClientGroupOutput() GetShareClientGroupOutput {
+	return o
+}
+
+func (o GetShareClientGroupOutput) ToGetShareClientGroupOutputWithContext(ctx context.Context) GetShareClientGroupOutput {
+	return o
+}
+
+// Optional description for the clients groups.
+func (o GetShareClientGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShareClientGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+func (o GetShareClientGroupOutput) Hosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetShareClientGroup) []string { return v.Hosts }).(pulumi.StringArrayOutput)
+}
+
+// The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+func (o GetShareClientGroupOutput) IpNetworks() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetShareClientGroup) []string { return v.IpNetworks }).(pulumi.StringArrayOutput)
+}
+
+func (o GetShareClientGroupOutput) Nfs() GetShareClientGroupNfArrayOutput {
+	return o.ApplyT(func(v GetShareClientGroup) []GetShareClientGroupNf { return v.Nfs }).(GetShareClientGroupNfArrayOutput)
+}
+
+type GetShareClientGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetShareClientGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShareClientGroup)(nil)).Elem()
+}
+
+func (o GetShareClientGroupArrayOutput) ToGetShareClientGroupArrayOutput() GetShareClientGroupArrayOutput {
+	return o
+}
+
+func (o GetShareClientGroupArrayOutput) ToGetShareClientGroupArrayOutputWithContext(ctx context.Context) GetShareClientGroupArrayOutput {
+	return o
+}
+
+func (o GetShareClientGroupArrayOutput) Index(i pulumi.IntInput) GetShareClientGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetShareClientGroup {
+		return vs[0].([]GetShareClientGroup)[vs[1].(int)]
+	}).(GetShareClientGroupOutput)
+}
+
+type GetShareClientGroupNf struct {
+	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+	Squash string `pulumi:"squash"`
+}
+
+// GetShareClientGroupNfInput is an input type that accepts GetShareClientGroupNfArgs and GetShareClientGroupNfOutput values.
+// You can construct a concrete instance of `GetShareClientGroupNfInput` via:
+//
+//	GetShareClientGroupNfArgs{...}
+type GetShareClientGroupNfInput interface {
+	pulumi.Input
+
+	ToGetShareClientGroupNfOutput() GetShareClientGroupNfOutput
+	ToGetShareClientGroupNfOutputWithContext(context.Context) GetShareClientGroupNfOutput
+}
+
+type GetShareClientGroupNfArgs struct {
+	// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+	Squash pulumi.StringInput `pulumi:"squash"`
+}
+
+func (GetShareClientGroupNfArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShareClientGroupNf)(nil)).Elem()
+}
+
+func (i GetShareClientGroupNfArgs) ToGetShareClientGroupNfOutput() GetShareClientGroupNfOutput {
+	return i.ToGetShareClientGroupNfOutputWithContext(context.Background())
+}
+
+func (i GetShareClientGroupNfArgs) ToGetShareClientGroupNfOutputWithContext(ctx context.Context) GetShareClientGroupNfOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShareClientGroupNfOutput)
+}
+
+// GetShareClientGroupNfArrayInput is an input type that accepts GetShareClientGroupNfArray and GetShareClientGroupNfArrayOutput values.
+// You can construct a concrete instance of `GetShareClientGroupNfArrayInput` via:
+//
+//	GetShareClientGroupNfArray{ GetShareClientGroupNfArgs{...} }
+type GetShareClientGroupNfArrayInput interface {
+	pulumi.Input
+
+	ToGetShareClientGroupNfArrayOutput() GetShareClientGroupNfArrayOutput
+	ToGetShareClientGroupNfArrayOutputWithContext(context.Context) GetShareClientGroupNfArrayOutput
+}
+
+type GetShareClientGroupNfArray []GetShareClientGroupNfInput
+
+func (GetShareClientGroupNfArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShareClientGroupNf)(nil)).Elem()
+}
+
+func (i GetShareClientGroupNfArray) ToGetShareClientGroupNfArrayOutput() GetShareClientGroupNfArrayOutput {
+	return i.ToGetShareClientGroupNfArrayOutputWithContext(context.Background())
+}
+
+func (i GetShareClientGroupNfArray) ToGetShareClientGroupNfArrayOutputWithContext(ctx context.Context) GetShareClientGroupNfArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetShareClientGroupNfArrayOutput)
+}
+
+type GetShareClientGroupNfOutput struct{ *pulumi.OutputState }
+
+func (GetShareClientGroupNfOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetShareClientGroupNf)(nil)).Elem()
+}
+
+func (o GetShareClientGroupNfOutput) ToGetShareClientGroupNfOutput() GetShareClientGroupNfOutput {
+	return o
+}
+
+func (o GetShareClientGroupNfOutput) ToGetShareClientGroupNfOutputWithContext(ctx context.Context) GetShareClientGroupNfOutput {
+	return o
+}
+
+// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+func (o GetShareClientGroupNfOutput) Squash() pulumi.StringOutput {
+	return o.ApplyT(func(v GetShareClientGroupNf) string { return v.Squash }).(pulumi.StringOutput)
+}
+
+type GetShareClientGroupNfArrayOutput struct{ *pulumi.OutputState }
+
+func (GetShareClientGroupNfArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetShareClientGroupNf)(nil)).Elem()
+}
+
+func (o GetShareClientGroupNfArrayOutput) ToGetShareClientGroupNfArrayOutput() GetShareClientGroupNfArrayOutput {
+	return o
+}
+
+func (o GetShareClientGroupNfArrayOutput) ToGetShareClientGroupNfArrayOutputWithContext(ctx context.Context) GetShareClientGroupNfArrayOutput {
+	return o
+}
+
+func (o GetShareClientGroupNfArrayOutput) Index(i pulumi.IntInput) GetShareClientGroupNfOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetShareClientGroupNf {
+		return vs[0].([]GetShareClientGroupNf)[vs[1].(int)]
+	}).(GetShareClientGroupNfOutput)
 }
 
 func init() {
@@ -595,6 +1022,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ShareClientGroupArrayInput)(nil)).Elem(), ShareClientGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShareClientGroupNfsInput)(nil)).Elem(), ShareClientGroupNfsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ShareClientGroupNfsPtrInput)(nil)).Elem(), ShareClientGroupNfsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConnectionInput)(nil)).Elem(), GetClusterConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConnectionArrayInput)(nil)).Elem(), GetClusterConnectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNfInput)(nil)).Elem(), GetClusterNfArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterNfArrayInput)(nil)).Elem(), GetClusterNfArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShareClientGroupInput)(nil)).Elem(), GetShareClientGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShareClientGroupArrayInput)(nil)).Elem(), GetShareClientGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShareClientGroupNfInput)(nil)).Elem(), GetShareClientGroupNfArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetShareClientGroupNfArrayInput)(nil)).Elem(), GetShareClientGroupNfArray{})
 	pulumi.RegisterOutputType(ClusterConnectionsOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(ClusterNfsOutput{})
@@ -603,4 +1038,12 @@ func init() {
 	pulumi.RegisterOutputType(ShareClientGroupArrayOutput{})
 	pulumi.RegisterOutputType(ShareClientGroupNfsOutput{})
 	pulumi.RegisterOutputType(ShareClientGroupNfsPtrOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterNfOutput{})
+	pulumi.RegisterOutputType(GetClusterNfArrayOutput{})
+	pulumi.RegisterOutputType(GetShareClientGroupOutput{})
+	pulumi.RegisterOutputType(GetShareClientGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetShareClientGroupNfOutput{})
+	pulumi.RegisterOutputType(GetShareClientGroupNfArrayOutput{})
 }

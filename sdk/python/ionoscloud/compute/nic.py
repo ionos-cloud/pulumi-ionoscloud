@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -30,20 +35,16 @@ class NicArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Nic resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[int] lan: [integer] The LAN ID the NIC will sit on.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
-        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] dhcpv6: [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] firewall_active: [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        :param pulumi.Input[str] firewall_type: [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        :param pulumi.Input['NicFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-        :param pulumi.Input[str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
-        :param pulumi.Input[str] name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param pulumi.Input['NicFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+               Passing value null or empty array will assign an IP address automatically.
+        :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+               CIDR block assigned to the nic.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "lan", lan)
@@ -70,9 +71,6 @@ class NicArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -82,9 +80,6 @@ class NicArgs:
     @property
     @pulumi.getter
     def lan(self) -> pulumi.Input[int]:
-        """
-        [integer] The LAN ID the NIC will sit on.
-        """
         return pulumi.get(self, "lan")
 
     @lan.setter
@@ -94,9 +89,6 @@ class NicArgs:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of a server.
-        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -106,9 +98,6 @@ class NicArgs:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -119,7 +108,7 @@ class NicArgs:
     @pulumi.getter
     def dhcpv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+        Indicates whether this NIC receives an IPv6 address through DHCP.
         """
         return pulumi.get(self, "dhcpv6")
 
@@ -130,9 +119,6 @@ class NicArgs:
     @property
     @pulumi.getter(name="firewallActive")
     def firewall_active(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        """
         return pulumi.get(self, "firewall_active")
 
     @firewall_active.setter
@@ -142,9 +128,6 @@ class NicArgs:
     @property
     @pulumi.getter(name="firewallType")
     def firewall_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        """
         return pulumi.get(self, "firewall_type")
 
     @firewall_type.setter
@@ -155,7 +138,10 @@ class NicArgs:
     @pulumi.getter
     def flowlog(self) -> Optional[pulumi.Input['NicFlowlogArgs']]:
         """
-        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -167,7 +153,8 @@ class NicArgs:
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+        Passing value null or empty array will assign an IP address automatically.
         """
         return pulumi.get(self, "ips")
 
@@ -179,7 +166,7 @@ class NicArgs:
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
         """
-        Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+        IPv6 CIDR block assigned to the NIC.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
@@ -191,7 +178,8 @@ class NicArgs:
     @pulumi.getter(name="ipv6Ips")
     def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+        CIDR block assigned to the nic.
         """
         return pulumi.get(self, "ipv6_ips")
 
@@ -202,11 +190,6 @@ class NicArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -234,23 +217,16 @@ class _NicState:
                  server_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Nic resources.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[int] device_number: The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] dhcpv6: [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] firewall_active: [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        :param pulumi.Input[str] firewall_type: [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        :param pulumi.Input['NicFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-        :param pulumi.Input[str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
-        :param pulumi.Input[int] lan: [integer] The LAN ID the NIC will sit on.
-        :param pulumi.Input[str] mac: The MAC address of the NIC.
-        :param pulumi.Input[str] name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        :param pulumi.Input[int] pci_slot: The PCI slot number of the Nic.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param pulumi.Input['NicFlowlogArgs'] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+               Passing value null or empty array will assign an IP address automatically.
+        :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+               CIDR block assigned to the nic.
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -286,9 +262,6 @@ class _NicState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -298,9 +271,6 @@ class _NicState:
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> Optional[pulumi.Input[int]]:
-        """
-        The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-        """
         return pulumi.get(self, "device_number")
 
     @device_number.setter
@@ -310,9 +280,6 @@ class _NicState:
     @property
     @pulumi.getter
     def dhcp(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        """
         return pulumi.get(self, "dhcp")
 
     @dhcp.setter
@@ -323,7 +290,7 @@ class _NicState:
     @pulumi.getter
     def dhcpv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+        Indicates whether this NIC receives an IPv6 address through DHCP.
         """
         return pulumi.get(self, "dhcpv6")
 
@@ -334,9 +301,6 @@ class _NicState:
     @property
     @pulumi.getter(name="firewallActive")
     def firewall_active(self) -> Optional[pulumi.Input[bool]]:
-        """
-        [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        """
         return pulumi.get(self, "firewall_active")
 
     @firewall_active.setter
@@ -346,9 +310,6 @@ class _NicState:
     @property
     @pulumi.getter(name="firewallType")
     def firewall_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        """
         return pulumi.get(self, "firewall_type")
 
     @firewall_type.setter
@@ -359,7 +320,10 @@ class _NicState:
     @pulumi.getter
     def flowlog(self) -> Optional[pulumi.Input['NicFlowlogArgs']]:
         """
-        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -371,7 +335,8 @@ class _NicState:
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+        Passing value null or empty array will assign an IP address automatically.
         """
         return pulumi.get(self, "ips")
 
@@ -383,7 +348,7 @@ class _NicState:
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
         """
-        Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+        IPv6 CIDR block assigned to the NIC.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
@@ -395,7 +360,8 @@ class _NicState:
     @pulumi.getter(name="ipv6Ips")
     def ipv6_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+        CIDR block assigned to the nic.
         """
         return pulumi.get(self, "ipv6_ips")
 
@@ -406,9 +372,6 @@ class _NicState:
     @property
     @pulumi.getter
     def lan(self) -> Optional[pulumi.Input[int]]:
-        """
-        [integer] The LAN ID the NIC will sit on.
-        """
         return pulumi.get(self, "lan")
 
     @lan.setter
@@ -418,9 +381,6 @@ class _NicState:
     @property
     @pulumi.getter
     def mac(self) -> Optional[pulumi.Input[str]]:
-        """
-        The MAC address of the NIC.
-        """
         return pulumi.get(self, "mac")
 
     @mac.setter
@@ -430,11 +390,6 @@ class _NicState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -444,9 +399,6 @@ class _NicState:
     @property
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> Optional[pulumi.Input[int]]:
-        """
-        The PCI slot number of the Nic.
-        """
         return pulumi.get(self, "pci_slot")
 
     @pci_slot.setter
@@ -456,9 +408,6 @@ class _NicState:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of a server.
-        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -476,7 +425,7 @@ class Nic(pulumi.CustomResource):
                  dhcpv6: Optional[pulumi.Input[bool]] = None,
                  firewall_active: Optional[pulumi.Input[bool]] = None,
                  firewall_type: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['NicFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -485,30 +434,19 @@ class Nic(pulumi.CustomResource):
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Import
-
-        Resource **Nic** can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
-        ```
-
+        Create a Nic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] dhcpv6: [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] firewall_active: [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        :param pulumi.Input[str] firewall_type: [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        :param pulumi.Input[pulumi.InputType['NicFlowlogArgs']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-        :param pulumi.Input[str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
-        :param pulumi.Input[int] lan: [integer] The LAN ID the NIC will sit on.
-        :param pulumi.Input[str] name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+               Passing value null or empty array will assign an IP address automatically.
+        :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+               CIDR block assigned to the nic.
         """
         ...
     @overload
@@ -517,14 +455,7 @@ class Nic(pulumi.CustomResource):
                  args: NicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Import
-
-        Resource **Nic** can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
-        ```
-
+        Create a Nic resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param NicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -545,7 +476,7 @@ class Nic(pulumi.CustomResource):
                  dhcpv6: Optional[pulumi.Input[bool]] = None,
                  firewall_active: Optional[pulumi.Input[bool]] = None,
                  firewall_type: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['NicFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
                  ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -598,7 +529,7 @@ class Nic(pulumi.CustomResource):
             dhcpv6: Optional[pulumi.Input[bool]] = None,
             firewall_active: Optional[pulumi.Input[bool]] = None,
             firewall_type: Optional[pulumi.Input[str]] = None,
-            flowlog: Optional[pulumi.Input[pulumi.InputType['NicFlowlogArgs']]] = None,
+            flowlog: Optional[pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']]] = None,
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
             ipv6_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -614,23 +545,16 @@ class Nic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[int] device_number: The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-        :param pulumi.Input[bool] dhcp: [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] dhcpv6: [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
-        :param pulumi.Input[bool] firewall_active: [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        :param pulumi.Input[str] firewall_type: [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        :param pulumi.Input[pulumi.InputType['NicFlowlogArgs']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
-        :param pulumi.Input[str] ipv6_cidr_block: Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
-        :param pulumi.Input[int] lan: [integer] The LAN ID the NIC will sit on.
-        :param pulumi.Input[str] mac: The MAC address of the NIC.
-        :param pulumi.Input[str] name: Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        :param pulumi.Input[int] pci_slot: The PCI slot number of the Nic.
-        :param pulumi.Input[str] server_id: [string] The ID of a server.
+        :param pulumi.Input[bool] dhcpv6: Indicates whether this NIC receives an IPv6 address through DHCP.
+        :param pulumi.Input[Union['NicFlowlogArgs', 'NicFlowlogArgsDict']] flowlog: Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+               network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+               of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+               instances are being accessed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+               Passing value null or empty array will assign an IP address automatically.
+        :param pulumi.Input[str] ipv6_cidr_block: IPv6 CIDR block assigned to the NIC.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_ips: Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+               CIDR block assigned to the nic.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -656,56 +580,44 @@ class Nic(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="deviceNumber")
     def device_number(self) -> pulumi.Output[int]:
-        """
-        The Logical Unit Number (LUN) of the storage volume. Null if this NIC was created from CloudAPI and no DCD changes were done on the Datacenter.
-        """
         return pulumi.get(self, "device_number")
 
     @property
     @pulumi.getter
     def dhcp(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).
-        """
         return pulumi.get(self, "dhcp")
 
     @property
     @pulumi.getter
     def dhcpv6(self) -> pulumi.Output[Optional[bool]]:
         """
-        [Boolean] Indicates if the NIC should get an IPv6 address using DHCP (true) or not (false).
+        Indicates whether this NIC receives an IPv6 address through DHCP.
         """
         return pulumi.get(self, "dhcpv6")
 
     @property
     @pulumi.getter(name="firewallActive")
     def firewall_active(self) -> pulumi.Output[Optional[bool]]:
-        """
-        [Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.
-        """
         return pulumi.get(self, "firewall_active")
 
     @property
     @pulumi.getter(name="firewallType")
     def firewall_type(self) -> pulumi.Output[str]:
-        """
-        [String] The type of firewall rules that will be allowed on the NIC. If it is not specified it will take the default value INGRESS
-        """
         return pulumi.get(self, "firewall_type")
 
     @property
     @pulumi.getter
     def flowlog(self) -> pulumi.Output[Optional['outputs.NicFlowlog']]:
         """
-        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture
+        network information such as source and destination IP addresses, source and destination ports, number of packets, amount
+        of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your
+        instances are being accessed.
         """
         return pulumi.get(self, "flowlog")
 
@@ -713,7 +625,8 @@ class Nic(pulumi.CustomResource):
     @pulumi.getter
     def ips(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] Collection of IP addresses assigned to a NIC. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks,
+        Passing value null or empty array will assign an IP address automatically.
         """
         return pulumi.get(self, "ips")
 
@@ -721,7 +634,7 @@ class Nic(pulumi.CustomResource):
     @pulumi.getter(name="ipv6CidrBlock")
     def ipv6_cidr_block(self) -> pulumi.Output[str]:
         """
-        Automatically assigned /80 IPv6 CIDR block if the NIC is connected to an IPv6 enabled LAN. You can also specify an /80 IPv6 CIDR block for the NIC on your own, which must be inside the /64 IPv6 CIDR block of the LAN and unique.
+        IPv6 CIDR block assigned to the NIC.
         """
         return pulumi.get(self, "ipv6_cidr_block")
 
@@ -729,49 +642,33 @@ class Nic(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Ips")
     def ipv6_ips(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] Collection of IPv6 addresses assigned to a NIC. Explicitly assigned public IPs need to come from the NIC's Ipv6 CIDR block, Passing value null or empty array will assign an IPv6 address automatically from the NIC's CIDR block.
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6
+        CIDR block assigned to the nic.
         """
         return pulumi.get(self, "ipv6_ips")
 
     @property
     @pulumi.getter
     def lan(self) -> pulumi.Output[int]:
-        """
-        [integer] The LAN ID the NIC will sit on.
-        """
         return pulumi.get(self, "lan")
 
     @property
     @pulumi.getter
     def mac(self) -> pulumi.Output[str]:
-        """
-        The MAC address of the NIC.
-        """
         return pulumi.get(self, "mac")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="pciSlot")
     def pci_slot(self) -> pulumi.Output[int]:
-        """
-        The PCI slot number of the Nic.
-        """
         return pulumi.get(self, "pci_slot")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of a server.
-        """
         return pulumi.get(self, "server_id")
 

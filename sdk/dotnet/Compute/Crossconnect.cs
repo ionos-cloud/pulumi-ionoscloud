@@ -9,70 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a **Cross Connect** on IonosCloud.
-    /// Cross Connect allows you to connect virtual data centers (VDC) with each other using a private LAN.
-    /// The VDCs to be connected need to belong to the same IONOS Cloud contract and location.
-    /// You can only use private LANs for a Cross Connect connection. A LAN can only be a part of one Cross Connect.
-    /// 
-    /// The IP addresses of the NICs used for the Cross Connect connection may not be used in more than one NIC and they need to belong to the same IP range.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var crossConnectTestResource = new Ionoscloud.Compute.Crossconnect("crossConnectTestResource", new()
-    ///     {
-    ///         Description = "CrossConnectTestResource",
-    ///     });
-    /// 
-    ///     var dc1 = new Ionoscloud.Compute.Datacenter("dc1", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///     });
-    /// 
-    ///     var dc2 = new Ionoscloud.Compute.Datacenter("dc2", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///     });
-    /// 
-    ///     var dc1lan = new Ionoscloud.Compute.Lan("dc1lan", new()
-    ///     {
-    ///         DatacenterId = dc1.Id,
-    ///         Public = false,
-    ///         Pcc = crossConnectTestResource.Id,
-    ///     });
-    /// 
-    ///     var dc2lan = new Ionoscloud.Compute.Lan("dc2lan", new()
-    ///     {
-    ///         DatacenterId = dc2.Id,
-    ///         Public = false,
-    ///         Pcc = crossConnectTestResource.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// A Cross Connect resource can be imported using its `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/crossconnect:Crossconnect demo {ionoscloud_private_crossconnect_uuid}
-    /// ```
-    /// 
-    /// This can be helpful when you want to import cross-connects which you have already created manually or using other means, outside of terraform.
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/crossconnect:Crossconnect")]
     public partial class Crossconnect : global::Pulumi.CustomResource
     {
@@ -83,20 +19,19 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<ImmutableArray<Outputs.CrossconnectConnectableDatacenter>> ConnectableDatacenters { get; private set; } = null!;
 
         /// <summary>
-        /// [string] A short description for the cross-connection.
-        /// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
+        /// The desired description
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// The desired name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Lists LAN's joined to this cross connect
+        /// A list containing the details of all cross-connected datacenters
         /// </summary>
         [Output("peers")]
         public Output<ImmutableArray<Outputs.CrossconnectPeer>> Peers { get; private set; } = null!;
@@ -160,14 +95,13 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// [string] A short description for the cross-connection.
-        /// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
+        /// The desired description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// The desired name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -176,7 +110,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<Inputs.CrossconnectPeerArgs>? _peers;
 
         /// <summary>
-        /// Lists LAN's joined to this cross connect
+        /// A list containing the details of all cross-connected datacenters
         /// </summary>
         public InputList<Inputs.CrossconnectPeerArgs> Peers
         {
@@ -205,14 +139,13 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// [string] A short description for the cross-connection.
-        /// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
+        /// The desired description
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// The desired name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -221,7 +154,7 @@ namespace Pulumi.Ionoscloud.Compute
         private InputList<Inputs.CrossconnectPeerGetArgs>? _peers;
 
         /// <summary>
-        /// Lists LAN's joined to this cross connect
+        /// A list containing the details of all cross-connected datacenters
         /// </summary>
         public InputList<Inputs.CrossconnectPeerGetArgs> Peers
         {

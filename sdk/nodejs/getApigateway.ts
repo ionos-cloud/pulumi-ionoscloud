@@ -6,33 +6,8 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * The **API Gateway data source** can be used to search for and return an existing API Gateway.
- * You can provide a string for the name parameter which will be compared with provisioned API Gateways.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name
- *
- * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
- * this data source is called.
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getApigateway({
- *     name: "example-apigateway",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getApigateway(args?: GetApigatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetApigatewayResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getApigateway:getApigateway", {
         "id": args.id,
@@ -45,17 +20,8 @@ export function getApigateway(args?: GetApigatewayArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getApigateway.
  */
 export interface GetApigatewayArgs {
-    /**
-     * ID of an existing API Gateway that you want to search for.
-     */
     id?: string;
-    /**
-     * Name of an existing API Gateway that you want to search for.
-     */
     name?: string;
-    /**
-     * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-     */
     partialMatch?: boolean;
 }
 
@@ -64,70 +30,28 @@ export interface GetApigatewayArgs {
  */
 export interface GetApigatewayResult {
     readonly customDomains: outputs.GetApigatewayCustomDomain[];
-    /**
-     * ID of the API Gateway.
-     */
     readonly id: string;
-    /**
-     * Shows whether the collection and reporting of logs for observability of this instance is enabled or disabled.
-     */
     readonly logs: boolean;
-    /**
-     * Shows whether the collection and reporting of metrics for observability of this instance is enabled or disabled.
-     */
     readonly metrics: boolean;
-    /**
-     * The domain name of the distribution.
-     */
     readonly name: string;
     readonly partialMatch?: boolean;
-    /**
-     * The public endpoint of the API Gateway.
-     */
     readonly publicEndpoint: string;
 }
-/**
- * The **API Gateway data source** can be used to search for and return an existing API Gateway.
- * You can provide a string for the name parameter which will be compared with provisioned API Gateways.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name
- *
- * Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
- * this data source is called.
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getApigateway({
- *     name: "example-apigateway",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
-export function getApigatewayOutput(args?: GetApigatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApigatewayResult> {
-    return pulumi.output(args).apply((a: any) => getApigateway(a, opts))
+export function getApigatewayOutput(args?: GetApigatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApigatewayResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getApigateway:getApigateway", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**
  * A collection of arguments for invoking getApigateway.
  */
 export interface GetApigatewayOutputArgs {
-    /**
-     * ID of an existing API Gateway that you want to search for.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing API Gateway that you want to search for.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-     */
     partialMatch?: pulumi.Input<boolean>;
 }

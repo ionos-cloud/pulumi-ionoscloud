@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class AutoscalingGroupReplicaConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+        /// The zone where the VMs are created using this configuration.
         /// </summary>
         [Input("availabilityZone", required: true)]
         public Input<string> AvailabilityZone { get; set; } = null!;
 
         /// <summary>
-        /// [int] The total number of cores for the VMs.
+        /// The total number of cores for the VMs.
         /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
 
         /// <summary>
-        /// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+        /// The zone where the VMs are created using this configuration.
         /// </summary>
         [Input("cpuFamily")]
         public Input<string>? CpuFamily { get; set; }
@@ -43,7 +43,7 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+        /// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
         /// </summary>
         [Input("ram", required: true)]
         public Input<int> Ram { get; set; } = null!;
@@ -52,7 +52,7 @@ namespace Pulumi.Ionoscloud.Inputs
         private InputList<Inputs.AutoscalingGroupReplicaConfigurationVolumeArgs>? _volumes;
 
         /// <summary>
-        /// [list] List of volumes associated with this Replica.
+        /// List of volumes associated with this Replica.
         /// </summary>
         public InputList<Inputs.AutoscalingGroupReplicaConfigurationVolumeArgs> Volumes
         {

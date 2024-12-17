@@ -18,9 +18,6 @@ namespace Pulumi.Ionoscloud
     [IonoscloudResourceType("pulumi:providers:ionoscloud")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
-        /// <summary>
-        /// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        /// </summary>
         [Output("contractNumber")]
         public Output<string?> ContractNumber { get; private set; } = null!;
 
@@ -94,9 +91,6 @@ namespace Pulumi.Ionoscloud
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        /// </summary>
         [Input("contractNumber")]
         public Input<string>? ContractNumber { get; set; }
 

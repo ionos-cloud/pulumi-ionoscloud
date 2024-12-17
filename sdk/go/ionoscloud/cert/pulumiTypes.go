@@ -169,9 +169,110 @@ func (o AutoCertificateProviderExternalAccountBindingPtrOutput) KeySecret() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetAutoCertificateProviderExternalAccountBinding struct {
+	// The key ID of the external account binding
+	KeyId string `pulumi:"keyId"`
+}
+
+// GetAutoCertificateProviderExternalAccountBindingInput is an input type that accepts GetAutoCertificateProviderExternalAccountBindingArgs and GetAutoCertificateProviderExternalAccountBindingOutput values.
+// You can construct a concrete instance of `GetAutoCertificateProviderExternalAccountBindingInput` via:
+//
+//	GetAutoCertificateProviderExternalAccountBindingArgs{...}
+type GetAutoCertificateProviderExternalAccountBindingInput interface {
+	pulumi.Input
+
+	ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput
+	ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Context) GetAutoCertificateProviderExternalAccountBindingOutput
+}
+
+type GetAutoCertificateProviderExternalAccountBindingArgs struct {
+	// The key ID of the external account binding
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+}
+
+func (GetAutoCertificateProviderExternalAccountBindingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
+}
+
+func (i GetAutoCertificateProviderExternalAccountBindingArgs) ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput {
+	return i.ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(context.Background())
+}
+
+func (i GetAutoCertificateProviderExternalAccountBindingArgs) ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAutoCertificateProviderExternalAccountBindingOutput)
+}
+
+// GetAutoCertificateProviderExternalAccountBindingArrayInput is an input type that accepts GetAutoCertificateProviderExternalAccountBindingArray and GetAutoCertificateProviderExternalAccountBindingArrayOutput values.
+// You can construct a concrete instance of `GetAutoCertificateProviderExternalAccountBindingArrayInput` via:
+//
+//	GetAutoCertificateProviderExternalAccountBindingArray{ GetAutoCertificateProviderExternalAccountBindingArgs{...} }
+type GetAutoCertificateProviderExternalAccountBindingArrayInput interface {
+	pulumi.Input
+
+	ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput
+	ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput
+}
+
+type GetAutoCertificateProviderExternalAccountBindingArray []GetAutoCertificateProviderExternalAccountBindingInput
+
+func (GetAutoCertificateProviderExternalAccountBindingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
+}
+
+func (i GetAutoCertificateProviderExternalAccountBindingArray) ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
+	return i.ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(context.Background())
+}
+
+func (i GetAutoCertificateProviderExternalAccountBindingArray) ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAutoCertificateProviderExternalAccountBindingArrayOutput)
+}
+
+type GetAutoCertificateProviderExternalAccountBindingOutput struct{ *pulumi.OutputState }
+
+func (GetAutoCertificateProviderExternalAccountBindingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
+}
+
+func (o GetAutoCertificateProviderExternalAccountBindingOutput) ToGetAutoCertificateProviderExternalAccountBindingOutput() GetAutoCertificateProviderExternalAccountBindingOutput {
+	return o
+}
+
+func (o GetAutoCertificateProviderExternalAccountBindingOutput) ToGetAutoCertificateProviderExternalAccountBindingOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingOutput {
+	return o
+}
+
+// The key ID of the external account binding
+func (o GetAutoCertificateProviderExternalAccountBindingOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoCertificateProviderExternalAccountBinding) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+type GetAutoCertificateProviderExternalAccountBindingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAutoCertificateProviderExternalAccountBindingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAutoCertificateProviderExternalAccountBinding)(nil)).Elem()
+}
+
+func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) ToGetAutoCertificateProviderExternalAccountBindingArrayOutput() GetAutoCertificateProviderExternalAccountBindingArrayOutput {
+	return o
+}
+
+func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) ToGetAutoCertificateProviderExternalAccountBindingArrayOutputWithContext(ctx context.Context) GetAutoCertificateProviderExternalAccountBindingArrayOutput {
+	return o
+}
+
+func (o GetAutoCertificateProviderExternalAccountBindingArrayOutput) Index(i pulumi.IntInput) GetAutoCertificateProviderExternalAccountBindingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAutoCertificateProviderExternalAccountBinding {
+		return vs[0].([]GetAutoCertificateProviderExternalAccountBinding)[vs[1].(int)]
+	}).(GetAutoCertificateProviderExternalAccountBindingOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoCertificateProviderExternalAccountBindingInput)(nil)).Elem(), AutoCertificateProviderExternalAccountBindingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AutoCertificateProviderExternalAccountBindingPtrInput)(nil)).Elem(), AutoCertificateProviderExternalAccountBindingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBindingInput)(nil)).Elem(), GetAutoCertificateProviderExternalAccountBindingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAutoCertificateProviderExternalAccountBindingArrayInput)(nil)).Elem(), GetAutoCertificateProviderExternalAccountBindingArray{})
 	pulumi.RegisterOutputType(AutoCertificateProviderExternalAccountBindingOutput{})
 	pulumi.RegisterOutputType(AutoCertificateProviderExternalAccountBindingPtrOutput{})
+	pulumi.RegisterOutputType(GetAutoCertificateProviderExternalAccountBindingOutput{})
+	pulumi.RegisterOutputType(GetAutoCertificateProviderExternalAccountBindingArrayOutput{})
 }

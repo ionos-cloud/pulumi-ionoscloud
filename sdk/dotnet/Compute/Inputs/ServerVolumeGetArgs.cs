@@ -12,9 +12,6 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
 
     public sealed class ServerVolumeGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
@@ -48,21 +45,12 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         [Input("diskType", required: true)]
         public Input<string> DiskType { get; set; } = null!;
 
-        /// <summary>
-        /// [string] Required if `ssh_key_path` is not provided.
-        /// </summary>
         [Input("imagePassword")]
         public Input<string>? ImagePassword { get; set; }
 
-        /// <summary>
-        /// [string] Sets the OS type of the server.
-        /// </summary>
         [Input("licenceType")]
         public Input<string>? LicenceType { get; set; }
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -88,7 +76,7 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         private InputList<string>? _sshKeyPaths;
 
         /// <summary>
-        /// [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        /// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
         /// </summary>
         [Obsolete(@"Please use ssh_key_path under server level")]
         public InputList<string> SshKeyPaths
@@ -101,7 +89,7 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         private InputList<string>? _sshKeys;
 
         /// <summary>
-        /// [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        /// Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation.
         /// </summary>
         [Obsolete(@"Please use ssh_keys under server level")]
         public InputList<string> SshKeys

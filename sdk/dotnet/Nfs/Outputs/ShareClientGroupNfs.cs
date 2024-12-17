@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Nfs.Outputs
     public sealed class ShareClientGroupNfs
     {
         /// <summary>
-        /// The squash mode for the export. The squash mode can be:
+        /// The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
         /// </summary>
         public readonly string? Squash;
 

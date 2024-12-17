@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -25,7 +30,6 @@ class ProviderArgs:
                  username: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[str] contract_number: To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
         :param pulumi.Input[str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         :param pulumi.Input[str] password: IonosCloud password for API operations. If token is provided, token is preferred
         :param pulumi.Input[str] s3_access_key: Access key for IONOS Object Storage operations.
@@ -59,9 +63,6 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="contractNumber")
     def contract_number(self) -> Optional[pulumi.Input[str]]:
-        """
-        To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        """
         return pulumi.get(self, "contract_number")
 
     @contract_number.setter
@@ -94,10 +95,8 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Timeout is used instead of this functionality""")
     def retries(self) -> Optional[pulumi.Input[int]]:
-        warnings.warn("""Timeout is used instead of this functionality""", DeprecationWarning)
-        pulumi.log.warn("""retries is deprecated: Timeout is used instead of this functionality""")
-
         return pulumi.get(self, "retries")
 
     @retries.setter
@@ -188,7 +187,6 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] contract_number: To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
         :param pulumi.Input[str] endpoint: IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
         :param pulumi.Input[str] password: IonosCloud password for API operations. If token is provided, token is preferred
         :param pulumi.Input[str] s3_access_key: Access key for IONOS Object Storage operations.
@@ -260,9 +258,6 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter(name="contractNumber")
     def contract_number(self) -> pulumi.Output[Optional[str]]:
-        """
-        To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-        """
         return pulumi.get(self, "contract_number")
 
     @property

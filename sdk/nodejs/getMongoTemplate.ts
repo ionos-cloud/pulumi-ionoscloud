@@ -6,7 +6,6 @@ import * as utilities from "./utilities";
 
 export function getMongoTemplate(args?: GetMongoTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoTemplateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getMongoTemplate:getMongoTemplate", {
         "id": args.id,
@@ -36,8 +35,14 @@ export interface GetMongoTemplateResult {
     readonly ram: number;
     readonly storageSize: number;
 }
-export function getMongoTemplateOutput(args?: GetMongoTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMongoTemplateResult> {
-    return pulumi.output(args).apply((a: any) => getMongoTemplate(a, opts))
+export function getMongoTemplateOutput(args?: GetMongoTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoTemplateResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getMongoTemplate:getMongoTemplate", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

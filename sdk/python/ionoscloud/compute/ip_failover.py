@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['IPFailoverArgs', 'IPFailover']
@@ -20,9 +25,7 @@ class IPFailoverArgs:
                  nicuuid: pulumi.Input[str]):
         """
         The set of arguments for constructing a IPFailover resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
-        :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
+        :param pulumi.Input[str] ip: Failover IP
         :param pulumi.Input[str] nicuuid: The UUID of the master NIC
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -33,9 +36,6 @@ class IPFailoverArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -46,7 +46,7 @@ class IPFailoverArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[str]:
         """
-        [string] The reserved IP address to be used in the IP failover group.
+        Failover IP
         """
         return pulumi.get(self, "ip")
 
@@ -57,9 +57,6 @@ class IPFailoverArgs:
     @property
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of a LAN.
-        """
         return pulumi.get(self, "lan_id")
 
     @lan_id.setter
@@ -88,9 +85,7 @@ class _IPFailoverState:
                  nicuuid: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IPFailover resources.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
-        :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
+        :param pulumi.Input[str] ip: Failover IP
         :param pulumi.Input[str] nicuuid: The UUID of the master NIC
         """
         if datacenter_id is not None:
@@ -105,9 +100,6 @@ class _IPFailoverState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -118,7 +110,7 @@ class _IPFailoverState:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The reserved IP address to be used in the IP failover group.
+        Failover IP
         """
         return pulumi.get(self, "ip")
 
@@ -129,9 +121,6 @@ class _IPFailoverState:
     @property
     @pulumi.getter(name="lanId")
     def lan_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of a LAN.
-        """
         return pulumi.get(self, "lan_id")
 
     @lan_id.setter
@@ -162,82 +151,10 @@ class IPFailover(pulumi.CustomResource):
                  nicuuid: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages **IP Failover** groups on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location="us/las",
-            size=1)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-                ips=[example_ip_block.ips[0]],
-            ))
-        example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
-            datacenter_id=example_datacenter.id,
-            lan_id=example_lan.id,
-            ip=example_ip_block.ips[0],
-            nicuuid=example_server.primary_nic,
-            opts=pulumi.ResourceOptions(depends_on=[example_lan]))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## A note on multiple NICs on an IP Failover
-
-        If you want to add a secondary NIC to an IP Failover, follow these steps:
-        1) Creating NIC A with failover IP on LAN 1
-        2) Create NIC B unde the same LAN but with a different IP
-        3) Create the IP Failover on LAN 1 with NIC A and failover IP of NIC A (A becomes now "master", no slaves)
-        4) Update NIC B IP to be the failover IP ( B becomes now a slave, A remains master)
-
-        After this you can create a new NIC C, NIC D and so on, in LAN 1, directly with the failover IP.
-
-        Please check examples for a full example with the above steps.
-
-        ## Import
-
-        Resource IpFailover can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
-        ```
-
+        Create a IPFailover resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
-        :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
+        :param pulumi.Input[str] ip: Failover IP
         :param pulumi.Input[str] nicuuid: The UUID of the master NIC
         """
         ...
@@ -247,77 +164,7 @@ class IPFailover(pulumi.CustomResource):
                  args: IPFailoverArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages **IP Failover** groups on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location="us/las",
-            size=1)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-                ips=[example_ip_block.ips[0]],
-            ))
-        example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
-            datacenter_id=example_datacenter.id,
-            lan_id=example_lan.id,
-            ip=example_ip_block.ips[0],
-            nicuuid=example_server.primary_nic,
-            opts=pulumi.ResourceOptions(depends_on=[example_lan]))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## A note on multiple NICs on an IP Failover
-
-        If you want to add a secondary NIC to an IP Failover, follow these steps:
-        1) Creating NIC A with failover IP on LAN 1
-        2) Create NIC B unde the same LAN but with a different IP
-        3) Create the IP Failover on LAN 1 with NIC A and failover IP of NIC A (A becomes now "master", no slaves)
-        4) Update NIC B IP to be the failover IP ( B becomes now a slave, A remains master)
-
-        After this you can create a new NIC C, NIC D and so on, in LAN 1, directly with the failover IP.
-
-        Please check examples for a full example with the above steps.
-
-        ## Import
-
-        Resource IpFailover can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
-        ```
-
+        Create a IPFailover resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param IPFailoverArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -379,9 +226,7 @@ class IPFailover(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] ip: [string] The reserved IP address to be used in the IP failover group.
-        :param pulumi.Input[str] lan_id: [string] The ID of a LAN.
+        :param pulumi.Input[str] ip: Failover IP
         :param pulumi.Input[str] nicuuid: The UUID of the master NIC
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -397,25 +242,19 @@ class IPFailover(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
         """
-        [string] The reserved IP address to be used in the IP failover group.
+        Failover IP
         """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter(name="lanId")
     def lan_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of a LAN.
-        """
         return pulumi.get(self, "lan_id")
 
     @property

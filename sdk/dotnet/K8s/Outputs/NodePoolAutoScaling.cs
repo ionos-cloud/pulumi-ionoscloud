@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.K8s.Outputs
     public sealed class NodePoolAutoScaling
     {
         /// <summary>
-        /// [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        /// The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
         /// </summary>
         public readonly int MaxNodeCount;
         /// <summary>
-        /// [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        /// The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
         /// </summary>
         public readonly int MinNodeCount;
 

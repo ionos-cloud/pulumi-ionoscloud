@@ -6,31 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.compute.IPBlock("example", {
- *     location: "us/las",
- *     size: 1,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * Resource Ipblock can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
- * ```
- */
 export class IPBlock extends pulumi.CustomResource {
     /**
      * Get an existing IPBlock resource's state with the given name, ID, and optional extra
@@ -59,25 +34,10 @@ export class IPBlock extends pulumi.CustomResource {
         return obj['__pulumiType'] === IPBlock.__pulumiType;
     }
 
-    /**
-     * Read-Only attribute. Lists consumption detail of an individual ip
-     */
     public readonly ipConsumers!: pulumi.Output<outputs.compute.IPBlockIpConsumer[]>;
-    /**
-     * [integer] The list of IP addresses associated with this block.
-     */
     public /*out*/ readonly ips!: pulumi.Output<string[]>;
-    /**
-     * [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-     */
     public readonly location!: pulumi.Output<string>;
-    /**
-     * [string] The name of Ip Block
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * [integer] The number of IP addresses to reserve for this block.
-     */
     public readonly size!: pulumi.Output<number>;
 
     /**
@@ -121,25 +81,10 @@ export class IPBlock extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IPBlock resources.
  */
 export interface IPBlockState {
-    /**
-     * Read-Only attribute. Lists consumption detail of an individual ip
-     */
     ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[]>;
-    /**
-     * [integer] The list of IP addresses associated with this block.
-     */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * [string] The name of Ip Block
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [integer] The number of IP addresses to reserve for this block.
-     */
     size?: pulumi.Input<number>;
 }
 
@@ -147,20 +92,8 @@ export interface IPBlockState {
  * The set of arguments for constructing a IPBlock resource.
  */
 export interface IPBlockArgs {
-    /**
-     * Read-Only attribute. Lists consumption detail of an individual ip
-     */
     ipConsumers?: pulumi.Input<pulumi.Input<inputs.compute.IPBlockIpConsumer>[]>;
-    /**
-     * [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-     */
     location: pulumi.Input<string>;
-    /**
-     * [string] The name of Ip Block
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [integer] The number of IP addresses to reserve for this block.
-     */
     size: pulumi.Input<number>;
 }

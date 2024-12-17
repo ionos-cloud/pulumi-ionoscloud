@@ -30,7 +30,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// The proxy protocol version.
+        /// Proxy protocol version
         /// </summary>
         public readonly string ProxyProtocol;
         /// <summary>

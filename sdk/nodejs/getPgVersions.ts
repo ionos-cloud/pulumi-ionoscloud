@@ -6,7 +6,6 @@ import * as utilities from "./utilities";
 
 export function getPgVersions(args?: GetPgVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetPgVersionsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPgVersions:getPgVersions", {
         "clusterId": args.clusterId,
@@ -31,8 +30,12 @@ export interface GetPgVersionsResult {
     readonly id: string;
     readonly postgresVersions: string[];
 }
-export function getPgVersionsOutput(args?: GetPgVersionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPgVersionsResult> {
-    return pulumi.output(args).apply((a: any) => getPgVersions(a, opts))
+export function getPgVersionsOutput(args?: GetPgVersionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPgVersionsResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPgVersions:getPgVersions", {
+        "clusterId": args.clusterId,
+    }, opts);
 }
 
 /**

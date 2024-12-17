@@ -44,15 +44,11 @@ type LookupKafkaClusterTopicResult struct {
 }
 
 func LookupKafkaClusterTopicOutput(ctx *pulumi.Context, args LookupKafkaClusterTopicOutputArgs, opts ...pulumi.InvokeOption) LookupKafkaClusterTopicResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupKafkaClusterTopicResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupKafkaClusterTopicResultOutput, error) {
 			args := v.(LookupKafkaClusterTopicArgs)
-			r, err := LookupKafkaClusterTopic(ctx, &args, opts...)
-			var s LookupKafkaClusterTopicResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", args, LookupKafkaClusterTopicResultOutput{}, options).(LookupKafkaClusterTopicResultOutput), nil
 		}).(LookupKafkaClusterTopicResultOutput)
 }
 

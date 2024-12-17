@@ -11,43 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **API Gateway data source** can be used to search for and return an existing API Gateway.
-// You can provide a string for the name parameter which will be compared with provisioned API Gateways.
-// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-// When this happens, please refine your search string so that it is specific enough to return only one result.
-//
-// ## Example Usage
-//
-// ### By Name
-//
-// Needs to have the resource be previously created, or a dependsOn clause to ensure that the resource is created before
-// this data source is called.
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupApigateway(ctx, &ionoscloud.LookupApigatewayArgs{
-//				Name: pulumi.StringRef("example-apigateway"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func LookupApigateway(ctx *pulumi.Context, args *LookupApigatewayArgs, opts ...pulumi.InvokeOption) (*LookupApigatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApigatewayResult
@@ -60,51 +23,36 @@ func LookupApigateway(ctx *pulumi.Context, args *LookupApigatewayArgs, opts ...p
 
 // A collection of arguments for invoking getApigateway.
 type LookupApigatewayArgs struct {
-	// ID of an existing API Gateway that you want to search for.
-	Id *string `pulumi:"id"`
-	// Name of an existing API Gateway that you want to search for.
-	Name *string `pulumi:"name"`
-	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-	PartialMatch *bool `pulumi:"partialMatch"`
+	Id           *string `pulumi:"id"`
+	Name         *string `pulumi:"name"`
+	PartialMatch *bool   `pulumi:"partialMatch"`
 }
 
 // A collection of values returned by getApigateway.
 type LookupApigatewayResult struct {
-	CustomDomains []GetApigatewayCustomDomain `pulumi:"customDomains"`
-	// ID of the API Gateway.
-	Id string `pulumi:"id"`
-	// Shows whether the collection and reporting of logs for observability of this instance is enabled or disabled.
-	Logs bool `pulumi:"logs"`
-	// Shows whether the collection and reporting of metrics for observability of this instance is enabled or disabled.
-	Metrics bool `pulumi:"metrics"`
-	// The domain name of the distribution.
-	Name         string `pulumi:"name"`
-	PartialMatch *bool  `pulumi:"partialMatch"`
-	// The public endpoint of the API Gateway.
-	PublicEndpoint string `pulumi:"publicEndpoint"`
+	CustomDomains  []GetApigatewayCustomDomain `pulumi:"customDomains"`
+	Id             string                      `pulumi:"id"`
+	Logs           bool                        `pulumi:"logs"`
+	Metrics        bool                        `pulumi:"metrics"`
+	Name           string                      `pulumi:"name"`
+	PartialMatch   *bool                       `pulumi:"partialMatch"`
+	PublicEndpoint string                      `pulumi:"publicEndpoint"`
 }
 
 func LookupApigatewayOutput(ctx *pulumi.Context, args LookupApigatewayOutputArgs, opts ...pulumi.InvokeOption) LookupApigatewayResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApigatewayResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupApigatewayResultOutput, error) {
 			args := v.(LookupApigatewayArgs)
-			r, err := LookupApigateway(ctx, &args, opts...)
-			var s LookupApigatewayResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getApigateway:getApigateway", args, LookupApigatewayResultOutput{}, options).(LookupApigatewayResultOutput), nil
 		}).(LookupApigatewayResultOutput)
 }
 
 // A collection of arguments for invoking getApigateway.
 type LookupApigatewayOutputArgs struct {
-	// ID of an existing API Gateway that you want to search for.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Name of an existing API Gateway that you want to search for.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
-	PartialMatch pulumi.BoolPtrInput `pulumi:"partialMatch"`
+	Id           pulumi.StringPtrInput `pulumi:"id"`
+	Name         pulumi.StringPtrInput `pulumi:"name"`
+	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
 
 func (LookupApigatewayOutputArgs) ElementType() reflect.Type {
@@ -130,22 +78,18 @@ func (o LookupApigatewayResultOutput) CustomDomains() GetApigatewayCustomDomainA
 	return o.ApplyT(func(v LookupApigatewayResult) []GetApigatewayCustomDomain { return v.CustomDomains }).(GetApigatewayCustomDomainArrayOutput)
 }
 
-// ID of the API Gateway.
 func (o LookupApigatewayResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Shows whether the collection and reporting of logs for observability of this instance is enabled or disabled.
 func (o LookupApigatewayResultOutput) Logs() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) bool { return v.Logs }).(pulumi.BoolOutput)
 }
 
-// Shows whether the collection and reporting of metrics for observability of this instance is enabled or disabled.
 func (o LookupApigatewayResultOutput) Metrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) bool { return v.Metrics }).(pulumi.BoolOutput)
 }
 
-// The domain name of the distribution.
 func (o LookupApigatewayResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -154,7 +98,6 @@ func (o LookupApigatewayResultOutput) PartialMatch() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-// The public endpoint of the API Gateway.
 func (o LookupApigatewayResultOutput) PublicEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApigatewayResult) string { return v.PublicEndpoint }).(pulumi.StringOutput)
 }

@@ -11,77 +11,22 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetLocation
     {
-        /// <summary>
-        /// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetLocation.Invoke(new()
-        ///     {
-        ///         Feature = "SSD",
-        ///         Name = "karlsruhe",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetLocationResult> InvokeAsync(GetLocationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLocationResult>("ionoscloud:index/getLocation:getLocation", args ?? new GetLocationArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetLocation.Invoke(new()
-        ///     {
-        ///         Feature = "SSD",
-        ///         Name = "karlsruhe",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetLocationResult> Invoke(GetLocationInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLocationResult>("ionoscloud:index/getLocation:getLocation", args ?? new GetLocationInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetLocationResult> Invoke(GetLocationInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetLocationResult>("ionoscloud:index/getLocation:getLocation", args ?? new GetLocationInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetLocationArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// A desired feature that the location must be able to provide.
-        /// </summary>
         [Input("feature")]
         public string? Feature { get; set; }
 
-        /// <summary>
-        /// Name of the location to search for.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -93,15 +38,9 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetLocationInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// A desired feature that the location must be able to provide.
-        /// </summary>
         [Input("feature")]
         public Input<string>? Feature { get; set; }
 
-        /// <summary>
-        /// Name of the location to search for.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -115,18 +54,12 @@ namespace Pulumi.Ionoscloud
     [OutputType]
     public sealed class GetLocationResult
     {
-        /// <summary>
-        /// Array of features and CPU families available in a location
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetLocationCpuArchitectureResult> CpuArchitectures;
         public readonly string? Feature;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// List of image aliases available for the location
-        /// </summary>
         public readonly ImmutableArray<string> ImageAliases;
         public readonly string? Name;
 

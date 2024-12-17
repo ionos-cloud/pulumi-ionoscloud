@@ -6,34 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * An API gateway consists of the generic rules and configurations.
- *
- * ## Usage example
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.Apigateway("example", {metrics: true});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
- *
- * resource "ionoscloud_apigateway" "example" {
- *
- * }
- *
- * The resource can be imported using the `gateway_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}
- * ```
- */
 export class Apigateway extends pulumi.CustomResource {
     /**
      * Get an existing Apigateway resource's state with the given name, ID, and optional extra
@@ -63,23 +35,23 @@ export class Apigateway extends pulumi.CustomResource {
     }
 
     /**
-     * [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+     * Custom domains for the API Gateway.
      */
     public readonly customDomains!: pulumi.Output<outputs.ApigatewayCustomDomain[] | undefined>;
     /**
-     * [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
      */
     public readonly logs!: pulumi.Output<boolean | undefined>;
     /**
-     * [bool] Enable or disable metrics. Defaults to `false`.
+     * Enable or disable metrics.
      */
     public readonly metrics!: pulumi.Output<boolean | undefined>;
     /**
-     * [string] The domain name. Externally reachable.
+     * The name of the API Gateway.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The public endpoint of the API Gateway.
+     * The public endpoint of the API Gateway.
      */
     public /*out*/ readonly publicEndpoint!: pulumi.Output<string>;
 
@@ -119,23 +91,23 @@ export class Apigateway extends pulumi.CustomResource {
  */
 export interface ApigatewayState {
     /**
-     * [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+     * Custom domains for the API Gateway.
      */
     customDomains?: pulumi.Input<pulumi.Input<inputs.ApigatewayCustomDomain>[]>;
     /**
-     * [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
      */
     logs?: pulumi.Input<boolean>;
     /**
-     * [bool] Enable or disable metrics. Defaults to `false`.
+     * Enable or disable metrics.
      */
     metrics?: pulumi.Input<boolean>;
     /**
-     * [string] The domain name. Externally reachable.
+     * The name of the API Gateway.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The public endpoint of the API Gateway.
+     * The public endpoint of the API Gateway.
      */
     publicEndpoint?: pulumi.Input<string>;
 }
@@ -145,19 +117,19 @@ export interface ApigatewayState {
  */
 export interface ApigatewayArgs {
     /**
-     * [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+     * Custom domains for the API Gateway.
      */
     customDomains?: pulumi.Input<pulumi.Input<inputs.ApigatewayCustomDomain>[]>;
     /**
-     * [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+     * Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
      */
     logs?: pulumi.Input<boolean>;
     /**
-     * [bool] Enable or disable metrics. Defaults to `false`.
+     * Enable or disable metrics.
      */
     metrics?: pulumi.Input<boolean>;
     /**
-     * [string] The domain name. Externally reachable.
+     * The name of the API Gateway.
      */
     name?: pulumi.Input<string>;
 }

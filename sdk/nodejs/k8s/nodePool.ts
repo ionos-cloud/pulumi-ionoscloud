@@ -6,101 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IonosCloud.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
- *     location: "us/las",
- *     description: "datacenter description",
- *     secAuthProtection: false,
- * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": false,
- * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("exampleIPBlock", {
- *     location: "us/las",
- *     size: 3,
- * });
- * const exampleCluster = new ionoscloud.k8s.Cluster("exampleCluster", {
- *     k8sVersion: "1.28.6",
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Sunday",
- *         time: "09:00:00Z",
- *     },
- *     apiSubnetAllowLists: ["1.2.3.4/32"],
- *     s3Buckets: [{
- *         name: "globally_unique_s3_bucket_name",
- *     }],
- * });
- * const exampleNodePool = new ionoscloud.k8s.NodePool("exampleNodePool", {
- *     datacenterId: exampleDatacenter.id,
- *     k8sClusterId: exampleCluster.id,
- *     k8sVersion: exampleCluster.k8sVersion,
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Monday",
- *         time: "09:00:00Z",
- *     },
- *     autoScaling: {
- *         minNodeCount: 1,
- *         maxNodeCount: 2,
- *     },
- *     cpuFamily: "INTEL_XEON",
- *     availabilityZone: "AUTO",
- *     storageType: "SSD",
- *     nodeCount: 1,
- *     coresCount: 2,
- *     ramSize: 2048,
- *     storageSize: 40,
- *     publicIps: [
- *         exampleIPBlock.ips[0],
- *         exampleIPBlock.ips[1],
- *         exampleIPBlock.ips[2],
- *     ],
- *     lans: [{
- *         id: exampleLan.id,
- *         dhcp: true,
- *         routes: [{
- *             network: "1.2.3.5/24",
- *             gatewayIp: "10.1.5.17",
- *         }],
- *     }],
- *     labels: {
- *         lab1: "value1",
- *         lab2: "value2",
- *     },
- *     annotations: {
- *         ann1: "value1",
- *         ann2: "value2",
- *     },
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- * **Note:** Set `createBeforeDestroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
- *
- * ## Import
- *
- * A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
- *
- * ```sh
- * $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
- * ```
- *
- * This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
- *
- * ⚠️ **_Warning: **During a maintenance window, k8s can update your `k8s_version` if the old one reaches end of life. This upgrade will not be shown in the plan, as we prevent
- *
- * terraform from doing a downgrade, as downgrading `k8s_version` is not supported._**
- *
- * ⚠️ **_Warning: **If you are upgrading from v5.x.x to v6.x.x**: You have to modify you plan for lans to match the new structure, by putting the ids from the old slice in lans.id fields. This is not backwards compatible._**
- */
 export class NodePool extends pulumi.CustomResource {
     /**
      * Get an existing NodePool resource's state with the given name, ID, and optional extra
@@ -133,72 +38,67 @@ export class NodePool extends pulumi.CustomResource {
      * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
      */
     public readonly allowReplace!: pulumi.Output<boolean | undefined>;
-    /**
-     * [map] A key/value map of annotations
-     */
     public readonly annotations!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+     * The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
      */
     public readonly autoScaling!: pulumi.Output<outputs.k8s.NodePoolAutoScaling | undefined>;
     /**
-     * [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+     * The compute availability zone in which the nodes should exist
      */
     public readonly availabilityZone!: pulumi.Output<string>;
     /**
-     * [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+     * CPU cores count
      */
     public readonly coresCount!: pulumi.Output<number>;
     /**
-     * [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+     * CPU Family
      */
     public readonly cpuFamily!: pulumi.Output<string>;
     /**
-     * [string] A Datacenter's UUID
+     * The UUID of the VDC
      */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * [string] A k8s cluster's UUID
+     * The UUID of an existing kubernetes cluster
      */
     public readonly k8sClusterId!: pulumi.Output<string>;
     /**
-     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
+     * The provider will ignore downgrades of patch level.
      */
     public readonly k8sVersion!: pulumi.Output<string>;
-    /**
-     * [map] A key/value map of labels
-     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+     * A list of Local Area Networks the node pool should be part of
      */
     public readonly lans!: pulumi.Output<outputs.k8s.NodePoolLan[] | undefined>;
     /**
-     * See the **maintenance_window** section in the example above
+     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
     public readonly maintenanceWindow!: pulumi.Output<outputs.k8s.NodePoolMaintenanceWindow>;
     /**
-     * [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+     * The desired name for the node pool
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [int] - The desired number of nodes in the node pool
+     * The number of nodes in this node pool
      */
     public readonly nodeCount!: pulumi.Output<number>;
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
+     * A list of fixed IPs. Cannot be set on private clusters.
      */
     public readonly publicIps!: pulumi.Output<string[] | undefined>;
     /**
-     * [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+     * The amount of RAM in MB
      */
     public readonly ramSize!: pulumi.Output<number>;
     /**
-     * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+     * The total allocated storage capacity of a node in GB
      */
     public readonly storageSize!: pulumi.Output<number>;
     /**
-     * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+     * Storage type to use
      */
     public readonly storageType!: pulumi.Output<string>;
 
@@ -297,72 +197,67 @@ export interface NodePoolState {
      * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
      */
     allowReplace?: pulumi.Input<boolean>;
-    /**
-     * [map] A key/value map of annotations
-     */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+     * The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
      */
     autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling>;
     /**
-     * [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+     * The compute availability zone in which the nodes should exist
      */
     availabilityZone?: pulumi.Input<string>;
     /**
-     * [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+     * CPU cores count
      */
     coresCount?: pulumi.Input<number>;
     /**
-     * [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+     * CPU Family
      */
     cpuFamily?: pulumi.Input<string>;
     /**
-     * [string] A Datacenter's UUID
+     * The UUID of the VDC
      */
     datacenterId?: pulumi.Input<string>;
     /**
-     * [string] A k8s cluster's UUID
+     * The UUID of an existing kubernetes cluster
      */
     k8sClusterId?: pulumi.Input<string>;
     /**
-     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
+     * The provider will ignore downgrades of patch level.
      */
     k8sVersion?: pulumi.Input<string>;
-    /**
-     * [map] A key/value map of labels
-     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+     * A list of Local Area Networks the node pool should be part of
      */
     lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[]>;
     /**
-     * See the **maintenance_window** section in the example above
+     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
     maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow>;
     /**
-     * [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+     * The desired name for the node pool
      */
     name?: pulumi.Input<string>;
     /**
-     * [int] - The desired number of nodes in the node pool
+     * The number of nodes in this node pool
      */
     nodeCount?: pulumi.Input<number>;
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
+     * A list of fixed IPs. Cannot be set on private clusters.
      */
     publicIps?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+     * The amount of RAM in MB
      */
     ramSize?: pulumi.Input<number>;
     /**
-     * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+     * The total allocated storage capacity of a node in GB
      */
     storageSize?: pulumi.Input<number>;
     /**
-     * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+     * Storage type to use
      */
     storageType?: pulumi.Input<string>;
 }
@@ -375,72 +270,67 @@ export interface NodePoolArgs {
      * When set to true, allows the update of immutable fields by destroying and re-creating the node pool
      */
     allowReplace?: pulumi.Input<boolean>;
-    /**
-     * [map] A key/value map of annotations
-     */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+     * The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
      */
     autoScaling?: pulumi.Input<inputs.k8s.NodePoolAutoScaling>;
     /**
-     * [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
+     * The compute availability zone in which the nodes should exist
      */
     availabilityZone: pulumi.Input<string>;
     /**
-     * [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
+     * CPU cores count
      */
     coresCount: pulumi.Input<number>;
     /**
-     * [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
+     * CPU Family
      */
     cpuFamily: pulumi.Input<string>;
     /**
-     * [string] A Datacenter's UUID
+     * The UUID of the VDC
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * [string] A k8s cluster's UUID
+     * The UUID of an existing kubernetes cluster
      */
     k8sClusterId: pulumi.Input<string>;
     /**
-     * [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
+     * The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported.
+     * The provider will ignore downgrades of patch level.
      */
     k8sVersion: pulumi.Input<string>;
-    /**
-     * [map] A key/value map of labels
-     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+     * A list of Local Area Networks the node pool should be part of
      */
     lans?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolLan>[]>;
     /**
-     * See the **maintenance_window** section in the example above
+     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
      */
     maintenanceWindow?: pulumi.Input<inputs.k8s.NodePoolMaintenanceWindow>;
     /**
-     * [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
+     * The desired name for the node pool
      */
     name?: pulumi.Input<string>;
     /**
-     * [int] - The desired number of nodes in the node pool
+     * The number of nodes in this node pool
      */
     nodeCount: pulumi.Input<number>;
     /**
-     * [list] A list of public IPs associated with the node pool; must have at least `nodeCount + 1` elements
+     * A list of fixed IPs. Cannot be set on private clusters.
      */
     publicIps?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [int] - The desired amount of RAM, in MB. *This attribute is immutable*.
+     * The amount of RAM in MB
      */
     ramSize: pulumi.Input<number>;
     /**
-     * [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
+     * The total allocated storage capacity of a node in GB
      */
     storageSize: pulumi.Input<number>;
     /**
-     * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+     * Storage type to use
      */
     storageType: pulumi.Input<string>;
 }

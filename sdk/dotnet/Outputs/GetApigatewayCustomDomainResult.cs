@@ -18,7 +18,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly string CertificateId;
         /// <summary>
-        /// Name of an existing API Gateway that you want to search for.
+        /// The domain name of the distribution.
         /// </summary>
         public readonly string Name;
 

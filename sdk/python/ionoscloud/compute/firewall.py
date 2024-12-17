@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['FirewallArgs', 'Firewall']
@@ -29,19 +34,6 @@ class FirewallArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
-        :param pulumi.Input[str] datacenter_id: [string] The Virtual Data Center ID.
-        :param pulumi.Input[str] nic_id: [string] The NIC ID.
-        :param pulumi.Input[str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        :param pulumi.Input[str] server_id: [string] The Server ID.
-        :param pulumi.Input[str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        :param pulumi.Input[str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        :param pulumi.Input[str] name: [string] The name of the firewall rule.
-        :param pulumi.Input[int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[str] source_ip: [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        :param pulumi.Input[str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        :param pulumi.Input[str] target_ip: [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        :param pulumi.Input[str] type: [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "nic_id", nic_id)
@@ -69,9 +61,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] The Virtual Data Center ID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -81,9 +70,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="nicId")
     def nic_id(self) -> pulumi.Input[str]:
-        """
-        [string] The NIC ID.
-        """
         return pulumi.get(self, "nic_id")
 
     @nic_id.setter
@@ -93,9 +79,6 @@ class FirewallArgs:
     @property
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
-        """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -105,9 +88,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Input[str]:
-        """
-        [string] The Server ID.
-        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -117,9 +97,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="icmpCode")
     def icmp_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        """
         return pulumi.get(self, "icmp_code")
 
     @icmp_code.setter
@@ -129,9 +106,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        """
         return pulumi.get(self, "icmp_type")
 
     @icmp_type.setter
@@ -141,9 +115,6 @@ class FirewallArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the firewall rule.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -153,9 +124,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="portRangeEnd")
     def port_range_end(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_end")
 
     @port_range_end.setter
@@ -165,9 +133,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="portRangeStart")
     def port_range_start(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_start")
 
     @port_range_start.setter
@@ -177,9 +142,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        """
         return pulumi.get(self, "source_ip")
 
     @source_ip.setter
@@ -189,9 +151,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="sourceMac")
     def source_mac(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        """
         return pulumi.get(self, "source_mac")
 
     @source_mac.setter
@@ -201,9 +160,6 @@ class FirewallArgs:
     @property
     @pulumi.getter(name="targetIp")
     def target_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        """
         return pulumi.get(self, "target_ip")
 
     @target_ip.setter
@@ -213,9 +169,6 @@ class FirewallArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -241,19 +194,6 @@ class _FirewallState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
-        :param pulumi.Input[str] datacenter_id: [string] The Virtual Data Center ID.
-        :param pulumi.Input[str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        :param pulumi.Input[str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        :param pulumi.Input[str] name: [string] The name of the firewall rule.
-        :param pulumi.Input[str] nic_id: [string] The NIC ID.
-        :param pulumi.Input[int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        :param pulumi.Input[str] server_id: [string] The Server ID.
-        :param pulumi.Input[str] source_ip: [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        :param pulumi.Input[str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        :param pulumi.Input[str] target_ip: [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        :param pulumi.Input[str] type: [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -285,9 +225,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The Virtual Data Center ID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -297,9 +234,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="icmpCode")
     def icmp_code(self) -> Optional[pulumi.Input[str]]:
-        """
-        [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        """
         return pulumi.get(self, "icmp_code")
 
     @icmp_code.setter
@@ -309,9 +243,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        """
         return pulumi.get(self, "icmp_type")
 
     @icmp_type.setter
@@ -321,9 +252,6 @@ class _FirewallState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the firewall rule.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -333,9 +261,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="nicId")
     def nic_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The NIC ID.
-        """
         return pulumi.get(self, "nic_id")
 
     @nic_id.setter
@@ -345,9 +270,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="portRangeEnd")
     def port_range_end(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_end")
 
     @port_range_end.setter
@@ -357,9 +279,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="portRangeStart")
     def port_range_start(self) -> Optional[pulumi.Input[int]]:
-        """
-        [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_start")
 
     @port_range_start.setter
@@ -369,9 +288,6 @@ class _FirewallState:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -381,9 +297,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The Server ID.
-        """
         return pulumi.get(self, "server_id")
 
     @server_id.setter
@@ -393,9 +306,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        """
         return pulumi.get(self, "source_ip")
 
     @source_ip.setter
@@ -405,9 +315,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="sourceMac")
     def source_mac(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        """
         return pulumi.get(self, "source_mac")
 
     @source_mac.setter
@@ -417,9 +324,6 @@ class _FirewallState:
     @property
     @pulumi.getter(name="targetIp")
     def target_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        """
         return pulumi.get(self, "target_ip")
 
     @target_ip.setter
@@ -429,9 +333,6 @@ class _FirewallState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -459,87 +360,9 @@ class Firewall(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages a set of **Firewall Rules** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location=example_datacenter.location,
-            size=2)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_nic = ionoscloud.compute.Nic("exampleNic",
-            datacenter_id=example_datacenter.id,
-            server_id=example_server.id,
-            lan=2,
-            dhcp=True,
-            firewall_active=True)
-        example_firewall = ionoscloud.compute.Firewall("exampleFirewall",
-            datacenter_id=example_datacenter.id,
-            server_id=example_server.id,
-            nic_id=example_nic.id,
-            protocol="ICMP",
-            source_mac="00:0a:95:9d:68:16",
-            source_ip=example_ip_block.ips[0],
-            target_ip=example_ip_block.ips[1],
-            icmp_type="1",
-            icmp_code="8",
-            type="INGRESS")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Firewall can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
-        ```
-
+        Create a Firewall resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The Virtual Data Center ID.
-        :param pulumi.Input[str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        :param pulumi.Input[str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        :param pulumi.Input[str] name: [string] The name of the firewall rule.
-        :param pulumi.Input[str] nic_id: [string] The NIC ID.
-        :param pulumi.Input[int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        :param pulumi.Input[str] server_id: [string] The Server ID.
-        :param pulumi.Input[str] source_ip: [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        :param pulumi.Input[str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        :param pulumi.Input[str] target_ip: [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        :param pulumi.Input[str] type: [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         ...
     @overload
@@ -548,72 +371,7 @@ class Firewall(pulumi.CustomResource):
                  args: FirewallArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a set of **Firewall Rules** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
-            location="us/las",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location=example_datacenter.location,
-            size=2)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
-            cores=1,
-            ram=1024,
-            availability_zone="ZONE_1",
-            cpu_family="INTEL_XEON",
-            image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-            ))
-        example_nic = ionoscloud.compute.Nic("exampleNic",
-            datacenter_id=example_datacenter.id,
-            server_id=example_server.id,
-            lan=2,
-            dhcp=True,
-            firewall_active=True)
-        example_firewall = ionoscloud.compute.Firewall("exampleFirewall",
-            datacenter_id=example_datacenter.id,
-            server_id=example_server.id,
-            nic_id=example_nic.id,
-            protocol="ICMP",
-            source_mac="00:0a:95:9d:68:16",
-            source_ip=example_ip_block.ips[0],
-            target_ip=example_ip_block.ips[1],
-            icmp_type="1",
-            icmp_code="8",
-            type="INGRESS")
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Firewall can be imported using the `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
-        ```
-
+        Create a Firewall resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param FirewallArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -702,19 +460,6 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] The Virtual Data Center ID.
-        :param pulumi.Input[str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        :param pulumi.Input[str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        :param pulumi.Input[str] name: [string] The name of the firewall rule.
-        :param pulumi.Input[str] nic_id: [string] The NIC ID.
-        :param pulumi.Input[int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        :param pulumi.Input[str] server_id: [string] The Server ID.
-        :param pulumi.Input[str] source_ip: [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        :param pulumi.Input[str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        :param pulumi.Input[str] target_ip: [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        :param pulumi.Input[str] type: [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -738,104 +483,65 @@ class Firewall(pulumi.CustomResource):
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] The Virtual Data Center ID.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="icmpCode")
     def icmp_code(self) -> pulumi.Output[Optional[str]]:
-        """
-        [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-        """
         return pulumi.get(self, "icmp_code")
 
     @property
     @pulumi.getter(name="icmpType")
     def icmp_type(self) -> pulumi.Output[Optional[str]]:
-        """
-        [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-        """
         return pulumi.get(self, "icmp_type")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string] The name of the firewall rule.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nicId")
     def nic_id(self) -> pulumi.Output[str]:
-        """
-        [string] The NIC ID.
-        """
         return pulumi.get(self, "nic_id")
 
     @property
     @pulumi.getter(name="portRangeEnd")
     def port_range_end(self) -> pulumi.Output[Optional[int]]:
-        """
-        [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_end")
 
     @property
     @pulumi.getter(name="portRangeStart")
     def port_range_start(self) -> pulumi.Output[Optional[int]]:
-        """
-        [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        """
         return pulumi.get(self, "port_range_start")
 
     @property
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
-        """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="serverId")
     def server_id(self) -> pulumi.Output[str]:
-        """
-        [string] The Server ID.
-        """
         return pulumi.get(self, "server_id")
 
     @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> pulumi.Output[str]:
-        """
-        [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-        """
         return pulumi.get(self, "source_ip")
 
     @property
     @pulumi.getter(name="sourceMac")
     def source_mac(self) -> pulumi.Output[Optional[str]]:
-        """
-        [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-        """
         return pulumi.get(self, "source_mac")
 
     @property
     @pulumi.getter(name="targetIp")
     def target_ip(self) -> pulumi.Output[str]:
-        """
-        [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-        """
         return pulumi.get(self, "target_ip")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
-        """
-        [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-        """
         return pulumi.get(self, "type")
 

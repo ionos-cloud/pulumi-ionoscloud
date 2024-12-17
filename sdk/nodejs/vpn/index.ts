@@ -5,6 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetIpsecGatewayArgs, GetIpsecGatewayResult, GetIpsecGatewayOutputArgs } from "./getIpsecGateway";
+export const getIpsecGateway: typeof import("./getIpsecGateway").getIpsecGateway = null as any;
+export const getIpsecGatewayOutput: typeof import("./getIpsecGateway").getIpsecGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getIpsecGateway","getIpsecGatewayOutput"], () => require("./getIpsecGateway"));
+
+export { GetIpsecTunnelArgs, GetIpsecTunnelResult, GetIpsecTunnelOutputArgs } from "./getIpsecTunnel";
+export const getIpsecTunnel: typeof import("./getIpsecTunnel").getIpsecTunnel = null as any;
+export const getIpsecTunnelOutput: typeof import("./getIpsecTunnel").getIpsecTunnelOutput = null as any;
+utilities.lazyLoad(exports, ["getIpsecTunnel","getIpsecTunnelOutput"], () => require("./getIpsecTunnel"));
+
+export { GetWireguardGatewayArgs, GetWireguardGatewayResult, GetWireguardGatewayOutputArgs } from "./getWireguardGateway";
+export const getWireguardGateway: typeof import("./getWireguardGateway").getWireguardGateway = null as any;
+export const getWireguardGatewayOutput: typeof import("./getWireguardGateway").getWireguardGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getWireguardGateway","getWireguardGatewayOutput"], () => require("./getWireguardGateway"));
+
+export { GetWireguardPeerArgs, GetWireguardPeerResult, GetWireguardPeerOutputArgs } from "./getWireguardPeer";
+export const getWireguardPeer: typeof import("./getWireguardPeer").getWireguardPeer = null as any;
+export const getWireguardPeerOutput: typeof import("./getWireguardPeer").getWireguardPeerOutput = null as any;
+utilities.lazyLoad(exports, ["getWireguardPeer","getWireguardPeerOutput"], () => require("./getWireguardPeer"));
+
 export { IpsecGatewayArgs, IpsecGatewayState } from "./ipsecGateway";
 export type IpsecGateway = import("./ipsecGateway").IpsecGateway;
 export const IpsecGateway: typeof import("./ipsecGateway").IpsecGateway = null as any;

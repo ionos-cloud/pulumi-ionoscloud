@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -14,6 +19,9 @@ __all__ = [
     'DistributionRoutingRule',
     'DistributionRoutingRuleUpstream',
     'DistributionRoutingRuleUpstreamGeoRestrictions',
+    'GetDistributionRoutingRuleResult',
+    'GetDistributionRoutingRuleUpstreamResult',
+    'GetDistributionRoutingRuleUpstreamGeoRestrictionResult',
 ]
 
 @pulumi.output_type
@@ -23,9 +31,8 @@ class DistributionRoutingRule(dict):
                  scheme: str,
                  upstream: 'outputs.DistributionRoutingRuleUpstream'):
         """
-        :param str prefix: [string] The prefix of the routing rule.
-        :param str scheme: [string] The scheme of the routing rule.
-        :param 'DistributionRoutingRuleUpstreamArgs' upstream: [map] - A map of properties for the rule
+        :param str prefix: The prefix of the routing rule.
+        :param str scheme: The scheme of the routing rule.
         """
         pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "scheme", scheme)
@@ -35,7 +42,7 @@ class DistributionRoutingRule(dict):
     @pulumi.getter
     def prefix(self) -> str:
         """
-        [string] The prefix of the routing rule.
+        The prefix of the routing rule.
         """
         return pulumi.get(self, "prefix")
 
@@ -43,16 +50,13 @@ class DistributionRoutingRule(dict):
     @pulumi.getter
     def scheme(self) -> str:
         """
-        [string] The scheme of the routing rule.
+        The scheme of the routing rule.
         """
         return pulumi.get(self, "scheme")
 
     @property
     @pulumi.getter
     def upstream(self) -> 'outputs.DistributionRoutingRuleUpstream':
-        """
-        [map] - A map of properties for the rule
-        """
         return pulumi.get(self, "upstream")
 
 
@@ -87,12 +91,11 @@ class DistributionRoutingRuleUpstream(dict):
                  waf: bool,
                  geo_restrictions: Optional['outputs.DistributionRoutingRuleUpstreamGeoRestrictions'] = None):
         """
-        :param bool caching: [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
-        :param str host: [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
-        :param str rate_limit_class: [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
-        :param str sni_mode: [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
-        :param bool waf: [bool] Enable or disable WAF to protect the upstream host.
-        :param 'DistributionRoutingRuleUpstreamGeoRestrictionsArgs' geo_restrictions: [map] - A map of geo_restrictions
+        :param bool caching: Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        :param str host: The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        :param str rate_limit_class: Rate limit class that will be applied to limit the number of incoming requests per IP.
+        :param str sni_mode: The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
+        :param bool waf: Enable or disable WAF to protect the upstream host.
         """
         pulumi.set(__self__, "caching", caching)
         pulumi.set(__self__, "host", host)
@@ -106,7 +109,7 @@ class DistributionRoutingRuleUpstream(dict):
     @pulumi.getter
     def caching(self) -> bool:
         """
-        [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
         """
         return pulumi.get(self, "caching")
 
@@ -114,7 +117,7 @@ class DistributionRoutingRuleUpstream(dict):
     @pulumi.getter
     def host(self) -> str:
         """
-        [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
         """
         return pulumi.get(self, "host")
 
@@ -122,7 +125,7 @@ class DistributionRoutingRuleUpstream(dict):
     @pulumi.getter(name="rateLimitClass")
     def rate_limit_class(self) -> str:
         """
-        [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+        Rate limit class that will be applied to limit the number of incoming requests per IP.
         """
         return pulumi.get(self, "rate_limit_class")
 
@@ -130,7 +133,7 @@ class DistributionRoutingRuleUpstream(dict):
     @pulumi.getter(name="sniMode")
     def sni_mode(self) -> str:
         """
-        [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+        The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the resource docs.
         """
         return pulumi.get(self, "sni_mode")
 
@@ -138,16 +141,13 @@ class DistributionRoutingRuleUpstream(dict):
     @pulumi.getter
     def waf(self) -> bool:
         """
-        [bool] Enable or disable WAF to protect the upstream host.
+        Enable or disable WAF to protect the upstream host.
         """
         return pulumi.get(self, "waf")
 
     @property
     @pulumi.getter(name="geoRestrictions")
     def geo_restrictions(self) -> Optional['outputs.DistributionRoutingRuleUpstreamGeoRestrictions']:
-        """
-        [map] - A map of geo_restrictions
-        """
         return pulumi.get(self, "geo_restrictions")
 
 
@@ -175,10 +175,6 @@ class DistributionRoutingRuleUpstreamGeoRestrictions(dict):
     def __init__(__self__, *,
                  allow_lists: Optional[Sequence[str]] = None,
                  block_lists: Optional[Sequence[str]] = None):
-        """
-        :param Sequence[str] allow_lists: [string] List of allowed countries
-        :param Sequence[str] block_lists: [string] List of blocked countries
-        """
         if allow_lists is not None:
             pulumi.set(__self__, "allow_lists", allow_lists)
         if block_lists is not None:
@@ -187,17 +183,135 @@ class DistributionRoutingRuleUpstreamGeoRestrictions(dict):
     @property
     @pulumi.getter(name="allowLists")
     def allow_lists(self) -> Optional[Sequence[str]]:
-        """
-        [string] List of allowed countries
-        """
         return pulumi.get(self, "allow_lists")
 
     @property
     @pulumi.getter(name="blockLists")
     def block_lists(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "block_lists")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleResult(dict):
+    def __init__(__self__, *,
+                 prefix: str,
+                 scheme: str,
+                 upstreams: Sequence['outputs.GetDistributionRoutingRuleUpstreamResult']):
         """
-        [string] List of blocked countries
+        :param str prefix: The prefix of the routing rule.
+        :param str scheme: The scheme of the routing rule.
         """
+        pulumi.set(__self__, "prefix", prefix)
+        pulumi.set(__self__, "scheme", scheme)
+        pulumi.set(__self__, "upstreams", upstreams)
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> str:
+        """
+        The prefix of the routing rule.
+        """
+        return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def scheme(self) -> str:
+        """
+        The scheme of the routing rule.
+        """
+        return pulumi.get(self, "scheme")
+
+    @property
+    @pulumi.getter
+    def upstreams(self) -> Sequence['outputs.GetDistributionRoutingRuleUpstreamResult']:
+        return pulumi.get(self, "upstreams")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleUpstreamResult(dict):
+    def __init__(__self__, *,
+                 caching: bool,
+                 geo_restrictions: Sequence['outputs.GetDistributionRoutingRuleUpstreamGeoRestrictionResult'],
+                 host: str,
+                 rate_limit_class: str,
+                 sni_mode: str,
+                 waf: bool):
+        """
+        :param bool caching: Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        :param str host: The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        :param str rate_limit_class: Rate limit class that will be applied to limit the number of incoming requests per IP.
+        :param str sni_mode: The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+        :param bool waf: Enable or disable WAF to protect the upstream host.
+        """
+        pulumi.set(__self__, "caching", caching)
+        pulumi.set(__self__, "geo_restrictions", geo_restrictions)
+        pulumi.set(__self__, "host", host)
+        pulumi.set(__self__, "rate_limit_class", rate_limit_class)
+        pulumi.set(__self__, "sni_mode", sni_mode)
+        pulumi.set(__self__, "waf", waf)
+
+    @property
+    @pulumi.getter
+    def caching(self) -> bool:
+        """
+        Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        """
+        return pulumi.get(self, "caching")
+
+    @property
+    @pulumi.getter(name="geoRestrictions")
+    def geo_restrictions(self) -> Sequence['outputs.GetDistributionRoutingRuleUpstreamGeoRestrictionResult']:
+        return pulumi.get(self, "geo_restrictions")
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="rateLimitClass")
+    def rate_limit_class(self) -> str:
+        """
+        Rate limit class that will be applied to limit the number of incoming requests per IP.
+        """
+        return pulumi.get(self, "rate_limit_class")
+
+    @property
+    @pulumi.getter(name="sniMode")
+    def sni_mode(self) -> str:
+        """
+        The SNI (Server Name Indication) mode of the upstream host. It supports two modes: 'distribution' and 'origin', for more information about these modes please check the data source docs.
+        """
+        return pulumi.get(self, "sni_mode")
+
+    @property
+    @pulumi.getter
+    def waf(self) -> bool:
+        """
+        Enable or disable WAF to protect the upstream host.
+        """
+        return pulumi.get(self, "waf")
+
+
+@pulumi.output_type
+class GetDistributionRoutingRuleUpstreamGeoRestrictionResult(dict):
+    def __init__(__self__, *,
+                 allow_lists: Sequence[str],
+                 block_lists: Sequence[str]):
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "block_lists", block_lists)
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="blockLists")
+    def block_lists(self) -> Sequence[str]:
         return pulumi.get(self, "block_lists")
 
 

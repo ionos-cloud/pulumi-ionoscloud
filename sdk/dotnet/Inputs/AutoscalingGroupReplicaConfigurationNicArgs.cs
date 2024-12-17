@@ -13,13 +13,13 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class AutoscalingGroupReplicaConfigurationNicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+        /// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
         /// </summary>
         [Input("dhcp")]
         public Input<bool>? Dhcp { get; set; }
 
         /// <summary>
-        /// [bool] Firewall active flag.
+        /// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
         /// </summary>
         [Input("firewallActive")]
         public Input<bool>? FirewallActive { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+        /// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
         /// </summary>
         [Input("firewallType")]
         public Input<string>? FirewallType { get; set; }
@@ -46,7 +46,7 @@ namespace Pulumi.Ionoscloud.Inputs
         private InputList<Inputs.AutoscalingGroupReplicaConfigurationNicFlowLogArgs>? _flowLogs;
 
         /// <summary>
-        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// List of all flow logs for the specified NIC.
         /// </summary>
         public InputList<Inputs.AutoscalingGroupReplicaConfigurationNicFlowLogArgs> FlowLogs
         {
@@ -55,19 +55,19 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [int] Lan ID for this replica Nic.
+        /// Lan ID for this replica Nic.
         /// </summary>
         [Input("lan", required: true)]
         public Input<int> Lan { get; set; } = null!;
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// Name for this replica NIC.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// [list] In order to link VM to ALB, target group must be provided
+        /// In order to link VM to ALB, target group must be provided.
         /// </summary>
         [Input("targetGroup")]
         public Input<Inputs.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs>? TargetGroup { get; set; }

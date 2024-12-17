@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['S3KeyArgs', 'S3Key']
@@ -18,8 +23,8 @@ class S3KeyArgs:
                  active: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a S3Key resource.
-        :param pulumi.Input[str] user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
-        :param pulumi.Input[bool] active: [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        :param pulumi.Input[str] user_id: The ID of the user that owns the key.
+        :param pulumi.Input[bool] active: Whether this key should be active or not.
         """
         pulumi.set(__self__, "user_id", user_id)
         if active is not None:
@@ -29,7 +34,7 @@ class S3KeyArgs:
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[str]:
         """
-        [string] The UUID of the user owning the IONOS Object Storage Key.
+        The ID of the user that owns the key.
         """
         return pulumi.get(self, "user_id")
 
@@ -41,7 +46,7 @@ class S3KeyArgs:
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
         """
-        [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        Whether this key should be active or not.
         """
         return pulumi.get(self, "active")
 
@@ -58,9 +63,9 @@ class _S3KeyState:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering S3Key resources.
-        :param pulumi.Input[bool] active: [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
-        :param pulumi.Input[str] secret_key: The IONOS Object Storage Secret key.
-        :param pulumi.Input[str] user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
+        :param pulumi.Input[bool] active: Whether this key should be active or not.
+        :param pulumi.Input[str] secret_key: The Object Storage Secret key.
+        :param pulumi.Input[str] user_id: The ID of the user that owns the key.
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -73,7 +78,7 @@ class _S3KeyState:
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
         """
-        [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        Whether this key should be active or not.
         """
         return pulumi.get(self, "active")
 
@@ -85,7 +90,7 @@ class _S3KeyState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The IONOS Object Storage Secret key.
+        The Object Storage Secret key.
         """
         return pulumi.get(self, "secret_key")
 
@@ -97,7 +102,7 @@ class _S3KeyState:
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The UUID of the user owning the IONOS Object Storage Key.
+        The ID of the user that owns the key.
         """
         return pulumi.get(self, "user_id")
 
@@ -115,42 +120,11 @@ class S3Key(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages an **IONOS Object Storage Key** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_user = ionoscloud.compute.User("exampleUser",
-            first_name="example",
-            last_name="example",
-            email="unique@email.com",
-            password="abc123-321CBA",
-            administrator=False,
-            force_sec_auth=False)
-        example_s3_key = ionoscloud.compute.S3Key("exampleS3Key",
-            user_id=example_user.id,
-            active=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
-        ```
-
-        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
-
+        Create a S3Key resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] active: [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
-        :param pulumi.Input[str] user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
+        :param pulumi.Input[bool] active: Whether this key should be active or not.
+        :param pulumi.Input[str] user_id: The ID of the user that owns the key.
         """
         ...
     @overload
@@ -159,38 +133,7 @@ class S3Key(pulumi.CustomResource):
                  args: S3KeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an **IONOS Object Storage Key** on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example_user = ionoscloud.compute.User("exampleUser",
-            first_name="example",
-            last_name="example",
-            email="unique@email.com",
-            password="abc123-321CBA",
-            administrator=False,
-            force_sec_auth=False)
-        example_s3_key = ionoscloud.compute.S3Key("exampleS3Key",
-            user_id=example_user.id,
-            active=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
-        ```
-
-        This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
-
+        Create a S3Key resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param S3KeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -242,9 +185,9 @@ class S3Key(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] active: [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
-        :param pulumi.Input[str] secret_key: The IONOS Object Storage Secret key.
-        :param pulumi.Input[str] user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
+        :param pulumi.Input[bool] active: Whether this key should be active or not.
+        :param pulumi.Input[str] secret_key: The Object Storage Secret key.
+        :param pulumi.Input[str] user_id: The ID of the user that owns the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -259,7 +202,7 @@ class S3Key(pulumi.CustomResource):
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[bool]]:
         """
-        [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        Whether this key should be active or not.
         """
         return pulumi.get(self, "active")
 
@@ -267,7 +210,7 @@ class S3Key(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[str]:
         """
-        The IONOS Object Storage Secret key.
+        The Object Storage Secret key.
         """
         return pulumi.get(self, "secret_key")
 
@@ -275,7 +218,7 @@ class S3Key(pulumi.CustomResource):
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[str]:
         """
-        [string] The UUID of the user owning the IONOS Object Storage Key.
+        The ID of the user that owns the key.
         """
         return pulumi.get(self, "user_id")
 

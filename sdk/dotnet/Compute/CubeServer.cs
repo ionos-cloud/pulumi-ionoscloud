@@ -9,139 +9,30 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a **Cube Server** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// This resource will create an operational server. After this section completes, the provisioner can be called.
-    /// 
-    /// ### CUBE Server
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleTemplate = Ionoscloud.GetTemplate.Invoke(new()
-    ///     {
-    ///         Name = "CUBES XS",
-    ///     });
-    /// 
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var serverImagePassword = new Random.RandomPassword("serverImagePassword", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = false,
-    ///     });
-    /// 
-    ///     var exampleCubeServer = new Ionoscloud.Compute.CubeServer("exampleCubeServer", new()
-    ///     {
-    ///         AvailabilityZone = "ZONE_2",
-    ///         ImageName = "ubuntu:latest",
-    ///         TemplateUuid = exampleTemplate.Apply(getTemplateResult =&gt; getTemplateResult.Id),
-    ///         ImagePassword = serverImagePassword.Result,
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Volume = new Ionoscloud.Compute.Inputs.CubeServerVolumeArgs
-    ///         {
-    ///             Name = "Volume Example",
-    ///             LicenceType = "LINUX",
-    ///             DiskType = "DAS",
-    ///         },
-    ///         Nic = new Ionoscloud.Compute.Inputs.CubeServerNicArgs
-    ///         {
-    ///             Lan = exampleLan.Id,
-    ///             Name = "Nic Example",
-    ///             Dhcp = true,
-    ///             FirewallActive = true,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/cubeServer:CubeServer")]
     public partial class CubeServer : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. This property is immutable.
-        /// </summary>
         [Output("availabilityZone")]
         public Output<string> AvailabilityZone { get; private set; } = null!;
 
-        /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
-        /// </summary>
         [Output("bootCdrom")]
         public Output<string> BootCdrom { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        /// </summary>
         [Output("bootImage")]
         public Output<string> BootImage { get; private set; } = null!;
 
-        /// <summary>
-        /// The associated boot volume.
-        /// </summary>
         [Output("bootVolume")]
         public Output<string> BootVolume { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
-        /// <summary>
-        /// The associated firewall rule.
-        /// </summary>
         [Output("firewallruleId")]
         public Output<string> FirewallruleId { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        /// </summary>
         [Output("imageName")]
         public Output<string> ImageName { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] Required if `ssh_key_path` is not provided.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use image_name under server level
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; For creating a **CUBE** server, you can not set `volume.size` argument.
-        /// &gt;
-        /// </summary>
         [Output("imagePassword")]
         public Output<string> ImagePassword { get; private set; } = null!;
 
@@ -151,51 +42,30 @@ namespace Pulumi.Ionoscloud.Compute
         [Output("inlineVolumeIds")]
         public Output<ImmutableArray<string>> InlineVolumeIds { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// See the Nic section.
-        /// </summary>
         [Output("nic")]
         public Output<Outputs.CubeServerNic> Nic { get; private set; } = null!;
 
-        /// <summary>
-        /// The associated IP address.
-        /// </summary>
         [Output("primaryIp")]
         public Output<string> PrimaryIp { get; private set; } = null!;
 
-        /// <summary>
-        /// The associated NIC.
-        /// </summary>
         [Output("primaryNic")]
         public Output<string> PrimaryNic { get; private set; } = null!;
 
-        /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        /// </summary>
         [Output("sshKeyPaths")]
         public Output<ImmutableArray<string>> SshKeyPaths { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        /// </summary>
         [Output("templateUuid")]
         public Output<string> TemplateUuid { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        /// Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         /// </summary>
         [Output("vmState")]
         public Output<string> VmState { get; private set; } = null!;
 
-        /// <summary>
-        /// See the Volume section.
-        /// </summary>
         [Output("volume")]
         public Output<Outputs.CubeServerVolume> Volume { get; private set; } = null!;
 
@@ -249,52 +119,23 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class CubeServerArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. This property is immutable.
-        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
-        /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
-        /// </summary>
         [Input("bootCdrom")]
         public Input<string>? BootCdrom { get; set; }
 
-        /// <summary>
-        /// [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        /// </summary>
         [Input("bootImage")]
         public Input<string>? BootImage { get; set; }
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
-        /// <summary>
-        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        /// </summary>
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
         [Input("imagePassword")]
         private Input<string>? _imagePassword;
-
-        /// <summary>
-        /// [string] Required if `ssh_key_path` is not provided.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use image_name under server level
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; For creating a **CUBE** server, you can not set `volume.size` argument.
-        /// &gt;
-        /// </summary>
         public Input<string>? ImagePassword
         {
             get => _imagePassword;
@@ -305,45 +146,29 @@ namespace Pulumi.Ionoscloud.Compute
             }
         }
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// See the Nic section.
-        /// </summary>
         [Input("nic", required: true)]
         public Input<Inputs.CubeServerNicArgs> Nic { get; set; } = null!;
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;
-
-        /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        /// </summary>
         public InputList<string> SshKeyPaths
         {
             get => _sshKeyPaths ?? (_sshKeyPaths = new InputList<string>());
             set => _sshKeyPaths = value;
         }
 
-        /// <summary>
-        /// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        /// </summary>
         [Input("templateUuid", required: true)]
         public Input<string> TemplateUuid { get; set; } = null!;
 
         /// <summary>
-        /// [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        /// Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         /// </summary>
         [Input("vmState")]
         public Input<string>? VmState { get; set; }
 
-        /// <summary>
-        /// See the Volume section.
-        /// </summary>
         [Input("volume", required: true)]
         public Input<Inputs.CubeServerVolumeArgs> Volume { get; set; } = null!;
 
@@ -355,64 +180,29 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class CubeServerState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. This property is immutable.
-        /// </summary>
         [Input("availabilityZone")]
         public Input<string>? AvailabilityZone { get; set; }
 
-        /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
-        /// </summary>
         [Input("bootCdrom")]
         public Input<string>? BootCdrom { get; set; }
 
-        /// <summary>
-        /// [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        /// </summary>
         [Input("bootImage")]
         public Input<string>? BootImage { get; set; }
 
-        /// <summary>
-        /// The associated boot volume.
-        /// </summary>
         [Input("bootVolume")]
         public Input<string>? BootVolume { get; set; }
 
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
-        /// <summary>
-        /// The associated firewall rule.
-        /// </summary>
         [Input("firewallruleId")]
         public Input<string>? FirewallruleId { get; set; }
 
-        /// <summary>
-        /// [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        /// </summary>
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
         [Input("imagePassword")]
         private Input<string>? _imagePassword;
-
-        /// <summary>
-        /// [string] Required if `ssh_key_path` is not provided.
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use image_name under server level
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; For creating a **CUBE** server, you can not set `volume.size` argument.
-        /// &gt;
-        /// </summary>
         public Input<string>? ImagePassword
         {
             get => _imagePassword;
@@ -435,57 +225,35 @@ namespace Pulumi.Ionoscloud.Compute
             set => _inlineVolumeIds = value;
         }
 
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// See the Nic section.
-        /// </summary>
         [Input("nic")]
         public Input<Inputs.CubeServerNicGetArgs>? Nic { get; set; }
 
-        /// <summary>
-        /// The associated IP address.
-        /// </summary>
         [Input("primaryIp")]
         public Input<string>? PrimaryIp { get; set; }
 
-        /// <summary>
-        /// The associated NIC.
-        /// </summary>
         [Input("primaryNic")]
         public Input<string>? PrimaryNic { get; set; }
 
         [Input("sshKeyPaths")]
         private InputList<string>? _sshKeyPaths;
-
-        /// <summary>
-        /// [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        /// </summary>
         public InputList<string> SshKeyPaths
         {
             get => _sshKeyPaths ?? (_sshKeyPaths = new InputList<string>());
             set => _sshKeyPaths = value;
         }
 
-        /// <summary>
-        /// [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        /// </summary>
         [Input("templateUuid")]
         public Input<string>? TemplateUuid { get; set; }
 
         /// <summary>
-        /// [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        /// Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         /// </summary>
         [Input("vmState")]
         public Input<string>? VmState { get; set; }
 
-        /// <summary>
-        /// See the Volume section.
-        /// </summary>
         [Input("volume")]
         public Input<Inputs.CubeServerVolumeGetArgs>? Volume { get; set; }
 

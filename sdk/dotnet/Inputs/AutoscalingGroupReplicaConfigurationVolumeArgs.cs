@@ -13,32 +13,33 @@ namespace Pulumi.Ionoscloud.Inputs
     public sealed class AutoscalingGroupReplicaConfigurationVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+        /// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         /// </summary>
         [Input("backupUnitId")]
         public Input<string>? BackupUnitId { get; set; }
 
         /// <summary>
-        /// [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+        /// Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. 
+        /// Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
         /// Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
         /// </summary>
         [Input("bootOrder", required: true)]
         public Input<string> BootOrder { get; set; } = null!;
 
         /// <summary>
-        /// [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+        /// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
         /// </summary>
         [Input("bus")]
         public Input<string>? Bus { get; set; }
 
         /// <summary>
-        /// [string] The image installed on the volume. Only the UUID of the image is presently supported.
+        /// The image installed on the disk. Currently, only the UUID of the image is supported. Note that either 'image' or 'imageAlias' must be specified, but not both.
         /// </summary>
         [Input("image")]
         public Input<string>? Image { get; set; }
 
         /// <summary>
-        /// [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+        /// The image installed on the volume. Must be an 'imageAlias' as specified via the images API. Note that one of 'image' or 'imageAlias' must be set, but not both.
         /// </summary>
         [Input("imageAlias")]
         public Input<string>? ImageAlias { get; set; }
@@ -47,7 +48,7 @@ namespace Pulumi.Ionoscloud.Inputs
         private Input<string>? _imagePassword;
 
         /// <summary>
-        /// [string] Image password for this replica volume.
+        /// Image password for this replica volume.
         /// </summary>
         public Input<string>? ImagePassword
         {
@@ -60,23 +61,19 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// Name for this replica volume.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// [int] Name for this replica volume.
+        /// User-defined size for this replica volume in GB.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
         [Input("sshKeys")]
         private InputList<string>? _sshKeys;
-
-        /// <summary>
-        /// List of ssh keys, supports values or paths to files. Cannot be changed at update.
-        /// </summary>
         public InputList<string> SshKeys
         {
             get => _sshKeys ?? (_sshKeys = new InputList<string>());
@@ -84,13 +81,13 @@ namespace Pulumi.Ionoscloud.Inputs
         }
 
         /// <summary>
-        /// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+        /// Storage Type for this replica volume. Possible values: SSD, HDD, SSD_STANDARD or SSD_PREMIUM
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+        /// User-data (Cloud Init) for this replica volume.
         /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }

@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class ApigatewayCustomDomain
     {
         /// <summary>
-        /// [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+        /// The certificate ID for the domain.
         /// </summary>
         public readonly string? CertificateId;
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// The domain name.
         /// </summary>
         public readonly string Name;
 

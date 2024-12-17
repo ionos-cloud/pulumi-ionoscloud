@@ -11,61 +11,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// An API gateway consists of the generic rules and configurations.
-//
-// ## Usage example
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.NewApigateway(ctx, "example", &ionoscloud.ApigatewayArgs{
-//				Metrics: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
-//
-// resource "ionoscloud_apigateway" "example" {
-//
-// }
-//
-// The resource can be imported using the `gateway_id`, for example:
-//
-// ```sh
-// $ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}
-// ```
 type Apigateway struct {
 	pulumi.CustomResourceState
 
-	// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+	// Custom domains for the API Gateway.
 	CustomDomains ApigatewayCustomDomainArrayOutput `pulumi:"customDomains"`
-	// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+	// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 	Logs pulumi.BoolPtrOutput `pulumi:"logs"`
-	// [bool] Enable or disable metrics. Defaults to `false`.
+	// Enable or disable metrics.
 	Metrics pulumi.BoolPtrOutput `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// The name of the API Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [string] The public endpoint of the API Gateway.
+	// The public endpoint of the API Gateway.
 	PublicEndpoint pulumi.StringOutput `pulumi:"publicEndpoint"`
 }
 
@@ -99,28 +56,28 @@ func GetApigateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Apigateway resources.
 type apigatewayState struct {
-	// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+	// Custom domains for the API Gateway.
 	CustomDomains []ApigatewayCustomDomain `pulumi:"customDomains"`
-	// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+	// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 	Logs *bool `pulumi:"logs"`
-	// [bool] Enable or disable metrics. Defaults to `false`.
+	// Enable or disable metrics.
 	Metrics *bool `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// The name of the API Gateway.
 	Name *string `pulumi:"name"`
-	// [string] The public endpoint of the API Gateway.
+	// The public endpoint of the API Gateway.
 	PublicEndpoint *string `pulumi:"publicEndpoint"`
 }
 
 type ApigatewayState struct {
-	// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+	// Custom domains for the API Gateway.
 	CustomDomains ApigatewayCustomDomainArrayInput
-	// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+	// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 	Logs pulumi.BoolPtrInput
-	// [bool] Enable or disable metrics. Defaults to `false`.
+	// Enable or disable metrics.
 	Metrics pulumi.BoolPtrInput
-	// [string] The domain name. Externally reachable.
+	// The name of the API Gateway.
 	Name pulumi.StringPtrInput
-	// [string] The public endpoint of the API Gateway.
+	// The public endpoint of the API Gateway.
 	PublicEndpoint pulumi.StringPtrInput
 }
 
@@ -129,25 +86,25 @@ func (ApigatewayState) ElementType() reflect.Type {
 }
 
 type apigatewayArgs struct {
-	// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+	// Custom domains for the API Gateway.
 	CustomDomains []ApigatewayCustomDomain `pulumi:"customDomains"`
-	// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+	// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 	Logs *bool `pulumi:"logs"`
-	// [bool] Enable or disable metrics. Defaults to `false`.
+	// Enable or disable metrics.
 	Metrics *bool `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// The name of the API Gateway.
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Apigateway resource.
 type ApigatewayArgs struct {
-	// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+	// Custom domains for the API Gateway.
 	CustomDomains ApigatewayCustomDomainArrayInput
-	// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+	// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 	Logs pulumi.BoolPtrInput
-	// [bool] Enable or disable metrics. Defaults to `false`.
+	// Enable or disable metrics.
 	Metrics pulumi.BoolPtrInput
-	// [string] The domain name. Externally reachable.
+	// The name of the API Gateway.
 	Name pulumi.StringPtrInput
 }
 
@@ -238,27 +195,27 @@ func (o ApigatewayOutput) ToApigatewayOutputWithContext(ctx context.Context) Api
 	return o
 }
 
-// [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+// Custom domains for the API Gateway.
 func (o ApigatewayOutput) CustomDomains() ApigatewayCustomDomainArrayOutput {
 	return o.ApplyT(func(v *Apigateway) ApigatewayCustomDomainArrayOutput { return v.CustomDomains }).(ApigatewayCustomDomainArrayOutput)
 }
 
-// [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+// Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
 func (o ApigatewayOutput) Logs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.BoolPtrOutput { return v.Logs }).(pulumi.BoolPtrOutput)
 }
 
-// [bool] Enable or disable metrics. Defaults to `false`.
+// Enable or disable metrics.
 func (o ApigatewayOutput) Metrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.BoolPtrOutput { return v.Metrics }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The domain name. Externally reachable.
+// The name of the API Gateway.
 func (o ApigatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [string] The public endpoint of the API Gateway.
+// The public endpoint of the API Gateway.
 func (o ApigatewayOutput) PublicEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.StringOutput { return v.PublicEndpoint }).(pulumi.StringOutput)
 }

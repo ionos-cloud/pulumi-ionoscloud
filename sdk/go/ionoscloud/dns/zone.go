@@ -11,63 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages a **DNS Zone**.
-//
-// > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dns"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dns.NewZone(ctx, "example", &dns.ZoneArgs{
-//				Description: pulumi.String("description"),
-//				Enabled:     pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
-//
-// hcl
-//
-// resource "ionoscloud_dns_zone" "example" {
-//
-// }
-//
-// The resource can be imported using the `zone_id`, for example:
-//
-// ```sh
-// $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
-// ```
 type Zone struct {
 	pulumi.CustomResourceState
 
-	// [string] The description for the DNS Zone.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Enabled     pulumi.BoolOutput      `pulumi:"enabled"`
+	Name        pulumi.StringOutput    `pulumi:"name"`
 	// A list of available name servers.
 	Nameservers pulumi.StringArrayOutput `pulumi:"nameservers"`
 }
@@ -102,23 +51,17 @@ func GetZone(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Zone resources.
 type zoneState struct {
-	// [string] The description for the DNS Zone.
 	Description *string `pulumi:"description"`
-	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-	Enabled *bool `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
-	Name *string `pulumi:"name"`
+	Enabled     *bool   `pulumi:"enabled"`
+	Name        *string `pulumi:"name"`
 	// A list of available name servers.
 	Nameservers []string `pulumi:"nameservers"`
 }
 
 type ZoneState struct {
-	// [string] The description for the DNS Zone.
 	Description pulumi.StringPtrInput
-	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-	Enabled pulumi.BoolPtrInput
-	// [string] The name of the DNS Zone.
-	Name pulumi.StringPtrInput
+	Enabled     pulumi.BoolPtrInput
+	Name        pulumi.StringPtrInput
 	// A list of available name servers.
 	Nameservers pulumi.StringArrayInput
 }
@@ -128,22 +71,16 @@ func (ZoneState) ElementType() reflect.Type {
 }
 
 type zoneArgs struct {
-	// [string] The description for the DNS Zone.
 	Description *string `pulumi:"description"`
-	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-	Enabled *bool `pulumi:"enabled"`
-	// [string] The name of the DNS Zone.
-	Name *string `pulumi:"name"`
+	Enabled     *bool   `pulumi:"enabled"`
+	Name        *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Zone resource.
 type ZoneArgs struct {
-	// [string] The description for the DNS Zone.
 	Description pulumi.StringPtrInput
-	// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-	Enabled pulumi.BoolPtrInput
-	// [string] The name of the DNS Zone.
-	Name pulumi.StringPtrInput
+	Enabled     pulumi.BoolPtrInput
+	Name        pulumi.StringPtrInput
 }
 
 func (ZoneArgs) ElementType() reflect.Type {
@@ -233,17 +170,14 @@ func (o ZoneOutput) ToZoneOutputWithContext(ctx context.Context) ZoneOutput {
 	return o
 }
 
-// [string] The description for the DNS Zone.
 func (o ZoneOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Zone) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// [bool] Indicates if the DNS Zone is active or not. Default is `true`.
 func (o ZoneOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Zone) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// [string] The name of the DNS Zone.
 func (o ZoneOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Zone) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

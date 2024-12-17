@@ -9,195 +9,79 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages **Groups** and **Group Privileges** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// using Random = Pulumi.Random;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var user1Password = new Random.RandomPassword("user1Password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = true,
-    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
-    ///     });
-    /// 
-    ///     var example1 = new Ionoscloud.Compute.User("example1", new()
-    ///     {
-    ///         FirstName = "user1",
-    ///         LastName = "user1",
-    ///         Email = "unique_email.com",
-    ///         Password = user1Password.Result,
-    ///         Administrator = false,
-    ///         ForceSecAuth = false,
-    ///     });
-    /// 
-    ///     var user2Password = new Random.RandomPassword("user2Password", new()
-    ///     {
-    ///         Length = 16,
-    ///         Special = true,
-    ///         OverrideSpecial = "!#$%&amp;*()-_=+[]{}&lt;&gt;:?",
-    ///     });
-    /// 
-    ///     var example2 = new Ionoscloud.Compute.User("example2", new()
-    ///     {
-    ///         FirstName = "user2",
-    ///         LastName = "user2",
-    ///         Email = "unique_email.com",
-    ///         Password = user2Password.Result,
-    ///         Administrator = false,
-    ///         ForceSecAuth = false,
-    ///     });
-    /// 
-    ///     var example = new Ionoscloud.Compute.Group("example", new()
-    ///     {
-    ///         CreateDatacenter = true,
-    ///         CreateSnapshot = true,
-    ///         ReserveIp = true,
-    ///         AccessActivityLog = true,
-    ///         CreatePcc = true,
-    ///         S3Privilege = true,
-    ///         CreateBackupUnit = true,
-    ///         CreateInternetAccess = true,
-    ///         CreateK8sCluster = true,
-    ///         CreateFlowLog = true,
-    ///         AccessAndManageMonitoring = true,
-    ///         AccessAndManageCertificates = true,
-    ///         ManageDbaas = true,
-    ///         UserIds = new[]
-    ///         {
-    ///             example1.Id,
-    ///             example2.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Group can be imported using the `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/group:Group mygroup {group uuid}
-    /// ```
-    /// 
-    /// &gt; :warning: **If you are upgrading to v6.2.0**: You have to modify you plan for user_ids to match the new structure, by renaming the field old field, **user_id**, to user_ids and put the old value into an array. This is not backwards compatible.
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [Boolean] The group will be allowed to access the activity log.
-        /// </summary>
         [Output("accessActivityLog")]
         public Output<bool?> AccessActivityLog { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage certificates.
+        /// Privilege for a group to access and manage certificates.
         /// </summary>
         [Output("accessAndManageCertificates")]
         public Output<bool?> AccessAndManageCertificates { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage monitoring.
+        /// Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        /// alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         /// </summary>
         [Output("accessAndManageMonitoring")]
         public Output<bool?> AccessAndManageMonitoring { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create backup unit privilege.
+        /// Create backup unit privilege.
         /// </summary>
         [Output("createBackupUnit")]
         public Output<bool?> CreateBackupUnit { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create virtual data centers.
-        /// </summary>
         [Output("createDatacenter")]
         public Output<bool?> CreateDatacenter { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create flow log.
+        /// Create Flow Logs privilege.
         /// </summary>
         [Output("createFlowLog")]
         public Output<bool?> CreateFlowLog { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create internet access privilege.
+        /// Create internet access privilege.
         /// </summary>
         [Output("createInternetAccess")]
         public Output<bool?> CreateInternetAccess { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        /// Create Kubernetes cluster privilege.
         /// </summary>
         [Output("createK8sCluster")]
         public Output<bool?> CreateK8sCluster { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create Cross Connects privilege.
-        /// </summary>
         [Output("createPcc")]
         public Output<bool?> CreatePcc { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create snapshots.
-        /// </summary>
         [Output("createSnapshot")]
         public Output<bool?> CreateSnapshot { get; private set; } = null!;
 
         /// <summary>
-        /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        /// Privilege for a group to manage DBaaS related functionality
         /// </summary>
         [Output("manageDbaas")]
         public Output<bool?> ManageDbaas { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] A name for the group.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to reserve IP addresses.
-        /// </summary>
         [Output("reserveIp")]
         public Output<bool?> ReserveIp { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] The group will have S3 privilege.
-        /// </summary>
         [Output("s3Privilege")]
         public Output<bool?> S3Privilege { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
 
-        /// <summary>
-        /// [list] A list of users to add to the group.
-        /// </summary>
         [Output("userIds")]
         public Output<ImmutableArray<string>> UserIds { get; private set; } = null!;
 
-        /// <summary>
-        /// List of users - See the User section
-        /// 
-        /// **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-        /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.GroupUser>> Users { get; private set; } = null!;
 
@@ -247,102 +131,75 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [Boolean] The group will be allowed to access the activity log.
-        /// </summary>
         [Input("accessActivityLog")]
         public Input<bool>? AccessActivityLog { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage certificates.
+        /// Privilege for a group to access and manage certificates.
         /// </summary>
         [Input("accessAndManageCertificates")]
         public Input<bool>? AccessAndManageCertificates { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage monitoring.
+        /// Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        /// alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         /// </summary>
         [Input("accessAndManageMonitoring")]
         public Input<bool>? AccessAndManageMonitoring { get; set; }
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create backup unit privilege.
+        /// Create backup unit privilege.
         /// </summary>
         [Input("createBackupUnit")]
         public Input<bool>? CreateBackupUnit { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create virtual data centers.
-        /// </summary>
         [Input("createDatacenter")]
         public Input<bool>? CreateDatacenter { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create flow log.
+        /// Create Flow Logs privilege.
         /// </summary>
         [Input("createFlowLog")]
         public Input<bool>? CreateFlowLog { get; set; }
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create internet access privilege.
+        /// Create internet access privilege.
         /// </summary>
         [Input("createInternetAccess")]
         public Input<bool>? CreateInternetAccess { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        /// Create Kubernetes cluster privilege.
         /// </summary>
         [Input("createK8sCluster")]
         public Input<bool>? CreateK8sCluster { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create Cross Connects privilege.
-        /// </summary>
         [Input("createPcc")]
         public Input<bool>? CreatePcc { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create snapshots.
-        /// </summary>
         [Input("createSnapshot")]
         public Input<bool>? CreateSnapshot { get; set; }
 
         /// <summary>
-        /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        /// Privilege for a group to manage DBaaS related functionality
         /// </summary>
         [Input("manageDbaas")]
         public Input<bool>? ManageDbaas { get; set; }
 
-        /// <summary>
-        /// [string] A name for the group.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to reserve IP addresses.
-        /// </summary>
         [Input("reserveIp")]
         public Input<bool>? ReserveIp { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will have S3 privilege.
-        /// </summary>
         [Input("s3Privilege")]
         public Input<bool>? S3Privilege { get; set; }
 
-        /// <summary>
-        /// [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
         [Input("userIds")]
         private InputList<string>? _userIds;
-
-        /// <summary>
-        /// [list] A list of users to add to the group.
-        /// </summary>
         public InputList<string> UserIds
         {
             get => _userIds ?? (_userIds = new InputList<string>());
@@ -357,102 +214,75 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class GroupState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [Boolean] The group will be allowed to access the activity log.
-        /// </summary>
         [Input("accessActivityLog")]
         public Input<bool>? AccessActivityLog { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage certificates.
+        /// Privilege for a group to access and manage certificates.
         /// </summary>
         [Input("accessAndManageCertificates")]
         public Input<bool>? AccessAndManageCertificates { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to access and manage monitoring.
+        /// Privilege for a group to access and manage monitoring related functionality (access metrics, CRUD on alarms,
+        /// alarm-actions etc) using Monotoring-as-a-Service (MaaS).
         /// </summary>
         [Input("accessAndManageMonitoring")]
         public Input<bool>? AccessAndManageMonitoring { get; set; }
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create backup unit privilege.
+        /// Create backup unit privilege.
         /// </summary>
         [Input("createBackupUnit")]
         public Input<bool>? CreateBackupUnit { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create virtual data centers.
-        /// </summary>
         [Input("createDatacenter")]
         public Input<bool>? CreateDatacenter { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create flow log.
+        /// Create Flow Logs privilege.
         /// </summary>
         [Input("createFlowLog")]
         public Input<bool>? CreateFlowLog { get; set; }
 
         /// <summary>
-        /// [Boolean] The group will be allowed to create internet access privilege.
+        /// Create internet access privilege.
         /// </summary>
         [Input("createInternetAccess")]
         public Input<bool>? CreateInternetAccess { get; set; }
 
         /// <summary>
-        /// [Boolean]  The group will be allowed to create kubernetes cluster privilege.
+        /// Create Kubernetes cluster privilege.
         /// </summary>
         [Input("createK8sCluster")]
         public Input<bool>? CreateK8sCluster { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create Cross Connects privilege.
-        /// </summary>
         [Input("createPcc")]
         public Input<bool>? CreatePcc { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to create snapshots.
-        /// </summary>
         [Input("createSnapshot")]
         public Input<bool>? CreateSnapshot { get; set; }
 
         /// <summary>
-        /// [Boolean]  Privilege for a group to manage DBaaS related functionality.
+        /// Privilege for a group to manage DBaaS related functionality
         /// </summary>
         [Input("manageDbaas")]
         public Input<bool>? ManageDbaas { get; set; }
 
-        /// <summary>
-        /// [string] A name for the group.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will be allowed to reserve IP addresses.
-        /// </summary>
         [Input("reserveIp")]
         public Input<bool>? ReserveIp { get; set; }
 
-        /// <summary>
-        /// [Boolean] The group will have S3 privilege.
-        /// </summary>
         [Input("s3Privilege")]
         public Input<bool>? S3Privilege { get; set; }
 
-        /// <summary>
-        /// [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
-        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
         [Input("userIds")]
         private InputList<string>? _userIds;
-
-        /// <summary>
-        /// [list] A list of users to add to the group.
-        /// </summary>
         public InputList<string> UserIds
         {
             get => _userIds ?? (_userIds = new InputList<string>());
@@ -461,12 +291,6 @@ namespace Pulumi.Ionoscloud.Compute
 
         [Input("users")]
         private InputList<Inputs.GroupUserGetArgs>? _users;
-
-        /// <summary>
-        /// List of users - See the User section
-        /// 
-        /// **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
-        /// </summary>
         public InputList<Inputs.GroupUserGetArgs> Users
         {
             get => _users ?? (_users = new InputList<Inputs.GroupUserGetArgs>());

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -28,21 +33,18 @@ class IpsecTunnelArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IpsecTunnel resource.
-        :param pulumi.Input['IpsecTunnelAuthArgs'] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-               items: 1.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-               Maximum items: 20.
-        :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
-        :param pulumi.Input['IpsecTunnelIkeArgs'] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-               tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
-        :param pulumi.Input[str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
-        :param pulumi.Input[str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway Tunnel.
+        :param pulumi.Input['IpsecTunnelAuthArgs'] auth: Properties with all data needed to define IPSec Authentication.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+               Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: Settings for the IPSec SA (ESP) phase.
+        :param pulumi.Input[str] gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+        :param pulumi.Input['IpsecTunnelIkeArgs'] ike: Settings for the initial security exchange phase.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+               all addresses.
+        :param pulumi.Input[str] remote_host: The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway Tunnel.
+        :param pulumi.Input[str] name: The human-readable name of your IPSec Gateway Tunnel.
         """
         pulumi.set(__self__, "auth", auth)
         pulumi.set(__self__, "cloud_network_cidrs", cloud_network_cidrs)
@@ -61,8 +63,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def auth(self) -> pulumi.Input['IpsecTunnelAuthArgs']:
         """
-        [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-        items: 1.
+        Properties with all data needed to define IPSec Authentication.
         """
         return pulumi.get(self, "auth")
 
@@ -74,9 +75,8 @@ class IpsecTunnelArgs:
     @pulumi.getter(name="cloudNetworkCidrs")
     def cloud_network_cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-        Maximum items: 20.
+        The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+        Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         """
         return pulumi.get(self, "cloud_network_cidrs")
 
@@ -88,7 +88,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def esps(self) -> pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]]:
         """
-        [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+        Settings for the IPSec SA (ESP) phase.
         """
         return pulumi.get(self, "esps")
 
@@ -100,7 +100,7 @@ class IpsecTunnelArgs:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Input[str]:
         """
-        [string] The ID of the IPSec Gateway that the tunnel belongs to.
+        The ID of the IPSec Gateway that the tunnel belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -112,7 +112,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def ike(self) -> pulumi.Input['IpsecTunnelIkeArgs']:
         """
-        [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+        Settings for the initial security exchange phase.
         """
         return pulumi.get(self, "ike")
 
@@ -124,8 +124,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -137,8 +136,8 @@ class IpsecTunnelArgs:
     @pulumi.getter(name="peerNetworkCidrs")
     def peer_network_cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-        tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+        The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+        all addresses.
         """
         return pulumi.get(self, "peer_network_cidrs")
 
@@ -150,7 +149,7 @@ class IpsecTunnelArgs:
     @pulumi.getter(name="remoteHost")
     def remote_host(self) -> pulumi.Input[str]:
         """
-        [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         return pulumi.get(self, "remote_host")
 
@@ -162,7 +161,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable description of your IPSec Gateway Tunnel.
+        The human-readable description of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "description")
 
@@ -174,7 +173,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the IPSec Gateway Tunnel.
+        The human-readable name of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "name")
 
@@ -198,21 +197,18 @@ class _IpsecTunnelState:
                  remote_host: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IpsecTunnel resources.
-        :param pulumi.Input['IpsecTunnelAuthArgs'] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-               items: 1.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-               Maximum items: 20.
-        :param pulumi.Input[str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
-        :param pulumi.Input['IpsecTunnelIkeArgs'] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-               tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
-        :param pulumi.Input[str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        :param pulumi.Input['IpsecTunnelAuthArgs'] auth: Properties with all data needed to define IPSec Authentication.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+               Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: Settings for the IPSec SA (ESP) phase.
+        :param pulumi.Input[str] gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+        :param pulumi.Input['IpsecTunnelIkeArgs'] ike: Settings for the initial security exchange phase.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human-readable name of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+               all addresses.
+        :param pulumi.Input[str] remote_host: The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         if auth is not None:
             pulumi.set(__self__, "auth", auth)
@@ -239,8 +235,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def auth(self) -> Optional[pulumi.Input['IpsecTunnelAuthArgs']]:
         """
-        [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-        items: 1.
+        Properties with all data needed to define IPSec Authentication.
         """
         return pulumi.get(self, "auth")
 
@@ -252,9 +247,8 @@ class _IpsecTunnelState:
     @pulumi.getter(name="cloudNetworkCidrs")
     def cloud_network_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-        Maximum items: 20.
+        The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+        Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         """
         return pulumi.get(self, "cloud_network_cidrs")
 
@@ -266,7 +260,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The human-readable description of your IPSec Gateway Tunnel.
+        The human-readable description of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "description")
 
@@ -278,7 +272,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def esps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]]]:
         """
-        [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+        Settings for the IPSec SA (ESP) phase.
         """
         return pulumi.get(self, "esps")
 
@@ -290,7 +284,7 @@ class _IpsecTunnelState:
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The ID of the IPSec Gateway that the tunnel belongs to.
+        The ID of the IPSec Gateway that the tunnel belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -302,7 +296,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def ike(self) -> Optional[pulumi.Input['IpsecTunnelIkeArgs']]:
         """
-        [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+        Settings for the initial security exchange phase.
         """
         return pulumi.get(self, "ike")
 
@@ -314,8 +308,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -327,7 +320,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The name of the IPSec Gateway Tunnel.
+        The human-readable name of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "name")
 
@@ -339,8 +332,8 @@ class _IpsecTunnelState:
     @pulumi.getter(name="peerNetworkCidrs")
     def peer_network_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-        tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+        The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+        all addresses.
         """
         return pulumi.get(self, "peer_network_cidrs")
 
@@ -352,7 +345,7 @@ class _IpsecTunnelState:
     @pulumi.getter(name="remoteHost")
     def remote_host(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         return pulumi.get(self, "remote_host")
 
@@ -366,98 +359,33 @@ class IpsecTunnel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelAuthArgs']]] = None,
+                 auth: Optional[pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']]] = None,
                  cloud_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 esps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecTunnelEspArgs']]]]] = None,
+                 esps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
-                 ike: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelIkeArgs']]] = None,
+                 ike: Optional[pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  remote_host: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-        IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
-        connections between your network resources.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
-            public=False,
-            datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
-            location="de/fra",
-            size=1)
-        example_ipsec_gateway = ionoscloud.vpn.IpsecGateway("exampleIpsecGateway",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
-        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("exampleIpsecTunnel",
-            location="de/fra",
-            gateway_id=example_ipsec_gateway.id,
-            remote_host="vpn.mycompany.com",
-            description="Allows local subnet X to connect to virtual network Y.",
-            auth=ionoscloud.vpn.IpsecTunnelAuthArgs(
-                method="PSK",
-                psk_key="X2wosbaw74M8hQGbK3jCCaEusR6CCFRa",
-            ),
-            ike=ionoscloud.vpn.IpsecTunnelIkeArgs(
-                diffie_hellman_group="16-MODP4096",
-                encryption_algorithm="AES256",
-                integrity_algorithm="SHA256",
-                lifetime=86400,
-            ),
-            esps=[ionoscloud.vpn.IpsecTunnelEspArgs(
-                diffie_hellman_group="16-MODP4096",
-                encryption_algorithm="AES256",
-                integrity_algorithm="SHA256",
-                lifetime=3600,
-            )],
-            cloud_network_cidrs=["0.0.0.0/0"],
-            peer_network_cidrs=["1.2.3.4/32"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
-        ```
-
+        Create a IpsecTunnel resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['IpsecTunnelAuthArgs']] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-               items: 1.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-               Maximum items: 20.
-        :param pulumi.Input[str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecTunnelEspArgs']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
-        :param pulumi.Input[pulumi.InputType['IpsecTunnelIkeArgs']] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-               tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
-        :param pulumi.Input[str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        :param pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']] auth: Properties with all data needed to define IPSec Authentication.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+               Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: Settings for the IPSec SA (ESP) phase.
+        :param pulumi.Input[str] gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+        :param pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']] ike: Settings for the initial security exchange phase.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human-readable name of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+               all addresses.
+        :param pulumi.Input[str] remote_host: The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         ...
     @overload
@@ -466,69 +394,7 @@ class IpsecTunnel(pulumi.CustomResource):
                  args: IpsecTunnelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
-        IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
-        connections between your network resources.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        test_datacenter = ionoscloud.compute.Datacenter("testDatacenter", location="de/fra")
-        test_lan = ionoscloud.compute.Lan("testLan",
-            public=False,
-            datacenter_id=test_datacenter.id)
-        test_ipblock = ionoscloud.compute.IPBlock("testIpblock",
-            location="de/fra",
-            size=1)
-        example_ipsec_gateway = ionoscloud.vpn.IpsecGateway("exampleIpsecGateway",
-            location="de/fra",
-            gateway_ip=test_ipblock.ips[0],
-            version="IKEv2",
-            description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
-        example_ipsec_tunnel = ionoscloud.vpn.IpsecTunnel("exampleIpsecTunnel",
-            location="de/fra",
-            gateway_id=example_ipsec_gateway.id,
-            remote_host="vpn.mycompany.com",
-            description="Allows local subnet X to connect to virtual network Y.",
-            auth=ionoscloud.vpn.IpsecTunnelAuthArgs(
-                method="PSK",
-                psk_key="X2wosbaw74M8hQGbK3jCCaEusR6CCFRa",
-            ),
-            ike=ionoscloud.vpn.IpsecTunnelIkeArgs(
-                diffie_hellman_group="16-MODP4096",
-                encryption_algorithm="AES256",
-                integrity_algorithm="SHA256",
-                lifetime=86400,
-            ),
-            esps=[ionoscloud.vpn.IpsecTunnelEspArgs(
-                diffie_hellman_group="16-MODP4096",
-                encryption_algorithm="AES256",
-                integrity_algorithm="SHA256",
-                lifetime=3600,
-            )],
-            cloud_network_cidrs=["0.0.0.0/0"],
-            peer_network_cidrs=["1.2.3.4/32"])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
-        ```
-
+        Create a IpsecTunnel resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param IpsecTunnelArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -544,12 +410,12 @@ class IpsecTunnel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelAuthArgs']]] = None,
+                 auth: Optional[pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']]] = None,
                  cloud_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 esps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecTunnelEspArgs']]]]] = None,
+                 esps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
-                 ike: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelIkeArgs']]] = None,
+                 ike: Optional[pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -599,12 +465,12 @@ class IpsecTunnel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auth: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelAuthArgs']]] = None,
+            auth: Optional[pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']]] = None,
             cloud_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
-            esps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecTunnelEspArgs']]]]] = None,
+            esps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]]] = None,
             gateway_id: Optional[pulumi.Input[str]] = None,
-            ike: Optional[pulumi.Input[pulumi.InputType['IpsecTunnelIkeArgs']]] = None,
+            ike: Optional[pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer_network_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -616,21 +482,18 @@ class IpsecTunnel(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['IpsecTunnelAuthArgs']] auth: [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-               items: 1.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-               tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-               Maximum items: 20.
-        :param pulumi.Input[str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecTunnelEspArgs']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
-        :param pulumi.Input[pulumi.InputType['IpsecTunnelIkeArgs']] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-               gb/lhr, us/ewr, us/las, us/mci, fr/par
-        :param pulumi.Input[str] name: [string] The name of the IPSec Gateway Tunnel.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-               tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
-        :param pulumi.Input[str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        :param pulumi.Input[Union['IpsecTunnelAuthArgs', 'IpsecTunnelAuthArgsDict']] auth: Properties with all data needed to define IPSec Authentication.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cloud_network_cidrs: The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+               Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
+        :param pulumi.Input[str] description: The human-readable description of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: Settings for the IPSec SA (ESP) phase.
+        :param pulumi.Input[str] gateway_id: The ID of the IPSec Gateway that the tunnel belongs to.
+        :param pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']] ike: Settings for the initial security exchange phase.
+        :param pulumi.Input[str] location: The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
+        :param pulumi.Input[str] name: The human-readable name of your IPSec Gateway Tunnel.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] peer_network_cidrs: The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+               all addresses.
+        :param pulumi.Input[str] remote_host: The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -652,8 +515,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def auth(self) -> pulumi.Output['outputs.IpsecTunnelAuth']:
         """
-        [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-        items: 1.
+        Properties with all data needed to define IPSec Authentication.
         """
         return pulumi.get(self, "auth")
 
@@ -661,9 +523,8 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter(name="cloudNetworkCidrs")
     def cloud_network_cidrs(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-        tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-        Maximum items: 20.
+        The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+        Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
         """
         return pulumi.get(self, "cloud_network_cidrs")
 
@@ -671,7 +532,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        [string] The human-readable description of your IPSec Gateway Tunnel.
+        The human-readable description of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "description")
 
@@ -679,7 +540,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def esps(self) -> pulumi.Output[Sequence['outputs.IpsecTunnelEsp']]:
         """
-        [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+        Settings for the IPSec SA (ESP) phase.
         """
         return pulumi.get(self, "esps")
 
@@ -687,7 +548,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> pulumi.Output[str]:
         """
-        [string] The ID of the IPSec Gateway that the tunnel belongs to.
+        The ID of the IPSec Gateway that the tunnel belongs to.
         """
         return pulumi.get(self, "gateway_id")
 
@@ -695,7 +556,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def ike(self) -> pulumi.Output['outputs.IpsecTunnelIke']:
         """
-        [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+        Settings for the initial security exchange phase.
         """
         return pulumi.get(self, "ike")
 
@@ -703,8 +564,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-        gb/lhr, us/ewr, us/las, us/mci, fr/par
+        The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl
         """
         return pulumi.get(self, "location")
 
@@ -712,7 +572,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The name of the IPSec Gateway Tunnel.
+        The human-readable name of your IPSec Gateway Tunnel.
         """
         return pulumi.get(self, "name")
 
@@ -720,8 +580,8 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter(name="peerNetworkCidrs")
     def peer_network_cidrs(self) -> pulumi.Output[Sequence[str]]:
         """
-        [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-        tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+        The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+        all addresses.
         """
         return pulumi.get(self, "peer_network_cidrs")
 
@@ -729,7 +589,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter(name="remoteHost")
     def remote_host(self) -> pulumi.Output[str]:
         """
-        [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+        The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         """
         return pulumi.get(self, "remote_host")
 

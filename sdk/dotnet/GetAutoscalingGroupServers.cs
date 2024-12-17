@@ -11,27 +11,19 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetAutoscalingGroupServers
     {
-        /// <summary>
-        /// The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
-        /// </summary>
         public static Task<GetAutoscalingGroupServersResult> InvokeAsync(GetAutoscalingGroupServersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAutoscalingGroupServersResult>("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", args ?? new GetAutoscalingGroupServersArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
-        /// </summary>
         public static Output<GetAutoscalingGroupServersResult> Invoke(GetAutoscalingGroupServersInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAutoscalingGroupServersResult>("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", args ?? new GetAutoscalingGroupServersInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetAutoscalingGroupServersResult> Invoke(GetAutoscalingGroupServersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAutoscalingGroupServersResult>("ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers", args ?? new GetAutoscalingGroupServersInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetAutoscalingGroupServersArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The unique ID of the autoscaling group.
-        /// 
-        /// `group_id` must be provided. If it is not provided, the datasource will return an error.
-        /// </summary>
         [Input("groupId", required: true)]
         public string GroupId { get; set; } = null!;
 
@@ -43,11 +35,6 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetAutoscalingGroupServersInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The unique ID of the autoscaling group.
-        /// 
-        /// `group_id` must be provided. If it is not provided, the datasource will return an error.
-        /// </summary>
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
 
@@ -61,17 +48,11 @@ namespace Pulumi.Ionoscloud
     [OutputType]
     public sealed class GetAutoscalingGroupServersResult
     {
-        /// <summary>
-        /// Id of the autoscaling group.
-        /// </summary>
         public readonly string GroupId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// List of servers.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetAutoscalingGroupServersServerResult> Servers;
 
         [OutputConstructor]

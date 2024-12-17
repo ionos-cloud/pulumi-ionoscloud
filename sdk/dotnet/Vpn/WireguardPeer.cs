@@ -9,98 +9,53 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Vpn
 {
-    /// <summary>
-    /// This page provides an overview of the `ionoscloud.vpn.WireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
-    /// This resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Vpn.WireguardPeer("example", new()
-    ///     {
-    ///         AllowedIps = new[]
-    ///         {
-    ///             "10.0.0.0/8",
-    ///             "192.168.1.0/24",
-    ///         },
-    ///         Description = "An example WireGuard peer",
-    ///         Endpoint = new Ionoscloud.Vpn.Inputs.WireguardPeerEndpointArgs
-    ///         {
-    ///             Host = "1.2.3.4",
-    ///             Port = 51820,
-    ///         },
-    ///         GatewayId = "your gateway id here",
-    ///         Location = "de/fra",
-    ///         PublicKey = "examplePublicKey==",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example &lt;gateway_id&gt;:&lt;peer_id&gt;
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:vpn/wireguardPeer:WireguardPeer")]
     public partial class WireguardPeer : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        /// The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         /// </summary>
         [Output("allowedIps")]
         public Output<ImmutableArray<string>> AllowedIps { get; private set; } = null!;
 
         /// <summary>
-        /// [string] A description of the WireGuard Gateway.
+        /// Human readable description of the WireGuard Gateway Peer.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        /// Endpoint configuration for the WireGuard Peer.
         /// </summary>
         [Output("endpoint")]
         public Output<Outputs.WireguardPeerEndpoint?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        /// The ID of the WireGuard Peer that the peer will connect to.
         /// </summary>
         [Output("gatewayId")]
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the WireGuard Gateway.
+        /// The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The human-readable name of the WireGuard Gateway.
+        /// The human readable name of your WireGuard Gateway Peer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The public key for the WireGuard Gateway.
+        /// WireGuard public key of the connecting peer
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
         /// <summary>
-        /// The current status of the WireGuard Gateway Peer.
+        /// The status of the WireGuard Gateway
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -155,7 +110,7 @@ namespace Pulumi.Ionoscloud.Vpn
         private InputList<string>? _allowedIps;
 
         /// <summary>
-        /// [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        /// The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         /// </summary>
         public InputList<string> AllowedIps
         {
@@ -164,37 +119,37 @@ namespace Pulumi.Ionoscloud.Vpn
         }
 
         /// <summary>
-        /// [string] A description of the WireGuard Gateway.
+        /// Human readable description of the WireGuard Gateway Peer.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        /// Endpoint configuration for the WireGuard Peer.
         /// </summary>
         [Input("endpoint")]
         public Input<Inputs.WireguardPeerEndpointArgs>? Endpoint { get; set; }
 
         /// <summary>
-        /// [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        /// The ID of the WireGuard Peer that the peer will connect to.
         /// </summary>
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the WireGuard Gateway.
+        /// The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// [string] The human-readable name of the WireGuard Gateway.
+        /// The human readable name of your WireGuard Gateway Peer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] The public key for the WireGuard Gateway.
+        /// WireGuard public key of the connecting peer
         /// </summary>
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
@@ -211,7 +166,7 @@ namespace Pulumi.Ionoscloud.Vpn
         private InputList<string>? _allowedIps;
 
         /// <summary>
-        /// [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+        /// The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
         /// </summary>
         public InputList<string> AllowedIps
         {
@@ -220,43 +175,43 @@ namespace Pulumi.Ionoscloud.Vpn
         }
 
         /// <summary>
-        /// [string] A description of the WireGuard Gateway.
+        /// Human readable description of the WireGuard Gateway Peer.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+        /// Endpoint configuration for the WireGuard Peer.
         /// </summary>
         [Input("endpoint")]
         public Input<Inputs.WireguardPeerEndpointGetArgs>? Endpoint { get; set; }
 
         /// <summary>
-        /// [string] The ID of the WireGuard Gateway that the Peer will connect to.
+        /// The ID of the WireGuard Peer that the peer will connect to.
         /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
         /// <summary>
-        /// [string] The location of the WireGuard Gateway.
+        /// The location of the WireGuard Peer. Supported locations: de/fra, de/txl
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// [string] The human-readable name of the WireGuard Gateway.
+        /// The human readable name of your WireGuard Gateway Peer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// [string] The public key for the WireGuard Gateway.
+        /// WireGuard public key of the connecting peer
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
         /// <summary>
-        /// The current status of the WireGuard Gateway Peer.
+        /// The status of the WireGuard Gateway
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

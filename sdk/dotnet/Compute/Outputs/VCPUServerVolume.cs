@@ -13,9 +13,6 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
     [OutputType]
     public sealed class VCPUServerVolume
     {
-        /// <summary>
-        /// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
-        /// </summary>
         public readonly string? AvailabilityZone;
         /// <summary>
         /// The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
@@ -31,13 +28,7 @@ namespace Pulumi.Ionoscloud.Compute.Outputs
         public readonly bool? DiscVirtioHotPlug;
         public readonly bool? DiscVirtioHotUnplug;
         public readonly string DiskType;
-        /// <summary>
-        /// [string] Sets the OS type of the server.
-        /// </summary>
         public readonly string? LicenceType;
-        /// <summary>
-        /// [string] The name of the server.
-        /// </summary>
         public readonly string? Name;
         public readonly bool? NicHotPlug;
         public readonly bool? NicHotUnplug;

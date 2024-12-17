@@ -12,111 +12,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location:    pulumi.String("de/txl"),
-//				Description: pulumi.String("Datacenter for testing Dataplatform Cluster"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleCluster, err := dsaas.NewCluster(ctx, "exampleCluster", &dsaas.ClusterArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
-//					&dsaas.ClusterMaintenanceWindowArgs{
-//						DayOfTheWeek: pulumi.String("Sunday"),
-//						Time:         pulumi.String("09:00:00"),
-//					},
-//				},
-//				Version: pulumi.String("23.7"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = dsaas.NewNodePool(ctx, "exampleNodePool", &dsaas.NodePoolArgs{
-//				ClusterId:        exampleCluster.ID(),
-//				NodeCount:        pulumi.Int(1),
-//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
-//				CoresCount:       pulumi.Int(1),
-//				RamSize:          pulumi.Int(2048),
-//				AvailabilityZone: pulumi.String("AUTO"),
-//				StorageType:      pulumi.String("HDD"),
-//				StorageSize:      pulumi.Int(10),
-//				MaintenanceWindows: dsaas.NodePoolMaintenanceWindowArray{
-//					&dsaas.NodePoolMaintenanceWindowArgs{
-//						DayOfTheWeek: pulumi.String("Monday"),
-//						Time:         pulumi.String("09:00:00"),
-//					},
-//				},
-//				Labels: pulumi.StringMap{
-//					"foo":   pulumi.String("bar"),
-//					"color": pulumi.String("green"),
-//				},
-//				Annotations: pulumi.StringMap{
-//					"ann1": pulumi.String("value1"),
-//					"ann2": pulumi.String("value2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
-//
-// ```sh
-// $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
-// ```
 type NodePool struct {
 	pulumi.CustomResourceState
 
-	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	// Key-value pairs attached to node pool resource as [Kubernetes
+	// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
-	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
-	// [string] The UUID of an existing Dataplatform cluster.
+	// The UUID of an existing Dataplatform cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+	// The number of CPU cores per node.
 	CoresCount pulumi.IntOutput `pulumi:"coresCount"`
-	// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+	// be retrieved from the datacenter resource.
 	CpuFamily pulumi.StringOutput `pulumi:"cpuFamily"`
 	// The UUID of the virtual data center (VDC) in which the nodepool is provisioned
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	// Key-value pairs attached to the node pool resource as [Kubernetes
+	// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayOutput `pulumi:"maintenanceWindows"`
-	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+	// The number of nodes that make up the node pool.
 	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
-	// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 	RamSize pulumi.IntOutput `pulumi:"ramSize"`
-	// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+	// The size of the volume in GB. The size must be greater than 10GB.
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
-	// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+	// The type of hardware for the volume.
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
 	// The version of the Data Platform.
 	Version pulumi.StringOutput `pulumi:"version"`
@@ -158,62 +85,70 @@ func GetNodePool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NodePool resources.
 type nodePoolState struct {
-	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	// Key-value pairs attached to node pool resource as [Kubernetes
+	// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// [string] The UUID of an existing Dataplatform cluster.
+	// The UUID of an existing Dataplatform cluster.
 	ClusterId *string `pulumi:"clusterId"`
-	// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+	// The number of CPU cores per node.
 	CoresCount *int `pulumi:"coresCount"`
-	// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+	// be retrieved from the datacenter resource.
 	CpuFamily *string `pulumi:"cpuFamily"`
 	// The UUID of the virtual data center (VDC) in which the nodepool is provisioned
 	DatacenterId *string `pulumi:"datacenterId"`
-	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	// Key-value pairs attached to the node pool resource as [Kubernetes
+	// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 	Labels map[string]string `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []NodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
-	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
-	// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+	// The number of nodes that make up the node pool.
 	NodeCount *int `pulumi:"nodeCount"`
-	// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 	RamSize *int `pulumi:"ramSize"`
-	// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+	// The size of the volume in GB. The size must be greater than 10GB.
 	StorageSize *int `pulumi:"storageSize"`
-	// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+	// The type of hardware for the volume.
 	StorageType *string `pulumi:"storageType"`
 	// The version of the Data Platform.
 	Version *string `pulumi:"version"`
 }
 
 type NodePoolState struct {
-	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	// Key-value pairs attached to node pool resource as [Kubernetes
+	// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 	Annotations pulumi.StringMapInput
-	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone pulumi.StringPtrInput
-	// [string] The UUID of an existing Dataplatform cluster.
+	// The UUID of an existing Dataplatform cluster.
 	ClusterId pulumi.StringPtrInput
-	// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+	// The number of CPU cores per node.
 	CoresCount pulumi.IntPtrInput
-	// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+	// be retrieved from the datacenter resource.
 	CpuFamily pulumi.StringPtrInput
 	// The UUID of the virtual data center (VDC) in which the nodepool is provisioned
 	DatacenterId pulumi.StringPtrInput
-	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	// Key-value pairs attached to the node pool resource as [Kubernetes
+	// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 	Labels pulumi.StringMapInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayInput
-	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
-	// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+	// The number of nodes that make up the node pool.
 	NodeCount pulumi.IntPtrInput
-	// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 	RamSize pulumi.IntPtrInput
-	// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+	// The size of the volume in GB. The size must be greater than 10GB.
 	StorageSize pulumi.IntPtrInput
-	// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+	// The type of hardware for the volume.
 	StorageType pulumi.StringPtrInput
 	// The version of the Data Platform.
 	Version pulumi.StringPtrInput
@@ -224,57 +159,65 @@ func (NodePoolState) ElementType() reflect.Type {
 }
 
 type nodePoolArgs struct {
-	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	// Key-value pairs attached to node pool resource as [Kubernetes
+	// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// [string] The UUID of an existing Dataplatform cluster.
+	// The UUID of an existing Dataplatform cluster.
 	ClusterId string `pulumi:"clusterId"`
-	// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+	// The number of CPU cores per node.
 	CoresCount *int `pulumi:"coresCount"`
-	// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+	// be retrieved from the datacenter resource.
 	CpuFamily *string `pulumi:"cpuFamily"`
-	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	// Key-value pairs attached to the node pool resource as [Kubernetes
+	// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 	Labels map[string]string `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []NodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
-	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
-	// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+	// The number of nodes that make up the node pool.
 	NodeCount int `pulumi:"nodeCount"`
-	// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 	RamSize *int `pulumi:"ramSize"`
-	// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+	// The size of the volume in GB. The size must be greater than 10GB.
 	StorageSize *int `pulumi:"storageSize"`
-	// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+	// The type of hardware for the volume.
 	StorageType *string `pulumi:"storageType"`
 }
 
 // The set of arguments for constructing a NodePool resource.
 type NodePoolArgs struct {
-	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+	// Key-value pairs attached to node pool resource as [Kubernetes
+	// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 	Annotations pulumi.StringMapInput
-	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 	AvailabilityZone pulumi.StringPtrInput
-	// [string] The UUID of an existing Dataplatform cluster.
+	// The UUID of an existing Dataplatform cluster.
 	ClusterId pulumi.StringInput
-	// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+	// The number of CPU cores per node.
 	CoresCount pulumi.IntPtrInput
-	// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+	// be retrieved from the datacenter resource.
 	CpuFamily pulumi.StringPtrInput
-	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+	// Key-value pairs attached to the node pool resource as [Kubernetes
+	// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 	Labels pulumi.StringMapInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayInput
-	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+	// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+	// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
-	// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+	// The number of nodes that make up the node pool.
 	NodeCount pulumi.IntInput
-	// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 	RamSize pulumi.IntPtrInput
-	// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+	// The size of the volume in GB. The size must be greater than 10GB.
 	StorageSize pulumi.IntPtrInput
-	// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+	// The type of hardware for the volume.
 	StorageType pulumi.StringPtrInput
 }
 
@@ -365,27 +308,29 @@ func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoo
 	return o
 }
 
-// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
+// Key-value pairs attached to node pool resource as [Kubernetes
+// annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)
 func (o NodePoolOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
+// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
 func (o NodePoolOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
-// [string] The UUID of an existing Dataplatform cluster.
+// The UUID of an existing Dataplatform cluster.
 func (o NodePoolOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
+// The number of CPU cores per node.
 func (o NodePoolOutput) CoresCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.CoresCount }).(pulumi.IntOutput)
 }
 
-// [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
+// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can
+// be retrieved from the datacenter resource.
 func (o NodePoolOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.CpuFamily }).(pulumi.StringOutput)
 }
@@ -395,37 +340,39 @@ func (o NodePoolOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
+// Key-value pairs attached to the node pool resource as [Kubernetes
+// labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 func (o NodePoolOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 func (o NodePoolOutput) MaintenanceWindows() NodePoolMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolMaintenanceWindowArrayOutput { return v.MaintenanceWindows }).(NodePoolMaintenanceWindowArrayOutput)
 }
 
-// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
+// The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric
+// character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 func (o NodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
+// The number of nodes that make up the node pool.
 func (o NodePoolOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
 }
 
-// [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
+// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
 func (o NodePoolOutput) RamSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.RamSize }).(pulumi.IntOutput)
 }
 
-// [int] The size of the volume in GB. The size must be greater than `10`GB. The default value is `20`.
+// The size of the volume in GB. The size must be greater than 10GB.
 func (o NodePoolOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }
 
-// [int] The type of hardware for the volume. Must be set with one of the values `HDD` or `SSD`. The default value is `SSD`.
+// The type of hardware for the volume.
 func (o NodePoolOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
 }

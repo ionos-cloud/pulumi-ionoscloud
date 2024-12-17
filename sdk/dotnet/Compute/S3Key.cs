@@ -9,67 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages an **IONOS Object Storage Key** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleUser = new Ionoscloud.Compute.User("exampleUser", new()
-    ///     {
-    ///         FirstName = "example",
-    ///         LastName = "example",
-    ///         Email = "unique@email.com",
-    ///         Password = "abc123-321CBA",
-    ///         Administrator = false,
-    ///         ForceSecAuth = false,
-    ///     });
-    /// 
-    ///     var exampleS3Key = new Ionoscloud.Compute.S3Key("exampleS3Key", new()
-    ///     {
-    ///         UserId = exampleUser.Id,
-    ///         Active = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// An IONOS Object Storage Unit resource can be imported using its user id as well as its `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/s3Key:S3Key demo {userId}/{s3KeyId}
-    /// ```
-    /// 
-    /// This can be helpful when you want to import IONOS Object Storage Keys which you have already created manually or using other means, outside of terraform.
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/s3Key:S3Key")]
     public partial class S3Key : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        /// Whether this key should be active or not.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
 
         /// <summary>
-        /// The IONOS Object Storage Secret key.
+        /// The Object Storage Secret key.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The UUID of the user owning the IONOS Object Storage Key.
+        /// The ID of the user that owns the key.
         /// </summary>
         [Output("userId")]
         public Output<string> UserId { get; private set; } = null!;
@@ -121,13 +77,13 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class S3KeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        /// Whether this key should be active or not.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
         /// <summary>
-        /// [string] The UUID of the user owning the IONOS Object Storage Key.
+        /// The ID of the user that owns the key.
         /// </summary>
         [Input("userId", required: true)]
         public Input<string> UserId { get; set; } = null!;
@@ -141,19 +97,19 @@ namespace Pulumi.Ionoscloud.Compute
     public sealed class S3KeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [boolean] Whether the IONOS Object Storage is active / enabled or not - Please keep in mind this is only required on create. Default value in true
+        /// Whether this key should be active or not.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
         /// <summary>
-        /// The IONOS Object Storage Secret key.
+        /// The Object Storage Secret key.
         /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
         /// <summary>
-        /// [string] The UUID of the user owning the IONOS Object Storage Key.
+        /// The ID of the user that owns the key.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

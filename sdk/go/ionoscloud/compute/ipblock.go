@@ -12,57 +12,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **IP Blocks** on IonosCloud. IP Blocks contain reserved public IP addresses that can be assigned servers or other resources.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
-//				Location: pulumi.String("us/las"),
-//				Size:     pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// Resource Ipblock can be imported using the `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
-// ```
 type IPBlock struct {
 	pulumi.CustomResourceState
 
-	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers IPBlockIpConsumerArrayOutput `pulumi:"ipConsumers"`
-	// [integer] The list of IP addresses associated with this block.
-	Ips pulumi.StringArrayOutput `pulumi:"ips"`
-	// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location pulumi.StringOutput `pulumi:"location"`
-	// [string] The name of Ip Block
-	Name pulumi.StringOutput `pulumi:"name"`
-	// [integer] The number of IP addresses to reserve for this block.
-	Size pulumi.IntOutput `pulumi:"size"`
+	Ips         pulumi.StringArrayOutput     `pulumi:"ips"`
+	Location    pulumi.StringOutput          `pulumi:"location"`
+	Name        pulumi.StringOutput          `pulumi:"name"`
+	Size        pulumi.IntOutput             `pulumi:"size"`
 }
 
 // NewIPBlock registers a new resource with the given unique name, arguments, and options.
@@ -101,29 +58,19 @@ func GetIPBlock(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IPBlock resources.
 type ipblockState struct {
-	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers []IPBlockIpConsumer `pulumi:"ipConsumers"`
-	// [integer] The list of IP addresses associated with this block.
-	Ips []string `pulumi:"ips"`
-	// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location *string `pulumi:"location"`
-	// [string] The name of Ip Block
-	Name *string `pulumi:"name"`
-	// [integer] The number of IP addresses to reserve for this block.
-	Size *int `pulumi:"size"`
+	Ips         []string            `pulumi:"ips"`
+	Location    *string             `pulumi:"location"`
+	Name        *string             `pulumi:"name"`
+	Size        *int                `pulumi:"size"`
 }
 
 type IPBlockState struct {
-	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers IPBlockIpConsumerArrayInput
-	// [integer] The list of IP addresses associated with this block.
-	Ips pulumi.StringArrayInput
-	// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location pulumi.StringPtrInput
-	// [string] The name of Ip Block
-	Name pulumi.StringPtrInput
-	// [integer] The number of IP addresses to reserve for this block.
-	Size pulumi.IntPtrInput
+	Ips         pulumi.StringArrayInput
+	Location    pulumi.StringPtrInput
+	Name        pulumi.StringPtrInput
+	Size        pulumi.IntPtrInput
 }
 
 func (IPBlockState) ElementType() reflect.Type {
@@ -131,26 +78,18 @@ func (IPBlockState) ElementType() reflect.Type {
 }
 
 type ipblockArgs struct {
-	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers []IPBlockIpConsumer `pulumi:"ipConsumers"`
-	// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location string `pulumi:"location"`
-	// [string] The name of Ip Block
-	Name *string `pulumi:"name"`
-	// [integer] The number of IP addresses to reserve for this block.
-	Size int `pulumi:"size"`
+	Location    string              `pulumi:"location"`
+	Name        *string             `pulumi:"name"`
+	Size        int                 `pulumi:"size"`
 }
 
 // The set of arguments for constructing a IPBlock resource.
 type IPBlockArgs struct {
-	// Read-Only attribute. Lists consumption detail of an individual ip
 	IpConsumers IPBlockIpConsumerArrayInput
-	// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
-	Location pulumi.StringInput
-	// [string] The name of Ip Block
-	Name pulumi.StringPtrInput
-	// [integer] The number of IP addresses to reserve for this block.
-	Size pulumi.IntInput
+	Location    pulumi.StringInput
+	Name        pulumi.StringPtrInput
+	Size        pulumi.IntInput
 }
 
 func (IPBlockArgs) ElementType() reflect.Type {
@@ -240,27 +179,22 @@ func (o IPBlockOutput) ToIPBlockOutputWithContext(ctx context.Context) IPBlockOu
 	return o
 }
 
-// Read-Only attribute. Lists consumption detail of an individual ip
 func (o IPBlockOutput) IpConsumers() IPBlockIpConsumerArrayOutput {
 	return o.ApplyT(func(v *IPBlock) IPBlockIpConsumerArrayOutput { return v.IpConsumers }).(IPBlockIpConsumerArrayOutput)
 }
 
-// [integer] The list of IP addresses associated with this block.
 func (o IPBlockOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IPBlock) pulumi.StringArrayOutput { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-// [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
 func (o IPBlockOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPBlock) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// [string] The name of Ip Block
 func (o IPBlockOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPBlock) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// [integer] The number of IP addresses to reserve for this block.
 func (o IPBlockOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *IPBlock) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }

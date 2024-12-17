@@ -9,141 +9,58 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a **Nat Gateway Rule** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleIPBlock = new Ionoscloud.Compute.IPBlock("exampleIPBlock", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Size = 2,
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///     });
-    /// 
-    ///     var exampleNatGateway = new Ionoscloud.Compute.NatGateway("exampleNatGateway", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         PublicIps = new[]
-    ///         {
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
-    ///             exampleIPBlock.Ips.Apply(ips =&gt; ips[1]),
-    ///         },
-    ///         Lans = new[]
-    ///         {
-    ///             new Ionoscloud.Compute.Inputs.NatGatewayLanArgs
-    ///             {
-    ///                 Id = exampleLan.Id,
-    ///                 GatewayIps = new[]
-    ///                 {
-    ///                     "10.11.2.5",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var exampleNatGatewayRule = new Ionoscloud.Compute.NatGatewayRule("exampleNatGatewayRule", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         NatgatewayId = exampleNatGateway.Id,
-    ///         Type = "SNAT",
-    ///         Protocol = "TCP",
-    ///         SourceSubnet = "10.0.1.0/24",
-    ///         PublicIp = exampleIPBlock.Ips.Apply(ips =&gt; ips[0]),
-    ///         TargetSubnet = "10.0.1.0/24",
-    ///         TargetPortRange = new Ionoscloud.Compute.Inputs.NatGatewayRuleTargetPortRangeArgs
-    ///         {
-    ///             Start = 500,
-    ///             End = 1000,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// A Nat Gateway Rule resource can be imported using its `resource id`, the `datacenter id` and the `natgateway id , e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/natGatewayRule:NatGatewayRule my_natgateway_rule {datacenter uuid}/{nat gateway uuid}/{nat gateway rule uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/natGatewayRule:NatGatewayRule")]
     public partial class NatGatewayRule : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Name of the NAT gateway rule.
+        /// Name of the NAT gateway rule
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] Nat Gateway's UUID.
-        /// </summary>
         [Output("natgatewayId")]
         public Output<string> NatgatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        /// Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        /// set.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        /// Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        /// Should be one of the customer reserved IP address already configured on the NAT gateway resource
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        /// Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        /// on the packets source IP address.
         /// </summary>
         [Output("sourceSubnet")]
         public Output<string> SourceSubnet { get; private set; } = null!;
 
         /// <summary>
-        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        /// based on destination port. If none is provided, rule will match any port
         /// </summary>
         [Output("targetPortRange")]
         public Output<Outputs.NatGatewayRuleTargetPortRange> TargetPortRange { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        /// Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        /// applies to based on the packets destination IP address. If none is provided, rule will match any address.
         /// </summary>
         [Output("targetSubnet")]
         public Output<string> TargetSubnet { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Type of the NAT gateway rule.
+        /// Type of the NAT gateway rule.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -194,56 +111,55 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NatGatewayRuleArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] Name of the NAT gateway rule.
+        /// Name of the NAT gateway rule
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [string] Nat Gateway's UUID.
-        /// </summary>
         [Input("natgatewayId", required: true)]
         public Input<string> NatgatewayId { get; set; } = null!;
 
         /// <summary>
-        /// [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        /// Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        /// set.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        /// Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        /// Should be one of the customer reserved IP address already configured on the NAT gateway resource
         /// </summary>
         [Input("publicIp", required: true)]
         public Input<string> PublicIp { get; set; } = null!;
 
         /// <summary>
-        /// [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        /// Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        /// on the packets source IP address.
         /// </summary>
         [Input("sourceSubnet", required: true)]
         public Input<string> SourceSubnet { get; set; } = null!;
 
         /// <summary>
-        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        /// based on destination port. If none is provided, rule will match any port
         /// </summary>
         [Input("targetPortRange")]
         public Input<Inputs.NatGatewayRuleTargetPortRangeArgs>? TargetPortRange { get; set; }
 
         /// <summary>
-        /// [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        /// Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        /// applies to based on the packets destination IP address. If none is provided, rule will match any address.
         /// </summary>
         [Input("targetSubnet")]
         public Input<string>? TargetSubnet { get; set; }
 
         /// <summary>
-        /// [string] Type of the NAT gateway rule.
+        /// Type of the NAT gateway rule.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -256,56 +172,55 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class NatGatewayRuleState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] A Datacenter's UUID.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// [string] Name of the NAT gateway rule.
+        /// Name of the NAT gateway rule
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [string] Nat Gateway's UUID.
-        /// </summary>
         [Input("natgatewayId")]
         public Input<string>? NatgatewayId { get; set; }
 
         /// <summary>
-        /// [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
+        /// Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be
+        /// set.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
+        /// Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field.
+        /// Should be one of the customer reserved IP address already configured on the NAT gateway resource
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
+        /// Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based
+        /// on the packets source IP address.
         /// </summary>
         [Input("sourceSubnet")]
         public Input<string>? SourceSubnet { get; set; }
 
         /// <summary>
-        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        /// Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to
+        /// based on destination port. If none is provided, rule will match any port
         /// </summary>
         [Input("targetPortRange")]
         public Input<Inputs.NatGatewayRuleTargetPortRangeGetArgs>? TargetPortRange { get; set; }
 
         /// <summary>
-        /// [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
+        /// Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule
+        /// applies to based on the packets destination IP address. If none is provided, rule will match any address.
         /// </summary>
         [Input("targetSubnet")]
         public Input<string>? TargetSubnet { get; set; }
 
         /// <summary>
-        /// [string] Type of the NAT gateway rule.
+        /// Type of the NAT gateway rule.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

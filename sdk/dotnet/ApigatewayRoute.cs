@@ -9,123 +9,44 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud
 {
-    /// <summary>
-    /// Manages an **API Gateway Route** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Ionoscloud.Apigateway("example", new()
-    ///     {
-    ///         Metrics = true,
-    ///         CustomDomains = new[]
-    ///         {
-    ///             new Ionoscloud.Inputs.ApigatewayCustomDomainArgs
-    ///             {
-    ///                 Name = "example.com",
-    ///                 CertificateId = "00000000-0000-0000-0000-000000000000",
-    ///             },
-    ///             new Ionoscloud.Inputs.ApigatewayCustomDomainArgs
-    ///             {
-    ///                 Name = "example.org",
-    ///                 CertificateId = "00000000-0000-0000-0000-000000000000",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var apigatewayRoute = new Ionoscloud.ApigatewayRoute("apigatewayRoute", new()
-    ///     {
-    ///         Type = "http",
-    ///         Paths = new[]
-    ///         {
-    ///             "/foo/*",
-    ///             "/bar",
-    ///         },
-    ///         Methods = new[]
-    ///         {
-    ///             "GET",
-    ///             "POST",
-    ///         },
-    ///         Websocket = false,
-    ///         Upstreams = new[]
-    ///         {
-    ///             new Ionoscloud.Inputs.ApigatewayRouteUpstreamArgs
-    ///             {
-    ///                 Scheme = "http",
-    ///                 Loadbalancer = "roundrobin",
-    ///                 Host = "example.com",
-    ///                 Port = 80,
-    ///                 Weight = 100,
-    ///             },
-    ///         },
-    ///         GatewayId = example.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// API Gateway route can be imported using the `apigateway route id`:
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:index/apigatewayRoute:ApigatewayRoute myroute {apigateway uuid}:{apigateway route uuid}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:index/apigatewayRoute:ApigatewayRoute")]
     public partial class ApigatewayRoute : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [string] The ID of the API Gateway that the route belongs to.
+        /// The ID of the API Gateway that the route belongs to.
         /// </summary>
         [Output("gatewayId")]
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        /// `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        /// The HTTP methods that the route should match.
         /// </summary>
         [Output("methods")]
         public Output<ImmutableArray<string>> Methods { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        /// The name of the API Gateway Route.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// [list] The paths that the route should match. Minimum items: 1.
+        /// The paths that the route should match.
         /// </summary>
         [Output("paths")]
         public Output<ImmutableArray<string>> Paths { get; private set; } = null!;
 
         /// <summary>
-        /// [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        /// service. Default value: `http`.
+        /// This field specifies the protocol used by the ingress to route traffic to the backend service.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
-        /// <summary>
-        /// Upstreams information of the API Gateway Route. Minimum items: 1.
-        /// </summary>
         [Output("upstreams")]
         public Output<ImmutableArray<Outputs.ApigatewayRouteUpstream>> Upstreams { get; private set; } = null!;
 
         /// <summary>
-        /// [bool] To enable websocket support. Default value: `false`.
+        /// To enable websocket support.
         /// </summary>
         [Output("websocket")]
         public Output<bool?> Websocket { get; private set; } = null!;
@@ -177,7 +98,7 @@ namespace Pulumi.Ionoscloud
     public sealed class ApigatewayRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The ID of the API Gateway that the route belongs to.
+        /// The ID of the API Gateway that the route belongs to.
         /// </summary>
         [Input("gatewayId", required: true)]
         public Input<string> GatewayId { get; set; } = null!;
@@ -186,8 +107,7 @@ namespace Pulumi.Ionoscloud
         private InputList<string>? _methods;
 
         /// <summary>
-        /// [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        /// `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        /// The HTTP methods that the route should match.
         /// </summary>
         public InputList<string> Methods
         {
@@ -196,7 +116,7 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        /// The name of the API Gateway Route.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -205,7 +125,7 @@ namespace Pulumi.Ionoscloud
         private InputList<string>? _paths;
 
         /// <summary>
-        /// [list] The paths that the route should match. Minimum items: 1.
+        /// The paths that the route should match.
         /// </summary>
         public InputList<string> Paths
         {
@@ -214,18 +134,13 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        /// service. Default value: `http`.
+        /// This field specifies the protocol used by the ingress to route traffic to the backend service.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         [Input("upstreams", required: true)]
         private InputList<Inputs.ApigatewayRouteUpstreamArgs>? _upstreams;
-
-        /// <summary>
-        /// Upstreams information of the API Gateway Route. Minimum items: 1.
-        /// </summary>
         public InputList<Inputs.ApigatewayRouteUpstreamArgs> Upstreams
         {
             get => _upstreams ?? (_upstreams = new InputList<Inputs.ApigatewayRouteUpstreamArgs>());
@@ -233,7 +148,7 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [bool] To enable websocket support. Default value: `false`.
+        /// To enable websocket support.
         /// </summary>
         [Input("websocket")]
         public Input<bool>? Websocket { get; set; }
@@ -247,7 +162,7 @@ namespace Pulumi.Ionoscloud
     public sealed class ApigatewayRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The ID of the API Gateway that the route belongs to.
+        /// The ID of the API Gateway that the route belongs to.
         /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
@@ -256,8 +171,7 @@ namespace Pulumi.Ionoscloud
         private InputList<string>? _methods;
 
         /// <summary>
-        /// [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-        /// `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+        /// The HTTP methods that the route should match.
         /// </summary>
         public InputList<string> Methods
         {
@@ -266,7 +180,7 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+        /// The name of the API Gateway Route.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -275,7 +189,7 @@ namespace Pulumi.Ionoscloud
         private InputList<string>? _paths;
 
         /// <summary>
-        /// [list] The paths that the route should match. Minimum items: 1.
+        /// The paths that the route should match.
         /// </summary>
         public InputList<string> Paths
         {
@@ -284,18 +198,13 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [string] This field specifies the protocol used by the ingress to route traffic to the backend
-        /// service. Default value: `http`.
+        /// This field specifies the protocol used by the ingress to route traffic to the backend service.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         [Input("upstreams")]
         private InputList<Inputs.ApigatewayRouteUpstreamGetArgs>? _upstreams;
-
-        /// <summary>
-        /// Upstreams information of the API Gateway Route. Minimum items: 1.
-        /// </summary>
         public InputList<Inputs.ApigatewayRouteUpstreamGetArgs> Upstreams
         {
             get => _upstreams ?? (_upstreams = new InputList<Inputs.ApigatewayRouteUpstreamGetArgs>());
@@ -303,7 +212,7 @@ namespace Pulumi.Ionoscloud
         }
 
         /// <summary>
-        /// [bool] To enable websocket support. Default value: `false`.
+        /// To enable websocket support.
         /// </summary>
         [Input("websocket")]
         public Input<bool>? Websocket { get; set; }

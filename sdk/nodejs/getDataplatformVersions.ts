@@ -4,23 +4,7 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
- *
- * ## Example Usage
- *
- * ### Retrieve list of Managed Dataplatform API versions
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getDataplatformVersions({});
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export function getDataplatformVersions(opts?: pulumi.InvokeOptions): Promise<GetDataplatformVersionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", {
     }, opts);
@@ -34,26 +18,10 @@ export interface GetDataplatformVersionsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * list of Managed Dataplatform API versions.
-     */
     readonly versions: string[];
 }
-/**
- * The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
- *
- * ## Example Usage
- *
- * ### Retrieve list of Managed Dataplatform API versions
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.getDataplatformVersions({});
- * ```
- * <!--End PulumiCodeChooser -->
- */
-export function getDataplatformVersionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDataplatformVersionsResult> {
-    return pulumi.output(getDataplatformVersions(opts))
+export function getDataplatformVersionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataplatformVersionsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", {
+    }, opts);
 }

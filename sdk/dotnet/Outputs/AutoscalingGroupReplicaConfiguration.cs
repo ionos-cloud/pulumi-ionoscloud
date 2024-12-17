@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class AutoscalingGroupReplicaConfiguration
     {
         /// <summary>
-        /// [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+        /// The zone where the VMs are created using this configuration.
         /// </summary>
         public readonly string AvailabilityZone;
         /// <summary>
-        /// [int] The total number of cores for the VMs.
+        /// The total number of cores for the VMs.
         /// </summary>
         public readonly int Cores;
         /// <summary>
-        /// [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+        /// The zone where the VMs are created using this configuration.
         /// </summary>
         public readonly string? CpuFamily;
         /// <summary>
@@ -30,11 +30,11 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.AutoscalingGroupReplicaConfigurationNic> Nics;
         /// <summary>
-        /// [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+        /// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
         /// </summary>
         public readonly int Ram;
         /// <summary>
-        /// [list] List of volumes associated with this Replica.
+        /// List of volumes associated with this Replica.
         /// </summary>
         public readonly ImmutableArray<Outputs.AutoscalingGroupReplicaConfigurationVolume> Volumes;
 

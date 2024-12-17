@@ -12,127 +12,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages **IP Failover** groups on IonosCloud.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
-//				Location:          pulumi.String("us/las"),
-//				Description:       pulumi.String("Datacenter Description"),
-//				SecAuthProtection: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleIPBlock, err := compute.NewIPBlock(ctx, "exampleIPBlock", &compute.IPBlockArgs{
-//				Location: pulumi.String("us/las"),
-//				Size:     pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				Public:       pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			exampleServer, err := compute.NewServer(ctx, "exampleServer", &compute.ServerArgs{
-//				DatacenterId:     exampleDatacenter.ID(),
-//				Cores:            pulumi.Int(1),
-//				Ram:              pulumi.Int(1024),
-//				AvailabilityZone: pulumi.String("ZONE_1"),
-//				CpuFamily:        pulumi.String("INTEL_XEON"),
-//				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    serverImagePassword.Result,
-//				Volume: &compute.ServerVolumeArgs{
-//					Name:     pulumi.String("system"),
-//					Size:     pulumi.Int(14),
-//					DiskType: pulumi.String("SSD"),
-//				},
-//				Nic: &compute.ServerNicArgs{
-//					Lan:            pulumi.Int(1),
-//					Dhcp:           pulumi.Bool(true),
-//					FirewallActive: pulumi.Bool(true),
-//					Ips: pulumi.StringArray{
-//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//							return ips[0], nil
-//						}).(pulumi.StringOutput),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = compute.NewIPFailover(ctx, "exampleIPFailover", &compute.IPFailoverArgs{
-//				DatacenterId: exampleDatacenter.ID(),
-//				LanId:        exampleLan.ID(),
-//				Ip: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
-//					return ips[0], nil
-//				}).(pulumi.StringOutput),
-//				Nicuuid: exampleServer.PrimaryNic,
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				exampleLan,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## A note on multiple NICs on an IP Failover
-//
-// If you want to add a secondary NIC to an IP Failover, follow these steps:
-// 1) Creating NIC A with failover IP on LAN 1
-// 2) Create NIC B unde the same LAN but with a different IP
-// 3) Create the IP Failover on LAN 1 with NIC A and failover IP of NIC A (A becomes now "master", no slaves)
-// 4) Update NIC B IP to be the failover IP ( B becomes now a slave, A remains master)
-//
-// After this you can create a new NIC C, NIC D and so on, in LAN 1, directly with the failover IP.
-//
-// Please check examples for a full example with the above steps.
-//
-// ## Import
-//
-// Resource IpFailover can be imported using the `resource id`, e.g.
-//
-// ```sh
-// $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
-// ```
 type IPFailover struct {
 	pulumi.CustomResourceState
 
-	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// [string] The reserved IP address to be used in the IP failover group.
-	Ip pulumi.StringOutput `pulumi:"ip"`
-	// [string] The ID of a LAN.
+	// Failover IP
+	Ip    pulumi.StringOutput `pulumi:"ip"`
 	LanId pulumi.StringOutput `pulumi:"lanId"`
 	// The UUID of the master NIC
 	Nicuuid pulumi.StringOutput `pulumi:"nicuuid"`
@@ -180,22 +65,18 @@ func GetIPFailover(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IPFailover resources.
 type ipfailoverState struct {
-	// [string] The ID of a Virtual Data Center.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// [string] The reserved IP address to be used in the IP failover group.
-	Ip *string `pulumi:"ip"`
-	// [string] The ID of a LAN.
+	// Failover IP
+	Ip    *string `pulumi:"ip"`
 	LanId *string `pulumi:"lanId"`
 	// The UUID of the master NIC
 	Nicuuid *string `pulumi:"nicuuid"`
 }
 
 type IPFailoverState struct {
-	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
-	// [string] The reserved IP address to be used in the IP failover group.
-	Ip pulumi.StringPtrInput
-	// [string] The ID of a LAN.
+	// Failover IP
+	Ip    pulumi.StringPtrInput
 	LanId pulumi.StringPtrInput
 	// The UUID of the master NIC
 	Nicuuid pulumi.StringPtrInput
@@ -206,11 +87,9 @@ func (IPFailoverState) ElementType() reflect.Type {
 }
 
 type ipfailoverArgs struct {
-	// [string] The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
-	// [string] The reserved IP address to be used in the IP failover group.
-	Ip string `pulumi:"ip"`
-	// [string] The ID of a LAN.
+	// Failover IP
+	Ip    string `pulumi:"ip"`
 	LanId string `pulumi:"lanId"`
 	// The UUID of the master NIC
 	Nicuuid string `pulumi:"nicuuid"`
@@ -218,11 +97,9 @@ type ipfailoverArgs struct {
 
 // The set of arguments for constructing a IPFailover resource.
 type IPFailoverArgs struct {
-	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	// [string] The reserved IP address to be used in the IP failover group.
-	Ip pulumi.StringInput
-	// [string] The ID of a LAN.
+	// Failover IP
+	Ip    pulumi.StringInput
 	LanId pulumi.StringInput
 	// The UUID of the master NIC
 	Nicuuid pulumi.StringInput
@@ -315,17 +192,15 @@ func (o IPFailoverOutput) ToIPFailoverOutputWithContext(ctx context.Context) IPF
 	return o
 }
 
-// [string] The ID of a Virtual Data Center.
 func (o IPFailoverOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPFailover) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// [string] The reserved IP address to be used in the IP failover group.
+// Failover IP
 func (o IPFailoverOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPFailover) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// [string] The ID of a LAN.
 func (o IPFailoverOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IPFailover) pulumi.StringOutput { return v.LanId }).(pulumi.StringOutput)
 }

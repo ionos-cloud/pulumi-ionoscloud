@@ -14,23 +14,23 @@ namespace Pulumi.Ionoscloud.Outputs
     public sealed class ApigatewayRouteUpstream
     {
         /// <summary>
-        /// [string] The host of the upstream.
+        /// The host of the upstream.
         /// </summary>
         public readonly string Host;
         /// <summary>
-        /// [string] The load balancer algorithm. Default value: `roundrobin`.
+        /// The load balancer algorithm.
         /// </summary>
         public readonly string? Loadbalancer;
         /// <summary>
-        /// [int] The port of the upstream. Default value: `80`.
+        /// The port of the upstream.
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// [string] The target URL of the upstream. Default value: `http`.
+        /// The target URL of the upstream.
         /// </summary>
         public readonly string? Scheme;
         /// <summary>
-        /// [int] Weight with which to split traffic to the upstream. Default value: `100`.
+        /// Weight with which to split traffic to the upstream.
         /// </summary>
         public readonly int? Weight;
 

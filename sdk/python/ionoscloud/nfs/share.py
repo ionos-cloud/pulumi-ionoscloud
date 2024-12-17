@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,12 +30,13 @@ class ShareArgs:
                  uid: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Share resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] name: The directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        :param pulumi.Input[str] name: The directory being exported
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+               quota can be disabled using `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         pulumi.set(__self__, "client_groups", client_groups)
@@ -49,7 +55,7 @@ class ShareArgs:
     @pulumi.getter(name="clientGroups")
     def client_groups(self) -> pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        The groups of clients are the systems connecting to the Network File Storage cluster.
         """
         return pulumi.get(self, "client_groups")
 
@@ -73,7 +79,7 @@ class ShareArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location of the Network File Storage Cluster.
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -97,7 +103,7 @@ class ShareArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory being exported.
+        The directory being exported
         """
         return pulumi.get(self, "name")
 
@@ -109,7 +115,8 @@ class ShareArgs:
     @pulumi.getter
     def quota(self) -> Optional[pulumi.Input[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        quota can be disabled using `0`.
         """
         return pulumi.get(self, "quota")
 
@@ -143,13 +150,14 @@ class _ShareState:
                  uid: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Share resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
-        :param pulumi.Input[str] name: The directory being exported.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The directory being exported
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+               quota can be disabled using `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         if client_groups is not None:
@@ -173,7 +181,7 @@ class _ShareState:
     @pulumi.getter(name="clientGroups")
     def client_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ShareClientGroupArgs']]]]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        The groups of clients are the systems connecting to the Network File Storage cluster.
         """
         return pulumi.get(self, "client_groups")
 
@@ -209,7 +217,7 @@ class _ShareState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the Network File Storage Cluster.
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -221,7 +229,7 @@ class _ShareState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The directory being exported.
+        The directory being exported
         """
         return pulumi.get(self, "name")
 
@@ -245,7 +253,8 @@ class _ShareState:
     @pulumi.getter
     def quota(self) -> Optional[pulumi.Input[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        quota can be disabled using `0`.
         """
         return pulumi.get(self, "quota")
 
@@ -271,7 +280,7 @@ class Share(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -280,67 +289,16 @@ class Share(pulumi.CustomResource):
                  uid: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
-            datacenter_id=nfs_dc.id,
-            public=False)
-        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
-            location="de/txl",
-            size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
-        example_share = ionoscloud.nfs.Share("exampleShare",
-            location="de/txl",
-            cluster_id=example_cluster.id,
-            quota=512,
-            gid=512,
-            uid=512,
-            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
-                description="Client Group 1",
-                ip_networks=["10.234.50.0/24"],
-                hosts=["10.234.62.123"],
-                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
-                    squash="all-anonymous",
-                ),
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
-
-        ```sh
-        $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
-        ```
-
+        Create a Share resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
-        :param pulumi.Input[str] name: The directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The directory being exported
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+               quota can be disabled using `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         ...
@@ -350,59 +308,7 @@ class Share(pulumi.CustomResource):
                  args: ShareArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
-            datacenter_id=nfs_dc.id,
-            public=False)
-        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
-            location="de/txl",
-            size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
-        example_share = ionoscloud.nfs.Share("exampleShare",
-            location="de/txl",
-            cluster_id=example_cluster.id,
-            quota=512,
-            gid=512,
-            uid=512,
-            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
-                description="Client Group 1",
-                ip_networks=["10.234.50.0/24"],
-                hosts=["10.234.62.123"],
-                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
-                    squash="all-anonymous",
-                ),
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
-
-        ```sh
-        $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
-        ```
-
+        Create a Share resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ShareArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -418,7 +324,7 @@ class Share(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -458,7 +364,7 @@ class Share(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             gid: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
@@ -473,13 +379,14 @@ class Share(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster.
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
-        :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
-        :param pulumi.Input[str] name: The directory being exported.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The directory being exported
         :param pulumi.Input[str] nfs_path: Path to the NFS export. The NFS path is the path to the directory being exported.
-        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        :param pulumi.Input[int] quota: The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+               quota can be disabled using `0`.
         :param pulumi.Input[int] uid: The user ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -500,7 +407,7 @@ class Share(pulumi.CustomResource):
     @pulumi.getter(name="clientGroups")
     def client_groups(self) -> pulumi.Output[Sequence['outputs.ShareClientGroup']]:
         """
-        The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        The groups of clients are the systems connecting to the Network File Storage cluster.
         """
         return pulumi.get(self, "client_groups")
 
@@ -524,7 +431,7 @@ class Share(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location of the Network File Storage Cluster.
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -532,7 +439,7 @@ class Share(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The directory being exported.
+        The directory being exported
         """
         return pulumi.get(self, "name")
 
@@ -548,7 +455,8 @@ class Share(pulumi.CustomResource):
     @pulumi.getter
     def quota(self) -> pulumi.Output[Optional[int]]:
         """
-        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+        The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+        quota can be disabled using `0`.
         """
         return pulumi.get(self, "quota")
 

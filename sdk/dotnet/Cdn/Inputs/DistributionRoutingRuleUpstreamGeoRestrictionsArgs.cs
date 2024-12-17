@@ -14,10 +14,6 @@ namespace Pulumi.Ionoscloud.Cdn.Inputs
     {
         [Input("allowLists")]
         private InputList<string>? _allowLists;
-
-        /// <summary>
-        /// [string] List of allowed countries
-        /// </summary>
         public InputList<string> AllowLists
         {
             get => _allowLists ?? (_allowLists = new InputList<string>());
@@ -26,10 +22,6 @@ namespace Pulumi.Ionoscloud.Cdn.Inputs
 
         [Input("blockLists")]
         private InputList<string>? _blockLists;
-
-        /// <summary>
-        /// [string] List of blocked countries
-        /// </summary>
         public InputList<string> BlockLists
         {
             get => _blockLists ?? (_blockLists = new InputList<string>());

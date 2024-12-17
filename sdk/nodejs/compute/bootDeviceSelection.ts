@@ -4,201 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages the selection of a boot device for IonosCloud Servers.
- *
- * ## Example Usage
- *
- * The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
- * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
- * This resource also allows switching between a `volume` and a `ionoscloud.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
- *
- * ### Select an external volume
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     availabilityZone: "ZONE_2",
- *     imageName: "ubuntu:latest",
- *     cores: 2,
- *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     volume: {
- *         name: "Inline Updated",
- *         size: 20,
- *         diskType: "SSD Standard",
- *         bus: "VIRTIO",
- *         availabilityZone: "AUTO",
- *     },
- *     nic: {
- *         lan: ionoscloud_lan.example.id,
- *         name: "Nic Example",
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
- *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     size: 10,
- *     diskType: "HDD",
- *     availabilityZone: "AUTO",
- *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
- * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     serverId: exampleServer.id,
- *     bootDeviceId: exampleVolume.id,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Select an inline volume again
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     availabilityZone: "ZONE_2",
- *     imageName: "ubuntu:latest",
- *     cores: 2,
- *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     volume: {
- *         name: "Inline Updated",
- *         size: 20,
- *         diskType: "SSD Standard",
- *         bus: "VIRTIO",
- *         availabilityZone: "AUTO",
- *     },
- *     nic: {
- *         lan: ionoscloud_lan.example.id,
- *         name: "Nic Example",
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     serverId: exampleServer.id,
- *     bootDeviceId: exampleServer.inlineVolumeIds[0],
- * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
- *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     size: 10,
- *     diskType: "HDD",
- *     availabilityZone: "AUTO",
- *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Select a CDROM image
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     availabilityZone: "ZONE_2",
- *     imageName: "ubuntu:latest",
- *     cores: 2,
- *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     volume: {
- *         name: "Inline Updated",
- *         size: 20,
- *         diskType: "SSD Standard",
- *         bus: "VIRTIO",
- *         availabilityZone: "AUTO",
- *     },
- *     nic: {
- *         lan: ionoscloud_lan.example.id,
- *         name: "Nic Example",
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleImage = ionoscloud.getImage({
- *     name: "ubuntu-20.04",
- *     location: "de/txl",
- *     type: "CDROM",
- * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     serverId: exampleServer.inlineVolumeIds[0],
- *     bootDeviceId: exampleImage.then(exampleImage => exampleImage.id),
- * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
- *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     size: 10,
- *     diskType: "HDD",
- *     availabilityZone: "AUTO",
- *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Perform a network boot
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     availabilityZone: "ZONE_2",
- *     imageName: "ubuntu:latest",
- *     cores: 2,
- *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     volume: {
- *         name: "Inline volume",
- *         size: 20,
- *         diskType: "SSD Standard",
- *         bus: "VIRTIO",
- *         availabilityZone: "AUTO",
- *     },
- *     nic: {
- *         lan: ionoscloud_lan.example.id,
- *         name: "Nic Example",
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     serverId: exampleServer.inlineVolumeIds[0],
- * });
- * // boot_device_id = data.ionoscloud_image.example.id   VM will boot in the PXE shell when boot_device_id is omitted
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
- *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
- *     size: 10,
- *     diskType: "HDD",
- *     availabilityZone: "AUTO",
- *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
- * });
- * const exampleImage = ionoscloud.getImage({
- *     name: "ubuntu-20.04",
- *     location: "de/txl",
- *     type: "CDROM",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- */
 export class BootDeviceSelection extends pulumi.CustomResource {
     /**
      * Get an existing BootDeviceSelection resource's state with the given name, ID, and optional extra
@@ -228,12 +33,12 @@ export class BootDeviceSelection extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-     * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+     * ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+     * will boot from PXE
      */
     public readonly bootDeviceId!: pulumi.Output<string | undefined>;
     /**
-     * [string] The ID of a Virtual Data Center.
+     * ID of the Datacenter that holds the server for which the boot volume is selected
      */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
@@ -241,7 +46,7 @@ export class BootDeviceSelection extends pulumi.CustomResource {
      */
     public /*out*/ readonly defaultBootVolumeId!: pulumi.Output<string>;
     /**
-     * [string] The ID of a server.
+     * ID of the Server for which the boot device will be selected.
      */
     public readonly serverId!: pulumi.Output<string>;
 
@@ -285,12 +90,12 @@ export class BootDeviceSelection extends pulumi.CustomResource {
  */
 export interface BootDeviceSelectionState {
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-     * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+     * ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+     * will boot from PXE
      */
     bootDeviceId?: pulumi.Input<string>;
     /**
-     * [string] The ID of a Virtual Data Center.
+     * ID of the Datacenter that holds the server for which the boot volume is selected
      */
     datacenterId?: pulumi.Input<string>;
     /**
@@ -298,7 +103,7 @@ export interface BootDeviceSelectionState {
      */
     defaultBootVolumeId?: pulumi.Input<string>;
     /**
-     * [string] The ID of a server.
+     * ID of the Server for which the boot device will be selected.
      */
     serverId?: pulumi.Input<string>;
 }
@@ -308,16 +113,16 @@ export interface BootDeviceSelectionState {
  */
 export interface BootDeviceSelectionArgs {
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
-     * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
+     * ID of the entity to set as primary boot device. Possible boot devices are CDROM Images and Volumes. If omitted, server
+     * will boot from PXE
      */
     bootDeviceId?: pulumi.Input<string>;
     /**
-     * [string] The ID of a Virtual Data Center.
+     * ID of the Datacenter that holds the server for which the boot volume is selected
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * [string] The ID of a server.
+     * ID of the Server for which the boot device will be selected.
      */
     serverId: pulumi.Input<string>;
 }

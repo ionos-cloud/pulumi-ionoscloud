@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['ServerBootDeviceSelectionArgs', 'ServerBootDeviceSelection']
@@ -141,12 +146,7 @@ class _ServerBootDeviceSelectionState:
         pulumi.set(self, "server_id", value)
 
 
-warnings.warn("""ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""", DeprecationWarning)
-
-
 class ServerBootDeviceSelection(pulumi.CustomResource):
-    warnings.warn("""ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""", DeprecationWarning)
-
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -191,7 +191,6 @@ class ServerBootDeviceSelection(pulumi.CustomResource):
                  datacenter_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        pulumi.log.warn("""ServerBootDeviceSelection is deprecated: ionoscloud.index/serverbootdeviceselection.ServerBootDeviceSelection has been deprecated in favor of ionoscloud.compute/bootdeviceselection.BootDeviceSelection""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

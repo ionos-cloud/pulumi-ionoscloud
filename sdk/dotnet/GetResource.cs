@@ -11,79 +11,22 @@ namespace Pulumi.Ionoscloud
 {
     public static class GetResource
     {
-        /// <summary>
-        /// The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
-        /// You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Type
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetResource.Invoke(new()
-        ///     {
-        ///         ResourceType = "datacenter",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetResourceResult> InvokeAsync(GetResourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
-        /// You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
-        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-        /// When this happens, please refine your search string so that it is specific enough to return only one result.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ### By Type
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Ionoscloud = Pulumi.Ionoscloud;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Ionoscloud.GetResource.Invoke(new()
-        ///     {
-        ///         ResourceType = "datacenter",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetResourceResult> Invoke(GetResourceInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetResourceResult> Invoke(GetResourceInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetResourceArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the specific resource to retrieve information about.
-        /// </summary>
         [Input("resourceId")]
         public string? ResourceId { get; set; }
 
-        /// <summary>
-        /// The specific type of resources to retrieve information about.
-        /// </summary>
         [Input("resourceType")]
         public string? ResourceType { get; set; }
 
@@ -95,15 +38,9 @@ namespace Pulumi.Ionoscloud
 
     public sealed class GetResourceInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the specific resource to retrieve information about.
-        /// </summary>
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }
 
-        /// <summary>
-        /// The specific type of resources to retrieve information about.
-        /// </summary>
         [Input("resourceType")]
         public Input<string>? ResourceType { get; set; }
 

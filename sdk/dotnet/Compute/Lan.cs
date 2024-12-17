@@ -9,121 +9,28 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Compute
 {
-    /// <summary>
-    /// Manages a **LAN** on IonosCloud.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "us/las",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleCrossconnect = new Ionoscloud.Compute.Crossconnect("exampleCrossconnect", new()
-    ///     {
-    ///         Description = "Cross Connect Description",
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = false,
-    ///         Pcc = exampleCrossconnect.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ### With IPv6 Enabled
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Ionoscloud = Pulumi.Ionoscloud;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDatacenter = new Ionoscloud.Compute.Datacenter("exampleDatacenter", new()
-    ///     {
-    ///         Location = "de/txl",
-    ///         Description = "Datacenter Description",
-    ///         SecAuthProtection = false,
-    ///     });
-    /// 
-    ///     var exampleLan = new Ionoscloud.Compute.Lan("exampleLan", new()
-    ///     {
-    ///         DatacenterId = exampleDatacenter.Id,
-    ///         Public = true,
-    ///         Ipv6CidrBlock = "AUTO",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Important Notes
-    /// 
-    /// - Please note that only LANs datacenters found in the same physical location can be connected through a Cross-connect
-    /// - A LAN cannot be a part of two Cross-connects
-    /// 
-    /// ## Import
-    /// 
-    /// Resource Lan can be imported using the `resource id`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
-    /// ```
-    /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/lan:Lan")]
     public partial class Lan : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
 
-        /// <summary>
-        /// IP failover configurations for lan
-        /// </summary>
         [Output("ipFailovers")]
         public Output<ImmutableArray<Outputs.LanIpFailover>> IpFailovers { get; private set; } = null!;
 
         /// <summary>
-        /// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        /// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
+        /// explicitly supplied.
         /// </summary>
         [Output("ipv6CidrBlock")]
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
-        /// <summary>
-        /// [string] The name of the LAN.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
-        /// </summary>
         [Output("pcc")]
         public Output<string?> Pcc { get; private set; } = null!;
 
-        /// <summary>
-        /// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
-        /// </summary>
         [Output("public")]
         public Output<bool?> Public { get; private set; } = null!;
 
@@ -173,18 +80,11 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class LanArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId", required: true)]
         public Input<string> DatacenterId { get; set; } = null!;
 
         [Input("ipFailovers")]
         private InputList<Inputs.LanIpFailoverArgs>? _ipFailovers;
-
-        /// <summary>
-        /// IP failover configurations for lan
-        /// </summary>
         public InputList<Inputs.LanIpFailoverArgs> IpFailovers
         {
             get => _ipFailovers ?? (_ipFailovers = new InputList<Inputs.LanIpFailoverArgs>());
@@ -192,26 +92,18 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        /// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
+        /// explicitly supplied.
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
 
-        /// <summary>
-        /// [string] The name of the LAN.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
-        /// </summary>
         [Input("pcc")]
         public Input<string>? Pcc { get; set; }
 
-        /// <summary>
-        /// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
-        /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
 
@@ -223,18 +115,11 @@ namespace Pulumi.Ionoscloud.Compute
 
     public sealed class LanState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// [string] The ID of a Virtual Data Center.
-        /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
 
         [Input("ipFailovers")]
         private InputList<Inputs.LanIpFailoverGetArgs>? _ipFailovers;
-
-        /// <summary>
-        /// IP failover configurations for lan
-        /// </summary>
         public InputList<Inputs.LanIpFailoverGetArgs> IpFailovers
         {
             get => _ipFailovers ?? (_ipFailovers = new InputList<Inputs.LanIpFailoverGetArgs>());
@@ -242,26 +127,18 @@ namespace Pulumi.Ionoscloud.Compute
         }
 
         /// <summary>
-        /// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
+        /// IPv6 CIDR block assigned to the LAN. Can be set to 'AUTO' for an automatically assigned address or the address can be
+        /// explicitly supplied.
         /// </summary>
         [Input("ipv6CidrBlock")]
         public Input<string>? Ipv6CidrBlock { get; set; }
 
-        /// <summary>
-        /// [string] The name of the LAN.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// [String] The unique id of a `ionoscloud.compute.Crossconnect` resource, in order. It needs to be ensured that IP addresses of the NICs of all LANs connected to a given Cross Connect is not duplicated and belongs to the same subnet range
-        /// </summary>
         [Input("pcc")]
         public Input<string>? Pcc { get; set; }
 
-        /// <summary>
-        /// [Boolean] Indicates if the LAN faces the public Internet (true) or not (false).
-        /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
 

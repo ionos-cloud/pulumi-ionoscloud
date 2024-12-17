@@ -13,33 +13,31 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
     public sealed class NicFlowlogGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
+        /// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the NIC.
+        /// The resource's unique identifier.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        /// The resource name.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

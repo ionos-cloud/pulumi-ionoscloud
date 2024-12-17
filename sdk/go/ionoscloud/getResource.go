@@ -11,39 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
-// You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
-// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-// When this happens, please refine your search string so that it is specific enough to return only one result.
-//
-// ## Example Usage
-//
-// ### By Type
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.GetResource(ctx, &ionoscloud.GetResourceArgs{
-//				ResourceType: pulumi.StringRef("datacenter"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func GetResource(ctx *pulumi.Context, args *GetResourceArgs, opts ...pulumi.InvokeOption) (*GetResourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetResourceResult
@@ -56,9 +23,7 @@ func GetResource(ctx *pulumi.Context, args *GetResourceArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getResource.
 type GetResourceArgs struct {
-	// The ID of the specific resource to retrieve information about.
-	ResourceId *string `pulumi:"resourceId"`
-	// The specific type of resources to retrieve information about.
+	ResourceId   *string `pulumi:"resourceId"`
 	ResourceType *string `pulumi:"resourceType"`
 }
 
@@ -71,23 +36,17 @@ type GetResourceResult struct {
 }
 
 func GetResourceOutput(ctx *pulumi.Context, args GetResourceOutputArgs, opts ...pulumi.InvokeOption) GetResourceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetResourceResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetResourceResultOutput, error) {
 			args := v.(GetResourceArgs)
-			r, err := GetResource(ctx, &args, opts...)
-			var s GetResourceResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getResource:getResource", args, GetResourceResultOutput{}, options).(GetResourceResultOutput), nil
 		}).(GetResourceResultOutput)
 }
 
 // A collection of arguments for invoking getResource.
 type GetResourceOutputArgs struct {
-	// The ID of the specific resource to retrieve information about.
-	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
-	// The specific type of resources to retrieve information about.
+	ResourceId   pulumi.StringPtrInput `pulumi:"resourceId"`
 	ResourceType pulumi.StringPtrInput `pulumi:"resourceType"`
 }
 

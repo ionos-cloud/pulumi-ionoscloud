@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -30,28 +35,7 @@ class CubeServerArgs:
                  vm_state: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CubeServer resource.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input['CubeServerNicArgs'] nic: See the Nic section.
-        :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input['CubeServerVolumeArgs'] volume: See the Volume section.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
-        :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        :param pulumi.Input[str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        :param pulumi.Input[str] vm_state: Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "nic", nic)
@@ -80,9 +64,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -92,9 +73,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter
     def nic(self) -> pulumi.Input['CubeServerNicArgs']:
-        """
-        See the Nic section.
-        """
         return pulumi.get(self, "nic")
 
     @nic.setter
@@ -104,9 +82,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="templateUuid")
     def template_uuid(self) -> pulumi.Input[str]:
-        """
-        [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        """
         return pulumi.get(self, "template_uuid")
 
     @template_uuid.setter
@@ -116,9 +91,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter
     def volume(self) -> pulumi.Input['CubeServerVolumeArgs']:
-        """
-        See the Volume section.
-        """
         return pulumi.get(self, "volume")
 
     @volume.setter
@@ -128,9 +100,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The availability zone in which the server should exist. This property is immutable.
-        """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
@@ -139,13 +108,8 @@ class CubeServerArgs:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
-        """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -155,9 +119,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="bootImage")
     def boot_image(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
@@ -167,9 +128,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
@@ -179,19 +137,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
-        """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -201,9 +146,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the server.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -213,9 +155,6 @@ class CubeServerArgs:
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -226,7 +165,7 @@ class CubeServerArgs:
     @pulumi.getter(name="vmState")
     def vm_state(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         return pulumi.get(self, "vm_state")
 
@@ -257,33 +196,8 @@ class _CubeServerState:
                  volume: Optional[pulumi.Input['CubeServerVolumeArgs']] = None):
         """
         Input properties used for looking up and filtering CubeServer resources.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] boot_volume: The associated boot volume.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list that contains the IDs for the volumes defined inside the cube server resource.
-        :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input['CubeServerNicArgs'] nic: See the Nic section.
-        :param pulumi.Input[str] primary_ip: The associated IP address.
-        :param pulumi.Input[str] primary_nic: The associated NIC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
-        :param pulumi.Input['CubeServerVolumeArgs'] volume: See the Volume section.
+        :param pulumi.Input[str] vm_state: Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         if availability_zone is not None:
             pulumi.set(__self__, "availability_zone", availability_zone)
@@ -326,9 +240,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The availability zone in which the server should exist. This property is immutable.
-        """
         return pulumi.get(self, "availability_zone")
 
     @availability_zone.setter
@@ -337,13 +248,8 @@ class _CubeServerState:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
-        """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -353,9 +259,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="bootImage")
     def boot_image(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        """
         return pulumi.get(self, "boot_image")
 
     @boot_image.setter
@@ -365,9 +268,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="bootVolume")
     def boot_volume(self) -> Optional[pulumi.Input[str]]:
-        """
-        The associated boot volume.
-        """
         return pulumi.get(self, "boot_volume")
 
     @boot_volume.setter
@@ -377,9 +277,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @datacenter_id.setter
@@ -389,9 +286,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="firewallruleId")
     def firewallrule_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The associated firewall rule.
-        """
         return pulumi.get(self, "firewallrule_id")
 
     @firewallrule_id.setter
@@ -401,9 +295,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        """
         return pulumi.get(self, "image_name")
 
     @image_name.setter
@@ -413,19 +304,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
-        """
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -447,9 +325,6 @@ class _CubeServerState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The name of the server.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -459,9 +334,6 @@ class _CubeServerState:
     @property
     @pulumi.getter
     def nic(self) -> Optional[pulumi.Input['CubeServerNicArgs']]:
-        """
-        See the Nic section.
-        """
         return pulumi.get(self, "nic")
 
     @nic.setter
@@ -471,9 +343,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="primaryIp")
     def primary_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        The associated IP address.
-        """
         return pulumi.get(self, "primary_ip")
 
     @primary_ip.setter
@@ -483,9 +352,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="primaryNic")
     def primary_nic(self) -> Optional[pulumi.Input[str]]:
-        """
-        The associated NIC.
-        """
         return pulumi.get(self, "primary_nic")
 
     @primary_nic.setter
@@ -495,9 +361,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        """
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -507,9 +370,6 @@ class _CubeServerState:
     @property
     @pulumi.getter(name="templateUuid")
     def template_uuid(self) -> Optional[pulumi.Input[str]]:
-        """
-        [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        """
         return pulumi.get(self, "template_uuid")
 
     @template_uuid.setter
@@ -520,7 +380,7 @@ class _CubeServerState:
     @pulumi.getter(name="vmState")
     def vm_state(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         return pulumi.get(self, "vm_state")
 
@@ -531,9 +391,6 @@ class _CubeServerState:
     @property
     @pulumi.getter
     def volume(self) -> Optional[pulumi.Input['CubeServerVolumeArgs']]:
-        """
-        See the Volume section.
-        """
         return pulumi.get(self, "volume")
 
     @volume.setter
@@ -553,88 +410,17 @@ class CubeServer(pulumi.CustomResource):
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['CubeServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['CubeServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
-        Manages a **Cube Server** on IonosCloud.
-
-        ## Example Usage
-
-        This resource will create an operational server. After this section completes, the provisioner can be called.
-
-        ### CUBE Server
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_template = ionoscloud.get_template(name="CUBES XS")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_cube_server = ionoscloud.compute.CubeServer("exampleCubeServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            template_uuid=example_template.id,
-            image_password=server_image_password.result,
-            datacenter_id=example_datacenter.id,
-            volume=ionoscloud.compute.CubeServerVolumeArgs(
-                name="Volume Example",
-                licence_type="LINUX",
-                disk_type="DAS",
-            ),
-            nic=ionoscloud.compute.CubeServerNicArgs(
-                lan=example_lan.id,
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
-        ```
-
+        Create a CubeServer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
-        :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['CubeServerNicArgs']] nic: See the Nic section.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
-        :param pulumi.Input[pulumi.InputType['CubeServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[str] vm_state: Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         ...
     @overload
@@ -643,57 +429,7 @@ class CubeServer(pulumi.CustomResource):
                  args: CubeServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a **Cube Server** on IonosCloud.
-
-        ## Example Usage
-
-        This resource will create an operational server. After this section completes, the provisioner can be called.
-
-        ### CUBE Server
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        example_template = ionoscloud.get_template(name="CUBES XS")
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        example_cube_server = ionoscloud.compute.CubeServer("exampleCubeServer",
-            availability_zone="ZONE_2",
-            image_name="ubuntu:latest",
-            template_uuid=example_template.id,
-            image_password=server_image_password.result,
-            datacenter_id=example_datacenter.id,
-            volume=ionoscloud.compute.CubeServerVolumeArgs(
-                name="Volume Example",
-                licence_type="LINUX",
-                disk_type="DAS",
-            ),
-            nic=ionoscloud.compute.CubeServerNicArgs(
-                lan=example_lan.id,
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.
-
-        ```sh
-        $ pulumi import ionoscloud:compute/cubeServer:CubeServer myserver {datacenter uuid}/{server uuid}
-        ```
-
+        Create a CubeServer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CubeServerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -716,11 +452,11 @@ class CubeServer(pulumi.CustomResource):
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['CubeServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['CubeServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -777,13 +513,13 @@ class CubeServer(pulumi.CustomResource):
             image_password: Optional[pulumi.Input[str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nic: Optional[pulumi.Input[pulumi.InputType['CubeServerNicArgs']]] = None,
+            nic: Optional[pulumi.Input[Union['CubeServerNicArgs', 'CubeServerNicArgsDict']]] = None,
             primary_ip: Optional[pulumi.Input[str]] = None,
             primary_nic: Optional[pulumi.Input[str]] = None,
             ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             template_uuid: Optional[pulumi.Input[str]] = None,
             vm_state: Optional[pulumi.Input[str]] = None,
-            volume: Optional[pulumi.Input[pulumi.InputType['CubeServerVolumeArgs']]] = None) -> 'CubeServer':
+            volume: Optional[pulumi.Input[Union['CubeServerVolumeArgs', 'CubeServerVolumeArgsDict']]] = None) -> 'CubeServer':
         """
         Get an existing CubeServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -791,33 +527,8 @@ class CubeServer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[str] boot_volume: The associated boot volume.
-        :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-               
-               > **⚠ WARNING**
-               >
-               > Image_name under volume level is deprecated, please use image_name under server level
-               
-               
-               > **⚠ WARNING**
-               >
-               > For creating a **CUBE** server, you can not set `volume.size` argument.
-               >
         :param pulumi.Input[Sequence[pulumi.Input[str]]] inline_volume_ids: A list that contains the IDs for the volumes defined inside the cube server resource.
-        :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['CubeServerNicArgs']] nic: See the Nic section.
-        :param pulumi.Input[str] primary_ip: The associated IP address.
-        :param pulumi.Input[str] primary_nic: The associated NIC.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        :param pulumi.Input[str] vm_state: [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
-        :param pulumi.Input[pulumi.InputType['CubeServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[str] vm_state: Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -845,78 +556,42 @@ class CubeServer(pulumi.CustomResource):
     @property
     @pulumi.getter(name="availabilityZone")
     def availability_zone(self) -> pulumi.Output[str]:
-        """
-        [string] The availability zone in which the server should exist. This property is immutable.
-        """
         return pulumi.get(self, "availability_zone")
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> pulumi.Output[str]:
-        """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
-        """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @property
     @pulumi.getter(name="bootImage")
     def boot_image(self) -> pulumi.Output[str]:
-        """
-        [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        """
         return pulumi.get(self, "boot_image")
 
     @property
     @pulumi.getter(name="bootVolume")
     def boot_volume(self) -> pulumi.Output[str]:
-        """
-        The associated boot volume.
-        """
         return pulumi.get(self, "boot_volume")
 
     @property
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
-        """
-        [string] The ID of a Virtual Data Center.
-        """
         return pulumi.get(self, "datacenter_id")
 
     @property
     @pulumi.getter(name="firewallruleId")
     def firewallrule_id(self) -> pulumi.Output[str]:
-        """
-        The associated firewall rule.
-        """
         return pulumi.get(self, "firewallrule_id")
 
     @property
     @pulumi.getter(name="imageName")
     def image_name(self) -> pulumi.Output[str]:
-        """
-        [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        """
         return pulumi.get(self, "image_name")
 
     @property
     @pulumi.getter(name="imagePassword")
     def image_password(self) -> pulumi.Output[str]:
-        """
-        [string] Required if `ssh_key_path` is not provided.
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-
-
-        > **⚠ WARNING**
-        >
-        > For creating a **CUBE** server, you can not set `volume.size` argument.
-        >
-        """
         return pulumi.get(self, "image_password")
 
     @property
@@ -930,64 +605,43 @@ class CubeServer(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        [string] The name of the server.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def nic(self) -> pulumi.Output['outputs.CubeServerNic']:
-        """
-        See the Nic section.
-        """
         return pulumi.get(self, "nic")
 
     @property
     @pulumi.getter(name="primaryIp")
     def primary_ip(self) -> pulumi.Output[str]:
-        """
-        The associated IP address.
-        """
         return pulumi.get(self, "primary_ip")
 
     @property
     @pulumi.getter(name="primaryNic")
     def primary_nic(self) -> pulumi.Output[str]:
-        """
-        The associated NIC.
-        """
         return pulumi.get(self, "primary_nic")
 
     @property
     @pulumi.getter(name="sshKeyPaths")
     def ssh_key_paths(self) -> pulumi.Output[Sequence[str]]:
-        """
-        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
-        """
         return pulumi.get(self, "ssh_key_paths")
 
     @property
     @pulumi.getter(name="templateUuid")
     def template_uuid(self) -> pulumi.Output[str]:
-        """
-        [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-        """
         return pulumi.get(self, "template_uuid")
 
     @property
     @pulumi.getter(name="vmState")
     def vm_state(self) -> pulumi.Output[str]:
         """
-        [string] Sets the power state of the cube server. E.g: `RUNNING` or `SUSPENDED`.
+        Sets the power state of the cube server. Possible values: `RUNNING` or `SUSPENDED`.
         """
         return pulumi.get(self, "vm_state")
 
     @property
     @pulumi.getter
     def volume(self) -> pulumi.Output['outputs.CubeServerVolume']:
-        """
-        See the Volume section.
-        """
         return pulumi.get(self, "volume")
 

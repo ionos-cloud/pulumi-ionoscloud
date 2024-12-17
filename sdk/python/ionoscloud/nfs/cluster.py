@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -24,11 +29,9 @@ class ClusterArgs:
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
-               - `de/fra` - Frankfurt
-               - `de/txl` - Berlin
-        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
-        :param pulumi.Input[str] name: The name of the Network File Storage cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[int] size: The size of the Network File Storage Cluster. Minimum size is 2.
+        :param pulumi.Input[str] name: The name of the Network File Storage Cluster.
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "location", location)
@@ -54,9 +57,7 @@ class ClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[str]:
         """
-        The location where the Network File Storage cluster is located.
-        - `de/fra` - Frankfurt
-        - `de/txl` - Berlin
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -68,7 +69,7 @@ class ClusterArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
-        The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        The size of the Network File Storage Cluster. Minimum size is 2.
         """
         return pulumi.get(self, "size")
 
@@ -80,7 +81,7 @@ class ClusterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Network File Storage cluster.
+        The name of the Network File Storage Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -109,11 +110,9 @@ class _ClusterState:
         """
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input['ClusterConnectionsArgs'] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
-               - `de/fra` - Frankfurt
-               - `de/txl` - Berlin
-        :param pulumi.Input[str] name: The name of the Network File Storage cluster.
-        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The name of the Network File Storage Cluster.
+        :param pulumi.Input[int] size: The size of the Network File Storage Cluster. Minimum size is 2.
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -142,9 +141,7 @@ class _ClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location where the Network File Storage cluster is located.
-        - `de/fra` - Frankfurt
-        - `de/txl` - Berlin
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -156,7 +153,7 @@ class _ClusterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the Network File Storage cluster.
+        The name of the Network File Storage Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -177,7 +174,7 @@ class _ClusterState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        The size of the Network File Storage Cluster. Minimum size is 2.
         """
         return pulumi.get(self, "size")
 
@@ -191,60 +188,20 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create clusters of Network File Storage (NFS) on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
-            datacenter_id=nfs_dc.id,
-            public=False)
-        example = ionoscloud.nfs.Cluster("example",
-            location="de/txl",
-            size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
-
-        ```sh
-        $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
-        ```
-
+        Create a Cluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
-               - `de/fra` - Frankfurt
-               - `de/txl` - Berlin
-        :param pulumi.Input[str] name: The name of the Network File Storage cluster.
-        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The name of the Network File Storage Cluster.
+        :param pulumi.Input[int] size: The size of the Network File Storage Cluster. Minimum size is 2.
         """
         ...
     @overload
@@ -253,45 +210,7 @@ class Cluster(pulumi.CustomResource):
                  args: ClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create clusters of Network File Storage (NFS) on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
-            location="de/txl",
-            description="Datacenter Description",
-            sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
-            datacenter_id=nfs_dc.id,
-            public=False)
-        example = ionoscloud.nfs.Cluster("example",
-            location="de/txl",
-            size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        A Network File Storage Cluster resource can be imported using its `location` and `resource id`:
-
-        ```sh
-        $ pulumi import ionoscloud:nfs/cluster:Cluster name {location}:{uuid}
-        ```
-
+        Create a Cluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,10 +226,10 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -342,10 +261,10 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+            nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
             size: Optional[pulumi.Input[int]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
@@ -354,12 +273,10 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: The network connections for the Network File Storage Cluster.
-        :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
-               - `de/fra` - Frankfurt
-               - `de/txl` - Berlin
-        :param pulumi.Input[str] name: The name of the Network File Storage cluster.
-        :param pulumi.Input[int] size: The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[str] location: The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
+        :param pulumi.Input[str] name: The name of the Network File Storage Cluster.
+        :param pulumi.Input[int] size: The size of the Network File Storage Cluster. Minimum size is 2.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -384,9 +301,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[str]:
         """
-        The location where the Network File Storage cluster is located.
-        - `de/fra` - Frankfurt
-        - `de/txl` - Berlin
+        The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl'
         """
         return pulumi.get(self, "location")
 
@@ -394,7 +309,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the Network File Storage cluster.
+        The name of the Network File Storage Cluster.
         """
         return pulumi.get(self, "name")
 
@@ -407,7 +322,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
         """
-        The size of the Network File Storage cluster in TiB. Note that the cluster size cannot be reduced after provisioning. This value determines the billing fees. Default is `2`. The minimum value is `2` and the maximum value is `42`.
+        The size of the Network File Storage Cluster. Minimum size is 2.
         """
         return pulumi.get(self, "size")
 

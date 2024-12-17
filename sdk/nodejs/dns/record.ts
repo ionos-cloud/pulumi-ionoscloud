@@ -4,49 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **DNS Record**.
- *
- * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_record** resource. Please ensure you are using tokens as other methods will not be valid.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.dns.Zone("example", {
- *     description: "description",
- *     enabled: false,
- * });
- * const recordexample = new ionoscloud.dns.Record("recordexample", {
- *     zoneId: example.id,
- *     type: "CNAME",
- *     content: "1.2.3.4",
- *     ttl: 2000,
- *     priority: 1024,
- *     enabled: false,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * In order to import a DNS Record, you can define an empty DNS Record resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_dns_record" "example" {
- *
- * }
- *
- * The resource can be imported using the `zone_id` and the `record_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:dns/record:Record example {zone_id}/{record_id}
- * ```
- */
 export class Record extends pulumi.CustomResource {
     /**
      * Get an existing Record resource's state with the given name, ID, and optional extra
@@ -75,37 +32,16 @@ export class Record extends pulumi.CustomResource {
         return obj['__pulumiType'] === Record.__pulumiType;
     }
 
-    /**
-     * [string] The content of the DNS Record.
-     */
     public readonly content!: pulumi.Output<string>;
-    /**
-     * [bool] Indicates if the DNS Record is active or not. Default is `true`.
-     */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
      * Fully qualified domain name
      */
     public /*out*/ readonly fqdn!: pulumi.Output<string>;
-    /**
-     * [string] The name of the DNS Record.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * [int] The priority for the DNS Record.
-     */
     public readonly priority!: pulumi.Output<number | undefined>;
-    /**
-     * [int] Time to live for the DNS Record. Default is `3600`.
-     */
     public readonly ttl!: pulumi.Output<number>;
-    /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-     */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * [string] The DNS Zone ID in which the DNS Record will be created.
-     */
     public readonly zoneId!: pulumi.Output<string>;
 
     /**
@@ -158,37 +94,16 @@ export class Record extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Record resources.
  */
 export interface RecordState {
-    /**
-     * [string] The content of the DNS Record.
-     */
     content?: pulumi.Input<string>;
-    /**
-     * [bool] Indicates if the DNS Record is active or not. Default is `true`.
-     */
     enabled?: pulumi.Input<boolean>;
     /**
      * Fully qualified domain name
      */
     fqdn?: pulumi.Input<string>;
-    /**
-     * [string] The name of the DNS Record.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [int] The priority for the DNS Record.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * [int] Time to live for the DNS Record. Default is `3600`.
-     */
     ttl?: pulumi.Input<number>;
-    /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-     */
     type?: pulumi.Input<string>;
-    /**
-     * [string] The DNS Zone ID in which the DNS Record will be created.
-     */
     zoneId?: pulumi.Input<string>;
 }
 
@@ -196,32 +111,11 @@ export interface RecordState {
  * The set of arguments for constructing a Record resource.
  */
 export interface RecordArgs {
-    /**
-     * [string] The content of the DNS Record.
-     */
     content: pulumi.Input<string>;
-    /**
-     * [bool] Indicates if the DNS Record is active or not. Default is `true`.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * [string] The name of the DNS Record.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [int] The priority for the DNS Record.
-     */
     priority?: pulumi.Input<number>;
-    /**
-     * [int] Time to live for the DNS Record. Default is `3600`.
-     */
     ttl?: pulumi.Input<number>;
-    /**
-     * [string] The type of the DNS Record, can have one of these values: `A, AAAA, CNAME, ALIAS, MX, NS, SRV, TXT, CAA, SSHFP, TLSA, SMIMEA, DS, HTTPS, SVCB, OPENPGPKEY, CERT, URI, RP, LOC`. More details about types can be found [here](https://docs.ionos.com/dns-as-a-service/readme/api-how-tos/create-a-new-dns-record#create-records-of-other-types).
-     */
     type: pulumi.Input<string>;
-    /**
-     * [string] The DNS Zone ID in which the DNS Record will be created.
-     */
     zoneId: pulumi.Input<string>;
 }

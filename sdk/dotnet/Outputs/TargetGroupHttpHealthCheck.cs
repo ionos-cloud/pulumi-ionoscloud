@@ -13,28 +13,19 @@ namespace Pulumi.Ionoscloud.Outputs
     [OutputType]
     public sealed class TargetGroupHttpHealthCheck
     {
-        /// <summary>
-        /// [string]
-        /// </summary>
         public readonly string MatchType;
         /// <summary>
-        /// [string] The method for the HTTP health check.
+        /// The method for the HTTP health check.
         /// </summary>
         public readonly string? Method;
-        /// <summary>
-        /// [bool]
-        /// </summary>
         public readonly bool? Negate;
         /// <summary>
-        /// [string] The path (destination URL) for the HTTP health check request; the default is /.
+        /// The path (destination URL) for the HTTP health check request; the default is /.
         /// </summary>
         public readonly string? Path;
-        /// <summary>
-        /// [bool]
-        /// </summary>
         public readonly bool? Regex;
         /// <summary>
-        /// [string] The response returned by the request, depending on the match type.
+        /// The response returned by the request, depending on the match type.
         /// </summary>
         public readonly string Response;
 

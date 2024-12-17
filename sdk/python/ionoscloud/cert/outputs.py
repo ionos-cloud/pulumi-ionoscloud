@@ -4,13 +4,19 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'AutoCertificateProviderExternalAccountBinding',
+    'GetAutoCertificateProviderExternalAccountBindingResult',
 ]
 
 @pulumi.output_type
@@ -59,5 +65,23 @@ class AutoCertificateProviderExternalAccountBinding(dict):
         The secret of the external account binding
         """
         return pulumi.get(self, "key_secret")
+
+
+@pulumi.output_type
+class GetAutoCertificateProviderExternalAccountBindingResult(dict):
+    def __init__(__self__, *,
+                 key_id: str):
+        """
+        :param str key_id: The key ID of the external account binding
+        """
+        pulumi.set(__self__, "key_id", key_id)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> str:
+        """
+        The key ID of the external account binding
+        """
+        return pulumi.get(self, "key_id")
 
 

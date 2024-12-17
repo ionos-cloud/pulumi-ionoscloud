@@ -4,67 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages **Users** and list users and groups associated with that user.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const group1 = new ionoscloud.compute.Group("group1", {
- *     createDatacenter: true,
- *     createSnapshot: true,
- *     reserveIp: true,
- *     accessActivityLog: false,
- *     createK8sCluster: true,
- * });
- * const group2 = new ionoscloud.compute.Group("group2", {
- *     createDatacenter: true,
- *     createSnapshot: true,
- *     reserveIp: true,
- *     accessActivityLog: false,
- *     createK8sCluster: true,
- * });
- * const group3 = new ionoscloud.compute.Group("group3", {
- *     createDatacenter: true,
- *     createSnapshot: true,
- *     reserveIp: true,
- *     accessActivityLog: false,
- * });
- * const userPassword = new random.RandomPassword("userPassword", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const example = new ionoscloud.compute.User("example", {
- *     firstName: "example",
- *     lastName: "example",
- *     email: "unique@email.com",
- *     password: userPassword.result,
- *     administrator: false,
- *     forceSecAuth: false,
- *     active: true,
- *     groupIds: [
- *         group1.id,
- *         group2.id,
- *         group3.id,
- *     ],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * Resource User can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/user:User myuser {user uuid}
- * ```
- */
 export class User extends pulumi.CustomResource {
     /**
      * Get an existing User resource's state with the given name, ID, and optional extra
@@ -94,45 +33,33 @@ export class User extends pulumi.CustomResource {
     }
 
     /**
-     * [Boolean] Indicates if the user is active
+     * Indicates if the user is active
      */
     public readonly active!: pulumi.Output<boolean | undefined>;
     /**
-     * [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+     * Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
+     * automatically have access to all resources associated with the contract.
      */
     public readonly administrator!: pulumi.Output<boolean | undefined>;
     /**
-     * [string] An e-mail address for the user.
+     * Email address of the user
      */
     public readonly email!: pulumi.Output<string>;
-    /**
-     * [string] A first name for the user.
-     */
     public readonly firstName!: pulumi.Output<string>;
     /**
-     * [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+     * Indicates if secure (two-factor) authentication is forced for the user
      */
     public readonly forceSecAuth!: pulumi.Output<boolean | undefined>;
     /**
-     * [Set] The groups that this user will be a member of
-     *
-     * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * Ids of the groups that the user is a member of
      */
     public readonly groupIds!: pulumi.Output<string[] | undefined>;
-    /**
-     * [string] A last name for the user.
-     */
     public readonly lastName!: pulumi.Output<string>;
-    /**
-     * [string] A password for the user.
-     */
     public readonly password!: pulumi.Output<string>;
-    /**
-     * Canonical (IONOS Object Storage) id of the user for a given identity
-     */
     public /*out*/ readonly s3CanonicalUserId!: pulumi.Output<string>;
     /**
-     * [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
+     * Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
+     * used in update.
      */
     public /*out*/ readonly secAuthActive!: pulumi.Output<boolean>;
 
@@ -196,45 +123,33 @@ export class User extends pulumi.CustomResource {
  */
 export interface UserState {
     /**
-     * [Boolean] Indicates if the user is active
+     * Indicates if the user is active
      */
     active?: pulumi.Input<boolean>;
     /**
-     * [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+     * Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
+     * automatically have access to all resources associated with the contract.
      */
     administrator?: pulumi.Input<boolean>;
     /**
-     * [string] An e-mail address for the user.
+     * Email address of the user
      */
     email?: pulumi.Input<string>;
-    /**
-     * [string] A first name for the user.
-     */
     firstName?: pulumi.Input<string>;
     /**
-     * [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+     * Indicates if secure (two-factor) authentication is forced for the user
      */
     forceSecAuth?: pulumi.Input<boolean>;
     /**
-     * [Set] The groups that this user will be a member of
-     *
-     * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * Ids of the groups that the user is a member of
      */
     groupIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] A last name for the user.
-     */
     lastName?: pulumi.Input<string>;
-    /**
-     * [string] A password for the user.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * Canonical (IONOS Object Storage) id of the user for a given identity
-     */
     s3CanonicalUserId?: pulumi.Input<string>;
     /**
-     * [Boolean] Indicates if secure authentication is active for the user or not. *it can not be used in create requests - can be used in update*
+     * Indicates if secure (two-factor) authentication is active for the user. It can not be used in create requests - can be
+     * used in update.
      */
     secAuthActive?: pulumi.Input<boolean>;
 }
@@ -244,37 +159,27 @@ export interface UserState {
  */
 export interface UserArgs {
     /**
-     * [Boolean] Indicates if the user is active
+     * Indicates if the user is active
      */
     active?: pulumi.Input<boolean>;
     /**
-     * [Boolean] Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they automatically have access to all resources associated with the contract.
+     * Indicates if the user has administrative rights. Administrators do not need to be managed in groups, as they
+     * automatically have access to all resources associated with the contract.
      */
     administrator?: pulumi.Input<boolean>;
     /**
-     * [string] An e-mail address for the user.
+     * Email address of the user
      */
     email: pulumi.Input<string>;
-    /**
-     * [string] A first name for the user.
-     */
     firstName: pulumi.Input<string>;
     /**
-     * [Boolean] Indicates if secure (two-factor) authentication should be forced for the user (true) or not (false).
+     * Indicates if secure (two-factor) authentication is forced for the user
      */
     forceSecAuth?: pulumi.Input<boolean>;
     /**
-     * [Set] The groups that this user will be a member of
-     *
-     * **NOTE:** Group_ids field cannot be used at the same time with userIds field in group resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
+     * Ids of the groups that the user is a member of
      */
     groupIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] A last name for the user.
-     */
     lastName: pulumi.Input<string>;
-    /**
-     * [string] A password for the user.
-     */
     password: pulumi.Input<string>;
 }

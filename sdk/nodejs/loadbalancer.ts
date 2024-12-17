@@ -4,73 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Manages a Load Balancer on IonosCloud.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": true,
- * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
- *     length: 16,
- *     special: false,
- * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     datacenterId: exampleDatacenter.id,
- *     cores: 1,
- *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
- *     imageName: "Ubuntu-20.04",
- *     imagePassword: serverImagePassword.result,
- *     volume: {
- *         name: "system",
- *         size: 14,
- *         diskType: "SSD",
- *     },
- *     nic: {
- *         lan: 1,
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleLoadbalancer = new ionoscloud.Loadbalancer("exampleLoadbalancer", {
- *     datacenterId: exampleDatacenter.id,
- *     nicIds: [exampleServer.primaryNic],
- *     dhcp: true,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## A note on nics
- *
- * When declaring NIC resources to be used with the load balancer, please make sure
- * you use the "lifecycle meta-argument" to make sure changes to the lan attribute
- * of the nic are ignored.
- *
- * Please see the Nic resource's documentation for an example on how to do that.
- *
- * ## Import
- *
- * Resource Load Balancer can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:index/loadbalancer:Loadbalancer myloadbalancer {datacenter uuid}/{loadbalancer uuid}
- * ```
- */
 export class Loadbalancer extends pulumi.CustomResource {
     /**
      * Get an existing Loadbalancer resource's state with the given name, ID, and optional extra
@@ -99,25 +32,10 @@ export class Loadbalancer extends pulumi.CustomResource {
         return obj['__pulumiType'] === Loadbalancer.__pulumiType;
     }
 
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
-    /**
-     * [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
-     */
     public readonly dhcp!: pulumi.Output<boolean | undefined>;
-    /**
-     * [string] IPv4 address of the load balancer.
-     */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * [string] The name of the load balancer.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * [list] A list of NIC IDs that are part of the load balancer.
-     */
     public readonly nicIds!: pulumi.Output<string[]>;
 
     /**
@@ -161,25 +79,10 @@ export class Loadbalancer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Loadbalancer resources.
  */
 export interface LoadbalancerState {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
-    /**
-     * [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
-     */
     dhcp?: pulumi.Input<boolean>;
-    /**
-     * [string] IPv4 address of the load balancer.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * [string] The name of the load balancer.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [list] A list of NIC IDs that are part of the load balancer.
-     */
     nicIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -187,24 +90,9 @@ export interface LoadbalancerState {
  * The set of arguments for constructing a Loadbalancer resource.
  */
 export interface LoadbalancerArgs {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * [Boolean] Indicates if the load balancer will reserve an IP using DHCP.
-     */
     dhcp?: pulumi.Input<boolean>;
-    /**
-     * [string] IPv4 address of the load balancer.
-     */
     ip?: pulumi.Input<string>;
-    /**
-     * [string] The name of the load balancer.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [list] A list of NIC IDs that are part of the load balancer.
-     */
     nicIds: pulumi.Input<pulumi.Input<string>[]>;
 }
