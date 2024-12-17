@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -206,7 +211,7 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -219,7 +224,6 @@ class Cluster(pulumi.CustomResource):
 
         This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -233,17 +237,16 @@ class Cluster(pulumi.CustomResource):
             location="de/fra",
             version="3.7.0",
             size="S",
-            connections=ionoscloud.kafka.ClusterConnectionsArgs(
-                datacenter_id=example_datacenter.id,
-                lan_id=example_lan.id,
-                broker_addresses=[
+            connections={
+                "datacenter_id": example_datacenter.id,
+                "lan_id": example_lan.id,
+                "broker_addresses": [
                     "192.168.1.101/24",
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            ))
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -255,7 +258,7 @@ class Cluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
         :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
@@ -274,7 +277,6 @@ class Cluster(pulumi.CustomResource):
 
         This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -288,17 +290,16 @@ class Cluster(pulumi.CustomResource):
             location="de/fra",
             version="3.7.0",
             size="S",
-            connections=ionoscloud.kafka.ClusterConnectionsArgs(
-                datacenter_id=example_datacenter.id,
-                lan_id=example_lan.id,
-                broker_addresses=[
+            connections={
+                "datacenter_id": example_datacenter.id,
+                "lan_id": example_lan.id,
+                "broker_addresses": [
                     "192.168.1.101/24",
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            ))
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -323,7 +324,7 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -362,7 +363,7 @@ class Cluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             broker_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
@@ -375,7 +376,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: [list] IP address and port of cluster brokers.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
         :param pulumi.Input[str] location: [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
         :param pulumi.Input[str] name: [string] Name of the Kafka Cluster.
         :param pulumi.Input[str] size: [string] Size of the Kafka Cluster. Possible values: `XS`, `S`

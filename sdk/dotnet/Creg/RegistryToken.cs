@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud.Creg
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -59,7 +58,6 @@ namespace Pulumi.Ionoscloud.Creg
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -79,7 +77,8 @@ namespace Pulumi.Ionoscloud.Creg
         public Output<string?> ExpiryDate { get; private set; } = null!;
 
         /// <summary>
-        /// [string]
+        /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+        /// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -158,7 +157,8 @@ namespace Pulumi.Ionoscloud.Creg
         public Input<string>? ExpiryDate { get; set; }
 
         /// <summary>
-        /// [string]
+        /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+        /// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -213,7 +213,8 @@ namespace Pulumi.Ionoscloud.Creg
         public Input<string>? ExpiryDate { get; set; }
 
         /// <summary>
-        /// [string]
+        /// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+        /// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

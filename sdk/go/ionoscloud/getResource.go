@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Type
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetResource(ctx *pulumi.Context, args *GetResourceArgs, opts ...pulumi.InvokeOption) (*GetResourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetResourceResult
@@ -71,15 +69,11 @@ type GetResourceResult struct {
 }
 
 func GetResourceOutput(ctx *pulumi.Context, args GetResourceOutputArgs, opts ...pulumi.InvokeOption) GetResourceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetResourceResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetResourceResultOutput, error) {
 			args := v.(GetResourceArgs)
-			r, err := GetResource(ctx, &args, opts...)
-			var s GetResourceResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getResource:getResource", args, GetResourceResultOutput{}, options).(GetResourceResultOutput), nil
 		}).(GetResourceResultOutput)
 }
 

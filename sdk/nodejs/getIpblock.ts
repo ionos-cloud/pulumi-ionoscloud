@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,10 +23,8 @@ import * as utilities from "./utilities";
  *     name: "IP Block Name",
  * });
  * ```
- * <!--End PulumiCodeChooser --> 
  *
  * ### By Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -36,13 +33,11 @@ import * as utilities from "./utilities";
  *     location: "us/las",
  * });
  * ```
- * <!--End PulumiCodeChooser --> 
  *
  * ### By Name & Location
  */
 export function getIpblock(args?: GetIpblockArgs, opts?: pulumi.InvokeOptions): Promise<GetIpblockResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getIpblock:getIpblock", {
         "id": args.id,
@@ -117,7 +112,6 @@ export interface GetIpblockResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -126,10 +120,8 @@ export interface GetIpblockResult {
  *     name: "IP Block Name",
  * });
  * ```
- * <!--End PulumiCodeChooser --> 
  *
  * ### By Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -138,12 +130,19 @@ export interface GetIpblockResult {
  *     location: "us/las",
  * });
  * ```
- * <!--End PulumiCodeChooser --> 
  *
  * ### By Name & Location
  */
-export function getIpblockOutput(args?: GetIpblockOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpblockResult> {
-    return pulumi.output(args).apply((a: any) => getIpblock(a, opts))
+export function getIpblockOutput(args?: GetIpblockOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpblockResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getIpblock:getIpblock", {
+        "id": args.id,
+        "ipConsumers": args.ipConsumers,
+        "location": args.location,
+        "name": args.name,
+        "size": args.size,
+    }, opts);
 }
 
 /**

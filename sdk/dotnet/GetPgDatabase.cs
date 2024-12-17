@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetPgDatabaseResult> Invoke(GetPgDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPgDatabaseResult>("ionoscloud:index/getPgDatabase:getPgDatabase", args ?? new GetPgDatabaseInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPgDatabaseResult> Invoke(GetPgDatabaseInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPgDatabaseResult>("ionoscloud:index/getPgDatabase:getPgDatabase", args ?? new GetPgDatabaseInvokeArgs(), options.WithDefaults());
     }
 
 

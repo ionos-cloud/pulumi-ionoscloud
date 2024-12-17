@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,10 +36,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetApplicationLoadbalancerResult> InvokeAsync(GetApplicationLoadbalancerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApplicationLoadbalancerResult>("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", args ?? new GetApplicationLoadbalancerArgs(), options.WithDefaults());
@@ -72,7 +68,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -89,10 +84,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -110,9 +103,56 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetApplicationLoadbalancerResult> Invoke(GetApplicationLoadbalancerInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetApplicationLoadbalancerResult>("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", args ?? new GetApplicationLoadbalancerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.
+        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetApplicationLoadbalancer.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Name = "ALB name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetApplicationLoadbalancer.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Name = "name",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetApplicationLoadbalancerResult> Invoke(GetApplicationLoadbalancerInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetApplicationLoadbalancerResult>("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", args ?? new GetApplicationLoadbalancerInvokeArgs(), options.WithDefaults());
     }
 

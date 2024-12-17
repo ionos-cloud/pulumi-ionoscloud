@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
 export function getNetworkloadbalancerForwardingrule(args: GetNetworkloadbalancerForwardingruleArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkloadbalancerForwardingruleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule", {
         "datacenterId": args.datacenterId,
@@ -90,8 +89,14 @@ export interface GetNetworkloadbalancerForwardingruleResult {
  * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
  * When this happens, please refine your search string so that it is specific enough to return only one result.
  */
-export function getNetworkloadbalancerForwardingruleOutput(args: GetNetworkloadbalancerForwardingruleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkloadbalancerForwardingruleResult> {
-    return pulumi.output(args).apply((a: any) => getNetworkloadbalancerForwardingrule(a, opts))
+export function getNetworkloadbalancerForwardingruleOutput(args: GetNetworkloadbalancerForwardingruleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkloadbalancerForwardingruleResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "networkloadbalancerId": args.networkloadbalancerId,
+    }, opts);
 }
 
 /**

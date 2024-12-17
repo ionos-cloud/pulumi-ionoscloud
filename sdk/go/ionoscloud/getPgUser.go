@@ -36,15 +36,11 @@ type GetPgUserResult struct {
 }
 
 func GetPgUserOutput(ctx *pulumi.Context, args GetPgUserOutputArgs, opts ...pulumi.InvokeOption) GetPgUserResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPgUserResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetPgUserResultOutput, error) {
 			args := v.(GetPgUserArgs)
-			r, err := GetPgUser(ctx, &args, opts...)
-			var s GetPgUserResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getPgUser:getPgUser", args, GetPgUserResultOutput{}, options).(GetPgUserResultOutput), nil
 		}).(GetPgUserResultOutput)
 }
 

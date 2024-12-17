@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,10 +35,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,7 +53,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetTargetGroupResult> InvokeAsync(GetTargetGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupArgs(), options.WithDefaults());
@@ -70,7 +66,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -86,10 +81,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -106,9 +99,54 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetTargetGroupResult> Invoke(GetTargetGroupInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.
+        /// You can provide a string for the name parameter which will be compared with provisioned Application Load Balancer Target Groups.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
+        ///     {
+        ///         Name = "Target Group Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetTargetGroup.Invoke(new()
+        ///     {
+        ///         Name = "Example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetTargetGroupResult> Invoke(GetTargetGroupInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetTargetGroupResult>("ionoscloud:index/getTargetGroup:getTargetGroup", args ?? new GetTargetGroupInvokeArgs(), options.WithDefaults());
     }
 

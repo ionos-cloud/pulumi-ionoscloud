@@ -79,15 +79,11 @@ type GetServerResult struct {
 }
 
 func GetServerOutput(ctx *pulumi.Context, args GetServerOutputArgs, opts ...pulumi.InvokeOption) GetServerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetServerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetServerResultOutput, error) {
 			args := v.(GetServerArgs)
-			r, err := GetServer(ctx, &args, opts...)
-			var s GetServerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getServer:getServer", args, GetServerResultOutput{}, options).(GetServerResultOutput), nil
 		}).(GetServerResultOutput)
 }
 

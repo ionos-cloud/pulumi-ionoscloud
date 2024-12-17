@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Type
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,7 +35,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetResourceResult> InvokeAsync(GetResourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceArgs(), options.WithDefaults());
@@ -50,7 +48,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Type
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,9 +63,36 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetResourceResult> Invoke(GetResourceInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
+        /// You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Type
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetResource.Invoke(new()
+        ///     {
+        ///         ResourceType = "datacenter",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetResourceResult> Invoke(GetResourceInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetResourceResult>("ionoscloud:index/getResource:getResource", args ?? new GetResourceInvokeArgs(), options.WithDefaults());
     }
 

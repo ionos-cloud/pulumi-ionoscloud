@@ -21,7 +21,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,10 +36,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By name with partial match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -57,7 +54,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDnsZoneResult> InvokeAsync(GetDnsZoneArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDnsZoneResult>("ionoscloud:index/getDnsZone:getDnsZone", args ?? new GetDnsZoneArgs(), options.WithDefaults());
@@ -72,7 +68,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -88,10 +83,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By name with partial match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -108,9 +101,55 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDnsZoneResult> Invoke(GetDnsZoneInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDnsZoneResult>("ionoscloud:index/getDnsZone:getDnsZone", args ?? new GetDnsZoneInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **DNS Zone** can be used to search for and return an existing DNS Zone.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// &gt; ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** data source. Please ensure you are using tokens as other methods will not be valid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetDnsZone.Invoke(new()
+        ///     {
+        ///         Name = "example.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By name with partial match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetDnsZone.Invoke(new()
+        ///     {
+        ///         Name = "example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDnsZoneResult> Invoke(GetDnsZoneInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDnsZoneResult>("ionoscloud:index/getDnsZone:getDnsZone", args ?? new GetDnsZoneInvokeArgs(), options.WithDefaults());
     }
 

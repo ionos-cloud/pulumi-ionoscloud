@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -23,11 +22,9 @@ import * as utilities from "./utilities";
  *     name: "Cross Connect Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPrivateCrossconnect(args?: GetPrivateCrossconnectArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateCrossconnectResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", {
         "description": args.description,
@@ -89,7 +86,6 @@ export interface GetPrivateCrossconnectResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -98,10 +94,15 @@ export interface GetPrivateCrossconnectResult {
  *     name: "Cross Connect Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getPrivateCrossconnectOutput(args?: GetPrivateCrossconnectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateCrossconnectResult> {
-    return pulumi.output(args).apply((a: any) => getPrivateCrossconnect(a, opts))
+export function getPrivateCrossconnectOutput(args?: GetPrivateCrossconnectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateCrossconnectResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", {
+        "description": args.description,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

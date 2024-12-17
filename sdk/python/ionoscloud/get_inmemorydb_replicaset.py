@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -168,14 +173,29 @@ def get_inmemorydb_replicaset(display_name: Optional[str] = None,
         replicas=pulumi.get(__ret__, 'replicas'),
         resources=pulumi.get(__ret__, 'resources'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_inmemorydb_replicaset)
 def get_inmemorydb_replicaset_output(display_name: Optional[pulumi.Input[Optional[str]]] = None,
                                      id: Optional[pulumi.Input[Optional[str]]] = None,
                                      location: Optional[pulumi.Input[str]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInmemorydbReplicasetResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInmemorydbReplicasetResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['displayName'] = display_name
+    __args__['id'] = id
+    __args__['location'] = location
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset', __args__, opts=opts, typ=GetInmemorydbReplicasetResult)
+    return __ret__.apply(lambda __response__: GetInmemorydbReplicasetResult(
+        connections=pulumi.get(__response__, 'connections'),
+        credentials=pulumi.get(__response__, 'credentials'),
+        display_name=pulumi.get(__response__, 'display_name'),
+        dns_name=pulumi.get(__response__, 'dns_name'),
+        eviction_policy=pulumi.get(__response__, 'eviction_policy'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
+        persistence_mode=pulumi.get(__response__, 'persistence_mode'),
+        replicas=pulumi.get(__response__, 'replicas'),
+        resources=pulumi.get(__response__, 'resources'),
+        version=pulumi.get(__response__, 'version')))

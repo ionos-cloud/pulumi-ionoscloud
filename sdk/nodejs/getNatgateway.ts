@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getNatgateway(args: GetNatgatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetNatgatewayResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getNatgateway:getNatgateway", {
         "datacenterId": args.datacenterId,
@@ -72,8 +71,13 @@ export interface GetNatgatewayResult {
  *
  * ## Example Usage
  */
-export function getNatgatewayOutput(args: GetNatgatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNatgatewayResult> {
-    return pulumi.output(args).apply((a: any) => getNatgateway(a, opts))
+export function getNatgatewayOutput(args: GetNatgatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNatgatewayResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getNatgateway:getNatgateway", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -16,6 +21,8 @@ __all__ = [
     'get_kafka_cluster',
     'get_kafka_cluster_output',
 ]
+
+warnings.warn("""ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""", DeprecationWarning)
 
 @pulumi.output_type
 class GetKafkaClusterResult:
@@ -141,6 +148,7 @@ def get_kafka_cluster(id: Optional[str] = None,
     :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
     :param str name: Name of an existing Kafka Cluster that you want to search for.
     """
+    pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
     __args__ = dict()
     __args__['id'] = id
     __args__['location'] = location
@@ -158,14 +166,11 @@ def get_kafka_cluster(id: Optional[str] = None,
         partial_match=pulumi.get(__ret__, 'partial_match'),
         size=pulumi.get(__ret__, 'size'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_kafka_cluster)
 def get_kafka_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                              location: Optional[pulumi.Input[str]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKafkaClusterResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaClusterResult]:
     """
     The **Kafka Cluster data source** can be used to search for and return an existing Kafka Cluster.
     You can provide a string for the name parameter which will be compared with provisioned Kafka Clusters.
@@ -179,4 +184,20 @@ def get_kafka_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str location: The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
     :param str name: Name of an existing Kafka Cluster that you want to search for.
     """
-    ...
+    pulumi.log.warn("""get_kafka_cluster is deprecated: ionoscloud.index/getkafkacluster.getKafkaCluster has been deprecated in favor of ionoscloud.kafka/getcluster.getCluster""")
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getKafkaCluster:getKafkaCluster', __args__, opts=opts, typ=GetKafkaClusterResult)
+    return __ret__.apply(lambda __response__: GetKafkaClusterResult(
+        broker_addresses=pulumi.get(__response__, 'broker_addresses'),
+        connections=pulumi.get(__response__, 'connections'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        size=pulumi.get(__response__, 'size'),
+        version=pulumi.get(__response__, 'version')))

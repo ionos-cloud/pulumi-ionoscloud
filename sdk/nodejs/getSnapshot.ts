@@ -10,7 +10,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name & Size & Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -21,12 +20,10 @@ import * as utilities from "./utilities";
  *     size: 2,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Note: The size argument is in GB
  */
 export function getSnapshot(args?: GetSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetSnapshotResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getSnapshot:getSnapshot", {
         "id": args.id,
@@ -142,7 +139,6 @@ export interface GetSnapshotResult {
  * ## Example Usage
  *
  * ### By Name & Size & Location
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -153,11 +149,17 @@ export interface GetSnapshotResult {
  *     size: 2,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  * Note: The size argument is in GB
  */
-export function getSnapshotOutput(args?: GetSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getSnapshot(a, opts))
+export function getSnapshotOutput(args?: GetSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSnapshotResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getSnapshot:getSnapshot", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "size": args.size,
+    }, opts);
 }
 
 /**

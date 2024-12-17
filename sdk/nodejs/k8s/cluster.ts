@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  *
  * ### Public cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -30,11 +29,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Private Cluster
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -63,7 +60,6 @@ import * as utilities from "../utilities";
  *     "public": false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

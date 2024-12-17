@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetAutoCertificateResult> Invoke(GetAutoCertificateInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAutoCertificateResult>("ionoscloud:index/getAutoCertificate:getAutoCertificate", args ?? new GetAutoCertificateInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetAutoCertificateResult> Invoke(GetAutoCertificateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAutoCertificateResult>("ionoscloud:index/getAutoCertificate:getAutoCertificate", args ?? new GetAutoCertificateInvokeArgs(), options.WithDefaults());
     }
 
 

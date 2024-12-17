@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Domain
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,10 +42,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Domain with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetCdnDistribution(ctx *pulumi.Context, args *GetCdnDistributionArgs, opts ...pulumi.InvokeOption) (*GetCdnDistributionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCdnDistributionResult
@@ -113,15 +109,11 @@ type GetCdnDistributionResult struct {
 }
 
 func GetCdnDistributionOutput(ctx *pulumi.Context, args GetCdnDistributionOutputArgs, opts ...pulumi.InvokeOption) GetCdnDistributionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetCdnDistributionResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetCdnDistributionResultOutput, error) {
 			args := v.(GetCdnDistributionArgs)
-			r, err := GetCdnDistribution(ctx, &args, opts...)
-			var s GetCdnDistributionResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getCdnDistribution:getCdnDistribution", args, GetCdnDistributionResultOutput{}, options).(GetCdnDistributionResultOutput), nil
 		}).(GetCdnDistributionResultOutput)
 }
 

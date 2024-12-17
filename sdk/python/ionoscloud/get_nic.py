@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -283,9 +288,6 @@ def get_nic(datacenter_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         pci_slot=pulumi.get(__ret__, 'pci_slot'),
         server_id=pulumi.get(__ret__, 'server_id'))
-
-
-@_utilities.lift_output_func(get_nic)
 def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                    dhcp: Optional[pulumi.Input[Optional[bool]]] = None,
                    dhcpv6: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -298,7 +300,7 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                    lan: Optional[pulumi.Input[Optional[int]]] = None,
                    name: Optional[pulumi.Input[Optional[str]]] = None,
                    server_id: Optional[pulumi.Input[str]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNicResult]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNicResult]:
     """
     The **Nic data source** can be used to search for and return existing nics.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -320,4 +322,35 @@ def get_nic_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     :param str name: [string] The name of the LAN.
     :param str server_id: [string] The ID of a server.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['dhcp'] = dhcp
+    __args__['dhcpv6'] = dhcpv6
+    __args__['firewallActive'] = firewall_active
+    __args__['firewallType'] = firewall_type
+    __args__['id'] = id
+    __args__['ips'] = ips
+    __args__['ipv6CidrBlock'] = ipv6_cidr_block
+    __args__['ipv6Ips'] = ipv6_ips
+    __args__['lan'] = lan
+    __args__['name'] = name
+    __args__['serverId'] = server_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getNic:getNic', __args__, opts=opts, typ=GetNicResult)
+    return __ret__.apply(lambda __response__: GetNicResult(
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        device_number=pulumi.get(__response__, 'device_number'),
+        dhcp=pulumi.get(__response__, 'dhcp'),
+        dhcpv6=pulumi.get(__response__, 'dhcpv6'),
+        firewall_active=pulumi.get(__response__, 'firewall_active'),
+        firewall_type=pulumi.get(__response__, 'firewall_type'),
+        flowlogs=pulumi.get(__response__, 'flowlogs'),
+        id=pulumi.get(__response__, 'id'),
+        ips=pulumi.get(__response__, 'ips'),
+        ipv6_cidr_block=pulumi.get(__response__, 'ipv6_cidr_block'),
+        ipv6_ips=pulumi.get(__response__, 'ipv6_ips'),
+        lan=pulumi.get(__response__, 'lan'),
+        mac=pulumi.get(__response__, 'mac'),
+        name=pulumi.get(__response__, 'name'),
+        pci_slot=pulumi.get(__response__, 'pci_slot'),
+        server_id=pulumi.get(__response__, 'server_id')))

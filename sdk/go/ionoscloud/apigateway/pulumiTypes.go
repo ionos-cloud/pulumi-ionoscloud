@@ -252,13 +252,260 @@ func (o RouteUpstreamArrayOutput) Index(i pulumi.IntInput) RouteUpstreamOutput {
 	}).(RouteUpstreamOutput)
 }
 
+type GetApigatewayCustomDomain struct {
+	// The ID of the certificate to use for the distribution.
+	CertificateId string `pulumi:"certificateId"`
+	// Name of an existing API Gateway that you want to search for.
+	Name string `pulumi:"name"`
+}
+
+// GetApigatewayCustomDomainInput is an input type that accepts GetApigatewayCustomDomainArgs and GetApigatewayCustomDomainOutput values.
+// You can construct a concrete instance of `GetApigatewayCustomDomainInput` via:
+//
+//	GetApigatewayCustomDomainArgs{...}
+type GetApigatewayCustomDomainInput interface {
+	pulumi.Input
+
+	ToGetApigatewayCustomDomainOutput() GetApigatewayCustomDomainOutput
+	ToGetApigatewayCustomDomainOutputWithContext(context.Context) GetApigatewayCustomDomainOutput
+}
+
+type GetApigatewayCustomDomainArgs struct {
+	// The ID of the certificate to use for the distribution.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// Name of an existing API Gateway that you want to search for.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetApigatewayCustomDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApigatewayCustomDomain)(nil)).Elem()
+}
+
+func (i GetApigatewayCustomDomainArgs) ToGetApigatewayCustomDomainOutput() GetApigatewayCustomDomainOutput {
+	return i.ToGetApigatewayCustomDomainOutputWithContext(context.Background())
+}
+
+func (i GetApigatewayCustomDomainArgs) ToGetApigatewayCustomDomainOutputWithContext(ctx context.Context) GetApigatewayCustomDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApigatewayCustomDomainOutput)
+}
+
+// GetApigatewayCustomDomainArrayInput is an input type that accepts GetApigatewayCustomDomainArray and GetApigatewayCustomDomainArrayOutput values.
+// You can construct a concrete instance of `GetApigatewayCustomDomainArrayInput` via:
+//
+//	GetApigatewayCustomDomainArray{ GetApigatewayCustomDomainArgs{...} }
+type GetApigatewayCustomDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetApigatewayCustomDomainArrayOutput() GetApigatewayCustomDomainArrayOutput
+	ToGetApigatewayCustomDomainArrayOutputWithContext(context.Context) GetApigatewayCustomDomainArrayOutput
+}
+
+type GetApigatewayCustomDomainArray []GetApigatewayCustomDomainInput
+
+func (GetApigatewayCustomDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApigatewayCustomDomain)(nil)).Elem()
+}
+
+func (i GetApigatewayCustomDomainArray) ToGetApigatewayCustomDomainArrayOutput() GetApigatewayCustomDomainArrayOutput {
+	return i.ToGetApigatewayCustomDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetApigatewayCustomDomainArray) ToGetApigatewayCustomDomainArrayOutputWithContext(ctx context.Context) GetApigatewayCustomDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApigatewayCustomDomainArrayOutput)
+}
+
+type GetApigatewayCustomDomainOutput struct{ *pulumi.OutputState }
+
+func (GetApigatewayCustomDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApigatewayCustomDomain)(nil)).Elem()
+}
+
+func (o GetApigatewayCustomDomainOutput) ToGetApigatewayCustomDomainOutput() GetApigatewayCustomDomainOutput {
+	return o
+}
+
+func (o GetApigatewayCustomDomainOutput) ToGetApigatewayCustomDomainOutputWithContext(ctx context.Context) GetApigatewayCustomDomainOutput {
+	return o
+}
+
+// The ID of the certificate to use for the distribution.
+func (o GetApigatewayCustomDomainOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayCustomDomain) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// Name of an existing API Gateway that you want to search for.
+func (o GetApigatewayCustomDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayCustomDomain) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetApigatewayCustomDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApigatewayCustomDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApigatewayCustomDomain)(nil)).Elem()
+}
+
+func (o GetApigatewayCustomDomainArrayOutput) ToGetApigatewayCustomDomainArrayOutput() GetApigatewayCustomDomainArrayOutput {
+	return o
+}
+
+func (o GetApigatewayCustomDomainArrayOutput) ToGetApigatewayCustomDomainArrayOutputWithContext(ctx context.Context) GetApigatewayCustomDomainArrayOutput {
+	return o
+}
+
+func (o GetApigatewayCustomDomainArrayOutput) Index(i pulumi.IntInput) GetApigatewayCustomDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApigatewayCustomDomain {
+		return vs[0].([]GetApigatewayCustomDomain)[vs[1].(int)]
+	}).(GetApigatewayCustomDomainOutput)
+}
+
+type GetRouteUpstream struct {
+	// The host of the upstream.
+	Host string `pulumi:"host"`
+	// The load balancer algorithm.
+	Loadbalancer string `pulumi:"loadbalancer"`
+	// The port of the upstream.
+	Port int `pulumi:"port"`
+	// The target URL of the upstream.
+	Scheme string `pulumi:"scheme"`
+	// Weight with which to split traffic to the upstream.
+	Weight int `pulumi:"weight"`
+}
+
+// GetRouteUpstreamInput is an input type that accepts GetRouteUpstreamArgs and GetRouteUpstreamOutput values.
+// You can construct a concrete instance of `GetRouteUpstreamInput` via:
+//
+//	GetRouteUpstreamArgs{...}
+type GetRouteUpstreamInput interface {
+	pulumi.Input
+
+	ToGetRouteUpstreamOutput() GetRouteUpstreamOutput
+	ToGetRouteUpstreamOutputWithContext(context.Context) GetRouteUpstreamOutput
+}
+
+type GetRouteUpstreamArgs struct {
+	// The host of the upstream.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The load balancer algorithm.
+	Loadbalancer pulumi.StringInput `pulumi:"loadbalancer"`
+	// The port of the upstream.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The target URL of the upstream.
+	Scheme pulumi.StringInput `pulumi:"scheme"`
+	// Weight with which to split traffic to the upstream.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetRouteUpstreamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteUpstream)(nil)).Elem()
+}
+
+func (i GetRouteUpstreamArgs) ToGetRouteUpstreamOutput() GetRouteUpstreamOutput {
+	return i.ToGetRouteUpstreamOutputWithContext(context.Background())
+}
+
+func (i GetRouteUpstreamArgs) ToGetRouteUpstreamOutputWithContext(ctx context.Context) GetRouteUpstreamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteUpstreamOutput)
+}
+
+// GetRouteUpstreamArrayInput is an input type that accepts GetRouteUpstreamArray and GetRouteUpstreamArrayOutput values.
+// You can construct a concrete instance of `GetRouteUpstreamArrayInput` via:
+//
+//	GetRouteUpstreamArray{ GetRouteUpstreamArgs{...} }
+type GetRouteUpstreamArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteUpstreamArrayOutput() GetRouteUpstreamArrayOutput
+	ToGetRouteUpstreamArrayOutputWithContext(context.Context) GetRouteUpstreamArrayOutput
+}
+
+type GetRouteUpstreamArray []GetRouteUpstreamInput
+
+func (GetRouteUpstreamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteUpstream)(nil)).Elem()
+}
+
+func (i GetRouteUpstreamArray) ToGetRouteUpstreamArrayOutput() GetRouteUpstreamArrayOutput {
+	return i.ToGetRouteUpstreamArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteUpstreamArray) ToGetRouteUpstreamArrayOutputWithContext(ctx context.Context) GetRouteUpstreamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteUpstreamArrayOutput)
+}
+
+type GetRouteUpstreamOutput struct{ *pulumi.OutputState }
+
+func (GetRouteUpstreamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteUpstream)(nil)).Elem()
+}
+
+func (o GetRouteUpstreamOutput) ToGetRouteUpstreamOutput() GetRouteUpstreamOutput {
+	return o
+}
+
+func (o GetRouteUpstreamOutput) ToGetRouteUpstreamOutputWithContext(ctx context.Context) GetRouteUpstreamOutput {
+	return o
+}
+
+// The host of the upstream.
+func (o GetRouteUpstreamOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteUpstream) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// The load balancer algorithm.
+func (o GetRouteUpstreamOutput) Loadbalancer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteUpstream) string { return v.Loadbalancer }).(pulumi.StringOutput)
+}
+
+// The port of the upstream.
+func (o GetRouteUpstreamOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRouteUpstream) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The target URL of the upstream.
+func (o GetRouteUpstreamOutput) Scheme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteUpstream) string { return v.Scheme }).(pulumi.StringOutput)
+}
+
+// Weight with which to split traffic to the upstream.
+func (o GetRouteUpstreamOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRouteUpstream) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetRouteUpstreamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteUpstreamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteUpstream)(nil)).Elem()
+}
+
+func (o GetRouteUpstreamArrayOutput) ToGetRouteUpstreamArrayOutput() GetRouteUpstreamArrayOutput {
+	return o
+}
+
+func (o GetRouteUpstreamArrayOutput) ToGetRouteUpstreamArrayOutputWithContext(ctx context.Context) GetRouteUpstreamArrayOutput {
+	return o
+}
+
+func (o GetRouteUpstreamArrayOutput) Index(i pulumi.IntInput) GetRouteUpstreamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteUpstream {
+		return vs[0].([]GetRouteUpstream)[vs[1].(int)]
+	}).(GetRouteUpstreamOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ApigatewayCustomDomainInput)(nil)).Elem(), ApigatewayCustomDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApigatewayCustomDomainArrayInput)(nil)).Elem(), ApigatewayCustomDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteUpstreamInput)(nil)).Elem(), RouteUpstreamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteUpstreamArrayInput)(nil)).Elem(), RouteUpstreamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApigatewayCustomDomainInput)(nil)).Elem(), GetApigatewayCustomDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApigatewayCustomDomainArrayInput)(nil)).Elem(), GetApigatewayCustomDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteUpstreamInput)(nil)).Elem(), GetRouteUpstreamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteUpstreamArrayInput)(nil)).Elem(), GetRouteUpstreamArray{})
 	pulumi.RegisterOutputType(ApigatewayCustomDomainOutput{})
 	pulumi.RegisterOutputType(ApigatewayCustomDomainArrayOutput{})
 	pulumi.RegisterOutputType(RouteUpstreamOutput{})
 	pulumi.RegisterOutputType(RouteUpstreamArrayOutput{})
+	pulumi.RegisterOutputType(GetApigatewayCustomDomainOutput{})
+	pulumi.RegisterOutputType(GetApigatewayCustomDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteUpstreamOutput{})
+	pulumi.RegisterOutputType(GetRouteUpstreamArrayOutput{})
 }

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -101,14 +106,22 @@ def get_mariadb_backups(backup_id: Optional[str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'))
-
-
-@_utilities.lift_output_func(get_mariadb_backups)
 def get_mariadb_backups_output(backup_id: Optional[pulumi.Input[Optional[str]]] = None,
                                cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                                location: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMariadbBackupsResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMariadbBackupsResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['backupId'] = backup_id
+    __args__['clusterId'] = cluster_id
+    __args__['location'] = location
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getMariadbBackups:getMariadbBackups', __args__, opts=opts, typ=GetMariadbBackupsResult)
+    return __ret__.apply(lambda __response__: GetMariadbBackupsResult(
+        backup_id=pulumi.get(__response__, 'backup_id'),
+        backups=pulumi.get(__response__, 'backups'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location')))

@@ -17,7 +17,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name &amp; Size &amp; Location
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,7 +34,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Note: The size argument is in GB
         /// </summary>
         public static Task<GetSnapshotResult> InvokeAsync(GetSnapshotArgs? args = null, InvokeOptions? options = null)
@@ -47,7 +45,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name &amp; Size &amp; Location
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,10 +62,37 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Note: The size argument is in GB
         /// </summary>
         public static Output<GetSnapshotResult> Invoke(GetSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSnapshotResult>("ionoscloud:index/getSnapshot:getSnapshot", args ?? new GetSnapshotInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name &amp; Size &amp; Location
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetSnapshot.Invoke(new()
+        ///     {
+        ///         Location = "us/las",
+        ///         Name = "Snapshot Example",
+        ///         Size = 2,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// Note: The size argument is in GB
+        /// </summary>
+        public static Output<GetSnapshotResult> Invoke(GetSnapshotInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSnapshotResult>("ionoscloud:index/getSnapshot:getSnapshot", args ?? new GetSnapshotInvokeArgs(), options.WithDefaults());
     }
 

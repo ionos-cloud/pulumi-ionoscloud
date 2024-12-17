@@ -4,19 +4,45 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClusterMaintenanceWindowArgs',
+    'ClusterMaintenanceWindowArgsDict',
     'ClusterS3BucketArgs',
+    'ClusterS3BucketArgsDict',
     'NodePoolAutoScalingArgs',
+    'NodePoolAutoScalingArgsDict',
     'NodePoolLanArgs',
+    'NodePoolLanArgsDict',
     'NodePoolLanRouteArgs',
+    'NodePoolLanRouteArgsDict',
     'NodePoolMaintenanceWindowArgs',
+    'NodePoolMaintenanceWindowArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClusterMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        [string] Day of the week when maintenance is allowed
+        """
+        time: pulumi.Input[str]
+        """
+        [string] A clock time in the day when maintenance is allowed
+        """
+elif False:
+    ClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterMaintenanceWindowArgs:
@@ -55,6 +81,15 @@ class ClusterMaintenanceWindowArgs:
         pulumi.set(self, "time", value)
 
 
+if not MYPY:
+    class ClusterS3BucketArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the Kubernetes Cluster.
+        """
+elif False:
+    ClusterS3BucketArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterS3BucketArgs:
     def __init__(__self__, *,
@@ -77,6 +112,19 @@ class ClusterS3BucketArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class NodePoolAutoScalingArgsDict(TypedDict):
+        max_node_count: pulumi.Input[int]
+        """
+        [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
+        """
+        min_node_count: pulumi.Input[int]
+        """
+        [int] The minimum number of worker nodes the node pool can scale down to. Should be less than max_node_count
+        """
+elif False:
+    NodePoolAutoScalingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NodePoolAutoScalingArgs:
@@ -114,6 +162,23 @@ class NodePoolAutoScalingArgs:
     def min_node_count(self, value: pulumi.Input[int]):
         pulumi.set(self, "min_node_count", value)
 
+
+if not MYPY:
+    class NodePoolLanArgsDict(TypedDict):
+        id: pulumi.Input[int]
+        """
+        [int] The LAN ID of an existing LAN at the related datacenter
+        """
+        dhcp: NotRequired[pulumi.Input[bool]]
+        """
+        [boolean] Indicates if the Kubernetes Node Pool LAN will reserve an IP using DHCP. Default value is `true`
+        """
+        routes: NotRequired[pulumi.Input[Sequence[pulumi.Input['NodePoolLanRouteArgsDict']]]]
+        """
+        An array of additional LANs attached to worker nodes
+        """
+elif False:
+    NodePoolLanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NodePoolLanArgs:
@@ -169,6 +234,19 @@ class NodePoolLanArgs:
         pulumi.set(self, "routes", value)
 
 
+if not MYPY:
+    class NodePoolLanRouteArgsDict(TypedDict):
+        gateway_ip: pulumi.Input[str]
+        """
+        [string] IPv4 or IPv6 Gateway IP for the route
+        """
+        network: pulumi.Input[str]
+        """
+        [string] IPv4 or IPv6 CIDR to be routed via the interface
+        """
+elif False:
+    NodePoolLanRouteArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NodePoolLanRouteArgs:
     def __init__(__self__, *,
@@ -205,6 +283,19 @@ class NodePoolLanRouteArgs:
     def network(self, value: pulumi.Input[str]):
         pulumi.set(self, "network", value)
 
+
+if not MYPY:
+    class NodePoolMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        [string] Day of the week when maintenance is allowed
+        """
+        time: pulumi.Input[str]
+        """
+        [string] A clock time in the day when maintenance is allowed
+        """
+elif False:
+    NodePoolMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NodePoolMaintenanceWindowArgs:

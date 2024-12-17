@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -304,7 +309,6 @@ def get_image(cloud_init: Optional[str] = None,
     When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -314,12 +318,10 @@ def get_image(cloud_init: Optional[str] = None,
         location="de/txl",
         type="CDROM")
     ```
-    <!--End PulumiCodeChooser -->
     Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
 
     ### Additional Examples
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -327,13 +329,11 @@ def get_image(cloud_init: Optional[str] = None,
     example = ionoscloud.get_image(image_alias="ubuntu:latest",
         location="de/txl")
     ```
-    <!--End PulumiCodeChooser -->
 
     Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
 
     ### Additional Examples
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -343,7 +343,6 @@ def get_image(cloud_init: Optional[str] = None,
         location="us/ewr",
         type="HDD")
     ```
-    <!--End PulumiCodeChooser -->
     Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 
 
@@ -392,9 +391,6 @@ def get_image(cloud_init: Optional[str] = None,
         size=pulumi.get(__ret__, 'size'),
         type=pulumi.get(__ret__, 'type'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_image)
 def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
                      description: Optional[pulumi.Input[Optional[str]]] = None,
                      image_alias: Optional[pulumi.Input[Optional[str]]] = None,
@@ -402,14 +398,13 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
                      name: Optional[pulumi.Input[Optional[str]]] = None,
                      type: Optional[pulumi.Input[Optional[str]]] = None,
                      version: Optional[pulumi.Input[Optional[str]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetImageResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetImageResult]:
     """
     The **Image data source** can be used to search for and return an existing image which can then be used to provision a server.\\
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
     When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -419,12 +414,10 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
         location="de/txl",
         type="CDROM")
     ```
-    <!--End PulumiCodeChooser -->
     Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
 
     ### Additional Examples
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -432,13 +425,11 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
     example = ionoscloud.get_image(image_alias="ubuntu:latest",
         location="de/txl")
     ```
-    <!--End PulumiCodeChooser -->
 
     Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
 
     ### Additional Examples
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -448,7 +439,6 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
         location="us/ewr",
         type="HDD")
     ```
-    <!--End PulumiCodeChooser -->
     Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 
 
@@ -463,4 +453,36 @@ def get_image_output(cloud_init: Optional[pulumi.Input[Optional[str]]] = None,
            If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version].
            The resulting string will be used to search for an exact match. An error will be thrown if one is not found.
     """
-    ...
+    __args__ = dict()
+    __args__['cloudInit'] = cloud_init
+    __args__['description'] = description
+    __args__['imageAlias'] = image_alias
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['type'] = type
+    __args__['version'] = version
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getImage:getImage', __args__, opts=opts, typ=GetImageResult)
+    return __ret__.apply(lambda __response__: GetImageResult(
+        cloud_init=pulumi.get(__response__, 'cloud_init'),
+        cpu_hot_plug=pulumi.get(__response__, 'cpu_hot_plug'),
+        cpu_hot_unplug=pulumi.get(__response__, 'cpu_hot_unplug'),
+        description=pulumi.get(__response__, 'description'),
+        disc_scsi_hot_plug=pulumi.get(__response__, 'disc_scsi_hot_plug'),
+        disc_scsi_hot_unplug=pulumi.get(__response__, 'disc_scsi_hot_unplug'),
+        disc_virtio_hot_plug=pulumi.get(__response__, 'disc_virtio_hot_plug'),
+        disc_virtio_hot_unplug=pulumi.get(__response__, 'disc_virtio_hot_unplug'),
+        id=pulumi.get(__response__, 'id'),
+        image_alias=pulumi.get(__response__, 'image_alias'),
+        image_aliases=pulumi.get(__response__, 'image_aliases'),
+        licence_type=pulumi.get(__response__, 'licence_type'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        nic_hot_plug=pulumi.get(__response__, 'nic_hot_plug'),
+        nic_hot_unplug=pulumi.get(__response__, 'nic_hot_unplug'),
+        public=pulumi.get(__response__, 'public'),
+        ram_hot_plug=pulumi.get(__response__, 'ram_hot_plug'),
+        ram_hot_unplug=pulumi.get(__response__, 'ram_hot_unplug'),
+        size=pulumi.get(__response__, 'size'),
+        type=pulumi.get(__response__, 'type'),
+        version=pulumi.get(__response__, 'version')))

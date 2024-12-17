@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -39,11 +38,9 @@ import * as utilities from "./utilities";
  *     loggingFormat: "%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \"\" \"\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Example configuring Flowlog
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -62,7 +59,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
  * `name` will. Deleting a flowlog will also force nic re-creation.
@@ -132,9 +128,7 @@ export class Networkloadbalancer extends pulumi.CustomResource {
      */
     public readonly loggingFormat!: pulumi.Output<string | undefined>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+     * [string] A name of that Network Load Balancer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -223,9 +217,7 @@ export interface NetworkloadbalancerState {
      */
     loggingFormat?: pulumi.Input<string>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+     * [string] A name of that Network Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**
@@ -267,9 +259,7 @@ export interface NetworkloadbalancerArgs {
      */
     loggingFormat?: pulumi.Input<string>;
     /**
-     * [string] Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+     * [string] A name of that Network Load Balancer.
      */
     name?: pulumi.Input<string>;
     /**

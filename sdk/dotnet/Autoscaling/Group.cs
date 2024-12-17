@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud.Autoscaling
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -148,7 +147,6 @@ namespace Pulumi.Ionoscloud.Autoscaling
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [IonoscloudResourceType("ionoscloud:autoscaling/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
@@ -178,7 +176,7 @@ namespace Pulumi.Ionoscloud.Autoscaling
         public Output<int> MinReplicaCount { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -260,7 +258,7 @@ namespace Pulumi.Ionoscloud.Autoscaling
         public Input<int> MinReplicaCount { get; set; } = null!;
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -310,7 +308,7 @@ namespace Pulumi.Ionoscloud.Autoscaling
         public Input<int>? MinReplicaCount { get; set; }
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -107,13 +112,10 @@ def get_s3_key(active: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         secret_key=pulumi.get(__ret__, 'secret_key'),
         user_id=pulumi.get(__ret__, 'user_id'))
-
-
-@_utilities.lift_output_func(get_s3_key)
 def get_s3_key_output(active: Optional[pulumi.Input[Optional[bool]]] = None,
                       id: Optional[pulumi.Input[Optional[str]]] = None,
                       user_id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetS3KeyResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetS3KeyResult]:
     """
     The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
     You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
@@ -125,4 +127,14 @@ def get_s3_key_output(active: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str id: ID of the IONOS Object Storage key you want to search for.
     :param str user_id: [string] The UUID of the user owning the IONOS Object Storage Key.
     """
-    ...
+    __args__ = dict()
+    __args__['active'] = active
+    __args__['id'] = id
+    __args__['userId'] = user_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getS3Key:getS3Key', __args__, opts=opts, typ=GetS3KeyResult)
+    return __ret__.apply(lambda __response__: GetS3KeyResult(
+        active=pulumi.get(__response__, 'active'),
+        id=pulumi.get(__response__, 'id'),
+        secret_key=pulumi.get(__response__, 'secret_key'),
+        user_id=pulumi.get(__response__, 'user_id')))

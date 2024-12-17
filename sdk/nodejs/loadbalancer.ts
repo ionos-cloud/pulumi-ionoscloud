@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -53,7 +52,6 @@ import * as utilities from "./utilities";
  *     dhcp: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## A note on nics
  *

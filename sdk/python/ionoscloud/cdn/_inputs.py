@@ -4,16 +4,43 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'DistributionRoutingRuleArgs',
+    'DistributionRoutingRuleArgsDict',
     'DistributionRoutingRuleUpstreamArgs',
+    'DistributionRoutingRuleUpstreamArgsDict',
     'DistributionRoutingRuleUpstreamGeoRestrictionsArgs',
+    'DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class DistributionRoutingRuleArgsDict(TypedDict):
+        prefix: pulumi.Input[str]
+        """
+        [string] The prefix of the routing rule.
+        """
+        scheme: pulumi.Input[str]
+        """
+        [string] The scheme of the routing rule.
+        """
+        upstream: pulumi.Input['DistributionRoutingRuleUpstreamArgsDict']
+        """
+        [map] - A map of properties for the rule
+        """
+elif False:
+    DistributionRoutingRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DistributionRoutingRuleArgs:
@@ -66,6 +93,35 @@ class DistributionRoutingRuleArgs:
     def upstream(self, value: pulumi.Input['DistributionRoutingRuleUpstreamArgs']):
         pulumi.set(self, "upstream", value)
 
+
+if not MYPY:
+    class DistributionRoutingRuleUpstreamArgsDict(TypedDict):
+        caching: pulumi.Input[bool]
+        """
+        [bool] Enable or disable caching. If enabled, the CDN will cache the responses from the upstream host. Subsequent requests for the same resource will be served from the cache.
+        """
+        host: pulumi.Input[str]
+        """
+        [string] The upstream host that handles the requests if not already cached. This host will be protected by the WAF if the option is enabled.
+        """
+        rate_limit_class: pulumi.Input[str]
+        """
+        [string] Rate limit class that will be applied to limit the number of incoming requests per IP.
+        """
+        sni_mode: pulumi.Input[str]
+        """
+        [string] The SNI (Server Name Indication) mode of the upstream. It supports two modes: 1) `distribution`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured domain of the CDN distribution; 2) `origin`: for outgoing connections to the upstream host, the CDN requires the upstream host to present a valid certificate that matches the configured upstream/origin hostname.
+        """
+        waf: pulumi.Input[bool]
+        """
+        [bool] Enable or disable WAF to protect the upstream host.
+        """
+        geo_restrictions: NotRequired[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict']]
+        """
+        [map] - A map of geo_restrictions
+        """
+elif False:
+    DistributionRoutingRuleUpstreamArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DistributionRoutingRuleUpstreamArgs:
@@ -164,6 +220,19 @@ class DistributionRoutingRuleUpstreamArgs:
     def geo_restrictions(self, value: Optional[pulumi.Input['DistributionRoutingRuleUpstreamGeoRestrictionsArgs']]):
         pulumi.set(self, "geo_restrictions", value)
 
+
+if not MYPY:
+    class DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict(TypedDict):
+        allow_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [string] List of allowed countries
+        """
+        block_lists: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [string] List of blocked countries
+        """
+elif False:
+    DistributionRoutingRuleUpstreamGeoRestrictionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DistributionRoutingRuleUpstreamGeoRestrictionsArgs:

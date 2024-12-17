@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,9 +41,9 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// optionally you can add a certificate to the distribution
 //			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      readFileOrPanic("path_to_cert"),
-//				CertificateChain: readFileOrPanic("path_to_cert_chain"),
-//				PrivateKey:       readFileOrPanic("path_to_private_key"),
+//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
+//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
+//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
 //			})
 //			if err != nil {
 //				return err
@@ -97,7 +96,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -83,15 +83,11 @@ type GetVolumeResult struct {
 }
 
 func GetVolumeOutput(ctx *pulumi.Context, args GetVolumeOutputArgs, opts ...pulumi.InvokeOption) GetVolumeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVolumeResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetVolumeResultOutput, error) {
 			args := v.(GetVolumeArgs)
-			r, err := GetVolume(ctx, &args, opts...)
-			var s GetVolumeResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getVolume:getVolume", args, GetVolumeResultOutput{}, options).(GetVolumeResultOutput), nil
 		}).(GetVolumeResultOutput)
 }
 

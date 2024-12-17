@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetMongoUserResult> Invoke(GetMongoUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoUserResult>("ionoscloud:index/getMongoUser:getMongoUser", args ?? new GetMongoUserInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetMongoUserResult> Invoke(GetMongoUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongoUserResult>("ionoscloud:index/getMongoUser:getMongoUser", args ?? new GetMongoUserInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -30,6 +30,16 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetNatgatewayResult> Invoke(GetNatgatewayInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNatgatewayResult>("ionoscloud:index/getNatgateway:getNatgateway", args ?? new GetNatgatewayInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetNatgatewayResult> Invoke(GetNatgatewayInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNatgatewayResult>("ionoscloud:index/getNatgateway:getNatgateway", args ?? new GetNatgatewayInvokeArgs(), options.WithDefaults());
     }
 
 

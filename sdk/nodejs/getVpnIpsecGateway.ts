@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getVpnIpsecGateway(args: GetVpnIpsecGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetVpnIpsecGatewayResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getVpnIpsecGateway:getVpnIpsecGateway", {
         "id": args.id,
@@ -85,8 +84,14 @@ export interface GetVpnIpsecGatewayResult {
  *
  * ## Example Usage
  */
-export function getVpnIpsecGatewayOutput(args: GetVpnIpsecGatewayOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpnIpsecGatewayResult> {
-    return pulumi.output(args).apply((a: any) => getVpnIpsecGateway(a, opts))
+export function getVpnIpsecGatewayOutput(args: GetVpnIpsecGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpnIpsecGatewayResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getVpnIpsecGateway:getVpnIpsecGateway", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+        "version": args.version,
+    }, opts);
 }
 
 /**

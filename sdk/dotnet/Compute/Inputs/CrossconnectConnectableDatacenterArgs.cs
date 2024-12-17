@@ -19,13 +19,13 @@ namespace Pulumi.Ionoscloud.Compute.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location of the cross-connected datacenter
+        /// The physical location of the connectable datacenter
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// [string] The name of the cross-connection.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

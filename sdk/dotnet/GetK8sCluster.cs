@@ -19,7 +19,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,7 +34,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetK8sClusterResult> InvokeAsync(GetK8sClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetK8sClusterResult>("ionoscloud:index/getK8sCluster:getK8sCluster", args ?? new GetK8sClusterArgs(), options.WithDefaults());
@@ -48,7 +46,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,9 +61,35 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetK8sClusterResult> Invoke(GetK8sClusterInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sClusterResult>("ionoscloud:index/getK8sCluster:getK8sCluster", args ?? new GetK8sClusterInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetK8sCluster.Invoke(new()
+        ///     {
+        ///         Name = "K8s Cluster Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetK8sClusterResult> Invoke(GetK8sClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sClusterResult>("ionoscloud:index/getK8sCluster:getK8sCluster", args ?? new GetK8sClusterInvokeArgs(), options.WithDefaults());
     }
 

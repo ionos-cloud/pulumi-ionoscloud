@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,10 +43,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +70,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupApplicationLoadbalancer(ctx *pulumi.Context, args *LookupApplicationLoadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupApplicationLoadbalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApplicationLoadbalancerResult
@@ -122,15 +118,11 @@ type LookupApplicationLoadbalancerResult struct {
 }
 
 func LookupApplicationLoadbalancerOutput(ctx *pulumi.Context, args LookupApplicationLoadbalancerOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationLoadbalancerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerResultOutput, error) {
 			args := v.(LookupApplicationLoadbalancerArgs)
-			r, err := LookupApplicationLoadbalancer(ctx, &args, opts...)
-			var s LookupApplicationLoadbalancerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer", args, LookupApplicationLoadbalancerResultOutput{}, options).(LookupApplicationLoadbalancerResultOutput), nil
 		}).(LookupApplicationLoadbalancerResultOutput)
 }
 

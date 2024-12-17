@@ -19,7 +19,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,7 +35,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNetworkloadbalancerResult> InvokeAsync(GetNetworkloadbalancerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkloadbalancerResult>("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", args ?? new GetNetworkloadbalancerArgs(), options.WithDefaults());
@@ -49,7 +47,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,9 +63,36 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNetworkloadbalancerResult> Invoke(GetNetworkloadbalancerInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkloadbalancerResult>("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", args ?? new GetNetworkloadbalancerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Network Load Balancer data source** can be used to search for and return existing network load balancers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetNetworkloadbalancer.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Name = "Network Load Balancer Name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNetworkloadbalancerResult> Invoke(GetNetworkloadbalancerInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkloadbalancerResult>("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", args ?? new GetNetworkloadbalancerInvokeArgs(), options.WithDefaults());
     }
 

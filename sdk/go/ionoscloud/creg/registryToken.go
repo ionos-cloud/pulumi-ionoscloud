@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,7 +64,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -79,7 +77,8 @@ type RegistryToken struct {
 
 	Credentials RegistryTokenCredentialArrayOutput `pulumi:"credentials"`
 	ExpiryDate  pulumi.StringPtrOutput             `pulumi:"expiryDate"`
-	// [string]
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       pulumi.StringOutput `pulumi:"name"`
 	RegistryId pulumi.StringOutput `pulumi:"registryId"`
 	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -128,7 +127,8 @@ func GetRegistryToken(ctx *pulumi.Context,
 type registryTokenState struct {
 	Credentials []RegistryTokenCredential `pulumi:"credentials"`
 	ExpiryDate  *string                   `pulumi:"expiryDate"`
-	// [string]
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       *string `pulumi:"name"`
 	RegistryId *string `pulumi:"registryId"`
 	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -145,7 +145,8 @@ type registryTokenState struct {
 type RegistryTokenState struct {
 	Credentials RegistryTokenCredentialArrayInput
 	ExpiryDate  pulumi.StringPtrInput
-	// [string]
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       pulumi.StringPtrInput
 	RegistryId pulumi.StringPtrInput
 	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -165,7 +166,8 @@ func (RegistryTokenState) ElementType() reflect.Type {
 
 type registryTokenArgs struct {
 	ExpiryDate *string `pulumi:"expiryDate"`
-	// [string]
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       *string `pulumi:"name"`
 	RegistryId string  `pulumi:"registryId"`
 	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -182,7 +184,8 @@ type registryTokenArgs struct {
 // The set of arguments for constructing a RegistryToken resource.
 type RegistryTokenArgs struct {
 	ExpiryDate pulumi.StringPtrInput
-	// [string]
+	// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+	// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 	Name       pulumi.StringPtrInput
 	RegistryId pulumi.StringInput
 	// [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
@@ -291,7 +294,8 @@ func (o RegistryTokenOutput) ExpiryDate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringPtrOutput { return v.ExpiryDate }).(pulumi.StringPtrOutput)
 }
 
-// [string]
+// [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+// * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
 func (o RegistryTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

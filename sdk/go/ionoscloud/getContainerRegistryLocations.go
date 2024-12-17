@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.GetContainerRegistryLocations(ctx, nil, nil)
+//			_, err := ionoscloud.GetContainerRegistryLocations(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -37,7 +36,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetContainerRegistryLocations(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetContainerRegistryLocationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetContainerRegistryLocationsResult
@@ -57,13 +55,9 @@ type GetContainerRegistryLocationsResult struct {
 }
 
 func GetContainerRegistryLocationsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetContainerRegistryLocationsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetContainerRegistryLocationsResult, error) {
-		r, err := GetContainerRegistryLocations(ctx, opts...)
-		var s GetContainerRegistryLocationsResult
-		if r != nil {
-			s = *r
-		}
-		return s, err
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetContainerRegistryLocationsResultOutput, error) {
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", nil, GetContainerRegistryLocationsResultOutput{}, options).(GetContainerRegistryLocationsResultOutput), nil
 	}).(GetContainerRegistryLocationsResultOutput)
 }
 

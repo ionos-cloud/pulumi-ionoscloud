@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getMongoUser(args: GetMongoUserArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoUserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getMongoUser:getMongoUser", {
         "clusterId": args.clusterId,
@@ -39,8 +38,15 @@ export interface GetMongoUserResult {
     readonly roles: outputs.GetMongoUserRole[];
     readonly username: string;
 }
-export function getMongoUserOutput(args: GetMongoUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMongoUserResult> {
-    return pulumi.output(args).apply((a: any) => getMongoUser(a, opts))
+export function getMongoUserOutput(args: GetMongoUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoUserResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getMongoUser:getMongoUser", {
+        "clusterId": args.clusterId,
+        "database": args.database,
+        "id": args.id,
+        "roles": args.roles,
+        "username": args.username,
+    }, opts);
 }
 
 /**

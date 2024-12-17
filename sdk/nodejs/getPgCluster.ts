@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 export function getPgCluster(args?: GetPgClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetPgClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPgCluster:getPgCluster", {
         "displayName": args.displayName,
@@ -45,8 +44,13 @@ export interface GetPgClusterResult {
     readonly storageType: string;
     readonly synchronizationMode: string;
 }
-export function getPgClusterOutput(args?: GetPgClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPgClusterResult> {
-    return pulumi.output(args).apply((a: any) => getPgCluster(a, opts))
+export function getPgClusterOutput(args?: GetPgClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPgClusterResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPgCluster:getPgCluster", {
+        "displayName": args.displayName,
+        "id": args.id,
+    }, opts);
 }
 
 /**

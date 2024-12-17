@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -160,7 +165,7 @@ class NatGateway(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NatGatewayLanArgs']]]]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -169,7 +174,6 @@ class NatGateway(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -190,12 +194,11 @@ class NatGateway(pulumi.CustomResource):
                 example_ip_block.ips[0],
                 example_ip_block.ips[1],
             ],
-            lans=[ionoscloud.compute.NatGatewayLanArgs(
-                id=example_lan.id,
-                gateway_ips=["10.11.2.5"],
-            )])
+            lans=[{
+                "id": example_lan.id,
+                "gateway_ips": ["10.11.2.5"],
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -208,7 +211,7 @@ class NatGateway(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NatGatewayLanArgs']]]] lans: [list] A list of Local Area Networks the node pool should be part of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]] lans: [list] A list of Local Area Networks the node pool should be part of.
         :param pulumi.Input[str] name: [string] Name of the NAT gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
         """
@@ -223,7 +226,6 @@ class NatGateway(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -244,12 +246,11 @@ class NatGateway(pulumi.CustomResource):
                 example_ip_block.ips[0],
                 example_ip_block.ips[1],
             ],
-            lans=[ionoscloud.compute.NatGatewayLanArgs(
-                id=example_lan.id,
-                gateway_ips=["10.11.2.5"],
-            )])
+            lans=[{
+                "id": example_lan.id,
+                "gateway_ips": ["10.11.2.5"],
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -275,7 +276,7 @@ class NatGateway(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NatGatewayLanArgs']]]]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -308,7 +309,7 @@ class NatGateway(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NatGatewayLanArgs']]]]] = None,
+            lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'NatGateway':
         """
@@ -319,7 +320,7 @@ class NatGateway(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NatGatewayLanArgs']]]] lans: [list] A list of Local Area Networks the node pool should be part of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NatGatewayLanArgs', 'NatGatewayLanArgsDict']]]] lans: [list] A list of Local Area Networks the node pool should be part of.
         :param pulumi.Input[str] name: [string] Name of the NAT gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list]Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location.
         """

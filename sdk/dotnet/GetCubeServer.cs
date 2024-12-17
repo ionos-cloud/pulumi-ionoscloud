@@ -30,6 +30,16 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetCubeServerResult> Invoke(GetCubeServerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCubeServerResult>("ionoscloud:index/getCubeServer:getCubeServer", args ?? new GetCubeServerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Cube Server data source** can be used to search for and return existing servers. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetCubeServerResult> Invoke(GetCubeServerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCubeServerResult>("ionoscloud:index/getCubeServer:getCubeServer", args ?? new GetCubeServerInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -48,15 +48,11 @@ type GetIpfailoverResult struct {
 }
 
 func GetIpfailoverOutput(ctx *pulumi.Context, args GetIpfailoverOutputArgs, opts ...pulumi.InvokeOption) GetIpfailoverResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetIpfailoverResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetIpfailoverResultOutput, error) {
 			args := v.(GetIpfailoverArgs)
-			r, err := GetIpfailover(ctx, &args, opts...)
-			var s GetIpfailoverResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getIpfailover:getIpfailover", args, GetIpfailoverResultOutput{}, options).(GetIpfailoverResultOutput), nil
 		}).(GetIpfailoverResultOutput)
 }
 

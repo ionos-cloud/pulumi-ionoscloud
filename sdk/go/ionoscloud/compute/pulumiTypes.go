@@ -16,9 +16,9 @@ var _ = internal.GetEnvOrDefault
 type CrossconnectConnectableDatacenter struct {
 	// The UUID of the connectable datacenter
 	Id *string `pulumi:"id"`
-	// The location of the cross-connected datacenter
+	// The physical location of the connectable datacenter
 	Location *string `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
 }
 
@@ -36,9 +36,9 @@ type CrossconnectConnectableDatacenterInput interface {
 type CrossconnectConnectableDatacenterArgs struct {
 	// The UUID of the connectable datacenter
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location of the cross-connected datacenter
+	// The physical location of the connectable datacenter
 	Location pulumi.StringPtrInput `pulumi:"location"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -98,12 +98,12 @@ func (o CrossconnectConnectableDatacenterOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The location of the cross-connected datacenter
+// The physical location of the connectable datacenter
 func (o CrossconnectConnectableDatacenterOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-// The name of the connectable datacenter
+// [string] The name of the cross-connection.
 func (o CrossconnectConnectableDatacenterOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CrossconnectConnectableDatacenter) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

@@ -32,6 +32,17 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetVpnIpsecGatewayResult> Invoke(GetVpnIpsecGatewayInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpnIpsecGatewayResult>("ionoscloud:index/getVpnIpsecGateway:getVpnIpsecGateway", args ?? new GetVpnIpsecGatewayInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **VPN IPSec Gateway data source** can be used to search for and return an existing IPSec Gateway.
+        /// You can provide a string for the name parameter which will be compared with provisioned IPSec Gateways.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetVpnIpsecGatewayResult> Invoke(GetVpnIpsecGatewayInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpnIpsecGatewayResult>("ionoscloud:index/getVpnIpsecGateway:getVpnIpsecGateway", args ?? new GetVpnIpsecGatewayInvokeArgs(), options.WithDefaults());
     }
 
 

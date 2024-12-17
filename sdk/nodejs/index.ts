@@ -15,16 +15,6 @@ export type ApplicationLoadbalancerForwardingrule = import("./applicationLoadbal
 export const ApplicationLoadbalancerForwardingrule: typeof import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule = null as any;
 utilities.lazyLoad(exports, ["ApplicationLoadbalancerForwardingrule"], () => require("./applicationLoadbalancerForwardingrule"));
 
-export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
-export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
-export const getApigatewayOutput: typeof import("./getApigateway").getApigatewayOutput = null as any;
-utilities.lazyLoad(exports, ["getApigateway","getApigatewayOutput"], () => require("./getApigateway"));
-
-export { GetApigatewayRouteArgs, GetApigatewayRouteResult, GetApigatewayRouteOutputArgs } from "./getApigatewayRoute";
-export const getApigatewayRoute: typeof import("./getApigatewayRoute").getApigatewayRoute = null as any;
-export const getApigatewayRouteOutput: typeof import("./getApigatewayRoute").getApigatewayRouteOutput = null as any;
-utilities.lazyLoad(exports, ["getApigatewayRoute","getApigatewayRouteOutput"], () => require("./getApigatewayRoute"));
-
 export { GetApplicationLoadbalancerArgs, GetApplicationLoadbalancerResult, GetApplicationLoadbalancerOutputArgs } from "./getApplicationLoadbalancer";
 export const getApplicationLoadbalancer: typeof import("./getApplicationLoadbalancer").getApplicationLoadbalancer = null as any;
 export const getApplicationLoadbalancerOutput: typeof import("./getApplicationLoadbalancer").getApplicationLoadbalancerOutput = null as any;
@@ -44,16 +34,6 @@ export { GetAutoCertificateProviderArgs, GetAutoCertificateProviderResult, GetAu
 export const getAutoCertificateProvider: typeof import("./getAutoCertificateProvider").getAutoCertificateProvider = null as any;
 export const getAutoCertificateProviderOutput: typeof import("./getAutoCertificateProvider").getAutoCertificateProviderOutput = null as any;
 utilities.lazyLoad(exports, ["getAutoCertificateProvider","getAutoCertificateProviderOutput"], () => require("./getAutoCertificateProvider"));
-
-export { GetAutoscalingGroupArgs, GetAutoscalingGroupResult, GetAutoscalingGroupOutputArgs } from "./getAutoscalingGroup";
-export const getAutoscalingGroup: typeof import("./getAutoscalingGroup").getAutoscalingGroup = null as any;
-export const getAutoscalingGroupOutput: typeof import("./getAutoscalingGroup").getAutoscalingGroupOutput = null as any;
-utilities.lazyLoad(exports, ["getAutoscalingGroup","getAutoscalingGroupOutput"], () => require("./getAutoscalingGroup"));
-
-export { GetAutoscalingGroupServersArgs, GetAutoscalingGroupServersResult, GetAutoscalingGroupServersOutputArgs } from "./getAutoscalingGroupServers";
-export const getAutoscalingGroupServers: typeof import("./getAutoscalingGroupServers").getAutoscalingGroupServers = null as any;
-export const getAutoscalingGroupServersOutput: typeof import("./getAutoscalingGroupServers").getAutoscalingGroupServersOutput = null as any;
-utilities.lazyLoad(exports, ["getAutoscalingGroupServers","getAutoscalingGroupServersOutput"], () => require("./getAutoscalingGroupServers"));
 
 export { GetBackupUnitArgs, GetBackupUnitResult, GetBackupUnitOutputArgs } from "./getBackupUnit";
 export const getBackupUnit: typeof import("./getBackupUnit").getBackupUnit = null as any;
@@ -179,16 +159,6 @@ export { GetK8sNodePoolNodesArgs, GetK8sNodePoolNodesResult, GetK8sNodePoolNodes
 export const getK8sNodePoolNodes: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodes = null as any;
 export const getK8sNodePoolNodesOutput: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodesOutput = null as any;
 utilities.lazyLoad(exports, ["getK8sNodePoolNodes","getK8sNodePoolNodesOutput"], () => require("./getK8sNodePoolNodes"));
-
-export { GetKafkaClusterArgs, GetKafkaClusterResult, GetKafkaClusterOutputArgs } from "./getKafkaCluster";
-export const getKafkaCluster: typeof import("./getKafkaCluster").getKafkaCluster = null as any;
-export const getKafkaClusterOutput: typeof import("./getKafkaCluster").getKafkaClusterOutput = null as any;
-utilities.lazyLoad(exports, ["getKafkaCluster","getKafkaClusterOutput"], () => require("./getKafkaCluster"));
-
-export { GetKafkaClusterTopicArgs, GetKafkaClusterTopicResult, GetKafkaClusterTopicOutputArgs } from "./getKafkaClusterTopic";
-export const getKafkaClusterTopic: typeof import("./getKafkaClusterTopic").getKafkaClusterTopic = null as any;
-export const getKafkaClusterTopicOutput: typeof import("./getKafkaClusterTopic").getKafkaClusterTopicOutput = null as any;
-utilities.lazyLoad(exports, ["getKafkaClusterTopic","getKafkaClusterTopicOutput"], () => require("./getKafkaClusterTopic"));
 
 export { GetLanArgs, GetLanResult, GetLanOutputArgs } from "./getLan";
 export const getLan: typeof import("./getLan").getLan = null as any;

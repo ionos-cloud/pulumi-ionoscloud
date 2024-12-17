@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -16,6 +21,8 @@ __all__ = [
     'get_apigateway_route',
     'get_apigateway_route_output',
 ]
+
+warnings.warn("""ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""", DeprecationWarning)
 
 @pulumi.output_type
 class GetApigatewayRouteResult:
@@ -150,6 +157,7 @@ def get_apigateway_route(gateway_id: Optional[str] = None,
     :param str id: ID of an existing API Gateway Route that you want to search for.
     :param str name: Name of an existing API Gateway Route that you want to search for.
     """
+    pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
     __args__ = dict()
     __args__['gatewayId'] = gateway_id
     __args__['id'] = id
@@ -168,14 +176,11 @@ def get_apigateway_route(gateway_id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         upstreams=pulumi.get(__ret__, 'upstreams'),
         websocket=pulumi.get(__ret__, 'websocket'))
-
-
-@_utilities.lift_output_func(get_apigateway_route)
 def get_apigateway_route_output(gateway_id: Optional[pulumi.Input[str]] = None,
                                 id: Optional[pulumi.Input[Optional[str]]] = None,
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                 partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApigatewayRouteResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApigatewayRouteResult]:
     """
     The **API Gateway Route data source** can be used to search for and return an existing API Gateway route.
     You can provide a string for the name parameter which will be compared with provisioned API Gateway routes.
@@ -189,4 +194,21 @@ def get_apigateway_route_output(gateway_id: Optional[pulumi.Input[str]] = None,
     :param str id: ID of an existing API Gateway Route that you want to search for.
     :param str name: Name of an existing API Gateway Route that you want to search for.
     """
-    ...
+    pulumi.log.warn("""get_apigateway_route is deprecated: ionoscloud.index/getapigatewayroute.getApigatewayRoute has been deprecated in favor of ionoscloud.apigateway/getroute.getRoute""")
+    __args__ = dict()
+    __args__['gatewayId'] = gateway_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getApigatewayRoute:getApigatewayRoute', __args__, opts=opts, typ=GetApigatewayRouteResult)
+    return __ret__.apply(lambda __response__: GetApigatewayRouteResult(
+        gateway_id=pulumi.get(__response__, 'gateway_id'),
+        id=pulumi.get(__response__, 'id'),
+        methods=pulumi.get(__response__, 'methods'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        paths=pulumi.get(__response__, 'paths'),
+        type=pulumi.get(__response__, 'type'),
+        upstreams=pulumi.get(__response__, 'upstreams'),
+        websocket=pulumi.get(__response__, 'websocket')))

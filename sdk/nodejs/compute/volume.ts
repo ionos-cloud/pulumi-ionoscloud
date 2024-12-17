@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -104,7 +103,6 @@ import * as utilities from "../utilities";
  *     licenceType: "OTHER",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

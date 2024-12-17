@@ -16,7 +16,6 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,12 +42,10 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloudInit` and is of type `CDROM`.
 //
 // ### Additional Examples
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,13 +70,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
 //
 // ### Additional Examples
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -106,7 +101,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
 func GetImage(ctx *pulumi.Context, args *GetImageArgs, opts ...pulumi.InvokeOption) (*GetImageResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -186,15 +180,11 @@ type GetImageResult struct {
 }
 
 func GetImageOutput(ctx *pulumi.Context, args GetImageOutputArgs, opts ...pulumi.InvokeOption) GetImageResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetImageResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetImageResultOutput, error) {
 			args := v.(GetImageArgs)
-			r, err := GetImage(ctx, &args, opts...)
-			var s GetImageResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getImage:getImage", args, GetImageResultOutput{}, options).(GetImageResultOutput), nil
 		}).(GetImageResultOutput)
 }
 

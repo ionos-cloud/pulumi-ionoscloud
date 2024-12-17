@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['ZoneArgs', 'Zone']
@@ -155,7 +160,6 @@ class Zone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -164,7 +168,6 @@ class Zone(pulumi.CustomResource):
             description="description",
             enabled=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -201,7 +204,6 @@ class Zone(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -210,7 +212,6 @@ class Zone(pulumi.CustomResource):
             description="description",
             enabled=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

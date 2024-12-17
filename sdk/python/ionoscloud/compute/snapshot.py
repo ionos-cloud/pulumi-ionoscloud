@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['SnapshotArgs', 'Snapshot']
@@ -528,7 +533,6 @@ class Snapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -557,19 +561,18 @@ class Snapshot(pulumi.CustomResource):
             image_name=example_image.id,
             image_password=server_image_password.result,
             type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ))
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            })
         test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
             datacenter_id=example_datacenter.id,
             volume_id=example_server.boot_volume)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -605,7 +608,6 @@ class Snapshot(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -634,19 +636,18 @@ class Snapshot(pulumi.CustomResource):
             image_name=example_image.id,
             image_password=server_image_password.result,
             type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ))
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            })
         test_snapshot = ionoscloud.compute.Snapshot("testSnapshot",
             datacenter_id=example_datacenter.id,
             volume_id=example_server.boot_volume)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

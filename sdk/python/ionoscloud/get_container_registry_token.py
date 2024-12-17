@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -122,7 +127,6 @@ def get_container_registry_token(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -130,10 +134,8 @@ def get_container_registry_token(id: Optional[str] = None,
     example = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
         name="container-registry-token-example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -142,7 +144,6 @@ def get_container_registry_token(id: Optional[str] = None,
         name="-example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the container registry token you want to search for.
@@ -169,14 +170,11 @@ def get_container_registry_token(id: Optional[str] = None,
         registry_id=pulumi.get(__ret__, 'registry_id'),
         scopes=pulumi.get(__ret__, 'scopes'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_container_registry_token)
 def get_container_registry_token_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                         name: Optional[pulumi.Input[Optional[str]]] = None,
                                         partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
                                         registry_id: Optional[pulumi.Input[str]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerRegistryTokenResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerRegistryTokenResult]:
     """
     The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
     You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
@@ -186,7 +184,6 @@ def get_container_registry_token_output(id: Optional[pulumi.Input[Optional[str]]
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -194,10 +191,8 @@ def get_container_registry_token_output(id: Optional[pulumi.Input[Optional[str]]
     example = ionoscloud.get_container_registry_token(registry_id=ionoscloud_container_registry["example"]["id"],
         name="container-registry-token-example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -206,7 +201,6 @@ def get_container_registry_token_output(id: Optional[pulumi.Input[Optional[str]]
         name="-example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the container registry token you want to search for.
@@ -216,4 +210,19 @@ def get_container_registry_token_output(id: Optional[pulumi.Input[Optional[str]]
            `registry_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     :param str registry_id: Registry's UUID.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    __args__['registryId'] = registry_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken', __args__, opts=opts, typ=GetContainerRegistryTokenResult)
+    return __ret__.apply(lambda __response__: GetContainerRegistryTokenResult(
+        credentials=pulumi.get(__response__, 'credentials'),
+        expiry_date=pulumi.get(__response__, 'expiry_date'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        registry_id=pulumi.get(__response__, 'registry_id'),
+        scopes=pulumi.get(__response__, 'scopes'),
+        status=pulumi.get(__response__, 'status')))

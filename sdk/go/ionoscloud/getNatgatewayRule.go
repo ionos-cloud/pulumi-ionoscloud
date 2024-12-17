@@ -63,15 +63,11 @@ type GetNatgatewayRuleResult struct {
 }
 
 func GetNatgatewayRuleOutput(ctx *pulumi.Context, args GetNatgatewayRuleOutputArgs, opts ...pulumi.InvokeOption) GetNatgatewayRuleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNatgatewayRuleResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetNatgatewayRuleResultOutput, error) {
 			args := v.(GetNatgatewayRuleArgs)
-			r, err := GetNatgatewayRule(ctx, &args, opts...)
-			var s GetNatgatewayRuleResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNatgatewayRule:getNatgatewayRule", args, GetNatgatewayRuleResultOutput{}, options).(GetNatgatewayRuleResultOutput), nil
 		}).(GetNatgatewayRuleResultOutput)
 }
 

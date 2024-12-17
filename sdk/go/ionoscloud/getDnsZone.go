@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### By name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,10 +43,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By name with partial match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,7 +69,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDnsZone(ctx *pulumi.Context, args *GetDnsZoneArgs, opts ...pulumi.InvokeOption) (*GetDnsZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDnsZoneResult
@@ -111,15 +107,11 @@ type GetDnsZoneResult struct {
 }
 
 func GetDnsZoneOutput(ctx *pulumi.Context, args GetDnsZoneOutputArgs, opts ...pulumi.InvokeOption) GetDnsZoneResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDnsZoneResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetDnsZoneResultOutput, error) {
 			args := v.(GetDnsZoneArgs)
-			r, err := GetDnsZone(ctx, &args, opts...)
-			var s GetDnsZoneResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getDnsZone:getDnsZone", args, GetDnsZoneResultOutput{}, options).(GetDnsZoneResultOutput), nil
 		}).(GetDnsZoneResultOutput)
 }
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -194,8 +199,8 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLanArgs']]]]] = None,
-                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterMaintenanceWindowArgs']]]]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLanArgs', 'ClusterLanArgsDict']]]]] = None,
+                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -204,7 +209,6 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -217,21 +221,20 @@ class Cluster(pulumi.CustomResource):
             public=False)
         example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
             datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            }],
             version="23.11",
-            lans=[ionoscloud.dsaas.ClusterLanArgs(
-                lan_id=example_lan.id,
-                dhcp=False,
-                routes=[ionoscloud.dsaas.ClusterLanRouteArgs(
-                    network="182.168.42.1/24",
-                    gateway="192.168.42.1",
-                )],
-            )])
+            lans=[{
+                "lan_id": example_lan.id,
+                "dhcp": False,
+                "routes": [{
+                    "network": "182.168.42.1/24",
+                    "gateway": "192.168.42.1",
+                }],
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -244,8 +247,8 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLanArgs']]]] lans: [list] A list of LANs you want this node pool to be part of.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterLanArgs', 'ClusterLanArgsDict']]]] lans: [list] A list of LANs you want this node pool to be part of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         :param pulumi.Input[str] name: [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         :param pulumi.Input[str] version: [int] The version of the Data Platform.
         """
@@ -260,7 +263,6 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -273,21 +275,20 @@ class Cluster(pulumi.CustomResource):
             public=False)
         example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
             datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            }],
             version="23.11",
-            lans=[ionoscloud.dsaas.ClusterLanArgs(
-                lan_id=example_lan.id,
-                dhcp=False,
-                routes=[ionoscloud.dsaas.ClusterLanRouteArgs(
-                    network="182.168.42.1/24",
-                    gateway="192.168.42.1",
-                )],
-            )])
+            lans=[{
+                "lan_id": example_lan.id,
+                "dhcp": False,
+                "routes": [{
+                    "network": "182.168.42.1/24",
+                    "gateway": "192.168.42.1",
+                }],
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -313,8 +314,8 @@ class Cluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLanArgs']]]]] = None,
-                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterMaintenanceWindowArgs']]]]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLanArgs', 'ClusterLanArgsDict']]]]] = None,
+                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -344,8 +345,8 @@ class Cluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLanArgs']]]]] = None,
-            maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterMaintenanceWindowArgs']]]]] = None,
+            lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLanArgs', 'ClusterLanArgsDict']]]]] = None,
+            maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[str]] = None) -> 'Cluster':
         """
@@ -356,8 +357,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] The UUID of the virtual data center (VDC) the cluster is provisioned.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterLanArgs']]]] lans: [list] A list of LANs you want this node pool to be part of.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterLanArgs', 'ClusterLanArgsDict']]]] lans: [list] A list of LANs you want this node pool to be part of.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         :param pulumi.Input[str] name: [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         :param pulumi.Input[str] version: [int] The version of the Data Platform.
         """

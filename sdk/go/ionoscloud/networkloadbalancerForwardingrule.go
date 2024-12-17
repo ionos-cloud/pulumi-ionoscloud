@@ -18,7 +18,6 @@ import (
 //
 // ###
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -96,7 +95,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -112,7 +110,7 @@ type NetworkloadbalancerForwardingrule struct {
 	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
 	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule target.
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck NetworkloadbalancerForwardingruleHealthCheckOutput `pulumi:"healthCheck"`
 	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringOutput `pulumi:"listenerIp"`
@@ -182,7 +180,7 @@ type networkloadbalancerForwardingruleState struct {
 	Algorithm *string `pulumi:"algorithm"`
 	// [string] A Datacenter's UUID.
 	DatacenterId *string `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule target.
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck *NetworkloadbalancerForwardingruleHealthCheck `pulumi:"healthCheck"`
 	// [string] Listening IP. (inbound)
 	ListenerIp *string `pulumi:"listenerIp"`
@@ -202,7 +200,7 @@ type NetworkloadbalancerForwardingruleState struct {
 	Algorithm pulumi.StringPtrInput
 	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringPtrInput
-	// Health check attributes for Network Load Balancer forwarding rule target.
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck NetworkloadbalancerForwardingruleHealthCheckPtrInput
 	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringPtrInput
@@ -226,7 +224,7 @@ type networkloadbalancerForwardingruleArgs struct {
 	Algorithm string `pulumi:"algorithm"`
 	// [string] A Datacenter's UUID.
 	DatacenterId string `pulumi:"datacenterId"`
-	// Health check attributes for Network Load Balancer forwarding rule target.
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck *NetworkloadbalancerForwardingruleHealthCheck `pulumi:"healthCheck"`
 	// [string] Listening IP. (inbound)
 	ListenerIp string `pulumi:"listenerIp"`
@@ -247,7 +245,7 @@ type NetworkloadbalancerForwardingruleArgs struct {
 	Algorithm pulumi.StringInput
 	// [string] A Datacenter's UUID.
 	DatacenterId pulumi.StringInput
-	// Health check attributes for Network Load Balancer forwarding rule target.
+	// Health check attributes for Network Load Balancer forwarding rule.
 	HealthCheck NetworkloadbalancerForwardingruleHealthCheckPtrInput
 	// [string] Listening IP. (inbound)
 	ListenerIp pulumi.StringInput
@@ -359,7 +357,7 @@ func (o NetworkloadbalancerForwardingruleOutput) DatacenterId() pulumi.StringOut
 	return o.ApplyT(func(v *NetworkloadbalancerForwardingrule) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// Health check attributes for Network Load Balancer forwarding rule target.
+// Health check attributes for Network Load Balancer forwarding rule.
 func (o NetworkloadbalancerForwardingruleOutput) HealthCheck() NetworkloadbalancerForwardingruleHealthCheckOutput {
 	return o.ApplyT(func(v *NetworkloadbalancerForwardingrule) NetworkloadbalancerForwardingruleHealthCheckOutput {
 		return v.HealthCheck

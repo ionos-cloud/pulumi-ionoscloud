@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -170,7 +175,6 @@ def get_application_loadbalancer(datacenter_id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -178,10 +182,8 @@ def get_application_loadbalancer(datacenter_id: Optional[str] = None,
     example = ionoscloud.get_application_loadbalancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
         name="ALB name")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -190,7 +192,6 @@ def get_application_loadbalancer(datacenter_id: Optional[str] = None,
         name="name",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -220,14 +221,11 @@ def get_application_loadbalancer(datacenter_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         target_lan=pulumi.get(__ret__, 'target_lan'))
-
-
-@_utilities.lift_output_func(get_application_loadbalancer)
 def get_application_loadbalancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                                         id: Optional[pulumi.Input[Optional[str]]] = None,
                                         name: Optional[pulumi.Input[Optional[str]]] = None,
                                         partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApplicationLoadbalancerResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApplicationLoadbalancerResult]:
     """
     The **Application Load Balancer data source** can be used to search for and return an existing Application Load Balancer.
     You can provide a string for the name parameter which will be compared with provisioned Application Load Balancers.
@@ -237,7 +235,6 @@ def get_application_loadbalancer_output(datacenter_id: Optional[pulumi.Input[str
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -245,10 +242,8 @@ def get_application_loadbalancer_output(datacenter_id: Optional[pulumi.Input[str
     example = ionoscloud.get_application_loadbalancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
         name="ALB name")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -257,7 +252,6 @@ def get_application_loadbalancer_output(datacenter_id: Optional[pulumi.Input[str
         name="name",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str datacenter_id: Datacenter's UUID.
@@ -267,4 +261,22 @@ def get_application_loadbalancer_output(datacenter_id: Optional[pulumi.Input[str
            
            `datacenter_id` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getApplicationLoadbalancer:getApplicationLoadbalancer', __args__, opts=opts, typ=GetApplicationLoadbalancerResult)
+    return __ret__.apply(lambda __response__: GetApplicationLoadbalancerResult(
+        central_logging=pulumi.get(__response__, 'central_logging'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        flowlogs=pulumi.get(__response__, 'flowlogs'),
+        id=pulumi.get(__response__, 'id'),
+        ips=pulumi.get(__response__, 'ips'),
+        lb_private_ips=pulumi.get(__response__, 'lb_private_ips'),
+        listener_lan=pulumi.get(__response__, 'listener_lan'),
+        logging_format=pulumi.get(__response__, 'logging_format'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        target_lan=pulumi.get(__response__, 'target_lan')))

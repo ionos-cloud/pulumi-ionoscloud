@@ -57,15 +57,11 @@ type GetVpnIpsecGatewayResult struct {
 }
 
 func GetVpnIpsecGatewayOutput(ctx *pulumi.Context, args GetVpnIpsecGatewayOutputArgs, opts ...pulumi.InvokeOption) GetVpnIpsecGatewayResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVpnIpsecGatewayResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetVpnIpsecGatewayResultOutput, error) {
 			args := v.(GetVpnIpsecGatewayArgs)
-			r, err := GetVpnIpsecGateway(ctx, &args, opts...)
-			var s GetVpnIpsecGatewayResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getVpnIpsecGateway:getVpnIpsecGateway", args, GetVpnIpsecGatewayResultOutput{}, options).(GetVpnIpsecGatewayResultOutput), nil
 		}).(GetVpnIpsecGatewayResultOutput)
 }
 

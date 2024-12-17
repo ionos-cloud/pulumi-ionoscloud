@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetGroup(ctx *pulumi.Context, args *GetGroupArgs, opts ...pulumi.InvokeOption) (*GetGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetGroupResult
@@ -100,15 +98,11 @@ type GetGroupResult struct {
 }
 
 func GetGroupOutput(ctx *pulumi.Context, args GetGroupOutputArgs, opts ...pulumi.InvokeOption) GetGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetGroupResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetGroupResultOutput, error) {
 			args := v.(GetGroupArgs)
-			r, err := GetGroup(ctx, &args, opts...)
-			var s GetGroupResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getGroup:getGroup", args, GetGroupResultOutput{}, options).(GetGroupResultOutput), nil
 		}).(GetGroupResultOutput)
 }
 

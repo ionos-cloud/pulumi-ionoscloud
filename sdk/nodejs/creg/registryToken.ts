@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -38,7 +37,6 @@ import * as utilities from "../utilities";
  *     savePasswordToFile: "pass.txt",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -79,7 +77,8 @@ export class RegistryToken extends pulumi.CustomResource {
     public /*out*/ readonly credentials!: pulumi.Output<outputs.creg.RegistryTokenCredential[]>;
     public readonly expiryDate!: pulumi.Output<string | undefined>;
     /**
-     * [string]
+     * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+     * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     public readonly name!: pulumi.Output<string>;
     public readonly registryId!: pulumi.Output<string>;
@@ -144,7 +143,8 @@ export interface RegistryTokenState {
     credentials?: pulumi.Input<pulumi.Input<inputs.creg.RegistryTokenCredential>[]>;
     expiryDate?: pulumi.Input<string>;
     /**
-     * [string]
+     * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+     * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     name?: pulumi.Input<string>;
     registryId?: pulumi.Input<string>;
@@ -171,7 +171,8 @@ export interface RegistryTokenState {
 export interface RegistryTokenArgs {
     expiryDate?: pulumi.Input<string>;
     /**
-     * [string]
+     * [string] The name of the container registry token. Immutable, update forces re-creation of the resource.
+     * * `expiry-date`           - (Optional)[string] The value must be supplied as ISO 8601 timestamp
      */
     name?: pulumi.Input<string>;
     registryId: pulumi.Input<string>;

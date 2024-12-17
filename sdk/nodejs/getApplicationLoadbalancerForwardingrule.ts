@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -26,10 +25,8 @@ import * as utilities from "./utilities";
  *     name: "ALB FR Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -41,10 +38,8 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getApplicationLoadbalancerForwardingrule(args: GetApplicationLoadbalancerForwardingruleArgs, opts?: pulumi.InvokeOptions): Promise<GetApplicationLoadbalancerForwardingruleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getApplicationLoadbalancerForwardingrule:getApplicationLoadbalancerForwardingrule", {
         "applicationLoadbalancerId": args.applicationLoadbalancerId,
@@ -130,7 +125,6 @@ export interface GetApplicationLoadbalancerForwardingruleResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -141,10 +135,8 @@ export interface GetApplicationLoadbalancerForwardingruleResult {
  *     name: "ALB FR Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -156,10 +148,16 @@ export interface GetApplicationLoadbalancerForwardingruleResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getApplicationLoadbalancerForwardingruleOutput(args: GetApplicationLoadbalancerForwardingruleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetApplicationLoadbalancerForwardingruleResult> {
-    return pulumi.output(args).apply((a: any) => getApplicationLoadbalancerForwardingrule(a, opts))
+export function getApplicationLoadbalancerForwardingruleOutput(args: GetApplicationLoadbalancerForwardingruleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApplicationLoadbalancerForwardingruleResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getApplicationLoadbalancerForwardingrule:getApplicationLoadbalancerForwardingrule", {
+        "applicationLoadbalancerId": args.applicationLoadbalancerId,
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

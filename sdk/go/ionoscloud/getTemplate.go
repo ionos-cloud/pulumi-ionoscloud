@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,10 +41,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Cores
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,10 +66,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Ram
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -96,10 +91,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Storage Size
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -123,7 +116,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetTemplate(ctx *pulumi.Context, args *GetTemplateArgs, opts ...pulumi.InvokeOption) (*GetTemplateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetTemplateResult
@@ -163,15 +155,11 @@ type GetTemplateResult struct {
 }
 
 func GetTemplateOutput(ctx *pulumi.Context, args GetTemplateOutputArgs, opts ...pulumi.InvokeOption) GetTemplateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetTemplateResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetTemplateResultOutput, error) {
 			args := v.(GetTemplateArgs)
-			r, err := GetTemplate(ctx, &args, opts...)
-			var s GetTemplateResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getTemplate:getTemplate", args, GetTemplateResultOutput{}, options).(GetTemplateResultOutput), nil
 		}).(GetTemplateResultOutput)
 }
 

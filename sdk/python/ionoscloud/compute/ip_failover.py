@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['IPFailoverArgs', 'IPFailover']
@@ -166,7 +171,6 @@ class IPFailover(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -193,25 +197,24 @@ class IPFailover(pulumi.CustomResource):
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-                ips=[example_ip_block.ips[0]],
-            ))
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+                "ips": [example_ip_block.ips[0]],
+            })
         example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
             datacenter_id=example_datacenter.id,
             lan_id=example_lan.id,
             ip=example_ip_block.ips[0],
             nicuuid=example_server.primary_nic,
-            opts=pulumi.ResourceOptions(depends_on=[example_lan]))
+            opts = pulumi.ResourceOptions(depends_on=[example_lan]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## A note on multiple NICs on an IP Failover
 
@@ -251,7 +254,6 @@ class IPFailover(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -278,25 +280,24 @@ class IPFailover(pulumi.CustomResource):
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-                ips=[example_ip_block.ips[0]],
-            ))
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+                "ips": [example_ip_block.ips[0]],
+            })
         example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
             datacenter_id=example_datacenter.id,
             lan_id=example_lan.id,
             ip=example_ip_block.ips[0],
             nicuuid=example_server.primary_nic,
-            opts=pulumi.ResourceOptions(depends_on=[example_lan]))
+            opts = pulumi.ResourceOptions(depends_on=[example_lan]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## A note on multiple NICs on an IP Failover
 

@@ -14,7 +14,8 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterConnections struct {
-	// [list] IP address and port of cluster brokers.
+	// [list] IP addresses and subnet of cluster brokers. **Note** the following
+	// unavailable IP range: 10.224.0.0/11
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// [string] The datacenter to connect your instance to.
 	DatacenterId string `pulumi:"datacenterId"`
@@ -34,7 +35,8 @@ type ClusterConnectionsInput interface {
 }
 
 type ClusterConnectionsArgs struct {
-	// [list] IP address and port of cluster brokers.
+	// [list] IP addresses and subnet of cluster brokers. **Note** the following
+	// unavailable IP range: 10.224.0.0/11
 	BrokerAddresses pulumi.StringArrayInput `pulumi:"brokerAddresses"`
 	// [string] The datacenter to connect your instance to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
@@ -119,7 +121,8 @@ func (o ClusterConnectionsOutput) ToClusterConnectionsPtrOutputWithContext(ctx c
 	}).(ClusterConnectionsPtrOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// [list] IP addresses and subnet of cluster brokers. **Note** the following
+// unavailable IP range: 10.224.0.0/11
 func (o ClusterConnectionsOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterConnections) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
@@ -158,7 +161,8 @@ func (o ClusterConnectionsPtrOutput) Elem() ClusterConnectionsOutput {
 	}).(ClusterConnectionsOutput)
 }
 
-// [list] IP address and port of cluster brokers.
+// [list] IP addresses and subnet of cluster brokers. **Note** the following
+// unavailable IP range: 10.224.0.0/11
 func (o ClusterConnectionsPtrOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ClusterConnections) []string {
 		if v == nil {
@@ -188,9 +192,128 @@ func (o ClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetClusterConnection struct {
+	// IP address and port of cluster brokers.
+	BrokerAddresses []string `pulumi:"brokerAddresses"`
+	// The datacenter that your instance is connected to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID your instance is connected to.
+	LanId string `pulumi:"lanId"`
+}
+
+// GetClusterConnectionInput is an input type that accepts GetClusterConnectionArgs and GetClusterConnectionOutput values.
+// You can construct a concrete instance of `GetClusterConnectionInput` via:
+//
+//	GetClusterConnectionArgs{...}
+type GetClusterConnectionInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionOutput() GetClusterConnectionOutput
+	ToGetClusterConnectionOutputWithContext(context.Context) GetClusterConnectionOutput
+}
+
+type GetClusterConnectionArgs struct {
+	// IP address and port of cluster brokers.
+	BrokerAddresses pulumi.StringArrayInput `pulumi:"brokerAddresses"`
+	// The datacenter that your instance is connected to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID your instance is connected to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+}
+
+func (GetClusterConnectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnection)(nil)).Elem()
+}
+
+func (i GetClusterConnectionArgs) ToGetClusterConnectionOutput() GetClusterConnectionOutput {
+	return i.ToGetClusterConnectionOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionArgs) ToGetClusterConnectionOutputWithContext(ctx context.Context) GetClusterConnectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionOutput)
+}
+
+// GetClusterConnectionArrayInput is an input type that accepts GetClusterConnectionArray and GetClusterConnectionArrayOutput values.
+// You can construct a concrete instance of `GetClusterConnectionArrayInput` via:
+//
+//	GetClusterConnectionArray{ GetClusterConnectionArgs{...} }
+type GetClusterConnectionArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput
+	ToGetClusterConnectionArrayOutputWithContext(context.Context) GetClusterConnectionArrayOutput
+}
+
+type GetClusterConnectionArray []GetClusterConnectionInput
+
+func (GetClusterConnectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnection)(nil)).Elem()
+}
+
+func (i GetClusterConnectionArray) ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput {
+	return i.ToGetClusterConnectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterConnectionArray) ToGetClusterConnectionArrayOutputWithContext(ctx context.Context) GetClusterConnectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterConnectionArrayOutput)
+}
+
+type GetClusterConnectionOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterConnection)(nil)).Elem()
+}
+
+func (o GetClusterConnectionOutput) ToGetClusterConnectionOutput() GetClusterConnectionOutput {
+	return o
+}
+
+func (o GetClusterConnectionOutput) ToGetClusterConnectionOutputWithContext(ctx context.Context) GetClusterConnectionOutput {
+	return o
+}
+
+// IP address and port of cluster brokers.
+func (o GetClusterConnectionOutput) BrokerAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterConnection) []string { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
+}
+
+// The datacenter that your instance is connected to.
+func (o GetClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID your instance is connected to.
+func (o GetClusterConnectionOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+type GetClusterConnectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterConnectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterConnection)(nil)).Elem()
+}
+
+func (o GetClusterConnectionArrayOutput) ToGetClusterConnectionArrayOutput() GetClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionArrayOutput) ToGetClusterConnectionArrayOutputWithContext(ctx context.Context) GetClusterConnectionArrayOutput {
+	return o
+}
+
+func (o GetClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetClusterConnectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterConnection {
+		return vs[0].([]GetClusterConnection)[vs[1].(int)]
+	}).(GetClusterConnectionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterConnectionsInput)(nil)).Elem(), ClusterConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterConnectionsPtrInput)(nil)).Elem(), ClusterConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConnectionInput)(nil)).Elem(), GetClusterConnectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConnectionArrayInput)(nil)).Elem(), GetClusterConnectionArray{})
 	pulumi.RegisterOutputType(ClusterConnectionsOutput{})
 	pulumi.RegisterOutputType(ClusterConnectionsPtrOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionOutput{})
+	pulumi.RegisterOutputType(GetClusterConnectionArrayOutput{})
 }

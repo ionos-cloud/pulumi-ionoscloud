@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetInmemorydbReplicasetResult> Invoke(GetInmemorydbReplicasetInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInmemorydbReplicasetResult>("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", args ?? new GetInmemorydbReplicasetInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetInmemorydbReplicasetResult> Invoke(GetInmemorydbReplicasetInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInmemorydbReplicasetResult>("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", args ?? new GetInmemorydbReplicasetInvokeArgs(), options.WithDefaults());
     }
 
 

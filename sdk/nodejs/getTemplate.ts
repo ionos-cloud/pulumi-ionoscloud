@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -21,10 +20,8 @@ import * as utilities from "./utilities";
  *     name: "CUBES S",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Cores
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -33,10 +30,8 @@ import * as utilities from "./utilities";
  *     cores: 6,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Ram
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -45,10 +40,8 @@ import * as utilities from "./utilities";
  *     ram: 49152,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Storage Size
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -57,11 +50,9 @@ import * as utilities from "./utilities";
  *     storageSize: 80,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetTemplateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getTemplate:getTemplate", {
         "cores": args.cores,
@@ -128,7 +119,6 @@ export interface GetTemplateResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -137,10 +127,8 @@ export interface GetTemplateResult {
  *     name: "CUBES S",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Cores
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -149,10 +137,8 @@ export interface GetTemplateResult {
  *     cores: 6,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Ram
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -161,10 +147,8 @@ export interface GetTemplateResult {
  *     ram: 49152,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Storage Size
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -173,10 +157,16 @@ export interface GetTemplateResult {
  *     storageSize: 80,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getTemplateOutput(args?: GetTemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTemplateResult> {
-    return pulumi.output(args).apply((a: any) => getTemplate(a, opts))
+export function getTemplateOutput(args?: GetTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTemplateResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getTemplate:getTemplate", {
+        "cores": args.cores,
+        "name": args.name,
+        "ram": args.ram,
+        "storageSize": args.storageSize,
+    }, opts);
 }
 
 /**

@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 export function getMongoCluster(args?: GetMongoClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getMongoCluster:getMongoCluster", {
         "displayName": args.displayName,
@@ -47,8 +46,13 @@ export interface GetMongoClusterResult {
     readonly templateId: string;
     readonly type: string;
 }
-export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMongoClusterResult> {
-    return pulumi.output(args).apply((a: any) => getMongoCluster(a, opts))
+export function getMongoClusterOutput(args?: GetMongoClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoClusterResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getMongoCluster:getMongoCluster", {
+        "displayName": args.displayName,
+        "id": args.id,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -239,7 +244,7 @@ class IpsecGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -253,7 +258,6 @@ class IpsecGateway(pulumi.CustomResource):
 
         ## Usage example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -271,13 +275,12 @@ class IpsecGateway(pulumi.CustomResource):
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",
             description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
+            connections=[{
+                "datacenter_id": test_datacenter.id,
+                "lan_id": test_lan.id,
+                "ipv4_cidr": "192.168.100.10/24",
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -289,7 +292,7 @@ class IpsecGateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
                same datacenter. Minimum items: 1. Maximum items: 10.
         :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
@@ -313,7 +316,6 @@ class IpsecGateway(pulumi.CustomResource):
 
         ## Usage example
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -331,13 +333,12 @@ class IpsecGateway(pulumi.CustomResource):
             gateway_ip=test_ipblock.ips[0],
             version="IKEv2",
             description="This gateway connects site A to VDC X.",
-            connections=[ionoscloud.vpn.IpsecGatewayConnectionArgs(
-                datacenter_id=test_datacenter.id,
-                lan_id=test_lan.id,
-                ipv4_cidr="192.168.100.10/24",
-            )])
+            connections=[{
+                "datacenter_id": test_datacenter.id,
+                "lan_id": test_lan.id,
+                "ipv4_cidr": "192.168.100.10/24",
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -362,7 +363,7 @@ class IpsecGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+                 connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -399,7 +400,7 @@ class IpsecGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]]] = None,
+            connections: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
@@ -412,7 +413,7 @@ class IpsecGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsecGatewayConnectionArgs']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecGatewayConnectionArgs', 'IpsecGatewayConnectionArgsDict']]]] connections: [list] The network connection for your gateway. **Note**: all connections must belong to the
                same datacenter. Minimum items: 1. Maximum items: 10.
         :param pulumi.Input[str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in

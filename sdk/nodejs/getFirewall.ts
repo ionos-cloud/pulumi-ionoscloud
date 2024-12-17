@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getFirewall(args: GetFirewallArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getFirewall:getFirewall", {
         "datacenterId": args.datacenterId,
@@ -109,8 +108,15 @@ export interface GetFirewallResult {
  *
  * ## Example Usage
  */
-export function getFirewallOutput(args: GetFirewallOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallResult> {
-    return pulumi.output(args).apply((a: any) => getFirewall(a, opts))
+export function getFirewallOutput(args: GetFirewallOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFirewallResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getFirewall:getFirewall", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "nicId": args.nicId,
+        "serverId": args.serverId,
+    }, opts);
 }
 
 /**

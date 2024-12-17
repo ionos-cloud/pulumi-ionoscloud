@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['BootDeviceSelectionArgs', 'BootDeviceSelection']
@@ -160,7 +165,6 @@ class BootDeviceSelection(pulumi.CustomResource):
         This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -172,19 +176,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_volume = ionoscloud.compute.Volume("exampleVolume",
             server_id=example_server.id,
             datacenter_id=ionoscloud_datacenter["example"]["id"],
@@ -198,10 +202,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             server_id=example_server.id,
             boot_device_id=example_volume.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Select an inline volume again
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -213,19 +215,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
             datacenter_id=ionoscloud_datacenter["example"]["id"],
             server_id=example_server.id,
@@ -239,10 +241,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Select a CDROM image
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -255,19 +255,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_image = ionoscloud.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
@@ -284,10 +284,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Perform a network boot
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -300,19 +298,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline volume",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline volume",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
             datacenter_id=ionoscloud_datacenter["example"]["id"],
             server_id=example_server.inline_volume_ids[0])
@@ -329,7 +327,6 @@ class BootDeviceSelection(pulumi.CustomResource):
             location="de/txl",
             type="CDROM")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -354,7 +351,6 @@ class BootDeviceSelection(pulumi.CustomResource):
         This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -366,19 +362,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_volume = ionoscloud.compute.Volume("exampleVolume",
             server_id=example_server.id,
             datacenter_id=ionoscloud_datacenter["example"]["id"],
@@ -392,10 +388,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             server_id=example_server.id,
             boot_device_id=example_volume.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Select an inline volume again
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -407,19 +401,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
             datacenter_id=ionoscloud_datacenter["example"]["id"],
             server_id=example_server.id,
@@ -433,10 +427,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Select a CDROM image
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -449,19 +441,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline Updated",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline Updated",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_image = ionoscloud.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
@@ -478,10 +470,8 @@ class BootDeviceSelection(pulumi.CustomResource):
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Perform a network boot
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -494,19 +484,19 @@ class BootDeviceSelection(pulumi.CustomResource):
             ram=2048,
             image_password=random_password["server_image_password"]["result"],
             datacenter_id=ionoscloud_datacenter["example"]["id"],
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="Inline volume",
-                size=20,
-                disk_type="SSD Standard",
-                bus="VIRTIO",
-                availability_zone="AUTO",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=ionoscloud_lan["example"]["id"],
-                name="Nic Example",
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "Inline volume",
+                "size": 20,
+                "disk_type": "SSD Standard",
+                "bus": "VIRTIO",
+                "availability_zone": "AUTO",
+            },
+            nic={
+                "lan": ionoscloud_lan["example"]["id"],
+                "name": "Nic Example",
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
             datacenter_id=ionoscloud_datacenter["example"]["id"],
             server_id=example_server.inline_volume_ids[0])
@@ -523,7 +513,6 @@ class BootDeviceSelection(pulumi.CustomResource):
             location="de/txl",
             type="CDROM")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param BootDeviceSelectionArgs args: The arguments to use to populate this resource's properties.

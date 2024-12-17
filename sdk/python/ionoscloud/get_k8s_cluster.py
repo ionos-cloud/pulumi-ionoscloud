@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -303,14 +308,12 @@ def get_k8s_cluster(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_k8s_cluster(name="K8s Cluster Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the cluster you want to search for.
@@ -344,12 +347,9 @@ def get_k8s_cluster(id: Optional[str] = None,
         state=pulumi.get(__ret__, 'state'),
         user_tokens=pulumi.get(__ret__, 'user_tokens'),
         viable_node_pool_versions=pulumi.get(__ret__, 'viable_node_pool_versions'))
-
-
-@_utilities.lift_output_func(get_k8s_cluster)
 def get_k8s_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sClusterResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sClusterResult]:
     """
     The **k8s Cluster data source** can be used to search for and return existing k8s clusters.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -358,14 +358,12 @@ def get_k8s_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_k8s_cluster(name="K8s Cluster Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the cluster you want to search for.
@@ -373,4 +371,28 @@ def get_k8s_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param str name: Name of an existing cluster that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getK8sCluster:getK8sCluster', __args__, opts=opts, typ=GetK8sClusterResult)
+    return __ret__.apply(lambda __response__: GetK8sClusterResult(
+        api_subnet_allow_lists=pulumi.get(__response__, 'api_subnet_allow_lists'),
+        available_upgrade_versions=pulumi.get(__response__, 'available_upgrade_versions'),
+        ca_crt=pulumi.get(__response__, 'ca_crt'),
+        configs=pulumi.get(__response__, 'configs'),
+        id=pulumi.get(__response__, 'id'),
+        k8s_version=pulumi.get(__response__, 'k8s_version'),
+        kube_config=pulumi.get(__response__, 'kube_config'),
+        location=pulumi.get(__response__, 'location'),
+        maintenance_windows=pulumi.get(__response__, 'maintenance_windows'),
+        name=pulumi.get(__response__, 'name'),
+        nat_gateway_ip=pulumi.get(__response__, 'nat_gateway_ip'),
+        node_pools=pulumi.get(__response__, 'node_pools'),
+        node_subnet=pulumi.get(__response__, 'node_subnet'),
+        public=pulumi.get(__response__, 'public'),
+        s3_buckets=pulumi.get(__response__, 's3_buckets'),
+        server=pulumi.get(__response__, 'server'),
+        state=pulumi.get(__response__, 'state'),
+        user_tokens=pulumi.get(__response__, 'user_tokens'),
+        viable_node_pool_versions=pulumi.get(__response__, 'viable_node_pool_versions')))

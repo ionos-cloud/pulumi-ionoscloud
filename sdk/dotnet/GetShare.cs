@@ -28,6 +28,15 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetShareResult> Invoke(GetShareInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:index/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Share data source** can be used to search for and return an existing share object.
+        /// You need to provide the group_id and resource_id to get the group resources for the shared resource.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
+        public static Output<GetShareResult> Invoke(GetShareInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetShareResult>("ionoscloud:index/getShare:getShare", args ?? new GetShareInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -52,15 +52,11 @@ type GetNfsClusterResult struct {
 }
 
 func GetNfsClusterOutput(ctx *pulumi.Context, args GetNfsClusterOutputArgs, opts ...pulumi.InvokeOption) GetNfsClusterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNfsClusterResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetNfsClusterResultOutput, error) {
 			args := v.(GetNfsClusterArgs)
-			r, err := GetNfsCluster(ctx, &args, opts...)
-			var s GetNfsClusterResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNfsCluster:getNfsCluster", args, GetNfsClusterResultOutput{}, options).(GetNfsClusterResultOutput), nil
 		}).(GetNfsClusterResultOutput)
 }
 

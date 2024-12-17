@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -141,13 +146,11 @@ class VCPUServerArgs:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -377,13 +380,11 @@ class _VCPUServerState:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -642,13 +643,13 @@ class VCPUServer(pulumi.CustomResource):
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VCPUServerLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['VCPUServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['VCPUServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
         ## Import
@@ -675,13 +676,13 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] The password for the image.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VCPUServerLabelArgs']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['VCPUServerNicArgs']] nic: See the Nic section.
+        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
-        :param pulumi.Input[pulumi.InputType['VCPUServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
         ...
     @overload
@@ -727,13 +728,13 @@ class VCPUServer(pulumi.CustomResource):
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VCPUServerLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['VCPUServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['VCPUServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -797,16 +798,16 @@ class VCPUServer(pulumi.CustomResource):
             image_name: Optional[pulumi.Input[str]] = None,
             image_password: Optional[pulumi.Input[str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VCPUServerLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nic: Optional[pulumi.Input[pulumi.InputType['VCPUServerNicArgs']]] = None,
+            nic: Optional[pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
             primary_ip: Optional[pulumi.Input[str]] = None,
             primary_nic: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
             ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vm_state: Optional[pulumi.Input[str]] = None,
-            volume: Optional[pulumi.Input[pulumi.InputType['VCPUServerVolumeArgs']]] = None) -> 'VCPUServer':
+            volume: Optional[pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None) -> 'VCPUServer':
         """
         Get an existing VCPUServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -829,15 +830,15 @@ class VCPUServer(pulumi.CustomResource):
                > **⚠ WARNING**
                >
                > ssh_keys field is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VCPUServerLabelArgs']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['VCPUServerNicArgs']] nic: See the Nic section.
+        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
-        :param pulumi.Input[pulumi.InputType['VCPUServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -877,13 +878,11 @@ class VCPUServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> pulumi.Output[str]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @property

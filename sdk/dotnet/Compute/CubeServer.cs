@@ -18,7 +18,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// ### CUBE Server
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -74,7 +73,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getAutoCertificateProvider(args: GetAutoCertificateProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateProviderResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getAutoCertificateProvider:getAutoCertificateProvider", {
         "id": args.id,
@@ -36,8 +35,13 @@ export interface GetAutoCertificateProviderResult {
     readonly name?: string;
     readonly server: string;
 }
-export function getAutoCertificateProviderOutput(args: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAutoCertificateProviderResult> {
-    return pulumi.output(args).apply((a: any) => getAutoCertificateProvider(a, opts))
+export function getAutoCertificateProviderOutput(args: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateProviderResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getAutoCertificateProvider:getAutoCertificateProvider", {
+        "id": args.id,
+        "location": args.location,
+        "name": args.name,
+    }, opts);
 }
 
 /**

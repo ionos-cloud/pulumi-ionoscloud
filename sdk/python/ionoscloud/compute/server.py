@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -138,13 +143,11 @@ class ServerArgs:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -273,13 +276,11 @@ class ServerArgs:
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
-        warnings.warn("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -470,13 +471,11 @@ class _ServerState:
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @boot_cdrom.setter
@@ -689,13 +688,11 @@ class _ServerState:
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
-        warnings.warn("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -777,16 +774,16 @@ class Server(pulumi.CustomResource):
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['ServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['ServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']]] = None,
                  __props__=None):
         """
         ## Import
@@ -814,16 +811,16 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] firewallrule_ids: The associated firewall rules.
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerLabelArgs']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['ServerNicArgs']] nic: See the Nic section.
+        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
         :param pulumi.Input[str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
-        :param pulumi.Input[pulumi.InputType['ServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']] volume: See the Volume section.
         """
         ...
     @overload
@@ -870,16 +867,16 @@ class Server(pulumi.CustomResource):
                  firewallrule_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  image_name: Optional[pulumi.Input[str]] = None,
                  image_password: Optional[pulumi.Input[str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerLabelArgs']]]]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nic: Optional[pulumi.Input[pulumi.InputType['ServerNicArgs']]] = None,
+                 nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  ssh_key_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template_uuid: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vm_state: Optional[pulumi.Input[str]] = None,
-                 volume: Optional[pulumi.Input[pulumi.InputType['ServerVolumeArgs']]] = None,
+                 volume: Optional[pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -941,9 +938,9 @@ class Server(pulumi.CustomResource):
             image_name: Optional[pulumi.Input[str]] = None,
             image_password: Optional[pulumi.Input[str]] = None,
             inline_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerLabelArgs']]]]] = None,
+            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nic: Optional[pulumi.Input[pulumi.InputType['ServerNicArgs']]] = None,
+            nic: Optional[pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']]] = None,
             primary_ip: Optional[pulumi.Input[str]] = None,
             primary_nic: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
@@ -952,7 +949,7 @@ class Server(pulumi.CustomResource):
             template_uuid: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vm_state: Optional[pulumi.Input[str]] = None,
-            volume: Optional[pulumi.Input[pulumi.InputType['ServerVolumeArgs']]] = None) -> 'Server':
+            volume: Optional[pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']]] = None) -> 'Server':
         """
         Get an existing Server resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -984,9 +981,9 @@ class Server(pulumi.CustomResource):
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ServerLabelArgs']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[str] name: [string] The name of the server.
-        :param pulumi.Input[pulumi.InputType['ServerNicArgs']] nic: See the Nic section.
+        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
         :param pulumi.Input[str] primary_ip: The associated IP address.
         :param pulumi.Input[str] primary_nic: The associated NIC.
         :param pulumi.Input[int] ram: (Computed)[integer] The amount of memory for the server in MB.
@@ -995,7 +992,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input[str] type: (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
         :param pulumi.Input[str] vm_state: [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
-        :param pulumi.Input[pulumi.InputType['ServerVolumeArgs']] volume: See the Volume section.
+        :param pulumi.Input[Union['ServerVolumeArgs', 'ServerVolumeArgsDict']] volume: See the Volume section.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1037,13 +1034,11 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bootCdrom")
+    @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> pulumi.Output[str]:
         """
         ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
         """
-        warnings.warn("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""", DeprecationWarning)
-        pulumi.log.warn("""boot_cdrom is deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
-
         return pulumi.get(self, "boot_cdrom")
 
     @property
@@ -1188,13 +1183,11 @@ class Server(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
     def ssh_key_paths(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
-        warnings.warn("""Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Will be renamed to ssh_keys in the future, to allow users to set both the ssh key path or directly the ssh key""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @property

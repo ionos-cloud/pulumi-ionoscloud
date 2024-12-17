@@ -70,15 +70,11 @@ type GetCubeServerResult struct {
 }
 
 func GetCubeServerOutput(ctx *pulumi.Context, args GetCubeServerOutputArgs, opts ...pulumi.InvokeOption) GetCubeServerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetCubeServerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetCubeServerResultOutput, error) {
 			args := v.(GetCubeServerArgs)
-			r, err := GetCubeServer(ctx, &args, opts...)
-			var s GetCubeServerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getCubeServer:getCubeServer", args, GetCubeServerResultOutput{}, options).(GetCubeServerResultOutput), nil
 		}).(GetCubeServerResultOutput)
 }
 

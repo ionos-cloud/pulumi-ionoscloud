@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -139,7 +138,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

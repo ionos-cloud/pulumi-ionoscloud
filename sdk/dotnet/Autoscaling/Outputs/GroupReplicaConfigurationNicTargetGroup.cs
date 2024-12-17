@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Autoscaling.Outputs
     public sealed class GroupReplicaConfigurationNicTargetGroup
     {
         /// <summary>
-        /// [int] The port of the target group.
+        /// The port for the target group.
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// [string] The ID of the target group.
+        /// The ID of the target group.
         /// </summary>
         public readonly string TargetGroupId;
         /// <summary>
-        /// [int] The weight of the target group.
+        /// The weight for the target group.
         /// </summary>
         public readonly int Weight;
 

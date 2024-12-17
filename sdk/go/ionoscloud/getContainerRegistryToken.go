@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,10 +43,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +70,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetContainerRegistryToken(ctx *pulumi.Context, args *GetContainerRegistryTokenArgs, opts ...pulumi.InvokeOption) (*GetContainerRegistryTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetContainerRegistryTokenResult
@@ -112,15 +108,11 @@ type GetContainerRegistryTokenResult struct {
 }
 
 func GetContainerRegistryTokenOutput(ctx *pulumi.Context, args GetContainerRegistryTokenOutputArgs, opts ...pulumi.InvokeOption) GetContainerRegistryTokenResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetContainerRegistryTokenResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetContainerRegistryTokenResultOutput, error) {
 			args := v.(GetContainerRegistryTokenArgs)
-			r, err := GetContainerRegistryToken(ctx, &args, opts...)
-			var s GetContainerRegistryTokenResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args, GetContainerRegistryTokenResultOutput{}, options).(GetContainerRegistryTokenResultOutput), nil
 		}).(GetContainerRegistryTokenResultOutput)
 }
 

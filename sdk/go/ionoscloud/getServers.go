@@ -16,7 +16,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,10 +45,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By CPU Family
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,10 +76,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name and Cores
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -116,7 +111,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetServers(ctx *pulumi.Context, args *GetServersArgs, opts ...pulumi.InvokeOption) (*GetServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServersResult
@@ -154,15 +148,11 @@ type GetServersResult struct {
 }
 
 func GetServersOutput(ctx *pulumi.Context, args GetServersOutputArgs, opts ...pulumi.InvokeOption) GetServersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetServersResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetServersResultOutput, error) {
 			args := v.(GetServersArgs)
-			r, err := GetServers(ctx, &args, opts...)
-			var s GetServersResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getServers:getServers", args, GetServersResultOutput{}, options).(GetServersResultOutput), nil
 		}).(GetServersResultOutput)
 }
 

@@ -17,7 +17,6 @@ namespace Pulumi.Ionoscloud
         /// When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,12 +35,10 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
         /// 
         /// ### Additional Examples
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,13 +55,11 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
         /// 
         /// ### Additional Examples
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -83,7 +78,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
         /// </summary>
         public static Task<GetImageResult> InvokeAsync(GetImageArgs? args = null, InvokeOptions? options = null)
@@ -95,7 +89,6 @@ namespace Pulumi.Ionoscloud
         /// When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -114,12 +107,10 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
         /// 
         /// ### Additional Examples
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -136,13 +127,11 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
         /// 
         /// ### Additional Examples
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -161,10 +150,81 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
         /// </summary>
         public static Output<GetImageResult> Invoke(GetImageInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetImageResult>("ionoscloud:index/getImage:getImage", args ?? new GetImageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Image data source** can be used to search for and return an existing image which can then be used to provision a server.  
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. 
+        /// When this happens, please refine your search string so that it is specific enough to return only one result. In case multiple matches are found, enable debug(`TF_LOG=debug`) to show the name and location of the images.
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cdrom = Ionoscloud.GetImage.Invoke(new()
+        ///     {
+        ///         CloudInit = "NONE",
+        ///         ImageAlias = "ubuntu:latest_iso",
+        ///         Location = "de/txl",
+        ///         Type = "CDROM",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// Finds an image with alias `ubuntu:latest_iso`, in location `de/txl`, that does not support `cloud_init` and is of type `CDROM`.
+        /// 
+        /// ### Additional Examples
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetImage.Invoke(new()
+        ///     {
+        ///         ImageAlias = "ubuntu:latest",
+        ///         Location = "de/txl",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// Finds an image with alias `ubuntu:latest` in location `de/txl`. Uses exact matching on both fields.
+        /// 
+        /// ### Additional Examples
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetImage.Invoke(new()
+        ///     {
+        ///         CloudInit = "V1",
+        ///         ImageAlias = "ubuntu:latest",
+        ///         Location = "us/ewr",
+        ///         Type = "HDD",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// Finds an image named `ubuntu-20.04.6` in location `de/txl`. Uses exact matching.
+        /// </summary>
+        public static Output<GetImageResult> Invoke(GetImageInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetImageResult>("ionoscloud:index/getImage:getImage", args ?? new GetImageInvokeArgs(), options.WithDefaults());
     }
 

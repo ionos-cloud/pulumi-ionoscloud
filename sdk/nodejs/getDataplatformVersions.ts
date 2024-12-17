@@ -10,17 +10,14 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Retrieve list of Managed Dataplatform API versions
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.getDataplatformVersions({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDataplatformVersions(opts?: pulumi.InvokeOptions): Promise<GetDataplatformVersionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", {
     }, opts);
@@ -45,15 +42,15 @@ export interface GetDataplatformVersionsResult {
  * ## Example Usage
  *
  * ### Retrieve list of Managed Dataplatform API versions
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.getDataplatformVersions({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getDataplatformVersionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDataplatformVersionsResult> {
-    return pulumi.output(getDataplatformVersions(opts))
+export function getDataplatformVersionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataplatformVersionsResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDataplatformVersions:getDataplatformVersions", {
+    }, opts);
 }

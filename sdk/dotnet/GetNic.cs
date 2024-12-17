@@ -30,6 +30,16 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetNicResult> Invoke(GetNicInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNicResult>("ionoscloud:index/getNic:getNic", args ?? new GetNicInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Nic data source** can be used to search for and return existing nics.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetNicResult> Invoke(GetNicInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNicResult>("ionoscloud:index/getNic:getNic", args ?? new GetNicInvokeArgs(), options.WithDefaults());
     }
 
 

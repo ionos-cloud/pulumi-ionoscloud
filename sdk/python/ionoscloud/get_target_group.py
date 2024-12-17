@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -151,17 +156,14 @@ def get_target_group(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_target_group(name="Target Group Example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -169,7 +171,6 @@ def get_target_group(id: Optional[str] = None,
     example = ionoscloud.get_target_group(name="Example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the target group you want to search for.
@@ -195,13 +196,10 @@ def get_target_group(id: Optional[str] = None,
         protocol=pulumi.get(__ret__, 'protocol'),
         protocol_version=pulumi.get(__ret__, 'protocol_version'),
         targets=pulumi.get(__ret__, 'targets'))
-
-
-@_utilities.lift_output_func(get_target_group)
 def get_target_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTargetGroupResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTargetGroupResult]:
     """
     The **Target Group** data source can be used to search for and return an existing Application Load Balancer Target Group.
     You can provide a string for the name parameter which will be compared with provisioned Application Load Balancer Target Groups.
@@ -211,17 +209,14 @@ def get_target_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_target_group(name="Target Group Example")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### By Name with Partial Match
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -229,7 +224,6 @@ def get_target_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     example = ionoscloud.get_target_group(name="Example",
         partial_match=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of the target group you want to search for.
@@ -238,4 +232,19 @@ def get_target_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            
            Either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getTargetGroup:getTargetGroup', __args__, opts=opts, typ=GetTargetGroupResult)
+    return __ret__.apply(lambda __response__: GetTargetGroupResult(
+        algorithm=pulumi.get(__response__, 'algorithm'),
+        health_checks=pulumi.get(__response__, 'health_checks'),
+        http_health_checks=pulumi.get(__response__, 'http_health_checks'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        protocol_version=pulumi.get(__response__, 'protocol_version'),
+        targets=pulumi.get(__response__, 'targets')))

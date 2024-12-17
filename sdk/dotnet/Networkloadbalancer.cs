@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,11 +60,9 @@ namespace Pulumi.Ionoscloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Example configuring Flowlog
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -98,7 +95,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// This will configure flowlog for ALL(rejected and accepted) ingress traffic and will log it into an existing ionos bucket named `flowlog-bucket`. Any s3 compatible client can be used to create it. Adding a flowlog does not force re-creation or the nic, but changing any other field than
     /// `name` will. Deleting a flowlog will also force nic re-creation.
@@ -157,9 +153,7 @@ namespace Pulumi.Ionoscloud
         public Output<string?> LoggingFormat { get; private set; } = null!;
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -271,9 +265,7 @@ namespace Pulumi.Ionoscloud
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -347,9 +339,7 @@ namespace Pulumi.Ionoscloud
         public Input<string>? LoggingFormat { get; set; }
 
         /// <summary>
-        /// [string] Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        /// [string] A name of that Network Load Balancer.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

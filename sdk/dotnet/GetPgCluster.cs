@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetPgClusterResult> Invoke(GetPgClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPgClusterResult>("ionoscloud:index/getPgCluster:getPgCluster", args ?? new GetPgClusterInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPgClusterResult> Invoke(GetPgClusterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPgClusterResult>("ionoscloud:index/getPgCluster:getPgCluster", args ?? new GetPgClusterInvokeArgs(), options.WithDefaults());
     }
 
 

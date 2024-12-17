@@ -4,17 +4,45 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClusterConnectionsArgs',
+    'ClusterConnectionsArgsDict',
     'ClusterNfsArgs',
+    'ClusterNfsArgsDict',
     'ShareClientGroupArgs',
+    'ShareClientGroupArgsDict',
     'ShareClientGroupNfsArgs',
+    'ShareClientGroupNfsArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClusterConnectionsArgsDict(TypedDict):
+        datacenter_id: pulumi.Input[str]
+        """
+        The ID of the datacenter where the Network File Storage cluster is located.
+        """
+        ip_address: pulumi.Input[str]
+        """
+        The IP address and prefix of the Network File Storage cluster. The IP address can be either IPv4 or IPv6. The IP address has to be given with CIDR notation.
+        """
+        lan: pulumi.Input[str]
+        """
+        The Private LAN to which the Network File Storage cluster must be connected.
+        """
+elif False:
+    ClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterConnectionsArgs:
@@ -68,6 +96,15 @@ class ClusterConnectionsArgs:
         pulumi.set(self, "lan", value)
 
 
+if not MYPY:
+    class ClusterNfsArgsDict(TypedDict):
+        min_version: NotRequired[pulumi.Input[str]]
+        """
+        The minimum supported version of the NFS cluster. Supported values: `4.2`. Default is `4.2`.
+        """
+elif False:
+    ClusterNfsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClusterNfsArgs:
     def __init__(__self__, *,
@@ -90,6 +127,27 @@ class ClusterNfsArgs:
     def min_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "min_version", value)
 
+
+if not MYPY:
+    class ShareClientGroupArgsDict(TypedDict):
+        hosts: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+        """
+        ip_networks: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Optional description for the clients groups.
+        """
+        nfs: NotRequired[pulumi.Input['ShareClientGroupNfsArgsDict']]
+        """
+        NFS specific configurations. Each configuration includes:
+        """
+elif False:
+    ShareClientGroupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ShareClientGroupArgs:
@@ -159,6 +217,15 @@ class ShareClientGroupArgs:
     def nfs(self, value: Optional[pulumi.Input['ShareClientGroupNfsArgs']]):
         pulumi.set(self, "nfs", value)
 
+
+if not MYPY:
+    class ShareClientGroupNfsArgsDict(TypedDict):
+        squash: NotRequired[pulumi.Input[str]]
+        """
+        The squash mode for the export. The squash mode can be:
+        """
+elif False:
+    ShareClientGroupNfsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ShareClientGroupNfsArgs:

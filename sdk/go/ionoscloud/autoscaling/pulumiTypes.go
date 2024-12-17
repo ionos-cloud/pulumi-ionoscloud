@@ -265,7 +265,7 @@ func (o GroupPolicyPtrOutput) Unit() pulumi.StringPtrOutput {
 }
 
 type GroupPolicyScaleInAction struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 	Amount int `pulumi:"amount"`
 	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
 	AmountType string `pulumi:"amountType"`
@@ -289,7 +289,7 @@ type GroupPolicyScaleInActionInput interface {
 }
 
 type GroupPolicyScaleInActionArgs struct {
-	// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+	// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 	Amount pulumi.IntInput `pulumi:"amount"`
 	// [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
 	AmountType pulumi.StringInput `pulumi:"amountType"`
@@ -378,7 +378,7 @@ func (o GroupPolicyScaleInActionOutput) ToGroupPolicyScaleInActionPtrOutputWithC
 	}).(GroupPolicyScaleInActionPtrOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 func (o GroupPolicyScaleInActionOutput) Amount() pulumi.IntOutput {
 	return o.ApplyT(func(v GroupPolicyScaleInAction) int { return v.Amount }).(pulumi.IntOutput)
 }
@@ -427,7 +427,7 @@ func (o GroupPolicyScaleInActionPtrOutput) Elem() GroupPolicyScaleInActionOutput
 	}).(GroupPolicyScaleInActionOutput)
 }
 
-// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
 func (o GroupPolicyScaleInActionPtrOutput) Amount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GroupPolicyScaleInAction) *int {
 		if v == nil {
@@ -885,21 +885,21 @@ func (o GroupReplicaConfigurationPtrOutput) Volumes() GroupReplicaConfigurationV
 }
 
 type GroupReplicaConfigurationNic struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp *bool `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive *bool `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules []GroupReplicaConfigurationNicFirewallRule `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType *string `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs []GroupReplicaConfigurationNicFlowLog `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan int `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name string `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup *GroupReplicaConfigurationNicTargetGroup `pulumi:"targetGroup"`
 }
 
@@ -915,21 +915,21 @@ type GroupReplicaConfigurationNicInput interface {
 }
 
 type GroupReplicaConfigurationNicArgs struct {
-	// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 	Dhcp pulumi.BoolPtrInput `pulumi:"dhcp"`
-	// [bool] Firewall active flag.
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 	FirewallActive pulumi.BoolPtrInput `pulumi:"firewallActive"`
 	// List of all firewall rules for the specified NIC.
 	FirewallRules GroupReplicaConfigurationNicFirewallRuleArrayInput `pulumi:"firewallRules"`
-	// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 	FirewallType pulumi.StringPtrInput `pulumi:"firewallType"`
-	// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+	// List of all flow logs for the specified NIC.
 	FlowLogs GroupReplicaConfigurationNicFlowLogArrayInput `pulumi:"flowLogs"`
-	// [int] Lan ID for this replica Nic.
+	// Lan ID for this replica Nic.
 	Lan pulumi.IntInput `pulumi:"lan"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringInput `pulumi:"name"`
-	// [list] In order to link VM to ALB, target group must be provided
+	// In order to link VM to ALB, target group must be provided.
 	TargetGroup GroupReplicaConfigurationNicTargetGroupPtrInput `pulumi:"targetGroup"`
 }
 
@@ -984,12 +984,12 @@ func (o GroupReplicaConfigurationNicOutput) ToGroupReplicaConfigurationNicOutput
 	return o
 }
 
-// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
 func (o GroupReplicaConfigurationNicOutput) Dhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) *bool { return v.Dhcp }).(pulumi.BoolPtrOutput)
 }
 
-// [bool] Firewall active flag.
+// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
 func (o GroupReplicaConfigurationNicOutput) FirewallActive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) *bool { return v.FirewallActive }).(pulumi.BoolPtrOutput)
 }
@@ -1001,27 +1001,27 @@ func (o GroupReplicaConfigurationNicOutput) FirewallRules() GroupReplicaConfigur
 	}).(GroupReplicaConfigurationNicFirewallRuleArrayOutput)
 }
 
-// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
 func (o GroupReplicaConfigurationNicOutput) FirewallType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) *string { return v.FirewallType }).(pulumi.StringPtrOutput)
 }
 
-// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+// List of all flow logs for the specified NIC.
 func (o GroupReplicaConfigurationNicOutput) FlowLogs() GroupReplicaConfigurationNicFlowLogArrayOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) []GroupReplicaConfigurationNicFlowLog { return v.FlowLogs }).(GroupReplicaConfigurationNicFlowLogArrayOutput)
 }
 
-// [int] Lan ID for this replica Nic.
+// Lan ID for this replica Nic.
 func (o GroupReplicaConfigurationNicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) int { return v.Lan }).(pulumi.IntOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o GroupReplicaConfigurationNicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// [list] In order to link VM to ALB, target group must be provided
+// In order to link VM to ALB, target group must be provided.
 func (o GroupReplicaConfigurationNicOutput) TargetGroup() GroupReplicaConfigurationNicTargetGroupPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNic) *GroupReplicaConfigurationNicTargetGroup { return v.TargetGroup }).(GroupReplicaConfigurationNicTargetGroupPtrOutput)
 }
@@ -1047,25 +1047,25 @@ func (o GroupReplicaConfigurationNicArrayOutput) Index(i pulumi.IntInput) GroupR
 }
 
 type GroupReplicaConfigurationNicFirewallRule struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode *int `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType *int `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name *string `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd *int `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart *int `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol string `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp *string `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac *string `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp *string `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type *string `pulumi:"type"`
 }
 
@@ -1081,25 +1081,25 @@ type GroupReplicaConfigurationNicFirewallRuleInput interface {
 }
 
 type GroupReplicaConfigurationNicFirewallRuleArgs struct {
-	// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 	IcmpCode pulumi.IntPtrInput `pulumi:"icmpCode"`
-	// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 	IcmpType pulumi.IntPtrInput `pulumi:"icmpType"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeEnd pulumi.IntPtrInput `pulumi:"portRangeEnd"`
-	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 	PortRangeStart pulumi.IntPtrInput `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 	Protocol pulumi.StringInput `pulumi:"protocol"`
-	// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 	SourceIp pulumi.StringPtrInput `pulumi:"sourceIp"`
-	// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 	SourceMac pulumi.StringPtrInput `pulumi:"sourceMac"`
-	// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 	TargetIp pulumi.StringPtrInput `pulumi:"targetIp"`
-	// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+	// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -1154,52 +1154,52 @@ func (o GroupReplicaConfigurationNicFirewallRuleOutput) ToGroupReplicaConfigurat
 	return o
 }
 
-// [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) IcmpCode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpCode }).(pulumi.IntPtrOutput)
 }
 
-// [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) IcmpType() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *int { return v.IcmpType }).(pulumi.IntPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) PortRangeEnd() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeEnd }).(pulumi.IntPtrOutput)
 }
 
-// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) PortRangeStart() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *int { return v.PortRangeStart }).(pulumi.IntPtrOutput)
 }
 
-// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) SourceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) SourceMac() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *string { return v.SourceMac }).(pulumi.StringPtrOutput)
 }
 
-// [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) TargetIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *string { return v.TargetIp }).(pulumi.StringPtrOutput)
 }
 
-// [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+// The firewall rule type. If not specified, the default value 'INGRESS' is used.
 func (o GroupReplicaConfigurationNicFirewallRuleOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFirewallRule) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1225,15 +1225,15 @@ func (o GroupReplicaConfigurationNicFirewallRuleArrayOutput) Index(i pulumi.IntI
 }
 
 type GroupReplicaConfigurationNicFlowLog struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action string `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket string `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction string `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id *string `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name string `pulumi:"name"`
 }
 
@@ -1249,15 +1249,15 @@ type GroupReplicaConfigurationNicFlowLogInput interface {
 }
 
 type GroupReplicaConfigurationNicFlowLogArgs struct {
-	// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 	Action pulumi.StringInput `pulumi:"action"`
-	// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+	// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 	Direction pulumi.StringInput `pulumi:"direction"`
 	// The resource's unique identifier.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] Name for this replica volume.
+	// [string] User-defined name for the Autoscaling Group.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -1312,17 +1312,17 @@ func (o GroupReplicaConfigurationNicFlowLogOutput) ToGroupReplicaConfigurationNi
 	return o
 }
 
-// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
 func (o GroupReplicaConfigurationNicFlowLogOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFlowLog) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
 func (o GroupReplicaConfigurationNicFlowLogOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFlowLog) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
 func (o GroupReplicaConfigurationNicFlowLogOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFlowLog) string { return v.Direction }).(pulumi.StringOutput)
 }
@@ -1332,7 +1332,7 @@ func (o GroupReplicaConfigurationNicFlowLogOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFlowLog) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// [string] Name for this replica volume.
+// [string] User-defined name for the Autoscaling Group.
 func (o GroupReplicaConfigurationNicFlowLogOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicFlowLog) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1358,11 +1358,11 @@ func (o GroupReplicaConfigurationNicFlowLogArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GroupReplicaConfigurationNicTargetGroup struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port int `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId string `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight int `pulumi:"weight"`
 }
 
@@ -1378,11 +1378,11 @@ type GroupReplicaConfigurationNicTargetGroupInput interface {
 }
 
 type GroupReplicaConfigurationNicTargetGroupArgs struct {
-	// [int] The port of the target group.
+	// The port for the target group.
 	Port pulumi.IntInput `pulumi:"port"`
-	// [string] The ID of the target group.
+	// The ID of the target group.
 	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
-	// [int] The weight of the target group.
+	// The weight for the target group.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
 
@@ -1463,17 +1463,17 @@ func (o GroupReplicaConfigurationNicTargetGroupOutput) ToGroupReplicaConfigurati
 	}).(GroupReplicaConfigurationNicTargetGroupPtrOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o GroupReplicaConfigurationNicTargetGroupOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicTargetGroup) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o GroupReplicaConfigurationNicTargetGroupOutput) TargetGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicTargetGroup) string { return v.TargetGroupId }).(pulumi.StringOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o GroupReplicaConfigurationNicTargetGroupOutput) Weight() pulumi.IntOutput {
 	return o.ApplyT(func(v GroupReplicaConfigurationNicTargetGroup) int { return v.Weight }).(pulumi.IntOutput)
 }
@@ -1502,7 +1502,7 @@ func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) Elem() GroupReplicaCon
 	}).(GroupReplicaConfigurationNicTargetGroupOutput)
 }
 
-// [int] The port of the target group.
+// The port for the target group.
 func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -1512,7 +1512,7 @@ func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) Port() pulumi.IntPtrOu
 	}).(pulumi.IntPtrOutput)
 }
 
-// [string] The ID of the target group.
+// The ID of the target group.
 func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GroupReplicaConfigurationNicTargetGroup) *string {
 		if v == nil {
@@ -1522,7 +1522,7 @@ func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) TargetGroupId() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
-// [int] The weight of the target group.
+// The weight for the target group.
 func (o GroupReplicaConfigurationNicTargetGroupPtrOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GroupReplicaConfigurationNicTargetGroup) *int {
 		if v == nil {
@@ -1722,6 +1722,1433 @@ func (o GroupReplicaConfigurationVolumeArrayOutput) Index(i pulumi.IntInput) Gro
 	}).(GroupReplicaConfigurationVolumeOutput)
 }
 
+type GetGroupPolicy struct {
+	// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+	Metric string `pulumi:"metric"`
+	// Defines the range of time from which samples will be aggregated. Default is 120s.
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	Range string `pulumi:"range"`
+	// Specifies the Action to take when the `scaleInThreshold`
+	ScaleInActions []GetGroupPolicyScaleInAction `pulumi:"scaleInActions"`
+	// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	ScaleInThreshold int `pulumi:"scaleInThreshold"`
+	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+	ScaleOutActions []GetGroupPolicyScaleOutAction `pulumi:"scaleOutActions"`
+	// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	ScaleOutThreshold int `pulumi:"scaleOutThreshold"`
+	// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+	Unit string `pulumi:"unit"`
+}
+
+// GetGroupPolicyInput is an input type that accepts GetGroupPolicyArgs and GetGroupPolicyOutput values.
+// You can construct a concrete instance of `GetGroupPolicyInput` via:
+//
+//	GetGroupPolicyArgs{...}
+type GetGroupPolicyInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyOutput() GetGroupPolicyOutput
+	ToGetGroupPolicyOutputWithContext(context.Context) GetGroupPolicyOutput
+}
+
+type GetGroupPolicyArgs struct {
+	// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+	Metric pulumi.StringInput `pulumi:"metric"`
+	// Defines the range of time from which samples will be aggregated. Default is 120s.
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	Range pulumi.StringInput `pulumi:"range"`
+	// Specifies the Action to take when the `scaleInThreshold`
+	ScaleInActions GetGroupPolicyScaleInActionArrayInput `pulumi:"scaleInActions"`
+	// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+	ScaleInThreshold pulumi.IntInput `pulumi:"scaleInThreshold"`
+	// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+	ScaleOutActions GetGroupPolicyScaleOutActionArrayInput `pulumi:"scaleOutActions"`
+	// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+	ScaleOutThreshold pulumi.IntInput `pulumi:"scaleOutThreshold"`
+	// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+	Unit pulumi.StringInput `pulumi:"unit"`
+}
+
+func (GetGroupPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicy)(nil)).Elem()
+}
+
+func (i GetGroupPolicyArgs) ToGetGroupPolicyOutput() GetGroupPolicyOutput {
+	return i.ToGetGroupPolicyOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyArgs) ToGetGroupPolicyOutputWithContext(ctx context.Context) GetGroupPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyOutput)
+}
+
+// GetGroupPolicyArrayInput is an input type that accepts GetGroupPolicyArray and GetGroupPolicyArrayOutput values.
+// You can construct a concrete instance of `GetGroupPolicyArrayInput` via:
+//
+//	GetGroupPolicyArray{ GetGroupPolicyArgs{...} }
+type GetGroupPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyArrayOutput() GetGroupPolicyArrayOutput
+	ToGetGroupPolicyArrayOutputWithContext(context.Context) GetGroupPolicyArrayOutput
+}
+
+type GetGroupPolicyArray []GetGroupPolicyInput
+
+func (GetGroupPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicy)(nil)).Elem()
+}
+
+func (i GetGroupPolicyArray) ToGetGroupPolicyArrayOutput() GetGroupPolicyArrayOutput {
+	return i.ToGetGroupPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyArray) ToGetGroupPolicyArrayOutputWithContext(ctx context.Context) GetGroupPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyArrayOutput)
+}
+
+type GetGroupPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicy)(nil)).Elem()
+}
+
+func (o GetGroupPolicyOutput) ToGetGroupPolicyOutput() GetGroupPolicyOutput {
+	return o
+}
+
+func (o GetGroupPolicyOutput) ToGetGroupPolicyOutputWithContext(ctx context.Context) GetGroupPolicyOutput {
+	return o
+}
+
+// The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+func (o GetGroupPolicyOutput) Metric() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicy) string { return v.Metric }).(pulumi.StringOutput)
+}
+
+// Defines the range of time from which samples will be aggregated. Default is 120s.
+// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+func (o GetGroupPolicyOutput) Range() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicy) string { return v.Range }).(pulumi.StringOutput)
+}
+
+// Specifies the Action to take when the `scaleInThreshold`
+func (o GetGroupPolicyOutput) ScaleInActions() GetGroupPolicyScaleInActionArrayOutput {
+	return o.ApplyT(func(v GetGroupPolicy) []GetGroupPolicyScaleInAction { return v.ScaleInActions }).(GetGroupPolicyScaleInActionArrayOutput)
+}
+
+// A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+func (o GetGroupPolicyOutput) ScaleInThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupPolicy) int { return v.ScaleInThreshold }).(pulumi.IntOutput)
+}
+
+// Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+func (o GetGroupPolicyOutput) ScaleOutActions() GetGroupPolicyScaleOutActionArrayOutput {
+	return o.ApplyT(func(v GetGroupPolicy) []GetGroupPolicyScaleOutAction { return v.ScaleOutActions }).(GetGroupPolicyScaleOutActionArrayOutput)
+}
+
+// The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+func (o GetGroupPolicyOutput) ScaleOutThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupPolicy) int { return v.ScaleOutThreshold }).(pulumi.IntOutput)
+}
+
+// Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+func (o GetGroupPolicyOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicy) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+type GetGroupPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicy)(nil)).Elem()
+}
+
+func (o GetGroupPolicyArrayOutput) ToGetGroupPolicyArrayOutput() GetGroupPolicyArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyArrayOutput) ToGetGroupPolicyArrayOutputWithContext(ctx context.Context) GetGroupPolicyArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyArrayOutput) Index(i pulumi.IntInput) GetGroupPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupPolicy {
+		return vs[0].([]GetGroupPolicy)[vs[1].(int)]
+	}).(GetGroupPolicyOutput)
+}
+
+type GetGroupPolicyScaleInAction struct {
+	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	Amount int `pulumi:"amount"`
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+	AmountType string `pulumi:"amountType"`
+	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	CooldownPeriod string `pulumi:"cooldownPeriod"`
+	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+	DeleteVolumes bool `pulumi:"deleteVolumes"`
+	// The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
+	TerminationPolicyType string `pulumi:"terminationPolicyType"`
+}
+
+// GetGroupPolicyScaleInActionInput is an input type that accepts GetGroupPolicyScaleInActionArgs and GetGroupPolicyScaleInActionOutput values.
+// You can construct a concrete instance of `GetGroupPolicyScaleInActionInput` via:
+//
+//	GetGroupPolicyScaleInActionArgs{...}
+type GetGroupPolicyScaleInActionInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyScaleInActionOutput() GetGroupPolicyScaleInActionOutput
+	ToGetGroupPolicyScaleInActionOutputWithContext(context.Context) GetGroupPolicyScaleInActionOutput
+}
+
+type GetGroupPolicyScaleInActionArgs struct {
+	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	Amount pulumi.IntInput `pulumi:"amount"`
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+	AmountType pulumi.StringInput `pulumi:"amountType"`
+	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	CooldownPeriod pulumi.StringInput `pulumi:"cooldownPeriod"`
+	// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+	DeleteVolumes pulumi.BoolInput `pulumi:"deleteVolumes"`
+	// The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
+	TerminationPolicyType pulumi.StringInput `pulumi:"terminationPolicyType"`
+}
+
+func (GetGroupPolicyScaleInActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicyScaleInAction)(nil)).Elem()
+}
+
+func (i GetGroupPolicyScaleInActionArgs) ToGetGroupPolicyScaleInActionOutput() GetGroupPolicyScaleInActionOutput {
+	return i.ToGetGroupPolicyScaleInActionOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyScaleInActionArgs) ToGetGroupPolicyScaleInActionOutputWithContext(ctx context.Context) GetGroupPolicyScaleInActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyScaleInActionOutput)
+}
+
+// GetGroupPolicyScaleInActionArrayInput is an input type that accepts GetGroupPolicyScaleInActionArray and GetGroupPolicyScaleInActionArrayOutput values.
+// You can construct a concrete instance of `GetGroupPolicyScaleInActionArrayInput` via:
+//
+//	GetGroupPolicyScaleInActionArray{ GetGroupPolicyScaleInActionArgs{...} }
+type GetGroupPolicyScaleInActionArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyScaleInActionArrayOutput() GetGroupPolicyScaleInActionArrayOutput
+	ToGetGroupPolicyScaleInActionArrayOutputWithContext(context.Context) GetGroupPolicyScaleInActionArrayOutput
+}
+
+type GetGroupPolicyScaleInActionArray []GetGroupPolicyScaleInActionInput
+
+func (GetGroupPolicyScaleInActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicyScaleInAction)(nil)).Elem()
+}
+
+func (i GetGroupPolicyScaleInActionArray) ToGetGroupPolicyScaleInActionArrayOutput() GetGroupPolicyScaleInActionArrayOutput {
+	return i.ToGetGroupPolicyScaleInActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyScaleInActionArray) ToGetGroupPolicyScaleInActionArrayOutputWithContext(ctx context.Context) GetGroupPolicyScaleInActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyScaleInActionArrayOutput)
+}
+
+type GetGroupPolicyScaleInActionOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyScaleInActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicyScaleInAction)(nil)).Elem()
+}
+
+func (o GetGroupPolicyScaleInActionOutput) ToGetGroupPolicyScaleInActionOutput() GetGroupPolicyScaleInActionOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleInActionOutput) ToGetGroupPolicyScaleInActionOutputWithContext(ctx context.Context) GetGroupPolicyScaleInActionOutput {
+	return o
+}
+
+// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+func (o GetGroupPolicyScaleInActionOutput) Amount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleInAction) int { return v.Amount }).(pulumi.IntOutput)
+}
+
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+func (o GetGroupPolicyScaleInActionOutput) AmountType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleInAction) string { return v.AmountType }).(pulumi.StringOutput)
+}
+
+// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+func (o GetGroupPolicyScaleInActionOutput) CooldownPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleInAction) string { return v.CooldownPeriod }).(pulumi.StringOutput)
+}
+
+// If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+func (o GetGroupPolicyScaleInActionOutput) DeleteVolumes() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleInAction) bool { return v.DeleteVolumes }).(pulumi.BoolOutput)
+}
+
+// The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
+func (o GetGroupPolicyScaleInActionOutput) TerminationPolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleInAction) string { return v.TerminationPolicyType }).(pulumi.StringOutput)
+}
+
+type GetGroupPolicyScaleInActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyScaleInActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicyScaleInAction)(nil)).Elem()
+}
+
+func (o GetGroupPolicyScaleInActionArrayOutput) ToGetGroupPolicyScaleInActionArrayOutput() GetGroupPolicyScaleInActionArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleInActionArrayOutput) ToGetGroupPolicyScaleInActionArrayOutputWithContext(ctx context.Context) GetGroupPolicyScaleInActionArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleInActionArrayOutput) Index(i pulumi.IntInput) GetGroupPolicyScaleInActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupPolicyScaleInAction {
+		return vs[0].([]GetGroupPolicyScaleInAction)[vs[1].(int)]
+	}).(GetGroupPolicyScaleInActionOutput)
+}
+
+type GetGroupPolicyScaleOutAction struct {
+	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	Amount int `pulumi:"amount"`
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+	AmountType string `pulumi:"amountType"`
+	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	CooldownPeriod string `pulumi:"cooldownPeriod"`
+}
+
+// GetGroupPolicyScaleOutActionInput is an input type that accepts GetGroupPolicyScaleOutActionArgs and GetGroupPolicyScaleOutActionOutput values.
+// You can construct a concrete instance of `GetGroupPolicyScaleOutActionInput` via:
+//
+//	GetGroupPolicyScaleOutActionArgs{...}
+type GetGroupPolicyScaleOutActionInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyScaleOutActionOutput() GetGroupPolicyScaleOutActionOutput
+	ToGetGroupPolicyScaleOutActionOutputWithContext(context.Context) GetGroupPolicyScaleOutActionOutput
+}
+
+type GetGroupPolicyScaleOutActionArgs struct {
+	// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+	Amount pulumi.IntInput `pulumi:"amount"`
+	// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+	AmountType pulumi.StringInput `pulumi:"amountType"`
+	// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+	// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+	CooldownPeriod pulumi.StringInput `pulumi:"cooldownPeriod"`
+}
+
+func (GetGroupPolicyScaleOutActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicyScaleOutAction)(nil)).Elem()
+}
+
+func (i GetGroupPolicyScaleOutActionArgs) ToGetGroupPolicyScaleOutActionOutput() GetGroupPolicyScaleOutActionOutput {
+	return i.ToGetGroupPolicyScaleOutActionOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyScaleOutActionArgs) ToGetGroupPolicyScaleOutActionOutputWithContext(ctx context.Context) GetGroupPolicyScaleOutActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyScaleOutActionOutput)
+}
+
+// GetGroupPolicyScaleOutActionArrayInput is an input type that accepts GetGroupPolicyScaleOutActionArray and GetGroupPolicyScaleOutActionArrayOutput values.
+// You can construct a concrete instance of `GetGroupPolicyScaleOutActionArrayInput` via:
+//
+//	GetGroupPolicyScaleOutActionArray{ GetGroupPolicyScaleOutActionArgs{...} }
+type GetGroupPolicyScaleOutActionArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupPolicyScaleOutActionArrayOutput() GetGroupPolicyScaleOutActionArrayOutput
+	ToGetGroupPolicyScaleOutActionArrayOutputWithContext(context.Context) GetGroupPolicyScaleOutActionArrayOutput
+}
+
+type GetGroupPolicyScaleOutActionArray []GetGroupPolicyScaleOutActionInput
+
+func (GetGroupPolicyScaleOutActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicyScaleOutAction)(nil)).Elem()
+}
+
+func (i GetGroupPolicyScaleOutActionArray) ToGetGroupPolicyScaleOutActionArrayOutput() GetGroupPolicyScaleOutActionArrayOutput {
+	return i.ToGetGroupPolicyScaleOutActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupPolicyScaleOutActionArray) ToGetGroupPolicyScaleOutActionArrayOutputWithContext(ctx context.Context) GetGroupPolicyScaleOutActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupPolicyScaleOutActionArrayOutput)
+}
+
+type GetGroupPolicyScaleOutActionOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyScaleOutActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupPolicyScaleOutAction)(nil)).Elem()
+}
+
+func (o GetGroupPolicyScaleOutActionOutput) ToGetGroupPolicyScaleOutActionOutput() GetGroupPolicyScaleOutActionOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleOutActionOutput) ToGetGroupPolicyScaleOutActionOutputWithContext(ctx context.Context) GetGroupPolicyScaleOutActionOutput {
+	return o
+}
+
+// When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+func (o GetGroupPolicyScaleOutActionOutput) Amount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleOutAction) int { return v.Amount }).(pulumi.IntOutput)
+}
+
+// The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+func (o GetGroupPolicyScaleOutActionOutput) AmountType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleOutAction) string { return v.AmountType }).(pulumi.StringOutput)
+}
+
+// Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+// *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+func (o GetGroupPolicyScaleOutActionOutput) CooldownPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupPolicyScaleOutAction) string { return v.CooldownPeriod }).(pulumi.StringOutput)
+}
+
+type GetGroupPolicyScaleOutActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupPolicyScaleOutActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupPolicyScaleOutAction)(nil)).Elem()
+}
+
+func (o GetGroupPolicyScaleOutActionArrayOutput) ToGetGroupPolicyScaleOutActionArrayOutput() GetGroupPolicyScaleOutActionArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleOutActionArrayOutput) ToGetGroupPolicyScaleOutActionArrayOutputWithContext(ctx context.Context) GetGroupPolicyScaleOutActionArrayOutput {
+	return o
+}
+
+func (o GetGroupPolicyScaleOutActionArrayOutput) Index(i pulumi.IntInput) GetGroupPolicyScaleOutActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupPolicyScaleOutAction {
+		return vs[0].([]GetGroupPolicyScaleOutAction)[vs[1].(int)]
+	}).(GetGroupPolicyScaleOutActionOutput)
+}
+
+type GetGroupReplicaConfiguration struct {
+	// The zone where the VMs are created using this configuration.
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	// The total number of cores for the VMs.
+	Cores int `pulumi:"cores"`
+	// The zone where the VMs are created using this configuration.
+	CpuFamily string `pulumi:"cpuFamily"`
+	// List of NICs associated with this Replica.
+	Nics []GetGroupReplicaConfigurationNic `pulumi:"nics"`
+	// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+	Ram int `pulumi:"ram"`
+	// List of volumes associated with this Replica. Only a single volume is currently supported.
+	Volumes []GetGroupReplicaConfigurationVolume `pulumi:"volumes"`
+}
+
+// GetGroupReplicaConfigurationInput is an input type that accepts GetGroupReplicaConfigurationArgs and GetGroupReplicaConfigurationOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationInput` via:
+//
+//	GetGroupReplicaConfigurationArgs{...}
+type GetGroupReplicaConfigurationInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationOutput() GetGroupReplicaConfigurationOutput
+	ToGetGroupReplicaConfigurationOutputWithContext(context.Context) GetGroupReplicaConfigurationOutput
+}
+
+type GetGroupReplicaConfigurationArgs struct {
+	// The zone where the VMs are created using this configuration.
+	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
+	// The total number of cores for the VMs.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The zone where the VMs are created using this configuration.
+	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
+	// List of NICs associated with this Replica.
+	Nics GetGroupReplicaConfigurationNicArrayInput `pulumi:"nics"`
+	// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// List of volumes associated with this Replica. Only a single volume is currently supported.
+	Volumes GetGroupReplicaConfigurationVolumeArrayInput `pulumi:"volumes"`
+}
+
+func (GetGroupReplicaConfigurationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfiguration)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationArgs) ToGetGroupReplicaConfigurationOutput() GetGroupReplicaConfigurationOutput {
+	return i.ToGetGroupReplicaConfigurationOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationArgs) ToGetGroupReplicaConfigurationOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationOutput)
+}
+
+// GetGroupReplicaConfigurationArrayInput is an input type that accepts GetGroupReplicaConfigurationArray and GetGroupReplicaConfigurationArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationArrayInput` via:
+//
+//	GetGroupReplicaConfigurationArray{ GetGroupReplicaConfigurationArgs{...} }
+type GetGroupReplicaConfigurationArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationArrayOutput() GetGroupReplicaConfigurationArrayOutput
+	ToGetGroupReplicaConfigurationArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationArrayOutput
+}
+
+type GetGroupReplicaConfigurationArray []GetGroupReplicaConfigurationInput
+
+func (GetGroupReplicaConfigurationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfiguration)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationArray) ToGetGroupReplicaConfigurationArrayOutput() GetGroupReplicaConfigurationArrayOutput {
+	return i.ToGetGroupReplicaConfigurationArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationArray) ToGetGroupReplicaConfigurationArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationArrayOutput)
+}
+
+type GetGroupReplicaConfigurationOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfiguration)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationOutput) ToGetGroupReplicaConfigurationOutput() GetGroupReplicaConfigurationOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationOutput) ToGetGroupReplicaConfigurationOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationOutput {
+	return o
+}
+
+// The zone where the VMs are created using this configuration.
+func (o GetGroupReplicaConfigurationOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+}
+
+// The total number of cores for the VMs.
+func (o GetGroupReplicaConfigurationOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The zone where the VMs are created using this configuration.
+func (o GetGroupReplicaConfigurationOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// List of NICs associated with this Replica.
+func (o GetGroupReplicaConfigurationOutput) Nics() GetGroupReplicaConfigurationNicArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) []GetGroupReplicaConfigurationNic { return v.Nics }).(GetGroupReplicaConfigurationNicArrayOutput)
+}
+
+// The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+func (o GetGroupReplicaConfigurationOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// List of volumes associated with this Replica. Only a single volume is currently supported.
+func (o GetGroupReplicaConfigurationOutput) Volumes() GetGroupReplicaConfigurationVolumeArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfiguration) []GetGroupReplicaConfigurationVolume { return v.Volumes }).(GetGroupReplicaConfigurationVolumeArrayOutput)
+}
+
+type GetGroupReplicaConfigurationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfiguration)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationArrayOutput) ToGetGroupReplicaConfigurationArrayOutput() GetGroupReplicaConfigurationArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationArrayOutput) ToGetGroupReplicaConfigurationArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfiguration {
+		return vs[0].([]GetGroupReplicaConfiguration)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationOutput)
+}
+
+type GetGroupReplicaConfigurationNic struct {
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+	Dhcp bool `pulumi:"dhcp"`
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+	FirewallActive bool `pulumi:"firewallActive"`
+	// List of all firewall rules for the specified NIC.
+	FirewallRules []GetGroupReplicaConfigurationNicFirewallRule `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+	FirewallType string `pulumi:"firewallType"`
+	// Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
+	FlowLogs []GetGroupReplicaConfigurationNicFlowLog `pulumi:"flowLogs"`
+	// Lan ID for this replica Nic.
+	Lan int `pulumi:"lan"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name string `pulumi:"name"`
+	// In order to link VM to ALB, target group must be provided.
+	TargetGroups []GetGroupReplicaConfigurationNicTargetGroup `pulumi:"targetGroups"`
+}
+
+// GetGroupReplicaConfigurationNicInput is an input type that accepts GetGroupReplicaConfigurationNicArgs and GetGroupReplicaConfigurationNicOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicInput` via:
+//
+//	GetGroupReplicaConfigurationNicArgs{...}
+type GetGroupReplicaConfigurationNicInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicOutput() GetGroupReplicaConfigurationNicOutput
+	ToGetGroupReplicaConfigurationNicOutputWithContext(context.Context) GetGroupReplicaConfigurationNicOutput
+}
+
+type GetGroupReplicaConfigurationNicArgs struct {
+	// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+	Dhcp pulumi.BoolInput `pulumi:"dhcp"`
+	// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+	FirewallActive pulumi.BoolInput `pulumi:"firewallActive"`
+	// List of all firewall rules for the specified NIC.
+	FirewallRules GetGroupReplicaConfigurationNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+	FirewallType pulumi.StringInput `pulumi:"firewallType"`
+	// Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
+	FlowLogs GetGroupReplicaConfigurationNicFlowLogArrayInput `pulumi:"flowLogs"`
+	// Lan ID for this replica Nic.
+	Lan pulumi.IntInput `pulumi:"lan"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name pulumi.StringInput `pulumi:"name"`
+	// In order to link VM to ALB, target group must be provided.
+	TargetGroups GetGroupReplicaConfigurationNicTargetGroupArrayInput `pulumi:"targetGroups"`
+}
+
+func (GetGroupReplicaConfigurationNicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNic)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicArgs) ToGetGroupReplicaConfigurationNicOutput() GetGroupReplicaConfigurationNicOutput {
+	return i.ToGetGroupReplicaConfigurationNicOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicArgs) ToGetGroupReplicaConfigurationNicOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicOutput)
+}
+
+// GetGroupReplicaConfigurationNicArrayInput is an input type that accepts GetGroupReplicaConfigurationNicArray and GetGroupReplicaConfigurationNicArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicArrayInput` via:
+//
+//	GetGroupReplicaConfigurationNicArray{ GetGroupReplicaConfigurationNicArgs{...} }
+type GetGroupReplicaConfigurationNicArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicArrayOutput() GetGroupReplicaConfigurationNicArrayOutput
+	ToGetGroupReplicaConfigurationNicArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationNicArrayOutput
+}
+
+type GetGroupReplicaConfigurationNicArray []GetGroupReplicaConfigurationNicInput
+
+func (GetGroupReplicaConfigurationNicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNic)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicArray) ToGetGroupReplicaConfigurationNicArrayOutput() GetGroupReplicaConfigurationNicArrayOutput {
+	return i.ToGetGroupReplicaConfigurationNicArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicArray) ToGetGroupReplicaConfigurationNicArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicArrayOutput)
+}
+
+type GetGroupReplicaConfigurationNicOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNic)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicOutput) ToGetGroupReplicaConfigurationNicOutput() GetGroupReplicaConfigurationNicOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicOutput) ToGetGroupReplicaConfigurationNicOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicOutput {
+	return o
+}
+
+// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+func (o GetGroupReplicaConfigurationNicOutput) Dhcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
+}
+
+// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+func (o GetGroupReplicaConfigurationNicOutput) FirewallActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
+}
+
+// List of all firewall rules for the specified NIC.
+func (o GetGroupReplicaConfigurationNicOutput) FirewallRules() GetGroupReplicaConfigurationNicFirewallRuleArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) []GetGroupReplicaConfigurationNicFirewallRule {
+		return v.FirewallRules
+	}).(GetGroupReplicaConfigurationNicFirewallRuleArrayOutput)
+}
+
+// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+func (o GetGroupReplicaConfigurationNicOutput) FirewallType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) string { return v.FirewallType }).(pulumi.StringOutput)
+}
+
+// Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
+func (o GetGroupReplicaConfigurationNicOutput) FlowLogs() GetGroupReplicaConfigurationNicFlowLogArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) []GetGroupReplicaConfigurationNicFlowLog { return v.FlowLogs }).(GetGroupReplicaConfigurationNicFlowLogArrayOutput)
+}
+
+// Lan ID for this replica Nic.
+func (o GetGroupReplicaConfigurationNicOutput) Lan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) int { return v.Lan }).(pulumi.IntOutput)
+}
+
+// Name of an existing Autoscaling Group that you want to search for.
+//
+// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+func (o GetGroupReplicaConfigurationNicOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// In order to link VM to ALB, target group must be provided.
+func (o GetGroupReplicaConfigurationNicOutput) TargetGroups() GetGroupReplicaConfigurationNicTargetGroupArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNic) []GetGroupReplicaConfigurationNicTargetGroup {
+		return v.TargetGroups
+	}).(GetGroupReplicaConfigurationNicTargetGroupArrayOutput)
+}
+
+type GetGroupReplicaConfigurationNicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNic)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicArrayOutput) ToGetGroupReplicaConfigurationNicArrayOutput() GetGroupReplicaConfigurationNicArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicArrayOutput) ToGetGroupReplicaConfigurationNicArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationNicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfigurationNic {
+		return vs[0].([]GetGroupReplicaConfigurationNic)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationNicOutput)
+}
+
+type GetGroupReplicaConfigurationNicFirewallRule struct {
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+	IcmpCode int `pulumi:"icmpCode"`
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+	IcmpType int `pulumi:"icmpType"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name string `pulumi:"name"`
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+	PortRangeEnd int `pulumi:"portRangeEnd"`
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+	PortRangeStart int `pulumi:"portRangeStart"`
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+	Protocol string `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+	SourceIp string `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+	SourceMac string `pulumi:"sourceMac"`
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+	TargetIp string `pulumi:"targetIp"`
+	// Type of resource
+	Type string `pulumi:"type"`
+}
+
+// GetGroupReplicaConfigurationNicFirewallRuleInput is an input type that accepts GetGroupReplicaConfigurationNicFirewallRuleArgs and GetGroupReplicaConfigurationNicFirewallRuleOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicFirewallRuleInput` via:
+//
+//	GetGroupReplicaConfigurationNicFirewallRuleArgs{...}
+type GetGroupReplicaConfigurationNicFirewallRuleInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicFirewallRuleOutput() GetGroupReplicaConfigurationNicFirewallRuleOutput
+	ToGetGroupReplicaConfigurationNicFirewallRuleOutputWithContext(context.Context) GetGroupReplicaConfigurationNicFirewallRuleOutput
+}
+
+type GetGroupReplicaConfigurationNicFirewallRuleArgs struct {
+	// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+	IcmpCode pulumi.IntInput `pulumi:"icmpCode"`
+	// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+	IcmpType pulumi.IntInput `pulumi:"icmpType"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+	PortRangeEnd pulumi.IntInput `pulumi:"portRangeEnd"`
+	// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+	PortRangeStart pulumi.IntInput `pulumi:"portRangeStart"`
+	// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+	SourceIp pulumi.StringInput `pulumi:"sourceIp"`
+	// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+	SourceMac pulumi.StringInput `pulumi:"sourceMac"`
+	// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+	TargetIp pulumi.StringInput `pulumi:"targetIp"`
+	// Type of resource
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetGroupReplicaConfigurationNicFirewallRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicFirewallRule)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicFirewallRuleArgs) ToGetGroupReplicaConfigurationNicFirewallRuleOutput() GetGroupReplicaConfigurationNicFirewallRuleOutput {
+	return i.ToGetGroupReplicaConfigurationNicFirewallRuleOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicFirewallRuleArgs) ToGetGroupReplicaConfigurationNicFirewallRuleOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFirewallRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicFirewallRuleOutput)
+}
+
+// GetGroupReplicaConfigurationNicFirewallRuleArrayInput is an input type that accepts GetGroupReplicaConfigurationNicFirewallRuleArray and GetGroupReplicaConfigurationNicFirewallRuleArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicFirewallRuleArrayInput` via:
+//
+//	GetGroupReplicaConfigurationNicFirewallRuleArray{ GetGroupReplicaConfigurationNicFirewallRuleArgs{...} }
+type GetGroupReplicaConfigurationNicFirewallRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutput() GetGroupReplicaConfigurationNicFirewallRuleArrayOutput
+	ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationNicFirewallRuleArrayOutput
+}
+
+type GetGroupReplicaConfigurationNicFirewallRuleArray []GetGroupReplicaConfigurationNicFirewallRuleInput
+
+func (GetGroupReplicaConfigurationNicFirewallRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicFirewallRule)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicFirewallRuleArray) ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutput() GetGroupReplicaConfigurationNicFirewallRuleArrayOutput {
+	return i.ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicFirewallRuleArray) ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFirewallRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicFirewallRuleArrayOutput)
+}
+
+type GetGroupReplicaConfigurationNicFirewallRuleOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicFirewallRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicFirewallRule)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) ToGetGroupReplicaConfigurationNicFirewallRuleOutput() GetGroupReplicaConfigurationNicFirewallRuleOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) ToGetGroupReplicaConfigurationNicFirewallRuleOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFirewallRuleOutput {
+	return o
+}
+
+// Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
+}
+
+// Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
+}
+
+// Name of an existing Autoscaling Group that you want to search for.
+//
+// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
+}
+
+// Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
+}
+
+// The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
+}
+
+// If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
+}
+
+// Type of resource
+func (o GetGroupReplicaConfigurationNicFirewallRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetGroupReplicaConfigurationNicFirewallRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicFirewallRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicFirewallRule)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicFirewallRuleArrayOutput) ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutput() GetGroupReplicaConfigurationNicFirewallRuleArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFirewallRuleArrayOutput) ToGetGroupReplicaConfigurationNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFirewallRuleArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationNicFirewallRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfigurationNicFirewallRule {
+		return vs[0].([]GetGroupReplicaConfigurationNicFirewallRule)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationNicFirewallRuleOutput)
+}
+
+type GetGroupReplicaConfigurationNicFlowLog struct {
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	Action string `pulumi:"action"`
+	// The bucket name of an existing IONOS Object Storage bucket.
+	Bucket string `pulumi:"bucket"`
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	Direction string `pulumi:"direction"`
+	// Id of an existing Autoscaling Group that you want to search for.
+	Id string `pulumi:"id"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name string `pulumi:"name"`
+}
+
+// GetGroupReplicaConfigurationNicFlowLogInput is an input type that accepts GetGroupReplicaConfigurationNicFlowLogArgs and GetGroupReplicaConfigurationNicFlowLogOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicFlowLogInput` via:
+//
+//	GetGroupReplicaConfigurationNicFlowLogArgs{...}
+type GetGroupReplicaConfigurationNicFlowLogInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicFlowLogOutput() GetGroupReplicaConfigurationNicFlowLogOutput
+	ToGetGroupReplicaConfigurationNicFlowLogOutputWithContext(context.Context) GetGroupReplicaConfigurationNicFlowLogOutput
+}
+
+type GetGroupReplicaConfigurationNicFlowLogArgs struct {
+	// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+	Action pulumi.StringInput `pulumi:"action"`
+	// The bucket name of an existing IONOS Object Storage bucket.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+	Direction pulumi.StringInput `pulumi:"direction"`
+	// Id of an existing Autoscaling Group that you want to search for.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetGroupReplicaConfigurationNicFlowLogArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicFlowLog)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicFlowLogArgs) ToGetGroupReplicaConfigurationNicFlowLogOutput() GetGroupReplicaConfigurationNicFlowLogOutput {
+	return i.ToGetGroupReplicaConfigurationNicFlowLogOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicFlowLogArgs) ToGetGroupReplicaConfigurationNicFlowLogOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFlowLogOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicFlowLogOutput)
+}
+
+// GetGroupReplicaConfigurationNicFlowLogArrayInput is an input type that accepts GetGroupReplicaConfigurationNicFlowLogArray and GetGroupReplicaConfigurationNicFlowLogArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicFlowLogArrayInput` via:
+//
+//	GetGroupReplicaConfigurationNicFlowLogArray{ GetGroupReplicaConfigurationNicFlowLogArgs{...} }
+type GetGroupReplicaConfigurationNicFlowLogArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicFlowLogArrayOutput() GetGroupReplicaConfigurationNicFlowLogArrayOutput
+	ToGetGroupReplicaConfigurationNicFlowLogArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationNicFlowLogArrayOutput
+}
+
+type GetGroupReplicaConfigurationNicFlowLogArray []GetGroupReplicaConfigurationNicFlowLogInput
+
+func (GetGroupReplicaConfigurationNicFlowLogArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicFlowLog)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicFlowLogArray) ToGetGroupReplicaConfigurationNicFlowLogArrayOutput() GetGroupReplicaConfigurationNicFlowLogArrayOutput {
+	return i.ToGetGroupReplicaConfigurationNicFlowLogArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicFlowLogArray) ToGetGroupReplicaConfigurationNicFlowLogArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFlowLogArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicFlowLogArrayOutput)
+}
+
+type GetGroupReplicaConfigurationNicFlowLogOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicFlowLogOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicFlowLog)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) ToGetGroupReplicaConfigurationNicFlowLogOutput() GetGroupReplicaConfigurationNicFlowLogOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) ToGetGroupReplicaConfigurationNicFlowLogOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFlowLogOutput {
+	return o
+}
+
+// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFlowLog) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// The bucket name of an existing IONOS Object Storage bucket.
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFlowLog) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFlowLog) string { return v.Direction }).(pulumi.StringOutput)
+}
+
+// Id of an existing Autoscaling Group that you want to search for.
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFlowLog) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of an existing Autoscaling Group that you want to search for.
+//
+// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+func (o GetGroupReplicaConfigurationNicFlowLogOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicFlowLog) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetGroupReplicaConfigurationNicFlowLogArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicFlowLogArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicFlowLog)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicFlowLogArrayOutput) ToGetGroupReplicaConfigurationNicFlowLogArrayOutput() GetGroupReplicaConfigurationNicFlowLogArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFlowLogArrayOutput) ToGetGroupReplicaConfigurationNicFlowLogArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicFlowLogArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicFlowLogArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationNicFlowLogOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfigurationNicFlowLog {
+		return vs[0].([]GetGroupReplicaConfigurationNicFlowLog)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationNicFlowLogOutput)
+}
+
+type GetGroupReplicaConfigurationNicTargetGroup struct {
+	// The port for the target group.
+	Port int `pulumi:"port"`
+	// The ID of the target group.
+	TargetGroupId string `pulumi:"targetGroupId"`
+	// The weight for the target group.
+	Weight int `pulumi:"weight"`
+}
+
+// GetGroupReplicaConfigurationNicTargetGroupInput is an input type that accepts GetGroupReplicaConfigurationNicTargetGroupArgs and GetGroupReplicaConfigurationNicTargetGroupOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicTargetGroupInput` via:
+//
+//	GetGroupReplicaConfigurationNicTargetGroupArgs{...}
+type GetGroupReplicaConfigurationNicTargetGroupInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicTargetGroupOutput() GetGroupReplicaConfigurationNicTargetGroupOutput
+	ToGetGroupReplicaConfigurationNicTargetGroupOutputWithContext(context.Context) GetGroupReplicaConfigurationNicTargetGroupOutput
+}
+
+type GetGroupReplicaConfigurationNicTargetGroupArgs struct {
+	// The port for the target group.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The ID of the target group.
+	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
+	// The weight for the target group.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetGroupReplicaConfigurationNicTargetGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicTargetGroup)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicTargetGroupArgs) ToGetGroupReplicaConfigurationNicTargetGroupOutput() GetGroupReplicaConfigurationNicTargetGroupOutput {
+	return i.ToGetGroupReplicaConfigurationNicTargetGroupOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicTargetGroupArgs) ToGetGroupReplicaConfigurationNicTargetGroupOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicTargetGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicTargetGroupOutput)
+}
+
+// GetGroupReplicaConfigurationNicTargetGroupArrayInput is an input type that accepts GetGroupReplicaConfigurationNicTargetGroupArray and GetGroupReplicaConfigurationNicTargetGroupArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationNicTargetGroupArrayInput` via:
+//
+//	GetGroupReplicaConfigurationNicTargetGroupArray{ GetGroupReplicaConfigurationNicTargetGroupArgs{...} }
+type GetGroupReplicaConfigurationNicTargetGroupArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationNicTargetGroupArrayOutput() GetGroupReplicaConfigurationNicTargetGroupArrayOutput
+	ToGetGroupReplicaConfigurationNicTargetGroupArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationNicTargetGroupArrayOutput
+}
+
+type GetGroupReplicaConfigurationNicTargetGroupArray []GetGroupReplicaConfigurationNicTargetGroupInput
+
+func (GetGroupReplicaConfigurationNicTargetGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicTargetGroup)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationNicTargetGroupArray) ToGetGroupReplicaConfigurationNicTargetGroupArrayOutput() GetGroupReplicaConfigurationNicTargetGroupArrayOutput {
+	return i.ToGetGroupReplicaConfigurationNicTargetGroupArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationNicTargetGroupArray) ToGetGroupReplicaConfigurationNicTargetGroupArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicTargetGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationNicTargetGroupArrayOutput)
+}
+
+type GetGroupReplicaConfigurationNicTargetGroupOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicTargetGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationNicTargetGroup)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicTargetGroupOutput) ToGetGroupReplicaConfigurationNicTargetGroupOutput() GetGroupReplicaConfigurationNicTargetGroupOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicTargetGroupOutput) ToGetGroupReplicaConfigurationNicTargetGroupOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicTargetGroupOutput {
+	return o
+}
+
+// The port for the target group.
+func (o GetGroupReplicaConfigurationNicTargetGroupOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicTargetGroup) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The ID of the target group.
+func (o GetGroupReplicaConfigurationNicTargetGroupOutput) TargetGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicTargetGroup) string { return v.TargetGroupId }).(pulumi.StringOutput)
+}
+
+// The weight for the target group.
+func (o GetGroupReplicaConfigurationNicTargetGroupOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationNicTargetGroup) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetGroupReplicaConfigurationNicTargetGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationNicTargetGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationNicTargetGroup)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationNicTargetGroupArrayOutput) ToGetGroupReplicaConfigurationNicTargetGroupArrayOutput() GetGroupReplicaConfigurationNicTargetGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicTargetGroupArrayOutput) ToGetGroupReplicaConfigurationNicTargetGroupArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationNicTargetGroupArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationNicTargetGroupArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationNicTargetGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfigurationNicTargetGroup {
+		return vs[0].([]GetGroupReplicaConfigurationNicTargetGroup)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationNicTargetGroupOutput)
+}
+
+type GetGroupReplicaConfigurationVolume struct {
+	// The uuid of the Backup Unit that user has access to.
+	BackupUnitId string `pulumi:"backupUnitId"`
+	// Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+	BootOrder string `pulumi:"bootOrder"`
+	// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
+	Bus string `pulumi:"bus"`
+	// The image installed on the volume. Only the UUID of the image is presently supported.
+	Image string `pulumi:"image"`
+	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
+	ImageAlias string `pulumi:"imageAlias"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name string `pulumi:"name"`
+	// User-defined size for this replica volume in GB.
+	Size    int      `pulumi:"size"`
+	SshKeys []string `pulumi:"sshKeys"`
+	// Type of resource
+	Type string `pulumi:"type"`
+}
+
+// GetGroupReplicaConfigurationVolumeInput is an input type that accepts GetGroupReplicaConfigurationVolumeArgs and GetGroupReplicaConfigurationVolumeOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationVolumeInput` via:
+//
+//	GetGroupReplicaConfigurationVolumeArgs{...}
+type GetGroupReplicaConfigurationVolumeInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationVolumeOutput() GetGroupReplicaConfigurationVolumeOutput
+	ToGetGroupReplicaConfigurationVolumeOutputWithContext(context.Context) GetGroupReplicaConfigurationVolumeOutput
+}
+
+type GetGroupReplicaConfigurationVolumeArgs struct {
+	// The uuid of the Backup Unit that user has access to.
+	BackupUnitId pulumi.StringInput `pulumi:"backupUnitId"`
+	// Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+	BootOrder pulumi.StringInput `pulumi:"bootOrder"`
+	// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
+	Bus pulumi.StringInput `pulumi:"bus"`
+	// The image installed on the volume. Only the UUID of the image is presently supported.
+	Image pulumi.StringInput `pulumi:"image"`
+	// The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
+	ImageAlias pulumi.StringInput `pulumi:"imageAlias"`
+	// Name of an existing Autoscaling Group that you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+	Name pulumi.StringInput `pulumi:"name"`
+	// User-defined size for this replica volume in GB.
+	Size    pulumi.IntInput         `pulumi:"size"`
+	SshKeys pulumi.StringArrayInput `pulumi:"sshKeys"`
+	// Type of resource
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetGroupReplicaConfigurationVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationVolume)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationVolumeArgs) ToGetGroupReplicaConfigurationVolumeOutput() GetGroupReplicaConfigurationVolumeOutput {
+	return i.ToGetGroupReplicaConfigurationVolumeOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationVolumeArgs) ToGetGroupReplicaConfigurationVolumeOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationVolumeOutput)
+}
+
+// GetGroupReplicaConfigurationVolumeArrayInput is an input type that accepts GetGroupReplicaConfigurationVolumeArray and GetGroupReplicaConfigurationVolumeArrayOutput values.
+// You can construct a concrete instance of `GetGroupReplicaConfigurationVolumeArrayInput` via:
+//
+//	GetGroupReplicaConfigurationVolumeArray{ GetGroupReplicaConfigurationVolumeArgs{...} }
+type GetGroupReplicaConfigurationVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetGroupReplicaConfigurationVolumeArrayOutput() GetGroupReplicaConfigurationVolumeArrayOutput
+	ToGetGroupReplicaConfigurationVolumeArrayOutputWithContext(context.Context) GetGroupReplicaConfigurationVolumeArrayOutput
+}
+
+type GetGroupReplicaConfigurationVolumeArray []GetGroupReplicaConfigurationVolumeInput
+
+func (GetGroupReplicaConfigurationVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationVolume)(nil)).Elem()
+}
+
+func (i GetGroupReplicaConfigurationVolumeArray) ToGetGroupReplicaConfigurationVolumeArrayOutput() GetGroupReplicaConfigurationVolumeArrayOutput {
+	return i.ToGetGroupReplicaConfigurationVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetGroupReplicaConfigurationVolumeArray) ToGetGroupReplicaConfigurationVolumeArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGroupReplicaConfigurationVolumeArrayOutput)
+}
+
+type GetGroupReplicaConfigurationVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGroupReplicaConfigurationVolume)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationVolumeOutput) ToGetGroupReplicaConfigurationVolumeOutput() GetGroupReplicaConfigurationVolumeOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationVolumeOutput) ToGetGroupReplicaConfigurationVolumeOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationVolumeOutput {
+	return o
+}
+
+// The uuid of the Backup Unit that user has access to.
+func (o GetGroupReplicaConfigurationVolumeOutput) BackupUnitId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
+}
+
+// Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+func (o GetGroupReplicaConfigurationVolumeOutput) BootOrder() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.BootOrder }).(pulumi.StringOutput)
+}
+
+// The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
+func (o GetGroupReplicaConfigurationVolumeOutput) Bus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.Bus }).(pulumi.StringOutput)
+}
+
+// The image installed on the volume. Only the UUID of the image is presently supported.
+func (o GetGroupReplicaConfigurationVolumeOutput) Image() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.Image }).(pulumi.StringOutput)
+}
+
+// The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
+func (o GetGroupReplicaConfigurationVolumeOutput) ImageAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.ImageAlias }).(pulumi.StringOutput)
+}
+
+// Name of an existing Autoscaling Group that you want to search for.
+//
+// Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+func (o GetGroupReplicaConfigurationVolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// User-defined size for this replica volume in GB.
+func (o GetGroupReplicaConfigurationVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetGroupReplicaConfigurationVolumeOutput) SshKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
+}
+
+// Type of resource
+func (o GetGroupReplicaConfigurationVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGroupReplicaConfigurationVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetGroupReplicaConfigurationVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGroupReplicaConfigurationVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGroupReplicaConfigurationVolume)(nil)).Elem()
+}
+
+func (o GetGroupReplicaConfigurationVolumeArrayOutput) ToGetGroupReplicaConfigurationVolumeArrayOutput() GetGroupReplicaConfigurationVolumeArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationVolumeArrayOutput) ToGetGroupReplicaConfigurationVolumeArrayOutputWithContext(ctx context.Context) GetGroupReplicaConfigurationVolumeArrayOutput {
+	return o
+}
+
+func (o GetGroupReplicaConfigurationVolumeArrayOutput) Index(i pulumi.IntInput) GetGroupReplicaConfigurationVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGroupReplicaConfigurationVolume {
+		return vs[0].([]GetGroupReplicaConfigurationVolume)[vs[1].(int)]
+	}).(GetGroupReplicaConfigurationVolumeOutput)
+}
+
+type GetServersServer struct {
+	// The unique ID of the server.
+	Id string `pulumi:"id"`
+}
+
+// GetServersServerInput is an input type that accepts GetServersServerArgs and GetServersServerOutput values.
+// You can construct a concrete instance of `GetServersServerInput` via:
+//
+//	GetServersServerArgs{...}
+type GetServersServerInput interface {
+	pulumi.Input
+
+	ToGetServersServerOutput() GetServersServerOutput
+	ToGetServersServerOutputWithContext(context.Context) GetServersServerOutput
+}
+
+type GetServersServerArgs struct {
+	// The unique ID of the server.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetServersServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServer)(nil)).Elem()
+}
+
+func (i GetServersServerArgs) ToGetServersServerOutput() GetServersServerOutput {
+	return i.ToGetServersServerOutputWithContext(context.Background())
+}
+
+func (i GetServersServerArgs) ToGetServersServerOutputWithContext(ctx context.Context) GetServersServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerOutput)
+}
+
+// GetServersServerArrayInput is an input type that accepts GetServersServerArray and GetServersServerArrayOutput values.
+// You can construct a concrete instance of `GetServersServerArrayInput` via:
+//
+//	GetServersServerArray{ GetServersServerArgs{...} }
+type GetServersServerArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerArrayOutput() GetServersServerArrayOutput
+	ToGetServersServerArrayOutputWithContext(context.Context) GetServersServerArrayOutput
+}
+
+type GetServersServerArray []GetServersServerInput
+
+func (GetServersServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServer)(nil)).Elem()
+}
+
+func (i GetServersServerArray) ToGetServersServerArrayOutput() GetServersServerArrayOutput {
+	return i.ToGetServersServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerArray) ToGetServersServerArrayOutputWithContext(ctx context.Context) GetServersServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerArrayOutput)
+}
+
+type GetServersServerOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServer)(nil)).Elem()
+}
+
+func (o GetServersServerOutput) ToGetServersServerOutput() GetServersServerOutput {
+	return o
+}
+
+func (o GetServersServerOutput) ToGetServersServerOutputWithContext(ctx context.Context) GetServersServerOutput {
+	return o
+}
+
+// The unique ID of the server.
+func (o GetServersServerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetServersServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServer)(nil)).Elem()
+}
+
+func (o GetServersServerArrayOutput) ToGetServersServerArrayOutput() GetServersServerArrayOutput {
+	return o
+}
+
+func (o GetServersServerArrayOutput) ToGetServersServerArrayOutputWithContext(ctx context.Context) GetServersServerArrayOutput {
+	return o
+}
+
+func (o GetServersServerArrayOutput) Index(i pulumi.IntInput) GetServersServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServer {
+		return vs[0].([]GetServersServer)[vs[1].(int)]
+	}).(GetServersServerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPolicyInput)(nil)).Elem(), GroupPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPolicyPtrInput)(nil)).Elem(), GroupPolicyArgs{})
@@ -1741,6 +3168,26 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupReplicaConfigurationNicTargetGroupPtrInput)(nil)).Elem(), GroupReplicaConfigurationNicTargetGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupReplicaConfigurationVolumeInput)(nil)).Elem(), GroupReplicaConfigurationVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupReplicaConfigurationVolumeArrayInput)(nil)).Elem(), GroupReplicaConfigurationVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyInput)(nil)).Elem(), GetGroupPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyArrayInput)(nil)).Elem(), GetGroupPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyScaleInActionInput)(nil)).Elem(), GetGroupPolicyScaleInActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyScaleInActionArrayInput)(nil)).Elem(), GetGroupPolicyScaleInActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyScaleOutActionInput)(nil)).Elem(), GetGroupPolicyScaleOutActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupPolicyScaleOutActionArrayInput)(nil)).Elem(), GetGroupPolicyScaleOutActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationInput)(nil)).Elem(), GetGroupReplicaConfigurationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicInput)(nil)).Elem(), GetGroupReplicaConfigurationNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationNicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicFirewallRuleInput)(nil)).Elem(), GetGroupReplicaConfigurationNicFirewallRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicFirewallRuleArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationNicFirewallRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicFlowLogInput)(nil)).Elem(), GetGroupReplicaConfigurationNicFlowLogArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicFlowLogArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationNicFlowLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicTargetGroupInput)(nil)).Elem(), GetGroupReplicaConfigurationNicTargetGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationNicTargetGroupArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationNicTargetGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationVolumeInput)(nil)).Elem(), GetGroupReplicaConfigurationVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGroupReplicaConfigurationVolumeArrayInput)(nil)).Elem(), GetGroupReplicaConfigurationVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerInput)(nil)).Elem(), GetServersServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerArrayInput)(nil)).Elem(), GetServersServerArray{})
 	pulumi.RegisterOutputType(GroupPolicyOutput{})
 	pulumi.RegisterOutputType(GroupPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GroupPolicyScaleInActionOutput{})
@@ -1759,4 +3206,24 @@ func init() {
 	pulumi.RegisterOutputType(GroupReplicaConfigurationNicTargetGroupPtrOutput{})
 	pulumi.RegisterOutputType(GroupReplicaConfigurationVolumeOutput{})
 	pulumi.RegisterOutputType(GroupReplicaConfigurationVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyScaleInActionOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyScaleInActionArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyScaleOutActionOutput{})
+	pulumi.RegisterOutputType(GetGroupPolicyScaleOutActionArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicFirewallRuleOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicFlowLogOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicFlowLogArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicTargetGroupOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationNicTargetGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationVolumeOutput{})
+	pulumi.RegisterOutputType(GetGroupReplicaConfigurationVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerOutput{})
+	pulumi.RegisterOutputType(GetServersServerArrayOutput{})
 }

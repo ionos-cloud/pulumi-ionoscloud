@@ -35,15 +35,11 @@ type GetPgBackupsResult struct {
 }
 
 func GetPgBackupsOutput(ctx *pulumi.Context, args GetPgBackupsOutputArgs, opts ...pulumi.InvokeOption) GetPgBackupsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPgBackupsResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetPgBackupsResultOutput, error) {
 			args := v.(GetPgBackupsArgs)
-			r, err := GetPgBackups(ctx, &args, opts...)
-			var s GetPgBackupsResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getPgBackups:getPgBackups", args, GetPgBackupsResultOutput{}, options).(GetPgBackupsResultOutput), nil
 		}).(GetPgBackupsResultOutput)
 }
 

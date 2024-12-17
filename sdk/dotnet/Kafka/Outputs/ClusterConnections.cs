@@ -14,7 +14,8 @@ namespace Pulumi.Ionoscloud.Kafka.Outputs
     public sealed class ClusterConnections
     {
         /// <summary>
-        /// [list] IP address and port of cluster brokers.
+        /// [list] IP addresses and subnet of cluster brokers. **Note** the following
+        /// unavailable IP range: 10.224.0.0/11
         /// </summary>
         public readonly ImmutableArray<string> BrokerAddresses;
         /// <summary>

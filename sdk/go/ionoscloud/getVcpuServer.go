@@ -73,15 +73,11 @@ type GetVcpuServerResult struct {
 }
 
 func GetVcpuServerOutput(ctx *pulumi.Context, args GetVcpuServerOutputArgs, opts ...pulumi.InvokeOption) GetVcpuServerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVcpuServerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetVcpuServerResultOutput, error) {
 			args := v.(GetVcpuServerArgs)
-			r, err := GetVcpuServer(ctx, &args, opts...)
-			var s GetVcpuServerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getVcpuServer:getVcpuServer", args, GetVcpuServerResultOutput{}, options).(GetVcpuServerResultOutput), nil
 		}).(GetVcpuServerResultOutput)
 }
 

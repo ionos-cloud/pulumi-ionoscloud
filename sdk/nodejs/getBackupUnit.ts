@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -22,11 +21,9 @@ import * as utilities from "./utilities";
  *     name: "Backup Unit Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBackupUnit(args?: GetBackupUnitArgs, opts?: pulumi.InvokeOptions): Promise<GetBackupUnitResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getBackupUnit:getBackupUnit", {
         "id": args.id,
@@ -80,7 +77,6 @@ export interface GetBackupUnitResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -89,10 +85,14 @@ export interface GetBackupUnitResult {
  *     name: "Backup Unit Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getBackupUnitOutput(args?: GetBackupUnitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackupUnitResult> {
-    return pulumi.output(args).apply((a: any) => getBackupUnit(a, opts))
+export function getBackupUnitOutput(args?: GetBackupUnitOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackupUnitResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getBackupUnit:getBackupUnit", {
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

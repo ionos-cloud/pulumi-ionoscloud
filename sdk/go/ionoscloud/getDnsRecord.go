@@ -64,15 +64,11 @@ type GetDnsRecordResult struct {
 }
 
 func GetDnsRecordOutput(ctx *pulumi.Context, args GetDnsRecordOutputArgs, opts ...pulumi.InvokeOption) GetDnsRecordResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDnsRecordResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetDnsRecordResultOutput, error) {
 			args := v.(GetDnsRecordArgs)
-			r, err := GetDnsRecord(ctx, &args, opts...)
-			var s GetDnsRecordResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getDnsRecord:getDnsRecord", args, GetDnsRecordResultOutput{}, options).(GetDnsRecordResultOutput), nil
 		}).(GetDnsRecordResultOutput)
 }
 

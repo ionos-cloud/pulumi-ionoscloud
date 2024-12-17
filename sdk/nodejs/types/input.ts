@@ -64,7 +64,7 @@ export interface ApplicationLoadbalancerForwardingruleHttpRule {
      */
     targetGroup?: pulumi.Input<string>;
     /**
-     * [string] Type of the Http Rule condition.
+     * [string] Type of the Http Rule.
      */
     type: pulumi.Input<string>;
 }
@@ -458,7 +458,7 @@ export namespace autoscaling {
 
     export interface GroupPolicyScaleInAction {
         /**
-         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         * [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
          */
         amount: pulumi.Input<number>;
         /**
@@ -523,11 +523,11 @@ export namespace autoscaling {
 
     export interface GroupReplicaConfigurationNic {
         /**
-         * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+         * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
          */
         dhcp?: pulumi.Input<boolean>;
         /**
-         * [bool] Firewall active flag.
+         * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
          */
         firewallActive?: pulumi.Input<boolean>;
         /**
@@ -535,81 +535,81 @@ export namespace autoscaling {
          */
         firewallRules?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFirewallRule>[]>;
         /**
-         * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+         * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
          */
         firewallType?: pulumi.Input<string>;
         /**
-         * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+         * List of all flow logs for the specified NIC.
          */
         flowLogs?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFlowLog>[]>;
         /**
-         * [int] Lan ID for this replica Nic.
+         * Lan ID for this replica Nic.
          */
         lan: pulumi.Input<number>;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name: pulumi.Input<string>;
         /**
-         * [list] In order to link VM to ALB, target group must be provided
+         * In order to link VM to ALB, target group must be provided.
          */
         targetGroup?: pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicTargetGroup>;
     }
 
     export interface GroupReplicaConfigurationNicFirewallRule {
         /**
-         * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+         * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
          */
         icmpCode?: pulumi.Input<number>;
         /**
-         * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+         * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
          */
         icmpType?: pulumi.Input<number>;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name?: pulumi.Input<string>;
         /**
-         * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
         portRangeEnd?: pulumi.Input<number>;
         /**
-         * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
         portRangeStart?: pulumi.Input<number>;
         /**
-         * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+         * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
          */
         protocol: pulumi.Input<string>;
         /**
-         * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+         * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
          */
         sourceIp?: pulumi.Input<string>;
         /**
-         * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+         * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
          */
         sourceMac?: pulumi.Input<string>;
         /**
-         * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+         * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
          */
         targetIp?: pulumi.Input<string>;
         /**
-         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         * The firewall rule type. If not specified, the default value 'INGRESS' is used.
          */
         type?: pulumi.Input<string>;
     }
 
     export interface GroupReplicaConfigurationNicFlowLog {
         /**
-         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
          */
         action: pulumi.Input<string>;
         /**
-         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
          */
         bucket: pulumi.Input<string>;
         /**
-         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
          */
         direction: pulumi.Input<string>;
         /**
@@ -617,22 +617,22 @@ export namespace autoscaling {
          */
         id?: pulumi.Input<string>;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name: pulumi.Input<string>;
     }
 
     export interface GroupReplicaConfigurationNicTargetGroup {
         /**
-         * [int] The port of the target group.
+         * The port for the target group.
          */
         port: pulumi.Input<number>;
         /**
-         * [string] The ID of the target group.
+         * The ID of the target group.
          */
         targetGroupId: pulumi.Input<string>;
         /**
-         * [int] The weight of the target group.
+         * The weight for the target group.
          */
         weight: pulumi.Input<number>;
     }
@@ -761,11 +761,11 @@ export namespace compute {
          */
         id?: pulumi.Input<string>;
         /**
-         * The location of the cross-connected datacenter
+         * The physical location of the connectable datacenter
          */
         location?: pulumi.Input<string>;
         /**
-         * The name of the connectable datacenter
+         * [string] The name of the cross-connection.
          */
         name?: pulumi.Input<string>;
     }
@@ -1581,7 +1581,8 @@ export namespace k8s {
 export namespace kafka {
     export interface ClusterConnections {
         /**
-         * [list] IP address and port of cluster brokers.
+         * [list] IP addresses and subnet of cluster brokers. **Note** the following
+         * unavailable IP range: 10.224.0.0/11
          */
         brokerAddresses: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -1593,6 +1594,7 @@ export namespace kafka {
          */
         lanId: pulumi.Input<string>;
     }
+
 }
 
 export namespace nfs {

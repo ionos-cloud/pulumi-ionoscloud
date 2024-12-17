@@ -88,15 +88,11 @@ type GetNicResult struct {
 }
 
 func GetNicOutput(ctx *pulumi.Context, args GetNicOutputArgs, opts ...pulumi.InvokeOption) GetNicResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNicResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetNicResultOutput, error) {
 			args := v.(GetNicArgs)
-			r, err := GetNic(ctx, &args, opts...)
-			var s GetNicResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNic:getNic", args, GetNicResultOutput{}, options).(GetNicResultOutput), nil
 		}).(GetNicResultOutput)
 }
 

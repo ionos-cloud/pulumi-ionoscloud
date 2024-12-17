@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -16,6 +21,8 @@ __all__ = [
     'get_autoscaling_group_servers',
     'get_autoscaling_group_servers_output',
 ]
+
+warnings.warn("""ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""", DeprecationWarning)
 
 @pulumi.output_type
 class GetAutoscalingGroupServersResult:
@@ -79,6 +86,7 @@ def get_autoscaling_group_servers(group_id: Optional[str] = None,
            
            `group_id` must be provided. If it is not provided, the datasource will return an error.
     """
+    pulumi.log.warn("""get_autoscaling_group_servers is deprecated: ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""")
     __args__ = dict()
     __args__['groupId'] = group_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -88,11 +96,8 @@ def get_autoscaling_group_servers(group_id: Optional[str] = None,
         group_id=pulumi.get(__ret__, 'group_id'),
         id=pulumi.get(__ret__, 'id'),
         servers=pulumi.get(__ret__, 'servers'))
-
-
-@_utilities.lift_output_func(get_autoscaling_group_servers)
 def get_autoscaling_group_servers_output(group_id: Optional[pulumi.Input[str]] = None,
-                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAutoscalingGroupServersResult]:
+                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoscalingGroupServersResult]:
     """
     The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
 
@@ -101,4 +106,12 @@ def get_autoscaling_group_servers_output(group_id: Optional[pulumi.Input[str]] =
            
            `group_id` must be provided. If it is not provided, the datasource will return an error.
     """
-    ...
+    pulumi.log.warn("""get_autoscaling_group_servers is deprecated: ionoscloud.index/getautoscalinggroupservers.getAutoscalingGroupServers has been deprecated in favor of ionoscloud.autoscaling/getservers.getServers""")
+    __args__ = dict()
+    __args__['groupId'] = group_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getAutoscalingGroupServers:getAutoscalingGroupServers', __args__, opts=opts, typ=GetAutoscalingGroupServersResult)
+    return __ret__.apply(lambda __response__: GetAutoscalingGroupServersResult(
+        group_id=pulumi.get(__response__, 'group_id'),
+        id=pulumi.get(__response__, 'id'),
+        servers=pulumi.get(__response__, 'servers')))

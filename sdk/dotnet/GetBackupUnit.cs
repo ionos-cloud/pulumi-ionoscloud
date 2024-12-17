@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,7 +35,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackupUnitResult> InvokeAsync(GetBackupUnitArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackupUnitResult>("ionoscloud:index/getBackupUnit:getBackupUnit", args ?? new GetBackupUnitArgs(), options.WithDefaults());
@@ -50,7 +48,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,9 +63,36 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackupUnitResult> Invoke(GetBackupUnitInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBackupUnitResult>("ionoscloud:index/getBackupUnit:getBackupUnit", args ?? new GetBackupUnitInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Backup Unit data source** can be used to search for and return an existing Backup Unit.
+        /// You can provide a string for either id or name parameters which will be compared with provisioned Backup Units. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. 
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetBackupUnit.Invoke(new()
+        ///     {
+        ///         Name = "Backup Unit Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBackupUnitResult> Invoke(GetBackupUnitInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackupUnitResult>("ionoscloud:index/getBackupUnit:getBackupUnit", args ?? new GetBackupUnitInvokeArgs(), options.WithDefaults());
     }
 

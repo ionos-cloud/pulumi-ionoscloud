@@ -19,7 +19,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,7 +34,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPrivateCrossconnectResult> InvokeAsync(GetPrivateCrossconnectArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateCrossconnectResult>("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", args ?? new GetPrivateCrossconnectArgs(), options.WithDefaults());
@@ -48,7 +46,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,9 +61,35 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPrivateCrossconnectResult> Invoke(GetPrivateCrossconnectInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPrivateCrossconnectResult>("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", args ?? new GetPrivateCrossconnectInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Cross Connect data source** can be used to search for and return existing cross connects.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetPrivateCrossconnect.Invoke(new()
+        ///     {
+        ///         Name = "Cross Connect Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPrivateCrossconnectResult> Invoke(GetPrivateCrossconnectInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateCrossconnectResult>("ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect", args ?? new GetPrivateCrossconnectInvokeArgs(), options.WithDefaults());
     }
 

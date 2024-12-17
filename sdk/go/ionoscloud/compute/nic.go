@@ -46,9 +46,7 @@ type Nic struct {
 	Lan pulumi.IntOutput `pulumi:"lan"`
 	// The MAC address of the NIC.
 	Mac pulumi.StringOutput `pulumi:"mac"`
-	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	// [string] The name of the LAN.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntOutput `pulumi:"pciSlot"`
@@ -119,9 +117,7 @@ type nicState struct {
 	Lan *int `pulumi:"lan"`
 	// The MAC address of the NIC.
 	Mac *string `pulumi:"mac"`
-	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot *int `pulumi:"pciSlot"`
@@ -154,9 +150,7 @@ type NicState struct {
 	Lan pulumi.IntPtrInput
 	// The MAC address of the NIC.
 	Mac pulumi.StringPtrInput
-	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntPtrInput
@@ -189,9 +183,7 @@ type nicArgs struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan int `pulumi:"lan"`
-	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
 	// [string] The ID of a server.
 	ServerId string `pulumi:"serverId"`
@@ -219,9 +211,7 @@ type NicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntInput
-	// Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringInput
@@ -374,9 +364,7 @@ func (o NicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nic) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
 }
 
-// Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+// [string] The name of the LAN.
 func (o NicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nic) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

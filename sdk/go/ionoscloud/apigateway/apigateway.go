@@ -15,7 +15,6 @@ import (
 //
 // ## Usage example
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -63,7 +61,7 @@ type Apigateway struct {
 	Logs pulumi.BoolPtrOutput `pulumi:"logs"`
 	// [bool] Enable or disable metrics. Defaults to `false`.
 	Metrics pulumi.BoolPtrOutput `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// [string] The name of the API Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] The public endpoint of the API Gateway.
 	PublicEndpoint pulumi.StringOutput `pulumi:"publicEndpoint"`
@@ -105,7 +103,7 @@ type apigatewayState struct {
 	Logs *bool `pulumi:"logs"`
 	// [bool] Enable or disable metrics. Defaults to `false`.
 	Metrics *bool `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// [string] The name of the API Gateway.
 	Name *string `pulumi:"name"`
 	// [string] The public endpoint of the API Gateway.
 	PublicEndpoint *string `pulumi:"publicEndpoint"`
@@ -118,7 +116,7 @@ type ApigatewayState struct {
 	Logs pulumi.BoolPtrInput
 	// [bool] Enable or disable metrics. Defaults to `false`.
 	Metrics pulumi.BoolPtrInput
-	// [string] The domain name. Externally reachable.
+	// [string] The name of the API Gateway.
 	Name pulumi.StringPtrInput
 	// [string] The public endpoint of the API Gateway.
 	PublicEndpoint pulumi.StringPtrInput
@@ -135,7 +133,7 @@ type apigatewayArgs struct {
 	Logs *bool `pulumi:"logs"`
 	// [bool] Enable or disable metrics. Defaults to `false`.
 	Metrics *bool `pulumi:"metrics"`
-	// [string] The domain name. Externally reachable.
+	// [string] The name of the API Gateway.
 	Name *string `pulumi:"name"`
 }
 
@@ -147,7 +145,7 @@ type ApigatewayArgs struct {
 	Logs pulumi.BoolPtrInput
 	// [bool] Enable or disable metrics. Defaults to `false`.
 	Metrics pulumi.BoolPtrInput
-	// [string] The domain name. Externally reachable.
+	// [string] The name of the API Gateway.
 	Name pulumi.StringPtrInput
 }
 
@@ -253,7 +251,7 @@ func (o ApigatewayOutput) Metrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.BoolPtrOutput { return v.Metrics }).(pulumi.BoolPtrOutput)
 }
 
-// [string] The domain name. Externally reachable.
+// [string] The name of the API Gateway.
 func (o ApigatewayOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Apigateway) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

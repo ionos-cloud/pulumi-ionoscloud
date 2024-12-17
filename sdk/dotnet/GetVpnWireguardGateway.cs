@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumi.Ionoscloud
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetVpnWireguardGatewayResult> InvokeAsync(GetVpnWireguardGatewayArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpnWireguardGatewayResult>("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", args ?? new GetVpnWireguardGatewayArgs(), options.WithDefaults());
@@ -47,7 +45,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,9 +65,37 @@ namespace Pulumi.Ionoscloud
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetVpnWireguardGatewayResult> Invoke(GetVpnWireguardGatewayInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpnWireguardGatewayResult>("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", args ?? new GetVpnWireguardGatewayInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetVpnWireguardGateway.Invoke(new()
+        ///     {
+        ///         Location = "de/fra",
+        ///         Name = "example-gateway",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["vpnWireguardGatewayPublicKey"] = data.Vpn_wireguard_gateway.Example.Public_key,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpnWireguardGatewayResult> Invoke(GetVpnWireguardGatewayInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpnWireguardGatewayResult>("ionoscloud:index/getVpnWireguardGateway:getVpnWireguardGateway", args ?? new GetVpnWireguardGatewayInvokeArgs(), options.WithDefaults());
     }
 

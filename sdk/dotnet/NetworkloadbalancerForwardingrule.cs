@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// ### 
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -86,7 +85,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -112,7 +110,7 @@ namespace Pulumi.Ionoscloud
         public Output<string> DatacenterId { get; private set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule target.
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Output("healthCheck")]
         public Output<Outputs.NetworkloadbalancerForwardingruleHealthCheck> HealthCheck { get; private set; } = null!;
@@ -209,7 +207,7 @@ namespace Pulumi.Ionoscloud
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule target.
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.NetworkloadbalancerForwardingruleHealthCheckArgs>? HealthCheck { get; set; }
@@ -274,7 +272,7 @@ namespace Pulumi.Ionoscloud
         public Input<string>? DatacenterId { get; set; }
 
         /// <summary>
-        /// Health check attributes for Network Load Balancer forwarding rule target.
+        /// Health check attributes for Network Load Balancer forwarding rule.
         /// </summary>
         [Input("healthCheck")]
         public Input<Inputs.NetworkloadbalancerForwardingruleHealthCheckGetArgs>? HealthCheck { get; set; }

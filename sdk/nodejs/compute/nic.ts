@@ -92,9 +92,7 @@ export class Nic extends pulumi.CustomResource {
      */
     public /*out*/ readonly mac!: pulumi.Output<string>;
     /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * [string] The name of the LAN.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -219,9 +217,7 @@ export interface NicState {
      */
     mac?: pulumi.Input<string>;
     /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * [string] The name of the LAN.
      */
     name?: pulumi.Input<string>;
     /**
@@ -279,9 +275,7 @@ export interface NicArgs {
      */
     lan: pulumi.Input<number>;
     /**
-     * Specifies the name of the flow log.
-     *
-     * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+     * [string] The name of the LAN.
      */
     name?: pulumi.Input<string>;
     /**

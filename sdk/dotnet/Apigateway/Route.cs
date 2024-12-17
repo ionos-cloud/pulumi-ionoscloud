@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud.Apigateway
     /// 
     /// This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -73,7 +72,6 @@ namespace Pulumi.Ionoscloud.Apigateway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

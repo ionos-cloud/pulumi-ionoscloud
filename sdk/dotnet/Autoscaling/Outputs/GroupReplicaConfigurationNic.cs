@@ -14,11 +14,11 @@ namespace Pulumi.Ionoscloud.Autoscaling.Outputs
     public sealed class GroupReplicaConfigurationNic
     {
         /// <summary>
-        /// [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+        /// Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
         /// </summary>
         public readonly bool? Dhcp;
         /// <summary>
-        /// [bool] Firewall active flag.
+        /// Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
         /// </summary>
         public readonly bool? FirewallActive;
         /// <summary>
@@ -26,23 +26,23 @@ namespace Pulumi.Ionoscloud.Autoscaling.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GroupReplicaConfigurationNicFirewallRule> FirewallRules;
         /// <summary>
-        /// [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+        /// The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
         /// </summary>
         public readonly string? FirewallType;
         /// <summary>
-        /// [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        /// List of all flow logs for the specified NIC.
         /// </summary>
         public readonly ImmutableArray<Outputs.GroupReplicaConfigurationNicFlowLog> FlowLogs;
         /// <summary>
-        /// [int] Lan ID for this replica Nic.
+        /// Lan ID for this replica Nic.
         /// </summary>
         public readonly int Lan;
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// [list] In order to link VM to ALB, target group must be provided
+        /// In order to link VM to ALB, target group must be provided.
         /// </summary>
         public readonly Outputs.GroupReplicaConfigurationNicTargetGroup? TargetGroup;
 

@@ -44,15 +44,11 @@ type GetMariadbClusterResult struct {
 }
 
 func GetMariadbClusterOutput(ctx *pulumi.Context, args GetMariadbClusterOutputArgs, opts ...pulumi.InvokeOption) GetMariadbClusterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMariadbClusterResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetMariadbClusterResultOutput, error) {
 			args := v.(GetMariadbClusterArgs)
-			r, err := GetMariadbCluster(ctx, &args, opts...)
-			var s GetMariadbClusterResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getMariadbCluster:getMariadbCluster", args, GetMariadbClusterResultOutput{}, options).(GetMariadbClusterResultOutput), nil
 		}).(GetMariadbClusterResultOutput)
 }
 

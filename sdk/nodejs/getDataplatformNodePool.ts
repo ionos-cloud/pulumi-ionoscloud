@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getDataplatformNodePool(args: GetDataplatformNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetDataplatformNodePoolResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDataplatformNodePool:getDataplatformNodePool", {
         "clusterId": args.clusterId,
@@ -121,8 +120,14 @@ export interface GetDataplatformNodePoolResult {
  *
  * ## Example Usage
  */
-export function getDataplatformNodePoolOutput(args: GetDataplatformNodePoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataplatformNodePoolResult> {
-    return pulumi.output(args).apply((a: any) => getDataplatformNodePool(a, opts))
+export function getDataplatformNodePoolOutput(args: GetDataplatformNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataplatformNodePoolResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDataplatformNodePool:getDataplatformNodePool", {
+        "clusterId": args.clusterId,
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

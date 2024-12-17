@@ -10,6 +10,16 @@ export type Apigateway = import("./apigateway").Apigateway;
 export const Apigateway: typeof import("./apigateway").Apigateway = null as any;
 utilities.lazyLoad(exports, ["Apigateway"], () => require("./apigateway"));
 
+export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
+export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
+export const getApigatewayOutput: typeof import("./getApigateway").getApigatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getApigateway","getApigatewayOutput"], () => require("./getApigateway"));
+
+export { GetRouteArgs, GetRouteResult, GetRouteOutputArgs } from "./getRoute";
+export const getRoute: typeof import("./getRoute").getRoute = null as any;
+export const getRouteOutput: typeof import("./getRoute").getRouteOutput = null as any;
+utilities.lazyLoad(exports, ["getRoute","getRouteOutput"], () => require("./getRoute"));
+
 export { RouteArgs, RouteState } from "./route";
 export type Route = import("./route").Route;
 export const Route: typeof import("./route").Route = null as any;

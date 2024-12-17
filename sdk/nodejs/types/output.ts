@@ -64,7 +64,7 @@ export interface ApplicationLoadbalancerForwardingruleHttpRule {
      */
     targetGroup?: string;
     /**
-     * [string] Type of the Http Rule condition.
+     * [string] Type of the Http Rule.
      */
     type: string;
 }
@@ -90,40 +90,6 @@ export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
      * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
      */
     value?: string;
-}
-
-export interface GetApigatewayCustomDomain {
-    /**
-     * The ID of the certificate to use for the distribution.
-     */
-    certificateId: string;
-    /**
-     * Name of an existing API Gateway that you want to search for.
-     */
-    name: string;
-}
-
-export interface GetApigatewayRouteUpstream {
-    /**
-     * The host of the upstream.
-     */
-    host: string;
-    /**
-     * The load balancer algorithm.
-     */
-    loadbalancer: string;
-    /**
-     * The port of the upstream.
-     */
-    port: number;
-    /**
-     * The target URL of the upstream.
-     */
-    scheme: string;
-    /**
-     * Weight with which to split traffic to the upstream.
-     */
-    weight: number;
 }
 
 export interface GetApplicationLoadbalancerFlowlog {
@@ -216,272 +182,6 @@ export interface GetAutoCertificateProviderExternalAccountBinding {
      * The key ID of the external account binding
      */
     keyId: string;
-}
-
-export interface GetAutoscalingGroupPolicy {
-    /**
-     * The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
-     */
-    metric: string;
-    /**
-     * Defines the range of time from which samples will be aggregated. Default is 120s.
-     * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    range: string;
-    /**
-     * Specifies the Action to take when the `scaleInThreshold`
-     */
-    scaleInActions: outputs.GetAutoscalingGroupPolicyScaleInAction[];
-    /**
-     * A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
-     */
-    scaleInThreshold: number;
-    /**
-     * Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
-     */
-    scaleOutActions: outputs.GetAutoscalingGroupPolicyScaleOutAction[];
-    /**
-     * The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
-     */
-    scaleOutThreshold: number;
-    /**
-     * Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
-     */
-    unit: string;
-}
-
-export interface GetAutoscalingGroupPolicyScaleInAction {
-    /**
-     * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-     * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod: string;
-    /**
-     * If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-     */
-    deleteVolumes: boolean;
-    /**
-     * The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
-     */
-    terminationPolicyType: string;
-}
-
-export interface GetAutoscalingGroupPolicyScaleOutAction {
-    /**
-     * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
-     */
-    amount: number;
-    /**
-     * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
-     */
-    amountType: string;
-    /**
-     * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
-     * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfiguration {
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    availabilityZone: string;
-    /**
-     * The total number of cores for the VMs.
-     */
-    cores: number;
-    /**
-     * The zone where the VMs are created using this configuration.
-     */
-    cpuFamily: string;
-    /**
-     * List of NICs associated with this Replica.
-     */
-    nics: outputs.GetAutoscalingGroupReplicaConfigurationNic[];
-    /**
-     * The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-     */
-    ram: number;
-    /**
-     * List of volumes associated with this Replica. Only a single volume is currently supported.
-     */
-    volumes: outputs.GetAutoscalingGroupReplicaConfigurationVolume[];
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNic {
-    /**
-     * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
-     */
-    dhcp: boolean;
-    /**
-     * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
-     */
-    firewallActive: boolean;
-    /**
-     * List of all firewall rules for the specified NIC.
-     */
-    firewallRules: outputs.GetAutoscalingGroupReplicaConfigurationNicFirewallRule[];
-    /**
-     * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
-     */
-    firewallType: string;
-    /**
-     * Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
-     */
-    flowLogs: outputs.GetAutoscalingGroupReplicaConfigurationNicFlowLog[];
-    /**
-     * Lan ID for this replica Nic.
-     */
-    lan: number;
-    /**
-     * Name of an existing Autoscaling Group that you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
-    name: string;
-    /**
-     * In order to link VM to ALB, target group must be provided.
-     */
-    targetGroups: outputs.GetAutoscalingGroupReplicaConfigurationNicTargetGroup[];
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicFirewallRule {
-    /**
-     * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
-     */
-    icmpCode: number;
-    /**
-     * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
-     */
-    icmpType: number;
-    /**
-     * Name of an existing Autoscaling Group that you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
-    name: string;
-    /**
-     * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeEnd: number;
-    /**
-     * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
-     */
-    portRangeStart: number;
-    /**
-     * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
-     */
-    protocol: string;
-    /**
-     * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
-     */
-    sourceIp: string;
-    /**
-     * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
-     */
-    sourceMac: string;
-    /**
-     * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
-     */
-    targetIp: string;
-    /**
-     * Type of resource
-     */
-    type: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicFlowLog {
-    /**
-     * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
-     */
-    action: string;
-    /**
-     * The bucket name of an existing IONOS Object Storage bucket.
-     */
-    bucket: string;
-    /**
-     * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
-     */
-    direction: string;
-    /**
-     * Id of an existing Autoscaling Group that you want to search for.
-     */
-    id: string;
-    /**
-     * Name of an existing Autoscaling Group that you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
-    name: string;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationNicTargetGroup {
-    /**
-     * The port for the target group.
-     */
-    port: number;
-    /**
-     * The ID of the target group.
-     */
-    targetGroupId: string;
-    /**
-     * The weight for the target group.
-     */
-    weight: number;
-}
-
-export interface GetAutoscalingGroupReplicaConfigurationVolume {
-    /**
-     * The uuid of the Backup Unit that user has access to.
-     */
-    backupUnitId: string;
-    /**
-     * Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-     */
-    bootOrder: string;
-    /**
-     * The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
-     */
-    bus: string;
-    /**
-     * The image installed on the volume. Only the UUID of the image is presently supported.
-     */
-    image: string;
-    /**
-     * The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
-     */
-    imageAlias: string;
-    /**
-     * Name of an existing Autoscaling Group that you want to search for.
-     *
-     * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
-    name: string;
-    /**
-     * User-defined size for this replica volume in GB.
-     */
-    size: number;
-    sshKeys: string[];
-    /**
-     * Type of resource
-     */
-    type: string;
-}
-
-export interface GetAutoscalingGroupServersServer {
-    /**
-     * The unique ID of the server.
-     */
-    id: string;
 }
 
 export interface GetCdnDistributionRoutingRule {
@@ -1307,21 +1007,6 @@ export interface GetK8sNodePoolNodesNode {
      * A valid public IP
      */
     publicIp?: string;
-}
-
-export interface GetKafkaClusterConnection {
-    /**
-     * IP address and port of cluster brokers.
-     */
-    brokerAddresses: string[];
-    /**
-     * The datacenter that your instance is connected to.
-     */
-    datacenterId: string;
-    /**
-     * The numeric LAN ID your instance is connected to.
-     */
-    lanId: string;
 }
 
 export interface GetLanIpFailover {
@@ -2856,6 +2541,40 @@ export namespace apigateway {
         name: string;
     }
 
+    export interface GetApigatewayCustomDomain {
+        /**
+         * The ID of the certificate to use for the distribution.
+         */
+        certificateId: string;
+        /**
+         * Name of an existing API Gateway that you want to search for.
+         */
+        name: string;
+    }
+
+    export interface GetRouteUpstream {
+        /**
+         * The host of the upstream.
+         */
+        host: string;
+        /**
+         * The load balancer algorithm.
+         */
+        loadbalancer: string;
+        /**
+         * The port of the upstream.
+         */
+        port: number;
+        /**
+         * The target URL of the upstream.
+         */
+        scheme: string;
+        /**
+         * Weight with which to split traffic to the upstream.
+         */
+        weight: number;
+    }
+
     export interface RouteUpstream {
         /**
          * [string] The host of the upstream.
@@ -2882,6 +2601,272 @@ export namespace apigateway {
 }
 
 export namespace autoscaling {
+    export interface GetGroupPolicy {
+        /**
+         * The Metric that should trigger Scaling Actions. The values of the Metric are checked in fixed intervals.
+         */
+        metric: string;
+        /**
+         * Defines the range of time from which samples will be aggregated. Default is 120s.
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        range: string;
+        /**
+         * Specifies the Action to take when the `scaleInThreshold`
+         */
+        scaleInActions: outputs.autoscaling.GetGroupPolicyScaleInAction[];
+        /**
+         * A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+         */
+        scaleInThreshold: number;
+        /**
+         * Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group
+         */
+        scaleOutActions: outputs.autoscaling.GetGroupPolicyScaleOutAction[];
+        /**
+         * The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+         */
+        scaleOutThreshold: number;
+        /**
+         * Specifies the Action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this Autoscaling Group.
+         */
+        unit: string;
+    }
+
+    export interface GetGroupPolicyScaleInAction {
+        /**
+         * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+         */
+        amount: number;
+        /**
+         * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+         */
+        amountType: string;
+        /**
+         * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+        /**
+         * If set to 'true', when deleting an replica during scale in, any attached volume will also be deleted. When set to 'false', all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+         */
+        deleteVolumes: boolean;
+        /**
+         * The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In instances. Default termination policy is OLDEST_SERVER_FIRST.
+         */
+        terminationPolicyType: string;
+    }
+
+    export interface GetGroupPolicyScaleOutAction {
+        /**
+         * When `amountType == ABSOLUTE`, this is the number of VMs added or removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the Autoscaling Group's current `targetReplicaCount` in order to derive the number of VMs that will be added or removed in one step. There will always be at least one VM added or removed.
+         */
+        amount: number;
+        /**
+         * The type for the given amount. Possible values are: [ABSOLUTE, PERCENTAGE].
+         */
+        amountType: string;
+        /**
+         * Minimum time to pass after this Scaling Action has started, until the next Scaling Action will be started. Additionally, if a Scaling Action is currently in progress, no second Scaling Action will be started for the same Autoscaling Group. Instead, the Metric will be re-evaluated after the current Scaling Action completed (either successful or with failures).
+         * *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+    }
+
+    export interface GetGroupReplicaConfiguration {
+        /**
+         * The zone where the VMs are created using this configuration.
+         */
+        availabilityZone: string;
+        /**
+         * The total number of cores for the VMs.
+         */
+        cores: number;
+        /**
+         * The zone where the VMs are created using this configuration.
+         */
+        cpuFamily: string;
+        /**
+         * List of NICs associated with this Replica.
+         */
+        nics: outputs.autoscaling.GetGroupReplicaConfigurationNic[];
+        /**
+         * The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+         */
+        ram: number;
+        /**
+         * List of volumes associated with this Replica. Only a single volume is currently supported.
+         */
+        volumes: outputs.autoscaling.GetGroupReplicaConfigurationVolume[];
+    }
+
+    export interface GetGroupReplicaConfigurationNic {
+        /**
+         * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
+         */
+        dhcp: boolean;
+        /**
+         * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
+         */
+        firewallActive: boolean;
+        /**
+         * List of all firewall rules for the specified NIC.
+         */
+        firewallRules: outputs.autoscaling.GetGroupReplicaConfigurationNicFirewallRule[];
+        /**
+         * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
+         */
+        firewallType: string;
+        /**
+         * Flow log configuration for the NIC. By default, the flow log is inactive. If you want to activate the flow log, you must specify the target resource and the type of traffic to log.
+         */
+        flowLogs: outputs.autoscaling.GetGroupReplicaConfigurationNicFlowLog[];
+        /**
+         * Lan ID for this replica Nic.
+         */
+        lan: number;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * In order to link VM to ALB, target group must be provided.
+         */
+        targetGroups: outputs.autoscaling.GetGroupReplicaConfigurationNicTargetGroup[];
+    }
+
+    export interface GetGroupReplicaConfigurationNicFirewallRule {
+        /**
+         * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
+         */
+        icmpCode: number;
+        /**
+         * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
+         */
+        icmpType: number;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeEnd: number;
+        /**
+         * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
+         */
+        portRangeStart: number;
+        /**
+         * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
+         */
+        protocol: string;
+        /**
+         * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
+         */
+        sourceIp: string;
+        /**
+         * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
+         */
+        sourceMac: string;
+        /**
+         * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
+         */
+        targetIp: string;
+        /**
+         * Type of resource
+         */
+        type: string;
+    }
+
+    export interface GetGroupReplicaConfigurationNicFlowLog {
+        /**
+         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL.
+         */
+        action: string;
+        /**
+         * The bucket name of an existing IONOS Object Storage bucket.
+         */
+        bucket: string;
+        /**
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL.
+         */
+        direction: string;
+        /**
+         * Id of an existing Autoscaling Group that you want to search for.
+         */
+        id: string;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+    }
+
+    export interface GetGroupReplicaConfigurationNicTargetGroup {
+        /**
+         * The port for the target group.
+         */
+        port: number;
+        /**
+         * The ID of the target group.
+         */
+        targetGroupId: string;
+        /**
+         * The weight for the target group.
+         */
+        weight: number;
+    }
+
+    export interface GetGroupReplicaConfigurationVolume {
+        /**
+         * The uuid of the Backup Unit that user has access to.
+         */
+        backupUnitId: string;
+        /**
+         * Determines whether the volume will be used as a boot volume: NONE - the volume will not be used as boot volume, PRIMARY - the volume will be used as boot volume, AUTO - will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+         */
+        bootOrder: string;
+        /**
+         * The bus type of the volume. Default setting is 'VIRTIO'. The bus type 'IDE' is also supported.
+         */
+        bus: string;
+        /**
+         * The image installed on the volume. Only the UUID of the image is presently supported.
+         */
+        image: string;
+        /**
+         * The image installed on the volume. Must be an 'imageAlias' as specified via the images API.
+         */
+        imageAlias: string;
+        /**
+         * Name of an existing Autoscaling Group that you want to search for.
+         *
+         * Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
+         */
+        name: string;
+        /**
+         * User-defined size for this replica volume in GB.
+         */
+        size: number;
+        sshKeys: string[];
+        /**
+         * Type of resource
+         */
+        type: string;
+    }
+
+    export interface GetServersServer {
+        /**
+         * The unique ID of the server.
+         */
+        id: string;
+    }
+
     export interface GroupPolicy {
         /**
          * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
@@ -2915,7 +2900,7 @@ export namespace autoscaling {
 
     export interface GroupPolicyScaleInAction {
         /**
-         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         * [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
          */
         amount: number;
         /**
@@ -2980,11 +2965,11 @@ export namespace autoscaling {
 
     export interface GroupReplicaConfigurationNic {
         /**
-         * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+         * Dhcp flag for this replica Nic. This is an optional attribute with default value of 'true' if not given in the request payload or given as null.
          */
         dhcp?: boolean;
         /**
-         * [bool] Firewall active flag.
+         * Activate or deactivate the firewall. By default, an active firewall without any defined rules will block all incoming network traffic except for the firewall rules that explicitly allows certain protocols, IP addresses and ports.
          */
         firewallActive?: boolean;
         /**
@@ -2992,81 +2977,81 @@ export namespace autoscaling {
          */
         firewallRules?: outputs.autoscaling.GroupReplicaConfigurationNicFirewallRule[];
         /**
-         * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+         * The type of firewall rules that will be allowed on the NIC. If not specified, the default INGRESS value is used.
          */
         firewallType?: string;
         /**
-         * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+         * List of all flow logs for the specified NIC.
          */
         flowLogs?: outputs.autoscaling.GroupReplicaConfigurationNicFlowLog[];
         /**
-         * [int] Lan ID for this replica Nic.
+         * Lan ID for this replica Nic.
          */
         lan: number;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name: string;
         /**
-         * [list] In order to link VM to ALB, target group must be provided
+         * In order to link VM to ALB, target group must be provided.
          */
         targetGroup?: outputs.autoscaling.GroupReplicaConfigurationNicTargetGroup;
     }
 
     export interface GroupReplicaConfigurationNicFirewallRule {
         /**
-         * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+         * Sets the allowed code (from 0 to 254) when ICMP protocol is selected. The value 'null' allows all codes.
          */
         icmpCode?: number;
         /**
-         * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+         * Sets the allowed type (from 0 to 254) if the protocol ICMP is selected. The value 'null' allows all types.
          */
         icmpType?: number;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name?: string;
         /**
-         * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         * Sets the end range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
         portRangeEnd?: number;
         /**
-         * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         * Sets the initial range of the allowed port (from 1 to 65535) if the protocol TCP or UDP is selected. The value 'null' for 'port_range_start' and 'port_range_end' allows all ports.
          */
         portRangeStart?: number;
         /**
-         * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+         * The protocol for the rule. The property cannot be modified after its creation (not allowed in update requests).
          */
         protocol: string;
         /**
-         * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+         * Only traffic originating from the respective IPv4 address is permitted. The value 'null' allows traffic from any IP address.
          */
         sourceIp?: string;
         /**
-         * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+         * Only traffic originating from the respective MAC address is permitted. Valid format: 'aa:bb:cc:dd:ee:ff'. The value 'null' allows traffic from any MAC address.
          */
         sourceMac?: string;
         /**
-         * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+         * If the target NIC has multiple IP addresses, only the traffic directed to the respective IP address of the NIC is allowed. The value 'null' allows traffic to any target IP address.
          */
         targetIp?: string;
         /**
-         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         * The firewall rule type. If not specified, the default value 'INGRESS' is used.
          */
         type: string;
     }
 
     export interface GroupReplicaConfigurationNicFlowLog {
         /**
-         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         * Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
          */
         action: string;
         /**
-         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         * The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
          */
         bucket: string;
         /**
-         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         * Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
          */
         direction: string;
         /**
@@ -3074,22 +3059,22 @@ export namespace autoscaling {
          */
         id: string;
         /**
-         * [string] Name for this replica volume.
+         * [string] User-defined name for the Autoscaling Group.
          */
         name: string;
     }
 
     export interface GroupReplicaConfigurationNicTargetGroup {
         /**
-         * [int] The port of the target group.
+         * The port for the target group.
          */
         port: number;
         /**
-         * [string] The ID of the target group.
+         * The ID of the target group.
          */
         targetGroupId: string;
         /**
-         * [int] The weight of the target group.
+         * The weight for the target group.
          */
         weight: number;
     }
@@ -3221,11 +3206,11 @@ export namespace compute {
          */
         id: string;
         /**
-         * The location of the cross-connected datacenter
+         * The physical location of the connectable datacenter
          */
         location: string;
         /**
-         * The name of the connectable datacenter
+         * [string] The name of the cross-connection.
          */
         name: string;
     }
@@ -4046,7 +4031,8 @@ export namespace k8s {
 export namespace kafka {
     export interface ClusterConnections {
         /**
-         * [list] IP address and port of cluster brokers.
+         * [list] IP addresses and subnet of cluster brokers. **Note** the following
+         * unavailable IP range: 10.224.0.0/11
          */
         brokerAddresses: string[];
         /**
@@ -4055,6 +4041,21 @@ export namespace kafka {
         datacenterId: string;
         /**
          * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
+    }
+
+    export interface GetClusterConnection {
+        /**
+         * IP address and port of cluster brokers.
+         */
+        brokerAddresses: string[];
+        /**
+         * The datacenter that your instance is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID your instance is connected to.
          */
         lanId: string;
     }

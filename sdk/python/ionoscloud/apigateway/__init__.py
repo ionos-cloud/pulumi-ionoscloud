@@ -6,6 +6,8 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .apigateway import *
+from .get_apigateway import *
+from .get_route import *
 from .route import *
 from ._inputs import *
 from . import outputs

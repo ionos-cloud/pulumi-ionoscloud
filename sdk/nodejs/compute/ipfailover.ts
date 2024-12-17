@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -61,7 +60,6 @@ import * as utilities from "../utilities";
  *     dependsOn: [exampleLan],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## A note on multiple NICs on an IP Failover
  *

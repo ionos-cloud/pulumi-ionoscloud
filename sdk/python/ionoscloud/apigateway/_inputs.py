@@ -4,15 +4,37 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ApigatewayCustomDomainArgs',
+    'ApigatewayCustomDomainArgsDict',
     'RouteUpstreamArgs',
+    'RouteUpstreamArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ApigatewayCustomDomainArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        [string] The domain name. Externally reachable.
+        """
+        certificate_id: NotRequired[pulumi.Input[str]]
+        """
+        [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+        """
+elif False:
+    ApigatewayCustomDomainArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ApigatewayCustomDomainArgs:
@@ -51,6 +73,31 @@ class ApigatewayCustomDomainArgs:
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
 
+
+if not MYPY:
+    class RouteUpstreamArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        [string] The host of the upstream.
+        """
+        loadbalancer: NotRequired[pulumi.Input[str]]
+        """
+        [string] The load balancer algorithm. Default value: `roundrobin`.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        [int] The port of the upstream. Default value: `80`.
+        """
+        scheme: NotRequired[pulumi.Input[str]]
+        """
+        [string] The target URL of the upstream. Default value: `http`.
+        """
+        weight: NotRequired[pulumi.Input[int]]
+        """
+        [int] Weight with which to split traffic to the upstream. Default value: `100`.
+        """
+elif False:
+    RouteUpstreamArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RouteUpstreamArgs:

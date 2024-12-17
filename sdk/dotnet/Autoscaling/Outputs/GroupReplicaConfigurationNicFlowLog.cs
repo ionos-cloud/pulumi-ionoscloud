@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Autoscaling.Outputs
     public sealed class GroupReplicaConfigurationNicFlowLog
     {
         /// <summary>
-        /// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        /// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
-        /// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         public readonly string Direction;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Ionoscloud.Autoscaling.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         public readonly string Name;
 

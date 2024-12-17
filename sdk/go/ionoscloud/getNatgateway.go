@@ -52,15 +52,11 @@ type GetNatgatewayResult struct {
 }
 
 func GetNatgatewayOutput(ctx *pulumi.Context, args GetNatgatewayOutputArgs, opts ...pulumi.InvokeOption) GetNatgatewayResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNatgatewayResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetNatgatewayResultOutput, error) {
 			args := v.(GetNatgatewayArgs)
-			r, err := GetNatgateway(ctx, &args, opts...)
-			var s GetNatgatewayResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNatgateway:getNatgateway", args, GetNatgatewayResultOutput{}, options).(GetNatgatewayResultOutput), nil
 		}).(GetNatgatewayResultOutput)
 }
 

@@ -21,7 +21,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,7 +60,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -90,7 +88,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// [string] The name of the cross-connection.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -167,7 +165,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// [string] The name of the cross-connection.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -212,7 +210,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the connectable datacenter
+        /// [string] The name of the cross-connection.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

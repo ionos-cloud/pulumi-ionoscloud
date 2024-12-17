@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -271,7 +276,7 @@ class Share(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -284,7 +289,6 @@ class Share(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -300,30 +304,29 @@ class Share(pulumi.CustomResource):
         example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
             location="de/txl",
             size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
+            nfs={
+                "min_version": "4.2",
+            },
+            connections={
+                "datacenter_id": nfs_dc.id,
+                "ip_address": "192.168.100.10/24",
+                "lan": nfs_lan.id,
+            })
         example_share = ionoscloud.nfs.Share("exampleShare",
             location="de/txl",
             cluster_id=example_cluster.id,
             quota=512,
             gid=512,
             uid=512,
-            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
-                description="Client Group 1",
-                ip_networks=["10.234.50.0/24"],
-                hosts=["10.234.62.123"],
-                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
-                    squash="all-anonymous",
-                ),
-            )])
+            client_groups=[{
+                "description": "Client Group 1",
+                "ip_networks": ["10.234.50.0/24"],
+                "hosts": ["10.234.62.123"],
+                "nfs": {
+                    "squash": "all-anonymous",
+                },
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -335,7 +338,7 @@ class Share(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         :param pulumi.Input[str] location: The location of the Network File Storage Cluster.
@@ -354,7 +357,6 @@ class Share(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -370,30 +372,29 @@ class Share(pulumi.CustomResource):
         example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
             location="de/txl",
             size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
+            nfs={
+                "min_version": "4.2",
+            },
+            connections={
+                "datacenter_id": nfs_dc.id,
+                "ip_address": "192.168.100.10/24",
+                "lan": nfs_lan.id,
+            })
         example_share = ionoscloud.nfs.Share("exampleShare",
             location="de/txl",
             cluster_id=example_cluster.id,
             quota=512,
             gid=512,
             uid=512,
-            client_groups=[ionoscloud.nfs.ShareClientGroupArgs(
-                description="Client Group 1",
-                ip_networks=["10.234.50.0/24"],
-                hosts=["10.234.62.123"],
-                nfs=ionoscloud.nfs.ShareClientGroupNfsArgs(
-                    squash="all-anonymous",
-                ),
-            )])
+            client_groups=[{
+                "description": "Client Group 1",
+                "ip_networks": ["10.234.50.0/24"],
+                "hosts": ["10.234.62.123"],
+                "nfs": {
+                    "squash": "all-anonymous",
+                },
+            }])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -418,7 +419,7 @@ class Share(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+                 client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  gid: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
@@ -458,7 +459,7 @@ class Share(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]]] = None,
+            client_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             gid: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
@@ -473,7 +474,7 @@ class Share(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ShareClientGroupArgs']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         :param pulumi.Input[str] location: The location of the Network File Storage Cluster.

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -84,7 +83,6 @@ import * as utilities from "./utilities";
  *     serverCertificates: [cert.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -147,7 +145,7 @@ export class ApplicationLoadbalancerForwardingrule extends pulumi.CustomResource
      */
     public readonly listenerPort!: pulumi.Output<number>;
     /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
+     * [string] The name of the Application Load Balancer forwarding rule.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -242,7 +240,7 @@ export interface ApplicationLoadbalancerForwardingruleState {
      */
     listenerPort?: pulumi.Input<number>;
     /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
+     * [string] The name of the Application Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     /**
@@ -284,7 +282,7 @@ export interface ApplicationLoadbalancerForwardingruleArgs {
      */
     listenerPort: pulumi.Input<number>;
     /**
-     * [string] The unique name of the Application Load Balancer HTTP rule.
+     * [string] The name of the Application Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     /**

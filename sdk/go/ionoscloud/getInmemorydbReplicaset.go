@@ -45,15 +45,11 @@ type GetInmemorydbReplicasetResult struct {
 }
 
 func GetInmemorydbReplicasetOutput(ctx *pulumi.Context, args GetInmemorydbReplicasetOutputArgs, opts ...pulumi.InvokeOption) GetInmemorydbReplicasetResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetInmemorydbReplicasetResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetInmemorydbReplicasetResultOutput, error) {
 			args := v.(GetInmemorydbReplicasetArgs)
-			r, err := GetInmemorydbReplicaset(ctx, &args, opts...)
-			var s GetInmemorydbReplicasetResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", args, GetInmemorydbReplicasetResultOutput{}, options).(GetInmemorydbReplicasetResultOutput), nil
 		}).(GetInmemorydbReplicasetResultOutput)
 }
 

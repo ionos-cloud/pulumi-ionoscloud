@@ -68,15 +68,11 @@ type GetNfsShareResult struct {
 }
 
 func GetNfsShareOutput(ctx *pulumi.Context, args GetNfsShareOutputArgs, opts ...pulumi.InvokeOption) GetNfsShareResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNfsShareResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetNfsShareResultOutput, error) {
 			args := v.(GetNfsShareArgs)
-			r, err := GetNfsShare(ctx, &args, opts...)
-			var s GetNfsShareResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNfsShare:getNfsShare", args, GetNfsShareResultOutput{}, options).(GetNfsShareResultOutput), nil
 		}).(GetNfsShareResultOutput)
 }
 

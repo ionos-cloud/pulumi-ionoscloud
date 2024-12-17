@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -16,6 +21,8 @@ __all__ = [
     'get_apigateway',
     'get_apigateway_output',
 ]
+
+warnings.warn("""ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""", DeprecationWarning)
 
 @pulumi.output_type
 class GetApigatewayResult:
@@ -128,20 +135,19 @@ def get_apigateway(id: Optional[str] = None,
     Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
     this data source is called.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_apigateway(name="example-apigateway")
+    example = ionoscloud.apigateway.get_apigateway(name="example-apigateway")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of an existing API Gateway that you want to search for.
     :param str name: Name of an existing API Gateway that you want to search for.
     :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
+    pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
@@ -157,13 +163,10 @@ def get_apigateway(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         partial_match=pulumi.get(__ret__, 'partial_match'),
         public_endpoint=pulumi.get(__ret__, 'public_endpoint'))
-
-
-@_utilities.lift_output_func(get_apigateway)
 def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
                           partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApigatewayResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApigatewayResult]:
     """
     The **API Gateway data source** can be used to search for and return an existing API Gateway.
     You can provide a string for the name parameter which will be compared with provisioned API Gateways.
@@ -177,18 +180,30 @@ def get_apigateway_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Needs to have the resource be previously created, or a depends_on clause to ensure that the resource is created before
     this data source is called.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.get_apigateway(name="example-apigateway")
+    example = ionoscloud.apigateway.get_apigateway(name="example-apigateway")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: ID of an existing API Gateway that you want to search for.
     :param str name: Name of an existing API Gateway that you want to search for.
     :param bool partial_match: Whether partial matching is allowed or not when using the name filter. Defaults to `false`.
     """
-    ...
+    pulumi.log.warn("""get_apigateway is deprecated: ionoscloud.index/getapigateway.getApigateway has been deprecated in favor of ionoscloud.apigateway/getapigateway.getApigateway""")
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getApigateway:getApigateway', __args__, opts=opts, typ=GetApigatewayResult)
+    return __ret__.apply(lambda __response__: GetApigatewayResult(
+        custom_domains=pulumi.get(__response__, 'custom_domains'),
+        id=pulumi.get(__response__, 'id'),
+        logs=pulumi.get(__response__, 'logs'),
+        metrics=pulumi.get(__response__, 'metrics'),
+        name=pulumi.get(__response__, 'name'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        public_endpoint=pulumi.get(__response__, 'public_endpoint')))

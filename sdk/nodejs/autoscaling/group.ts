@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -106,7 +105,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Group extends pulumi.CustomResource {
     /**
@@ -153,7 +151,7 @@ export class Group extends pulumi.CustomResource {
      */
     public readonly minReplicaCount!: pulumi.Output<number>;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -236,7 +234,7 @@ export interface GroupState {
      */
     minReplicaCount?: pulumi.Input<number>;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     name?: pulumi.Input<string>;
     /**
@@ -266,7 +264,7 @@ export interface GroupArgs {
      */
     minReplicaCount: pulumi.Input<number>;
     /**
-     * [string] Name for this replica volume.
+     * [string] User-defined name for the Autoscaling Group.
      */
     name?: pulumi.Input<string>;
     /**

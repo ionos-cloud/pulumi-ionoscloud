@@ -30,6 +30,16 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetVcpuServerResult> Invoke(GetVcpuServerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVcpuServerResult>("ionoscloud:index/getVcpuServer:getVcpuServer", args ?? new GetVcpuServerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **VCPU Server data source** can be used to search for and return existing VCPU servers. 
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetVcpuServerResult> Invoke(GetVcpuServerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVcpuServerResult>("ionoscloud:index/getVcpuServer:getVcpuServer", args ?? new GetVcpuServerInvokeArgs(), options.WithDefaults());
     }
 
 

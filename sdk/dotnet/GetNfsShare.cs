@@ -22,6 +22,12 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetNfsShareResult> Invoke(GetNfsShareInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNfsShareResult>("ionoscloud:index/getNfsShare:getNfsShare", args ?? new GetNfsShareInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Returns information about shares of Network File Storage (NFS) on IonosCloud.
+        /// </summary>
+        public static Output<GetNfsShareResult> Invoke(GetNfsShareInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNfsShareResult>("ionoscloud:index/getNfsShare:getNfsShare", args ?? new GetNfsShareInvokeArgs(), options.WithDefaults());
     }
 
 

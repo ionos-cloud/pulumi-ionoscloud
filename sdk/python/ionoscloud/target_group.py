@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -256,60 +261,58 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-                 http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_version: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages a **Target Group** on IonosCloud.
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
         example = ionoscloud.TargetGroup("example",
             algorithm="ROUND_ROBIN",
-            health_check=ionoscloud.TargetGroupHealthCheckArgs(
-                check_interval=50000,
-                check_timeout=5000,
-                retries=2,
-            ),
-            http_health_check=ionoscloud.TargetGroupHttpHealthCheckArgs(
-                match_type="STATUS_CODE",
-                method="GET",
-                negate=True,
-                path="/.",
-                regex=True,
-                response="200",
-            ),
+            health_check={
+                "check_interval": 50000,
+                "check_timeout": 5000,
+                "retries": 2,
+            },
+            http_health_check={
+                "match_type": "STATUS_CODE",
+                "method": "GET",
+                "negate": True,
+                "path": "/.",
+                "regex": True,
+                "response": "200",
+            },
             protocol="HTTP",
             protocol_version="HTTP1",
             targets=[
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=True,
-                    ip="22.231.2.2",
-                    maintenance_enabled=False,
-                    port=8080,
-                    proxy_protocol="v2ssl",
-                    weight=1,
-                ),
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=False,
-                    ip="22.231.2.3",
-                    maintenance_enabled=False,
-                    port=8081,
-                    proxy_protocol="v2",
-                    weight=124,
-                ),
+                {
+                    "health_check_enabled": True,
+                    "ip": "22.231.2.2",
+                    "maintenance_enabled": False,
+                    "port": 8080,
+                    "proxy_protocol": "v2ssl",
+                    "weight": 1,
+                },
+                {
+                    "health_check_enabled": False,
+                    "ip": "22.231.2.3",
+                    "maintenance_enabled": False,
+                    "port": 8081,
+                    "proxy_protocol": "v2",
+                    "weight": 124,
+                },
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -322,12 +325,12 @@ class TargetGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
         :param pulumi.Input[str] name: [string] The name of the target group.
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: [list] Array of items in the collection
         """
         ...
     @overload
@@ -340,48 +343,46 @@ class TargetGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
 
         example = ionoscloud.TargetGroup("example",
             algorithm="ROUND_ROBIN",
-            health_check=ionoscloud.TargetGroupHealthCheckArgs(
-                check_interval=50000,
-                check_timeout=5000,
-                retries=2,
-            ),
-            http_health_check=ionoscloud.TargetGroupHttpHealthCheckArgs(
-                match_type="STATUS_CODE",
-                method="GET",
-                negate=True,
-                path="/.",
-                regex=True,
-                response="200",
-            ),
+            health_check={
+                "check_interval": 50000,
+                "check_timeout": 5000,
+                "retries": 2,
+            },
+            http_health_check={
+                "match_type": "STATUS_CODE",
+                "method": "GET",
+                "negate": True,
+                "path": "/.",
+                "regex": True,
+                "response": "200",
+            },
             protocol="HTTP",
             protocol_version="HTTP1",
             targets=[
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=True,
-                    ip="22.231.2.2",
-                    maintenance_enabled=False,
-                    port=8080,
-                    proxy_protocol="v2ssl",
-                    weight=1,
-                ),
-                ionoscloud.TargetGroupTargetArgs(
-                    health_check_enabled=False,
-                    ip="22.231.2.3",
-                    maintenance_enabled=False,
-                    port=8081,
-                    proxy_protocol="v2",
-                    weight=124,
-                ),
+                {
+                    "health_check_enabled": True,
+                    "ip": "22.231.2.2",
+                    "maintenance_enabled": False,
+                    "port": 8080,
+                    "proxy_protocol": "v2ssl",
+                    "weight": 1,
+                },
+                {
+                    "health_check_enabled": False,
+                    "ip": "22.231.2.3",
+                    "maintenance_enabled": False,
+                    "port": 8081,
+                    "proxy_protocol": "v2",
+                    "weight": 124,
+                },
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -407,12 +408,12 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: Optional[pulumi.Input[str]] = None,
-                 health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-                 http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+                 health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+                 http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_version: Optional[pulumi.Input[str]] = None,
-                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -446,12 +447,12 @@ class TargetGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: Optional[pulumi.Input[str]] = None,
-            health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']]] = None,
-            http_health_check: Optional[pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']]] = None,
+            health_check: Optional[pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
+            http_health_check: Optional[pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             protocol_version: Optional[pulumi.Input[str]] = None,
-            targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]]] = None) -> 'TargetGroup':
+            targets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None) -> 'TargetGroup':
         """
         Get an existing TargetGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -460,12 +461,12 @@ class TargetGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHealthCheckArgs']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[pulumi.InputType['TargetGroupHttpHealthCheckArgs']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
         :param pulumi.Input[str] name: [string] The name of the target group.
         :param pulumi.Input[str] protocol: [string] Balancing protocol.
         :param pulumi.Input[str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TargetGroupTargetArgs']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: [list] Array of items in the collection
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

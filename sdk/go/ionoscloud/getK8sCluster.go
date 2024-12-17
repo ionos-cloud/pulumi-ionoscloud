@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetK8sCluster(ctx *pulumi.Context, args *GetK8sClusterArgs, opts ...pulumi.InvokeOption) (*GetK8sClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetK8sClusterResult
@@ -137,15 +135,11 @@ type GetK8sClusterResult struct {
 }
 
 func GetK8sClusterOutput(ctx *pulumi.Context, args GetK8sClusterOutputArgs, opts ...pulumi.InvokeOption) GetK8sClusterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetK8sClusterResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetK8sClusterResultOutput, error) {
 			args := v.(GetK8sClusterArgs)
-			r, err := GetK8sCluster(ctx, &args, opts...)
-			var s GetK8sClusterResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getK8sCluster:getK8sCluster", args, GetK8sClusterResultOutput{}, options).(GetK8sClusterResultOutput), nil
 		}).(GetK8sClusterResultOutput)
 }
 

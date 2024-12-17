@@ -26,6 +26,14 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetIpfailoverResult> Invoke(GetIpfailoverInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpfailoverResult>("ionoscloud:index/getIpfailover:getIpfailover", args ?? new GetIpfailoverInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **IP Failover data source** can be used to search for and return an existing IP Failover object.
+        /// You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// </summary>
+        public static Output<GetIpfailoverResult> Invoke(GetIpfailoverInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpfailoverResult>("ionoscloud:index/getIpfailover:getIpfailover", args ?? new GetIpfailoverInvokeArgs(), options.WithDefaults());
     }
 
 

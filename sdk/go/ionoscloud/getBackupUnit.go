@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetBackupUnit(ctx *pulumi.Context, args *GetBackupUnitArgs, opts ...pulumi.InvokeOption) (*GetBackupUnitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBackupUnitResult
@@ -77,15 +75,11 @@ type GetBackupUnitResult struct {
 }
 
 func GetBackupUnitOutput(ctx *pulumi.Context, args GetBackupUnitOutputArgs, opts ...pulumi.InvokeOption) GetBackupUnitResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetBackupUnitResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetBackupUnitResultOutput, error) {
 			args := v.(GetBackupUnitArgs)
-			r, err := GetBackupUnit(ctx, &args, opts...)
-			var s GetBackupUnitResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getBackupUnit:getBackupUnit", args, GetBackupUnitResultOutput{}, options).(GetBackupUnitResultOutput), nil
 		}).(GetBackupUnitResultOutput)
 }
 

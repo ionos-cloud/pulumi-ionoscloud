@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getServer(args: GetServerArgs, opts?: pulumi.InvokeOptions): Promise<GetServerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getServer:getServer", {
         "datacenterId": args.datacenterId,
@@ -125,8 +124,15 @@ export interface GetServerResult {
  *
  * ## Example Usage
  */
-export function getServerOutput(args: GetServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerResult> {
-    return pulumi.output(args).apply((a: any) => getServer(a, opts))
+export function getServerOutput(args: GetServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServerResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getServer:getServer", {
+        "datacenterId": args.datacenterId,
+        "id": args.id,
+        "name": args.name,
+        "templateUuid": args.templateUuid,
+        "type": args.type,
+    }, opts);
 }
 
 /**

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,7 +34,7 @@ class GroupArgs:
         :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input['GroupPolicyArgs'] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
         :param pulumi.Input['GroupReplicaConfigurationArgs'] replica_configuration: [List]
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
+        :param pulumi.Input[str] name: [string] User-defined name for the Autoscaling Group.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "max_replica_count", max_replica_count)
@@ -103,7 +108,7 @@ class GroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name for this replica volume.
+        [string] User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
@@ -128,7 +133,7 @@ class _GroupState:
         :param pulumi.Input[str] location: Location of the data center.
         :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
+        :param pulumi.Input[str] name: [string] User-defined name for the Autoscaling Group.
         :param pulumi.Input['GroupPolicyArgs'] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
         :param pulumi.Input['GroupReplicaConfigurationArgs'] replica_configuration: [List]
         """
@@ -199,7 +204,7 @@ class _GroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name for this replica volume.
+        [string] User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
@@ -241,15 +246,14 @@ class Group(pulumi.CustomResource):
                  max_replica_count: Optional[pulumi.Input[int]] = None,
                  min_replica_count: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['GroupPolicyArgs']]] = None,
-                 replica_configuration: Optional[pulumi.Input[pulumi.InputType['GroupReplicaConfigurationArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+                 replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         """
         Manages an Autoscaling Group on IonosCloud.
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -272,83 +276,82 @@ class Group(pulumi.CustomResource):
             datacenter_id=datacenter_example.id,
             max_replica_count=2,
             min_replica_count=1,
-            policy=ionoscloud.autoscaling.GroupPolicyArgs(
-                metric="INSTANCE_CPU_UTILIZATION_AVERAGE",
-                range="PT24H",
-                scale_in_action=ionoscloud.autoscaling.GroupPolicyScaleInActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    termination_policy_type="OLDEST_SERVER_FIRST",
-                    cooldown_period="PT5M",
-                    delete_volumes=True,
-                ),
-                scale_in_threshold=33,
-                scale_out_action=ionoscloud.autoscaling.GroupPolicyScaleOutActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    cooldown_period="PT5M",
-                ),
-                scale_out_threshold=77,
-                unit="PER_HOUR",
-            ),
-            replica_configuration=ionoscloud.autoscaling.GroupReplicaConfigurationArgs(
-                availability_zone="AUTO",
-                cores=2,
-                cpu_family="INTEL_SKYLAKE",
-                ram=2048,
-                nics=[
-                    ionoscloud.autoscaling.GroupReplicaConfigurationNicArgs(
-                        lan=lan_example1.id,
-                        name="nic_example_1",
-                        dhcp=True,
-                    ),
-                    ionoscloud.autoscaling.GroupReplicaConfigurationNicArgs(
-                        lan=lan_example2.id,
-                        name="nic_example_2",
-                        dhcp=True,
-                        firewall_active=True,
-                        firewall_type="INGRESS",
-                        firewall_rules=[ionoscloud.autoscaling.GroupReplicaConfigurationNicFirewallRuleArgs(
-                            name="rule_1",
-                            protocol="TCP",
-                            port_range_start=1,
-                            port_range_end=1000,
-                            type="INGRESS",
-                        )],
-                        flow_logs=[ionoscloud.autoscaling.GroupReplicaConfigurationNicFlowLogArgs(
-                            name="flow_log_1",
-                            bucket="test-de-bucket",
-                            action="ALL",
-                            direction="BIDIRECTIONAL",
-                        )],
-                        target_group=ionoscloud.autoscaling.GroupReplicaConfigurationNicTargetGroupArgs(
-                            target_group_id=autoscaling_target_group.id,
-                            port=80,
-                            weight=50,
-                        ),
-                    ),
+            policy={
+                "metric": "INSTANCE_CPU_UTILIZATION_AVERAGE",
+                "range": "PT24H",
+                "scale_in_action": {
+                    "amount": 1,
+                    "amount_type": "ABSOLUTE",
+                    "termination_policy_type": "OLDEST_SERVER_FIRST",
+                    "cooldown_period": "PT5M",
+                    "delete_volumes": True,
+                },
+                "scale_in_threshold": 33,
+                "scale_out_action": {
+                    "amount": 1,
+                    "amount_type": "ABSOLUTE",
+                    "cooldown_period": "PT5M",
+                },
+                "scale_out_threshold": 77,
+                "unit": "PER_HOUR",
+            },
+            replica_configuration={
+                "availability_zone": "AUTO",
+                "cores": 2,
+                "cpu_family": "INTEL_SKYLAKE",
+                "ram": 2048,
+                "nics": [
+                    {
+                        "lan": lan_example1.id,
+                        "name": "nic_example_1",
+                        "dhcp": True,
+                    },
+                    {
+                        "lan": lan_example2.id,
+                        "name": "nic_example_2",
+                        "dhcp": True,
+                        "firewall_active": True,
+                        "firewall_type": "INGRESS",
+                        "firewall_rules": [{
+                            "name": "rule_1",
+                            "protocol": "TCP",
+                            "port_range_start": 1,
+                            "port_range_end": 1000,
+                            "type": "INGRESS",
+                        }],
+                        "flow_logs": [{
+                            "name": "flow_log_1",
+                            "bucket": "test-de-bucket",
+                            "action": "ALL",
+                            "direction": "BIDIRECTIONAL",
+                        }],
+                        "target_group": {
+                            "target_group_id": autoscaling_target_group.id,
+                            "port": 80,
+                            "weight": 50,
+                        },
+                    },
                 ],
-                volumes=[ionoscloud.autoscaling.GroupReplicaConfigurationVolumeArgs(
-                    image_alias="ubuntu:latest",
-                    name="volume_example",
-                    size=10,
-                    type="HDD",
-                    user_data="ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    image_password=server_image_password.result,
-                    boot_order="AUTO",
-                )],
-            ))
+                "volumes": [{
+                    "image_alias": "ubuntu:latest",
+                    "name": "volume_example",
+                    "size": 10,
+                    "type": "HDD",
+                    "user_data": "ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
+                    "image_password": server_image_password.result,
+                    "boot_order": "AUTO",
+                }],
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] datacenter_id: [string] Unique identifier for the resource
         :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
-        :param pulumi.Input[pulumi.InputType['GroupPolicyArgs']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[pulumi.InputType['GroupReplicaConfigurationArgs']] replica_configuration: [List]
+        :param pulumi.Input[str] name: [string] User-defined name for the Autoscaling Group.
+        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']] replica_configuration: [List]
         """
         ...
     @overload
@@ -361,7 +364,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -384,74 +386,73 @@ class Group(pulumi.CustomResource):
             datacenter_id=datacenter_example.id,
             max_replica_count=2,
             min_replica_count=1,
-            policy=ionoscloud.autoscaling.GroupPolicyArgs(
-                metric="INSTANCE_CPU_UTILIZATION_AVERAGE",
-                range="PT24H",
-                scale_in_action=ionoscloud.autoscaling.GroupPolicyScaleInActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    termination_policy_type="OLDEST_SERVER_FIRST",
-                    cooldown_period="PT5M",
-                    delete_volumes=True,
-                ),
-                scale_in_threshold=33,
-                scale_out_action=ionoscloud.autoscaling.GroupPolicyScaleOutActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    cooldown_period="PT5M",
-                ),
-                scale_out_threshold=77,
-                unit="PER_HOUR",
-            ),
-            replica_configuration=ionoscloud.autoscaling.GroupReplicaConfigurationArgs(
-                availability_zone="AUTO",
-                cores=2,
-                cpu_family="INTEL_SKYLAKE",
-                ram=2048,
-                nics=[
-                    ionoscloud.autoscaling.GroupReplicaConfigurationNicArgs(
-                        lan=lan_example1.id,
-                        name="nic_example_1",
-                        dhcp=True,
-                    ),
-                    ionoscloud.autoscaling.GroupReplicaConfigurationNicArgs(
-                        lan=lan_example2.id,
-                        name="nic_example_2",
-                        dhcp=True,
-                        firewall_active=True,
-                        firewall_type="INGRESS",
-                        firewall_rules=[ionoscloud.autoscaling.GroupReplicaConfigurationNicFirewallRuleArgs(
-                            name="rule_1",
-                            protocol="TCP",
-                            port_range_start=1,
-                            port_range_end=1000,
-                            type="INGRESS",
-                        )],
-                        flow_logs=[ionoscloud.autoscaling.GroupReplicaConfigurationNicFlowLogArgs(
-                            name="flow_log_1",
-                            bucket="test-de-bucket",
-                            action="ALL",
-                            direction="BIDIRECTIONAL",
-                        )],
-                        target_group=ionoscloud.autoscaling.GroupReplicaConfigurationNicTargetGroupArgs(
-                            target_group_id=autoscaling_target_group.id,
-                            port=80,
-                            weight=50,
-                        ),
-                    ),
+            policy={
+                "metric": "INSTANCE_CPU_UTILIZATION_AVERAGE",
+                "range": "PT24H",
+                "scale_in_action": {
+                    "amount": 1,
+                    "amount_type": "ABSOLUTE",
+                    "termination_policy_type": "OLDEST_SERVER_FIRST",
+                    "cooldown_period": "PT5M",
+                    "delete_volumes": True,
+                },
+                "scale_in_threshold": 33,
+                "scale_out_action": {
+                    "amount": 1,
+                    "amount_type": "ABSOLUTE",
+                    "cooldown_period": "PT5M",
+                },
+                "scale_out_threshold": 77,
+                "unit": "PER_HOUR",
+            },
+            replica_configuration={
+                "availability_zone": "AUTO",
+                "cores": 2,
+                "cpu_family": "INTEL_SKYLAKE",
+                "ram": 2048,
+                "nics": [
+                    {
+                        "lan": lan_example1.id,
+                        "name": "nic_example_1",
+                        "dhcp": True,
+                    },
+                    {
+                        "lan": lan_example2.id,
+                        "name": "nic_example_2",
+                        "dhcp": True,
+                        "firewall_active": True,
+                        "firewall_type": "INGRESS",
+                        "firewall_rules": [{
+                            "name": "rule_1",
+                            "protocol": "TCP",
+                            "port_range_start": 1,
+                            "port_range_end": 1000,
+                            "type": "INGRESS",
+                        }],
+                        "flow_logs": [{
+                            "name": "flow_log_1",
+                            "bucket": "test-de-bucket",
+                            "action": "ALL",
+                            "direction": "BIDIRECTIONAL",
+                        }],
+                        "target_group": {
+                            "target_group_id": autoscaling_target_group.id,
+                            "port": 80,
+                            "weight": 50,
+                        },
+                    },
                 ],
-                volumes=[ionoscloud.autoscaling.GroupReplicaConfigurationVolumeArgs(
-                    image_alias="ubuntu:latest",
-                    name="volume_example",
-                    size=10,
-                    type="HDD",
-                    user_data="ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    image_password=server_image_password.result,
-                    boot_order="AUTO",
-                )],
-            ))
+                "volumes": [{
+                    "image_alias": "ubuntu:latest",
+                    "name": "volume_example",
+                    "size": 10,
+                    "type": "HDD",
+                    "user_data": "ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
+                    "image_password": server_image_password.result,
+                    "boot_order": "AUTO",
+                }],
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.
@@ -472,8 +473,8 @@ class Group(pulumi.CustomResource):
                  max_replica_count: Optional[pulumi.Input[int]] = None,
                  min_replica_count: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 policy: Optional[pulumi.Input[pulumi.InputType['GroupPolicyArgs']]] = None,
-                 replica_configuration: Optional[pulumi.Input[pulumi.InputType['GroupReplicaConfigurationArgs']]] = None,
+                 policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+                 replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -515,8 +516,8 @@ class Group(pulumi.CustomResource):
             max_replica_count: Optional[pulumi.Input[int]] = None,
             min_replica_count: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            policy: Optional[pulumi.Input[pulumi.InputType['GroupPolicyArgs']]] = None,
-            replica_configuration: Optional[pulumi.Input[pulumi.InputType['GroupReplicaConfigurationArgs']]] = None) -> 'Group':
+            policy: Optional[pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
+            replica_configuration: Optional[pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -528,9 +529,9 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] location: Location of the data center.
         :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
-        :param pulumi.Input[pulumi.InputType['GroupPolicyArgs']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[pulumi.InputType['GroupReplicaConfigurationArgs']] replica_configuration: [List]
+        :param pulumi.Input[str] name: [string] User-defined name for the Autoscaling Group.
+        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']] replica_configuration: [List]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -581,7 +582,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Name for this replica volume.
+        [string] User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 

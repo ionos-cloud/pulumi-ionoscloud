@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -602,7 +607,7 @@ class NodePool(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: Optional[pulumi.Input[bool]] = None,
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
+                 auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  cores_count: Optional[pulumi.Input[int]] = None,
                  cpu_family: Optional[pulumi.Input[str]] = None,
@@ -610,8 +615,8 @@ class NodePool(pulumi.CustomResource):
                  k8s_cluster_id: Optional[pulumi.Input[str]] = None,
                  k8s_version: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolLanArgs']]]]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -624,7 +629,6 @@ class NodePool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -641,26 +645,26 @@ class NodePool(pulumi.CustomResource):
             size=3)
         example_cluster = ionoscloud.k8s.Cluster("exampleCluster",
             k8s_version="1.28.6",
-            maintenance_window=ionoscloud.k8s.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00Z",
-            ),
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
             api_subnet_allow_lists=["1.2.3.4/32"],
-            s3_buckets=[ionoscloud.k8s.ClusterS3BucketArgs(
-                name="globally_unique_s3_bucket_name",
-            )])
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
         example_node_pool = ionoscloud.k8s.NodePool("exampleNodePool",
             datacenter_id=example_datacenter.id,
             k8s_cluster_id=example_cluster.id,
             k8s_version=example_cluster.k8s_version,
-            maintenance_window=ionoscloud.k8s.NodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00Z",
-            ),
-            auto_scaling=ionoscloud.k8s.NodePoolAutoScalingArgs(
-                min_node_count=1,
-                max_node_count=2,
-            ),
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
             cpu_family="INTEL_XEON",
             availability_zone="AUTO",
             storage_type="SSD",
@@ -673,14 +677,14 @@ class NodePool(pulumi.CustomResource):
                 example_ip_block.ips[1],
                 example_ip_block.ips[2],
             ],
-            lans=[ionoscloud.k8s.NodePoolLanArgs(
-                id=example_lan.id,
-                dhcp=True,
-                routes=[ionoscloud.k8s.NodePoolLanRouteArgs(
-                    network="1.2.3.5/24",
-                    gateway_ip="10.1.5.17",
-                )],
-            )],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
             labels={
                 "lab1": "value1",
                 "lab2": "value2",
@@ -690,7 +694,6 @@ class NodePool(pulumi.CustomResource):
                 "ann2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
         **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
 
         ## Import
@@ -713,7 +716,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -721,8 +724,8 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
         :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolLanArgs']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-        :param pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
@@ -741,7 +744,6 @@ class NodePool(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -758,26 +760,26 @@ class NodePool(pulumi.CustomResource):
             size=3)
         example_cluster = ionoscloud.k8s.Cluster("exampleCluster",
             k8s_version="1.28.6",
-            maintenance_window=ionoscloud.k8s.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00Z",
-            ),
+            maintenance_window={
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00Z",
+            },
             api_subnet_allow_lists=["1.2.3.4/32"],
-            s3_buckets=[ionoscloud.k8s.ClusterS3BucketArgs(
-                name="globally_unique_s3_bucket_name",
-            )])
+            s3_buckets=[{
+                "name": "globally_unique_s3_bucket_name",
+            }])
         example_node_pool = ionoscloud.k8s.NodePool("exampleNodePool",
             datacenter_id=example_datacenter.id,
             k8s_cluster_id=example_cluster.id,
             k8s_version=example_cluster.k8s_version,
-            maintenance_window=ionoscloud.k8s.NodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00Z",
-            ),
-            auto_scaling=ionoscloud.k8s.NodePoolAutoScalingArgs(
-                min_node_count=1,
-                max_node_count=2,
-            ),
+            maintenance_window={
+                "day_of_the_week": "Monday",
+                "time": "09:00:00Z",
+            },
+            auto_scaling={
+                "min_node_count": 1,
+                "max_node_count": 2,
+            },
             cpu_family="INTEL_XEON",
             availability_zone="AUTO",
             storage_type="SSD",
@@ -790,14 +792,14 @@ class NodePool(pulumi.CustomResource):
                 example_ip_block.ips[1],
                 example_ip_block.ips[2],
             ],
-            lans=[ionoscloud.k8s.NodePoolLanArgs(
-                id=example_lan.id,
-                dhcp=True,
-                routes=[ionoscloud.k8s.NodePoolLanRouteArgs(
-                    network="1.2.3.5/24",
-                    gateway_ip="10.1.5.17",
-                )],
-            )],
+            lans=[{
+                "id": example_lan.id,
+                "dhcp": True,
+                "routes": [{
+                    "network": "1.2.3.5/24",
+                    "gateway_ip": "10.1.5.17",
+                }],
+            }],
             labels={
                 "lab1": "value1",
                 "lab2": "value2",
@@ -807,7 +809,6 @@ class NodePool(pulumi.CustomResource):
                 "ann2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
         **Note:** Set `create_before_destroy` on the lan resource if you want to remove it from the nodepool during an update. This is to ensure that the nodepool is updated before the lan is destroyed.
 
         ## Import
@@ -843,7 +844,7 @@ class NodePool(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: Optional[pulumi.Input[bool]] = None,
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
+                 auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
                  availability_zone: Optional[pulumi.Input[str]] = None,
                  cores_count: Optional[pulumi.Input[int]] = None,
                  cpu_family: Optional[pulumi.Input[str]] = None,
@@ -851,8 +852,8 @@ class NodePool(pulumi.CustomResource):
                  k8s_cluster_id: Optional[pulumi.Input[str]] = None,
                  k8s_version: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolLanArgs']]]]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]] = None,
+                 lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -918,7 +919,7 @@ class NodePool(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_replace: Optional[pulumi.Input[bool]] = None,
             annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
+            auto_scaling: Optional[pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
             availability_zone: Optional[pulumi.Input[str]] = None,
             cores_count: Optional[pulumi.Input[int]] = None,
             cpu_family: Optional[pulumi.Input[str]] = None,
@@ -926,8 +927,8 @@ class NodePool(pulumi.CustomResource):
             k8s_cluster_id: Optional[pulumi.Input[str]] = None,
             k8s_version: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            lans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolLanArgs']]]]] = None,
-            maintenance_window: Optional[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]] = None,
+            lans: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_count: Optional[pulumi.Input[int]] = None,
             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -943,7 +944,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_replace: When set to true, allows the update of immutable fields by destroying and re-creating the node pool
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -951,8 +952,8 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] k8s_cluster_id: [string] A k8s cluster's UUID
         :param pulumi.Input[str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] A key/value map of labels
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolLanArgs']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
-        :param pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements

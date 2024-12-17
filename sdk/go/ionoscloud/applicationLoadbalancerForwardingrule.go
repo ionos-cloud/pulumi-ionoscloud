@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,9 +78,9 @@ import (
 //			}
 //			// optionally you can add a certificate to the application load balancer
 //			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
-//				Certificate:      readFileOrPanic("path_to_cert"),
-//				CertificateChain: readFileOrPanic("path_to_cert_chain"),
-//				PrivateKey:       readFileOrPanic("path_to_private_key"),
+//				Certificate:      pulumi.String(readFileOrPanic("path_to_cert")),
+//				CertificateChain: pulumi.String(readFileOrPanic("path_to_cert_chain")),
+//				PrivateKey:       pulumi.String(readFileOrPanic("path_to_private_key")),
 //			})
 //			if err != nil {
 //				return err
@@ -140,7 +139,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -164,7 +162,7 @@ type ApplicationLoadbalancerForwardingrule struct {
 	ListenerIp pulumi.StringOutput `pulumi:"listenerIp"`
 	// [int] Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntOutput `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// [string] The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] Balancing protocol.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
@@ -229,7 +227,7 @@ type applicationLoadbalancerForwardingruleState struct {
 	ListenerIp *string `pulumi:"listenerIp"`
 	// [int] Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort *int `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// [string] The name of the Application Load Balancer forwarding rule.
 	Name *string `pulumi:"name"`
 	// [string] Balancing protocol.
 	Protocol *string `pulumi:"protocol"`
@@ -250,7 +248,7 @@ type ApplicationLoadbalancerForwardingruleState struct {
 	ListenerIp pulumi.StringPtrInput
 	// [int] Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntPtrInput
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// [string] The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringPtrInput
 	// [string] Balancing protocol.
 	Protocol pulumi.StringPtrInput
@@ -275,7 +273,7 @@ type applicationLoadbalancerForwardingruleArgs struct {
 	ListenerIp string `pulumi:"listenerIp"`
 	// [int] Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort int `pulumi:"listenerPort"`
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// [string] The name of the Application Load Balancer forwarding rule.
 	Name *string `pulumi:"name"`
 	// [string] Balancing protocol.
 	Protocol string `pulumi:"protocol"`
@@ -297,7 +295,7 @@ type ApplicationLoadbalancerForwardingruleArgs struct {
 	ListenerIp pulumi.StringInput
 	// [int] Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort pulumi.IntInput
-	// [string] The unique name of the Application Load Balancer HTTP rule.
+	// [string] The name of the Application Load Balancer forwarding rule.
 	Name pulumi.StringPtrInput
 	// [string] Balancing protocol.
 	Protocol pulumi.StringInput
@@ -424,7 +422,7 @@ func (o ApplicationLoadbalancerForwardingruleOutput) ListenerPort() pulumi.IntOu
 	return o.ApplyT(func(v *ApplicationLoadbalancerForwardingrule) pulumi.IntOutput { return v.ListenerPort }).(pulumi.IntOutput)
 }
 
-// [string] The unique name of the Application Load Balancer HTTP rule.
+// [string] The name of the Application Load Balancer forwarding rule.
 func (o ApplicationLoadbalancerForwardingruleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApplicationLoadbalancerForwardingrule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

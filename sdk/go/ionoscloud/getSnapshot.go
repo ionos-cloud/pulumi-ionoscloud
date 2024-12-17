@@ -16,7 +16,6 @@ import (
 // ## Example Usage
 //
 // ### By Name & Size & Location
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 // Note: The size argument is in GB
 func GetSnapshot(ctx *pulumi.Context, args *GetSnapshotArgs, opts ...pulumi.InvokeOption) (*GetSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -110,15 +108,11 @@ type GetSnapshotResult struct {
 }
 
 func GetSnapshotOutput(ctx *pulumi.Context, args GetSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetSnapshotResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSnapshotResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetSnapshotResultOutput, error) {
 			args := v.(GetSnapshotArgs)
-			r, err := GetSnapshot(ctx, &args, opts...)
-			var s GetSnapshotResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getSnapshot:getSnapshot", args, GetSnapshotResultOutput{}, options).(GetSnapshotResultOutput), nil
 		}).(GetSnapshotResultOutput)
 }
 

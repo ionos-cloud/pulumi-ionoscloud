@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,11 +34,9 @@ namespace Pulumi.Ionoscloud
         ///     });
         /// 
         /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt; 
+        /// ``` 
         /// 
         /// ### By Location
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,8 +51,7 @@ namespace Pulumi.Ionoscloud
         ///     });
         /// 
         /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt; 
+        /// ``` 
         /// 
         /// ### By Name &amp; Location
         /// ``` 
@@ -77,7 +73,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -92,11 +87,9 @@ namespace Pulumi.Ionoscloud
         ///     });
         /// 
         /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt; 
+        /// ``` 
         /// 
         /// ### By Location
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -111,8 +104,7 @@ namespace Pulumi.Ionoscloud
         ///     });
         /// 
         /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt; 
+        /// ``` 
         /// 
         /// ### By Name &amp; Location
         /// ``` 
@@ -123,6 +115,59 @@ namespace Pulumi.Ionoscloud
         /// ```
         /// </summary>
         public static Output<GetIpblockResult> Invoke(GetIpblockInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIpblockResult>("ionoscloud:index/getIpblock:getIpblock", args ?? new GetIpblockInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **IP Block data source** can be used to search for and return an existing Ip Block.
+        /// You can provide a string for the id, the name or the location parameters which will be compared with the provisioned Ip Blocks.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetIpblock.Invoke(new()
+        ///     {
+        ///         Name = "IP Block Name",
+        ///     });
+        /// 
+        /// });
+        /// ``` 
+        /// 
+        /// ### By Location
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetIpblock.Invoke(new()
+        ///     {
+        ///         Location = "us/las",
+        ///     });
+        /// 
+        /// });
+        /// ``` 
+        /// 
+        /// ### By Name &amp; Location
+        /// ``` 
+        /// data "ionoscloud_ipblock" "example" {
+        ///   name      = "IP Block Name"
+        ///   location  = "us/las"
+        /// }
+        /// ```
+        /// </summary>
+        public static Output<GetIpblockResult> Invoke(GetIpblockInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetIpblockResult>("ionoscloud:index/getIpblock:getIpblock", args ?? new GetIpblockInvokeArgs(), options.WithDefaults());
     }
 

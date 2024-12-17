@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,7 +36,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetLoggingPipelineResult> InvokeAsync(GetLoggingPipelineArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoggingPipelineResult>("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", args ?? new GetLoggingPipelineArgs(), options.WithDefaults());
@@ -51,7 +49,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,9 +65,37 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetLoggingPipelineResult> Invoke(GetLoggingPipelineInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoggingPipelineResult>("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", args ?? new GetLoggingPipelineInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Logging pipeline** datasource can be used to search for and return an existing Logging pipeline.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// 
+        /// &gt; ⚠️  Only tokens are accepted for authorization in the **logging_pipeline** data source. Please ensure you are using tokens as other methods will not be valid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetLoggingPipeline.Invoke(new()
+        ///     {
+        ///         Location = "de/txl",
+        ///         Name = "pipeline_name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLoggingPipelineResult> Invoke(GetLoggingPipelineInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetLoggingPipelineResult>("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", args ?? new GetLoggingPipelineInvokeArgs(), options.WithDefaults());
     }
 

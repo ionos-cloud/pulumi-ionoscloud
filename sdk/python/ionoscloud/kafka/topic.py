@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['TopicArgs', 'Topic']
@@ -302,7 +307,6 @@ class Topic(pulumi.CustomResource):
         This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
         called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -316,15 +320,15 @@ class Topic(pulumi.CustomResource):
             location=example_datacenter.location,
             version="3.7.0",
             size="S",
-            connections=ionoscloud.kafka.ClusterConnectionsArgs(
-                datacenter_id=example_datacenter.id,
-                lan_id=example_lan.id,
-                broker_addresses=[
+            connections={
+                "datacenter_id": example_datacenter.id,
+                "lan_id": example_lan.id,
+                "broker_addresses": [
                     "192.168.1.101/24",
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            ))
+            })
         example_topic = ionoscloud.kafka.Topic("exampleTopic",
             cluster_id=example_cluster.id,
             location=example_cluster.location,
@@ -333,7 +337,6 @@ class Topic(pulumi.CustomResource):
             retention_time=86400000,
             segment_bytes=1073741824)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -375,7 +378,6 @@ class Topic(pulumi.CustomResource):
         This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
         called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -389,15 +391,15 @@ class Topic(pulumi.CustomResource):
             location=example_datacenter.location,
             version="3.7.0",
             size="S",
-            connections=ionoscloud.kafka.ClusterConnectionsArgs(
-                datacenter_id=example_datacenter.id,
-                lan_id=example_lan.id,
-                broker_addresses=[
+            connections={
+                "datacenter_id": example_datacenter.id,
+                "lan_id": example_lan.id,
+                "broker_addresses": [
                     "192.168.1.101/24",
                     "192.168.1.102/24",
                     "192.168.1.103/24",
                 ],
-            ))
+            })
         example_topic = ionoscloud.kafka.Topic("exampleTopic",
             cluster_id=example_cluster.id,
             location=example_cluster.location,
@@ -406,7 +408,6 @@ class Topic(pulumi.CustomResource):
             retention_time=86400000,
             segment_bytes=1073741824)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

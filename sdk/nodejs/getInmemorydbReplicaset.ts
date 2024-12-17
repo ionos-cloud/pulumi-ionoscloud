@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getInmemorydbReplicaset(args: GetInmemorydbReplicasetArgs, opts?: pulumi.InvokeOptions): Promise<GetInmemorydbReplicasetResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", {
         "displayName": args.displayName,
@@ -42,8 +41,13 @@ export interface GetInmemorydbReplicasetResult {
     readonly resources: outputs.GetInmemorydbReplicasetResource[];
     readonly version: string;
 }
-export function getInmemorydbReplicasetOutput(args: GetInmemorydbReplicasetOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInmemorydbReplicasetResult> {
-    return pulumi.output(args).apply((a: any) => getInmemorydbReplicaset(a, opts))
+export function getInmemorydbReplicasetOutput(args: GetInmemorydbReplicasetOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInmemorydbReplicasetResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getInmemorydbReplicaset:getInmemorydbReplicaset", {
+        "displayName": args.displayName,
+        "id": args.id,
+        "location": args.location,
+    }, opts);
 }
 
 /**

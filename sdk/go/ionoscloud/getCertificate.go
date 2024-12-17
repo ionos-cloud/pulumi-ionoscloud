@@ -38,15 +38,11 @@ type GetCertificateResult struct {
 }
 
 func GetCertificateOutput(ctx *pulumi.Context, args GetCertificateOutputArgs, opts ...pulumi.InvokeOption) GetCertificateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetCertificateResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetCertificateResultOutput, error) {
 			args := v.(GetCertificateArgs)
-			r, err := GetCertificate(ctx, &args, opts...)
-			var s GetCertificateResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getCertificate:getCertificate", args, GetCertificateResultOutput{}, options).(GetCertificateResultOutput), nil
 		}).(GetCertificateResultOutput)
 }
 

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -116,13 +121,10 @@ def get_ipfailover(datacenter_id: Optional[str] = None,
         ip=pulumi.get(__ret__, 'ip'),
         lan_id=pulumi.get(__ret__, 'lan_id'),
         nicuuid=pulumi.get(__ret__, 'nicuuid'))
-
-
-@_utilities.lift_output_func(get_ipfailover)
 def get_ipfailover_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                           ip: Optional[pulumi.Input[str]] = None,
                           lan_id: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIpfailoverResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpfailoverResult]:
     """
     The **IP Failover data source** can be used to search for and return an existing IP Failover object.
     You need to provide the datacenter_id and the id of the lan to get the ip failover object for the provided datacenter.
@@ -133,4 +135,15 @@ def get_ipfailover_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     :param str ip: The reserved IP address to be used in the IP failover group.
     :param str lan_id: The ID of a LAN.
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['ip'] = ip
+    __args__['lanId'] = lan_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getIpfailover:getIpfailover', __args__, opts=opts, typ=GetIpfailoverResult)
+    return __ret__.apply(lambda __response__: GetIpfailoverResult(
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        ip=pulumi.get(__response__, 'ip'),
+        lan_id=pulumi.get(__response__, 'lan_id'),
+        nicuuid=pulumi.get(__response__, 'nicuuid')))

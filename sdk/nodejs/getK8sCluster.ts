@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -23,11 +22,9 @@ import * as utilities from "./utilities";
  *     name: "K8s Cluster Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getK8sCluster(args?: GetK8sClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getK8sCluster:getK8sCluster", {
         "id": args.id,
@@ -171,7 +168,6 @@ export interface GetK8sClusterResult {
  * ## Example Usage
  *
  * ### By Name
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -180,10 +176,14 @@ export interface GetK8sClusterResult {
  *     name: "K8s Cluster Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getK8sClusterOutput(args?: GetK8sClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sClusterResult> {
-    return pulumi.output(args).apply((a: any) => getK8sCluster(a, opts))
+export function getK8sClusterOutput(args?: GetK8sClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sClusterResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getK8sCluster:getK8sCluster", {
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

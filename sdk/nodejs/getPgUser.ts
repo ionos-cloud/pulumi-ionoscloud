@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getPgUser(args: GetPgUserArgs, opts?: pulumi.InvokeOptions): Promise<GetPgUserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPgUser:getPgUser", {
         "clusterId": args.clusterId,
@@ -30,8 +29,12 @@ export interface GetPgUserResult {
     readonly isSystemUser: boolean;
     readonly username: string;
 }
-export function getPgUserOutput(args: GetPgUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPgUserResult> {
-    return pulumi.output(args).apply((a: any) => getPgUser(a, opts))
+export function getPgUserOutput(args: GetPgUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPgUserResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPgUser:getPgUser", {
+        "clusterId": args.clusterId,
+        "username": args.username,
+    }, opts);
 }
 
 /**

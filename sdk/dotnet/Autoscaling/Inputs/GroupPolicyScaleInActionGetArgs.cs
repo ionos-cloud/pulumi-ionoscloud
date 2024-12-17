@@ -13,7 +13,7 @@ namespace Pulumi.Ionoscloud.Autoscaling.Inputs
     public sealed class GroupPolicyScaleInActionGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+        /// [int] When `amountType == ABSOLUTE`, this is the number of VMs removed in one step. When `amountType == PERCENTAGE`, this is a percentage value, which will be applied to the autoscaling group's current `targetReplicaCount` in order to derive the number of VMs that will be removed in one step. There will always be at least one VM removed. For SCALE_IN operation new volumes are NOT deleted after the server deletion.
         /// </summary>
         [Input("amount", required: true)]
         public Input<int> Amount { get; set; } = null!;

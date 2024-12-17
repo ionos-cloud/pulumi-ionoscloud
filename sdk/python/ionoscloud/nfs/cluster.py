@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -191,10 +196,10 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -202,7 +207,6 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -218,16 +222,15 @@ class Cluster(pulumi.CustomResource):
         example = ionoscloud.nfs.Cluster("example",
             location="de/txl",
             size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
+            nfs={
+                "min_version": "4.2",
+            },
+            connections={
+                "datacenter_id": nfs_dc.id,
+                "ip_address": "192.168.100.10/24",
+                "lan": nfs_lan.id,
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -239,7 +242,7 @@ class Cluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
         :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
@@ -257,7 +260,6 @@ class Cluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -273,16 +275,15 @@ class Cluster(pulumi.CustomResource):
         example = ionoscloud.nfs.Cluster("example",
             location="de/txl",
             size=2,
-            nfs=ionoscloud.nfs.ClusterNfsArgs(
-                min_version="4.2",
-            ),
-            connections=ionoscloud.nfs.ClusterConnectionsArgs(
-                datacenter_id=nfs_dc.id,
-                ip_address="192.168.100.10/24",
-                lan=nfs_lan.id,
-            ))
+            nfs={
+                "min_version": "4.2",
+            },
+            connections={
+                "datacenter_id": nfs_dc.id,
+                "ip_address": "192.168.100.10/24",
+                "lan": nfs_lan.id,
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -307,10 +308,10 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+                 nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -342,10 +343,10 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
             location: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            nfs: Optional[pulumi.Input[pulumi.InputType['ClusterNfsArgs']]] = None,
+            nfs: Optional[pulumi.Input[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
             size: Optional[pulumi.Input[int]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
@@ -354,7 +355,7 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['ClusterConnectionsArgs']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
         :param pulumi.Input[str] location: The location where the Network File Storage cluster is located.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -15,6 +20,8 @@ __all__ = [
     'get_kafka_cluster_topic',
     'get_kafka_cluster_topic_output',
 ]
+
+warnings.warn("""ionoscloud.index/getkafkaclustertopic.getKafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/gettopic.getTopic""", DeprecationWarning)
 
 @pulumi.output_type
 class GetKafkaClusterTopicResult:
@@ -122,6 +129,7 @@ def get_kafka_cluster_topic(cluster_id: Optional[str] = None,
     """
     Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_kafka_cluster_topic is deprecated: ionoscloud.index/getkafkaclustertopic.getKafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/gettopic.getTopic""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['id'] = id
@@ -141,16 +149,31 @@ def get_kafka_cluster_topic(cluster_id: Optional[str] = None,
         replication_factor=pulumi.get(__ret__, 'replication_factor'),
         retention_time=pulumi.get(__ret__, 'retention_time'),
         segment_bytes=pulumi.get(__ret__, 'segment_bytes'))
-
-
-@_utilities.lift_output_func(get_kafka_cluster_topic)
 def get_kafka_cluster_topic_output(cluster_id: Optional[pulumi.Input[str]] = None,
                                    id: Optional[pulumi.Input[Optional[str]]] = None,
                                    location: Optional[pulumi.Input[str]] = None,
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
                                    partial_match: Optional[pulumi.Input[Optional[bool]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKafkaClusterTopicResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaClusterTopicResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    pulumi.log.warn("""get_kafka_cluster_topic is deprecated: ionoscloud.index/getkafkaclustertopic.getKafkaClusterTopic has been deprecated in favor of ionoscloud.kafka/gettopic.getTopic""")
+    __args__ = dict()
+    __args__['clusterId'] = cluster_id
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['partialMatch'] = partial_match
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic', __args__, opts=opts, typ=GetKafkaClusterTopicResult)
+    return __ret__.apply(lambda __response__: GetKafkaClusterTopicResult(
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        number_of_partitions=pulumi.get(__response__, 'number_of_partitions'),
+        partial_match=pulumi.get(__response__, 'partial_match'),
+        replication_factor=pulumi.get(__response__, 'replication_factor'),
+        retention_time=pulumi.get(__response__, 'retention_time'),
+        segment_bytes=pulumi.get(__response__, 'segment_bytes')))

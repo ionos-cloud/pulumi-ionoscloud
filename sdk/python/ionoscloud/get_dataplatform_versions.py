@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -63,14 +68,12 @@ def get_dataplatform_versions(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     ## Example Usage
 
     ### Retrieve list of Managed Dataplatform API versions
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_dataplatform_versions()
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -79,23 +82,23 @@ def get_dataplatform_versions(opts: Optional[pulumi.InvokeOptions] = None) -> Aw
     return AwaitableGetDataplatformVersionsResult(
         id=pulumi.get(__ret__, 'id'),
         versions=pulumi.get(__ret__, 'versions'))
-
-
-@_utilities.lift_output_func(get_dataplatform_versions)
-def get_dataplatform_versions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataplatformVersionsResult]:
+def get_dataplatform_versions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDataplatformVersionsResult]:
     """
     The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
 
     ## Example Usage
 
     ### Retrieve list of Managed Dataplatform API versions
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_dataplatform_versions()
     ```
-    <!--End PulumiCodeChooser -->
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getDataplatformVersions:getDataplatformVersions', __args__, opts=opts, typ=GetDataplatformVersionsResult)
+    return __ret__.apply(lambda __response__: GetDataplatformVersionsResult(
+        id=pulumi.get(__response__, 'id'),
+        versions=pulumi.get(__response__, 'versions')))

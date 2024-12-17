@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
 
 export function getK8sClusters(args?: GetK8sClustersArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sClustersResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getK8sClusters:getK8sClusters", {
         "filters": args.filters,
@@ -34,8 +33,12 @@ export interface GetK8sClustersResult {
      */
     readonly id: string;
 }
-export function getK8sClustersOutput(args?: GetK8sClustersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sClustersResult> {
-    return pulumi.output(args).apply((a: any) => getK8sClusters(a, opts))
+export function getK8sClustersOutput(args?: GetK8sClustersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sClustersResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getK8sClusters:getK8sClusters", {
+        "filters": args.filters,
+    }, opts);
 }
 
 /**

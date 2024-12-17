@@ -18,7 +18,6 @@ import (
 //
 // This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,7 +76,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

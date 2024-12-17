@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### By Type
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -22,11 +21,9 @@ import * as utilities from "./utilities";
  *     resourceType: "datacenter",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getResource(args?: GetResourceArgs, opts?: pulumi.InvokeOptions): Promise<GetResourceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getResource:getResource", {
         "resourceId": args.resourceId,
@@ -68,7 +65,6 @@ export interface GetResourceResult {
  * ## Example Usage
  *
  * ### By Type
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -77,10 +73,14 @@ export interface GetResourceResult {
  *     resourceType: "datacenter",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getResourceOutput(args?: GetResourceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetResourceResult> {
-    return pulumi.output(args).apply((a: any) => getResource(a, opts))
+export function getResourceOutput(args?: GetResourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetResourceResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getResource:getResource", {
+        "resourceId": args.resourceId,
+        "resourceType": args.resourceType,
+    }, opts);
 }
 
 /**

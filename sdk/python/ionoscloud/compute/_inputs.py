@@ -4,33 +4,77 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'CrossconnectConnectableDatacenterArgs',
+    'CrossconnectConnectableDatacenterArgsDict',
     'CrossconnectPeerArgs',
+    'CrossconnectPeerArgsDict',
     'CubeServerNicArgs',
+    'CubeServerNicArgsDict',
     'CubeServerNicFirewallArgs',
+    'CubeServerNicFirewallArgsDict',
     'CubeServerVolumeArgs',
+    'CubeServerVolumeArgsDict',
     'DatacenterCpuArchitectureArgs',
+    'DatacenterCpuArchitectureArgsDict',
     'GroupUserArgs',
+    'GroupUserArgsDict',
     'IPBlockIpConsumerArgs',
+    'IPBlockIpConsumerArgsDict',
     'LanIpFailoverArgs',
+    'LanIpFailoverArgsDict',
     'NatGatewayLanArgs',
+    'NatGatewayLanArgsDict',
     'NatGatewayRuleTargetPortRangeArgs',
+    'NatGatewayRuleTargetPortRangeArgsDict',
     'NicFlowlogArgs',
+    'NicFlowlogArgsDict',
     'ServerLabelArgs',
+    'ServerLabelArgsDict',
     'ServerNicArgs',
+    'ServerNicArgsDict',
     'ServerNicFirewallArgs',
+    'ServerNicFirewallArgsDict',
     'ServerVolumeArgs',
+    'ServerVolumeArgsDict',
     'VCPUServerLabelArgs',
+    'VCPUServerLabelArgsDict',
     'VCPUServerNicArgs',
+    'VCPUServerNicArgsDict',
     'VCPUServerNicFirewallArgs',
+    'VCPUServerNicFirewallArgsDict',
     'VCPUServerVolumeArgs',
+    'VCPUServerVolumeArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class CrossconnectConnectableDatacenterArgsDict(TypedDict):
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The UUID of the connectable datacenter
+        """
+        location: NotRequired[pulumi.Input[str]]
+        """
+        The physical location of the connectable datacenter
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the cross-connection.
+        """
+elif False:
+    CrossconnectConnectableDatacenterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CrossconnectConnectableDatacenterArgs:
@@ -40,8 +84,8 @@ class CrossconnectConnectableDatacenterArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] id: The UUID of the connectable datacenter
-        :param pulumi.Input[str] location: The location of the cross-connected datacenter
-        :param pulumi.Input[str] name: The name of the connectable datacenter
+        :param pulumi.Input[str] location: The physical location of the connectable datacenter
+        :param pulumi.Input[str] name: [string] The name of the cross-connection.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -66,7 +110,7 @@ class CrossconnectConnectableDatacenterArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The location of the cross-connected datacenter
+        The physical location of the connectable datacenter
         """
         return pulumi.get(self, "location")
 
@@ -78,7 +122,7 @@ class CrossconnectConnectableDatacenterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the connectable datacenter
+        [string] The name of the cross-connection.
         """
         return pulumi.get(self, "name")
 
@@ -86,6 +130,31 @@ class CrossconnectConnectableDatacenterArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class CrossconnectPeerArgsDict(TypedDict):
+        datacenter_id: NotRequired[pulumi.Input[str]]
+        """
+        The id of the cross-connected datacenter
+        """
+        datacenter_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the cross-connected datacenter
+        """
+        lan_id: NotRequired[pulumi.Input[str]]
+        """
+        The id of the cross-connected LAN
+        """
+        lan_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the cross-connected LAN
+        """
+        location: NotRequired[pulumi.Input[str]]
+        """
+        The location of the cross-connected datacenter
+        """
+elif False:
+    CrossconnectPeerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CrossconnectPeerArgs:
@@ -173,6 +242,36 @@ class CrossconnectPeerArgs:
     def location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "location", value)
 
+
+if not MYPY:
+    class CubeServerNicArgsDict(TypedDict):
+        lan: pulumi.Input[int]
+        device_number: NotRequired[pulumi.Input[int]]
+        dhcp: NotRequired[pulumi.Input[bool]]
+        dhcpv6: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
+        firewall: NotRequired[pulumi.Input['CubeServerNicFirewallArgsDict']]
+        firewall_active: NotRequired[pulumi.Input[bool]]
+        firewall_type: NotRequired[pulumi.Input[str]]
+        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        ipv6_cidr_block: NotRequired[pulumi.Input[str]]
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
+        ipv6_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
+        mac: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        pci_slot: NotRequired[pulumi.Input[int]]
+elif False:
+    CubeServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CubeServerNicArgs:
@@ -352,6 +451,24 @@ class CubeServerNicArgs:
         pulumi.set(self, "pci_slot", value)
 
 
+if not MYPY:
+    class CubeServerNicFirewallArgsDict(TypedDict):
+        protocol: pulumi.Input[str]
+        icmp_code: NotRequired[pulumi.Input[str]]
+        icmp_type: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        port_range_end: NotRequired[pulumi.Input[int]]
+        port_range_start: NotRequired[pulumi.Input[int]]
+        source_ip: NotRequired[pulumi.Input[str]]
+        source_mac: NotRequired[pulumi.Input[str]]
+        target_ip: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+elif False:
+    CubeServerNicFirewallArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CubeServerNicFirewallArgs:
     def __init__(__self__, *,
@@ -481,6 +598,63 @@ class CubeServerNicFirewallArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class CubeServerVolumeArgsDict(TypedDict):
+        disk_type: pulumi.Input[str]
+        availability_zone: NotRequired[pulumi.Input[str]]
+        """
+        [string] The availability zone in which the server should exist. This property is immutable.
+        """
+        backup_unit_id: NotRequired[pulumi.Input[str]]
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        boot_server: NotRequired[pulumi.Input[str]]
+        """
+        The UUID of the attached server.
+        """
+        bus: NotRequired[pulumi.Input[str]]
+        cpu_hot_plug: NotRequired[pulumi.Input[bool]]
+        device_number: NotRequired[pulumi.Input[int]]
+        disc_virtio_hot_plug: NotRequired[pulumi.Input[bool]]
+        disc_virtio_hot_unplug: NotRequired[pulumi.Input[bool]]
+        image_password: NotRequired[pulumi.Input[str]]
+        """
+        [string] Required if `ssh_key_path` is not provided.
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+
+
+        > **⚠ WARNING**
+        >
+        > For creating a **CUBE** server, you can not set `volume.size` argument.
+        >
+        """
+        licence_type: NotRequired[pulumi.Input[str]]
+        """
+        [string] Sets the OS type of the server.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        nic_hot_plug: NotRequired[pulumi.Input[bool]]
+        nic_hot_unplug: NotRequired[pulumi.Input[bool]]
+        pci_slot: NotRequired[pulumi.Input[int]]
+        ram_hot_plug: NotRequired[pulumi.Input[bool]]
+        ssh_key_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
+        """
+        user_data: NotRequired[pulumi.Input[str]]
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+elif False:
+    CubeServerVolumeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CubeServerVolumeArgs:
@@ -657,6 +831,7 @@ class CubeServerVolumeArgs:
 
     @property
     @pulumi.getter(name="imagePassword")
+    @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[pulumi.Input[str]]:
         """
         [string] Required if `ssh_key_path` is not provided.
@@ -671,9 +846,6 @@ class CubeServerVolumeArgs:
         > For creating a **CUBE** server, you can not set `volume.size` argument.
         >
         """
-        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
-        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
-
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -742,13 +914,11 @@ class CubeServerVolumeArgs:
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Please use ssh_key_path under server level""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
         """
-        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -767,6 +937,27 @@ class CubeServerVolumeArgs:
     def user_data(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_data", value)
 
+
+if not MYPY:
+    class DatacenterCpuArchitectureArgsDict(TypedDict):
+        cpu_family: NotRequired[pulumi.Input[str]]
+        """
+        A valid CPU family name
+        """
+        max_cores: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of cores available
+        """
+        max_ram: NotRequired[pulumi.Input[int]]
+        """
+        The maximum number of RAM in MB
+        """
+        vendor: NotRequired[pulumi.Input[str]]
+        """
+        A valid CPU vendor name
+        """
+elif False:
+    DatacenterCpuArchitectureArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class DatacenterCpuArchitectureArgs:
@@ -838,6 +1029,18 @@ class DatacenterCpuArchitectureArgs:
     def vendor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vendor", value)
 
+
+if not MYPY:
+    class GroupUserArgsDict(TypedDict):
+        administrator: NotRequired[pulumi.Input[bool]]
+        email: NotRequired[pulumi.Input[str]]
+        first_name: NotRequired[pulumi.Input[str]]
+        force_sec_auth: NotRequired[pulumi.Input[bool]]
+        id: NotRequired[pulumi.Input[str]]
+        last_name: NotRequired[pulumi.Input[str]]
+        password: NotRequired[pulumi.Input[str]]
+elif False:
+    GroupUserArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GroupUserArgs:
@@ -927,6 +1130,20 @@ class GroupUserArgs:
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
 
+
+if not MYPY:
+    class IPBlockIpConsumerArgsDict(TypedDict):
+        datacenter_id: NotRequired[pulumi.Input[str]]
+        datacenter_name: NotRequired[pulumi.Input[str]]
+        ip: NotRequired[pulumi.Input[str]]
+        k8s_cluster_uuid: NotRequired[pulumi.Input[str]]
+        k8s_nodepool_uuid: NotRequired[pulumi.Input[str]]
+        mac: NotRequired[pulumi.Input[str]]
+        nic_id: NotRequired[pulumi.Input[str]]
+        server_id: NotRequired[pulumi.Input[str]]
+        server_name: NotRequired[pulumi.Input[str]]
+elif False:
+    IPBlockIpConsumerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class IPBlockIpConsumerArgs:
@@ -1041,6 +1258,13 @@ class IPBlockIpConsumerArgs:
         pulumi.set(self, "server_name", value)
 
 
+if not MYPY:
+    class LanIpFailoverArgsDict(TypedDict):
+        ip: NotRequired[pulumi.Input[str]]
+        nic_uuid: NotRequired[pulumi.Input[str]]
+elif False:
+    LanIpFailoverArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LanIpFailoverArgs:
     def __init__(__self__, *,
@@ -1069,6 +1293,19 @@ class LanIpFailoverArgs:
     def nic_uuid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nic_uuid", value)
 
+
+if not MYPY:
+    class NatGatewayLanArgsDict(TypedDict):
+        id: pulumi.Input[int]
+        """
+        [int] Id for the LAN connected to the NAT gateway.
+        """
+        gateway_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [list] Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN.
+        """
+elif False:
+    NatGatewayLanArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NatGatewayLanArgs:
@@ -1108,6 +1345,19 @@ class NatGatewayLanArgs:
         pulumi.set(self, "gateway_ips", value)
 
 
+if not MYPY:
+    class NatGatewayRuleTargetPortRangeArgsDict(TypedDict):
+        end: NotRequired[pulumi.Input[int]]
+        """
+        [int] Target port range end associated with the NAT gateway rule.
+        """
+        start: NotRequired[pulumi.Input[int]]
+        """
+        [int] Target port range start associated with the NAT gateway rule.
+        """
+elif False:
+    NatGatewayRuleTargetPortRangeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NatGatewayRuleTargetPortRangeArgs:
     def __init__(__self__, *,
@@ -1146,6 +1396,33 @@ class NatGatewayRuleTargetPortRangeArgs:
     def start(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "start", value)
 
+
+if not MYPY:
+    class NicFlowlogArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, update forces re-creation.
+        """
+        bucket: pulumi.Input[str]
+        """
+        Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, update forces re-creation.
+        """
+        direction: pulumi.Input[str]
+        """
+        Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, update forces re-creation.
+        """
+        name: pulumi.Input[str]
+        """
+        Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the NIC.
+        """
+elif False:
+    NicFlowlogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NicFlowlogArgs:
@@ -1234,6 +1511,19 @@ class NicFlowlogArgs:
         pulumi.set(self, "id", value)
 
 
+if not MYPY:
+    class ServerLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        """
+        [string] The key of the label.
+        """
+        value: pulumi.Input[str]
+        """
+        [string] The value of the label.
+        """
+elif False:
+    ServerLabelArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerLabelArgs:
     def __init__(__self__, *,
@@ -1270,6 +1560,43 @@ class ServerLabelArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class ServerNicArgsDict(TypedDict):
+        lan: pulumi.Input[int]
+        device_number: NotRequired[pulumi.Input[int]]
+        dhcp: NotRequired[pulumi.Input[bool]]
+        dhcpv6: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether this NIC receives an IPv6 address through DHCP.
+        """
+        firewall_active: NotRequired[pulumi.Input[bool]]
+        firewall_type: NotRequired[pulumi.Input[str]]
+        firewalls: NotRequired[pulumi.Input[Sequence[pulumi.Input['ServerNicFirewallArgsDict']]]]
+        """
+        Allows to define firewall rules inline in the server. See the Firewall section.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
+        ipv6_cidr_block: NotRequired[pulumi.Input[str]]
+        """
+        IPv6 CIDR block assigned to the NIC.
+        """
+        ipv6_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Collection for IPv6 addresses assigned to a nic. Explicitly assigned IPv6 addresses need to come from inside the IPv6 CIDR block assigned to the nic.
+        """
+        mac: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        pci_slot: NotRequired[pulumi.Input[int]]
+elif False:
+    ServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerNicArgs:
@@ -1469,6 +1796,28 @@ class ServerNicArgs:
         pulumi.set(self, "pci_slot", value)
 
 
+if not MYPY:
+    class ServerNicFirewallArgsDict(TypedDict):
+        protocol: pulumi.Input[str]
+        icmp_code: NotRequired[pulumi.Input[str]]
+        icmp_type: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        port_range_end: NotRequired[pulumi.Input[int]]
+        port_range_start: NotRequired[pulumi.Input[int]]
+        source_ip: NotRequired[pulumi.Input[str]]
+        source_mac: NotRequired[pulumi.Input[str]]
+        target_ip: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+        """
+        (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+        """
+elif False:
+    ServerNicFirewallArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ServerNicFirewallArgs:
     def __init__(__self__, *,
@@ -1614,6 +1963,61 @@ class ServerNicFirewallArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class ServerVolumeArgsDict(TypedDict):
+        disk_type: pulumi.Input[str]
+        availability_zone: NotRequired[pulumi.Input[str]]
+        """
+        [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        """
+        backup_unit_id: NotRequired[pulumi.Input[str]]
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        boot_server: NotRequired[pulumi.Input[str]]
+        """
+        The UUID of the attached server.
+        """
+        bus: NotRequired[pulumi.Input[str]]
+        cpu_hot_plug: NotRequired[pulumi.Input[bool]]
+        device_number: NotRequired[pulumi.Input[int]]
+        disc_virtio_hot_plug: NotRequired[pulumi.Input[bool]]
+        disc_virtio_hot_unplug: NotRequired[pulumi.Input[bool]]
+        image_password: NotRequired[pulumi.Input[str]]
+        """
+        [string] Required if `ssh_key_path` is not provided.
+        """
+        licence_type: NotRequired[pulumi.Input[str]]
+        """
+        [string] Sets the OS type of the server.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        nic_hot_plug: NotRequired[pulumi.Input[bool]]
+        nic_hot_unplug: NotRequired[pulumi.Input[bool]]
+        pci_slot: NotRequired[pulumi.Input[int]]
+        ram_hot_plug: NotRequired[pulumi.Input[bool]]
+        size: NotRequired[pulumi.Input[int]]
+        """
+        The size of the volume in GB.
+        """
+        ssh_key_paths: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+        """
+        ssh_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+        """
+        user_data: NotRequired[pulumi.Input[str]]
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+elif False:
+    ServerVolumeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ServerVolumeArgs:
@@ -1791,13 +2195,11 @@ class ServerVolumeArgs:
 
     @property
     @pulumi.getter(name="imagePassword")
+    @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[pulumi.Input[str]]:
         """
         [string] Required if `ssh_key_path` is not provided.
         """
-        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
-        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
-
         return pulumi.get(self, "image_password")
 
     @image_password.setter
@@ -1878,13 +2280,11 @@ class ServerVolumeArgs:
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Please use ssh_key_path under server level""")
     def ssh_key_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
-        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @ssh_key_paths.setter
@@ -1893,13 +2293,11 @@ class ServerVolumeArgs:
 
     @property
     @pulumi.getter(name="sshKeys")
+    @_utilities.deprecated("""Please use ssh_keys under server level""")
     def ssh_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
-        warnings.warn("""Please use ssh_keys under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_keys is deprecated: Please use ssh_keys under server level""")
-
         return pulumi.get(self, "ssh_keys")
 
     @ssh_keys.setter
@@ -1918,6 +2316,13 @@ class ServerVolumeArgs:
     def user_data(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_data", value)
 
+
+if not MYPY:
+    class VCPUServerLabelArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    VCPUServerLabelArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class VCPUServerLabelArgs:
@@ -1945,6 +2350,34 @@ class VCPUServerLabelArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class VCPUServerNicArgsDict(TypedDict):
+        lan: pulumi.Input[int]
+        device_number: NotRequired[pulumi.Input[int]]
+        dhcp: NotRequired[pulumi.Input[bool]]
+        dhcpv6: NotRequired[pulumi.Input[bool]]
+        firewall_active: NotRequired[pulumi.Input[bool]]
+        firewall_type: NotRequired[pulumi.Input[str]]
+        firewalls: NotRequired[pulumi.Input[Sequence[pulumi.Input['VCPUServerNicFirewallArgsDict']]]]
+        """
+        Allows to define firewall rules inline in the server. See the Firewall section.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Collection of IP addresses assigned to a nic. Explicitly assigned public IPs need to come from reserved IP blocks, Passing value null or empty array will assign an IP address automatically.
+        """
+        ipv6_cidr_block: NotRequired[pulumi.Input[str]]
+        ipv6_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        mac: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        pci_slot: NotRequired[pulumi.Input[int]]
+elif False:
+    VCPUServerNicArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class VCPUServerNicArgs:
@@ -2132,6 +2565,25 @@ class VCPUServerNicArgs:
         pulumi.set(self, "pci_slot", value)
 
 
+if not MYPY:
+    class VCPUServerNicFirewallArgsDict(TypedDict):
+        protocol: pulumi.Input[str]
+        icmp_code: NotRequired[pulumi.Input[str]]
+        icmp_type: NotRequired[pulumi.Input[str]]
+        id: NotRequired[pulumi.Input[str]]
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        port_range_end: NotRequired[pulumi.Input[int]]
+        port_range_start: NotRequired[pulumi.Input[int]]
+        source_ip: NotRequired[pulumi.Input[str]]
+        source_mac: NotRequired[pulumi.Input[str]]
+        target_ip: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+elif False:
+    VCPUServerNicFirewallArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class VCPUServerNicFirewallArgs:
     def __init__(__self__, *,
@@ -2273,6 +2725,49 @@ class VCPUServerNicFirewallArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class VCPUServerVolumeArgsDict(TypedDict):
+        disk_type: pulumi.Input[str]
+        availability_zone: NotRequired[pulumi.Input[str]]
+        """
+        [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+        """
+        backup_unit_id: NotRequired[pulumi.Input[str]]
+        """
+        The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
+        """
+        boot_server: NotRequired[pulumi.Input[str]]
+        """
+        The UUID of the attached server.
+        """
+        bus: NotRequired[pulumi.Input[str]]
+        cpu_hot_plug: NotRequired[pulumi.Input[bool]]
+        device_number: NotRequired[pulumi.Input[int]]
+        disc_virtio_hot_plug: NotRequired[pulumi.Input[bool]]
+        disc_virtio_hot_unplug: NotRequired[pulumi.Input[bool]]
+        licence_type: NotRequired[pulumi.Input[str]]
+        """
+        [string] Sets the OS type of the server.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        [string] The name of the server.
+        """
+        nic_hot_plug: NotRequired[pulumi.Input[bool]]
+        nic_hot_unplug: NotRequired[pulumi.Input[bool]]
+        pci_slot: NotRequired[pulumi.Input[int]]
+        ram_hot_plug: NotRequired[pulumi.Input[bool]]
+        size: NotRequired[pulumi.Input[int]]
+        """
+        The size of the volume in GB.
+        """
+        user_data: NotRequired[pulumi.Input[str]]
+        """
+        The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
+        """
+elif False:
+    VCPUServerVolumeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class VCPUServerVolumeArgs:

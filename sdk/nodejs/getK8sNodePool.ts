@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  */
 export function getK8sNodePool(args: GetK8sNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sNodePoolResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getK8sNodePool:getK8sNodePool", {
         "id": args.id,
@@ -147,8 +146,13 @@ export interface GetK8sNodePoolResult {
  *
  * ## Example Usage
  */
-export function getK8sNodePoolOutput(args: GetK8sNodePoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sNodePoolResult> {
-    return pulumi.output(args).apply((a: any) => getK8sNodePool(a, opts))
+export function getK8sNodePoolOutput(args: GetK8sNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sNodePoolResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getK8sNodePool:getK8sNodePool", {
+        "id": args.id,
+        "k8sClusterId": args.k8sClusterId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

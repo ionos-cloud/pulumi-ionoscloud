@@ -94,9 +94,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string> Mac { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        /// [string] The name of the LAN.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -232,9 +230,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<int> Lan { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        /// [string] The name of the LAN.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -338,9 +334,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? Mac { get; set; }
 
         /// <summary>
-        /// Specifies the name of the flow log.
-        /// 
-        /// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+        /// [string] The name of the LAN.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

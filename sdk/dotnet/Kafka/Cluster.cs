@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud.Kafka
     /// 
     /// This resource will create an operational Kafka Cluster. After this section completes, the provisioner can be called.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,7 +56,6 @@ namespace Pulumi.Ionoscloud.Kafka
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

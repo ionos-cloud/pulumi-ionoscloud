@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getPgDatabase(args: GetPgDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetPgDatabaseResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getPgDatabase:getPgDatabase", {
         "clusterId": args.clusterId,
@@ -30,8 +29,12 @@ export interface GetPgDatabaseResult {
     readonly name: string;
     readonly owner: string;
 }
-export function getPgDatabaseOutput(args: GetPgDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPgDatabaseResult> {
-    return pulumi.output(args).apply((a: any) => getPgDatabase(a, opts))
+export function getPgDatabaseOutput(args: GetPgDatabaseOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPgDatabaseResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getPgDatabase:getPgDatabase", {
+        "clusterId": args.clusterId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

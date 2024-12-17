@@ -18,7 +18,6 @@ import (
 //
 // A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -161,7 +160,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

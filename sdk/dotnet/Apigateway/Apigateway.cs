@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud.Apigateway
     /// 
     /// ## Usage example
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,7 +29,6 @@ namespace Pulumi.Ionoscloud.Apigateway
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -68,7 +66,7 @@ namespace Pulumi.Ionoscloud.Apigateway
         public Output<bool?> Metrics { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// [string] The name of the API Gateway.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -150,7 +148,7 @@ namespace Pulumi.Ionoscloud.Apigateway
         public Input<bool>? Metrics { get; set; }
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// [string] The name of the API Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -188,7 +186,7 @@ namespace Pulumi.Ionoscloud.Apigateway
         public Input<bool>? Metrics { get; set; }
 
         /// <summary>
-        /// [string] The domain name. Externally reachable.
+        /// [string] The name of the API Gateway.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

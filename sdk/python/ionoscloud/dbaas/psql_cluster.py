@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -525,15 +530,15 @@ class PSQLCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backup_location: Optional[pulumi.Input[str]] = None,
-                 connection_pooler: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionPoolerArgs']]] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionsArgs']]] = None,
+                 connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+                 connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['PSQLClusterCredentialsArgs']]] = None,
+                 credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 from_backup: Optional[pulumi.Input[pulumi.InputType['PSQLClusterFromBackupArgs']]] = None,
+                 from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
                  instances: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['PSQLClusterMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
                  postgres_version: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  storage_size: Optional[pulumi.Input[int]] = None,
@@ -545,16 +550,16 @@ class PSQLCluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backup_location: The Object Storage location where the backups will be stored.
-        :param pulumi.Input[pulumi.InputType['PSQLClusterConnectionPoolerArgs']] connection_pooler: Configuration options for the connection pooler
-        :param pulumi.Input[pulumi.InputType['PSQLClusterConnectionsArgs']] connections: Details about the network connection for your cluster.
+        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: Configuration options for the connection pooler
+        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: Details about the network connection for your cluster.
         :param pulumi.Input[int] cores: The number of CPU cores per replica.
-        :param pulumi.Input[pulumi.InputType['PSQLClusterCredentialsArgs']] credentials: Credentials for the database user to be created.
+        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
         :param pulumi.Input[str] display_name: The friendly name of your cluster.
-        :param pulumi.Input[pulumi.InputType['PSQLClusterFromBackupArgs']] from_backup: Creates the cluster based on the existing backup.
+        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: Creates the cluster based on the existing backup.
         :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
                be modified after datacenter creation (disallowed in update requests)
-        :param pulumi.Input[pulumi.InputType['PSQLClusterMaintenanceWindowArgs']] maintenance_window: a weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: a weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[str] postgres_version: The PostgreSQL version of your cluster.
         :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. Has to be a multiple of 2048.
@@ -585,15 +590,15 @@ class PSQLCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backup_location: Optional[pulumi.Input[str]] = None,
-                 connection_pooler: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionPoolerArgs']]] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionsArgs']]] = None,
+                 connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+                 connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['PSQLClusterCredentialsArgs']]] = None,
+                 credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
-                 from_backup: Optional[pulumi.Input[pulumi.InputType['PSQLClusterFromBackupArgs']]] = None,
+                 from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
                  instances: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['PSQLClusterMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
                  postgres_version: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  storage_size: Optional[pulumi.Input[int]] = None,
@@ -655,16 +660,16 @@ class PSQLCluster(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backup_location: Optional[pulumi.Input[str]] = None,
-            connection_pooler: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionPoolerArgs']]] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['PSQLClusterConnectionsArgs']]] = None,
+            connection_pooler: Optional[pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
+            connections: Optional[pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
             cores: Optional[pulumi.Input[int]] = None,
-            credentials: Optional[pulumi.Input[pulumi.InputType['PSQLClusterCredentialsArgs']]] = None,
+            credentials: Optional[pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             dns_name: Optional[pulumi.Input[str]] = None,
-            from_backup: Optional[pulumi.Input[pulumi.InputType['PSQLClusterFromBackupArgs']]] = None,
+            from_backup: Optional[pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
             instances: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
-            maintenance_window: Optional[pulumi.Input[pulumi.InputType['PSQLClusterMaintenanceWindowArgs']]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
             postgres_version: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
             storage_size: Optional[pulumi.Input[int]] = None,
@@ -678,17 +683,17 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backup_location: The Object Storage location where the backups will be stored.
-        :param pulumi.Input[pulumi.InputType['PSQLClusterConnectionPoolerArgs']] connection_pooler: Configuration options for the connection pooler
-        :param pulumi.Input[pulumi.InputType['PSQLClusterConnectionsArgs']] connections: Details about the network connection for your cluster.
+        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: Configuration options for the connection pooler
+        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: Details about the network connection for your cluster.
         :param pulumi.Input[int] cores: The number of CPU cores per replica.
-        :param pulumi.Input[pulumi.InputType['PSQLClusterCredentialsArgs']] credentials: Credentials for the database user to be created.
+        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
         :param pulumi.Input[str] display_name: The friendly name of your cluster.
         :param pulumi.Input[str] dns_name: The DNS name pointing to your cluster
-        :param pulumi.Input[pulumi.InputType['PSQLClusterFromBackupArgs']] from_backup: Creates the cluster based on the existing backup.
+        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: Creates the cluster based on the existing backup.
         :param pulumi.Input[int] instances: The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[str] location: The physical location where the cluster will be created. This will be where all of your instances live. Property cannot
                be modified after datacenter creation (disallowed in update requests)
-        :param pulumi.Input[pulumi.InputType['PSQLClusterMaintenanceWindowArgs']] maintenance_window: a weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: a weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[str] postgres_version: The PostgreSQL version of your cluster.
         :param pulumi.Input[int] ram: The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[int] storage_size: The amount of storage per instance in megabytes. Has to be a multiple of 2048.

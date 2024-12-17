@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -267,7 +272,7 @@ class Route(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouteUpstreamArgs', 'RouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -277,7 +282,6 @@ class Route(pulumi.CustomResource):
 
         This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -285,14 +289,14 @@ class Route(pulumi.CustomResource):
         example = ionoscloud.apigateway.Apigateway("example",
             metrics=True,
             custom_domains=[
-                ionoscloud.apigateway.ApigatewayCustomDomainArgs(
-                    name="example.com",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-                ionoscloud.apigateway.ApigatewayCustomDomainArgs(
-                    name="example.org",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
+                {
+                    "name": "example.com",
+                    "certificate_id": "00000000-0000-0000-0000-000000000000",
+                },
+                {
+                    "name": "example.org",
+                    "certificate_id": "00000000-0000-0000-0000-000000000000",
+                },
             ])
         apigateway_route = ionoscloud.apigateway.Route("apigatewayRoute",
             type="http",
@@ -305,16 +309,15 @@ class Route(pulumi.CustomResource):
                 "POST",
             ],
             websocket=False,
-            upstreams=[ionoscloud.apigateway.RouteUpstreamArgs(
-                scheme="http",
-                loadbalancer="roundrobin",
-                host="example.com",
-                port=80,
-                weight=100,
-            )],
+            upstreams=[{
+                "scheme": "http",
+                "loadbalancer": "roundrobin",
+                "host": "example.com",
+                "port": 80,
+                "weight": 100,
+            }],
             gateway_id=example.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -333,7 +336,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
         :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
                service. Default value: `http`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteUpstreamArgs']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteUpstreamArgs', 'RouteUpstreamArgsDict']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
         :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
         """
         ...
@@ -349,7 +352,6 @@ class Route(pulumi.CustomResource):
 
         This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -357,14 +359,14 @@ class Route(pulumi.CustomResource):
         example = ionoscloud.apigateway.Apigateway("example",
             metrics=True,
             custom_domains=[
-                ionoscloud.apigateway.ApigatewayCustomDomainArgs(
-                    name="example.com",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
-                ionoscloud.apigateway.ApigatewayCustomDomainArgs(
-                    name="example.org",
-                    certificate_id="00000000-0000-0000-0000-000000000000",
-                ),
+                {
+                    "name": "example.com",
+                    "certificate_id": "00000000-0000-0000-0000-000000000000",
+                },
+                {
+                    "name": "example.org",
+                    "certificate_id": "00000000-0000-0000-0000-000000000000",
+                },
             ])
         apigateway_route = ionoscloud.apigateway.Route("apigatewayRoute",
             type="http",
@@ -377,16 +379,15 @@ class Route(pulumi.CustomResource):
                 "POST",
             ],
             websocket=False,
-            upstreams=[ionoscloud.apigateway.RouteUpstreamArgs(
-                scheme="http",
-                loadbalancer="roundrobin",
-                host="example.com",
-                port=80,
-                weight=100,
-            )],
+            upstreams=[{
+                "scheme": "http",
+                "loadbalancer": "roundrobin",
+                "host": "example.com",
+                "port": 80,
+                "weight": 100,
+            }],
             gateway_id=example.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -416,7 +417,7 @@ class Route(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteUpstreamArgs']]]]] = None,
+                 upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouteUpstreamArgs', 'RouteUpstreamArgsDict']]]]] = None,
                  websocket: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -457,7 +458,7 @@ class Route(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteUpstreamArgs']]]]] = None,
+            upstreams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouteUpstreamArgs', 'RouteUpstreamArgsDict']]]]] = None,
             websocket: Optional[pulumi.Input[bool]] = None) -> 'Route':
         """
         Get an existing Route resource's state with the given name, id, and optional extra
@@ -473,7 +474,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths: [list] The paths that the route should match. Minimum items: 1.
         :param pulumi.Input[str] type: [string] This field specifies the protocol used by the ingress to route traffic to the backend
                service. Default value: `http`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteUpstreamArgs']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteUpstreamArgs', 'RouteUpstreamArgsDict']]]] upstreams: Upstreams information of the API Gateway Route. Minimum items: 1.
         :param pulumi.Input[bool] websocket: [bool] To enable websocket support. Default value: `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

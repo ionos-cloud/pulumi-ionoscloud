@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['VolumeArgs', 'Volume']
@@ -694,7 +699,6 @@ class Volume(pulumi.CustomResource):
 
         A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -727,35 +731,35 @@ class Volume(pulumi.CustomResource):
             image_name=example_image.name,
             image_password=server_image_password.result,
             type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=example_lan.id,
-                name="system",
-                dhcp=True,
-                firewall_active=True,
-                firewall_type="BIDIRECTIONAL",
-                ips=[
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                firewalls=[ionoscloud.compute.ServerNicFirewallArgs(
-                    protocol="TCP",
-                    name="SSH",
-                    port_range_start=22,
-                    port_range_end=22,
-                    source_mac="00:0a:95:9d:68:17",
-                    source_ip=example_ip_block.ips[2],
-                    target_ip=example_ip_block.ips[3],
-                    type="EGRESS",
-                )],
-            ))
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
         volume_image_password = random.RandomPassword("volumeImagePassword",
             length=16,
             special=False)
@@ -778,7 +782,6 @@ class Volume(pulumi.CustomResource):
             bus="VIRTIO",
             licence_type="OTHER")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -818,7 +821,6 @@ class Volume(pulumi.CustomResource):
 
         A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -851,35 +853,35 @@ class Volume(pulumi.CustomResource):
             image_name=example_image.name,
             image_password=server_image_password.result,
             type="ENTERPRISE",
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=5,
-                disk_type="SSD Standard",
-                user_data="foo",
-                bus="VIRTIO",
-                availability_zone="ZONE_1",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=example_lan.id,
-                name="system",
-                dhcp=True,
-                firewall_active=True,
-                firewall_type="BIDIRECTIONAL",
-                ips=[
+            volume={
+                "name": "system",
+                "size": 5,
+                "disk_type": "SSD Standard",
+                "user_data": "foo",
+                "bus": "VIRTIO",
+                "availability_zone": "ZONE_1",
+            },
+            nic={
+                "lan": example_lan.id,
+                "name": "system",
+                "dhcp": True,
+                "firewall_active": True,
+                "firewall_type": "BIDIRECTIONAL",
+                "ips": [
                     example_ip_block.ips[0],
                     example_ip_block.ips[1],
                 ],
-                firewalls=[ionoscloud.compute.ServerNicFirewallArgs(
-                    protocol="TCP",
-                    name="SSH",
-                    port_range_start=22,
-                    port_range_end=22,
-                    source_mac="00:0a:95:9d:68:17",
-                    source_ip=example_ip_block.ips[2],
-                    target_ip=example_ip_block.ips[3],
-                    type="EGRESS",
-                )],
-            ))
+                "firewalls": [{
+                    "protocol": "TCP",
+                    "name": "SSH",
+                    "port_range_start": 22,
+                    "port_range_end": 22,
+                    "source_mac": "00:0a:95:9d:68:17",
+                    "source_ip": example_ip_block.ips[2],
+                    "target_ip": example_ip_block.ips[3],
+                    "type": "EGRESS",
+                }],
+            })
         volume_image_password = random.RandomPassword("volumeImagePassword",
             length=16,
             special=False)
@@ -902,7 +904,6 @@ class Volume(pulumi.CustomResource):
             bus="VIRTIO",
             licence_type="OTHER")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

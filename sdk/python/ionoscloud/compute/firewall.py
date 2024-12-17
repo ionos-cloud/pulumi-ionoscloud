@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = ['FirewallArgs', 'Firewall']
@@ -463,7 +468,6 @@ class Firewall(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -487,16 +491,16 @@ class Firewall(pulumi.CustomResource):
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_nic = ionoscloud.compute.Nic("exampleNic",
             datacenter_id=example_datacenter.id,
             server_id=example_server.id,
@@ -515,7 +519,6 @@ class Firewall(pulumi.CustomResource):
             icmp_code="8",
             type="INGRESS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -552,7 +555,6 @@ class Firewall(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -576,16 +578,16 @@ class Firewall(pulumi.CustomResource):
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
             image_password=server_image_password.result,
-            volume=ionoscloud.compute.ServerVolumeArgs(
-                name="system",
-                size=14,
-                disk_type="SSD",
-            ),
-            nic=ionoscloud.compute.ServerNicArgs(
-                lan=1,
-                dhcp=True,
-                firewall_active=True,
-            ))
+            volume={
+                "name": "system",
+                "size": 14,
+                "disk_type": "SSD",
+            },
+            nic={
+                "lan": 1,
+                "dhcp": True,
+                "firewall_active": True,
+            })
         example_nic = ionoscloud.compute.Nic("exampleNic",
             datacenter_id=example_datacenter.id,
             server_id=example_server.id,
@@ -604,7 +606,6 @@ class Firewall(pulumi.CustomResource):
             icmp_code="8",
             type="INGRESS")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

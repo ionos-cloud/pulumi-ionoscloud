@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetMongoClusterResult> Invoke(GetMongoClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongoClusterResult>("ionoscloud:index/getMongoCluster:getMongoCluster", args ?? new GetMongoClusterInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetMongoClusterResult> Invoke(GetMongoClusterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongoClusterResult>("ionoscloud:index/getMongoCluster:getMongoCluster", args ?? new GetMongoClusterInvokeArgs(), options.WithDefaults());
     }
 
 

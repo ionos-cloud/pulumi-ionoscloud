@@ -26,6 +26,14 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetDataplatformNodePoolsResult> Invoke(GetDataplatformNodePoolsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformNodePoolsResult>("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args ?? new GetDataplatformNodePoolsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetDataplatformNodePoolsResult> Invoke(GetDataplatformNodePoolsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformNodePoolsResult>("ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools", args ?? new GetDataplatformNodePoolsInvokeArgs(), options.WithDefaults());
     }
 
 

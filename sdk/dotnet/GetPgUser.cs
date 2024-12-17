@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetPgUserResult> Invoke(GetPgUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPgUserResult>("ionoscloud:index/getPgUser:getPgUser", args ?? new GetPgUserInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPgUserResult> Invoke(GetPgUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPgUserResult>("ionoscloud:index/getPgUser:getPgUser", args ?? new GetPgUserInvokeArgs(), options.WithDefaults());
     }
 
 

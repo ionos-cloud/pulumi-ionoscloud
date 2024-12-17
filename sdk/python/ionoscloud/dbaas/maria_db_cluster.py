@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -362,13 +367,13 @@ class MariaDBCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterCredentialsArgs']]] = None,
+                 credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
                  mariadb_version: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  storage_size: Optional[pulumi.Input[int]] = None,
@@ -377,13 +382,13 @@ class MariaDBCluster(pulumi.CustomResource):
         Create a MariaDBCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterConnectionsArgs']] connections: The network connection for your cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterCredentialsArgs']] credentials: Credentials for the database user to be created.
+        :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
         :param pulumi.Input[str] display_name: The friendly name of your cluster.
         :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterMaintenanceWindowArgs']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
         :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).
@@ -411,13 +416,13 @@ class MariaDBCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterConnectionsArgs']]] = None,
+                 connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
-                 credentials: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterCredentialsArgs']]] = None,
+                 credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[int]] = None,
                  location: Optional[pulumi.Input[str]] = None,
-                 maintenance_window: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterMaintenanceWindowArgs']]] = None,
+                 maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
                  mariadb_version: Optional[pulumi.Input[str]] = None,
                  ram: Optional[pulumi.Input[int]] = None,
                  storage_size: Optional[pulumi.Input[int]] = None,
@@ -467,14 +472,14 @@ class MariaDBCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterConnectionsArgs']]] = None,
+            connections: Optional[pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']]] = None,
             cores: Optional[pulumi.Input[int]] = None,
-            credentials: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterCredentialsArgs']]] = None,
+            credentials: Optional[pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             dns_name: Optional[pulumi.Input[str]] = None,
             instances: Optional[pulumi.Input[int]] = None,
             location: Optional[pulumi.Input[str]] = None,
-            maintenance_window: Optional[pulumi.Input[pulumi.InputType['MariaDBClusterMaintenanceWindowArgs']]] = None,
+            maintenance_window: Optional[pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']]] = None,
             mariadb_version: Optional[pulumi.Input[str]] = None,
             ram: Optional[pulumi.Input[int]] = None,
             storage_size: Optional[pulumi.Input[int]] = None) -> 'MariaDBCluster':
@@ -485,14 +490,14 @@ class MariaDBCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterConnectionsArgs']] connections: The network connection for your cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[int] cores: The number of CPU cores per instance.
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterCredentialsArgs']] credentials: Credentials for the database user to be created.
+        :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
         :param pulumi.Input[str] display_name: The friendly name of your cluster.
         :param pulumi.Input[str] dns_name: The DNS name pointing to your cluster.
         :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input[pulumi.InputType['MariaDBClusterMaintenanceWindowArgs']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
         :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
         :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).

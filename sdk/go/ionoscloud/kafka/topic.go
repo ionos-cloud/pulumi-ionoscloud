@@ -19,7 +19,6 @@ import (
 // This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
 // called.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -80,7 +79,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

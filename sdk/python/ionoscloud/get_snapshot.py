@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -247,7 +252,6 @@ def get_snapshot(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name & Size & Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -256,7 +260,6 @@ def get_snapshot(id: Optional[str] = None,
         name="Snapshot Example",
         size=2)
     ```
-    <!--End PulumiCodeChooser -->
     Note: The size argument is in GB
 
 
@@ -296,21 +299,17 @@ def get_snapshot(id: Optional[str] = None,
         ram_hot_unplug=pulumi.get(__ret__, 'ram_hot_unplug'),
         sec_auth_protection=pulumi.get(__ret__, 'sec_auth_protection'),
         size=pulumi.get(__ret__, 'size'))
-
-
-@_utilities.lift_output_func(get_snapshot)
 def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                         location: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         size: Optional[pulumi.Input[Optional[int]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSnapshotResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSnapshotResult]:
     """
     The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
 
     ## Example Usage
 
     ### By Name & Size & Location
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -319,7 +318,6 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
         name="Snapshot Example",
         size=2)
     ```
-    <!--End PulumiCodeChooser -->
     Note: The size argument is in GB
 
 
@@ -333,4 +331,28 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
            If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
            When this happens, please refine your search string so that it is specific enough to return only one result.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['location'] = location
+    __args__['name'] = name
+    __args__['size'] = size
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getSnapshot:getSnapshot', __args__, opts=opts, typ=GetSnapshotResult)
+    return __ret__.apply(lambda __response__: GetSnapshotResult(
+        cpu_hot_plug=pulumi.get(__response__, 'cpu_hot_plug'),
+        cpu_hot_unplug=pulumi.get(__response__, 'cpu_hot_unplug'),
+        description=pulumi.get(__response__, 'description'),
+        disc_scsi_hot_plug=pulumi.get(__response__, 'disc_scsi_hot_plug'),
+        disc_scsi_hot_unplug=pulumi.get(__response__, 'disc_scsi_hot_unplug'),
+        disc_virtio_hot_plug=pulumi.get(__response__, 'disc_virtio_hot_plug'),
+        disc_virtio_hot_unplug=pulumi.get(__response__, 'disc_virtio_hot_unplug'),
+        id=pulumi.get(__response__, 'id'),
+        licence_type=pulumi.get(__response__, 'licence_type'),
+        location=pulumi.get(__response__, 'location'),
+        name=pulumi.get(__response__, 'name'),
+        nic_hot_plug=pulumi.get(__response__, 'nic_hot_plug'),
+        nic_hot_unplug=pulumi.get(__response__, 'nic_hot_unplug'),
+        ram_hot_plug=pulumi.get(__response__, 'ram_hot_plug'),
+        ram_hot_unplug=pulumi.get(__response__, 'ram_hot_unplug'),
+        sec_auth_protection=pulumi.get(__response__, 'sec_auth_protection'),
+        size=pulumi.get(__response__, 'size')))

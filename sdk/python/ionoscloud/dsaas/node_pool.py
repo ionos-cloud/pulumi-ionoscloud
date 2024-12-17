@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -454,7 +459,7 @@ class NodePool(pulumi.CustomResource):
                  cores_count: Optional[pulumi.Input[int]] = None,
                  cpu_family: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]]]] = None,
+                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  ram_size: Optional[pulumi.Input[int]] = None,
@@ -464,7 +469,6 @@ class NodePool(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -474,10 +478,10 @@ class NodePool(pulumi.CustomResource):
             description="Datacenter for testing Dataplatform Cluster")
         example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
             datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            }],
             version="23.7")
         example_node_pool = ionoscloud.dsaas.NodePool("exampleNodePool",
             cluster_id=example_cluster.id,
@@ -488,10 +492,10 @@ class NodePool(pulumi.CustomResource):
             availability_zone="AUTO",
             storage_type="HDD",
             storage_size=10,
-            maintenance_windows=[ionoscloud.dsaas.NodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Monday",
+                "time": "09:00:00",
+            }],
             labels={
                 "foo": "bar",
                 "color": "green",
@@ -501,7 +505,6 @@ class NodePool(pulumi.CustomResource):
                 "ann2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -519,7 +522,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[int] cores_count: [int] The number of CPU cores per node. Must be set with a minimum value of 1. The default value is `4`.
         :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
         :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.
@@ -535,7 +538,6 @@ class NodePool(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -545,10 +547,10 @@ class NodePool(pulumi.CustomResource):
             description="Datacenter for testing Dataplatform Cluster")
         example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
             datacenter_id=example_datacenter.id,
-            maintenance_windows=[ionoscloud.dsaas.ClusterMaintenanceWindowArgs(
-                day_of_the_week="Sunday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Sunday",
+                "time": "09:00:00",
+            }],
             version="23.7")
         example_node_pool = ionoscloud.dsaas.NodePool("exampleNodePool",
             cluster_id=example_cluster.id,
@@ -559,10 +561,10 @@ class NodePool(pulumi.CustomResource):
             availability_zone="AUTO",
             storage_type="HDD",
             storage_size=10,
-            maintenance_windows=[ionoscloud.dsaas.NodePoolMaintenanceWindowArgs(
-                day_of_the_week="Monday",
-                time="09:00:00",
-            )],
+            maintenance_windows=[{
+                "day_of_the_week": "Monday",
+                "time": "09:00:00",
+            }],
             labels={
                 "foo": "bar",
                 "color": "green",
@@ -572,7 +574,6 @@ class NodePool(pulumi.CustomResource):
                 "ann2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -603,7 +604,7 @@ class NodePool(pulumi.CustomResource):
                  cores_count: Optional[pulumi.Input[int]] = None,
                  cpu_family: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]]]] = None,
+                 maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  ram_size: Optional[pulumi.Input[int]] = None,
@@ -653,7 +654,7 @@ class NodePool(pulumi.CustomResource):
             cpu_family: Optional[pulumi.Input[str]] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]]]] = None,
+            maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_count: Optional[pulumi.Input[int]] = None,
             ram_size: Optional[pulumi.Input[int]] = None,
@@ -674,7 +675,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] cpu_family: [string] A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource. The default value is `AUTO`.
         :param pulumi.Input[str] datacenter_id: The UUID of the virtual data center (VDC) in which the nodepool is provisioned
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolMaintenanceWindowArgs']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]]] maintenance_windows: [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
         :param pulumi.Input[str] name: [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
         :param pulumi.Input[int] node_count: [int] The number of nodes that make up the node pool. Must be set with a minimum value of 1.
         :param pulumi.Input[int] ram_size: [int] The RAM size for one node in MB. Must be set in multiples of `1024`MB, with a minimum size is of `2048`MB. The default value is `4096`.

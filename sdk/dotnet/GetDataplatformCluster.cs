@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ### By Name
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,11 +35,9 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -57,7 +54,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDataplatformClusterResult> InvokeAsync(GetDataplatformClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDataplatformClusterResult>("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", args ?? new GetDataplatformClusterArgs(), options.WithDefaults());
@@ -71,7 +67,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ### By Name
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -87,11 +82,9 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -108,9 +101,55 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDataplatformClusterResult> Invoke(GetDataplatformClusterInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformClusterResult>("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", args ?? new GetDataplatformClusterInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Dataplatform Cluster Data Source** can be used to search for and return an existing Dataplatform Cluster.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetDataplatformCluster.Invoke(new()
+        ///     {
+        ///         Name = "Dataplatform_Cluster_Example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetDataplatformCluster.Invoke(new()
+        ///     {
+        ///         Name = "_Example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDataplatformClusterResult> Invoke(GetDataplatformClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDataplatformClusterResult>("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", args ?? new GetDataplatformClusterInvokeArgs(), options.WithDefaults());
     }
 

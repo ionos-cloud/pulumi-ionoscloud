@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -41,8 +46,8 @@ class CrossconnectConnectableDatacenter(dict):
                  name: Optional[str] = None):
         """
         :param str id: The UUID of the connectable datacenter
-        :param str location: The location of the cross-connected datacenter
-        :param str name: The name of the connectable datacenter
+        :param str location: The physical location of the connectable datacenter
+        :param str name: [string] The name of the cross-connection.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -63,7 +68,7 @@ class CrossconnectConnectableDatacenter(dict):
     @pulumi.getter
     def location(self) -> Optional[str]:
         """
-        The location of the cross-connected datacenter
+        The physical location of the connectable datacenter
         """
         return pulumi.get(self, "location")
 
@@ -71,7 +76,7 @@ class CrossconnectConnectableDatacenter(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the connectable datacenter
+        [string] The name of the cross-connection.
         """
         return pulumi.get(self, "name")
 
@@ -618,6 +623,7 @@ class CubeServerVolume(dict):
 
     @property
     @pulumi.getter(name="imagePassword")
+    @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[str]:
         """
         [string] Required if `ssh_key_path` is not provided.
@@ -632,9 +638,6 @@ class CubeServerVolume(dict):
         > For creating a **CUBE** server, you can not set `volume.size` argument.
         >
         """
-        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
-        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
-
         return pulumi.get(self, "image_password")
 
     @property
@@ -675,13 +678,11 @@ class CubeServerVolume(dict):
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Please use ssh_key_path under server level""")
     def ssh_key_paths(self) -> Optional[Sequence[str]]:
         """
         [list] List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Required for IonosCloud Linux images. Required if `image_password` is not provided.
         """
-        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @property
@@ -1649,13 +1650,11 @@ class ServerVolume(dict):
 
     @property
     @pulumi.getter(name="imagePassword")
+    @_utilities.deprecated("""Please use image_password under server level""")
     def image_password(self) -> Optional[str]:
         """
         [string] Required if `ssh_key_path` is not provided.
         """
-        warnings.warn("""Please use image_password under server level""", DeprecationWarning)
-        pulumi.log.warn("""image_password is deprecated: Please use image_password under server level""")
-
         return pulumi.get(self, "image_password")
 
     @property
@@ -1704,24 +1703,20 @@ class ServerVolume(dict):
 
     @property
     @pulumi.getter(name="sshKeyPaths")
+    @_utilities.deprecated("""Please use ssh_key_path under server level""")
     def ssh_key_paths(self) -> Optional[Sequence[str]]:
         """
         [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
         """
-        warnings.warn("""Please use ssh_key_path under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_key_paths is deprecated: Please use ssh_key_path under server level""")
-
         return pulumi.get(self, "ssh_key_paths")
 
     @property
     @pulumi.getter(name="sshKeys")
+    @_utilities.deprecated("""Please use ssh_keys under server level""")
     def ssh_keys(self) -> Optional[Sequence[str]]:
         """
         [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         """
-        warnings.warn("""Please use ssh_keys under server level""", DeprecationWarning)
-        pulumi.log.warn("""ssh_keys is deprecated: Please use ssh_keys under server level""")
-
         return pulumi.get(self, "ssh_keys")
 
     @property

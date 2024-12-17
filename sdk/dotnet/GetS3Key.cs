@@ -28,6 +28,15 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetS3KeyResult> Invoke(GetS3KeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetS3KeyResult>("ionoscloud:index/getS3Key:getS3Key", args ?? new GetS3KeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
+        /// You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
+        public static Output<GetS3KeyResult> Invoke(GetS3KeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetS3KeyResult>("ionoscloud:index/getS3Key:getS3Key", args ?? new GetS3KeyInvokeArgs(), options.WithDefaults());
     }
 
 

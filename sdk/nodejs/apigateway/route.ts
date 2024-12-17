@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  *
  * This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -52,7 +51,6 @@ import * as utilities from "../utilities";
  *     gatewayId: example.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

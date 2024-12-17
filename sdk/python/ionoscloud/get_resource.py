@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -74,14 +79,12 @@ def get_resource(resource_id: Optional[str] = None,
     ## Example Usage
 
     ### By Type
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_resource(resource_type="datacenter")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str resource_id: The ID of the specific resource to retrieve information about.
@@ -97,12 +100,9 @@ def get_resource(resource_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         resource_id=pulumi.get(__ret__, 'resource_id'),
         resource_type=pulumi.get(__ret__, 'resource_type'))
-
-
-@_utilities.lift_output_func(get_resource)
 def get_resource_output(resource_id: Optional[pulumi.Input[Optional[str]]] = None,
                         resource_type: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResourceResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourceResult]:
     """
     The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
     You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
@@ -112,17 +112,23 @@ def get_resource_output(resource_id: Optional[pulumi.Input[Optional[str]]] = Non
     ## Example Usage
 
     ### By Type
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_resource(resource_type="datacenter")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str resource_id: The ID of the specific resource to retrieve information about.
     :param str resource_type: The specific type of resources to retrieve information about.
     """
-    ...
+    __args__ = dict()
+    __args__['resourceId'] = resource_id
+    __args__['resourceType'] = resource_type
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getResource:getResource', __args__, opts=opts, typ=GetResourceResult)
+    return __ret__.apply(lambda __response__: GetResourceResult(
+        id=pulumi.get(__response__, 'id'),
+        resource_id=pulumi.get(__response__, 'resource_id'),
+        resource_type=pulumi.get(__response__, 'resource_type')))

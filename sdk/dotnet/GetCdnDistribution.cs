@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Domain
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,10 +35,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Domain with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,7 +53,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetCdnDistributionResult> InvokeAsync(GetCdnDistributionArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCdnDistributionResult>("ionoscloud:index/getCdnDistribution:getCdnDistribution", args ?? new GetCdnDistributionArgs(), options.WithDefaults());
@@ -70,7 +66,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Domain
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -86,10 +81,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Domain with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -106,9 +99,54 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetCdnDistributionResult> Invoke(GetCdnDistributionInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetCdnDistributionResult>("ionoscloud:index/getCdnDistribution:getCdnDistribution", args ?? new GetCdnDistributionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The Distribution data source can be used to search for and return an existing Distributions.
+        /// You can provide a string for the domain parameter which will be compared with provisioned Distributions.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique domains.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Domain
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetCdnDistribution.Invoke(new()
+        ///     {
+        ///         Domain = "example.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Domain with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetCdnDistribution.Invoke(new()
+        ///     {
+        ///         Domain = "example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetCdnDistributionResult> Invoke(GetCdnDistributionInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCdnDistributionResult>("ionoscloud:index/getCdnDistribution:getCdnDistribution", args ?? new GetCdnDistributionInvokeArgs(), options.WithDefaults());
     }
 

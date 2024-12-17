@@ -20,7 +20,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -37,10 +36,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetContainerRegistryTokenResult> InvokeAsync(GetContainerRegistryTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerRegistryTokenResult>("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args ?? new GetContainerRegistryTokenArgs(), options.WithDefaults());
@@ -72,7 +68,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -89,10 +84,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By Name with Partial Match
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -110,9 +103,56 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetContainerRegistryTokenResult> Invoke(GetContainerRegistryTokenInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerRegistryTokenResult>("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args ?? new GetContainerRegistryTokenInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
+        /// You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search and make sure that your resources have unique names.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "container-registry-token-example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By Name with Partial Match
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetContainerRegistryToken.Invoke(new()
+        ///     {
+        ///         RegistryId = ionoscloud_container_registry.Example.Id,
+        ///         Name = "-example",
+        ///         PartialMatch = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetContainerRegistryTokenResult> Invoke(GetContainerRegistryTokenInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerRegistryTokenResult>("ionoscloud:index/getContainerRegistryToken:getContainerRegistryToken", args ?? new GetContainerRegistryTokenInvokeArgs(), options.WithDefaults());
     }
 

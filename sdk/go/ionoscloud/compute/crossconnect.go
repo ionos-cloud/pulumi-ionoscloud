@@ -22,7 +22,6 @@ import (
 //
 // To connect two datacenters we need 2 lans defined, one in each datacenter. After, we reference the cross-connect through which we want the connection to be established.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,7 +73,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -93,7 +91,7 @@ type Crossconnect struct {
 	// [string] A short description for the cross-connection.
 	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayOutput `pulumi:"peers"`
@@ -134,7 +132,7 @@ type crossconnectState struct {
 	// [string] A short description for the cross-connection.
 	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description *string `pulumi:"description"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
 	// Lists LAN's joined to this cross connect
 	Peers []CrossconnectPeer `pulumi:"peers"`
@@ -146,7 +144,7 @@ type CrossconnectState struct {
 	// [string] A short description for the cross-connection.
 	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrInput
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput
 	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayInput
@@ -162,7 +160,7 @@ type crossconnectArgs struct {
 	// [string] A short description for the cross-connection.
 	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description *string `pulumi:"description"`
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name *string `pulumi:"name"`
 	// Lists LAN's joined to this cross connect
 	Peers []CrossconnectPeer `pulumi:"peers"`
@@ -175,7 +173,7 @@ type CrossconnectArgs struct {
 	// [string] A short description for the cross-connection.
 	// - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
 	Description pulumi.StringPtrInput
-	// The name of the connectable datacenter
+	// [string] The name of the cross-connection.
 	Name pulumi.StringPtrInput
 	// Lists LAN's joined to this cross connect
 	Peers CrossconnectPeerArrayInput
@@ -279,7 +277,7 @@ func (o CrossconnectOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Crossconnect) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The name of the connectable datacenter
+// [string] The name of the cross-connection.
 func (o CrossconnectOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Crossconnect) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

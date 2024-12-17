@@ -6,7 +6,6 @@ import * as utilities from "./utilities";
 
 export function getCertificate(args?: GetCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetCertificateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getCertificate:getCertificate", {
         "certificate": args.certificate,
@@ -35,8 +34,15 @@ export interface GetCertificateResult {
     readonly id?: string;
     readonly name?: string;
 }
-export function getCertificateOutput(args?: GetCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCertificateResult> {
-    return pulumi.output(args).apply((a: any) => getCertificate(a, opts))
+export function getCertificateOutput(args?: GetCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCertificateResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getCertificate:getCertificate", {
+        "certificate": args.certificate,
+        "certificateChain": args.certificateChain,
+        "id": args.id,
+        "name": args.name,
+    }, opts);
 }
 
 /**

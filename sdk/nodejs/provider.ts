@@ -25,9 +25,6 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
-    /**
-     * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-     */
     public readonly contractNumber!: pulumi.Output<string | undefined>;
     /**
      * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
@@ -88,9 +85,6 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
-    /**
-     * To be set only for reseller accounts. Allows to run terraform on a contract number under a reseller account.
-     */
     contractNumber?: pulumi.Input<string>;
     /**
      * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.

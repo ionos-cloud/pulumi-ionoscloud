@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,7 +72,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -99,9 +97,7 @@ type ApplicationLoadbalancer struct {
 	ListenerLan pulumi.IntOutput `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrOutput `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntOutput `pulumi:"targetLan"`
@@ -160,9 +156,7 @@ type applicationLoadbalancerState struct {
 	ListenerLan *int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// [string] The name of the Application Load Balancer.
 	Name *string `pulumi:"name"`
 	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan *int `pulumi:"targetLan"`
@@ -183,9 +177,7 @@ type ApplicationLoadbalancerState struct {
 	ListenerLan pulumi.IntPtrInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringPtrInput
 	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntPtrInput
@@ -210,9 +202,7 @@ type applicationLoadbalancerArgs struct {
 	ListenerLan int `pulumi:"listenerLan"`
 	// Specifies the format of the logs.
 	LoggingFormat *string `pulumi:"loggingFormat"`
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// [string] The name of the Application Load Balancer.
 	Name *string `pulumi:"name"`
 	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan int `pulumi:"targetLan"`
@@ -234,9 +224,7 @@ type ApplicationLoadbalancerArgs struct {
 	ListenerLan pulumi.IntInput
 	// Specifies the format of the logs.
 	LoggingFormat pulumi.StringPtrInput
-	// [string] Specifies the name of the flow log.
-	//
-	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+	// [string] The name of the Application Load Balancer.
 	Name pulumi.StringPtrInput
 	// [int] ID of the balanced private target LAN (outbound).
 	TargetLan pulumi.IntInput
@@ -364,9 +352,7 @@ func (o ApplicationLoadbalancerOutput) LoggingFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApplicationLoadbalancer) pulumi.StringPtrOutput { return v.LoggingFormat }).(pulumi.StringPtrOutput)
 }
 
-// [string] Specifies the name of the flow log.
-//
-// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+// [string] The name of the Application Load Balancer.
 func (o ApplicationLoadbalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApplicationLoadbalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

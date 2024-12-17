@@ -17,7 +17,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,10 +40,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By CPU Family
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,11 +65,9 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### By Name and Cores
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -101,7 +96,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetServersResult> InvokeAsync(GetServersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersArgs(), options.WithDefaults());
@@ -112,7 +106,6 @@ namespace Pulumi.Ionoscloud
         /// ## Example Usage
         /// 
         /// ### By Name
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -136,10 +129,8 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### By CPU Family
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -163,11 +154,9 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// 
         /// ### By Name and Cores
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -196,9 +185,97 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetServersResult> Invoke(GetServersInvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Servers data source** can be used to search for and return existing servers based on filters used.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ### By Name
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetServers.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Filters = new[]
+        ///         {
+        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
+        ///             {
+        ///                 Name = "name",
+        ///                 Value = "server_name_to_look_here",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### By CPU Family
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetServers.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Filters = new[]
+        ///         {
+        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
+        ///             {
+        ///                 Name = "cpu_family",
+        ///                 Value = "INTEL_XEON",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// 
+        /// ### By Name and Cores
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetServers.Invoke(new()
+        ///     {
+        ///         DatacenterId = ionoscloud_datacenter.Example.Id,
+        ///         Filters = new[]
+        ///         {
+        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
+        ///             {
+        ///                 Name = "name",
+        ///                 Value = "test",
+        ///             },
+        ///             new Ionoscloud.Inputs.GetServersFilterInputArgs
+        ///             {
+        ///                 Name = "cores",
+        ///                 Value = "1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetServersResult> Invoke(GetServersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetServersResult>("ionoscloud:index/getServers:getServers", args ?? new GetServersInvokeArgs(), options.WithDefaults());
     }
 

@@ -61,15 +61,11 @@ type LookupNetworkloadbalancerForwardingruleResult struct {
 }
 
 func LookupNetworkloadbalancerForwardingruleOutput(ctx *pulumi.Context, args LookupNetworkloadbalancerForwardingruleOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkloadbalancerForwardingruleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNetworkloadbalancerForwardingruleResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupNetworkloadbalancerForwardingruleResultOutput, error) {
 			args := v.(LookupNetworkloadbalancerForwardingruleArgs)
-			r, err := LookupNetworkloadbalancerForwardingrule(ctx, &args, opts...)
-			var s LookupNetworkloadbalancerForwardingruleResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule", args, LookupNetworkloadbalancerForwardingruleResultOutput{}, options).(LookupNetworkloadbalancerForwardingruleResultOutput), nil
 		}).(LookupNetworkloadbalancerForwardingruleResultOutput)
 }
 

@@ -30,6 +30,16 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetK8sNodePoolResult> Invoke(GetK8sNodePoolInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sNodePoolResult>("ionoscloud:index/getK8sNodePool:getK8sNodePool", args ?? new GetK8sNodePoolInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
+        public static Output<GetK8sNodePoolResult> Invoke(GetK8sNodePoolInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sNodePoolResult>("ionoscloud:index/getK8sNodePool:getK8sNodePool", args ?? new GetK8sNodePoolInvokeArgs(), options.WithDefaults());
     }
 
 

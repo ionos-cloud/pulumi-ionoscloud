@@ -41,15 +41,11 @@ type GetAutoCertificateResult struct {
 }
 
 func GetAutoCertificateOutput(ctx *pulumi.Context, args GetAutoCertificateOutputArgs, opts ...pulumi.InvokeOption) GetAutoCertificateResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAutoCertificateResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetAutoCertificateResultOutput, error) {
 			args := v.(GetAutoCertificateArgs)
-			r, err := GetAutoCertificate(ctx, &args, opts...)
-			var s GetAutoCertificateResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getAutoCertificate:getAutoCertificate", args, GetAutoCertificateResultOutput{}, options).(GetAutoCertificateResultOutput), nil
 		}).(GetAutoCertificateResultOutput)
 }
 

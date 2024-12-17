@@ -4,31 +4,73 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'InMemoryDBReplicaSetConnectionsArgs',
+    'InMemoryDBReplicaSetConnectionsArgsDict',
     'InMemoryDBReplicaSetCredentialsArgs',
+    'InMemoryDBReplicaSetCredentialsArgsDict',
     'InMemoryDBReplicaSetCredentialsHashedPasswordArgs',
+    'InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict',
     'InMemoryDBReplicaSetMaintenanceWindowArgs',
+    'InMemoryDBReplicaSetMaintenanceWindowArgsDict',
     'InMemoryDBReplicaSetResourcesArgs',
+    'InMemoryDBReplicaSetResourcesArgsDict',
     'MariaDBClusterConnectionsArgs',
+    'MariaDBClusterConnectionsArgsDict',
     'MariaDBClusterCredentialsArgs',
+    'MariaDBClusterCredentialsArgsDict',
     'MariaDBClusterMaintenanceWindowArgs',
+    'MariaDBClusterMaintenanceWindowArgsDict',
     'MongoClusterBackupArgs',
+    'MongoClusterBackupArgsDict',
     'MongoClusterBiConnectorArgs',
+    'MongoClusterBiConnectorArgsDict',
     'MongoClusterConnectionsArgs',
+    'MongoClusterConnectionsArgsDict',
     'MongoClusterMaintenanceWindowArgs',
+    'MongoClusterMaintenanceWindowArgsDict',
     'MongoUserRoleArgs',
+    'MongoUserRoleArgsDict',
     'PSQLClusterConnectionPoolerArgs',
+    'PSQLClusterConnectionPoolerArgsDict',
     'PSQLClusterConnectionsArgs',
+    'PSQLClusterConnectionsArgsDict',
     'PSQLClusterCredentialsArgs',
+    'PSQLClusterCredentialsArgsDict',
     'PSQLClusterFromBackupArgs',
+    'PSQLClusterFromBackupArgsDict',
     'PSQLClusterMaintenanceWindowArgs',
+    'PSQLClusterMaintenanceWindowArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class InMemoryDBReplicaSetConnectionsArgsDict(TypedDict):
+        cidr: pulumi.Input[str]
+        """
+        The IP and subnet for your instance. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24
+        """
+        datacenter_id: pulumi.Input[str]
+        """
+        The datacenter to connect your instance to.
+        """
+        lan_id: pulumi.Input[str]
+        """
+        The numeric LAN ID to connect your instance to.
+        """
+elif False:
+    InMemoryDBReplicaSetConnectionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class InMemoryDBReplicaSetConnectionsArgs:
@@ -81,6 +123,23 @@ class InMemoryDBReplicaSetConnectionsArgs:
     def lan_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "lan_id", value)
 
+
+if not MYPY:
+    class InMemoryDBReplicaSetCredentialsArgsDict(TypedDict):
+        username: pulumi.Input[str]
+        """
+        The username for the initial InMemoryDB user. Some system usernames are restricted (e.g. 'admin', 'standby').
+        """
+        hashed_password: NotRequired[pulumi.Input['InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict']]
+        """
+        The hashed password for a InMemoryDB user.
+        """
+        plain_text_password: NotRequired[pulumi.Input[str]]
+        """
+        The password for a InMemoryDB user.
+        """
+elif False:
+    InMemoryDBReplicaSetCredentialsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class InMemoryDBReplicaSetCredentialsArgs:
@@ -136,6 +195,13 @@ class InMemoryDBReplicaSetCredentialsArgs:
         pulumi.set(self, "plain_text_password", value)
 
 
+if not MYPY:
+    class InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict(TypedDict):
+        algorithm: pulumi.Input[str]
+        hash: pulumi.Input[str]
+elif False:
+    InMemoryDBReplicaSetCredentialsHashedPasswordArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class InMemoryDBReplicaSetCredentialsHashedPasswordArgs:
     def __init__(__self__, *,
@@ -162,6 +228,19 @@ class InMemoryDBReplicaSetCredentialsHashedPasswordArgs:
     def hash(self, value: pulumi.Input[str]):
         pulumi.set(self, "hash", value)
 
+
+if not MYPY:
+    class InMemoryDBReplicaSetMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        The name of the week day.
+        """
+        time: pulumi.Input[str]
+        """
+        Start of the maintenance window in UTC time.
+        """
+elif False:
+    InMemoryDBReplicaSetMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class InMemoryDBReplicaSetMaintenanceWindowArgs:
@@ -199,6 +278,23 @@ class InMemoryDBReplicaSetMaintenanceWindowArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class InMemoryDBReplicaSetResourcesArgsDict(TypedDict):
+        cores: pulumi.Input[int]
+        """
+        The number of CPU cores per instance.
+        """
+        ram: pulumi.Input[int]
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        storage: NotRequired[pulumi.Input[int]]
+        """
+        The size of the storage in GB. The size is derived from the amount of RAM and the persistence mode and is not configurable.
+        """
+elif False:
+    InMemoryDBReplicaSetResourcesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class InMemoryDBReplicaSetResourcesArgs:
@@ -253,6 +349,23 @@ class InMemoryDBReplicaSetResourcesArgs:
         pulumi.set(self, "storage", value)
 
 
+if not MYPY:
+    class MariaDBClusterConnectionsArgsDict(TypedDict):
+        cidr: pulumi.Input[str]
+        """
+        The IP and subnet for your cluster.
+        """
+        datacenter_id: pulumi.Input[str]
+        """
+        The datacenter to connect your cluster to.
+        """
+        lan_id: pulumi.Input[str]
+        """
+        The numeric LAN ID to connect your cluster to.
+        """
+elif False:
+    MariaDBClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MariaDBClusterConnectionsArgs:
     def __init__(__self__, *,
@@ -305,6 +418,19 @@ class MariaDBClusterConnectionsArgs:
         pulumi.set(self, "lan_id", value)
 
 
+if not MYPY:
+    class MariaDBClusterCredentialsArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        """
+        The password for a MariaDB user.
+        """
+        username: pulumi.Input[str]
+        """
+        The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        """
+elif False:
+    MariaDBClusterCredentialsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MariaDBClusterCredentialsArgs:
     def __init__(__self__, *,
@@ -342,6 +468,19 @@ class MariaDBClusterCredentialsArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class MariaDBClusterMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        """
+        The name of the week day.
+        """
+        time: pulumi.Input[str]
+        """
+        Start of the maintenance window in UTC time.
+        """
+elif False:
+    MariaDBClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MariaDBClusterMaintenanceWindowArgs:
     def __init__(__self__, *,
@@ -378,6 +517,23 @@ class MariaDBClusterMaintenanceWindowArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class MongoClusterBackupArgsDict(TypedDict):
+        location: NotRequired[pulumi.Input[str]]
+        """
+        The location where the cluster backups will be stored. If not set, the backup is stored in the nearest location of the cluster. Examples: de, eu-sounth-2, eu-central-2
+        """
+        point_in_time_window_hours: NotRequired[pulumi.Input[int]]
+        """
+        Number of hours in the past for which a point-in-time snapshot can be created.
+        """
+        snapshot_interval_hours: NotRequired[pulumi.Input[int]]
+        """
+        Number of hours between snapshots.
+        """
+elif False:
+    MongoClusterBackupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class MongoClusterBackupArgs:
@@ -434,6 +590,23 @@ class MongoClusterBackupArgs:
         pulumi.set(self, "snapshot_interval_hours", value)
 
 
+if not MYPY:
+    class MongoClusterBiConnectorArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Enable or disable the BiConnector.
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        The host where this new BI Connector is installed.
+        """
+        port: NotRequired[pulumi.Input[str]]
+        """
+        Port number used when connecting to this new BI Connector.
+        """
+elif False:
+    MongoClusterBiConnectorArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MongoClusterBiConnectorArgs:
     def __init__(__self__, *,
@@ -489,6 +662,23 @@ class MongoClusterBiConnectorArgs:
         pulumi.set(self, "port", value)
 
 
+if not MYPY:
+    class MongoClusterConnectionsArgsDict(TypedDict):
+        cidr_lists: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The list of IPs and subnet for your cluster. Note the following unavailable IP ranges:10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. example: [192.168.1.100/24, 192.168.1.101/24]
+        """
+        datacenter_id: pulumi.Input[str]
+        """
+        The datacenter to connect your cluster to.
+        """
+        lan_id: pulumi.Input[str]
+        """
+        The LAN to connect your cluster to.
+        """
+elif False:
+    MongoClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MongoClusterConnectionsArgs:
     def __init__(__self__, *,
@@ -541,6 +731,13 @@ class MongoClusterConnectionsArgs:
         pulumi.set(self, "lan_id", value)
 
 
+if not MYPY:
+    class MongoClusterMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        time: pulumi.Input[str]
+elif False:
+    MongoClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class MongoClusterMaintenanceWindowArgs:
     def __init__(__self__, *,
@@ -567,6 +764,16 @@ class MongoClusterMaintenanceWindowArgs:
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
 
+
+if not MYPY:
+    class MongoUserRoleArgsDict(TypedDict):
+        database: NotRequired[pulumi.Input[str]]
+        role: NotRequired[pulumi.Input[str]]
+        """
+        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        """
+elif False:
+    MongoUserRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class MongoUserRoleArgs:
@@ -603,6 +810,16 @@ class MongoUserRoleArgs:
         pulumi.set(self, "role", value)
 
 
+if not MYPY:
+    class PSQLClusterConnectionPoolerArgsDict(TypedDict):
+        enabled: pulumi.Input[bool]
+        pool_mode: pulumi.Input[str]
+        """
+        Represents different modes of connection pooling for the connection pooler
+        """
+elif False:
+    PSQLClusterConnectionPoolerArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class PSQLClusterConnectionPoolerArgs:
     def __init__(__self__, *,
@@ -635,6 +852,27 @@ class PSQLClusterConnectionPoolerArgs:
     def pool_mode(self, value: pulumi.Input[str]):
         pulumi.set(self, "pool_mode", value)
 
+
+if not MYPY:
+    class PSQLClusterConnectionsArgsDict(TypedDict):
+        cidr: pulumi.Input[str]
+        """
+        The IP and subnet for the database.
+                  Note the following unavailable IP ranges:
+                  10.233.64.0/18
+                  10.233.0.0/18
+                  10.233.114.0/24
+        """
+        datacenter_id: pulumi.Input[str]
+        """
+        The datacenter to connect your cluster to.
+        """
+        lan_id: pulumi.Input[str]
+        """
+        The LAN to connect your cluster to.
+        """
+elif False:
+    PSQLClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PSQLClusterConnectionsArgs:
@@ -696,6 +934,16 @@ class PSQLClusterConnectionsArgs:
         pulumi.set(self, "lan_id", value)
 
 
+if not MYPY:
+    class PSQLClusterCredentialsArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        username: pulumi.Input[str]
+        """
+        the username for the initial postgres user. some system usernames are restricted (e.g. "postgres", "admin", "standby")
+        """
+elif False:
+    PSQLClusterCredentialsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class PSQLClusterCredentialsArgs:
     def __init__(__self__, *,
@@ -728,6 +976,19 @@ class PSQLClusterCredentialsArgs:
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class PSQLClusterFromBackupArgsDict(TypedDict):
+        backup_id: pulumi.Input[str]
+        """
+        The unique ID of the backup you want to restore.
+        """
+        recovery_target_time: NotRequired[pulumi.Input[str]]
+        """
+        If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp. If empty, the backup will be applied completely.
+        """
+elif False:
+    PSQLClusterFromBackupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PSQLClusterFromBackupArgs:
@@ -766,6 +1027,13 @@ class PSQLClusterFromBackupArgs:
     def recovery_target_time(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "recovery_target_time", value)
 
+
+if not MYPY:
+    class PSQLClusterMaintenanceWindowArgsDict(TypedDict):
+        day_of_the_week: pulumi.Input[str]
+        time: pulumi.Input[str]
+elif False:
+    PSQLClusterMaintenanceWindowArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PSQLClusterMaintenanceWindowArgs:

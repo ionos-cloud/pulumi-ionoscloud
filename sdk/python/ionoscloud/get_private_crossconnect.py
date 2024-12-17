@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -105,14 +110,12 @@ def get_private_crossconnect(description: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_private_crossconnect(name="Cross Connect Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str description: Description of cross connect
@@ -134,13 +137,10 @@ def get_private_crossconnect(description: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         peers=pulumi.get(__ret__, 'peers'))
-
-
-@_utilities.lift_output_func(get_private_crossconnect)
 def get_private_crossconnect_output(description: Optional[pulumi.Input[Optional[str]]] = None,
                                     id: Optional[pulumi.Input[Optional[str]]] = None,
                                     name: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPrivateCrossconnectResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateCrossconnectResult]:
     """
     The **Cross Connect data source** can be used to search for and return existing cross connects.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -149,14 +149,12 @@ def get_private_crossconnect_output(description: Optional[pulumi.Input[Optional[
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.get_private_crossconnect(name="Cross Connect Example")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str description: Description of cross connect
@@ -165,4 +163,15 @@ def get_private_crossconnect_output(description: Optional[pulumi.Input[Optional[
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param str name: Name of an existing cross connect that you want to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['description'] = description
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getPrivateCrossconnect:getPrivateCrossconnect', __args__, opts=opts, typ=GetPrivateCrossconnectResult)
+    return __ret__.apply(lambda __response__: GetPrivateCrossconnectResult(
+        connectable_datacenters=pulumi.get(__response__, 'connectable_datacenters'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        peers=pulumi.get(__response__, 'peers')))

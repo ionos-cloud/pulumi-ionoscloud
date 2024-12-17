@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetVpnWireguardPeer(ctx *pulumi.Context, args *GetVpnWireguardPeerArgs, opts ...pulumi.InvokeOption) (*GetVpnWireguardPeerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpnWireguardPeerResult
@@ -86,15 +84,11 @@ type GetVpnWireguardPeerResult struct {
 }
 
 func GetVpnWireguardPeerOutput(ctx *pulumi.Context, args GetVpnWireguardPeerOutputArgs, opts ...pulumi.InvokeOption) GetVpnWireguardPeerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVpnWireguardPeerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetVpnWireguardPeerResultOutput, error) {
 			args := v.(GetVpnWireguardPeerArgs)
-			r, err := GetVpnWireguardPeer(ctx, &args, opts...)
-			var s GetVpnWireguardPeerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getVpnWireguardPeer:getVpnWireguardPeer", args, GetVpnWireguardPeerResultOutput{}, options).(GetVpnWireguardPeerResultOutput), nil
 		}).(GetVpnWireguardPeerResultOutput)
 }
 

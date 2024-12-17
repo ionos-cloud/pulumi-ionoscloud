@@ -4,31 +4,83 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ApplicationLoadbalancerFlowlogArgs',
+    'ApplicationLoadbalancerFlowlogArgsDict',
     'ApplicationLoadbalancerForwardingruleHttpRuleArgs',
+    'ApplicationLoadbalancerForwardingruleHttpRuleArgsDict',
     'ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs',
+    'ApplicationLoadbalancerForwardingruleHttpRuleConditionArgsDict',
     'LoggingPipelineLogArgs',
+    'LoggingPipelineLogArgsDict',
     'LoggingPipelineLogDestinationArgs',
+    'LoggingPipelineLogDestinationArgsDict',
     'NetworkloadbalancerFlowlogArgs',
+    'NetworkloadbalancerFlowlogArgsDict',
     'NetworkloadbalancerForwardingruleHealthCheckArgs',
+    'NetworkloadbalancerForwardingruleHealthCheckArgsDict',
     'NetworkloadbalancerForwardingruleTargetArgs',
+    'NetworkloadbalancerForwardingruleTargetArgsDict',
     'NetworkloadbalancerForwardingruleTargetHealthCheckArgs',
+    'NetworkloadbalancerForwardingruleTargetHealthCheckArgsDict',
     'TargetGroupHealthCheckArgs',
+    'TargetGroupHealthCheckArgsDict',
     'TargetGroupHttpHealthCheckArgs',
+    'TargetGroupHttpHealthCheckArgsDict',
     'TargetGroupTargetArgs',
+    'TargetGroupTargetArgsDict',
     'GetIpblockIpConsumerArgs',
+    'GetIpblockIpConsumerArgsDict',
     'GetK8sClustersFilterArgs',
+    'GetK8sClustersFilterArgsDict',
     'GetMongoUserRoleArgs',
+    'GetMongoUserRoleArgsDict',
     'GetNfsShareClientGroupArgs',
+    'GetNfsShareClientGroupArgsDict',
     'GetNfsShareClientGroupNfArgs',
+    'GetNfsShareClientGroupNfArgsDict',
     'GetServersFilterArgs',
+    'GetServersFilterArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ApplicationLoadbalancerFlowlogArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        """
+        bucket: pulumi.Input[str]
+        """
+        [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        """
+        direction: pulumi.Input[str]
+        """
+        [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        """
+        name: pulumi.Input[str]
+        """
+        [string] Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The resource's unique identifier.
+        """
+elif False:
+    ApplicationLoadbalancerFlowlogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ApplicationLoadbalancerFlowlogArgs:
@@ -117,6 +169,47 @@ class ApplicationLoadbalancerFlowlogArgs:
         pulumi.set(self, "id", value)
 
 
+if not MYPY:
+    class ApplicationLoadbalancerForwardingruleHttpRuleArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        [string] The unique name of the Application Load Balancer HTTP rule.
+        """
+        type: pulumi.Input[str]
+        """
+        [string] Type of the Http Rule.
+        """
+        conditions: NotRequired[pulumi.Input[Sequence[pulumi.Input['ApplicationLoadbalancerForwardingruleHttpRuleConditionArgsDict']]]]
+        """
+        [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
+        """
+        content_type: NotRequired[pulumi.Input[str]]
+        """
+        [string] Valid only for STATIC actions.
+        """
+        drop_query: NotRequired[pulumi.Input[bool]]
+        """
+        [bool] Default is false; valid only for REDIRECT actions.
+        """
+        location: NotRequired[pulumi.Input[str]]
+        """
+        [string] The location for redirecting; mandatory and valid only for REDIRECT actions.
+        """
+        response_message: NotRequired[pulumi.Input[str]]
+        """
+        [string] The response message of the request; mandatory for STATIC action.
+        """
+        status_code: NotRequired[pulumi.Input[int]]
+        """
+        [int] Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599.
+        """
+        target_group: NotRequired[pulumi.Input[str]]
+        """
+        [string] The UUID of the target group; mandatory for FORWARD action.
+        """
+elif False:
+    ApplicationLoadbalancerForwardingruleHttpRuleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ApplicationLoadbalancerForwardingruleHttpRuleArgs:
     def __init__(__self__, *,
@@ -131,7 +224,7 @@ class ApplicationLoadbalancerForwardingruleHttpRuleArgs:
                  target_group: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] name: [string] The unique name of the Application Load Balancer HTTP rule.
-        :param pulumi.Input[str] type: [string] Type of the Http Rule condition.
+        :param pulumi.Input[str] type: [string] Type of the Http Rule.
         :param pulumi.Input[Sequence[pulumi.Input['ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs']]] conditions: [list] - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed.
         :param pulumi.Input[str] content_type: [string] Valid only for STATIC actions.
         :param pulumi.Input[bool] drop_query: [bool] Default is false; valid only for REDIRECT actions.
@@ -173,7 +266,7 @@ class ApplicationLoadbalancerForwardingruleHttpRuleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        [string] Type of the Http Rule condition.
+        [string] Type of the Http Rule.
         """
         return pulumi.get(self, "type")
 
@@ -266,6 +359,31 @@ class ApplicationLoadbalancerForwardingruleHttpRuleArgs:
         pulumi.set(self, "target_group", value)
 
 
+if not MYPY:
+    class ApplicationLoadbalancerForwardingruleHttpRuleConditionArgsDict(TypedDict):
+        type: pulumi.Input[str]
+        """
+        [string] Type of the Http Rule condition.
+        """
+        condition: NotRequired[pulumi.Input[str]]
+        """
+        [string] Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP.
+        """
+        key: NotRequired[pulumi.Input[str]]
+        """
+        [string] Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY.
+        """
+        negate: NotRequired[pulumi.Input[bool]]
+        """
+        [bool] Specifies whether the condition is negated or not; the default is False.
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
+        """
+elif False:
+    ApplicationLoadbalancerForwardingruleHttpRuleConditionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs:
     def __init__(__self__, *,
@@ -352,6 +470,31 @@ class ApplicationLoadbalancerForwardingruleHttpRuleConditionArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class LoggingPipelineLogArgsDict(TypedDict):
+        protocol: pulumi.Input[str]
+        """
+        [string] "Protocol to use as intake. Possible values are: http, tcp."
+        """
+        source: pulumi.Input[str]
+        """
+        [string] The source parser to be used.
+        """
+        tag: pulumi.Input[str]
+        """
+        [string] The tag is used to distinguish different pipelines. Must be unique amongst the pipeline's array items.
+        """
+        destinations: NotRequired[pulumi.Input[Sequence[pulumi.Input['LoggingPipelineLogDestinationArgsDict']]]]
+        """
+        [list] The configuration of the logs datastore, a list that contains elements with the following structure:
+        """
+        public: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
+elif False:
+    LoggingPipelineLogArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoggingPipelineLogArgs:
     def __init__(__self__, *,
@@ -436,6 +579,19 @@ class LoggingPipelineLogArgs:
         pulumi.set(self, "public", value)
 
 
+if not MYPY:
+    class LoggingPipelineLogDestinationArgsDict(TypedDict):
+        retention_in_days: NotRequired[pulumi.Input[int]]
+        """
+        [int] Defines the number of days a log record should be kept in loki. Works with loki destination type only. Can be one of: 7, 14, 30.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        [string] The internal output stream to send logs to.
+        """
+elif False:
+    LoggingPipelineLogDestinationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class LoggingPipelineLogDestinationArgs:
     def __init__(__self__, *,
@@ -474,6 +630,33 @@ class LoggingPipelineLogDestinationArgs:
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
 
+
+if not MYPY:
+    class NetworkloadbalancerFlowlogArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        """
+        bucket: pulumi.Input[str]
+        """
+        [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        """
+        direction: pulumi.Input[str]
+        """
+        [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        """
+        name: pulumi.Input[str]
+        """
+        [string] Specifies the name of the flow log.
+
+        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the network load balancer resource.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The resource's unique identifier.
+        """
+elif False:
+    NetworkloadbalancerFlowlogArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NetworkloadbalancerFlowlogArgs:
@@ -562,6 +745,27 @@ class NetworkloadbalancerFlowlogArgs:
         pulumi.set(self, "id", value)
 
 
+if not MYPY:
+    class NetworkloadbalancerForwardingruleHealthCheckArgsDict(TypedDict):
+        client_timeout: NotRequired[pulumi.Input[int]]
+        """
+        [int] ClientTimeout is expressed in milliseconds. This inactivity timeout applies when the client is expected to acknowledge or send data. If unset the default of 50 seconds will be used.
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        [int] It specifies the maximum time (in milliseconds) to wait for a connection attempt to a target VM to succeed. If unset, the default of 5 seconds will be used.
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        [int] Retries specifies the number of retries to perform on a target VM after a connection failure. If unset, the default value of 3 will be used.
+        """
+        target_timeout: NotRequired[pulumi.Input[int]]
+        """
+        [int] TargetTimeout specifies the maximum inactivity time (in milliseconds) on the target VM side. If unset, the default of 50 seconds will be used.
+        """
+elif False:
+    NetworkloadbalancerForwardingruleHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NetworkloadbalancerForwardingruleHealthCheckArgs:
     def __init__(__self__, *,
@@ -632,6 +836,31 @@ class NetworkloadbalancerForwardingruleHealthCheckArgs:
     def target_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "target_timeout", value)
 
+
+if not MYPY:
+    class NetworkloadbalancerForwardingruleTargetArgsDict(TypedDict):
+        ip: pulumi.Input[str]
+        """
+        [string] IP of a balanced target VM.
+        """
+        port: pulumi.Input[int]
+        """
+        [int] Port of the balanced target service. (range: 1 to 65535).
+        """
+        weight: pulumi.Input[int]
+        """
+        [int] Weight parameter is used to adjust the target VM's weight relative to other target VMs.
+        """
+        health_check: NotRequired[pulumi.Input['NetworkloadbalancerForwardingruleTargetHealthCheckArgsDict']]
+        """
+        Health check attributes for Network Load Balancer forwarding rule target.
+        """
+        proxy_protocol: NotRequired[pulumi.Input[str]]
+        """
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+        """
+elif False:
+    NetworkloadbalancerForwardingruleTargetArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NetworkloadbalancerForwardingruleTargetArgs:
@@ -717,6 +946,23 @@ class NetworkloadbalancerForwardingruleTargetArgs:
         pulumi.set(self, "proxy_protocol", value)
 
 
+if not MYPY:
+    class NetworkloadbalancerForwardingruleTargetHealthCheckArgsDict(TypedDict):
+        check: NotRequired[pulumi.Input[bool]]
+        """
+        [boolean] Check specifies whether the target VM's health is checked.
+        """
+        check_interval: NotRequired[pulumi.Input[int]]
+        """
+        [int] CheckInterval determines the duration (in milliseconds) between consecutive health checks. If unspecified a default of 2000 ms is used.
+        """
+        maintenance: NotRequired[pulumi.Input[bool]]
+        """
+        [boolean] Maintenance specifies if a target VM should be marked as down, even if it is not.
+        """
+elif False:
+    NetworkloadbalancerForwardingruleTargetHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NetworkloadbalancerForwardingruleTargetHealthCheckArgs:
     def __init__(__self__, *,
@@ -772,6 +1018,23 @@ class NetworkloadbalancerForwardingruleTargetHealthCheckArgs:
         pulumi.set(self, "maintenance", value)
 
 
+if not MYPY:
+    class TargetGroupHealthCheckArgsDict(TypedDict):
+        check_interval: NotRequired[pulumi.Input[int]]
+        """
+        [int] The interval in milliseconds between consecutive health checks; default is 2000.
+        """
+        check_timeout: NotRequired[pulumi.Input[int]]
+        """
+        [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        """
+        retries: NotRequired[pulumi.Input[int]]
+        """
+        [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        """
+elif False:
+    TargetGroupHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TargetGroupHealthCheckArgs:
     def __init__(__self__, *,
@@ -826,6 +1089,35 @@ class TargetGroupHealthCheckArgs:
     def retries(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "retries", value)
 
+
+if not MYPY:
+    class TargetGroupHttpHealthCheckArgsDict(TypedDict):
+        match_type: pulumi.Input[str]
+        """
+        [string]
+        """
+        response: pulumi.Input[str]
+        """
+        [string] The response returned by the request, depending on the match type.
+        """
+        method: NotRequired[pulumi.Input[str]]
+        """
+        [string] The method for the HTTP health check.
+        """
+        negate: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
+        path: NotRequired[pulumi.Input[str]]
+        """
+        [string] The path (destination URL) for the HTTP health check request; the default is /.
+        """
+        regex: NotRequired[pulumi.Input[bool]]
+        """
+        [bool]
+        """
+elif False:
+    TargetGroupHttpHealthCheckArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class TargetGroupHttpHealthCheckArgs:
@@ -928,6 +1220,35 @@ class TargetGroupHttpHealthCheckArgs:
         pulumi.set(self, "regex", value)
 
 
+if not MYPY:
+    class TargetGroupTargetArgsDict(TypedDict):
+        ip: pulumi.Input[str]
+        """
+        [string] The IP of the balanced target VM.
+        """
+        port: pulumi.Input[int]
+        """
+        [int] The port of the balanced target service; valid range is 1 to 65535.
+        """
+        weight: pulumi.Input[int]
+        """
+        [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        """
+        health_check_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        """
+        maintenance_enabled: NotRequired[pulumi.Input[bool]]
+        """
+        [bool] Maintenance mode prevents the target from receiving balanced traffic.
+        """
+        proxy_protocol: NotRequired[pulumi.Input[str]]
+        """
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+        """
+elif False:
+    TargetGroupTargetArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class TargetGroupTargetArgs:
     def __init__(__self__, *,
@@ -1027,6 +1348,20 @@ class TargetGroupTargetArgs:
     def proxy_protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_protocol", value)
 
+
+if not MYPY:
+    class GetIpblockIpConsumerArgsDict(TypedDict):
+        datacenter_id: str
+        datacenter_name: str
+        ip: str
+        k8s_cluster_uuid: str
+        k8s_nodepool_uuid: str
+        mac: str
+        nic_id: str
+        server_id: str
+        server_name: str
+elif False:
+    GetIpblockIpConsumerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetIpblockIpConsumerArgs:
@@ -1132,6 +1467,13 @@ class GetIpblockIpConsumerArgs:
         pulumi.set(self, "server_name", value)
 
 
+if not MYPY:
+    class GetK8sClustersFilterArgsDict(TypedDict):
+        name: str
+        value: str
+elif False:
+    GetK8sClustersFilterArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetK8sClustersFilterArgs:
     def __init__(__self__, *,
@@ -1158,6 +1500,16 @@ class GetK8sClustersFilterArgs:
     def value(self, value: str):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class GetMongoUserRoleArgsDict(TypedDict):
+        database: str
+        role: str
+        """
+        A list of mongodb user roles. Examples: read, readWrite, readAnyDatabase
+        """
+elif False:
+    GetMongoUserRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetMongoUserRoleArgs:
@@ -1191,6 +1543,27 @@ class GetMongoUserRoleArgs:
     def role(self, value: str):
         pulumi.set(self, "role", value)
 
+
+if not MYPY:
+    class GetNfsShareClientGroupArgsDict(TypedDict):
+        description: str
+        """
+        Optional description for the clients groups.
+        """
+        hosts: Sequence[str]
+        """
+        A singular host allowed to connect to the share. The host can be specified as IP address and can be either IPv4 or IPv6.
+        """
+        ip_networks: Sequence[str]
+        """
+        The allowed host or network to which the export is being shared. The IP address can be either IPv4 or IPv6 and has to be given with CIDR notation.
+        """
+        nfs: Sequence['GetNfsShareClientGroupNfArgsDict']
+        """
+        The NFS configuration for the client group. Each NFS configuration supports the following:
+        """
+elif False:
+    GetNfsShareClientGroupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetNfsShareClientGroupArgs:
@@ -1259,6 +1632,15 @@ class GetNfsShareClientGroupArgs:
         pulumi.set(self, "nfs", value)
 
 
+if not MYPY:
+    class GetNfsShareClientGroupNfArgsDict(TypedDict):
+        squash: str
+        """
+        The squash mode for the export. The squash mode can be: none - No squash mode. no mapping, root-anonymous - Map root user to anonymous uid, all-anonymous - Map all users to anonymous uid.
+        """
+elif False:
+    GetNfsShareClientGroupNfArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetNfsShareClientGroupNfArgs:
     def __init__(__self__, *,
@@ -1280,6 +1662,13 @@ class GetNfsShareClientGroupNfArgs:
     def squash(self, value: str):
         pulumi.set(self, "squash", value)
 
+
+if not MYPY:
+    class GetServersFilterArgsDict(TypedDict):
+        name: str
+        value: str
+elif False:
+    GetServersFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetServersFilterArgs:

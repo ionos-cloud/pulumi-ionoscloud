@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -89,13 +94,19 @@ def get_k8s_node_pool_nodes(k8s_cluster_id: Optional[str] = None,
         k8s_cluster_id=pulumi.get(__ret__, 'k8s_cluster_id'),
         node_pool_id=pulumi.get(__ret__, 'node_pool_id'),
         nodes=pulumi.get(__ret__, 'nodes'))
-
-
-@_utilities.lift_output_func(get_k8s_node_pool_nodes)
 def get_k8s_node_pool_nodes_output(k8s_cluster_id: Optional[pulumi.Input[str]] = None,
                                    node_pool_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sNodePoolNodesResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sNodePoolNodesResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['k8sClusterId'] = k8s_cluster_id
+    __args__['nodePoolId'] = node_pool_id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes', __args__, opts=opts, typ=GetK8sNodePoolNodesResult)
+    return __ret__.apply(lambda __response__: GetK8sNodePoolNodesResult(
+        id=pulumi.get(__response__, 'id'),
+        k8s_cluster_id=pulumi.get(__response__, 'k8s_cluster_id'),
+        node_pool_id=pulumi.get(__response__, 'node_pool_id'),
+        nodes=pulumi.get(__response__, 'nodes')))

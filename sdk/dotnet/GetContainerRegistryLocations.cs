@@ -16,7 +16,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,7 +28,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetContainerRegistryLocationsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerRegistryLocationsResult>("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", InvokeArgs.Empty, options.WithDefaults());
@@ -39,7 +37,6 @@ namespace Pulumi.Ionoscloud
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -52,9 +49,29 @@ namespace Pulumi.Ionoscloud
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetContainerRegistryLocationsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerRegistryLocationsResult>("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// The **Container Registry Locations data source** can be used to get a list of Container Registry Locations
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ionoscloud = Pulumi.Ionoscloud;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Ionoscloud.GetContainerRegistryLocations.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetContainerRegistryLocationsResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerRegistryLocationsResult>("ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations", InvokeArgs.Empty, options.WithDefaults());
     }
 

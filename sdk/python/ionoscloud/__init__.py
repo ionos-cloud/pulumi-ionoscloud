@@ -7,14 +7,10 @@ import typing
 # Export this package's modules as members:
 from .application_loadbalancer import *
 from .application_loadbalancer_forwardingrule import *
-from .get_apigateway import *
-from .get_apigateway_route import *
 from .get_application_loadbalancer import *
 from .get_application_loadbalancer_forwardingrule import *
 from .get_auto_certificate import *
 from .get_auto_certificate_provider import *
-from .get_autoscaling_group import *
-from .get_autoscaling_group_servers import *
 from .get_backup_unit import *
 from .get_cdn_distribution import *
 from .get_certificate import *
@@ -40,8 +36,6 @@ from .get_k8s_cluster import *
 from .get_k8s_clusters import *
 from .get_k8s_node_pool import *
 from .get_k8s_node_pool_nodes import *
-from .get_kafka_cluster import *
-from .get_kafka_cluster_topic import *
 from .get_lan import *
 from .get_location import *
 from .get_logging_pipeline import *

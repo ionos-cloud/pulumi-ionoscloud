@@ -22,6 +22,7 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 
@@ -193,6 +194,28 @@ func Provider() tfbridge.ProviderInfo {
 		CSharp: &tfbridge.CSharpInfo{
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
+			},
+		},
+		DataSources: map[string]*info.DataSource{
+			"ionoscloud_kafka_cluster": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getCluster"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_kafka_cluster_topic": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, kafkaModule, "getTopic"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_apigateway": {
+				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getApigateway"),
+			},
+			"ionoscloud_apigateway_route": {
+				Tok: tfbridge.MakeDataSource(mainPkg, apigModule, "getRoute"),
+			},
+			"ionoscloud_autoscaling_group": {
+				Tok: tfbridge.MakeDataSource(mainPkg, autosclModule, "getGroup"),
+			},
+			"ionoscloud_autoscaling_group_servers": {
+				Tok: tfbridge.MakeDataSource(mainPkg, autosclModule, "getServers"),
 			},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{

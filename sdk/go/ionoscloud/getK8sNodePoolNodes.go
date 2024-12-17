@@ -37,15 +37,11 @@ type GetK8sNodePoolNodesResult struct {
 }
 
 func GetK8sNodePoolNodesOutput(ctx *pulumi.Context, args GetK8sNodePoolNodesOutputArgs, opts ...pulumi.InvokeOption) GetK8sNodePoolNodesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetK8sNodePoolNodesResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetK8sNodePoolNodesResultOutput, error) {
 			args := v.(GetK8sNodePoolNodesArgs)
-			r, err := GetK8sNodePoolNodes(ctx, &args, opts...)
-			var s GetK8sNodePoolNodesResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes", args, GetK8sNodePoolNodesResultOutput{}, options).(GetK8sNodePoolNodesResultOutput), nil
 		}).(GetK8sNodePoolNodesResultOutput)
 }
 

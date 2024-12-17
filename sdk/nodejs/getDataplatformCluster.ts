@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### By Name
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -24,11 +23,9 @@ import * as utilities from "./utilities";
  *     name: "Dataplatform_Cluster_Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -38,11 +35,9 @@ import * as utilities from "./utilities";
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDataplatformCluster(args?: GetDataplatformClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetDataplatformClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", {
         "id": args.id,
@@ -149,7 +144,6 @@ export interface GetDataplatformClusterResult {
  *
  * ### By Name
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -158,11 +152,9 @@ export interface GetDataplatformClusterResult {
  *     name: "Dataplatform_Cluster_Example",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### By Name with Partial Match
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
@@ -172,10 +164,15 @@ export interface GetDataplatformClusterResult {
  *     partialMatch: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
-export function getDataplatformClusterOutput(args?: GetDataplatformClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDataplatformClusterResult> {
-    return pulumi.output(args).apply((a: any) => getDataplatformCluster(a, opts))
+export function getDataplatformClusterOutput(args?: GetDataplatformClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDataplatformClusterResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getDataplatformCluster:getDataplatformCluster", {
+        "id": args.id,
+        "name": args.name,
+        "partialMatch": args.partialMatch,
+    }, opts);
 }
 
 /**

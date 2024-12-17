@@ -19,7 +19,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// This resource also allows switching between a `volume` and a `ionoscloud.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
     /// 
     /// ### Select an external volume
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -73,10 +72,8 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Select an inline volume again
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -130,10 +127,8 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Select a CDROM image
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -194,10 +189,8 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Perform a network boot
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -258,7 +251,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/bootDeviceSelection:BootDeviceSelection")]
     public partial class BootDeviceSelection : global::Pulumi.CustomResource

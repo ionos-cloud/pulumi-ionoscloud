@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -16,6 +21,8 @@ __all__ = [
     'get_autoscaling_group',
     'get_autoscaling_group_output',
 ]
+
+warnings.warn("""ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""", DeprecationWarning)
 
 @pulumi.output_type
 class GetAutoscalingGroupResult:
@@ -141,14 +148,12 @@ def get_autoscaling_group(id: Optional[str] = None,
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    autoscaling_group = ionoscloud.get_autoscaling_group(name="test_ds")
+    autoscaling_group = ionoscloud.autoscaling.get_group(name="test_ds")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Id of an existing Autoscaling Group that you want to search for.
@@ -156,6 +161,7 @@ def get_autoscaling_group(id: Optional[str] = None,
            
            Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
     """
+    pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
@@ -172,26 +178,21 @@ def get_autoscaling_group(id: Optional[str] = None,
         policies=pulumi.get(__ret__, 'policies'),
         replica_configurations=pulumi.get(__ret__, 'replica_configurations'),
         target_replica_count=pulumi.get(__ret__, 'target_replica_count'))
-
-
-@_utilities.lift_output_func(get_autoscaling_group)
 def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoscalingGroupResult]:
     """
     The autoscaling group data source can be used to search for and return an existing Autoscaling Group. You can provide a string for the name or id parameters which will be compared with provisioned Autoscaling Groups. If a single match is found, it will be returned.
 
     ## Example Usage
 
     ### By Name
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    autoscaling_group = ionoscloud.get_autoscaling_group(name="test_ds")
+    autoscaling_group = ionoscloud.autoscaling.get_group(name="test_ds")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: Id of an existing Autoscaling Group that you want to search for.
@@ -199,4 +200,19 @@ def get_autoscaling_group_output(id: Optional[pulumi.Input[Optional[str]]] = Non
            
            Either `name` or `id` must be provided. If none or both are provided, the datasource will return an error.
     """
-    ...
+    pulumi.log.warn("""get_autoscaling_group is deprecated: ionoscloud.index/getautoscalinggroup.getAutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/getgroup.getGroup""")
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup', __args__, opts=opts, typ=GetAutoscalingGroupResult)
+    return __ret__.apply(lambda __response__: GetAutoscalingGroupResult(
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        location=pulumi.get(__response__, 'location'),
+        max_replica_count=pulumi.get(__response__, 'max_replica_count'),
+        min_replica_count=pulumi.get(__response__, 'min_replica_count'),
+        name=pulumi.get(__response__, 'name'),
+        policies=pulumi.get(__response__, 'policies'),
+        replica_configurations=pulumi.get(__response__, 'replica_configurations'),
+        target_replica_count=pulumi.get(__response__, 'target_replica_count')))

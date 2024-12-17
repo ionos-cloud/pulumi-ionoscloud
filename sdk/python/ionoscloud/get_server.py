@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -287,15 +292,12 @@ def get_server(datacenter_id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'),
         vm_state=pulumi.get(__ret__, 'vm_state'),
         volumes=pulumi.get(__ret__, 'volumes'))
-
-
-@_utilities.lift_output_func(get_server)
 def get_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
                       id: Optional[pulumi.Input[Optional[str]]] = None,
                       name: Optional[pulumi.Input[Optional[str]]] = None,
                       template_uuid: Optional[pulumi.Input[Optional[str]]] = None,
                       type: Optional[pulumi.Input[Optional[str]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerResult]:
     """
     The **Server data source** can be used to search for and return existing servers.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -312,4 +314,30 @@ def get_server_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     :param str template_uuid: The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
     :param str type: The type of firewall rule
     """
-    ...
+    __args__ = dict()
+    __args__['datacenterId'] = datacenter_id
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['templateUuid'] = template_uuid
+    __args__['type'] = type
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getServer:getServer', __args__, opts=opts, typ=GetServerResult)
+    return __ret__.apply(lambda __response__: GetServerResult(
+        availability_zone=pulumi.get(__response__, 'availability_zone'),
+        boot_cdrom=pulumi.get(__response__, 'boot_cdrom'),
+        boot_image=pulumi.get(__response__, 'boot_image'),
+        boot_volume=pulumi.get(__response__, 'boot_volume'),
+        cdroms=pulumi.get(__response__, 'cdroms'),
+        cores=pulumi.get(__response__, 'cores'),
+        cpu_family=pulumi.get(__response__, 'cpu_family'),
+        datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        id=pulumi.get(__response__, 'id'),
+        labels=pulumi.get(__response__, 'labels'),
+        name=pulumi.get(__response__, 'name'),
+        nics=pulumi.get(__response__, 'nics'),
+        ram=pulumi.get(__response__, 'ram'),
+        template_uuid=pulumi.get(__response__, 'template_uuid'),
+        token=pulumi.get(__response__, 'token'),
+        type=pulumi.get(__response__, 'type'),
+        vm_state=pulumi.get(__response__, 'vm_state'),
+        volumes=pulumi.get(__response__, 'volumes')))

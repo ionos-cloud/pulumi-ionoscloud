@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,10 +44,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### By Name with Partial Match
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,7 +72,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupApplicationLoadbalancerForwardingrule(ctx *pulumi.Context, args *LookupApplicationLoadbalancerForwardingruleArgs, opts ...pulumi.InvokeOption) (*LookupApplicationLoadbalancerForwardingruleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApplicationLoadbalancerForwardingruleResult
@@ -126,15 +122,11 @@ type LookupApplicationLoadbalancerForwardingruleResult struct {
 }
 
 func LookupApplicationLoadbalancerForwardingruleOutput(ctx *pulumi.Context, args LookupApplicationLoadbalancerForwardingruleOutputArgs, opts ...pulumi.InvokeOption) LookupApplicationLoadbalancerForwardingruleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerForwardingruleResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupApplicationLoadbalancerForwardingruleResultOutput, error) {
 			args := v.(LookupApplicationLoadbalancerForwardingruleArgs)
-			r, err := LookupApplicationLoadbalancerForwardingrule(ctx, &args, opts...)
-			var s LookupApplicationLoadbalancerForwardingruleResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getApplicationLoadbalancerForwardingrule:getApplicationLoadbalancerForwardingrule", args, LookupApplicationLoadbalancerForwardingruleResultOutput{}, options).(LookupApplicationLoadbalancerForwardingruleResultOutput), nil
 		}).(LookupApplicationLoadbalancerForwardingruleResultOutput)
 }
 

@@ -67,7 +67,7 @@ namespace Pulumi.Ionoscloud.Inputs
         public Input<string>? TargetGroup { get; set; }
 
         /// <summary>
-        /// [string] Type of the Http Rule condition.
+        /// [string] Type of the Http Rule.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -124,7 +123,6 @@ namespace Pulumi.Ionoscloud
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -174,7 +172,7 @@ namespace Pulumi.Ionoscloud
         public Output<int> ListenerPort { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// [string] The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -280,7 +278,7 @@ namespace Pulumi.Ionoscloud
         public Input<int> ListenerPort { get; set; } = null!;
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// [string] The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -354,7 +352,7 @@ namespace Pulumi.Ionoscloud
         public Input<int>? ListenerPort { get; set; }
 
         /// <summary>
-        /// [string] The unique name of the Application Load Balancer HTTP rule.
+        /// [string] The name of the Application Load Balancer forwarding rule.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

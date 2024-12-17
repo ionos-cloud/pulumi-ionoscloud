@@ -4,13 +4,19 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClusterConnections',
+    'GetClusterConnectionResult',
 ]
 
 @pulumi.output_type
@@ -41,7 +47,8 @@ class ClusterConnections(dict):
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param Sequence[str] broker_addresses: [list] IP address and port of cluster brokers.
+        :param Sequence[str] broker_addresses: [list] IP addresses and subnet of cluster brokers. **Note** the following
+               unavailable IP range: 10.224.0.0/11
         :param str datacenter_id: [string] The datacenter to connect your instance to.
         :param str lan_id: [string] The numeric LAN ID to connect your instance to.
         """
@@ -53,7 +60,8 @@ class ClusterConnections(dict):
     @pulumi.getter(name="brokerAddresses")
     def broker_addresses(self) -> Sequence[str]:
         """
-        [list] IP address and port of cluster brokers.
+        [list] IP addresses and subnet of cluster brokers. **Note** the following
+        unavailable IP range: 10.224.0.0/11
         """
         return pulumi.get(self, "broker_addresses")
 
@@ -70,6 +78,46 @@ class ClusterConnections(dict):
     def lan_id(self) -> str:
         """
         [string] The numeric LAN ID to connect your instance to.
+        """
+        return pulumi.get(self, "lan_id")
+
+
+@pulumi.output_type
+class GetClusterConnectionResult(dict):
+    def __init__(__self__, *,
+                 broker_addresses: Sequence[str],
+                 datacenter_id: str,
+                 lan_id: str):
+        """
+        :param Sequence[str] broker_addresses: IP address and port of cluster brokers.
+        :param str datacenter_id: The datacenter that your instance is connected to.
+        :param str lan_id: The numeric LAN ID your instance is connected to.
+        """
+        pulumi.set(__self__, "broker_addresses", broker_addresses)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+
+    @property
+    @pulumi.getter(name="brokerAddresses")
+    def broker_addresses(self) -> Sequence[str]:
+        """
+        IP address and port of cluster brokers.
+        """
+        return pulumi.get(self, "broker_addresses")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The datacenter that your instance is connected to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> str:
+        """
+        The numeric LAN ID your instance is connected to.
         """
         return pulumi.get(self, "lan_id")
 

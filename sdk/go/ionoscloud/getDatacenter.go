@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By Name & Location
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +43,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDatacenter(ctx *pulumi.Context, args *GetDatacenterArgs, opts ...pulumi.InvokeOption) (*GetDatacenterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDatacenterResult
@@ -89,15 +87,11 @@ type GetDatacenterResult struct {
 }
 
 func GetDatacenterOutput(ctx *pulumi.Context, args GetDatacenterOutputArgs, opts ...pulumi.InvokeOption) GetDatacenterResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDatacenterResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetDatacenterResultOutput, error) {
 			args := v.(GetDatacenterArgs)
-			r, err := GetDatacenter(ctx, &args, opts...)
-			var s GetDatacenterResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getDatacenter:getDatacenter", args, GetDatacenterResultOutput{}, options).(GetDatacenterResultOutput), nil
 		}).(GetDatacenterResultOutput)
 }
 

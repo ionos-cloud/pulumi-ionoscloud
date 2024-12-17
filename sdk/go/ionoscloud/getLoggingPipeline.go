@@ -19,7 +19,6 @@ import (
 // ## Example Usage
 //
 // ### By name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +43,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupLoggingPipeline(ctx *pulumi.Context, args *LookupLoggingPipelineArgs, opts ...pulumi.InvokeOption) (*LookupLoggingPipelineResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLoggingPipelineResult
@@ -81,15 +79,11 @@ type LookupLoggingPipelineResult struct {
 }
 
 func LookupLoggingPipelineOutput(ctx *pulumi.Context, args LookupLoggingPipelineOutputArgs, opts ...pulumi.InvokeOption) LookupLoggingPipelineResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLoggingPipelineResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupLoggingPipelineResultOutput, error) {
 			args := v.(LookupLoggingPipelineArgs)
-			r, err := LookupLoggingPipeline(ctx, &args, opts...)
-			var s LookupLoggingPipelineResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getLoggingPipeline:getLoggingPipeline", args, LookupLoggingPipelineResultOutput{}, options).(LookupLoggingPipelineResultOutput), nil
 		}).(LookupLoggingPipelineResultOutput)
 }
 

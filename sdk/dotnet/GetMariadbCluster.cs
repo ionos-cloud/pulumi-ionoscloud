@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetMariadbClusterResult> Invoke(GetMariadbClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMariadbClusterResult>("ionoscloud:index/getMariadbCluster:getMariadbCluster", args ?? new GetMariadbClusterInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetMariadbClusterResult> Invoke(GetMariadbClusterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMariadbClusterResult>("ionoscloud:index/getMariadbCluster:getMariadbCluster", args ?? new GetMariadbClusterInvokeArgs(), options.WithDefaults());
     }
 
 

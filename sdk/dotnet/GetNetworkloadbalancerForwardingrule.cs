@@ -26,6 +26,14 @@ namespace Pulumi.Ionoscloud
         /// </summary>
         public static Output<GetNetworkloadbalancerForwardingruleResult> Invoke(GetNetworkloadbalancerForwardingruleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkloadbalancerForwardingruleResult>("ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule", args ?? new GetNetworkloadbalancerForwardingruleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// </summary>
+        public static Output<GetNetworkloadbalancerForwardingruleResult> Invoke(GetNetworkloadbalancerForwardingruleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkloadbalancerForwardingruleResult>("ionoscloud:index/getNetworkloadbalancerForwardingrule:getNetworkloadbalancerForwardingrule", args ?? new GetNetworkloadbalancerForwardingruleInvokeArgs(), options.WithDefaults());
     }
 
 

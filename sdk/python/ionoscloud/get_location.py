@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -97,7 +102,6 @@ def get_location(feature: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -105,7 +109,6 @@ def get_location(feature: Optional[str] = None,
     example = ionoscloud.get_location(feature="SSD",
         name="karlsruhe")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str feature: A desired feature that the location must be able to provide.
@@ -123,12 +126,9 @@ def get_location(feature: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         image_aliases=pulumi.get(__ret__, 'image_aliases'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_location)
 def get_location_output(feature: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLocationResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLocationResult]:
     """
     The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
     If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
@@ -136,7 +136,6 @@ def get_location_output(feature: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_ionoscloud as ionoscloud
@@ -144,10 +143,19 @@ def get_location_output(feature: Optional[pulumi.Input[Optional[str]]] = None,
     example = ionoscloud.get_location(feature="SSD",
         name="karlsruhe")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str feature: A desired feature that the location must be able to provide.
     :param str name: Name of the location to search for.
     """
-    ...
+    __args__ = dict()
+    __args__['feature'] = feature
+    __args__['name'] = name
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getLocation:getLocation', __args__, opts=opts, typ=GetLocationResult)
+    return __ret__.apply(lambda __response__: GetLocationResult(
+        cpu_architectures=pulumi.get(__response__, 'cpu_architectures'),
+        feature=pulumi.get(__response__, 'feature'),
+        id=pulumi.get(__response__, 'id'),
+        image_aliases=pulumi.get(__response__, 'image_aliases'),
+        name=pulumi.get(__response__, 'name')))

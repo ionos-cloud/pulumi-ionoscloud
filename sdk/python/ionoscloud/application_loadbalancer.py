@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -35,9 +40,7 @@ class ApplicationLoadbalancerArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "listener_lan", listener_lan)
@@ -155,9 +158,7 @@ class ApplicationLoadbalancerArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        [string] The name of the Application Load Balancer.
         """
         return pulumi.get(self, "name")
 
@@ -187,9 +188,7 @@ class _ApplicationLoadbalancerState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[int] listener_lan: [int] ID of the listening (inbound) LAN.
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer.
         :param pulumi.Input[int] target_lan: [int] ID of the balanced private target LAN (outbound).
         """
         if central_logging is not None:
@@ -299,9 +298,7 @@ class _ApplicationLoadbalancerState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        [string] The name of the Application Load Balancer.
         """
         return pulumi.get(self, "name")
 
@@ -329,7 +326,7 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: Optional[pulumi.Input[bool]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['ApplicationLoadbalancerFlowlogArgs', 'ApplicationLoadbalancerFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  listener_lan: Optional[pulumi.Input[int]] = None,
@@ -342,7 +339,6 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -366,7 +362,6 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
             central_logging=True,
             logging_format="%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\"\\" \\"\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -380,14 +375,12 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
         :param pulumi.Input[str] datacenter_id: [string] ID of the datacenter.
-        :param pulumi.Input[pulumi.InputType['ApplicationLoadbalancerFlowlogArgs']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        :param pulumi.Input[Union['ApplicationLoadbalancerFlowlogArgs', 'ApplicationLoadbalancerFlowlogArgsDict']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[int] listener_lan: [int] ID of the listening (inbound) LAN.
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer.
         :param pulumi.Input[int] target_lan: [int] ID of the balanced private target LAN (outbound).
         """
         ...
@@ -401,7 +394,6 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -425,7 +417,6 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
             central_logging=True,
             logging_format="%{+Q}o %{-Q}ci - - [%trg] %r %ST %B \\"\\" \\"\\" %cp %ms %ft %b %s %TR %Tw %Tc %Tr %Ta %tsc %ac %fc %bc %sc %rc %sq %bq %CC %CS %hrl %hsl")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -452,7 +443,7 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: Optional[pulumi.Input[bool]] = None,
                  datacenter_id: Optional[pulumi.Input[str]] = None,
-                 flowlog: Optional[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerFlowlogArgs']]] = None,
+                 flowlog: Optional[pulumi.Input[Union['ApplicationLoadbalancerFlowlogArgs', 'ApplicationLoadbalancerFlowlogArgsDict']]] = None,
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  listener_lan: Optional[pulumi.Input[int]] = None,
@@ -495,7 +486,7 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             central_logging: Optional[pulumi.Input[bool]] = None,
             datacenter_id: Optional[pulumi.Input[str]] = None,
-            flowlog: Optional[pulumi.Input[pulumi.InputType['ApplicationLoadbalancerFlowlogArgs']]] = None,
+            flowlog: Optional[pulumi.Input[Union['ApplicationLoadbalancerFlowlogArgs', 'ApplicationLoadbalancerFlowlogArgsDict']]] = None,
             ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             lb_private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             listener_lan: Optional[pulumi.Input[int]] = None,
@@ -511,14 +502,12 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
         :param pulumi.Input[str] datacenter_id: [string] ID of the datacenter.
-        :param pulumi.Input[pulumi.InputType['ApplicationLoadbalancerFlowlogArgs']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        :param pulumi.Input[Union['ApplicationLoadbalancerFlowlogArgs', 'ApplicationLoadbalancerFlowlogArgsDict']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[int] listener_lan: [int] ID of the listening (inbound) LAN.
         :param pulumi.Input[str] logging_format: Specifies the format of the logs.
-        :param pulumi.Input[str] name: [string] Specifies the name of the flow log.
-               
-               ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        :param pulumi.Input[str] name: [string] The name of the Application Load Balancer.
         :param pulumi.Input[int] target_lan: [int] ID of the balanced private target LAN (outbound).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -596,9 +585,7 @@ class ApplicationLoadbalancer(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Specifies the name of the flow log.
-
-        ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the application load balancer resource.
+        [string] The name of the Application Load Balancer.
         """
         return pulumi.get(self, "name")
 

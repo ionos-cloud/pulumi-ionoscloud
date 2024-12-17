@@ -46,7 +46,7 @@ namespace Pulumi.Ionoscloud.Outputs
         /// </summary>
         public readonly string? TargetGroup;
         /// <summary>
-        /// [string] Type of the Http Rule condition.
+        /// [string] Type of the Http Rule.
         /// </summary>
         public readonly string Type;
 

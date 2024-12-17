@@ -7,7 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getK8sNodePoolNodes(args: GetK8sNodePoolNodesArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sNodePoolNodesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes", {
         "k8sClusterId": args.k8sClusterId,
@@ -35,8 +34,12 @@ export interface GetK8sNodePoolNodesResult {
     readonly nodePoolId: string;
     readonly nodes: outputs.GetK8sNodePoolNodesNode[];
 }
-export function getK8sNodePoolNodesOutput(args: GetK8sNodePoolNodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sNodePoolNodesResult> {
-    return pulumi.output(args).apply((a: any) => getK8sNodePoolNodes(a, opts))
+export function getK8sNodePoolNodesOutput(args: GetK8sNodePoolNodesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sNodePoolNodesResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes", {
+        "k8sClusterId": args.k8sClusterId,
+        "nodePoolId": args.nodePoolId,
+    }, opts);
 }
 
 /**

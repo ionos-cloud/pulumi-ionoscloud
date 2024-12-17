@@ -14,7 +14,6 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -86,13 +85,12 @@ namespace Pulumi.Ionoscloud.Compute
     ///     {
     ///         DependsOn =
     ///         {
-    ///             exampleLan, 
+    ///             exampleLan,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## A note on multiple NICs on an IP Failover
     /// 

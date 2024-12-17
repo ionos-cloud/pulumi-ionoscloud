@@ -13,19 +13,19 @@ namespace Pulumi.Ionoscloud.Autoscaling.Inputs
     public sealed class GroupReplicaConfigurationNicFlowLogArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: ACCEPTED, REJECTED, ALL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+        /// The bucket name of an existing IONOS Object Storage bucket. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+        /// Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-recreation of the nic resource.
         /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
@@ -37,7 +37,7 @@ namespace Pulumi.Ionoscloud.Autoscaling.Inputs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] Name for this replica volume.
+        /// [string] User-defined name for the Autoscaling Group.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

@@ -18,7 +18,6 @@ import (
 // ## Example Usage
 //
 // ### By Name
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNetworkloadbalancer(ctx *pulumi.Context, args *LookupNetworkloadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupNetworkloadbalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkloadbalancerResult
@@ -89,15 +87,11 @@ type LookupNetworkloadbalancerResult struct {
 }
 
 func LookupNetworkloadbalancerOutput(ctx *pulumi.Context, args LookupNetworkloadbalancerOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkloadbalancerResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupNetworkloadbalancerResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupNetworkloadbalancerResultOutput, error) {
 			args := v.(LookupNetworkloadbalancerArgs)
-			r, err := LookupNetworkloadbalancer(ctx, &args, opts...)
-			var s LookupNetworkloadbalancerResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getNetworkloadbalancer:getNetworkloadbalancer", args, LookupNetworkloadbalancerResultOutput{}, options).(LookupNetworkloadbalancerResultOutput), nil
 		}).(LookupNetworkloadbalancerResultOutput)
 }
 

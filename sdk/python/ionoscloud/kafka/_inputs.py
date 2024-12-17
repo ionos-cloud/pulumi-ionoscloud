@@ -4,14 +4,40 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClusterConnectionsArgs',
+    'ClusterConnectionsArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClusterConnectionsArgsDict(TypedDict):
+        broker_addresses: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        [list] IP addresses and subnet of cluster brokers. **Note** the following
+        unavailable IP range: 10.224.0.0/11
+        """
+        datacenter_id: pulumi.Input[str]
+        """
+        [string] The datacenter to connect your instance to.
+        """
+        lan_id: pulumi.Input[str]
+        """
+        [string] The numeric LAN ID to connect your instance to.
+        """
+elif False:
+    ClusterConnectionsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClusterConnectionsArgs:
@@ -20,7 +46,8 @@ class ClusterConnectionsArgs:
                  datacenter_id: pulumi.Input[str],
                  lan_id: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: [list] IP address and port of cluster brokers.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_addresses: [list] IP addresses and subnet of cluster brokers. **Note** the following
+               unavailable IP range: 10.224.0.0/11
         :param pulumi.Input[str] datacenter_id: [string] The datacenter to connect your instance to.
         :param pulumi.Input[str] lan_id: [string] The numeric LAN ID to connect your instance to.
         """
@@ -32,7 +59,8 @@ class ClusterConnectionsArgs:
     @pulumi.getter(name="brokerAddresses")
     def broker_addresses(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        [list] IP address and port of cluster brokers.
+        [list] IP addresses and subnet of cluster brokers. **Note** the following
+        unavailable IP range: 10.224.0.0/11
         """
         return pulumi.get(self, "broker_addresses")
 

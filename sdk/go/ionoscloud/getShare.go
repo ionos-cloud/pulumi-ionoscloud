@@ -56,15 +56,11 @@ type GetShareResult struct {
 }
 
 func GetShareOutput(ctx *pulumi.Context, args GetShareOutputArgs, opts ...pulumi.InvokeOption) GetShareResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetShareResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetShareResultOutput, error) {
 			args := v.(GetShareArgs)
-			r, err := GetShare(ctx, &args, opts...)
-			var s GetShareResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("ionoscloud:index/getShare:getShare", args, GetShareResultOutput{}, options).(GetShareResultOutput), nil
 		}).(GetShareResultOutput)
 }
 

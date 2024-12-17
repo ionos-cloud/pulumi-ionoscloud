@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 from ._inputs import *
@@ -257,13 +262,11 @@ class GroupArgs:
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
         [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -533,13 +536,11 @@ class _GroupState:
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> Optional[pulumi.Input[str]]:
         """
         [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -600,7 +601,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -647,7 +647,6 @@ class Group(pulumi.CustomResource):
                 example2.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -689,7 +688,6 @@ class Group(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import ionoscloud as ionoscloud
@@ -736,7 +734,6 @@ class Group(pulumi.CustomResource):
                 example2.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -831,7 +828,7 @@ class Group(pulumi.CustomResource):
             s3_privilege: Optional[pulumi.Input[bool]] = None,
             user_id: Optional[pulumi.Input[str]] = None,
             user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUserArgs']]]]] = None) -> 'Group':
+            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -855,7 +852,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[bool] s3_privilege: [Boolean] The group will have S3 privilege.
         :param pulumi.Input[str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: [list] A list of users to add to the group.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GroupUserArgs']]]] users: List of users - See the User section
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]] users: List of users - See the User section
                
                **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
         """
@@ -996,13 +993,11 @@ class Group(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="userId")
+    @_utilities.deprecated("""Please use user_ids for adding users to the group, since user_id will be removed in the future""")
     def user_id(self) -> pulumi.Output[Optional[str]]:
         """
         [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         """
-        warnings.warn("""Please use user_ids for adding users to the group, since user_id will be removed in the future""", DeprecationWarning)
-        pulumi.log.warn("""user_id is deprecated: Please use user_ids for adding users to the group, since user_id will be removed in the future""")
-
         return pulumi.get(self, "user_id")
 
     @property

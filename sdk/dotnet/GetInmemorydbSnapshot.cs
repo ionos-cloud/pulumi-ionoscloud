@@ -16,6 +16,9 @@ namespace Pulumi.Ionoscloud
 
         public static Output<GetInmemorydbSnapshotResult> Invoke(GetInmemorydbSnapshotInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInmemorydbSnapshotResult>("ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot", args ?? new GetInmemorydbSnapshotInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetInmemorydbSnapshotResult> Invoke(GetInmemorydbSnapshotInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInmemorydbSnapshotResult>("ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot", args ?? new GetInmemorydbSnapshotInvokeArgs(), options.WithDefaults());
     }
 
 
