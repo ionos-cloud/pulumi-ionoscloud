@@ -72,7 +72,7 @@ class GetAutoCertificateProviderExternalAccountBindingResult(dict):
     def __init__(__self__, *,
                  key_id: str):
         """
-        :param str key_id: The key ID of the external account binding
+        :param str key_id: [string] The key ID of the external account binding.
         """
         pulumi.set(__self__, "key_id", key_id)
 
@@ -80,7 +80,7 @@ class GetAutoCertificateProviderExternalAccountBindingResult(dict):
     @pulumi.getter(name="keyId")
     def key_id(self) -> str:
         """
-        The key ID of the external account binding
+        [string] The key ID of the external account binding.
         """
         return pulumi.get(self, "key_id")
 

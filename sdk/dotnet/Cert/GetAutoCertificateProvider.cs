@@ -11,12 +11,36 @@ namespace Pulumi.Ionoscloud.Cert
 {
     public static class GetAutoCertificateProvider
     {
+        /// <summary>
+        /// The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+        /// You can provide a string for either id or name parameters which will be compared with provisioned providers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetAutoCertificateProviderResult> InvokeAsync(GetAutoCertificateProviderArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAutoCertificateProviderResult>("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", args ?? new GetAutoCertificateProviderArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+        /// You can provide a string for either id or name parameters which will be compared with provisioned providers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetAutoCertificateProviderResult> Invoke(GetAutoCertificateProviderInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAutoCertificateProviderResult>("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", args ?? new GetAutoCertificateProviderInvokeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+        /// You can provide a string for either id or name parameters which will be compared with provisioned providers.
+        /// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+        /// When this happens, please refine your search string so that it is specific enough to return only one result.
+        /// 
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetAutoCertificateProviderResult> Invoke(GetAutoCertificateProviderInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAutoCertificateProviderResult>("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", args ?? new GetAutoCertificateProviderInvokeArgs(), options.WithDefaults());
     }
@@ -24,12 +48,23 @@ namespace Pulumi.Ionoscloud.Cert
 
     public sealed class GetAutoCertificateProviderArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] ID of the provider you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// [string] The location of the provider.
+        /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing provider that you want to search for.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -41,12 +76,23 @@ namespace Pulumi.Ionoscloud.Cert
 
     public sealed class GetAutoCertificateProviderInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// [string] ID of the provider you want to search for.
+        /// 
+        /// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// [string] The location of the provider.
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
+        /// <summary>
+        /// [string] Name of an existing provider that you want to search for.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -60,11 +106,20 @@ namespace Pulumi.Ionoscloud.Cert
     [OutputType]
     public sealed class GetAutoCertificateProviderResult
     {
+        /// <summary>
+        /// [string] The email address of the certificate requester.
+        /// </summary>
         public readonly string Email;
+        /// <summary>
+        /// [list]
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAutoCertificateProviderExternalAccountBindingResult> ExternalAccountBindings;
         public readonly string? Id;
         public readonly string Location;
         public readonly string? Name;
+        /// <summary>
+        /// [string] The URL of the certificate provider.
+        /// </summary>
         public readonly string Server;
 
         [OutputConstructor]

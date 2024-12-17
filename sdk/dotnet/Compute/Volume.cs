@@ -25,7 +25,7 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleImage = Ionoscloud.GetImage.Invoke(new()
+    ///     var exampleImage = Ionoscloud.Compute.GetImage.Invoke(new()
     ///     {
     ///         Type = "HDD",
     ///         CloudInit = "V1",

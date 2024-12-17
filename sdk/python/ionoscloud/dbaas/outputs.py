@@ -38,6 +38,9 @@ __all__ = [
     'GetInMemoryDBReplicaSetCredentialResult',
     'GetInMemoryDBReplicaSetMaintenanceWindowResult',
     'GetInMemoryDBReplicaSetResourceResult',
+    'GetInmemorydbSnapshotMetadataResult',
+    'GetMariaDBBackupsBackupResult',
+    'GetMariaDBBackupsBackupBaseBackupResult',
     'GetMariaDBClusterConnectionResult',
     'GetMariaDBClusterMaintenanceWindowResult',
     'GetMongoClusterBackupResult',
@@ -45,10 +48,13 @@ __all__ = [
     'GetMongoClusterConnectionResult',
     'GetMongoClusterMaintenanceWindowResult',
     'GetMongoUserRoleResult',
+    'GetPSQLBackupsClusterBackupResult',
+    'GetPSQLBackupsClusterBackupMetadataResult',
     'GetPSQLClusterConnectionResult',
     'GetPSQLClusterConnectionPoolerResult',
     'GetPSQLClusterFromBackupResult',
     'GetPSQLClusterMaintenanceWindowResult',
+    'GetPSQLDatabasesDatabaseResult',
 ]
 
 @pulumi.output_type
@@ -1025,15 +1031,157 @@ class GetInMemoryDBReplicaSetResourceResult(dict):
 
 
 @pulumi.output_type
+class GetInmemorydbSnapshotMetadataResult(dict):
+    def __init__(__self__, *,
+                 created_date: str,
+                 datacenter_id: str,
+                 last_modified_date: str,
+                 replica_set_id: str,
+                 snapshot_time: str):
+        """
+        :param str created_date: The ISO 8601 creation timestamp.
+        :param str datacenter_id: The ID of the datacenter in which the snapshot is located.
+        :param str last_modified_date: The ISO 8601 modified timestamp.
+        :param str replica_set_id: The ID of the replica set from which the snapshot was created.
+        :param str snapshot_time: The time at which the snapshot was taken.
+        """
+        pulumi.set(__self__, "created_date", created_date)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "last_modified_date", last_modified_date)
+        pulumi.set(__self__, "replica_set_id", replica_set_id)
+        pulumi.set(__self__, "snapshot_time", snapshot_time)
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The ISO 8601 creation timestamp.
+        """
+        return pulumi.get(self, "created_date")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The ID of the datacenter in which the snapshot is located.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter(name="lastModifiedDate")
+    def last_modified_date(self) -> str:
+        """
+        The ISO 8601 modified timestamp.
+        """
+        return pulumi.get(self, "last_modified_date")
+
+    @property
+    @pulumi.getter(name="replicaSetId")
+    def replica_set_id(self) -> str:
+        """
+        The ID of the replica set from which the snapshot was created.
+        """
+        return pulumi.get(self, "replica_set_id")
+
+    @property
+    @pulumi.getter(name="snapshotTime")
+    def snapshot_time(self) -> str:
+        """
+        The time at which the snapshot was taken.
+        """
+        return pulumi.get(self, "snapshot_time")
+
+
+@pulumi.output_type
+class GetMariaDBBackupsBackupResult(dict):
+    def __init__(__self__, *,
+                 base_backups: Sequence['outputs.GetMariaDBBackupsBackupBaseBackupResult'],
+                 cluster_id: str,
+                 earliest_recovery_target_time: str,
+                 size: int):
+        """
+        :param Sequence['GetMariaDBBackupsBackupBaseBackupArgs'] base_backups: The list of backups for the specified cluster
+        :param str cluster_id: [string] The unique ID of the cluster.
+        :param str earliest_recovery_target_time: The oldest available timestamp to which you can restore.
+        :param int size: The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        """
+        pulumi.set(__self__, "base_backups", base_backups)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="baseBackups")
+    def base_backups(self) -> Sequence['outputs.GetMariaDBBackupsBackupBaseBackupResult']:
+        """
+        The list of backups for the specified cluster
+        """
+        return pulumi.get(self, "base_backups")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        [string] The unique ID of the cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="earliestRecoveryTargetTime")
+    def earliest_recovery_target_time(self) -> str:
+        """
+        The oldest available timestamp to which you can restore.
+        """
+        return pulumi.get(self, "earliest_recovery_target_time")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetMariaDBBackupsBackupBaseBackupResult(dict):
+    def __init__(__self__, *,
+                 created: str,
+                 size: int):
+        """
+        :param str created: The ISO 8601 creation timestamp
+        :param int size: The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        """
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The ISO 8601 creation timestamp
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
 class GetMariaDBClusterConnectionResult(dict):
     def __init__(__self__, *,
                  cidr: str,
                  datacenter_id: str,
                  lan_id: str):
         """
-        :param str cidr: The IP and subnet for your cluster.
-        :param str datacenter_id: The datacenter to connect your cluster to.
-        :param str lan_id: The numeric LAN ID to connect your cluster to.
+        :param str cidr: [string] The IP and subnet for your cluster.
+        :param str datacenter_id: [string] The datacenter to connect your cluster to.
+        :param str lan_id: [string] The LAN to connect your cluster to.
         """
         pulumi.set(__self__, "cidr", cidr)
         pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -1043,7 +1191,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter
     def cidr(self) -> str:
         """
-        The IP and subnet for your cluster.
+        [string] The IP and subnet for your cluster.
         """
         return pulumi.get(self, "cidr")
 
@@ -1051,7 +1199,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> str:
         """
-        The datacenter to connect your cluster to.
+        [string] The datacenter to connect your cluster to.
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -1059,7 +1207,7 @@ class GetMariaDBClusterConnectionResult(dict):
     @pulumi.getter(name="lanId")
     def lan_id(self) -> str:
         """
-        The numeric LAN ID to connect your cluster to.
+        [string] The LAN to connect your cluster to.
         """
         return pulumi.get(self, "lan_id")
 
@@ -1070,8 +1218,8 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
                  day_of_the_week: str,
                  time: str):
         """
-        :param str day_of_the_week: The name of the week day.
-        :param str time: Start of the maintenance window in UTC time.
+        :param str day_of_the_week: [string] The name of the week day.
+        :param str time: [string] Start of the maintenance window in UTC time.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -1080,7 +1228,7 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
     @pulumi.getter(name="dayOfTheWeek")
     def day_of_the_week(self) -> str:
         """
-        The name of the week day.
+        [string] The name of the week day.
         """
         return pulumi.get(self, "day_of_the_week")
 
@@ -1088,7 +1236,7 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         """
-        Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
 
@@ -1254,6 +1402,130 @@ class GetMongoUserRoleResult(dict):
 
 
 @pulumi.output_type
+class GetPSQLBackupsClusterBackupResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: str,
+                 earliest_recovery_target_time: str,
+                 id: str,
+                 is_active: bool,
+                 location: str,
+                 metadatas: Sequence['outputs.GetPSQLBackupsClusterBackupMetadataResult'],
+                 size: int,
+                 type: str,
+                 version: str):
+        """
+        :param str cluster_id: The unique ID of the cluster.
+               
+               `cluster_id` must be provided. If it is not provided, the datasource will return an error.
+        :param str earliest_recovery_target_time: The oldest available timestamp to which you can restore.
+        :param str id: The unique ID of the resource.
+        :param bool is_active: Whether a cluster currently backs up data to this backup.
+        :param str location: The IONOS Object Storage location where the backups will be stored.
+        :param Sequence['GetPSQLBackupsClusterBackupMetadataArgs'] metadatas: Metadata of the resource.
+        :param int size: The size of all base backups including the wal size in MB.
+        :param str version: The PostgreSQL version this backup was created from.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_active", is_active)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "metadatas", metadatas)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> str:
+        """
+        The unique ID of the cluster.
+
+        `cluster_id` must be provided. If it is not provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="earliestRecoveryTargetTime")
+    def earliest_recovery_target_time(self) -> str:
+        """
+        The oldest available timestamp to which you can restore.
+        """
+        return pulumi.get(self, "earliest_recovery_target_time")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique ID of the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isActive")
+    def is_active(self) -> bool:
+        """
+        Whether a cluster currently backs up data to this backup.
+        """
+        return pulumi.get(self, "is_active")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The IONOS Object Storage location where the backups will be stored.
+        """
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def metadatas(self) -> Sequence['outputs.GetPSQLBackupsClusterBackupMetadataResult']:
+        """
+        Metadata of the resource.
+        """
+        return pulumi.get(self, "metadatas")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of all base backups including the wal size in MB.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The PostgreSQL version this backup was created from.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetPSQLBackupsClusterBackupMetadataResult(dict):
+    def __init__(__self__, *,
+                 created_date: str):
+        """
+        :param str created_date: The ISO 8601 creation timestamp.
+        """
+        pulumi.set(__self__, "created_date", created_date)
+
+    @property
+    @pulumi.getter(name="createdDate")
+    def created_date(self) -> str:
+        """
+        The ISO 8601 creation timestamp.
+        """
+        return pulumi.get(self, "created_date")
+
+
+@pulumi.output_type
 class GetPSQLClusterConnectionResult(dict):
     def __init__(__self__, *,
                  cidr: str,
@@ -1364,5 +1636,45 @@ class GetPSQLClusterMaintenanceWindowResult(dict):
     @pulumi.getter
     def time(self) -> str:
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetPSQLDatabasesDatabaseResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str,
+                 owner: str):
+        """
+        :param str id: [string] The ID of the database.
+        :param str name: [string] The name of the database.
+        :param str owner: [string] Filter using a specific owner.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        [string] The ID of the database.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        [string] The name of the database.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        """
+        [string] Filter using a specific owner.
+        """
+        return pulumi.get(self, "owner")
 
 

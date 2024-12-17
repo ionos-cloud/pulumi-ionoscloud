@@ -28,6 +28,8 @@ __all__ = [
     'GetClusterLanRouteResult',
     'GetClusterMaintenanceWindowResult',
     'GetNodePoolMaintenanceWindowResult',
+    'GetNodePoolsNodePoolResult',
+    'GetNodePoolsNodePoolMaintenanceWindowResult',
 ]
 
 @pulumi.output_type
@@ -447,6 +449,188 @@ class GetNodePoolMaintenanceWindowResult(dict):
     def time(self) -> str:
         """
         Time at which the maintenance should start.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolResult(dict):
+    def __init__(__self__, *,
+                 annotations: Mapping[str, str],
+                 availability_zone: str,
+                 cores_count: int,
+                 cpu_family: str,
+                 datacenter_id: str,
+                 id: str,
+                 labels: Mapping[str, str],
+                 maintenance_windows: Sequence['outputs.GetNodePoolsNodePoolMaintenanceWindowResult'],
+                 name: str,
+                 node_count: int,
+                 ram_size: int,
+                 storage_size: int,
+                 storage_type: str,
+                 version: str):
+        """
+        :param Mapping[str, str] annotations: Key-value pairs attached to node pool resource as kubernetes annotations
+        :param str availability_zone: The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        :param int cores_count: The number of CPU cores per node.
+        :param str cpu_family: A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+        :param str datacenter_id: The UUID of the virtual data center (VDC) in which the node pool is provisioned
+        :param Mapping[str, str] labels: Key-value pairs attached to the node pool resource as kubernetes labels
+        :param Sequence['GetNodePoolsNodePoolMaintenanceWindowArgs'] maintenance_windows: Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        :param str name: Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        :param int node_count: The number of nodes that make up the node pool.
+        :param int ram_size: The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        :param int storage_size: The size of the volume in GB. The size must be greater than 10GB.
+        :param str storage_type: The type of hardware for the volume.
+        :param str version: The version of the Data Platform.
+        """
+        pulumi.set(__self__, "annotations", annotations)
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "cores_count", cores_count)
+        pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "maintenance_windows", maintenance_windows)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "ram_size", ram_size)
+        pulumi.set(__self__, "storage_size", storage_size)
+        pulumi.set(__self__, "storage_type", storage_type)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Mapping[str, str]:
+        """
+        Key-value pairs attached to node pool resource as kubernetes annotations
+        """
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        """
+        The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+        """
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="coresCount")
+    def cores_count(self) -> int:
+        """
+        The number of CPU cores per node.
+        """
+        return pulumi.get(self, "cores_count")
+
+    @property
+    @pulumi.getter(name="cpuFamily")
+    def cpu_family(self) -> str:
+        """
+        A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+        """
+        return pulumi.get(self, "cpu_family")
+
+    @property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> str:
+        """
+        The UUID of the virtual data center (VDC) in which the node pool is provisioned
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, str]:
+        """
+        Key-value pairs attached to the node pool resource as kubernetes labels
+        """
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="maintenanceWindows")
+    def maintenance_windows(self) -> Sequence['outputs.GetNodePoolsNodePoolMaintenanceWindowResult']:
+        """
+        Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+        """
+        return pulumi.get(self, "maintenance_windows")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partial_match` parameter is not set to true.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> int:
+        """
+        The number of nodes that make up the node pool.
+        """
+        return pulumi.get(self, "node_count")
+
+    @property
+    @pulumi.getter(name="ramSize")
+    def ram_size(self) -> int:
+        """
+        The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+        """
+        return pulumi.get(self, "ram_size")
+
+    @property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> int:
+        """
+        The size of the volume in GB. The size must be greater than 10GB.
+        """
+        return pulumi.get(self, "storage_size")
+
+    @property
+    @pulumi.getter(name="storageType")
+    def storage_type(self) -> str:
+        """
+        The type of hardware for the volume.
+        """
+        return pulumi.get(self, "storage_type")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of the Data Platform.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str time: Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
         """
         return pulumi.get(self, "time")
 

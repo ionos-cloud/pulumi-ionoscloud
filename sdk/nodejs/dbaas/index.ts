@@ -10,6 +10,16 @@ export const getInMemoryDBReplicaSet: typeof import("./getInMemoryDBReplicaSet")
 export const getInMemoryDBReplicaSetOutput: typeof import("./getInMemoryDBReplicaSet").getInMemoryDBReplicaSetOutput = null as any;
 utilities.lazyLoad(exports, ["getInMemoryDBReplicaSet","getInMemoryDBReplicaSetOutput"], () => require("./getInMemoryDBReplicaSet"));
 
+export { GetInmemorydbSnapshotArgs, GetInmemorydbSnapshotResult, GetInmemorydbSnapshotOutputArgs } from "./getInmemorydbSnapshot";
+export const getInmemorydbSnapshot: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshot = null as any;
+export const getInmemorydbSnapshotOutput: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getInmemorydbSnapshot","getInmemorydbSnapshotOutput"], () => require("./getInmemorydbSnapshot"));
+
+export { GetMariaDBBackupsArgs, GetMariaDBBackupsResult, GetMariaDBBackupsOutputArgs } from "./getMariaDBBackups";
+export const getMariaDBBackups: typeof import("./getMariaDBBackups").getMariaDBBackups = null as any;
+export const getMariaDBBackupsOutput: typeof import("./getMariaDBBackups").getMariaDBBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["getMariaDBBackups","getMariaDBBackupsOutput"], () => require("./getMariaDBBackups"));
+
 export { GetMariaDBClusterArgs, GetMariaDBClusterResult, GetMariaDBClusterOutputArgs } from "./getMariaDBCluster";
 export const getMariaDBCluster: typeof import("./getMariaDBCluster").getMariaDBCluster = null as any;
 export const getMariaDBClusterOutput: typeof import("./getMariaDBCluster").getMariaDBClusterOutput = null as any;
@@ -20,10 +30,20 @@ export const getMongoCluster: typeof import("./getMongoCluster").getMongoCluster
 export const getMongoClusterOutput: typeof import("./getMongoCluster").getMongoClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getMongoCluster","getMongoClusterOutput"], () => require("./getMongoCluster"));
 
+export { GetMongoTemplateArgs, GetMongoTemplateResult, GetMongoTemplateOutputArgs } from "./getMongoTemplate";
+export const getMongoTemplate: typeof import("./getMongoTemplate").getMongoTemplate = null as any;
+export const getMongoTemplateOutput: typeof import("./getMongoTemplate").getMongoTemplateOutput = null as any;
+utilities.lazyLoad(exports, ["getMongoTemplate","getMongoTemplateOutput"], () => require("./getMongoTemplate"));
+
 export { GetMongoUserArgs, GetMongoUserResult, GetMongoUserOutputArgs } from "./getMongoUser";
 export const getMongoUser: typeof import("./getMongoUser").getMongoUser = null as any;
 export const getMongoUserOutput: typeof import("./getMongoUser").getMongoUserOutput = null as any;
 utilities.lazyLoad(exports, ["getMongoUser","getMongoUserOutput"], () => require("./getMongoUser"));
+
+export { GetPSQLBackupsArgs, GetPSQLBackupsResult, GetPSQLBackupsOutputArgs } from "./getPSQLBackups";
+export const getPSQLBackups: typeof import("./getPSQLBackups").getPSQLBackups = null as any;
+export const getPSQLBackupsOutput: typeof import("./getPSQLBackups").getPSQLBackupsOutput = null as any;
+utilities.lazyLoad(exports, ["getPSQLBackups","getPSQLBackupsOutput"], () => require("./getPSQLBackups"));
 
 export { GetPSQLClusterArgs, GetPSQLClusterResult, GetPSQLClusterOutputArgs } from "./getPSQLCluster";
 export const getPSQLCluster: typeof import("./getPSQLCluster").getPSQLCluster = null as any;
@@ -35,10 +55,20 @@ export const getPSQLDatabase: typeof import("./getPSQLDatabase").getPSQLDatabase
 export const getPSQLDatabaseOutput: typeof import("./getPSQLDatabase").getPSQLDatabaseOutput = null as any;
 utilities.lazyLoad(exports, ["getPSQLDatabase","getPSQLDatabaseOutput"], () => require("./getPSQLDatabase"));
 
+export { GetPSQLDatabasesArgs, GetPSQLDatabasesResult, GetPSQLDatabasesOutputArgs } from "./getPSQLDatabases";
+export const getPSQLDatabases: typeof import("./getPSQLDatabases").getPSQLDatabases = null as any;
+export const getPSQLDatabasesOutput: typeof import("./getPSQLDatabases").getPSQLDatabasesOutput = null as any;
+utilities.lazyLoad(exports, ["getPSQLDatabases","getPSQLDatabasesOutput"], () => require("./getPSQLDatabases"));
+
 export { GetPSQLUserArgs, GetPSQLUserResult, GetPSQLUserOutputArgs } from "./getPSQLUser";
 export const getPSQLUser: typeof import("./getPSQLUser").getPSQLUser = null as any;
 export const getPSQLUserOutput: typeof import("./getPSQLUser").getPSQLUserOutput = null as any;
 utilities.lazyLoad(exports, ["getPSQLUser","getPSQLUserOutput"], () => require("./getPSQLUser"));
+
+export { GetPSQLVersionsArgs, GetPSQLVersionsResult, GetPSQLVersionsOutputArgs } from "./getPSQLVersions";
+export const getPSQLVersions: typeof import("./getPSQLVersions").getPSQLVersions = null as any;
+export const getPSQLVersionsOutput: typeof import("./getPSQLVersions").getPSQLVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getPSQLVersions","getPSQLVersionsOutput"], () => require("./getPSQLVersions"));
 
 export { InMemoryDBReplicaSetArgs, InMemoryDBReplicaSetState } from "./inMemoryDBReplicaSet";
 export type InMemoryDBReplicaSet = import("./inMemoryDBReplicaSet").InMemoryDBReplicaSet;

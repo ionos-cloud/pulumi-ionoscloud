@@ -226,6 +226,9 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_server": {
 				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getServer"),
 			},
+			"ionoscloud_servers": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getServers"),
+			},
 			"ionoscloud_vcpu_server": {
 				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getVCPUServer"),
 			},
@@ -277,6 +280,21 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_natgateway_rule": {
 				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getNatGatewayRule"),
 			},
+			"ionoscloud_image": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getImage"),
+			},
+			"ionoscloud_location": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getLocation"),
+			},
+			"ionoscloud_template": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getTemplate"),
+			},
+			"ionoscloud_target_group": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getTargetGroup"),
+			},
+			"ionoscloud_resource": {
+				Tok: tfbridge.MakeDataSource(mainPkg, computeModule, "getResource"),
+			},
 			"ionoscloud_pg_cluster": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLCluster"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_cluster.md"},
@@ -289,6 +307,18 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLDatabase"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_database.md"},
 			},
+			"ionoscloud_pg_databases": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLDatabases"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_databases.md"},
+			},
+			"ionoscloud_pg_backups": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLBackups"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_backups.md"},
+			},
+			"ionoscloud_pg_versions": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getPSQLVersions"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_pgsql_versions.md"},
+			},
 			"ionoscloud_mongo_cluster": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoCluster"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_cluster.md"},
@@ -297,24 +327,47 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoUser"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_user.md"},
 			},
+			"ionoscloud_mongo_template": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMongoTemplate"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mongo_template.md"},
+			},
 			"ionoscloud_mariadb_cluster": {
-				Tok: tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBCluster"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBCluster"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_cluster.md"},
+			},
+			"ionoscloud_mariadb_backups": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBBackups"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_backups.md"},
 			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBReplicaSet"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
 			},
+			"ionoscloud_inmemorydb_snapshot": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInmemorydbSnapshot"),
+				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_snapshot.md"},
+			},
 			"ionoscloud_k8s_cluster": {
 				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getCluster"),
+			},
+			"ionoscloud_k8s_clusters": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, k8sModule, "getClusters"),
+				Docs: &tfbridge.DocInfo{Source: "k8s_clusters.md"},
 			},
 			"ionoscloud_k8s_node_pool": {
 				Tok: tfbridge.MakeDataSource(mainPkg, k8sModule, "getNodePool"),
 			},
+			"ionoscloud_k8s_node_pool_nodes": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, k8sModule, "getNodePoolNodes"),
+				Docs: &tfbridge.DocInfo{Source: "k8s_nodepool_nodes.md"},
+			},
 			"ionoscloud_auto_certificate": {
-				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificate"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificate"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_auto_certificate.md"},
 			},
 			"ionoscloud_auto_certificate_provider": {
-				Tok: tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificateProvider"),
+				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getAutoCertificateProvider"),
+				Docs: &tfbridge.DocInfo{Source: "certificate_manager_provider.md"},
 			},
 			"ionoscloud_certificate": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, certModule, "getCertificate"),
@@ -325,6 +378,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_dataplatform_node_pool": {
 				Tok: tfbridge.MakeDataSource(mainPkg, dsaasModule, "getNodePool"),
+			},
+			"ionoscloud_dataplatform_node_pools": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dsaasModule, "getNodePools"),
+			},
+			"ionoscloud_dataplatform_versions": {
+				Tok: tfbridge.MakeDataSource(mainPkg, dsaasModule, "getVersions"),
 			},
 			"ionoscloud_nfs_cluster": {
 				Tok: tfbridge.MakeDataSource(mainPkg, nfsModule, "getCluster"),
@@ -358,6 +417,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_container_registry_token": {
 				Tok: tfbridge.MakeDataSource(mainPkg, cregModule, "getRegistryToken"),
+			},
+			"ionoscloud_container_registry_locations": {
+				Tok: tfbridge.MakeDataSource(mainPkg, cregModule, "getRegistryLocations"),
 			},
 			"ionoscloud_logging_pipeline": {
 				Tok: tfbridge.MakeDataSource(mainPkg, loggingModule, "getPipeline"),
@@ -435,6 +497,12 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_natgateway_rule": {
 				Tok: tfbridge.MakeResource(mainPkg, computeModule, "NatGatewayRule"),
+			},
+			"ionoscloud_loadbalancer": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "Balancer"),
+			},
+			"ionoscloud_target_group": {
+				Tok: tfbridge.MakeResource(mainPkg, computeModule, "TargetGroup"),
 			},
 			"ionoscloud_pg_cluster": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "PSQLCluster"),

@@ -410,7 +410,7 @@
                 }
             },
             "ionoscloud_loadbalancer": {
-                "current": "ionoscloud:index/loadbalancer:Loadbalancer",
+                "current": "ionoscloud:compute/balancer:Balancer",
                 "fields": {
                     "nic_ids": {
                         "maxItemsOne": false
@@ -681,7 +681,7 @@
                 "current": "ionoscloud:compute/snapshot:Snapshot"
             },
             "ionoscloud_target_group": {
-                "current": "ionoscloud:index/targetGroup:TargetGroup",
+                "current": "ionoscloud:compute/targetGroup:TargetGroup",
                 "fields": {
                     "health_check": {
                         "maxItemsOne": true
@@ -1000,7 +1000,7 @@
                 }
             },
             "ionoscloud_container_registry_locations": {
-                "current": "ionoscloud:index/getContainerRegistryLocations:getContainerRegistryLocations",
+                "current": "ionoscloud:creg/getRegistryLocations:getRegistryLocations",
                 "fields": {
                     "locations": {
                         "maxItemsOne": false
@@ -1120,7 +1120,7 @@
                 }
             },
             "ionoscloud_dataplatform_node_pools": {
-                "current": "ionoscloud:index/getDataplatformNodePools:getDataplatformNodePools",
+                "current": "ionoscloud:dsaas/getNodePools:getNodePools",
                 "fields": {
                     "node_pools": {
                         "maxItemsOne": false,
@@ -1135,7 +1135,7 @@
                 }
             },
             "ionoscloud_dataplatform_versions": {
-                "current": "ionoscloud:index/getDataplatformVersions:getDataplatformVersions",
+                "current": "ionoscloud:dsaas/getVersions:getVersions",
                 "fields": {
                     "versions": {
                         "maxItemsOne": false
@@ -1165,7 +1165,7 @@
                 }
             },
             "ionoscloud_image": {
-                "current": "ionoscloud:index/getImage:getImage",
+                "current": "ionoscloud:compute/getImage:getImage",
                 "fields": {
                     "image_aliases": {
                         "maxItemsOne": false
@@ -1190,7 +1190,7 @@
                 }
             },
             "ionoscloud_inmemorydb_snapshot": {
-                "current": "ionoscloud:index/getInmemorydbSnapshot:getInmemorydbSnapshot",
+                "current": "ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot",
                 "fields": {
                     "metadata": {
                         "maxItemsOne": false
@@ -1251,7 +1251,7 @@
                 }
             },
             "ionoscloud_k8s_clusters": {
-                "current": "ionoscloud:index/getK8sClusters:getK8sClusters",
+                "current": "ionoscloud:k8s/getClusters:getClusters",
                 "fields": {
                     "clusters": {
                         "maxItemsOne": false,
@@ -1327,7 +1327,7 @@
                 }
             },
             "ionoscloud_k8s_node_pool_nodes": {
-                "current": "ionoscloud:index/getK8sNodePoolNodes:getK8sNodePoolNodes",
+                "current": "ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes",
                 "fields": {
                     "nodes": {
                         "maxItemsOne": false
@@ -1364,7 +1364,7 @@
                 }
             },
             "ionoscloud_location": {
-                "current": "ionoscloud:index/getLocation:getLocation",
+                "current": "ionoscloud:compute/getLocation:getLocation",
                 "fields": {
                     "cpu_architecture": {
                         "maxItemsOne": false
@@ -1390,7 +1390,7 @@
                 }
             },
             "ionoscloud_mariadb_backups": {
-                "current": "ionoscloud:index/getMariadbBackups:getMariadbBackups",
+                "current": "ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups",
                 "fields": {
                     "backups": {
                         "maxItemsOne": false,
@@ -1440,7 +1440,7 @@
                 }
             },
             "ionoscloud_mongo_template": {
-                "current": "ionoscloud:index/getMongoTemplate:getMongoTemplate"
+                "current": "ionoscloud:dbaas/getMongoTemplate:getMongoTemplate"
             },
             "ionoscloud_mongo_user": {
                 "current": "ionoscloud:dbaas/getMongoUser:getMongoUser",
@@ -1555,7 +1555,7 @@
                 }
             },
             "ionoscloud_pg_backups": {
-                "current": "ionoscloud:index/getPgBackups:getPgBackups",
+                "current": "ionoscloud:dbaas/getPSQLBackups:getPSQLBackups",
                 "fields": {
                     "cluster_backups": {
                         "maxItemsOne": false,
@@ -1590,7 +1590,7 @@
                 "current": "ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase"
             },
             "ionoscloud_pg_databases": {
-                "current": "ionoscloud:index/getPgDatabases:getPgDatabases",
+                "current": "ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases",
                 "fields": {
                     "databases": {
                         "maxItemsOne": false
@@ -1601,7 +1601,7 @@
                 "current": "ionoscloud:dbaas/getPSQLUser:getPSQLUser"
             },
             "ionoscloud_pg_versions": {
-                "current": "ionoscloud:index/getPgVersions:getPgVersions",
+                "current": "ionoscloud:dbaas/getPSQLVersions:getPSQLVersions",
                 "fields": {
                     "postgres_versions": {
                         "maxItemsOne": false
@@ -1620,7 +1620,7 @@
                 }
             },
             "ionoscloud_resource": {
-                "current": "ionoscloud:index/getResource:getResource"
+                "current": "ionoscloud:compute/getResource:getResource"
             },
             "ionoscloud_s3_key": {
                 "current": "ionoscloud:compute/getS3Key:getS3Key"
@@ -1670,7 +1670,7 @@
                 }
             },
             "ionoscloud_servers": {
-                "current": "ionoscloud:index/getServers:getServers",
+                "current": "ionoscloud:compute/getServers:getServers",
                 "fields": {
                     "filter": {
                         "maxItemsOne": false
@@ -1730,7 +1730,7 @@
                 "current": "ionoscloud:compute/getSnapshot:getSnapshot"
             },
             "ionoscloud_target_group": {
-                "current": "ionoscloud:index/getTargetGroup:getTargetGroup",
+                "current": "ionoscloud:compute/getTargetGroup:getTargetGroup",
                 "fields": {
                     "health_check": {
                         "maxItemsOne": false
@@ -1744,7 +1744,7 @@
                 }
             },
             "ionoscloud_template": {
-                "current": "ionoscloud:index/getTemplate:getTemplate"
+                "current": "ionoscloud:compute/getTemplate:getTemplate"
             },
             "ionoscloud_user": {
                 "current": "ionoscloud:compute/getUser:getUser",

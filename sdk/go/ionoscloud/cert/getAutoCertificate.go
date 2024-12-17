@@ -11,6 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.
+// You can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.
+// If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+// When this happens, please refine your search string so that it is specific enough to return only one result.
+//
+// ## Example Usage
 func LookupAutoCertificate(ctx *pulumi.Context, args *LookupAutoCertificateArgs, opts ...pulumi.InvokeOption) (*LookupAutoCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAutoCertificateResult
@@ -23,20 +29,29 @@ func LookupAutoCertificate(ctx *pulumi.Context, args *LookupAutoCertificateArgs,
 
 // A collection of arguments for invoking getAutoCertificate.
 type LookupAutoCertificateArgs struct {
-	Id       *string `pulumi:"id"`
-	Location string  `pulumi:"location"`
-	Name     *string `pulumi:"name"`
+	// [string] ID of the auto-certificate you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id *string `pulumi:"id"`
+	// [string] The location of the auto-certificate.
+	Location string `pulumi:"location"`
+	// [string] Name of an existing auto-certificate that you want to search for.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getAutoCertificate.
 type LookupAutoCertificateResult struct {
-	CommonName              string   `pulumi:"commonName"`
-	Id                      *string  `pulumi:"id"`
-	KeyAlgorithm            string   `pulumi:"keyAlgorithm"`
-	LastIssuedCertificateId string   `pulumi:"lastIssuedCertificateId"`
-	Location                string   `pulumi:"location"`
-	Name                    *string  `pulumi:"name"`
-	ProviderId              string   `pulumi:"providerId"`
+	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+	CommonName string  `pulumi:"commonName"`
+	Id         *string `pulumi:"id"`
+	// [string] The key algorithm used to generate the certificate.
+	KeyAlgorithm string `pulumi:"keyAlgorithm"`
+	// [string] The ID of the last certificate that was issued.
+	LastIssuedCertificateId string  `pulumi:"lastIssuedCertificateId"`
+	Location                string  `pulumi:"location"`
+	Name                    *string `pulumi:"name"`
+	ProviderId              string  `pulumi:"providerId"`
+	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
@@ -51,9 +66,14 @@ func LookupAutoCertificateOutput(ctx *pulumi.Context, args LookupAutoCertificate
 
 // A collection of arguments for invoking getAutoCertificate.
 type LookupAutoCertificateOutputArgs struct {
-	Id       pulumi.StringPtrInput `pulumi:"id"`
-	Location pulumi.StringInput    `pulumi:"location"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
+	// [string] ID of the auto-certificate you want to search for.
+	//
+	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// [string] The location of the auto-certificate.
+	Location pulumi.StringInput `pulumi:"location"`
+	// [string] Name of an existing auto-certificate that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupAutoCertificateOutputArgs) ElementType() reflect.Type {
@@ -75,6 +95,7 @@ func (o LookupAutoCertificateResultOutput) ToLookupAutoCertificateResultOutputWi
 	return o
 }
 
+// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
 func (o LookupAutoCertificateResultOutput) CommonName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.CommonName }).(pulumi.StringOutput)
 }
@@ -83,10 +104,12 @@ func (o LookupAutoCertificateResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// [string] The key algorithm used to generate the certificate.
 func (o LookupAutoCertificateResultOutput) KeyAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.KeyAlgorithm }).(pulumi.StringOutput)
 }
 
+// [string] The ID of the last certificate that was issued.
 func (o LookupAutoCertificateResultOutput) LastIssuedCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.LastIssuedCertificateId }).(pulumi.StringOutput)
 }
@@ -103,6 +126,7 @@ func (o LookupAutoCertificateResultOutput) ProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.ProviderId }).(pulumi.StringOutput)
 }
 
+// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
 func (o LookupAutoCertificateResultOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) []string { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }

@@ -40,7 +40,7 @@ namespace Pulumi.Ionoscloud.Autoscaling
     ///         Public = false,
     ///     });
     /// 
-    ///     var autoscalingTargetGroup = new Ionoscloud.TargetGroup("autoscalingTargetGroup", new()
+    ///     var autoscalingTargetGroup = new Ionoscloud.Compute.TargetGroup("autoscalingTargetGroup", new()
     ///     {
     ///         Algorithm = "ROUND_ROBIN",
     ///         Protocol = "HTTP",

@@ -5,105 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { GetContainerRegistryLocationsResult } from "./getContainerRegistryLocations";
-export const getContainerRegistryLocations: typeof import("./getContainerRegistryLocations").getContainerRegistryLocations = null as any;
-export const getContainerRegistryLocationsOutput: typeof import("./getContainerRegistryLocations").getContainerRegistryLocationsOutput = null as any;
-utilities.lazyLoad(exports, ["getContainerRegistryLocations","getContainerRegistryLocationsOutput"], () => require("./getContainerRegistryLocations"));
-
-export { GetDataplatformNodePoolsArgs, GetDataplatformNodePoolsResult, GetDataplatformNodePoolsOutputArgs } from "./getDataplatformNodePools";
-export const getDataplatformNodePools: typeof import("./getDataplatformNodePools").getDataplatformNodePools = null as any;
-export const getDataplatformNodePoolsOutput: typeof import("./getDataplatformNodePools").getDataplatformNodePoolsOutput = null as any;
-utilities.lazyLoad(exports, ["getDataplatformNodePools","getDataplatformNodePoolsOutput"], () => require("./getDataplatformNodePools"));
-
-export { GetDataplatformVersionsResult } from "./getDataplatformVersions";
-export const getDataplatformVersions: typeof import("./getDataplatformVersions").getDataplatformVersions = null as any;
-export const getDataplatformVersionsOutput: typeof import("./getDataplatformVersions").getDataplatformVersionsOutput = null as any;
-utilities.lazyLoad(exports, ["getDataplatformVersions","getDataplatformVersionsOutput"], () => require("./getDataplatformVersions"));
-
-export { GetImageArgs, GetImageResult, GetImageOutputArgs } from "./getImage";
-export const getImage: typeof import("./getImage").getImage = null as any;
-export const getImageOutput: typeof import("./getImage").getImageOutput = null as any;
-utilities.lazyLoad(exports, ["getImage","getImageOutput"], () => require("./getImage"));
-
-export { GetInmemorydbSnapshotArgs, GetInmemorydbSnapshotResult, GetInmemorydbSnapshotOutputArgs } from "./getInmemorydbSnapshot";
-export const getInmemorydbSnapshot: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshot = null as any;
-export const getInmemorydbSnapshotOutput: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshotOutput = null as any;
-utilities.lazyLoad(exports, ["getInmemorydbSnapshot","getInmemorydbSnapshotOutput"], () => require("./getInmemorydbSnapshot"));
-
-export { GetK8sClustersArgs, GetK8sClustersResult, GetK8sClustersOutputArgs } from "./getK8sClusters";
-export const getK8sClusters: typeof import("./getK8sClusters").getK8sClusters = null as any;
-export const getK8sClustersOutput: typeof import("./getK8sClusters").getK8sClustersOutput = null as any;
-utilities.lazyLoad(exports, ["getK8sClusters","getK8sClustersOutput"], () => require("./getK8sClusters"));
-
-export { GetK8sNodePoolNodesArgs, GetK8sNodePoolNodesResult, GetK8sNodePoolNodesOutputArgs } from "./getK8sNodePoolNodes";
-export const getK8sNodePoolNodes: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodes = null as any;
-export const getK8sNodePoolNodesOutput: typeof import("./getK8sNodePoolNodes").getK8sNodePoolNodesOutput = null as any;
-utilities.lazyLoad(exports, ["getK8sNodePoolNodes","getK8sNodePoolNodesOutput"], () => require("./getK8sNodePoolNodes"));
-
-export { GetLocationArgs, GetLocationResult, GetLocationOutputArgs } from "./getLocation";
-export const getLocation: typeof import("./getLocation").getLocation = null as any;
-export const getLocationOutput: typeof import("./getLocation").getLocationOutput = null as any;
-utilities.lazyLoad(exports, ["getLocation","getLocationOutput"], () => require("./getLocation"));
-
-export { GetMariadbBackupsArgs, GetMariadbBackupsResult, GetMariadbBackupsOutputArgs } from "./getMariadbBackups";
-export const getMariadbBackups: typeof import("./getMariadbBackups").getMariadbBackups = null as any;
-export const getMariadbBackupsOutput: typeof import("./getMariadbBackups").getMariadbBackupsOutput = null as any;
-utilities.lazyLoad(exports, ["getMariadbBackups","getMariadbBackupsOutput"], () => require("./getMariadbBackups"));
-
-export { GetMongoTemplateArgs, GetMongoTemplateResult, GetMongoTemplateOutputArgs } from "./getMongoTemplate";
-export const getMongoTemplate: typeof import("./getMongoTemplate").getMongoTemplate = null as any;
-export const getMongoTemplateOutput: typeof import("./getMongoTemplate").getMongoTemplateOutput = null as any;
-utilities.lazyLoad(exports, ["getMongoTemplate","getMongoTemplateOutput"], () => require("./getMongoTemplate"));
-
-export { GetPgBackupsArgs, GetPgBackupsResult, GetPgBackupsOutputArgs } from "./getPgBackups";
-export const getPgBackups: typeof import("./getPgBackups").getPgBackups = null as any;
-export const getPgBackupsOutput: typeof import("./getPgBackups").getPgBackupsOutput = null as any;
-utilities.lazyLoad(exports, ["getPgBackups","getPgBackupsOutput"], () => require("./getPgBackups"));
-
-export { GetPgDatabasesArgs, GetPgDatabasesResult, GetPgDatabasesOutputArgs } from "./getPgDatabases";
-export const getPgDatabases: typeof import("./getPgDatabases").getPgDatabases = null as any;
-export const getPgDatabasesOutput: typeof import("./getPgDatabases").getPgDatabasesOutput = null as any;
-utilities.lazyLoad(exports, ["getPgDatabases","getPgDatabasesOutput"], () => require("./getPgDatabases"));
-
-export { GetPgVersionsArgs, GetPgVersionsResult, GetPgVersionsOutputArgs } from "./getPgVersions";
-export const getPgVersions: typeof import("./getPgVersions").getPgVersions = null as any;
-export const getPgVersionsOutput: typeof import("./getPgVersions").getPgVersionsOutput = null as any;
-utilities.lazyLoad(exports, ["getPgVersions","getPgVersionsOutput"], () => require("./getPgVersions"));
-
-export { GetResourceArgs, GetResourceResult, GetResourceOutputArgs } from "./getResource";
-export const getResource: typeof import("./getResource").getResource = null as any;
-export const getResourceOutput: typeof import("./getResource").getResourceOutput = null as any;
-utilities.lazyLoad(exports, ["getResource","getResourceOutput"], () => require("./getResource"));
-
-export { GetServersArgs, GetServersResult, GetServersOutputArgs } from "./getServers";
-export const getServers: typeof import("./getServers").getServers = null as any;
-export const getServersOutput: typeof import("./getServers").getServersOutput = null as any;
-utilities.lazyLoad(exports, ["getServers","getServersOutput"], () => require("./getServers"));
-
-export { GetTargetGroupArgs, GetTargetGroupResult, GetTargetGroupOutputArgs } from "./getTargetGroup";
-export const getTargetGroup: typeof import("./getTargetGroup").getTargetGroup = null as any;
-export const getTargetGroupOutput: typeof import("./getTargetGroup").getTargetGroupOutput = null as any;
-utilities.lazyLoad(exports, ["getTargetGroup","getTargetGroupOutput"], () => require("./getTargetGroup"));
-
-export { GetTemplateArgs, GetTemplateResult, GetTemplateOutputArgs } from "./getTemplate";
-export const getTemplate: typeof import("./getTemplate").getTemplate = null as any;
-export const getTemplateOutput: typeof import("./getTemplate").getTemplateOutput = null as any;
-utilities.lazyLoad(exports, ["getTemplate","getTemplateOutput"], () => require("./getTemplate"));
-
-export { LoadbalancerArgs, LoadbalancerState } from "./loadbalancer";
-export type Loadbalancer = import("./loadbalancer").Loadbalancer;
-export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
-utilities.lazyLoad(exports, ["Loadbalancer"], () => require("./loadbalancer"));
-
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-
-export { TargetGroupArgs, TargetGroupState } from "./targetGroup";
-export type TargetGroup = import("./targetGroup").TargetGroup;
-export const TargetGroup: typeof import("./targetGroup").TargetGroup = null as any;
-utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
 
 
 // Export sub-modules:
@@ -146,22 +51,6 @@ export {
     types,
     vpn,
 };
-
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "ionoscloud:index/loadbalancer:Loadbalancer":
-                return new Loadbalancer(name, <any>undefined, { urn })
-            case "ionoscloud:index/targetGroup:TargetGroup":
-                return new TargetGroup(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
-};
-pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/targetGroup", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

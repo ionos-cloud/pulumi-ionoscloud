@@ -10,6 +10,11 @@ export const getRegistry: typeof import("./getRegistry").getRegistry = null as a
 export const getRegistryOutput: typeof import("./getRegistry").getRegistryOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistry","getRegistryOutput"], () => require("./getRegistry"));
 
+export { GetRegistryLocationsResult } from "./getRegistryLocations";
+export const getRegistryLocations: typeof import("./getRegistryLocations").getRegistryLocations = null as any;
+export const getRegistryLocationsOutput: typeof import("./getRegistryLocations").getRegistryLocationsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistryLocations","getRegistryLocationsOutput"], () => require("./getRegistryLocations"));
+
 export { GetRegistryTokenArgs, GetRegistryTokenResult, GetRegistryTokenOutputArgs } from "./getRegistryToken";
 export const getRegistryToken: typeof import("./getRegistryToken").getRegistryToken = null as any;
 export const getRegistryTokenOutput: typeof import("./getRegistryToken").getRegistryTokenOutput = null as any;

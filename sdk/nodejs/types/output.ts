@@ -5,548 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface GetDataplatformNodePoolsNodePool {
-    /**
-     * Key-value pairs attached to node pool resource as kubernetes annotations
-     */
-    annotations: {[key: string]: string};
-    /**
-     * The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
-     */
-    availabilityZone: string;
-    /**
-     * The number of CPU cores per node.
-     */
-    coresCount: number;
-    /**
-     * A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
-     */
-    cpuFamily: string;
-    /**
-     * The UUID of the virtual data center (VDC) in which the node pool is provisioned
-     */
-    datacenterId: string;
-    id: string;
-    /**
-     * Key-value pairs attached to the node pool resource as kubernetes labels
-     */
-    labels: {[key: string]: string};
-    /**
-     * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
-     */
-    maintenanceWindows: outputs.GetDataplatformNodePoolsNodePoolMaintenanceWindow[];
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
-    name: string;
-    /**
-     * The number of nodes that make up the node pool.
-     */
-    nodeCount: number;
-    /**
-     * The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
-     */
-    ramSize: number;
-    /**
-     * The size of the volume in GB. The size must be greater than 10GB.
-     */
-    storageSize: number;
-    /**
-     * The type of hardware for the volume.
-     */
-    storageType: string;
-    /**
-     * The version of the Data Platform.
-     */
-    version: string;
-}
-
-export interface GetDataplatformNodePoolsNodePoolMaintenanceWindow {
-    dayOfTheWeek: string;
-    /**
-     * Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
-     */
-    time: string;
-}
-
-export interface GetInmemorydbSnapshotMetadata {
-    /**
-     * The ISO 8601 creation timestamp.
-     */
-    createdDate: string;
-    /**
-     * The ID of the datacenter the snapshot was created in. Please mind, that the snapshot is not available in other datacenters.
-     */
-    datacenterId: string;
-    /**
-     * The ISO 8601 modified timestamp.
-     */
-    lastModifiedDate: string;
-    /**
-     * The ID of the InMemoryDB replica set the snapshot is taken from.
-     */
-    replicaSetId: string;
-    /**
-     * The time the snapshot was dumped from the replica set.
-     */
-    snapshotTime: string;
-}
-
-export interface GetK8sClustersCluster {
-    /**
-     * Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
-     */
-    apiSubnetAllowLists: string[];
-    /**
-     * A list of available versions for upgrading the cluster
-     */
-    availableUpgradeVersions: string[];
-    caCrt: string;
-    configs: outputs.GetK8sClustersClusterConfig[];
-    id?: string;
-    k8sVersion: string;
-    kubeConfig: string;
-    location: string;
-    /**
-     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-     */
-    maintenanceWindows: outputs.GetK8sClustersClusterMaintenanceWindow[];
-    name?: string;
-    /**
-     * The NAT gateway IP of the cluster if the cluster is private.
-     */
-    natGatewayIp: string;
-    nodePools: string[];
-    /**
-     * The node subnet of the cluster, if the cluster is private.
-     */
-    nodeSubnet: string;
-    /**
-     * The indicator if the cluster is public or private.
-     */
-    public: boolean;
-    /**
-     * List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
-     */
-    s3Buckets: outputs.GetK8sClustersClusterS3Bucket[];
-    server: string;
-    state: string;
-    userTokens: {[key: string]: string};
-    /**
-     * A list of versions that may be used for node pools under this cluster
-     */
-    viableNodePoolVersions: string[];
-}
-
-export interface GetK8sClustersClusterConfig {
-    apiVersion: string;
-    clusters: outputs.GetK8sClustersClusterConfigCluster[];
-    contexts: outputs.GetK8sClustersClusterConfigContext[];
-    currentContext: string;
-    kind: string;
-    users: outputs.GetK8sClustersClusterConfigUser[];
-}
-
-export interface GetK8sClustersClusterConfigCluster {
-    cluster: {[key: string]: string};
-    name: string;
-}
-
-export interface GetK8sClustersClusterConfigContext {
-    context: {[key: string]: string};
-    name: string;
-}
-
-export interface GetK8sClustersClusterConfigUser {
-    name: string;
-    user: {[key: string]: string};
-}
-
-export interface GetK8sClustersClusterMaintenanceWindow {
-    /**
-     * Day of the week when maintenance is allowed
-     */
-    dayOfTheWeek: string;
-    /**
-     * A clock time in the day when maintenance is allowed
-     */
-    time: string;
-}
-
-export interface GetK8sClustersClusterS3Bucket {
-    /**
-     * Name of the Object Storage bucket
-     */
-    name: string;
-}
-
-export interface GetK8sClustersFilter {
-    name: string;
-    value: string;
-}
-
-export interface GetK8sNodePoolNodesNode {
-    id?: string;
-    /**
-     * The kubernetes version
-     */
-    k8sVersion: string;
-    /**
-     * The kubernetes node name
-     */
-    name?: string;
-    /**
-     * A valid private IP
-     */
-    privateIp?: string;
-    /**
-     * A valid public IP
-     */
-    publicIp?: string;
-}
-
-export interface GetLocationCpuArchitecture {
-    /**
-     * A valid CPU family name.
-     */
-    cpuFamily: string;
-    /**
-     * The maximum number of cores available.
-     */
-    maxCores: number;
-    /**
-     * The maximum number of RAM in MB.
-     */
-    maxRam: number;
-    /**
-     * A valid CPU vendor name.
-     */
-    vendor: string;
-}
-
-export interface GetMariadbBackupsBackup {
-    /**
-     * The list of backups for the specified cluster
-     */
-    baseBackups: outputs.GetMariadbBackupsBackupBaseBackup[];
-    /**
-     * The unique ID of the cluster that was backed up
-     */
-    clusterId: string;
-    /**
-     * The oldest available timestamp to which you can restore
-     */
-    earliestRecoveryTargetTime: string;
-    /**
-     * Size of all base backups in Mebibytes (MiB). This is at least the sum of all base backup sizes
-     */
-    size: number;
-}
-
-export interface GetMariadbBackupsBackupBaseBackup {
-    /**
-     * The ISO 8601 creation timestamp
-     */
-    created: string;
-    /**
-     * The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
-     */
-    size: number;
-}
-
-export interface GetPgBackupsClusterBackup {
-    /**
-     * The unique ID of the cluster
-     */
-    clusterId: string;
-    /**
-     * The oldest available timestamp to which you can restore.
-     */
-    earliestRecoveryTargetTime: string;
-    /**
-     * The unique ID of the resource.
-     */
-    id: string;
-    /**
-     * Whether a cluster currently backs up data to this backup.
-     */
-    isActive: boolean;
-    /**
-     * The Object Storage location where the backups will be stored.
-     */
-    location: string;
-    /**
-     * Metadata of the resource
-     */
-    metadatas: outputs.GetPgBackupsClusterBackupMetadata[];
-    /**
-     * Size of all base backups including the wal size in MB.
-     */
-    size: number;
-    type: string;
-    /**
-     * The PostgreSQL version this backup was created from.
-     */
-    version: string;
-}
-
-export interface GetPgBackupsClusterBackupMetadata {
-    /**
-     * The ISO 8601 creation timestamp.
-     */
-    createdDate: string;
-}
-
-export interface GetPgDatabasesDatabase {
-    id: string;
-    name: string;
-    owner: string;
-}
-
-export interface GetServersFilter {
-    name: string;
-    value: string;
-}
-
-export interface GetServersServer {
-    availabilityZone: string;
-    bootCdrom: string;
-    bootImage: string;
-    bootVolume: string;
-    cdroms: outputs.GetServersServerCdrom[];
-    cores: number;
-    cpuFamily: string;
-    /**
-     * The unique ID of the server.
-     */
-    id: string;
-    labels: outputs.GetServersServerLabel[];
-    name?: string;
-    nics: outputs.GetServersServerNic[];
-    ram: number;
-    templateUuid?: string;
-    token: string;
-    type: string;
-    vmState: string;
-    volumes: outputs.GetServersServerVolume[];
-}
-
-export interface GetServersServerCdrom {
-    cloudInit: string;
-    cpuHotPlug: boolean;
-    cpuHotUnplug: boolean;
-    description: string;
-    discScsiHotPlug: boolean;
-    discScsiHotUnplug: boolean;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    id: string;
-    imageAliases: string[];
-    imageType: string;
-    licenceType: string;
-    location: string;
-    name: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    public: boolean;
-    ramHotPlug: boolean;
-    ramHotUnplug: boolean;
-    size: number;
-}
-
-export interface GetServersServerLabel {
-    id: string;
-    key: string;
-    value: string;
-}
-
-export interface GetServersServerNic {
-    deviceNumber: number;
-    dhcp: boolean;
-    dhcpv6?: boolean;
-    firewallActive: boolean;
-    firewallRules: outputs.GetServersServerNicFirewallRule[];
-    firewallType: string;
-    id: string;
-    ips: string[];
-    ipv6CidrBlock: string;
-    ipv6Ips: string[];
-    lan: number;
-    mac: string;
-    name: string;
-    pciSlot: number;
-}
-
-export interface GetServersServerNicFirewallRule {
-    icmpCode: number;
-    icmpType: number;
-    id: string;
-    name: string;
-    portRangeEnd: number;
-    portRangeStart: number;
-    protocol: string;
-    sourceIp: string;
-    sourceMac: string;
-    targetIp: string;
-    type: string;
-}
-
-export interface GetServersServerVolume {
-    availabilityZone: string;
-    backupUnitId: string;
-    /**
-     * The UUID of the attached server.
-     */
-    bootServer: string;
-    bus: string;
-    cpuHotPlug: boolean;
-    deviceNumber: number;
-    discVirtioHotPlug: boolean;
-    discVirtioHotUnplug: boolean;
-    diskType: string;
-    id: string;
-    imageName: string;
-    imagePassword: string;
-    licenceType: string;
-    name: string;
-    nicHotPlug: boolean;
-    nicHotUnplug: boolean;
-    pciSlot: number;
-    ramHotPlug: boolean;
-    size: number;
-    sshKeys: string[];
-    userData?: string;
-}
-
-export interface GetTargetGroupHealthCheck {
-    /**
-     * The interval in milliseconds between consecutive health checks; default is 2000.
-     */
-    checkInterval: number;
-    /**
-     * The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
-     */
-    checkTimeout: number;
-    /**
-     * The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
-     */
-    retries: number;
-}
-
-export interface GetTargetGroupHttpHealthCheck {
-    matchType: string;
-    /**
-     * The method for the HTTP health check.
-     */
-    method: string;
-    negate: boolean;
-    /**
-     * The path (destination URL) for the HTTP health check request; the default is /.
-     */
-    path: string;
-    regex: boolean;
-    /**
-     * The response returned by the request, depending on the match type.
-     */
-    response: string;
-}
-
-export interface GetTargetGroupTarget {
-    /**
-     * Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
-     */
-    healthCheckEnabled: boolean;
-    /**
-     * The IP of the balanced target VM.
-     */
-    ip: string;
-    /**
-     * Maintenance mode prevents the target from receiving balanced traffic.
-     */
-    maintenanceEnabled: boolean;
-    /**
-     * The port of the balanced target service; valid range is 1 to 65535.
-     */
-    port: number;
-    /**
-     * The proxy protocol version.
-     */
-    proxyProtocol: string;
-    /**
-     * Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
-     */
-    weight: number;
-}
-
-export interface TargetGroupHealthCheck {
-    /**
-     * [int] The interval in milliseconds between consecutive health checks; default is 2000.
-     */
-    checkInterval: number;
-    /**
-     * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
-     */
-    checkTimeout: number;
-    /**
-     * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
-     */
-    retries: number;
-}
-
-export interface TargetGroupHttpHealthCheck {
-    /**
-     * [string]
-     */
-    matchType: string;
-    /**
-     * [string] The method for the HTTP health check.
-     */
-    method: string;
-    /**
-     * [bool]
-     */
-    negate?: boolean;
-    /**
-     * [string] The path (destination URL) for the HTTP health check request; the default is /.
-     */
-    path: string;
-    /**
-     * [bool]
-     */
-    regex?: boolean;
-    /**
-     * [string] The response returned by the request, depending on the match type.
-     */
-    response: string;
-}
-
-export interface TargetGroupTarget {
-    /**
-     * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
-     */
-    healthCheckEnabled: boolean;
-    /**
-     * [string] The IP of the balanced target VM.
-     */
-    ip: string;
-    /**
-     * [bool] Maintenance mode prevents the target from receiving balanced traffic.
-     */
-    maintenanceEnabled?: boolean;
-    /**
-     * [int] The port of the balanced target service; valid range is 1 to 65535.
-     */
-    port: number;
-    /**
-     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
-     */
-    proxyProtocol?: string;
-    /**
-     * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
-     */
-    weight: number;
-}
-
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -1445,7 +903,7 @@ export namespace cert {
 
     export interface GetAutoCertificateProviderExternalAccountBinding {
         /**
-         * The key ID of the external account binding
+         * [string] The key ID of the external account binding.
          */
         keyId: string;
     }
@@ -1971,6 +1429,25 @@ export namespace compute {
         nicUuid: string;
     }
 
+    export interface GetLocationCpuArchitecture {
+        /**
+         * A valid CPU family name.
+         */
+        cpuFamily: string;
+        /**
+         * The maximum number of cores available.
+         */
+        maxCores: number;
+        /**
+         * The maximum number of RAM in MB.
+         */
+        maxRam: number;
+        /**
+         * A valid CPU vendor name.
+         */
+        vendor: string;
+    }
+
     export interface GetNatGatewayLan {
         /**
          * Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
@@ -2308,6 +1785,181 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string
          */
         userData?: string;
+    }
+
+    export interface GetServersFilter {
+        name: string;
+        value: string;
+    }
+
+    export interface GetServersServer {
+        availabilityZone: string;
+        bootCdrom: string;
+        bootImage: string;
+        bootVolume: string;
+        cdroms: outputs.compute.GetServersServerCdrom[];
+        cores: number;
+        cpuFamily: string;
+        /**
+         * The unique ID of the server.
+         */
+        id: string;
+        labels: outputs.compute.GetServersServerLabel[];
+        name?: string;
+        nics: outputs.compute.GetServersServerNic[];
+        ram: number;
+        templateUuid?: string;
+        token: string;
+        type: string;
+        vmState: string;
+        volumes: outputs.compute.GetServersServerVolume[];
+    }
+
+    export interface GetServersServerCdrom {
+        cloudInit: string;
+        cpuHotPlug: boolean;
+        cpuHotUnplug: boolean;
+        description: string;
+        discScsiHotPlug: boolean;
+        discScsiHotUnplug: boolean;
+        discVirtioHotPlug: boolean;
+        discVirtioHotUnplug: boolean;
+        id: string;
+        imageAliases: string[];
+        imageType: string;
+        licenceType: string;
+        location: string;
+        name: string;
+        nicHotPlug: boolean;
+        nicHotUnplug: boolean;
+        public: boolean;
+        ramHotPlug: boolean;
+        ramHotUnplug: boolean;
+        size: number;
+    }
+
+    export interface GetServersServerLabel {
+        id: string;
+        key: string;
+        value: string;
+    }
+
+    export interface GetServersServerNic {
+        deviceNumber: number;
+        dhcp: boolean;
+        dhcpv6?: boolean;
+        firewallActive: boolean;
+        firewallRules: outputs.compute.GetServersServerNicFirewallRule[];
+        firewallType: string;
+        id: string;
+        ips: string[];
+        ipv6CidrBlock: string;
+        ipv6Ips: string[];
+        lan: number;
+        mac: string;
+        name: string;
+        pciSlot: number;
+    }
+
+    export interface GetServersServerNicFirewallRule {
+        icmpCode: number;
+        icmpType: number;
+        id: string;
+        name: string;
+        portRangeEnd: number;
+        portRangeStart: number;
+        protocol: string;
+        sourceIp: string;
+        sourceMac: string;
+        targetIp: string;
+        type: string;
+    }
+
+    export interface GetServersServerVolume {
+        availabilityZone: string;
+        backupUnitId: string;
+        /**
+         * The UUID of the attached server.
+         */
+        bootServer: string;
+        bus: string;
+        cpuHotPlug: boolean;
+        deviceNumber: number;
+        discVirtioHotPlug: boolean;
+        discVirtioHotUnplug: boolean;
+        diskType: string;
+        id: string;
+        imageName: string;
+        imagePassword: string;
+        licenceType: string;
+        name: string;
+        nicHotPlug: boolean;
+        nicHotUnplug: boolean;
+        pciSlot: number;
+        ramHotPlug: boolean;
+        size: number;
+        sshKeys: string[];
+        userData?: string;
+    }
+
+    export interface GetTargetGroupHealthCheck {
+        /**
+         * The interval in milliseconds between consecutive health checks; default is 2000.
+         */
+        checkInterval: number;
+        /**
+         * The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+         */
+        checkTimeout: number;
+        /**
+         * The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+         */
+        retries: number;
+    }
+
+    export interface GetTargetGroupHttpHealthCheck {
+        matchType: string;
+        /**
+         * The method for the HTTP health check.
+         */
+        method: string;
+        negate: boolean;
+        /**
+         * The path (destination URL) for the HTTP health check request; the default is /.
+         */
+        path: string;
+        regex: boolean;
+        /**
+         * The response returned by the request, depending on the match type.
+         */
+        response: string;
+    }
+
+    export interface GetTargetGroupTarget {
+        /**
+         * Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+         */
+        healthCheckEnabled: boolean;
+        /**
+         * The IP of the balanced target VM.
+         */
+        ip: string;
+        /**
+         * Maintenance mode prevents the target from receiving balanced traffic.
+         */
+        maintenanceEnabled: boolean;
+        /**
+         * The port of the balanced target service; valid range is 1 to 65535.
+         */
+        port: number;
+        /**
+         * The proxy protocol version.
+         */
+        proxyProtocol: string;
+        /**
+         * Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+         */
+        weight: number;
     }
 
     export interface GetUserGroup {
@@ -2808,6 +2460,75 @@ export namespace compute {
         userData: string;
     }
 
+    export interface TargetGroupHealthCheck {
+        /**
+         * [int] The interval in milliseconds between consecutive health checks; default is 2000.
+         */
+        checkInterval: number;
+        /**
+         * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+         */
+        checkTimeout: number;
+        /**
+         * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+         */
+        retries: number;
+    }
+
+    export interface TargetGroupHttpHealthCheck {
+        /**
+         * [string]
+         */
+        matchType: string;
+        /**
+         * [string] The method for the HTTP health check.
+         */
+        method: string;
+        /**
+         * [bool]
+         */
+        negate?: boolean;
+        /**
+         * [string] The path (destination URL) for the HTTP health check request; the default is /.
+         */
+        path: string;
+        /**
+         * [bool]
+         */
+        regex?: boolean;
+        /**
+         * [string] The response returned by the request, depending on the match type.
+         */
+        response: string;
+    }
+
+    export interface TargetGroupTarget {
+        /**
+         * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+         */
+        healthCheckEnabled: boolean;
+        /**
+         * [string] The IP of the balanced target VM.
+         */
+        ip: string;
+        /**
+         * [bool] Maintenance mode prevents the target from receiving balanced traffic.
+         */
+        maintenanceEnabled?: boolean;
+        /**
+         * [int] The port of the balanced target service; valid range is 1 to 65535.
+         */
+        port: number;
+        /**
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+         */
+        proxyProtocol?: string;
+        /**
+         * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+         */
+        weight: number;
+    }
+
     export interface VCPUServerLabel {
         key: string;
         value: string;
@@ -3031,28 +2752,81 @@ export namespace dbaas {
         storage: number;
     }
 
-    export interface GetMariaDBClusterConnection {
+    export interface GetInmemorydbSnapshotMetadata {
         /**
-         * The IP and subnet for your cluster.
+         * The ISO 8601 creation timestamp.
          */
-        cidr: string;
+        createdDate: string;
         /**
-         * The datacenter to connect your cluster to.
+         * The ID of the datacenter in which the snapshot is located.
          */
         datacenterId: string;
         /**
-         * The numeric LAN ID to connect your cluster to.
+         * The ISO 8601 modified timestamp.
+         */
+        lastModifiedDate: string;
+        /**
+         * The ID of the replica set from which the snapshot was created.
+         */
+        replicaSetId: string;
+        /**
+         * The time at which the snapshot was taken.
+         */
+        snapshotTime: string;
+    }
+
+    export interface GetMariaDBBackupsBackup {
+        /**
+         * The list of backups for the specified cluster
+         */
+        baseBackups: outputs.dbaas.GetMariaDBBackupsBackupBaseBackup[];
+        /**
+         * [string] The unique ID of the cluster.
+         */
+        clusterId: string;
+        /**
+         * The oldest available timestamp to which you can restore.
+         */
+        earliestRecoveryTargetTime: string;
+        /**
+         * The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+         */
+        size: number;
+    }
+
+    export interface GetMariaDBBackupsBackupBaseBackup {
+        /**
+         * The ISO 8601 creation timestamp
+         */
+        created: string;
+        /**
+         * The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+         */
+        size: number;
+    }
+
+    export interface GetMariaDBClusterConnection {
+        /**
+         * [string] The IP and subnet for your cluster.
+         */
+        cidr: string;
+        /**
+         * [string] The datacenter to connect your cluster to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The LAN to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface GetMariaDBClusterMaintenanceWindow {
         /**
-         * The name of the week day.
+         * [string] The name of the week day.
          */
         dayOfTheWeek: string;
         /**
-         * Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time.
          */
         time: string;
     }
@@ -3117,6 +2891,51 @@ export namespace dbaas {
         role: string;
     }
 
+    export interface GetPSQLBackupsClusterBackup {
+        /**
+         * The unique ID of the cluster.
+         *
+         * `clusterId` must be provided. If it is not provided, the datasource will return an error.
+         */
+        clusterId: string;
+        /**
+         * The oldest available timestamp to which you can restore.
+         */
+        earliestRecoveryTargetTime: string;
+        /**
+         * The unique ID of the resource.
+         */
+        id: string;
+        /**
+         * Whether a cluster currently backs up data to this backup.
+         */
+        isActive: boolean;
+        /**
+         * The IONOS Object Storage location where the backups will be stored.
+         */
+        location: string;
+        /**
+         * Metadata of the resource.
+         */
+        metadatas: outputs.dbaas.GetPSQLBackupsClusterBackupMetadata[];
+        /**
+         * The size of all base backups including the wal size in MB.
+         */
+        size: number;
+        type: string;
+        /**
+         * The PostgreSQL version this backup was created from.
+         */
+        version: string;
+    }
+
+    export interface GetPSQLBackupsClusterBackupMetadata {
+        /**
+         * The ISO 8601 creation timestamp.
+         */
+        createdDate: string;
+    }
+
     export interface GetPSQLClusterConnection {
         /**
          * The IP and subnet for the database.
@@ -3154,6 +2973,21 @@ export namespace dbaas {
     export interface GetPSQLClusterMaintenanceWindow {
         dayOfTheWeek: string;
         time: string;
+    }
+
+    export interface GetPSQLDatabasesDatabase {
+        /**
+         * [string] The ID of the database.
+         */
+        id: string;
+        /**
+         * [string] The name of the database.
+         */
+        name: string;
+        /**
+         * [string] Filter using a specific owner.
+         */
+        owner: string;
     }
 
     export interface InMemoryDBReplicaSetConnections {
@@ -3503,6 +3337,70 @@ export namespace dsaas {
         time: string;
     }
 
+    export interface GetNodePoolsNodePool {
+        /**
+         * Key-value pairs attached to node pool resource as kubernetes annotations
+         */
+        annotations: {[key: string]: string};
+        /**
+         * The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+         */
+        availabilityZone: string;
+        /**
+         * The number of CPU cores per node.
+         */
+        coresCount: number;
+        /**
+         * A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+         */
+        cpuFamily: string;
+        /**
+         * The UUID of the virtual data center (VDC) in which the node pool is provisioned
+         */
+        datacenterId: string;
+        id: string;
+        /**
+         * Key-value pairs attached to the node pool resource as kubernetes labels
+         */
+        labels: {[key: string]: string};
+        /**
+         * Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+         */
+        maintenanceWindows: outputs.dsaas.GetNodePoolsNodePoolMaintenanceWindow[];
+        /**
+         * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+         */
+        name: string;
+        /**
+         * The number of nodes that make up the node pool.
+         */
+        nodeCount: number;
+        /**
+         * The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+         */
+        ramSize: number;
+        /**
+         * The size of the volume in GB. The size must be greater than 10GB.
+         */
+        storageSize: number;
+        /**
+         * The type of hardware for the volume.
+         */
+        storageType: string;
+        /**
+         * The version of the Data Platform.
+         */
+        version: string;
+    }
+
+    export interface GetNodePoolsNodePoolMaintenanceWindow {
+        dayOfTheWeek: string;
+        /**
+         * Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+         */
+        time: string;
+    }
+
     export interface NodePoolMaintenanceWindow {
         /**
          * [string] Must be set with one the values `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` or `Sunday`.
@@ -3586,6 +3484,99 @@ export namespace k8s {
         name: string;
     }
 
+    export interface GetClustersCluster {
+        /**
+         * Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+         */
+        apiSubnetAllowLists: string[];
+        /**
+         * A list of available versions for upgrading the cluster
+         */
+        availableUpgradeVersions: string[];
+        caCrt: string;
+        configs: outputs.k8s.GetClustersClusterConfig[];
+        id?: string;
+        k8sVersion: string;
+        kubeConfig: string;
+        location: string;
+        /**
+         * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+         */
+        maintenanceWindows: outputs.k8s.GetClustersClusterMaintenanceWindow[];
+        name?: string;
+        /**
+         * The NAT gateway IP of the cluster if the cluster is private.
+         */
+        natGatewayIp: string;
+        nodePools: string[];
+        /**
+         * The node subnet of the cluster, if the cluster is private.
+         */
+        nodeSubnet: string;
+        /**
+         * The indicator if the cluster is public or private.
+         */
+        public: boolean;
+        /**
+         * List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+         */
+        s3Buckets: outputs.k8s.GetClustersClusterS3Bucket[];
+        server: string;
+        state: string;
+        userTokens: {[key: string]: string};
+        /**
+         * A list of versions that may be used for node pools under this cluster
+         */
+        viableNodePoolVersions: string[];
+    }
+
+    export interface GetClustersClusterConfig {
+        apiVersion: string;
+        clusters: outputs.k8s.GetClustersClusterConfigCluster[];
+        contexts: outputs.k8s.GetClustersClusterConfigContext[];
+        currentContext: string;
+        kind: string;
+        users: outputs.k8s.GetClustersClusterConfigUser[];
+    }
+
+    export interface GetClustersClusterConfigCluster {
+        cluster: {[key: string]: string};
+        name: string;
+    }
+
+    export interface GetClustersClusterConfigContext {
+        context: {[key: string]: string};
+        name: string;
+    }
+
+    export interface GetClustersClusterConfigUser {
+        name: string;
+        user: {[key: string]: string};
+    }
+
+    export interface GetClustersClusterMaintenanceWindow {
+        /**
+         * Day of the week when maintenance is allowed
+         */
+        dayOfTheWeek: string;
+        /**
+         * A clock time in the day when maintenance is allowed
+         */
+        time: string;
+    }
+
+    export interface GetClustersClusterS3Bucket {
+        /**
+         * Name of the Object Storage bucket
+         */
+        name: string;
+    }
+
+    export interface GetClustersFilter {
+        name: string;
+        value: string;
+    }
+
     export interface GetNodePoolAutoScaling {
         /**
          * The maximum number of worker nodes that the node pool can scale to
@@ -3634,6 +3625,31 @@ export namespace k8s {
          * A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+    export interface GetNodePoolNodesNode {
+        /**
+         * ID of the node pool you want to search for.
+         *
+         * `k8sClusterId` and `nodePoolId` must be provided.
+         */
+        id?: string;
+        /**
+         * The kubernetes version
+         */
+        k8sVersion: string;
+        /**
+         * Name of an existing node pool that you want to search for.
+         */
+        name?: string;
+        /**
+         * private ip of the node
+         */
+        privateIp?: string;
+        /**
+         * public ip of the node
+         */
+        publicIp?: string;
     }
 
     export interface NodePoolAutoScaling {

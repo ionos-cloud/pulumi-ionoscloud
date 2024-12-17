@@ -3364,12 +3364,375 @@ func (o GetInMemoryDBReplicaSetResourceArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetInMemoryDBReplicaSetResourceOutput)
 }
 
-type GetMariaDBClusterConnection struct {
-	// The IP and subnet for your cluster.
-	Cidr string `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+type GetInmemorydbSnapshotMetadata struct {
+	// The ISO 8601 creation timestamp.
+	CreatedDate string `pulumi:"createdDate"`
+	// The ID of the datacenter in which the snapshot is located.
 	DatacenterId string `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// The ISO 8601 modified timestamp.
+	LastModifiedDate string `pulumi:"lastModifiedDate"`
+	// The ID of the replica set from which the snapshot was created.
+	ReplicaSetId string `pulumi:"replicaSetId"`
+	// The time at which the snapshot was taken.
+	SnapshotTime string `pulumi:"snapshotTime"`
+}
+
+// GetInmemorydbSnapshotMetadataInput is an input type that accepts GetInmemorydbSnapshotMetadataArgs and GetInmemorydbSnapshotMetadataOutput values.
+// You can construct a concrete instance of `GetInmemorydbSnapshotMetadataInput` via:
+//
+//	GetInmemorydbSnapshotMetadataArgs{...}
+type GetInmemorydbSnapshotMetadataInput interface {
+	pulumi.Input
+
+	ToGetInmemorydbSnapshotMetadataOutput() GetInmemorydbSnapshotMetadataOutput
+	ToGetInmemorydbSnapshotMetadataOutputWithContext(context.Context) GetInmemorydbSnapshotMetadataOutput
+}
+
+type GetInmemorydbSnapshotMetadataArgs struct {
+	// The ISO 8601 creation timestamp.
+	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+	// The ID of the datacenter in which the snapshot is located.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The ISO 8601 modified timestamp.
+	LastModifiedDate pulumi.StringInput `pulumi:"lastModifiedDate"`
+	// The ID of the replica set from which the snapshot was created.
+	ReplicaSetId pulumi.StringInput `pulumi:"replicaSetId"`
+	// The time at which the snapshot was taken.
+	SnapshotTime pulumi.StringInput `pulumi:"snapshotTime"`
+}
+
+func (GetInmemorydbSnapshotMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInmemorydbSnapshotMetadata)(nil)).Elem()
+}
+
+func (i GetInmemorydbSnapshotMetadataArgs) ToGetInmemorydbSnapshotMetadataOutput() GetInmemorydbSnapshotMetadataOutput {
+	return i.ToGetInmemorydbSnapshotMetadataOutputWithContext(context.Background())
+}
+
+func (i GetInmemorydbSnapshotMetadataArgs) ToGetInmemorydbSnapshotMetadataOutputWithContext(ctx context.Context) GetInmemorydbSnapshotMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbSnapshotMetadataOutput)
+}
+
+// GetInmemorydbSnapshotMetadataArrayInput is an input type that accepts GetInmemorydbSnapshotMetadataArray and GetInmemorydbSnapshotMetadataArrayOutput values.
+// You can construct a concrete instance of `GetInmemorydbSnapshotMetadataArrayInput` via:
+//
+//	GetInmemorydbSnapshotMetadataArray{ GetInmemorydbSnapshotMetadataArgs{...} }
+type GetInmemorydbSnapshotMetadataArrayInput interface {
+	pulumi.Input
+
+	ToGetInmemorydbSnapshotMetadataArrayOutput() GetInmemorydbSnapshotMetadataArrayOutput
+	ToGetInmemorydbSnapshotMetadataArrayOutputWithContext(context.Context) GetInmemorydbSnapshotMetadataArrayOutput
+}
+
+type GetInmemorydbSnapshotMetadataArray []GetInmemorydbSnapshotMetadataInput
+
+func (GetInmemorydbSnapshotMetadataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInmemorydbSnapshotMetadata)(nil)).Elem()
+}
+
+func (i GetInmemorydbSnapshotMetadataArray) ToGetInmemorydbSnapshotMetadataArrayOutput() GetInmemorydbSnapshotMetadataArrayOutput {
+	return i.ToGetInmemorydbSnapshotMetadataArrayOutputWithContext(context.Background())
+}
+
+func (i GetInmemorydbSnapshotMetadataArray) ToGetInmemorydbSnapshotMetadataArrayOutputWithContext(ctx context.Context) GetInmemorydbSnapshotMetadataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInmemorydbSnapshotMetadataArrayOutput)
+}
+
+type GetInmemorydbSnapshotMetadataOutput struct{ *pulumi.OutputState }
+
+func (GetInmemorydbSnapshotMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInmemorydbSnapshotMetadata)(nil)).Elem()
+}
+
+func (o GetInmemorydbSnapshotMetadataOutput) ToGetInmemorydbSnapshotMetadataOutput() GetInmemorydbSnapshotMetadataOutput {
+	return o
+}
+
+func (o GetInmemorydbSnapshotMetadataOutput) ToGetInmemorydbSnapshotMetadataOutputWithContext(ctx context.Context) GetInmemorydbSnapshotMetadataOutput {
+	return o
+}
+
+// The ISO 8601 creation timestamp.
+func (o GetInmemorydbSnapshotMetadataOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbSnapshotMetadata) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+// The ID of the datacenter in which the snapshot is located.
+func (o GetInmemorydbSnapshotMetadataOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbSnapshotMetadata) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The ISO 8601 modified timestamp.
+func (o GetInmemorydbSnapshotMetadataOutput) LastModifiedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbSnapshotMetadata) string { return v.LastModifiedDate }).(pulumi.StringOutput)
+}
+
+// The ID of the replica set from which the snapshot was created.
+func (o GetInmemorydbSnapshotMetadataOutput) ReplicaSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbSnapshotMetadata) string { return v.ReplicaSetId }).(pulumi.StringOutput)
+}
+
+// The time at which the snapshot was taken.
+func (o GetInmemorydbSnapshotMetadataOutput) SnapshotTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInmemorydbSnapshotMetadata) string { return v.SnapshotTime }).(pulumi.StringOutput)
+}
+
+type GetInmemorydbSnapshotMetadataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInmemorydbSnapshotMetadataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInmemorydbSnapshotMetadata)(nil)).Elem()
+}
+
+func (o GetInmemorydbSnapshotMetadataArrayOutput) ToGetInmemorydbSnapshotMetadataArrayOutput() GetInmemorydbSnapshotMetadataArrayOutput {
+	return o
+}
+
+func (o GetInmemorydbSnapshotMetadataArrayOutput) ToGetInmemorydbSnapshotMetadataArrayOutputWithContext(ctx context.Context) GetInmemorydbSnapshotMetadataArrayOutput {
+	return o
+}
+
+func (o GetInmemorydbSnapshotMetadataArrayOutput) Index(i pulumi.IntInput) GetInmemorydbSnapshotMetadataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInmemorydbSnapshotMetadata {
+		return vs[0].([]GetInmemorydbSnapshotMetadata)[vs[1].(int)]
+	}).(GetInmemorydbSnapshotMetadataOutput)
+}
+
+type GetMariaDBBackupsBackup struct {
+	// The list of backups for the specified cluster
+	BaseBackups []GetMariaDBBackupsBackupBaseBackup `pulumi:"baseBackups"`
+	// [string] The unique ID of the cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The oldest available timestamp to which you can restore.
+	EarliestRecoveryTargetTime string `pulumi:"earliestRecoveryTargetTime"`
+	// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+	Size int `pulumi:"size"`
+}
+
+// GetMariaDBBackupsBackupInput is an input type that accepts GetMariaDBBackupsBackupArgs and GetMariaDBBackupsBackupOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsBackupInput` via:
+//
+//	GetMariaDBBackupsBackupArgs{...}
+type GetMariaDBBackupsBackupInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsBackupOutput() GetMariaDBBackupsBackupOutput
+	ToGetMariaDBBackupsBackupOutputWithContext(context.Context) GetMariaDBBackupsBackupOutput
+}
+
+type GetMariaDBBackupsBackupArgs struct {
+	// The list of backups for the specified cluster
+	BaseBackups GetMariaDBBackupsBackupBaseBackupArrayInput `pulumi:"baseBackups"`
+	// [string] The unique ID of the cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The oldest available timestamp to which you can restore.
+	EarliestRecoveryTargetTime pulumi.StringInput `pulumi:"earliestRecoveryTargetTime"`
+	// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetMariaDBBackupsBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsBackupArgs) ToGetMariaDBBackupsBackupOutput() GetMariaDBBackupsBackupOutput {
+	return i.ToGetMariaDBBackupsBackupOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsBackupArgs) ToGetMariaDBBackupsBackupOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsBackupOutput)
+}
+
+// GetMariaDBBackupsBackupArrayInput is an input type that accepts GetMariaDBBackupsBackupArray and GetMariaDBBackupsBackupArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsBackupArrayInput` via:
+//
+//	GetMariaDBBackupsBackupArray{ GetMariaDBBackupsBackupArgs{...} }
+type GetMariaDBBackupsBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsBackupArrayOutput() GetMariaDBBackupsBackupArrayOutput
+	ToGetMariaDBBackupsBackupArrayOutputWithContext(context.Context) GetMariaDBBackupsBackupArrayOutput
+}
+
+type GetMariaDBBackupsBackupArray []GetMariaDBBackupsBackupInput
+
+func (GetMariaDBBackupsBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsBackupArray) ToGetMariaDBBackupsBackupArrayOutput() GetMariaDBBackupsBackupArrayOutput {
+	return i.ToGetMariaDBBackupsBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsBackupArray) ToGetMariaDBBackupsBackupArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsBackupArrayOutput)
+}
+
+type GetMariaDBBackupsBackupOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsBackupOutput) ToGetMariaDBBackupsBackupOutput() GetMariaDBBackupsBackupOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupOutput) ToGetMariaDBBackupsBackupOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupOutput {
+	return o
+}
+
+// The list of backups for the specified cluster
+func (o GetMariaDBBackupsBackupOutput) BaseBackups() GetMariaDBBackupsBackupBaseBackupArrayOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackup) []GetMariaDBBackupsBackupBaseBackup { return v.BaseBackups }).(GetMariaDBBackupsBackupBaseBackupArrayOutput)
+}
+
+// [string] The unique ID of the cluster.
+func (o GetMariaDBBackupsBackupOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackup) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The oldest available timestamp to which you can restore.
+func (o GetMariaDBBackupsBackupOutput) EarliestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackup) string { return v.EarliestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+func (o GetMariaDBBackupsBackupOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackup) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetMariaDBBackupsBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsBackupArrayOutput) ToGetMariaDBBackupsBackupArrayOutput() GetMariaDBBackupsBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupArrayOutput) ToGetMariaDBBackupsBackupArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupArrayOutput) Index(i pulumi.IntInput) GetMariaDBBackupsBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBBackupsBackup {
+		return vs[0].([]GetMariaDBBackupsBackup)[vs[1].(int)]
+	}).(GetMariaDBBackupsBackupOutput)
+}
+
+type GetMariaDBBackupsBackupBaseBackup struct {
+	// The ISO 8601 creation timestamp
+	Created string `pulumi:"created"`
+	// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+	Size int `pulumi:"size"`
+}
+
+// GetMariaDBBackupsBackupBaseBackupInput is an input type that accepts GetMariaDBBackupsBackupBaseBackupArgs and GetMariaDBBackupsBackupBaseBackupOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsBackupBaseBackupInput` via:
+//
+//	GetMariaDBBackupsBackupBaseBackupArgs{...}
+type GetMariaDBBackupsBackupBaseBackupInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsBackupBaseBackupOutput() GetMariaDBBackupsBackupBaseBackupOutput
+	ToGetMariaDBBackupsBackupBaseBackupOutputWithContext(context.Context) GetMariaDBBackupsBackupBaseBackupOutput
+}
+
+type GetMariaDBBackupsBackupBaseBackupArgs struct {
+	// The ISO 8601 creation timestamp
+	Created pulumi.StringInput `pulumi:"created"`
+	// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (GetMariaDBBackupsBackupBaseBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsBackupBaseBackupArgs) ToGetMariaDBBackupsBackupBaseBackupOutput() GetMariaDBBackupsBackupBaseBackupOutput {
+	return i.ToGetMariaDBBackupsBackupBaseBackupOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsBackupBaseBackupArgs) ToGetMariaDBBackupsBackupBaseBackupOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupBaseBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsBackupBaseBackupOutput)
+}
+
+// GetMariaDBBackupsBackupBaseBackupArrayInput is an input type that accepts GetMariaDBBackupsBackupBaseBackupArray and GetMariaDBBackupsBackupBaseBackupArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsBackupBaseBackupArrayInput` via:
+//
+//	GetMariaDBBackupsBackupBaseBackupArray{ GetMariaDBBackupsBackupBaseBackupArgs{...} }
+type GetMariaDBBackupsBackupBaseBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsBackupBaseBackupArrayOutput() GetMariaDBBackupsBackupBaseBackupArrayOutput
+	ToGetMariaDBBackupsBackupBaseBackupArrayOutputWithContext(context.Context) GetMariaDBBackupsBackupBaseBackupArrayOutput
+}
+
+type GetMariaDBBackupsBackupBaseBackupArray []GetMariaDBBackupsBackupBaseBackupInput
+
+func (GetMariaDBBackupsBackupBaseBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsBackupBaseBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsBackupBaseBackupArray) ToGetMariaDBBackupsBackupBaseBackupArrayOutput() GetMariaDBBackupsBackupBaseBackupArrayOutput {
+	return i.ToGetMariaDBBackupsBackupBaseBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsBackupBaseBackupArray) ToGetMariaDBBackupsBackupBaseBackupArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupBaseBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsBackupBaseBackupArrayOutput)
+}
+
+type GetMariaDBBackupsBackupBaseBackupOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsBackupBaseBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsBackupBaseBackupOutput) ToGetMariaDBBackupsBackupBaseBackupOutput() GetMariaDBBackupsBackupBaseBackupOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupBaseBackupOutput) ToGetMariaDBBackupsBackupBaseBackupOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupBaseBackupOutput {
+	return o
+}
+
+// The ISO 8601 creation timestamp
+func (o GetMariaDBBackupsBackupBaseBackupOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackupBaseBackup) string { return v.Created }).(pulumi.StringOutput)
+}
+
+// The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
+func (o GetMariaDBBackupsBackupBaseBackupOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsBackupBaseBackup) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type GetMariaDBBackupsBackupBaseBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsBackupBaseBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsBackupBaseBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsBackupBaseBackupArrayOutput) ToGetMariaDBBackupsBackupBaseBackupArrayOutput() GetMariaDBBackupsBackupBaseBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupBaseBackupArrayOutput) ToGetMariaDBBackupsBackupBaseBackupArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsBackupBaseBackupArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsBackupBaseBackupArrayOutput) Index(i pulumi.IntInput) GetMariaDBBackupsBackupBaseBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBBackupsBackupBaseBackup {
+		return vs[0].([]GetMariaDBBackupsBackupBaseBackup)[vs[1].(int)]
+	}).(GetMariaDBBackupsBackupBaseBackupOutput)
+}
+
+type GetMariaDBClusterConnection struct {
+	// [string] The IP and subnet for your cluster.
+	Cidr string `pulumi:"cidr"`
+	// [string] The datacenter to connect your cluster to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [string] The LAN to connect your cluster to.
 	LanId string `pulumi:"lanId"`
 }
 
@@ -3385,11 +3748,11 @@ type GetMariaDBClusterConnectionInput interface {
 }
 
 type GetMariaDBClusterConnectionArgs struct {
-	// The IP and subnet for your cluster.
+	// [string] The IP and subnet for your cluster.
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// The datacenter to connect your cluster to.
+	// [string] The datacenter to connect your cluster to.
 	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
-	// The numeric LAN ID to connect your cluster to.
+	// [string] The LAN to connect your cluster to.
 	LanId pulumi.StringInput `pulumi:"lanId"`
 }
 
@@ -3444,17 +3807,17 @@ func (o GetMariaDBClusterConnectionOutput) ToGetMariaDBClusterConnectionOutputWi
 	return o
 }
 
-// The IP and subnet for your cluster.
+// [string] The IP and subnet for your cluster.
 func (o GetMariaDBClusterConnectionOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The datacenter to connect your cluster to.
+// [string] The datacenter to connect your cluster to.
 func (o GetMariaDBClusterConnectionOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
-// The numeric LAN ID to connect your cluster to.
+// [string] The LAN to connect your cluster to.
 func (o GetMariaDBClusterConnectionOutput) LanId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterConnection) string { return v.LanId }).(pulumi.StringOutput)
 }
@@ -3480,9 +3843,9 @@ func (o GetMariaDBClusterConnectionArrayOutput) Index(i pulumi.IntInput) GetMari
 }
 
 type GetMariaDBClusterMaintenanceWindow struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time string `pulumi:"time"`
 }
 
@@ -3498,9 +3861,9 @@ type GetMariaDBClusterMaintenanceWindowInput interface {
 }
 
 type GetMariaDBClusterMaintenanceWindowArgs struct {
-	// The name of the week day.
+	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -3555,12 +3918,12 @@ func (o GetMariaDBClusterMaintenanceWindowOutput) ToGetMariaDBClusterMaintenance
 	return o
 }
 
-// The name of the week day.
+// [string] The name of the week day.
 func (o GetMariaDBClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time.
 func (o GetMariaDBClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMariaDBClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -4140,6 +4503,275 @@ func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOu
 	}).(GetMongoUserRoleOutput)
 }
 
+type GetPSQLBackupsClusterBackup struct {
+	// The unique ID of the cluster.
+	//
+	// `clusterId` must be provided. If it is not provided, the datasource will return an error.
+	ClusterId string `pulumi:"clusterId"`
+	// The oldest available timestamp to which you can restore.
+	EarliestRecoveryTargetTime string `pulumi:"earliestRecoveryTargetTime"`
+	// The unique ID of the resource.
+	Id string `pulumi:"id"`
+	// Whether a cluster currently backs up data to this backup.
+	IsActive bool `pulumi:"isActive"`
+	// The IONOS Object Storage location where the backups will be stored.
+	Location string `pulumi:"location"`
+	// Metadata of the resource.
+	Metadatas []GetPSQLBackupsClusterBackupMetadata `pulumi:"metadatas"`
+	// The size of all base backups including the wal size in MB.
+	Size int    `pulumi:"size"`
+	Type string `pulumi:"type"`
+	// The PostgreSQL version this backup was created from.
+	Version string `pulumi:"version"`
+}
+
+// GetPSQLBackupsClusterBackupInput is an input type that accepts GetPSQLBackupsClusterBackupArgs and GetPSQLBackupsClusterBackupOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsClusterBackupInput` via:
+//
+//	GetPSQLBackupsClusterBackupArgs{...}
+type GetPSQLBackupsClusterBackupInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsClusterBackupOutput() GetPSQLBackupsClusterBackupOutput
+	ToGetPSQLBackupsClusterBackupOutputWithContext(context.Context) GetPSQLBackupsClusterBackupOutput
+}
+
+type GetPSQLBackupsClusterBackupArgs struct {
+	// The unique ID of the cluster.
+	//
+	// `clusterId` must be provided. If it is not provided, the datasource will return an error.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The oldest available timestamp to which you can restore.
+	EarliestRecoveryTargetTime pulumi.StringInput `pulumi:"earliestRecoveryTargetTime"`
+	// The unique ID of the resource.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Whether a cluster currently backs up data to this backup.
+	IsActive pulumi.BoolInput `pulumi:"isActive"`
+	// The IONOS Object Storage location where the backups will be stored.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Metadata of the resource.
+	Metadatas GetPSQLBackupsClusterBackupMetadataArrayInput `pulumi:"metadatas"`
+	// The size of all base backups including the wal size in MB.
+	Size pulumi.IntInput    `pulumi:"size"`
+	Type pulumi.StringInput `pulumi:"type"`
+	// The PostgreSQL version this backup was created from.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetPSQLBackupsClusterBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsClusterBackup)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsClusterBackupArgs) ToGetPSQLBackupsClusterBackupOutput() GetPSQLBackupsClusterBackupOutput {
+	return i.ToGetPSQLBackupsClusterBackupOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsClusterBackupArgs) ToGetPSQLBackupsClusterBackupOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsClusterBackupOutput)
+}
+
+// GetPSQLBackupsClusterBackupArrayInput is an input type that accepts GetPSQLBackupsClusterBackupArray and GetPSQLBackupsClusterBackupArrayOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsClusterBackupArrayInput` via:
+//
+//	GetPSQLBackupsClusterBackupArray{ GetPSQLBackupsClusterBackupArgs{...} }
+type GetPSQLBackupsClusterBackupArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsClusterBackupArrayOutput() GetPSQLBackupsClusterBackupArrayOutput
+	ToGetPSQLBackupsClusterBackupArrayOutputWithContext(context.Context) GetPSQLBackupsClusterBackupArrayOutput
+}
+
+type GetPSQLBackupsClusterBackupArray []GetPSQLBackupsClusterBackupInput
+
+func (GetPSQLBackupsClusterBackupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsClusterBackup)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsClusterBackupArray) ToGetPSQLBackupsClusterBackupArrayOutput() GetPSQLBackupsClusterBackupArrayOutput {
+	return i.ToGetPSQLBackupsClusterBackupArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsClusterBackupArray) ToGetPSQLBackupsClusterBackupArrayOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsClusterBackupArrayOutput)
+}
+
+type GetPSQLBackupsClusterBackupOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsClusterBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsClusterBackup)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsClusterBackupOutput) ToGetPSQLBackupsClusterBackupOutput() GetPSQLBackupsClusterBackupOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupOutput) ToGetPSQLBackupsClusterBackupOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupOutput {
+	return o
+}
+
+// The unique ID of the cluster.
+//
+// `clusterId` must be provided. If it is not provided, the datasource will return an error.
+func (o GetPSQLBackupsClusterBackupOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The oldest available timestamp to which you can restore.
+func (o GetPSQLBackupsClusterBackupOutput) EarliestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.EarliestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// The unique ID of the resource.
+func (o GetPSQLBackupsClusterBackupOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether a cluster currently backs up data to this backup.
+func (o GetPSQLBackupsClusterBackupOutput) IsActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) bool { return v.IsActive }).(pulumi.BoolOutput)
+}
+
+// The IONOS Object Storage location where the backups will be stored.
+func (o GetPSQLBackupsClusterBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Metadata of the resource.
+func (o GetPSQLBackupsClusterBackupOutput) Metadatas() GetPSQLBackupsClusterBackupMetadataArrayOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) []GetPSQLBackupsClusterBackupMetadata { return v.Metadatas }).(GetPSQLBackupsClusterBackupMetadataArrayOutput)
+}
+
+// The size of all base backups including the wal size in MB.
+func (o GetPSQLBackupsClusterBackupOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetPSQLBackupsClusterBackupOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The PostgreSQL version this backup was created from.
+func (o GetPSQLBackupsClusterBackupOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackup) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetPSQLBackupsClusterBackupArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsClusterBackupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsClusterBackup)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsClusterBackupArrayOutput) ToGetPSQLBackupsClusterBackupArrayOutput() GetPSQLBackupsClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupArrayOutput) ToGetPSQLBackupsClusterBackupArrayOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupArrayOutput) Index(i pulumi.IntInput) GetPSQLBackupsClusterBackupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLBackupsClusterBackup {
+		return vs[0].([]GetPSQLBackupsClusterBackup)[vs[1].(int)]
+	}).(GetPSQLBackupsClusterBackupOutput)
+}
+
+type GetPSQLBackupsClusterBackupMetadata struct {
+	// The ISO 8601 creation timestamp.
+	CreatedDate string `pulumi:"createdDate"`
+}
+
+// GetPSQLBackupsClusterBackupMetadataInput is an input type that accepts GetPSQLBackupsClusterBackupMetadataArgs and GetPSQLBackupsClusterBackupMetadataOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsClusterBackupMetadataInput` via:
+//
+//	GetPSQLBackupsClusterBackupMetadataArgs{...}
+type GetPSQLBackupsClusterBackupMetadataInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsClusterBackupMetadataOutput() GetPSQLBackupsClusterBackupMetadataOutput
+	ToGetPSQLBackupsClusterBackupMetadataOutputWithContext(context.Context) GetPSQLBackupsClusterBackupMetadataOutput
+}
+
+type GetPSQLBackupsClusterBackupMetadataArgs struct {
+	// The ISO 8601 creation timestamp.
+	CreatedDate pulumi.StringInput `pulumi:"createdDate"`
+}
+
+func (GetPSQLBackupsClusterBackupMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadata)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsClusterBackupMetadataArgs) ToGetPSQLBackupsClusterBackupMetadataOutput() GetPSQLBackupsClusterBackupMetadataOutput {
+	return i.ToGetPSQLBackupsClusterBackupMetadataOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsClusterBackupMetadataArgs) ToGetPSQLBackupsClusterBackupMetadataOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsClusterBackupMetadataOutput)
+}
+
+// GetPSQLBackupsClusterBackupMetadataArrayInput is an input type that accepts GetPSQLBackupsClusterBackupMetadataArray and GetPSQLBackupsClusterBackupMetadataArrayOutput values.
+// You can construct a concrete instance of `GetPSQLBackupsClusterBackupMetadataArrayInput` via:
+//
+//	GetPSQLBackupsClusterBackupMetadataArray{ GetPSQLBackupsClusterBackupMetadataArgs{...} }
+type GetPSQLBackupsClusterBackupMetadataArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLBackupsClusterBackupMetadataArrayOutput() GetPSQLBackupsClusterBackupMetadataArrayOutput
+	ToGetPSQLBackupsClusterBackupMetadataArrayOutputWithContext(context.Context) GetPSQLBackupsClusterBackupMetadataArrayOutput
+}
+
+type GetPSQLBackupsClusterBackupMetadataArray []GetPSQLBackupsClusterBackupMetadataInput
+
+func (GetPSQLBackupsClusterBackupMetadataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsClusterBackupMetadata)(nil)).Elem()
+}
+
+func (i GetPSQLBackupsClusterBackupMetadataArray) ToGetPSQLBackupsClusterBackupMetadataArrayOutput() GetPSQLBackupsClusterBackupMetadataArrayOutput {
+	return i.ToGetPSQLBackupsClusterBackupMetadataArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLBackupsClusterBackupMetadataArray) ToGetPSQLBackupsClusterBackupMetadataArrayOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupMetadataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLBackupsClusterBackupMetadataArrayOutput)
+}
+
+type GetPSQLBackupsClusterBackupMetadataOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsClusterBackupMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadata)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsClusterBackupMetadataOutput) ToGetPSQLBackupsClusterBackupMetadataOutput() GetPSQLBackupsClusterBackupMetadataOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupMetadataOutput) ToGetPSQLBackupsClusterBackupMetadataOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupMetadataOutput {
+	return o
+}
+
+// The ISO 8601 creation timestamp.
+func (o GetPSQLBackupsClusterBackupMetadataOutput) CreatedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLBackupsClusterBackupMetadata) string { return v.CreatedDate }).(pulumi.StringOutput)
+}
+
+type GetPSQLBackupsClusterBackupMetadataArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLBackupsClusterBackupMetadataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLBackupsClusterBackupMetadata)(nil)).Elem()
+}
+
+func (o GetPSQLBackupsClusterBackupMetadataArrayOutput) ToGetPSQLBackupsClusterBackupMetadataArrayOutput() GetPSQLBackupsClusterBackupMetadataArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupMetadataArrayOutput) ToGetPSQLBackupsClusterBackupMetadataArrayOutputWithContext(ctx context.Context) GetPSQLBackupsClusterBackupMetadataArrayOutput {
+	return o
+}
+
+func (o GetPSQLBackupsClusterBackupMetadataArrayOutput) Index(i pulumi.IntInput) GetPSQLBackupsClusterBackupMetadataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLBackupsClusterBackupMetadata {
+		return vs[0].([]GetPSQLBackupsClusterBackupMetadata)[vs[1].(int)]
+	}).(GetPSQLBackupsClusterBackupMetadataOutput)
+}
+
 type GetPSQLClusterConnection struct {
 	// The IP and subnet for the database.
 	Cidr string `pulumi:"cidr"`
@@ -4564,6 +5196,121 @@ func (o GetPSQLClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetPSQLClusterMaintenanceWindowOutput)
 }
 
+type GetPSQLDatabasesDatabase struct {
+	// [string] The ID of the database.
+	Id string `pulumi:"id"`
+	// [string] The name of the database.
+	Name string `pulumi:"name"`
+	// [string] Filter using a specific owner.
+	Owner string `pulumi:"owner"`
+}
+
+// GetPSQLDatabasesDatabaseInput is an input type that accepts GetPSQLDatabasesDatabaseArgs and GetPSQLDatabasesDatabaseOutput values.
+// You can construct a concrete instance of `GetPSQLDatabasesDatabaseInput` via:
+//
+//	GetPSQLDatabasesDatabaseArgs{...}
+type GetPSQLDatabasesDatabaseInput interface {
+	pulumi.Input
+
+	ToGetPSQLDatabasesDatabaseOutput() GetPSQLDatabasesDatabaseOutput
+	ToGetPSQLDatabasesDatabaseOutputWithContext(context.Context) GetPSQLDatabasesDatabaseOutput
+}
+
+type GetPSQLDatabasesDatabaseArgs struct {
+	// [string] The ID of the database.
+	Id pulumi.StringInput `pulumi:"id"`
+	// [string] The name of the database.
+	Name pulumi.StringInput `pulumi:"name"`
+	// [string] Filter using a specific owner.
+	Owner pulumi.StringInput `pulumi:"owner"`
+}
+
+func (GetPSQLDatabasesDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetPSQLDatabasesDatabaseArgs) ToGetPSQLDatabasesDatabaseOutput() GetPSQLDatabasesDatabaseOutput {
+	return i.ToGetPSQLDatabasesDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetPSQLDatabasesDatabaseArgs) ToGetPSQLDatabasesDatabaseOutputWithContext(ctx context.Context) GetPSQLDatabasesDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLDatabasesDatabaseOutput)
+}
+
+// GetPSQLDatabasesDatabaseArrayInput is an input type that accepts GetPSQLDatabasesDatabaseArray and GetPSQLDatabasesDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetPSQLDatabasesDatabaseArrayInput` via:
+//
+//	GetPSQLDatabasesDatabaseArray{ GetPSQLDatabasesDatabaseArgs{...} }
+type GetPSQLDatabasesDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetPSQLDatabasesDatabaseArrayOutput() GetPSQLDatabasesDatabaseArrayOutput
+	ToGetPSQLDatabasesDatabaseArrayOutputWithContext(context.Context) GetPSQLDatabasesDatabaseArrayOutput
+}
+
+type GetPSQLDatabasesDatabaseArray []GetPSQLDatabasesDatabaseInput
+
+func (GetPSQLDatabasesDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLDatabasesDatabase)(nil)).Elem()
+}
+
+func (i GetPSQLDatabasesDatabaseArray) ToGetPSQLDatabasesDatabaseArrayOutput() GetPSQLDatabasesDatabaseArrayOutput {
+	return i.ToGetPSQLDatabasesDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetPSQLDatabasesDatabaseArray) ToGetPSQLDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetPSQLDatabasesDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPSQLDatabasesDatabaseArrayOutput)
+}
+
+type GetPSQLDatabasesDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLDatabasesDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPSQLDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetPSQLDatabasesDatabaseOutput) ToGetPSQLDatabasesDatabaseOutput() GetPSQLDatabasesDatabaseOutput {
+	return o
+}
+
+func (o GetPSQLDatabasesDatabaseOutput) ToGetPSQLDatabasesDatabaseOutputWithContext(ctx context.Context) GetPSQLDatabasesDatabaseOutput {
+	return o
+}
+
+// [string] The ID of the database.
+func (o GetPSQLDatabasesDatabaseOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLDatabasesDatabase) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// [string] The name of the database.
+func (o GetPSQLDatabasesDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLDatabasesDatabase) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// [string] Filter using a specific owner.
+func (o GetPSQLDatabasesDatabaseOutput) Owner() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPSQLDatabasesDatabase) string { return v.Owner }).(pulumi.StringOutput)
+}
+
+type GetPSQLDatabasesDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPSQLDatabasesDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPSQLDatabasesDatabase)(nil)).Elem()
+}
+
+func (o GetPSQLDatabasesDatabaseArrayOutput) ToGetPSQLDatabasesDatabaseArrayOutput() GetPSQLDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetPSQLDatabasesDatabaseArrayOutput) ToGetPSQLDatabasesDatabaseArrayOutputWithContext(ctx context.Context) GetPSQLDatabasesDatabaseArrayOutput {
+	return o
+}
+
+func (o GetPSQLDatabasesDatabaseArrayOutput) Index(i pulumi.IntInput) GetPSQLDatabasesDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPSQLDatabasesDatabase {
+		return vs[0].([]GetPSQLDatabasesDatabase)[vs[1].(int)]
+	}).(GetPSQLDatabasesDatabaseOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InMemoryDBReplicaSetConnectionsPtrInput)(nil)).Elem(), InMemoryDBReplicaSetConnectionsArgs{})
@@ -4609,6 +5356,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetMaintenanceWindowArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBReplicaSetResourceArrayInput)(nil)).Elem(), GetInMemoryDBReplicaSetResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataArrayInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionInput)(nil)).Elem(), GetMariaDBClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionArrayInput)(nil)).Elem(), GetMariaDBClusterConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArgs{})
@@ -4623,6 +5376,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMongoClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleInput)(nil)).Elem(), GetMongoUserRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoUserRoleArrayInput)(nil)).Elem(), GetMongoUserRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupInput)(nil)).Elem(), GetPSQLBackupsClusterBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupArrayInput)(nil)).Elem(), GetPSQLBackupsClusterBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadataInput)(nil)).Elem(), GetPSQLBackupsClusterBackupMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLBackupsClusterBackupMetadataArrayInput)(nil)).Elem(), GetPSQLBackupsClusterBackupMetadataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionInput)(nil)).Elem(), GetPSQLClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionArrayInput)(nil)).Elem(), GetPSQLClusterConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterConnectionPoolerInput)(nil)).Elem(), GetPSQLClusterConnectionPoolerArgs{})
@@ -4631,6 +5388,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterFromBackupArrayInput)(nil)).Elem(), GetPSQLClusterFromBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetPSQLClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLDatabasesDatabaseInput)(nil)).Elem(), GetPSQLDatabasesDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPSQLDatabasesDatabaseArrayInput)(nil)).Elem(), GetPSQLDatabasesDatabaseArray{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetConnectionsPtrOutput{})
 	pulumi.RegisterOutputType(InMemoryDBReplicaSetCredentialsOutput{})
@@ -4675,6 +5434,12 @@ func init() {
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceOutput{})
 	pulumi.RegisterOutputType(GetInMemoryDBReplicaSetResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataOutput{})
+	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsBackupOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowOutput{})
@@ -4689,6 +5454,10 @@ func init() {
 	pulumi.RegisterOutputType(GetMongoClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoUserRoleOutput{})
 	pulumi.RegisterOutputType(GetMongoUserRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupMetadataOutput{})
+	pulumi.RegisterOutputType(GetPSQLBackupsClusterBackupMetadataArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterConnectionPoolerOutput{})
@@ -4697,4 +5466,6 @@ func init() {
 	pulumi.RegisterOutputType(GetPSQLClusterFromBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetPSQLClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetPSQLDatabasesDatabaseOutput{})
+	pulumi.RegisterOutputType(GetPSQLDatabasesDatabaseArrayOutput{})
 }

@@ -8,6 +8,8 @@ import typing
 from .cluster import *
 from .get_cluster import *
 from .get_node_pool import *
+from .get_node_pools import *
+from .get_versions import *
 from .node_pool import *
 from ._inputs import *
 from . import outputs

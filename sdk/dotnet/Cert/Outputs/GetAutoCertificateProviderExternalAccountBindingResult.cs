@@ -14,7 +14,7 @@ namespace Pulumi.Ionoscloud.Cert.Outputs
     public sealed class GetAutoCertificateProviderExternalAccountBindingResult
     {
         /// <summary>
-        /// The key ID of the external account binding
+        /// [string] The key ID of the external account binding.
         /// </summary>
         public readonly string KeyId;
 

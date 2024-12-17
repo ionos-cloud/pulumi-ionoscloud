@@ -27,7 +27,7 @@ namespace Pulumi.Ionoscloud.Compute
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleTemplate = Ionoscloud.GetTemplate.Invoke(new()
+    ///     var exampleTemplate = Ionoscloud.Compute.GetTemplate.Invoke(new()
     ///     {
     ///         Name = "CUBES XS",
     ///     });
@@ -92,7 +92,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Output<string> AvailabilityZone { get; private set; } = null!;
 
         /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
         /// </summary>
         [Output("bootCdrom")]
         public Output<string> BootCdrom { get; private set; } = null!;
@@ -254,7 +254,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? AvailabilityZone { get; set; }
 
         /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
         /// </summary>
         [Input("bootCdrom")]
         public Input<string>? BootCdrom { get; set; }
@@ -360,7 +360,7 @@ namespace Pulumi.Ionoscloud.Compute
         public Input<string>? AvailabilityZone { get; set; }
 
         /// <summary>
-        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+        /// ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
         /// </summary>
         [Input("bootCdrom")]
         public Input<string>? BootCdrom { get; set; }

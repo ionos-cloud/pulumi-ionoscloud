@@ -170,7 +170,7 @@ func (o AutoCertificateProviderExternalAccountBindingPtrOutput) KeySecret() pulu
 }
 
 type GetAutoCertificateProviderExternalAccountBinding struct {
-	// The key ID of the external account binding
+	// [string] The key ID of the external account binding.
 	KeyId string `pulumi:"keyId"`
 }
 
@@ -186,7 +186,7 @@ type GetAutoCertificateProviderExternalAccountBindingInput interface {
 }
 
 type GetAutoCertificateProviderExternalAccountBindingArgs struct {
-	// The key ID of the external account binding
+	// [string] The key ID of the external account binding.
 	KeyId pulumi.StringInput `pulumi:"keyId"`
 }
 
@@ -241,7 +241,7 @@ func (o GetAutoCertificateProviderExternalAccountBindingOutput) ToGetAutoCertifi
 	return o
 }
 
-// The key ID of the external account binding
+// [string] The key ID of the external account binding.
 func (o GetAutoCertificateProviderExternalAccountBindingOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAutoCertificateProviderExternalAccountBinding) string { return v.KeyId }).(pulumi.StringOutput)
 }

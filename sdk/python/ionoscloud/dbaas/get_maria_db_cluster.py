@@ -65,21 +65,33 @@ class GetMariaDBClusterResult:
     @property
     @pulumi.getter
     def connections(self) -> Sequence['outputs.GetMariaDBClusterConnectionResult']:
+        """
+        The network connection for your cluster. Only one connection is allowed.
+        """
         return pulumi.get(self, "connections")
 
     @property
     @pulumi.getter
     def cores(self) -> int:
+        """
+        [int] The number of CPU cores per instance.
+        """
         return pulumi.get(self, "cores")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[str]:
+        """
+        [string] The friendly name of your cluster.
+        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> str:
+        """
+        [string] The DNS name pointing to your cluster.
+        """
         return pulumi.get(self, "dns_name")
 
     @property
@@ -90,6 +102,9 @@ class GetMariaDBClusterResult:
     @property
     @pulumi.getter
     def instances(self) -> int:
+        """
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        """
         return pulumi.get(self, "instances")
 
     @property
@@ -100,21 +115,33 @@ class GetMariaDBClusterResult:
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetMariaDBClusterMaintenanceWindowResult']:
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> str:
+        """
+        [string] The MariaDB version of your cluster.
+        """
         return pulumi.get(self, "mariadb_version")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        [int] The amount of memory per instance in gigabytes (GB).
+        """
         return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        [int] The amount of storage per instance in gigabytes (GB).
+        """
         return pulumi.get(self, "storage_size")
 
 
@@ -142,7 +169,28 @@ def get_maria_db_cluster(display_name: Optional[str] = None,
                          location: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMariaDBClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_cluster(display_name="MariaDB_cluster",
+        location="de/txl")
+    ```
+
+
+    :param str display_name: [string] Display Name of an existing cluster that you want to search for.
+    :param str id: [string] ID of the cluster you want to search for.
+    :param str location: [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+           
+           > **⚠ WARNING:** `Location` attribute will become required in the future.
+           
+           Either `display_name` or `id` must be provided. If none or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name
@@ -168,7 +216,28 @@ def get_maria_db_cluster_output(display_name: Optional[pulumi.Input[Optional[str
                                 location: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMariaDBClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
+
+    ## Example Usage
+
+    ### By Name
+
+    ```python
+    import pulumi
+    import pulumi_ionoscloud as ionoscloud
+
+    example = ionoscloud.dbaas.get_maria_db_cluster(display_name="MariaDB_cluster",
+        location="de/txl")
+    ```
+
+
+    :param str display_name: [string] Display Name of an existing cluster that you want to search for.
+    :param str id: [string] ID of the cluster you want to search for.
+    :param str location: [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+           
+           > **⚠ WARNING:** `Location` attribute will become required in the future.
+           
+           Either `display_name` or `id` must be provided. If none or both are provided, the datasource will return an error.
     """
     __args__ = dict()
     __args__['displayName'] = display_name

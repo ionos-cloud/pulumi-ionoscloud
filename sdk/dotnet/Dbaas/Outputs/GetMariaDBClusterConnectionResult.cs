@@ -14,15 +14,15 @@ namespace Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class GetMariaDBClusterConnectionResult
     {
         /// <summary>
-        /// The IP and subnet for your cluster.
+        /// [string] The IP and subnet for your cluster.
         /// </summary>
         public readonly string Cidr;
         /// <summary>
-        /// The datacenter to connect your cluster to.
+        /// [string] The datacenter to connect your cluster to.
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
-        /// The numeric LAN ID to connect your cluster to.
+        /// [string] The LAN to connect your cluster to.
         /// </summary>
         public readonly string LanId;
 

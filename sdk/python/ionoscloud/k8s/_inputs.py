@@ -27,6 +27,8 @@ __all__ = [
     'NodePoolLanRouteArgsDict',
     'NodePoolMaintenanceWindowArgs',
     'NodePoolMaintenanceWindowArgsDict',
+    'GetClustersFilterArgs',
+    'GetClustersFilterArgsDict',
 ]
 
 MYPY = False
@@ -332,5 +334,39 @@ class NodePoolMaintenanceWindowArgs:
     @time.setter
     def time(self, value: pulumi.Input[str]):
         pulumi.set(self, "time", value)
+
+
+if not MYPY:
+    class GetClustersFilterArgsDict(TypedDict):
+        name: str
+        value: str
+elif False:
+    GetClustersFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetClustersFilterArgs:
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: str):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 

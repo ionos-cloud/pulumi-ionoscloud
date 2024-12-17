@@ -6,6 +6,14 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+ * You can provide a string for either id or name parameters which will be compared with provisioned providers.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ */
 export function getAutoCertificateProvider(args: GetAutoCertificateProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetAutoCertificateProviderResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", {
@@ -19,8 +27,19 @@ export function getAutoCertificateProvider(args: GetAutoCertificateProviderArgs,
  * A collection of arguments for invoking getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderArgs {
+    /**
+     * [string] ID of the provider you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: string;
+    /**
+     * [string] The location of the provider.
+     */
     location: string;
+    /**
+     * [string] Name of an existing provider that you want to search for.
+     */
     name?: string;
 }
 
@@ -28,13 +47,30 @@ export interface GetAutoCertificateProviderArgs {
  * A collection of values returned by getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderResult {
+    /**
+     * [string] The email address of the certificate requester.
+     */
     readonly email: string;
+    /**
+     * [list]
+     */
     readonly externalAccountBindings: outputs.cert.GetAutoCertificateProviderExternalAccountBinding[];
     readonly id?: string;
     readonly location: string;
     readonly name?: string;
+    /**
+     * [string] The URL of the certificate provider.
+     */
     readonly server: string;
 }
+/**
+ * The **CM Provider data source** can be used to search for and return an existing certificate manager provider.
+ * You can provide a string for either id or name parameters which will be compared with provisioned providers.
+ * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+ * When this happens, please refine your search string so that it is specific enough to return only one result.
+ *
+ * ## Example Usage
+ */
 export function getAutoCertificateProviderOutput(args: GetAutoCertificateProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAutoCertificateProviderResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", {
@@ -48,7 +84,18 @@ export function getAutoCertificateProviderOutput(args: GetAutoCertificateProvide
  * A collection of arguments for invoking getAutoCertificateProvider.
  */
 export interface GetAutoCertificateProviderOutputArgs {
+    /**
+     * [string] ID of the provider you want to search for.
+     *
+     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * [string] The location of the provider.
+     */
     location: pulumi.Input<string>;
+    /**
+     * [string] Name of an existing provider that you want to search for.
+     */
     name?: pulumi.Input<string>;
 }

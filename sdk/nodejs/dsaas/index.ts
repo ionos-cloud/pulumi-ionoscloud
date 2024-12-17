@@ -20,6 +20,16 @@ export const getNodePool: typeof import("./getNodePool").getNodePool = null as a
 export const getNodePoolOutput: typeof import("./getNodePool").getNodePoolOutput = null as any;
 utilities.lazyLoad(exports, ["getNodePool","getNodePoolOutput"], () => require("./getNodePool"));
 
+export { GetNodePoolsArgs, GetNodePoolsResult, GetNodePoolsOutputArgs } from "./getNodePools";
+export const getNodePools: typeof import("./getNodePools").getNodePools = null as any;
+export const getNodePoolsOutput: typeof import("./getNodePools").getNodePoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getNodePools","getNodePoolsOutput"], () => require("./getNodePools"));
+
+export { GetVersionsResult } from "./getVersions";
+export const getVersions: typeof import("./getVersions").getVersions = null as any;
+export const getVersionsOutput: typeof import("./getVersions").getVersionsOutput = null as any;
+utilities.lazyLoad(exports, ["getVersions","getVersionsOutput"], () => require("./getVersions"));
+
 export { NodePoolArgs, NodePoolState } from "./nodePool";
 export type NodePool = import("./nodePool").NodePool;
 export const NodePool: typeof import("./nodePool").NodePool = null as any;

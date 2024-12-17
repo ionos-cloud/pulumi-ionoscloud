@@ -32,6 +32,9 @@ __all__ = [
     'ServerNic',
     'ServerNicFirewall',
     'ServerVolume',
+    'TargetGroupHealthCheck',
+    'TargetGroupHttpHealthCheck',
+    'TargetGroupTarget',
     'VCPUServerLabel',
     'VCPUServerNic',
     'VCPUServerNicFirewall',
@@ -46,6 +49,7 @@ __all__ = [
     'GetGroupUserResult',
     'GetIPBlockIpConsumerResult',
     'GetLanIpFailoverResult',
+    'GetLocationCpuArchitectureResult',
     'GetNatGatewayLanResult',
     'GetNatGatewayRuleTargetPortRangeResult',
     'GetNicFlowlogResult',
@@ -54,6 +58,16 @@ __all__ = [
     'GetServerNicResult',
     'GetServerNicFirewallRuleResult',
     'GetServerVolumeResult',
+    'GetServersFilterResult',
+    'GetServersServerResult',
+    'GetServersServerCdromResult',
+    'GetServersServerLabelResult',
+    'GetServersServerNicResult',
+    'GetServersServerNicFirewallRuleResult',
+    'GetServersServerVolumeResult',
+    'GetTargetGroupHealthCheckResult',
+    'GetTargetGroupHttpHealthCheckResult',
+    'GetTargetGroupTargetResult',
     'GetUserGroupResult',
     'GetVCPUServerCdromResult',
     'GetVCPUServerLabelResult',
@@ -1753,6 +1767,259 @@ class ServerVolume(dict):
 
 
 @pulumi.output_type
+class TargetGroupHealthCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "checkInterval":
+            suggest = "check_interval"
+        elif key == "checkTimeout":
+            suggest = "check_timeout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TargetGroupHealthCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TargetGroupHealthCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TargetGroupHealthCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 check_interval: Optional[int] = None,
+                 check_timeout: Optional[int] = None,
+                 retries: Optional[int] = None):
+        """
+        :param int check_interval: [int] The interval in milliseconds between consecutive health checks; default is 2000.
+        :param int check_timeout: [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        :param int retries: [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        """
+        if check_interval is not None:
+            pulumi.set(__self__, "check_interval", check_interval)
+        if check_timeout is not None:
+            pulumi.set(__self__, "check_timeout", check_timeout)
+        if retries is not None:
+            pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter(name="checkInterval")
+    def check_interval(self) -> Optional[int]:
+        """
+        [int] The interval in milliseconds between consecutive health checks; default is 2000.
+        """
+        return pulumi.get(self, "check_interval")
+
+    @property
+    @pulumi.getter(name="checkTimeout")
+    def check_timeout(self) -> Optional[int]:
+        """
+        [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        """
+        return pulumi.get(self, "check_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> Optional[int]:
+        """
+        [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        """
+        return pulumi.get(self, "retries")
+
+
+@pulumi.output_type
+class TargetGroupHttpHealthCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "matchType":
+            suggest = "match_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TargetGroupHttpHealthCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TargetGroupHttpHealthCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TargetGroupHttpHealthCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 match_type: str,
+                 response: str,
+                 method: Optional[str] = None,
+                 negate: Optional[bool] = None,
+                 path: Optional[str] = None,
+                 regex: Optional[bool] = None):
+        """
+        :param str match_type: [string]
+        :param str response: [string] The response returned by the request, depending on the match type.
+        :param str method: [string] The method for the HTTP health check.
+        :param bool negate: [bool]
+        :param str path: [string] The path (destination URL) for the HTTP health check request; the default is /.
+        :param bool regex: [bool]
+        """
+        pulumi.set(__self__, "match_type", match_type)
+        pulumi.set(__self__, "response", response)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if negate is not None:
+            pulumi.set(__self__, "negate", negate)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> str:
+        """
+        [string]
+        """
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def response(self) -> str:
+        """
+        [string] The response returned by the request, depending on the match type.
+        """
+        return pulumi.get(self, "response")
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        """
+        [string] The method for the HTTP health check.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def negate(self) -> Optional[bool]:
+        """
+        [bool]
+        """
+        return pulumi.get(self, "negate")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        [string] The path (destination URL) for the HTTP health check request; the default is /.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[bool]:
+        """
+        [bool]
+        """
+        return pulumi.get(self, "regex")
+
+
+@pulumi.output_type
+class TargetGroupTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "healthCheckEnabled":
+            suggest = "health_check_enabled"
+        elif key == "maintenanceEnabled":
+            suggest = "maintenance_enabled"
+        elif key == "proxyProtocol":
+            suggest = "proxy_protocol"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TargetGroupTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TargetGroupTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TargetGroupTarget.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ip: str,
+                 port: int,
+                 weight: int,
+                 health_check_enabled: Optional[bool] = None,
+                 maintenance_enabled: Optional[bool] = None,
+                 proxy_protocol: Optional[str] = None):
+        """
+        :param str ip: [string] The IP of the balanced target VM.
+        :param int port: [int] The port of the balanced target service; valid range is 1 to 65535.
+        :param int weight: [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        :param bool health_check_enabled: [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        :param bool maintenance_enabled: [bool] Maintenance mode prevents the target from receiving balanced traffic.
+        :param str proxy_protocol: [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+        """
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "weight", weight)
+        if health_check_enabled is not None:
+            pulumi.set(__self__, "health_check_enabled", health_check_enabled)
+        if maintenance_enabled is not None:
+            pulumi.set(__self__, "maintenance_enabled", maintenance_enabled)
+        if proxy_protocol is not None:
+            pulumi.set(__self__, "proxy_protocol", proxy_protocol)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        [string] The IP of the balanced target VM.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        [int] The port of the balanced target service; valid range is 1 to 65535.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        """
+        return pulumi.get(self, "weight")
+
+    @property
+    @pulumi.getter(name="healthCheckEnabled")
+    def health_check_enabled(self) -> Optional[bool]:
+        """
+        [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        """
+        return pulumi.get(self, "health_check_enabled")
+
+    @property
+    @pulumi.getter(name="maintenanceEnabled")
+    def maintenance_enabled(self) -> Optional[bool]:
+        """
+        [bool] Maintenance mode prevents the target from receiving balanced traffic.
+        """
+        return pulumi.get(self, "maintenance_enabled")
+
+    @property
+    @pulumi.getter(name="proxyProtocol")
+    def proxy_protocol(self) -> Optional[str]:
+        """
+        [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+        """
+        return pulumi.get(self, "proxy_protocol")
+
+
+@pulumi.output_type
 class VCPUServerLabel(dict):
     def __init__(__self__, *,
                  key: str,
@@ -3315,6 +3582,57 @@ class GetLanIpFailoverResult(dict):
 
 
 @pulumi.output_type
+class GetLocationCpuArchitectureResult(dict):
+    def __init__(__self__, *,
+                 cpu_family: str,
+                 max_cores: int,
+                 max_ram: int,
+                 vendor: str):
+        """
+        :param str cpu_family: A valid CPU family name.
+        :param int max_cores: The maximum number of cores available.
+        :param int max_ram: The maximum number of RAM in MB.
+        :param str vendor: A valid CPU vendor name.
+        """
+        pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "max_cores", max_cores)
+        pulumi.set(__self__, "max_ram", max_ram)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @property
+    @pulumi.getter(name="cpuFamily")
+    def cpu_family(self) -> str:
+        """
+        A valid CPU family name.
+        """
+        return pulumi.get(self, "cpu_family")
+
+    @property
+    @pulumi.getter(name="maxCores")
+    def max_cores(self) -> int:
+        """
+        The maximum number of cores available.
+        """
+        return pulumi.get(self, "max_cores")
+
+    @property
+    @pulumi.getter(name="maxRam")
+    def max_ram(self) -> int:
+        """
+        The maximum number of RAM in MB.
+        """
+        return pulumi.get(self, "max_ram")
+
+    @property
+    @pulumi.getter
+    def vendor(self) -> str:
+        """
+        A valid CPU vendor name.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
 class GetNatGatewayLanResult(dict):
     def __init__(__self__, *,
                  gateway_ips: Sequence[str],
@@ -4242,6 +4560,847 @@ class GetServerVolumeResult(dict):
         The cloud-init configuration for the volume as base64 encoded string
         """
         return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetServersFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetServersServerResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: str,
+                 boot_cdrom: str,
+                 boot_image: str,
+                 boot_volume: str,
+                 cdroms: Sequence['outputs.GetServersServerCdromResult'],
+                 cores: int,
+                 cpu_family: str,
+                 id: str,
+                 labels: Sequence['outputs.GetServersServerLabelResult'],
+                 nics: Sequence['outputs.GetServersServerNicResult'],
+                 ram: int,
+                 token: str,
+                 type: str,
+                 vm_state: str,
+                 volumes: Sequence['outputs.GetServersServerVolumeResult'],
+                 name: Optional[str] = None,
+                 template_uuid: Optional[str] = None):
+        """
+        :param str id: The unique ID of the server.
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "boot_cdrom", boot_cdrom)
+        pulumi.set(__self__, "boot_image", boot_image)
+        pulumi.set(__self__, "boot_volume", boot_volume)
+        pulumi.set(__self__, "cdroms", cdroms)
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "labels", labels)
+        pulumi.set(__self__, "nics", nics)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "token", token)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vm_state", vm_state)
+        pulumi.set(__self__, "volumes", volumes)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if template_uuid is not None:
+            pulumi.set(__self__, "template_uuid", template_uuid)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="bootCdrom")
+    def boot_cdrom(self) -> str:
+        return pulumi.get(self, "boot_cdrom")
+
+    @property
+    @pulumi.getter(name="bootImage")
+    def boot_image(self) -> str:
+        return pulumi.get(self, "boot_image")
+
+    @property
+    @pulumi.getter(name="bootVolume")
+    def boot_volume(self) -> str:
+        return pulumi.get(self, "boot_volume")
+
+    @property
+    @pulumi.getter
+    def cdroms(self) -> Sequence['outputs.GetServersServerCdromResult']:
+        return pulumi.get(self, "cdroms")
+
+    @property
+    @pulumi.getter
+    def cores(self) -> int:
+        return pulumi.get(self, "cores")
+
+    @property
+    @pulumi.getter(name="cpuFamily")
+    def cpu_family(self) -> str:
+        return pulumi.get(self, "cpu_family")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Sequence['outputs.GetServersServerLabelResult']:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def nics(self) -> Sequence['outputs.GetServersServerNicResult']:
+        return pulumi.get(self, "nics")
+
+    @property
+    @pulumi.getter
+    def ram(self) -> int:
+        return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter
+    def token(self) -> str:
+        return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vmState")
+    def vm_state(self) -> str:
+        return pulumi.get(self, "vm_state")
+
+    @property
+    @pulumi.getter
+    def volumes(self) -> Sequence['outputs.GetServersServerVolumeResult']:
+        return pulumi.get(self, "volumes")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="templateUuid")
+    def template_uuid(self) -> Optional[str]:
+        return pulumi.get(self, "template_uuid")
+
+
+@pulumi.output_type
+class GetServersServerCdromResult(dict):
+    def __init__(__self__, *,
+                 cloud_init: str,
+                 cpu_hot_plug: bool,
+                 cpu_hot_unplug: bool,
+                 description: str,
+                 disc_scsi_hot_plug: bool,
+                 disc_scsi_hot_unplug: bool,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 id: str,
+                 image_aliases: Sequence[str],
+                 image_type: str,
+                 licence_type: str,
+                 location: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 public: bool,
+                 ram_hot_plug: bool,
+                 ram_hot_unplug: bool,
+                 size: float):
+        pulumi.set(__self__, "cloud_init", cloud_init)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "cpu_hot_unplug", cpu_hot_unplug)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disc_scsi_hot_plug", disc_scsi_hot_plug)
+        pulumi.set(__self__, "disc_scsi_hot_unplug", disc_scsi_hot_unplug)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_aliases", image_aliases)
+        pulumi.set(__self__, "image_type", image_type)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "ram_hot_unplug", ram_hot_unplug)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> str:
+        return pulumi.get(self, "cloud_init")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="cpuHotUnplug")
+    def cpu_hot_unplug(self) -> bool:
+        return pulumi.get(self, "cpu_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="discScsiHotPlug")
+    def disc_scsi_hot_plug(self) -> bool:
+        return pulumi.get(self, "disc_scsi_hot_plug")
+
+    @property
+    @pulumi.getter(name="discScsiHotUnplug")
+    def disc_scsi_hot_unplug(self) -> bool:
+        return pulumi.get(self, "disc_scsi_hot_unplug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageAliases")
+    def image_aliases(self) -> Sequence[str]:
+        return pulumi.get(self, "image_aliases")
+
+    @property
+    @pulumi.getter(name="imageType")
+    def image_type(self) -> str:
+        return pulumi.get(self, "image_type")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter(name="ramHotUnplug")
+    def ram_hot_unplug(self) -> bool:
+        return pulumi.get(self, "ram_hot_unplug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> float:
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetServersServerLabelResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetServersServerNicResult(dict):
+    def __init__(__self__, *,
+                 device_number: int,
+                 dhcp: bool,
+                 firewall_active: bool,
+                 firewall_rules: Sequence['outputs.GetServersServerNicFirewallRuleResult'],
+                 firewall_type: str,
+                 id: str,
+                 ips: Sequence[str],
+                 ipv6_cidr_block: str,
+                 ipv6_ips: Sequence[str],
+                 lan: int,
+                 mac: str,
+                 name: str,
+                 pci_slot: int,
+                 dhcpv6: Optional[bool] = None):
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "dhcp", dhcp)
+        pulumi.set(__self__, "firewall_active", firewall_active)
+        pulumi.set(__self__, "firewall_rules", firewall_rules)
+        pulumi.set(__self__, "firewall_type", firewall_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        pulumi.set(__self__, "ipv6_ips", ipv6_ips)
+        pulumi.set(__self__, "lan", lan)
+        pulumi.set(__self__, "mac", mac)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        if dhcpv6 is not None:
+            pulumi.set(__self__, "dhcpv6", dhcpv6)
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter
+    def dhcp(self) -> bool:
+        return pulumi.get(self, "dhcp")
+
+    @property
+    @pulumi.getter(name="firewallActive")
+    def firewall_active(self) -> bool:
+        return pulumi.get(self, "firewall_active")
+
+    @property
+    @pulumi.getter(name="firewallRules")
+    def firewall_rules(self) -> Sequence['outputs.GetServersServerNicFirewallRuleResult']:
+        return pulumi.get(self, "firewall_rules")
+
+    @property
+    @pulumi.getter(name="firewallType")
+    def firewall_type(self) -> str:
+        return pulumi.get(self, "firewall_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> str:
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
+    @pulumi.getter(name="ipv6Ips")
+    def ipv6_ips(self) -> Sequence[str]:
+        return pulumi.get(self, "ipv6_ips")
+
+    @property
+    @pulumi.getter
+    def lan(self) -> int:
+        return pulumi.get(self, "lan")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> str:
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter
+    def dhcpv6(self) -> Optional[bool]:
+        return pulumi.get(self, "dhcpv6")
+
+
+@pulumi.output_type
+class GetServersServerNicFirewallRuleResult(dict):
+    def __init__(__self__, *,
+                 icmp_code: int,
+                 icmp_type: int,
+                 id: str,
+                 name: str,
+                 port_range_end: int,
+                 port_range_start: int,
+                 protocol: str,
+                 source_ip: str,
+                 source_mac: str,
+                 target_ip: str,
+                 type: str):
+        pulumi.set(__self__, "icmp_code", icmp_code)
+        pulumi.set(__self__, "icmp_type", icmp_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port_range_end", port_range_end)
+        pulumi.set(__self__, "port_range_start", port_range_start)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_ip", source_ip)
+        pulumi.set(__self__, "source_mac", source_mac)
+        pulumi.set(__self__, "target_ip", target_ip)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="icmpCode")
+    def icmp_code(self) -> int:
+        return pulumi.get(self, "icmp_code")
+
+    @property
+    @pulumi.getter(name="icmpType")
+    def icmp_type(self) -> int:
+        return pulumi.get(self, "icmp_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="portRangeEnd")
+    def port_range_end(self) -> int:
+        return pulumi.get(self, "port_range_end")
+
+    @property
+    @pulumi.getter(name="portRangeStart")
+    def port_range_start(self) -> int:
+        return pulumi.get(self, "port_range_start")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> str:
+        return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceMac")
+    def source_mac(self) -> str:
+        return pulumi.get(self, "source_mac")
+
+    @property
+    @pulumi.getter(name="targetIp")
+    def target_ip(self) -> str:
+        return pulumi.get(self, "target_ip")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetServersServerVolumeResult(dict):
+    def __init__(__self__, *,
+                 availability_zone: str,
+                 backup_unit_id: str,
+                 boot_server: str,
+                 bus: str,
+                 cpu_hot_plug: bool,
+                 device_number: int,
+                 disc_virtio_hot_plug: bool,
+                 disc_virtio_hot_unplug: bool,
+                 disk_type: str,
+                 id: str,
+                 image_name: str,
+                 image_password: str,
+                 licence_type: str,
+                 name: str,
+                 nic_hot_plug: bool,
+                 nic_hot_unplug: bool,
+                 pci_slot: int,
+                 ram_hot_plug: bool,
+                 size: int,
+                 ssh_keys: Sequence[str],
+                 user_data: Optional[str] = None):
+        """
+        :param str boot_server: The UUID of the attached server.
+        """
+        pulumi.set(__self__, "availability_zone", availability_zone)
+        pulumi.set(__self__, "backup_unit_id", backup_unit_id)
+        pulumi.set(__self__, "boot_server", boot_server)
+        pulumi.set(__self__, "bus", bus)
+        pulumi.set(__self__, "cpu_hot_plug", cpu_hot_plug)
+        pulumi.set(__self__, "device_number", device_number)
+        pulumi.set(__self__, "disc_virtio_hot_plug", disc_virtio_hot_plug)
+        pulumi.set(__self__, "disc_virtio_hot_unplug", disc_virtio_hot_unplug)
+        pulumi.set(__self__, "disk_type", disk_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_name", image_name)
+        pulumi.set(__self__, "image_password", image_password)
+        pulumi.set(__self__, "licence_type", licence_type)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "nic_hot_plug", nic_hot_plug)
+        pulumi.set(__self__, "nic_hot_unplug", nic_hot_unplug)
+        pulumi.set(__self__, "pci_slot", pci_slot)
+        pulumi.set(__self__, "ram_hot_plug", ram_hot_plug)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "ssh_keys", ssh_keys)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+
+    @property
+    @pulumi.getter(name="availabilityZone")
+    def availability_zone(self) -> str:
+        return pulumi.get(self, "availability_zone")
+
+    @property
+    @pulumi.getter(name="backupUnitId")
+    def backup_unit_id(self) -> str:
+        return pulumi.get(self, "backup_unit_id")
+
+    @property
+    @pulumi.getter(name="bootServer")
+    def boot_server(self) -> str:
+        """
+        The UUID of the attached server.
+        """
+        return pulumi.get(self, "boot_server")
+
+    @property
+    @pulumi.getter
+    def bus(self) -> str:
+        return pulumi.get(self, "bus")
+
+    @property
+    @pulumi.getter(name="cpuHotPlug")
+    def cpu_hot_plug(self) -> bool:
+        return pulumi.get(self, "cpu_hot_plug")
+
+    @property
+    @pulumi.getter(name="deviceNumber")
+    def device_number(self) -> int:
+        return pulumi.get(self, "device_number")
+
+    @property
+    @pulumi.getter(name="discVirtioHotPlug")
+    def disc_virtio_hot_plug(self) -> bool:
+        return pulumi.get(self, "disc_virtio_hot_plug")
+
+    @property
+    @pulumi.getter(name="discVirtioHotUnplug")
+    def disc_virtio_hot_unplug(self) -> bool:
+        return pulumi.get(self, "disc_virtio_hot_unplug")
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> str:
+        return pulumi.get(self, "disk_type")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageName")
+    def image_name(self) -> str:
+        return pulumi.get(self, "image_name")
+
+    @property
+    @pulumi.getter(name="imagePassword")
+    def image_password(self) -> str:
+        return pulumi.get(self, "image_password")
+
+    @property
+    @pulumi.getter(name="licenceType")
+    def licence_type(self) -> str:
+        return pulumi.get(self, "licence_type")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nicHotPlug")
+    def nic_hot_plug(self) -> bool:
+        return pulumi.get(self, "nic_hot_plug")
+
+    @property
+    @pulumi.getter(name="nicHotUnplug")
+    def nic_hot_unplug(self) -> bool:
+        return pulumi.get(self, "nic_hot_unplug")
+
+    @property
+    @pulumi.getter(name="pciSlot")
+    def pci_slot(self) -> int:
+        return pulumi.get(self, "pci_slot")
+
+    @property
+    @pulumi.getter(name="ramHotPlug")
+    def ram_hot_plug(self) -> bool:
+        return pulumi.get(self, "ram_hot_plug")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="sshKeys")
+    def ssh_keys(self) -> Sequence[str]:
+        return pulumi.get(self, "ssh_keys")
+
+    @property
+    @pulumi.getter(name="userData")
+    def user_data(self) -> Optional[str]:
+        return pulumi.get(self, "user_data")
+
+
+@pulumi.output_type
+class GetTargetGroupHealthCheckResult(dict):
+    def __init__(__self__, *,
+                 check_interval: int,
+                 check_timeout: int,
+                 retries: int):
+        """
+        :param int check_interval: The interval in milliseconds between consecutive health checks; default is 2000.
+        :param int check_timeout: The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        :param int retries: The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        """
+        pulumi.set(__self__, "check_interval", check_interval)
+        pulumi.set(__self__, "check_timeout", check_timeout)
+        pulumi.set(__self__, "retries", retries)
+
+    @property
+    @pulumi.getter(name="checkInterval")
+    def check_interval(self) -> int:
+        """
+        The interval in milliseconds between consecutive health checks; default is 2000.
+        """
+        return pulumi.get(self, "check_interval")
+
+    @property
+    @pulumi.getter(name="checkTimeout")
+    def check_timeout(self) -> int:
+        """
+        The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+        """
+        return pulumi.get(self, "check_timeout")
+
+    @property
+    @pulumi.getter
+    def retries(self) -> int:
+        """
+        The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+        """
+        return pulumi.get(self, "retries")
+
+
+@pulumi.output_type
+class GetTargetGroupHttpHealthCheckResult(dict):
+    def __init__(__self__, *,
+                 match_type: str,
+                 method: str,
+                 negate: bool,
+                 path: str,
+                 regex: bool,
+                 response: str):
+        """
+        :param str method: The method for the HTTP health check.
+        :param str path: The path (destination URL) for the HTTP health check request; the default is /.
+        :param str response: The response returned by the request, depending on the match type.
+        """
+        pulumi.set(__self__, "match_type", match_type)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "negate", negate)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "regex", regex)
+        pulumi.set(__self__, "response", response)
+
+    @property
+    @pulumi.getter(name="matchType")
+    def match_type(self) -> str:
+        return pulumi.get(self, "match_type")
+
+    @property
+    @pulumi.getter
+    def method(self) -> str:
+        """
+        The method for the HTTP health check.
+        """
+        return pulumi.get(self, "method")
+
+    @property
+    @pulumi.getter
+    def negate(self) -> bool:
+        return pulumi.get(self, "negate")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The path (destination URL) for the HTTP health check request; the default is /.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def regex(self) -> bool:
+        return pulumi.get(self, "regex")
+
+    @property
+    @pulumi.getter
+    def response(self) -> str:
+        """
+        The response returned by the request, depending on the match type.
+        """
+        return pulumi.get(self, "response")
+
+
+@pulumi.output_type
+class GetTargetGroupTargetResult(dict):
+    def __init__(__self__, *,
+                 health_check_enabled: bool,
+                 ip: str,
+                 maintenance_enabled: bool,
+                 port: int,
+                 proxy_protocol: str,
+                 weight: int):
+        """
+        :param bool health_check_enabled: Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        :param str ip: The IP of the balanced target VM.
+        :param bool maintenance_enabled: Maintenance mode prevents the target from receiving balanced traffic.
+        :param int port: The port of the balanced target service; valid range is 1 to 65535.
+        :param str proxy_protocol: The proxy protocol version.
+        :param int weight: Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        """
+        pulumi.set(__self__, "health_check_enabled", health_check_enabled)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "maintenance_enabled", maintenance_enabled)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "proxy_protocol", proxy_protocol)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="healthCheckEnabled")
+    def health_check_enabled(self) -> bool:
+        """
+        Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+        """
+        return pulumi.get(self, "health_check_enabled")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        The IP of the balanced target VM.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="maintenanceEnabled")
+    def maintenance_enabled(self) -> bool:
+        """
+        Maintenance mode prevents the target from receiving balanced traffic.
+        """
+        return pulumi.get(self, "maintenance_enabled")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port of the balanced target service; valid range is 1 to 65535.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="proxyProtocol")
+    def proxy_protocol(self) -> str:
+        """
+        The proxy protocol version.
+        """
+        return pulumi.get(self, "proxy_protocol")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+        """
+        return pulumi.get(self, "weight")
 
 
 @pulumi.output_type

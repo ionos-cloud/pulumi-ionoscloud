@@ -10,6 +10,11 @@ export type BackupUnit = import("./backupUnit").BackupUnit;
 export const BackupUnit: typeof import("./backupUnit").BackupUnit = null as any;
 utilities.lazyLoad(exports, ["BackupUnit"], () => require("./backupUnit"));
 
+export { BalancerArgs, BalancerState } from "./balancer";
+export type Balancer = import("./balancer").Balancer;
+export const Balancer: typeof import("./balancer").Balancer = null as any;
+utilities.lazyLoad(exports, ["Balancer"], () => require("./balancer"));
+
 export { BootDeviceSelectionArgs, BootDeviceSelectionState } from "./bootDeviceSelection";
 export type BootDeviceSelection = import("./bootDeviceSelection").BootDeviceSelection;
 export const BootDeviceSelection: typeof import("./bootDeviceSelection").BootDeviceSelection = null as any;
@@ -75,10 +80,20 @@ export const getIPFailover: typeof import("./getIPFailover").getIPFailover = nul
 export const getIPFailoverOutput: typeof import("./getIPFailover").getIPFailoverOutput = null as any;
 utilities.lazyLoad(exports, ["getIPFailover","getIPFailoverOutput"], () => require("./getIPFailover"));
 
+export { GetImageArgs, GetImageResult, GetImageOutputArgs } from "./getImage";
+export const getImage: typeof import("./getImage").getImage = null as any;
+export const getImageOutput: typeof import("./getImage").getImageOutput = null as any;
+utilities.lazyLoad(exports, ["getImage","getImageOutput"], () => require("./getImage"));
+
 export { GetLanArgs, GetLanResult, GetLanOutputArgs } from "./getLan";
 export const getLan: typeof import("./getLan").getLan = null as any;
 export const getLanOutput: typeof import("./getLan").getLanOutput = null as any;
 utilities.lazyLoad(exports, ["getLan","getLanOutput"], () => require("./getLan"));
+
+export { GetLocationArgs, GetLocationResult, GetLocationOutputArgs } from "./getLocation";
+export const getLocation: typeof import("./getLocation").getLocation = null as any;
+export const getLocationOutput: typeof import("./getLocation").getLocationOutput = null as any;
+utilities.lazyLoad(exports, ["getLocation","getLocationOutput"], () => require("./getLocation"));
 
 export { GetNatGatewayArgs, GetNatGatewayResult, GetNatGatewayOutputArgs } from "./getNatGateway";
 export const getNatGateway: typeof import("./getNatGateway").getNatGateway = null as any;
@@ -95,6 +110,11 @@ export const getNic: typeof import("./getNic").getNic = null as any;
 export const getNicOutput: typeof import("./getNic").getNicOutput = null as any;
 utilities.lazyLoad(exports, ["getNic","getNicOutput"], () => require("./getNic"));
 
+export { GetResourceArgs, GetResourceResult, GetResourceOutputArgs } from "./getResource";
+export const getResource: typeof import("./getResource").getResource = null as any;
+export const getResourceOutput: typeof import("./getResource").getResourceOutput = null as any;
+utilities.lazyLoad(exports, ["getResource","getResourceOutput"], () => require("./getResource"));
+
 export { GetS3KeyArgs, GetS3KeyResult, GetS3KeyOutputArgs } from "./getS3Key";
 export const getS3Key: typeof import("./getS3Key").getS3Key = null as any;
 export const getS3KeyOutput: typeof import("./getS3Key").getS3KeyOutput = null as any;
@@ -105,6 +125,11 @@ export const getServer: typeof import("./getServer").getServer = null as any;
 export const getServerOutput: typeof import("./getServer").getServerOutput = null as any;
 utilities.lazyLoad(exports, ["getServer","getServerOutput"], () => require("./getServer"));
 
+export { GetServersArgs, GetServersResult, GetServersOutputArgs } from "./getServers";
+export const getServers: typeof import("./getServers").getServers = null as any;
+export const getServersOutput: typeof import("./getServers").getServersOutput = null as any;
+utilities.lazyLoad(exports, ["getServers","getServersOutput"], () => require("./getServers"));
+
 export { GetShareArgs, GetShareResult, GetShareOutputArgs } from "./getShare";
 export const getShare: typeof import("./getShare").getShare = null as any;
 export const getShareOutput: typeof import("./getShare").getShareOutput = null as any;
@@ -114,6 +139,16 @@ export { GetSnapshotArgs, GetSnapshotResult, GetSnapshotOutputArgs } from "./get
 export const getSnapshot: typeof import("./getSnapshot").getSnapshot = null as any;
 export const getSnapshotOutput: typeof import("./getSnapshot").getSnapshotOutput = null as any;
 utilities.lazyLoad(exports, ["getSnapshot","getSnapshotOutput"], () => require("./getSnapshot"));
+
+export { GetTargetGroupArgs, GetTargetGroupResult, GetTargetGroupOutputArgs } from "./getTargetGroup";
+export const getTargetGroup: typeof import("./getTargetGroup").getTargetGroup = null as any;
+export const getTargetGroupOutput: typeof import("./getTargetGroup").getTargetGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getTargetGroup","getTargetGroupOutput"], () => require("./getTargetGroup"));
+
+export { GetTemplateArgs, GetTemplateResult, GetTemplateOutputArgs } from "./getTemplate";
+export const getTemplate: typeof import("./getTemplate").getTemplate = null as any;
+export const getTemplateOutput: typeof import("./getTemplate").getTemplateOutput = null as any;
+utilities.lazyLoad(exports, ["getTemplate","getTemplateOutput"], () => require("./getTemplate"));
 
 export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
 export const getUser: typeof import("./getUser").getUser = null as any;
@@ -185,6 +220,11 @@ export type Snapshot = import("./snapshot").Snapshot;
 export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
 utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
 
+export { TargetGroupArgs, TargetGroupState } from "./targetGroup";
+export type TargetGroup = import("./targetGroup").TargetGroup;
+export const TargetGroup: typeof import("./targetGroup").TargetGroup = null as any;
+utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
+
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
@@ -207,6 +247,8 @@ const _module = {
         switch (type) {
             case "ionoscloud:compute/backupUnit:BackupUnit":
                 return new BackupUnit(name, <any>undefined, { urn })
+            case "ionoscloud:compute/balancer:Balancer":
+                return new Balancer(name, <any>undefined, { urn })
             case "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection":
                 return new BootDeviceSelection(name, <any>undefined, { urn })
             case "ionoscloud:compute/crossconnect:Crossconnect":
@@ -239,6 +281,8 @@ const _module = {
                 return new Share(name, <any>undefined, { urn })
             case "ionoscloud:compute/snapshot:Snapshot":
                 return new Snapshot(name, <any>undefined, { urn })
+            case "ionoscloud:compute/targetGroup:TargetGroup":
+                return new TargetGroup(name, <any>undefined, { urn })
             case "ionoscloud:compute/user:User":
                 return new User(name, <any>undefined, { urn })
             case "ionoscloud:compute/vCPUServer:VCPUServer":
@@ -251,6 +295,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/backupUnit", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/balancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/bootDeviceSelection", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/crossconnect", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/cubeServer", _module)
@@ -267,6 +312,7 @@ pulumi.runtime.registerResourceModule("ionoscloud", "compute/s3Key", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/server", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/share", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/snapshot", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "compute/targetGroup", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/user", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/vCPUServer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "compute/volume", _module)

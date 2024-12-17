@@ -162,7 +162,7 @@ class BootDeviceSelection(pulumi.CustomResource):
 
         The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
         Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
-        This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+        This resource also allows switching between a `volume` and a `compute_get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
         ```python
@@ -268,7 +268,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "dhcp": True,
                 "firewall_active": True,
             })
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
+        example_image = ionoscloud.compute.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
@@ -323,7 +323,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             availability_zone="AUTO",
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
+        example_image = ionoscloud.compute.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
         ```
@@ -348,7 +348,7 @@ class BootDeviceSelection(pulumi.CustomResource):
 
         The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
         Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
-        This resource also allows switching between a `volume` and a `get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+        This resource also allows switching between a `volume` and a `compute_get_image` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 
         ### Select an external volume
         ```python
@@ -454,7 +454,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "dhcp": True,
                 "firewall_active": True,
             })
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
+        example_image = ionoscloud.compute.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
         example_boot_device_selection = ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection",
@@ -509,7 +509,7 @@ class BootDeviceSelection(pulumi.CustomResource):
             availability_zone="AUTO",
             image_name="debian:latest",
             image_password=random_password["server_image_password"]["result"])
-        example_image = ionoscloud.get_image(name="ubuntu-20.04",
+        example_image = ionoscloud.compute.get_image(name="ubuntu-20.04",
             location="de/txl",
             type="CDROM")
         ```

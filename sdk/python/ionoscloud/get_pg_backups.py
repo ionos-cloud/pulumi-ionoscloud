@@ -22,6 +22,8 @@ __all__ = [
     'get_pg_backups_output',
 ]
 
+warnings.warn("""ionoscloud.index/getpgbackups.getPgBackups has been deprecated in favor of ionoscloud.dbaas/getpsqlbackups.getPSQLBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class GetPgBackupsResult:
     """
@@ -41,11 +43,17 @@ class GetPgBackupsResult:
     @property
     @pulumi.getter(name="clusterBackups")
     def cluster_backups(self) -> Sequence['outputs.GetPgBackupsClusterBackupResult']:
+        """
+        List of backups.
+        """
         return pulumi.get(self, "cluster_backups")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The unique ID of the cluster
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -71,8 +79,16 @@ class AwaitableGetPgBackupsResult(GetPgBackupsResult):
 def get_pg_backups(cluster_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPgBackupsResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param str cluster_id: The unique ID of the cluster.
+           
+           `cluster_id` must be provided. If it is not provided, the datasource will return an error.
     """
+    pulumi.log.warn("""get_pg_backups is deprecated: ionoscloud.index/getpgbackups.getPgBackups has been deprecated in favor of ionoscloud.dbaas/getpsqlbackups.getPSQLBackups""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -85,8 +101,16 @@ def get_pg_backups(cluster_id: Optional[str] = None,
 def get_pg_backups_output(cluster_id: Optional[pulumi.Input[str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPgBackupsResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+
+    :param str cluster_id: The unique ID of the cluster.
+           
+           `cluster_id` must be provided. If it is not provided, the datasource will return an error.
     """
+    pulumi.log.warn("""get_pg_backups is deprecated: ionoscloud.index/getpgbackups.getPgBackups has been deprecated in favor of ionoscloud.dbaas/getpsqlbackups.getPSQLBackups""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

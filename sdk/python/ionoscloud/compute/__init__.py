@@ -6,6 +6,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .backup_unit import *
+from .balancer import *
 from .boot_device_selection import *
 from .crossconnect import *
 from .cube_server import *
@@ -17,16 +18,22 @@ from .get_cube_server import *
 from .get_datacenter import *
 from .get_firewall import *
 from .get_group import *
+from .get_image import *
 from .get_ip_block import *
 from .get_ip_failover import *
 from .get_lan import *
+from .get_location import *
 from .get_nat_gateway import *
 from .get_nat_gateway_rule import *
 from .get_nic import *
+from .get_resource import *
 from .get_s3_key import *
 from .get_server import *
+from .get_servers import *
 from .get_share import *
 from .get_snapshot import *
+from .get_target_group import *
+from .get_template import *
 from .get_user import *
 from .get_vcpu_server import *
 from .get_volume import *
@@ -41,6 +48,7 @@ from .s3_key import *
 from .server import *
 from .share import *
 from .snapshot import *
+from .target_group import *
 from .user import *
 from .vcpu_server import *
 from .volume import *
