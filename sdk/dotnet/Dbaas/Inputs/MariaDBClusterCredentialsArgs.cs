@@ -16,7 +16,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for a MariaDB user.
+        /// [string] The password for a MariaDB user.
         /// </summary>
         public Input<string>? Password
         {
@@ -29,7 +29,7 @@ namespace Pulumi.Ionoscloud.Dbaas.Inputs
         }
 
         /// <summary>
-        /// The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

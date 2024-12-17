@@ -9,48 +9,95 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Ionoscloud.Cert
 {
+    /// <summary>
+    /// Manages a **CM AutoCertificate**.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Ionoscloud = Pulumi.Ionoscloud;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleAutoCertificateProvider = new Ionoscloud.Cert.AutoCertificateProvider("exampleAutoCertificateProvider", new()
+    ///     {
+    ///         Email = "user@example.com",
+    ///         Location = "de/fra",
+    ///         Server = "https://acme-v02.api.letsencrypt.org/directory",
+    ///         ExternalAccountBinding = new Ionoscloud.Cert.Inputs.AutoCertificateProviderExternalAccountBindingArgs
+    ///         {
+    ///             KeyId = "some-key-id",
+    ///             KeySecret = "secret",
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleAutoCertificate = new Ionoscloud.Cert.AutoCertificate("exampleAutoCertificate", new()
+    ///     {
+    ///         ProviderId = exampleAutoCertificateProvider.Id,
+    ///         CommonName = "www.example.com",
+    ///         Location = exampleAutoCertificateProvider.Location,
+    ///         KeyAlgorithm = "rsa4096",
+    ///         SubjectAlternativeNames = new[]
+    ///         {
+    ///             "app.example.com",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The resource can be imported using the `auto_certificate_id` and the `location`, separated by `:`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import ionoscloud:cert/autoCertificate:AutoCertificate example {location}:{auto_certificate_id}
+    /// ```
+    /// </summary>
     [IonoscloudResourceType("ionoscloud:cert/autoCertificate:AutoCertificate")]
     public partial class AutoCertificate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         [Output("commonName")]
         public Output<string> CommonName { get; private set; } = null!;
 
         /// <summary>
-        /// The key algorithm used to generate the certificate
+        /// [string] The key algorithm used to generate the certificate.
         /// </summary>
         [Output("keyAlgorithm")]
         public Output<string> KeyAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the last certificate that was issued
+        /// [string] The ID of the last certificate that was issued.
         /// </summary>
         [Output("lastIssuedCertificateId")]
         public Output<string> LastIssuedCertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the auto-certificate
+        /// [string] The location of the auto-certificate.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// A certificate name used for management purposes
+        /// [string] A certificate name used for management purposes.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The certificate provider used to issue the certificates
+        /// [string] The certificate provider used to issue the certificates.
         /// </summary>
         [Output("providerId")]
         public Output<string> ProviderId { get; private set; } = null!;
 
         /// <summary>
-        /// Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-        /// IONOS Cloud DNS
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         [Output("subjectAlternativeNames")]
         public Output<ImmutableArray<string>> SubjectAlternativeNames { get; private set; } = null!;
@@ -102,31 +149,31 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         [Input("commonName", required: true)]
         public Input<string> CommonName { get; set; } = null!;
 
         /// <summary>
-        /// The key algorithm used to generate the certificate
+        /// [string] The key algorithm used to generate the certificate.
         /// </summary>
         [Input("keyAlgorithm", required: true)]
         public Input<string> KeyAlgorithm { get; set; } = null!;
 
         /// <summary>
-        /// The location of the auto-certificate
+        /// [string] The location of the auto-certificate.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// A certificate name used for management purposes
+        /// [string] A certificate name used for management purposes.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The certificate provider used to issue the certificates
+        /// [string] The certificate provider used to issue the certificates.
         /// </summary>
         [Input("providerId", required: true)]
         public Input<string> ProviderId { get; set; } = null!;
@@ -135,8 +182,7 @@ namespace Pulumi.Ionoscloud.Cert
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-        /// IONOS Cloud DNS
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {
@@ -153,37 +199,37 @@ namespace Pulumi.Ionoscloud.Cert
     public sealed class AutoCertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS
+        /// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         [Input("commonName")]
         public Input<string>? CommonName { get; set; }
 
         /// <summary>
-        /// The key algorithm used to generate the certificate
+        /// [string] The key algorithm used to generate the certificate.
         /// </summary>
         [Input("keyAlgorithm")]
         public Input<string>? KeyAlgorithm { get; set; }
 
         /// <summary>
-        /// The ID of the last certificate that was issued
+        /// [string] The ID of the last certificate that was issued.
         /// </summary>
         [Input("lastIssuedCertificateId")]
         public Input<string>? LastIssuedCertificateId { get; set; }
 
         /// <summary>
-        /// The location of the auto-certificate
+        /// [string] The location of the auto-certificate.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// A certificate name used for management purposes
+        /// [string] A certificate name used for management purposes.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The certificate provider used to issue the certificates
+        /// [string] The certificate provider used to issue the certificates.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -192,8 +238,7 @@ namespace Pulumi.Ionoscloud.Cert
         private InputList<string>? _subjectAlternativeNames;
 
         /// <summary>
-        /// Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in
-        /// IONOS Cloud DNS
+        /// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
         /// </summary>
         public InputList<string> SubjectAlternativeNames
         {

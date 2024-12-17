@@ -34,15 +34,15 @@ class MariaDBClusterArgs:
         """
         The set of arguments for constructing a MariaDBCluster resource.
         :param pulumi.Input['MariaDBClusterConnectionsArgs'] connections: The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
+        :param pulumi.Input[int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[str] display_name: The friendly name of your cluster.
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
-        :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
-        :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).
-        :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+        :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         pulumi.set(__self__, "connections", connections)
         pulumi.set(__self__, "cores", cores)
@@ -73,7 +73,7 @@ class MariaDBClusterArgs:
     @pulumi.getter
     def cores(self) -> pulumi.Input[int]:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -97,7 +97,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[str]:
         """
-        The friendly name of your cluster.
+        [string] The friendly name of your cluster.
         """
         return pulumi.get(self, "display_name")
 
@@ -109,7 +109,7 @@ class MariaDBClusterArgs:
     @pulumi.getter
     def instances(self) -> pulumi.Input[int]:
         """
-        The total number of instances in the cluster (one primary and n-1 secondary).
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
         """
         return pulumi.get(self, "instances")
 
@@ -121,7 +121,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> pulumi.Input[str]:
         """
-        The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster.
         """
         return pulumi.get(self, "mariadb_version")
 
@@ -133,7 +133,7 @@ class MariaDBClusterArgs:
     @pulumi.getter
     def ram(self) -> pulumi.Input[int]:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -145,7 +145,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Input[int]:
         """
-        The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB).
         """
         return pulumi.get(self, "storage_size")
 
@@ -157,7 +157,7 @@ class MariaDBClusterArgs:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster location
+        [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         """
         return pulumi.get(self, "location")
 
@@ -169,7 +169,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -195,16 +195,18 @@ class _MariaDBClusterState:
         """
         Input properties used for looking up and filtering MariaDBCluster resources.
         :param pulumi.Input['MariaDBClusterConnectionsArgs'] connections: The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
+        :param pulumi.Input[int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[str] display_name: The friendly name of your cluster.
-        :param pulumi.Input[str] dns_name: The DNS name pointing to your cluster.
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
-        :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
-        :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your cluster.
+               
+               > **⚠ WARNING:** `Location` attribute will become required in the future.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+        :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
         if connections is not None:
             pulumi.set(__self__, "connections", connections)
@@ -245,7 +247,7 @@ class _MariaDBClusterState:
     @pulumi.getter
     def cores(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -269,7 +271,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The friendly name of your cluster.
+        [string] The friendly name of your cluster.
         """
         return pulumi.get(self, "display_name")
 
@@ -281,7 +283,9 @@ class _MariaDBClusterState:
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The DNS name pointing to your cluster.
+        [string] The DNS name pointing to your cluster.
+
+        > **⚠ WARNING:** `Location` attribute will become required in the future.
         """
         return pulumi.get(self, "dns_name")
 
@@ -293,7 +297,7 @@ class _MariaDBClusterState:
     @pulumi.getter
     def instances(self) -> Optional[pulumi.Input[int]]:
         """
-        The total number of instances in the cluster (one primary and n-1 secondary).
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
         """
         return pulumi.get(self, "instances")
 
@@ -305,7 +309,7 @@ class _MariaDBClusterState:
     @pulumi.getter
     def location(self) -> Optional[pulumi.Input[str]]:
         """
-        The cluster location
+        [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         """
         return pulumi.get(self, "location")
 
@@ -317,7 +321,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MariaDBClusterMaintenanceWindowArgs']]:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -329,7 +333,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster.
         """
         return pulumi.get(self, "mariadb_version")
 
@@ -341,7 +345,7 @@ class _MariaDBClusterState:
     @pulumi.getter
     def ram(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -353,7 +357,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB).
         """
         return pulumi.get(self, "storage_size")
 
@@ -379,19 +383,28 @@ class MariaDBCluster(pulumi.CustomResource):
                  storage_size: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a MariaDBCluster resource with the given unique name, props, and options.
+        Manages a **DBaaS MariaDB Cluster**.
+
+        ## Import
+
+        Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
+        :param pulumi.Input[int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[str] display_name: The friendly name of your cluster.
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
-        :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
-        :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
         ...
     @overload
@@ -400,7 +413,16 @@ class MariaDBCluster(pulumi.CustomResource):
                  args: MariaDBClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MariaDBCluster resource with the given unique name, props, and options.
+        Manages a **DBaaS MariaDB Cluster**.
+
+        ## Import
+
+        Resource DBaaS MariaDB Cluster can be imported using the `cluster_id` and the `location`, separated by `:`, e.g.
+
+        ```sh
+        $ pulumi import ionoscloud:dbaas/mariaDBCluster:MariaDBCluster mycluster {location}:{cluster UUID}
+        ```
+
         :param str resource_name: The name of the resource.
         :param MariaDBClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -491,16 +513,18 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[int] cores: The number of CPU cores per instance.
+        :param pulumi.Input[int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[str] display_name: The friendly name of your cluster.
-        :param pulumi.Input[str] dns_name: The DNS name pointing to your cluster.
-        :param pulumi.Input[int] instances: The total number of instances in the cluster (one primary and n-1 secondary).
-        :param pulumi.Input[str] location: The cluster location
-        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
-        :param pulumi.Input[str] mariadb_version: The MariaDB version of your cluster.
-        :param pulumi.Input[int] ram: The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[int] storage_size: The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[str] dns_name: [string] The DNS name pointing to your cluster.
+               
+               > **⚠ WARNING:** `Location` attribute will become required in the future.
+        :param pulumi.Input[int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+        :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[str] mariadb_version: [string] The MariaDB version of your cluster.
+        :param pulumi.Input[int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -531,7 +555,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter
     def cores(self) -> pulumi.Output[int]:
         """
-        The number of CPU cores per instance.
+        [int] The number of CPU cores per instance.
         """
         return pulumi.get(self, "cores")
 
@@ -547,7 +571,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[str]:
         """
-        The friendly name of your cluster.
+        [string] The friendly name of your cluster.
         """
         return pulumi.get(self, "display_name")
 
@@ -555,7 +579,9 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="dnsName")
     def dns_name(self) -> pulumi.Output[str]:
         """
-        The DNS name pointing to your cluster.
+        [string] The DNS name pointing to your cluster.
+
+        > **⚠ WARNING:** `Location` attribute will become required in the future.
         """
         return pulumi.get(self, "dns_name")
 
@@ -563,7 +589,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter
     def instances(self) -> pulumi.Output[int]:
         """
-        The total number of instances in the cluster (one primary and n-1 secondary).
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
         """
         return pulumi.get(self, "instances")
 
@@ -571,7 +597,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[str]]:
         """
-        The cluster location
+        [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         """
         return pulumi.get(self, "location")
 
@@ -579,7 +605,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MariaDBClusterMaintenanceWindow']:
         """
-        A weekly 4 hour-long window, during which maintenance might occur.
+        (Computed) A weekly 4 hour-long window, during which maintenance might occur
         """
         return pulumi.get(self, "maintenance_window")
 
@@ -587,7 +613,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="mariadbVersion")
     def mariadb_version(self) -> pulumi.Output[str]:
         """
-        The MariaDB version of your cluster.
+        [string] The MariaDB version of your cluster.
         """
         return pulumi.get(self, "mariadb_version")
 
@@ -595,7 +621,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter
     def ram(self) -> pulumi.Output[int]:
         """
-        The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB).
         """
         return pulumi.get(self, "ram")
 
@@ -603,7 +629,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[int]:
         """
-        The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB).
         """
         return pulumi.get(self, "storage_size")
 

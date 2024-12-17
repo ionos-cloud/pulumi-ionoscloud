@@ -892,11 +892,11 @@ export namespace cdn {
 export namespace cert {
     export interface AutoCertificateProviderExternalAccountBinding {
         /**
-         * The key ID of the external account binding
+         * [string] The key ID of the external account binding.
          */
         keyId: string;
         /**
-         * The secret of the external account binding
+         * [string] The key secret of the external account binding
          */
         keySecret: string;
     }
@@ -3059,37 +3059,37 @@ export namespace dbaas {
 
     export interface MariaDBClusterConnections {
         /**
-         * The IP and subnet for your cluster.
+         * [true] The IP and subnet for the database. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please enter in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Configuring the network](https://docs.ionos.com/cloud/compute-engine/networks/how-tos/configure-networks).
          */
         cidr: string;
         /**
-         * The datacenter to connect your cluster to.
+         * [true] The datacenter to connect your cluster to.
          */
         datacenterId: string;
         /**
-         * The numeric LAN ID to connect your cluster to.
+         * [true] The numeric LAN ID to connect your cluster to.
          */
         lanId: string;
     }
 
     export interface MariaDBClusterCredentials {
         /**
-         * The password for a MariaDB user.
+         * [string] The password for a MariaDB user.
          */
         password: string;
         /**
-         * The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+         * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
          */
         username: string;
     }
 
     export interface MariaDBClusterMaintenanceWindow {
         /**
-         * The name of the week day.
+         * [string] The name of the week day.
          */
         dayOfTheWeek: string;
         /**
-         * Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time.
          */
         time: string;
     }
