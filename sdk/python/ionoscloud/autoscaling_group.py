@@ -24,12 +24,16 @@ class AutoscalingGroupArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AutoscalingGroup resource.
-        :param pulumi.Input[str] datacenter_id: [string] Unique identifier for the resource
-        :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input['AutoscalingGroupPolicyArgs'] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input['AutoscalingGroupReplicaConfigurationArgs'] replica_configuration: [List]
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
+        :param pulumi.Input[str] datacenter_id: Unique identifier for the resource
+        :param pulumi.Input[int] max_replica_count: The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes.
+        :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes
+        :param pulumi.Input['AutoscalingGroupPolicyArgs'] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+               automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+               separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+               metric.
+        :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
         """
         pulumi.set(__self__, "datacenter_id", datacenter_id)
         pulumi.set(__self__, "max_replica_count", max_replica_count)
@@ -43,7 +47,7 @@ class AutoscalingGroupArgs:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Input[str]:
         """
-        [string] Unique identifier for the resource
+        Unique identifier for the resource
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -55,7 +59,8 @@ class AutoscalingGroupArgs:
     @pulumi.getter(name="maxReplicaCount")
     def max_replica_count(self) -> pulumi.Input[int]:
         """
-        [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes.
         """
         return pulumi.get(self, "max_replica_count")
 
@@ -67,7 +72,8 @@ class AutoscalingGroupArgs:
     @pulumi.getter(name="minReplicaCount")
     def min_replica_count(self) -> pulumi.Input[int]:
         """
-        [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes
         """
         return pulumi.get(self, "min_replica_count")
 
@@ -79,7 +85,10 @@ class AutoscalingGroupArgs:
     @pulumi.getter
     def policy(self) -> pulumi.Input['AutoscalingGroupPolicyArgs']:
         """
-        [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+        automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+        separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+        metric.
         """
         return pulumi.get(self, "policy")
 
@@ -90,9 +99,6 @@ class AutoscalingGroupArgs:
     @property
     @pulumi.getter(name="replicaConfiguration")
     def replica_configuration(self) -> pulumi.Input['AutoscalingGroupReplicaConfigurationArgs']:
-        """
-        [List]
-        """
         return pulumi.get(self, "replica_configuration")
 
     @replica_configuration.setter
@@ -103,7 +109,7 @@ class AutoscalingGroupArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name for this replica volume.
+        User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
@@ -124,13 +130,17 @@ class _AutoscalingGroupState:
                  replica_configuration: Optional[pulumi.Input['AutoscalingGroupReplicaConfigurationArgs']] = None):
         """
         Input properties used for looking up and filtering AutoscalingGroup resources.
-        :param pulumi.Input[str] datacenter_id: [string] Unique identifier for the resource
+        :param pulumi.Input[str] datacenter_id: Unique identifier for the resource
         :param pulumi.Input[str] location: Location of the data center.
-        :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
-        :param pulumi.Input['AutoscalingGroupPolicyArgs'] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input['AutoscalingGroupReplicaConfigurationArgs'] replica_configuration: [List]
+        :param pulumi.Input[int] max_replica_count: The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes.
+        :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes
+        :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
+        :param pulumi.Input['AutoscalingGroupPolicyArgs'] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+               automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+               separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+               metric.
         """
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
@@ -151,7 +161,7 @@ class _AutoscalingGroupState:
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Unique identifier for the resource
+        Unique identifier for the resource
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -175,7 +185,8 @@ class _AutoscalingGroupState:
     @pulumi.getter(name="maxReplicaCount")
     def max_replica_count(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes.
         """
         return pulumi.get(self, "max_replica_count")
 
@@ -187,7 +198,8 @@ class _AutoscalingGroupState:
     @pulumi.getter(name="minReplicaCount")
     def min_replica_count(self) -> Optional[pulumi.Input[int]]:
         """
-        [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes
         """
         return pulumi.get(self, "min_replica_count")
 
@@ -199,7 +211,7 @@ class _AutoscalingGroupState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] Name for this replica volume.
+        User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
@@ -211,7 +223,10 @@ class _AutoscalingGroupState:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input['AutoscalingGroupPolicyArgs']]:
         """
-        [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+        automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+        separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+        metric.
         """
         return pulumi.get(self, "policy")
 
@@ -222,9 +237,6 @@ class _AutoscalingGroupState:
     @property
     @pulumi.getter(name="replicaConfiguration")
     def replica_configuration(self) -> Optional[pulumi.Input['AutoscalingGroupReplicaConfigurationArgs']]:
-        """
-        [List]
-        """
         return pulumi.get(self, "replica_configuration")
 
     @replica_configuration.setter
@@ -232,7 +244,12 @@ class _AutoscalingGroupState:
         pulumi.set(self, "replica_configuration", value)
 
 
+warnings.warn("""ionoscloud.index/autoscalinggroup.AutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/group.Group""", DeprecationWarning)
+
+
 class AutoscalingGroup(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/autoscalinggroup.AutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/group.Group""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -245,110 +262,19 @@ class AutoscalingGroup(pulumi.CustomResource):
                  replica_configuration: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']]] = None,
                  __props__=None):
         """
-        Manages an Autoscaling Group on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        lan_example1 = ionoscloud.compute.Lan("lanExample1",
-            datacenter_id=datacenter_example.id,
-            public=False)
-        lan_example2 = ionoscloud.compute.Lan("lanExample2",
-            datacenter_id=datacenter_example.id,
-            public=False)
-        autoscaling_target_group = ionoscloud.TargetGroup("autoscalingTargetGroup",
-            algorithm="ROUND_ROBIN",
-            protocol="HTTP")
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        autoscaling_group_example = ionoscloud.AutoscalingGroup("autoscalingGroupExample",
-            datacenter_id=datacenter_example.id,
-            max_replica_count=2,
-            min_replica_count=1,
-            policy=ionoscloud.AutoscalingGroupPolicyArgs(
-                metric="INSTANCE_CPU_UTILIZATION_AVERAGE",
-                range="PT24H",
-                scale_in_action=ionoscloud.AutoscalingGroupPolicyScaleInActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    termination_policy_type="OLDEST_SERVER_FIRST",
-                    cooldown_period="PT5M",
-                    delete_volumes=True,
-                ),
-                scale_in_threshold=33,
-                scale_out_action=ionoscloud.AutoscalingGroupPolicyScaleOutActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    cooldown_period="PT5M",
-                ),
-                scale_out_threshold=77,
-                unit="PER_HOUR",
-            ),
-            replica_configuration=ionoscloud.AutoscalingGroupReplicaConfigurationArgs(
-                availability_zone="AUTO",
-                cores=2,
-                cpu_family="INTEL_SKYLAKE",
-                ram=2048,
-                nics=[
-                    ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(
-                        lan=lan_example1.id,
-                        name="nic_example_1",
-                        dhcp=True,
-                    ),
-                    ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(
-                        lan=lan_example2.id,
-                        name="nic_example_2",
-                        dhcp=True,
-                        firewall_active=True,
-                        firewall_type="INGRESS",
-                        firewall_rules=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs(
-                            name="rule_1",
-                            protocol="TCP",
-                            port_range_start=1,
-                            port_range_end=1000,
-                            type="INGRESS",
-                        )],
-                        flow_logs=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArgs(
-                            name="flow_log_1",
-                            bucket="test-de-bucket",
-                            action="ALL",
-                            direction="BIDIRECTIONAL",
-                        )],
-                        target_group=ionoscloud.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs(
-                            target_group_id=autoscaling_target_group.id,
-                            port=80,
-                            weight=50,
-                        ),
-                    ),
-                ],
-                volumes=[ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArgs(
-                    image_alias="ubuntu:latest",
-                    name="volume_example",
-                    size=10,
-                    type="HDD",
-                    user_data="ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    image_password=server_image_password.result,
-                    boot_order="AUTO",
-                )],
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a AutoscalingGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] Unique identifier for the resource
-        :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
-        :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']] replica_configuration: [List]
+        :param pulumi.Input[str] datacenter_id: Unique identifier for the resource
+        :param pulumi.Input[int] max_replica_count: The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes.
+        :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes
+        :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
+        :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+               automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+               separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+               metric.
         """
         ...
     @overload
@@ -357,102 +283,7 @@ class AutoscalingGroup(pulumi.CustomResource):
                  args: AutoscalingGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages an Autoscaling Group on IonosCloud.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-        import pulumi_random as random
-
-        datacenter_example = ionoscloud.compute.Datacenter("datacenterExample", location="de/fra")
-        lan_example1 = ionoscloud.compute.Lan("lanExample1",
-            datacenter_id=datacenter_example.id,
-            public=False)
-        lan_example2 = ionoscloud.compute.Lan("lanExample2",
-            datacenter_id=datacenter_example.id,
-            public=False)
-        autoscaling_target_group = ionoscloud.TargetGroup("autoscalingTargetGroup",
-            algorithm="ROUND_ROBIN",
-            protocol="HTTP")
-        server_image_password = random.RandomPassword("serverImagePassword",
-            length=16,
-            special=False)
-        autoscaling_group_example = ionoscloud.AutoscalingGroup("autoscalingGroupExample",
-            datacenter_id=datacenter_example.id,
-            max_replica_count=2,
-            min_replica_count=1,
-            policy=ionoscloud.AutoscalingGroupPolicyArgs(
-                metric="INSTANCE_CPU_UTILIZATION_AVERAGE",
-                range="PT24H",
-                scale_in_action=ionoscloud.AutoscalingGroupPolicyScaleInActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    termination_policy_type="OLDEST_SERVER_FIRST",
-                    cooldown_period="PT5M",
-                    delete_volumes=True,
-                ),
-                scale_in_threshold=33,
-                scale_out_action=ionoscloud.AutoscalingGroupPolicyScaleOutActionArgs(
-                    amount=1,
-                    amount_type="ABSOLUTE",
-                    cooldown_period="PT5M",
-                ),
-                scale_out_threshold=77,
-                unit="PER_HOUR",
-            ),
-            replica_configuration=ionoscloud.AutoscalingGroupReplicaConfigurationArgs(
-                availability_zone="AUTO",
-                cores=2,
-                cpu_family="INTEL_SKYLAKE",
-                ram=2048,
-                nics=[
-                    ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(
-                        lan=lan_example1.id,
-                        name="nic_example_1",
-                        dhcp=True,
-                    ),
-                    ionoscloud.AutoscalingGroupReplicaConfigurationNicArgs(
-                        lan=lan_example2.id,
-                        name="nic_example_2",
-                        dhcp=True,
-                        firewall_active=True,
-                        firewall_type="INGRESS",
-                        firewall_rules=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFirewallRuleArgs(
-                            name="rule_1",
-                            protocol="TCP",
-                            port_range_start=1,
-                            port_range_end=1000,
-                            type="INGRESS",
-                        )],
-                        flow_logs=[ionoscloud.AutoscalingGroupReplicaConfigurationNicFlowLogArgs(
-                            name="flow_log_1",
-                            bucket="test-de-bucket",
-                            action="ALL",
-                            direction="BIDIRECTIONAL",
-                        )],
-                        target_group=ionoscloud.AutoscalingGroupReplicaConfigurationNicTargetGroupArgs(
-                            target_group_id=autoscaling_target_group.id,
-                            port=80,
-                            weight=50,
-                        ),
-                    ),
-                ],
-                volumes=[ionoscloud.AutoscalingGroupReplicaConfigurationVolumeArgs(
-                    image_alias="ubuntu:latest",
-                    name="volume_example",
-                    size=10,
-                    type="HDD",
-                    user_data="ZWNobyAiSGVsbG8sIFdvcmxkIgo=",
-                    image_password=server_image_password.result,
-                    boot_order="AUTO",
-                )],
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
+        Create a AutoscalingGroup resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param AutoscalingGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -475,6 +306,7 @@ class AutoscalingGroup(pulumi.CustomResource):
                  policy: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']]] = None,
                  replica_configuration: Optional[pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']]] = None,
                  __props__=None):
+        pulumi.log.warn("""AutoscalingGroup is deprecated: ionoscloud.index/autoscalinggroup.AutoscalingGroup has been deprecated in favor of ionoscloud.autoscaling/group.Group""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -524,13 +356,17 @@ class AutoscalingGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] datacenter_id: [string] Unique identifier for the resource
+        :param pulumi.Input[str] datacenter_id: Unique identifier for the resource
         :param pulumi.Input[str] location: Location of the data center.
-        :param pulumi.Input[int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
-        :param pulumi.Input[str] name: [string] Name for this replica volume.
-        :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[pulumi.InputType['AutoscalingGroupReplicaConfigurationArgs']] replica_configuration: [List]
+        :param pulumi.Input[int] max_replica_count: The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes.
+        :param pulumi.Input[int] min_replica_count: The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+               both automatic and manual changes
+        :param pulumi.Input[str] name: User-defined name for the Autoscaling Group.
+        :param pulumi.Input[pulumi.InputType['AutoscalingGroupPolicyArgs']] policy: Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+               automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+               separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+               metric.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -549,7 +385,7 @@ class AutoscalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="datacenterId")
     def datacenter_id(self) -> pulumi.Output[str]:
         """
-        [string] Unique identifier for the resource
+        Unique identifier for the resource
         """
         return pulumi.get(self, "datacenter_id")
 
@@ -565,7 +401,8 @@ class AutoscalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="maxReplicaCount")
     def max_replica_count(self) -> pulumi.Output[int]:
         """
-        [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes.
         """
         return pulumi.get(self, "max_replica_count")
 
@@ -573,7 +410,8 @@ class AutoscalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="minReplicaCount")
     def min_replica_count(self) -> pulumi.Output[int]:
         """
-        [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
+        The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for
+        both automatic and manual changes
         """
         return pulumi.get(self, "min_replica_count")
 
@@ -581,7 +419,7 @@ class AutoscalingGroup(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] Name for this replica volume.
+        User-defined name for the Autoscaling Group.
         """
         return pulumi.get(self, "name")
 
@@ -589,15 +427,15 @@ class AutoscalingGroup(pulumi.CustomResource):
     @pulumi.getter
     def policy(self) -> pulumi.Output['outputs.AutoscalingGroupPolicy']:
         """
-        [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        Defines the behavior of this VM Auto Scaling Group. A policy consists of triggers and actions, where an action is an
+        automated behavior, and the trigger defines the circumstances under which the action is triggered. Currently, two
+        separate actions are supported, namely scaling inward and outward, triggered by the thresholds defined for a particular
+        metric.
         """
         return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter(name="replicaConfiguration")
     def replica_configuration(self) -> pulumi.Output['outputs.AutoscalingGroupReplicaConfiguration']:
-        """
-        [List]
-        """
         return pulumi.get(self, "replica_configuration")
 

@@ -5,40 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ApigatewayCustomDomain {
-    /**
-     * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
-     */
-    certificateId?: pulumi.Input<string>;
-    /**
-     * [string] The domain name. Externally reachable.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface ApigatewayRouteUpstream {
-    /**
-     * [string] The host of the upstream.
-     */
-    host: pulumi.Input<string>;
-    /**
-     * [string] The load balancer algorithm. Default value: `roundrobin`.
-     */
-    loadbalancer?: pulumi.Input<string>;
-    /**
-     * [int] The port of the upstream. Default value: `80`.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * [string] The target URL of the upstream. Default value: `http`.
-     */
-    scheme?: pulumi.Input<string>;
-    /**
-     * [int] Weight with which to split traffic to the upstream. Default value: `100`.
-     */
-    weight?: pulumi.Input<number>;
-}
-
 export interface ApplicationLoadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -124,266 +90,6 @@ export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
      * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
      */
     value?: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupPolicy {
-    /**
-     * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
-     */
-    metric: pulumi.Input<string>;
-    /**
-     * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    range?: pulumi.Input<string>;
-    /**
-     * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
-     */
-    scaleInAction: pulumi.Input<inputs.AutoscalingGroupPolicyScaleInAction>;
-    /**
-     * [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
-     */
-    scaleInThreshold: pulumi.Input<number>;
-    /**
-     * [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
-     */
-    scaleOutAction: pulumi.Input<inputs.AutoscalingGroupPolicyScaleOutAction>;
-    /**
-     * [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
-     */
-    scaleOutThreshold: pulumi.Input<number>;
-    /**
-     * [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
-     */
-    unit: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupPolicyScaleInAction {
-    /**
-     * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
-     */
-    amount: pulumi.Input<number>;
-    /**
-     * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
-     */
-    amountType: pulumi.Input<string>;
-    /**
-     * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod?: pulumi.Input<string>;
-    /**
-     * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-     */
-    deleteVolumes: pulumi.Input<boolean>;
-    /**
-     * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
-     */
-    terminationPolicyType?: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupPolicyScaleOutAction {
-    /**
-     * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
-     */
-    amount: pulumi.Input<number>;
-    /**
-     * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
-     */
-    amountType: pulumi.Input<string>;
-    /**
-     * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod?: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupReplicaConfiguration {
-    /**
-     * [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
-     */
-    availabilityZone: pulumi.Input<string>;
-    /**
-     * [int] The total number of cores for the VMs.
-     */
-    cores: pulumi.Input<number>;
-    /**
-     * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
-     */
-    cpuFamily?: pulumi.Input<string>;
-    /**
-     * Set of NICs associated with this Replica.
-     */
-    nics?: pulumi.Input<pulumi.Input<inputs.AutoscalingGroupReplicaConfigurationNic>[]>;
-    /**
-     * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-     */
-    ram: pulumi.Input<number>;
-    /**
-     * [list] List of volumes associated with this Replica.
-     */
-    volumes?: pulumi.Input<pulumi.Input<inputs.AutoscalingGroupReplicaConfigurationVolume>[]>;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNic {
-    /**
-     * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
-     */
-    dhcp?: pulumi.Input<boolean>;
-    /**
-     * [bool] Firewall active flag.
-     */
-    firewallActive?: pulumi.Input<boolean>;
-    /**
-     * List of all firewall rules for the specified NIC.
-     */
-    firewallRules?: pulumi.Input<pulumi.Input<inputs.AutoscalingGroupReplicaConfigurationNicFirewallRule>[]>;
-    /**
-     * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
-     */
-    firewallType?: pulumi.Input<string>;
-    /**
-     * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-     */
-    flowLogs?: pulumi.Input<pulumi.Input<inputs.AutoscalingGroupReplicaConfigurationNicFlowLog>[]>;
-    /**
-     * [int] Lan ID for this replica Nic.
-     */
-    lan: pulumi.Input<number>;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [list] In order to link VM to ALB, target group must be provided
-     */
-    targetGroup?: pulumi.Input<inputs.AutoscalingGroupReplicaConfigurationNicTargetGroup>;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFirewallRule {
-    /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-     */
-    icmpCode?: pulumi.Input<number>;
-    /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-     */
-    icmpType?: pulumi.Input<number>;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
-    portRangeEnd?: pulumi.Input<number>;
-    /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
-    portRangeStart?: pulumi.Input<number>;
-    /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-     */
-    protocol: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-     */
-    sourceIp?: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-     */
-    sourceMac?: pulumi.Input<string>;
-    /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-     */
-    targetIp?: pulumi.Input<string>;
-    /**
-     * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
-     */
-    type?: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFlowLog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: pulumi.Input<string>;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: pulumi.Input<string>;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: pulumi.Input<string>;
-    /**
-     * The resource's unique identifier.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: pulumi.Input<string>;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicTargetGroup {
-    /**
-     * [int] The port of the target group.
-     */
-    port: pulumi.Input<number>;
-    /**
-     * [string] The ID of the target group.
-     */
-    targetGroupId: pulumi.Input<string>;
-    /**
-     * [int] The weight of the target group.
-     */
-    weight: pulumi.Input<number>;
-}
-
-export interface AutoscalingGroupReplicaConfigurationVolume {
-    /**
-     * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
-     */
-    backupUnitId?: pulumi.Input<string>;
-    /**
-     * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-     * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-     */
-    bootOrder: pulumi.Input<string>;
-    /**
-     * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
-     */
-    bus?: pulumi.Input<string>;
-    /**
-     * [string] The image installed on the volume. Only the UUID of the image is presently supported.
-     */
-    image?: pulumi.Input<string>;
-    /**
-     * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
-     */
-    imageAlias?: pulumi.Input<string>;
-    /**
-     * [string] Image password for this replica volume.
-     */
-    imagePassword?: pulumi.Input<string>;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * [int] Name for this replica volume.
-     */
-    size: pulumi.Input<number>;
-    /**
-     * List of ssh keys, supports values or paths to files. Cannot be changed at update.
-     */
-    sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
-     */
-    type: pulumi.Input<string>;
-    /**
-     * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
-     */
-    userData?: pulumi.Input<string>;
 }
 
 export interface GetIpblockIpConsumer {
@@ -496,21 +202,6 @@ export interface GetServersFilter {
 export interface GetServersFilterArgs {
     name: pulumi.Input<string>;
     value: pulumi.Input<string>;
-}
-
-export interface KafkaClusterConnections {
-    /**
-     * [list] IP address and port of cluster brokers.
-     */
-    brokerAddresses: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The datacenter to connect your instance to.
-     */
-    datacenterId: pulumi.Input<string>;
-    /**
-     * [string] The numeric LAN ID to connect your instance to.
-     */
-    lanId: pulumi.Input<string>;
 }
 
 export interface LoggingPipelineLog {
@@ -697,6 +388,304 @@ export interface TargetGroupTarget {
      */
     weight: pulumi.Input<number>;
 }
+export namespace apigateway {
+    export interface ApigatewayCustomDomain {
+        /**
+         * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+         */
+        certificateId?: pulumi.Input<string>;
+        /**
+         * [string] The domain name. Externally reachable.
+         */
+        name: pulumi.Input<string>;
+    }
+
+    export interface RouteUpstream {
+        /**
+         * [string] The host of the upstream.
+         */
+        host: pulumi.Input<string>;
+        /**
+         * [string] The load balancer algorithm. Default value: `roundrobin`.
+         */
+        loadbalancer?: pulumi.Input<string>;
+        /**
+         * [int] The port of the upstream. Default value: `80`.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * [string] The target URL of the upstream. Default value: `http`.
+         */
+        scheme?: pulumi.Input<string>;
+        /**
+         * [int] Weight with which to split traffic to the upstream. Default value: `100`.
+         */
+        weight?: pulumi.Input<number>;
+    }
+}
+
+export namespace autoscaling {
+    export interface GroupPolicy {
+        /**
+         * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+         */
+        metric: pulumi.Input<string>;
+        /**
+         * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        range?: pulumi.Input<string>;
+        /**
+         * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+         */
+        scaleInAction: pulumi.Input<inputs.autoscaling.GroupPolicyScaleInAction>;
+        /**
+         * [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+         */
+        scaleInThreshold: pulumi.Input<number>;
+        /**
+         * [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+         */
+        scaleOutAction: pulumi.Input<inputs.autoscaling.GroupPolicyScaleOutAction>;
+        /**
+         * [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+         */
+        scaleOutThreshold: pulumi.Input<number>;
+        /**
+         * [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+         */
+        unit: pulumi.Input<string>;
+    }
+
+    export interface GroupPolicyScaleInAction {
+        /**
+         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         */
+        amount: pulumi.Input<number>;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: pulumi.Input<string>;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod?: pulumi.Input<string>;
+        /**
+         * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+         */
+        deleteVolumes: pulumi.Input<boolean>;
+        /**
+         * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+         */
+        terminationPolicyType?: pulumi.Input<string>;
+    }
+
+    export interface GroupPolicyScaleOutAction {
+        /**
+         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         */
+        amount: pulumi.Input<number>;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: pulumi.Input<string>;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod?: pulumi.Input<string>;
+    }
+
+    export interface GroupReplicaConfiguration {
+        /**
+         * [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+         */
+        availabilityZone: pulumi.Input<string>;
+        /**
+         * [int] The total number of cores for the VMs.
+         */
+        cores: pulumi.Input<number>;
+        /**
+         * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         */
+        cpuFamily?: pulumi.Input<string>;
+        /**
+         * Set of NICs associated with this Replica.
+         */
+        nics?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNic>[]>;
+        /**
+         * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+         */
+        ram: pulumi.Input<number>;
+        /**
+         * [list] List of volumes associated with this Replica.
+         */
+        volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationVolume>[]>;
+    }
+
+    export interface GroupReplicaConfigurationNic {
+        /**
+         * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+         */
+        dhcp?: pulumi.Input<boolean>;
+        /**
+         * [bool] Firewall active flag.
+         */
+        firewallActive?: pulumi.Input<boolean>;
+        /**
+         * List of all firewall rules for the specified NIC.
+         */
+        firewallRules?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFirewallRule>[]>;
+        /**
+         * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+         */
+        firewallType?: pulumi.Input<string>;
+        /**
+         * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+         */
+        flowLogs?: pulumi.Input<pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicFlowLog>[]>;
+        /**
+         * [int] Lan ID for this replica Nic.
+         */
+        lan: pulumi.Input<number>;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [list] In order to link VM to ALB, target group must be provided
+         */
+        targetGroup?: pulumi.Input<inputs.autoscaling.GroupReplicaConfigurationNicTargetGroup>;
+    }
+
+    export interface GroupReplicaConfigurationNicFirewallRule {
+        /**
+         * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+         */
+        icmpCode?: pulumi.Input<number>;
+        /**
+         * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+         */
+        icmpType?: pulumi.Input<number>;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         */
+        portRangeEnd?: pulumi.Input<number>;
+        /**
+         * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         */
+        portRangeStart?: pulumi.Input<number>;
+        /**
+         * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+         */
+        protocol: pulumi.Input<string>;
+        /**
+         * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+         */
+        sourceIp?: pulumi.Input<string>;
+        /**
+         * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+         */
+        sourceMac?: pulumi.Input<string>;
+        /**
+         * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+         */
+        targetIp?: pulumi.Input<string>;
+        /**
+         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface GroupReplicaConfigurationNicFlowLog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: pulumi.Input<string>;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: pulumi.Input<string>;
+        /**
+         * The resource's unique identifier.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: pulumi.Input<string>;
+    }
+
+    export interface GroupReplicaConfigurationNicTargetGroup {
+        /**
+         * [int] The port of the target group.
+         */
+        port: pulumi.Input<number>;
+        /**
+         * [string] The ID of the target group.
+         */
+        targetGroupId: pulumi.Input<string>;
+        /**
+         * [int] The weight of the target group.
+         */
+        weight: pulumi.Input<number>;
+    }
+
+    export interface GroupReplicaConfigurationVolume {
+        /**
+         * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+         */
+        backupUnitId?: pulumi.Input<string>;
+        /**
+         * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+         * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
+         */
+        bootOrder: pulumi.Input<string>;
+        /**
+         * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+         */
+        bus?: pulumi.Input<string>;
+        /**
+         * [string] The image installed on the volume. Only the UUID of the image is presently supported.
+         */
+        image?: pulumi.Input<string>;
+        /**
+         * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+         */
+        imageAlias?: pulumi.Input<string>;
+        /**
+         * [string] Image password for this replica volume.
+         */
+        imagePassword?: pulumi.Input<string>;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * [int] Name for this replica volume.
+         */
+        size: pulumi.Input<number>;
+        /**
+         * List of ssh keys, supports values or paths to files. Cannot be changed at update.
+         */
+        sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+         */
+        userData?: pulumi.Input<string>;
+    }
+}
+
 export namespace cdn {
     export interface DistributionRoutingRule {
         /**
@@ -1586,6 +1575,23 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: pulumi.Input<string>;
+    }
+}
+
+export namespace kafka {
+    export interface ClusterConnections {
+        /**
+         * [list] IP address and port of cluster brokers.
+         */
+        brokerAddresses: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: pulumi.Input<string>;
     }
 }
 

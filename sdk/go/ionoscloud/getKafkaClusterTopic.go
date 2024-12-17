@@ -11,9 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupKafkaClusterTopic(ctx *pulumi.Context, args *LookupKafkaClusterTopicArgs, opts ...pulumi.InvokeOption) (*LookupKafkaClusterTopicResult, error) {
+func GetKafkaClusterTopic(ctx *pulumi.Context, args *GetKafkaClusterTopicArgs, opts ...pulumi.InvokeOption) (*GetKafkaClusterTopicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupKafkaClusterTopicResult
+	var rv GetKafkaClusterTopicResult
 	err := ctx.Invoke("ionoscloud:index/getKafkaClusterTopic:getKafkaClusterTopic", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -22,7 +22,7 @@ func LookupKafkaClusterTopic(ctx *pulumi.Context, args *LookupKafkaClusterTopicA
 }
 
 // A collection of arguments for invoking getKafkaClusterTopic.
-type LookupKafkaClusterTopicArgs struct {
+type GetKafkaClusterTopicArgs struct {
 	ClusterId    string  `pulumi:"clusterId"`
 	Id           *string `pulumi:"id"`
 	Location     string  `pulumi:"location"`
@@ -31,7 +31,7 @@ type LookupKafkaClusterTopicArgs struct {
 }
 
 // A collection of values returned by getKafkaClusterTopic.
-type LookupKafkaClusterTopicResult struct {
+type GetKafkaClusterTopicResult struct {
 	ClusterId          string `pulumi:"clusterId"`
 	Id                 string `pulumi:"id"`
 	Location           string `pulumi:"location"`
@@ -43,21 +43,21 @@ type LookupKafkaClusterTopicResult struct {
 	SegmentBytes       int    `pulumi:"segmentBytes"`
 }
 
-func LookupKafkaClusterTopicOutput(ctx *pulumi.Context, args LookupKafkaClusterTopicOutputArgs, opts ...pulumi.InvokeOption) LookupKafkaClusterTopicResultOutput {
+func GetKafkaClusterTopicOutput(ctx *pulumi.Context, args GetKafkaClusterTopicOutputArgs, opts ...pulumi.InvokeOption) GetKafkaClusterTopicResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupKafkaClusterTopicResult, error) {
-			args := v.(LookupKafkaClusterTopicArgs)
-			r, err := LookupKafkaClusterTopic(ctx, &args, opts...)
-			var s LookupKafkaClusterTopicResult
+		ApplyT(func(v interface{}) (GetKafkaClusterTopicResult, error) {
+			args := v.(GetKafkaClusterTopicArgs)
+			r, err := GetKafkaClusterTopic(ctx, &args, opts...)
+			var s GetKafkaClusterTopicResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupKafkaClusterTopicResultOutput)
+		}).(GetKafkaClusterTopicResultOutput)
 }
 
 // A collection of arguments for invoking getKafkaClusterTopic.
-type LookupKafkaClusterTopicOutputArgs struct {
+type GetKafkaClusterTopicOutputArgs struct {
 	ClusterId    pulumi.StringInput    `pulumi:"clusterId"`
 	Id           pulumi.StringPtrInput `pulumi:"id"`
 	Location     pulumi.StringInput    `pulumi:"location"`
@@ -65,61 +65,61 @@ type LookupKafkaClusterTopicOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
 
-func (LookupKafkaClusterTopicOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupKafkaClusterTopicArgs)(nil)).Elem()
+func (GetKafkaClusterTopicOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterTopicArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getKafkaClusterTopic.
-type LookupKafkaClusterTopicResultOutput struct{ *pulumi.OutputState }
+type GetKafkaClusterTopicResultOutput struct{ *pulumi.OutputState }
 
-func (LookupKafkaClusterTopicResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupKafkaClusterTopicResult)(nil)).Elem()
+func (GetKafkaClusterTopicResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterTopicResult)(nil)).Elem()
 }
 
-func (o LookupKafkaClusterTopicResultOutput) ToLookupKafkaClusterTopicResultOutput() LookupKafkaClusterTopicResultOutput {
+func (o GetKafkaClusterTopicResultOutput) ToGetKafkaClusterTopicResultOutput() GetKafkaClusterTopicResultOutput {
 	return o
 }
 
-func (o LookupKafkaClusterTopicResultOutput) ToLookupKafkaClusterTopicResultOutputWithContext(ctx context.Context) LookupKafkaClusterTopicResultOutput {
+func (o GetKafkaClusterTopicResultOutput) ToGetKafkaClusterTopicResultOutputWithContext(ctx context.Context) GetKafkaClusterTopicResultOutput {
 	return o
 }
 
-func (o LookupKafkaClusterTopicResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o GetKafkaClusterTopicResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetKafkaClusterTopicResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetKafkaClusterTopicResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetKafkaClusterTopicResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) NumberOfPartitions() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) int { return v.NumberOfPartitions }).(pulumi.IntOutput)
+func (o GetKafkaClusterTopicResultOutput) NumberOfPartitions() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) int { return v.NumberOfPartitions }).(pulumi.IntOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetKafkaClusterTopicResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) ReplicationFactor() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) int { return v.ReplicationFactor }).(pulumi.IntOutput)
+func (o GetKafkaClusterTopicResultOutput) ReplicationFactor() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) int { return v.ReplicationFactor }).(pulumi.IntOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) RetentionTime() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) int { return v.RetentionTime }).(pulumi.IntOutput)
+func (o GetKafkaClusterTopicResultOutput) RetentionTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) int { return v.RetentionTime }).(pulumi.IntOutput)
 }
 
-func (o LookupKafkaClusterTopicResultOutput) SegmentBytes() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupKafkaClusterTopicResult) int { return v.SegmentBytes }).(pulumi.IntOutput)
+func (o GetKafkaClusterTopicResultOutput) SegmentBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterTopicResult) int { return v.SegmentBytes }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupKafkaClusterTopicResultOutput{})
+	pulumi.RegisterOutputType(GetKafkaClusterTopicResultOutput{})
 }

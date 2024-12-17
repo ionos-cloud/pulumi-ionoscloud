@@ -5,16 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { ApigatewayArgs, ApigatewayState } from "./apigateway";
-export type Apigateway = import("./apigateway").Apigateway;
-export const Apigateway: typeof import("./apigateway").Apigateway = null as any;
-utilities.lazyLoad(exports, ["Apigateway"], () => require("./apigateway"));
-
-export { ApigatewayRouteArgs, ApigatewayRouteState } from "./apigatewayRoute";
-export type ApigatewayRoute = import("./apigatewayRoute").ApigatewayRoute;
-export const ApigatewayRoute: typeof import("./apigatewayRoute").ApigatewayRoute = null as any;
-utilities.lazyLoad(exports, ["ApigatewayRoute"], () => require("./apigatewayRoute"));
-
 export { ApplicationLoadbalancerArgs, ApplicationLoadbalancerState } from "./applicationLoadbalancer";
 export type ApplicationLoadbalancer = import("./applicationLoadbalancer").ApplicationLoadbalancer;
 export const ApplicationLoadbalancer: typeof import("./applicationLoadbalancer").ApplicationLoadbalancer = null as any;
@@ -24,11 +14,6 @@ export { ApplicationLoadbalancerForwardingruleArgs, ApplicationLoadbalancerForwa
 export type ApplicationLoadbalancerForwardingrule = import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule;
 export const ApplicationLoadbalancerForwardingrule: typeof import("./applicationLoadbalancerForwardingrule").ApplicationLoadbalancerForwardingrule = null as any;
 utilities.lazyLoad(exports, ["ApplicationLoadbalancerForwardingrule"], () => require("./applicationLoadbalancerForwardingrule"));
-
-export { AutoscalingGroupArgs, AutoscalingGroupState } from "./autoscalingGroup";
-export type AutoscalingGroup = import("./autoscalingGroup").AutoscalingGroup;
-export const AutoscalingGroup: typeof import("./autoscalingGroup").AutoscalingGroup = null as any;
-utilities.lazyLoad(exports, ["AutoscalingGroup"], () => require("./autoscalingGroup"));
 
 export { GetApigatewayArgs, GetApigatewayResult, GetApigatewayOutputArgs } from "./getApigateway";
 export const getApigateway: typeof import("./getApigateway").getApigateway = null as any;
@@ -390,16 +375,6 @@ export const getVpnWireguardPeer: typeof import("./getVpnWireguardPeer").getVpnW
 export const getVpnWireguardPeerOutput: typeof import("./getVpnWireguardPeer").getVpnWireguardPeerOutput = null as any;
 utilities.lazyLoad(exports, ["getVpnWireguardPeer","getVpnWireguardPeerOutput"], () => require("./getVpnWireguardPeer"));
 
-export { KafkaClusterArgs, KafkaClusterState } from "./kafkaCluster";
-export type KafkaCluster = import("./kafkaCluster").KafkaCluster;
-export const KafkaCluster: typeof import("./kafkaCluster").KafkaCluster = null as any;
-utilities.lazyLoad(exports, ["KafkaCluster"], () => require("./kafkaCluster"));
-
-export { KafkaClusterTopicArgs, KafkaClusterTopicState } from "./kafkaClusterTopic";
-export type KafkaClusterTopic = import("./kafkaClusterTopic").KafkaClusterTopic;
-export const KafkaClusterTopic: typeof import("./kafkaClusterTopic").KafkaClusterTopic = null as any;
-utilities.lazyLoad(exports, ["KafkaClusterTopic"], () => require("./kafkaClusterTopic"));
-
 export { LoadbalancerArgs, LoadbalancerState } from "./loadbalancer";
 export type Loadbalancer = import("./loadbalancer").Loadbalancer;
 export const Loadbalancer: typeof import("./loadbalancer").Loadbalancer = null as any;
@@ -432,6 +407,8 @@ utilities.lazyLoad(exports, ["TargetGroup"], () => require("./targetGroup"));
 
 
 // Export sub-modules:
+import * as apigateway from "./apigateway";
+import * as autoscaling from "./autoscaling";
 import * as cdn from "./cdn";
 import * as cert from "./cert";
 import * as compute from "./compute";
@@ -441,11 +418,14 @@ import * as dbaas from "./dbaas";
 import * as dns from "./dns";
 import * as dsaas from "./dsaas";
 import * as k8s from "./k8s";
+import * as kafka from "./kafka";
 import * as nfs from "./nfs";
 import * as types from "./types";
 import * as vpn from "./vpn";
 
 export {
+    apigateway,
+    autoscaling,
     cdn,
     cert,
     compute,
@@ -455,6 +435,7 @@ export {
     dns,
     dsaas,
     k8s,
+    kafka,
     nfs,
     types,
     vpn,
@@ -464,20 +445,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "ionoscloud:index/apigateway:Apigateway":
-                return new Apigateway(name, <any>undefined, { urn })
-            case "ionoscloud:index/apigatewayRoute:ApigatewayRoute":
-                return new ApigatewayRoute(name, <any>undefined, { urn })
             case "ionoscloud:index/applicationLoadbalancer:ApplicationLoadbalancer":
                 return new ApplicationLoadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/applicationLoadbalancerForwardingrule:ApplicationLoadbalancerForwardingrule":
                 return new ApplicationLoadbalancerForwardingrule(name, <any>undefined, { urn })
-            case "ionoscloud:index/autoscalingGroup:AutoscalingGroup":
-                return new AutoscalingGroup(name, <any>undefined, { urn })
-            case "ionoscloud:index/kafkaCluster:KafkaCluster":
-                return new KafkaCluster(name, <any>undefined, { urn })
-            case "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic":
-                return new KafkaClusterTopic(name, <any>undefined, { urn })
             case "ionoscloud:index/loadbalancer:Loadbalancer":
                 return new Loadbalancer(name, <any>undefined, { urn })
             case "ionoscloud:index/loggingPipeline:LoggingPipeline":
@@ -493,13 +464,8 @@ const _module = {
         }
     },
 };
-pulumi.runtime.registerResourceModule("ionoscloud", "index/apigateway", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/apigatewayRoute", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/applicationLoadbalancerForwardingrule", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/autoscalingGroup", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaCluster", _module)
-pulumi.runtime.registerResourceModule("ionoscloud", "index/kafkaClusterTopic", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loadbalancer", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/loggingPipeline", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "index/networkloadbalancer", _module)

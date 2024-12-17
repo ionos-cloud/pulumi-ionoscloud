@@ -2,7 +2,7 @@
     "auto-aliasing": {
         "resources": {
             "ionoscloud_apigateway": {
-                "current": "ionoscloud:index/apigateway:Apigateway",
+                "current": "ionoscloud:apigateway/apigateway:Apigateway",
                 "fields": {
                     "custom_domains": {
                         "maxItemsOne": false
@@ -10,7 +10,7 @@
                 }
             },
             "ionoscloud_apigateway_route": {
-                "current": "ionoscloud:index/apigatewayRoute:ApigatewayRoute",
+                "current": "ionoscloud:apigateway/route:Route",
                 "fields": {
                     "methods": {
                         "maxItemsOne": false
@@ -72,7 +72,7 @@
                 }
             },
             "ionoscloud_autoscaling_group": {
-                "current": "ionoscloud:index/autoscalingGroup:AutoscalingGroup",
+                "current": "ionoscloud:autoscaling/group:Group",
                 "fields": {
                     "policy": {
                         "maxItemsOne": true,
@@ -381,7 +381,7 @@
                 }
             },
             "ionoscloud_kafka_cluster": {
-                "current": "ionoscloud:index/kafkaCluster:KafkaCluster",
+                "current": "ionoscloud:kafka/cluster:Cluster",
                 "fields": {
                     "broker_addresses": {
                         "maxItemsOne": false
@@ -399,7 +399,7 @@
                 }
             },
             "ionoscloud_kafka_cluster_topic": {
-                "current": "ionoscloud:index/kafkaClusterTopic:KafkaClusterTopic"
+                "current": "ionoscloud:kafka/topic:Topic"
             },
             "ionoscloud_lan": {
                 "current": "ionoscloud:compute/lan:Lan",

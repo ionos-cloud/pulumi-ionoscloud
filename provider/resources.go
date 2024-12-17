@@ -37,17 +37,20 @@ const (
 	// registries for nodejs and python:
 	mainPkg = "ionoscloud"
 	// modules:
-	mainMod       = "index"   // the ionoscloud module
-	computeModule = "compute" // the ionoscloud module
-	dbaasModule   = "dbaas"   // the ionoscloud module
-	k8sModule     = "k8s"     // the ionoscloud module
-	certModule    = "cert"    // the ionoscloud module
-	dsaasModule   = "dsaas"   // the ionoscloud module
-	nfsModule     = "nfs"     // the ionoscloud module
-	vpnModule     = "vpn"     // the ionoscloud module
-	cdnModule     = "cdn"     // the ionoscloud module
-	dnsModule     = "dns"     // the ionoscloud module
-	cregModule    = "creg"    // the ionoscloud module
+	mainMod       = "index"       // the ionoscloud module
+	computeModule = "compute"     // the ionoscloud module
+	dbaasModule   = "dbaas"       // the ionoscloud module
+	k8sModule     = "k8s"         // the ionoscloud module
+	certModule    = "cert"        // the ionoscloud module
+	dsaasModule   = "dsaas"       // the ionoscloud module
+	nfsModule     = "nfs"         // the ionoscloud module
+	vpnModule     = "vpn"         // the ionoscloud module
+	cdnModule     = "cdn"         // the ionoscloud module
+	dnsModule     = "dns"         // the ionoscloud module
+	cregModule    = "creg"        // the ionoscloud module
+	kafkaModule   = "kafka"       // the ionoscloud module
+	apigModule    = "apigateway"  // the ionoscloud module
+	autosclModule = "autoscaling" // the ionoscloud module
 )
 
 //go:embed cmd/pulumi-resource-ionoscloud/bridge-metadata.json
@@ -327,6 +330,23 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ionoscloud_container_registry_token": {
 				Tok: tfbridge.MakeResource(mainPkg, cregModule, "RegistryToken"),
+			},
+			"ionoscloud_kafka_cluster": {
+				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Cluster"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_cluster.md"},
+			},
+			"ionoscloud_kafka_cluster_topic": {
+				Tok:  tfbridge.MakeResource(mainPkg, kafkaModule, "Topic"),
+				Docs: &tfbridge.DocInfo{Source: "kafka_topic.md"},
+			},
+			"ionoscloud_apigateway": {
+				Tok: tfbridge.MakeResource(mainPkg, apigModule, "Apigateway"),
+			},
+			"ionoscloud_apigateway_route": {
+				Tok: tfbridge.MakeResource(mainPkg, apigModule, "Route"),
+			},
+			"ionoscloud_autoscaling_group": {
+				Tok: tfbridge.MakeResource(mainPkg, autosclModule, "Group"),
 			},
 		},
 	}

@@ -17,9 +17,9 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
-func LookupApigatewayRoute(ctx *pulumi.Context, args *LookupApigatewayRouteArgs, opts ...pulumi.InvokeOption) (*LookupApigatewayRouteResult, error) {
+func GetApigatewayRoute(ctx *pulumi.Context, args *GetApigatewayRouteArgs, opts ...pulumi.InvokeOption) (*GetApigatewayRouteResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupApigatewayRouteResult
+	var rv GetApigatewayRouteResult
 	err := ctx.Invoke("ionoscloud:index/getApigatewayRoute:getApigatewayRoute", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func LookupApigatewayRoute(ctx *pulumi.Context, args *LookupApigatewayRouteArgs,
 }
 
 // A collection of arguments for invoking getApigatewayRoute.
-type LookupApigatewayRouteArgs struct {
+type GetApigatewayRouteArgs struct {
 	// The ID of the API Gateway that the route belongs to.
 	GatewayId string `pulumi:"gatewayId"`
 	// ID of an existing API Gateway Route that you want to search for.
@@ -39,7 +39,7 @@ type LookupApigatewayRouteArgs struct {
 }
 
 // A collection of values returned by getApigatewayRoute.
-type LookupApigatewayRouteResult struct {
+type GetApigatewayRouteResult struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// ID of the API Gateway Route.
 	Id string `pulumi:"id"`
@@ -57,21 +57,21 @@ type LookupApigatewayRouteResult struct {
 	Websocket bool `pulumi:"websocket"`
 }
 
-func LookupApigatewayRouteOutput(ctx *pulumi.Context, args LookupApigatewayRouteOutputArgs, opts ...pulumi.InvokeOption) LookupApigatewayRouteResultOutput {
+func GetApigatewayRouteOutput(ctx *pulumi.Context, args GetApigatewayRouteOutputArgs, opts ...pulumi.InvokeOption) GetApigatewayRouteResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupApigatewayRouteResult, error) {
-			args := v.(LookupApigatewayRouteArgs)
-			r, err := LookupApigatewayRoute(ctx, &args, opts...)
-			var s LookupApigatewayRouteResult
+		ApplyT(func(v interface{}) (GetApigatewayRouteResult, error) {
+			args := v.(GetApigatewayRouteArgs)
+			r, err := GetApigatewayRoute(ctx, &args, opts...)
+			var s GetApigatewayRouteResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupApigatewayRouteResultOutput)
+		}).(GetApigatewayRouteResultOutput)
 }
 
 // A collection of arguments for invoking getApigatewayRoute.
-type LookupApigatewayRouteOutputArgs struct {
+type GetApigatewayRouteOutputArgs struct {
 	// The ID of the API Gateway that the route belongs to.
 	GatewayId pulumi.StringInput `pulumi:"gatewayId"`
 	// ID of an existing API Gateway Route that you want to search for.
@@ -81,67 +81,67 @@ type LookupApigatewayRouteOutputArgs struct {
 	PartialMatch pulumi.BoolPtrInput   `pulumi:"partialMatch"`
 }
 
-func (LookupApigatewayRouteOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApigatewayRouteArgs)(nil)).Elem()
+func (GetApigatewayRouteOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApigatewayRouteArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getApigatewayRoute.
-type LookupApigatewayRouteResultOutput struct{ *pulumi.OutputState }
+type GetApigatewayRouteResultOutput struct{ *pulumi.OutputState }
 
-func (LookupApigatewayRouteResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupApigatewayRouteResult)(nil)).Elem()
+func (GetApigatewayRouteResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApigatewayRouteResult)(nil)).Elem()
 }
 
-func (o LookupApigatewayRouteResultOutput) ToLookupApigatewayRouteResultOutput() LookupApigatewayRouteResultOutput {
+func (o GetApigatewayRouteResultOutput) ToGetApigatewayRouteResultOutput() GetApigatewayRouteResultOutput {
 	return o
 }
 
-func (o LookupApigatewayRouteResultOutput) ToLookupApigatewayRouteResultOutputWithContext(ctx context.Context) LookupApigatewayRouteResultOutput {
+func (o GetApigatewayRouteResultOutput) ToGetApigatewayRouteResultOutputWithContext(ctx context.Context) GetApigatewayRouteResultOutput {
 	return o
 }
 
-func (o LookupApigatewayRouteResultOutput) GatewayId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) string { return v.GatewayId }).(pulumi.StringOutput)
+func (o GetApigatewayRouteResultOutput) GatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) string { return v.GatewayId }).(pulumi.StringOutput)
 }
 
 // ID of the API Gateway Route.
-func (o LookupApigatewayRouteResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetApigatewayRouteResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The HTTP methods that the route should match.
-func (o LookupApigatewayRouteResultOutput) Methods() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) []string { return v.Methods }).(pulumi.StringArrayOutput)
+func (o GetApigatewayRouteResultOutput) Methods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) []string { return v.Methods }).(pulumi.StringArrayOutput)
 }
 
 // The name of the API Gateway Route.
-func (o LookupApigatewayRouteResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) string { return v.Name }).(pulumi.StringOutput)
+func (o GetApigatewayRouteResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupApigatewayRouteResultOutput) PartialMatch() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
+func (o GetApigatewayRouteResultOutput) PartialMatch() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) *bool { return v.PartialMatch }).(pulumi.BoolPtrOutput)
 }
 
 // The paths that the route should match.
-func (o LookupApigatewayRouteResultOutput) Paths() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) []string { return v.Paths }).(pulumi.StringArrayOutput)
+func (o GetApigatewayRouteResultOutput) Paths() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) []string { return v.Paths }).(pulumi.StringArrayOutput)
 }
 
 // This field specifies the protocol used by the ingress to route traffic to the backend service.
-func (o LookupApigatewayRouteResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) string { return v.Type }).(pulumi.StringOutput)
+func (o GetApigatewayRouteResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o LookupApigatewayRouteResultOutput) Upstreams() GetApigatewayRouteUpstreamArrayOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) []GetApigatewayRouteUpstream { return v.Upstreams }).(GetApigatewayRouteUpstreamArrayOutput)
+func (o GetApigatewayRouteResultOutput) Upstreams() GetApigatewayRouteUpstreamArrayOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) []GetApigatewayRouteUpstream { return v.Upstreams }).(GetApigatewayRouteUpstreamArrayOutput)
 }
 
 // Shows whether websocket support is enabled or disabled.
-func (o LookupApigatewayRouteResultOutput) Websocket() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupApigatewayRouteResult) bool { return v.Websocket }).(pulumi.BoolOutput)
+func (o GetApigatewayRouteResultOutput) Websocket() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetApigatewayRouteResult) bool { return v.Websocket }).(pulumi.BoolOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupApigatewayRouteResultOutput{})
+	pulumi.RegisterOutputType(GetApigatewayRouteResultOutput{})
 }

@@ -5,40 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface ApigatewayCustomDomain {
-    /**
-     * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
-     */
-    certificateId?: string;
-    /**
-     * [string] The domain name. Externally reachable.
-     */
-    name: string;
-}
-
-export interface ApigatewayRouteUpstream {
-    /**
-     * [string] The host of the upstream.
-     */
-    host: string;
-    /**
-     * [string] The load balancer algorithm. Default value: `roundrobin`.
-     */
-    loadbalancer?: string;
-    /**
-     * [int] The port of the upstream. Default value: `80`.
-     */
-    port?: number;
-    /**
-     * [string] The target URL of the upstream. Default value: `http`.
-     */
-    scheme?: string;
-    /**
-     * [int] Weight with which to split traffic to the upstream. Default value: `100`.
-     */
-    weight?: number;
-}
-
 export interface ApplicationLoadbalancerFlowlog {
     /**
      * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
@@ -124,266 +90,6 @@ export interface ApplicationLoadbalancerForwardingruleHttpRuleCondition {
      * [string] Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.
      */
     value?: string;
-}
-
-export interface AutoscalingGroupPolicy {
-    /**
-     * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
-     */
-    metric: string;
-    /**
-     * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    range?: string;
-    /**
-     * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
-     */
-    scaleInAction: outputs.AutoscalingGroupPolicyScaleInAction;
-    /**
-     * [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
-     */
-    scaleInThreshold: number;
-    /**
-     * [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
-     */
-    scaleOutAction: outputs.AutoscalingGroupPolicyScaleOutAction;
-    /**
-     * [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
-     */
-    scaleOutThreshold: number;
-    /**
-     * [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
-     */
-    unit: string;
-}
-
-export interface AutoscalingGroupPolicyScaleInAction {
-    /**
-     * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
-     */
-    amount: number;
-    /**
-     * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
-     */
-    amountType: string;
-    /**
-     * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod: string;
-    /**
-     * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
-     */
-    deleteVolumes: boolean;
-    /**
-     * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
-     */
-    terminationPolicyType: string;
-}
-
-export interface AutoscalingGroupPolicyScaleOutAction {
-    /**
-     * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
-     */
-    amount: number;
-    /**
-     * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
-     */
-    amountType: string;
-    /**
-     * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
-     */
-    cooldownPeriod: string;
-}
-
-export interface AutoscalingGroupReplicaConfiguration {
-    /**
-     * [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
-     */
-    availabilityZone: string;
-    /**
-     * [int] The total number of cores for the VMs.
-     */
-    cores: number;
-    /**
-     * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
-     */
-    cpuFamily?: string;
-    /**
-     * Set of NICs associated with this Replica.
-     */
-    nics?: outputs.AutoscalingGroupReplicaConfigurationNic[];
-    /**
-     * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
-     */
-    ram: number;
-    /**
-     * [list] List of volumes associated with this Replica.
-     */
-    volumes?: outputs.AutoscalingGroupReplicaConfigurationVolume[];
-}
-
-export interface AutoscalingGroupReplicaConfigurationNic {
-    /**
-     * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
-     */
-    dhcp?: boolean;
-    /**
-     * [bool] Firewall active flag.
-     */
-    firewallActive?: boolean;
-    /**
-     * List of all firewall rules for the specified NIC.
-     */
-    firewallRules?: outputs.AutoscalingGroupReplicaConfigurationNicFirewallRule[];
-    /**
-     * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
-     */
-    firewallType?: string;
-    /**
-     * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
-     */
-    flowLogs?: outputs.AutoscalingGroupReplicaConfigurationNicFlowLog[];
-    /**
-     * [int] Lan ID for this replica Nic.
-     */
-    lan: number;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: string;
-    /**
-     * [list] In order to link VM to ALB, target group must be provided
-     */
-    targetGroup?: outputs.AutoscalingGroupReplicaConfigurationNicTargetGroup;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFirewallRule {
-    /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-     */
-    icmpCode?: number;
-    /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-     */
-    icmpType?: number;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name?: string;
-    /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
-    portRangeEnd?: number;
-    /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
-    portRangeStart?: number;
-    /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-     */
-    protocol: string;
-    /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-     */
-    sourceIp?: string;
-    /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-     */
-    sourceMac?: string;
-    /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-     */
-    targetIp?: string;
-    /**
-     * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
-     */
-    type: string;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicFlowLog {
-    /**
-     * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
-     */
-    action: string;
-    /**
-     * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
-     */
-    bucket: string;
-    /**
-     * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
-     */
-    direction: string;
-    /**
-     * The resource's unique identifier.
-     */
-    id: string;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: string;
-}
-
-export interface AutoscalingGroupReplicaConfigurationNicTargetGroup {
-    /**
-     * [int] The port of the target group.
-     */
-    port: number;
-    /**
-     * [string] The ID of the target group.
-     */
-    targetGroupId: string;
-    /**
-     * [int] The weight of the target group.
-     */
-    weight: number;
-}
-
-export interface AutoscalingGroupReplicaConfigurationVolume {
-    /**
-     * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
-     */
-    backupUnitId: string;
-    /**
-     * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
-     * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
-     */
-    bootOrder: string;
-    /**
-     * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
-     */
-    bus?: string;
-    /**
-     * [string] The image installed on the volume. Only the UUID of the image is presently supported.
-     */
-    image?: string;
-    /**
-     * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
-     */
-    imageAlias?: string;
-    /**
-     * [string] Image password for this replica volume.
-     */
-    imagePassword?: string;
-    /**
-     * [string] Name for this replica volume.
-     */
-    name: string;
-    /**
-     * [int] Name for this replica volume.
-     */
-    size: number;
-    /**
-     * List of ssh keys, supports values or paths to files. Cannot be changed at update.
-     */
-    sshKeys?: string[];
-    /**
-     * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
-     */
-    type: string;
-    /**
-     * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
-     */
-    userData: string;
 }
 
 export interface GetApigatewayCustomDomain {
@@ -2953,21 +2659,6 @@ export interface GetVpnWireguardPeerEndpoint {
     port: number;
 }
 
-export interface KafkaClusterConnections {
-    /**
-     * [list] IP address and port of cluster brokers.
-     */
-    brokerAddresses: string[];
-    /**
-     * [string] The datacenter to connect your instance to.
-     */
-    datacenterId: string;
-    /**
-     * [string] The numeric LAN ID to connect your instance to.
-     */
-    lanId: string;
-}
-
 export interface LoggingPipelineLog {
     /**
      * [list] The configuration of the logs datastore, a list that contains elements with the following structure:
@@ -3151,6 +2842,306 @@ export interface TargetGroupTarget {
      * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
      */
     weight: number;
+}
+
+export namespace apigateway {
+    export interface ApigatewayCustomDomain {
+        /**
+         * [string] The certificate ID for the domain. Must be a valid certificate in UUID form.
+         */
+        certificateId?: string;
+        /**
+         * [string] The domain name. Externally reachable.
+         */
+        name: string;
+    }
+
+    export interface RouteUpstream {
+        /**
+         * [string] The host of the upstream.
+         */
+        host: string;
+        /**
+         * [string] The load balancer algorithm. Default value: `roundrobin`.
+         */
+        loadbalancer?: string;
+        /**
+         * [int] The port of the upstream. Default value: `80`.
+         */
+        port?: number;
+        /**
+         * [string] The target URL of the upstream. Default value: `http`.
+         */
+        scheme?: string;
+        /**
+         * [int] Weight with which to split traffic to the upstream. Default value: `100`.
+         */
+        weight?: number;
+    }
+
+}
+
+export namespace autoscaling {
+    export interface GroupPolicy {
+        /**
+         * [string] The Metric that should trigger the scaling actions. Metric values are checked at fixed intervals. Possible values: `INSTANCE_CPU_UTILIZATION_AVERAGE`, `INSTANCE_NETWORK_IN_BYTES`, `INSTANCE_NETWORK_IN_PACKETS`, `INSTANCE_NETWORK_OUT_BYTES`, `INSTANCE_NETWORK_OUT_PACKETS`
+         */
+        metric: string;
+        /**
+         * [string] Defines the time range, for which the samples will be aggregated. Default is 120s. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        range?: string;
+        /**
+         * [list] Specifies the action to take when the `scaleInThreshold` is exceeded. Hereby, scaling in is always about removing VMs that are currently associated with this autoscaling group. Default termination policy is OLDEST_SERVER_FIRST.
+         */
+        scaleInAction: outputs.autoscaling.GroupPolicyScaleInAction;
+        /**
+         * [int] A lower threshold on the value of `metric`. Will be used with `less than` (<) operator. Exceeding this will start a Scale-In Action as specified by the `scaleInAction` property. The value must have a higher minimum delta to the `scaleOutThreshold` depending on the `metric` to avoid competitive actions at the same time.
+         */
+        scaleInThreshold: number;
+        /**
+         * [list] Specifies the action to take when the `scaleOutThreshold` is exceeded. Hereby, scaling out is always about adding new VMs to this autoscaling group.
+         */
+        scaleOutAction: outputs.autoscaling.GroupPolicyScaleOutAction;
+        /**
+         * [int] The upper threshold for the value of the `metric`. Used with the `greater than` (>) operator. A scale-out action is triggered when this value is exceeded, specified by the `scaleOutAction` property. The value must have a lower minimum delta to the `scaleInThreshold`, depending on the metric, to avoid competing for actions simultaneously. If `properties.policy.unit=TOTAL`, a value >= 40 must be chosen.
+         */
+        scaleOutThreshold: number;
+        /**
+         * [string] Units of the applied Metric. Possible values are: `PER_HOUR`, `PER_MINUTE`, `PER_SECOND`, `TOTAL`.
+         */
+        unit: string;
+    }
+
+    export interface GroupPolicyScaleInAction {
+        /**
+         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         */
+        amount: number;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: string;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+        /**
+         * [bool] If set to `true`, when deleting a replica during scale in, any attached volume will also be deleted. When set to `false`, all volumes remain in the datacenter and must be deleted manually. Note that every scale-out creates new volumes. When they are not deleted, they will eventually use all of your contracts resource limits. At this point, scaling out would not be possible anymore.
+         */
+        deleteVolumes: boolean;
+        /**
+         * [string] The type of the termination policy for the autoscaling group so that a specific pattern is followed for Scaling-In replicas. Default termination policy is `OLDEST_SERVER_FIRST`. Possible values are: `OLDEST_SERVER_FIRST`, `NEWEST_SERVER_FIRST`, `RANDOM`
+         */
+        terminationPolicyType: string;
+    }
+
+    export interface GroupPolicyScaleOutAction {
+        /**
+         * [int] When `amountType=ABSOLUTE` specifies the absolute number of VMs that are added. The value must be between 1 to 10. `amountType=PERCENTAGE` specifies the percentage value that is applied to the current number of replicas of the VM Auto Scaling Group. The value must be between 1 to 200. At least one VM is always added.
+         */
+        amount: number;
+        /**
+         * [string] The type for the given amount. Possible values are: `ABSOLUTE`, `PERCENTAGE`.
+         */
+        amountType: string;
+        /**
+         * [string] Minimum time to pass after this Scaling action has started, until the next Scaling action will be started. Additionally, if a Scaling action is currently in progress, no second Scaling action will be started for the same autoscaling group. Instead, the Metric will be re-evaluated after the current Scaling action is completed (either successfully or with failures). This is validated with a minimum value of 2 minutes and a maximum of 24 hours currently. Default value is 5 minutes if not given. *Note that when you set it to values like 5m the API will automatically transform it in PT5M, so the plan will show you a diff in state that should be ignored.*
+         */
+        cooldownPeriod: string;
+    }
+
+    export interface GroupReplicaConfiguration {
+        /**
+         * [string] The zone where the VMs are created using this configuration. Possible values are: `AUTO`, `ZONE_1`, `ZONE_2`.
+         */
+        availabilityZone: string;
+        /**
+         * [int] The total number of cores for the VMs.
+         */
+        cores: number;
+        /**
+         * [string] PU family for the VMs created using this configuration. If null, the VM will be created with the default CPU family for the assigned location. Possible values are: `INTEL_SKYLAKE`, `INTEL_XEON`.
+         */
+        cpuFamily?: string;
+        /**
+         * Set of NICs associated with this Replica.
+         */
+        nics?: outputs.autoscaling.GroupReplicaConfigurationNic[];
+        /**
+         * [int] The amount of memory for the VMs in MB, e.g. 2048. Size must be specified in multiples of 256 MB with a minimum of 256 MB; however, if you set ramHotPlug to TRUE then you must use a minimum of 1024 MB. If you set the RAM size more than 240GB, then ramHotPlug will be set to FALSE and can not be set to TRUE unless RAM size not set to less than 240GB.
+         */
+        ram: number;
+        /**
+         * [list] List of volumes associated with this Replica.
+         */
+        volumes?: outputs.autoscaling.GroupReplicaConfigurationVolume[];
+    }
+
+    export interface GroupReplicaConfigurationNic {
+        /**
+         * [bool] Dhcp flag for this replica Nic. This is an optional attribute with default value of `true` if not given in the request payload or given as null.
+         */
+        dhcp?: boolean;
+        /**
+         * [bool] Firewall active flag.
+         */
+        firewallActive?: boolean;
+        /**
+         * List of all firewall rules for the specified NIC.
+         */
+        firewallRules?: outputs.autoscaling.GroupReplicaConfigurationNicFirewallRule[];
+        /**
+         * [string] The type of firewall rules that will be allowed on the NIC. Valid values: INGRESS EGRESS BIDIRECTIONAL. If not specified, the default INGRESS value is used.
+         */
+        firewallType?: string;
+        /**
+         * [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+         */
+        flowLogs?: outputs.autoscaling.GroupReplicaConfigurationNicFlowLog[];
+        /**
+         * [int] Lan ID for this replica Nic.
+         */
+        lan: number;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: string;
+        /**
+         * [list] In order to link VM to ALB, target group must be provided
+         */
+        targetGroup?: outputs.autoscaling.GroupReplicaConfigurationNicTargetGroup;
+    }
+
+    export interface GroupReplicaConfigurationNicFirewallRule {
+        /**
+         * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
+         */
+        icmpCode?: number;
+        /**
+         * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
+         */
+        icmpType?: number;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name?: string;
+        /**
+         * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         */
+        portRangeEnd?: number;
+        /**
+         * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
+         */
+        portRangeStart?: number;
+        /**
+         * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+         */
+        protocol: string;
+        /**
+         * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
+         */
+        sourceIp?: string;
+        /**
+         * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
+         */
+        sourceMac?: string;
+        /**
+         * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
+         */
+        targetIp?: string;
+        /**
+         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         */
+        type: string;
+    }
+
+    export interface GroupReplicaConfigurationNicFlowLog {
+        /**
+         * [string] Specifies the action to be taken when the rule is matched. Possible values: ACCEPTED, REJECTED, ALL. Immutable, forces re-creation.
+         */
+        action: string;
+        /**
+         * [string] Specifies the IONOS Object Storage bucket where the flow log data will be stored. The bucket must exist. Immutable, forces re-creation.
+         */
+        bucket: string;
+        /**
+         * [string] Specifies the traffic direction pattern. Valid values: INGRESS, EGRESS, BIDIRECTIONAL. Immutable, forces re-creation.
+         */
+        direction: string;
+        /**
+         * The resource's unique identifier.
+         */
+        id: string;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: string;
+    }
+
+    export interface GroupReplicaConfigurationNicTargetGroup {
+        /**
+         * [int] The port of the target group.
+         */
+        port: number;
+        /**
+         * [string] The ID of the target group.
+         */
+        targetGroupId: string;
+        /**
+         * [int] The weight of the target group.
+         */
+        weight: number;
+    }
+
+    export interface GroupReplicaConfigurationVolume {
+        /**
+         * [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either `public image` or `imageAlias` in conjunction with this property.
+         */
+        backupUnitId: string;
+        /**
+         * [string] Determines whether the volume will be used as a boot volume. Set to NONE, the volume will not be used as boot volume. Set to PRIMARY, the volume will be used as boot volume and set to AUTO will delegate the decision to the provisioning engine to decide whether to use the volume as boot volume.
+         * Notice that exactly one volume can be set to PRIMARY or all of them set to AUTO.
+         */
+        bootOrder: string;
+        /**
+         * [string] The bus type of the volume. Default setting is `VIRTIO`. The bus type `IDE` is also supported.
+         */
+        bus?: string;
+        /**
+         * [string] The image installed on the volume. Only the UUID of the image is presently supported.
+         */
+        image?: string;
+        /**
+         * [string] The image installed on the volume. Must be an `imageAlias` as specified via the images API. Note that one of `image` or `imageAlias` must be set, but not both.
+         */
+        imageAlias?: string;
+        /**
+         * [string] Image password for this replica volume.
+         */
+        imagePassword?: string;
+        /**
+         * [string] Name for this replica volume.
+         */
+        name: string;
+        /**
+         * [int] Name for this replica volume.
+         */
+        size: number;
+        /**
+         * List of ssh keys, supports values or paths to files. Cannot be changed at update.
+         */
+        sshKeys?: string[];
+        /**
+         * [string] Storage Type for this replica volume. Possible values: `SSD`, `HDD`, `SSD_STANDARD` or `SSD_PREMIUM`.
+         */
+        type: string;
+        /**
+         * [string] User-data (Cloud Init) for this replica volume. Make sure you provide a Cloud Init compatible image in conjunction with this parameter.
+         */
+        userData: string;
+    }
+
 }
 
 export namespace cdn {
@@ -4048,6 +4039,24 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+}
+
+export namespace kafka {
+    export interface ClusterConnections {
+        /**
+         * [list] IP address and port of cluster brokers.
+         */
+        brokerAddresses: string[];
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
     }
 
 }

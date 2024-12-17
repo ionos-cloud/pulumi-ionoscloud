@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ionoscloud.LookupAutoscalingGroup(ctx, &ionoscloud.LookupAutoscalingGroupArgs{
+//			_, err := ionoscloud.GetAutoscalingGroup(ctx, &ionoscloud.GetAutoscalingGroupArgs{
 //				Name: pulumi.StringRef("test_ds"),
 //			}, nil)
 //			if err != nil {
@@ -41,9 +41,9 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-func LookupAutoscalingGroup(ctx *pulumi.Context, args *LookupAutoscalingGroupArgs, opts ...pulumi.InvokeOption) (*LookupAutoscalingGroupResult, error) {
+func GetAutoscalingGroup(ctx *pulumi.Context, args *GetAutoscalingGroupArgs, opts ...pulumi.InvokeOption) (*GetAutoscalingGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupAutoscalingGroupResult
+	var rv GetAutoscalingGroupResult
 	err := ctx.Invoke("ionoscloud:index/getAutoscalingGroup:getAutoscalingGroup", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func LookupAutoscalingGroup(ctx *pulumi.Context, args *LookupAutoscalingGroupArg
 }
 
 // A collection of arguments for invoking getAutoscalingGroup.
-type LookupAutoscalingGroupArgs struct {
+type GetAutoscalingGroupArgs struct {
 	// Id of an existing Autoscaling Group that you want to search for.
 	Id *string `pulumi:"id"`
 	// Name of an existing Autoscaling Group that you want to search for.
@@ -62,7 +62,7 @@ type LookupAutoscalingGroupArgs struct {
 }
 
 // A collection of values returned by getAutoscalingGroup.
-type LookupAutoscalingGroupResult struct {
+type GetAutoscalingGroupResult struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// Unique identifier for the resource
 	Id *string `pulumi:"id"`
@@ -80,21 +80,21 @@ type LookupAutoscalingGroupResult struct {
 	TargetReplicaCount    int                                       `pulumi:"targetReplicaCount"`
 }
 
-func LookupAutoscalingGroupOutput(ctx *pulumi.Context, args LookupAutoscalingGroupOutputArgs, opts ...pulumi.InvokeOption) LookupAutoscalingGroupResultOutput {
+func GetAutoscalingGroupOutput(ctx *pulumi.Context, args GetAutoscalingGroupOutputArgs, opts ...pulumi.InvokeOption) GetAutoscalingGroupResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAutoscalingGroupResult, error) {
-			args := v.(LookupAutoscalingGroupArgs)
-			r, err := LookupAutoscalingGroup(ctx, &args, opts...)
-			var s LookupAutoscalingGroupResult
+		ApplyT(func(v interface{}) (GetAutoscalingGroupResult, error) {
+			args := v.(GetAutoscalingGroupArgs)
+			r, err := GetAutoscalingGroup(ctx, &args, opts...)
+			var s GetAutoscalingGroupResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupAutoscalingGroupResultOutput)
+		}).(GetAutoscalingGroupResultOutput)
 }
 
 // A collection of arguments for invoking getAutoscalingGroup.
-type LookupAutoscalingGroupOutputArgs struct {
+type GetAutoscalingGroupOutputArgs struct {
 	// Id of an existing Autoscaling Group that you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Name of an existing Autoscaling Group that you want to search for.
@@ -103,69 +103,69 @@ type LookupAutoscalingGroupOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (LookupAutoscalingGroupOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupAutoscalingGroupArgs)(nil)).Elem()
+func (GetAutoscalingGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoscalingGroupArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getAutoscalingGroup.
-type LookupAutoscalingGroupResultOutput struct{ *pulumi.OutputState }
+type GetAutoscalingGroupResultOutput struct{ *pulumi.OutputState }
 
-func (LookupAutoscalingGroupResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupAutoscalingGroupResult)(nil)).Elem()
+func (GetAutoscalingGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAutoscalingGroupResult)(nil)).Elem()
 }
 
-func (o LookupAutoscalingGroupResultOutput) ToLookupAutoscalingGroupResultOutput() LookupAutoscalingGroupResultOutput {
+func (o GetAutoscalingGroupResultOutput) ToGetAutoscalingGroupResultOutput() GetAutoscalingGroupResultOutput {
 	return o
 }
 
-func (o LookupAutoscalingGroupResultOutput) ToLookupAutoscalingGroupResultOutputWithContext(ctx context.Context) LookupAutoscalingGroupResultOutput {
+func (o GetAutoscalingGroupResultOutput) ToGetAutoscalingGroupResultOutputWithContext(ctx context.Context) GetAutoscalingGroupResultOutput {
 	return o
 }
 
-func (o LookupAutoscalingGroupResultOutput) DatacenterId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+func (o GetAutoscalingGroupResultOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) string { return v.DatacenterId }).(pulumi.StringOutput)
 }
 
 // Unique identifier for the resource
-func (o LookupAutoscalingGroupResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetAutoscalingGroupResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 // Location of the datacenter. This location is the same as the one from the selected template.
-func (o LookupAutoscalingGroupResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) string { return v.Location }).(pulumi.StringOutput)
+func (o GetAutoscalingGroupResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // Maximum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-func (o LookupAutoscalingGroupResultOutput) MaxReplicaCount() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) int { return v.MaxReplicaCount }).(pulumi.IntOutput)
+func (o GetAutoscalingGroupResultOutput) MaxReplicaCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) int { return v.MaxReplicaCount }).(pulumi.IntOutput)
 }
 
 // Minimum replica count value for `targetReplicaCount`. Will be enforced for both automatic and manual changes.
-func (o LookupAutoscalingGroupResultOutput) MinReplicaCount() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) int { return v.MinReplicaCount }).(pulumi.IntOutput)
+func (o GetAutoscalingGroupResultOutput) MinReplicaCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) int { return v.MinReplicaCount }).(pulumi.IntOutput)
 }
 
 // The name of the Autoscaling Group.
-func (o LookupAutoscalingGroupResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetAutoscalingGroupResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-func (o LookupAutoscalingGroupResultOutput) Policies() GetAutoscalingGroupPolicyArrayOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) []GetAutoscalingGroupPolicy { return v.Policies }).(GetAutoscalingGroupPolicyArrayOutput)
+func (o GetAutoscalingGroupResultOutput) Policies() GetAutoscalingGroupPolicyArrayOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) []GetAutoscalingGroupPolicy { return v.Policies }).(GetAutoscalingGroupPolicyArrayOutput)
 }
 
-func (o LookupAutoscalingGroupResultOutput) ReplicaConfigurations() GetAutoscalingGroupReplicaConfigurationArrayOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) []GetAutoscalingGroupReplicaConfiguration {
+func (o GetAutoscalingGroupResultOutput) ReplicaConfigurations() GetAutoscalingGroupReplicaConfigurationArrayOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) []GetAutoscalingGroupReplicaConfiguration {
 		return v.ReplicaConfigurations
 	}).(GetAutoscalingGroupReplicaConfigurationArrayOutput)
 }
 
-func (o LookupAutoscalingGroupResultOutput) TargetReplicaCount() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupAutoscalingGroupResult) int { return v.TargetReplicaCount }).(pulumi.IntOutput)
+func (o GetAutoscalingGroupResultOutput) TargetReplicaCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAutoscalingGroupResult) int { return v.TargetReplicaCount }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupAutoscalingGroupResultOutput{})
+	pulumi.RegisterOutputType(GetAutoscalingGroupResultOutput{})
 }

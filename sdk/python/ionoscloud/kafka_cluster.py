@@ -201,7 +201,12 @@ class _KafkaClusterState:
         pulumi.set(self, "version", value)
 
 
+warnings.warn("""ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""", DeprecationWarning)
+
+
 class KafkaCluster(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -229,11 +234,11 @@ class KafkaCluster(pulumi.CustomResource):
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
             public=False)
-        example_kafka_cluster = ionoscloud.KafkaCluster("exampleKafkaCluster",
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
             location="de/fra",
             version="3.7.0",
             size="S",
-            connections=ionoscloud.KafkaClusterConnectionsArgs(
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
                 datacenter_id=example_datacenter.id,
                 lan_id=example_lan.id,
                 broker_addresses=[
@@ -284,11 +289,11 @@ class KafkaCluster(pulumi.CustomResource):
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
             public=False)
-        example_kafka_cluster = ionoscloud.KafkaCluster("exampleKafkaCluster",
+        example_cluster = ionoscloud.kafka.Cluster("exampleCluster",
             location="de/fra",
             version="3.7.0",
             size="S",
-            connections=ionoscloud.KafkaClusterConnectionsArgs(
+            connections=ionoscloud.kafka.ClusterConnectionsArgs(
                 datacenter_id=example_datacenter.id,
                 lan_id=example_lan.id,
                 broker_addresses=[
@@ -329,6 +334,7 @@ class KafkaCluster(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""KafkaCluster is deprecated: ionoscloud.index/kafkacluster.KafkaCluster has been deprecated in favor of ionoscloud.kafka/cluster.Cluster""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

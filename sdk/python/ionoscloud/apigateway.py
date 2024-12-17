@@ -22,10 +22,10 @@ class ApigatewayArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Apigateway resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]] custom_domains: [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
-        :param pulumi.Input[bool] logs: [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
-        :param pulumi.Input[bool] metrics: [bool] Enable or disable metrics. Defaults to `false`.
-        :param pulumi.Input[str] name: [string] The domain name. Externally reachable.
+        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]] custom_domains: Custom domains for the API Gateway.
+        :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
+        :param pulumi.Input[bool] metrics: Enable or disable metrics.
+        :param pulumi.Input[str] name: The name of the API Gateway.
         """
         if custom_domains is not None:
             pulumi.set(__self__, "custom_domains", custom_domains)
@@ -40,7 +40,7 @@ class ApigatewayArgs:
     @pulumi.getter(name="customDomains")
     def custom_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]]]:
         """
-        [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        Custom domains for the API Gateway.
         """
         return pulumi.get(self, "custom_domains")
 
@@ -52,7 +52,7 @@ class ApigatewayArgs:
     @pulumi.getter
     def logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         """
         return pulumi.get(self, "logs")
 
@@ -64,7 +64,7 @@ class ApigatewayArgs:
     @pulumi.getter
     def metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Enable or disable metrics. Defaults to `false`.
+        Enable or disable metrics.
         """
         return pulumi.get(self, "metrics")
 
@@ -76,7 +76,7 @@ class ApigatewayArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The domain name. Externally reachable.
+        The name of the API Gateway.
         """
         return pulumi.get(self, "name")
 
@@ -95,11 +95,11 @@ class _ApigatewayState:
                  public_endpoint: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Apigateway resources.
-        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]] custom_domains: [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
-        :param pulumi.Input[bool] logs: [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
-        :param pulumi.Input[bool] metrics: [bool] Enable or disable metrics. Defaults to `false`.
-        :param pulumi.Input[str] name: [string] The domain name. Externally reachable.
-        :param pulumi.Input[str] public_endpoint: [string] The public endpoint of the API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]] custom_domains: Custom domains for the API Gateway.
+        :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
+        :param pulumi.Input[bool] metrics: Enable or disable metrics.
+        :param pulumi.Input[str] name: The name of the API Gateway.
+        :param pulumi.Input[str] public_endpoint: The public endpoint of the API Gateway.
         """
         if custom_domains is not None:
             pulumi.set(__self__, "custom_domains", custom_domains)
@@ -116,7 +116,7 @@ class _ApigatewayState:
     @pulumi.getter(name="customDomains")
     def custom_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApigatewayCustomDomainArgs']]]]:
         """
-        [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        Custom domains for the API Gateway.
         """
         return pulumi.get(self, "custom_domains")
 
@@ -128,7 +128,7 @@ class _ApigatewayState:
     @pulumi.getter
     def logs(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         """
         return pulumi.get(self, "logs")
 
@@ -140,7 +140,7 @@ class _ApigatewayState:
     @pulumi.getter
     def metrics(self) -> Optional[pulumi.Input[bool]]:
         """
-        [bool] Enable or disable metrics. Defaults to `false`.
+        Enable or disable metrics.
         """
         return pulumi.get(self, "metrics")
 
@@ -152,7 +152,7 @@ class _ApigatewayState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The domain name. Externally reachable.
+        The name of the API Gateway.
         """
         return pulumi.get(self, "name")
 
@@ -164,7 +164,7 @@ class _ApigatewayState:
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        [string] The public endpoint of the API Gateway.
+        The public endpoint of the API Gateway.
         """
         return pulumi.get(self, "public_endpoint")
 
@@ -173,7 +173,12 @@ class _ApigatewayState:
         pulumi.set(self, "public_endpoint", value)
 
 
+warnings.warn("""ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""", DeprecationWarning)
+
+
 class Apigateway(pulumi.CustomResource):
+    warnings.warn("""ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -184,39 +189,13 @@ class Apigateway(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        An API gateway consists of the generic rules and configurations.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.Apigateway("example", metrics=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
-
-        resource "ionoscloud_apigateway" "example" {
-
-        }
-
-        The resource can be imported using the `gateway_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}
-        ```
-
+        Create a Apigateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
-        :param pulumi.Input[bool] logs: [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
-        :param pulumi.Input[bool] metrics: [bool] Enable or disable metrics. Defaults to `false`.
-        :param pulumi.Input[str] name: [string] The domain name. Externally reachable.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+        :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
+        :param pulumi.Input[bool] metrics: Enable or disable metrics.
+        :param pulumi.Input[str] name: The name of the API Gateway.
         """
         ...
     @overload
@@ -225,33 +204,7 @@ class Apigateway(pulumi.CustomResource):
                  args: Optional[ApigatewayArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        An API gateway consists of the generic rules and configurations.
-
-        ## Usage example
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        example = ionoscloud.Apigateway("example", metrics=True)
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        In order to import an API Gateway, you can define an empty API Gateway resource in the plan:
-
-        resource "ionoscloud_apigateway" "example" {
-
-        }
-
-        The resource can be imported using the `gateway_id`, for example:
-
-        ```sh
-        $ pulumi import ionoscloud:index/apigateway:Apigateway example {gateway_id}
-        ```
-
+        Create a Apigateway resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param ApigatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -272,6 +225,7 @@ class Apigateway(pulumi.CustomResource):
                  metrics: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Apigateway is deprecated: ionoscloud.index/apigateway.Apigateway has been deprecated in favor of ionoscloud.apigateway/apigateway.Apigateway""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -307,11 +261,11 @@ class Apigateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
-        :param pulumi.Input[bool] logs: [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
-        :param pulumi.Input[bool] metrics: [bool] Enable or disable metrics. Defaults to `false`.
-        :param pulumi.Input[str] name: [string] The domain name. Externally reachable.
-        :param pulumi.Input[str] public_endpoint: [string] The public endpoint of the API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApigatewayCustomDomainArgs']]]] custom_domains: Custom domains for the API Gateway.
+        :param pulumi.Input[bool] logs: Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
+        :param pulumi.Input[bool] metrics: Enable or disable metrics.
+        :param pulumi.Input[str] name: The name of the API Gateway.
+        :param pulumi.Input[str] public_endpoint: The public endpoint of the API Gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -328,7 +282,7 @@ class Apigateway(pulumi.CustomResource):
     @pulumi.getter(name="customDomains")
     def custom_domains(self) -> pulumi.Output[Optional[Sequence['outputs.ApigatewayCustomDomain']]]:
         """
-        [list] Custom domains for the API Gateway, a list that contains elements with the following structure:
+        Custom domains for the API Gateway.
         """
         return pulumi.get(self, "custom_domains")
 
@@ -336,7 +290,7 @@ class Apigateway(pulumi.CustomResource):
     @pulumi.getter
     def logs(self) -> pulumi.Output[Optional[bool]]:
         """
-        [bool] Enable or disable logging. Defaults to `false`. **NOTE**: Central Logging must be enabled through the Logging API to enable this feature.
+        Enable or disable logging. NOTE: Central Logging must be enabled through the Logging API to enable this feature.
         """
         return pulumi.get(self, "logs")
 
@@ -344,7 +298,7 @@ class Apigateway(pulumi.CustomResource):
     @pulumi.getter
     def metrics(self) -> pulumi.Output[Optional[bool]]:
         """
-        [bool] Enable or disable metrics. Defaults to `false`.
+        Enable or disable metrics.
         """
         return pulumi.get(self, "metrics")
 
@@ -352,7 +306,7 @@ class Apigateway(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        [string] The domain name. Externally reachable.
+        The name of the API Gateway.
         """
         return pulumi.get(self, "name")
 
@@ -360,7 +314,7 @@ class Apigateway(pulumi.CustomResource):
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> pulumi.Output[str]:
         """
-        [string] The public endpoint of the API Gateway.
+        The public endpoint of the API Gateway.
         """
         return pulumi.get(self, "public_endpoint")
 
