@@ -30,7 +30,7 @@ type Server struct {
 
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
-	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 	//
 	// Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 	BootCdrom pulumi.StringOutput `pulumi:"bootCdrom"`
@@ -138,7 +138,7 @@ func GetServer(ctx *pulumi.Context,
 type serverState struct {
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 	//
 	// Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 	BootCdrom *string `pulumi:"bootCdrom"`
@@ -204,7 +204,7 @@ type serverState struct {
 type ServerState struct {
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput
-	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 	//
 	// Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 	BootCdrom pulumi.StringPtrInput
@@ -274,7 +274,7 @@ func (ServerState) ElementType() reflect.Type {
 type serverArgs struct {
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
-	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 	//
 	// Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 	BootCdrom *string `pulumi:"bootCdrom"`
@@ -320,7 +320,7 @@ type serverArgs struct {
 type ServerArgs struct {
 	// [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
 	AvailabilityZone pulumi.StringPtrInput
-	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+	// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 	//
 	// Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 	BootCdrom pulumi.StringPtrInput
@@ -454,7 +454,7 @@ func (o ServerOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
 }
 
-// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the getImage data source.
+// ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute.getImage data source.
 //
 // Deprecated: Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
 func (o ServerOutput) BootCdrom() pulumi.StringOutput {

@@ -21,7 +21,6 @@ import (
 //
 // import (
 //
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/autoscaling"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
@@ -51,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			autoscalingTargetGroup, err := ionoscloud.NewTargetGroup(ctx, "autoscalingTargetGroup", &ionoscloud.TargetGroupArgs{
+//			autoscalingTargetGroup, err := compute.NewTargetGroup(ctx, "autoscalingTargetGroup", &compute.TargetGroupArgs{
 //				Algorithm: pulumi.String("ROUND_ROBIN"),
 //				Protocol:  pulumi.String("HTTP"),
 //			})

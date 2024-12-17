@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleImage = ionoscloud.getImage({
+ * const exampleImage = ionoscloud.compute.getImage({
  *     type: "HDD",
  *     imageAlias: "ubuntu:latest",
  *     location: "us/las",

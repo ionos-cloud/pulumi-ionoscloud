@@ -40,7 +40,7 @@ class CubeServerArgs:
         :param pulumi.Input[str] template_uuid: [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
         :param pulumi.Input['CubeServerVolumeArgs'] volume: See the Volume section.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[str] image_password: [string] Required if `ssh_key_path` is not provided.
@@ -147,7 +147,7 @@ class CubeServerArgs:
     @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         """
         return pulumi.get(self, "boot_cdrom")
 
@@ -261,7 +261,7 @@ class _CubeServerState:
         """
         Input properties used for looking up and filtering CubeServer resources.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] boot_volume: The associated boot volume.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
@@ -343,7 +343,7 @@ class _CubeServerState:
     @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> Optional[pulumi.Input[str]]:
         """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         """
         return pulumi.get(self, "boot_cdrom")
 
@@ -575,7 +575,7 @@ class CubeServer(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_template = ionoscloud.get_template(name="CUBES XS")
+        example_template = ionoscloud.compute.get_template(name="CUBES XS")
         example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
@@ -613,7 +613,7 @@ class CubeServer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
@@ -656,7 +656,7 @@ class CubeServer(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_template = ionoscloud.get_template(name="CUBES XS")
+        example_template = ionoscloud.compute.get_template(name="CUBES XS")
         example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter", location="de/txl")
         example_lan = ionoscloud.compute.Lan("exampleLan",
             datacenter_id=example_datacenter.id,
@@ -789,7 +789,7 @@ class CubeServer(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
-        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        :param pulumi.Input[str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[str] boot_volume: The associated boot volume.
         :param pulumi.Input[str] datacenter_id: [string] The ID of a Virtual Data Center.
@@ -852,7 +852,7 @@ class CubeServer(pulumi.CustomResource):
     @_utilities.deprecated("""Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.""")
     def boot_cdrom(self) -> pulumi.Output[str]:
         """
-        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the get_image data source.
+        ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         """
         return pulumi.get(self, "boot_cdrom")
 

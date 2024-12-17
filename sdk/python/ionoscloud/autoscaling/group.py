@@ -266,7 +266,7 @@ class Group(pulumi.CustomResource):
         lan_example2 = ionoscloud.compute.Lan("lanExample2",
             datacenter_id=datacenter_example.id,
             public=False)
-        autoscaling_target_group = ionoscloud.TargetGroup("autoscalingTargetGroup",
+        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscalingTargetGroup",
             algorithm="ROUND_ROBIN",
             protocol="HTTP")
         server_image_password = random.RandomPassword("serverImagePassword",
@@ -376,7 +376,7 @@ class Group(pulumi.CustomResource):
         lan_example2 = ionoscloud.compute.Lan("lanExample2",
             datacenter_id=datacenter_example.id,
             public=False)
-        autoscaling_target_group = ionoscloud.TargetGroup("autoscalingTargetGroup",
+        autoscaling_target_group = ionoscloud.compute.TargetGroup("autoscalingTargetGroup",
             algorithm="ROUND_ROBIN",
             protocol="HTTP")
         server_image_password = random.RandomPassword("serverImagePassword",

@@ -22,6 +22,8 @@ __all__ = [
     'get_mariadb_backups_output',
 ]
 
+warnings.warn("""ionoscloud.index/getmariadbbackups.getMariadbBackups has been deprecated in favor of ionoscloud.dbaas/getmariadbbackups.getMariaDBBackups""", DeprecationWarning)
+
 @pulumi.output_type
 class GetMariadbBackupsResult:
     """
@@ -57,6 +59,9 @@ class GetMariadbBackupsResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[str]:
+        """
+        The unique ID of the cluster that was backed up.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -91,8 +96,20 @@ def get_mariadb_backups(backup_id: Optional[str] = None,
                         location: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMariadbBackupsResult:
     """
-    Use this data source to access information about an existing resource.
+    The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
+
+    ## Example Usage
+
+
+    :param str backup_id: [string] The unique ID of the backup.
+    :param str cluster_id: [string] The unique ID of the cluster.
+    :param str location: [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+           
+           ⚠️ **Note:** Either `cluster_id` or `backup_id` must be used, but not both at the same time.
+           
+           > **⚠ WARNING:** `Location` attribute will become required in the future.
     """
+    pulumi.log.warn("""get_mariadb_backups is deprecated: ionoscloud.index/getmariadbbackups.getMariadbBackups has been deprecated in favor of ionoscloud.dbaas/getmariadbbackups.getMariaDBBackups""")
     __args__ = dict()
     __args__['backupId'] = backup_id
     __args__['clusterId'] = cluster_id
@@ -111,8 +128,20 @@ def get_mariadb_backups_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
                                location: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMariadbBackupsResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
+
+    ## Example Usage
+
+
+    :param str backup_id: [string] The unique ID of the backup.
+    :param str cluster_id: [string] The unique ID of the cluster.
+    :param str location: [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
+           
+           ⚠️ **Note:** Either `cluster_id` or `backup_id` must be used, but not both at the same time.
+           
+           > **⚠ WARNING:** `Location` attribute will become required in the future.
     """
+    pulumi.log.warn("""get_mariadb_backups is deprecated: ionoscloud.index/getmariadbbackups.getMariadbBackups has been deprecated in favor of ionoscloud.dbaas/getmariadbbackups.getMariaDBBackups""")
     __args__ = dict()
     __args__['backupId'] = backup_id
     __args__['clusterId'] = cluster_id

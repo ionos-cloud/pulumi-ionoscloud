@@ -5,94 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface GetK8sClustersFilter {
-    name: string;
-    value: string;
-}
-
-export interface GetK8sClustersFilterArgs {
-    name: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface GetServersFilter {
-    name: string;
-    value: string;
-}
-
-export interface GetServersFilterArgs {
-    name: pulumi.Input<string>;
-    value: pulumi.Input<string>;
-}
-
-export interface TargetGroupHealthCheck {
-    /**
-     * [int] The interval in milliseconds between consecutive health checks; default is 2000.
-     */
-    checkInterval?: pulumi.Input<number>;
-    /**
-     * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
-     */
-    checkTimeout?: pulumi.Input<number>;
-    /**
-     * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
-     */
-    retries?: pulumi.Input<number>;
-}
-
-export interface TargetGroupHttpHealthCheck {
-    /**
-     * [string]
-     */
-    matchType: pulumi.Input<string>;
-    /**
-     * [string] The method for the HTTP health check.
-     */
-    method?: pulumi.Input<string>;
-    /**
-     * [bool]
-     */
-    negate?: pulumi.Input<boolean>;
-    /**
-     * [string] The path (destination URL) for the HTTP health check request; the default is /.
-     */
-    path?: pulumi.Input<string>;
-    /**
-     * [bool]
-     */
-    regex?: pulumi.Input<boolean>;
-    /**
-     * [string] The response returned by the request, depending on the match type.
-     */
-    response: pulumi.Input<string>;
-}
-
-export interface TargetGroupTarget {
-    /**
-     * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
-     */
-    healthCheckEnabled?: pulumi.Input<boolean>;
-    /**
-     * [string] The IP of the balanced target VM.
-     */
-    ip: pulumi.Input<string>;
-    /**
-     * [bool] Maintenance mode prevents the target from receiving balanced traffic.
-     */
-    maintenanceEnabled?: pulumi.Input<boolean>;
-    /**
-     * [int] The port of the balanced target service; valid range is 1 to 65535.
-     */
-    port: pulumi.Input<number>;
-    /**
-     * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
-     */
-    proxyProtocol?: pulumi.Input<string>;
-    /**
-     * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
-     */
-    weight: pulumi.Input<number>;
-}
 export namespace alb {
     export interface BalancerFlowlog {
         /**
@@ -736,6 +648,16 @@ export namespace compute {
         serverName?: pulumi.Input<string>;
     }
 
+    export interface GetServersFilter {
+        name: string;
+        value: string;
+    }
+
+    export interface GetServersFilterArgs {
+        name: pulumi.Input<string>;
+        value: pulumi.Input<string>;
+    }
+
     export interface GroupUser {
         administrator?: pulumi.Input<boolean>;
         email?: pulumi.Input<string>;
@@ -933,6 +855,75 @@ export namespace compute {
          * The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' that has cloud-init compatibility in conjunction with this property.
          */
         userData?: pulumi.Input<string>;
+    }
+
+    export interface TargetGroupHealthCheck {
+        /**
+         * [int] The interval in milliseconds between consecutive health checks; default is 2000.
+         */
+        checkInterval?: pulumi.Input<number>;
+        /**
+         * [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+         */
+        checkTimeout?: pulumi.Input<number>;
+        /**
+         * [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+         */
+        retries?: pulumi.Input<number>;
+    }
+
+    export interface TargetGroupHttpHealthCheck {
+        /**
+         * [string]
+         */
+        matchType: pulumi.Input<string>;
+        /**
+         * [string] The method for the HTTP health check.
+         */
+        method?: pulumi.Input<string>;
+        /**
+         * [bool]
+         */
+        negate?: pulumi.Input<boolean>;
+        /**
+         * [string] The path (destination URL) for the HTTP health check request; the default is /.
+         */
+        path?: pulumi.Input<string>;
+        /**
+         * [bool]
+         */
+        regex?: pulumi.Input<boolean>;
+        /**
+         * [string] The response returned by the request, depending on the match type.
+         */
+        response: pulumi.Input<string>;
+    }
+
+    export interface TargetGroupTarget {
+        /**
+         * [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+         */
+        healthCheckEnabled?: pulumi.Input<boolean>;
+        /**
+         * [string] The IP of the balanced target VM.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * [bool] Maintenance mode prevents the target from receiving balanced traffic.
+         */
+        maintenanceEnabled?: pulumi.Input<boolean>;
+        /**
+         * [int] The port of the balanced target service; valid range is 1 to 65535.
+         */
+        port: pulumi.Input<number>;
+        /**
+         * [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+         */
+        proxyProtocol?: pulumi.Input<string>;
+        /**
+         * [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+         */
+        weight: pulumi.Input<number>;
     }
 
     export interface VCPUServerLabel {
@@ -1399,6 +1390,16 @@ export namespace k8s {
          * [string] The name of the Kubernetes Cluster.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface GetClustersFilter {
+        name: string;
+        value: string;
+    }
+
+    export interface GetClustersFilterArgs {
+        name: pulumi.Input<string>;
+        value: pulumi.Input<string>;
     }
 
     export interface NodePoolAutoScaling {

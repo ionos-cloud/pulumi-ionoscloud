@@ -3409,6 +3409,555 @@ func (o ServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type TargetGroupHealthCheck struct {
+	// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+	CheckInterval *int `pulumi:"checkInterval"`
+	// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	CheckTimeout *int `pulumi:"checkTimeout"`
+	// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	Retries *int `pulumi:"retries"`
+}
+
+// TargetGroupHealthCheckInput is an input type that accepts TargetGroupHealthCheckArgs and TargetGroupHealthCheckOutput values.
+// You can construct a concrete instance of `TargetGroupHealthCheckInput` via:
+//
+//	TargetGroupHealthCheckArgs{...}
+type TargetGroupHealthCheckInput interface {
+	pulumi.Input
+
+	ToTargetGroupHealthCheckOutput() TargetGroupHealthCheckOutput
+	ToTargetGroupHealthCheckOutputWithContext(context.Context) TargetGroupHealthCheckOutput
+}
+
+type TargetGroupHealthCheckArgs struct {
+	// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+	CheckInterval pulumi.IntPtrInput `pulumi:"checkInterval"`
+	// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	CheckTimeout pulumi.IntPtrInput `pulumi:"checkTimeout"`
+	// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	Retries pulumi.IntPtrInput `pulumi:"retries"`
+}
+
+func (TargetGroupHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (i TargetGroupHealthCheckArgs) ToTargetGroupHealthCheckOutput() TargetGroupHealthCheckOutput {
+	return i.ToTargetGroupHealthCheckOutputWithContext(context.Background())
+}
+
+func (i TargetGroupHealthCheckArgs) ToTargetGroupHealthCheckOutputWithContext(ctx context.Context) TargetGroupHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHealthCheckOutput)
+}
+
+func (i TargetGroupHealthCheckArgs) ToTargetGroupHealthCheckPtrOutput() TargetGroupHealthCheckPtrOutput {
+	return i.ToTargetGroupHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i TargetGroupHealthCheckArgs) ToTargetGroupHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHealthCheckOutput).ToTargetGroupHealthCheckPtrOutputWithContext(ctx)
+}
+
+// TargetGroupHealthCheckPtrInput is an input type that accepts TargetGroupHealthCheckArgs, TargetGroupHealthCheckPtr and TargetGroupHealthCheckPtrOutput values.
+// You can construct a concrete instance of `TargetGroupHealthCheckPtrInput` via:
+//
+//	        TargetGroupHealthCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type TargetGroupHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToTargetGroupHealthCheckPtrOutput() TargetGroupHealthCheckPtrOutput
+	ToTargetGroupHealthCheckPtrOutputWithContext(context.Context) TargetGroupHealthCheckPtrOutput
+}
+
+type targetGroupHealthCheckPtrType TargetGroupHealthCheckArgs
+
+func TargetGroupHealthCheckPtr(v *TargetGroupHealthCheckArgs) TargetGroupHealthCheckPtrInput {
+	return (*targetGroupHealthCheckPtrType)(v)
+}
+
+func (*targetGroupHealthCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (i *targetGroupHealthCheckPtrType) ToTargetGroupHealthCheckPtrOutput() TargetGroupHealthCheckPtrOutput {
+	return i.ToTargetGroupHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *targetGroupHealthCheckPtrType) ToTargetGroupHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHealthCheckPtrOutput)
+}
+
+type TargetGroupHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (o TargetGroupHealthCheckOutput) ToTargetGroupHealthCheckOutput() TargetGroupHealthCheckOutput {
+	return o
+}
+
+func (o TargetGroupHealthCheckOutput) ToTargetGroupHealthCheckOutputWithContext(ctx context.Context) TargetGroupHealthCheckOutput {
+	return o
+}
+
+func (o TargetGroupHealthCheckOutput) ToTargetGroupHealthCheckPtrOutput() TargetGroupHealthCheckPtrOutput {
+	return o.ToTargetGroupHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (o TargetGroupHealthCheckOutput) ToTargetGroupHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHealthCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TargetGroupHealthCheck) *TargetGroupHealthCheck {
+		return &v
+	}).(TargetGroupHealthCheckPtrOutput)
+}
+
+// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+func (o TargetGroupHealthCheckOutput) CheckInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.CheckInterval }).(pulumi.IntPtrOutput)
+}
+
+// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+func (o TargetGroupHealthCheckOutput) CheckTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.CheckTimeout }).(pulumi.IntPtrOutput)
+}
+
+// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+func (o TargetGroupHealthCheckOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v TargetGroupHealthCheck) *int { return v.Retries }).(pulumi.IntPtrOutput)
+}
+
+type TargetGroupHealthCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (o TargetGroupHealthCheckPtrOutput) ToTargetGroupHealthCheckPtrOutput() TargetGroupHealthCheckPtrOutput {
+	return o
+}
+
+func (o TargetGroupHealthCheckPtrOutput) ToTargetGroupHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHealthCheckPtrOutput {
+	return o
+}
+
+func (o TargetGroupHealthCheckPtrOutput) Elem() TargetGroupHealthCheckOutput {
+	return o.ApplyT(func(v *TargetGroupHealthCheck) TargetGroupHealthCheck {
+		if v != nil {
+			return *v
+		}
+		var ret TargetGroupHealthCheck
+		return ret
+	}).(TargetGroupHealthCheckOutput)
+}
+
+// [int] The interval in milliseconds between consecutive health checks; default is 2000.
+func (o TargetGroupHealthCheckPtrOutput) CheckInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CheckInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+func (o TargetGroupHealthCheckPtrOutput) CheckTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CheckTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+func (o TargetGroupHealthCheckPtrOutput) Retries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHealthCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Retries
+	}).(pulumi.IntPtrOutput)
+}
+
+type TargetGroupHttpHealthCheck struct {
+	// [string]
+	MatchType string `pulumi:"matchType"`
+	// [string] The method for the HTTP health check.
+	Method *string `pulumi:"method"`
+	// [bool]
+	Negate *bool `pulumi:"negate"`
+	// [string] The path (destination URL) for the HTTP health check request; the default is /.
+	Path *string `pulumi:"path"`
+	// [bool]
+	Regex *bool `pulumi:"regex"`
+	// [string] The response returned by the request, depending on the match type.
+	Response string `pulumi:"response"`
+}
+
+// TargetGroupHttpHealthCheckInput is an input type that accepts TargetGroupHttpHealthCheckArgs and TargetGroupHttpHealthCheckOutput values.
+// You can construct a concrete instance of `TargetGroupHttpHealthCheckInput` via:
+//
+//	TargetGroupHttpHealthCheckArgs{...}
+type TargetGroupHttpHealthCheckInput interface {
+	pulumi.Input
+
+	ToTargetGroupHttpHealthCheckOutput() TargetGroupHttpHealthCheckOutput
+	ToTargetGroupHttpHealthCheckOutputWithContext(context.Context) TargetGroupHttpHealthCheckOutput
+}
+
+type TargetGroupHttpHealthCheckArgs struct {
+	// [string]
+	MatchType pulumi.StringInput `pulumi:"matchType"`
+	// [string] The method for the HTTP health check.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// [bool]
+	Negate pulumi.BoolPtrInput `pulumi:"negate"`
+	// [string] The path (destination URL) for the HTTP health check request; the default is /.
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// [bool]
+	Regex pulumi.BoolPtrInput `pulumi:"regex"`
+	// [string] The response returned by the request, depending on the match type.
+	Response pulumi.StringInput `pulumi:"response"`
+}
+
+func (TargetGroupHttpHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (i TargetGroupHttpHealthCheckArgs) ToTargetGroupHttpHealthCheckOutput() TargetGroupHttpHealthCheckOutput {
+	return i.ToTargetGroupHttpHealthCheckOutputWithContext(context.Background())
+}
+
+func (i TargetGroupHttpHealthCheckArgs) ToTargetGroupHttpHealthCheckOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHttpHealthCheckOutput)
+}
+
+func (i TargetGroupHttpHealthCheckArgs) ToTargetGroupHttpHealthCheckPtrOutput() TargetGroupHttpHealthCheckPtrOutput {
+	return i.ToTargetGroupHttpHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i TargetGroupHttpHealthCheckArgs) ToTargetGroupHttpHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHttpHealthCheckOutput).ToTargetGroupHttpHealthCheckPtrOutputWithContext(ctx)
+}
+
+// TargetGroupHttpHealthCheckPtrInput is an input type that accepts TargetGroupHttpHealthCheckArgs, TargetGroupHttpHealthCheckPtr and TargetGroupHttpHealthCheckPtrOutput values.
+// You can construct a concrete instance of `TargetGroupHttpHealthCheckPtrInput` via:
+//
+//	        TargetGroupHttpHealthCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type TargetGroupHttpHealthCheckPtrInput interface {
+	pulumi.Input
+
+	ToTargetGroupHttpHealthCheckPtrOutput() TargetGroupHttpHealthCheckPtrOutput
+	ToTargetGroupHttpHealthCheckPtrOutputWithContext(context.Context) TargetGroupHttpHealthCheckPtrOutput
+}
+
+type targetGroupHttpHealthCheckPtrType TargetGroupHttpHealthCheckArgs
+
+func TargetGroupHttpHealthCheckPtr(v *TargetGroupHttpHealthCheckArgs) TargetGroupHttpHealthCheckPtrInput {
+	return (*targetGroupHttpHealthCheckPtrType)(v)
+}
+
+func (*targetGroupHttpHealthCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (i *targetGroupHttpHealthCheckPtrType) ToTargetGroupHttpHealthCheckPtrOutput() TargetGroupHttpHealthCheckPtrOutput {
+	return i.ToTargetGroupHttpHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *targetGroupHttpHealthCheckPtrType) ToTargetGroupHttpHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupHttpHealthCheckPtrOutput)
+}
+
+type TargetGroupHttpHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupHttpHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (o TargetGroupHttpHealthCheckOutput) ToTargetGroupHttpHealthCheckOutput() TargetGroupHttpHealthCheckOutput {
+	return o
+}
+
+func (o TargetGroupHttpHealthCheckOutput) ToTargetGroupHttpHealthCheckOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckOutput {
+	return o
+}
+
+func (o TargetGroupHttpHealthCheckOutput) ToTargetGroupHttpHealthCheckPtrOutput() TargetGroupHttpHealthCheckPtrOutput {
+	return o.ToTargetGroupHttpHealthCheckPtrOutputWithContext(context.Background())
+}
+
+func (o TargetGroupHttpHealthCheckOutput) ToTargetGroupHttpHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TargetGroupHttpHealthCheck) *TargetGroupHttpHealthCheck {
+		return &v
+	}).(TargetGroupHttpHealthCheckPtrOutput)
+}
+
+// [string]
+func (o TargetGroupHttpHealthCheckOutput) MatchType() pulumi.StringOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) string { return v.MatchType }).(pulumi.StringOutput)
+}
+
+// [string] The method for the HTTP health check.
+func (o TargetGroupHttpHealthCheckOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// [bool]
+func (o TargetGroupHttpHealthCheckOutput) Negate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *bool { return v.Negate }).(pulumi.BoolPtrOutput)
+}
+
+// [string] The path (destination URL) for the HTTP health check request; the default is /.
+func (o TargetGroupHttpHealthCheckOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *string { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// [bool]
+func (o TargetGroupHttpHealthCheckOutput) Regex() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) *bool { return v.Regex }).(pulumi.BoolPtrOutput)
+}
+
+// [string] The response returned by the request, depending on the match type.
+func (o TargetGroupHttpHealthCheckOutput) Response() pulumi.StringOutput {
+	return o.ApplyT(func(v TargetGroupHttpHealthCheck) string { return v.Response }).(pulumi.StringOutput)
+}
+
+type TargetGroupHttpHealthCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupHttpHealthCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (o TargetGroupHttpHealthCheckPtrOutput) ToTargetGroupHttpHealthCheckPtrOutput() TargetGroupHttpHealthCheckPtrOutput {
+	return o
+}
+
+func (o TargetGroupHttpHealthCheckPtrOutput) ToTargetGroupHttpHealthCheckPtrOutputWithContext(ctx context.Context) TargetGroupHttpHealthCheckPtrOutput {
+	return o
+}
+
+func (o TargetGroupHttpHealthCheckPtrOutput) Elem() TargetGroupHttpHealthCheckOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) TargetGroupHttpHealthCheck {
+		if v != nil {
+			return *v
+		}
+		var ret TargetGroupHttpHealthCheck
+		return ret
+	}).(TargetGroupHttpHealthCheckOutput)
+}
+
+// [string]
+func (o TargetGroupHttpHealthCheckPtrOutput) MatchType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.MatchType
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The method for the HTTP health check.
+func (o TargetGroupHttpHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// [bool]
+func (o TargetGroupHttpHealthCheckPtrOutput) Negate() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Negate
+	}).(pulumi.BoolPtrOutput)
+}
+
+// [string] The path (destination URL) for the HTTP health check request; the default is /.
+func (o TargetGroupHttpHealthCheckPtrOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringPtrOutput)
+}
+
+// [bool]
+func (o TargetGroupHttpHealthCheckPtrOutput) Regex() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Regex
+	}).(pulumi.BoolPtrOutput)
+}
+
+// [string] The response returned by the request, depending on the match type.
+func (o TargetGroupHttpHealthCheckPtrOutput) Response() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TargetGroupHttpHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Response
+	}).(pulumi.StringPtrOutput)
+}
+
+type TargetGroupTarget struct {
+	// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	HealthCheckEnabled *bool `pulumi:"healthCheckEnabled"`
+	// [string] The IP of the balanced target VM.
+	Ip string `pulumi:"ip"`
+	// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+	MaintenanceEnabled *bool `pulumi:"maintenanceEnabled"`
+	// [int] The port of the balanced target service; valid range is 1 to 65535.
+	Port int `pulumi:"port"`
+	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+	ProxyProtocol *string `pulumi:"proxyProtocol"`
+	// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	Weight int `pulumi:"weight"`
+}
+
+// TargetGroupTargetInput is an input type that accepts TargetGroupTargetArgs and TargetGroupTargetOutput values.
+// You can construct a concrete instance of `TargetGroupTargetInput` via:
+//
+//	TargetGroupTargetArgs{...}
+type TargetGroupTargetInput interface {
+	pulumi.Input
+
+	ToTargetGroupTargetOutput() TargetGroupTargetOutput
+	ToTargetGroupTargetOutputWithContext(context.Context) TargetGroupTargetOutput
+}
+
+type TargetGroupTargetArgs struct {
+	// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	HealthCheckEnabled pulumi.BoolPtrInput `pulumi:"healthCheckEnabled"`
+	// [string] The IP of the balanced target VM.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+	MaintenanceEnabled pulumi.BoolPtrInput `pulumi:"maintenanceEnabled"`
+	// [int] The port of the balanced target service; valid range is 1 to 65535.
+	Port pulumi.IntInput `pulumi:"port"`
+	// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+	ProxyProtocol pulumi.StringPtrInput `pulumi:"proxyProtocol"`
+	// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (TargetGroupTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupTarget)(nil)).Elem()
+}
+
+func (i TargetGroupTargetArgs) ToTargetGroupTargetOutput() TargetGroupTargetOutput {
+	return i.ToTargetGroupTargetOutputWithContext(context.Background())
+}
+
+func (i TargetGroupTargetArgs) ToTargetGroupTargetOutputWithContext(ctx context.Context) TargetGroupTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupTargetOutput)
+}
+
+// TargetGroupTargetArrayInput is an input type that accepts TargetGroupTargetArray and TargetGroupTargetArrayOutput values.
+// You can construct a concrete instance of `TargetGroupTargetArrayInput` via:
+//
+//	TargetGroupTargetArray{ TargetGroupTargetArgs{...} }
+type TargetGroupTargetArrayInput interface {
+	pulumi.Input
+
+	ToTargetGroupTargetArrayOutput() TargetGroupTargetArrayOutput
+	ToTargetGroupTargetArrayOutputWithContext(context.Context) TargetGroupTargetArrayOutput
+}
+
+type TargetGroupTargetArray []TargetGroupTargetInput
+
+func (TargetGroupTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TargetGroupTarget)(nil)).Elem()
+}
+
+func (i TargetGroupTargetArray) ToTargetGroupTargetArrayOutput() TargetGroupTargetArrayOutput {
+	return i.ToTargetGroupTargetArrayOutputWithContext(context.Background())
+}
+
+func (i TargetGroupTargetArray) ToTargetGroupTargetArrayOutputWithContext(ctx context.Context) TargetGroupTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TargetGroupTargetArrayOutput)
+}
+
+type TargetGroupTargetOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TargetGroupTarget)(nil)).Elem()
+}
+
+func (o TargetGroupTargetOutput) ToTargetGroupTargetOutput() TargetGroupTargetOutput {
+	return o
+}
+
+func (o TargetGroupTargetOutput) ToTargetGroupTargetOutputWithContext(ctx context.Context) TargetGroupTargetOutput {
+	return o
+}
+
+// [bool] Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+func (o TargetGroupTargetOutput) HealthCheckEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v TargetGroupTarget) *bool { return v.HealthCheckEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// [string] The IP of the balanced target VM.
+func (o TargetGroupTargetOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v TargetGroupTarget) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// [bool] Maintenance mode prevents the target from receiving balanced traffic.
+func (o TargetGroupTargetOutput) MaintenanceEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v TargetGroupTarget) *bool { return v.MaintenanceEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// [int] The port of the balanced target service; valid range is 1 to 65535.
+func (o TargetGroupTargetOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v TargetGroupTarget) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// [string] The proxy protocol version. Accepted values are `none`, `v1`, `v2`, `v2ssl`. If unspecified, the default value of `none` is used.
+func (o TargetGroupTargetOutput) ProxyProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TargetGroupTarget) *string { return v.ProxyProtocol }).(pulumi.StringPtrOutput)
+}
+
+// [int] Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+func (o TargetGroupTargetOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v TargetGroupTarget) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type TargetGroupTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (TargetGroupTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TargetGroupTarget)(nil)).Elem()
+}
+
+func (o TargetGroupTargetArrayOutput) ToTargetGroupTargetArrayOutput() TargetGroupTargetArrayOutput {
+	return o
+}
+
+func (o TargetGroupTargetArrayOutput) ToTargetGroupTargetArrayOutputWithContext(ctx context.Context) TargetGroupTargetArrayOutput {
+	return o
+}
+
+func (o TargetGroupTargetArrayOutput) Index(i pulumi.IntInput) TargetGroupTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TargetGroupTarget {
+		return vs[0].([]TargetGroupTarget)[vs[1].(int)]
+	}).(TargetGroupTargetOutput)
+}
+
 type VCPUServerLabel struct {
 	Key   string `pulumi:"key"`
 	Value string `pulumi:"value"`
@@ -6109,6 +6658,130 @@ func (o GetLanIpFailoverArrayOutput) Index(i pulumi.IntInput) GetLanIpFailoverOu
 	}).(GetLanIpFailoverOutput)
 }
 
+type GetLocationCpuArchitecture struct {
+	// A valid CPU family name.
+	CpuFamily string `pulumi:"cpuFamily"`
+	// The maximum number of cores available.
+	MaxCores int `pulumi:"maxCores"`
+	// The maximum number of RAM in MB.
+	MaxRam int `pulumi:"maxRam"`
+	// A valid CPU vendor name.
+	Vendor string `pulumi:"vendor"`
+}
+
+// GetLocationCpuArchitectureInput is an input type that accepts GetLocationCpuArchitectureArgs and GetLocationCpuArchitectureOutput values.
+// You can construct a concrete instance of `GetLocationCpuArchitectureInput` via:
+//
+//	GetLocationCpuArchitectureArgs{...}
+type GetLocationCpuArchitectureInput interface {
+	pulumi.Input
+
+	ToGetLocationCpuArchitectureOutput() GetLocationCpuArchitectureOutput
+	ToGetLocationCpuArchitectureOutputWithContext(context.Context) GetLocationCpuArchitectureOutput
+}
+
+type GetLocationCpuArchitectureArgs struct {
+	// A valid CPU family name.
+	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
+	// The maximum number of cores available.
+	MaxCores pulumi.IntInput `pulumi:"maxCores"`
+	// The maximum number of RAM in MB.
+	MaxRam pulumi.IntInput `pulumi:"maxRam"`
+	// A valid CPU vendor name.
+	Vendor pulumi.StringInput `pulumi:"vendor"`
+}
+
+func (GetLocationCpuArchitectureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLocationCpuArchitecture)(nil)).Elem()
+}
+
+func (i GetLocationCpuArchitectureArgs) ToGetLocationCpuArchitectureOutput() GetLocationCpuArchitectureOutput {
+	return i.ToGetLocationCpuArchitectureOutputWithContext(context.Background())
+}
+
+func (i GetLocationCpuArchitectureArgs) ToGetLocationCpuArchitectureOutputWithContext(ctx context.Context) GetLocationCpuArchitectureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLocationCpuArchitectureOutput)
+}
+
+// GetLocationCpuArchitectureArrayInput is an input type that accepts GetLocationCpuArchitectureArray and GetLocationCpuArchitectureArrayOutput values.
+// You can construct a concrete instance of `GetLocationCpuArchitectureArrayInput` via:
+//
+//	GetLocationCpuArchitectureArray{ GetLocationCpuArchitectureArgs{...} }
+type GetLocationCpuArchitectureArrayInput interface {
+	pulumi.Input
+
+	ToGetLocationCpuArchitectureArrayOutput() GetLocationCpuArchitectureArrayOutput
+	ToGetLocationCpuArchitectureArrayOutputWithContext(context.Context) GetLocationCpuArchitectureArrayOutput
+}
+
+type GetLocationCpuArchitectureArray []GetLocationCpuArchitectureInput
+
+func (GetLocationCpuArchitectureArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLocationCpuArchitecture)(nil)).Elem()
+}
+
+func (i GetLocationCpuArchitectureArray) ToGetLocationCpuArchitectureArrayOutput() GetLocationCpuArchitectureArrayOutput {
+	return i.ToGetLocationCpuArchitectureArrayOutputWithContext(context.Background())
+}
+
+func (i GetLocationCpuArchitectureArray) ToGetLocationCpuArchitectureArrayOutputWithContext(ctx context.Context) GetLocationCpuArchitectureArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLocationCpuArchitectureArrayOutput)
+}
+
+type GetLocationCpuArchitectureOutput struct{ *pulumi.OutputState }
+
+func (GetLocationCpuArchitectureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLocationCpuArchitecture)(nil)).Elem()
+}
+
+func (o GetLocationCpuArchitectureOutput) ToGetLocationCpuArchitectureOutput() GetLocationCpuArchitectureOutput {
+	return o
+}
+
+func (o GetLocationCpuArchitectureOutput) ToGetLocationCpuArchitectureOutputWithContext(ctx context.Context) GetLocationCpuArchitectureOutput {
+	return o
+}
+
+// A valid CPU family name.
+func (o GetLocationCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// The maximum number of cores available.
+func (o GetLocationCpuArchitectureOutput) MaxCores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLocationCpuArchitecture) int { return v.MaxCores }).(pulumi.IntOutput)
+}
+
+// The maximum number of RAM in MB.
+func (o GetLocationCpuArchitectureOutput) MaxRam() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLocationCpuArchitecture) int { return v.MaxRam }).(pulumi.IntOutput)
+}
+
+// A valid CPU vendor name.
+func (o GetLocationCpuArchitectureOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationCpuArchitecture) string { return v.Vendor }).(pulumi.StringOutput)
+}
+
+type GetLocationCpuArchitectureArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLocationCpuArchitectureArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLocationCpuArchitecture)(nil)).Elem()
+}
+
+func (o GetLocationCpuArchitectureArrayOutput) ToGetLocationCpuArchitectureArrayOutput() GetLocationCpuArchitectureArrayOutput {
+	return o
+}
+
+func (o GetLocationCpuArchitectureArrayOutput) ToGetLocationCpuArchitectureArrayOutputWithContext(ctx context.Context) GetLocationCpuArchitectureArrayOutput {
+	return o
+}
+
+func (o GetLocationCpuArchitectureArrayOutput) Index(i pulumi.IntInput) GetLocationCpuArchitectureOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLocationCpuArchitecture {
+		return vs[0].([]GetLocationCpuArchitecture)[vs[1].(int)]
+	}).(GetLocationCpuArchitectureOutput)
+}
+
 type GetNatGatewayLan struct {
 	// Collection of gateway IP addresses of the NAT gateway. Will be auto-generated if not provided. Should ideally be an IP belonging to the same subnet as the LAN
 	GatewayIps []string `pulumi:"gatewayIps"`
@@ -7548,6 +8221,1546 @@ func (o GetServerVolumeArrayOutput) Index(i pulumi.IntInput) GetServerVolumeOutp
 	}).(GetServerVolumeOutput)
 }
 
+type GetServersFilter struct {
+	Name  string `pulumi:"name"`
+	Value string `pulumi:"value"`
+}
+
+// GetServersFilterInput is an input type that accepts GetServersFilterArgs and GetServersFilterOutput values.
+// You can construct a concrete instance of `GetServersFilterInput` via:
+//
+//	GetServersFilterArgs{...}
+type GetServersFilterInput interface {
+	pulumi.Input
+
+	ToGetServersFilterOutput() GetServersFilterOutput
+	ToGetServersFilterOutputWithContext(context.Context) GetServersFilterOutput
+}
+
+type GetServersFilterArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetServersFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersFilter)(nil)).Elem()
+}
+
+func (i GetServersFilterArgs) ToGetServersFilterOutput() GetServersFilterOutput {
+	return i.ToGetServersFilterOutputWithContext(context.Background())
+}
+
+func (i GetServersFilterArgs) ToGetServersFilterOutputWithContext(ctx context.Context) GetServersFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersFilterOutput)
+}
+
+// GetServersFilterArrayInput is an input type that accepts GetServersFilterArray and GetServersFilterArrayOutput values.
+// You can construct a concrete instance of `GetServersFilterArrayInput` via:
+//
+//	GetServersFilterArray{ GetServersFilterArgs{...} }
+type GetServersFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetServersFilterArrayOutput() GetServersFilterArrayOutput
+	ToGetServersFilterArrayOutputWithContext(context.Context) GetServersFilterArrayOutput
+}
+
+type GetServersFilterArray []GetServersFilterInput
+
+func (GetServersFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersFilter)(nil)).Elem()
+}
+
+func (i GetServersFilterArray) ToGetServersFilterArrayOutput() GetServersFilterArrayOutput {
+	return i.ToGetServersFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersFilterArray) ToGetServersFilterArrayOutputWithContext(ctx context.Context) GetServersFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersFilterArrayOutput)
+}
+
+type GetServersFilterOutput struct{ *pulumi.OutputState }
+
+func (GetServersFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersFilter)(nil)).Elem()
+}
+
+func (o GetServersFilterOutput) ToGetServersFilterOutput() GetServersFilterOutput {
+	return o
+}
+
+func (o GetServersFilterOutput) ToGetServersFilterOutputWithContext(ctx context.Context) GetServersFilterOutput {
+	return o
+}
+
+func (o GetServersFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServersFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetServersFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersFilter)(nil)).Elem()
+}
+
+func (o GetServersFilterArrayOutput) ToGetServersFilterArrayOutput() GetServersFilterArrayOutput {
+	return o
+}
+
+func (o GetServersFilterArrayOutput) ToGetServersFilterArrayOutputWithContext(ctx context.Context) GetServersFilterArrayOutput {
+	return o
+}
+
+func (o GetServersFilterArrayOutput) Index(i pulumi.IntInput) GetServersFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersFilter {
+		return vs[0].([]GetServersFilter)[vs[1].(int)]
+	}).(GetServersFilterOutput)
+}
+
+type GetServersServer struct {
+	AvailabilityZone string                  `pulumi:"availabilityZone"`
+	BootCdrom        string                  `pulumi:"bootCdrom"`
+	BootImage        string                  `pulumi:"bootImage"`
+	BootVolume       string                  `pulumi:"bootVolume"`
+	Cdroms           []GetServersServerCdrom `pulumi:"cdroms"`
+	Cores            int                     `pulumi:"cores"`
+	CpuFamily        string                  `pulumi:"cpuFamily"`
+	// The unique ID of the server.
+	Id           string                   `pulumi:"id"`
+	Labels       []GetServersServerLabel  `pulumi:"labels"`
+	Name         *string                  `pulumi:"name"`
+	Nics         []GetServersServerNic    `pulumi:"nics"`
+	Ram          int                      `pulumi:"ram"`
+	TemplateUuid *string                  `pulumi:"templateUuid"`
+	Token        string                   `pulumi:"token"`
+	Type         string                   `pulumi:"type"`
+	VmState      string                   `pulumi:"vmState"`
+	Volumes      []GetServersServerVolume `pulumi:"volumes"`
+}
+
+// GetServersServerInput is an input type that accepts GetServersServerArgs and GetServersServerOutput values.
+// You can construct a concrete instance of `GetServersServerInput` via:
+//
+//	GetServersServerArgs{...}
+type GetServersServerInput interface {
+	pulumi.Input
+
+	ToGetServersServerOutput() GetServersServerOutput
+	ToGetServersServerOutputWithContext(context.Context) GetServersServerOutput
+}
+
+type GetServersServerArgs struct {
+	AvailabilityZone pulumi.StringInput              `pulumi:"availabilityZone"`
+	BootCdrom        pulumi.StringInput              `pulumi:"bootCdrom"`
+	BootImage        pulumi.StringInput              `pulumi:"bootImage"`
+	BootVolume       pulumi.StringInput              `pulumi:"bootVolume"`
+	Cdroms           GetServersServerCdromArrayInput `pulumi:"cdroms"`
+	Cores            pulumi.IntInput                 `pulumi:"cores"`
+	CpuFamily        pulumi.StringInput              `pulumi:"cpuFamily"`
+	// The unique ID of the server.
+	Id           pulumi.StringInput               `pulumi:"id"`
+	Labels       GetServersServerLabelArrayInput  `pulumi:"labels"`
+	Name         pulumi.StringPtrInput            `pulumi:"name"`
+	Nics         GetServersServerNicArrayInput    `pulumi:"nics"`
+	Ram          pulumi.IntInput                  `pulumi:"ram"`
+	TemplateUuid pulumi.StringPtrInput            `pulumi:"templateUuid"`
+	Token        pulumi.StringInput               `pulumi:"token"`
+	Type         pulumi.StringInput               `pulumi:"type"`
+	VmState      pulumi.StringInput               `pulumi:"vmState"`
+	Volumes      GetServersServerVolumeArrayInput `pulumi:"volumes"`
+}
+
+func (GetServersServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServer)(nil)).Elem()
+}
+
+func (i GetServersServerArgs) ToGetServersServerOutput() GetServersServerOutput {
+	return i.ToGetServersServerOutputWithContext(context.Background())
+}
+
+func (i GetServersServerArgs) ToGetServersServerOutputWithContext(ctx context.Context) GetServersServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerOutput)
+}
+
+// GetServersServerArrayInput is an input type that accepts GetServersServerArray and GetServersServerArrayOutput values.
+// You can construct a concrete instance of `GetServersServerArrayInput` via:
+//
+//	GetServersServerArray{ GetServersServerArgs{...} }
+type GetServersServerArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerArrayOutput() GetServersServerArrayOutput
+	ToGetServersServerArrayOutputWithContext(context.Context) GetServersServerArrayOutput
+}
+
+type GetServersServerArray []GetServersServerInput
+
+func (GetServersServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServer)(nil)).Elem()
+}
+
+func (i GetServersServerArray) ToGetServersServerArrayOutput() GetServersServerArrayOutput {
+	return i.ToGetServersServerArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerArray) ToGetServersServerArrayOutputWithContext(ctx context.Context) GetServersServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerArrayOutput)
+}
+
+type GetServersServerOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServer)(nil)).Elem()
+}
+
+func (o GetServersServerOutput) ToGetServersServerOutput() GetServersServerOutput {
+	return o
+}
+
+func (o GetServersServerOutput) ToGetServersServerOutputWithContext(ctx context.Context) GetServersServerOutput {
+	return o
+}
+
+func (o GetServersServerOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) BootCdrom() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.BootCdrom }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) BootImage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.BootImage }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) BootVolume() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.BootVolume }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) Cdroms() GetServersServerCdromArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []GetServersServerCdrom { return v.Cdroms }).(GetServersServerCdromArrayOutput)
+}
+
+func (o GetServersServerOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServer) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// The unique ID of the server.
+func (o GetServersServerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) Labels() GetServersServerLabelArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []GetServersServerLabel { return v.Labels }).(GetServersServerLabelArrayOutput)
+}
+
+func (o GetServersServerOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServersServer) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o GetServersServerOutput) Nics() GetServersServerNicArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []GetServersServerNic { return v.Nics }).(GetServersServerNicArrayOutput)
+}
+
+func (o GetServersServerOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServer) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerOutput) TemplateUuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServersServer) *string { return v.TemplateUuid }).(pulumi.StringPtrOutput)
+}
+
+func (o GetServersServerOutput) Token() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Token }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) VmState() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.VmState }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerOutput) Volumes() GetServersServerVolumeArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []GetServersServerVolume { return v.Volumes }).(GetServersServerVolumeArrayOutput)
+}
+
+type GetServersServerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServer)(nil)).Elem()
+}
+
+func (o GetServersServerArrayOutput) ToGetServersServerArrayOutput() GetServersServerArrayOutput {
+	return o
+}
+
+func (o GetServersServerArrayOutput) ToGetServersServerArrayOutputWithContext(ctx context.Context) GetServersServerArrayOutput {
+	return o
+}
+
+func (o GetServersServerArrayOutput) Index(i pulumi.IntInput) GetServersServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServer {
+		return vs[0].([]GetServersServer)[vs[1].(int)]
+	}).(GetServersServerOutput)
+}
+
+type GetServersServerCdrom struct {
+	CloudInit           string   `pulumi:"cloudInit"`
+	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
+	CpuHotUnplug        bool     `pulumi:"cpuHotUnplug"`
+	Description         string   `pulumi:"description"`
+	DiscScsiHotPlug     bool     `pulumi:"discScsiHotPlug"`
+	DiscScsiHotUnplug   bool     `pulumi:"discScsiHotUnplug"`
+	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
+	Id                  string   `pulumi:"id"`
+	ImageAliases        []string `pulumi:"imageAliases"`
+	ImageType           string   `pulumi:"imageType"`
+	LicenceType         string   `pulumi:"licenceType"`
+	Location            string   `pulumi:"location"`
+	Name                string   `pulumi:"name"`
+	NicHotPlug          bool     `pulumi:"nicHotPlug"`
+	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
+	Public              bool     `pulumi:"public"`
+	RamHotPlug          bool     `pulumi:"ramHotPlug"`
+	RamHotUnplug        bool     `pulumi:"ramHotUnplug"`
+	Size                float64  `pulumi:"size"`
+}
+
+// GetServersServerCdromInput is an input type that accepts GetServersServerCdromArgs and GetServersServerCdromOutput values.
+// You can construct a concrete instance of `GetServersServerCdromInput` via:
+//
+//	GetServersServerCdromArgs{...}
+type GetServersServerCdromInput interface {
+	pulumi.Input
+
+	ToGetServersServerCdromOutput() GetServersServerCdromOutput
+	ToGetServersServerCdromOutputWithContext(context.Context) GetServersServerCdromOutput
+}
+
+type GetServersServerCdromArgs struct {
+	CloudInit           pulumi.StringInput      `pulumi:"cloudInit"`
+	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
+	CpuHotUnplug        pulumi.BoolInput        `pulumi:"cpuHotUnplug"`
+	Description         pulumi.StringInput      `pulumi:"description"`
+	DiscScsiHotPlug     pulumi.BoolInput        `pulumi:"discScsiHotPlug"`
+	DiscScsiHotUnplug   pulumi.BoolInput        `pulumi:"discScsiHotUnplug"`
+	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
+	Id                  pulumi.StringInput      `pulumi:"id"`
+	ImageAliases        pulumi.StringArrayInput `pulumi:"imageAliases"`
+	ImageType           pulumi.StringInput      `pulumi:"imageType"`
+	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
+	Location            pulumi.StringInput      `pulumi:"location"`
+	Name                pulumi.StringInput      `pulumi:"name"`
+	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
+	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
+	Public              pulumi.BoolInput        `pulumi:"public"`
+	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
+	RamHotUnplug        pulumi.BoolInput        `pulumi:"ramHotUnplug"`
+	Size                pulumi.Float64Input     `pulumi:"size"`
+}
+
+func (GetServersServerCdromArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerCdrom)(nil)).Elem()
+}
+
+func (i GetServersServerCdromArgs) ToGetServersServerCdromOutput() GetServersServerCdromOutput {
+	return i.ToGetServersServerCdromOutputWithContext(context.Background())
+}
+
+func (i GetServersServerCdromArgs) ToGetServersServerCdromOutputWithContext(ctx context.Context) GetServersServerCdromOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerCdromOutput)
+}
+
+// GetServersServerCdromArrayInput is an input type that accepts GetServersServerCdromArray and GetServersServerCdromArrayOutput values.
+// You can construct a concrete instance of `GetServersServerCdromArrayInput` via:
+//
+//	GetServersServerCdromArray{ GetServersServerCdromArgs{...} }
+type GetServersServerCdromArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerCdromArrayOutput() GetServersServerCdromArrayOutput
+	ToGetServersServerCdromArrayOutputWithContext(context.Context) GetServersServerCdromArrayOutput
+}
+
+type GetServersServerCdromArray []GetServersServerCdromInput
+
+func (GetServersServerCdromArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerCdrom)(nil)).Elem()
+}
+
+func (i GetServersServerCdromArray) ToGetServersServerCdromArrayOutput() GetServersServerCdromArrayOutput {
+	return i.ToGetServersServerCdromArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerCdromArray) ToGetServersServerCdromArrayOutputWithContext(ctx context.Context) GetServersServerCdromArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerCdromArrayOutput)
+}
+
+type GetServersServerCdromOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerCdromOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerCdrom)(nil)).Elem()
+}
+
+func (o GetServersServerCdromOutput) ToGetServersServerCdromOutput() GetServersServerCdromOutput {
+	return o
+}
+
+func (o GetServersServerCdromOutput) ToGetServersServerCdromOutputWithContext(ctx context.Context) GetServersServerCdromOutput {
+	return o
+}
+
+func (o GetServersServerCdromOutput) CloudInit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.CloudInit }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) CpuHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) CpuHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.CpuHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) DiscScsiHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.DiscScsiHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) DiscScsiHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.DiscScsiHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) ImageAliases() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
+}
+
+func (o GetServersServerCdromOutput) ImageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.ImageType }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) LicenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.LicenceType }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.Location }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerCdromOutput) NicHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) NicHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) RamHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) RamHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerCdrom) bool { return v.RamHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerCdromOutput) Size() pulumi.Float64Output {
+	return o.ApplyT(func(v GetServersServerCdrom) float64 { return v.Size }).(pulumi.Float64Output)
+}
+
+type GetServersServerCdromArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerCdromArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerCdrom)(nil)).Elem()
+}
+
+func (o GetServersServerCdromArrayOutput) ToGetServersServerCdromArrayOutput() GetServersServerCdromArrayOutput {
+	return o
+}
+
+func (o GetServersServerCdromArrayOutput) ToGetServersServerCdromArrayOutputWithContext(ctx context.Context) GetServersServerCdromArrayOutput {
+	return o
+}
+
+func (o GetServersServerCdromArrayOutput) Index(i pulumi.IntInput) GetServersServerCdromOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerCdrom {
+		return vs[0].([]GetServersServerCdrom)[vs[1].(int)]
+	}).(GetServersServerCdromOutput)
+}
+
+type GetServersServerLabel struct {
+	Id    string `pulumi:"id"`
+	Key   string `pulumi:"key"`
+	Value string `pulumi:"value"`
+}
+
+// GetServersServerLabelInput is an input type that accepts GetServersServerLabelArgs and GetServersServerLabelOutput values.
+// You can construct a concrete instance of `GetServersServerLabelInput` via:
+//
+//	GetServersServerLabelArgs{...}
+type GetServersServerLabelInput interface {
+	pulumi.Input
+
+	ToGetServersServerLabelOutput() GetServersServerLabelOutput
+	ToGetServersServerLabelOutputWithContext(context.Context) GetServersServerLabelOutput
+}
+
+type GetServersServerLabelArgs struct {
+	Id    pulumi.StringInput `pulumi:"id"`
+	Key   pulumi.StringInput `pulumi:"key"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetServersServerLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerLabel)(nil)).Elem()
+}
+
+func (i GetServersServerLabelArgs) ToGetServersServerLabelOutput() GetServersServerLabelOutput {
+	return i.ToGetServersServerLabelOutputWithContext(context.Background())
+}
+
+func (i GetServersServerLabelArgs) ToGetServersServerLabelOutputWithContext(ctx context.Context) GetServersServerLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerLabelOutput)
+}
+
+// GetServersServerLabelArrayInput is an input type that accepts GetServersServerLabelArray and GetServersServerLabelArrayOutput values.
+// You can construct a concrete instance of `GetServersServerLabelArrayInput` via:
+//
+//	GetServersServerLabelArray{ GetServersServerLabelArgs{...} }
+type GetServersServerLabelArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerLabelArrayOutput() GetServersServerLabelArrayOutput
+	ToGetServersServerLabelArrayOutputWithContext(context.Context) GetServersServerLabelArrayOutput
+}
+
+type GetServersServerLabelArray []GetServersServerLabelInput
+
+func (GetServersServerLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerLabel)(nil)).Elem()
+}
+
+func (i GetServersServerLabelArray) ToGetServersServerLabelArrayOutput() GetServersServerLabelArrayOutput {
+	return i.ToGetServersServerLabelArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerLabelArray) ToGetServersServerLabelArrayOutputWithContext(ctx context.Context) GetServersServerLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerLabelArrayOutput)
+}
+
+type GetServersServerLabelOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerLabel)(nil)).Elem()
+}
+
+func (o GetServersServerLabelOutput) ToGetServersServerLabelOutput() GetServersServerLabelOutput {
+	return o
+}
+
+func (o GetServersServerLabelOutput) ToGetServersServerLabelOutputWithContext(ctx context.Context) GetServersServerLabelOutput {
+	return o
+}
+
+func (o GetServersServerLabelOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerLabel) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetServersServerLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerLabel)(nil)).Elem()
+}
+
+func (o GetServersServerLabelArrayOutput) ToGetServersServerLabelArrayOutput() GetServersServerLabelArrayOutput {
+	return o
+}
+
+func (o GetServersServerLabelArrayOutput) ToGetServersServerLabelArrayOutputWithContext(ctx context.Context) GetServersServerLabelArrayOutput {
+	return o
+}
+
+func (o GetServersServerLabelArrayOutput) Index(i pulumi.IntInput) GetServersServerLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerLabel {
+		return vs[0].([]GetServersServerLabel)[vs[1].(int)]
+	}).(GetServersServerLabelOutput)
+}
+
+type GetServersServerNic struct {
+	DeviceNumber   int                               `pulumi:"deviceNumber"`
+	Dhcp           bool                              `pulumi:"dhcp"`
+	Dhcpv6         *bool                             `pulumi:"dhcpv6"`
+	FirewallActive bool                              `pulumi:"firewallActive"`
+	FirewallRules  []GetServersServerNicFirewallRule `pulumi:"firewallRules"`
+	FirewallType   string                            `pulumi:"firewallType"`
+	Id             string                            `pulumi:"id"`
+	Ips            []string                          `pulumi:"ips"`
+	Ipv6CidrBlock  string                            `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips        []string                          `pulumi:"ipv6Ips"`
+	Lan            int                               `pulumi:"lan"`
+	Mac            string                            `pulumi:"mac"`
+	Name           string                            `pulumi:"name"`
+	PciSlot        int                               `pulumi:"pciSlot"`
+}
+
+// GetServersServerNicInput is an input type that accepts GetServersServerNicArgs and GetServersServerNicOutput values.
+// You can construct a concrete instance of `GetServersServerNicInput` via:
+//
+//	GetServersServerNicArgs{...}
+type GetServersServerNicInput interface {
+	pulumi.Input
+
+	ToGetServersServerNicOutput() GetServersServerNicOutput
+	ToGetServersServerNicOutputWithContext(context.Context) GetServersServerNicOutput
+}
+
+type GetServersServerNicArgs struct {
+	DeviceNumber   pulumi.IntInput                           `pulumi:"deviceNumber"`
+	Dhcp           pulumi.BoolInput                          `pulumi:"dhcp"`
+	Dhcpv6         pulumi.BoolPtrInput                       `pulumi:"dhcpv6"`
+	FirewallActive pulumi.BoolInput                          `pulumi:"firewallActive"`
+	FirewallRules  GetServersServerNicFirewallRuleArrayInput `pulumi:"firewallRules"`
+	FirewallType   pulumi.StringInput                        `pulumi:"firewallType"`
+	Id             pulumi.StringInput                        `pulumi:"id"`
+	Ips            pulumi.StringArrayInput                   `pulumi:"ips"`
+	Ipv6CidrBlock  pulumi.StringInput                        `pulumi:"ipv6CidrBlock"`
+	Ipv6Ips        pulumi.StringArrayInput                   `pulumi:"ipv6Ips"`
+	Lan            pulumi.IntInput                           `pulumi:"lan"`
+	Mac            pulumi.StringInput                        `pulumi:"mac"`
+	Name           pulumi.StringInput                        `pulumi:"name"`
+	PciSlot        pulumi.IntInput                           `pulumi:"pciSlot"`
+}
+
+func (GetServersServerNicArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerNic)(nil)).Elem()
+}
+
+func (i GetServersServerNicArgs) ToGetServersServerNicOutput() GetServersServerNicOutput {
+	return i.ToGetServersServerNicOutputWithContext(context.Background())
+}
+
+func (i GetServersServerNicArgs) ToGetServersServerNicOutputWithContext(ctx context.Context) GetServersServerNicOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerNicOutput)
+}
+
+// GetServersServerNicArrayInput is an input type that accepts GetServersServerNicArray and GetServersServerNicArrayOutput values.
+// You can construct a concrete instance of `GetServersServerNicArrayInput` via:
+//
+//	GetServersServerNicArray{ GetServersServerNicArgs{...} }
+type GetServersServerNicArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerNicArrayOutput() GetServersServerNicArrayOutput
+	ToGetServersServerNicArrayOutputWithContext(context.Context) GetServersServerNicArrayOutput
+}
+
+type GetServersServerNicArray []GetServersServerNicInput
+
+func (GetServersServerNicArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerNic)(nil)).Elem()
+}
+
+func (i GetServersServerNicArray) ToGetServersServerNicArrayOutput() GetServersServerNicArrayOutput {
+	return i.ToGetServersServerNicArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerNicArray) ToGetServersServerNicArrayOutputWithContext(ctx context.Context) GetServersServerNicArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerNicArrayOutput)
+}
+
+type GetServersServerNicOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerNicOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerNic)(nil)).Elem()
+}
+
+func (o GetServersServerNicOutput) ToGetServersServerNicOutput() GetServersServerNicOutput {
+	return o
+}
+
+func (o GetServersServerNicOutput) ToGetServersServerNicOutputWithContext(ctx context.Context) GetServersServerNicOutput {
+	return o
+}
+
+func (o GetServersServerNicOutput) DeviceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNic) int { return v.DeviceNumber }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicOutput) Dhcp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerNic) bool { return v.Dhcp }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerNicOutput) Dhcpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetServersServerNic) *bool { return v.Dhcpv6 }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetServersServerNicOutput) FirewallActive() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerNic) bool { return v.FirewallActive }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerNicOutput) FirewallRules() GetServersServerNicFirewallRuleArrayOutput {
+	return o.ApplyT(func(v GetServersServerNic) []GetServersServerNicFirewallRule { return v.FirewallRules }).(GetServersServerNicFirewallRuleArrayOutput)
+}
+
+func (o GetServersServerNicOutput) FirewallType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNic) string { return v.FirewallType }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNic) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServerNic) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+func (o GetServersServerNicOutput) Ipv6CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNic) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicOutput) Ipv6Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServerNic) []string { return v.Ipv6Ips }).(pulumi.StringArrayOutput)
+}
+
+func (o GetServersServerNicOutput) Lan() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNic) int { return v.Lan }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNic) string { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNic) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicOutput) PciSlot() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNic) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+type GetServersServerNicArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerNicArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerNic)(nil)).Elem()
+}
+
+func (o GetServersServerNicArrayOutput) ToGetServersServerNicArrayOutput() GetServersServerNicArrayOutput {
+	return o
+}
+
+func (o GetServersServerNicArrayOutput) ToGetServersServerNicArrayOutputWithContext(ctx context.Context) GetServersServerNicArrayOutput {
+	return o
+}
+
+func (o GetServersServerNicArrayOutput) Index(i pulumi.IntInput) GetServersServerNicOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerNic {
+		return vs[0].([]GetServersServerNic)[vs[1].(int)]
+	}).(GetServersServerNicOutput)
+}
+
+type GetServersServerNicFirewallRule struct {
+	IcmpCode       int    `pulumi:"icmpCode"`
+	IcmpType       int    `pulumi:"icmpType"`
+	Id             string `pulumi:"id"`
+	Name           string `pulumi:"name"`
+	PortRangeEnd   int    `pulumi:"portRangeEnd"`
+	PortRangeStart int    `pulumi:"portRangeStart"`
+	Protocol       string `pulumi:"protocol"`
+	SourceIp       string `pulumi:"sourceIp"`
+	SourceMac      string `pulumi:"sourceMac"`
+	TargetIp       string `pulumi:"targetIp"`
+	Type           string `pulumi:"type"`
+}
+
+// GetServersServerNicFirewallRuleInput is an input type that accepts GetServersServerNicFirewallRuleArgs and GetServersServerNicFirewallRuleOutput values.
+// You can construct a concrete instance of `GetServersServerNicFirewallRuleInput` via:
+//
+//	GetServersServerNicFirewallRuleArgs{...}
+type GetServersServerNicFirewallRuleInput interface {
+	pulumi.Input
+
+	ToGetServersServerNicFirewallRuleOutput() GetServersServerNicFirewallRuleOutput
+	ToGetServersServerNicFirewallRuleOutputWithContext(context.Context) GetServersServerNicFirewallRuleOutput
+}
+
+type GetServersServerNicFirewallRuleArgs struct {
+	IcmpCode       pulumi.IntInput    `pulumi:"icmpCode"`
+	IcmpType       pulumi.IntInput    `pulumi:"icmpType"`
+	Id             pulumi.StringInput `pulumi:"id"`
+	Name           pulumi.StringInput `pulumi:"name"`
+	PortRangeEnd   pulumi.IntInput    `pulumi:"portRangeEnd"`
+	PortRangeStart pulumi.IntInput    `pulumi:"portRangeStart"`
+	Protocol       pulumi.StringInput `pulumi:"protocol"`
+	SourceIp       pulumi.StringInput `pulumi:"sourceIp"`
+	SourceMac      pulumi.StringInput `pulumi:"sourceMac"`
+	TargetIp       pulumi.StringInput `pulumi:"targetIp"`
+	Type           pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetServersServerNicFirewallRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerNicFirewallRule)(nil)).Elem()
+}
+
+func (i GetServersServerNicFirewallRuleArgs) ToGetServersServerNicFirewallRuleOutput() GetServersServerNicFirewallRuleOutput {
+	return i.ToGetServersServerNicFirewallRuleOutputWithContext(context.Background())
+}
+
+func (i GetServersServerNicFirewallRuleArgs) ToGetServersServerNicFirewallRuleOutputWithContext(ctx context.Context) GetServersServerNicFirewallRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerNicFirewallRuleOutput)
+}
+
+// GetServersServerNicFirewallRuleArrayInput is an input type that accepts GetServersServerNicFirewallRuleArray and GetServersServerNicFirewallRuleArrayOutput values.
+// You can construct a concrete instance of `GetServersServerNicFirewallRuleArrayInput` via:
+//
+//	GetServersServerNicFirewallRuleArray{ GetServersServerNicFirewallRuleArgs{...} }
+type GetServersServerNicFirewallRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerNicFirewallRuleArrayOutput() GetServersServerNicFirewallRuleArrayOutput
+	ToGetServersServerNicFirewallRuleArrayOutputWithContext(context.Context) GetServersServerNicFirewallRuleArrayOutput
+}
+
+type GetServersServerNicFirewallRuleArray []GetServersServerNicFirewallRuleInput
+
+func (GetServersServerNicFirewallRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerNicFirewallRule)(nil)).Elem()
+}
+
+func (i GetServersServerNicFirewallRuleArray) ToGetServersServerNicFirewallRuleArrayOutput() GetServersServerNicFirewallRuleArrayOutput {
+	return i.ToGetServersServerNicFirewallRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerNicFirewallRuleArray) ToGetServersServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetServersServerNicFirewallRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerNicFirewallRuleArrayOutput)
+}
+
+type GetServersServerNicFirewallRuleOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerNicFirewallRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerNicFirewallRule)(nil)).Elem()
+}
+
+func (o GetServersServerNicFirewallRuleOutput) ToGetServersServerNicFirewallRuleOutput() GetServersServerNicFirewallRuleOutput {
+	return o
+}
+
+func (o GetServersServerNicFirewallRuleOutput) ToGetServersServerNicFirewallRuleOutputWithContext(ctx context.Context) GetServersServerNicFirewallRuleOutput {
+	return o
+}
+
+func (o GetServersServerNicFirewallRuleOutput) IcmpCode() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) int { return v.IcmpCode }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) IcmpType() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) int { return v.IcmpType }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) PortRangeEnd() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) int { return v.PortRangeEnd }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) PortRangeStart() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) int { return v.PortRangeStart }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) SourceMac() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.SourceMac }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) TargetIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.TargetIp }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerNicFirewallRuleOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerNicFirewallRule) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetServersServerNicFirewallRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerNicFirewallRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerNicFirewallRule)(nil)).Elem()
+}
+
+func (o GetServersServerNicFirewallRuleArrayOutput) ToGetServersServerNicFirewallRuleArrayOutput() GetServersServerNicFirewallRuleArrayOutput {
+	return o
+}
+
+func (o GetServersServerNicFirewallRuleArrayOutput) ToGetServersServerNicFirewallRuleArrayOutputWithContext(ctx context.Context) GetServersServerNicFirewallRuleArrayOutput {
+	return o
+}
+
+func (o GetServersServerNicFirewallRuleArrayOutput) Index(i pulumi.IntInput) GetServersServerNicFirewallRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerNicFirewallRule {
+		return vs[0].([]GetServersServerNicFirewallRule)[vs[1].(int)]
+	}).(GetServersServerNicFirewallRuleOutput)
+}
+
+type GetServersServerVolume struct {
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	BackupUnitId     string `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          string   `pulumi:"bootServer"`
+	Bus                 string   `pulumi:"bus"`
+	CpuHotPlug          bool     `pulumi:"cpuHotPlug"`
+	DeviceNumber        int      `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   bool     `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug bool     `pulumi:"discVirtioHotUnplug"`
+	DiskType            string   `pulumi:"diskType"`
+	Id                  string   `pulumi:"id"`
+	ImageName           string   `pulumi:"imageName"`
+	ImagePassword       string   `pulumi:"imagePassword"`
+	LicenceType         string   `pulumi:"licenceType"`
+	Name                string   `pulumi:"name"`
+	NicHotPlug          bool     `pulumi:"nicHotPlug"`
+	NicHotUnplug        bool     `pulumi:"nicHotUnplug"`
+	PciSlot             int      `pulumi:"pciSlot"`
+	RamHotPlug          bool     `pulumi:"ramHotPlug"`
+	Size                int      `pulumi:"size"`
+	SshKeys             []string `pulumi:"sshKeys"`
+	UserData            *string  `pulumi:"userData"`
+}
+
+// GetServersServerVolumeInput is an input type that accepts GetServersServerVolumeArgs and GetServersServerVolumeOutput values.
+// You can construct a concrete instance of `GetServersServerVolumeInput` via:
+//
+//	GetServersServerVolumeArgs{...}
+type GetServersServerVolumeInput interface {
+	pulumi.Input
+
+	ToGetServersServerVolumeOutput() GetServersServerVolumeOutput
+	ToGetServersServerVolumeOutputWithContext(context.Context) GetServersServerVolumeOutput
+}
+
+type GetServersServerVolumeArgs struct {
+	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
+	BackupUnitId     pulumi.StringInput `pulumi:"backupUnitId"`
+	// The UUID of the attached server.
+	BootServer          pulumi.StringInput      `pulumi:"bootServer"`
+	Bus                 pulumi.StringInput      `pulumi:"bus"`
+	CpuHotPlug          pulumi.BoolInput        `pulumi:"cpuHotPlug"`
+	DeviceNumber        pulumi.IntInput         `pulumi:"deviceNumber"`
+	DiscVirtioHotPlug   pulumi.BoolInput        `pulumi:"discVirtioHotPlug"`
+	DiscVirtioHotUnplug pulumi.BoolInput        `pulumi:"discVirtioHotUnplug"`
+	DiskType            pulumi.StringInput      `pulumi:"diskType"`
+	Id                  pulumi.StringInput      `pulumi:"id"`
+	ImageName           pulumi.StringInput      `pulumi:"imageName"`
+	ImagePassword       pulumi.StringInput      `pulumi:"imagePassword"`
+	LicenceType         pulumi.StringInput      `pulumi:"licenceType"`
+	Name                pulumi.StringInput      `pulumi:"name"`
+	NicHotPlug          pulumi.BoolInput        `pulumi:"nicHotPlug"`
+	NicHotUnplug        pulumi.BoolInput        `pulumi:"nicHotUnplug"`
+	PciSlot             pulumi.IntInput         `pulumi:"pciSlot"`
+	RamHotPlug          pulumi.BoolInput        `pulumi:"ramHotPlug"`
+	Size                pulumi.IntInput         `pulumi:"size"`
+	SshKeys             pulumi.StringArrayInput `pulumi:"sshKeys"`
+	UserData            pulumi.StringPtrInput   `pulumi:"userData"`
+}
+
+func (GetServersServerVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerVolume)(nil)).Elem()
+}
+
+func (i GetServersServerVolumeArgs) ToGetServersServerVolumeOutput() GetServersServerVolumeOutput {
+	return i.ToGetServersServerVolumeOutputWithContext(context.Background())
+}
+
+func (i GetServersServerVolumeArgs) ToGetServersServerVolumeOutputWithContext(ctx context.Context) GetServersServerVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerVolumeOutput)
+}
+
+// GetServersServerVolumeArrayInput is an input type that accepts GetServersServerVolumeArray and GetServersServerVolumeArrayOutput values.
+// You can construct a concrete instance of `GetServersServerVolumeArrayInput` via:
+//
+//	GetServersServerVolumeArray{ GetServersServerVolumeArgs{...} }
+type GetServersServerVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerVolumeArrayOutput() GetServersServerVolumeArrayOutput
+	ToGetServersServerVolumeArrayOutputWithContext(context.Context) GetServersServerVolumeArrayOutput
+}
+
+type GetServersServerVolumeArray []GetServersServerVolumeInput
+
+func (GetServersServerVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerVolume)(nil)).Elem()
+}
+
+func (i GetServersServerVolumeArray) ToGetServersServerVolumeArrayOutput() GetServersServerVolumeArrayOutput {
+	return i.ToGetServersServerVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerVolumeArray) ToGetServersServerVolumeArrayOutputWithContext(ctx context.Context) GetServersServerVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerVolumeArrayOutput)
+}
+
+type GetServersServerVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerVolume)(nil)).Elem()
+}
+
+func (o GetServersServerVolumeOutput) ToGetServersServerVolumeOutput() GetServersServerVolumeOutput {
+	return o
+}
+
+func (o GetServersServerVolumeOutput) ToGetServersServerVolumeOutputWithContext(ctx context.Context) GetServersServerVolumeOutput {
+	return o
+}
+
+func (o GetServersServerVolumeOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) BackupUnitId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.BackupUnitId }).(pulumi.StringOutput)
+}
+
+// The UUID of the attached server.
+func (o GetServersServerVolumeOutput) BootServer() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.BootServer }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) Bus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.Bus }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) CpuHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.CpuHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) DeviceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerVolume) int { return v.DeviceNumber }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerVolumeOutput) DiscVirtioHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.DiscVirtioHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.DiskType }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) ImageName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.ImageName }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) ImagePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.ImagePassword }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) LicenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.LicenceType }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerVolume) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetServersServerVolumeOutput) NicHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.NicHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) NicHotUnplug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.NicHotUnplug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) PciSlot() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerVolume) int { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerVolumeOutput) RamHotPlug() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerVolume) bool { return v.RamHotPlug }).(pulumi.BoolOutput)
+}
+
+func (o GetServersServerVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServerVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o GetServersServerVolumeOutput) SshKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServerVolume) []string { return v.SshKeys }).(pulumi.StringArrayOutput)
+}
+
+func (o GetServersServerVolumeOutput) UserData() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServersServerVolume) *string { return v.UserData }).(pulumi.StringPtrOutput)
+}
+
+type GetServersServerVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerVolume)(nil)).Elem()
+}
+
+func (o GetServersServerVolumeArrayOutput) ToGetServersServerVolumeArrayOutput() GetServersServerVolumeArrayOutput {
+	return o
+}
+
+func (o GetServersServerVolumeArrayOutput) ToGetServersServerVolumeArrayOutputWithContext(ctx context.Context) GetServersServerVolumeArrayOutput {
+	return o
+}
+
+func (o GetServersServerVolumeArrayOutput) Index(i pulumi.IntInput) GetServersServerVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerVolume {
+		return vs[0].([]GetServersServerVolume)[vs[1].(int)]
+	}).(GetServersServerVolumeOutput)
+}
+
+type GetTargetGroupHealthCheck struct {
+	// The interval in milliseconds between consecutive health checks; default is 2000.
+	CheckInterval int `pulumi:"checkInterval"`
+	// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	CheckTimeout int `pulumi:"checkTimeout"`
+	// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	Retries int `pulumi:"retries"`
+}
+
+// GetTargetGroupHealthCheckInput is an input type that accepts GetTargetGroupHealthCheckArgs and GetTargetGroupHealthCheckOutput values.
+// You can construct a concrete instance of `GetTargetGroupHealthCheckInput` via:
+//
+//	GetTargetGroupHealthCheckArgs{...}
+type GetTargetGroupHealthCheckInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupHealthCheckOutput() GetTargetGroupHealthCheckOutput
+	ToGetTargetGroupHealthCheckOutputWithContext(context.Context) GetTargetGroupHealthCheckOutput
+}
+
+type GetTargetGroupHealthCheckArgs struct {
+	// The interval in milliseconds between consecutive health checks; default is 2000.
+	CheckInterval pulumi.IntInput `pulumi:"checkInterval"`
+	// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+	CheckTimeout pulumi.IntInput `pulumi:"checkTimeout"`
+	// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+	Retries pulumi.IntInput `pulumi:"retries"`
+}
+
+func (GetTargetGroupHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (i GetTargetGroupHealthCheckArgs) ToGetTargetGroupHealthCheckOutput() GetTargetGroupHealthCheckOutput {
+	return i.ToGetTargetGroupHealthCheckOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupHealthCheckArgs) ToGetTargetGroupHealthCheckOutputWithContext(ctx context.Context) GetTargetGroupHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupHealthCheckOutput)
+}
+
+// GetTargetGroupHealthCheckArrayInput is an input type that accepts GetTargetGroupHealthCheckArray and GetTargetGroupHealthCheckArrayOutput values.
+// You can construct a concrete instance of `GetTargetGroupHealthCheckArrayInput` via:
+//
+//	GetTargetGroupHealthCheckArray{ GetTargetGroupHealthCheckArgs{...} }
+type GetTargetGroupHealthCheckArrayInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupHealthCheckArrayOutput() GetTargetGroupHealthCheckArrayOutput
+	ToGetTargetGroupHealthCheckArrayOutputWithContext(context.Context) GetTargetGroupHealthCheckArrayOutput
+}
+
+type GetTargetGroupHealthCheckArray []GetTargetGroupHealthCheckInput
+
+func (GetTargetGroupHealthCheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (i GetTargetGroupHealthCheckArray) ToGetTargetGroupHealthCheckArrayOutput() GetTargetGroupHealthCheckArrayOutput {
+	return i.ToGetTargetGroupHealthCheckArrayOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupHealthCheckArray) ToGetTargetGroupHealthCheckArrayOutputWithContext(ctx context.Context) GetTargetGroupHealthCheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupHealthCheckArrayOutput)
+}
+
+type GetTargetGroupHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (o GetTargetGroupHealthCheckOutput) ToGetTargetGroupHealthCheckOutput() GetTargetGroupHealthCheckOutput {
+	return o
+}
+
+func (o GetTargetGroupHealthCheckOutput) ToGetTargetGroupHealthCheckOutputWithContext(ctx context.Context) GetTargetGroupHealthCheckOutput {
+	return o
+}
+
+// The interval in milliseconds between consecutive health checks; default is 2000.
+func (o GetTargetGroupHealthCheckOutput) CheckInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTargetGroupHealthCheck) int { return v.CheckInterval }).(pulumi.IntOutput)
+}
+
+// The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two  values is used once the TCP connection is established.
+func (o GetTargetGroupHealthCheckOutput) CheckTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTargetGroupHealthCheck) int { return v.CheckTimeout }).(pulumi.IntOutput)
+}
+
+// The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection.
+func (o GetTargetGroupHealthCheckOutput) Retries() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTargetGroupHealthCheck) int { return v.Retries }).(pulumi.IntOutput)
+}
+
+type GetTargetGroupHealthCheckArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupHealthCheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupHealthCheck)(nil)).Elem()
+}
+
+func (o GetTargetGroupHealthCheckArrayOutput) ToGetTargetGroupHealthCheckArrayOutput() GetTargetGroupHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupHealthCheckArrayOutput) ToGetTargetGroupHealthCheckArrayOutputWithContext(ctx context.Context) GetTargetGroupHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupHealthCheckArrayOutput) Index(i pulumi.IntInput) GetTargetGroupHealthCheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTargetGroupHealthCheck {
+		return vs[0].([]GetTargetGroupHealthCheck)[vs[1].(int)]
+	}).(GetTargetGroupHealthCheckOutput)
+}
+
+type GetTargetGroupHttpHealthCheck struct {
+	MatchType string `pulumi:"matchType"`
+	// The method for the HTTP health check.
+	Method string `pulumi:"method"`
+	Negate bool   `pulumi:"negate"`
+	// The path (destination URL) for the HTTP health check request; the default is /.
+	Path  string `pulumi:"path"`
+	Regex bool   `pulumi:"regex"`
+	// The response returned by the request, depending on the match type.
+	Response string `pulumi:"response"`
+}
+
+// GetTargetGroupHttpHealthCheckInput is an input type that accepts GetTargetGroupHttpHealthCheckArgs and GetTargetGroupHttpHealthCheckOutput values.
+// You can construct a concrete instance of `GetTargetGroupHttpHealthCheckInput` via:
+//
+//	GetTargetGroupHttpHealthCheckArgs{...}
+type GetTargetGroupHttpHealthCheckInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupHttpHealthCheckOutput() GetTargetGroupHttpHealthCheckOutput
+	ToGetTargetGroupHttpHealthCheckOutputWithContext(context.Context) GetTargetGroupHttpHealthCheckOutput
+}
+
+type GetTargetGroupHttpHealthCheckArgs struct {
+	MatchType pulumi.StringInput `pulumi:"matchType"`
+	// The method for the HTTP health check.
+	Method pulumi.StringInput `pulumi:"method"`
+	Negate pulumi.BoolInput   `pulumi:"negate"`
+	// The path (destination URL) for the HTTP health check request; the default is /.
+	Path  pulumi.StringInput `pulumi:"path"`
+	Regex pulumi.BoolInput   `pulumi:"regex"`
+	// The response returned by the request, depending on the match type.
+	Response pulumi.StringInput `pulumi:"response"`
+}
+
+func (GetTargetGroupHttpHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (i GetTargetGroupHttpHealthCheckArgs) ToGetTargetGroupHttpHealthCheckOutput() GetTargetGroupHttpHealthCheckOutput {
+	return i.ToGetTargetGroupHttpHealthCheckOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupHttpHealthCheckArgs) ToGetTargetGroupHttpHealthCheckOutputWithContext(ctx context.Context) GetTargetGroupHttpHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupHttpHealthCheckOutput)
+}
+
+// GetTargetGroupHttpHealthCheckArrayInput is an input type that accepts GetTargetGroupHttpHealthCheckArray and GetTargetGroupHttpHealthCheckArrayOutput values.
+// You can construct a concrete instance of `GetTargetGroupHttpHealthCheckArrayInput` via:
+//
+//	GetTargetGroupHttpHealthCheckArray{ GetTargetGroupHttpHealthCheckArgs{...} }
+type GetTargetGroupHttpHealthCheckArrayInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupHttpHealthCheckArrayOutput() GetTargetGroupHttpHealthCheckArrayOutput
+	ToGetTargetGroupHttpHealthCheckArrayOutputWithContext(context.Context) GetTargetGroupHttpHealthCheckArrayOutput
+}
+
+type GetTargetGroupHttpHealthCheckArray []GetTargetGroupHttpHealthCheckInput
+
+func (GetTargetGroupHttpHealthCheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (i GetTargetGroupHttpHealthCheckArray) ToGetTargetGroupHttpHealthCheckArrayOutput() GetTargetGroupHttpHealthCheckArrayOutput {
+	return i.ToGetTargetGroupHttpHealthCheckArrayOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupHttpHealthCheckArray) ToGetTargetGroupHttpHealthCheckArrayOutputWithContext(ctx context.Context) GetTargetGroupHttpHealthCheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupHttpHealthCheckArrayOutput)
+}
+
+type GetTargetGroupHttpHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupHttpHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (o GetTargetGroupHttpHealthCheckOutput) ToGetTargetGroupHttpHealthCheckOutput() GetTargetGroupHttpHealthCheckOutput {
+	return o
+}
+
+func (o GetTargetGroupHttpHealthCheckOutput) ToGetTargetGroupHttpHealthCheckOutputWithContext(ctx context.Context) GetTargetGroupHttpHealthCheckOutput {
+	return o
+}
+
+func (o GetTargetGroupHttpHealthCheckOutput) MatchType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) string { return v.MatchType }).(pulumi.StringOutput)
+}
+
+// The method for the HTTP health check.
+func (o GetTargetGroupHttpHealthCheckOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) string { return v.Method }).(pulumi.StringOutput)
+}
+
+func (o GetTargetGroupHttpHealthCheckOutput) Negate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) bool { return v.Negate }).(pulumi.BoolOutput)
+}
+
+// The path (destination URL) for the HTTP health check request; the default is /.
+func (o GetTargetGroupHttpHealthCheckOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o GetTargetGroupHttpHealthCheckOutput) Regex() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) bool { return v.Regex }).(pulumi.BoolOutput)
+}
+
+// The response returned by the request, depending on the match type.
+func (o GetTargetGroupHttpHealthCheckOutput) Response() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupHttpHealthCheck) string { return v.Response }).(pulumi.StringOutput)
+}
+
+type GetTargetGroupHttpHealthCheckArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupHttpHealthCheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupHttpHealthCheck)(nil)).Elem()
+}
+
+func (o GetTargetGroupHttpHealthCheckArrayOutput) ToGetTargetGroupHttpHealthCheckArrayOutput() GetTargetGroupHttpHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupHttpHealthCheckArrayOutput) ToGetTargetGroupHttpHealthCheckArrayOutputWithContext(ctx context.Context) GetTargetGroupHttpHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupHttpHealthCheckArrayOutput) Index(i pulumi.IntInput) GetTargetGroupHttpHealthCheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTargetGroupHttpHealthCheck {
+		return vs[0].([]GetTargetGroupHttpHealthCheck)[vs[1].(int)]
+	}).(GetTargetGroupHttpHealthCheckOutput)
+}
+
+type GetTargetGroupTarget struct {
+	// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	HealthCheckEnabled bool `pulumi:"healthCheckEnabled"`
+	// The IP of the balanced target VM.
+	Ip string `pulumi:"ip"`
+	// Maintenance mode prevents the target from receiving balanced traffic.
+	MaintenanceEnabled bool `pulumi:"maintenanceEnabled"`
+	// The port of the balanced target service; valid range is 1 to 65535.
+	Port int `pulumi:"port"`
+	// The proxy protocol version.
+	ProxyProtocol string `pulumi:"proxyProtocol"`
+	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	Weight int `pulumi:"weight"`
+}
+
+// GetTargetGroupTargetInput is an input type that accepts GetTargetGroupTargetArgs and GetTargetGroupTargetOutput values.
+// You can construct a concrete instance of `GetTargetGroupTargetInput` via:
+//
+//	GetTargetGroupTargetArgs{...}
+type GetTargetGroupTargetInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupTargetOutput() GetTargetGroupTargetOutput
+	ToGetTargetGroupTargetOutputWithContext(context.Context) GetTargetGroupTargetOutput
+}
+
+type GetTargetGroupTargetArgs struct {
+	// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+	HealthCheckEnabled pulumi.BoolInput `pulumi:"healthCheckEnabled"`
+	// The IP of the balanced target VM.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// Maintenance mode prevents the target from receiving balanced traffic.
+	MaintenanceEnabled pulumi.BoolInput `pulumi:"maintenanceEnabled"`
+	// The port of the balanced target service; valid range is 1 to 65535.
+	Port pulumi.IntInput `pulumi:"port"`
+	// The proxy protocol version.
+	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
+	// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetTargetGroupTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupTarget)(nil)).Elem()
+}
+
+func (i GetTargetGroupTargetArgs) ToGetTargetGroupTargetOutput() GetTargetGroupTargetOutput {
+	return i.ToGetTargetGroupTargetOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupTargetArgs) ToGetTargetGroupTargetOutputWithContext(ctx context.Context) GetTargetGroupTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupTargetOutput)
+}
+
+// GetTargetGroupTargetArrayInput is an input type that accepts GetTargetGroupTargetArray and GetTargetGroupTargetArrayOutput values.
+// You can construct a concrete instance of `GetTargetGroupTargetArrayInput` via:
+//
+//	GetTargetGroupTargetArray{ GetTargetGroupTargetArgs{...} }
+type GetTargetGroupTargetArrayInput interface {
+	pulumi.Input
+
+	ToGetTargetGroupTargetArrayOutput() GetTargetGroupTargetArrayOutput
+	ToGetTargetGroupTargetArrayOutputWithContext(context.Context) GetTargetGroupTargetArrayOutput
+}
+
+type GetTargetGroupTargetArray []GetTargetGroupTargetInput
+
+func (GetTargetGroupTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupTarget)(nil)).Elem()
+}
+
+func (i GetTargetGroupTargetArray) ToGetTargetGroupTargetArrayOutput() GetTargetGroupTargetArrayOutput {
+	return i.ToGetTargetGroupTargetArrayOutputWithContext(context.Background())
+}
+
+func (i GetTargetGroupTargetArray) ToGetTargetGroupTargetArrayOutputWithContext(ctx context.Context) GetTargetGroupTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTargetGroupTargetArrayOutput)
+}
+
+type GetTargetGroupTargetOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTargetGroupTarget)(nil)).Elem()
+}
+
+func (o GetTargetGroupTargetOutput) ToGetTargetGroupTargetOutput() GetTargetGroupTargetOutput {
+	return o
+}
+
+func (o GetTargetGroupTargetOutput) ToGetTargetGroupTargetOutputWithContext(ctx context.Context) GetTargetGroupTargetOutput {
+	return o
+}
+
+// Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True.
+func (o GetTargetGroupTargetOutput) HealthCheckEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) bool { return v.HealthCheckEnabled }).(pulumi.BoolOutput)
+}
+
+// The IP of the balanced target VM.
+func (o GetTargetGroupTargetOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// Maintenance mode prevents the target from receiving balanced traffic.
+func (o GetTargetGroupTargetOutput) MaintenanceEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) bool { return v.MaintenanceEnabled }).(pulumi.BoolOutput)
+}
+
+// The port of the balanced target service; valid range is 1 to 65535.
+func (o GetTargetGroupTargetOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// The proxy protocol version.
+func (o GetTargetGroupTargetOutput) ProxyProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) string { return v.ProxyProtocol }).(pulumi.StringOutput)
+}
+
+// Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments.
+func (o GetTargetGroupTargetOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetTargetGroupTarget) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetTargetGroupTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTargetGroupTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTargetGroupTarget)(nil)).Elem()
+}
+
+func (o GetTargetGroupTargetArrayOutput) ToGetTargetGroupTargetArrayOutput() GetTargetGroupTargetArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupTargetArrayOutput) ToGetTargetGroupTargetArrayOutputWithContext(ctx context.Context) GetTargetGroupTargetArrayOutput {
+	return o
+}
+
+func (o GetTargetGroupTargetArrayOutput) Index(i pulumi.IntInput) GetTargetGroupTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTargetGroupTarget {
+		return vs[0].([]GetTargetGroupTarget)[vs[1].(int)]
+	}).(GetTargetGroupTargetOutput)
+}
+
 type GetUserGroup struct {
 	// ID of the user you want to search for.
 	//
@@ -8769,6 +10982,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerNicFirewallArrayInput)(nil)).Elem(), ServerNicFirewallArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerVolumeInput)(nil)).Elem(), ServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerVolumePtrInput)(nil)).Elem(), ServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupHealthCheckInput)(nil)).Elem(), TargetGroupHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupHealthCheckPtrInput)(nil)).Elem(), TargetGroupHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupHttpHealthCheckInput)(nil)).Elem(), TargetGroupHttpHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupHttpHealthCheckPtrInput)(nil)).Elem(), TargetGroupHttpHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupTargetInput)(nil)).Elem(), TargetGroupTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TargetGroupTargetArrayInput)(nil)).Elem(), TargetGroupTargetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerLabelInput)(nil)).Elem(), VCPUServerLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerLabelArrayInput)(nil)).Elem(), VCPUServerLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VCPUServerNicInput)(nil)).Elem(), VCPUServerNicArgs{})
@@ -8797,6 +11016,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIPBlockIpConsumerArrayInput)(nil)).Elem(), GetIPBlockIpConsumerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLanIpFailoverInput)(nil)).Elem(), GetLanIpFailoverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLanIpFailoverArrayInput)(nil)).Elem(), GetLanIpFailoverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLocationCpuArchitectureInput)(nil)).Elem(), GetLocationCpuArchitectureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLocationCpuArchitectureArrayInput)(nil)).Elem(), GetLocationCpuArchitectureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNatGatewayLanInput)(nil)).Elem(), GetNatGatewayLanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNatGatewayLanArrayInput)(nil)).Elem(), GetNatGatewayLanArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNatGatewayRuleTargetPortRangeInput)(nil)).Elem(), GetNatGatewayRuleTargetPortRangeArgs{})
@@ -8813,6 +11034,26 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerNicFirewallRuleArrayInput)(nil)).Elem(), GetServerNicFirewallRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerVolumeInput)(nil)).Elem(), GetServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerVolumeArrayInput)(nil)).Elem(), GetServerVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersFilterInput)(nil)).Elem(), GetServersFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersFilterArrayInput)(nil)).Elem(), GetServersFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerInput)(nil)).Elem(), GetServersServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerArrayInput)(nil)).Elem(), GetServersServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerCdromInput)(nil)).Elem(), GetServersServerCdromArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerCdromArrayInput)(nil)).Elem(), GetServersServerCdromArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerLabelInput)(nil)).Elem(), GetServersServerLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerLabelArrayInput)(nil)).Elem(), GetServersServerLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerNicInput)(nil)).Elem(), GetServersServerNicArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerNicArrayInput)(nil)).Elem(), GetServersServerNicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerNicFirewallRuleInput)(nil)).Elem(), GetServersServerNicFirewallRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerNicFirewallRuleArrayInput)(nil)).Elem(), GetServersServerNicFirewallRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerVolumeInput)(nil)).Elem(), GetServersServerVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerVolumeArrayInput)(nil)).Elem(), GetServersServerVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupHealthCheckInput)(nil)).Elem(), GetTargetGroupHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupHealthCheckArrayInput)(nil)).Elem(), GetTargetGroupHealthCheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupHttpHealthCheckInput)(nil)).Elem(), GetTargetGroupHttpHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupHttpHealthCheckArrayInput)(nil)).Elem(), GetTargetGroupHttpHealthCheckArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupTargetInput)(nil)).Elem(), GetTargetGroupTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTargetGroupTargetArrayInput)(nil)).Elem(), GetTargetGroupTargetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupInput)(nil)).Elem(), GetUserGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUserGroupArrayInput)(nil)).Elem(), GetUserGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVCPUServerCdromInput)(nil)).Elem(), GetVCPUServerCdromArgs{})
@@ -8857,6 +11098,12 @@ func init() {
 	pulumi.RegisterOutputType(ServerNicFirewallArrayOutput{})
 	pulumi.RegisterOutputType(ServerVolumeOutput{})
 	pulumi.RegisterOutputType(ServerVolumePtrOutput{})
+	pulumi.RegisterOutputType(TargetGroupHealthCheckOutput{})
+	pulumi.RegisterOutputType(TargetGroupHealthCheckPtrOutput{})
+	pulumi.RegisterOutputType(TargetGroupHttpHealthCheckOutput{})
+	pulumi.RegisterOutputType(TargetGroupHttpHealthCheckPtrOutput{})
+	pulumi.RegisterOutputType(TargetGroupTargetOutput{})
+	pulumi.RegisterOutputType(TargetGroupTargetArrayOutput{})
 	pulumi.RegisterOutputType(VCPUServerLabelOutput{})
 	pulumi.RegisterOutputType(VCPUServerLabelArrayOutput{})
 	pulumi.RegisterOutputType(VCPUServerNicOutput{})
@@ -8885,6 +11132,8 @@ func init() {
 	pulumi.RegisterOutputType(GetIPBlockIpConsumerArrayOutput{})
 	pulumi.RegisterOutputType(GetLanIpFailoverOutput{})
 	pulumi.RegisterOutputType(GetLanIpFailoverArrayOutput{})
+	pulumi.RegisterOutputType(GetLocationCpuArchitectureOutput{})
+	pulumi.RegisterOutputType(GetLocationCpuArchitectureArrayOutput{})
 	pulumi.RegisterOutputType(GetNatGatewayLanOutput{})
 	pulumi.RegisterOutputType(GetNatGatewayLanArrayOutput{})
 	pulumi.RegisterOutputType(GetNatGatewayRuleTargetPortRangeOutput{})
@@ -8901,6 +11150,26 @@ func init() {
 	pulumi.RegisterOutputType(GetServerNicFirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetServerVolumeOutput{})
 	pulumi.RegisterOutputType(GetServerVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetServersFilterOutput{})
+	pulumi.RegisterOutputType(GetServersFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerOutput{})
+	pulumi.RegisterOutputType(GetServersServerArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerCdromOutput{})
+	pulumi.RegisterOutputType(GetServersServerCdromArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerLabelOutput{})
+	pulumi.RegisterOutputType(GetServersServerLabelArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerNicOutput{})
+	pulumi.RegisterOutputType(GetServersServerNicArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerNicFirewallRuleOutput{})
+	pulumi.RegisterOutputType(GetServersServerNicFirewallRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerVolumeOutput{})
+	pulumi.RegisterOutputType(GetServersServerVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupHealthCheckOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupHealthCheckArrayOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupHttpHealthCheckOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupHttpHealthCheckArrayOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupTargetOutput{})
+	pulumi.RegisterOutputType(GetTargetGroupTargetArrayOutput{})
 	pulumi.RegisterOutputType(GetUserGroupOutput{})
 	pulumi.RegisterOutputType(GetUserGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetVCPUServerCdromOutput{})

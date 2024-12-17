@@ -539,7 +539,7 @@ class Snapshot(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.get_image(type="HDD",
+        example_image = ionoscloud.compute.get_image(type="HDD",
             image_alias="ubuntu:latest",
             location="us/las")
         example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
@@ -614,7 +614,7 @@ class Snapshot(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.get_image(type="HDD",
+        example_image = ionoscloud.compute.get_image(type="HDD",
             image_alias="ubuntu:latest",
             location="us/las")
         example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",

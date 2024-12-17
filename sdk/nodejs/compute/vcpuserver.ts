@@ -54,7 +54,7 @@ export class VCPUServer extends pulumi.CustomResource {
      */
     public readonly availabilityZone!: pulumi.Output<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
@@ -226,7 +226,7 @@ export interface VCPUServerState {
      */
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
@@ -320,7 +320,7 @@ export interface VCPUServerArgs {
      */
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.getImage data source.
+     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */

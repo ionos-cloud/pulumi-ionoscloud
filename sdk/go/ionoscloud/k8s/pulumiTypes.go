@@ -1435,6 +1435,959 @@ func (o GetClusterS3BucketArrayOutput) Index(i pulumi.IntInput) GetClusterS3Buck
 	}).(GetClusterS3BucketOutput)
 }
 
+type GetClustersCluster struct {
+	// Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+	ApiSubnetAllowLists []string `pulumi:"apiSubnetAllowLists"`
+	// A list of available versions for upgrading the cluster
+	AvailableUpgradeVersions []string                   `pulumi:"availableUpgradeVersions"`
+	CaCrt                    string                     `pulumi:"caCrt"`
+	Configs                  []GetClustersClusterConfig `pulumi:"configs"`
+	Id                       *string                    `pulumi:"id"`
+	K8sVersion               string                     `pulumi:"k8sVersion"`
+	KubeConfig               string                     `pulumi:"kubeConfig"`
+	Location                 string                     `pulumi:"location"`
+	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+	MaintenanceWindows []GetClustersClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
+	Name               *string                               `pulumi:"name"`
+	// The NAT gateway IP of the cluster if the cluster is private.
+	NatGatewayIp string   `pulumi:"natGatewayIp"`
+	NodePools    []string `pulumi:"nodePools"`
+	// The node subnet of the cluster, if the cluster is private.
+	NodeSubnet string `pulumi:"nodeSubnet"`
+	// The indicator if the cluster is public or private.
+	Public bool `pulumi:"public"`
+	// List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+	S3Buckets  []GetClustersClusterS3Bucket `pulumi:"s3Buckets"`
+	Server     string                       `pulumi:"server"`
+	State      string                       `pulumi:"state"`
+	UserTokens map[string]string            `pulumi:"userTokens"`
+	// A list of versions that may be used for node pools under this cluster
+	ViableNodePoolVersions []string `pulumi:"viableNodePoolVersions"`
+}
+
+// GetClustersClusterInput is an input type that accepts GetClustersClusterArgs and GetClustersClusterOutput values.
+// You can construct a concrete instance of `GetClustersClusterInput` via:
+//
+//	GetClustersClusterArgs{...}
+type GetClustersClusterInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterOutput() GetClustersClusterOutput
+	ToGetClustersClusterOutputWithContext(context.Context) GetClustersClusterOutput
+}
+
+type GetClustersClusterArgs struct {
+	// Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+	ApiSubnetAllowLists pulumi.StringArrayInput `pulumi:"apiSubnetAllowLists"`
+	// A list of available versions for upgrading the cluster
+	AvailableUpgradeVersions pulumi.StringArrayInput            `pulumi:"availableUpgradeVersions"`
+	CaCrt                    pulumi.StringInput                 `pulumi:"caCrt"`
+	Configs                  GetClustersClusterConfigArrayInput `pulumi:"configs"`
+	Id                       pulumi.StringPtrInput              `pulumi:"id"`
+	K8sVersion               pulumi.StringInput                 `pulumi:"k8sVersion"`
+	KubeConfig               pulumi.StringInput                 `pulumi:"kubeConfig"`
+	Location                 pulumi.StringInput                 `pulumi:"location"`
+	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+	MaintenanceWindows GetClustersClusterMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
+	Name               pulumi.StringPtrInput                         `pulumi:"name"`
+	// The NAT gateway IP of the cluster if the cluster is private.
+	NatGatewayIp pulumi.StringInput      `pulumi:"natGatewayIp"`
+	NodePools    pulumi.StringArrayInput `pulumi:"nodePools"`
+	// The node subnet of the cluster, if the cluster is private.
+	NodeSubnet pulumi.StringInput `pulumi:"nodeSubnet"`
+	// The indicator if the cluster is public or private.
+	Public pulumi.BoolInput `pulumi:"public"`
+	// List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+	S3Buckets  GetClustersClusterS3BucketArrayInput `pulumi:"s3Buckets"`
+	Server     pulumi.StringInput                   `pulumi:"server"`
+	State      pulumi.StringInput                   `pulumi:"state"`
+	UserTokens pulumi.StringMapInput                `pulumi:"userTokens"`
+	// A list of versions that may be used for node pools under this cluster
+	ViableNodePoolVersions pulumi.StringArrayInput `pulumi:"viableNodePoolVersions"`
+}
+
+func (GetClustersClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return i.ToGetClustersClusterOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArgs) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterOutput)
+}
+
+// GetClustersClusterArrayInput is an input type that accepts GetClustersClusterArray and GetClustersClusterArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterArrayInput` via:
+//
+//	GetClustersClusterArray{ GetClustersClusterArgs{...} }
+type GetClustersClusterArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput
+	ToGetClustersClusterArrayOutputWithContext(context.Context) GetClustersClusterArrayOutput
+}
+
+type GetClustersClusterArray []GetClustersClusterInput
+
+func (GetClustersClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return i.ToGetClustersClusterArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterArray) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterArrayOutput)
+}
+
+type GetClustersClusterOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutput() GetClustersClusterOutput {
+	return o
+}
+
+func (o GetClustersClusterOutput) ToGetClustersClusterOutputWithContext(ctx context.Context) GetClustersClusterOutput {
+	return o
+}
+
+// Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+func (o GetClustersClusterOutput) ApiSubnetAllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []string { return v.ApiSubnetAllowLists }).(pulumi.StringArrayOutput)
+}
+
+// A list of available versions for upgrading the cluster
+func (o GetClustersClusterOutput) AvailableUpgradeVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []string { return v.AvailableUpgradeVersions }).(pulumi.StringArrayOutput)
+}
+
+func (o GetClustersClusterOutput) CaCrt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.CaCrt }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) Configs() GetClustersClusterConfigArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterConfig { return v.Configs }).(GetClustersClusterConfigArrayOutput)
+}
+
+func (o GetClustersClusterOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersCluster) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o GetClustersClusterOutput) K8sVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.K8sVersion }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) KubeConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.KubeConfig }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+func (o GetClustersClusterOutput) MaintenanceWindows() GetClustersClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetClustersClusterMaintenanceWindowArrayOutput)
+}
+
+func (o GetClustersClusterOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetClustersCluster) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The NAT gateway IP of the cluster if the cluster is private.
+func (o GetClustersClusterOutput) NatGatewayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.NatGatewayIp }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) NodePools() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []string { return v.NodePools }).(pulumi.StringArrayOutput)
+}
+
+// The node subnet of the cluster, if the cluster is private.
+func (o GetClustersClusterOutput) NodeSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.NodeSubnet }).(pulumi.StringOutput)
+}
+
+// The indicator if the cluster is public or private.
+func (o GetClustersClusterOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClustersCluster) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+// List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+func (o GetClustersClusterOutput) S3Buckets() GetClustersClusterS3BucketArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterS3Bucket { return v.S3Buckets }).(GetClustersClusterS3BucketArrayOutput)
+}
+
+func (o GetClustersClusterOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.State }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterOutput) UserTokens() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersCluster) map[string]string { return v.UserTokens }).(pulumi.StringMapOutput)
+}
+
+// A list of versions that may be used for node pools under this cluster
+func (o GetClustersClusterOutput) ViableNodePoolVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClustersCluster) []string { return v.ViableNodePoolVersions }).(pulumi.StringArrayOutput)
+}
+
+type GetClustersClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutput() GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) ToGetClustersClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersCluster {
+		return vs[0].([]GetClustersCluster)[vs[1].(int)]
+	}).(GetClustersClusterOutput)
+}
+
+type GetClustersClusterConfig struct {
+	ApiVersion     string                            `pulumi:"apiVersion"`
+	Clusters       []GetClustersClusterConfigCluster `pulumi:"clusters"`
+	Contexts       []GetClustersClusterConfigContext `pulumi:"contexts"`
+	CurrentContext string                            `pulumi:"currentContext"`
+	Kind           string                            `pulumi:"kind"`
+	Users          []GetClustersClusterConfigUser    `pulumi:"users"`
+}
+
+// GetClustersClusterConfigInput is an input type that accepts GetClustersClusterConfigArgs and GetClustersClusterConfigOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigInput` via:
+//
+//	GetClustersClusterConfigArgs{...}
+type GetClustersClusterConfigInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigOutput() GetClustersClusterConfigOutput
+	ToGetClustersClusterConfigOutputWithContext(context.Context) GetClustersClusterConfigOutput
+}
+
+type GetClustersClusterConfigArgs struct {
+	ApiVersion     pulumi.StringInput                        `pulumi:"apiVersion"`
+	Clusters       GetClustersClusterConfigClusterArrayInput `pulumi:"clusters"`
+	Contexts       GetClustersClusterConfigContextArrayInput `pulumi:"contexts"`
+	CurrentContext pulumi.StringInput                        `pulumi:"currentContext"`
+	Kind           pulumi.StringInput                        `pulumi:"kind"`
+	Users          GetClustersClusterConfigUserArrayInput    `pulumi:"users"`
+}
+
+func (GetClustersClusterConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigArgs) ToGetClustersClusterConfigOutput() GetClustersClusterConfigOutput {
+	return i.ToGetClustersClusterConfigOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigArgs) ToGetClustersClusterConfigOutputWithContext(ctx context.Context) GetClustersClusterConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigOutput)
+}
+
+// GetClustersClusterConfigArrayInput is an input type that accepts GetClustersClusterConfigArray and GetClustersClusterConfigArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigArrayInput` via:
+//
+//	GetClustersClusterConfigArray{ GetClustersClusterConfigArgs{...} }
+type GetClustersClusterConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigArrayOutput() GetClustersClusterConfigArrayOutput
+	ToGetClustersClusterConfigArrayOutputWithContext(context.Context) GetClustersClusterConfigArrayOutput
+}
+
+type GetClustersClusterConfigArray []GetClustersClusterConfigInput
+
+func (GetClustersClusterConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfig)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigArray) ToGetClustersClusterConfigArrayOutput() GetClustersClusterConfigArrayOutput {
+	return i.ToGetClustersClusterConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigArray) ToGetClustersClusterConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigArrayOutput)
+}
+
+type GetClustersClusterConfigOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigOutput) ToGetClustersClusterConfigOutput() GetClustersClusterConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigOutput) ToGetClustersClusterConfigOutputWithContext(ctx context.Context) GetClustersClusterConfigOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigOutput) ApiVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) string { return v.ApiVersion }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterConfigOutput) Clusters() GetClustersClusterConfigClusterArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) []GetClustersClusterConfigCluster { return v.Clusters }).(GetClustersClusterConfigClusterArrayOutput)
+}
+
+func (o GetClustersClusterConfigOutput) Contexts() GetClustersClusterConfigContextArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) []GetClustersClusterConfigContext { return v.Contexts }).(GetClustersClusterConfigContextArrayOutput)
+}
+
+func (o GetClustersClusterConfigOutput) CurrentContext() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) string { return v.CurrentContext }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterConfigOutput) Kind() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) string { return v.Kind }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterConfigOutput) Users() GetClustersClusterConfigUserArrayOutput {
+	return o.ApplyT(func(v GetClustersClusterConfig) []GetClustersClusterConfigUser { return v.Users }).(GetClustersClusterConfigUserArrayOutput)
+}
+
+type GetClustersClusterConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfig)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigArrayOutput) ToGetClustersClusterConfigArrayOutput() GetClustersClusterConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigArrayOutput) ToGetClustersClusterConfigArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigArrayOutput) Index(i pulumi.IntInput) GetClustersClusterConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterConfig {
+		return vs[0].([]GetClustersClusterConfig)[vs[1].(int)]
+	}).(GetClustersClusterConfigOutput)
+}
+
+type GetClustersClusterConfigCluster struct {
+	Cluster map[string]string `pulumi:"cluster"`
+	Name    string            `pulumi:"name"`
+}
+
+// GetClustersClusterConfigClusterInput is an input type that accepts GetClustersClusterConfigClusterArgs and GetClustersClusterConfigClusterOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigClusterInput` via:
+//
+//	GetClustersClusterConfigClusterArgs{...}
+type GetClustersClusterConfigClusterInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigClusterOutput() GetClustersClusterConfigClusterOutput
+	ToGetClustersClusterConfigClusterOutputWithContext(context.Context) GetClustersClusterConfigClusterOutput
+}
+
+type GetClustersClusterConfigClusterArgs struct {
+	Cluster pulumi.StringMapInput `pulumi:"cluster"`
+	Name    pulumi.StringInput    `pulumi:"name"`
+}
+
+func (GetClustersClusterConfigClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigClusterArgs) ToGetClustersClusterConfigClusterOutput() GetClustersClusterConfigClusterOutput {
+	return i.ToGetClustersClusterConfigClusterOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigClusterArgs) ToGetClustersClusterConfigClusterOutputWithContext(ctx context.Context) GetClustersClusterConfigClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigClusterOutput)
+}
+
+// GetClustersClusterConfigClusterArrayInput is an input type that accepts GetClustersClusterConfigClusterArray and GetClustersClusterConfigClusterArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigClusterArrayInput` via:
+//
+//	GetClustersClusterConfigClusterArray{ GetClustersClusterConfigClusterArgs{...} }
+type GetClustersClusterConfigClusterArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigClusterArrayOutput() GetClustersClusterConfigClusterArrayOutput
+	ToGetClustersClusterConfigClusterArrayOutputWithContext(context.Context) GetClustersClusterConfigClusterArrayOutput
+}
+
+type GetClustersClusterConfigClusterArray []GetClustersClusterConfigClusterInput
+
+func (GetClustersClusterConfigClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigCluster)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigClusterArray) ToGetClustersClusterConfigClusterArrayOutput() GetClustersClusterConfigClusterArrayOutput {
+	return i.ToGetClustersClusterConfigClusterArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigClusterArray) ToGetClustersClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigClusterArrayOutput)
+}
+
+type GetClustersClusterConfigClusterOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigClusterOutput) ToGetClustersClusterConfigClusterOutput() GetClustersClusterConfigClusterOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigClusterOutput) ToGetClustersClusterConfigClusterOutputWithContext(ctx context.Context) GetClustersClusterConfigClusterOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigClusterOutput) Cluster() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigCluster) map[string]string { return v.Cluster }).(pulumi.StringMapOutput)
+}
+
+func (o GetClustersClusterConfigClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigCluster) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterConfigClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigCluster)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigClusterArrayOutput) ToGetClustersClusterConfigClusterArrayOutput() GetClustersClusterConfigClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigClusterArrayOutput) ToGetClustersClusterConfigClusterArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigClusterArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClusterConfigClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterConfigCluster {
+		return vs[0].([]GetClustersClusterConfigCluster)[vs[1].(int)]
+	}).(GetClustersClusterConfigClusterOutput)
+}
+
+type GetClustersClusterConfigContext struct {
+	Context map[string]string `pulumi:"context"`
+	Name    string            `pulumi:"name"`
+}
+
+// GetClustersClusterConfigContextInput is an input type that accepts GetClustersClusterConfigContextArgs and GetClustersClusterConfigContextOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigContextInput` via:
+//
+//	GetClustersClusterConfigContextArgs{...}
+type GetClustersClusterConfigContextInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigContextOutput() GetClustersClusterConfigContextOutput
+	ToGetClustersClusterConfigContextOutputWithContext(context.Context) GetClustersClusterConfigContextOutput
+}
+
+type GetClustersClusterConfigContextArgs struct {
+	Context pulumi.StringMapInput `pulumi:"context"`
+	Name    pulumi.StringInput    `pulumi:"name"`
+}
+
+func (GetClustersClusterConfigContextArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigContext)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigContextArgs) ToGetClustersClusterConfigContextOutput() GetClustersClusterConfigContextOutput {
+	return i.ToGetClustersClusterConfigContextOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigContextArgs) ToGetClustersClusterConfigContextOutputWithContext(ctx context.Context) GetClustersClusterConfigContextOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigContextOutput)
+}
+
+// GetClustersClusterConfigContextArrayInput is an input type that accepts GetClustersClusterConfigContextArray and GetClustersClusterConfigContextArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigContextArrayInput` via:
+//
+//	GetClustersClusterConfigContextArray{ GetClustersClusterConfigContextArgs{...} }
+type GetClustersClusterConfigContextArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigContextArrayOutput() GetClustersClusterConfigContextArrayOutput
+	ToGetClustersClusterConfigContextArrayOutputWithContext(context.Context) GetClustersClusterConfigContextArrayOutput
+}
+
+type GetClustersClusterConfigContextArray []GetClustersClusterConfigContextInput
+
+func (GetClustersClusterConfigContextArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigContext)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigContextArray) ToGetClustersClusterConfigContextArrayOutput() GetClustersClusterConfigContextArrayOutput {
+	return i.ToGetClustersClusterConfigContextArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigContextArray) ToGetClustersClusterConfigContextArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigContextArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigContextArrayOutput)
+}
+
+type GetClustersClusterConfigContextOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigContextOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigContext)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigContextOutput) ToGetClustersClusterConfigContextOutput() GetClustersClusterConfigContextOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigContextOutput) ToGetClustersClusterConfigContextOutputWithContext(ctx context.Context) GetClustersClusterConfigContextOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigContextOutput) Context() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigContext) map[string]string { return v.Context }).(pulumi.StringMapOutput)
+}
+
+func (o GetClustersClusterConfigContextOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigContext) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterConfigContextArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigContextArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigContext)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigContextArrayOutput) ToGetClustersClusterConfigContextArrayOutput() GetClustersClusterConfigContextArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigContextArrayOutput) ToGetClustersClusterConfigContextArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigContextArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigContextArrayOutput) Index(i pulumi.IntInput) GetClustersClusterConfigContextOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterConfigContext {
+		return vs[0].([]GetClustersClusterConfigContext)[vs[1].(int)]
+	}).(GetClustersClusterConfigContextOutput)
+}
+
+type GetClustersClusterConfigUser struct {
+	Name string            `pulumi:"name"`
+	User map[string]string `pulumi:"user"`
+}
+
+// GetClustersClusterConfigUserInput is an input type that accepts GetClustersClusterConfigUserArgs and GetClustersClusterConfigUserOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigUserInput` via:
+//
+//	GetClustersClusterConfigUserArgs{...}
+type GetClustersClusterConfigUserInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigUserOutput() GetClustersClusterConfigUserOutput
+	ToGetClustersClusterConfigUserOutputWithContext(context.Context) GetClustersClusterConfigUserOutput
+}
+
+type GetClustersClusterConfigUserArgs struct {
+	Name pulumi.StringInput    `pulumi:"name"`
+	User pulumi.StringMapInput `pulumi:"user"`
+}
+
+func (GetClustersClusterConfigUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigUser)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigUserArgs) ToGetClustersClusterConfigUserOutput() GetClustersClusterConfigUserOutput {
+	return i.ToGetClustersClusterConfigUserOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigUserArgs) ToGetClustersClusterConfigUserOutputWithContext(ctx context.Context) GetClustersClusterConfigUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigUserOutput)
+}
+
+// GetClustersClusterConfigUserArrayInput is an input type that accepts GetClustersClusterConfigUserArray and GetClustersClusterConfigUserArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterConfigUserArrayInput` via:
+//
+//	GetClustersClusterConfigUserArray{ GetClustersClusterConfigUserArgs{...} }
+type GetClustersClusterConfigUserArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterConfigUserArrayOutput() GetClustersClusterConfigUserArrayOutput
+	ToGetClustersClusterConfigUserArrayOutputWithContext(context.Context) GetClustersClusterConfigUserArrayOutput
+}
+
+type GetClustersClusterConfigUserArray []GetClustersClusterConfigUserInput
+
+func (GetClustersClusterConfigUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigUser)(nil)).Elem()
+}
+
+func (i GetClustersClusterConfigUserArray) ToGetClustersClusterConfigUserArrayOutput() GetClustersClusterConfigUserArrayOutput {
+	return i.ToGetClustersClusterConfigUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterConfigUserArray) ToGetClustersClusterConfigUserArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterConfigUserArrayOutput)
+}
+
+type GetClustersClusterConfigUserOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterConfigUser)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigUserOutput) ToGetClustersClusterConfigUserOutput() GetClustersClusterConfigUserOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigUserOutput) ToGetClustersClusterConfigUserOutputWithContext(ctx context.Context) GetClustersClusterConfigUserOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigUser) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetClustersClusterConfigUserOutput) User() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClustersClusterConfigUser) map[string]string { return v.User }).(pulumi.StringMapOutput)
+}
+
+type GetClustersClusterConfigUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterConfigUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterConfigUser)(nil)).Elem()
+}
+
+func (o GetClustersClusterConfigUserArrayOutput) ToGetClustersClusterConfigUserArrayOutput() GetClustersClusterConfigUserArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigUserArrayOutput) ToGetClustersClusterConfigUserArrayOutputWithContext(ctx context.Context) GetClustersClusterConfigUserArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterConfigUserArrayOutput) Index(i pulumi.IntInput) GetClustersClusterConfigUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterConfigUser {
+		return vs[0].([]GetClustersClusterConfigUser)[vs[1].(int)]
+	}).(GetClustersClusterConfigUserOutput)
+}
+
+type GetClustersClusterMaintenanceWindow struct {
+	// Day of the week when maintenance is allowed
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// A clock time in the day when maintenance is allowed
+	Time string `pulumi:"time"`
+}
+
+// GetClustersClusterMaintenanceWindowInput is an input type that accepts GetClustersClusterMaintenanceWindowArgs and GetClustersClusterMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetClustersClusterMaintenanceWindowInput` via:
+//
+//	GetClustersClusterMaintenanceWindowArgs{...}
+type GetClustersClusterMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterMaintenanceWindowOutput() GetClustersClusterMaintenanceWindowOutput
+	ToGetClustersClusterMaintenanceWindowOutputWithContext(context.Context) GetClustersClusterMaintenanceWindowOutput
+}
+
+type GetClustersClusterMaintenanceWindowArgs struct {
+	// Day of the week when maintenance is allowed
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// A clock time in the day when maintenance is allowed
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetClustersClusterMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetClustersClusterMaintenanceWindowArgs) ToGetClustersClusterMaintenanceWindowOutput() GetClustersClusterMaintenanceWindowOutput {
+	return i.ToGetClustersClusterMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterMaintenanceWindowArgs) ToGetClustersClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetClustersClusterMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterMaintenanceWindowOutput)
+}
+
+// GetClustersClusterMaintenanceWindowArrayInput is an input type that accepts GetClustersClusterMaintenanceWindowArray and GetClustersClusterMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterMaintenanceWindowArrayInput` via:
+//
+//	GetClustersClusterMaintenanceWindowArray{ GetClustersClusterMaintenanceWindowArgs{...} }
+type GetClustersClusterMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterMaintenanceWindowArrayOutput() GetClustersClusterMaintenanceWindowArrayOutput
+	ToGetClustersClusterMaintenanceWindowArrayOutputWithContext(context.Context) GetClustersClusterMaintenanceWindowArrayOutput
+}
+
+type GetClustersClusterMaintenanceWindowArray []GetClustersClusterMaintenanceWindowInput
+
+func (GetClustersClusterMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetClustersClusterMaintenanceWindowArray) ToGetClustersClusterMaintenanceWindowArrayOutput() GetClustersClusterMaintenanceWindowArrayOutput {
+	return i.ToGetClustersClusterMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterMaintenanceWindowArray) ToGetClustersClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetClustersClusterMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterMaintenanceWindowArrayOutput)
+}
+
+type GetClustersClusterMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetClustersClusterMaintenanceWindowOutput) ToGetClustersClusterMaintenanceWindowOutput() GetClustersClusterMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetClustersClusterMaintenanceWindowOutput) ToGetClustersClusterMaintenanceWindowOutputWithContext(ctx context.Context) GetClustersClusterMaintenanceWindowOutput {
+	return o
+}
+
+// Day of the week when maintenance is allowed
+func (o GetClustersClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// A clock time in the day when maintenance is allowed
+func (o GetClustersClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetClustersClusterMaintenanceWindowArrayOutput) ToGetClustersClusterMaintenanceWindowArrayOutput() GetClustersClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterMaintenanceWindowArrayOutput) ToGetClustersClusterMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetClustersClusterMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetClustersClusterMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterMaintenanceWindow {
+		return vs[0].([]GetClustersClusterMaintenanceWindow)[vs[1].(int)]
+	}).(GetClustersClusterMaintenanceWindowOutput)
+}
+
+type GetClustersClusterS3Bucket struct {
+	// Name of the Object Storage bucket
+	Name string `pulumi:"name"`
+}
+
+// GetClustersClusterS3BucketInput is an input type that accepts GetClustersClusterS3BucketArgs and GetClustersClusterS3BucketOutput values.
+// You can construct a concrete instance of `GetClustersClusterS3BucketInput` via:
+//
+//	GetClustersClusterS3BucketArgs{...}
+type GetClustersClusterS3BucketInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterS3BucketOutput() GetClustersClusterS3BucketOutput
+	ToGetClustersClusterS3BucketOutputWithContext(context.Context) GetClustersClusterS3BucketOutput
+}
+
+type GetClustersClusterS3BucketArgs struct {
+	// Name of the Object Storage bucket
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetClustersClusterS3BucketArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterS3Bucket)(nil)).Elem()
+}
+
+func (i GetClustersClusterS3BucketArgs) ToGetClustersClusterS3BucketOutput() GetClustersClusterS3BucketOutput {
+	return i.ToGetClustersClusterS3BucketOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterS3BucketArgs) ToGetClustersClusterS3BucketOutputWithContext(ctx context.Context) GetClustersClusterS3BucketOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterS3BucketOutput)
+}
+
+// GetClustersClusterS3BucketArrayInput is an input type that accepts GetClustersClusterS3BucketArray and GetClustersClusterS3BucketArrayOutput values.
+// You can construct a concrete instance of `GetClustersClusterS3BucketArrayInput` via:
+//
+//	GetClustersClusterS3BucketArray{ GetClustersClusterS3BucketArgs{...} }
+type GetClustersClusterS3BucketArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersClusterS3BucketArrayOutput() GetClustersClusterS3BucketArrayOutput
+	ToGetClustersClusterS3BucketArrayOutputWithContext(context.Context) GetClustersClusterS3BucketArrayOutput
+}
+
+type GetClustersClusterS3BucketArray []GetClustersClusterS3BucketInput
+
+func (GetClustersClusterS3BucketArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterS3Bucket)(nil)).Elem()
+}
+
+func (i GetClustersClusterS3BucketArray) ToGetClustersClusterS3BucketArrayOutput() GetClustersClusterS3BucketArrayOutput {
+	return i.ToGetClustersClusterS3BucketArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersClusterS3BucketArray) ToGetClustersClusterS3BucketArrayOutputWithContext(ctx context.Context) GetClustersClusterS3BucketArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersClusterS3BucketArrayOutput)
+}
+
+type GetClustersClusterS3BucketOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterS3BucketOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersClusterS3Bucket)(nil)).Elem()
+}
+
+func (o GetClustersClusterS3BucketOutput) ToGetClustersClusterS3BucketOutput() GetClustersClusterS3BucketOutput {
+	return o
+}
+
+func (o GetClustersClusterS3BucketOutput) ToGetClustersClusterS3BucketOutputWithContext(ctx context.Context) GetClustersClusterS3BucketOutput {
+	return o
+}
+
+// Name of the Object Storage bucket
+func (o GetClustersClusterS3BucketOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersClusterS3Bucket) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetClustersClusterS3BucketArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersClusterS3BucketArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersClusterS3Bucket)(nil)).Elem()
+}
+
+func (o GetClustersClusterS3BucketArrayOutput) ToGetClustersClusterS3BucketArrayOutput() GetClustersClusterS3BucketArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterS3BucketArrayOutput) ToGetClustersClusterS3BucketArrayOutputWithContext(ctx context.Context) GetClustersClusterS3BucketArrayOutput {
+	return o
+}
+
+func (o GetClustersClusterS3BucketArrayOutput) Index(i pulumi.IntInput) GetClustersClusterS3BucketOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersClusterS3Bucket {
+		return vs[0].([]GetClustersClusterS3Bucket)[vs[1].(int)]
+	}).(GetClustersClusterS3BucketOutput)
+}
+
+type GetClustersFilter struct {
+	Name  string `pulumi:"name"`
+	Value string `pulumi:"value"`
+}
+
+// GetClustersFilterInput is an input type that accepts GetClustersFilterArgs and GetClustersFilterOutput values.
+// You can construct a concrete instance of `GetClustersFilterInput` via:
+//
+//	GetClustersFilterArgs{...}
+type GetClustersFilterInput interface {
+	pulumi.Input
+
+	ToGetClustersFilterOutput() GetClustersFilterOutput
+	ToGetClustersFilterOutputWithContext(context.Context) GetClustersFilterOutput
+}
+
+type GetClustersFilterArgs struct {
+	Name  pulumi.StringInput `pulumi:"name"`
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetClustersFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersFilter)(nil)).Elem()
+}
+
+func (i GetClustersFilterArgs) ToGetClustersFilterOutput() GetClustersFilterOutput {
+	return i.ToGetClustersFilterOutputWithContext(context.Background())
+}
+
+func (i GetClustersFilterArgs) ToGetClustersFilterOutputWithContext(ctx context.Context) GetClustersFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersFilterOutput)
+}
+
+// GetClustersFilterArrayInput is an input type that accepts GetClustersFilterArray and GetClustersFilterArrayOutput values.
+// You can construct a concrete instance of `GetClustersFilterArrayInput` via:
+//
+//	GetClustersFilterArray{ GetClustersFilterArgs{...} }
+type GetClustersFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetClustersFilterArrayOutput() GetClustersFilterArrayOutput
+	ToGetClustersFilterArrayOutputWithContext(context.Context) GetClustersFilterArrayOutput
+}
+
+type GetClustersFilterArray []GetClustersFilterInput
+
+func (GetClustersFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersFilter)(nil)).Elem()
+}
+
+func (i GetClustersFilterArray) ToGetClustersFilterArrayOutput() GetClustersFilterArrayOutput {
+	return i.ToGetClustersFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetClustersFilterArray) ToGetClustersFilterArrayOutputWithContext(ctx context.Context) GetClustersFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClustersFilterArrayOutput)
+}
+
+type GetClustersFilterOutput struct{ *pulumi.OutputState }
+
+func (GetClustersFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClustersFilter)(nil)).Elem()
+}
+
+func (o GetClustersFilterOutput) ToGetClustersFilterOutput() GetClustersFilterOutput {
+	return o
+}
+
+func (o GetClustersFilterOutput) ToGetClustersFilterOutputWithContext(ctx context.Context) GetClustersFilterOutput {
+	return o
+}
+
+func (o GetClustersFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetClustersFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetClustersFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClustersFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClustersFilter)(nil)).Elem()
+}
+
+func (o GetClustersFilterArrayOutput) ToGetClustersFilterArrayOutput() GetClustersFilterArrayOutput {
+	return o
+}
+
+func (o GetClustersFilterArrayOutput) ToGetClustersFilterArrayOutputWithContext(ctx context.Context) GetClustersFilterArrayOutput {
+	return o
+}
+
+func (o GetClustersFilterArrayOutput) Index(i pulumi.IntInput) GetClustersFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClustersFilter {
+		return vs[0].([]GetClustersFilter)[vs[1].(int)]
+	}).(GetClustersFilterOutput)
+}
+
 type GetNodePoolAutoScaling struct {
 	// The maximum number of worker nodes that the node pool can scale to
 	MaxNodeCount int `pulumi:"maxNodeCount"`
@@ -1874,6 +2827,145 @@ func (o GetNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetNod
 	}).(GetNodePoolMaintenanceWindowOutput)
 }
 
+type GetNodePoolNodesNode struct {
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and `nodePoolId` must be provided.
+	Id *string `pulumi:"id"`
+	// The kubernetes version
+	K8sVersion string `pulumi:"k8sVersion"`
+	// Name of an existing node pool that you want to search for.
+	Name *string `pulumi:"name"`
+	// private ip of the node
+	PrivateIp *string `pulumi:"privateIp"`
+	// public ip of the node
+	PublicIp *string `pulumi:"publicIp"`
+}
+
+// GetNodePoolNodesNodeInput is an input type that accepts GetNodePoolNodesNodeArgs and GetNodePoolNodesNodeOutput values.
+// You can construct a concrete instance of `GetNodePoolNodesNodeInput` via:
+//
+//	GetNodePoolNodesNodeArgs{...}
+type GetNodePoolNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetNodePoolNodesNodeOutput() GetNodePoolNodesNodeOutput
+	ToGetNodePoolNodesNodeOutputWithContext(context.Context) GetNodePoolNodesNodeOutput
+}
+
+type GetNodePoolNodesNodeArgs struct {
+	// ID of the node pool you want to search for.
+	//
+	// `k8sClusterId` and `nodePoolId` must be provided.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The kubernetes version
+	K8sVersion pulumi.StringInput `pulumi:"k8sVersion"`
+	// Name of an existing node pool that you want to search for.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// private ip of the node
+	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	// public ip of the node
+	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
+}
+
+func (GetNodePoolNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolNodesNode)(nil)).Elem()
+}
+
+func (i GetNodePoolNodesNodeArgs) ToGetNodePoolNodesNodeOutput() GetNodePoolNodesNodeOutput {
+	return i.ToGetNodePoolNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolNodesNodeArgs) ToGetNodePoolNodesNodeOutputWithContext(ctx context.Context) GetNodePoolNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolNodesNodeOutput)
+}
+
+// GetNodePoolNodesNodeArrayInput is an input type that accepts GetNodePoolNodesNodeArray and GetNodePoolNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolNodesNodeArrayInput` via:
+//
+//	GetNodePoolNodesNodeArray{ GetNodePoolNodesNodeArgs{...} }
+type GetNodePoolNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolNodesNodeArrayOutput() GetNodePoolNodesNodeArrayOutput
+	ToGetNodePoolNodesNodeArrayOutputWithContext(context.Context) GetNodePoolNodesNodeArrayOutput
+}
+
+type GetNodePoolNodesNodeArray []GetNodePoolNodesNodeInput
+
+func (GetNodePoolNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolNodesNode)(nil)).Elem()
+}
+
+func (i GetNodePoolNodesNodeArray) ToGetNodePoolNodesNodeArrayOutput() GetNodePoolNodesNodeArrayOutput {
+	return i.ToGetNodePoolNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolNodesNodeArray) ToGetNodePoolNodesNodeArrayOutputWithContext(ctx context.Context) GetNodePoolNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolNodesNodeArrayOutput)
+}
+
+type GetNodePoolNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolNodesNode)(nil)).Elem()
+}
+
+func (o GetNodePoolNodesNodeOutput) ToGetNodePoolNodesNodeOutput() GetNodePoolNodesNodeOutput {
+	return o
+}
+
+func (o GetNodePoolNodesNodeOutput) ToGetNodePoolNodesNodeOutputWithContext(ctx context.Context) GetNodePoolNodesNodeOutput {
+	return o
+}
+
+// ID of the node pool you want to search for.
+//
+// `k8sClusterId` and `nodePoolId` must be provided.
+func (o GetNodePoolNodesNodeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The kubernetes version
+func (o GetNodePoolNodesNodeOutput) K8sVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) string { return v.K8sVersion }).(pulumi.StringOutput)
+}
+
+// Name of an existing node pool that you want to search for.
+func (o GetNodePoolNodesNodeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// private ip of the node
+func (o GetNodePoolNodesNodeOutput) PrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// public ip of the node
+func (o GetNodePoolNodesNodeOutput) PublicIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
+}
+
+type GetNodePoolNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolNodesNode)(nil)).Elem()
+}
+
+func (o GetNodePoolNodesNodeArrayOutput) ToGetNodePoolNodesNodeArrayOutput() GetNodePoolNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolNodesNodeArrayOutput) ToGetNodePoolNodesNodeArrayOutputWithContext(ctx context.Context) GetNodePoolNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodePoolNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodePoolNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolNodesNode {
+		return vs[0].([]GetNodePoolNodesNode)[vs[1].(int)]
+	}).(GetNodePoolNodesNodeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowPtrInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
@@ -1899,6 +2991,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterS3BucketInput)(nil)).Elem(), GetClusterS3BucketArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterS3BucketArrayInput)(nil)).Elem(), GetClusterS3BucketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterInput)(nil)).Elem(), GetClustersClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterArrayInput)(nil)).Elem(), GetClustersClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigInput)(nil)).Elem(), GetClustersClusterConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigArrayInput)(nil)).Elem(), GetClustersClusterConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigClusterInput)(nil)).Elem(), GetClustersClusterConfigClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigClusterArrayInput)(nil)).Elem(), GetClustersClusterConfigClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigContextInput)(nil)).Elem(), GetClustersClusterConfigContextArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigContextArrayInput)(nil)).Elem(), GetClustersClusterConfigContextArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigUserInput)(nil)).Elem(), GetClustersClusterConfigUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterConfigUserArrayInput)(nil)).Elem(), GetClustersClusterConfigUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterMaintenanceWindowInput)(nil)).Elem(), GetClustersClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetClustersClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterS3BucketInput)(nil)).Elem(), GetClustersClusterS3BucketArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersClusterS3BucketArrayInput)(nil)).Elem(), GetClustersClusterS3BucketArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersFilterInput)(nil)).Elem(), GetClustersFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClustersFilterArrayInput)(nil)).Elem(), GetClustersFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolAutoScalingInput)(nil)).Elem(), GetNodePoolAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolAutoScalingArrayInput)(nil)).Elem(), GetNodePoolAutoScalingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolLanInput)(nil)).Elem(), GetNodePoolLanArgs{})
@@ -1907,6 +3015,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolLanRouteArrayInput)(nil)).Elem(), GetNodePoolLanRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolNodesNodeInput)(nil)).Elem(), GetNodePoolNodesNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolNodesNodeArrayInput)(nil)).Elem(), GetNodePoolNodesNodeArray{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(ClusterS3BucketOutput{})
@@ -1931,6 +3041,22 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterS3BucketOutput{})
 	pulumi.RegisterOutputType(GetClusterS3BucketArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigClusterOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigClusterArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigContextOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigContextArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigUserOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterConfigUserArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterS3BucketOutput{})
+	pulumi.RegisterOutputType(GetClustersClusterS3BucketArrayOutput{})
+	pulumi.RegisterOutputType(GetClustersFilterOutput{})
+	pulumi.RegisterOutputType(GetClustersFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetNodePoolAutoScalingArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolLanOutput{})
@@ -1939,4 +3065,6 @@ func init() {
 	pulumi.RegisterOutputType(GetNodePoolLanRouteArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetNodePoolNodesNodeArrayOutput{})
 }

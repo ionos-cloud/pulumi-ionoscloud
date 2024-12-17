@@ -28,10 +28,19 @@ __all__ = [
     'GetClusterConfigUserResult',
     'GetClusterMaintenanceWindowResult',
     'GetClusterS3BucketResult',
+    'GetClustersClusterResult',
+    'GetClustersClusterConfigResult',
+    'GetClustersClusterConfigClusterResult',
+    'GetClustersClusterConfigContextResult',
+    'GetClustersClusterConfigUserResult',
+    'GetClustersClusterMaintenanceWindowResult',
+    'GetClustersClusterS3BucketResult',
+    'GetClustersFilterResult',
     'GetNodePoolAutoScalingResult',
     'GetNodePoolLanResult',
     'GetNodePoolLanRouteResult',
     'GetNodePoolMaintenanceWindowResult',
+    'GetNodePoolNodesNodeResult',
 ]
 
 @pulumi.output_type
@@ -451,6 +460,350 @@ class GetClusterS3BucketResult(dict):
 
 
 @pulumi.output_type
+class GetClustersClusterResult(dict):
+    def __init__(__self__, *,
+                 api_subnet_allow_lists: Sequence[str],
+                 available_upgrade_versions: Sequence[str],
+                 ca_crt: str,
+                 configs: Sequence['outputs.GetClustersClusterConfigResult'],
+                 k8s_version: str,
+                 kube_config: str,
+                 location: str,
+                 maintenance_windows: Sequence['outputs.GetClustersClusterMaintenanceWindowResult'],
+                 nat_gateway_ip: str,
+                 node_pools: Sequence[str],
+                 node_subnet: str,
+                 public: bool,
+                 s3_buckets: Sequence['outputs.GetClustersClusterS3BucketResult'],
+                 server: str,
+                 state: str,
+                 user_tokens: Mapping[str, str],
+                 viable_node_pool_versions: Sequence[str],
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param Sequence[str] api_subnet_allow_lists: Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+        :param Sequence[str] available_upgrade_versions: A list of available versions for upgrading the cluster
+        :param Sequence['GetClustersClusterMaintenanceWindowArgs'] maintenance_windows: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        :param str nat_gateway_ip: The NAT gateway IP of the cluster if the cluster is private.
+        :param str node_subnet: The node subnet of the cluster, if the cluster is private.
+        :param bool public: The indicator if the cluster is public or private.
+        :param Sequence['GetClustersClusterS3BucketArgs'] s3_buckets: List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+        :param Sequence[str] viable_node_pool_versions: A list of versions that may be used for node pools under this cluster
+        """
+        pulumi.set(__self__, "api_subnet_allow_lists", api_subnet_allow_lists)
+        pulumi.set(__self__, "available_upgrade_versions", available_upgrade_versions)
+        pulumi.set(__self__, "ca_crt", ca_crt)
+        pulumi.set(__self__, "configs", configs)
+        pulumi.set(__self__, "k8s_version", k8s_version)
+        pulumi.set(__self__, "kube_config", kube_config)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "maintenance_windows", maintenance_windows)
+        pulumi.set(__self__, "nat_gateway_ip", nat_gateway_ip)
+        pulumi.set(__self__, "node_pools", node_pools)
+        pulumi.set(__self__, "node_subnet", node_subnet)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "s3_buckets", s3_buckets)
+        pulumi.set(__self__, "server", server)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "user_tokens", user_tokens)
+        pulumi.set(__self__, "viable_node_pool_versions", viable_node_pool_versions)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="apiSubnetAllowLists")
+    def api_subnet_allow_lists(self) -> Sequence[str]:
+        """
+        Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
+        """
+        return pulumi.get(self, "api_subnet_allow_lists")
+
+    @property
+    @pulumi.getter(name="availableUpgradeVersions")
+    def available_upgrade_versions(self) -> Sequence[str]:
+        """
+        A list of available versions for upgrading the cluster
+        """
+        return pulumi.get(self, "available_upgrade_versions")
+
+    @property
+    @pulumi.getter(name="caCrt")
+    def ca_crt(self) -> str:
+        return pulumi.get(self, "ca_crt")
+
+    @property
+    @pulumi.getter
+    def configs(self) -> Sequence['outputs.GetClustersClusterConfigResult']:
+        return pulumi.get(self, "configs")
+
+    @property
+    @pulumi.getter(name="k8sVersion")
+    def k8s_version(self) -> str:
+        return pulumi.get(self, "k8s_version")
+
+    @property
+    @pulumi.getter(name="kubeConfig")
+    def kube_config(self) -> str:
+        return pulumi.get(self, "kube_config")
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        return pulumi.get(self, "location")
+
+    @property
+    @pulumi.getter(name="maintenanceWindows")
+    def maintenance_windows(self) -> Sequence['outputs.GetClustersClusterMaintenanceWindowResult']:
+        """
+        A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        """
+        return pulumi.get(self, "maintenance_windows")
+
+    @property
+    @pulumi.getter(name="natGatewayIp")
+    def nat_gateway_ip(self) -> str:
+        """
+        The NAT gateway IP of the cluster if the cluster is private.
+        """
+        return pulumi.get(self, "nat_gateway_ip")
+
+    @property
+    @pulumi.getter(name="nodePools")
+    def node_pools(self) -> Sequence[str]:
+        return pulumi.get(self, "node_pools")
+
+    @property
+    @pulumi.getter(name="nodeSubnet")
+    def node_subnet(self) -> str:
+        """
+        The node subnet of the cluster, if the cluster is private.
+        """
+        return pulumi.get(self, "node_subnet")
+
+    @property
+    @pulumi.getter
+    def public(self) -> bool:
+        """
+        The indicator if the cluster is public or private.
+        """
+        return pulumi.get(self, "public")
+
+    @property
+    @pulumi.getter(name="s3Buckets")
+    def s3_buckets(self) -> Sequence['outputs.GetClustersClusterS3BucketResult']:
+        """
+        List of Object Storage bucket configured for K8s usage. For now it contains only an Object Storage bucket used to store K8s API audit logs.
+        """
+        return pulumi.get(self, "s3_buckets")
+
+    @property
+    @pulumi.getter
+    def server(self) -> str:
+        return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="userTokens")
+    def user_tokens(self) -> Mapping[str, str]:
+        return pulumi.get(self, "user_tokens")
+
+    @property
+    @pulumi.getter(name="viableNodePoolVersions")
+    def viable_node_pool_versions(self) -> Sequence[str]:
+        """
+        A list of versions that may be used for node pools under this cluster
+        """
+        return pulumi.get(self, "viable_node_pool_versions")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetClustersClusterConfigResult(dict):
+    def __init__(__self__, *,
+                 api_version: str,
+                 clusters: Sequence['outputs.GetClustersClusterConfigClusterResult'],
+                 contexts: Sequence['outputs.GetClustersClusterConfigContextResult'],
+                 current_context: str,
+                 kind: str,
+                 users: Sequence['outputs.GetClustersClusterConfigUserResult']):
+        pulumi.set(__self__, "api_version", api_version)
+        pulumi.set(__self__, "clusters", clusters)
+        pulumi.set(__self__, "contexts", contexts)
+        pulumi.set(__self__, "current_context", current_context)
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "users", users)
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> str:
+        return pulumi.get(self, "api_version")
+
+    @property
+    @pulumi.getter
+    def clusters(self) -> Sequence['outputs.GetClustersClusterConfigClusterResult']:
+        return pulumi.get(self, "clusters")
+
+    @property
+    @pulumi.getter
+    def contexts(self) -> Sequence['outputs.GetClustersClusterConfigContextResult']:
+        return pulumi.get(self, "contexts")
+
+    @property
+    @pulumi.getter(name="currentContext")
+    def current_context(self) -> str:
+        return pulumi.get(self, "current_context")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> str:
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetClustersClusterConfigUserResult']:
+        return pulumi.get(self, "users")
+
+
+@pulumi.output_type
+class GetClustersClusterConfigClusterResult(dict):
+    def __init__(__self__, *,
+                 cluster: Mapping[str, str],
+                 name: str):
+        pulumi.set(__self__, "cluster", cluster)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def cluster(self) -> Mapping[str, str]:
+        return pulumi.get(self, "cluster")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetClustersClusterConfigContextResult(dict):
+    def __init__(__self__, *,
+                 context: Mapping[str, str],
+                 name: str):
+        pulumi.set(__self__, "context", context)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def context(self) -> Mapping[str, str]:
+        return pulumi.get(self, "context")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetClustersClusterConfigUserResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 user: Mapping[str, str]):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Mapping[str, str]:
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class GetClustersClusterMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: str,
+                 time: str):
+        """
+        :param str day_of_the_week: Day of the week when maintenance is allowed
+        :param str time: A clock time in the day when maintenance is allowed
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> str:
+        """
+        Day of the week when maintenance is allowed
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @property
+    @pulumi.getter
+    def time(self) -> str:
+        """
+        A clock time in the day when maintenance is allowed
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetClustersClusterS3BucketResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Name of the Object Storage bucket
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the Object Storage bucket
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetClustersFilterResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 value: str):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetNodePoolAutoScalingResult(dict):
     def __init__(__self__, *,
                  max_node_count: int,
@@ -580,5 +933,75 @@ class GetNodePoolMaintenanceWindowResult(dict):
         A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetNodePoolNodesNodeResult(dict):
+    def __init__(__self__, *,
+                 k8s_version: str,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None,
+                 private_ip: Optional[str] = None,
+                 public_ip: Optional[str] = None):
+        """
+        :param str k8s_version: The kubernetes version
+        :param str id: ID of the node pool you want to search for.
+               
+               `k8s_cluster_id` and `node_pool_id` must be provided.
+        :param str name: Name of an existing node pool that you want to search for.
+        :param str private_ip: private ip of the node
+        :param str public_ip: public ip of the node
+        """
+        pulumi.set(__self__, "k8s_version", k8s_version)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if private_ip is not None:
+            pulumi.set(__self__, "private_ip", private_ip)
+        if public_ip is not None:
+            pulumi.set(__self__, "public_ip", public_ip)
+
+    @property
+    @pulumi.getter(name="k8sVersion")
+    def k8s_version(self) -> str:
+        """
+        The kubernetes version
+        """
+        return pulumi.get(self, "k8s_version")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        ID of the node pool you want to search for.
+
+        `k8s_cluster_id` and `node_pool_id` must be provided.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of an existing node pool that you want to search for.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> Optional[str]:
+        """
+        private ip of the node
+        """
+        return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="publicIp")
+    def public_ip(self) -> Optional[str]:
+        """
+        public ip of the node
+        """
+        return pulumi.get(self, "public_ip")
 
 

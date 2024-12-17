@@ -15,10 +15,20 @@ export const getCluster: typeof import("./getCluster").getCluster = null as any;
 export const getClusterOutput: typeof import("./getCluster").getClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getCluster","getClusterOutput"], () => require("./getCluster"));
 
+export { GetClustersArgs, GetClustersResult, GetClustersOutputArgs } from "./getClusters";
+export const getClusters: typeof import("./getClusters").getClusters = null as any;
+export const getClustersOutput: typeof import("./getClusters").getClustersOutput = null as any;
+utilities.lazyLoad(exports, ["getClusters","getClustersOutput"], () => require("./getClusters"));
+
 export { GetNodePoolArgs, GetNodePoolResult, GetNodePoolOutputArgs } from "./getNodePool";
 export const getNodePool: typeof import("./getNodePool").getNodePool = null as any;
 export const getNodePoolOutput: typeof import("./getNodePool").getNodePoolOutput = null as any;
 utilities.lazyLoad(exports, ["getNodePool","getNodePoolOutput"], () => require("./getNodePool"));
+
+export { GetNodePoolNodesArgs, GetNodePoolNodesResult, GetNodePoolNodesOutputArgs } from "./getNodePoolNodes";
+export const getNodePoolNodes: typeof import("./getNodePoolNodes").getNodePoolNodes = null as any;
+export const getNodePoolNodesOutput: typeof import("./getNodePoolNodes").getNodePoolNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodePoolNodes","getNodePoolNodesOutput"], () => require("./getNodePoolNodes"));
 
 export { NodePoolArgs, NodePoolState } from "./nodePool";
 export type NodePool = import("./nodePool").NodePool;

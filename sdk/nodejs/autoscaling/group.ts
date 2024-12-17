@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     datacenterId: datacenterExample.id,
  *     "public": false,
  * });
- * const autoscalingTargetGroup = new ionoscloud.TargetGroup("autoscalingTargetGroup", {
+ * const autoscalingTargetGroup = new ionoscloud.compute.TargetGroup("autoscalingTargetGroup", {
  *     algorithm: "ROUND_ROBIN",
  *     protocol: "HTTP",
  * });

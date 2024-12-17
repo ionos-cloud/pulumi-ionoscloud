@@ -18,7 +18,7 @@ import (
 //
 // The boot device of a `compute.Server`, `compute.VCPUServer` or `compute.CubeServer` can be selected with this resource.
 // Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
-// This resource also allows switching between a `volume` and a `getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+// This resource also allows switching between a `volume` and a `compute.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
 //
 // ### Select an external volume
 // ```go
@@ -154,7 +154,6 @@ import (
 //
 // import (
 //
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -186,7 +185,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleImage, err := ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//			exampleImage, err := compute.GetImage(ctx, &compute.GetImageArgs{
 //				Name:     pulumi.StringRef("ubuntu-20.04"),
 //				Location: pulumi.StringRef("de/txl"),
 //				Type:     pulumi.StringRef("CDROM"),
@@ -228,7 +227,6 @@ import (
 //
 // import (
 //
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -281,7 +279,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ionoscloud.GetImage(ctx, &ionoscloud.GetImageArgs{
+//			_, err = compute.GetImage(ctx, &compute.GetImageArgs{
 //				Name:     pulumi.StringRef("ubuntu-20.04"),
 //				Location: pulumi.StringRef("de/txl"),
 //				Type:     pulumi.StringRef("CDROM"),

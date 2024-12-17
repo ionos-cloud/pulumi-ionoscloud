@@ -55,6 +55,9 @@ class GetAutoCertificateResult:
     @property
     @pulumi.getter(name="commonName")
     def common_name(self) -> str:
+        """
+        [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
+        """
         return pulumi.get(self, "common_name")
 
     @property
@@ -65,11 +68,17 @@ class GetAutoCertificateResult:
     @property
     @pulumi.getter(name="keyAlgorithm")
     def key_algorithm(self) -> str:
+        """
+        [string] The key algorithm used to generate the certificate.
+        """
         return pulumi.get(self, "key_algorithm")
 
     @property
     @pulumi.getter(name="lastIssuedCertificateId")
     def last_issued_certificate_id(self) -> str:
+        """
+        [string] The ID of the last certificate that was issued.
+        """
         return pulumi.get(self, "last_issued_certificate_id")
 
     @property
@@ -90,6 +99,9 @@ class GetAutoCertificateResult:
     @property
     @pulumi.getter(name="subjectAlternativeNames")
     def subject_alternative_names(self) -> Sequence[str]:
+        """
+        [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
+        """
         return pulumi.get(self, "subject_alternative_names")
 
 
@@ -114,7 +126,19 @@ def get_auto_certificate(id: Optional[str] = None,
                          name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAutoCertificateResult:
     """
-    Use this data source to access information about an existing resource.
+    The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.
+    You can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: [string] ID of the auto-certificate you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str location: [string] The location of the auto-certificate.
+    :param str name: [string] Name of an existing auto-certificate that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id
@@ -137,7 +161,19 @@ def get_auto_certificate_output(id: Optional[pulumi.Input[Optional[str]]] = None
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAutoCertificateResult]:
     """
-    Use this data source to access information about an existing resource.
+    The **CM AutoCertificate data source** can be used to search for and return an existing auto-certificate.
+    You can provide a string for either id or name parameters which will be compared with provisioned auto-certificates.
+    If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
+    When this happens, please refine your search string so that it is specific enough to return only one result.
+
+    ## Example Usage
+
+
+    :param str id: [string] ID of the auto-certificate you want to search for.
+           
+           Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
+    :param str location: [string] The location of the auto-certificate.
+    :param str name: [string] Name of an existing auto-certificate that you want to search for.
     """
     __args__ = dict()
     __args__['id'] = id

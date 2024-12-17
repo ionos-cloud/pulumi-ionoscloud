@@ -5,28 +5,7 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .get_container_registry_locations import *
-from .get_dataplatform_node_pools import *
-from .get_dataplatform_versions import *
-from .get_image import *
-from .get_inmemorydb_snapshot import *
-from .get_k8s_clusters import *
-from .get_k8s_node_pool_nodes import *
-from .get_location import *
-from .get_mariadb_backups import *
-from .get_mongo_template import *
-from .get_pg_backups import *
-from .get_pg_databases import *
-from .get_pg_versions import *
-from .get_resource import *
-from .get_servers import *
-from .get_target_group import *
-from .get_template import *
-from .loadbalancer import *
 from .provider import *
-from .target_group import *
-from ._inputs import *
-from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -168,6 +147,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "compute/balancer",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/balancer:Balancer": "Balancer"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "compute/bootDeviceSelection",
   "fqn": "ionoscloud.compute",
   "classes": {
@@ -296,6 +283,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "compute/targetGroup",
+  "fqn": "ionoscloud.compute",
+  "classes": {
+   "ionoscloud:compute/targetGroup:TargetGroup": "TargetGroup"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "compute/user",
   "fqn": "ionoscloud.compute",
   "classes": {
@@ -420,22 +415,6 @@ _utilities.register(
   "fqn": "ionoscloud.dsaas",
   "classes": {
    "ionoscloud:dsaas/nodePool:NodePool": "NodePool"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/loadbalancer",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/loadbalancer:Loadbalancer": "Loadbalancer"
-  }
- },
- {
-  "pkg": "ionoscloud",
-  "mod": "index/targetGroup",
-  "fqn": "ionoscloud",
-  "classes": {
-   "ionoscloud:index/targetGroup:TargetGroup": "TargetGroup"
   }
  },
  {

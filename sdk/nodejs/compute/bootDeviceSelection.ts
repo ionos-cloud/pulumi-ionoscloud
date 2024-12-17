@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * The boot device of a `ionoscloud.compute.Server`, `ionoscloud.compute.VCPUServer` or `ionoscloud.compute.CubeServer` can be selected with this resource.
  * Deleting this resource will revert the boot device back to the default volume, which is the first inline volume created together with the server.
- * This resource also allows switching between a `volume` and a `ionoscloud.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
+ * This resource also allows switching between a `volume` and a `ionoscloud.compute.getImage` CDROM. Note that CDROM images are detached after they are no longer set as boot devices.
  *
  * ### Select an external volume
  * ```typescript
@@ -123,7 +123,7 @@ import * as utilities from "../utilities";
  *         firewallActive: true,
  *     },
  * });
- * const exampleImage = ionoscloud.getImage({
+ * const exampleImage = ionoscloud.compute.getImage({
  *     name: "ubuntu-20.04",
  *     location: "de/txl",
  *     type: "CDROM",
@@ -184,7 +184,7 @@ import * as utilities from "../utilities";
  *     imageName: "debian:latest",
  *     imagePassword: random_password.server_image_password.result,
  * });
- * const exampleImage = ionoscloud.getImage({
+ * const exampleImage = ionoscloud.compute.getImage({
  *     name: "ubuntu-20.04",
  *     location: "de/txl",
  *     type: "CDROM",

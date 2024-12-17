@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "ionoscloud:compute/backupUnit:BackupUnit":
 		r = &BackupUnit{}
+	case "ionoscloud:compute/balancer:Balancer":
+		r = &Balancer{}
 	case "ionoscloud:compute/bootDeviceSelection:BootDeviceSelection":
 		r = &BootDeviceSelection{}
 	case "ionoscloud:compute/crossconnect:Crossconnect":
@@ -55,6 +57,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Share{}
 	case "ionoscloud:compute/snapshot:Snapshot":
 		r = &Snapshot{}
+	case "ionoscloud:compute/targetGroup:TargetGroup":
+		r = &TargetGroup{}
 	case "ionoscloud:compute/user:User":
 		r = &User{}
 	case "ionoscloud:compute/vCPUServer:VCPUServer":
@@ -77,6 +81,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/backupUnit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/balancer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -157,6 +166,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"compute/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"compute/targetGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

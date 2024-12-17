@@ -1306,6 +1306,320 @@ func (o GetNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetNod
 	}).(GetNodePoolMaintenanceWindowOutput)
 }
 
+type GetNodePoolsNodePool struct {
+	// Key-value pairs attached to node pool resource as kubernetes annotations
+	Annotations map[string]string `pulumi:"annotations"`
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+	AvailabilityZone string `pulumi:"availabilityZone"`
+	// The number of CPU cores per node.
+	CoresCount int `pulumi:"coresCount"`
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+	CpuFamily string `pulumi:"cpuFamily"`
+	// The UUID of the virtual data center (VDC) in which the node pool is provisioned
+	DatacenterId string `pulumi:"datacenterId"`
+	Id           string `pulumi:"id"`
+	// Key-value pairs attached to the node pool resource as kubernetes labels
+	Labels map[string]string `pulumi:"labels"`
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	MaintenanceWindows []GetNodePoolsNodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name string `pulumi:"name"`
+	// The number of nodes that make up the node pool.
+	NodeCount int `pulumi:"nodeCount"`
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+	RamSize int `pulumi:"ramSize"`
+	// The size of the volume in GB. The size must be greater than 10GB.
+	StorageSize int `pulumi:"storageSize"`
+	// The type of hardware for the volume.
+	StorageType string `pulumi:"storageType"`
+	// The version of the Data Platform.
+	Version string `pulumi:"version"`
+}
+
+// GetNodePoolsNodePoolInput is an input type that accepts GetNodePoolsNodePoolArgs and GetNodePoolsNodePoolOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolInput` via:
+//
+//	GetNodePoolsNodePoolArgs{...}
+type GetNodePoolsNodePoolInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput
+	ToGetNodePoolsNodePoolOutputWithContext(context.Context) GetNodePoolsNodePoolOutput
+}
+
+type GetNodePoolsNodePoolArgs struct {
+	// Key-value pairs attached to node pool resource as kubernetes annotations
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+	AvailabilityZone pulumi.StringInput `pulumi:"availabilityZone"`
+	// The number of CPU cores per node.
+	CoresCount pulumi.IntInput `pulumi:"coresCount"`
+	// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
+	// The UUID of the virtual data center (VDC) in which the node pool is provisioned
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	// Key-value pairs attached to the node pool resource as kubernetes labels
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	MaintenanceWindows GetNodePoolsNodePoolMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
+	// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The number of nodes that make up the node pool.
+	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+	// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+	RamSize pulumi.IntInput `pulumi:"ramSize"`
+	// The size of the volume in GB. The size must be greater than 10GB.
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+	// The type of hardware for the volume.
+	StorageType pulumi.StringInput `pulumi:"storageType"`
+	// The version of the Data Platform.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetNodePoolsNodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return i.ToGetNodePoolsNodePoolOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolOutput)
+}
+
+// GetNodePoolsNodePoolArrayInput is an input type that accepts GetNodePoolsNodePoolArray and GetNodePoolsNodePoolArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolArrayInput` via:
+//
+//	GetNodePoolsNodePoolArray{ GetNodePoolsNodePoolArgs{...} }
+type GetNodePoolsNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput
+	ToGetNodePoolsNodePoolArrayOutputWithContext(context.Context) GetNodePoolsNodePoolArrayOutput
+}
+
+type GetNodePoolsNodePoolArray []GetNodePoolsNodePoolInput
+
+func (GetNodePoolsNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return i.ToGetNodePoolsNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolArrayOutput)
+}
+
+type GetNodePoolsNodePoolOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return o
+}
+
+// Key-value pairs attached to node pool resource as kubernetes annotations
+func (o GetNodePoolsNodePoolOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// The availability zone of the virtual datacenter region where the node pool resources should be provisioned.
+func (o GetNodePoolsNodePoolOutput) AvailabilityZone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.AvailabilityZone }).(pulumi.StringOutput)
+}
+
+// The number of CPU cores per node.
+func (o GetNodePoolsNodePoolOutput) CoresCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.CoresCount }).(pulumi.IntOutput)
+}
+
+// A valid CPU family name or `AUTO` if the platform shall choose the best fitting option. Available CPU architectures can be retrieved from the datacenter resource.
+func (o GetNodePoolsNodePoolOutput) CpuFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// The UUID of the virtual data center (VDC) in which the node pool is provisioned
+func (o GetNodePoolsNodePoolOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+func (o GetNodePoolsNodePoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Key-value pairs attached to the node pool resource as kubernetes labels
+func (o GetNodePoolsNodePoolOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+func (o GetNodePoolsNodePoolOutput) MaintenanceWindows() GetNodePoolsNodePoolMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolMaintenanceWindow { return v.MaintenanceWindows }).(GetNodePoolsNodePoolMaintenanceWindowArrayOutput)
+}
+
+// Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
+func (o GetNodePoolsNodePoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The number of nodes that make up the node pool.
+func (o GetNodePoolsNodePoolOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+// The RAM size for one node in MB. Must be set in multiples of 1024 MB, with a minimum size is of 2048 MB.
+func (o GetNodePoolsNodePoolOutput) RamSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.RamSize }).(pulumi.IntOutput)
+}
+
+// The size of the volume in GB. The size must be greater than 10GB.
+func (o GetNodePoolsNodePoolOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+// The type of hardware for the volume.
+func (o GetNodePoolsNodePoolOutput) StorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// The version of the Data Platform.
+func (o GetNodePoolsNodePoolOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePool {
+		return vs[0].([]GetNodePoolsNodePool)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolOutput)
+}
+
+type GetNodePoolsNodePoolMaintenanceWindow struct {
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	Time string `pulumi:"time"`
+}
+
+// GetNodePoolsNodePoolMaintenanceWindowInput is an input type that accepts GetNodePoolsNodePoolMaintenanceWindowArgs and GetNodePoolsNodePoolMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolMaintenanceWindowInput` via:
+//
+//	GetNodePoolsNodePoolMaintenanceWindowArgs{...}
+type GetNodePoolsNodePoolMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolMaintenanceWindowOutput() GetNodePoolsNodePoolMaintenanceWindowOutput
+	ToGetNodePoolsNodePoolMaintenanceWindowOutputWithContext(context.Context) GetNodePoolsNodePoolMaintenanceWindowOutput
+}
+
+type GetNodePoolsNodePoolMaintenanceWindowArgs struct {
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetNodePoolsNodePoolMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolMaintenanceWindowArgs) ToGetNodePoolsNodePoolMaintenanceWindowOutput() GetNodePoolsNodePoolMaintenanceWindowOutput {
+	return i.ToGetNodePoolsNodePoolMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolMaintenanceWindowArgs) ToGetNodePoolsNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetNodePoolsNodePoolMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolMaintenanceWindowOutput)
+}
+
+// GetNodePoolsNodePoolMaintenanceWindowArrayInput is an input type that accepts GetNodePoolsNodePoolMaintenanceWindowArray and GetNodePoolsNodePoolMaintenanceWindowArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolMaintenanceWindowArrayInput` via:
+//
+//	GetNodePoolsNodePoolMaintenanceWindowArray{ GetNodePoolsNodePoolMaintenanceWindowArgs{...} }
+type GetNodePoolsNodePoolMaintenanceWindowArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolMaintenanceWindowArrayOutput() GetNodePoolsNodePoolMaintenanceWindowArrayOutput
+	ToGetNodePoolsNodePoolMaintenanceWindowArrayOutputWithContext(context.Context) GetNodePoolsNodePoolMaintenanceWindowArrayOutput
+}
+
+type GetNodePoolsNodePoolMaintenanceWindowArray []GetNodePoolsNodePoolMaintenanceWindowInput
+
+func (GetNodePoolsNodePoolMaintenanceWindowArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolMaintenanceWindowArray) ToGetNodePoolsNodePoolMaintenanceWindowArrayOutput() GetNodePoolsNodePoolMaintenanceWindowArrayOutput {
+	return i.ToGetNodePoolsNodePoolMaintenanceWindowArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolMaintenanceWindowArray) ToGetNodePoolsNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolMaintenanceWindowArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolMaintenanceWindowArrayOutput)
+}
+
+type GetNodePoolsNodePoolMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowOutput) ToGetNodePoolsNodePoolMaintenanceWindowOutput() GetNodePoolsNodePoolMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowOutput) ToGetNodePoolsNodePoolMaintenanceWindowOutputWithContext(ctx context.Context) GetNodePoolsNodePoolMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Time at which the maintenance should start. Must conform to the 'HH:MM:SS' 24-hour format.
+func (o GetNodePoolsNodePoolMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolMaintenanceWindowArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolMaintenanceWindowArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowArrayOutput) ToGetNodePoolsNodePoolMaintenanceWindowArrayOutput() GetNodePoolsNodePoolMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowArrayOutput) ToGetNodePoolsNodePoolMaintenanceWindowArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolMaintenanceWindowArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolMaintenanceWindowOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolMaintenanceWindow {
+		return vs[0].([]GetNodePoolsNodePoolMaintenanceWindow)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolMaintenanceWindowOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLanInput)(nil)).Elem(), ClusterLanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLanArrayInput)(nil)).Elem(), ClusterLanArray{})
@@ -1331,6 +1645,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolInput)(nil)).Elem(), GetNodePoolsNodePoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolArrayInput)(nil)).Elem(), GetNodePoolsNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolMaintenanceWindowInput)(nil)).Elem(), GetNodePoolsNodePoolMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetNodePoolsNodePoolMaintenanceWindowArray{})
 	pulumi.RegisterOutputType(ClusterLanOutput{})
 	pulumi.RegisterOutputType(ClusterLanArrayOutput{})
 	pulumi.RegisterOutputType(ClusterLanRouteOutput{})
@@ -1355,4 +1673,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolMaintenanceWindowArrayOutput{})
 }

@@ -705,7 +705,7 @@ class Volume(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.get_image(type="HDD",
+        example_image = ionoscloud.compute.get_image(type="HDD",
             cloud_init="V1",
             image_alias="ubuntu:latest",
             location="us/las")
@@ -827,7 +827,7 @@ class Volume(pulumi.CustomResource):
         import pulumi_ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_image = ionoscloud.get_image(type="HDD",
+        example_image = ionoscloud.compute.get_image(type="HDD",
             cloud_init="V1",
             image_alias="ubuntu:latest",
             location="us/las")
