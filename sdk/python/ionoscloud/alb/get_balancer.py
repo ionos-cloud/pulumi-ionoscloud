@@ -179,7 +179,7 @@ def get_balancer(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="ALB name")
     ```
 
@@ -188,7 +188,7 @@ def get_balancer(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="name",
         partial_match=True)
     ```
@@ -239,7 +239,7 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="ALB name")
     ```
 
@@ -248,7 +248,7 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.alb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.alb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="name",
         partial_match=True)
     ```

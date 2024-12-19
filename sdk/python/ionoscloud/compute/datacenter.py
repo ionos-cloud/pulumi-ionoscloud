@@ -245,8 +245,9 @@ class Datacenter(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
-            description="datacenter description",
+            name="Datacenter Example",
             location="us/las",
+            description="datacenter description",
             sec_auth_protection=False)
         ```
 
@@ -281,8 +282,9 @@ class Datacenter(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.Datacenter("example",
-            description="datacenter description",
+            name="Datacenter Example",
             location="us/las",
+            description="datacenter description",
             sec_auth_protection=False)
         ```
 

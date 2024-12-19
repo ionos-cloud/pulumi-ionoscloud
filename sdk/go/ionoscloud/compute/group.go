@@ -21,17 +21,17 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			user1Password, err := random.NewRandomPassword(ctx, "user1Password", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			user1Password, err := random.NewPassword(ctx, "user1_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
@@ -47,10 +47,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			user2Password, err := random.NewRandomPassword(ctx, "user2Password", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			user2Password, err := random.NewPassword(ctx, "user2_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
@@ -67,6 +67,7 @@ import (
 //				return err
 //			}
 //			_, err = compute.NewGroup(ctx, "example", &compute.GroupArgs{
+//				Name:                        pulumi.String("Group Example"),
 //				CreateDatacenter:            pulumi.Bool(true),
 //				CreateSnapshot:              pulumi.Bool(true),
 //				ReserveIp:                   pulumi.Bool(true),

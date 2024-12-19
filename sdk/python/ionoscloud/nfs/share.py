@@ -294,14 +294,17 @@ class Share(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
+            name="NFS Datacenter",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
             datacenter_id=nfs_dc.id,
-            public=False)
-        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
+            public=False,
+            name="Lan for NFS")
+        example = ionoscloud.nfs.Cluster("example",
+            name="test",
             location="de/txl",
             size=2,
             nfs={
@@ -312,9 +315,10 @@ class Share(pulumi.CustomResource):
                 "ip_address": "192.168.100.10/24",
                 "lan": nfs_lan.id,
             })
-        example_share = ionoscloud.nfs.Share("exampleShare",
+        example_share = ionoscloud.nfs.Share("example",
             location="de/txl",
-            cluster_id=example_cluster.id,
+            cluster_id=example.id,
+            name="example-share",
             quota=512,
             gid=512,
             uid=512,
@@ -362,14 +366,17 @@ class Share(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         # Basic example
-        nfs_dc = ionoscloud.compute.Datacenter("nfsDc",
+        nfs_dc = ionoscloud.compute.Datacenter("nfs_dc",
+            name="NFS Datacenter",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        nfs_lan = ionoscloud.compute.Lan("nfsLan",
+        nfs_lan = ionoscloud.compute.Lan("nfs_lan",
             datacenter_id=nfs_dc.id,
-            public=False)
-        example_cluster = ionoscloud.nfs.Cluster("exampleCluster",
+            public=False,
+            name="Lan for NFS")
+        example = ionoscloud.nfs.Cluster("example",
+            name="test",
             location="de/txl",
             size=2,
             nfs={
@@ -380,9 +387,10 @@ class Share(pulumi.CustomResource):
                 "ip_address": "192.168.100.10/24",
                 "lan": nfs_lan.id,
             })
-        example_share = ionoscloud.nfs.Share("exampleShare",
+        example_share = ionoscloud.nfs.Share("example",
             location="de/txl",
-            cluster_id=example_cluster.id,
+            cluster_id=example.id,
+            name="example-share",
             quota=512,
             gid=512,
             uid=512,

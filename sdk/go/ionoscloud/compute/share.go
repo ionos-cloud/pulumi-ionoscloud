@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -36,7 +37,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleGroup, err := compute.NewGroup(ctx, "exampleGroup", &compute.GroupArgs{
+//			exampleGroup, err := compute.NewGroup(ctx, "example", &compute.GroupArgs{
+//				Name:                 pulumi.String("Group Example"),
 //				CreateDatacenter:     pulumi.Bool(true),
 //				CreateSnapshot:       pulumi.Bool(true),
 //				ReserveIp:            pulumi.Bool(true),
@@ -50,9 +52,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewShare(ctx, "exampleShare", &compute.ShareArgs{
+//			_, err = compute.NewShare(ctx, "example", &compute.ShareArgs{
 //				GroupId:        exampleGroup.ID(),
-//				ResourceId:     exampleDatacenter.ID(),
+//				ResourceId:     example.ID(),
 //				EditPrivilege:  pulumi.Bool(true),
 //				SharePrivilege: pulumi.Bool(false),
 //			})

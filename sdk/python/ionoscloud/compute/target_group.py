@@ -278,40 +278,41 @@ class TargetGroup(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.TargetGroup("example",
+            name="Target Group Example",
             algorithm="ROUND_ROBIN",
-            health_check={
-                "check_interval": 50000,
-                "check_timeout": 5000,
-                "retries": 2,
-            },
-            http_health_check={
-                "match_type": "STATUS_CODE",
-                "method": "GET",
-                "negate": True,
-                "path": "/.",
-                "regex": True,
-                "response": "200",
-            },
             protocol="HTTP",
             protocol_version="HTTP1",
             targets=[
                 {
-                    "health_check_enabled": True,
                     "ip": "22.231.2.2",
-                    "maintenance_enabled": False,
                     "port": 8080,
-                    "proxy_protocol": "v2ssl",
                     "weight": 1,
+                    "proxy_protocol": "v2ssl",
+                    "health_check_enabled": True,
+                    "maintenance_enabled": False,
                 },
                 {
-                    "health_check_enabled": False,
                     "ip": "22.231.2.3",
-                    "maintenance_enabled": False,
                     "port": 8081,
-                    "proxy_protocol": "v2",
                     "weight": 124,
+                    "proxy_protocol": "v2",
+                    "health_check_enabled": False,
+                    "maintenance_enabled": False,
                 },
-            ])
+            ],
+            health_check={
+                "check_timeout": 5000,
+                "check_interval": 50000,
+                "retries": 2,
+            },
+            http_health_check={
+                "path": "/.",
+                "method": "GET",
+                "match_type": "STATUS_CODE",
+                "response": "200",
+                "regex": True,
+                "negate": True,
+            })
         ```
 
         ## Import
@@ -348,40 +349,41 @@ class TargetGroup(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.compute.TargetGroup("example",
+            name="Target Group Example",
             algorithm="ROUND_ROBIN",
-            health_check={
-                "check_interval": 50000,
-                "check_timeout": 5000,
-                "retries": 2,
-            },
-            http_health_check={
-                "match_type": "STATUS_CODE",
-                "method": "GET",
-                "negate": True,
-                "path": "/.",
-                "regex": True,
-                "response": "200",
-            },
             protocol="HTTP",
             protocol_version="HTTP1",
             targets=[
                 {
-                    "health_check_enabled": True,
                     "ip": "22.231.2.2",
-                    "maintenance_enabled": False,
                     "port": 8080,
-                    "proxy_protocol": "v2ssl",
                     "weight": 1,
+                    "proxy_protocol": "v2ssl",
+                    "health_check_enabled": True,
+                    "maintenance_enabled": False,
                 },
                 {
-                    "health_check_enabled": False,
                     "ip": "22.231.2.3",
-                    "maintenance_enabled": False,
                     "port": 8081,
-                    "proxy_protocol": "v2",
                     "weight": 124,
+                    "proxy_protocol": "v2",
+                    "health_check_enabled": False,
+                    "maintenance_enabled": False,
                 },
-            ])
+            ],
+            health_check={
+                "check_timeout": 5000,
+                "check_interval": 50000,
+                "retries": 2,
+            },
+            http_health_check={
+                "path": "/.",
+                "method": "GET",
+                "match_type": "STATUS_CODE",
+                "response": "200",
+                "regex": True,
+                "negate": True,
+            })
         ```
 
         ## Import

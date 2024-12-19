@@ -31,6 +31,7 @@ import (
 //			_, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
 //				Location: pulumi.String("us/las"),
 //				Size:     pulumi.Int(1),
+//				Name:     pulumi.String("IP Block Example"),
 //			})
 //			if err != nil {
 //				return err

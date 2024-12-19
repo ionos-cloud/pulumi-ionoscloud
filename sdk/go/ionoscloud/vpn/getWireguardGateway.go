@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("vpnWireguardGatewayPublicKey", data.Vpn_wireguard_gateway.Example.Public_key)
+//			ctx.Export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.PublicKey)
 //			return nil
 //		})
 //	}

@@ -343,18 +343,22 @@ class Balancer(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
         example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 1")
         example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 2")
+        example_balancer = ionoscloud.nlb.Balancer("example",
+            datacenter_id=example.id,
+            name="example",
             listener_lan=example1.id,
             target_lan=example2.id,
             ips=["10.12.118.224"],
@@ -370,9 +374,10 @@ class Balancer(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.nlb.Balancer("example",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            listener_lan=ionoscloud_lan["example1"]["id"],
-            target_lan=ionoscloud_lan["example2"]["id"],
+            datacenter_id=example_ionoscloud_datacenter["id"],
+            name="nlb with flowlog",
+            listener_lan=example1["id"],
+            target_lan=example2["id"],
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             flowlog={
@@ -421,18 +426,22 @@ class Balancer(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
         example1 = ionoscloud.compute.Lan("example1",
-            datacenter_id=example_datacenter.id,
-            public=False)
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 1")
         example2 = ionoscloud.compute.Lan("example2",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_balancer = ionoscloud.nlb.Balancer("exampleBalancer",
-            datacenter_id=example_datacenter.id,
+            datacenter_id=example.id,
+            public=False,
+            name="Lan Example 2")
+        example_balancer = ionoscloud.nlb.Balancer("example",
+            datacenter_id=example.id,
+            name="example",
             listener_lan=example1.id,
             target_lan=example2.id,
             ips=["10.12.118.224"],
@@ -448,9 +457,10 @@ class Balancer(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.nlb.Balancer("example",
-            datacenter_id=ionoscloud_datacenter["example"]["id"],
-            listener_lan=ionoscloud_lan["example1"]["id"],
-            target_lan=ionoscloud_lan["example2"]["id"],
+            datacenter_id=example_ionoscloud_datacenter["id"],
+            name="nlb with flowlog",
+            listener_lan=example1["id"],
+            target_lan=example2["id"],
             ips=["10.12.118.224"],
             lb_private_ips=["10.13.72.225/24"],
             flowlog={

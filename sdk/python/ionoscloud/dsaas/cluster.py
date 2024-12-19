@@ -213,14 +213,17 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter_Example",
             location="de/txl",
             description="Datacenter for testing Dataplatform Cluster")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
-            datacenter_id=example_datacenter.id,
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="LAN_Example")
+        example_cluster = ionoscloud.dsaas.Cluster("example",
+            datacenter_id=example.id,
+            name="Dataplatform_Cluster_Example",
             maintenance_windows=[{
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",
@@ -267,14 +270,17 @@ class Cluster(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter_Example",
             location="de/txl",
             description="Datacenter for testing Dataplatform Cluster")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=False)
-        example_cluster = ionoscloud.dsaas.Cluster("exampleCluster",
-            datacenter_id=example_datacenter.id,
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=False,
+            name="LAN_Example")
+        example_cluster = ionoscloud.dsaas.Cluster("example",
+            datacenter_id=example.id,
+            name="Dataplatform_Cluster_Example",
             maintenance_windows=[{
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00",

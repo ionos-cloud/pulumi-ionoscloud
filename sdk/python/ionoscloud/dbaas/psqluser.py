@@ -163,14 +163,14 @@ class PSQLUser(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        user_password = random.RandomPassword("userPassword",
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example_pg_user = ionoscloud.dbaas.PSQLUser("examplePgUser",
-            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_pg_user = ionoscloud.dbaas.PSQLUser("example_pg_user",
+            cluster_id=example["id"],
             username="exampleuser",
-            password=user_password.result)
+            password=user_password["result"])
         ```
 
         ## Import
@@ -214,14 +214,14 @@ class PSQLUser(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        user_password = random.RandomPassword("userPassword",
+        user_password = random.index.Password("user_password",
             length=16,
             special=True,
-            override_special="!#$%&*()-_=+[]{}<>:?")
-        example_pg_user = ionoscloud.dbaas.PSQLUser("examplePgUser",
-            cluster_id=ionoscloud_pg_cluster["example"]["id"],
+            override_special=!#$%&*()-_=+[]{}<>:?)
+        example_pg_user = ionoscloud.dbaas.PSQLUser("example_pg_user",
+            cluster_id=example["id"],
             username="exampleuser",
-            password=user_password.result)
+            password=user_password["result"])
         ```
 
         ## Import

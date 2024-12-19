@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -36,15 +37,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleCrossconnect, err := compute.NewCrossconnect(ctx, "exampleCrossconnect", &compute.CrossconnectArgs{
+//			exampleCrossconnect, err := compute.NewCrossconnect(ctx, "example", &compute.CrossconnectArgs{
+//				Name:        pulumi.String("Cross Connect Example"),
 //				Description: pulumi.String("Cross Connect Description"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan Example"),
 //				Pcc:          exampleCrossconnect.ID(),
 //			})
 //			if err != nil {
@@ -70,7 +73,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("de/txl"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -78,9 +82,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId:  exampleDatacenter.ID(),
+//			_, err = compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId:  example.ID(),
 //				Public:        pulumi.Bool(true),
+//				Name:          pulumi.String("Lan IPv6 Example"),
 //				Ipv6CidrBlock: pulumi.String("AUTO"),
 //			})
 //			if err != nil {

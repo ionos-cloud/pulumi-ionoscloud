@@ -287,6 +287,7 @@ class Route(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.apigateway.Apigateway("example",
+            name="example-gateway",
             metrics=True,
             custom_domains=[
                 {
@@ -298,7 +299,8 @@ class Route(pulumi.CustomResource):
                     "certificate_id": "00000000-0000-0000-0000-000000000000",
                 },
             ])
-        apigateway_route = ionoscloud.apigateway.Route("apigatewayRoute",
+        apigateway_route = ionoscloud.apigateway.Route("apigateway_route",
+            name="apigateway-route",
             type="http",
             paths=[
                 "/foo/*",
@@ -357,6 +359,7 @@ class Route(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.apigateway.Apigateway("example",
+            name="example-gateway",
             metrics=True,
             custom_domains=[
                 {
@@ -368,7 +371,8 @@ class Route(pulumi.CustomResource):
                     "certificate_id": "00000000-0000-0000-0000-000000000000",
                 },
             ])
-        apigateway_route = ionoscloud.apigateway.Route("apigatewayRoute",
+        apigateway_route = ionoscloud.apigateway.Route("apigateway_route",
+            name="apigateway-route",
             type="http",
             paths=[
                 "/foo/*",

@@ -18,16 +18,22 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const testDatacenter = new ionoscloud.compute.Datacenter("testDatacenter", {location: "de/fra"});
- * const testLan = new ionoscloud.compute.Lan("testLan", {
+ * const testDatacenter = new ionoscloud.compute.Datacenter("test_datacenter", {
+ *     name: "test_vpn_gateway_basic",
+ *     location: "de/fra",
+ * });
+ * const testLan = new ionoscloud.compute.Lan("test_lan", {
+ *     name: "test_lan_basic",
  *     "public": false,
  *     datacenterId: testDatacenter.id,
  * });
- * const testIpblock = new ionoscloud.compute.IPBlock("testIpblock", {
+ * const testIpblock = new ionoscloud.compute.IPBlock("test_ipblock", {
+ *     name: "test_ipblock_basic",
  *     location: "de/fra",
  *     size: 1,
  * });
- * const exampleIpsecGateway = new ionoscloud.vpn.IpsecGateway("exampleIpsecGateway", {
+ * const example = new ionoscloud.vpn.IpsecGateway("example", {
+ *     name: "ipsec_gateway_basic",
  *     location: "de/fra",
  *     gatewayIp: testIpblock.ips[0],
  *     version: "IKEv2",
@@ -38,9 +44,10 @@ import * as utilities from "../utilities";
  *         ipv4Cidr: "192.168.100.10/24",
  *     }],
  * });
- * const exampleIpsecTunnel = new ionoscloud.vpn.IpsecTunnel("exampleIpsecTunnel", {
+ * const exampleIpsecTunnel = new ionoscloud.vpn.IpsecTunnel("example", {
  *     location: "de/fra",
- *     gatewayId: exampleIpsecGateway.id,
+ *     gatewayId: example.id,
+ *     name: "example-tunnel",
  *     remoteHost: "vpn.mycompany.com",
  *     description: "Allows local subnet X to connect to virtual network Y.",
  *     auth: {

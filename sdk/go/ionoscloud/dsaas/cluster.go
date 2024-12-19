@@ -29,22 +29,25 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("Datacenter_Example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing Dataplatform Cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("LAN_Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dsaas.NewCluster(ctx, "exampleCluster", &dsaas.ClusterArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
 //				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
 //					&dsaas.ClusterMaintenanceWindowArgs{
 //						DayOfTheWeek: pulumi.String("Sunday"),

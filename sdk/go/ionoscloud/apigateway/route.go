@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			example, err := apigateway.NewApigateway(ctx, "example", &apigateway.ApigatewayArgs{
+//				Name:    pulumi.String("example-gateway"),
 //				Metrics: pulumi.Bool(true),
 //				CustomDomains: apigateway.ApigatewayCustomDomainArray{
 //					&apigateway.ApigatewayCustomDomainArgs{
@@ -46,7 +47,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = apigateway.NewRoute(ctx, "apigatewayRoute", &apigateway.RouteArgs{
+//			_, err = apigateway.NewRoute(ctx, "apigateway_route", &apigateway.RouteArgs{
+//				Name: pulumi.String("apigateway-route"),
 //				Type: pulumi.String("http"),
 //				Paths: pulumi.StringArray{
 //					pulumi.String("/foo/*"),

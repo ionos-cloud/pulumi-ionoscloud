@@ -30,13 +30,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
-//				ApiSubnetAllowLists: pulumi.StringArray{
-//					pulumi.String("1.2.3.4/32"),
-//				},
+//				Name:       pulumi.String("k8sClusterExample"),
 //				K8sVersion: pulumi.String("1.28.6"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
+//				},
+//				ApiSubnetAllowLists: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
 //				},
 //				S3Buckets: k8s.ClusterS3BucketArray{
 //					&k8s.ClusterS3BucketArgs{
@@ -69,6 +70,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.NewDatacenter(ctx, "testdatacenter", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/fra"),
 //				Description: pulumi.String("Test datacenter"),
 //			})
@@ -78,11 +80,13 @@ import (
 //			k8sip, err := compute.NewIPBlock(ctx, "k8sip", &compute.IPBlockArgs{
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
+//				Name:     pulumi.String("IP Block Private K8s"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
+//				Name:       pulumi.String("k8sClusterExample"),
 //				K8sVersion: pulumi.String("1.28.6"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),

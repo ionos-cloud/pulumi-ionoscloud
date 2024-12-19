@@ -17,17 +17,22 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * // Basic example
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {location: "de/fra"});
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
- *     "public": false,
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "example-kafka-datacenter",
+ *     location: "de/fra",
  * });
- * const exampleCluster = new ionoscloud.kafka.Cluster("exampleCluster", {
- *     location: exampleDatacenter.location,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
+ *     "public": false,
+ *     name: "example-kafka-lan",
+ * });
+ * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
+ *     name: "example-kafka-cluster",
+ *     location: example.location,
  *     version: "3.7.0",
  *     size: "S",
  *     connections: {
- *         datacenterId: exampleDatacenter.id,
+ *         datacenterId: example.id,
  *         lanId: exampleLan.id,
  *         brokerAddresses: [
  *             "192.168.1.101/24",
@@ -36,8 +41,9 @@ import * as utilities from "../utilities";
  *         ],
  *     },
  * });
- * const exampleTopic = new ionoscloud.kafka.Topic("exampleTopic", {
+ * const exampleTopic = new ionoscloud.kafka.Topic("example", {
  *     clusterId: exampleCluster.id,
+ *     name: "kafka-cluster-topic",
  *     location: exampleCluster.location,
  *     replicationFactor: 1,
  *     numberOfPartitions: 1,

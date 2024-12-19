@@ -27,15 +27,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("Datacenter_Example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing Dataplatform Cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleCluster, err := dsaas.NewCluster(ctx, "exampleCluster", &dsaas.ClusterArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleCluster, err := dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
 //				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
 //					&dsaas.ClusterMaintenanceWindowArgs{
 //						DayOfTheWeek: pulumi.String("Sunday"),
@@ -47,8 +49,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dsaas.NewNodePool(ctx, "exampleNodePool", &dsaas.NodePoolArgs{
+//			_, err = dsaas.NewNodePool(ctx, "example", &dsaas.NodePoolArgs{
 //				ClusterId:        exampleCluster.ID(),
+//				Name:             pulumi.String("Dataplatform_Node_Pool_Example"),
 //				NodeCount:        pulumi.Int(1),
 //				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
 //				CoresCount:       pulumi.Int(1),

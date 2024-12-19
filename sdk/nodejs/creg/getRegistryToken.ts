@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: ionoscloud_container_registry.example.id,
+ *     registryId: exampleIonoscloudContainerRegistry.id,
  *     name: "container-registry-token-example",
  * });
  * ```
@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: ionoscloud_container_registry.example.id,
+ *     registryId: exampleIonoscloudContainerRegistry.id,
  *     name: "-example",
  *     partialMatch: true,
  * });
@@ -101,7 +101,7 @@ export interface GetRegistryTokenResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: ionoscloud_container_registry.example.id,
+ *     registryId: exampleIonoscloudContainerRegistry.id,
  *     name: "container-registry-token-example",
  * });
  * ```
@@ -112,7 +112,7 @@ export interface GetRegistryTokenResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: ionoscloud_container_registry.example.id,
+ *     registryId: exampleIonoscloudContainerRegistry.id,
  *     name: "-example",
  *     partialMatch: true,
  * });

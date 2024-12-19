@@ -41,6 +41,78 @@ import (
 //	}
 //
 // ```
+//
+// ## Example of accessing a kubernetes cluster using the user's token
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.NewCluster(ctx, "test", &k8s.ClusterArgs{
+//				Name: pulumi.String("test_cluster"),
+//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Saturday"),
+//					Time:         pulumi.String("03:58:25Z"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Name: pulumi.StringRef("test_cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a kubernetes cluster using the token from the config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/k8s"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := k8s.NewCluster(ctx, "test", &k8s.ClusterArgs{
+//				Name: pulumi.String("test_cluster"),
+//				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Saturday"),
+//					Time:         pulumi.String("03:58:25Z"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = k8s.LookupCluster(ctx, &k8s.LookupClusterArgs{
+//				Name: pulumi.StringRef("test_cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.InvokeOption) (*LookupClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterResult

@@ -256,9 +256,9 @@ def get_snapshot(id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_snapshot(location="us/las",
-        name="Snapshot Example",
-        size=2)
+    example = ionoscloud.compute.get_snapshot(name="Snapshot Example",
+        size=2,
+        location="us/las")
     ```
     Note: The size argument is in GB
 
@@ -314,9 +314,9 @@ def get_snapshot_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_snapshot(location="us/las",
-        name="Snapshot Example",
-        size=2)
+    example = ionoscloud.compute.get_snapshot(name="Snapshot Example",
+        size=2,
+        location="us/las")
     ```
     Note: The size argument is in GB
 

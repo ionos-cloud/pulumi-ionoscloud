@@ -315,6 +315,38 @@ def get_cluster(id: Optional[str] = None,
     example = ionoscloud.k8s.get_cluster(name="K8s Cluster Example")
     ```
 
+    ## Example of accessing a kubernetes cluster using the user's token
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    test_cluster = ionoscloud.k8s.Cluster("test",
+        name="test_cluster",
+        maintenance_window={
+            "day_of_the_week": "Saturday",
+            "time": "03:58:25Z",
+        })
+    test = ionoscloud.k8s.get_cluster(name="test_cluster")
+    ```
+
+    ## Example of accessing a kubernetes cluster using the token from the config
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    test_cluster = ionoscloud.k8s.Cluster("test",
+        name="test_cluster",
+        maintenance_window={
+            "day_of_the_week": "Saturday",
+            "time": "03:58:25Z",
+        })
+    test = ionoscloud.k8s.get_cluster(name="test_cluster")
+    ```
+
 
     :param str id: ID of the cluster you want to search for.
            
@@ -363,6 +395,38 @@ def get_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_ionoscloud as ionoscloud
 
     example = ionoscloud.k8s.get_cluster(name="K8s Cluster Example")
+    ```
+
+    ## Example of accessing a kubernetes cluster using the user's token
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    test_cluster = ionoscloud.k8s.Cluster("test",
+        name="test_cluster",
+        maintenance_window={
+            "day_of_the_week": "Saturday",
+            "time": "03:58:25Z",
+        })
+    test = ionoscloud.k8s.get_cluster(name="test_cluster")
+    ```
+
+    ## Example of accessing a kubernetes cluster using the token from the config
+
+    ```python
+    import pulumi
+    import ionoscloud as ionoscloud
+    import pulumi_ionoscloud as ionoscloud
+
+    test_cluster = ionoscloud.k8s.Cluster("test",
+        name="test_cluster",
+        maintenance_window={
+            "day_of_the_week": "Saturday",
+            "time": "03:58:25Z",
+        })
+    test = ionoscloud.k8s.get_cluster(name="test_cluster")
     ```
 
 

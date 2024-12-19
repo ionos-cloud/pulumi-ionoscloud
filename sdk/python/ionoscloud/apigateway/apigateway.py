@@ -197,7 +197,9 @@ class Apigateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example = ionoscloud.apigateway.Apigateway("example", metrics=True)
+        example = ionoscloud.apigateway.Apigateway("example",
+            name="example-gateway",
+            metrics=True)
         ```
 
         ## Import
@@ -236,7 +238,9 @@ class Apigateway(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example = ionoscloud.apigateway.Apigateway("example", metrics=True)
+        example = ionoscloud.apigateway.Apigateway("example",
+            name="example-gateway",
+            metrics=True)
         ```
 
         ## Import

@@ -26,43 +26,46 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleTemplate, err := compute.GetTemplate(ctx, &compute.GetTemplateArgs{
+//			example, err := compute.GetTemplate(ctx, &compute.GetTemplateArgs{
 //				Name: pulumi.StringRef("CUBES XS"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Datacenter Example"),
 //				Location: pulumi.String("de/txl"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
 //				DatacenterId: exampleDatacenter.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			serverImagePassword, err := random.NewRandomPassword(ctx, "serverImagePassword", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(false),
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewCubeServer(ctx, "exampleCubeServer", &compute.CubeServerArgs{
+//			_, err = compute.NewCubeServer(ctx, "example", &compute.CubeServerArgs{
+//				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
-//				TemplateUuid:     pulumi.String(exampleTemplate.Id),
+//				TemplateUuid:     pulumi.String(example.Id),
 //				ImagePassword:    serverImagePassword.Result,
 //				DatacenterId:     exampleDatacenter.ID(),
 //				Volume: &compute.CubeServerVolumeArgs{

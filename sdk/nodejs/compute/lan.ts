@@ -15,15 +15,20 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleCrossconnect = new ionoscloud.compute.Crossconnect("exampleCrossconnect", {description: "Cross Connect Description"});
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleCrossconnect = new ionoscloud.compute.Crossconnect("example", {
+ *     name: "Cross Connect Example",
+ *     description: "Cross Connect Description",
+ * });
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": false,
+ *     name: "Lan Example",
  *     pcc: exampleCrossconnect.id,
  * });
  * ```
@@ -34,14 +39,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "de/txl",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleLan = new ionoscloud.compute.Lan("exampleLan", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleLan = new ionoscloud.compute.Lan("example", {
+ *     datacenterId: example.id,
  *     "public": true,
+ *     name: "Lan IPv6 Example",
  *     ipv6CidrBlock: "AUTO",
  * });
  * ```

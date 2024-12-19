@@ -31,7 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -40,21 +41,24 @@ import (
 //				return err
 //			}
 //			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan Example 1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan Example 2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleBalancer, err := nlb.NewBalancer(ctx, "exampleBalancer", &nlb.BalancerArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleBalancer, err := nlb.NewBalancer(ctx, "example", &nlb.BalancerArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("example"),
 //				ListenerLan:  example1.ID(),
 //				TargetLan:    example2.ID(),
 //				Ips: pulumi.StringArray{
@@ -67,9 +71,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = nlb.NewForwardingRule(ctx, "exampleForwardingRule", &nlb.ForwardingRuleArgs{
-//				DatacenterId:          exampleDatacenter.ID(),
+//			_, err = nlb.NewForwardingRule(ctx, "example", &nlb.ForwardingRuleArgs{
+//				DatacenterId:          example.ID(),
 //				NetworkloadbalancerId: exampleBalancer.ID(),
+//				Name:                  pulumi.String("example"),
 //				Algorithm:             pulumi.String("SOURCE_IP"),
 //				Protocol:              pulumi.String("TCP"),
 //				ListenerIp:            pulumi.String("10.12.118.224"),

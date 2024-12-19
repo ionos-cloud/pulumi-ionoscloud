@@ -171,34 +171,6 @@ class Certificate(pulumi.CustomResource):
         """
         Manages a **Certificate** on IonosCloud.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=(lambda path: open(path).read())("path_to_cert"),
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        ```
-
-        **NOTE**: You can also provide the values as multiline strings, as seen below:
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=\"\"\"-----BEGIN CERTIFICATE-----
-        cert_body_here
-        -----END CERTIFICATE-----
-
-        \"\"\",
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        ```
-
         ## Import
 
         Resource certificate can be imported using the `resource id`, e.g.
@@ -222,34 +194,6 @@ class Certificate(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages a **Certificate** on IonosCloud.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=(lambda path: open(path).read())("path_to_cert"),
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        ```
-
-        **NOTE**: You can also provide the values as multiline strings, as seen below:
-
-        ```python
-        import pulumi
-        import ionoscloud as ionoscloud
-
-        cert = ionoscloud.cert.Certificate("cert",
-            certificate=\"\"\"-----BEGIN CERTIFICATE-----
-        cert_body_here
-        -----END CERTIFICATE-----
-
-        \"\"\",
-            certificate_chain=(lambda path: open(path).read())("path_to_cert_chain"),
-            private_key=(lambda path: open(path).read())("path_to_private_key"))
-        ```
 
         ## Import
 

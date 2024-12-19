@@ -29,39 +29,40 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.NewTargetGroup(ctx, "example", &compute.TargetGroupArgs{
-//				Algorithm: pulumi.String("ROUND_ROBIN"),
-//				HealthCheck: &compute.TargetGroupHealthCheckArgs{
-//					CheckInterval: pulumi.Int(50000),
-//					CheckTimeout:  pulumi.Int(5000),
-//					Retries:       pulumi.Int(2),
-//				},
-//				HttpHealthCheck: &compute.TargetGroupHttpHealthCheckArgs{
-//					MatchType: pulumi.String("STATUS_CODE"),
-//					Method:    pulumi.String("GET"),
-//					Negate:    pulumi.Bool(true),
-//					Path:      pulumi.String("/."),
-//					Regex:     pulumi.Bool(true),
-//					Response:  pulumi.String("200"),
-//				},
+//				Name:            pulumi.String("Target Group Example"),
+//				Algorithm:       pulumi.String("ROUND_ROBIN"),
 //				Protocol:        pulumi.String("HTTP"),
 //				ProtocolVersion: pulumi.String("HTTP1"),
 //				Targets: compute.TargetGroupTargetArray{
 //					&compute.TargetGroupTargetArgs{
-//						HealthCheckEnabled: pulumi.Bool(true),
 //						Ip:                 pulumi.String("22.231.2.2"),
-//						MaintenanceEnabled: pulumi.Bool(false),
 //						Port:               pulumi.Int(8080),
-//						ProxyProtocol:      pulumi.String("v2ssl"),
 //						Weight:             pulumi.Int(1),
+//						ProxyProtocol:      pulumi.String("v2ssl"),
+//						HealthCheckEnabled: pulumi.Bool(true),
+//						MaintenanceEnabled: pulumi.Bool(false),
 //					},
 //					&compute.TargetGroupTargetArgs{
-//						HealthCheckEnabled: pulumi.Bool(false),
 //						Ip:                 pulumi.String("22.231.2.3"),
-//						MaintenanceEnabled: pulumi.Bool(false),
 //						Port:               pulumi.Int(8081),
-//						ProxyProtocol:      pulumi.String("v2"),
 //						Weight:             pulumi.Int(124),
+//						ProxyProtocol:      pulumi.String("v2"),
+//						HealthCheckEnabled: pulumi.Bool(false),
+//						MaintenanceEnabled: pulumi.Bool(false),
 //					},
+//				},
+//				HealthCheck: &compute.TargetGroupHealthCheckArgs{
+//					CheckTimeout:  pulumi.Int(5000),
+//					CheckInterval: pulumi.Int(50000),
+//					Retries:       pulumi.Int(2),
+//				},
+//				HttpHealthCheck: &compute.TargetGroupHttpHealthCheckArgs{
+//					Path:      pulumi.String("/."),
+//					Method:    pulumi.String("GET"),
+//					MatchType: pulumi.String("STATUS_CODE"),
+//					Response:  pulumi.String("200"),
+//					Regex:     pulumi.Bool(true),
+//					Negate:    pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {

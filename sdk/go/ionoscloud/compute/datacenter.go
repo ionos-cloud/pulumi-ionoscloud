@@ -29,8 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
-//				Description:       pulumi.String("datacenter description"),
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("datacenter description"),
 //				SecAuthProtection: pulumi.Bool(false),
 //			})
 //			if err != nil {

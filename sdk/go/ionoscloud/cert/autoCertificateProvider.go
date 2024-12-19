@@ -29,13 +29,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cert.NewAutoCertificateProvider(ctx, "example", &cert.AutoCertificateProviderArgs{
-//				Email: pulumi.String("user@example.com"),
+//				Name:     pulumi.String("Let's Encrypt"),
+//				Email:    pulumi.String("user@example.com"),
+//				Location: pulumi.String("de/fra"),
+//				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
 //				ExternalAccountBinding: &cert.AutoCertificateProviderExternalAccountBindingArgs{
 //					KeyId:     pulumi.String("some-key-id"),
 //					KeySecret: pulumi.String("secret"),
 //				},
-//				Location: pulumi.String("de/fra"),
-//				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
 //			})
 //			if err != nil {
 //				return err

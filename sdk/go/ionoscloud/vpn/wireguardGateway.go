@@ -32,20 +32,23 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("datacenter_example"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ipblockExample, err := compute.NewIPBlock(ctx, "ipblockExample", &compute.IPBlockArgs{
+//			ipblockExample, err := compute.NewIPBlock(ctx, "ipblock_example", &compute.IPBlockArgs{
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
+//				Name:     pulumi.String("ipblock_example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
+//				Name:         pulumi.String("lan_example"),
 //				DatacenterId: datacenterExample.ID(),
 //			})
 //			if err != nil {
@@ -53,6 +56,7 @@ import (
 //			}
 //			_, err = vpn.NewWireguardGateway(ctx, "gateway", &vpn.WireguardGatewayArgs{
 //				Location:    pulumi.String("de/fra"),
+//				Name:        pulumi.String("gateway_example"),
 //				Description: pulumi.String("description"),
 //				PrivateKey:  pulumi.String("private"),
 //				GatewayIp: ipblockExample.Ips.ApplyT(func(ips []string) (string, error) {

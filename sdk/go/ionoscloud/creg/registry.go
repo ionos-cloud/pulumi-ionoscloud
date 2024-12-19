@@ -29,9 +29,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := creg.NewRegistry(ctx, "example", &creg.RegistryArgs{
-//				ApiSubnetAllowLists: pulumi.StringArray{
-//					pulumi.String("1.2.3.4/32"),
-//				},
 //				GarbageCollectionSchedule: &creg.RegistryGarbageCollectionScheduleArgs{
 //					Days: pulumi.StringArray{
 //						pulumi.String("Monday"),
@@ -40,6 +37,10 @@ import (
 //					Time: pulumi.String("05:19:00+00:00"),
 //				},
 //				Location: pulumi.String("de/fra"),
+//				Name:     pulumi.String("container-registry-example"),
+//				ApiSubnetAllowLists: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
+//				},
 //			})
 //			if err != nil {
 //				return err

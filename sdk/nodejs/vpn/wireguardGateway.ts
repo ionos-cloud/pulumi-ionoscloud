@@ -18,14 +18,22 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenterExample", {location: "de/fra"});
- * const ipblockExample = new ionoscloud.compute.IPBlock("ipblockExample", {
+ * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
+ *     name: "datacenter_example",
+ *     location: "de/fra",
+ * });
+ * const ipblockExample = new ionoscloud.compute.IPBlock("ipblock_example", {
  *     location: "de/fra",
  *     size: 1,
+ *     name: "ipblock_example",
  * });
- * const lanExample = new ionoscloud.compute.Lan("lanExample", {datacenterId: datacenterExample.id});
+ * const lanExample = new ionoscloud.compute.Lan("lan_example", {
+ *     name: "lan_example",
+ *     datacenterId: datacenterExample.id,
+ * });
  * const gateway = new ionoscloud.vpn.WireguardGateway("gateway", {
  *     location: "de/fra",
+ *     name: "gateway_example",
  *     description: "description",
  *     privateKey: "private",
  *     gatewayIp: ipblockExample.ips[0],

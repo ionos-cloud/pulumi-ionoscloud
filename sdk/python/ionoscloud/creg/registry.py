@@ -238,7 +238,6 @@ class Registry(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.creg.Registry("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
             garbage_collection_schedule={
                 "days": [
                     "Monday",
@@ -246,7 +245,9 @@ class Registry(pulumi.CustomResource):
                 ],
                 "time": "05:19:00+00:00",
             },
-            location="de/fra")
+            location="de/fra",
+            name="container-registry-example",
+            api_subnet_allow_lists=["1.2.3.4/32"])
         ```
 
         ## Import
@@ -281,7 +282,6 @@ class Registry(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.creg.Registry("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
             garbage_collection_schedule={
                 "days": [
                     "Monday",
@@ -289,7 +289,9 @@ class Registry(pulumi.CustomResource):
                 ],
                 "time": "05:19:00+00:00",
             },
-            location="de/fra")
+            location="de/fra",
+            name="container-registry-example",
+            api_subnet_allow_lists=["1.2.3.4/32"])
         ```
 
         ## Import

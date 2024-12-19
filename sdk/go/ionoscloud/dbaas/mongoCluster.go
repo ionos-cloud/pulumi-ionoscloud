@@ -25,28 +25,30 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			_, err = dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -67,10 +69,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			_, err = random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err
@@ -92,28 +94,30 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
-//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenterExample", &compute.DatacenterArgs{
+//			datacenterExample, err := compute.NewDatacenter(ctx, "datacenter_example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			lanExample, err := compute.NewLan(ctx, "lanExample", &compute.LanArgs{
+//			lanExample, err := compute.NewLan(ctx, "lan_example", &compute.LanArgs{
 //				DatacenterId: datacenterExample.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewMongoCluster(ctx, "exampleMongoCluster", &dbaas.MongoClusterArgs{
+//			_, err = dbaas.NewMongoCluster(ctx, "example_mongo_cluster", &dbaas.MongoClusterArgs{
 //				MaintenanceWindow: &dbaas.MongoClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00"),
@@ -142,10 +146,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = random.NewRandomPassword(ctx, "clusterPassword", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(16),
-//				Special:         pulumi.Bool(true),
-//				OverrideSpecial: pulumi.String("!#$%&*()-_=+[]{}<>:?"),
+//			_, err = random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
 //			})
 //			if err != nil {
 //				return err

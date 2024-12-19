@@ -192,16 +192,24 @@ class Crossconnect(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        cross_connect_test_resource = ionoscloud.compute.Crossconnect("crossConnectTestResource", description="CrossConnectTestResource")
-        dc1 = ionoscloud.compute.Datacenter("dc1", location="de/txl")
-        dc2 = ionoscloud.compute.Datacenter("dc2", location="de/txl")
+        cross_connect_test_resource = ionoscloud.compute.Crossconnect("CrossConnectTestResource",
+            name="CrossConnectTestResource",
+            description="CrossConnectTestResource")
+        dc1 = ionoscloud.compute.Datacenter("dc1",
+            location="de/txl",
+            name="dc1")
+        dc2 = ionoscloud.compute.Datacenter("dc2",
+            location="de/txl",
+            name="dc2")
         dc1lan = ionoscloud.compute.Lan("dc1lan",
             datacenter_id=dc1.id,
             public=False,
+            name="dc1lan",
             pcc=cross_connect_test_resource.id)
         dc2lan = ionoscloud.compute.Lan("dc2lan",
             datacenter_id=dc2.id,
             public=False,
+            name="dc2lan",
             pcc=cross_connect_test_resource.id)
         ```
 
@@ -245,16 +253,24 @@ class Crossconnect(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        cross_connect_test_resource = ionoscloud.compute.Crossconnect("crossConnectTestResource", description="CrossConnectTestResource")
-        dc1 = ionoscloud.compute.Datacenter("dc1", location="de/txl")
-        dc2 = ionoscloud.compute.Datacenter("dc2", location="de/txl")
+        cross_connect_test_resource = ionoscloud.compute.Crossconnect("CrossConnectTestResource",
+            name="CrossConnectTestResource",
+            description="CrossConnectTestResource")
+        dc1 = ionoscloud.compute.Datacenter("dc1",
+            location="de/txl",
+            name="dc1")
+        dc2 = ionoscloud.compute.Datacenter("dc2",
+            location="de/txl",
+            name="dc2")
         dc1lan = ionoscloud.compute.Lan("dc1lan",
             datacenter_id=dc1.id,
             public=False,
+            name="dc1lan",
             pcc=cross_connect_test_resource.id)
         dc2lan = ionoscloud.compute.Lan("dc2lan",
             datacenter_id=dc2.id,
             public=False,
+            name="dc2lan",
             pcc=cross_connect_test_resource.id)
         ```
 

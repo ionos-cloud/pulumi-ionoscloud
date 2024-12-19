@@ -18,13 +18,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     cores: 2,
  *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     volume: {
  *         name: "Inline Updated",
  *         size: 20,
@@ -33,23 +34,24 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: ionoscloud_lan.example.id,
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
  *     },
  * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
+ * const exampleVolume = new ionoscloud.compute.Volume("example", {
  *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "External 1",
  *     size: 10,
  *     diskType: "HDD",
  *     availabilityZone: "AUTO",
  *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
+ *     imagePassword: serverImagePassword.result,
  * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
+ * const example = new ionoscloud.compute.BootDeviceSelection("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     serverId: exampleServer.id,
  *     bootDeviceId: exampleVolume.id,
  * });
@@ -60,13 +62,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     cores: 2,
  *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     volume: {
  *         name: "Inline Updated",
  *         size: 20,
@@ -75,25 +78,26 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: ionoscloud_lan.example.id,
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
  *     },
  * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
+ * const example = new ionoscloud.compute.BootDeviceSelection("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     serverId: exampleServer.id,
  *     bootDeviceId: exampleServer.inlineVolumeIds[0],
  * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
+ * const exampleVolume = new ionoscloud.compute.Volume("example", {
  *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "External 1",
  *     size: 10,
  *     diskType: "HDD",
  *     availabilityZone: "AUTO",
  *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
+ *     imagePassword: serverImagePassword.result,
  * });
  * ```
  *
@@ -102,13 +106,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     cores: 2,
  *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     volume: {
  *         name: "Inline Updated",
  *         size: 20,
@@ -117,30 +122,31 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: ionoscloud_lan.example.id,
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
  *     },
  * });
- * const exampleImage = ionoscloud.compute.getImage({
+ * const example = ionoscloud.compute.getImage({
  *     name: "ubuntu-20.04",
  *     location: "de/txl",
  *     type: "CDROM",
  * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     serverId: exampleServer.inlineVolumeIds[0],
- *     bootDeviceId: exampleImage.then(exampleImage => exampleImage.id),
+ *     bootDeviceId: example.then(example => example.id),
  * });
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
+ * const exampleVolume = new ionoscloud.compute.Volume("example", {
  *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "External 1",
  *     size: 10,
  *     diskType: "HDD",
  *     availabilityZone: "AUTO",
  *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
+ *     imagePassword: serverImagePassword.result,
  * });
  * ```
  *
@@ -149,13 +155,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
  *     availabilityZone: "ZONE_2",
  *     imageName: "ubuntu:latest",
  *     cores: 2,
  *     ram: 2048,
- *     imagePassword: random_password.server_image_password.result,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     imagePassword: serverImagePassword.result,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     volume: {
  *         name: "Inline volume",
  *         size: 20,
@@ -164,27 +171,27 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: ionoscloud_lan.example.id,
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
  *     },
  * });
- * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("exampleBootDeviceSelection", {
- *     datacenterId: ionoscloud_datacenter.example.id,
+ * const exampleBootDeviceSelection = new ionoscloud.compute.BootDeviceSelection("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     serverId: exampleServer.inlineVolumeIds[0],
  * });
- * // boot_device_id = data.ionoscloud_image.example.id   VM will boot in the PXE shell when boot_device_id is omitted
- * const exampleVolume = new ionoscloud.compute.Volume("exampleVolume", {
+ * const exampleVolume = new ionoscloud.compute.Volume("example", {
  *     serverId: exampleServer.id,
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "External 1",
  *     size: 10,
  *     diskType: "HDD",
  *     availabilityZone: "AUTO",
  *     imageName: "debian:latest",
- *     imagePassword: random_password.server_image_password.result,
+ *     imagePassword: serverImagePassword.result,
  * });
- * const exampleImage = ionoscloud.compute.getImage({
+ * const example = ionoscloud.compute.getImage({
  *     name: "ubuntu-20.04",
  *     location: "de/txl",
  *     type: "CDROM",

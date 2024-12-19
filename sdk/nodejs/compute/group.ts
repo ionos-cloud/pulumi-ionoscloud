@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const user1Password = new random.RandomPassword("user1Password", {
+ * const user1Password = new random.index.Password("user1_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  *     administrator: false,
  *     forceSecAuth: false,
  * });
- * const user2Password = new random.RandomPassword("user2Password", {
+ * const user2Password = new random.index.Password("user2_password", {
  *     length: 16,
  *     special: true,
  *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
@@ -43,6 +43,7 @@ import * as utilities from "../utilities";
  *     forceSecAuth: false,
  * });
  * const example = new ionoscloud.compute.Group("example", {
+ *     name: "Group Example",
  *     createDatacenter: true,
  *     createSnapshot: true,
  *     reserveIp: true,

@@ -473,24 +473,27 @@ class Firewall(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location=example_datacenter.location,
-            size=2)
-        server_image_password = random.RandomPassword("serverImagePassword",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example.location,
+            size=2,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
+            image_password=server_image_password["result"],
             volume={
                 "name": "system",
                 "size": 14,
@@ -501,17 +504,19 @@ class Firewall(pulumi.CustomResource):
                 "dhcp": True,
                 "firewall_active": True,
             })
-        example_nic = ionoscloud.compute.Nic("exampleNic",
-            datacenter_id=example_datacenter.id,
+        example_nic = ionoscloud.compute.Nic("example",
+            datacenter_id=example.id,
             server_id=example_server.id,
             lan=2,
             dhcp=True,
-            firewall_active=True)
-        example_firewall = ionoscloud.compute.Firewall("exampleFirewall",
-            datacenter_id=example_datacenter.id,
+            firewall_active=True,
+            name="Nic Example")
+        example_firewall = ionoscloud.compute.Firewall("example",
+            datacenter_id=example.id,
             server_id=example_server.id,
             nic_id=example_nic.id,
             protocol="ICMP",
+            name="Firewall Example",
             source_mac="00:0a:95:9d:68:16",
             source_ip=example_ip_block.ips[0],
             target_ip=example_ip_block.ips[1],
@@ -560,24 +565,27 @@ class Firewall(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
-            location=example_datacenter.location,
-            size=2)
-        server_image_password = random.RandomPassword("serverImagePassword",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
+            location=example.location,
+            size=2,
+            name="IP Block Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
+            image_password=server_image_password["result"],
             volume={
                 "name": "system",
                 "size": 14,
@@ -588,17 +596,19 @@ class Firewall(pulumi.CustomResource):
                 "dhcp": True,
                 "firewall_active": True,
             })
-        example_nic = ionoscloud.compute.Nic("exampleNic",
-            datacenter_id=example_datacenter.id,
+        example_nic = ionoscloud.compute.Nic("example",
+            datacenter_id=example.id,
             server_id=example_server.id,
             lan=2,
             dhcp=True,
-            firewall_active=True)
-        example_firewall = ionoscloud.compute.Firewall("exampleFirewall",
-            datacenter_id=example_datacenter.id,
+            firewall_active=True,
+            name="Nic Example")
+        example_firewall = ionoscloud.compute.Firewall("example",
+            datacenter_id=example.id,
             server_id=example_server.id,
             nic_id=example_nic.id,
             protocol="ICMP",
+            name="Firewall Example",
             source_mac="00:0a:95:9d:68:16",
             source_ip=example_ip_block.ips[0],
             target_ip=example_ip_block.ips[1],

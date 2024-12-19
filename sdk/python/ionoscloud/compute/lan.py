@@ -246,14 +246,18 @@ class Lan(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_crossconnect = ionoscloud.compute.Crossconnect("exampleCrossconnect", description="Cross Connect Description")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
+        example_crossconnect = ionoscloud.compute.Crossconnect("example",
+            name="Cross Connect Example",
+            description="Cross Connect Description")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
             public=False,
+            name="Lan Example",
             pcc=example_crossconnect.id)
         ```
 
@@ -263,13 +267,15 @@ class Lan(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
             public=True,
+            name="Lan IPv6 Example",
             ipv6_cidr_block="AUTO")
         ```
 
@@ -310,14 +316,18 @@ class Lan(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_crossconnect = ionoscloud.compute.Crossconnect("exampleCrossconnect", description="Cross Connect Description")
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
+        example_crossconnect = ionoscloud.compute.Crossconnect("example",
+            name="Cross Connect Example",
+            description="Cross Connect Description")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
             public=False,
+            name="Lan Example",
             pcc=example_crossconnect.id)
         ```
 
@@ -327,13 +337,15 @@ class Lan(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="de/txl",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
             public=True,
+            name="Lan IPv6 Example",
             ipv6_cidr_block="AUTO")
         ```
 

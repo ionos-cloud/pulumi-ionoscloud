@@ -32,27 +32,31 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			testDatacenter, err := compute.NewDatacenter(ctx, "testDatacenter", &compute.DatacenterArgs{
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("test_vpn_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testLan, err := compute.NewLan(ctx, "testLan", &compute.LanArgs{
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:         pulumi.String("test_lan_basic"),
 //				Public:       pulumi.Bool(false),
 //				DatacenterId: testDatacenter.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			testIpblock, err := compute.NewIPBlock(ctx, "testIpblock", &compute.IPBlockArgs{
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock_basic"),
 //				Location: pulumi.String("de/fra"),
 //				Size:     pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleIpsecGateway, err := vpn.NewIpsecGateway(ctx, "exampleIpsecGateway", &vpn.IpsecGatewayArgs{
+//			example, err := vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec_gateway_basic"),
 //				Location: pulumi.String("de/fra"),
 //				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
 //					return ips[0], nil
@@ -70,9 +74,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vpn.NewIpsecTunnel(ctx, "exampleIpsecTunnel", &vpn.IpsecTunnelArgs{
+//			_, err = vpn.NewIpsecTunnel(ctx, "example", &vpn.IpsecTunnelArgs{
 //				Location:    pulumi.String("de/fra"),
-//				GatewayId:   exampleIpsecGateway.ID(),
+//				GatewayId:   example.ID(),
+//				Name:        pulumi.String("example-tunnel"),
 //				RemoteHost:  pulumi.String("vpn.mycompany.com"),
 //				Description: pulumi.String("Allows local subnet X to connect to virtual network Y."),
 //				Auth: &vpn.IpsecTunnelAuthArgs{

@@ -95,7 +95,7 @@ def get_servers(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[{
             "name": "name",
             "value": "server_name_to_look_here",
@@ -107,7 +107,7 @@ def get_servers(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[{
             "name": "cpu_family",
             "value": "INTEL_XEON",
@@ -119,7 +119,7 @@ def get_servers(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[
             {
                 "name": "name",
@@ -168,7 +168,7 @@ def get_servers_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[{
             "name": "name",
             "value": "server_name_to_look_here",
@@ -180,7 +180,7 @@ def get_servers_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[{
             "name": "cpu_family",
             "value": "INTEL_XEON",
@@ -192,7 +192,7 @@ def get_servers_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.compute.get_servers(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.compute.get_servers(datacenter_id=example_ionoscloud_datacenter["id"],
         filters=[
             {
                 "name": "name",

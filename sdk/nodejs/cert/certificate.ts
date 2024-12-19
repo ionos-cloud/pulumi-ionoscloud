@@ -7,38 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Manages a **Certificate** on IonosCloud.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const cert = new ionoscloud.cert.Certificate("cert", {
- *     certificate: fs.readFileSync("path_to_cert", "utf8"),
- *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
- *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
- * });
- * ```
- *
- * **NOTE**: You can also provide the values as multiline strings, as seen below:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const cert = new ionoscloud.cert.Certificate("cert", {
- *     certificate: `-----BEGIN CERTIFICATE-----
- * cert_body_here
- * -----END CERTIFICATE-----
- *
- * `,
- *     certificateChain: fs.readFileSync("path_to_cert_chain", "utf8"),
- *     privateKey: fs.readFileSync("path_to_private_key", "utf8"),
- * });
- * ```
- *
  * ## Import
  *
  * Resource certificate can be imported using the `resource id`, e.g.

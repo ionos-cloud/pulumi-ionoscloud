@@ -31,7 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nlb.LookupBalancer(ctx, &nlb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("Network Load Balancer Name"),
 //			}, nil)
 //			if err != nil {

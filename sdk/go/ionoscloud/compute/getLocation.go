@@ -30,8 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetLocation(ctx, &compute.GetLocationArgs{
-//				Feature: pulumi.StringRef("SSD"),
 //				Name:    pulumi.StringRef("karlsruhe"),
+//				Feature: pulumi.StringRef("SSD"),
 //			}, nil)
 //			if err != nil {
 //				return err

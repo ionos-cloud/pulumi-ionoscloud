@@ -176,27 +176,31 @@ class IPFailover(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=1)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            size=1,
+            name="IP Block Example")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
+            image_password=server_image_password["result"],
             volume={
                 "name": "system",
                 "size": 14,
@@ -208,8 +212,8 @@ class IPFailover(pulumi.CustomResource):
                 "firewall_active": True,
                 "ips": [example_ip_block.ips[0]],
             })
-        example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
-            datacenter_id=example_datacenter.id,
+        example_ip_failover = ionoscloud.compute.IPFailover("example",
+            datacenter_id=example.id,
             lan_id=example_lan.id,
             ip=example_ip_block.ips[0],
             nicuuid=example_server.primary_nic,
@@ -259,27 +263,31 @@ class IPFailover(pulumi.CustomResource):
         import ionoscloud as ionoscloud
         import pulumi_random as random
 
-        example_datacenter = ionoscloud.compute.Datacenter("exampleDatacenter",
+        example = ionoscloud.compute.Datacenter("example",
+            name="Datacenter Example",
             location="us/las",
             description="Datacenter Description",
             sec_auth_protection=False)
-        example_ip_block = ionoscloud.compute.IPBlock("exampleIPBlock",
+        example_ip_block = ionoscloud.compute.IPBlock("example",
             location="us/las",
-            size=1)
-        example_lan = ionoscloud.compute.Lan("exampleLan",
-            datacenter_id=example_datacenter.id,
-            public=True)
-        server_image_password = random.RandomPassword("serverImagePassword",
+            size=1,
+            name="IP Block Example")
+        example_lan = ionoscloud.compute.Lan("example",
+            datacenter_id=example.id,
+            public=True,
+            name="Lan Example")
+        server_image_password = random.index.Password("server_image_password",
             length=16,
             special=False)
-        example_server = ionoscloud.compute.Server("exampleServer",
-            datacenter_id=example_datacenter.id,
+        example_server = ionoscloud.compute.Server("example",
+            name="Server Example",
+            datacenter_id=example.id,
             cores=1,
             ram=1024,
             availability_zone="ZONE_1",
             cpu_family="INTEL_XEON",
             image_name="Ubuntu-20.04",
-            image_password=server_image_password.result,
+            image_password=server_image_password["result"],
             volume={
                 "name": "system",
                 "size": 14,
@@ -291,8 +299,8 @@ class IPFailover(pulumi.CustomResource):
                 "firewall_active": True,
                 "ips": [example_ip_block.ips[0]],
             })
-        example_ip_failover = ionoscloud.compute.IPFailover("exampleIPFailover",
-            datacenter_id=example_datacenter.id,
+        example_ip_failover = ionoscloud.compute.IPFailover("example",
+            datacenter_id=example.id,
             lan_id=example_lan.id,
             ip=example_ip_block.ips[0],
             nicuuid=example_server.primary_nic,

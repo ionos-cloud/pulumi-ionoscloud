@@ -69,6 +69,86 @@ import (
 //	}
 //
 // ```
+//
+// ## Example of accessing a Dataplatform Cluster using the user's token
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
+//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
+//					&dsaas.ClusterMaintenanceWindowArgs{
+//						DayOfTheWeek: pulumi.String("Sunday"),
+//						Time:         pulumi.String("09:00:00"),
+//					},
+//				},
+//				Version: pulumi.String("23.7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
+//				Name: pulumi.StringRef("Dataplatform_Cluster_Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of accessing a kubernetes cluster using the token from the config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.NewCluster(ctx, "example", &dsaas.ClusterArgs{
+//				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
+//				Name:         pulumi.String("Dataplatform_Cluster_Example"),
+//				MaintenanceWindows: dsaas.ClusterMaintenanceWindowArray{
+//					&dsaas.ClusterMaintenanceWindowArgs{
+//						DayOfTheWeek: pulumi.String("Sunday"),
+//						Time:         pulumi.String("09:00:00"),
+//					},
+//				},
+//				Version: pulumi.String("23.7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = dsaas.LookupCluster(ctx, &dsaas.LookupClusterArgs{
+//				Name: pulumi.StringRef("Dataplatform_Cluster_Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.InvokeOption) (*LookupClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClusterResult

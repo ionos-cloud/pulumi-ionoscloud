@@ -294,10 +294,12 @@ class Record(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
+            name="example.com",
             description="description",
             enabled=False)
         recordexample = ionoscloud.dns.Record("recordexample",
             zone_id=example.id,
+            name="recordexample",
             type="CNAME",
             content="1.2.3.4",
             ttl=2000,
@@ -349,10 +351,12 @@ class Record(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.dns.Zone("example",
+            name="example.com",
             description="description",
             enabled=False)
         recordexample = ionoscloud.dns.Record("recordexample",
             zone_id=example.id,
+            name="recordexample",
             type="CNAME",
             content="1.2.3.4",
             ttl=2000,

@@ -14,21 +14,24 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  * import * as random from "@pulumi/random";
  *
- * const exampleDatacenter = new ionoscloud.compute.Datacenter("exampleDatacenter", {
+ * const example = new ionoscloud.compute.Datacenter("example", {
+ *     name: "Datacenter Example",
  *     location: "us/las",
  *     description: "Datacenter Description",
  *     secAuthProtection: false,
  * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("exampleIPBlock", {
- *     location: exampleDatacenter.location,
+ * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
+ *     location: example.location,
  *     size: 2,
+ *     name: "IP Block Example",
  * });
- * const serverImagePassword = new random.RandomPassword("serverImagePassword", {
+ * const serverImagePassword = new random.index.Password("server_image_password", {
  *     length: 16,
  *     special: false,
  * });
- * const exampleServer = new ionoscloud.compute.Server("exampleServer", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleServer = new ionoscloud.compute.Server("example", {
+ *     name: "Server Example",
+ *     datacenterId: example.id,
  *     cores: 1,
  *     ram: 1024,
  *     availabilityZone: "ZONE_1",
@@ -46,18 +49,20 @@ import * as utilities from "../utilities";
  *         firewallActive: true,
  *     },
  * });
- * const exampleNic = new ionoscloud.compute.Nic("exampleNic", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleNic = new ionoscloud.compute.Nic("example", {
+ *     datacenterId: example.id,
  *     serverId: exampleServer.id,
  *     lan: 2,
  *     dhcp: true,
  *     firewallActive: true,
+ *     name: "Nic Example",
  * });
- * const exampleFirewall = new ionoscloud.compute.Firewall("exampleFirewall", {
- *     datacenterId: exampleDatacenter.id,
+ * const exampleFirewall = new ionoscloud.compute.Firewall("example", {
+ *     datacenterId: example.id,
  *     serverId: exampleServer.id,
  *     nicId: exampleNic.id,
  *     protocol: "ICMP",
+ *     name: "Firewall Example",
  *     sourceMac: "00:0a:95:9d:68:16",
  *     sourceIp: exampleIPBlock.ips[0],
  *     targetIp: exampleIPBlock.ips[1],

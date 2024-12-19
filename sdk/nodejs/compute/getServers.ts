@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [{
  *         name: "name",
  *         value: "server_name_to_look_here",
@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [{
  *         name: "cpu_family",
  *         value: "INTEL_XEON",
@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [
  *         {
  *             name: "name",
@@ -116,7 +116,7 @@ export interface GetServersResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [{
  *         name: "name",
  *         value: "server_name_to_look_here",
@@ -130,7 +130,7 @@ export interface GetServersResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [{
  *         name: "cpu_family",
  *         value: "INTEL_XEON",
@@ -144,7 +144,7 @@ export interface GetServersResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getServers({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     filters: [
  *         {
  *             name: "name",

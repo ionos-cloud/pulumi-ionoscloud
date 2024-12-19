@@ -35,6 +35,46 @@ import * as utilities from "../utilities";
  *     partialMatch: true,
  * });
  * ```
+ *
+ * ## Example of accessing a Dataplatform Cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "Dataplatform_Cluster_Example",
+ *     maintenanceWindows: [{
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     }],
+ *     version: "23.7",
+ * });
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "Dataplatform_Cluster_Example",
+ *     maintenanceWindows: [{
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     }],
+ *     version: "23.7",
+ * });
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
+ * });
+ * ```
  */
 export function getCluster(args?: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     args = args || {};
@@ -162,6 +202,46 @@ export interface GetClusterResult {
  * const example = ionoscloud.dsaas.getCluster({
  *     name: "_Example",
  *     partialMatch: true,
+ * });
+ * ```
+ *
+ * ## Example of accessing a Dataplatform Cluster using the user's token
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "Dataplatform_Cluster_Example",
+ *     maintenanceWindows: [{
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     }],
+ *     version: "23.7",
+ * });
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
+ * });
+ * ```
+ *
+ * ## Example of accessing a kubernetes cluster using the token from the config
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ionoscloud from "@pulumi/ionoscloud";
+ *
+ * const exampleCluster = new ionoscloud.dsaas.Cluster("example", {
+ *     datacenterId: exampleIonoscloudDatacenter.id,
+ *     name: "Dataplatform_Cluster_Example",
+ *     maintenanceWindows: [{
+ *         dayOfTheWeek: "Sunday",
+ *         time: "09:00:00",
+ *     }],
+ *     version: "23.7",
+ * });
+ * const example = ionoscloud.dsaas.getCluster({
+ *     name: "Dataplatform_Cluster_Example",
  * });
  * ```
  */

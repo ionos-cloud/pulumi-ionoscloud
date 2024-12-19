@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleUser, err := compute.NewUser(ctx, "exampleUser", &compute.UserArgs{
+//			example, err := compute.NewUser(ctx, "example", &compute.UserArgs{
 //				FirstName:     pulumi.String("example"),
 //				LastName:      pulumi.String("example"),
 //				Email:         pulumi.String("unique@email.com"),
@@ -39,8 +39,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = compute.NewS3Key(ctx, "exampleS3Key", &compute.S3KeyArgs{
-//				UserId: exampleUser.ID(),
+//			_, err = compute.NewS3Key(ctx, "example", &compute.S3KeyArgs{
+//				UserId: example.ID(),
 //				Active: pulumi.Bool(true),
 //			})
 //			if err != nil {

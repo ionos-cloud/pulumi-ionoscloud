@@ -30,21 +30,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:        pulumi.String("example"),
 //				Location:    pulumi.String("de/txl"),
 //				Description: pulumi.String("Datacenter for testing dbaas cluster"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = dbaas.NewPSQLCluster(ctx, "examplePSQLCluster", &dbaas.PSQLClusterArgs{
+//			_, err = dbaas.NewPSQLCluster(ctx, "example", &dbaas.PSQLClusterArgs{
 //				PostgresVersion: pulumi.String("12"),
 //				Instances:       pulumi.Int(1),
 //				Cores:           pulumi.Int(4),
@@ -56,11 +58,11 @@ import (
 //					PoolMode: pulumi.String("session"),
 //				},
 //				Connections: &dbaas.PSQLClusterConnectionsArgs{
-//					DatacenterId: exampleDatacenter.ID(),
+//					DatacenterId: example.ID(),
 //					LanId:        exampleLan.ID(),
 //					Cidr:         pulumi.String("192.168.100.1/24"),
 //				},
-//				Location:    exampleDatacenter.Location,
+//				Location:    example.Location,
 //				DisplayName: pulumi.String("PostgreSQL_cluster"),
 //				MaintenanceWindow: &dbaas.PSQLClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),

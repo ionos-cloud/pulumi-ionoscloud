@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := apigateway.NewApigateway(ctx, "example", &apigateway.ApigatewayArgs{
+//				Name:    pulumi.String("example-gateway"),
 //				Metrics: pulumi.Bool(true),
 //			})
 //			if err != nil {

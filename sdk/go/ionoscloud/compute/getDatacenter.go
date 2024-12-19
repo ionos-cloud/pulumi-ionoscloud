@@ -32,8 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.LookupDatacenter(ctx, &compute.LookupDatacenterArgs{
-//				Location: pulumi.StringRef("us/las"),
 //				Name:     pulumi.StringRef("Datacenter Example"),
+//				Location: pulumi.StringRef("us/las"),
 //			}, nil)
 //			if err != nil {
 //				return err

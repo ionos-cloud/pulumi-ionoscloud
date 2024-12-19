@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getSnapshot({
- *     location: "us/las",
  *     name: "Snapshot Example",
  *     size: 2,
+ *     location: "us/las",
  * });
  * ```
  * Note: The size argument is in GB
@@ -144,9 +144,9 @@ export interface GetSnapshotResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.compute.getSnapshot({
- *     location: "us/las",
  *     name: "Snapshot Example",
  *     size: 2,
+ *     location: "us/las",
  * });
  * ```
  * Note: The size argument is in GB

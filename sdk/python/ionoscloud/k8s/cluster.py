@@ -406,12 +406,13 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.k8s.Cluster("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
+            name="k8sClusterExample",
             k8s_version="1.28.6",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
             },
+            api_subnet_allow_lists=["1.2.3.4/32"],
             s3_buckets=[{
                 "name": "globally_unique_bucket_name",
             }])
@@ -424,12 +425,15 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         testdatacenter = ionoscloud.compute.Datacenter("testdatacenter",
+            name="example",
             location="de/fra",
             description="Test datacenter")
         k8sip = ionoscloud.compute.IPBlock("k8sip",
             location="de/fra",
-            size=1)
+            size=1,
+            name="IP Block Private K8s")
         example = ionoscloud.k8s.Cluster("example",
+            name="k8sClusterExample",
             k8s_version="1.28.6",
             maintenance_window={
                 "day_of_the_week": "Sunday",
@@ -492,12 +496,13 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         example = ionoscloud.k8s.Cluster("example",
-            api_subnet_allow_lists=["1.2.3.4/32"],
+            name="k8sClusterExample",
             k8s_version="1.28.6",
             maintenance_window={
                 "day_of_the_week": "Sunday",
                 "time": "09:00:00Z",
             },
+            api_subnet_allow_lists=["1.2.3.4/32"],
             s3_buckets=[{
                 "name": "globally_unique_bucket_name",
             }])
@@ -510,12 +515,15 @@ class Cluster(pulumi.CustomResource):
         import ionoscloud as ionoscloud
 
         testdatacenter = ionoscloud.compute.Datacenter("testdatacenter",
+            name="example",
             location="de/fra",
             description="Test datacenter")
         k8sip = ionoscloud.compute.IPBlock("k8sip",
             location="de/fra",
-            size=1)
+            size=1,
+            name="IP Block Private K8s")
         example = ionoscloud.k8s.Cluster("example",
+            name="k8sClusterExample",
             k8s_version="1.28.6",
             maintenance_window={
                 "day_of_the_week": "Sunday",

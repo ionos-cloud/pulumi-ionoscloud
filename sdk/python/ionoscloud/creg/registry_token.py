@@ -258,7 +258,7 @@ class RegistryToken(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_registry = ionoscloud.creg.Registry("exampleRegistry",
+        example = ionoscloud.creg.Registry("example",
             garbage_collection_schedule={
                 "days": [
                     "Monday",
@@ -266,16 +266,18 @@ class RegistryToken(pulumi.CustomResource):
                 ],
                 "time": "05:19:00+00:00",
             },
-            location="de/fra")
-        example_registry_token = ionoscloud.creg.RegistryToken("exampleRegistryToken",
+            location="de/fra",
+            name="container-registry-example")
+        example_registry_token = ionoscloud.creg.RegistryToken("example",
             expiry_date="2023-01-13 16:27:42Z",
+            name="container-registry-token-example",
             scopes=[{
                 "actions": ["push"],
                 "name": "Scope1",
                 "type": "repository",
             }],
             status="enabled",
-            registry_id=example_registry.id,
+            registry_id=example.id,
             save_password_to_file="pass.txt")
         ```
 
@@ -313,7 +315,7 @@ class RegistryToken(pulumi.CustomResource):
         import pulumi
         import ionoscloud as ionoscloud
 
-        example_registry = ionoscloud.creg.Registry("exampleRegistry",
+        example = ionoscloud.creg.Registry("example",
             garbage_collection_schedule={
                 "days": [
                     "Monday",
@@ -321,16 +323,18 @@ class RegistryToken(pulumi.CustomResource):
                 ],
                 "time": "05:19:00+00:00",
             },
-            location="de/fra")
-        example_registry_token = ionoscloud.creg.RegistryToken("exampleRegistryToken",
+            location="de/fra",
+            name="container-registry-example")
+        example_registry_token = ionoscloud.creg.RegistryToken("example",
             expiry_date="2023-01-13 16:27:42Z",
+            name="container-registry-token-example",
             scopes=[{
                 "actions": ["push"],
                 "name": "Scope1",
                 "type": "repository",
             }],
             status="enabled",
-            registry_id=example_registry.id,
+            registry_id=example.id,
             save_password_to_file="pass.txt")
         ```
 

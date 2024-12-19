@@ -30,7 +30,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			nfsDc, err := compute.NewDatacenter(ctx, "nfsDc", &compute.DatacenterArgs{
+//			nfsDc, err := compute.NewDatacenter(ctx, "nfs_dc", &compute.DatacenterArgs{
+//				Name:              pulumi.String("NFS Datacenter"),
 //				Location:          pulumi.String("de/txl"),
 //				Description:       pulumi.String("Datacenter Description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -38,14 +39,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			nfsLan, err := compute.NewLan(ctx, "nfsLan", &compute.LanArgs{
+//			nfsLan, err := compute.NewLan(ctx, "nfs_lan", &compute.LanArgs{
 //				DatacenterId: nfsDc.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan for NFS"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleCluster, err := nfs.NewCluster(ctx, "exampleCluster", &nfs.ClusterArgs{
+//			example, err := nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
+//				Name:     pulumi.String("test"),
 //				Location: pulumi.String("de/txl"),
 //				Size:     pulumi.Int(2),
 //				Nfs: &nfs.ClusterNfsArgs{
@@ -60,9 +63,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = nfs.NewShare(ctx, "exampleShare", &nfs.ShareArgs{
+//			_, err = nfs.NewShare(ctx, "example", &nfs.ShareArgs{
 //				Location:  pulumi.String("de/txl"),
-//				ClusterId: exampleCluster.ID(),
+//				ClusterId: example.ID(),
+//				Name:      pulumi.String("example-share"),
 //				Quota:     pulumi.Int(512),
 //				Gid:       pulumi.Int(512),
 //				Uid:       pulumi.Int(512),

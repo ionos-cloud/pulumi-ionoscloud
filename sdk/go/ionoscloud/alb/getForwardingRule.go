@@ -32,8 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupForwardingRule(ctx, &alb.LookupForwardingRuleArgs{
-//				DatacenterId:              ionoscloud_datacenter.Example.Id,
-//				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
+//				DatacenterId:              exampleIonoscloudDatacenter.Id,
+//				ApplicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.Id,
 //				Name:                      pulumi.StringRef("ALB FR Example"),
 //			}, nil)
 //			if err != nil {
@@ -59,8 +59,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupForwardingRule(ctx, &alb.LookupForwardingRuleArgs{
-//				DatacenterId:              ionoscloud_datacenter.Example.Id,
-//				ApplicationLoadbalancerId: ionoscloud_application_loadbalancer.Example.Id,
+//				DatacenterId:              exampleIonoscloudDatacenter.Id,
+//				ApplicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.Id,
 //				Name:                      pulumi.StringRef("Example"),
 //				PartialMatch:              pulumi.BoolRef(true),
 //			}, nil)

@@ -168,7 +168,7 @@ def get_balancer(datacenter_id: Optional[str] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.nlb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.nlb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="Network Load Balancer Name")
     ```
 
@@ -213,7 +213,7 @@ def get_balancer_output(datacenter_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_ionoscloud as ionoscloud
 
-    example = ionoscloud.nlb.get_balancer(datacenter_id=ionoscloud_datacenter["example"]["id"],
+    example = ionoscloud.nlb.get_balancer(datacenter_id=example_ionoscloud_datacenter["id"],
         name="Network Load Balancer Name")
     ```
 

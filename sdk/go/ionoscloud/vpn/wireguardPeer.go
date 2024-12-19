@@ -30,17 +30,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpn.NewWireguardPeer(ctx, "example", &vpn.WireguardPeerArgs{
-//				AllowedIps: pulumi.StringArray{
-//					pulumi.String("10.0.0.0/8"),
-//					pulumi.String("192.168.1.0/24"),
-//				},
+//				Location:    pulumi.String("de/fra"),
+//				GatewayId:   pulumi.String("your gateway id here"),
+//				Name:        pulumi.String("example-gateway"),
 //				Description: pulumi.String("An example WireGuard peer"),
 //				Endpoint: &vpn.WireguardPeerEndpointArgs{
 //					Host: pulumi.String("1.2.3.4"),
 //					Port: pulumi.Int(51820),
 //				},
-//				GatewayId: pulumi.String("your gateway id here"),
-//				Location:  pulumi.String("de/fra"),
+//				AllowedIps: pulumi.StringArray{
+//					pulumi.String("10.0.0.0/8"),
+//					pulumi.String("192.168.1.0/24"),
+//				},
 //				PublicKey: pulumi.String("examplePublicKey=="),
 //			})
 //			if err != nil {

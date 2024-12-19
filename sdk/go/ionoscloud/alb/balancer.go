@@ -29,7 +29,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
 //				Location:          pulumi.String("us/las"),
 //				Description:       pulumi.String("datacenter description"),
 //				SecAuthProtection: pulumi.Bool(false),
@@ -37,22 +38,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			example1, err := compute.NewLan(ctx, "example1", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			example1, err := compute.NewLan(ctx, "example_1", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			example2, err := compute.NewLan(ctx, "example2", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			example2, err := compute.NewLan(ctx, "example_2", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = alb.NewBalancer(ctx, "exampleBalancer", &alb.BalancerArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			_, err = alb.NewBalancer(ctx, "example", &alb.BalancerArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("ALB Example"),
 //				ListenerLan:  example1.ID(),
 //				Ips: pulumi.StringArray{
 //					pulumi.String("10.12.118.224"),

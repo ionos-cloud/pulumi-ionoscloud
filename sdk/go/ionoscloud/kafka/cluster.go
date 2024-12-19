@@ -32,25 +32,28 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Basic example
-//			exampleDatacenter, err := compute.NewDatacenter(ctx, "exampleDatacenter", &compute.DatacenterArgs{
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("example-kafka-datacenter"),
 //				Location: pulumi.String("de/fra"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			exampleLan, err := compute.NewLan(ctx, "exampleLan", &compute.LanArgs{
-//				DatacenterId: exampleDatacenter.ID(),
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
 //				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example-kafka-lan"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = kafka.NewCluster(ctx, "exampleCluster", &kafka.ClusterArgs{
+//			_, err = kafka.NewCluster(ctx, "example", &kafka.ClusterArgs{
+//				Name:     pulumi.String("example-kafka-cluster"),
 //				Location: pulumi.String("de/fra"),
 //				Version:  pulumi.String("3.7.0"),
 //				Size:     pulumi.String("S"),
 //				Connections: &kafka.ClusterConnectionsArgs{
-//					DatacenterId: exampleDatacenter.ID(),
+//					DatacenterId: example.ID(),
 //					LanId:        exampleLan.ID(),
 //					BrokerAddresses: pulumi.StringArray{
 //						pulumi.String("192.168.1.101/24"),

@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.nlb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "Network Load Balancer Name",
  * });
  * ```
@@ -105,7 +105,7 @@ export interface GetBalancerResult {
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = ionoscloud.nlb.getBalancer({
- *     datacenterId: ionoscloud_datacenter.example.id,
+ *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "Network Load Balancer Name",
  * });
  * ```

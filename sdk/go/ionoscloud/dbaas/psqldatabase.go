@@ -31,8 +31,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := dbaas.NewPSQLDatabase(ctx, "examplePgDatabase", &dbaas.PSQLDatabaseArgs{
-//				ClusterId: pulumi.Any(ionoscloud_pg_cluster.Example.Id),
+//			_, err := dbaas.NewPSQLDatabase(ctx, "example_pg_database", &dbaas.PSQLDatabaseArgs{
+//				ClusterId: pulumi.Any(example.Id),
+//				Name:      pulumi.String("exampledatabase"),
 //				Owner:     pulumi.String("exampleuser"),
 //			})
 //			if err != nil {

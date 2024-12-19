@@ -29,9 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.LookupSnapshot(ctx, &compute.LookupSnapshotArgs{
-//				Location: pulumi.StringRef("us/las"),
 //				Name:     pulumi.StringRef("Snapshot Example"),
 //				Size:     pulumi.IntRef(2),
+//				Location: pulumi.StringRef("us/las"),
 //			}, nil)
 //			if err != nil {
 //				return err

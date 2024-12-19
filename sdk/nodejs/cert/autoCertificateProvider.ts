@@ -16,13 +16,14 @@ import * as utilities from "../utilities";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
  * const example = new ionoscloud.cert.AutoCertificateProvider("example", {
+ *     name: "Let's Encrypt",
  *     email: "user@example.com",
+ *     location: "de/fra",
+ *     server: "https://acme-v02.api.letsencrypt.org/directory",
  *     externalAccountBinding: {
  *         keyId: "some-key-id",
  *         keySecret: "secret",
  *     },
- *     location: "de/fra",
- *     server: "https://acme-v02.api.letsencrypt.org/directory",
  * });
  * ```
  *

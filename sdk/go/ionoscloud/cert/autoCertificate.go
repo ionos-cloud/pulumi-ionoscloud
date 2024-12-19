@@ -28,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAutoCertificateProvider, err := cert.NewAutoCertificateProvider(ctx, "exampleAutoCertificateProvider", &cert.AutoCertificateProviderArgs{
+//			example, err := cert.NewAutoCertificateProvider(ctx, "example", &cert.AutoCertificateProviderArgs{
+//				Name:     pulumi.String("Let's Encrypt"),
 //				Email:    pulumi.String("user@example.com"),
 //				Location: pulumi.String("de/fra"),
 //				Server:   pulumi.String("https://acme-v02.api.letsencrypt.org/directory"),
@@ -40,11 +41,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cert.NewAutoCertificate(ctx, "exampleAutoCertificate", &cert.AutoCertificateArgs{
-//				ProviderId:   exampleAutoCertificateProvider.ID(),
+//			_, err = cert.NewAutoCertificate(ctx, "example", &cert.AutoCertificateArgs{
+//				ProviderId:   example.ID(),
 //				CommonName:   pulumi.String("www.example.com"),
-//				Location:     exampleAutoCertificateProvider.Location,
+//				Location:     example.Location,
 //				KeyAlgorithm: pulumi.String("rsa4096"),
+//				Name:         pulumi.String("My Auto renewed certificate"),
 //				SubjectAlternativeNames: pulumi.StringArray{
 //					pulumi.String("app.example.com"),
 //				},

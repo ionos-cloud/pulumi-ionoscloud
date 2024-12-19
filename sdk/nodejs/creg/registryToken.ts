@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ionoscloud from "@pulumi/ionoscloud";
  *
- * const exampleRegistry = new ionoscloud.creg.Registry("exampleRegistry", {
+ * const example = new ionoscloud.creg.Registry("example", {
  *     garbageCollectionSchedule: {
  *         days: [
  *             "Monday",
@@ -24,16 +24,18 @@ import * as utilities from "../utilities";
  *         time: "05:19:00+00:00",
  *     },
  *     location: "de/fra",
+ *     name: "container-registry-example",
  * });
- * const exampleRegistryToken = new ionoscloud.creg.RegistryToken("exampleRegistryToken", {
+ * const exampleRegistryToken = new ionoscloud.creg.RegistryToken("example", {
  *     expiryDate: "2023-01-13 16:27:42Z",
+ *     name: "container-registry-token-example",
  *     scopes: [{
  *         actions: ["push"],
  *         name: "Scope1",
  *         type: "repository",
  *     }],
  *     status: "enabled",
- *     registryId: exampleRegistry.id,
+ *     registryId: example.id,
  *     savePasswordToFile: "pass.txt",
  * });
  * ```

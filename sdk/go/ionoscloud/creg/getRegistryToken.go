@@ -32,7 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
-//				RegistryId: ionoscloud_container_registry.Example.Id,
+//				RegistryId: exampleIonoscloudContainerRegistry.Id,
 //				Name:       pulumi.StringRef("container-registry-token-example"),
 //			}, nil)
 //			if err != nil {
@@ -58,7 +58,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := creg.LookupRegistryToken(ctx, &creg.LookupRegistryTokenArgs{
-//				RegistryId:   ionoscloud_container_registry.Example.Id,
+//				RegistryId:   exampleIonoscloudContainerRegistry.Id,
 //				Name:         pulumi.StringRef("-example"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)

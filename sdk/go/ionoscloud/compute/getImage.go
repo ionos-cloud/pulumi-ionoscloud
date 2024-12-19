@@ -29,10 +29,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetImage(ctx, &compute.GetImageArgs{
-//				CloudInit:  pulumi.StringRef("NONE"),
 //				ImageAlias: pulumi.StringRef("ubuntu:latest_iso"),
-//				Location:   pulumi.StringRef("de/txl"),
 //				Type:       pulumi.StringRef("CDROM"),
+//				Location:   pulumi.StringRef("de/txl"),
+//				CloudInit:  pulumi.StringRef("NONE"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -88,10 +88,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
 //				CloudInit:  pulumi.StringRef("V1"),
 //				ImageAlias: pulumi.StringRef("ubuntu:latest"),
 //				Location:   pulumi.StringRef("us/ewr"),
-//				Type:       pulumi.StringRef("HDD"),
 //			}, nil)
 //			if err != nil {
 //				return err

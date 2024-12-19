@@ -32,7 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("ALB name"),
 //			}, nil)
 //			if err != nil {
@@ -58,7 +58,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := alb.LookupBalancer(ctx, &alb.LookupBalancerArgs{
-//				DatacenterId: ionoscloud_datacenter.Example.Id,
+//				DatacenterId: exampleIonoscloudDatacenter.Id,
 //				Name:         pulumi.StringRef("name"),
 //				PartialMatch: pulumi.BoolRef(true),
 //			}, nil)

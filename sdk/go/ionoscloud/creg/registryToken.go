@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleRegistry, err := creg.NewRegistry(ctx, "exampleRegistry", &creg.RegistryArgs{
+//			example, err := creg.NewRegistry(ctx, "example", &creg.RegistryArgs{
 //				GarbageCollectionSchedule: &creg.RegistryGarbageCollectionScheduleArgs{
 //					Days: pulumi.StringArray{
 //						pulumi.String("Monday"),
@@ -37,12 +37,14 @@ import (
 //					Time: pulumi.String("05:19:00+00:00"),
 //				},
 //				Location: pulumi.String("de/fra"),
+//				Name:     pulumi.String("container-registry-example"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = creg.NewRegistryToken(ctx, "exampleRegistryToken", &creg.RegistryTokenArgs{
+//			_, err = creg.NewRegistryToken(ctx, "example", &creg.RegistryTokenArgs{
 //				ExpiryDate: pulumi.String("2023-01-13 16:27:42Z"),
+//				Name:       pulumi.String("container-registry-token-example"),
 //				Scopes: creg.RegistryTokenScopeArray{
 //					&creg.RegistryTokenScopeArgs{
 //						Actions: pulumi.StringArray{
@@ -53,7 +55,7 @@ import (
 //					},
 //				},
 //				Status:             pulumi.String("enabled"),
-//				RegistryId:         exampleRegistry.ID(),
+//				RegistryId:         example.ID(),
 //				SavePasswordToFile: pulumi.String("pass.txt"),
 //			})
 //			if err != nil {
