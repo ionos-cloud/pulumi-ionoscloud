@@ -7,7 +7,7 @@ toolchain go1.23.0
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
 
 require (
-	github.com/ionos-cloud/terraform-provider-ionoscloud/v6 v6.6.0
+	github.com/ionos-cloud/terraform-provider-ionoscloud/v6 v6.6.9
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.98.0
 )
 
@@ -35,6 +35,7 @@ require (
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/blang/semver v3.5.1+incompatible // indirect
+	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/charmbracelet/bubbles v0.16.1 // indirect
 	github.com/charmbracelet/bubbletea v0.25.0 // indirect
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
@@ -85,6 +86,9 @@ require (
 	github.com/hashicorp/logutils v1.0.0 // indirect
 	github.com/hashicorp/terraform-exec v0.21.0 // indirect
 	github.com/hashicorp/terraform-json v0.22.1 // indirect
+	github.com/hashicorp/terraform-plugin-framework v1.13.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-jsontypes v0.1.0 // indirect
+	github.com/hashicorp/terraform-plugin-framework-timeouts v0.4.1 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.25.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.35.0 // indirect
@@ -99,21 +103,23 @@ require (
 	github.com/ionos-cloud/sdk-go-api-gateway v1.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/cdn/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/logging/v2 v2.1.1 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/products/vpn/v2 v2.0.1 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/monitoring/v2 v2.0.0 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/vpn/v2 v2.0.2 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.1 // indirect
 	github.com/ionos-cloud/sdk-go-cert-manager v1.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-container-registry v1.2.0 // indirect
-	github.com/ionos-cloud/sdk-go-dataplatform v1.0.3 // indirect
+	github.com/ionos-cloud/sdk-go-dataplatform v1.1.1 // indirect
 	github.com/ionos-cloud/sdk-go-dbaas-in-memory-db v1.0.1 // indirect
-	github.com/ionos-cloud/sdk-go-dbaas-mariadb v1.0.1 // indirect
+	github.com/ionos-cloud/sdk-go-dbaas-mariadb v1.1.1 // indirect
 	github.com/ionos-cloud/sdk-go-dbaas-mongo v1.3.1 // indirect
 	github.com/ionos-cloud/sdk-go-dbaas-postgres v1.1.3 // indirect
 	github.com/ionos-cloud/sdk-go-dns v1.2.1 // indirect
 	github.com/ionos-cloud/sdk-go-kafka v1.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-nfs v1.0.0 // indirect
-	github.com/ionos-cloud/sdk-go-object-storage v1.0.0 // indirect
+	github.com/ionos-cloud/sdk-go-object-storage v1.1.0 // indirect
+	github.com/ionos-cloud/sdk-go-object-storage-management v1.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-vm-autoscaling v1.0.1 // indirect
-	github.com/ionos-cloud/sdk-go/v6 v6.2.1 // indirect
+	github.com/ionos-cloud/sdk-go/v6 v6.3.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
