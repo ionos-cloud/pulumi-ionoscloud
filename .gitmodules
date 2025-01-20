@@ -1,0 +1,3 @@
+[submodule "upstream/terraform-provider-ionoscloud"]
+	path = upstream/terraform-provider-ionoscloud
+	url = https://github.com/ionos-cloud/terraform-provider-ionoscloud
