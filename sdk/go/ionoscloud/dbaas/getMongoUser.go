@@ -43,7 +43,7 @@ type LookupMongoUserArgs struct {
 type LookupMongoUserResult struct {
 	ClusterId string             `pulumi:"clusterId"`
 	Database  string             `pulumi:"database"`
-	Id        *string            `pulumi:"id"`
+	Id        string             `pulumi:"id"`
 	Roles     []GetMongoUserRole `pulumi:"roles"`
 	Username  string             `pulumi:"username"`
 }
@@ -97,8 +97,8 @@ func (o LookupMongoUserResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
-func (o LookupMongoUserResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMongoUserResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupMongoUserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupMongoUserResultOutput) Roles() GetMongoUserRoleArrayOutput {

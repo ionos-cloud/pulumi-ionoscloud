@@ -18,6 +18,33 @@ import (
 //
 // ## Example Usage
 //
+// ### By Id
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := alb.LookupForwardingRule(ctx, &alb.LookupForwardingRuleArgs{
+//				DatacenterId:              exampleIonoscloudDatacenter.Id,
+//				ApplicationLoadbalancerId: exampleIonoscloudApplicationLoadbalancer.Id,
+//				Id:                        pulumi.StringRef("alb_fwr_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -108,14 +135,14 @@ type LookupForwardingRuleResult struct {
 	// Array of items in that collection
 	HttpRules []GetForwardingRuleHttpRule `pulumi:"httpRules"`
 	// Id of Application Load Balancer Forwarding Rule
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// Listening (inbound) IP.
 	ListenerIp string `pulumi:"listenerIp"`
 	// Listening (inbound) port number; valid range is 1 to 65535.
 	ListenerPort int `pulumi:"listenerPort"`
 	// The unique name of the Application Load Balancer HTTP rule.
-	Name         *string `pulumi:"name"`
-	PartialMatch *bool   `pulumi:"partialMatch"`
+	Name         string `pulumi:"name"`
+	PartialMatch *bool  `pulumi:"partialMatch"`
 	// Balancing protocol.
 	Protocol           string   `pulumi:"protocol"`
 	ServerCertificates []string `pulumi:"serverCertificates"`
@@ -185,8 +212,8 @@ func (o LookupForwardingRuleResultOutput) HttpRules() GetForwardingRuleHttpRuleA
 }
 
 // Id of Application Load Balancer Forwarding Rule
-func (o LookupForwardingRuleResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupForwardingRuleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Listening (inbound) IP.
@@ -200,8 +227,8 @@ func (o LookupForwardingRuleResultOutput) ListenerPort() pulumi.IntOutput {
 }
 
 // The unique name of the Application Load Balancer HTTP rule.
-func (o LookupForwardingRuleResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupForwardingRuleResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupForwardingRuleResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupForwardingRuleResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupForwardingRuleResultOutput) PartialMatch() pulumi.BoolPtrOutput {

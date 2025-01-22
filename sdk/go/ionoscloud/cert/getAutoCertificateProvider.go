@@ -17,6 +17,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.LookupAutoCertificateProvider(ctx, &cert.LookupAutoCertificateProviderArgs{
+//				Id:       pulumi.StringRef("provider_id"),
+//				Location: pulumi.StringRef("provider_location"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.LookupAutoCertificateProvider(ctx, &cert.LookupAutoCertificateProviderArgs{
+//				Name:     pulumi.StringRef("Provider Name Example"),
+//				Location: pulumi.StringRef("provider_location"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAutoCertificateProvider(ctx *pulumi.Context, args *LookupAutoCertificateProviderArgs, opts ...pulumi.InvokeOption) (*LookupAutoCertificateProviderResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAutoCertificateProviderResult
@@ -34,7 +86,7 @@ type LookupAutoCertificateProviderArgs struct {
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id *string `pulumi:"id"`
 	// [string] The location of the provider.
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [string] Name of an existing provider that you want to search for.
 	Name *string `pulumi:"name"`
 }
@@ -45,9 +97,9 @@ type LookupAutoCertificateProviderResult struct {
 	Email string `pulumi:"email"`
 	// [list]
 	ExternalAccountBindings []GetAutoCertificateProviderExternalAccountBinding `pulumi:"externalAccountBindings"`
-	Id                      *string                                            `pulumi:"id"`
-	Location                string                                             `pulumi:"location"`
-	Name                    *string                                            `pulumi:"name"`
+	Id                      string                                             `pulumi:"id"`
+	Location                *string                                            `pulumi:"location"`
+	Name                    string                                             `pulumi:"name"`
 	// [string] The URL of the certificate provider.
 	Server string `pulumi:"server"`
 }
@@ -68,7 +120,7 @@ type LookupAutoCertificateProviderOutputArgs struct {
 	// Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// [string] The location of the provider.
-	Location pulumi.StringInput `pulumi:"location"`
+	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [string] Name of an existing provider that you want to search for.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
@@ -104,16 +156,16 @@ func (o LookupAutoCertificateProviderResultOutput) ExternalAccountBindings() Get
 	}).(GetAutoCertificateProviderExternalAccountBindingArrayOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupAutoCertificateProviderResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Location }).(pulumi.StringOutput)
+func (o LookupAutoCertificateProviderResultOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupAutoCertificateProviderResult) *string { return v.Location }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupAutoCertificateProviderResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateProviderResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupAutoCertificateProviderResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAutoCertificateProviderResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // [string] The URL of the certificate provider.

@@ -17,7 +17,7 @@ import (
 // Resource **Nic** can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/nic:Nic mynic {datacenter uuid}/{server uuid}/{nic uuid}
+// $ pulumi import ionoscloud:compute/nic:Nic mynic datacenter uuid/server uuid/nic uuid
 // ```
 type Nic struct {
 	pulumi.CustomResourceState
@@ -44,12 +44,16 @@ type Nic struct {
 	Ipv6Ips pulumi.StringArrayOutput `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntOutput `pulumi:"lan"`
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringOutput `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntOutput `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayOutput `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 }
@@ -115,12 +119,16 @@ type nicState struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan *int `pulumi:"lan"`
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
 	// The PCI slot number of the Nic.
 	PciSlot *int `pulumi:"pciSlot"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId *string `pulumi:"serverId"`
 }
@@ -148,12 +156,16 @@ type NicState struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntPtrInput
-	// The MAC address of the NIC.
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
 	// The PCI slot number of the Nic.
 	PciSlot pulumi.IntPtrInput
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringPtrInput
 }
@@ -183,8 +195,14 @@ type nicArgs struct {
 	Ipv6Ips []string `pulumi:"ipv6Ips"`
 	// [integer] The LAN ID the NIC will sit on.
 	Lan int `pulumi:"lan"`
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
+	Mac *string `pulumi:"mac"`
 	// [string] The name of the LAN.
 	Name *string `pulumi:"name"`
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds []string `pulumi:"securityGroupsIds"`
 	// [string] The ID of a server.
 	ServerId string `pulumi:"serverId"`
 }
@@ -211,8 +229,14 @@ type NicArgs struct {
 	Ipv6Ips pulumi.StringArrayInput
 	// [integer] The LAN ID the NIC will sit on.
 	Lan pulumi.IntInput
+	// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
+	Mac pulumi.StringPtrInput
 	// [string] The name of the LAN.
 	Name pulumi.StringPtrInput
+	// The list of Security Group IDs for the resource.
+	//
+	// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+	SecurityGroupsIds pulumi.StringArrayInput
 	// [string] The ID of a server.
 	ServerId pulumi.StringInput
 }
@@ -359,7 +383,7 @@ func (o NicOutput) Lan() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nic) pulumi.IntOutput { return v.Lan }).(pulumi.IntOutput)
 }
 
-// The MAC address of the NIC.
+// The MAC address of the NIC. Can be set on creation only. If not set, one will be assigned automatically by the API. Immutable, update forces re-creation.
 func (o NicOutput) Mac() pulumi.StringOutput {
 	return o.ApplyT(func(v *Nic) pulumi.StringOutput { return v.Mac }).(pulumi.StringOutput)
 }
@@ -372,6 +396,13 @@ func (o NicOutput) Name() pulumi.StringOutput {
 // The PCI slot number of the Nic.
 func (o NicOutput) PciSlot() pulumi.IntOutput {
 	return o.ApplyT(func(v *Nic) pulumi.IntOutput { return v.PciSlot }).(pulumi.IntOutput)
+}
+
+// The list of Security Group IDs for the resource.
+//
+// ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
+func (o NicOutput) SecurityGroupsIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Nic) pulumi.StringArrayOutput { return v.SecurityGroupsIds }).(pulumi.StringArrayOutput)
 }
 
 // [string] The ID of a server.

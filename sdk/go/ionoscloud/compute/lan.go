@@ -107,7 +107,7 @@ import (
 // Resource Lan can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/lan:Lan mylan {datacenter uuid}/{lan id}
+// $ pulumi import ionoscloud:compute/lan:Lan mylandatacenter uuid/lan id
 // ```
 type Lan struct {
 	pulumi.CustomResourceState

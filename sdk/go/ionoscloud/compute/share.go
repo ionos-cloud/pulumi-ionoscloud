@@ -72,7 +72,7 @@ import (
 // Resource Share can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/share:Share myshare {group uuid}/{resource uuid}
+// $ pulumi import ionoscloud:compute/share:Share myshare group uuid/resource uuid
 // ```
 type Share struct {
 	pulumi.CustomResourceState

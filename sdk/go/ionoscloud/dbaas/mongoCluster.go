@@ -165,7 +165,7 @@ import (
 // Resource DbaaS MongoDb Cluster can be imported using the `cluster_id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser {cluster uuid}
+// $ pulumi import ionoscloud:dbaas/mongoCluster:MongoCluster mycluser cluster uuid
 // ```
 type MongoCluster struct {
 	pulumi.CustomResourceState
@@ -188,7 +188,7 @@ type MongoCluster struct {
 	Instances pulumi.IntOutput `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringOutput `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringOutput `pulumi:"mongodbVersion"`
@@ -269,7 +269,7 @@ type mongoClusterState struct {
 	Instances *int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location *string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion *string `pulumi:"mongodbVersion"`
@@ -306,7 +306,7 @@ type MongoClusterState struct {
 	Instances pulumi.IntPtrInput
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringPtrInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringPtrInput
@@ -345,7 +345,7 @@ type mongoClusterArgs struct {
 	Instances int `pulumi:"instances"`
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location string `pulumi:"location"`
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion string `pulumi:"mongodbVersion"`
@@ -381,7 +381,7 @@ type MongoClusterArgs struct {
 	Instances pulumi.IntInput
 	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: de/txl, gb/lhr, es/vit. Update forces cluster re-creation.
 	Location pulumi.StringInput
-	// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
 	// [string] The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.
 	MongodbVersion pulumi.StringInput
@@ -531,7 +531,7 @@ func (o MongoClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
-// (Computed)[string] A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 func (o MongoClusterOutput) MaintenanceWindow() MongoClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MongoCluster) MongoClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MongoClusterMaintenanceWindowOutput)
 }

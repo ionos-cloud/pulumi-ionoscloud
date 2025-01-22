@@ -70,6 +70,11 @@ import (
 //						Ipv4Cidr:     pulumi.String("192.168.1.108/24"),
 //					},
 //				},
+//				MaintenanceWindow: &vpn.WireguardGatewayMaintenanceWindowArgs{
+//					DayOfTheWeek: pulumi.String("Monday"),
+//					Time:         pulumi.String("09:00:00"),
+//				},
+//				Tier: pulumi.String("STANDARD"),
 //			})
 //			if err != nil {
 //				return err
@@ -101,16 +106,23 @@ type WireguardGateway struct {
 	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrOutput `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        pulumi.IntPtrOutput    `pulumi:"listenPort"`
-	// [String] The location of the WireGuard Gateway.
-	Location pulumi.StringOutput `pulumi:"location"`
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow WireguardGatewayMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [String] The name of the WireGuard Gateway.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// (Computed)[String] The public key for the WireGuard Gateway.
+	// ---
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrOutput `pulumi:"tier"`
 }
 
 // NewWireguardGateway registers a new resource with the given unique name, arguments, and options.
@@ -125,9 +137,6 @@ func NewWireguardGateway(ctx *pulumi.Context,
 	}
 	if args.GatewayIp == nil {
 		return nil, errors.New("invalid value for required argument 'GatewayIp'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.PrivateKey == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKey'")
@@ -173,16 +182,23 @@ type wireguardGatewayState struct {
 	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr *string `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        *int    `pulumi:"listenPort"`
-	// [String] The location of the WireGuard Gateway.
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow *WireguardGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [String] The name of the WireGuard Gateway.
 	Name *string `pulumi:"name"`
 	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey *string `pulumi:"privateKey"`
 	// (Computed)[String] The public key for the WireGuard Gateway.
+	// ---
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	PublicKey *string `pulumi:"publicKey"`
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status *string `pulumi:"status"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier *string `pulumi:"tier"`
 }
 
 type WireguardGatewayState struct {
@@ -197,16 +213,23 @@ type WireguardGatewayState struct {
 	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrInput
 	ListenPort        pulumi.IntPtrInput
-	// [String] The location of the WireGuard Gateway.
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow WireguardGatewayMaintenanceWindowPtrInput
 	// [String] The name of the WireGuard Gateway.
 	Name pulumi.StringPtrInput
 	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringPtrInput
 	// (Computed)[String] The public key for the WireGuard Gateway.
+	// ---
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	PublicKey pulumi.StringPtrInput
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringPtrInput
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrInput
 }
 
 func (WireguardGatewayState) ElementType() reflect.Type {
@@ -225,12 +248,17 @@ type wireguardGatewayArgs struct {
 	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr *string `pulumi:"interfaceIpv6Cidr"`
 	ListenPort        *int    `pulumi:"listenPort"`
-	// [String] The location of the WireGuard Gateway.
-	Location string `pulumi:"location"`
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location *string `pulumi:"location"`
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow *WireguardGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [String] The name of the WireGuard Gateway.
 	Name *string `pulumi:"name"`
 	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey string `pulumi:"privateKey"`
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier *string `pulumi:"tier"`
 }
 
 // The set of arguments for constructing a WireguardGateway resource.
@@ -246,12 +274,17 @@ type WireguardGatewayArgs struct {
 	// [String] The IPv6 CIDR for the WireGuard Gateway interface.
 	InterfaceIpv6Cidr pulumi.StringPtrInput
 	ListenPort        pulumi.IntPtrInput
-	// [String] The location of the WireGuard Gateway.
-	Location pulumi.StringInput
+	// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+	// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	Location pulumi.StringPtrInput
+	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow WireguardGatewayMaintenanceWindowPtrInput
 	// [String] The name of the WireGuard Gateway.
 	Name pulumi.StringPtrInput
 	// [String] The private key for the WireGuard Gateway. To be created with the wg utility.
 	PrivateKey pulumi.StringInput
+	// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+	Tier pulumi.StringPtrInput
 }
 
 func (WireguardGatewayArgs) ElementType() reflect.Type {
@@ -370,9 +403,15 @@ func (o WireguardGatewayOutput) ListenPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.IntPtrOutput { return v.ListenPort }).(pulumi.IntPtrOutput)
 }
 
-// [String] The location of the WireGuard Gateway.
-func (o WireguardGatewayOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+// [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit,
+// gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+func (o WireguardGatewayOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WireguardGateway) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
+}
+
+// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
+func (o WireguardGatewayOutput) MaintenanceWindow() WireguardGatewayMaintenanceWindowOutput {
+	return o.ApplyT(func(v *WireguardGateway) WireguardGatewayMaintenanceWindowOutput { return v.MaintenanceWindow }).(WireguardGatewayMaintenanceWindowOutput)
 }
 
 // [String] The name of the WireGuard Gateway.
@@ -386,6 +425,8 @@ func (o WireguardGatewayOutput) PrivateKey() pulumi.StringOutput {
 }
 
 // (Computed)[String] The public key for the WireGuard Gateway.
+// ---
+// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 func (o WireguardGatewayOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
@@ -393,6 +434,11 @@ func (o WireguardGatewayOutput) PublicKey() pulumi.StringOutput {
 // (Computed)[String] The current status of the WireGuard Gateway.
 func (o WireguardGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
+func (o WireguardGatewayOutput) Tier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WireguardGateway) pulumi.StringPtrOutput { return v.Tier }).(pulumi.StringPtrOutput)
 }
 
 type WireguardGatewayArrayOutput struct{ *pulumi.OutputState }

@@ -88,13 +88,15 @@ import (
 // A Dataplatform Node Pool resource can be imported using its cluster's UUID as well as its own UUID, e.g.:
 //
 // ```sh
-// $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool {dataplatform_cluster_uuid}/{dataplatform_nodepool_id}
+// $ pulumi import ionoscloud:dsaas/nodePool:NodePool mynodepool dataplatform_cluster_uuid/dataplatform_nodepool_id
 // ```
 type NodePool struct {
 	pulumi.CustomResourceState
 
 	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScaling NodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
 	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
 	// [string] The UUID of an existing Dataplatform cluster.
@@ -107,7 +109,7 @@ type NodePool struct {
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayOutput `pulumi:"maintenanceWindows"`
 	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -161,6 +163,8 @@ func GetNodePool(ctx *pulumi.Context,
 type nodePoolState struct {
 	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations map[string]string `pulumi:"annotations"`
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// [string] The UUID of an existing Dataplatform cluster.
@@ -173,7 +177,7 @@ type nodePoolState struct {
 	DatacenterId *string `pulumi:"datacenterId"`
 	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels map[string]string `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []NodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
@@ -192,6 +196,8 @@ type nodePoolState struct {
 type NodePoolState struct {
 	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations pulumi.StringMapInput
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 	AvailabilityZone pulumi.StringPtrInput
 	// [string] The UUID of an existing Dataplatform cluster.
@@ -204,7 +210,7 @@ type NodePoolState struct {
 	DatacenterId pulumi.StringPtrInput
 	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels pulumi.StringMapInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayInput
 	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
@@ -227,6 +233,8 @@ func (NodePoolState) ElementType() reflect.Type {
 type nodePoolArgs struct {
 	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations map[string]string `pulumi:"annotations"`
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
 	// [string] The UUID of an existing Dataplatform cluster.
@@ -237,7 +245,7 @@ type nodePoolArgs struct {
 	CpuFamily *string `pulumi:"cpuFamily"`
 	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels map[string]string `pulumi:"labels"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []NodePoolMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
@@ -255,6 +263,8 @@ type nodePoolArgs struct {
 type NodePoolArgs struct {
 	// [map] Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).
 	Annotations pulumi.StringMapInput
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 	AvailabilityZone pulumi.StringPtrInput
 	// [string] The UUID of an existing Dataplatform cluster.
@@ -265,7 +275,7 @@ type NodePoolArgs struct {
 	CpuFamily pulumi.StringPtrInput
 	// [map] Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 	Labels pulumi.StringMapInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows NodePoolMaintenanceWindowArrayInput
 	// [string] The name of your node pool. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
@@ -371,6 +381,11 @@ func (o NodePoolOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingPtrOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingPtrOutput { return v.AutoScaling }).(NodePoolAutoScalingPtrOutput)
+}
+
 // [string] The availability zone of the virtual datacenter region where the node pool resources should be provisioned. Must be set with one of the values `AUTO`, `ZONE_1` or `ZONE_2`. The default value is `AUTO`.
 func (o NodePoolOutput) AvailabilityZone() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.AvailabilityZone }).(pulumi.StringOutput)
@@ -401,7 +416,7 @@ func (o NodePoolOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 func (o NodePoolOutput) MaintenanceWindows() NodePoolMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolMaintenanceWindowArrayOutput { return v.MaintenanceWindows }).(NodePoolMaintenanceWindowArrayOutput)
 }

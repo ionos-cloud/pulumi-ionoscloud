@@ -55,6 +55,8 @@ type providerArgs struct {
 	ContractNumber *string `pulumi:"contractNumber"`
 	// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 	Endpoint *string `pulumi:"endpoint"`
+	// This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+	Insecure *bool `pulumi:"insecure"`
 	// IonosCloud password for API operations. If token is provided, token is preferred
 	Password *string `pulumi:"password"`
 	// Deprecated: Timeout is used instead of this functionality
@@ -76,6 +78,8 @@ type ProviderArgs struct {
 	ContractNumber pulumi.StringPtrInput
 	// IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
 	Endpoint pulumi.StringPtrInput
+	// This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+	Insecure pulumi.BoolPtrInput
 	// IonosCloud password for API operations. If token is provided, token is preferred
 	Password pulumi.StringPtrInput
 	// Deprecated: Timeout is used instead of this functionality

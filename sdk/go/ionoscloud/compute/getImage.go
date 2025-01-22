@@ -142,7 +142,7 @@ type GetImageResult struct {
 	// Is capable of CPU hot unplug (no reboot required)
 	CpuHotUnplug bool `pulumi:"cpuHotUnplug"`
 	// description of the image
-	Description *string `pulumi:"description"`
+	Description string `pulumi:"description"`
 	// Is capable of SCSI drive hot plug (no reboot required)
 	DiscScsiHotPlug bool `pulumi:"discScsiHotPlug"`
 	// Is capable of SCSI drive hot unplug (no reboot required)
@@ -151,17 +151,19 @@ type GetImageResult struct {
 	DiscVirtioHotPlug bool `pulumi:"discVirtioHotPlug"`
 	// Is capable of Virt-IO drive hot unplug (no reboot required)
 	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
+	// Indicates if the serial ID of the disk attached to the server will be exposed or not.
+	ExposeSerial bool `pulumi:"exposeSerial"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	ImageAlias *string `pulumi:"imageAlias"`
+	Id         string `pulumi:"id"`
+	ImageAlias string `pulumi:"imageAlias"`
 	// List of image aliases mapped for this Image
 	ImageAliases []string `pulumi:"imageAliases"`
 	// OS type of this Image
 	LicenceType string `pulumi:"licenceType"`
 	// Location of that image/snapshot.
-	Location *string `pulumi:"location"`
+	Location string `pulumi:"location"`
 	// name of the image
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Is capable of nic hot plug (no reboot required)
 	NicHotPlug bool `pulumi:"nicHotPlug"`
 	// Is capable of nic hot unplug (no reboot required)
@@ -175,8 +177,8 @@ type GetImageResult struct {
 	// The size of the image in GB
 	Size float64 `pulumi:"size"`
 	// This indicates the type of image
-	Type    *string `pulumi:"type"`
-	Version *string `pulumi:"version"`
+	Type    string `pulumi:"type"`
+	Version string `pulumi:"version"`
 }
 
 func GetImageOutput(ctx *pulumi.Context, args GetImageOutputArgs, opts ...pulumi.InvokeOption) GetImageResultOutput {
@@ -244,8 +246,8 @@ func (o GetImageResultOutput) CpuHotUnplug() pulumi.BoolOutput {
 }
 
 // description of the image
-func (o GetImageResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
 // Is capable of SCSI drive hot plug (no reboot required)
@@ -268,13 +270,18 @@ func (o GetImageResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
+// Indicates if the serial ID of the disk attached to the server will be exposed or not.
+func (o GetImageResultOutput) ExposeSerial() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetImageResult) bool { return v.ExposeSerial }).(pulumi.BoolOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetImageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetImageResultOutput) ImageAlias() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.ImageAlias }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) ImageAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.ImageAlias }).(pulumi.StringOutput)
 }
 
 // List of image aliases mapped for this Image
@@ -288,13 +295,13 @@ func (o GetImageResultOutput) LicenceType() pulumi.StringOutput {
 }
 
 // Location of that image/snapshot.
-func (o GetImageResultOutput) Location() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Location }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
 // name of the image
-func (o GetImageResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Is capable of nic hot plug (no reboot required)
@@ -328,12 +335,12 @@ func (o GetImageResultOutput) Size() pulumi.Float64Output {
 }
 
 // This indicates the type of image
-func (o GetImageResultOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o GetImageResultOutput) Version() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetImageResult) *string { return v.Version }).(pulumi.StringPtrOutput)
+func (o GetImageResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetImageResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {

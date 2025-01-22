@@ -110,8 +110,8 @@ type Share struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrOutput `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
-	Location pulumi.StringOutput `pulumi:"location"`
+	// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// The directory being exported.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Path to the NFS export. The NFS path is the path to the directory being exported.
@@ -134,9 +134,6 @@ func NewShare(ctx *pulumi.Context,
 	}
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Share
@@ -167,7 +164,7 @@ type shareState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid *int `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// The directory being exported.
 	Name *string `pulumi:"name"`
@@ -186,7 +183,7 @@ type ShareState struct {
 	ClusterId pulumi.StringPtrInput
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrInput
-	// The location of the Network File Storage Cluster.
+	// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// The directory being exported.
 	Name pulumi.StringPtrInput
@@ -209,8 +206,8 @@ type shareArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid *int `pulumi:"gid"`
-	// The location of the Network File Storage Cluster.
-	Location string `pulumi:"location"`
+	// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location *string `pulumi:"location"`
 	// The directory being exported.
 	Name *string `pulumi:"name"`
 	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
@@ -227,8 +224,8 @@ type ShareArgs struct {
 	ClusterId pulumi.StringInput
 	// The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
 	Gid pulumi.IntPtrInput
-	// The location of the Network File Storage Cluster.
-	Location pulumi.StringInput
+	// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrInput
 	// The directory being exported.
 	Name pulumi.StringPtrInput
 	// The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
@@ -339,9 +336,9 @@ func (o ShareOutput) Gid() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Share) pulumi.IntPtrOutput { return v.Gid }).(pulumi.IntPtrOutput)
 }
 
-// The location of the Network File Storage Cluster.
-func (o ShareOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *Share) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+func (o ShareOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Share) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // The directory being exported.

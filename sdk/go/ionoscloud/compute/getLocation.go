@@ -63,12 +63,12 @@ type GetLocationArgs struct {
 type GetLocationResult struct {
 	// Array of features and CPU families available in a location
 	CpuArchitectures []GetLocationCpuArchitecture `pulumi:"cpuArchitectures"`
-	Feature          *string                      `pulumi:"feature"`
+	Feature          string                       `pulumi:"feature"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// List of image aliases available for the location
 	ImageAliases []string `pulumi:"imageAliases"`
-	Name         *string  `pulumi:"name"`
+	Name         string   `pulumi:"name"`
 }
 
 func GetLocationOutput(ctx *pulumi.Context, args GetLocationOutputArgs, opts ...pulumi.InvokeOption) GetLocationResultOutput {
@@ -112,8 +112,8 @@ func (o GetLocationResultOutput) CpuArchitectures() GetLocationCpuArchitectureAr
 	return o.ApplyT(func(v GetLocationResult) []GetLocationCpuArchitecture { return v.CpuArchitectures }).(GetLocationCpuArchitectureArrayOutput)
 }
 
-func (o GetLocationResultOutput) Feature() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLocationResult) *string { return v.Feature }).(pulumi.StringPtrOutput)
+func (o GetLocationResultOutput) Feature() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationResult) string { return v.Feature }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -126,8 +126,8 @@ func (o GetLocationResultOutput) ImageAliases() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLocationResult) []string { return v.ImageAliases }).(pulumi.StringArrayOutput)
 }
 
-func (o GetLocationResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetLocationResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetLocationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLocationResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {

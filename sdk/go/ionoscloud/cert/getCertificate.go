@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.LookupCertificate(ctx, &cert.LookupCertificateArgs{
+//				Id: pulumi.StringRef("certificate_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 // ```go
 // package main
@@ -73,9 +98,9 @@ type LookupCertificateResult struct {
 	// Certificate chain.
 	CertificateChain string `pulumi:"certificateChain"`
 	// The id of the certificate.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The name of the certificate.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 }
 
 func LookupCertificateOutput(ctx *pulumi.Context, args LookupCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupCertificateResultOutput {
@@ -131,13 +156,13 @@ func (o LookupCertificateResultOutput) CertificateChain() pulumi.StringOutput {
 }
 
 // The id of the certificate.
-func (o LookupCertificateResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCertificateResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupCertificateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCertificateResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the certificate.
-func (o LookupCertificateResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupCertificateResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupCertificateResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCertificateResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {

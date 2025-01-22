@@ -19,7 +19,7 @@ import (
 // Resource certificate can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
+// $ pulumi import ionoscloud:cert/certificate:Certificate mycert certificate uuid
 // ```
 type Certificate struct {
 	pulumi.CustomResourceState

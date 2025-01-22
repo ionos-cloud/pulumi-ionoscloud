@@ -79,7 +79,7 @@ import (
 // Resource Target Group can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup {target group uuid}
+// $ pulumi import ionoscloud:compute/targetGroup:TargetGroup myTargetGroup target group uuid
 // ```
 type TargetGroup struct {
 	pulumi.CustomResourceState

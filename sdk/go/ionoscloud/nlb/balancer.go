@@ -126,7 +126,7 @@ import (
 // A Network Load Balancer resource can be imported using its `resource id` and the `datacenter id` e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer {datacenter uuid}/{networkloadbalancer uuid}
+// $ pulumi import ionoscloud:nlb/balancer:Balancer my_networkloadbalancer datacenter uuid/networkloadbalancer uuid
 // ```
 type Balancer struct {
 	pulumi.CustomResourceState

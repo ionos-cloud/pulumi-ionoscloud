@@ -17,6 +17,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.LookupAutoCertificate(ctx, &cert.LookupAutoCertificateArgs{
+//				Id:       pulumi.StringRef("auto_certificate_id"),
+//				Location: "auto_certificate_location",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cert.LookupAutoCertificate(ctx, &cert.LookupAutoCertificateArgs{
+//				Name:     pulumi.StringRef("AutoCertificate Name Example"),
+//				Location: "auto_certificate_location",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAutoCertificate(ctx *pulumi.Context, args *LookupAutoCertificateArgs, opts ...pulumi.InvokeOption) (*LookupAutoCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAutoCertificateResult
@@ -42,15 +94,15 @@ type LookupAutoCertificateArgs struct {
 // A collection of values returned by getAutoCertificate.
 type LookupAutoCertificateResult struct {
 	// [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS Cloud DNS.
-	CommonName string  `pulumi:"commonName"`
-	Id         *string `pulumi:"id"`
+	CommonName string `pulumi:"commonName"`
+	Id         string `pulumi:"id"`
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm string `pulumi:"keyAlgorithm"`
 	// [string] The ID of the last certificate that was issued.
-	LastIssuedCertificateId string  `pulumi:"lastIssuedCertificateId"`
-	Location                string  `pulumi:"location"`
-	Name                    *string `pulumi:"name"`
-	ProviderId              string  `pulumi:"providerId"`
+	LastIssuedCertificateId string `pulumi:"lastIssuedCertificateId"`
+	Location                string `pulumi:"location"`
+	Name                    string `pulumi:"name"`
+	ProviderId              string `pulumi:"providerId"`
 	// [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS Cloud DNS.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
@@ -100,8 +152,8 @@ func (o LookupAutoCertificateResultOutput) CommonName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.CommonName }).(pulumi.StringOutput)
 }
 
-func (o LookupAutoCertificateResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupAutoCertificateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // [string] The key algorithm used to generate the certificate.
@@ -118,8 +170,8 @@ func (o LookupAutoCertificateResultOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.Location }).(pulumi.StringOutput)
 }
 
-func (o LookupAutoCertificateResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupAutoCertificateResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupAutoCertificateResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAutoCertificateResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func (o LookupAutoCertificateResultOutput) ProviderId() pulumi.StringOutput {

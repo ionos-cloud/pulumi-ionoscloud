@@ -19,7 +19,7 @@ import (
 // Resource Distribution can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
+// $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution distribution uuid
 // ```
 type Distribution struct {
 	pulumi.CustomResourceState

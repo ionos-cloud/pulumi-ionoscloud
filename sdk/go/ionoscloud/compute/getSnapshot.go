@@ -15,6 +15,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupSnapshot(ctx, &compute.LookupSnapshotArgs{
+//				Id: pulumi.StringRef("snapshot_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name & Size & Location
 // ```go
 // package main
@@ -86,7 +111,7 @@ type LookupSnapshotResult struct {
 	// Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 	DiscVirtioHotUnplug bool `pulumi:"discVirtioHotUnplug"`
 	// UUID of the snapshot
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// OS type of this Snapshot
 	LicenceType string `pulumi:"licenceType"`
 	// Location of that image/snapshot
@@ -188,8 +213,8 @@ func (o LookupSnapshotResultOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 }
 
 // UUID of the snapshot
-func (o LookupSnapshotResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupSnapshotResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupSnapshotResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // OS type of this Snapshot

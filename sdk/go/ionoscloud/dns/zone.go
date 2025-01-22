@@ -56,7 +56,7 @@ import (
 // The resource can be imported using the `zone_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
+// $ pulumi import ionoscloud:dns/zone:Zone examplezone_id
 // ```
 type Zone struct {
 	pulumi.CustomResourceState

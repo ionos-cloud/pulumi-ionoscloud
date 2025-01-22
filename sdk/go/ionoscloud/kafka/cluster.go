@@ -76,17 +76,19 @@ import (
 // Kafka Cluster can be imported using the `location` and `kafka cluster id`:
 //
 // ```sh
-// $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster {location}:{kafka cluster uuid}
+// $ pulumi import ionoscloud:kafka/cluster:Cluster mycluster location:kafka cluster uuid
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState
 
 	// [list] IP address and port of cluster brokers.
+	//
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses pulumi.StringArrayOutput `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-	Location pulumi.StringOutput `pulumi:"location"`
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
@@ -104,9 +106,6 @@ func NewCluster(ctx *pulumi.Context,
 
 	if args.Connections == nil {
 		return nil, errors.New("invalid value for required argument 'Connections'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
@@ -138,10 +137,12 @@ func GetCluster(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
 	// [list] IP address and port of cluster brokers.
+	//
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
@@ -153,10 +154,12 @@ type clusterState struct {
 
 type ClusterState struct {
 	// [list] IP address and port of cluster brokers.
+	//
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses pulumi.StringArrayInput
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsPtrInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
@@ -173,8 +176,8 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-	Location string `pulumi:"location"`
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
@@ -187,8 +190,8 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-	Location pulumi.StringInput
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
 	// [string] Size of the Kafka Cluster. Possible values: `XS`, `S`
@@ -285,6 +288,8 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 }
 
 // [list] IP address and port of cluster brokers.
+//
+// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
 func (o ClusterOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringArrayOutput { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }
@@ -294,9 +299,9 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`
-func (o ClusterOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/txl`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+func (o ClusterOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] Name of the Kafka Cluster.

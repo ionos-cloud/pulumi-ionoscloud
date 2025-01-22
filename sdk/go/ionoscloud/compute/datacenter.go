@@ -43,12 +43,58 @@ import (
 //
 // ```
 //
+// ## Attaching a NSG to a Datacenter
+//
+// #### A single Network Security Group can be attached at any time to a Datacenter. To do this, use the `nsg.DatacenterNsgSelection` and provide the IDs of the NSG and Datacenter to link them.
+// #### Deleting the resource or setting the empty string for the `nsgId` field will de-attach any previously linked NSG from the Datacenter.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nsg"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("Datacenter NSG Example"),
+//				Location: pulumi.String("de/txl"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleNsg, err := nsg.NewNsg(ctx, "example", &nsg.NsgArgs{
+//				Name:         pulumi.String("Example NSG"),
+//				Description:  pulumi.String("Example NSG Description"),
+//				DatacenterId: example.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nsg.NewDatacenterNsgSelection(ctx, "example", &nsg.DatacenterNsgSelectionArgs{
+//				DatacenterId: example.ID(),
+//				NsgId:        exampleNsg.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource Datacenter can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc {datacenter uuid}
+// $ pulumi import ionoscloud:compute/datacenter:Datacenter mydc datacenter uuid
 // ```
 type Datacenter struct {
 	pulumi.CustomResourceState

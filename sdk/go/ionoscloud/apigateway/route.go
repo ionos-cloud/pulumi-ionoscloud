@@ -84,7 +84,7 @@ import (
 // API Gateway route can be imported using the `apigateway route id`:
 //
 // ```sh
-// $ pulumi import ionoscloud:apigateway/route:Route myroute {apigateway uuid}:{apigateway route uuid}
+// $ pulumi import ionoscloud:apigateway/route:Route myroute apigateway uuid:apigateway route uuid
 // ```
 type Route struct {
 	pulumi.CustomResourceState

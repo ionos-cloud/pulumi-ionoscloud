@@ -271,7 +271,7 @@
                 }
             },
             "ionoscloud_datacenter_nsg_selection": {
-                "current": "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection",
+                "current": "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection",
                 "majorVersion": 1
             },
             "ionoscloud_dataplatform_cluster": {
@@ -639,7 +639,7 @@
                 }
             },
             "ionoscloud_nsg": {
-                "current": "ionoscloud:index/nsg:Nsg",
+                "current": "ionoscloud:nsg/nsg:Nsg",
                 "majorVersion": 1,
                 "fields": {
                     "rule_ids": {
@@ -648,7 +648,7 @@
                 }
             },
             "ionoscloud_nsg_firewallrule": {
-                "current": "ionoscloud:index/nsgFirewallrule:NsgFirewallrule",
+                "current": "ionoscloud:nsg/firewall:Firewall",
                 "majorVersion": 1
             },
             "ionoscloud_pg_cluster": {
@@ -1721,7 +1721,7 @@
                 }
             },
             "ionoscloud_nsg": {
-                "current": "ionoscloud:index/getNsg:getNsg",
+                "current": "ionoscloud:nsg/getNsg:getNsg",
                 "majorVersion": 1,
                 "fields": {
                     "rule_ids": {

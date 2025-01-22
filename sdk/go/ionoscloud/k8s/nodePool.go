@@ -19,7 +19,7 @@ import (
 // A Kubernetes Node Pool resource can be imported using its Kubernetes cluster's uuid as well as its own UUID, both of which you can retrieve from the cloud API: `resource id`, e.g.:
 //
 // ```sh
-// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo {k8s_cluster_uuid}/{k8s_nodepool_id}
+// $ pulumi import ionoscloud:k8s/nodePool:NodePool demo k8s_cluster_uuid/k8s_nodepool_id
 // ```
 //
 // # This can be helpful when you want to import kubernetes node pools which you have already created manually or using other means, outside of terraform, towards the goal of managing them via Terraform
@@ -36,7 +36,7 @@ type NodePool struct {
 	AllowReplace pulumi.BoolPtrOutput `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapOutput `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringOutput `pulumi:"availabilityZone"`
@@ -134,7 +134,7 @@ type nodePoolState struct {
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone *string `pulumi:"availabilityZone"`
@@ -173,7 +173,7 @@ type NodePoolState struct {
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringPtrInput
@@ -216,7 +216,7 @@ type nodePoolArgs struct {
 	AllowReplace *bool `pulumi:"allowReplace"`
 	// [map] A key/value map of annotations
 	Annotations map[string]string `pulumi:"annotations"`
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone string `pulumi:"availabilityZone"`
@@ -256,7 +256,7 @@ type NodePoolArgs struct {
 	AllowReplace pulumi.BoolPtrInput
 	// [map] A key/value map of annotations
 	Annotations pulumi.StringMapInput
-	// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+	// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 	AutoScaling NodePoolAutoScalingPtrInput
 	// [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
 	AvailabilityZone pulumi.StringInput
@@ -387,7 +387,7 @@ func (o NodePoolOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringMapOutput { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// [string] Wether the Node Pool should autoscale. For more details, please check the API documentation
+// [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
 func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingPtrOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingPtrOutput { return v.AutoScaling }).(NodePoolAutoScalingPtrOutput)
 }

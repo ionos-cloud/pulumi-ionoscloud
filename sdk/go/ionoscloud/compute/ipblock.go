@@ -47,7 +47,7 @@ import (
 // Resource Ipblock can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock {ipblock uuid}
+// $ pulumi import ionoscloud:compute/iPBlock:IPBlock myipblock ipblock uuid
 // ```
 type IPBlock struct {
 	pulumi.CustomResourceState

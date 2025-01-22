@@ -37,3 +37,4 @@ go.work.sum
 
 # Ignore local build tracking directory
 .make
+reset.sh

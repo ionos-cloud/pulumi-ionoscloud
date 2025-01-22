@@ -18,6 +18,31 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.GetResource(ctx, &compute.GetResourceArgs{
+//				ResourceId: pulumi.StringRef("resource_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Type
 // ```go
 // package main
@@ -33,6 +58,32 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := compute.GetResource(ctx, &compute.GetResourceArgs{
 //				ResourceType: pulumi.StringRef("datacenter"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By ID & Type
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.GetResource(ctx, &compute.GetResourceArgs{
+//				ResourceType: pulumi.StringRef("datacenter"),
+//				ResourceId:   pulumi.StringRef("resource_id"),
 //			}, nil)
 //			if err != nil {
 //				return err

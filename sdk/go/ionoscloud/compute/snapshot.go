@@ -102,7 +102,7 @@ import (
 // Resource Snapshot can be imported using the `snapshot id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot {snapshot uuid}
+// $ pulumi import ionoscloud:compute/snapshot:Snapshot mysnapshot snapshot uuid
 // ```
 type Snapshot struct {
 	pulumi.CustomResourceState

@@ -82,7 +82,7 @@ import (
 // Resource Application Load Balancer can be imported using the `resource id` and `datacenter id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:alb/balancer:Balancer myalb {datacenter uuid}/{applicationLoadBalancer uuid}
+// $ pulumi import ionoscloud:alb/balancer:Balancer myalb datacenter uuid/applicationLoadBalancer uuid
 // ```
 type Balancer struct {
 	pulumi.CustomResourceState

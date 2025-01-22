@@ -125,7 +125,7 @@ import (
 // Resource IpFailover can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
+// $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover datacenter uuid/lan uuid
 // ```
 type IPFailover struct {
 	pulumi.CustomResourceState

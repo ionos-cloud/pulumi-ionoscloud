@@ -31,7 +31,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
 //				Name:       pulumi.String("k8sClusterExample"),
-//				K8sVersion: pulumi.String("1.28.6"),
+//				K8sVersion: pulumi.String("1.31.2"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
@@ -87,7 +87,7 @@ import (
 //			}
 //			_, err = k8s.NewCluster(ctx, "example", &k8s.ClusterArgs{
 //				Name:       pulumi.String("k8sClusterExample"),
-//				K8sVersion: pulumi.String("1.28.6"),
+//				K8sVersion: pulumi.String("1.31.2"),
 //				MaintenanceWindow: &k8s.ClusterMaintenanceWindowArgs{
 //					DayOfTheWeek: pulumi.String("Sunday"),
 //					Time:         pulumi.String("09:00:00Z"),
@@ -121,7 +121,7 @@ import (
 // A Kubernetes Cluster resource can be imported using its `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:k8s/cluster:Cluster demo {k8s_cluster uuid}
+// $ pulumi import ionoscloud:k8s/cluster:Cluster demo k8s_cluster uuid
 // ```
 //
 // This can be helpful when you want to import kubernetes clusters which you have already created manually or using other means, outside of terraform.

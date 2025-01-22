@@ -15,6 +15,32 @@ import (
 //
 // ## Example Usage
 //
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupMariaDBCluster(ctx, &dbaas.LookupMariaDBClusterArgs{
+//				Id:       pulumi.StringRef("cluster_id"),
+//				Location: pulumi.StringRef("de/txl"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### By Name
 //
 // ```go
@@ -72,10 +98,10 @@ type LookupMariaDBClusterResult struct {
 	// [int] The number of CPU cores per instance.
 	Cores int `pulumi:"cores"`
 	// [string] The friendly name of your cluster.
-	DisplayName *string `pulumi:"displayName"`
+	DisplayName string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
-	DnsName string  `pulumi:"dnsName"`
-	Id      *string `pulumi:"id"`
+	DnsName string `pulumi:"dnsName"`
+	Id      string `pulumi:"id"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances int     `pulumi:"instances"`
 	Location  *string `pulumi:"location"`
@@ -142,8 +168,8 @@ func (o LookupMariaDBClusterResultOutput) Cores() pulumi.IntOutput {
 }
 
 // [string] The friendly name of your cluster.
-func (o LookupMariaDBClusterResultOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMariaDBClusterResult) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o LookupMariaDBClusterResultOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMariaDBClusterResult) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
 // [string] The DNS name pointing to your cluster.
@@ -151,8 +177,8 @@ func (o LookupMariaDBClusterResultOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMariaDBClusterResult) string { return v.DnsName }).(pulumi.StringOutput)
 }
 
-func (o LookupMariaDBClusterResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupMariaDBClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupMariaDBClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMariaDBClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // [int] The total number of instances in the cluster (one primary and n-1 secondary).

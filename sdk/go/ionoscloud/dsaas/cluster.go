@@ -82,7 +82,7 @@ import (
 // Resource Dataplatform Cluster can be imported using the `cluster_id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser {cluster uuid}
+// $ pulumi import ionoscloud:dsaas/cluster:Cluster mycluser cluster uuid
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState
@@ -91,7 +91,7 @@ type Cluster struct {
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayOutput `pulumi:"lans"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayOutput `pulumi:"maintenanceWindows"`
 	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -136,7 +136,7 @@ type clusterState struct {
 	DatacenterId *string `pulumi:"datacenterId"`
 	// [list] A list of LANs you want this node pool to be part of.
 	Lans []ClusterLan `pulumi:"lans"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []ClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
@@ -149,7 +149,7 @@ type ClusterState struct {
 	DatacenterId pulumi.StringPtrInput
 	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayInput
 	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
@@ -166,7 +166,7 @@ type clusterArgs struct {
 	DatacenterId string `pulumi:"datacenterId"`
 	// [list] A list of LANs you want this node pool to be part of.
 	Lans []ClusterLan `pulumi:"lans"`
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows []ClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name *string `pulumi:"name"`
@@ -180,7 +180,7 @@ type ClusterArgs struct {
 	DatacenterId pulumi.StringInput
 	// [list] A list of LANs you want this node pool to be part of.
 	Lans ClusterLanArrayInput
-	// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+	// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 	MaintenanceWindows ClusterMaintenanceWindowArrayInput
 	// [string] The name of your cluster. Must be 63 characters or less and must be empty or begin and end with an alphanumeric character ([a-z0-9A-Z]). It can contain dashes (-), underscores (_), dots (.), and alphanumerics in-between.
 	Name pulumi.StringPtrInput
@@ -285,7 +285,7 @@ func (o ClusterOutput) Lans() ClusterLanArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterLanArrayOutput { return v.Lans }).(ClusterLanArrayOutput)
 }
 
-// [string] Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
+// Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format
 func (o ClusterOutput) MaintenanceWindows() ClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v *Cluster) ClusterMaintenanceWindowArrayOutput { return v.MaintenanceWindows }).(ClusterMaintenanceWindowArrayOutput)
 }

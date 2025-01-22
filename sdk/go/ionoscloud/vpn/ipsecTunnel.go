@@ -119,7 +119,7 @@ import (
 // The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
+// $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example location:gateway_id:tunnel_id
 // ```
 type IpsecTunnel struct {
 	pulumi.CustomResourceState
@@ -141,7 +141,7 @@ type IpsecTunnel struct {
 	Ike IpsecTunnelIkeOutput `pulumi:"ike"`
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringOutput `pulumi:"location"`
+	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -172,9 +172,6 @@ func NewIpsecTunnel(ctx *pulumi.Context,
 	}
 	if args.Ike == nil {
 		return nil, errors.New("invalid value for required argument 'Ike'")
-	}
-	if args.Location == nil {
-		return nil, errors.New("invalid value for required argument 'Location'")
 	}
 	if args.PeerNetworkCidrs == nil {
 		return nil, errors.New("invalid value for required argument 'PeerNetworkCidrs'")
@@ -282,7 +279,7 @@ type ipsecTunnelArgs struct {
 	Ike IpsecTunnelIke `pulumi:"ike"`
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location string `pulumi:"location"`
+	Location *string `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -311,7 +308,7 @@ type IpsecTunnelArgs struct {
 	Ike IpsecTunnelIkeInput
 	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 	// gb/lhr, us/ewr, us/las, us/mci, fr/par
-	Location pulumi.StringInput
+	Location pulumi.StringPtrInput
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
 	// [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
@@ -443,8 +440,8 @@ func (o IpsecTunnelOutput) Ike() IpsecTunnelIkeOutput {
 
 // [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
 // gb/lhr, us/ewr, us/las, us/mci, fr/par
-func (o IpsecTunnelOutput) Location() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
+func (o IpsecTunnelOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }
 
 // [string] The name of the IPSec Gateway Tunnel.

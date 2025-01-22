@@ -16,6 +16,58 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupVolume(ctx, &compute.LookupVolumeArgs{
+//				DatacenterId: "datacenter_id",
+//				Id:           pulumi.StringRef("volume_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := compute.LookupVolume(ctx, &compute.LookupVolumeArgs{
+//				DatacenterId: "datacenter_id",
+//				Name:         pulumi.StringRef("Volume Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVolumeResult
@@ -59,7 +111,7 @@ type LookupVolumeResult struct {
 	// The volume type: HDD or SSD.
 	DiskType string `pulumi:"diskType"`
 	// The id of the volume.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The image or snapshot UUID.
 	Image string `pulumi:"image"`
 	// Required if `sshkeyPath` is not provided.
@@ -67,7 +119,7 @@ type LookupVolumeResult struct {
 	// The type of the licence.
 	LicenceType string `pulumi:"licenceType"`
 	// The name of the volume.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// Is capable of nic hot plug (no reboot required)
 	NicHotPlug bool `pulumi:"nicHotPlug"`
 	// Is capable of nic hot unplug (no reboot required)
@@ -171,8 +223,8 @@ func (o LookupVolumeResultOutput) DiskType() pulumi.StringOutput {
 }
 
 // The id of the volume.
-func (o LookupVolumeResultOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o LookupVolumeResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVolumeResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The image or snapshot UUID.
@@ -191,8 +243,8 @@ func (o LookupVolumeResultOutput) LicenceType() pulumi.StringOutput {
 }
 
 // The name of the volume.
-func (o LookupVolumeResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupVolumeResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVolumeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // Is capable of nic hot plug (no reboot required)

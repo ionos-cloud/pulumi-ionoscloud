@@ -14,12 +14,164 @@ import (
 
 // Manages a **Volume** on IonosCloud.
 //
+// ## Example Usage
+//
+// A primary volume will be created with the server. If there is a need for additional volumes, this resource handles it.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				CloudInit:  pulumi.StringRef("V1"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("Server Example"),
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_XEON"),
+//				ImageName:        pulumi.String(example.Name),
+//				ImagePassword:    serverImagePassword.Result,
+//				Type:             pulumi.String("ENTERPRISE"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Firewalls: compute.ServerNicFirewallArray{
+//						&compute.ServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			volumeImagePassword, err := random.NewPassword(ctx, "volume_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVolume(ctx, "example", &compute.VolumeArgs{
+//				DatacenterId:     exampleDatacenter.ID(),
+//				ServerId:         exampleServer.ID(),
+//				Name:             pulumi.String("Volume Example"),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				Size:             pulumi.Int(5),
+//				DiskType:         pulumi.String("SSD Standard"),
+//				Bus:              pulumi.String("VIRTIO"),
+//				ImageName:        pulumi.String(example.Name),
+//				ImagePassword:    volumeImagePassword.Result,
+//				UserData:         pulumi.String("foo"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVolume(ctx, "example2", &compute.VolumeArgs{
+//				DatacenterId:     exampleDatacenter.ID(),
+//				ServerId:         exampleServer.ID(),
+//				Name:             pulumi.String("Another Volume Example"),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				Size:             pulumi.Int(5),
+//				DiskType:         pulumi.String("SSD Standard"),
+//				Bus:              pulumi.String("VIRTIO"),
+//				LicenceType:      pulumi.String("OTHER"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource Volume can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:compute/volume:Volume myvolume {datacenter uuid}/{server uuid}/{volume uuid}
+// $ pulumi import ionoscloud:compute/volume:Volume myvolume datacenter uuid/server uuid/volume uuid
 // ```
 type Volume struct {
 	pulumi.CustomResourceState

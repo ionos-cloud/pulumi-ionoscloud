@@ -198,7 +198,7 @@ import (
 // Then you can import the user using the following command:
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
+// $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser clusterid/username
 // ```
 type MongoUser struct {
 	pulumi.CustomResourceState

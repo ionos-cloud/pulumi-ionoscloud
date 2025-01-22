@@ -14,6 +14,58 @@ import (
 // The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
 //
 // ## Example Usage
+//
+// ### Get all backups for a specific cluster
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetMariaDBBackups(ctx, &dbaas.GetMariaDBBackupsArgs{
+//				ClusterId: pulumi.StringRef("cluster_id"),
+//				Location:  pulumi.StringRef("de/txl"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Get a specific backup
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetMariaDBBackups(ctx, &dbaas.GetMariaDBBackupsArgs{
+//				BackupId: pulumi.StringRef("backup_id"),
+//				Location: pulumi.StringRef("de/txl"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetMariaDBBackups(ctx *pulumi.Context, args *GetMariaDBBackupsArgs, opts ...pulumi.InvokeOption) (*GetMariaDBBackupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMariaDBBackupsResult
@@ -40,10 +92,10 @@ type GetMariaDBBackupsArgs struct {
 
 // A collection of values returned by getMariaDBBackups.
 type GetMariaDBBackupsResult struct {
-	BackupId *string                   `pulumi:"backupId"`
+	BackupId string                    `pulumi:"backupId"`
 	Backups  []GetMariaDBBackupsBackup `pulumi:"backups"`
 	// The unique ID of the cluster that was backed up.
-	ClusterId *string `pulumi:"clusterId"`
+	ClusterId string `pulumi:"clusterId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id       string  `pulumi:"id"`
 	Location *string `pulumi:"location"`
@@ -91,8 +143,8 @@ func (o GetMariaDBBackupsResultOutput) ToGetMariaDBBackupsResultOutputWithContex
 	return o
 }
 
-func (o GetMariaDBBackupsResultOutput) BackupId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetMariaDBBackupsResult) *string { return v.BackupId }).(pulumi.StringPtrOutput)
+func (o GetMariaDBBackupsResultOutput) BackupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsResult) string { return v.BackupId }).(pulumi.StringOutput)
 }
 
 func (o GetMariaDBBackupsResultOutput) Backups() GetMariaDBBackupsBackupArrayOutput {
@@ -100,8 +152,8 @@ func (o GetMariaDBBackupsResultOutput) Backups() GetMariaDBBackupsBackupArrayOut
 }
 
 // The unique ID of the cluster that was backed up.
-func (o GetMariaDBBackupsResultOutput) ClusterId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetMariaDBBackupsResult) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
+func (o GetMariaDBBackupsResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

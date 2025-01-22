@@ -14,6 +14,86 @@ import (
 // The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
 //
 // ## Example Usage
+//
+// ### All Node Pools under a Cluster ID
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.GetNodePools(ctx, &dsaas.GetNodePoolsArgs{
+//				ClusterId: "cluster_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.GetNodePools(ctx, &dsaas.GetNodePoolsArgs{
+//				ClusterId: "cluster_id",
+//				Name:      pulumi.StringRef("Dataplatform_Node_Pool_Example"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### By Name with Partial Match
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dsaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dsaas.GetNodePools(ctx, &dsaas.GetNodePoolsArgs{
+//				ClusterId:    "cluster_id",
+//				Name:         pulumi.StringRef("_Example"),
+//				PartialMatch: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetNodePools(ctx *pulumi.Context, args *GetNodePoolsArgs, opts ...pulumi.InvokeOption) (*GetNodePoolsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNodePoolsResult

@@ -1442,13 +1442,13 @@ type GetClustersCluster struct {
 	AvailableUpgradeVersions []string                   `pulumi:"availableUpgradeVersions"`
 	CaCrt                    string                     `pulumi:"caCrt"`
 	Configs                  []GetClustersClusterConfig `pulumi:"configs"`
-	Id                       *string                    `pulumi:"id"`
+	Id                       string                     `pulumi:"id"`
 	K8sVersion               string                     `pulumi:"k8sVersion"`
 	KubeConfig               string                     `pulumi:"kubeConfig"`
 	Location                 string                     `pulumi:"location"`
 	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 	MaintenanceWindows []GetClustersClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name               *string                               `pulumi:"name"`
+	Name               string                                `pulumi:"name"`
 	// The NAT gateway IP of the cluster if the cluster is private.
 	NatGatewayIp string   `pulumi:"natGatewayIp"`
 	NodePools    []string `pulumi:"nodePools"`
@@ -1483,13 +1483,13 @@ type GetClustersClusterArgs struct {
 	AvailableUpgradeVersions pulumi.StringArrayInput            `pulumi:"availableUpgradeVersions"`
 	CaCrt                    pulumi.StringInput                 `pulumi:"caCrt"`
 	Configs                  GetClustersClusterConfigArrayInput `pulumi:"configs"`
-	Id                       pulumi.StringPtrInput              `pulumi:"id"`
+	Id                       pulumi.StringInput                 `pulumi:"id"`
 	K8sVersion               pulumi.StringInput                 `pulumi:"k8sVersion"`
 	KubeConfig               pulumi.StringInput                 `pulumi:"kubeConfig"`
 	Location                 pulumi.StringInput                 `pulumi:"location"`
 	// A maintenance window comprise of a day of the week and a time for maintenance to be allowed
 	MaintenanceWindows GetClustersClusterMaintenanceWindowArrayInput `pulumi:"maintenanceWindows"`
-	Name               pulumi.StringPtrInput                         `pulumi:"name"`
+	Name               pulumi.StringInput                            `pulumi:"name"`
 	// The NAT gateway IP of the cluster if the cluster is private.
 	NatGatewayIp pulumi.StringInput      `pulumi:"natGatewayIp"`
 	NodePools    pulumi.StringArrayInput `pulumi:"nodePools"`
@@ -1575,8 +1575,8 @@ func (o GetClustersClusterOutput) Configs() GetClustersClusterConfigArrayOutput 
 	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterConfig { return v.Configs }).(GetClustersClusterConfigArrayOutput)
 }
 
-func (o GetClustersClusterOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetClustersCluster) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetClustersClusterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetClustersClusterOutput) K8sVersion() pulumi.StringOutput {
@@ -1596,8 +1596,8 @@ func (o GetClustersClusterOutput) MaintenanceWindows() GetClustersClusterMainten
 	return o.ApplyT(func(v GetClustersCluster) []GetClustersClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetClustersClusterMaintenanceWindowArrayOutput)
 }
 
-func (o GetClustersClusterOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetClustersCluster) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetClustersClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClustersCluster) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The NAT gateway IP of the cluster if the cluster is private.
@@ -1662,7 +1662,8 @@ func (o GetClustersClusterArrayOutput) Index(i pulumi.IntInput) GetClustersClust
 }
 
 type GetClustersClusterConfig struct {
-	ApiVersion     string                            `pulumi:"apiVersion"`
+	ApiVersion string `pulumi:"apiVersion"`
+	// list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
 	Clusters       []GetClustersClusterConfigCluster `pulumi:"clusters"`
 	Contexts       []GetClustersClusterConfigContext `pulumi:"contexts"`
 	CurrentContext string                            `pulumi:"currentContext"`
@@ -1682,7 +1683,8 @@ type GetClustersClusterConfigInput interface {
 }
 
 type GetClustersClusterConfigArgs struct {
-	ApiVersion     pulumi.StringInput                        `pulumi:"apiVersion"`
+	ApiVersion pulumi.StringInput `pulumi:"apiVersion"`
+	// list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
 	Clusters       GetClustersClusterConfigClusterArrayInput `pulumi:"clusters"`
 	Contexts       GetClustersClusterConfigContextArrayInput `pulumi:"contexts"`
 	CurrentContext pulumi.StringInput                        `pulumi:"currentContext"`
@@ -1745,6 +1747,7 @@ func (o GetClustersClusterConfigOutput) ApiVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersClusterConfig) string { return v.ApiVersion }).(pulumi.StringOutput)
 }
 
+// list of Kubernetes clusters that match the provided filters. The elements of this list are structurally identical to the `k8sCluster` datasource, which is limited to retrieving only 1 cluster in a single query.
 func (o GetClustersClusterConfigOutput) Clusters() GetClustersClusterConfigClusterArrayOutput {
 	return o.ApplyT(func(v GetClustersClusterConfig) []GetClustersClusterConfigCluster { return v.Clusters }).(GetClustersClusterConfigClusterArrayOutput)
 }
@@ -2831,15 +2834,15 @@ type GetNodePoolNodesNode struct {
 	// ID of the node pool you want to search for.
 	//
 	// `k8sClusterId` and `nodePoolId` must be provided.
-	Id *string `pulumi:"id"`
+	Id string `pulumi:"id"`
 	// The kubernetes version
 	K8sVersion string `pulumi:"k8sVersion"`
 	// Name of an existing node pool that you want to search for.
-	Name *string `pulumi:"name"`
+	Name string `pulumi:"name"`
 	// private ip of the node
-	PrivateIp *string `pulumi:"privateIp"`
+	PrivateIp string `pulumi:"privateIp"`
 	// public ip of the node
-	PublicIp *string `pulumi:"publicIp"`
+	PublicIp string `pulumi:"publicIp"`
 }
 
 // GetNodePoolNodesNodeInput is an input type that accepts GetNodePoolNodesNodeArgs and GetNodePoolNodesNodeOutput values.
@@ -2857,15 +2860,15 @@ type GetNodePoolNodesNodeArgs struct {
 	// ID of the node pool you want to search for.
 	//
 	// `k8sClusterId` and `nodePoolId` must be provided.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
 	// The kubernetes version
 	K8sVersion pulumi.StringInput `pulumi:"k8sVersion"`
 	// Name of an existing node pool that you want to search for.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
 	// private ip of the node
-	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
 	// public ip of the node
-	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
+	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 }
 
 func (GetNodePoolNodesNodeArgs) ElementType() reflect.Type {
@@ -2922,8 +2925,8 @@ func (o GetNodePoolNodesNodeOutput) ToGetNodePoolNodesNodeOutputWithContext(ctx 
 // ID of the node pool you want to search for.
 //
 // `k8sClusterId` and `nodePoolId` must be provided.
-func (o GetNodePoolNodesNodeOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.Id }).(pulumi.StringPtrOutput)
+func (o GetNodePoolNodesNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The kubernetes version
@@ -2932,18 +2935,18 @@ func (o GetNodePoolNodesNodeOutput) K8sVersion() pulumi.StringOutput {
 }
 
 // Name of an existing node pool that you want to search for.
-func (o GetNodePoolNodesNodeOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o GetNodePoolNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // private ip of the node
-func (o GetNodePoolNodesNodeOutput) PrivateIp() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+func (o GetNodePoolNodesNodeOutput) PrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
 // public ip of the node
-func (o GetNodePoolNodesNodeOutput) PublicIp() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetNodePoolNodesNode) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
+func (o GetNodePoolNodesNodeOutput) PublicIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolNodesNode) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
 type GetNodePoolNodesNodeArrayOutput struct{ *pulumi.OutputState }

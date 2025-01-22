@@ -67,7 +67,7 @@ import (
 // The resource can be imported using the `clusterId` and the `username`, for example:
 //
 // ```sh
-// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
+// $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example clusterid/username
 // ```
 type PSQLUser struct {
 	pulumi.CustomResourceState

@@ -14,6 +14,57 @@ import (
 // The **PgSql Databases data source** can be used to search for and return multiple existing PgSql databases.
 //
 // ## Example Usage
+//
+// ### All databases from a specific cluster
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetPSQLDatabases(ctx, &dbaas.GetPSQLDatabasesArgs{
+//				ClusterId: "cluster_id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Filter by owner
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.GetPSQLDatabases(ctx, &dbaas.GetPSQLDatabasesArgs{
+//				ClusterId: "cluster_id",
+//				Owner:     pulumi.StringRef("owner"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetPSQLDatabases(ctx *pulumi.Context, args *GetPSQLDatabasesArgs, opts ...pulumi.InvokeOption) (*GetPSQLDatabasesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPSQLDatabasesResult

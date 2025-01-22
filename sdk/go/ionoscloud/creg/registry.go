@@ -56,7 +56,7 @@ import (
 // Resource Container Registry can be imported using the `resource id`, e.g.
 //
 // ```sh
-// $ pulumi import ionoscloud:creg/registry:Registry mycr {container_registry uuid}
+// $ pulumi import ionoscloud:creg/registry:Registry mycr container_registry uuid
 // ```
 type Registry struct {
 	pulumi.CustomResourceState
