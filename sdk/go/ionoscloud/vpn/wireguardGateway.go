@@ -117,7 +117,7 @@ type WireguardGateway struct {
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// (Computed)[String] The public key for the WireGuard Gateway.
 	// ---
-	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -193,7 +193,7 @@ type wireguardGatewayState struct {
 	PrivateKey *string `pulumi:"privateKey"`
 	// (Computed)[String] The public key for the WireGuard Gateway.
 	// ---
-	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	PublicKey *string `pulumi:"publicKey"`
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status *string `pulumi:"status"`
@@ -224,7 +224,7 @@ type WireguardGatewayState struct {
 	PrivateKey pulumi.StringPtrInput
 	// (Computed)[String] The public key for the WireGuard Gateway.
 	// ---
-	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	PublicKey pulumi.StringPtrInput
 	// (Computed)[String] The current status of the WireGuard Gateway.
 	Status pulumi.StringPtrInput
@@ -426,7 +426,7 @@ func (o WireguardGatewayOutput) PrivateKey() pulumi.StringOutput {
 
 // (Computed)[String] The public key for the WireGuard Gateway.
 // ---
-// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o WireguardGatewayOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *WireguardGateway) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }

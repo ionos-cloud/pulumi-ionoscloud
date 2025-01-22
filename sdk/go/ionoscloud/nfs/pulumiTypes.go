@@ -20,7 +20,7 @@ type ClusterConnections struct {
 	IpAddress string `pulumi:"ipAddress"`
 	// The Private LAN to which the Network File Storage cluster must be connected.
 	// ---
-	// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	Lan string `pulumi:"lan"`
 }
 
@@ -42,7 +42,7 @@ type ClusterConnectionsArgs struct {
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// The Private LAN to which the Network File Storage cluster must be connected.
 	// ---
-	// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	Lan pulumi.StringInput `pulumi:"lan"`
 }
 
@@ -135,7 +135,7 @@ func (o ClusterConnectionsOutput) IpAddress() pulumi.StringOutput {
 
 // The Private LAN to which the Network File Storage cluster must be connected.
 // ---
-// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o ClusterConnectionsOutput) Lan() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterConnections) string { return v.Lan }).(pulumi.StringOutput)
 }
@@ -186,7 +186,7 @@ func (o ClusterConnectionsPtrOutput) IpAddress() pulumi.StringPtrOutput {
 
 // The Private LAN to which the Network File Storage cluster must be connected.
 // ---
-// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o ClusterConnectionsPtrOutput) Lan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterConnections) *string {
 		if v == nil {

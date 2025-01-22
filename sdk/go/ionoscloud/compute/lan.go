@@ -116,6 +116,8 @@ type Lan struct {
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
 	// IP failover configurations for lan
 	IpFailovers LanIpFailoverArrayOutput `pulumi:"ipFailovers"`
+	// [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+	Ipv4CidrBlock pulumi.StringOutput `pulumi:"ipv4CidrBlock"`
 	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
 	// [string] The name of the LAN.
@@ -163,6 +165,8 @@ type lanState struct {
 	DatacenterId *string `pulumi:"datacenterId"`
 	// IP failover configurations for lan
 	IpFailovers []LanIpFailover `pulumi:"ipFailovers"`
+	// [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+	Ipv4CidrBlock *string `pulumi:"ipv4CidrBlock"`
 	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
 	// [string] The name of the LAN.
@@ -178,6 +182,8 @@ type LanState struct {
 	DatacenterId pulumi.StringPtrInput
 	// IP failover configurations for lan
 	IpFailovers LanIpFailoverArrayInput
+	// [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+	Ipv4CidrBlock pulumi.StringPtrInput
 	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
 	Ipv6CidrBlock pulumi.StringPtrInput
 	// [string] The name of the LAN.
@@ -318,6 +324,11 @@ func (o LanOutput) DatacenterId() pulumi.StringOutput {
 // IP failover configurations for lan
 func (o LanOutput) IpFailovers() LanIpFailoverArrayOutput {
 	return o.ApplyT(func(v *Lan) LanIpFailoverArrayOutput { return v.IpFailovers }).(LanIpFailoverArrayOutput)
+}
+
+// [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
+func (o LanOutput) Ipv4CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v *Lan) pulumi.StringOutput { return v.Ipv4CidrBlock }).(pulumi.StringOutput)
 }
 
 // Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.

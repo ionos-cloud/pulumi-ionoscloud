@@ -97,8 +97,11 @@ type LookupLanResult struct {
 	// The id of the LAN.
 	Id string `pulumi:"id"`
 	// list of
-	IpFailovers   []GetLanIpFailover `pulumi:"ipFailovers"`
-	Ipv6CidrBlock string             `pulumi:"ipv6CidrBlock"`
+	IpFailovers []GetLanIpFailover `pulumi:"ipFailovers"`
+	// For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+	Ipv4CidrBlock string `pulumi:"ipv4CidrBlock"`
+	// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
+	Ipv6CidrBlock string `pulumi:"ipv6CidrBlock"`
 	// The name of the LAN.
 	Name string `pulumi:"name"`
 	// The unique id of a `compute.Crossconnect` resource, in order.
@@ -162,6 +165,12 @@ func (o LookupLanResultOutput) IpFailovers() GetLanIpFailoverArrayOutput {
 	return o.ApplyT(func(v LookupLanResult) []GetLanIpFailover { return v.IpFailovers }).(GetLanIpFailoverArrayOutput)
 }
 
+// For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range.
+func (o LookupLanResultOutput) Ipv4CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv4CidrBlock }).(pulumi.StringOutput)
+}
+
+// Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled.
 func (o LookupLanResultOutput) Ipv6CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLanResult) string { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
 }

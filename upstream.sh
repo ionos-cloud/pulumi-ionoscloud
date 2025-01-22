@@ -141,7 +141,7 @@ apply_patches() {
   # Allow directory to be empty
   shopt -s nullglob
   for patch in ../patches/*.patch; do
-    if ! git apply --3way "${patch}" --allow-empty; then
+    if ! git apply --3way "${patch}"; then
       err_failed_to_apply "$(basename "${patch}")"
     fi
   done

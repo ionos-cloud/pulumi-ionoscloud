@@ -83,7 +83,7 @@ type Cluster struct {
 
 	// [list] IP address and port of cluster brokers.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses pulumi.StringArrayOutput `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
@@ -138,7 +138,7 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// [list] IP address and port of cluster brokers.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections *ClusterConnections `pulumi:"connections"`
@@ -155,7 +155,7 @@ type clusterState struct {
 type ClusterState struct {
 	// [list] IP address and port of cluster brokers.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	BrokerAddresses pulumi.StringArrayInput
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsPtrInput
@@ -289,7 +289,7 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 
 // [list] IP address and port of cluster brokers.
 //
-// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ NOTE:** `IONOS_API_URL_KAFKA` can be used to set a custom API URL for the kafka resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o ClusterOutput) BrokerAddresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringArrayOutput { return v.BrokerAddresses }).(pulumi.StringArrayOutput)
 }

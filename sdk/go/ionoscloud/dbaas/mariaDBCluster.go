@@ -34,7 +34,7 @@ type MariaDBCluster struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntOutput `pulumi:"instances"`
@@ -114,7 +114,7 @@ type mariaDBClusterState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName *string `pulumi:"dnsName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances *int `pulumi:"instances"`
@@ -141,7 +141,7 @@ type MariaDBClusterState struct {
 	DisplayName pulumi.StringPtrInput
 	// [string] The DNS name pointing to your cluster.
 	//
-	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringPtrInput
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntPtrInput
@@ -317,7 +317,7 @@ func (o MariaDBClusterOutput) DisplayName() pulumi.StringOutput {
 
 // [string] The DNS name pointing to your cluster.
 //
-// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o MariaDBClusterOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }

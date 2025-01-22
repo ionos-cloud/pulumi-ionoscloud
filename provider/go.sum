@@ -1739,8 +1739,8 @@ github.com/ionos-cloud/sdk-go-object-storage-management v1.0.0 h1:pHRKSNT+cCcr5g
 github.com/ionos-cloud/sdk-go-object-storage-management v1.0.0/go.mod h1:BnEapZcQp6FEirEin6pY9NICXD1mCrI4sJ+wOSKpyCY=
 github.com/ionos-cloud/sdk-go-vm-autoscaling v1.0.1 h1:KABL25MC7DrIHn9lQzKSPkwXhqvRkPYtFd+1HEogmAE=
 github.com/ionos-cloud/sdk-go-vm-autoscaling v1.0.1/go.mod h1:Q5d1R6silarsX5jWLPBHd/1PSC5zZNf2ONvXB+fygC0=
-github.com/ionos-cloud/sdk-go/v6 v6.3.0 h1:/lTieTH9Mo/CWm3cTlFLnK10jgxjUGkAqRffGqvPteY=
-github.com/ionos-cloud/sdk-go/v6 v6.3.0/go.mod h1:SXrO9OGyWjd2rZhAhEpdYN6VUAODzzqRdqA9BCviQtI=
+github.com/ionos-cloud/sdk-go/v6 v6.3.2 h1:2mUmrZZz6cPyT9IRX0T8fBLc/7XU/eTxP2Y5tS7/09k=
+github.com/ionos-cloud/sdk-go/v6 v6.3.2/go.mod h1:SXrO9OGyWjd2rZhAhEpdYN6VUAODzzqRdqA9BCviQtI=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 h1:BQSFePA1RWJOlocH6Fxy8MmwDt+yVQYULKfN0RoTN8A=
 github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99/go.mod h1:1lJo3i6rXxKeerYnT8Nvf0QmHCRC1n8sfWVwXF2Frvo=
 github.com/jhump/gopoet v0.0.0-20190322174617-17282ff210b3/go.mod h1:me9yfT6IJSlOL3FCfrg+L6yzUEZ+5jW6WHt4Sk+UPUI=

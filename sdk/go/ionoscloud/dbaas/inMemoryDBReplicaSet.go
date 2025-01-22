@@ -32,7 +32,7 @@ type InMemoryDBReplicaSet struct {
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy pulumi.StringOutput `pulumi:"evictionPolicy"`
@@ -118,7 +118,7 @@ type inMemoryDBReplicaSetState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName *string `pulumi:"dnsName"`
 	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy *string `pulumi:"evictionPolicy"`
@@ -151,7 +151,7 @@ type InMemoryDBReplicaSetState struct {
 	DisplayName pulumi.StringPtrInput
 	// [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 	//
-	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+	// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 	DnsName pulumi.StringPtrInput
 	// [string] The eviction policy for the replica set, possible values are:
 	EvictionPolicy pulumi.StringPtrInput
@@ -342,7 +342,7 @@ func (o InMemoryDBReplicaSetOutput) DisplayName() pulumi.StringOutput {
 
 // [string] The DNS name pointing to your replica set. Will be used to connect to the active/standalone instance.
 //
-// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `token` or `IONOS_API_URL` does not have any effect.
+// > **⚠ NOTE:** `IONOS_API_URL_INMEMORYDB` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
 func (o InMemoryDBReplicaSetOutput) DnsName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBReplicaSet) pulumi.StringOutput { return v.DnsName }).(pulumi.StringOutput)
 }

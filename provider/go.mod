@@ -11,7 +11,7 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.98.0
 )
 
-replace github.com/ionos-cloud/terraform-provider-ionoscloud/v6 => ../upstream/terraform-provider-ionoscloud
+replace github.com/ionos-cloud/terraform-provider-ionoscloud/v6 => ../upstream
 
 require (
 	cloud.google.com/go v0.112.1 // indirect
@@ -121,7 +121,7 @@ require (
 	github.com/ionos-cloud/sdk-go-object-storage v1.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-object-storage-management v1.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-vm-autoscaling v1.0.1 // indirect
-	github.com/ionos-cloud/sdk-go/v6 v6.3.0 // indirect
+	github.com/ionos-cloud/sdk-go/v6 v6.3.2 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

@@ -153,7 +153,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:                 "Apache-2.0",
 		Homepage:                "https://www.pulumi.com",
 		Repository:              "https://github.com/ionos-cloud/pulumi-ionoscloud",
-		UpstreamRepoPath:        "./upstream/terraform-provider-ionoscloud",
+		UpstreamRepoPath:        "./upstream",
 		TFProviderModuleVersion: "v6",
 		SkipValidateProviderConfigForPluginFramework: true,
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
