@@ -403,7 +403,7 @@ import (
 // $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid
 // ```
 //
-// Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
+// Optionally, you can pass `primary_nic` and `firewallrule_id` so pulumi will know to import also the first nic and firewall rule (if it exists on the server):
 //
 // ```sh
 // $ pulumi import ionoscloud:compute/server:Server myserver datacenter uuid/server uuid/primary nic id/firewall rule id

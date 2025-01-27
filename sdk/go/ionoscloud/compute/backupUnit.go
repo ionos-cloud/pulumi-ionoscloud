@@ -64,7 +64,7 @@ import (
 // $ pulumi import ionoscloud:compute/backupUnit:BackupUnit demo backup_unit_uuid
 // ```
 //
-// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of terraform. Please note that you need to manually specify the password when first declaring the resource in terraform, as there is no way to retrieve the password from the Cloud API.
+// This can be helpful when you want to import backup units which you have already created manually or using other means, outside of pulumi. Please note that you need to manually specify the password when first declaring the resource in pulumi, as there is no way to retrieve the password from the Cloud API.
 type BackupUnit struct {
 	pulumi.CustomResourceState
 
