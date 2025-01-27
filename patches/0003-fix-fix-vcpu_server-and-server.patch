@@ -1,0 +1,34 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Radu Mocanu <radu_mocanu2000@yahoo.com>
+Date: Mon, 27 Jan 2025 11:40:18 +0200
+Subject: [PATCH] fix: fix vcpu_server and server
+
+
+diff --git a/docs/resources/server.md b/docs/resources/server.md
+index c0a499e6..97ee89d5 100644
+--- a/docs/resources/server.md
++++ b/docs/resources/server.md
+@@ -322,7 +322,4 @@ terraform import ionoscloud_server.myserver datacenter uuid/server uuid/primary
+ Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ 
+ ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+-from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+-More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+-that involves moving the resources in the list prior to deletion.
+-`terraform state mv resource-name.resource-id[i] resource-name.resource-id[j]`
+\ No newline at end of file
++from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+diff --git a/docs/resources/vcpu_server.md b/docs/resources/vcpu_server.md
+index f0694665..343ccc6a 100644
+--- a/docs/resources/vcpu_server.md
++++ b/docs/resources/vcpu_server.md
+@@ -134,7 +134,4 @@ terraform import ionoscloud_vcpu_server.myserver datacenter uuid/server uuid/pri
+ Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+ 
+ ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+-from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+-More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+-that involves moving the resources in the list prior to deletion.
+-`terraform state mv resource-name.resource-id[i] resource-name.resource-id[j]`
+\ No newline at end of file
++from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.

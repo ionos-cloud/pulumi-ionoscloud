@@ -12,6 +12,131 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a **VCPU Server** on IonosCloud.
+//
+// ## Example Usage
+//
+// ### VCPU Server
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				Type:       pulumi.StringRef("HDD"),
+//				ImageAlias: pulumi.StringRef("ubuntu:latest"),
+//				Location:   pulumi.StringRef("us/las"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			exampleDatacenter, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: exampleDatacenter.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleIPBlock, err := compute.NewIPBlock(ctx, "example", &compute.IPBlockArgs{
+//				Location: exampleDatacenter.Location,
+//				Size:     pulumi.Int(4),
+//				Name:     pulumi.String("IP Block Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewVCPUServer(ctx, "example", &compute.VCPUServerArgs{
+//				Name:             pulumi.String("VCPU Server Example"),
+//				DatacenterId:     exampleDatacenter.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(1024),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				ImageName:        pulumi.String(example.Id),
+//				ImagePassword:    pulumi.String("your_password_here"),
+//				Volume: &compute.VCPUServerVolumeArgs{
+//					Name:             pulumi.String("system"),
+//					Size:             pulumi.Int(5),
+//					DiskType:         pulumi.String("SSD Standard"),
+//					UserData:         pulumi.String("foo"),
+//					Bus:              pulumi.String("VIRTIO"),
+//					AvailabilityZone: pulumi.String("ZONE_1"),
+//				},
+//				Nic: &compute.VCPUServerNicArgs{
+//					Lan:            exampleLan.ID(),
+//					Name:           pulumi.String("system"),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//					FirewallType:   pulumi.String("BIDIRECTIONAL"),
+//					Ips: pulumi.StringArray{
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[0], nil
+//						}).(pulumi.StringOutput),
+//						exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//							return ips[1], nil
+//						}).(pulumi.StringOutput),
+//					},
+//					Firewalls: compute.VCPUServerNicFirewallArray{
+//						&compute.VCPUServerNicFirewallArgs{
+//							Protocol:       pulumi.String("TCP"),
+//							Name:           pulumi.String("SSH"),
+//							PortRangeStart: pulumi.Int(22),
+//							PortRangeEnd:   pulumi.Int(22),
+//							SourceMac:      pulumi.String("00:0a:95:9d:68:17"),
+//							SourceIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[2], nil
+//							}).(pulumi.StringOutput),
+//							TargetIp: exampleIPBlock.Ips.ApplyT(func(ips []string) (string, error) {
+//								return ips[3], nil
+//							}).(pulumi.StringOutput),
+//							Type: pulumi.String("EGRESS"),
+//						},
+//					},
+//				},
+//				Labels: compute.VCPUServerLabelArray{
+//					&compute.VCPUServerLabelArgs{
+//						Key:   pulumi.String("labelkey1"),
+//						Value: pulumi.String("labelvalue1"),
+//					},
+//					&compute.VCPUServerLabelArgs{
+//						Key:   pulumi.String("labelkey2"),
+//						Value: pulumi.String("labelvalue2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Notes
+//
+// Please note that for any secondary volume, you need to set the **licence_type** property to **UNKNOWN**
+//
+// ⚠️ **Note:** Important for deleting an `firewall` rule from within a list of inline resources defined on the same nic. There is one limitation to removing one firewall rule
+// from the middle of the list of `firewall` rules. The existing rules will be modified and the last one will be deleted.
+//
 // ## Import
 //
 // Resource VCPU Server can be imported using the `resource id` and the `datacenter id`, for example, passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.

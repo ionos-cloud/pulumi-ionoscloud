@@ -69,6 +69,93 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			nfsDc, err := compute.NewDatacenter(ctx, "nfs_dc", &compute.DatacenterArgs{
+//				Name:              pulumi.String("NFS Datacenter"),
+//				Location:          pulumi.String("de/txl"),
+//				Description:       pulumi.String("Datacenter Description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			nfsLan, err := compute.NewLan(ctx, "nfs_lan", &compute.LanArgs{
+//				DatacenterId: nfsDc.ID(),
+//				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("Lan for NFS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			hDDImage, err := compute.GetImage(ctx, &compute.GetImageArgs{
+//				ImageAlias: pulumi.StringRef("ubuntu:20.04"),
+//				Type:       pulumi.StringRef("HDD"),
+//				CloudInit:  pulumi.StringRef("V1"),
+//				Location:   pulumi.StringRef("de/txl"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// needed for the NIC - which provides the IP address for the NFS cluster.
+//			_, err = compute.NewServer(ctx, "nfs_server", &compute.ServerArgs{
+//				Name:             pulumi.String("Server for NFS"),
+//				DatacenterId:     nfsDc.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              pulumi.Int(2048),
+//				AvailabilityZone: pulumi.String("ZONE_1"),
+//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
+//				ImageName:        pulumi.String(hDDImage.Id),
+//				ImagePassword:    pulumi.String("your_password_here"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("system"),
+//					Size:     pulumi.Int(14),
+//					DiskType: pulumi.String("SSD"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Name:           pulumi.String("NIC A"),
+//					Lan:            nfsLan.ID(),
+//					Dhcp:           pulumi.Bool(true),
+//					FirewallActive: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nfs.NewCluster(ctx, "example", &nfs.ClusterArgs{
+//				Name:     pulumi.String("test"),
+//				Location: pulumi.String("de/txl"),
+//				Size:     pulumi.Int(2),
+//				Nfs: &nfs.ClusterNfsArgs{
+//					MinVersion: pulumi.String("4.2"),
+//				},
+//				Connections: &nfs.ClusterConnectionsArgs{
+//					DatacenterId: nfsDc.ID(),
+//					IpAddress:    pulumi.String("nfs_cluster_cidr_from_nic"),
+//					Lan:          nfsLan.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // A Network File Storage Cluster resource can be imported using its `location` and `resource id`:

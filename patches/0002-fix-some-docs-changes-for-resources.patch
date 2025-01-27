@@ -1,0 +1,583 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Radu Mocanu <radu_mocanu2000@yahoo.com>
+Date: Thu, 23 Jan 2025 12:47:02 +0200
+Subject: [PATCH] fix: some docs changes for resources
+
+
+diff --git a/docs/resources/backup_unit.md b/docs/resources/backup_unit.md
+index 5d890972..71f6a013 100644
+--- a/docs/resources/backup_unit.md
++++ b/docs/resources/backup_unit.md
+@@ -22,7 +22,7 @@ resource "ionoscloud_backup_unit" "example" {
+ resource "random_password" "backup_unit_password" {
+   length           = 16
+   special          = true
+-  override_special = "!#$%&*()-_=+[]{}<>:?"
++  override_special = "!#$%&*()-_=+[]{}:?"
+ }
+ ```
+ 
+diff --git a/docs/resources/cdn_distribution.md b/docs/resources/cdn_distribution.md
+index 0c753ed7..39e507f1 100644
+--- a/docs/resources/cdn_distribution.md
++++ b/docs/resources/cdn_distribution.md
+@@ -47,14 +47,6 @@ resource "ionoscloud_cdn_distribution" "example" {
+     }
+   }
+ }
+-
+-#optionally you can add a certificate to the distribution
+-resource "ionoscloud_certificate" "cert" {
+-  name = "add_name_here"
+-  certificate = "${file("path_to_cert")}"
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
+-}
+ ```
+ 
+ ## Argument Reference
+diff --git a/docs/resources/certificate_manager_certificate.md b/docs/resources/certificate_manager_certificate.md
+index 7437965d..83dbaaae 100644
+--- a/docs/resources/certificate_manager_certificate.md
++++ b/docs/resources/certificate_manager_certificate.md
+@@ -16,24 +16,9 @@ Manages a **Certificate** on IonosCloud.
+ ```hcl
+ resource "ionoscloud_certificate" "cert" {
+   name = "add_name_here"
+-  certificate = "${file("path_to_cert")}"
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
+-}
+-```
+-
+-**NOTE**: You can also provide the values as multiline strings, as seen below:
+-
+-```hcl
+-resource "ionoscloud_certificate" "cert" {
+-  name = "add_name_here"
+-  certificate = <<EOT
+------BEGIN CERTIFICATE-----
+-cert_body_here
+------END CERTIFICATE-----
+-EOT
+-  certificate_chain = "${file("path_to_cert_chain")}"
+-  private_key = "${file("path_to_private_key")}"
++  certificate = "tour_certificate"
++  certificate_chain = "your_certificate_chain"
++  private_key = "your_private_key"
+ }
+ ```
+ 
+diff --git a/docs/resources/cube_server.md b/docs/resources/cube_server.md
+index e835ce41..93b78aaa 100644
+--- a/docs/resources/cube_server.md
++++ b/docs/resources/cube_server.md
+@@ -38,7 +38,7 @@ resource "ionoscloud_cube_server" "example" {
+   availability_zone = "ZONE_2"
+   image_name        = "ubuntu:latest"
+   template_uuid     = data.ionoscloud_template.example.id
+-  image_password    = random_password.server_image_password.result
++  image_password    = "your_password_here"
+   datacenter_id     = ionoscloud_datacenter.example.id
+   volume {
+     name            = "Volume Example"
+@@ -52,10 +52,6 @@ resource "ionoscloud_cube_server" "example" {
+     firewall_active = true
+   }
+ }
+-resource "random_password" "server_image_password" {
+-  length           = 16
+-  special          = false
+-}
+ ```
+ 
+ ### With IPv6 Enabled
+@@ -77,7 +73,7 @@ resource "ionoscloud_lan" "example" {
+   datacenter_id     = ionoscloud_datacenter.example.id
+   public            = true
+   name              = "Lan Example"
+-  ipv6_cidr_block = cidrsubnet(ionoscloud_datacenter.example.ipv6_cidr_block,8,10)
++  ipv6_cidr_block   = "ipv6_cidr_block_from_dc"
+ }
+ resource "ionoscloud_cube_server" "example" {
+   name              = "Server Example"
+@@ -98,11 +94,11 @@ resource "ionoscloud_cube_server" "example" {
+     ips             = [ ionoscloud_ipblock.webserver_ipblock.ips[0], ionoscloud_ipblock.webserver_ipblock.ips[1]]
+     
+     dhcpv6          = false
+-    ipv6_cidr_block = cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5)
++    ipv6_cidr_block = "ipv6_cidr_block_from_lan"
+     ipv6_ips        = [ 
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),1),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),2),
+-                        cidrhost(cidrsubnet(ionoscloud_lan.example.ipv6_cidr_block,16,5),3)
++                        "ipv6_ip1",
++                        "ipv6_ip2",
++                        "ipv6_ip3",
+                       ]
+ 
+     firewall_active = true
+diff --git a/docs/resources/dbaas_inmemorydb_replica_set.md b/docs/resources/dbaas_inmemorydb_replica_set.md
+index 36f66c96..58c5a20b 100644
+--- a/docs/resources/dbaas_inmemorydb_replica_set.md
++++ b/docs/resources/dbaas_inmemorydb_replica_set.md
+@@ -47,12 +47,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_inmemorydb_replicaset" "example" {
+   location = ionoscloud_datacenter.example.location
+   display_name = "ExampleReplicaSet"
+@@ -67,7 +61,7 @@ resource "ionoscloud_inmemorydb_replicaset" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id
+     lan_id                =  ionoscloud_lan.example.id
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   maintenance_window {
+     day_of_the_week       = "Monday"
+diff --git a/docs/resources/dbaas_mariadb_cluster.md b/docs/resources/dbaas_mariadb_cluster.md
+index fb9ab148..e676e91e 100644
+--- a/docs/resources/dbaas_mariadb_cluster.md
++++ b/docs/resources/dbaas_mariadb_cluster.md
+@@ -47,12 +47,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_mariadb_cluster" "example" {
+   mariadb_version         = "10.6"
+   location                = "de/txl"
+@@ -63,7 +57,7 @@ resource "ionoscloud_mariadb_cluster" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id 
+     lan_id                =  ionoscloud_lan.example.id 
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   display_name            = "MariaDB_cluster"
+   maintenance_window {
+@@ -72,14 +66,9 @@ resource "ionoscloud_mariadb_cluster" "example" {
+   }
+   credentials {
+     username              = "username"
+-    password              = random_password.cluster_password.result
++    password              = "your_password_here"
+   }
+ }
+-resource "random_password" "cluster_password" {
+-  length           = 16
+-  special          = true
+-  override_special = "!#$%&*()-_=+[]{}<>:?"
+-}
+ ```
+ 
+ ## Argument reference
+diff --git a/docs/resources/dbaas_pgsql_cluster.md b/docs/resources/dbaas_pgsql_cluster.md
+index 759acee6..d9dded8a 100644
+--- a/docs/resources/dbaas_pgsql_cluster.md
++++ b/docs/resources/dbaas_pgsql_cluster.md
+@@ -94,12 +94,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-locals {
+- prefix                   = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+- database_ip              = cidrhost(local.prefix, 1)
+- database_ip_cidr         = format("%s/%s", local.database_ip, "24")
+-}
+-
+ resource "ionoscloud_pg_cluster" "example" {
+   postgres_version        = "12"
+   instances               = 1
+@@ -114,7 +108,7 @@ resource "ionoscloud_pg_cluster" "example" {
+   connections   {
+     datacenter_id         =  ionoscloud_datacenter.example.id 
+     lan_id                =  ionoscloud_lan.example.id 
+-    cidr                  =  local.database_ip_cidr
++    cidr                  =  "database_ip_cidr_from_nic"
+   }
+   location                = ionoscloud_datacenter.example.location
+   display_name            = "PostgreSQL_cluster"
+@@ -124,7 +118,7 @@ resource "ionoscloud_pg_cluster" "example" {
+   }
+   credentials {
+     username              = "username"
+-    password              = random_password.cluster_password.result
++    password              = "your_password_here"
+   }
+   synchronization_mode    = "ASYNCHRONOUS"
+   from_backup {
+@@ -132,11 +126,6 @@ resource "ionoscloud_pg_cluster" "example" {
+     recovery_target_time  = "2021-12-06T13:54:08Z"
+   }
+ }
+-resource "random_password" "cluster_password" {
+-  length           = 16
+-  special          = true
+-  override_special = "!#$%&*()-_=+[]{}<>:?"
+-}
+ ```
+ 
+ ## Argument reference
+diff --git a/docs/resources/k8s_node_pool.md b/docs/resources/k8s_node_pool.md
+index 8371553d..a65a64ab 100644
+--- a/docs/resources/k8s_node_pool.md
++++ b/docs/resources/k8s_node_pool.md
+@@ -25,9 +25,6 @@ resource "ionoscloud_lan" "example" {
+   datacenter_id         = ionoscloud_datacenter.example.id
+   public                = false
+   name                  = "Lan Example"
+-  lifecycle {
+-    create_before_destroy = true
+-  }
+ }
+ 
+ resource "ionoscloud_ipblock" "example" {
+diff --git a/docs/resources/kafka_cluster.md b/docs/resources/kafka_cluster.md
+index 174ead58..3365b3aa 100644
+--- a/docs/resources/kafka_cluster.md
++++ b/docs/resources/kafka_cluster.md
+@@ -68,7 +68,7 @@ resource "ionoscloud_server" "example" {
+   availability_zone = "AUTO"
+   cpu_family        = "INTEL_SKYLAKE"
+   image_name = "ubuntu:latest" # alias name
+-  image_password    = random_password.password.result
++  image_password    = "your_password_here"
+   volume {
+     name      = "example-kafka-volume"
+     size      = 6
+@@ -81,20 +81,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-resource "random_password" "password" {
+-  length  = 16
+-  special = false
+-}
+-
+-locals {
+-  prefix = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+-  server_net_index              = split(".", ionoscloud_server.example.nic[0].ips[0])[3]
+-  kafka_cluster_broker_ips      = [
+-    for i in range(local.server_net_index + 1, local.server_net_index + 4) :cidrhost(local.prefix, i)
+-  ]
+-  kafka_cluster_broker_ips_cidr = [for ip in local.kafka_cluster_broker_ips : format("%s/%s", ip, "24")]
+-}
+-
+ resource "ionoscloud_kafka_cluster" "example" {
+   name     = "example-kafka-cluster"
+   location = ionoscloud_datacenter.example.location
+@@ -103,7 +89,7 @@ resource "ionoscloud_kafka_cluster" "example" {
+   connections {
+     datacenter_id = ionoscloud_datacenter.example.id
+     lan_id = ionoscloud_lan.example.id
+-    broker_addresses = local.kafka_cluster_broker_ips_cidr
++    broker_addresses = "kafka_cluster_broker_ips_cidr_list"
+   }
+ }
+ ```
+diff --git a/docs/resources/kafka_topic.md b/docs/resources/kafka_topic.md
+index c34e367f..056cd2ee 100644
+--- a/docs/resources/kafka_topic.md
++++ b/docs/resources/kafka_topic.md
+@@ -79,7 +79,7 @@ resource "ionoscloud_server" "example" {
+   availability_zone = "AUTO"
+   cpu_family        = "INTEL_SKYLAKE"
+   image_name = "ubuntu:latest" # alias name
+-  image_password    = random_password.password.result
++  image_password    = "your_password_here"
+   volume {
+     name      = "example-kafka-volume"
+     size      = 6
+@@ -92,20 +92,6 @@ resource "ionoscloud_server" "example" {
+   }
+ }
+ 
+-resource "random_password" "password" {
+-  length  = 16
+-  special = false
+-}
+-
+-locals {
+-  prefix = format("%s/%s", ionoscloud_server.example.nic[0].ips[0], "24")
+-  server_net_index              = split(".", ionoscloud_server.example.nic[0].ips[0])[3]
+-  kafka_cluster_broker_ips      = [
+-    for i in range(local.server_net_index + 1, local.server_net_index + 4) :cidrhost(local.prefix, i)
+-  ]
+-  kafka_cluster_broker_ips_cidr = [for ip in local.kafka_cluster_broker_ips : format("%s/%s", ip, "24")]
+-}
+-
+ resource "ionoscloud_kafka_cluster" "example" {
+   name     = "example-kafka-cluster"
+   location = ionoscloud_datacenter.example.location
+@@ -114,7 +100,7 @@ resource "ionoscloud_kafka_cluster" "example" {
+   connections {
+     datacenter_id    = ionoscloud_datacenter.example.id
+     lan_id           = ionoscloud_lan.example.id
+-    broker_addresses = local.kafka_cluster_broker_ips_cidr
++    broker_addresses = "kafka_cluster_broker_ips_cidr_list"
+   }
+ }
+ 
+diff --git a/docs/resources/networkloadbalancer_forwardingrule.md b/docs/resources/networkloadbalancer_forwardingrule.md
+index 54a3faf3..02901272 100644
+--- a/docs/resources/networkloadbalancer_forwardingrule.md
++++ b/docs/resources/networkloadbalancer_forwardingrule.md
+@@ -64,65 +64,6 @@ resource "ionoscloud_networkloadbalancer_forwardingrule" "example" {
+ }
+ ```
+ 
+-### Usage with dynamic block for targets:
+-```hcl
+-resource "ionoscloud_datacenter" "example" {
+-	name                        = "Datacenter Example"
+-	location                    = "us/las"
+-	description                 = "Datacenter Description"
+-	sec_auth_protection         = false
+-}
+-
+-resource "ionoscloud_lan" "example1" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    public                      = false
+-    name                        = "Lan Example 1"
+-}
+-
+-resource "ionoscloud_lan" "example2" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    public                      = false
+-    name                        = "Lan Example 2"
+-}
+-
+-resource "ionoscloud_networkloadbalancer" "example" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    name                        = "example"
+-    listener_lan                = ionoscloud_lan.example1.id
+-    target_lan                  = ionoscloud_lan.example2.id
+-    ips                         = ["10.12.118.224"]
+-    lb_private_ips              = ["10.13.72.225/24"]
+-}
+-
+-variable IPs{
+-      type                      = list
+-      default                   = ["22.231.2.2", "22.231.2.3", "22.231.2.4"]
+-}
+-
+-resource "ionoscloud_networkloadbalancer_forwardingrule" "example" {
+-    datacenter_id               = ionoscloud_datacenter.example.id
+-    networkloadbalancer_id      = ionoscloud_networkloadbalancer.example.id
+-    name                        = "example"
+-    algorithm                   = "SOURCE_IP"
+-    protocol                    = "TCP"
+-    listener_ip                 = "10.12.118.224"
+-    listener_port               = "8081"
+-    dynamic "targets" {
+-        for_each                = var.IPs
+-        content {
+-            ip                  = targets.value
+-            port                = "31234"
+-            weight              = "1"
+-            health_check {
+-                check           = true
+-                check_interval  = 1000
+-                maintenance     = false
+-            }
+-     }
+-    }
+-}
+-```
+-
+ ## Argument reference
+ 
+ - `name` - (Required)[string] A name of that Network Load Balancer forwarding rule.
+diff --git a/docs/resources/nfs_cluster.md b/docs/resources/nfs_cluster.md
+index 3f6df67c..180970cf 100644
+--- a/docs/resources/nfs_cluster.md
++++ b/docs/resources/nfs_cluster.md
+@@ -69,11 +69,6 @@ data "ionoscloud_image" "HDD_image" {
+   location    = "de/txl"
+ }
+ 
+-resource "random_password" "password" {
+-  length  = 16
+-  special = false
+-}
+-
+ # needed for the NIC - which provides the IP address for the NFS cluster.
+ resource "ionoscloud_server" "nfs_server" {
+   name              = "Server for NFS"
+@@ -83,7 +78,7 @@ resource "ionoscloud_server" "nfs_server" {
+   availability_zone = "ZONE_1"
+   cpu_family        = "INTEL_SKYLAKE"
+   image_name        = data.ionoscloud_image.HDD_image.id
+-  image_password    = random_password.password.result
++  image_password    = "your_password_here"
+   volume {
+     name      = "system"
+     size      = 14
+@@ -97,12 +92,6 @@ resource "ionoscloud_server" "nfs_server" {
+   }
+ }
+ 
+-locals {
+-  nfs_server_cidr = format("%s/24", ionoscloud_server.nfs_server.nic[0].ips[0])
+-  nfs_cluster_ip = cidrhost(local.nfs_server_cidr, 10)
+-  nfs_cluster_cidr = format("%s/24", local.nfs_cluster_ip)
+-}
+-
+ resource "ionoscloud_nfs_cluster" "example" {
+   name = "test"
+   location = "de/txl"
+@@ -114,7 +103,7 @@ resource "ionoscloud_nfs_cluster" "example" {
+   
+   connections {
+     datacenter_id = ionoscloud_datacenter.nfs_dc.id
+-    ip_address    = local.nfs_cluster_cidr
++    ip_address    = "nfs_cluster_cidr_from_nic"
+     lan           = ionoscloud_lan.nfs_lan.id
+   }
+ }
+diff --git a/docs/resources/server.md b/docs/resources/server.md
+index 08232bb4..c0a499e6 100644
+--- a/docs/resources/server.md
++++ b/docs/resources/server.md
+@@ -325,4 +325,4 @@ Please note that for any secondary volume, you need to set the **licence_type**
+ from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+ More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+ that involves moving the resources in the list prior to deletion.
+-`terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
+\ No newline at end of file
++`terraform state mv resource-name.resource-id[i] resource-name.resource-id[j]`
+\ No newline at end of file
+diff --git a/docs/resources/vcpu_server.md b/docs/resources/vcpu_server.md
+index 60293e94..f0694665 100644
+--- a/docs/resources/vcpu_server.md
++++ b/docs/resources/vcpu_server.md
+@@ -48,7 +48,7 @@ resource "ionoscloud_vcpu_server" "example" {
+     ram                   = 1024
+     availability_zone     = "ZONE_1"
+     image_name            = data.ionoscloud_image.example.id
+-    image_password        = random_password.server_image_password.result
++    image_password        = "your_password_here"
+     volume {
+         name              = "system"
+         size              = 5
+@@ -84,10 +84,6 @@ resource "ionoscloud_vcpu_server" "example" {
+         value = "labelvalue2"
+     }
+ }
+-resource "random_password" "server_image_password" {
+-  length           = 16
+-  special          = false
+-}
+                   
+ ```
+ 
+@@ -141,4 +137,4 @@ Please note that for any secondary volume, you need to set the **licence_type**
+ from the middle of the list of `firewall` rules. Terraform will actually modify the existing rules and delete the last one.
+ More details [here](https://github.com/hashicorp/terraform/issues/14275). There is a workaround described in the issue 
+ that involves moving the resources in the list prior to deletion.
+-`terraform state mv <resource-name>.<resource-id>[<i>] <resource-name>.<resource-id>[<j>]`
+\ No newline at end of file
++`terraform state mv resource-name.resource-id[i] resource-name.resource-id[j]`
+\ No newline at end of file
+diff --git a/docs/resources/vpn_ipsec_gateway.md b/docs/resources/vpn_ipsec_gateway.md
+index 5d87e599..cc359aed 100644
+--- a/docs/resources/vpn_ipsec_gateway.md
++++ b/docs/resources/vpn_ipsec_gateway.md
+@@ -77,7 +77,7 @@ resource "ionoscloud_server" "test_server" {
+   cores = 1
+   ram = 2048
+   image_name = "ubuntu:latest"
+-  image_password = random_password.server_image_password.result
++  image_password = "your_password_here"
+ 
+   nic {
+     lan = ionoscloud_lan.test_lan.id
+@@ -96,19 +96,6 @@ resource "ionoscloud_server" "test_server" {
+   }
+ }
+ 
+-resource "random_password" "server_image_password" {
+-  length           = 16
+-  special          = false
+-}
+-
+-locals {
+-  lan_ipv6_cidr_block_parts = split("/", ionoscloud_datacenter.test_datacenter.ipv6_cidr_block)
+-  lan_ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "64")
+-
+-  ipv4_cidr_block = format("%s/%s", ionoscloud_server.test_server.nic[0].ips[0], "24")
+-  ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "80")
+-}
+-
+ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+ 	name = "ipsec-gateway"
+ 	location = "de/fra"
+@@ -119,8 +106,8 @@ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+ 	connections {
+ 		datacenter_id = ionoscloud_datacenter.test_datacenter.id
+ 		lan_id = ionoscloud_lan.test_lan.id
+-		ipv4_cidr = local.ipv4_cidr_block
+-		ipv6_cidr = local.ipv6_cidr_block
++    ipv4_cidr = "ipv4_cidr_block_from_nic"
++    ipv6_cidr = "ipv6_cidr_block_from_dc"
+ 	}
+     maintenance_window {
+         day_of_the_week       = "Monday"
+diff --git a/docs/resources/vpn_ipsec_tunnel.md b/docs/resources/vpn_ipsec_tunnel.md
+index 88ae1692..ab4aba56 100644
+--- a/docs/resources/vpn_ipsec_tunnel.md
++++ b/docs/resources/vpn_ipsec_tunnel.md
+@@ -113,7 +113,7 @@ resource "ionoscloud_server" "test_server" {
+   cores = 1
+   ram = 2048
+   image_name = "ubuntu:latest"
+-  image_password = random_password.server_image_password.result
++  image_password = "your_password_here"
+ 
+   nic {
+     lan = ionoscloud_lan.test_lan.id
+@@ -132,19 +132,6 @@ resource "ionoscloud_server" "test_server" {
+   }
+ }
+ 
+-resource "random_password" "server_image_password" {
+-  length           = 16
+-  special          = false
+-}
+-
+-locals {
+-  lan_ipv6_cidr_block_parts = split("/", ionoscloud_datacenter.test_datacenter.ipv6_cidr_block)
+-  lan_ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "64")
+-
+-  ipv4_cidr_block = format("%s/%s", ionoscloud_server.test_server.nic[0].ips[0], "24")
+-  ipv6_cidr_block = format("%s/%s", local.lan_ipv6_cidr_block_parts[0], "80")
+-}
+-
+ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+   name = "ipsec-gateway"
+   location = "de/fra"
+@@ -155,8 +142,8 @@ resource "ionoscloud_vpn_ipsec_gateway" "example" {
+   connections {
+     datacenter_id = ionoscloud_datacenter.test_datacenter.id
+     lan_id = ionoscloud_lan.test_lan.id
+-    ipv4_cidr = local.ipv4_cidr_block
+-    ipv6_cidr = local.ipv6_cidr_block
++    ipv4_cidr = "ipv4_cidr_block_from_nic"
++    ipv6_cidr = "ipv6_cidr_block_from_dc"
+   }
+ }
+ 

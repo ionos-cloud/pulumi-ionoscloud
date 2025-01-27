@@ -84,6 +84,90 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/kafka"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:     pulumi.String("example-kafka-datacenter"),
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleLan, err := compute.NewLan(ctx, "example", &compute.LanArgs{
+//				DatacenterId: example.ID(),
+//				Public:       pulumi.Bool(false),
+//				Name:         pulumi.String("example-kafka-lan"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
+//				Name:             pulumi.String("example-kafka-server"),
+//				DatacenterId:     example.ID(),
+//				Cores:            pulumi.Int(1),
+//				Ram:              int(2 * 1024),
+//				AvailabilityZone: pulumi.String("AUTO"),
+//				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
+//				ImageName:        pulumi.String("ubuntu:latest"),
+//				ImagePassword:    pulumi.String("your_password_here"),
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:     pulumi.String("example-kafka-volume"),
+//					Size:     pulumi.Int(6),
+//					DiskType: pulumi.String("SSD Standard"),
+//				},
+//				Nic: &compute.ServerNicArgs{
+//					Lan:  exampleLan.ID(),
+//					Name: pulumi.String("example-kafka-nic"),
+//					Dhcp: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleCluster, err := kafka.NewCluster(ctx, "example", &kafka.ClusterArgs{
+//				Name:     pulumi.String("example-kafka-cluster"),
+//				Location: example.Location,
+//				Version:  pulumi.String("3.7.0"),
+//				Size:     pulumi.String("S"),
+//				Connections: &kafka.ClusterConnectionsArgs{
+//					DatacenterId:    example.ID(),
+//					LanId:           exampleLan.ID(),
+//					BrokerAddresses: pulumi.StringArray("kafka_cluster_broker_ips_cidr_list"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kafka.NewTopic(ctx, "example", &kafka.TopicArgs{
+//				ClusterId:          exampleCluster.ID(),
+//				Name:               pulumi.String("kafka-cluster-topic"),
+//				Location:           exampleCluster.Location,
+//				ReplicationFactor:  pulumi.Int(1),
+//				NumberOfPartitions: pulumi.Int(1),
+//				RetentionTime:      pulumi.Int(86400000),
+//				SegmentBytes:       pulumi.Int(1073741824),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:

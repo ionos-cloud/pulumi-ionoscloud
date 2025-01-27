@@ -16,6 +16,32 @@ import (
 // When this happens, please refine your search string so that it is specific enough to return only one result.
 //
 // ## Example Usage
+//
+// ### By username
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := dbaas.LookupMongoUser(ctx, &dbaas.LookupMongoUserArgs{
+//				ClusterId: "cluster_id",
+//				Username:  "username",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMongoUser(ctx *pulumi.Context, args *LookupMongoUserArgs, opts ...pulumi.InvokeOption) (*LookupMongoUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMongoUserResult

@@ -114,6 +114,129 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Complete example
+//			testDatacenter, err := compute.NewDatacenter(ctx, "test_datacenter", &compute.DatacenterArgs{
+//				Name:     pulumi.String("vpn_gateway_test"),
+//				Location: pulumi.String("de/fra"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testLan, err := compute.NewLan(ctx, "test_lan", &compute.LanArgs{
+//				Name:          pulumi.String("test_lan"),
+//				Public:        pulumi.Bool(false),
+//				DatacenterId:  testDatacenter.ID(),
+//				Ipv6CidrBlock: pulumi.Any(lanIpv6CidrBlock),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testIpblock, err := compute.NewIPBlock(ctx, "test_ipblock", &compute.IPBlockArgs{
+//				Name:     pulumi.String("test_ipblock"),
+//				Location: pulumi.String("de/fra"),
+//				Size:     pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = compute.NewServer(ctx, "test_server", &compute.ServerArgs{
+//				Name:          pulumi.String("test_server"),
+//				DatacenterId:  testDatacenter.ID(),
+//				Cores:         pulumi.Int(1),
+//				Ram:           pulumi.Int(2048),
+//				ImageName:     pulumi.String("ubuntu:latest"),
+//				ImagePassword: pulumi.String("your_password_here"),
+//				Nic: &compute.ServerNicArgs{
+//					Lan:            testLan.ID(),
+//					Name:           pulumi.String("test_nic"),
+//					Dhcp:           pulumi.Bool(true),
+//					Dhcpv6:         pulumi.Bool(false),
+//					Ipv6CidrBlock:  pulumi.Any(ipv6CidrBlock),
+//					FirewallActive: pulumi.Bool(false),
+//				},
+//				Volume: &compute.ServerVolumeArgs{
+//					Name:        pulumi.String("test_volume"),
+//					DiskType:    pulumi.String("HDD"),
+//					Size:        pulumi.Int(10),
+//					LicenceType: pulumi.String("OTHER"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := vpn.NewIpsecGateway(ctx, "example", &vpn.IpsecGatewayArgs{
+//				Name:     pulumi.String("ipsec-gateway"),
+//				Location: pulumi.String("de/fra"),
+//				GatewayIp: testIpblock.Ips.ApplyT(func(ips []string) (string, error) {
+//					return ips[0], nil
+//				}).(pulumi.StringOutput),
+//				Version:     pulumi.String("IKEv2"),
+//				Description: pulumi.String("This gateway connects site A to VDC X."),
+//				Connections: vpn.IpsecGatewayConnectionArray{
+//					&vpn.IpsecGatewayConnectionArgs{
+//						DatacenterId: testDatacenter.ID(),
+//						LanId:        testLan.ID(),
+//						Ipv4Cidr:     pulumi.String("ipv4_cidr_block_from_nic"),
+//						Ipv6Cidr:     pulumi.String("ipv6_cidr_block_from_dc"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewIpsecTunnel(ctx, "example", &vpn.IpsecTunnelArgs{
+//				Location:    pulumi.String("de/fra"),
+//				GatewayId:   example.ID(),
+//				Name:        pulumi.String("example-tunnel"),
+//				RemoteHost:  pulumi.String("vpn.mycompany.com"),
+//				Description: pulumi.String("Allows local subnet X to connect to virtual network Y."),
+//				Auth: &vpn.IpsecTunnelAuthArgs{
+//					Method: pulumi.String("PSK"),
+//					PskKey: pulumi.String("X2wosbaw74M8hQGbK3jCCaEusR6CCFRa"),
+//				},
+//				Ike: &vpn.IpsecTunnelIkeArgs{
+//					DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//					EncryptionAlgorithm: pulumi.String("AES256"),
+//					IntegrityAlgorithm:  pulumi.String("SHA256"),
+//					Lifetime:            pulumi.Int(86400),
+//				},
+//				Esps: vpn.IpsecTunnelEspArray{
+//					&vpn.IpsecTunnelEspArgs{
+//						DiffieHellmanGroup:  pulumi.String("16-MODP4096"),
+//						EncryptionAlgorithm: pulumi.String("AES256"),
+//						IntegrityAlgorithm:  pulumi.String("SHA256"),
+//						Lifetime:            pulumi.Int(3600),
+//					},
+//				},
+//				CloudNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("0.0.0.0/0"),
+//				},
+//				PeerNetworkCidrs: pulumi.StringArray{
+//					pulumi.String("1.2.3.4/32"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
