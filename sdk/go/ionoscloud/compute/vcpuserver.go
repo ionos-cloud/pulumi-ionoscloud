@@ -24,6 +24,7 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -63,6 +64,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = compute.NewVCPUServer(ctx, "example", &compute.VCPUServerArgs{
 //				Name:             pulumi.String("VCPU Server Example"),
 //				DatacenterId:     exampleDatacenter.ID(),
@@ -70,7 +78,7 @@ import (
 //				Ram:              pulumi.Int(1024),
 //				AvailabilityZone: pulumi.String("ZONE_1"),
 //				ImageName:        pulumi.String(example.Id),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    serverImagePassword.Result,
 //				Volume: &compute.VCPUServerVolumeArgs{
 //					Name:             pulumi.String("system"),
 //					Size:             pulumi.Int(5),

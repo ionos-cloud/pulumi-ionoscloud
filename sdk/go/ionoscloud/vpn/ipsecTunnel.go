@@ -121,6 +121,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/vpn"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -152,13 +153,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = compute.NewServer(ctx, "test_server", &compute.ServerArgs{
 //				Name:          pulumi.String("test_server"),
 //				DatacenterId:  testDatacenter.ID(),
 //				Cores:         pulumi.Int(1),
 //				Ram:           pulumi.Int(2048),
 //				ImageName:     pulumi.String("ubuntu:latest"),
-//				ImagePassword: pulumi.String("your_password_here"),
+//				ImagePassword: serverImagePassword.Result,
 //				Nic: &compute.ServerNicArgs{
 //					Lan:            testLan.ID(),
 //					Name:           pulumi.String("test_nic"),

@@ -21,6 +21,7 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,6 +53,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
 //				Name:             pulumi.String("Server Example"),
 //				DatacenterId:     example.ID(),
@@ -60,7 +68,7 @@ import (
 //				AvailabilityZone: pulumi.String("ZONE_1"),
 //				CpuFamily:        pulumi.String("INTEL_XEON"),
 //				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    serverImagePassword.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),
@@ -109,6 +117,7 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -133,6 +142,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
 //				Name:             pulumi.String("Server Example"),
 //				DatacenterId:     example.ID(),
@@ -141,7 +157,7 @@ import (
 //				AvailabilityZone: pulumi.String("ZONE_1"),
 //				CpuFamily:        pulumi.String("INTEL_XEON"),
 //				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    serverImagePassword.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),
@@ -188,6 +204,7 @@ import (
 // import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -212,6 +229,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			serverImagePassword, err := random.NewPassword(ctx, "server_image_password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			exampleServer, err := compute.NewServer(ctx, "example", &compute.ServerArgs{
 //				Name:             pulumi.String("Server Example"),
 //				DatacenterId:     example.ID(),
@@ -220,7 +244,7 @@ import (
 //				AvailabilityZone: pulumi.String("ZONE_1"),
 //				CpuFamily:        pulumi.String("INTEL_XEON"),
 //				ImageName:        pulumi.String("Ubuntu-20.04"),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    serverImagePassword.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),

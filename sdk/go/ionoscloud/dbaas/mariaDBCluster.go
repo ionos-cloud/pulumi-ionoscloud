@@ -23,6 +23,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -68,6 +69,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			clusterPassword, err := random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = dbaas.NewMariaDBCluster(ctx, "example", &dbaas.MariaDBClusterArgs{
 //				MariadbVersion: pulumi.String("10.6"),
 //				Location:       pulumi.String("de/txl"),
@@ -87,7 +96,7 @@ import (
 //				},
 //				Credentials: &dbaas.MariaDBClusterCredentialsArgs{
 //					Username: pulumi.String("username"),
-//					Password: pulumi.String("your_password_here"),
+//					Password: clusterPassword.Result,
 //				},
 //			})
 //			if err != nil {

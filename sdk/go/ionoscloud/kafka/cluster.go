@@ -78,6 +78,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/kafka"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -100,6 +101,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			password, err := random.NewPassword(ctx, "password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = compute.NewServer(ctx, "example", &compute.ServerArgs{
 //				Name:             pulumi.String("example-kafka-server"),
 //				DatacenterId:     example.ID(),
@@ -108,7 +116,7 @@ import (
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    password.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("example-kafka-volume"),
 //					Size:     pulumi.Int(6),

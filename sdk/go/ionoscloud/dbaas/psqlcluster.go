@@ -90,6 +90,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/dbaas"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -136,6 +137,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			clusterPassword, err := random.NewPassword(ctx, "cluster_password", &random.PasswordArgs{
+//				Length:          16,
+//				Special:         true,
+//				OverrideSpecial: "!#$%&*()-_=+[]{}<>:?",
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = dbaas.NewPSQLCluster(ctx, "example", &dbaas.PSQLClusterArgs{
 //				PostgresVersion: pulumi.String("12"),
 //				Instances:       pulumi.Int(1),
@@ -160,7 +169,7 @@ import (
 //				},
 //				Credentials: &dbaas.PSQLClusterCredentialsArgs{
 //					Username: pulumi.String("username"),
-//					Password: pulumi.String("your_password_here"),
+//					Password: clusterPassword.Result,
 //				},
 //				SynchronizationMode: pulumi.String("ASYNCHRONOUS"),
 //				FromBackup: &dbaas.PSQLClusterFromBackupArgs{

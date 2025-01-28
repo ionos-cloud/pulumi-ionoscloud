@@ -76,6 +76,7 @@ import (
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nfs"
+//	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -109,6 +110,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			password, err := random.NewPassword(ctx, "password", &random.PasswordArgs{
+//				Length:  16,
+//				Special: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			// needed for the NIC - which provides the IP address for the NFS cluster.
 //			_, err = compute.NewServer(ctx, "nfs_server", &compute.ServerArgs{
 //				Name:             pulumi.String("Server for NFS"),
@@ -118,7 +126,7 @@ import (
 //				AvailabilityZone: pulumi.String("ZONE_1"),
 //				CpuFamily:        pulumi.String("INTEL_SKYLAKE"),
 //				ImageName:        pulumi.String(hDDImage.Id),
-//				ImagePassword:    pulumi.String("your_password_here"),
+//				ImagePassword:    password.Result,
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:     pulumi.String("system"),
 //					Size:     pulumi.Int(14),
