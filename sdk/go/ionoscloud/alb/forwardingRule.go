@@ -14,6 +14,128 @@ import (
 
 // Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := compute.NewDatacenter(ctx, "example", &compute.DatacenterArgs{
+//				Name:              pulumi.String("Datacenter Example"),
+//				Location:          pulumi.String("us/las"),
+//				Description:       pulumi.String("datacenter description"),
+//				SecAuthProtection: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example1, err := compute.NewLan(ctx, "example_1", &compute.LanArgs{
+//				DatacenterId: example.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example2, err := compute.NewLan(ctx, "example_2", &compute.LanArgs{
+//				DatacenterId: example.ID(),
+//				Public:       pulumi.Bool(true),
+//				Name:         pulumi.String("Lan Example"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleBalancer, err := alb.NewBalancer(ctx, "example", &alb.BalancerArgs{
+//				DatacenterId: example.ID(),
+//				Name:         pulumi.String("ALB Example"),
+//				ListenerLan:  example1.ID(),
+//				Ips: pulumi.StringArray{
+//					pulumi.String("10.12.118.224"),
+//				},
+//				TargetLan: example2.ID(),
+//				LbPrivateIps: pulumi.StringArray{
+//					pulumi.String("10.13.72.225/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// optionally you can add a certificate to the application load balancer
+//			cert, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
+//				Name:             pulumi.String("add_name_here"),
+//				Certificate:      pulumi.String("your_certificate"),
+//				CertificateChain: pulumi.String("your_certificate_chain"),
+//				PrivateKey:       pulumi.String("your_private_key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = alb.NewForwardingRule(ctx, "example", &alb.ForwardingRuleArgs{
+//				DatacenterId:              example.ID(),
+//				ApplicationLoadbalancerId: exampleBalancer.ID(),
+//				Name:                      pulumi.String("ALB FR Example"),
+//				Protocol:                  pulumi.String("HTTP"),
+//				ListenerIp:                pulumi.String("10.12.118.224"),
+//				ListenerPort:              pulumi.Int(8080),
+//				ClientTimeout:             pulumi.Int(1000),
+//				HttpRules: alb.ForwardingRuleHttpRuleArray{
+//					&alb.ForwardingRuleHttpRuleArgs{
+//						Name:       pulumi.String("http_rule"),
+//						Type:       pulumi.String("REDIRECT"),
+//						DropQuery:  pulumi.Bool(true),
+//						Location:   pulumi.String("www.ionos.com"),
+//						StatusCode: pulumi.Int(301),
+//						Conditions: alb.ForwardingRuleHttpRuleConditionArray{
+//							&alb.ForwardingRuleHttpRuleConditionArgs{
+//								Type:      pulumi.String("HEADER"),
+//								Condition: pulumi.String("EQUALS"),
+//								Negate:    pulumi.Bool(true),
+//								Key:       pulumi.String("key"),
+//								Value:     pulumi.String("10.12.120.224/24"),
+//							},
+//						},
+//					},
+//					&alb.ForwardingRuleHttpRuleArgs{
+//						Name:            pulumi.String("http_rule_2"),
+//						Type:            pulumi.String("STATIC"),
+//						DropQuery:       pulumi.Bool(false),
+//						StatusCode:      pulumi.Int(303),
+//						ResponseMessage: pulumi.String("Response"),
+//						ContentType:     pulumi.String("text/plain"),
+//						Conditions: alb.ForwardingRuleHttpRuleConditionArray{
+//							&alb.ForwardingRuleHttpRuleConditionArgs{
+//								Type:      pulumi.String("QUERY"),
+//								Condition: pulumi.String("MATCHES"),
+//								Negate:    pulumi.Bool(false),
+//								Key:       pulumi.String("key"),
+//								Value:     pulumi.String("10.12.120.224/24"),
+//							},
+//						},
+//					},
+//				},
+//				ServerCertificates: pulumi.StringArray{
+//					cert.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.

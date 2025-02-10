@@ -58,7 +58,7 @@ import (
 // $ pulumi import ionoscloud:nsg/nsg:Nsg mynsg datacenter uuid/nsg uuid
 // ```
 //
-// Or by using an `import` block. Here is an example that allows you to import the default created nsg into terraform.
+// Or by using an `import` block. Here is an example that allows you to import the default created nsg into pulumi.
 //
 // hcl
 //
