@@ -449,9 +449,6 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3Bucket"),
 			},
-			"ionoscloud_s3_bucket_object": {
-				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3BucketObject"),
-			},
 			"ionoscloud_s3_bucket_policy": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3BucketPolicy"),
 			},
