@@ -6,66 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Creates and manages Network File Storage (NFS) Share objects on IonosCloud.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const nfsDc = new ionoscloud.compute.Datacenter("nfs_dc", {
- *     name: "NFS Datacenter",
- *     location: "de/txl",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const nfsLan = new ionoscloud.compute.Lan("nfs_lan", {
- *     datacenterId: nfsDc.id,
- *     "public": false,
- *     name: "Lan for NFS",
- * });
- * const example = new ionoscloud.nfs.Cluster("example", {
- *     name: "test",
- *     location: "de/txl",
- *     size: 2,
- *     nfs: {
- *         minVersion: "4.2",
- *     },
- *     connections: {
- *         datacenterId: nfsDc.id,
- *         ipAddress: "192.168.100.10/24",
- *         lan: nfsLan.id,
- *     },
- * });
- * const exampleShare = new ionoscloud.nfs.Share("example", {
- *     location: "de/txl",
- *     clusterId: example.id,
- *     name: "example-share",
- *     quota: 512,
- *     gid: 512,
- *     uid: 512,
- *     clientGroups: [{
- *         description: "Client Group 1",
- *         ipNetworks: ["10.234.50.0/24"],
- *         hosts: ["10.234.62.123"],
- *         nfs: {
- *             squash: "all-anonymous",
- *         },
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * A Network File Storage Share resource can be imported using its `location`, `cluster_id` and `resource id`:
- *
- * ```sh
- * $ pulumi import ionoscloud:nfs/share:Share name location:cluster_id:resource_id
- * ```
- */
 export class Share extends pulumi.CustomResource {
     /**
      * Get an existing Share resource's state with the given name, ID, and optional extra
@@ -95,7 +35,7 @@ export class Share extends pulumi.CustomResource {
     }
 
     /**
-     * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+     * The groups of clients are the systems connecting to the Network File Storage cluster.
      */
     public readonly clientGroups!: pulumi.Output<outputs.nfs.ShareClientGroup[]>;
     /**
@@ -107,11 +47,12 @@ export class Share extends pulumi.CustomResource {
      */
     public readonly gid!: pulumi.Output<number | undefined>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
+     * 'us/las, 'us/ewr, 'us/mci'
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * The directory being exported.
+     * The directory being exported
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -119,7 +60,8 @@ export class Share extends pulumi.CustomResource {
      */
     public /*out*/ readonly nfsPath!: pulumi.Output<string>;
     /**
-     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+     * quota can be disabled using `0`.
      */
     public readonly quota!: pulumi.Output<number | undefined>;
     /**
@@ -156,9 +98,6 @@ export class Share extends pulumi.CustomResource {
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             resourceInputs["clientGroups"] = args ? args.clientGroups : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["gid"] = args ? args.gid : undefined;
@@ -178,7 +117,7 @@ export class Share extends pulumi.CustomResource {
  */
 export interface ShareState {
     /**
-     * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+     * The groups of clients are the systems connecting to the Network File Storage cluster.
      */
     clientGroups?: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[]>;
     /**
@@ -190,11 +129,12 @@ export interface ShareState {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
+     * 'us/las, 'us/ewr, 'us/mci'
      */
     location?: pulumi.Input<string>;
     /**
-     * The directory being exported.
+     * The directory being exported
      */
     name?: pulumi.Input<string>;
     /**
@@ -202,7 +142,8 @@ export interface ShareState {
      */
     nfsPath?: pulumi.Input<string>;
     /**
-     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+     * quota can be disabled using `0`.
      */
     quota?: pulumi.Input<number>;
     /**
@@ -216,7 +157,7 @@ export interface ShareState {
  */
 export interface ShareArgs {
     /**
-     * The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+     * The groups of clients are the systems connecting to the Network File Storage cluster.
      */
     clientGroups: pulumi.Input<pulumi.Input<inputs.nfs.ShareClientGroup>[]>;
     /**
@@ -228,15 +169,17 @@ export interface ShareArgs {
      */
     gid?: pulumi.Input<number>;
     /**
-     * The location of the Network File Storage Cluster.
+     * The location of the Network File Storage Cluster. Available locations: 'de/fra, 'de/txl, 'fr-par, 'gb-lhr, 'es/vit,
+     * 'us/las, 'us/ewr, 'us/mci'
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * The directory being exported.
+     * The directory being exported
      */
     name?: pulumi.Input<string>;
     /**
-     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The quota can be disabled using `0`. Default is `0`.
+     * The quota in MiB for the export. The quota can restrict the amount of data that can be stored within the export. The
+     * quota can be disabled using `0`.
      */
     quota?: pulumi.Input<number>;
     /**

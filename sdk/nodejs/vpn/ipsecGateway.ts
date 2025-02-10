@@ -6,54 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * An IPSec Gateway resource manages the creation, management, and deletion of VPN IPSec Gateways within the IONOS Cloud
- * infrastructure. This resource facilitates the creation of VPN IPSec Gateways, enabling secure connections between your
- * network resources.
- *
- * ## Usage example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const testDatacenter = new ionoscloud.compute.Datacenter("test_datacenter", {
- *     name: "test_vpn_gateway_basic",
- *     location: "de/fra",
- * });
- * const testLan = new ionoscloud.compute.Lan("test_lan", {
- *     name: "test_lan_basic",
- *     "public": false,
- *     datacenterId: testDatacenter.id,
- * });
- * const testIpblock = new ionoscloud.compute.IPBlock("test_ipblock", {
- *     name: "test_ipblock_basic",
- *     location: "de/fra",
- *     size: 1,
- * });
- * const example = new ionoscloud.vpn.IpsecGateway("example", {
- *     name: "ipsec_gateway_basic",
- *     location: "de/fra",
- *     gatewayIp: testIpblock.ips[0],
- *     version: "IKEv2",
- *     description: "This gateway connects site A to VDC X.",
- *     connections: [{
- *         datacenterId: testDatacenter.id,
- *         lanId: testLan.id,
- *         ipv4Cidr: "192.168.100.10/24",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * The resource can be imported using the `location` and `gateway_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:vpn/ipsecGateway:IpsecGateway example {location}:{gateway_id}
- * ```
- */
 export class IpsecGateway extends pulumi.CustomResource {
     /**
      * Get an existing IpsecGateway resource's state with the given name, ID, and optional extra
@@ -83,31 +35,37 @@ export class IpsecGateway extends pulumi.CustomResource {
     }
 
     /**
-     * [list] The network connection for your gateway. **Note**: all connections must belong to the
-     * same datacenter. Minimum items: 1. Maximum items: 10.
+     * The network connection for your gateway. Note: all connections must belong to the same datacenter.
      */
     public readonly connections!: pulumi.Output<outputs.vpn.IpsecGatewayConnection[]>;
     /**
-     * [string] The human-readable description of the IPSec Gateway.
+     * The human-readable description of your IPSec Gateway.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-     * the same datacenter as the connections.
+     * Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+     * connections.
      */
     public readonly gatewayIp!: pulumi.Output<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * [string] The name of the IPSec Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
+     */
+    public readonly maintenanceWindow!: pulumi.Output<outputs.vpn.IpsecGatewayMaintenanceWindow>;
+    /**
+     * The human readable name of your IPSecGateway.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-     * values: `IKEv2`.
+     * Gateway performance options. See the documentation for the available options
+     */
+    public readonly tier!: pulumi.Output<string | undefined>;
+    /**
+     * The IKE version that is permitted for the VPN tunnels.
      */
     public readonly version!: pulumi.Output<string | undefined>;
 
@@ -128,7 +86,9 @@ export class IpsecGateway extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["gatewayIp"] = state ? state.gatewayIp : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["maintenanceWindow"] = state ? state.maintenanceWindow : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["tier"] = state ? state.tier : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as IpsecGatewayArgs | undefined;
@@ -138,14 +98,13 @@ export class IpsecGateway extends pulumi.CustomResource {
             if ((!args || args.gatewayIp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gatewayIp'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             resourceInputs["connections"] = args ? args.connections : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["gatewayIp"] = args ? args.gatewayIp : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["maintenanceWindow"] = args ? args.maintenanceWindow : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["tier"] = args ? args.tier : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -158,31 +117,37 @@ export class IpsecGateway extends pulumi.CustomResource {
  */
 export interface IpsecGatewayState {
     /**
-     * [list] The network connection for your gateway. **Note**: all connections must belong to the
-     * same datacenter. Minimum items: 1. Maximum items: 10.
+     * The network connection for your gateway. Note: all connections must belong to the same datacenter.
      */
     connections?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecGatewayConnection>[]>;
     /**
-     * [string] The human-readable description of the IPSec Gateway.
+     * The human-readable description of your IPSec Gateway.
      */
     description?: pulumi.Input<string>;
     /**
-     * [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-     * the same datacenter as the connections.
+     * Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+     * connections.
      */
     gatewayIp?: pulumi.Input<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] The name of the IPSec Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
+     */
+    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow>;
+    /**
+     * The human readable name of your IPSecGateway.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-     * values: `IKEv2`.
+     * Gateway performance options. See the documentation for the available options
+     */
+    tier?: pulumi.Input<string>;
+    /**
+     * The IKE version that is permitted for the VPN tunnels.
      */
     version?: pulumi.Input<string>;
 }
@@ -192,31 +157,37 @@ export interface IpsecGatewayState {
  */
 export interface IpsecGatewayArgs {
     /**
-     * [list] The network connection for your gateway. **Note**: all connections must belong to the
-     * same datacenter. Minimum items: 1. Maximum items: 10.
+     * The network connection for your gateway. Note: all connections must belong to the same datacenter.
      */
     connections: pulumi.Input<pulumi.Input<inputs.vpn.IpsecGatewayConnection>[]>;
     /**
-     * [string] The human-readable description of the IPSec Gateway.
+     * The human-readable description of your IPSec Gateway.
      */
     description?: pulumi.Input<string>;
     /**
-     * [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
-     * the same datacenter as the connections.
+     * Public IP address to be assigned to the gateway. Note: This must be an IP address in the same datacenter as the
+     * connections.
      */
     gatewayIp: pulumi.Input<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * [string] The name of the IPSec Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
+     */
+    maintenanceWindow?: pulumi.Input<inputs.vpn.IpsecGatewayMaintenanceWindow>;
+    /**
+     * The human readable name of your IPSecGateway.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The IKE version that is permitted for the VPN tunnels. Default: `IKEv2`. Possible
-     * values: `IKEv2`.
+     * Gateway performance options. See the documentation for the available options
+     */
+    tier?: pulumi.Input<string>;
+    /**
+     * The IKE version that is permitted for the VPN tunnels.
      */
     version?: pulumi.Input<string>;
 }

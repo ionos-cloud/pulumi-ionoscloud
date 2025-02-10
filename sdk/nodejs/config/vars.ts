@@ -27,6 +27,17 @@ Object.defineProperty(exports, "endpoint", {
 });
 
 /**
+ * This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+ */
+export declare const insecure: boolean | undefined;
+Object.defineProperty(exports, "insecure", {
+    get() {
+        return __config.getObject<boolean>("insecure");
+    },
+    enumerable: true,
+});
+
+/**
  * IonosCloud password for API operations. If token is provided, token is preferred
  */
 export declare const password: string | undefined;

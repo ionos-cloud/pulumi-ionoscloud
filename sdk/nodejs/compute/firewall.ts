@@ -4,82 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a set of **Firewall Rules** on IonosCloud.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "Datacenter Example",
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
- *     location: example.location,
- *     size: 2,
- *     name: "IP Block Example",
- * });
- * const serverImagePassword = new random.index.Password("server_image_password", {
- *     length: 16,
- *     special: false,
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "Server Example",
- *     datacenterId: example.id,
- *     cores: 1,
- *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
- *     imageName: "Ubuntu-20.04",
- *     imagePassword: serverImagePassword.result,
- *     volume: {
- *         name: "system",
- *         size: 14,
- *         diskType: "SSD",
- *     },
- *     nic: {
- *         lan: 1,
- *         dhcp: true,
- *         firewallActive: true,
- *     },
- * });
- * const exampleNic = new ionoscloud.compute.Nic("example", {
- *     datacenterId: example.id,
- *     serverId: exampleServer.id,
- *     lan: 2,
- *     dhcp: true,
- *     firewallActive: true,
- *     name: "Nic Example",
- * });
- * const exampleFirewall = new ionoscloud.compute.Firewall("example", {
- *     datacenterId: example.id,
- *     serverId: exampleServer.id,
- *     nicId: exampleNic.id,
- *     protocol: "ICMP",
- *     name: "Firewall Example",
- *     sourceMac: "00:0a:95:9d:68:16",
- *     sourceIp: exampleIPBlock.ips[0],
- *     targetIp: exampleIPBlock.ips[1],
- *     icmpType: "1",
- *     icmpCode: "8",
- *     type: "INGRESS",
- * });
- * ```
- *
- * ## Import
- *
- * Resource Firewall can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/firewall:Firewall myfwrule {datacenter uuid}/{server uuid}/{nic uuid}/{firewall uuid}
- * ```
- */
 export class Firewall extends pulumi.CustomResource {
     /**
      * Get an existing Firewall resource's state with the given name, ID, and optional extra
@@ -108,57 +32,18 @@ export class Firewall extends pulumi.CustomResource {
         return obj['__pulumiType'] === Firewall.__pulumiType;
     }
 
-    /**
-     * [string] The Virtual Data Center ID.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
-    /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-     */
     public readonly icmpCode!: pulumi.Output<string | undefined>;
-    /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-     */
     public readonly icmpType!: pulumi.Output<string | undefined>;
-    /**
-     * [string] The name of the firewall rule.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * [string] The NIC ID.
-     */
     public readonly nicId!: pulumi.Output<string>;
-    /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     public readonly portRangeEnd!: pulumi.Output<number | undefined>;
-    /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     public readonly portRangeStart!: pulumi.Output<number | undefined>;
-    /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-     */
     public readonly protocol!: pulumi.Output<string>;
-    /**
-     * [string] The Server ID.
-     */
     public readonly serverId!: pulumi.Output<string>;
-    /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-     */
     public readonly sourceIp!: pulumi.Output<string>;
-    /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-     */
     public readonly sourceMac!: pulumi.Output<string | undefined>;
-    /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-     */
     public readonly targetIp!: pulumi.Output<string>;
-    /**
-     * [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-     */
     public readonly type!: pulumi.Output<string>;
 
     /**
@@ -224,57 +109,18 @@ export class Firewall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Firewall resources.
  */
 export interface FirewallState {
-    /**
-     * [string] The Virtual Data Center ID.
-     */
     datacenterId?: pulumi.Input<string>;
-    /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-     */
     icmpCode?: pulumi.Input<string>;
-    /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-     */
     icmpType?: pulumi.Input<string>;
-    /**
-     * [string] The name of the firewall rule.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [string] The NIC ID.
-     */
     nicId?: pulumi.Input<string>;
-    /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     portRangeEnd?: pulumi.Input<number>;
-    /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     portRangeStart?: pulumi.Input<number>;
-    /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-     */
     protocol?: pulumi.Input<string>;
-    /**
-     * [string] The Server ID.
-     */
     serverId?: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-     */
     sourceMac?: pulumi.Input<string>;
-    /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-     */
     targetIp?: pulumi.Input<string>;
-    /**
-     * [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-     */
     type?: pulumi.Input<string>;
 }
 
@@ -282,56 +128,17 @@ export interface FirewallState {
  * The set of arguments for constructing a Firewall resource.
  */
 export interface FirewallArgs {
-    /**
-     * [string] The Virtual Data Center ID.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
-     */
     icmpCode?: pulumi.Input<string>;
-    /**
-     * [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
-     */
     icmpType?: pulumi.Input<string>;
-    /**
-     * [string] The name of the firewall rule.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * [string] The NIC ID.
-     */
     nicId: pulumi.Input<string>;
-    /**
-     * [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     portRangeEnd?: pulumi.Input<number>;
-    /**
-     * [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-     */
     portRangeStart?: pulumi.Input<number>;
-    /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
-     */
     protocol: pulumi.Input<string>;
-    /**
-     * [string] The Server ID.
-     */
     serverId: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
-     */
     sourceIp?: pulumi.Input<string>;
-    /**
-     * [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
-     */
     sourceMac?: pulumi.Input<string>;
-    /**
-     * [string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
-     */
     targetIp?: pulumi.Input<string>;
-    /**
-     * [string] The type of firewall rule. If is not specified, it will take the default value INGRESS.
-     */
     type?: pulumi.Input<string>;
 }

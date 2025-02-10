@@ -4,62 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **Kafka Cluster Topic** on IonosCloud.
- *
- * ## Example Usage
- *
- * This resource will create an operational Kafka Cluster Topic. After this section completes, the provisioner can be
- * called.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "example-kafka-datacenter",
- *     location: "de/fra",
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": false,
- *     name: "example-kafka-lan",
- * });
- * const exampleCluster = new ionoscloud.kafka.Cluster("example", {
- *     name: "example-kafka-cluster",
- *     location: example.location,
- *     version: "3.7.0",
- *     size: "S",
- *     connections: {
- *         datacenterId: example.id,
- *         lanId: exampleLan.id,
- *         brokerAddresses: [
- *             "192.168.1.101/24",
- *             "192.168.1.102/24",
- *             "192.168.1.103/24",
- *         ],
- *     },
- * });
- * const exampleTopic = new ionoscloud.kafka.Topic("example", {
- *     clusterId: exampleCluster.id,
- *     name: "kafka-cluster-topic",
- *     location: exampleCluster.location,
- *     replicationFactor: 1,
- *     numberOfPartitions: 1,
- *     retentionTime: 86400000,
- *     segmentBytes: 1073741824,
- * });
- * ```
- *
- * ## Import
- *
- * Kafka Cluster Topic can be imported using the `location`, `kafka cluster id` and the `kafka cluster topic id`:
- *
- * ```sh
- * $ pulumi import ionoscloud:kafka/topic:Topic my_topic {location}:{kafka cluster uuid}:{kafka cluster topic uuid}
- * ```
- */
 export class Topic extends pulumi.CustomResource {
     /**
      * Get an existing Topic resource's state with the given name, ID, and optional extra
@@ -89,39 +33,36 @@ export class Topic extends pulumi.CustomResource {
     }
 
     /**
-     * [string] ID of the Kafka Cluster that the topic belongs to.
+     * The ID of the Kafka Cluster to which the topic belongs.
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
+     * character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [int] The number of partitions of the topic. Partitions allow for parallel
-     * processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
-     * Default value: 3.
+     * The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
+     * greater than or equal to the replication factor.
      */
     public readonly numberOfPartitions!: pulumi.Output<number | undefined>;
     /**
-     * [int] The number of replicas of the topic. The replication factor determines how many
-     * copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
-     * of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+     * The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
+     * different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
      */
     public readonly replicationFactor!: pulumi.Output<number | undefined>;
     /**
-     * [int] This configuration controls the maximum time we will retain a log before we will
-     * discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
-     * to -1, no time limit is applied. Default value: 604800000.
+     * This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
+     * space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
      */
     public readonly retentionTime!: pulumi.Output<number | undefined>;
     /**
-     * [int] This configuration controls the segment file size for the log. Retention and
-     * cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
-     * retention. Default value: 1073741824.
+     * This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
+     * a larger segment size means fewer files but less granular control over retention.
      */
     public readonly segmentBytes!: pulumi.Output<number | undefined>;
 
@@ -150,9 +91,6 @@ export class Topic extends pulumi.CustomResource {
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -171,39 +109,36 @@ export class Topic extends pulumi.CustomResource {
  */
 export interface TopicState {
     /**
-     * [string] ID of the Kafka Cluster that the topic belongs to.
+     * The ID of the Kafka Cluster to which the topic belongs.
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
+     * character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     name?: pulumi.Input<string>;
     /**
-     * [int] The number of partitions of the topic. Partitions allow for parallel
-     * processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
-     * Default value: 3.
+     * The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
+     * greater than or equal to the replication factor.
      */
     numberOfPartitions?: pulumi.Input<number>;
     /**
-     * [int] The number of replicas of the topic. The replication factor determines how many
-     * copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
-     * of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+     * The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
+     * different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
      */
     replicationFactor?: pulumi.Input<number>;
     /**
-     * [int] This configuration controls the maximum time we will retain a log before we will
-     * discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
-     * to -1, no time limit is applied. Default value: 604800000.
+     * This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
+     * space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
      */
     retentionTime?: pulumi.Input<number>;
     /**
-     * [int] This configuration controls the segment file size for the log. Retention and
-     * cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
-     * retention. Default value: 1073741824.
+     * This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
+     * a larger segment size means fewer files but less granular control over retention.
      */
     segmentBytes?: pulumi.Input<number>;
 }
@@ -213,39 +148,36 @@ export interface TopicState {
  */
 export interface TopicArgs {
     /**
-     * [string] ID of the Kafka Cluster that the topic belongs to.
+     * The ID of the Kafka Cluster to which the topic belongs.
      */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/txl`
+     * The location of your Kafka Cluster Topic. Supported locations: de/fra, de/txl
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * [string] Name of the Kafka Cluster.
+     * The name of your Kafka Cluster Topic. Must be 63 characters or less and must begin and end with an alphanumeric
+     * character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.
      */
     name?: pulumi.Input<string>;
     /**
-     * [int] The number of partitions of the topic. Partitions allow for parallel
-     * processing of messages. The partition count must be greater than or equal to the replication factor. Minimum value: 1.
-     * Default value: 3.
+     * The number of partitions of the topic. Partitions allow for parallel processing of messages. The partition count must be
+     * greater than or equal to the replication factor.
      */
     numberOfPartitions?: pulumi.Input<number>;
     /**
-     * [int] The number of replicas of the topic. The replication factor determines how many
-     * copies of the topic are stored on different brokers. The replication factor must be less than or equal to the number
-     * of brokers in the Kafka Cluster. Minimum value: 1. Default value: 3.
+     * The number of replicas of the topic. The replication factor determines how many copies of the topic are stored on
+     * different brokers. The replication factor must be less than or equal to the number of brokers in the Kafka Cluster.
      */
     replicationFactor?: pulumi.Input<number>;
     /**
-     * [int] This configuration controls the maximum time we will retain a log before we will
-     * discard old log segments to free up space. This represents an SLA on how soon consumers must read their data. If set
-     * to -1, no time limit is applied. Default value: 604800000.
+     * This configuration controls the maximum time we will retain a log before we will discard old log segments to free up
+     * space. This represents an SLA on how soon consumers must read their data. If set to -1, no time limit is applied.
      */
     retentionTime?: pulumi.Input<number>;
     /**
-     * [int] This configuration controls the segment file size for the log. Retention and
-     * cleaning is always done a file at a time so a larger segment size means fewer files but less granular control over
-     * retention. Default value: 1073741824.
+     * This configuration controls the segment file size for the log. Retention and cleaning is always done a file at a time so
+     * a larger segment size means fewer files but less granular control over retention.
      */
     segmentBytes?: pulumi.Input<number>;
 }

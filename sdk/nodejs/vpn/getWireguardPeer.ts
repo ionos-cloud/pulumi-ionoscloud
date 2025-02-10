@@ -6,23 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.vpn.getWireguardPeer({
- *     location: "de/fra",
- *     gatewayId: "example-gateway",
- *     name: "example-peer",
- * });
- * export const vpnWireguardPeerPublicKey = exampleVpnWireguardPeer.publicKey;
- * ```
- */
 export function getWireguardPeer(args: GetWireguardPeerArgs, opts?: pulumi.InvokeOptions): Promise<GetWireguardPeerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", {
@@ -37,21 +20,9 @@ export function getWireguardPeer(args: GetWireguardPeerArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getWireguardPeer.
  */
 export interface GetWireguardPeerArgs {
-    /**
-     * [String] The ID of the WireGuard Gateway.
-     */
     gatewayId: string;
-    /**
-     * [String] The ID of the WireGuard Peer.
-     */
     id?: string;
-    /**
-     * [String] The location of the WireGuard Gateway.
-     */
-    location: string;
-    /**
-     * [String] The name of the WireGuard Peer.
-     */
+    location?: string;
     name?: string;
 }
 
@@ -59,54 +30,16 @@ export interface GetWireguardPeerArgs {
  * A collection of values returned by getWireguardPeer.
  */
 export interface GetWireguardPeerResult {
-    /**
-     * The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
-     */
     readonly allowedIps: string[];
-    /**
-     * The description of the WireGuard Peer.
-     */
     readonly description: string;
-    /**
-     * The endpoint of the WireGuard Peer.
-     */
     readonly endpoints: outputs.vpn.GetWireguardPeerEndpoint[];
     readonly gatewayId: string;
-    /**
-     * The unique ID of the WireGuard Peer.
-     */
-    readonly id?: string;
-    readonly location: string;
-    /**
-     * The name of the WireGuard Peer.
-     */
+    readonly id: string;
+    readonly location?: string;
     readonly name: string;
-    /**
-     * WireGuard public key of the connecting peer.
-     */
     readonly publicKey: string;
-    /**
-     * The current status of the WireGuard Peer.
-     */
     readonly status: string;
 }
-/**
- * The `ionoscloud.vpn.WireguardGateway` data source provides information about a specific IonosCloud VPN WireGuard Gateway. You can use this data source to retrieve details of a WireGuard Gateway for use in other resources and configurations.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.vpn.getWireguardPeer({
- *     location: "de/fra",
- *     gatewayId: "example-gateway",
- *     name: "example-peer",
- * });
- * export const vpnWireguardPeerPublicKey = exampleVpnWireguardPeer.publicKey;
- * ```
- */
 export function getWireguardPeerOutput(args: GetWireguardPeerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWireguardPeerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:vpn/getWireguardPeer:getWireguardPeer", {
@@ -121,20 +54,8 @@ export function getWireguardPeerOutput(args: GetWireguardPeerOutputArgs, opts?: 
  * A collection of arguments for invoking getWireguardPeer.
  */
 export interface GetWireguardPeerOutputArgs {
-    /**
-     * [String] The ID of the WireGuard Gateway.
-     */
     gatewayId: pulumi.Input<string>;
-    /**
-     * [String] The ID of the WireGuard Peer.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * [String] The location of the WireGuard Gateway.
-     */
-    location: pulumi.Input<string>;
-    /**
-     * [String] The name of the WireGuard Peer.
-     */
+    location?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
 }

@@ -6,21 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getInmemorydbSnapshot({
- *     id: "snapshot-id",
- *     location: "de/txl",
- * });
- * ```
- */
 export function getInmemorydbSnapshot(args: GetInmemorydbSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInmemorydbSnapshotResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", {
@@ -33,13 +18,7 @@ export function getInmemorydbSnapshot(args: GetInmemorydbSnapshotArgs, opts?: pu
  * A collection of arguments for invoking getInmemorydbSnapshot.
  */
 export interface GetInmemorydbSnapshotArgs {
-    /**
-     * The ID of the InMemoryDB Snapshot.
-     */
     id: string;
-    /**
-     * The location of the InMemoryDB Snapshot.
-     */
     location: string;
 }
 
@@ -49,26 +28,8 @@ export interface GetInmemorydbSnapshotArgs {
 export interface GetInmemorydbSnapshotResult {
     readonly id: string;
     readonly location: string;
-    /**
-     * Metadata of the snapshot.
-     */
     readonly metadatas: outputs.dbaas.GetInmemorydbSnapshotMetadata[];
 }
-/**
- * The `ionoscloud.dbaas.getInmemorydbSnapshot` data source can be used to retrieve information about an existing InMemoryDB Snapshot.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getInmemorydbSnapshot({
- *     id: "snapshot-id",
- *     location: "de/txl",
- * });
- * ```
- */
 export function getInmemorydbSnapshotOutput(args: GetInmemorydbSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInmemorydbSnapshotResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", {
@@ -81,12 +42,6 @@ export function getInmemorydbSnapshotOutput(args: GetInmemorydbSnapshotOutputArg
  * A collection of arguments for invoking getInmemorydbSnapshot.
  */
 export interface GetInmemorydbSnapshotOutputArgs {
-    /**
-     * The ID of the InMemoryDB Snapshot.
-     */
     id: pulumi.Input<string>;
-    /**
-     * The location of the InMemoryDB Snapshot.
-     */
     location: pulumi.Input<string>;
 }

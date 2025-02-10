@@ -6,17 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **CDN Distribution** on IonosCloud.
- *
- * ## Import
- *
- * Resource Distribution can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:cdn/distribution:Distribution myDistribution {distribution uuid}
- * ```
- */
 export class Distribution extends pulumi.CustomResource {
     /**
      * Get an existing Distribution resource's state with the given name, ID, and optional extra
@@ -46,11 +35,11 @@ export class Distribution extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+     * The ID of the certificate to use for the distribution.
      */
     public readonly certificateId!: pulumi.Output<string | undefined>;
     /**
-     * [string] The domain of the distribution.
+     * The domain of the distribution.
      */
     public readonly domain!: pulumi.Output<string>;
     /**
@@ -62,11 +51,11 @@ export class Distribution extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicEndpointV6!: pulumi.Output<string>;
     /**
-     * Unique resource indentifier.
+     * Unique name of the resource.
      */
     public /*out*/ readonly resourceUrn!: pulumi.Output<string>;
     /**
-     * [list] The routing rules for the distribution.
+     * The routing rules for the distribution.
      */
     public readonly routingRules!: pulumi.Output<outputs.cdn.DistributionRoutingRule[]>;
 
@@ -114,11 +103,11 @@ export class Distribution extends pulumi.CustomResource {
  */
 export interface DistributionState {
     /**
-     * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+     * The ID of the certificate to use for the distribution.
      */
     certificateId?: pulumi.Input<string>;
     /**
-     * [string] The domain of the distribution.
+     * The domain of the distribution.
      */
     domain?: pulumi.Input<string>;
     /**
@@ -130,11 +119,11 @@ export interface DistributionState {
      */
     publicEndpointV6?: pulumi.Input<string>;
     /**
-     * Unique resource indentifier.
+     * Unique name of the resource.
      */
     resourceUrn?: pulumi.Input<string>;
     /**
-     * [list] The routing rules for the distribution.
+     * The routing rules for the distribution.
      */
     routingRules?: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[]>;
 }
@@ -144,15 +133,15 @@ export interface DistributionState {
  */
 export interface DistributionArgs {
     /**
-     * [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
+     * The ID of the certificate to use for the distribution.
      */
     certificateId?: pulumi.Input<string>;
     /**
-     * [string] The domain of the distribution.
+     * The domain of the distribution.
      */
     domain: pulumi.Input<string>;
     /**
-     * [list] The routing rules for the distribution.
+     * The routing rules for the distribution.
      */
     routingRules: pulumi.Input<pulumi.Input<inputs.cdn.DistributionRoutingRule>[]>;
 }

@@ -6,13 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNatGateway(args: GetNatGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetNatGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getNatGateway:getNatGateway", {
@@ -26,19 +19,8 @@ export function getNatGateway(args: GetNatGatewayArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getNatGateway.
  */
 export interface GetNatGatewayArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: string;
-    /**
-     * ID of the network load balancer forwarding rule you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: string;
-    /**
-     * Name of an existing network load balancer forwarding rule that you want to search for.
-     */
     name?: string;
 }
 
@@ -47,30 +29,11 @@ export interface GetNatGatewayArgs {
  */
 export interface GetNatGatewayResult {
     readonly datacenterId: string;
-    /**
-     * Id for the LAN connected to the NAT gateway
-     */
-    readonly id?: string;
-    /**
-     * Collection of LANs connected to the NAT gateway. IPs must contain valid subnet mask. If user will not provide any IP then system will generate an IP with /24 subnet.
-     */
+    readonly id: string;
     readonly lans: outputs.compute.GetNatGatewayLan[];
-    /**
-     * Name of that natgateway
-     */
-    readonly name?: string;
-    /**
-     * Collection of public IP addresses of the NAT gateway. Should be customer reserved IP addresses in that location
-     */
+    readonly name: string;
     readonly publicIps: string[];
 }
-/**
- * The **NAT gateway data source** can be used to search for and return existing NAT Gateways.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNatGatewayOutput(args: GetNatGatewayOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNatGatewayResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNatGateway:getNatGateway", {
@@ -84,18 +47,7 @@ export function getNatGatewayOutput(args: GetNatGatewayOutputArgs, opts?: pulumi
  * A collection of arguments for invoking getNatGateway.
  */
 export interface GetNatGatewayOutputArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * ID of the network load balancer forwarding rule you want to search for.
-     *
-     * `datacenterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing network load balancer forwarding rule that you want to search for.
-     */
     name?: pulumi.Input<string>;
 }

@@ -6,13 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:k8s/getNodePool:getNodePool", {
@@ -26,19 +19,8 @@ export function getNodePool(args: GetNodePoolArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getNodePool.
  */
 export interface GetNodePoolArgs {
-    /**
-     * ID of the node pool you want to search for.
-     *
-     * `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: string;
-    /**
-     * K8s Cluster' UUID
-     */
     k8sClusterId: string;
-    /**
-     * Name of an existing node pool that you want to search for.
-     */
     name?: string;
 }
 
@@ -46,106 +28,27 @@ export interface GetNodePoolArgs {
  * A collection of values returned by getNodePool.
  */
 export interface GetNodePoolResult {
-    /**
-     * A map of annotations in the form of key > value
-     */
     readonly annotations: {[key: string]: string};
-    /**
-     * The range defining the minimum and maximum number of worker nodes that the managed node group can scale in
-     */
     readonly autoScalings: outputs.k8s.GetNodePoolAutoScaling[];
-    /**
-     * The compute availability zone in which the nodes should exist
-     */
     readonly availabilityZone: string;
-    /**
-     * A list of kubernetes versions available for upgrade
-     */
     readonly availableUpgradeVersions: string[];
-    /**
-     * CPU cores count
-     */
     readonly coresCount: number;
-    /**
-     * CPU Family
-     */
     readonly cpuFamily: string;
-    /**
-     * The UUID of the VDC
-     */
     readonly datacenterId: string;
-    /**
-     * The LAN ID of an existing LAN at the related datacenter
-     */
-    readonly id?: string;
-    /**
-     * ID of the cluster this node pool is part of
-     */
+    readonly id: string;
     readonly k8sClusterId: string;
-    /**
-     * The kubernetes version
-     */
     readonly k8sVersion: string;
-    /**
-     * A map of labels in the form of key > value
-     */
     readonly labels: {[key: string]: string};
-    /**
-     * A list of Local Area Networks the node pool is a part of
-     */
     readonly lans: outputs.k8s.GetNodePoolLan[];
-    /**
-     * A maintenance window comprise of a day of the week and a time for maintenance to be allowed
-     */
     readonly maintenanceWindows: outputs.k8s.GetNodePoolMaintenanceWindow[];
-    /**
-     * name of the node pool
-     */
-    readonly name?: string;
-    /**
-     * The number of nodes in this node pool
-     */
+    readonly name: string;
     readonly nodeCount: number;
-    /**
-     * The list of fixed IPs associated with this node pool
-     */
     readonly publicIps: string[];
-    /**
-     * The amount of RAM in MB
-     */
     readonly ramSize: number;
-    /**
-     * one of "AVAILABLE",
-     * "INACTIVE",
-     * "BUSY",
-     * "DEPLOYING",
-     * "ACTIVE",
-     * "FAILED",
-     * "SUSPENDED",
-     * "FAILED_SUSPENDED",
-     * "UPDATING",
-     * "FAILED_UPDATING",
-     * "DESTROYING",
-     * "FAILED_DESTROYING",
-     * "TERMINATED"
-     */
     readonly state: string;
-    /**
-     * The size of the volume in GB. The size should be greater than 10GB.
-     */
     readonly storageSize: number;
-    /**
-     * HDD or SDD
-     */
     readonly storageType: string;
 }
-/**
- * The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getNodePool:getNodePool", {
@@ -159,18 +62,7 @@ export function getNodePoolOutput(args: GetNodePoolOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getNodePool.
  */
 export interface GetNodePoolOutputArgs {
-    /**
-     * ID of the node pool you want to search for.
-     *
-     * `k8sClusterId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * K8s Cluster' UUID
-     */
     k8sClusterId: pulumi.Input<string>;
-    /**
-     * Name of an existing node pool that you want to search for.
-     */
     name?: pulumi.Input<string>;
 }

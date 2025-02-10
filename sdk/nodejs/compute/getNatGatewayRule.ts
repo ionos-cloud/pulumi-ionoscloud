@@ -6,13 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNatGatewayRule(args: GetNatGatewayRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetNatGatewayRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", {
@@ -27,23 +20,9 @@ export function getNatGatewayRule(args: GetNatGatewayRuleArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getNatGatewayRule.
  */
 export interface GetNatGatewayRuleArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: string;
-    /**
-     * ID of the NAT gateway rule you want to search for.
-     *
-     * Both `datacenterId` and `natgatewayId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: string;
-    /**
-     * Name of an existing NAT gateway rule that you want to search for.
-     */
     name?: string;
-    /**
-     * Nat Gateway's UUID.
-     */
     natgatewayId: string;
 }
 
@@ -52,47 +31,16 @@ export interface GetNatGatewayRuleArgs {
  */
 export interface GetNatGatewayRuleResult {
     readonly datacenterId: string;
-    /**
-     * Id of the NAT gateway rule
-     */
-    readonly id?: string;
-    /**
-     * Name of the NAT gateway rule
-     */
-    readonly name?: string;
+    readonly id: string;
+    readonly name: string;
     readonly natgatewayId: string;
-    /**
-     * Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
-     */
     readonly protocol: string;
-    /**
-     * Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource
-     */
     readonly publicIp: string;
-    /**
-     * Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-     */
     readonly sourceSubnet: string;
-    /**
-     * Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port
-     */
     readonly targetPortRanges: outputs.compute.GetNatGatewayRuleTargetPortRange[];
-    /**
-     * Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
-     */
     readonly targetSubnet: string;
-    /**
-     * ype of the NAT gateway rule.
-     */
     readonly type: string;
 }
-/**
- * The **NAT Gateway Rule data source** can be used to search for and return existing NAT Gateway Rules.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getNatGatewayRuleOutput(args: GetNatGatewayRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNatGatewayRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", {
@@ -107,22 +55,8 @@ export function getNatGatewayRuleOutput(args: GetNatGatewayRuleOutputArgs, opts?
  * A collection of arguments for invoking getNatGatewayRule.
  */
 export interface GetNatGatewayRuleOutputArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * ID of the NAT gateway rule you want to search for.
-     *
-     * Both `datacenterId` and `natgatewayId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing NAT gateway rule that you want to search for.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Nat Gateway's UUID.
-     */
     natgatewayId: pulumi.Input<string>;
 }

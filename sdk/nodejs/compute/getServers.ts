@@ -6,59 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **Servers data source** can be used to search for and return existing servers based on filters used.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [{
- *         name: "name",
- *         value: "server_name_to_look_here",
- *     }],
- * });
- * ```
- *
- * ### By CPU Family
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [{
- *         name: "cpu_family",
- *         value: "INTEL_XEON",
- *     }],
- * });
- * ```
- *
- * ### By Name and Cores
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [
- *         {
- *             name: "name",
- *             value: "test",
- *         },
- *         {
- *             name: "cores",
- *             value: "1",
- *         },
- *     ],
- * });
- * ```
- */
 export function getServers(args: GetServersArgs, opts?: pulumi.InvokeOptions): Promise<GetServersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getServers:getServers", {
@@ -71,21 +18,7 @@ export function getServers(args: GetServersArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getServers.
  */
 export interface GetServersArgs {
-    /**
-     * Name of an existing datacenter that the servers are a part of
-     */
     datacenterId: string;
-    /**
-     * One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-     *
-     *
-     * `datacenterId` must be provided. If `datacenterId` is missing , the datasource will return an error.
-     *
-     * **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
-     * For example, it will find servers named `test`, `test1`, `testsomething`.
-     *
-     * **NOTE:** You cannot search by `imageName` by providing an alias like `ubuntu`.
-     */
     filters?: inputs.compute.GetServersFilter[];
 }
 
@@ -99,65 +32,8 @@ export interface GetServersResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * list of servers that matches the filters provided.
-     * For a full reference of all attributes returned, check out documentation
-     */
     readonly servers: outputs.compute.GetServersServer[];
 }
-/**
- * The **Servers data source** can be used to search for and return existing servers based on filters used.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [{
- *         name: "name",
- *         value: "server_name_to_look_here",
- *     }],
- * });
- * ```
- *
- * ### By CPU Family
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [{
- *         name: "cpu_family",
- *         value: "INTEL_XEON",
- *     }],
- * });
- * ```
- *
- * ### By Name and Cores
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getServers({
- *     datacenterId: exampleIonoscloudDatacenter.id,
- *     filters: [
- *         {
- *             name: "name",
- *             value: "test",
- *         },
- *         {
- *             name: "cores",
- *             value: "1",
- *         },
- *     ],
- * });
- * ```
- */
 export function getServersOutput(args: GetServersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getServers:getServers", {
@@ -170,20 +46,6 @@ export function getServersOutput(args: GetServersOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getServers.
  */
 export interface GetServersOutputArgs {
-    /**
-     * Name of an existing datacenter that the servers are a part of
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-     *
-     *
-     * `datacenterId` must be provided. If `datacenterId` is missing , the datasource will return an error.
-     *
-     * **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
-     * For example, it will find servers named `test`, `test1`, `testsomething`.
-     *
-     * **NOTE:** You cannot search by `imageName` by providing an alias like `ubuntu`.
-     */
     filters?: pulumi.Input<pulumi.Input<inputs.compute.GetServersFilterArgs>[]>;
 }

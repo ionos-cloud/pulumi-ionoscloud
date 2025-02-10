@@ -6,11 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getPSQLBackups(args: GetPSQLBackupsArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLBackupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", {
@@ -22,11 +17,6 @@ export function getPSQLBackups(args: GetPSQLBackupsArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getPSQLBackups.
  */
 export interface GetPSQLBackupsArgs {
-    /**
-     * The unique ID of the cluster.
-     *
-     * `clusterId` must be provided. If it is not provided, the datasource will return an error.
-     */
     clusterId: string;
 }
 
@@ -34,24 +24,13 @@ export interface GetPSQLBackupsArgs {
  * A collection of values returned by getPSQLBackups.
  */
 export interface GetPSQLBackupsResult {
-    /**
-     * List of backups.
-     */
     readonly clusterBackups: outputs.dbaas.GetPSQLBackupsClusterBackup[];
-    /**
-     * The unique ID of the cluster
-     */
     readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
 }
-/**
- * The **DbaaS Postgres Backups data source** can be used to search for and return existing DbaaS Postgres Backups for a specific Cluster.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getPSQLBackupsOutput(args: GetPSQLBackupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLBackupsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", {
@@ -63,10 +42,5 @@ export function getPSQLBackupsOutput(args: GetPSQLBackupsOutputArgs, opts?: pulu
  * A collection of arguments for invoking getPSQLBackups.
  */
 export interface GetPSQLBackupsOutputArgs {
-    /**
-     * The unique ID of the cluster.
-     *
-     * `clusterId` must be provided. If it is not provided, the datasource will return an error.
-     */
     clusterId: pulumi.Input<string>;
 }

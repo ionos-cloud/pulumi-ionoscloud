@@ -4,47 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **DbaaS PgSql User**.
- *
- * ## Example Usage
- *
- * Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a user resource
- * and link it with the previously created cluster:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const userPassword = new random.index.Password("user_password", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const examplePgUser = new ionoscloud.dbaas.PSQLUser("example_pg_user", {
- *     clusterId: example.id,
- *     username: "exampleuser",
- *     password: userPassword.result,
- * });
- * ```
- *
- * ## Import
- *
- * In order to import a PgSql user, you can define an empty user resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_pg_user" "example" {
- *
- * }
- *
- * The resource can be imported using the `clusterId` and the `username`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:dbaas/pSQLUser:PSQLUser example {clusterId}/{username}
- * ```
- */
 export class PSQLUser extends pulumi.CustomResource {
     /**
      * Get an existing PSQLUser resource's state with the given name, ID, and optional extra
@@ -73,21 +32,12 @@ export class PSQLUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === PSQLUser.__pulumiType;
     }
 
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+     * Describes whether this user is a system user or not. A system user cannot be updated or deleted.
      */
     public /*out*/ readonly isSystemUser!: pulumi.Output<boolean>;
-    /**
-     * [string] User password.
-     */
     public readonly password!: pulumi.Output<string>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly username!: pulumi.Output<string>;
 
     /**
@@ -134,21 +84,12 @@ export class PSQLUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PSQLUser resources.
  */
 export interface PSQLUserState {
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     clusterId?: pulumi.Input<string>;
     /**
-     * [bool] Describes whether this user is a system user or not. A system user cannot be updated or deleted.
+     * Describes whether this user is a system user or not. A system user cannot be updated or deleted.
      */
     isSystemUser?: pulumi.Input<boolean>;
-    /**
-     * [string] User password.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     username?: pulumi.Input<string>;
 }
 
@@ -156,16 +97,7 @@ export interface PSQLUserState {
  * The set of arguments for constructing a PSQLUser resource.
  */
 export interface PSQLUserArgs {
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * [string] User password.
-     */
     password: pulumi.Input<string>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     username: pulumi.Input<string>;
 }

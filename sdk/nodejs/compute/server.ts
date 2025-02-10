@@ -6,21 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * Resource Server can be imported using the `resource id` and the `datacenter id`, e.g.. Passing only resource id and datacenter id means that the first nic found linked to the server will be attached to it.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}
- * ```
- *
- * Optionally, you can pass `primary_nic` and `firewallrule_id` so terraform will know to import also the first nic and firewall rule (if it exists on the server):
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/server:Server myserver {datacenter uuid}/{server uuid}/{primary nic id}/{firewall rule id}
- * ```
- */
 export class Server extends pulumi.CustomResource {
     /**
      * Get an existing Server resource's state with the given name, ID, and optional extra
@@ -50,116 +35,75 @@ export class Server extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+     * When set to true, allows the update of immutable fields by destroying and re-creating the resource.
      */
+    public readonly allowReplace!: pulumi.Output<boolean | undefined>;
     public readonly availabilityZone!: pulumi.Output<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that you can retrieve using the image data
+     * source
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     public readonly bootCdrom!: pulumi.Output<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     public readonly bootImage!: pulumi.Output<string>;
-    /**
-     * The associated boot volume.
-     */
     public /*out*/ readonly bootVolume!: pulumi.Output<string>;
-    /**
-     * (Computed)[integer] Number of server CPU cores.
-     */
     public readonly cores!: pulumi.Output<number>;
-    /**
-     * [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-     */
     public readonly cpuFamily!: pulumi.Output<string>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
-    /**
-     * The associated firewall rule.
-     */
     public /*out*/ readonly firewallruleId!: pulumi.Output<string>;
-    /**
-     * The associated firewall rules.
-     */
     public readonly firewallruleIds!: pulumi.Output<string[]>;
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
+     * The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and
+     * should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the
+     * server
      */
+    public readonly hostname!: pulumi.Output<string>;
     public readonly imageName!: pulumi.Output<string>;
-    /**
-     * [string] Required if `sshKeyPath` is not provided.
-     */
     public readonly imagePassword!: pulumi.Output<string>;
     /**
-     * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     * A list that contains the IDs for the volumes defined inside the server resource.
      */
     public /*out*/ readonly inlineVolumeIds!: pulumi.Output<string[]>;
-    /**
-     * [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     public readonly labels!: pulumi.Output<outputs.compute.ServerLabel[] | undefined>;
-    /**
-     * [string] The name of the server.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * See the Nic section.
-     */
     public readonly nic!: pulumi.Output<outputs.compute.ServerNic | undefined>;
-    /**
-     * The associated IP address.
-     */
     public /*out*/ readonly primaryIp!: pulumi.Output<string>;
     /**
-     * The associated NIC.
+     * Id of the primary network interface
      */
     public /*out*/ readonly primaryNic!: pulumi.Output<string>;
-    /**
-     * (Computed)[integer] The amount of memory for the server in MB.
-     */
     public readonly ram!: pulumi.Output<number>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * The list of Security Group IDs for the server
+     */
+    public readonly securityGroupsIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud
+     * provided Linux images. Does not support `~` expansion to homedir in the given path. Public SSH keys are set on the image
+     * as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be
+     * set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is
+     * used for the volume creation. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     public readonly sshKeyPaths!: pulumi.Output<string[] | undefined>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     public readonly sshKeys!: pulumi.Output<string[] | undefined>;
-    /**
-     * [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     */
     public readonly templateUuid!: pulumi.Output<string | undefined>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * server usages: ENTERPRISE or CUBE
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * Sets the power state of the server. Possible values: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid
+     * for cube. SHUTOFF state is only valid for enterprise
      */
     public readonly vmState!: pulumi.Output<string>;
-    /**
-     * See the Volume section.
-     */
     public readonly volume!: pulumi.Output<outputs.compute.ServerVolume>;
 
     /**
@@ -175,6 +119,7 @@ export class Server extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerState | undefined;
+            resourceInputs["allowReplace"] = state ? state.allowReplace : undefined;
             resourceInputs["availabilityZone"] = state ? state.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = state ? state.bootCdrom : undefined;
             resourceInputs["bootImage"] = state ? state.bootImage : undefined;
@@ -184,6 +129,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["datacenterId"] = state ? state.datacenterId : undefined;
             resourceInputs["firewallruleId"] = state ? state.firewallruleId : undefined;
             resourceInputs["firewallruleIds"] = state ? state.firewallruleIds : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["imageName"] = state ? state.imageName : undefined;
             resourceInputs["imagePassword"] = state ? state.imagePassword : undefined;
             resourceInputs["inlineVolumeIds"] = state ? state.inlineVolumeIds : undefined;
@@ -193,6 +139,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["primaryIp"] = state ? state.primaryIp : undefined;
             resourceInputs["primaryNic"] = state ? state.primaryNic : undefined;
             resourceInputs["ram"] = state ? state.ram : undefined;
+            resourceInputs["securityGroupsIds"] = state ? state.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = state ? state.sshKeyPaths : undefined;
             resourceInputs["sshKeys"] = state ? state.sshKeys : undefined;
             resourceInputs["templateUuid"] = state ? state.templateUuid : undefined;
@@ -207,6 +154,7 @@ export class Server extends pulumi.CustomResource {
             if ((!args || args.volume === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volume'");
             }
+            resourceInputs["allowReplace"] = args ? args.allowReplace : undefined;
             resourceInputs["availabilityZone"] = args ? args.availabilityZone : undefined;
             resourceInputs["bootCdrom"] = args ? args.bootCdrom : undefined;
             resourceInputs["bootImage"] = args ? args.bootImage : undefined;
@@ -214,12 +162,14 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["cpuFamily"] = args ? args.cpuFamily : undefined;
             resourceInputs["datacenterId"] = args ? args.datacenterId : undefined;
             resourceInputs["firewallruleIds"] = args ? args.firewallruleIds : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["imageName"] = args ? args.imageName : undefined;
             resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nic"] = args ? args.nic : undefined;
             resourceInputs["ram"] = args ? args.ram : undefined;
+            resourceInputs["securityGroupsIds"] = args ? args.securityGroupsIds : undefined;
             resourceInputs["sshKeyPaths"] = args ? args.sshKeyPaths : undefined;
             resourceInputs["sshKeys"] = args ? args.sshKeys : undefined;
             resourceInputs["templateUuid"] = args ? args.templateUuid : undefined;
@@ -244,116 +194,75 @@ export class Server extends pulumi.CustomResource {
  */
 export interface ServerState {
     /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+     * When set to true, allows the update of immutable fields by destroying and re-creating the resource.
      */
+    allowReplace?: pulumi.Input<boolean>;
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that you can retrieve using the image data
+     * source
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     bootCdrom?: pulumi.Input<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     bootImage?: pulumi.Input<string>;
-    /**
-     * The associated boot volume.
-     */
     bootVolume?: pulumi.Input<string>;
-    /**
-     * (Computed)[integer] Number of server CPU cores.
-     */
     cores?: pulumi.Input<number>;
-    /**
-     * [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-     */
     cpuFamily?: pulumi.Input<string>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
-    /**
-     * The associated firewall rule.
-     */
     firewallruleId?: pulumi.Input<string>;
-    /**
-     * The associated firewall rules.
-     */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
+     * The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and
+     * should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the
+     * server
      */
+    hostname?: pulumi.Input<string>;
     imageName?: pulumi.Input<string>;
-    /**
-     * [string] Required if `sshKeyPath` is not provided.
-     */
     imagePassword?: pulumi.Input<string>;
     /**
-     * A list with the IDs for the volumes that are defined inside the server resource.
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     * A list that contains the IDs for the volumes defined inside the server resource.
      */
     inlineVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.ServerLabel>[]>;
-    /**
-     * [string] The name of the server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * See the Nic section.
-     */
     nic?: pulumi.Input<inputs.compute.ServerNic>;
-    /**
-     * The associated IP address.
-     */
     primaryIp?: pulumi.Input<string>;
     /**
-     * The associated NIC.
+     * Id of the primary network interface
      */
     primaryNic?: pulumi.Input<string>;
-    /**
-     * (Computed)[integer] The amount of memory for the server in MB.
-     */
     ram?: pulumi.Input<number>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * The list of Security Group IDs for the server
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud
+     * provided Linux images. Does not support `~` expansion to homedir in the given path. Public SSH keys are set on the image
+     * as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be
+     * set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is
+     * used for the volume creation. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     */
     templateUuid?: pulumi.Input<string>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * server usages: ENTERPRISE or CUBE
      */
     type?: pulumi.Input<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * Sets the power state of the server. Possible values: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid
+     * for cube. SHUTOFF state is only valid for enterprise
      */
     vmState?: pulumi.Input<string>;
-    /**
-     * See the Volume section.
-     */
     volume?: pulumi.Input<inputs.compute.ServerVolume>;
 }
 
@@ -362,83 +271,63 @@ export interface ServerState {
  */
 export interface ServerArgs {
     /**
-     * [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
+     * When set to true, allows the update of immutable fields by destroying and re-creating the resource.
      */
+    allowReplace?: pulumi.Input<boolean>;
     availabilityZone?: pulumi.Input<string>;
     /**
-     * ***DEPRECATED*** Please refer to ionoscloud.compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the ionoscloud.compute.getImage data source.
+     * The associated boot drive, if any. Must be the UUID of a bootable CDROM image that you can retrieve using the image data
+     * source
      *
      * @deprecated Please use the 'ionoscloud_server_boot_device_selection' resource for managing the boot device of the server.
      */
     bootCdrom?: pulumi.Input<string>;
-    /**
-     * [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licenceType` is not provided.
-     */
     bootImage?: pulumi.Input<string>;
-    /**
-     * (Computed)[integer] Number of server CPU cores.
-     */
     cores?: pulumi.Input<number>;
-    /**
-     * [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-     */
     cpuFamily?: pulumi.Input<string>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * The associated firewall rules.
-     */
     firewallruleIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licenceType` is not provided. Attribute is immutable.
+     * The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and
+     * should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the
+     * server
      */
+    hostname?: pulumi.Input<string>;
     imageName?: pulumi.Input<string>;
-    /**
-     * [string] Required if `sshKeyPath` is not provided.
-     */
     imagePassword?: pulumi.Input<string>;
-    /**
-     * [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-     */
     labels?: pulumi.Input<pulumi.Input<inputs.compute.ServerLabel>[]>;
-    /**
-     * [string] The name of the server.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * See the Nic section.
-     */
     nic?: pulumi.Input<inputs.compute.ServerNic>;
-    /**
-     * (Computed)[integer] The amount of memory for the server in MB.
-     */
     ram?: pulumi.Input<number>;
     /**
-     * [list] List of absolute paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.  Also accepts ssh keys directly. Required for IonosCloud Linux images. Required if `imagePassword` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
+     * The list of Security Group IDs for the server
+     */
+    securityGroupsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud
+     * provided Linux images. Does not support `~` expansion to homedir in the given path. Public SSH keys are set on the image
+     * as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be
+     * set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is
+     * used for the volume creation. This property is immutable.
      *
      * @deprecated Will be renamed to sshKeys in the future, to allow users to set both the ssh key path or directly the ssh key
      */
     sshKeyPaths?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
+     * Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the
+     * corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH
+     * keys are only supported if a public Linux image is used for the volume creation.
      */
     sshKeys?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * [string] The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource
-     */
     templateUuid?: pulumi.Input<string>;
     /**
-     * (Computed)[string] Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes). This property is immutable.
+     * server usages: ENTERPRISE or CUBE
      */
     type?: pulumi.Input<string>;
     /**
-     * [string] Sets the power state of the server. E.g: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid for cube. SHUTOFF state is only valid for enterprise.
+     * Sets the power state of the server. Possible values: `RUNNING`, `SHUTOFF` or `SUSPENDED`. SUSPENDED state is only valid
+     * for cube. SHUTOFF state is only valid for enterprise
      */
     vmState?: pulumi.Input<string>;
-    /**
-     * See the Volume section.
-     */
     volume: pulumi.Input<inputs.compute.ServerVolume>;
 }

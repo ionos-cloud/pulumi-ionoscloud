@@ -4,40 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **DNS Zone**.
- *
- * > ⚠️  Only tokens are accepted for authorization in the **ionoscloud_dns_zone** resource. Please ensure you are using tokens as other methods will not be valid.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.dns.Zone("example", {
- *     name: "example.com",
- *     description: "description",
- *     enabled: false,
- * });
- * ```
- *
- * ## Import
- *
- * In order to import a DNS Zone, you can define an empty DNS Zone resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_dns_zone" "example" {
- *
- * }
- *
- * The resource can be imported using the `zone_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:dns/zone:Zone example {zone_id}
- * ```
- */
 export class Zone extends pulumi.CustomResource {
     /**
      * Get an existing Zone resource's state with the given name, ID, and optional extra
@@ -66,17 +32,8 @@ export class Zone extends pulumi.CustomResource {
         return obj['__pulumiType'] === Zone.__pulumiType;
     }
 
-    /**
-     * [string] The description for the DNS Zone.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-     */
     public readonly enabled!: pulumi.Output<boolean>;
-    /**
-     * [string] The name of the DNS Zone.
-     */
     public readonly name!: pulumi.Output<string>;
     /**
      * A list of available name servers.
@@ -116,17 +73,8 @@ export class Zone extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Zone resources.
  */
 export interface ZoneState {
-    /**
-     * [string] The description for the DNS Zone.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * [string] The name of the DNS Zone.
-     */
     name?: pulumi.Input<string>;
     /**
      * A list of available name servers.
@@ -138,16 +86,7 @@ export interface ZoneState {
  * The set of arguments for constructing a Zone resource.
  */
 export interface ZoneArgs {
-    /**
-     * [string] The description for the DNS Zone.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * [bool] Indicates if the DNS Zone is active or not. Default is `true`.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * [string] The name of the DNS Zone.
-     */
     name?: pulumi.Input<string>;
 }

@@ -4,41 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **DbaaS PgSql Database**.
- *
- * ## Example Usage
- *
- * Create a `PgSQL` cluster as presented in the documentation for the cluster, then define a database resource
- * and link it with the previously created cluster:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const examplePgDatabase = new ionoscloud.dbaas.PSQLDatabase("example_pg_database", {
- *     clusterId: example.id,
- *     name: "exampledatabase",
- *     owner: "exampleuser",
- * });
- * ```
- *
- * ## Import
- *
- * In order to import a PgSql database, you can define an empty database resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_pg_database" "example" {
- *
- * }
- *
- * The resource can be imported using the `clusterId` and the `name`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:dbaas/pSQLDatabase:PSQLDatabase example {clusterId}/{name}
- * ```
- */
 export class PSQLDatabase extends pulumi.CustomResource {
     /**
      * Get an existing PSQLDatabase resource's state with the given name, ID, and optional extra
@@ -67,16 +32,13 @@ export class PSQLDatabase extends pulumi.CustomResource {
         return obj['__pulumiType'] === PSQLDatabase.__pulumiType;
     }
 
-    /**
-     * [string] The unique ID of the cluster.
-     */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * [string] The name of the database.
+     * The databasename of a given database.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The owner of the database.
+     * The name of the role owning a given database.
      */
     public readonly owner!: pulumi.Output<string>;
 
@@ -117,16 +79,13 @@ export class PSQLDatabase extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PSQLDatabase resources.
  */
 export interface PSQLDatabaseState {
-    /**
-     * [string] The unique ID of the cluster.
-     */
     clusterId?: pulumi.Input<string>;
     /**
-     * [string] The name of the database.
+     * The databasename of a given database.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The owner of the database.
+     * The name of the role owning a given database.
      */
     owner?: pulumi.Input<string>;
 }
@@ -135,16 +94,13 @@ export interface PSQLDatabaseState {
  * The set of arguments for constructing a PSQLDatabase resource.
  */
 export interface PSQLDatabaseArgs {
-    /**
-     * [string] The unique ID of the cluster.
-     */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] The name of the database.
+     * The databasename of a given database.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The owner of the database.
+     * The name of the role owning a given database.
      */
     owner: pulumi.Input<string>;
 }
