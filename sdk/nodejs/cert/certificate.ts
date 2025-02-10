@@ -4,17 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **Certificate** on IonosCloud.
- *
- * ## Import
- *
- * Resource certificate can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:cert/certificate:Certificate mycert {certificate uuid}
- * ```
- */
 export class Certificate extends pulumi.CustomResource {
     /**
      * Get an existing Certificate resource's state with the given name, ID, and optional extra
@@ -44,19 +33,19 @@ export class Certificate extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The certificate body. Pem encoded. Immutable.
+     * The certificate body in PEM format. This attribute is immutable.
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
-     * [string] The certificate chain. Pem encoded. Immutable.
+     * The certificate chain. This attribute is immutable.
      */
     public readonly certificateChain!: pulumi.Output<string | undefined>;
     /**
-     * [string] The certificate name
+     * The certificate name
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The certificate private key. Immutable. Sensitive.
+     * The private key blob. This attribute is immutable.
      */
     public readonly privateKey!: pulumi.Output<string>;
 
@@ -102,19 +91,19 @@ export class Certificate extends pulumi.CustomResource {
  */
 export interface CertificateState {
     /**
-     * [string] The certificate body. Pem encoded. Immutable.
+     * The certificate body in PEM format. This attribute is immutable.
      */
     certificate?: pulumi.Input<string>;
     /**
-     * [string] The certificate chain. Pem encoded. Immutable.
+     * The certificate chain. This attribute is immutable.
      */
     certificateChain?: pulumi.Input<string>;
     /**
-     * [string] The certificate name
+     * The certificate name
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The certificate private key. Immutable. Sensitive.
+     * The private key blob. This attribute is immutable.
      */
     privateKey?: pulumi.Input<string>;
 }
@@ -124,19 +113,19 @@ export interface CertificateState {
  */
 export interface CertificateArgs {
     /**
-     * [string] The certificate body. Pem encoded. Immutable.
+     * The certificate body in PEM format. This attribute is immutable.
      */
     certificate: pulumi.Input<string>;
     /**
-     * [string] The certificate chain. Pem encoded. Immutable.
+     * The certificate chain. This attribute is immutable.
      */
     certificateChain?: pulumi.Input<string>;
     /**
-     * [string] The certificate name
+     * The certificate name
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The certificate private key. Immutable. Sensitive.
+     * The private key blob. This attribute is immutable.
      */
     privateKey: pulumi.Input<string>;
 }

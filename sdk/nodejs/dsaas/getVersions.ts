@@ -4,19 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
- *
- * ## Example Usage
- *
- * ### Retrieve list of Managed Dataplatform API versions
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dsaas.getVersions({});
- * ```
- */
 export function getVersions(opts?: pulumi.InvokeOptions): Promise<GetVersionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dsaas/getVersions:getVersions", {
@@ -31,24 +18,8 @@ export interface GetVersionsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * list of Managed Dataplatform API versions.
-     */
     readonly versions: string[];
 }
-/**
- * The **Dataplatform Versions Data Source** can be used to search for and retrieve list of available Managed Dataplatform API versions.
- *
- * ## Example Usage
- *
- * ### Retrieve list of Managed Dataplatform API versions
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dsaas.getVersions({});
- * ```
- */
 export function getVersionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVersionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dsaas/getVersions:getVersions", {

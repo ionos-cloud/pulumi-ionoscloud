@@ -6,79 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * An IPSec Gateway Tunnel resource manages the creation, management, and deletion of VPN IPSec Gateway Tunnels within the
- * IONOS Cloud infrastructure. This resource facilitates the creation of VPN IPSec Gateway Tunnels, enabling secure
- * connections between your network resources.
- *
- * ## Usage example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const testDatacenter = new ionoscloud.compute.Datacenter("test_datacenter", {
- *     name: "test_vpn_gateway_basic",
- *     location: "de/fra",
- * });
- * const testLan = new ionoscloud.compute.Lan("test_lan", {
- *     name: "test_lan_basic",
- *     "public": false,
- *     datacenterId: testDatacenter.id,
- * });
- * const testIpblock = new ionoscloud.compute.IPBlock("test_ipblock", {
- *     name: "test_ipblock_basic",
- *     location: "de/fra",
- *     size: 1,
- * });
- * const example = new ionoscloud.vpn.IpsecGateway("example", {
- *     name: "ipsec_gateway_basic",
- *     location: "de/fra",
- *     gatewayIp: testIpblock.ips[0],
- *     version: "IKEv2",
- *     description: "This gateway connects site A to VDC X.",
- *     connections: [{
- *         datacenterId: testDatacenter.id,
- *         lanId: testLan.id,
- *         ipv4Cidr: "192.168.100.10/24",
- *     }],
- * });
- * const exampleIpsecTunnel = new ionoscloud.vpn.IpsecTunnel("example", {
- *     location: "de/fra",
- *     gatewayId: example.id,
- *     name: "example-tunnel",
- *     remoteHost: "vpn.mycompany.com",
- *     description: "Allows local subnet X to connect to virtual network Y.",
- *     auth: {
- *         method: "PSK",
- *         pskKey: "X2wosbaw74M8hQGbK3jCCaEusR6CCFRa",
- *     },
- *     ike: {
- *         diffieHellmanGroup: "16-MODP4096",
- *         encryptionAlgorithm: "AES256",
- *         integrityAlgorithm: "SHA256",
- *         lifetime: 86400,
- *     },
- *     esps: [{
- *         diffieHellmanGroup: "16-MODP4096",
- *         encryptionAlgorithm: "AES256",
- *         integrityAlgorithm: "SHA256",
- *         lifetime: 3600,
- *     }],
- *     cloudNetworkCidrs: ["0.0.0.0/0"],
- *     peerNetworkCidrs: ["1.2.3.4/32"],
- * });
- * ```
- *
- * ## Import
- *
- * The resource can be imported using the `location`, `gateway_id` and `tunnel_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:vpn/ipsecTunnel:IpsecTunnel example {location}:{gateway_id}:{tunnel_id}
- * ```
- */
 export class IpsecTunnel extends pulumi.CustomResource {
     /**
      * Get an existing IpsecTunnel resource's state with the given name, ID, and optional extra
@@ -108,48 +35,46 @@ export class IpsecTunnel extends pulumi.CustomResource {
     }
 
     /**
-     * [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-     * items: 1.
+     * Properties with all data needed to define IPSec Authentication.
      */
     public readonly auth!: pulumi.Output<outputs.vpn.IpsecTunnelAuth>;
     /**
-     * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-     * Maximum items: 20.
+     * The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+     * Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
      */
     public readonly cloudNetworkCidrs!: pulumi.Output<string[]>;
     /**
-     * [string] The human-readable description of your IPSec Gateway Tunnel.
+     * The human-readable description of your IPSec Gateway Tunnel.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the IPSec SA (ESP) phase.
      */
     public readonly esps!: pulumi.Output<outputs.vpn.IpsecTunnelEsp[]>;
     /**
-     * [string] The ID of the IPSec Gateway that the tunnel belongs to.
+     * The ID of the IPSec Gateway that the tunnel belongs to.
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the initial security exchange phase.
      */
     public readonly ike!: pulumi.Output<outputs.vpn.IpsecTunnelIke>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * [string] The name of the IPSec Gateway Tunnel.
+     * The human-readable name of your IPSec Gateway Tunnel.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-     * tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+     * The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+     * all addresses.
      */
     public readonly peerNetworkCidrs!: pulumi.Output<string[]>;
     /**
-     * [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * The remote peer host fully qualified domain name or public IPV4 IP to connect to.
      */
     public readonly remoteHost!: pulumi.Output<string>;
 
@@ -193,9 +118,6 @@ export class IpsecTunnel extends pulumi.CustomResource {
             if ((!args || args.ike === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ike'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             if ((!args || args.peerNetworkCidrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'peerNetworkCidrs'");
             }
@@ -223,48 +145,46 @@ export class IpsecTunnel extends pulumi.CustomResource {
  */
 export interface IpsecTunnelState {
     /**
-     * [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-     * items: 1.
+     * Properties with all data needed to define IPSec Authentication.
      */
     auth?: pulumi.Input<inputs.vpn.IpsecTunnelAuth>;
     /**
-     * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-     * Maximum items: 20.
+     * The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+     * Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
      */
     cloudNetworkCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The human-readable description of your IPSec Gateway Tunnel.
+     * The human-readable description of your IPSec Gateway Tunnel.
      */
     description?: pulumi.Input<string>;
     /**
-     * [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the IPSec SA (ESP) phase.
      */
     esps?: pulumi.Input<pulumi.Input<inputs.vpn.IpsecTunnelEsp>[]>;
     /**
-     * [string] The ID of the IPSec Gateway that the tunnel belongs to.
+     * The ID of the IPSec Gateway that the tunnel belongs to.
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the initial security exchange phase.
      */
     ike?: pulumi.Input<inputs.vpn.IpsecTunnelIke>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] The name of the IPSec Gateway Tunnel.
+     * The human-readable name of your IPSec Gateway Tunnel.
      */
     name?: pulumi.Input<string>;
     /**
-     * [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-     * tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+     * The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+     * all addresses.
      */
     peerNetworkCidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * The remote peer host fully qualified domain name or public IPV4 IP to connect to.
      */
     remoteHost?: pulumi.Input<string>;
 }
@@ -274,48 +194,46 @@ export interface IpsecTunnelState {
  */
 export interface IpsecTunnelArgs {
     /**
-     * [string] Properties with all data needed to define IPSec Authentication. Minimum items: 1. Maximum
-     * items: 1.
+     * Properties with all data needed to define IPSec Authentication.
      */
     auth: pulumi.Input<inputs.vpn.IpsecTunnelAuth>;
     /**
-     * [list] The network CIDRs on the "Left" side that are allowed to connect to the IPSec
-     * tunnel, i.e. the CIDRs within your IONOS Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1.
-     * Maximum items: 20.
+     * The network CIDRs on the "Left" side that are allowed to connect to the IPSec tunnel, i.e. the CIDRs within your IONOS
+     * Cloud LAN. Specify "0.0.0.0/0" or "::/0" for all addresses.
      */
     cloudNetworkCidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The human-readable description of your IPSec Gateway Tunnel.
+     * The human-readable description of your IPSec Gateway Tunnel.
      */
     description?: pulumi.Input<string>;
     /**
-     * [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the IPSec SA (ESP) phase.
      */
     esps: pulumi.Input<pulumi.Input<inputs.vpn.IpsecTunnelEsp>[]>;
     /**
-     * [string] The ID of the IPSec Gateway that the tunnel belongs to.
+     * The ID of the IPSec Gateway that the tunnel belongs to.
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
+     * Settings for the initial security exchange phase.
      */
     ike: pulumi.Input<inputs.vpn.IpsecTunnelIke>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit,
-     * gb/lhr, us/ewr, us/las, us/mci, fr/par
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * [string] The name of the IPSec Gateway Tunnel.
+     * The human-readable name of your IPSec Gateway Tunnel.
      */
     name?: pulumi.Input<string>;
     /**
-     * [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
-     * tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
+     * The network CIDRs on the "Right" side that are allowed to connect to the IPSec tunnel. Specify "0.0.0.0/0" or "::/0" for
+     * all addresses.
      */
     peerNetworkCidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
+     * The remote peer host fully qualified domain name or public IPV4 IP to connect to.
      */
     remoteHost: pulumi.Input<string>;
 }

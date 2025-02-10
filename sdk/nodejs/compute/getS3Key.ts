@@ -4,16 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
- * You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getS3Key(args: GetS3KeyArgs, opts?: pulumi.InvokeOptions): Promise<GetS3KeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:compute/getS3Key:getS3Key", {
-        "active": args.active,
         "id": args.id,
         "userId": args.userId,
     }, opts);
@@ -23,17 +16,7 @@ export function getS3Key(args: GetS3KeyArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getS3Key.
  */
 export interface GetS3KeyArgs {
-    /**
-     * The state of the IONOS Object Storage key
-     */
-    active?: boolean;
-    /**
-     * ID of the IONOS Object Storage key you want to search for.
-     */
-    id?: string;
-    /**
-     * [string] The UUID of the user owning the IONOS Object Storage Key.
-     */
+    id: string;
     userId: string;
 }
 
@@ -41,33 +24,14 @@ export interface GetS3KeyArgs {
  * A collection of values returned by getS3Key.
  */
 export interface GetS3KeyResult {
-    /**
-     * The state of the IONOS Object Storage key
-     */
-    readonly active?: boolean;
-    /**
-     * The id of the IONOS Object Storage key
-     */
-    readonly id?: string;
-    /**
-     * (Computed)The IONOS Object Storage Secret key.
-     */
+    readonly active: boolean;
+    readonly id: string;
     readonly secretKey: string;
-    /**
-     * The ID of the user that owns the key
-     */
     readonly userId: string;
 }
-/**
- * The **IONOS Object Storage key data source** can be used to search for and return an existing IONOS Object Storage key.
- * You can provide a string id which will be compared with provisioned IONOS Object Storage keys.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getS3KeyOutput(args: GetS3KeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetS3KeyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:compute/getS3Key:getS3Key", {
-        "active": args.active,
         "id": args.id,
         "userId": args.userId,
     }, opts);
@@ -77,16 +41,6 @@ export function getS3KeyOutput(args: GetS3KeyOutputArgs, opts?: pulumi.InvokeOut
  * A collection of arguments for invoking getS3Key.
  */
 export interface GetS3KeyOutputArgs {
-    /**
-     * The state of the IONOS Object Storage key
-     */
-    active?: pulumi.Input<boolean>;
-    /**
-     * ID of the IONOS Object Storage key you want to search for.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * [string] The UUID of the user owning the IONOS Object Storage Key.
-     */
+    id: pulumi.Input<string>;
     userId: pulumi.Input<string>;
 }

@@ -56,6 +56,7 @@ const (
 	loggingModule       = "logging"       // the logging module
 	albModule           = "alb"           // the applicationloadblancer module
 	nlbModule           = "nlb"           // the networkloadblancer module
+	nsgModule           = "nsg"           // the network security group
 	objectStorageModule = "objectstorage" // the object storage module
 )
 
@@ -156,6 +157,7 @@ func Provider() tfbridge.ProviderInfo {
 		License:                 "Apache-2.0",
 		Homepage:                "https://www.pulumi.com",
 		Repository:              "https://github.com/ionos-cloud/pulumi-ionoscloud",
+		UpstreamRepoPath:        "./upstream",
 		TFProviderModuleVersion: "v6",
 		SkipValidateProviderConfigForPluginFramework: true,
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this should
@@ -440,6 +442,9 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_networkloadbalancer_forwardingrule": {
 				Tok: tfbridge.MakeDataSource(mainPkg, nlbModule, "getForwardingRule"),
 			},
+			"ionoscloud_nsg": {
+				Tok: tfbridge.MakeDataSource(mainPkg, nsgModule, "getNsg"),
+			},
 			"ionoscloud_s3_object": {
 				Tok: tfbridge.MakeDataSource(mainPkg, objectStorageModule, "getS3Object"),
 			},
@@ -637,7 +642,15 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_networkloadbalancer_forwardingrule": {
 				Tok: tfbridge.MakeResource(mainPkg, nlbModule, "ForwardingRule"),
 			},
-
+			"ionoscloud_nsg": {
+				Tok: tfbridge.MakeResource(mainPkg, nsgModule, "Nsg"),
+			},
+			"ionoscloud_nsg_firewallrule": {
+				Tok: tfbridge.MakeResource(mainPkg, nsgModule, "Firewall"),
+			},
+			"ionoscloud_datacenter_nsg_selection": {
+				Tok: tfbridge.MakeResource(mainPkg, nsgModule, "DatacenterNsgSelection"),
+			},
 			"ionoscloud_s3_bucket": {
 				Tok: tfbridge.MakeResource(mainPkg, objectStorageModule, "Bucket"),
 			},

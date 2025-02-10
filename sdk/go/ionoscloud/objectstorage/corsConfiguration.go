@@ -28,7 +28,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := objectstorage.NewBucket(ctx, "example", nil)
+//			example, err := objectstorage.NewBucket(ctx, "example", &objectstorage.BucketArgs{
+//				Name: pulumi.String("example"),
+//			})
 //			if err != nil {
 //				return err
 //			}

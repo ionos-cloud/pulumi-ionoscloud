@@ -29,10 +29,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := objectstorage.GetS3Objects(ctx, &objectstorage.GetS3ObjectsArgs{
 //				Bucket:     "example",
-//				Delimiter:  pulumi.StringRef("/"),
-//				FetchOwner: pulumi.BoolRef(true),
-//				MaxKeys:    pulumi.IntRef(100),
 //				Prefix:     pulumi.StringRef("prefix1/"),
+//				Delimiter:  pulumi.StringRef("/"),
+//				MaxKeys:    pulumi.IntRef(100),
+//				FetchOwner: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
 //				return err

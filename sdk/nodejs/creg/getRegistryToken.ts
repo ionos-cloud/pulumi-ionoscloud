@@ -6,37 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
- * You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search and make sure that your resources have unique names.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: exampleIonoscloudContainerRegistry.id,
- *     name: "container-registry-token-example",
- * });
- * ```
- *
- * ### By Name with Partial Match
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: exampleIonoscloudContainerRegistry.id,
- *     name: "-example",
- *     partialMatch: true,
- * });
- * ```
- */
 export function getRegistryToken(args: GetRegistryTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:creg/getRegistryToken:getRegistryToken", {
@@ -51,23 +20,9 @@ export function getRegistryToken(args: GetRegistryTokenArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getRegistryToken.
  */
 export interface GetRegistryTokenArgs {
-    /**
-     * ID of the container registry token you want to search for.
-     */
     id?: string;
-    /**
-     * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
     name?: string;
-    /**
-     * Whether partial matching is allowed or not when using name argument. Default value is false.
-     *
-     * `registryId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     partialMatch?: boolean;
-    /**
-     * Registry's UUID.
-     */
     registryId: string;
 }
 
@@ -77,47 +32,13 @@ export interface GetRegistryTokenArgs {
 export interface GetRegistryTokenResult {
     readonly credentials: outputs.creg.GetRegistryTokenCredential[];
     readonly expiryDate: string;
-    /**
-     * Id of the container registry token.
-     */
-    readonly id?: string;
-    readonly name?: string;
+    readonly id: string;
+    readonly name: string;
     readonly partialMatch?: boolean;
     readonly registryId: string;
     readonly scopes: outputs.creg.GetRegistryTokenScope[];
     readonly status: string;
 }
-/**
- * The **Container Registry Token data source** can be used to search for and return an existing Container Registry Token.
- * You can provide a string for the name parameter which will be compared with provisioned Container Registry Token.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search and make sure that your resources have unique names.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: exampleIonoscloudContainerRegistry.id,
- *     name: "container-registry-token-example",
- * });
- * ```
- *
- * ### By Name with Partial Match
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.creg.getRegistryToken({
- *     registryId: exampleIonoscloudContainerRegistry.id,
- *     name: "-example",
- *     partialMatch: true,
- * });
- * ```
- */
 export function getRegistryTokenOutput(args: GetRegistryTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:creg/getRegistryToken:getRegistryToken", {
@@ -132,22 +53,8 @@ export function getRegistryTokenOutput(args: GetRegistryTokenOutputArgs, opts?: 
  * A collection of arguments for invoking getRegistryToken.
  */
 export interface GetRegistryTokenOutputArgs {
-    /**
-     * ID of the container registry token you want to search for.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Whether partial matching is allowed or not when using name argument. Default value is false.
-     *
-     * `registryId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     partialMatch?: pulumi.Input<boolean>;
-    /**
-     * Registry's UUID.
-     */
     registryId: pulumi.Input<string>;
 }

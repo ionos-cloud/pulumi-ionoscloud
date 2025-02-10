@@ -30,7 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleBucket, err := objectstorage.NewBucket(ctx, "exampleBucket", nil)
+//			example, err := objectstorage.NewBucket(ctx, "example", &objectstorage.BucketArgs{
+//				Name: pulumi.String("example"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -64,8 +66,8 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = objectstorage.NewBucketPolicy(ctx, "exampleBucketPolicy", &objectstorage.BucketPolicyArgs{
-//				Bucket: exampleBucket.Name,
+//			_, err = objectstorage.NewBucketPolicy(ctx, "example", &objectstorage.BucketPolicyArgs{
+//				Bucket: example.Name,
 //				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {

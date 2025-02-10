@@ -6,9 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
- */
 export function getServers(args: GetServersArgs, opts?: pulumi.InvokeOptions): Promise<GetServersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:autoscaling/getServers:getServers", {
@@ -20,11 +17,6 @@ export function getServers(args: GetServersArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getServers.
  */
 export interface GetServersArgs {
-    /**
-     * The unique ID of the autoscaling group.
-     *
-     * `groupId` must be provided. If it is not provided, the datasource will return an error.
-     */
     groupId: string;
 }
 
@@ -32,22 +24,13 @@ export interface GetServersArgs {
  * A collection of values returned by getServers.
  */
 export interface GetServersResult {
-    /**
-     * Id of the autoscaling group.
-     */
     readonly groupId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * List of servers.
-     */
     readonly servers: outputs.autoscaling.GetServersServer[];
 }
-/**
- * The autoscaling group servers data source can be used to search for and return existing servers that are part of a specific autoscaling group.
- */
 export function getServersOutput(args: GetServersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:autoscaling/getServers:getServers", {
@@ -59,10 +42,5 @@ export function getServersOutput(args: GetServersOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getServers.
  */
 export interface GetServersOutputArgs {
-    /**
-     * The unique ID of the autoscaling group.
-     *
-     * `groupId` must be provided. If it is not provided, the datasource will return an error.
-     */
     groupId: pulumi.Input<string>;
 }

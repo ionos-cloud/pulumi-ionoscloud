@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **Certificate data source** can be used to search for and return an existing certificate.
- * You can provide a string for either id or name parameters which will be compared with provisioned certificates.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.cert.getCertificate({
- *     name: "Certificate Name Example",
- * });
- * ```
- */
 export function getCertificate(args?: GetCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetCertificateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -37,23 +19,9 @@ export function getCertificate(args?: GetCertificateArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getCertificate.
  */
 export interface GetCertificateArgs {
-    /**
-     * Certificate body.
-     */
     certificate?: string;
-    /**
-     * Certificate chain.
-     */
     certificateChain?: string;
-    /**
-     * ID of the certificate you want to search for.
-     *
-     * Either `name` or `id` must be provided, or both. If none are provided, the datasource will return an error.
-     */
     id?: string;
-    /**
-     * Name of an existing certificate that you want to search for.
-     */
     name?: string;
 }
 
@@ -61,41 +29,11 @@ export interface GetCertificateArgs {
  * A collection of values returned by getCertificate.
  */
 export interface GetCertificateResult {
-    /**
-     * Certificate body.
-     */
     readonly certificate: string;
-    /**
-     * Certificate chain.
-     */
     readonly certificateChain: string;
-    /**
-     * The id of the certificate.
-     */
-    readonly id?: string;
-    /**
-     * The name of the certificate.
-     */
-    readonly name?: string;
+    readonly id: string;
+    readonly name: string;
 }
-/**
- * The **Certificate data source** can be used to search for and return an existing certificate.
- * You can provide a string for either id or name parameters which will be compared with provisioned certificates.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.cert.getCertificate({
- *     name: "Certificate Name Example",
- * });
- * ```
- */
 export function getCertificateOutput(args?: GetCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCertificateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -111,22 +49,8 @@ export function getCertificateOutput(args?: GetCertificateOutputArgs, opts?: pul
  * A collection of arguments for invoking getCertificate.
  */
 export interface GetCertificateOutputArgs {
-    /**
-     * Certificate body.
-     */
     certificate?: pulumi.Input<string>;
-    /**
-     * Certificate chain.
-     */
     certificateChain?: pulumi.Input<string>;
-    /**
-     * ID of the certificate you want to search for.
-     *
-     * Either `name` or `id` must be provided, or both. If none are provided, the datasource will return an error.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing certificate that you want to search for.
-     */
     name?: pulumi.Input<string>;
 }

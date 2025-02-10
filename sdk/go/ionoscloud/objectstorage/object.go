@@ -14,67 +14,6 @@ import (
 
 // Manages **IONOS Object Storage Objects** on IonosCloud.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleBucket, err := objectstorage.NewBucket(ctx, "exampleBucket", &objectstorage.BucketArgs{
-//				ObjectLockEnabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = objectstorage.NewObject(ctx, "exampleObject", &objectstorage.ObjectArgs{
-//				Bucket:                    exampleBucket.Name,
-//				Key:                       pulumi.String("object"),
-//				Content:                   pulumi.String("body"),
-//				ContentType:               pulumi.String("text/plain"),
-//				CacheControl:              pulumi.String("no-cache"),
-//				ContentDisposition:        pulumi.String("attachment"),
-//				ContentEncoding:           pulumi.String("identity"),
-//				ContentLanguage:           pulumi.String("en-GB"),
-//				Expires:                   pulumi.String("2024-10-07T12:34:56Z"),
-//				WebsiteRedirect:           pulumi.String("https://www.ionos.com"),
-//				ServerSideEncryption:      pulumi.String("AES256"),
-//				ObjectLockMode:            pulumi.String("GOVERNANCE"),
-//				ObjectLockRetainUntilDate: pulumi.String("2024-10-07T12:34:56Z"),
-//				ObjectLockLegalHold:       pulumi.String("ON"),
-//				Tags: pulumi.StringMap{
-//					"tk": pulumi.String("tv"),
-//				},
-//				Metadata: pulumi.StringMap{
-//					"mk": pulumi.String("mv"),
-//				},
-//				ForceDestroy: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Upload from file
-//			_, err = objectstorage.NewObject(ctx, "exampleObjectstorage/objectObject", &objectstorage.ObjectArgs{
-//				Bucket: exampleBucket.Name,
-//				Key:    pulumi.String("file-object"),
-//				Source: pulumi.String("path/to/file"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Resource Object can be imported using the `bucket name` and `object key`

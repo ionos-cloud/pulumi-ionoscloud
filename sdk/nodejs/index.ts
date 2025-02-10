@@ -5,6 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { DatacenterNsgSelectionArgs, DatacenterNsgSelectionState } from "./datacenterNsgSelection";
+export type DatacenterNsgSelection = import("./datacenterNsgSelection").DatacenterNsgSelection;
+export const DatacenterNsgSelection: typeof import("./datacenterNsgSelection").DatacenterNsgSelection = null as any;
+utilities.lazyLoad(exports, ["DatacenterNsgSelection"], () => require("./datacenterNsgSelection"));
+
+export { GetMonitoringPipelineArgs, GetMonitoringPipelineResult, GetMonitoringPipelineOutputArgs } from "./getMonitoringPipeline";
+export const getMonitoringPipeline: typeof import("./getMonitoringPipeline").getMonitoringPipeline = null as any;
+export const getMonitoringPipelineOutput: typeof import("./getMonitoringPipeline").getMonitoringPipelineOutput = null as any;
+utilities.lazyLoad(exports, ["getMonitoringPipeline","getMonitoringPipelineOutput"], () => require("./getMonitoringPipeline"));
+
+export { GetNsgArgs, GetNsgResult, GetNsgOutputArgs } from "./getNsg";
+export const getNsg: typeof import("./getNsg").getNsg = null as any;
+export const getNsgOutput: typeof import("./getNsg").getNsgOutput = null as any;
+utilities.lazyLoad(exports, ["getNsg","getNsgOutput"], () => require("./getNsg"));
+
+export { GetObjectStorageAccesskeyArgs, GetObjectStorageAccesskeyResult, GetObjectStorageAccesskeyOutputArgs } from "./getObjectStorageAccesskey";
+export const getObjectStorageAccesskey: typeof import("./getObjectStorageAccesskey").getObjectStorageAccesskey = null as any;
+export const getObjectStorageAccesskeyOutput: typeof import("./getObjectStorageAccesskey").getObjectStorageAccesskeyOutput = null as any;
+utilities.lazyLoad(exports, ["getObjectStorageAccesskey","getObjectStorageAccesskeyOutput"], () => require("./getObjectStorageAccesskey"));
+
+export { GetObjectStorageRegionArgs, GetObjectStorageRegionResult, GetObjectStorageRegionOutputArgs } from "./getObjectStorageRegion";
+export const getObjectStorageRegion: typeof import("./getObjectStorageRegion").getObjectStorageRegion = null as any;
+export const getObjectStorageRegionOutput: typeof import("./getObjectStorageRegion").getObjectStorageRegionOutput = null as any;
+utilities.lazyLoad(exports, ["getObjectStorageRegion","getObjectStorageRegionOutput"], () => require("./getObjectStorageRegion"));
+
+export { MonitoringPipelineArgs, MonitoringPipelineState } from "./monitoringPipeline";
+export type MonitoringPipeline = import("./monitoringPipeline").MonitoringPipeline;
+export const MonitoringPipeline: typeof import("./monitoringPipeline").MonitoringPipeline = null as any;
+utilities.lazyLoad(exports, ["MonitoringPipeline"], () => require("./monitoringPipeline"));
+
+export { NsgArgs, NsgState } from "./nsg";
+export type Nsg = import("./nsg").Nsg;
+export const Nsg: typeof import("./nsg").Nsg = null as any;
+utilities.lazyLoad(exports, ["Nsg"], () => require("./nsg"));
+
+export { NsgFirewallruleArgs, NsgFirewallruleState } from "./nsgFirewallrule";
+export type NsgFirewallrule = import("./nsgFirewallrule").NsgFirewallrule;
+export const NsgFirewallrule: typeof import("./nsgFirewallrule").NsgFirewallrule = null as any;
+utilities.lazyLoad(exports, ["NsgFirewallrule"], () => require("./nsgFirewallrule"));
+
+export { ObjectStorageAccesskeyArgs, ObjectStorageAccesskeyState } from "./objectStorageAccesskey";
+export type ObjectStorageAccesskey = import("./objectStorageAccesskey").ObjectStorageAccesskey;
+export const ObjectStorageAccesskey: typeof import("./objectStorageAccesskey").ObjectStorageAccesskey = null as any;
+utilities.lazyLoad(exports, ["ObjectStorageAccesskey"], () => require("./objectStorageAccesskey"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -28,6 +73,8 @@ import * as kafka from "./kafka";
 import * as logging from "./logging";
 import * as nfs from "./nfs";
 import * as nlb from "./nlb";
+import * as nsg from "./nsg";
+import * as objectstorage from "./objectstorage";
 import * as types from "./types";
 import * as vpn from "./vpn";
 
@@ -48,9 +95,36 @@ export {
     logging,
     nfs,
     nlb,
+    nsg,
+    objectstorage,
     types,
     vpn,
 };
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection":
+                return new DatacenterNsgSelection(name, <any>undefined, { urn })
+            case "ionoscloud:index/monitoringPipeline:MonitoringPipeline":
+                return new MonitoringPipeline(name, <any>undefined, { urn })
+            case "ionoscloud:index/nsg:Nsg":
+                return new Nsg(name, <any>undefined, { urn })
+            case "ionoscloud:index/nsgFirewallrule:NsgFirewallrule":
+                return new NsgFirewallrule(name, <any>undefined, { urn })
+            case "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey":
+                return new ObjectStorageAccesskey(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("ionoscloud", "index/datacenterNsgSelection", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/monitoringPipeline", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/nsg", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/nsgFirewallrule", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "index/objectStorageAccesskey", _module)
 pulumi.runtime.registerResourcePackage("ionoscloud", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

@@ -524,6 +524,10 @@
                     }
                 }
             },
+            "ionoscloud_monitoring_pipeline": {
+                "current": "ionoscloud:index/monitoringPipeline:MonitoringPipeline",
+                "majorVersion": 1
+            },
             "ionoscloud_natgateway": {
                 "current": "ionoscloud:compute/natGateway:NatGateway",
                 "majorVersion": 1,
@@ -651,6 +655,10 @@
                 "current": "ionoscloud:nsg/firewall:Firewall",
                 "majorVersion": 1
             },
+            "ionoscloud_object_storage_accesskey": {
+                "current": "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey",
+                "majorVersion": 1
+            },
             "ionoscloud_pg_cluster": {
                 "current": "ionoscloud:dbaas/pSQLCluster:PSQLCluster",
                 "majorVersion": 1,
@@ -693,10 +701,12 @@
                 }
             },
             "ionoscloud_s3_bucket": {
-                "current": "ionoscloud:objectstorage/bucket:Bucket"
+                "current": "ionoscloud:objectstorage/bucket:Bucket",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_cors_configuration": {
                 "current": "ionoscloud:objectstorage/corsConfiguration:CorsConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "cors_rule": {
                         "maxItemsOne": false,
@@ -721,6 +731,7 @@
             },
             "ionoscloud_s3_bucket_lifecycle_configuration": {
                 "current": "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false
@@ -728,16 +739,20 @@
                 }
             },
             "ionoscloud_s3_bucket_object_lock_configuration": {
-                "current": "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration"
+                "current": "ionoscloud:objectstorage/objectLockConfiguration:ObjectLockConfiguration",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_policy": {
-                "current": "ionoscloud:objectstorage/bucketPolicy:BucketPolicy"
+                "current": "ionoscloud:objectstorage/bucketPolicy:BucketPolicy",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_public_access_block": {
-                "current": "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock"
+                "current": "ionoscloud:objectstorage/publicAccessBlock:PublicAccessBlock",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_server_side_encryption_configuration": {
                 "current": "ionoscloud:objectstorage/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false
@@ -745,10 +760,12 @@
                 }
             },
             "ionoscloud_s3_bucket_versioning": {
-                "current": "ionoscloud:objectstorage/bucketVersioning:BucketVersioning"
+                "current": "ionoscloud:objectstorage/bucketVersioning:BucketVersioning",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_website_configuration": {
                 "current": "ionoscloud:objectstorage/websiteConfiguration:WebsiteConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "routing_rule": {
                         "maxItemsOne": false
@@ -760,10 +777,12 @@
                 "majorVersion": 1
             },
             "ionoscloud_s3_object": {
-                "current": "ionoscloud:objectstorage/object:Object"
+                "current": "ionoscloud:objectstorage/object:Object",
+                "majorVersion": 1
             },
             "ionoscloud_s3_object_copy": {
-                "current": "ionoscloud:objectstorage/objectCopy:ObjectCopy"
+                "current": "ionoscloud:objectstorage/objectCopy:ObjectCopy",
+                "majorVersion": 1
             },
             "ionoscloud_server": {
                 "current": "ionoscloud:compute/server:Server",
@@ -1675,6 +1694,10 @@
                     }
                 }
             },
+            "ionoscloud_monitoring_pipeline": {
+                "current": "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline",
+                "majorVersion": 1
+            },
             "ionoscloud_natgateway": {
                 "current": "ionoscloud:compute/getNatGateway:getNatGateway",
                 "majorVersion": 1,
@@ -1801,6 +1824,19 @@
                     }
                 }
             },
+            "ionoscloud_object_storage_accesskey": {
+                "current": "ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey",
+                "majorVersion": 1
+            },
+            "ionoscloud_object_storage_region": {
+                "current": "ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion",
+                "majorVersion": 1,
+                "fields": {
+                    "storage_classes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_pg_backups": {
                 "current": "ionoscloud:dbaas/getPSQLBackups:getPSQLBackups",
                 "majorVersion": 1,
@@ -1878,20 +1914,24 @@
                 "majorVersion": 1
             },
             "ionoscloud_s3_bucket": {
-                "current": "ionoscloud:objectstorage/getS3Bucket:getS3Bucket"
+                "current": "ionoscloud:objectstorage/getS3Bucket:getS3Bucket",
+                "majorVersion": 1
             },
             "ionoscloud_s3_bucket_policy": {
-                "current": "ionoscloud:objectstorage/getS3BucketPolicy:getS3BucketPolicy"
+                "current": "ionoscloud:objectstorage/getS3BucketPolicy:getS3BucketPolicy",
+                "majorVersion": 1
             },
             "ionoscloud_s3_key": {
                 "current": "ionoscloud:compute/getS3Key:getS3Key",
                 "majorVersion": 1
             },
             "ionoscloud_s3_object": {
-                "current": "ionoscloud:objectstorage/getS3Object:getS3Object"
+                "current": "ionoscloud:objectstorage/getS3Object:getS3Object",
+                "majorVersion": 1
             },
             "ionoscloud_s3_objects": {
                 "current": "ionoscloud:objectstorage/getS3Objects:getS3Objects",
+                "majorVersion": 1,
                 "fields": {
                     "common_prefixes": {
                         "maxItemsOne": false
@@ -2163,7 +2203,32 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "ionoscloud_datacenter_nsg_selection": {
+                "aliases": [
+                    "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection"
+                ]
+            },
+            "ionoscloud_nsg": {
+                "aliases": [
+                    "ionoscloud:index/nsg:Nsg"
+                ]
+            },
+            "ionoscloud_nsg_firewallrule": {
+                "aliases": [
+                    "ionoscloud:index/nsgFirewallrule:NsgFirewallrule"
+                ]
+            }
+        },
+        "datasources": {
+            "ionoscloud_nsg": {
+                "renames": [
+                    "ionoscloud:index/getNsg:getNsg"
+                ]
+            }
+        }
+    },
     "mux": {
         "resources": {
             "ionoscloud:alb/balancer:Balancer": 0,
@@ -2210,6 +2275,11 @@
             "ionoscloud:dns/zone:Zone": 0,
             "ionoscloud:dsaas/cluster:Cluster": 0,
             "ionoscloud:dsaas/nodePool:NodePool": 0,
+            "ionoscloud:index/datacenterNsgSelection:DatacenterNsgSelection": 0,
+            "ionoscloud:index/monitoringPipeline:MonitoringPipeline": 1,
+            "ionoscloud:index/nsg:Nsg": 0,
+            "ionoscloud:index/nsgFirewallrule:NsgFirewallrule": 0,
+            "ionoscloud:index/objectStorageAccesskey:ObjectStorageAccesskey": 1,
             "ionoscloud:k8s/cluster:Cluster": 0,
             "ionoscloud:k8s/nodePool:NodePool": 0,
             "ionoscloud:kafka/cluster:Cluster": 0,
@@ -2219,6 +2289,9 @@
             "ionoscloud:nfs/share:Share": 0,
             "ionoscloud:nlb/balancer:Balancer": 0,
             "ionoscloud:nlb/forwardingRule:ForwardingRule": 0,
+            "ionoscloud:nsg/datacenterNsgSelection:DatacenterNsgSelection": 0,
+            "ionoscloud:nsg/firewall:Firewall": 0,
+            "ionoscloud:nsg/nsg:Nsg": 0,
             "ionoscloud:objectstorage/bucket:Bucket": 1,
             "ionoscloud:objectstorage/bucketLifecycleConfiguration:BucketLifecycleConfiguration": 1,
             "ionoscloud:objectstorage/bucketPolicy:BucketPolicy": 1,
@@ -2293,6 +2366,10 @@
             "ionoscloud:dsaas/getNodePool:getNodePool": 0,
             "ionoscloud:dsaas/getNodePools:getNodePools": 0,
             "ionoscloud:dsaas/getVersions:getVersions": 0,
+            "ionoscloud:index/getMonitoringPipeline:getMonitoringPipeline": 1,
+            "ionoscloud:index/getNsg:getNsg": 0,
+            "ionoscloud:index/getObjectStorageAccesskey:getObjectStorageAccesskey": 1,
+            "ionoscloud:index/getObjectStorageRegion:getObjectStorageRegion": 1,
             "ionoscloud:k8s/getCluster:getCluster": 0,
             "ionoscloud:k8s/getClusters:getClusters": 0,
             "ionoscloud:k8s/getNodePool:getNodePool": 0,
@@ -2304,6 +2381,7 @@
             "ionoscloud:nfs/getShare:getShare": 0,
             "ionoscloud:nlb/getBalancer:getBalancer": 0,
             "ionoscloud:nlb/getForwardingRule:getForwardingRule": 0,
+            "ionoscloud:nsg/getNsg:getNsg": 0,
             "ionoscloud:objectstorage/getS3Bucket:getS3Bucket": 1,
             "ionoscloud:objectstorage/getS3BucketPolicy:getS3BucketPolicy": 1,
             "ionoscloud:objectstorage/getS3Object:getS3Object": 1,

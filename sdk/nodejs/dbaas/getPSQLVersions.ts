@@ -4,19 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **DbaaS Postgres Versions data source** can be used to search for and retrieve list of available postgres versions for a specific cluster or for all clusters.
- *
- * ## Example Usage
- *
- * ### Retrieve list of postgres versions for all clusters
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getPSQLVersions({});
- * ```
- */
 export function getPSQLVersions(args?: GetPSQLVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLVersionsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -29,11 +16,6 @@ export function getPSQLVersions(args?: GetPSQLVersionsArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getPSQLVersions.
  */
 export interface GetPSQLVersionsArgs {
-    /**
-     * The unique ID of the cluster.
-     *
-     * If `clusterId` is not provided the data source will return the list of postgres version for all cluster.
-     */
     clusterId?: string;
 }
 
@@ -41,32 +23,13 @@ export interface GetPSQLVersionsArgs {
  * A collection of values returned by getPSQLVersions.
  */
 export interface GetPSQLVersionsResult {
-    /**
-     * Id of the cluster
-     */
     readonly clusterId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * list of PostgreSQL versions.
-     */
     readonly postgresVersions: string[];
 }
-/**
- * The **DbaaS Postgres Versions data source** can be used to search for and retrieve list of available postgres versions for a specific cluster or for all clusters.
- *
- * ## Example Usage
- *
- * ### Retrieve list of postgres versions for all clusters
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getPSQLVersions({});
- * ```
- */
 export function getPSQLVersionsOutput(args?: GetPSQLVersionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLVersionsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -79,10 +42,5 @@ export function getPSQLVersionsOutput(args?: GetPSQLVersionsOutputArgs, opts?: p
  * A collection of arguments for invoking getPSQLVersions.
  */
 export interface GetPSQLVersionsOutputArgs {
-    /**
-     * The unique ID of the cluster.
-     *
-     * If `clusterId` is not provided the data source will return the list of postgres version for all cluster.
-     */
     clusterId?: pulumi.Input<string>;
 }

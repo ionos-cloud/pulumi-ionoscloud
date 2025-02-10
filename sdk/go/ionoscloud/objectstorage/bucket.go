@@ -13,6 +13,39 @@ import (
 
 // Manages **IONOS Object Storage Buckets** on IonosCloud.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/objectstorage"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := objectstorage.NewBucket(ctx, "example", &objectstorage.BucketArgs{
+//				Name:              pulumi.String("example"),
+//				Region:            pulumi.String("eu-central-3"),
+//				ObjectLockEnabled: pulumi.Bool(true),
+//				ForceDestroy:      pulumi.Bool(true),
+//				Tags: pulumi.StringMap{
+//					"key1": pulumi.String("value1"),
+//					"key2": pulumi.String("value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Resource Bucket can be imported using the `bucket name`

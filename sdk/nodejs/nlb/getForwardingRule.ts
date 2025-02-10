@@ -6,11 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetForwardingRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:nlb/getForwardingRule:getForwardingRule", {
@@ -25,23 +20,9 @@ export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getForwardingRule.
  */
 export interface GetForwardingRuleArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: string;
-    /**
-     * ID of the network load balancer forwarding rule you want to search for.
-     *
-     * Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: string;
-    /**
-     * Name of an existing network load balancer forwarding rule that you want to search for.
-     */
     name?: string;
-    /**
-     * Network Load Balancer's UUID.
-     */
     networkloadbalancerId: string;
 }
 
@@ -49,46 +30,17 @@ export interface GetForwardingRuleArgs {
  * A collection of values returned by getForwardingRule.
  */
 export interface GetForwardingRuleResult {
-    /**
-     * Algorithm for the balancing.
-     */
     readonly algorithm: string;
     readonly datacenterId: string;
-    /**
-     * Health check attributes for Network Load Balancer forwarding rule target.
-     */
     readonly healthChecks: outputs.nlb.GetForwardingRuleHealthCheck[];
-    /**
-     * The id of that Network Load Balancer forwarding rule.
-     */
-    readonly id?: string;
-    /**
-     * Listening IP. (inbound)
-     */
+    readonly id: string;
     readonly listenerIp: string;
-    /**
-     * Listening port number. (inbound) (range: 1 to 65535)
-     */
     readonly listenerPort: number;
-    /**
-     * The name of that Network Load Balancer forwarding rule.
-     */
-    readonly name?: string;
+    readonly name: string;
     readonly networkloadbalancerId: string;
-    /**
-     * Protocol of the balancing.
-     */
     readonly protocol: string;
-    /**
-     * Array of items in that collection.
-     */
     readonly targets: outputs.nlb.GetForwardingRuleTarget[];
 }
-/**
- * The **Network Load Balancer Forwarding Rule data source** can be used to search for and return existing network forwarding rules.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- */
 export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetForwardingRuleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:nlb/getForwardingRule:getForwardingRule", {
@@ -103,22 +55,8 @@ export function getForwardingRuleOutput(args: GetForwardingRuleOutputArgs, opts?
  * A collection of arguments for invoking getForwardingRule.
  */
 export interface GetForwardingRuleOutputArgs {
-    /**
-     * Datacenter's UUID.
-     */
     datacenterId: pulumi.Input<string>;
-    /**
-     * ID of the network load balancer forwarding rule you want to search for.
-     *
-     * Both `datacenterId` and `networkloadbalancerId` and either `name` or `id` must be provided. If none, or both of `name` and `id` are provided, the datasource will return an error.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Name of an existing network load balancer forwarding rule that you want to search for.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Network Load Balancer's UUID.
-     */
     networkloadbalancerId: pulumi.Input<string>;
 }

@@ -4,87 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Manages **IP Failover** groups on IonosCloud.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * const example = new ionoscloud.compute.Datacenter("example", {
- *     name: "Datacenter Example",
- *     location: "us/las",
- *     description: "Datacenter Description",
- *     secAuthProtection: false,
- * });
- * const exampleIPBlock = new ionoscloud.compute.IPBlock("example", {
- *     location: "us/las",
- *     size: 1,
- *     name: "IP Block Example",
- * });
- * const exampleLan = new ionoscloud.compute.Lan("example", {
- *     datacenterId: example.id,
- *     "public": true,
- *     name: "Lan Example",
- * });
- * const serverImagePassword = new random.index.Password("server_image_password", {
- *     length: 16,
- *     special: false,
- * });
- * const exampleServer = new ionoscloud.compute.Server("example", {
- *     name: "Server Example",
- *     datacenterId: example.id,
- *     cores: 1,
- *     ram: 1024,
- *     availabilityZone: "ZONE_1",
- *     cpuFamily: "INTEL_XEON",
- *     imageName: "Ubuntu-20.04",
- *     imagePassword: serverImagePassword.result,
- *     volume: {
- *         name: "system",
- *         size: 14,
- *         diskType: "SSD",
- *     },
- *     nic: {
- *         lan: 1,
- *         dhcp: true,
- *         firewallActive: true,
- *         ips: [exampleIPBlock.ips[0]],
- *     },
- * });
- * const exampleIPFailover = new ionoscloud.compute.IPFailover("example", {
- *     datacenterId: example.id,
- *     lanId: exampleLan.id,
- *     ip: exampleIPBlock.ips[0],
- *     nicuuid: exampleServer.primaryNic,
- * }, {
- *     dependsOn: [exampleLan],
- * });
- * ```
- *
- * ## A note on multiple NICs on an IP Failover
- *
- * If you want to add a secondary NIC to an IP Failover, follow these steps:
- * 1) Creating NIC A with failover IP on LAN 1
- * 2) Create NIC B unde the same LAN but with a different IP
- * 3) Create the IP Failover on LAN 1 with NIC A and failover IP of NIC A (A becomes now "master", no slaves)
- * 4) Update NIC B IP to be the failover IP ( B becomes now a slave, A remains master)
- *
- * After this you can create a new NIC C, NIC D and so on, in LAN 1, directly with the failover IP.
- *
- * Please check examples for a full example with the above steps.
- *
- * ## Import
- *
- * Resource IpFailover can be imported using the `resource id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:compute/iPFailover:IPFailover myipfailover {datacenter uuid}/{lan uuid}
- * ```
- */
 export class IPFailover extends pulumi.CustomResource {
     /**
      * Get an existing IPFailover resource's state with the given name, ID, and optional extra
@@ -113,17 +32,11 @@ export class IPFailover extends pulumi.CustomResource {
         return obj['__pulumiType'] === IPFailover.__pulumiType;
     }
 
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * [string] The reserved IP address to be used in the IP failover group.
+     * Failover IP
      */
     public readonly ip!: pulumi.Output<string>;
-    /**
-     * [string] The ID of a LAN.
-     */
     public readonly lanId!: pulumi.Output<string>;
     /**
      * The UUID of the master NIC
@@ -175,17 +88,11 @@ export class IPFailover extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IPFailover resources.
  */
 export interface IPFailoverState {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
     /**
-     * [string] The reserved IP address to be used in the IP failover group.
+     * Failover IP
      */
     ip?: pulumi.Input<string>;
-    /**
-     * [string] The ID of a LAN.
-     */
     lanId?: pulumi.Input<string>;
     /**
      * The UUID of the master NIC
@@ -197,17 +104,11 @@ export interface IPFailoverState {
  * The set of arguments for constructing a IPFailover resource.
  */
 export interface IPFailoverArgs {
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
     /**
-     * [string] The reserved IP address to be used in the IP failover group.
+     * Failover IP
      */
     ip: pulumi.Input<string>;
-    /**
-     * [string] The ID of a LAN.
-     */
     lanId: pulumi.Input<string>;
     /**
      * The UUID of the master NIC

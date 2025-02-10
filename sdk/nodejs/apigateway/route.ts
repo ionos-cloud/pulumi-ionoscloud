@@ -6,62 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages an **API Gateway Route** on IonosCloud.
- *
- * ## Example Usage
- *
- * This resource will create an operational API Gateway Route. After this section completes, the provisioner can be called.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.apigateway.Apigateway("example", {
- *     name: "example-gateway",
- *     metrics: true,
- *     customDomains: [
- *         {
- *             name: "example.com",
- *             certificateId: "00000000-0000-0000-0000-000000000000",
- *         },
- *         {
- *             name: "example.org",
- *             certificateId: "00000000-0000-0000-0000-000000000000",
- *         },
- *     ],
- * });
- * const apigatewayRoute = new ionoscloud.apigateway.Route("apigateway_route", {
- *     name: "apigateway-route",
- *     type: "http",
- *     paths: [
- *         "/foo/*",
- *         "/bar",
- *     ],
- *     methods: [
- *         "GET",
- *         "POST",
- *     ],
- *     websocket: false,
- *     upstreams: [{
- *         scheme: "http",
- *         loadbalancer: "roundrobin",
- *         host: "example.com",
- *         port: 80,
- *         weight: 100,
- *     }],
- *     gatewayId: example.id,
- * });
- * ```
- *
- * ## Import
- *
- * API Gateway route can be imported using the `apigateway route id`:
- *
- * ```sh
- * $ pulumi import ionoscloud:apigateway/route:Route myroute {apigateway uuid}:{apigateway route uuid}
- * ```
- */
 export class Route extends pulumi.CustomResource {
     /**
      * Get an existing Route resource's state with the given name, ID, and optional extra
@@ -91,33 +35,28 @@ export class Route extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The ID of the API Gateway that the route belongs to.
+     * The ID of the API Gateway that the route belongs to.
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-     * `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+     * The HTTP methods that the route should match.
      */
     public readonly methods!: pulumi.Output<string[]>;
     /**
-     * [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+     * The name of the API Gateway Route.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [list] The paths that the route should match. Minimum items: 1.
+     * The paths that the route should match.
      */
     public readonly paths!: pulumi.Output<string[]>;
     /**
-     * [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * This field specifies the protocol used by the ingress to route traffic to the backend service.
      */
     public readonly type!: pulumi.Output<string | undefined>;
-    /**
-     * Upstreams information of the API Gateway Route. Minimum items: 1.
-     */
     public readonly upstreams!: pulumi.Output<outputs.apigateway.RouteUpstream[]>;
     /**
-     * [bool] To enable websocket support. Default value: `false`.
+     * To enable websocket support.
      */
     public readonly websocket!: pulumi.Output<boolean | undefined>;
 
@@ -173,33 +112,28 @@ export class Route extends pulumi.CustomResource {
  */
 export interface RouteState {
     /**
-     * [string] The ID of the API Gateway that the route belongs to.
+     * The ID of the API Gateway that the route belongs to.
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-     * `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+     * The HTTP methods that the route should match.
      */
     methods?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+     * The name of the API Gateway Route.
      */
     name?: pulumi.Input<string>;
     /**
-     * [list] The paths that the route should match. Minimum items: 1.
+     * The paths that the route should match.
      */
     paths?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * This field specifies the protocol used by the ingress to route traffic to the backend service.
      */
     type?: pulumi.Input<string>;
-    /**
-     * Upstreams information of the API Gateway Route. Minimum items: 1.
-     */
     upstreams?: pulumi.Input<pulumi.Input<inputs.apigateway.RouteUpstream>[]>;
     /**
-     * [bool] To enable websocket support. Default value: `false`.
+     * To enable websocket support.
      */
     websocket?: pulumi.Input<boolean>;
 }
@@ -209,33 +143,28 @@ export interface RouteState {
  */
 export interface RouteArgs {
     /**
-     * [string] The ID of the API Gateway that the route belongs to.
+     * The ID of the API Gateway that the route belongs to.
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * [list] The HTTP methods that the route should match. Minimum items: 1. Possible values: `GET`,
-     * `POST`, `PUT`, `DELETE`, `PATCH`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`.
+     * The HTTP methods that the route should match.
      */
     methods: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] Name of the API Gateway Route. Only alphanumeric characters are allowed.
+     * The name of the API Gateway Route.
      */
     name?: pulumi.Input<string>;
     /**
-     * [list] The paths that the route should match. Minimum items: 1.
+     * The paths that the route should match.
      */
     paths: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] This field specifies the protocol used by the ingress to route traffic to the backend
-     * service. Default value: `http`.
+     * This field specifies the protocol used by the ingress to route traffic to the backend service.
      */
     type?: pulumi.Input<string>;
-    /**
-     * Upstreams information of the API Gateway Route. Minimum items: 1.
-     */
     upstreams: pulumi.Input<pulumi.Input<inputs.apigateway.RouteUpstream>[]>;
     /**
-     * [bool] To enable websocket support. Default value: `false`.
+     * To enable websocket support.
      */
     websocket?: pulumi.Input<boolean>;
 }

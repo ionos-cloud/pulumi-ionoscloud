@@ -6,23 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getLocation({
- *     name: "karlsruhe",
- *     feature: "SSD",
- * });
- * ```
- */
 export function getLocation(args?: GetLocationArgs, opts?: pulumi.InvokeOptions): Promise<GetLocationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -36,13 +19,7 @@ export function getLocation(args?: GetLocationArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getLocation.
  */
 export interface GetLocationArgs {
-    /**
-     * A desired feature that the location must be able to provide.
-     */
     feature?: string;
-    /**
-     * Name of the location to search for.
-     */
     name?: string;
 }
 
@@ -50,38 +27,15 @@ export interface GetLocationArgs {
  * A collection of values returned by getLocation.
  */
 export interface GetLocationResult {
-    /**
-     * Array of features and CPU families available in a location
-     */
     readonly cpuArchitectures: outputs.compute.GetLocationCpuArchitecture[];
-    readonly feature?: string;
+    readonly feature: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * List of image aliases available for the location
-     */
     readonly imageAliases: string[];
-    readonly name?: string;
+    readonly name: string;
 }
-/**
- * The **Location data source** can be used to search for and return an existing location which can then be used elsewhere in the configuration.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getLocation({
- *     name: "karlsruhe",
- *     feature: "SSD",
- * });
- * ```
- */
 export function getLocationOutput(args?: GetLocationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLocationResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -95,12 +49,6 @@ export function getLocationOutput(args?: GetLocationOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getLocation.
  */
 export interface GetLocationOutputArgs {
-    /**
-     * A desired feature that the location must be able to provide.
-     */
     feature?: pulumi.Input<string>;
-    /**
-     * Name of the location to search for.
-     */
     name?: pulumi.Input<string>;
 }

@@ -6,54 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * ## Overview
- *
- * The `ionoscloud.vpn.WireguardGateway` resource manages a WireGuard Gateway within the IONOS Cloud infrastructure.
- * This resource facilitates the creation, management, and deletion of WireGuard VPN Gateways, enabling secure connections between your network resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
- *     name: "datacenter_example",
- *     location: "de/fra",
- * });
- * const ipblockExample = new ionoscloud.compute.IPBlock("ipblock_example", {
- *     location: "de/fra",
- *     size: 1,
- *     name: "ipblock_example",
- * });
- * const lanExample = new ionoscloud.compute.Lan("lan_example", {
- *     name: "lan_example",
- *     datacenterId: datacenterExample.id,
- * });
- * const gateway = new ionoscloud.vpn.WireguardGateway("gateway", {
- *     location: "de/fra",
- *     name: "gateway_example",
- *     description: "description",
- *     privateKey: "private",
- *     gatewayIp: ipblockExample.ips[0],
- *     interfaceIpv4Cidr: "192.168.1.100/24",
- *     connections: [{
- *         datacenterId: datacenterExample.id,
- *         lanId: lanExample.id,
- *         ipv4Cidr: "192.168.1.108/24",
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * WireGuard Gateways can be imported using their ID:
- *
- * ```sh
- * $ pulumi import ionoscloud:vpn/wireguardGateway:WireguardGateway example_gateway location:id
- * ```
- */
 export class WireguardGateway extends pulumi.CustomResource {
     /**
      * Get an existing WireguardGateway resource's state with the given name, ID, and optional extra
@@ -82,47 +34,46 @@ export class WireguardGateway extends pulumi.CustomResource {
         return obj['__pulumiType'] === WireguardGateway.__pulumiType;
     }
 
-    /**
-     * [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
-     */
     public readonly connections!: pulumi.Output<outputs.vpn.WireguardGatewayConnection[]>;
-    /**
-     * [String] A description of the WireGuard Gateway.
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * [String] The IP address of the WireGuard Gateway.
-     */
     public readonly gatewayIp!: pulumi.Output<string>;
     /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway interface.
+     * The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
+     * interfaceIPv6CIDR is __required__.
      */
     public readonly interfaceIpv4Cidr!: pulumi.Output<string | undefined>;
     /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway interface.
+     * The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
+     * interfaceIPv4CIDR is __required__.
      */
     public readonly interfaceIpv6Cidr!: pulumi.Output<string | undefined>;
     public readonly listenPort!: pulumi.Output<number | undefined>;
     /**
-     * [String] The location of the WireGuard Gateway.
+     * The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * [String] The name of the WireGuard Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
      */
+    public readonly maintenanceWindow!: pulumi.Output<outputs.vpn.WireguardGatewayMaintenanceWindow>;
     public readonly name!: pulumi.Output<string>;
     /**
-     * [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+     * PrivateKey used for WireGuard Server
      */
     public readonly privateKey!: pulumi.Output<string>;
     /**
-     * (Computed)[String] The public key for the WireGuard Gateway.
+     * PublicKey used for WireGuard Server. Received in response from API
      */
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
     /**
-     * (Computed)[String] The current status of the WireGuard Gateway.
+     * The status of the WireGuard Gateway
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Gateway performance options. See the documentation for the available options
+     */
+    public readonly tier!: pulumi.Output<string | undefined>;
 
     /**
      * Create a WireguardGateway resource with the given unique name, arguments, and options.
@@ -144,10 +95,12 @@ export class WireguardGateway extends pulumi.CustomResource {
             resourceInputs["interfaceIpv6Cidr"] = state ? state.interfaceIpv6Cidr : undefined;
             resourceInputs["listenPort"] = state ? state.listenPort : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["maintenanceWindow"] = state ? state.maintenanceWindow : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tier"] = state ? state.tier : undefined;
         } else {
             const args = argsOrState as WireguardGatewayArgs | undefined;
             if ((!args || args.connections === undefined) && !opts.urn) {
@@ -155,9 +108,6 @@ export class WireguardGateway extends pulumi.CustomResource {
             }
             if ((!args || args.gatewayIp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gatewayIp'");
-            }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
             }
             if ((!args || args.privateKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
@@ -169,8 +119,10 @@ export class WireguardGateway extends pulumi.CustomResource {
             resourceInputs["interfaceIpv6Cidr"] = args ? args.interfaceIpv6Cidr : undefined;
             resourceInputs["listenPort"] = args ? args.listenPort : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["maintenanceWindow"] = args ? args.maintenanceWindow : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["tier"] = args ? args.tier : undefined;
             resourceInputs["publicKey"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -185,84 +137,82 @@ export class WireguardGateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WireguardGateway resources.
  */
 export interface WireguardGatewayState {
-    /**
-     * [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
-     */
     connections?: pulumi.Input<pulumi.Input<inputs.vpn.WireguardGatewayConnection>[]>;
-    /**
-     * [String] A description of the WireGuard Gateway.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * [String] The IP address of the WireGuard Gateway.
-     */
     gatewayIp?: pulumi.Input<string>;
     /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway interface.
+     * The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
+     * interfaceIPv6CIDR is __required__.
      */
     interfaceIpv4Cidr?: pulumi.Input<string>;
     /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway interface.
+     * The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
+     * interfaceIPv4CIDR is __required__.
      */
     interfaceIpv6Cidr?: pulumi.Input<string>;
     listenPort?: pulumi.Input<number>;
     /**
-     * [String] The location of the WireGuard Gateway.
+     * The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
     location?: pulumi.Input<string>;
     /**
-     * [String] The name of the WireGuard Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
      */
+    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow>;
     name?: pulumi.Input<string>;
     /**
-     * [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+     * PrivateKey used for WireGuard Server
      */
     privateKey?: pulumi.Input<string>;
     /**
-     * (Computed)[String] The public key for the WireGuard Gateway.
+     * PublicKey used for WireGuard Server. Received in response from API
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * (Computed)[String] The current status of the WireGuard Gateway.
+     * The status of the WireGuard Gateway
      */
     status?: pulumi.Input<string>;
+    /**
+     * Gateway performance options. See the documentation for the available options
+     */
+    tier?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a WireguardGateway resource.
  */
 export interface WireguardGatewayArgs {
-    /**
-     * [Block] The connection configuration for the WireGuard Gateway. This block supports fields documented below.
-     */
     connections: pulumi.Input<pulumi.Input<inputs.vpn.WireguardGatewayConnection>[]>;
-    /**
-     * [String] A description of the WireGuard Gateway.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * [String] The IP address of the WireGuard Gateway.
-     */
     gatewayIp: pulumi.Input<string>;
     /**
-     * [String] The IPv4 CIDR for the WireGuard Gateway interface.
+     * The IPV4 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv4CIDR or
+     * interfaceIPv6CIDR is __required__.
      */
     interfaceIpv4Cidr?: pulumi.Input<string>;
     /**
-     * [String] The IPv6 CIDR for the WireGuard Gateway interface.
+     * The IPV6 address (with CIDR mask) to be assigned to the WireGuard interface. __Note__: either interfaceIPv6CIDR or
+     * interfaceIPv4CIDR is __required__.
      */
     interfaceIpv6Cidr?: pulumi.Input<string>;
     listenPort?: pulumi.Input<number>;
     /**
-     * [String] The location of the WireGuard Gateway.
+     * The location of the WireGuard Gateway. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las,
+     * us/mci, fr/par
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * [String] The name of the WireGuard Gateway.
+     * A weekly 4 hour-long window, during which maintenance might occur
      */
+    maintenanceWindow?: pulumi.Input<inputs.vpn.WireguardGatewayMaintenanceWindow>;
     name?: pulumi.Input<string>;
     /**
-     * [String] The private key for the WireGuard Gateway. To be created with the wg utility.
+     * PrivateKey used for WireGuard Server
      */
     privateKey: pulumi.Input<string>;
+    /**
+     * Gateway performance options. See the documentation for the available options
+     */
+    tier?: pulumi.Input<string>;
 }

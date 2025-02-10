@@ -4,9 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **PgSql Database data source** can be used to search for and return an existing PgSql database.
- */
 export function getPSQLDatabase(args: GetPSQLDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLDatabaseResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", {
@@ -19,13 +16,7 @@ export function getPSQLDatabase(args: GetPSQLDatabaseArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getPSQLDatabase.
  */
 export interface GetPSQLDatabaseArgs {
-    /**
-     * [string] The ID of the cluster.
-     */
     clusterId: string;
-    /**
-     * [string] Name of an existing database that you want to search for.
-     */
     name: string;
 }
 
@@ -34,19 +25,10 @@ export interface GetPSQLDatabaseArgs {
  */
 export interface GetPSQLDatabaseResult {
     readonly clusterId: string;
-    /**
-     * [string] The id of the database.
-     */
     readonly id: string;
     readonly name: string;
-    /**
-     * [string] The owner of the database.
-     */
     readonly owner: string;
 }
-/**
- * The **PgSql Database data source** can be used to search for and return an existing PgSql database.
- */
 export function getPSQLDatabaseOutput(args: GetPSQLDatabaseOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLDatabaseResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", {
@@ -59,12 +41,6 @@ export function getPSQLDatabaseOutput(args: GetPSQLDatabaseOutputArgs, opts?: pu
  * A collection of arguments for invoking getPSQLDatabase.
  */
 export interface GetPSQLDatabaseOutputArgs {
-    /**
-     * [string] The ID of the cluster.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * [string] Name of an existing database that you want to search for.
-     */
     name: pulumi.Input<string>;
 }

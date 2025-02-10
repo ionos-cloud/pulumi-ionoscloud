@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
- * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Type
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getResource({
- *     resourceType: "datacenter",
- * });
- * ```
- */
 export function getResource(args?: GetResourceArgs, opts?: pulumi.InvokeOptions): Promise<GetResourceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -35,13 +17,7 @@ export function getResource(args?: GetResourceArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getResource.
  */
 export interface GetResourceArgs {
-    /**
-     * The ID of the specific resource to retrieve information about.
-     */
     resourceId?: string;
-    /**
-     * The specific type of resources to retrieve information about.
-     */
     resourceType?: string;
 }
 
@@ -56,24 +32,6 @@ export interface GetResourceResult {
     readonly resourceId?: string;
     readonly resourceType?: string;
 }
-/**
- * The **Resource data source** can be used to search for and return any existing IonosCloud resource and optionally their group associations.
- * You can provide a string for the resource type (datacenter,image,snapshot,ipblock) and/or resource id parameters which will be queries against available resources.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Type
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getResource({
- *     resourceType: "datacenter",
- * });
- * ```
- */
 export function getResourceOutput(args?: GetResourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetResourceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -87,12 +45,6 @@ export function getResourceOutput(args?: GetResourceOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getResource.
  */
 export interface GetResourceOutputArgs {
-    /**
-     * The ID of the specific resource to retrieve information about.
-     */
     resourceId?: pulumi.Input<string>;
-    /**
-     * The specific type of resources to retrieve information about.
-     */
     resourceType?: pulumi.Input<string>;
 }

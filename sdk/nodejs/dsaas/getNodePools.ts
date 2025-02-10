@@ -6,11 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
- *
- * ## Example Usage
- */
 export function getNodePools(args: GetNodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dsaas/getNodePools:getNodePools", {
@@ -24,17 +19,8 @@ export function getNodePools(args: GetNodePoolsArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getNodePools.
  */
 export interface GetNodePoolsArgs {
-    /**
-     * ID of the cluster the searched node pool is part of.
-     */
     clusterId: string;
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
     name?: string;
-    /**
-     * Whether partial matching is allowed or not when using name argument. Default value is false.
-     */
     partialMatch?: boolean;
 }
 
@@ -42,26 +28,15 @@ export interface GetNodePoolsArgs {
  * A collection of values returned by getNodePools.
  */
 export interface GetNodePoolsResult {
-    /**
-     * ID of the cluster the searched node pool is part of.
-     */
     readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name?: string;
-    /**
-     * List of Node Pools - See the Node Pool section.
-     */
     readonly nodePools: outputs.dsaas.GetNodePoolsNodePool[];
     readonly partialMatch?: boolean;
 }
-/**
- * The **Dataplatform Node Pools Data Source** can be used to search for and return a list of existing Dataplatform Node Pools under a Dataplatform Cluster.
- *
- * ## Example Usage
- */
 export function getNodePoolsOutput(args: GetNodePoolsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dsaas/getNodePools:getNodePools", {
@@ -75,16 +50,7 @@ export function getNodePoolsOutput(args: GetNodePoolsOutputArgs, opts?: pulumi.I
  * A collection of arguments for invoking getNodePools.
  */
 export interface GetNodePoolsOutputArgs {
-    /**
-     * ID of the cluster the searched node pool is part of.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if `partialMatch` parameter is not set to true.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * Whether partial matching is allowed or not when using name argument. Default value is false.
-     */
     partialMatch?: pulumi.Input<boolean>;
 }

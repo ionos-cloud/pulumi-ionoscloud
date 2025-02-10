@@ -6,23 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * ## Import
- *
- * In order to import a Logging pipeline, you can define an empty Logging pipeline resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_logging_pipeline" "example" {
- *
- * }
- *
- * The resource can be imported using the `location` and `pipeline_id`, for example:
- *
- * ```sh
- * $ pulumi import ionoscloud:logging/pipeline:Pipeline example {location}:{pipeline_id}
- * ```
- */
 export class Pipeline extends pulumi.CustomResource {
     /**
      * Get an existing Pipeline resource's state with the given name, ID, and optional extra
@@ -52,20 +35,14 @@ export class Pipeline extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The address of the client's grafana instance.
+     * The address of the client's grafana instance
      */
     public /*out*/ readonly grafanaAddress!: pulumi.Output<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * The location of your logging pipeline. Default: de/txl. Supported locations: de/fra, de/txl, es/vit, gb/lhr, fr/par
      */
     public readonly location!: pulumi.Output<string | undefined>;
-    /**
-     * [list] Pipeline logs, a list that contains elements with the following structure:
-     */
     public readonly logs!: pulumi.Output<outputs.logging.PipelineLog[]>;
-    /**
-     * [string] The name of the Logging pipeline.
-     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -105,20 +82,14 @@ export class Pipeline extends pulumi.CustomResource {
  */
 export interface PipelineState {
     /**
-     * [string] The address of the client's grafana instance.
+     * The address of the client's grafana instance
      */
     grafanaAddress?: pulumi.Input<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * The location of your logging pipeline. Default: de/txl. Supported locations: de/fra, de/txl, es/vit, gb/lhr, fr/par
      */
     location?: pulumi.Input<string>;
-    /**
-     * [list] Pipeline logs, a list that contains elements with the following structure:
-     */
     logs?: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[]>;
-    /**
-     * [string] The name of the Logging pipeline.
-     */
     name?: pulumi.Input<string>;
 }
 
@@ -127,15 +98,9 @@ export interface PipelineState {
  */
 export interface PipelineArgs {
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl` One of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`.
+     * The location of your logging pipeline. Default: de/txl. Supported locations: de/fra, de/txl, es/vit, gb/lhr, fr/par
      */
     location?: pulumi.Input<string>;
-    /**
-     * [list] Pipeline logs, a list that contains elements with the following structure:
-     */
     logs: pulumi.Input<pulumi.Input<inputs.logging.PipelineLog>[]>;
-    /**
-     * [string] The name of the Logging pipeline.
-     */
     name?: pulumi.Input<string>;
 }

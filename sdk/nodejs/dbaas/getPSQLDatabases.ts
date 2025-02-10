@@ -6,11 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **PgSql Databases data source** can be used to search for and return multiple existing PgSql databases.
- *
- * ## Example Usage
- */
 export function getPSQLDatabases(args: GetPSQLDatabasesArgs, opts?: pulumi.InvokeOptions): Promise<GetPSQLDatabasesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", {
@@ -23,13 +18,7 @@ export function getPSQLDatabases(args: GetPSQLDatabasesArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getPSQLDatabases.
  */
 export interface GetPSQLDatabasesArgs {
-    /**
-     * [string] The ID of the cluster.
-     */
     clusterId: string;
-    /**
-     * [string] Filter using a specific owner.
-     */
     owner?: string;
 }
 
@@ -38,24 +27,13 @@ export interface GetPSQLDatabasesArgs {
  */
 export interface GetPSQLDatabasesResult {
     readonly clusterId: string;
-    /**
-     * [list] A list that contains either all databases, either some of them (filter by owner). A database from list has the following format:
-     */
     readonly databases: outputs.dbaas.GetPSQLDatabasesDatabase[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * [string] The owner of the database.
-     */
     readonly owner?: string;
 }
-/**
- * The **PgSql Databases data source** can be used to search for and return multiple existing PgSql databases.
- *
- * ## Example Usage
- */
 export function getPSQLDatabasesOutput(args: GetPSQLDatabasesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPSQLDatabasesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", {
@@ -68,12 +46,6 @@ export function getPSQLDatabasesOutput(args: GetPSQLDatabasesOutputArgs, opts?: 
  * A collection of arguments for invoking getPSQLDatabases.
  */
 export interface GetPSQLDatabasesOutputArgs {
-    /**
-     * [string] The ID of the cluster.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * [string] Filter using a specific owner.
-     */
     owner?: pulumi.Input<string>;
 }

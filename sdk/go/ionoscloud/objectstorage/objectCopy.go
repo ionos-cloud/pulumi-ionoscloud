@@ -30,16 +30,20 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sourceBucket, err := objectstorage.NewBucket(ctx, "sourceBucket", nil)
+//			source, err := objectstorage.NewBucket(ctx, "source", &objectstorage.BucketArgs{
+//				Name: pulumi.String("source"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			target, err := objectstorage.NewBucket(ctx, "target", nil)
+//			target, err := objectstorage.NewBucket(ctx, "target", &objectstorage.BucketArgs{
+//				Name: pulumi.String("target"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			sourceObject, err := objectstorage.NewObject(ctx, "sourceObject", &objectstorage.ObjectArgs{
-//				Bucket:      sourceBucket.Name,
+//			sourceObject, err := objectstorage.NewObject(ctx, "source", &objectstorage.ObjectArgs{
+//				Bucket:      source.Name,
 //				Key:         pulumi.String("source_object"),
 //				Content:     pulumi.String("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
 //				ContentType: pulumi.String("application/octet-stream"),
@@ -50,7 +54,7 @@ import (
 //			_, err = objectstorage.NewObjectCopy(ctx, "example", &objectstorage.ObjectCopyArgs{
 //				Bucket: target.Name,
 //				Key:    pulumi.String("example"),
-//				Source: pulumi.All(sourceBucket.Name, sourceObject.Key).ApplyT(func(_args []interface{}) (string, error) {
+//				Source: pulumi.All(source.Name, sourceObject.Key).ApplyT(func(_args []interface{}) (string, error) {
 //					name := _args[0].(string)
 //					key := _args[1].(string)
 //					return fmt.Sprintf("%v/%v", name, key), nil

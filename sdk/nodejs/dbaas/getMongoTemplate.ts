@@ -4,13 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **DbaaS Mongo Template data source** can be used to search for and return an existing DbaaS MongoDB Template.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getMongoTemplate(args?: GetMongoTemplateArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoTemplateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -25,13 +18,7 @@ export function getMongoTemplate(args?: GetMongoTemplateArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getMongoTemplate.
  */
 export interface GetMongoTemplateArgs {
-    /**
-     * The ID of the template.
-     */
     id?: string;
-    /**
-     * The name of the template.
-     */
     name?: string;
     partialMatch?: boolean;
 }
@@ -40,39 +27,14 @@ export interface GetMongoTemplateArgs {
  * A collection of values returned by getMongoTemplate.
  */
 export interface GetMongoTemplateResult {
-    /**
-     * The number of CPU cores.
-     */
     readonly cores: number;
-    /**
-     * The edition of the template (e.g. enterprise).
-     */
     readonly edition: string;
-    /**
-     * The ID of the template.
-     */
     readonly id: string;
-    /**
-     * The name of the template.
-     */
     readonly name: string;
     readonly partialMatch?: boolean;
-    /**
-     * The amount of memory in GB.
-     */
     readonly ram: number;
-    /**
-     * The amount of storage size in GB.
-     */
     readonly storageSize: number;
 }
-/**
- * The **DbaaS Mongo Template data source** can be used to search for and return an existing DbaaS MongoDB Template.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getMongoTemplateOutput(args?: GetMongoTemplateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoTemplateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -87,13 +49,7 @@ export function getMongoTemplateOutput(args?: GetMongoTemplateOutputArgs, opts?:
  * A collection of arguments for invoking getMongoTemplate.
  */
 export interface GetMongoTemplateOutputArgs {
-    /**
-     * The ID of the template.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The name of the template.
-     */
     name?: pulumi.Input<string>;
     partialMatch?: pulumi.Input<boolean>;
 }

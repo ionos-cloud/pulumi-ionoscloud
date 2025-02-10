@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := objectstorage.NewPublicAccessBlock(ctx, "example", &objectstorage.PublicAccessBlockArgs{
-//				Bucket:                pulumi.Any(ionoscloud_s3_bucket.Example.Name),
+//				Bucket:                pulumi.Any(exampleIonoscloudS3Bucket.Name),
 //				IgnorePublicAcls:      pulumi.Bool(true),
 //				RestrictPublicBuckets: pulumi.Bool(true),
 //				BlockPublicPolicy:     pulumi.Bool(false),

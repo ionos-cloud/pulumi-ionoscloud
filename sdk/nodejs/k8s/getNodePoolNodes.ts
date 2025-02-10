@@ -6,10 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
- * ## Example Usage
- */
 export function getNodePoolNodes(args: GetNodePoolNodesArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolNodesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", {
@@ -22,9 +18,6 @@ export function getNodePoolNodes(args: GetNodePoolNodesArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getNodePoolNodes.
  */
 export interface GetNodePoolNodesArgs {
-    /**
-     * K8s Cluster' UUID
-     */
     k8sClusterId: string;
     nodePoolId: string;
 }
@@ -39,15 +32,8 @@ export interface GetNodePoolNodesResult {
     readonly id: string;
     readonly k8sClusterId: string;
     readonly nodePoolId: string;
-    /**
-     * a list of the nodes that are in the nodepool
-     */
     readonly nodes: outputs.k8s.GetNodePoolNodesNode[];
 }
-/**
- * The **k8s Node Pool Nodes** data source can be used to search for and return a list of existing k8s Node Pool nodes.
- * ## Example Usage
- */
 export function getNodePoolNodesOutput(args: GetNodePoolNodesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNodePoolNodesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", {
@@ -60,9 +46,6 @@ export function getNodePoolNodesOutput(args: GetNodePoolNodesOutputArgs, opts?: 
  * A collection of arguments for invoking getNodePoolNodes.
  */
 export interface GetNodePoolNodesOutputArgs {
-    /**
-     * K8s Cluster' UUID
-     */
     k8sClusterId: pulumi.Input<string>;
     nodePoolId: pulumi.Input<string>;
 }

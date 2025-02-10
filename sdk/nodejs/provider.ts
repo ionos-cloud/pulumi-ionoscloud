@@ -68,6 +68,7 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["contractNumber"] = args ? args.contractNumber : undefined;
             resourceInputs["endpoint"] = args ? args.endpoint : undefined;
+            resourceInputs["insecure"] = pulumi.output(args ? args.insecure : undefined).apply(JSON.stringify);
             resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["retries"] = pulumi.output(args ? args.retries : undefined).apply(JSON.stringify);
             resourceInputs["s3AccessKey"] = args ? args.s3AccessKey : undefined;
@@ -90,6 +91,10 @@ export interface ProviderArgs {
      * IonosCloud REST API URL. Usually not necessary to be set, SDKs know internally how to route requests to the API.
      */
     endpoint?: pulumi.Input<string>;
+    /**
+     * This field is to be set only for testing purposes. It is not recommended to set this field in production environments.
+     */
+    insecure?: pulumi.Input<boolean>;
     /**
      * IonosCloud password for API operations. If token is provided, token is preferred
      */

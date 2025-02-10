@@ -6,23 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
- *
- * ## Example Usage
- *
- * ### By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getMariaDBCluster({
- *     displayName: "MariaDB_cluster",
- *     location: "de/txl",
- * });
- * ```
- */
 export function getMariaDBCluster(args?: GetMariaDBClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMariaDBClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -37,21 +20,8 @@ export function getMariaDBCluster(args?: GetMariaDBClusterArgs, opts?: pulumi.In
  * A collection of arguments for invoking getMariaDBCluster.
  */
 export interface GetMariaDBClusterArgs {
-    /**
-     * [string] Display Name of an existing cluster that you want to search for.
-     */
     displayName?: string;
-    /**
-     * [string] ID of the cluster you want to search for.
-     */
     id?: string;
-    /**
-     * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
-     *
-     * > **⚠ WARNING:** `Location` attribute will become required in the future.
-     *
-     * Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
     location?: string;
 }
 
@@ -59,62 +29,18 @@ export interface GetMariaDBClusterArgs {
  * A collection of values returned by getMariaDBCluster.
  */
 export interface GetMariaDBClusterResult {
-    /**
-     * The network connection for your cluster. Only one connection is allowed.
-     */
     readonly connections: outputs.dbaas.GetMariaDBClusterConnection[];
-    /**
-     * [int] The number of CPU cores per instance.
-     */
     readonly cores: number;
-    /**
-     * [string] The friendly name of your cluster.
-     */
-    readonly displayName?: string;
-    /**
-     * [string] The DNS name pointing to your cluster.
-     */
+    readonly displayName: string;
     readonly dnsName: string;
-    readonly id?: string;
-    /**
-     * [int] The total number of instances in the cluster (one primary and n-1 secondary).
-     */
+    readonly id: string;
     readonly instances: number;
     readonly location?: string;
-    /**
-     * A weekly 4 hour-long window, during which maintenance might occur.
-     */
     readonly maintenanceWindows: outputs.dbaas.GetMariaDBClusterMaintenanceWindow[];
-    /**
-     * [string] The MariaDB version of your cluster.
-     */
     readonly mariadbVersion: string;
-    /**
-     * [int] The amount of memory per instance in gigabytes (GB).
-     */
     readonly ram: number;
-    /**
-     * [int] The amount of storage per instance in gigabytes (GB).
-     */
     readonly storageSize: number;
 }
-/**
- * The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
- *
- * ## Example Usage
- *
- * ### By Name
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.dbaas.getMariaDBCluster({
- *     displayName: "MariaDB_cluster",
- *     location: "de/txl",
- * });
- * ```
- */
 export function getMariaDBClusterOutput(args?: GetMariaDBClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMariaDBClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -129,20 +55,7 @@ export function getMariaDBClusterOutput(args?: GetMariaDBClusterOutputArgs, opts
  * A collection of arguments for invoking getMariaDBCluster.
  */
 export interface GetMariaDBClusterOutputArgs {
-    /**
-     * [string] Display Name of an existing cluster that you want to search for.
-     */
     displayName?: pulumi.Input<string>;
-    /**
-     * [string] ID of the cluster you want to search for.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * [string] The location of the cluster. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
-     *
-     * > **⚠ WARNING:** `Location` attribute will become required in the future.
-     *
-     * Either `displayName` or `id` must be provided. If none or both are provided, the datasource will return an error.
-     */
     location?: pulumi.Input<string>;
 }

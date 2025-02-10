@@ -6,17 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages an **Application Load Balancer Forwarding Rule** on IonosCloud.
- *
- * ## Import
- *
- * Resource Application Load Balancer Forwarding Rule can be imported using the `resource id`, `alb id` and `datacenter id`, e.g.
- *
- * ```sh
- * $ pulumi import ionoscloud:alb/forwardingRule:ForwardingRule my_application_loadbalancer_forwardingrule {datacenter uuid}/{application_loadbalancer uuid}/{application_loadbalancer_forwardingrule uuid}
- * ```
- */
 export class ForwardingRule extends pulumi.CustomResource {
     /**
      * Get an existing ForwardingRule resource's state with the given name, ID, and optional extra
@@ -45,40 +34,34 @@ export class ForwardingRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === ForwardingRule.__pulumiType;
     }
 
-    /**
-     * [string] The ID of Application Load Balancer.
-     */
     public readonly applicationLoadbalancerId!: pulumi.Output<string>;
     /**
-     * [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+     * The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
      */
     public readonly clientTimeout!: pulumi.Output<number>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     public readonly datacenterId!: pulumi.Output<string>;
     /**
-     * [list] Array of items in that collection
+     * Array of items in that collection
      */
     public readonly httpRules!: pulumi.Output<outputs.alb.ForwardingRuleHttpRule[] | undefined>;
     /**
-     * [string] Listening (inbound) IP.
+     * Listening (inbound) IP.
      */
     public readonly listenerIp!: pulumi.Output<string>;
     /**
-     * [int] Listening (inbound) port number; valid range is 1 to 65535.
+     * Listening (inbound) port number; valid range is 1 to 65535.
      */
     public readonly listenerPort!: pulumi.Output<number>;
     /**
-     * [string] The name of the Application Load Balancer forwarding rule.
+     * The name of the Application Load Balancer forwarding rule.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] Balancing protocol.
+     * Balancing protocol.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
-     * [list] Array of certificate ids. You can create certificates with the certificate resource.
+     * Array of items in the collection.
      */
     public readonly serverCertificates!: pulumi.Output<string[] | undefined>;
 
@@ -140,40 +123,34 @@ export class ForwardingRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ForwardingRule resources.
  */
 export interface ForwardingRuleState {
-    /**
-     * [string] The ID of Application Load Balancer.
-     */
     applicationLoadbalancerId?: pulumi.Input<string>;
     /**
-     * [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+     * The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
      */
     clientTimeout?: pulumi.Input<number>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId?: pulumi.Input<string>;
     /**
-     * [list] Array of items in that collection
+     * Array of items in that collection
      */
     httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[]>;
     /**
-     * [string] Listening (inbound) IP.
+     * Listening (inbound) IP.
      */
     listenerIp?: pulumi.Input<string>;
     /**
-     * [int] Listening (inbound) port number; valid range is 1 to 65535.
+     * Listening (inbound) port number; valid range is 1 to 65535.
      */
     listenerPort?: pulumi.Input<number>;
     /**
-     * [string] The name of the Application Load Balancer forwarding rule.
+     * The name of the Application Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] Balancing protocol.
+     * Balancing protocol.
      */
     protocol?: pulumi.Input<string>;
     /**
-     * [list] Array of certificate ids. You can create certificates with the certificate resource.
+     * Array of items in the collection.
      */
     serverCertificates?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -182,40 +159,34 @@ export interface ForwardingRuleState {
  * The set of arguments for constructing a ForwardingRule resource.
  */
 export interface ForwardingRuleArgs {
-    /**
-     * [string] The ID of Application Load Balancer.
-     */
     applicationLoadbalancerId: pulumi.Input<string>;
     /**
-     * [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
+     * The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
      */
     clientTimeout?: pulumi.Input<number>;
-    /**
-     * [string] The ID of a Virtual Data Center.
-     */
     datacenterId: pulumi.Input<string>;
     /**
-     * [list] Array of items in that collection
+     * Array of items in that collection
      */
     httpRules?: pulumi.Input<pulumi.Input<inputs.alb.ForwardingRuleHttpRule>[]>;
     /**
-     * [string] Listening (inbound) IP.
+     * Listening (inbound) IP.
      */
     listenerIp: pulumi.Input<string>;
     /**
-     * [int] Listening (inbound) port number; valid range is 1 to 65535.
+     * Listening (inbound) port number; valid range is 1 to 65535.
      */
     listenerPort: pulumi.Input<number>;
     /**
-     * [string] The name of the Application Load Balancer forwarding rule.
+     * The name of the Application Load Balancer forwarding rule.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] Balancing protocol.
+     * Balancing protocol.
      */
     protocol: pulumi.Input<string>;
     /**
-     * [list] Array of certificate ids. You can create certificates with the certificate resource.
+     * Array of items in the collection.
      */
     serverCertificates?: pulumi.Input<pulumi.Input<string>[]>;
 }

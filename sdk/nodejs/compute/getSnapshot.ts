@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name & Size & Location
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getSnapshot({
- *     name: "Snapshot Example",
- *     size: 2,
- *     location: "us/las",
- * });
- * ```
- * Note: The size argument is in GB
- */
 export function getSnapshot(args?: GetSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetSnapshotResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -37,26 +19,9 @@ export function getSnapshot(args?: GetSnapshotArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getSnapshot.
  */
 export interface GetSnapshotArgs {
-    /**
-     * UUID of an existing snapshot that you want to search for.
-     */
     id?: string;
-    /**
-     * Existing snapshot's location.
-     */
     location?: string;
-    /**
-     * Name of an existing snapshot that you want to search for.
-     */
     name?: string;
-    /**
-     * The size of the snapshot to look for.
-     *
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-     * Additionally, you can add `location` and `size` along with the `name` argument for a more refined search.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
-     */
     size?: number;
 }
 
@@ -64,93 +29,24 @@ export interface GetSnapshotArgs {
  * A collection of values returned by getSnapshot.
  */
 export interface GetSnapshotResult {
-    /**
-     * Is capable of CPU hot plug (no reboot required)
-     */
     readonly cpuHotPlug: boolean;
-    /**
-     * Is capable of CPU hot unplug (no reboot required)
-     */
     readonly cpuHotUnplug: boolean;
-    /**
-     * Human readable description
-     */
     readonly description: string;
-    /**
-     * Is capable of SCSI drive hot plug (no reboot required)
-     */
     readonly discScsiHotPlug: boolean;
-    /**
-     * Is capable of SCSI drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-     */
     readonly discScsiHotUnplug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot plug (no reboot required)
-     */
     readonly discVirtioHotPlug: boolean;
-    /**
-     * Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-     */
     readonly discVirtioHotUnplug: boolean;
-    /**
-     * UUID of the snapshot
-     */
-    readonly id?: string;
-    /**
-     * OS type of this Snapshot
-     */
+    readonly id: string;
     readonly licenceType: string;
-    /**
-     * Location of that image/snapshot
-     */
     readonly location: string;
-    /**
-     * The name of the snapshot.
-     */
     readonly name: string;
-    /**
-     * Is capable of nic hot plug (no reboot required)
-     */
     readonly nicHotPlug: boolean;
-    /**
-     * Is capable of nic hot unplug (no reboot required)
-     */
     readonly nicHotUnplug: boolean;
-    /**
-     * Is capable of memory hot plug (no reboot required)
-     */
     readonly ramHotPlug: boolean;
-    /**
-     * Is capable of memory hot unplug (no reboot required)
-     */
     readonly ramHotUnplug: boolean;
-    /**
-     * Boolean value representing if the snapshot requires extra protection e.g. two factor protection
-     */
     readonly secAuthProtection: boolean;
-    /**
-     * The size of the image in GB
-     */
     readonly size: number;
 }
-/**
- * The **Snapshot data source** can be used to search for and return an existing snapshot which can then be used to provision a server. If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned. When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- *
- * ### By Name & Size & Location
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = ionoscloud.compute.getSnapshot({
- *     name: "Snapshot Example",
- *     size: 2,
- *     location: "us/las",
- * });
- * ```
- * Note: The size argument is in GB
- */
 export function getSnapshotOutput(args?: GetSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSnapshotResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -166,25 +62,8 @@ export function getSnapshotOutput(args?: GetSnapshotOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getSnapshot.
  */
 export interface GetSnapshotOutputArgs {
-    /**
-     * UUID of an existing snapshot that you want to search for.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * Existing snapshot's location.
-     */
     location?: pulumi.Input<string>;
-    /**
-     * Name of an existing snapshot that you want to search for.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The size of the snapshot to look for.
-     *
-     * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
-     * Additionally, you can add `location` and `size` along with the `name` argument for a more refined search.
-     * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
-     * When this happens, please refine your search string so that it is specific enough to return only one result.
-     */
     size?: pulumi.Input<number>;
 }

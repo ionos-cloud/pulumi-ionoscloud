@@ -6,136 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * Manages a **DbaaS Mongo User**. .
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * // Basic example
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
- *     name: "example",
- *     location: "de/txl",
- *     description: "Datacenter for testing dbaas cluster",
- * });
- * const lanExample = new ionoscloud.compute.Lan("lan_example", {
- *     datacenterId: datacenterExample.id,
- *     "public": false,
- *     name: "example",
- * });
- * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("example_mongo_cluster", {
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Sunday",
- *         time: "09:00:00",
- *     },
- *     mongodbVersion: "5.0",
- *     instances: 1,
- *     displayName: "example_mongo_cluster",
- *     location: datacenterExample.location,
- *     connections: {
- *         datacenterId: datacenterExample.id,
- *         lanId: lanExample.id,
- *         cidrLists: ["192.168.1.108/24"],
- *     },
- *     templateId: "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
- * });
- * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("example_mongo_user", {
- *     clusterId: exampleMongoCluster.id,
- *     username: "myUser",
- *     password: "strongPassword",
- *     roles: [
- *         {
- *             role: "read",
- *             database: "db1",
- *         },
- *         {
- *             role: "readWrite",
- *             database: "db2",
- *         },
- *     ],
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- * import * as random from "@pulumi/random";
- *
- * // Complete example
- * const datacenterExample = new ionoscloud.compute.Datacenter("datacenter_example", {
- *     name: "example",
- *     location: "de/txl",
- *     description: "Datacenter for testing dbaas cluster",
- * });
- * const lanExample = new ionoscloud.compute.Lan("lan_example", {
- *     datacenterId: datacenterExample.id,
- *     "public": false,
- *     name: "example",
- * });
- * const exampleMongoCluster = new ionoscloud.dbaas.MongoCluster("example_mongo_cluster", {
- *     maintenanceWindow: {
- *         dayOfTheWeek: "Sunday",
- *         time: "09:00:00",
- *     },
- *     mongodbVersion: "5.0",
- *     instances: 1,
- *     displayName: "example_mongo_cluster",
- *     location: datacenterExample.location,
- *     connections: {
- *         datacenterId: datacenterExample.id,
- *         lanId: lanExample.id,
- *         cidrLists: ["192.168.1.108/24"],
- *     },
- *     templateId: "6b78ea06-ee0e-4689-998c-fc9c46e781f6",
- * });
- * const clusterPassword = new random.index.Password("cluster_password", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const userPassword = new random.index.Password("user_password", {
- *     length: 16,
- *     special: true,
- *     overrideSpecial: "!#$%&*()-_=+[]{}<>:?",
- * });
- * const exampleMongoUser = new ionoscloud.dbaas.MongoUser("example_mongo_user", {
- *     clusterId: exampleMongoCluster.id,
- *     username: "myUser",
- *     password: userPassword.result,
- *     roles: [
- *         {
- *             role: "read",
- *             database: "db1",
- *         },
- *         {
- *             role: "readWrite",
- *             database: "db2",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * Resource DBaaS MongoDB User can be imported using the `clusterID` and the `username`.
- *
- * First, define an empty resource in the plan:
- *
- * hcl
- *
- * resource "ionoscloud_mongo_user" "importeduser" {
- *
- * }
- *
- * Then you can import the user using the following command:
- *
- * ```sh
- * $ pulumi import ionoscloud:dbaas/mongoUser:MongoUser mycluser {clusterId}/{username}
- * ```
- */
 export class MongoUser extends pulumi.CustomResource {
     /**
      * Get an existing MongoUser resource's state with the given name, ID, and optional extra
@@ -164,21 +34,9 @@ export class MongoUser extends pulumi.CustomResource {
         return obj['__pulumiType'] === MongoUser.__pulumiType;
     }
 
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly clusterId!: pulumi.Output<string>;
-    /**
-     * [string] User password. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly password!: pulumi.Output<string>;
-    /**
-     * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly roles!: pulumi.Output<outputs.dbaas.MongoUserRole[] | undefined>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     public readonly username!: pulumi.Output<string>;
 
     /**
@@ -225,21 +83,9 @@ export class MongoUser extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MongoUser resources.
  */
 export interface MongoUserState {
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     clusterId?: pulumi.Input<string>;
-    /**
-     * [string] User password. Updates to the value of the field force the cluster to be re-created.
-     */
     password?: pulumi.Input<string>;
-    /**
-     * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
-     */
     roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[]>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     username?: pulumi.Input<string>;
 }
 
@@ -247,20 +93,8 @@ export interface MongoUserState {
  * The set of arguments for constructing a MongoUser resource.
  */
 export interface MongoUserArgs {
-    /**
-     * [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * [string] User password. Updates to the value of the field force the cluster to be re-created.
-     */
     password: pulumi.Input<string>;
-    /**
-     * [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
-     */
     roles?: pulumi.Input<pulumi.Input<inputs.dbaas.MongoUserRole>[]>;
-    /**
-     * [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
-     */
     username: pulumi.Input<string>;
 }

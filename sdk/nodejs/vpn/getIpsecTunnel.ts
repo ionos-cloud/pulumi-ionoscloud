@@ -6,14 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
- * You can provide a string for the name parameter which will be compared with provisioned IPSec Gateway Tunnels.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getIpsecTunnel(args: GetIpsecTunnelArgs, opts?: pulumi.InvokeOptions): Promise<GetIpsecTunnelResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel", {
@@ -28,21 +20,9 @@ export function getIpsecTunnel(args: GetIpsecTunnelArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getIpsecTunnel.
  */
 export interface GetIpsecTunnelArgs {
-    /**
-     * The ID of the IPSec Gateway that the tunnel belongs to.
-     */
     gatewayId: string;
-    /**
-     * ID of an existing IPSec Gateway Tunnel that you want to search for.
-     */
     id?: string;
-    /**
-     * The location of the IPSec Gateway Tunnel.
-     */
-    location: string;
-    /**
-     * Name of an existing IPSec Gateway Tunnel that you want to search for.
-     */
+    location?: string;
     name?: string;
 }
 
@@ -57,19 +37,11 @@ export interface GetIpsecTunnelResult {
     readonly gatewayId: string;
     readonly id: string;
     readonly ikes: outputs.vpn.GetIpsecTunnelIke[];
-    readonly location: string;
+    readonly location?: string;
     readonly name: string;
     readonly peerNetworkCidrs: string[];
     readonly remoteHost: string;
 }
-/**
- * The **VPN IPSec Gateway Tunnel data source** can be used to search for and return an existing IPSec Gateway Tunnel.
- * You can provide a string for the name parameter which will be compared with provisioned IPSec Gateway Tunnels.
- * If a single match is found, it will be returned. If your search results in multiple matches, an error will be returned.
- * When this happens, please refine your search string so that it is specific enough to return only one result.
- *
- * ## Example Usage
- */
 export function getIpsecTunnelOutput(args: GetIpsecTunnelOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpsecTunnelResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("ionoscloud:vpn/getIpsecTunnel:getIpsecTunnel", {
@@ -84,20 +56,8 @@ export function getIpsecTunnelOutput(args: GetIpsecTunnelOutputArgs, opts?: pulu
  * A collection of arguments for invoking getIpsecTunnel.
  */
 export interface GetIpsecTunnelOutputArgs {
-    /**
-     * The ID of the IPSec Gateway that the tunnel belongs to.
-     */
     gatewayId: pulumi.Input<string>;
-    /**
-     * ID of an existing IPSec Gateway Tunnel that you want to search for.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The location of the IPSec Gateway Tunnel.
-     */
-    location: pulumi.Input<string>;
-    /**
-     * Name of an existing IPSec Gateway Tunnel that you want to search for.
-     */
+    location?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
 }

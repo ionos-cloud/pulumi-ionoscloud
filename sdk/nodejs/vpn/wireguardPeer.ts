@@ -6,41 +6,6 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/**
- * This page provides an overview of the `ionoscloud.vpn.WireguardPeer` resource, which allows you to manage a WireGuard Peer in your cloud infrastructure.
- * This resource enables the creation, management, and deletion of a WireGuard VPN Peer, facilitating secure connections between your network resources.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as ionoscloud from "@pulumi/ionoscloud";
- *
- * const example = new ionoscloud.vpn.WireguardPeer("example", {
- *     location: "de/fra",
- *     gatewayId: "your gateway id here",
- *     name: "example-gateway",
- *     description: "An example WireGuard peer",
- *     endpoint: {
- *         host: "1.2.3.4",
- *         port: 51820,
- *     },
- *     allowedIps: [
- *         "10.0.0.0/8",
- *         "192.168.1.0/24",
- *     ],
- *     publicKey: "examplePublicKey==",
- * });
- * ```
- *
- * ## Import
- *
- * WireGuard Peers can be imported using the `gateway_id` and `id`, e.g.,
- *
- * ```sh
- * $ pulumi import ionoscloud:vpn/wireguardPeer:WireguardPeer example <gateway_id>:<peer_id>
- * ```
- */
 export class WireguardPeer extends pulumi.CustomResource {
     /**
      * Get an existing WireguardPeer resource's state with the given name, ID, and optional extra
@@ -70,35 +35,36 @@ export class WireguardPeer extends pulumi.CustomResource {
     }
 
     /**
-     * [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+     * The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
      */
     public readonly allowedIps!: pulumi.Output<string[]>;
     /**
-     * [string] A description of the WireGuard Gateway.
+     * Human readable description of the WireGuard Gateway Peer.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+     * Endpoint configuration for the WireGuard Peer.
      */
     public readonly endpoint!: pulumi.Output<outputs.vpn.WireguardPeerEndpoint | undefined>;
     /**
-     * [string] The ID of the WireGuard Gateway that the Peer will connect to.
+     * The ID of the WireGuard Peer that the peer will connect to.
      */
     public readonly gatewayId!: pulumi.Output<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * The location of the WireGuard Peer. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
-    public readonly location!: pulumi.Output<string>;
+    public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * [string] The human-readable name of the WireGuard Gateway.
+     * The human readable name of your WireGuard Gateway Peer.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * [string] The public key for the WireGuard Gateway.
+     * WireGuard public key of the connecting peer
      */
     public readonly publicKey!: pulumi.Output<string>;
     /**
-     * The current status of the WireGuard Gateway Peer.
+     * The status of the WireGuard Gateway
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
@@ -131,9 +97,6 @@ export class WireguardPeer extends pulumi.CustomResource {
             if ((!args || args.gatewayId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gatewayId'");
             }
-            if ((!args || args.location === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'location'");
-            }
             if ((!args || args.publicKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
@@ -156,35 +119,36 @@ export class WireguardPeer extends pulumi.CustomResource {
  */
 export interface WireguardPeerState {
     /**
-     * [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+     * The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
      */
     allowedIps?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] A description of the WireGuard Gateway.
+     * Human readable description of the WireGuard Gateway Peer.
      */
     description?: pulumi.Input<string>;
     /**
-     * [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+     * Endpoint configuration for the WireGuard Peer.
      */
     endpoint?: pulumi.Input<inputs.vpn.WireguardPeerEndpoint>;
     /**
-     * [string] The ID of the WireGuard Gateway that the Peer will connect to.
+     * The ID of the WireGuard Peer that the peer will connect to.
      */
     gatewayId?: pulumi.Input<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * The location of the WireGuard Peer. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
     location?: pulumi.Input<string>;
     /**
-     * [string] The human-readable name of the WireGuard Gateway.
+     * The human readable name of your WireGuard Gateway Peer.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The public key for the WireGuard Gateway.
+     * WireGuard public key of the connecting peer
      */
     publicKey?: pulumi.Input<string>;
     /**
-     * The current status of the WireGuard Gateway Peer.
+     * The status of the WireGuard Gateway
      */
     status?: pulumi.Input<string>;
 }
@@ -194,31 +158,32 @@ export interface WireguardPeerState {
  */
 export interface WireguardPeerArgs {
     /**
-     * [list, string] A list of subnet CIDRs that are allowed to connect to the WireGuard Gateway.
+     * The subnet CIDRs that are allowed to connect to the WireGuard Gateway.
      */
     allowedIps: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * [string] A description of the WireGuard Gateway.
+     * Human readable description of the WireGuard Gateway Peer.
      */
     description?: pulumi.Input<string>;
     /**
-     * [block] An endpoint configuration block for the WireGuard Gateway. The structure of this block is as follows:
+     * Endpoint configuration for the WireGuard Peer.
      */
     endpoint?: pulumi.Input<inputs.vpn.WireguardPeerEndpoint>;
     /**
-     * [string] The ID of the WireGuard Gateway that the Peer will connect to.
+     * The ID of the WireGuard Peer that the peer will connect to.
      */
     gatewayId: pulumi.Input<string>;
     /**
-     * [string] The location of the WireGuard Gateway.
+     * The location of the WireGuard Peer. Supported locations: de/fra, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci,
+     * fr/par
      */
-    location: pulumi.Input<string>;
+    location?: pulumi.Input<string>;
     /**
-     * [string] The human-readable name of the WireGuard Gateway.
+     * The human readable name of your WireGuard Gateway Peer.
      */
     name?: pulumi.Input<string>;
     /**
-     * [string] The public key for the WireGuard Gateway.
+     * WireGuard public key of the connecting peer
      */
     publicKey: pulumi.Input<string>;
 }
